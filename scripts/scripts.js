@@ -19,7 +19,9 @@ import { decorateButtons } from '../decorators/button-decorator.js';
 export { decorateButtons };
 
 // section options (models/_section.json), keyed by their normalized section-metadata row name
-const SECTION_OPTIONS = ['sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt'];
+const SECTION_OPTIONS = [
+  'sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt', 'anchorname',
+];
 const BACKGROUND_BREAKPOINTS = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
 
 /**
@@ -136,9 +138,9 @@ function buildCarouselSections(container) {
 }
 
 /**
- * Decorates sections, including the section options: Width Type, Rounded edge, Background Image
- * and Image alt text. decorateSections() keeps only the URL of a metadata image, so these rows
- * are read and removed first, then applied to the decorated section.
+ * Decorates sections, including the section options: Width Type, Rounded edge, Background Image,
+ * Image alt text and Anchor name. decorateSections() keeps only the URL of a metadata image,
+ * so these rows are read and removed first, then applied to the decorated section.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
 export function decorateSectionsWithOptions(container) {
@@ -165,6 +167,9 @@ export function decorateSectionsWithOptions(container) {
     if (rows.roundededge?.textContent.trim().toLowerCase() === 'true') {
       section.classList.add('rounded');
     }
+    // Anchor name: the id Anchor List links jump to
+    const anchor = toClassName(rows.anchorname?.textContent.trim().replace(/^#/, '') || '');
+    if (anchor && !document.getElementById(anchor)) section.id = anchor;
     const background = rows.backgroundimage
       && buildSectionBackground(rows.backgroundimage, rows.backgroundimagealt?.textContent.trim());
     if (background) {

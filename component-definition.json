@@ -83,6 +83,22 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Anchor List",
+          "id": "anchor-list",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Anchor List",
+                  "model": "anchor-list",
+                  "key-value": true
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "plugins": {
@@ -211,6 +227,39 @@
           }
         },
         {
+          "title": "Page Header",
+          "id": "page-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Page Header",
+                  "model": "page-header",
+                  "key-value": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Quote",
+          "id": "quote",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Quote",
+                  "model": "quote",
+                  "key-value": true,
+                  "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Teaser",
           "id": "teaser",
           "plugins": {
@@ -228,6 +277,24 @@
                   "dateFormat": "dd-mm-yyyy",
                   "primaryCtaStyle": "primary",
                   "secondaryCtaStyle": "secondary"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Testimonial",
+          "id": "testimonial",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Testimonial",
+                  "model": "testimonial",
+                  "key-value": true,
+                  "titleType": "h2",
+                  "showDescription": true
                 }
               }
             }

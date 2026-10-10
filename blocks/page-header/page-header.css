@@ -1,0 +1,242 @@
+/* Page Header (TCS.com DS Figma "Secondary Page Header" / "L3 Header") */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1000);
+}
+
+/* tags: uppercase grey labels (Figma Eyebrow / Tag) */
+.page-header .page-header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-200) var(--space-400);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.57;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.page-header .page-header-title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-xxl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.page-header .page-header-intro,
+.page-header .page-header-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1000);
+  min-width: 0;
+}
+
+.page-header .page-header-description {
+  color: var(--color-text-default);
+  font-size: var(--body-font-size-l);
+  line-height: 1.417;
+}
+
+.page-header .page-header-description > * {
+  margin: 0;
+}
+
+.page-header .page-header-description > * + * {
+  margin-top: var(--space-600);
+}
+
+.page-header .page-header-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-400) var(--space-600);
+}
+
+/* article: meta row (tags, collection | date, reading time, actions) */
+.page-header .page-header-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-400) var(--space-1000);
+}
+
+.page-header .page-header-labels,
+.page-header .page-header-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-200) var(--space-1000);
+}
+
+.page-header :is(.page-header-collection, .page-header-date, .page-header-reading-time) {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-light);
+  line-height: 1.21;
+  letter-spacing: 0.005em;
+}
+
+.page-header .page-header-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-100);
+}
+
+/* listen / download / share: dark icons (Figma), brand on hover */
+.page-header .page-header-actions :is(a, button).button.icon-button.tertiary {
+  color: var(--color-icon-default);
+}
+
+.page-header .page-header-actions :is(a, button).button.icon-button.tertiary:is(:hover, :focus-visible) {
+  color: var(--color-icon-brand);
+}
+
+.page-header .page-header-status {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin: var(--space-100) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
+  white-space: nowrap;
+}
+
+.page-header .page-header-status:empty {
+  display: none;
+}
+
+/* author: round image, name and designation */
+.page-header .page-header-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+}
+
+.page-header .page-header-author-image img {
+  display: block;
+  width: var(--space-1000);
+  height: var(--space-1000);
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.page-header .page-header-author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-xs);
+  line-height: 1.375;
+}
+
+.page-header .page-header-author-name {
+  margin: 0;
+  font-weight: var(--font-weight-light);
+}
+
+.page-header .page-header-author-designation {
+  font-weight: var(--font-weight-medium);
+}
+
+.page-header .page-header-author-designation > * {
+  margin: 0;
+}
+
+.page-header .page-header-columns {
+  display: grid;
+  gap: var(--space-1000);
+}
+
+/* landing: tags as a pipe-separated eyebrow, large title */
+.page-header.landing .page-header-tags li + li::before {
+  content: '|';
+  margin-right: var(--space-400);
+}
+
+.page-header.landing .page-header-title {
+  font-size: var(--display-font-size-1);
+  font-weight: var(--font-weight-medium);
+}
+
+.page-header.landing .page-header-intro {
+  gap: var(--space-400);
+}
+
+.page-header.landing .page-header-intro .page-header-description {
+  margin-top: var(--space-600);
+}
+
+/* landing with collage: 3 photos placed as in Figma (580 x 645 frame) */
+.page-header .page-header-collage {
+  position: relative;
+  aspect-ratio: 580 / 645;
+}
+
+.page-header .page-header-collage-item {
+  position: absolute;
+}
+
+.page-header .page-header-collage-item picture,
+.page-header .page-header-collage-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-header .page-header-collage-item-1 {
+  top: 0;
+  left: 0;
+  width: 57.2%;
+  height: 52.4%;
+}
+
+.page-header .page-header-collage-item-2 {
+  top: 55.3%;
+  left: 17.2%;
+  width: 40%;
+  height: 42.5%;
+}
+
+.page-header .page-header-collage-item-3 {
+  top: 35.5%;
+  left: 59.7%;
+  width: 40.2%;
+  height: 49.9%;
+}
+
+.page-header.landing.page-header-has-collage .page-header-description {
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+}
+
+@media (width >= 900px) {
+  .page-header.landing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2000);
+    align-items: center;
+  }
+
+  .page-header.landing.page-header-has-collage {
+    gap: var(--space-3000);
+  }
+
+  .page-header .page-header-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-header.article .page-header-summary {
+    padding-top: var(--space-300);
+  }
+}
