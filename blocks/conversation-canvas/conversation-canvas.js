@@ -1,6 +1,6 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { buildPropertyImage, toSitePath } from '../../scripts/page-properties.js';
+import { buildPropertyImage, getPageProperties, toSitePath } from '../../scripts/page-properties.js';
 import {
   BUTTON_ALIGNMENTS,
   BUTTON_TYPES,
@@ -18,7 +18,6 @@ const FIELDS = [
 ];
 const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
-const FLOAT_THRESHOLD = 8; // px scrolled before a primary canvas shows its floating search row
 
 let instanceCount = 0;
 
@@ -99,42 +98,69 @@ function buildListButton(row) {
 }
 
 /**
- * Builds the navigation menu from the query index: pages under the root path, up to the depth.
+ * Reads the Menu root path and Menu depth properties.
+ * @returns {{ root: string, depth: number }}
+ */
+function menuSettings(config) {
+  const root = toSitePath(config.menurootpath?.querySelector('a')?.getAttribute('href')
+    || textOf(config.menurootpath)) || '/';
+  const depth = Math.max(1, parseInt(textOf(config.menudepth), 10) || 1);
+  return { root, depth };
+}
+
+/**
+ * Loads the site tree from the query index: pages under the root path, up to the depth.
+ * Each node is { path, title, parent, children }; the returned node is the root.
  * @param {string} root Site path of the menu root
  * @param {number} depth Levels below the root
- * @returns {Promise<Element>}
+ * @returns {Promise<Object>}
  */
-async function buildMenuList(root, depth) {
-  const list = document.createElement('ul');
+async function loadMenuTree(root, depth) {
+  const base = root === '/' ? '' : root.replace(/\/$/, '');
+  const tree = {
+    path: base || '/', title: '', parent: null, children: [],
+  };
   try {
     const resp = await fetch('/query-index.json');
     const { data = [] } = resp.ok ? await resp.json() : {};
-    const base = root === '/' ? '' : root.replace(/\/$/, '');
     const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
-    const pages = data
+    const nodes = new Map([[tree.path, tree]]);
+    data
       .filter(({ path }) => path.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
-      .sort((x, y) => x.path.localeCompare(y.path));
-    const items = new Map();
-    pages.forEach(({ path, title }) => {
+      .sort((x, y) => levelOf(x.path) - levelOf(y.path) || x.path.localeCompare(y.path))
+      .forEach(({ path, title }) => {
+        const parent = nodes.get(path.slice(0, path.lastIndexOf('/')) || '/');
+        if (!parent) return;
+        const node = {
+          path, title: title || path.split('/').pop().replace(/-/g, ' '), parent, children: [],
+        };
+        parent.children.push(node);
+        nodes.set(path, node);
+      });
+  } catch { /* an empty tree is returned */ }
+  return tree;
+}
+
+/**
+ * Builds the popover menu list (Default and Secondary styles) from the site tree.
+ * @returns {Promise<Element>}
+ */
+async function buildMenuList(root, depth) {
+  const toList = (nodes) => {
+    const list = document.createElement('ul');
+    nodes.forEach((node) => {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.href = path;
-      a.textContent = title || path.split('/').pop().replace(/-/g, ' ');
+      a.href = node.path;
+      a.textContent = node.title;
       li.append(a);
-      items.set(path, li);
-      const parent = items.get(path.slice(0, path.lastIndexOf('/')));
-      if (parent) {
-        let sub = parent.querySelector(':scope > ul');
-        if (!sub) {
-          sub = document.createElement('ul');
-          parent.append(sub);
-        }
-        sub.append(li);
-      } else {
-        list.append(li);
-      }
+      if (node.children.length) li.append(toList(node.children));
+      list.append(li);
     });
-  } catch { /* an empty menu is shown */ }
+    return list;
+  };
+  const tree = await loadMenuTree(root, depth);
+  const list = toList(tree.children);
   if (!list.children.length) {
     const li = document.createElement('li');
     li.className = 'conversation-canvas-menu-empty';
@@ -145,52 +171,23 @@ async function buildMenuList(root, depth) {
 }
 
 /**
- * Builds the search row: menu button and menu, search input, audio and submit buttons.
+ * Builds the menu toggle button (round, with the menu icon).
  */
-function buildSearch(config, id, block) {
-  const row = document.createElement('div');
-  row.className = 'conversation-canvas-search';
+function buildMenuToggle(controls, label = 'Menu') {
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'conversation-canvas-menu-toggle';
+  toggle.setAttribute('aria-label', label);
+  toggle.setAttribute('aria-controls', controls);
+  return toggle;
+}
 
-  // menu
-  const menuToggle = document.createElement('button');
-  menuToggle.type = 'button';
-  menuToggle.className = 'conversation-canvas-menu-toggle';
-  menuToggle.setAttribute('aria-label', 'Menu');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-controls', `${id}-menu`);
-  const menu = document.createElement('nav');
-  menu.className = 'conversation-canvas-menu';
-  menu.id = `${id}-menu`;
-  menu.setAttribute('aria-label', 'Menu');
-  menu.hidden = true;
-  const root = toSitePath(config.menurootpath?.querySelector('a')?.getAttribute('href')
-    || textOf(config.menurootpath)) || '/';
-  const depth = Math.max(1, parseInt(textOf(config.menudepth), 10) || 1);
-  let menuLoaded = false;
-  const closeMenu = () => {
-    menu.hidden = true;
-    menuToggle.setAttribute('aria-expanded', 'false');
-  };
-  menuToggle.addEventListener('click', async () => {
-    const open = menu.hidden;
-    menu.hidden = !open;
-    menuToggle.setAttribute('aria-expanded', open);
-    if (open && !menuLoaded) {
-      menuLoaded = true;
-      menu.append(await buildMenuList(root, depth));
-    }
-  });
-  row.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !menu.hidden) {
-      closeMenu();
-      menuToggle.focus();
-    }
-  });
-  document.addEventListener('click', (e) => {
-    if (!menu.hidden && !row.contains(e.target)) closeMenu();
-  });
-
-  // search form
+/**
+ * Builds the search form: input with watermark, audio (speech input) and submit buttons.
+ * Submitting dispatches a conversation-canvas:search event with the query.
+ * @returns {HTMLFormElement}
+ */
+function buildSearchForm(config, id, block) {
   const form = document.createElement('form');
   form.className = 'conversation-canvas-search-form';
   const placeholder = textOf(config.searchplaceholder) || 'Ask us a question';
@@ -249,14 +246,291 @@ function buildSearch(config, id, block) {
   });
 
   form.append(label, input, audio, submit);
-  row.append(menuToggle, form, menu);
+  return form;
+}
+
+/**
+ * Builds the search row of the Default and Secondary styles: menu button with a popover menu
+ * of the site tree, and the search form.
+ */
+function buildSearch(config, id, block) {
+  const row = document.createElement('div');
+  row.className = 'conversation-canvas-search';
+
+  const menuToggle = buildMenuToggle(`${id}-menu`);
+  menuToggle.setAttribute('aria-expanded', 'false');
+  const menu = document.createElement('nav');
+  menu.className = 'conversation-canvas-menu';
+  menu.id = `${id}-menu`;
+  menu.setAttribute('aria-label', 'Menu');
+  menu.hidden = true;
+  const { root, depth } = menuSettings(config);
+  let menuLoaded = false;
+  const closeMenu = () => {
+    menu.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+  };
+  menuToggle.addEventListener('click', async () => {
+    const open = menu.hidden;
+    menu.hidden = !open;
+    menuToggle.setAttribute('aria-expanded', open);
+    if (open && !menuLoaded) {
+      menuLoaded = true;
+      menu.append(await buildMenuList(root, depth));
+    }
+  });
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!menu.hidden && !row.contains(e.target)) closeMenu();
+  });
+
+  row.append(menuToggle, buildSearchForm(config, id, block), menu);
   return row;
 }
 
 /*
- * Floating search rows: across all canvases on the page, at most one search row floats at the
- * bottom of the viewport. None floats while any canvas shows its search row in place.
- * Primary canvases have no in-place row; theirs floats once the page is scrolled.
+ * Primary (sticky) dock: the whole canvas floats at the bottom of the viewport until the footer
+ * (or a canvas showing its search row in place, e.g. in the footer) comes into view.
+ * It holds the search row and, on desktop, the site navigation:
+ * - home (the menu root): pills for the top-level sections
+ * - a page with sub-pages: pills for its sub-pages; pills with their own sub-pages open a
+ *   panel listing them, shown in place of the search row
+ * - a page without sub-pages: suggestion pills (dynamic, or the page's story tags), or its
+ *   parent's sub-pages when there are no suggestions
+ * The menu button next to the search toggles the full menu (top-level sections); the back
+ * button in the navigation goes up one level.
+ */
+const docks = new WeakMap();
+const PANEL_COLUMNS_FROM = 6; // panel items from which the panel uses two columns
+
+const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+function findNode(tree, path) {
+  if (tree.path === path) return tree;
+  for (let i = 0; i < tree.children.length; i += 1) {
+    const found = findNode(tree.children[i], path);
+    if (found) return found;
+  }
+  return null;
+}
+
+const isWithin = (node, ancestor) => {
+  for (let n = node; n; n = n.parent) if (n === ancestor) return true;
+  return false;
+};
+
+/**
+ * Builds the primary dock and returns it; its navigation renders once the site tree loads.
+ */
+function buildDock(config, id, block) {
+  const dock = document.createElement('div');
+  dock.className = 'conversation-canvas-dock';
+
+  // panel for a pill's sub-pages, shown in place of the search row
+  const panel = document.createElement('div');
+  panel.className = 'conversation-canvas-nav-panel';
+  panel.id = `${id}-panel`;
+  panel.hidden = true;
+
+  // search row: full menu toggle and search form
+  const row = document.createElement('div');
+  row.className = 'conversation-canvas-search';
+  const menuToggle = buildMenuToggle(`${id}-nav`);
+  menuToggle.setAttribute('aria-pressed', 'false');
+  const form = buildSearchForm(config, id, block);
+  row.append(menuToggle, form);
+
+  const nav = document.createElement('nav');
+  nav.className = 'conversation-canvas-nav';
+  nav.id = `${id}-nav`;
+  nav.setAttribute('aria-label', 'Site');
+
+  dock.append(panel, row, nav);
+
+  const state = {
+    tree: null, current: null, view: null, suggestions: [], collapsed: false,
+  };
+  const textOfNode = (node) => node.title.replace(/\s*\|.*$/, '');
+
+  const closePanel = () => {
+    panel.hidden = true;
+    panel.replaceChildren();
+    dock.classList.remove('conversation-canvas-panel-open');
+    nav.querySelectorAll('[aria-expanded="true"]').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+  };
+
+  const openPanel = (button, node) => {
+    closePanel();
+    const list = document.createElement('ul');
+    list.className = 'conversation-canvas-nav-panel-list';
+    const wide = node.children.length >= PANEL_COLUMNS_FROM;
+    // balanced columns: the first column ends at item ceil(n / 2)
+    const columnEnd = wide ? Math.ceil(node.children.length / 2) - 1 : -1;
+    node.children.forEach((child, i) => {
+      const li = document.createElement('li');
+      li.className = 'conversation-canvas-nav-panel-item';
+      if (i === columnEnd) li.classList.add('conversation-canvas-nav-panel-column-end');
+      const a = document.createElement('a');
+      a.href = child.path;
+      a.className = 'conversation-canvas-nav-panel-link';
+      a.textContent = textOfNode(child);
+      if (state.current === child) a.setAttribute('aria-current', 'page');
+      li.append(a);
+      list.append(li);
+    });
+    panel.classList.toggle('conversation-canvas-nav-panel-wide', wide);
+    panel.setAttribute('aria-label', textOfNode(node));
+    panel.append(list);
+    panel.hidden = false;
+    dock.classList.add('conversation-canvas-panel-open');
+    button.setAttribute('aria-expanded', 'true');
+  };
+
+  const defaultView = () => {
+    const { tree, current } = state;
+    if (!current || current === tree) return { type: 'root' };
+    if (current.children.length) return { type: 'section', node: current };
+    if (state.suggestions.length) return { type: 'suggestions' };
+    return current.parent === tree ? { type: 'root' } : { type: 'section', node: current.parent };
+  };
+
+  const parentView = (view) => {
+    const { tree, current } = state;
+    if (view.type === 'suggestions') {
+      return current.parent === tree ? { type: 'root' } : { type: 'section', node: current.parent };
+    }
+    if (view.type === 'section' && view.node.parent && view.node.parent !== tree) {
+      return { type: 'section', node: view.node.parent };
+    }
+    return { type: 'root' };
+  };
+
+  const pill = (tag, text) => {
+    const el = document.createElement(tag);
+    el.className = 'conversation-canvas-nav-item';
+    el.textContent = text;
+    if (tag === 'button') el.type = 'button';
+    return el;
+  };
+
+  // eslint-disable-next-line no-use-before-define
+  const setView = (view) => { state.view = view; render(); };
+
+  function render() {
+    closePanel();
+    const { tree, view } = state;
+    const items = [];
+    if (view.type !== 'root') {
+      const back = document.createElement('button');
+      back.type = 'button';
+      back.className = 'conversation-canvas-nav-back';
+      back.setAttribute('aria-label', 'Back');
+      back.addEventListener('click', () => setView(parentView(view)));
+      items.push(back);
+    }
+    if (view.type === 'suggestions') {
+      state.suggestions.forEach((text) => {
+        const item = pill('button', text);
+        item.classList.add('conversation-canvas-nav-suggestion');
+        item.addEventListener('click', () => {
+          form.elements.q.value = text.replace(/^["“]|["”]$/g, '');
+          form.requestSubmit();
+        });
+        items.push(item);
+      });
+    } else {
+      const node = view.type === 'root' ? tree : view.node;
+      node.children.forEach((child) => {
+        let item;
+        if (child.children.length && view.type === 'section') {
+          item = pill('button', textOfNode(child));
+          item.classList.add('conversation-canvas-nav-toggle');
+          item.setAttribute('aria-expanded', 'false');
+          item.setAttribute('aria-controls', panel.id);
+          item.addEventListener('click', () => {
+            if (item.getAttribute('aria-expanded') === 'true') closePanel();
+            else openPanel(item, child);
+          });
+        } else {
+          item = pill('a', textOfNode(child));
+          item.href = child.path;
+        }
+        if (state.current && isWithin(state.current, child)) item.classList.add('conversation-canvas-nav-current');
+        if (state.current === child) item.setAttribute('aria-current', 'page');
+        items.push(item);
+      });
+    }
+    const list = document.createElement('ul');
+    list.className = 'conversation-canvas-nav-list';
+    list.append(...items.map((item) => {
+      const li = document.createElement('li');
+      li.append(item);
+      return li;
+    }));
+    nav.replaceChildren(list);
+    nav.hidden = state.collapsed || !items.length;
+    const fullMenu = view.type === 'root' && defaultView().type !== 'root';
+    menuToggle.setAttribute('aria-pressed', String(fullMenu || state.collapsed));
+  }
+
+  // menu button: full menu on / off (on home, where the full menu is the default: show / hide)
+  menuToggle.addEventListener('click', () => {
+    if (!state.tree) return;
+    if (defaultView().type === 'root') {
+      state.collapsed = !state.collapsed;
+      render();
+    } else {
+      setView(state.view.type === 'root' ? defaultView() : { type: 'root' });
+    }
+  });
+
+  dock.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || panel.hidden) return;
+    const opener = nav.querySelector('[aria-expanded="true"]');
+    closePanel();
+    opener?.focus();
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !dock.contains(e.target)) closePanel();
+  });
+
+  const { root, depth } = menuSettings(config);
+  state.suggestions = getPageProperties().story.tags.map((t) => t.label);
+  loadMenuTree(root, depth).then((tree) => {
+    state.tree = tree;
+    state.current = findNode(tree, normalizePath(window.location.pathname));
+    setView(defaultView());
+  });
+
+  docks.set(block, {
+    setSuggestions(suggestions) {
+      state.suggestions = suggestions;
+      if (state.tree) setView(defaultView());
+    },
+  });
+  return dock;
+}
+
+/**
+ * Sets the suggestion pills of a primary (sticky) canvas, shown on pages without sub-pages,
+ * e.g. AI prompts from a personalisation service. Clicking one searches for it.
+ * @param {Element} block The conversation canvas block
+ * @param {string[]} suggestions
+ */
+export function setConversationCanvasSuggestions(block, suggestions = []) {
+  docks.get(block)?.setSuggestions(suggestions);
+}
+
+/*
+ * Floating: across all canvases on the page at most one floats at the bottom of the viewport,
+ * and none while any canvas shows its search row in place (e.g. the canvas in the footer).
+ * - primary (sticky): the whole canvas (dock) floats until the footer comes into view
+ * - default / secondary: the search row floats once it is scrolled past its place
  */
 const floating = [];
 let floatFrame;
@@ -267,17 +541,20 @@ function updateFloating() {
     const r = el.getBoundingClientRect();
     return r.bottom > 0 && r.top < vh;
   };
+  const footer = document.querySelector('footer');
+  const footerVisible = !!footer && inView(footer);
   const inPlaceVisible = floating.some((c) => !c.primary && inView(c.slot));
   let assigned = false;
   floating.forEach((c) => {
     let float = false;
     if (!inPlaceVisible && !assigned) {
-      float = c.primary
-        ? window.scrollY > FLOAT_THRESHOLD
-        : c.slot.getBoundingClientRect().bottom < 0;
+      float = c.primary ? !footerVisible : c.slot.getBoundingClientRect().bottom < 0;
     }
     if (float) assigned = true;
-    if (float && !c.row.classList.contains('conversation-canvas-floating') && !c.primary) {
+    if (c.primary) {
+      // hidden docks can't be reached by keyboard or screen readers
+      c.row.inert = !float;
+    } else if (float && !c.row.classList.contains('conversation-canvas-floating')) {
       // keep the space of the row while it floats, so the page doesn't jump
       c.slot.style.minHeight = `${c.slot.offsetHeight}px`;
     }
@@ -289,6 +566,20 @@ function updateFloating() {
 function scheduleFloating() {
   cancelAnimationFrame(floatFrame);
   floatFrame = requestAnimationFrame(updateFloating);
+}
+
+/**
+ * Adds a canvas to the floating logic; listeners are attached for the first one.
+ */
+function registerFloating(entry) {
+  floating.push(entry);
+  if (floating.length === 1) {
+    window.addEventListener('scroll', scheduleFloating, { passive: true });
+    window.addEventListener('resize', scheduleFloating);
+    // the footer and other sections load later and move the page
+    new ResizeObserver(scheduleFloating).observe(document.body);
+  }
+  scheduleFloating();
 }
 
 /**
@@ -329,6 +620,14 @@ export default function decorate(block) {
   const titleSize = normalize(textOf(config.titlesize));
   if (TITLE_SIZES.includes(titleSize)) block.classList.add(`conversation-canvas-title-${titleSize}`);
 
+  // primary (sticky): only the floating dock (search row and site navigation)
+  if (primary) {
+    const dock = buildDock(config, id, block);
+    block.replaceChildren(dock);
+    registerFloating({ row: dock, slot: null, primary });
+    return;
+  }
+
   const content = document.createElement('div');
   content.className = 'conversation-canvas-content';
 
@@ -359,7 +658,7 @@ export default function decorate(block) {
     intro.append(eyebrow);
   }
   if (textOf(config.title)) {
-    const title = document.createElement(primary ? 'h1' : 'h2');
+    const title = document.createElement('h2');
     title.className = 'conversation-canvas-title';
     title.textContent = textOf(config.title);
     intro.append(title);
@@ -372,7 +671,7 @@ export default function decorate(block) {
   }
   if (intro.children.length) content.append(intro);
 
-  // search row, in place (default, secondary) or floating only (primary)
+  // search row, in place; floats once scrolled past
   const slot = document.createElement('div');
   slot.className = 'conversation-canvas-search-slot';
   const row = buildSearch(config, id, block);
@@ -397,11 +696,5 @@ export default function decorate(block) {
   }
 
   block.replaceChildren(...block.querySelectorAll(':scope > .conversation-canvas-background'), content);
-
-  floating.push({ row, slot, primary });
-  if (floating.length === 1) {
-    window.addEventListener('scroll', scheduleFloating, { passive: true });
-    window.addEventListener('resize', scheduleFloating);
-  }
-  scheduleFloating();
+  registerFloating({ row, slot, primary });
 }

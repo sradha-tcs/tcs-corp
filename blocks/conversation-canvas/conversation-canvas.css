@@ -32,13 +32,6 @@
     radial-gradient(60% 70% at 80% 95%, rgb(70 115 219 / 25%), transparent 75%);
 }
 
-.conversation-canvas.primary::before {
-  background:
-    radial-gradient(60% 50% at 10% 5%, rgb(232 185 49 / 12%), transparent 70%),
-    radial-gradient(55% 55% at 90% 95%, rgb(70 115 219 / 14%), transparent 70%),
-    #f7f8fc;
-}
-
 .conversation-canvas.conversation-canvas-has-background::before {
   display: none;
 }
@@ -370,24 +363,6 @@
   list-style: none;
 }
 
-/* primary (sticky): full-height hero, search row floats once the page is scrolled */
-.conversation-canvas.primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 655px;
-  border-radius: 0;
-  padding: var(--space-1000) var(--space-600);
-}
-
-.conversation-canvas.primary .conversation-canvas-search-slot {
-  display: contents;
-}
-
-.conversation-canvas.primary .conversation-canvas-search:not(.conversation-canvas-floating) {
-  display: none;
-}
-
 /* secondary */
 .conversation-canvas.secondary .conversation-canvas-intro {
   gap: var(--space-1000);
@@ -430,10 +405,6 @@
     line-height: 29px;
   }
 
-  .conversation-canvas.primary {
-    min-height: 800px;
-    padding: var(--space-2000) 44px;
-  }
 }
 
 /* desktop */
@@ -463,13 +434,6 @@
     font-size: 40px;
   }
 
-  .conversation-canvas.primary {
-    min-height: 1000px;
-  }
-
-  .conversation-canvas.primary .conversation-canvas-content {
-    gap: var(--space-1000);
-  }
 
   .conversation-canvas.secondary {
     padding: var(--space-4000) var(--space-2000);
@@ -477,5 +441,283 @@
 
   .conversation-canvas.secondary .conversation-canvas-content {
     gap: var(--space-1000);
+  }
+}
+
+
+/*
+ * Primary (sticky): only the floating dock, visible until the footer comes into view.
+ * Mobile: the search pill only (navigation is in the site header). Desktop: menu button,
+ * search pill and site navigation over a white fade.
+ */
+.conversation-canvas.primary {
+  border-radius: 0;
+  padding: 0;
+  background: none;
+}
+
+.conversation-canvas.primary::before {
+  display: none;
+}
+
+.conversation-canvas-wrapper:has(> .conversation-canvas.primary) {
+  display: contents;
+}
+
+main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-canvas.primary) {
+  margin: 0;
+  padding: 0;
+}
+
+.conversation-canvas .conversation-canvas-dock {
+  --conversation-canvas-active: #4e84ff;
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 37px;
+  padding: var(--space-600);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(var(--space-600));
+  visibility: hidden;
+  transition: opacity 0.3s, transform 0.3s, visibility 0s 0.3s;
+}
+
+.conversation-canvas .conversation-canvas-dock.conversation-canvas-floating {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* the fade is decorative: only the controls take clicks */
+.conversation-canvas .conversation-canvas-dock > * {
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conversation-canvas .conversation-canvas-dock,
+  .conversation-canvas .conversation-canvas-dock.conversation-canvas-floating {
+    transition: none;
+  }
+}
+
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
+  width: min(100%, 340px);
+}
+
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
+  border-color: transparent;
+  background-color: rgb(230 230 230 / 90%);
+  backdrop-filter: blur(var(--blur-100));
+}
+
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
+  color: var(--conversation-canvas-outline);
+}
+
+/* navigation pills */
+.conversation-canvas .conversation-canvas-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-300);
+  max-width: 1280px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-item {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-200);
+  min-height: 48px;
+  margin: 0;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: var(--space-200) var(--space-600);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: var(--font-weight-regular);
+  line-height: 29px;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.conversation-canvas .conversation-canvas-nav-item:hover,
+.conversation-canvas .conversation-canvas-nav-item:focus-visible,
+.conversation-canvas .conversation-canvas-nav-current {
+  border-color: var(--conversation-canvas-active);
+  color: var(--color-text-default);
+  text-decoration: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-toggle::after {
+  content: '';
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  background-color: currentcolor;
+  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
+  transition: transform 0.2s;
+}
+
+.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"] {
+  border-color: var(--conversation-canvas-active);
+  background-color: var(--conversation-canvas-active);
+  color: var(--color-text-on-brand);
+}
+
+.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+.conversation-canvas .conversation-canvas-nav-back {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  border: var(--border-width-200) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: 0;
+  background-color: rgb(255 255 255 / 40%);
+  color: var(--conversation-canvas-active);
+  cursor: pointer;
+}
+
+.conversation-canvas .conversation-canvas-nav-back::before {
+  content: '';
+  width: var(--space-500);
+  height: var(--space-500);
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-left.svg') center / contain no-repeat;
+}
+
+/* panel with a pill's sub-pages, in place of the search row */
+.conversation-canvas .conversation-canvas-nav-panel {
+  box-sizing: border-box;
+  width: min(100%, 420px);
+  border: var(--border-width-200) solid var(--color-border-default);
+  border-radius: 20px;
+  padding: var(--space-300) var(--space-800);
+  background-color: rgb(255 255 255 / 40%);
+  backdrop-filter: blur(20px);
+}
+
+.conversation-canvas .conversation-canvas-nav-panel.conversation-canvas-nav-panel-wide {
+  width: min(100%, 816px);
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-wide .conversation-canvas-nav-panel-list {
+  column-gap: var(--space-1000);
+  columns: 2;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-item {
+  break-inside: avoid;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-400);
+  border-bottom: var(--border-width-100) solid var(--color-border-neutral-tertiary);
+  padding: var(--space-300) 0;
+  color: var(--color-text-default);
+  font-size: var(--button-font-size);
+  line-height: 22px;
+  text-decoration: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link::after {
+  content: '';
+  flex: none;
+  width: var(--space-400);
+  height: var(--space-400);
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link:hover,
+.conversation-canvas .conversation-canvas-nav-panel-link:focus-visible,
+.conversation-canvas .conversation-canvas-nav-panel-link[aria-current] {
+  color: var(--conversation-canvas-active);
+  text-decoration: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-column-end .conversation-canvas-nav-panel-link,
+.conversation-canvas .conversation-canvas-nav-panel-item:last-child .conversation-canvas-nav-panel-link {
+  border-bottom: 0;
+}
+
+/* mobile: search pill only */
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle,
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav,
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .conversation-canvas .conversation-canvas-dock {
+    padding: var(--space-2000) var(--space-600) var(--space-600);
+    background: linear-gradient(0deg, var(--color-bg-default) 55%, rgb(255 255 255 / 0%) 100%);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
+    width: min(100%, 607px);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {
+    display: grid;
+    background-color: var(--color-bg-default);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-pressed="true"] {
+    border-color: var(--conversation-canvas-active);
+    color: var(--conversation-canvas-active);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
+    border-color: var(--conversation-canvas-outline);
+    background-color: var(--color-bg-default);
+    backdrop-filter: none;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav {
+    display: block;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav[hidden] {
+    display: none;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel:not([hidden]) {
+    display: block;
+  }
+
+  /* an open panel takes the place of the search row */
+  .conversation-canvas.primary .conversation-canvas-dock.conversation-canvas-panel-open .conversation-canvas-search {
+    display: none;
   }
 }
