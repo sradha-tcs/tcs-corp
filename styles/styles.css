@@ -929,3 +929,38 @@ main .section.dark a:any-link:not(.button) {
 main .section.dark a:hover:not(.button) {
   color: var(--color-text-on-neutral);
 }
+
+/* section options: background image and rounded edge */
+main .section.has-background {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  padding: var(--section-spacing) 0;
+}
+
+main > .section > .section-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+main > .section > .section-background picture,
+main > .section > .section-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+main > .section > .section-background img {
+  object-fit: cover;
+}
+
+/* inset from the viewport edges so the corners are visible, aligned to the content width */
+main .section.rounded {
+  margin: var(--section-spacing) max(var(--section-padding-inline), calc((100% - var(--content-max-width)) / 2));
+  border-radius: var(--radius-l);
+  overflow: hidden;
+}
