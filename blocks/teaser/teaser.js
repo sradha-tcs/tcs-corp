@@ -1,9 +1,12 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { tag as parseTag } from '../../scripts/page-properties.js';
 import {
   NEW_WINDOW, decorateButton, readLinkItems, setLinkTarget,
 } from '../../decorators/button-decorator.js';
+import {
+  buildHeading, buildTagList, buildTime, fromCell, isOn, optionOf as option, pictureOf,
+  readProperties, readTags, textOf,
+} from '../../decorators/block-properties.js';
 
 /*
  * Teaser (blocks/teaser/_teaser.json): a key-value block, one row per property.
@@ -15,110 +18,18 @@ import {
 const STYLES = ['no-image'];
 const BG_COLORS = ['grey', 'dark', 'dark-green'];
 const LINK_STYLES = ['list', 'primary', 'secondary'];
-const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const normalize = (text) => toClassName(text || '').replace(/-/g, '');
-
-/** the property rows of the block, keyed by their normalized name (e.g. "primarycta") */
-function readProperties(block) {
-  const properties = {};
-  [...block.children].forEach((row) => {
-    const [key, value] = row.children;
-    if (row.children.length === 2) properties[normalize(key.textContent)] = value;
-  });
-  return properties;
-}
-
-const textOf = (cell) => cell?.textContent.trim() || '';
-// toggles: only an authored "true" turns them on, so a missing row means off
-const isOn = (cell) => textOf(cell).toLowerCase() === 'true';
-
-/** a block option from the block classes (block options) or its property row */
-function option(block, cell, allowed) {
-  const value = toClassName(textOf(cell));
-  if (allowed.includes(value)) return value;
-  return allowed.find((name) => block.classList.contains(name)) || '';
-}
-
-/** the element holding a plain-text value: authored text may be wrapped in a paragraph */
-function textSource(cell) {
-  const only = cell.children.length === 1 ? cell.firstElementChild : null;
-  return only?.tagName === 'P' && cell.textContent.trim() === only.textContent.trim() ? only : cell;
-}
-
-/** moves the content of a property cell into a new element, with its editor instrumentation */
-function fromCell(cell, tagName, className) {
-  const el = document.createElement(tagName);
-  el.className = className;
-  const source = tagName === 'div' ? cell : textSource(cell);
-  el.append(...source.childNodes);
-  moveInstrumentation(source, el);
-  moveInstrumentation(cell, el);
-  return el;
-}
-
-/** formats an authored date (YYYY-MM-DD, possibly with a time) without time zone shifts */
-function formatDate(value, format) {
-  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (!match) return { iso: '', text: value };
-  const [, year, month, day] = match;
-  const iso = `${year}-${month}-${day}`;
-  if (format === 'mm-dd-yyyy') return { iso, text: `${month}-${day}-${year}` };
-  if (format === 'mmm-d-yyyy') {
-    return { iso, text: `${MONTHS[Number(month) - 1]} ${Number(day)}, ${year}` };
-  }
-  return { iso, text: `${day}-${month}-${year}` };
-}
-
-/** tag IDs from a multi-value cell: list items or a comma-separated list */
-function readTags(cell) {
-  const items = cell.querySelectorAll('li');
-  const values = items.length
-    ? [...items].map((li) => li.textContent)
-    : textOf(cell).split(',');
-  return values.map((value) => value.trim()).filter(Boolean).map((id) => parseTag(id));
-}
-
-function buildTitle(props) {
-  const cell = props.title;
-  if (!textOf(cell)) return null;
-  const level = toClassName(textOf(props.titletype));
-  const authored = cell.querySelector(HEADINGS.join(','));
-  const tagName = HEADINGS.includes(level) ? level : (authored?.tagName.toLowerCase() || 'h2');
-  const title = document.createElement(tagName);
-  title.className = 'teaser-title';
-  const source = authored || textSource(cell);
-  title.append(...source.childNodes);
-  moveInstrumentation(source, title);
-  moveInstrumentation(cell, title);
-  return title;
-}
+const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
 
 function buildMeta(props) {
   const meta = document.createElement('div');
   meta.className = 'teaser-meta';
   const date = textOf(props.date);
   if (isOn(props.showdate) && date) {
-    const { iso, text } = formatDate(date, toClassName(textOf(props.dateformat)));
-    const time = document.createElement('time');
-    time.className = 'teaser-date';
-    if (iso) time.dateTime = iso;
-    time.textContent = text;
-    meta.append(time);
+    meta.append(buildTime(date, toClassName(textOf(props.dateformat)), 'teaser-date'));
   }
-  const tags = isOn(props.displaytags) && props.tags ? readTags(props.tags) : [];
-  if (tags.length) {
-    const list = document.createElement('ul');
-    list.className = 'teaser-tags';
-    tags.forEach(({ id, label }) => {
-      const li = document.createElement('li');
-      li.dataset.tag = id;
-      li.textContent = label;
-      list.append(li);
-    });
-    meta.append(list);
-  }
+  const tags = isOn(props.displaytags) ? buildTagList(readTags(props.tags), 'teaser-tags') : null;
+  if (tags) meta.append(tags);
   return meta.children.length ? meta : null;
 }
 
@@ -201,16 +112,11 @@ function buildLinks(props) {
 
 function buildImage(block, props) {
   if (option(block, props.classes, STYLES) === 'no-image' || isOn(props.hideimage)) return null;
-  const picture = props.image?.querySelector('picture');
+  const picture = pictureOf(props.image, props.imagealt);
   if (!picture) return null;
-  const img = picture.querySelector('img');
-  const alt = textOf(props.imagealt);
-  if (img && alt) img.alt = alt;
-  else if (img && !img.hasAttribute('alt')) img.alt = '';
   const media = document.createElement('div');
   media.className = 'teaser-media';
   media.append(picture);
-  moveInstrumentation(props.image, media);
   return media;
 }
 

@@ -72,6 +72,13 @@
           "name": "backgroundImageAlt",
           "label": "Image alt text",
           "description": "Describe the image for screen readers. Leave empty if the image is decorative."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "anchorName",
+          "label": "Anchor name",
+          "description": "Lets Anchor List links jump to this section, e.g. overview (lowercase, no spaces)."
         }
       ]
     }
@@ -84,8 +91,12 @@
         "image",
         "button",
         "title",
+        "page-header",
         "hero",
         "teaser",
+        "quote",
+        "testimonial",
+        "anchor-list",
         "conversation-canvas",
         "cards",
         "columns",

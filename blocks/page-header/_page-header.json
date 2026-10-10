@@ -1,0 +1,157 @@
+{
+  "definitions": [
+    {
+      "title": "Page Header",
+      "id": "page-header",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Page Header",
+              "model": "page-header",
+              "key-value": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "page-header",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "styleTab",
+          "label": "Style"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style",
+          "description": "Title, description, tags, date, reading time, author, story link, download and share come from the page properties.",
+          "value": "",
+          "options": [
+            { "name": "Auto (by Page Type)", "value": "" },
+            { "name": "Landing", "value": "landing" },
+            { "name": "Article", "value": "article" }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "imagesTab",
+          "label": "Image Collage"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "collageImage1",
+          "label": "Image 1 (large, top left)",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "collageImage1Alt",
+          "label": "Image 1 alt text"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "collageImage2",
+          "label": "Image 2 (bottom left)",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "collageImage2Alt",
+          "label": "Image 2 alt text"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "collageImage3",
+          "label": "Image 3 (right)",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "collageImage3Alt",
+          "label": "Image 3 alt text"
+        },
+        {
+          "component": "tab",
+          "name": "linksTab",
+          "label": "Second CTA"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "secondaryCtaText",
+          "label": "Second CTA Title",
+          "description": "Shown after the page's story link."
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "secondaryCta",
+          "label": "Second CTA Link"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaTarget",
+          "label": "Second CTA Link Type",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Open in New Window", "value": "new-window" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaStyle",
+          "label": "Second CTA Link Style",
+          "value": "",
+          "options": [
+            { "name": "Default (text link)", "value": "" },
+            { "name": "Primary Button", "value": "primary" },
+            { "name": "Secondary Button", "value": "secondary" }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "metaTab",
+          "label": "Author & Meta"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "authorName",
+          "label": "Author Name",
+          "description": "Shown above the page's Designation & Location."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "collectionLabel",
+          "label": "Collection Label",
+          "description": "Shown after the tags, e.g. Collection."
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "listenLink",
+          "label": "Listen Link",
+          "description": "Audio version of the page (shows a headphones icon)."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -482,6 +482,48 @@
         "name": "backgroundImageAlt",
         "label": "Image alt text",
         "description": "Describe the image for screen readers. Leave empty if the image is decorative."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "anchorName",
+        "label": "Anchor name",
+        "description": "Lets Anchor List links jump to this section, e.g. overview (lowercase, no spaces)."
+      }
+    ]
+  },
+  {
+    "id": "anchor-list",
+    "fields": [
+      {
+        "component": "container",
+        "name": "anchors",
+        "label": "Links",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "label",
+            "label": "Link Title",
+            "description": "e.g. CH 1: Overview"
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "anchorName",
+            "label": "Anchor Name",
+            "description": "The Anchor name of the target section (Section properties), e.g. overview. Heading ids work too."
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "sticky",
+        "label": "Sticky",
+        "description": "Keep the links at the top of the screen while scrolling.",
+        "value": false
       }
     ]
   },
@@ -991,6 +1033,273 @@
           {
             "name": "Black",
             "value": "bg-black"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "page-header",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "styleTab",
+        "label": "Style"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "description": "Title, description, tags, date, reading time, author, story link, download and share come from the page properties.",
+        "value": "",
+        "options": [
+          {
+            "name": "Auto (by Page Type)",
+            "value": ""
+          },
+          {
+            "name": "Landing",
+            "value": "landing"
+          },
+          {
+            "name": "Article",
+            "value": "article"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "imagesTab",
+        "label": "Image Collage"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage1",
+        "label": "Image 1 (large, top left)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage1Alt",
+        "label": "Image 1 alt text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage2",
+        "label": "Image 2 (bottom left)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage2Alt",
+        "label": "Image 2 alt text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage3",
+        "label": "Image 3 (right)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage3Alt",
+        "label": "Image 3 alt text"
+      },
+      {
+        "component": "tab",
+        "name": "linksTab",
+        "label": "Second CTA"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "secondaryCtaText",
+        "label": "Second CTA Title",
+        "description": "Shown after the page's story link."
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondaryCta",
+        "label": "Second CTA Link"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaTarget",
+        "label": "Second CTA Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaStyle",
+        "label": "Second CTA Link Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (text link)",
+            "value": ""
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "secondary"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "metaTab",
+        "label": "Author & Meta"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "authorName",
+        "label": "Author Name",
+        "description": "Shown above the page's Designation & Location."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collectionLabel",
+        "label": "Collection Label",
+        "description": "Shown after the tags, e.g. Collection."
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "listenLink",
+        "label": "Listen Link",
+        "description": "Audio version of the page (shows a headphones icon)."
+      }
+    ]
+  },
+  {
+    "id": "quote",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Type",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quote",
+        "label": "Quote",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "author",
+        "label": "Quote Author",
+        "description": "Name on the first line, then designation and organisation.",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "description": "Leave empty if the image is decorative."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "bgColor",
+        "label": "BG Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey",
+            "value": "grey"
           }
         ]
       }
@@ -1535,6 +1844,186 @@
           {
             "name": "Secondary Button",
             "value": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "testimonial",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "contentTab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Type",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "description": "The testimonial quote.",
+        "value": ""
+      },
+      {
+        "component": "tab",
+        "name": "authorTab",
+        "label": "Author Details"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "authorImage",
+        "label": "Author Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "authorImageAlt",
+        "label": "Author Image Alt Text",
+        "description": "Leave empty if the name is next to the image."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "designationLocation",
+        "label": "Designation & Location",
+        "description": "e.g. name, designation, organisation.",
+        "value": ""
+      },
+      {
+        "component": "tab",
+        "name": "styleTab",
+        "label": "Style"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "bgColor",
+        "label": "BG Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey",
+            "value": "grey"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "showHideTab",
+        "label": "Show / Hide"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hideEyebrow",
+        "label": "Hide Eyebrow",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "titleHidden",
+        "label": "Hide Title",
+        "description": "The title stays available to screen readers.",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showDescription",
+        "label": "Show Description",
+        "value": true
+      },
+      {
+        "component": "tab",
+        "name": "statsTab",
+        "label": "Stats"
+      },
+      {
+        "component": "container",
+        "name": "stats",
+        "label": "Stats",
+        "multi": true,
+        "fields": [
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "statLabel",
+            "label": "Stats Title",
+            "value": ""
+          },
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "statValue",
+            "label": "Stats Value",
+            "description": "A single line, e.g. 40%.",
+            "value": ""
           }
         ]
       }
