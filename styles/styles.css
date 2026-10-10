@@ -115,7 +115,9 @@
   --color-icon-tertiary: var(--grey-300);
   --color-icon-disabled: var(--slate-500);
   --color-icon-brand: var(--brand-500);
+  --color-icon-brand-secondary: var(--brand-200);
   --color-icon-on-brand: var(--white-1000);
+  --color-icon-on-disabled: var(--slate-400);
   --color-icon-neutral: var(--slate-900);
   --color-icon-on-neutral: var(--slate-100);
 
@@ -181,6 +183,7 @@
   /* buttons */
   --button-font-size: 16px;
   --button-height: 50px;
+  --icon-button-size: 44px;
 
   /* ---------- spacing ---------- */
   --space-0: 0;
@@ -557,6 +560,68 @@ a.button.tertiary[aria-disabled="true"],
 button.button.tertiary:disabled {
   gap: 0;
   color: var(--color-text-neutral-tertiary);
+}
+
+/* icon buttons: icon-only links, icon rendered as a mask so it follows the text color */
+a.button.icon-button:any-link {
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  min-height: 0;
+  border-radius: var(--radius-full);
+  padding: var(--space-300);
+  gap: 0;
+}
+
+a.button.icon-button > span {
+  display: none;
+}
+
+a.button.icon-button:any-link::after {
+  display: block;
+  width: var(--space-500);
+  height: var(--space-500);
+  mask-image: var(--icon-url);
+}
+
+a.button.icon-button.primary {
+  border-color: transparent;
+  background-color: var(--color-bg-brand);
+  color: var(--color-icon-on-brand);
+}
+
+a.button.icon-button.primary:hover,
+a.button.icon-button.primary:focus-visible {
+  background-color: var(--color-bg-brand-hover);
+  color: var(--color-icon-on-brand);
+}
+
+a.button.icon-button.secondary {
+  border-color: var(--color-border-brand);
+  background-color: transparent;
+  color: var(--color-icon-brand);
+}
+
+a.button.icon-button.secondary:hover,
+a.button.icon-button.secondary:focus-visible {
+  border-color: var(--color-border-brand-secondary);
+  background-color: transparent;
+  color: var(--color-icon-brand-secondary);
+}
+
+a.button.icon-button.tertiary {
+  color: var(--color-icon-brand);
+}
+
+a.button.icon-button.tertiary:hover,
+a.button.icon-button.tertiary:focus-visible {
+  color: var(--color-icon-brand-secondary);
+}
+
+a.button.icon-button[aria-disabled="true"] {
+  border-color: transparent;
+  background-color: var(--color-bg-disabled);
+  padding: var(--space-300);
+  color: var(--color-icon-on-disabled);
 }
 
 /* link button: standalone text link with trailing chevron */
