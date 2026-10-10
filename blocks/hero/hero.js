@@ -1,0 +1,222 @@
+import { loadScript } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+import { decorateButton, readButtonOptions } from '../../decorators/button-decorator.js';
+
+/*
+ * Hero (blocks/hero/_hero.json). Authored rows, in any order:
+ * - content: icon, eyebrow, title (heading) and description (element group "content_")
+ * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
+ * - CTA List: a composite multifield, one link per item, each with an optional
+ *   "new-window" Link Type value; the CTA view is the link's bold (primary) / italic
+ *   (secondary) formatting
+ * Block options: lottie, align-top | align-middle | align-bottom,
+ * bg-dark | bg-dark-subtle | bg-black.
+ */
+
+const LOTTIE_PLAYER = '/scripts/lib/lottie/lottie_light.min.js';
+const NEW_WINDOW = 'new-window';
+const HEADINGS = 'h1, h2, h3, h4, h5, h6';
+
+let lottiePlayer;
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isAnimation = (href) => /\.json([?#]|$)/i.test(href);
+
+/** loads the Lottie player once per page; loadScript() resolves early for repeat calls */
+function loadLottiePlayer() {
+  lottiePlayer = lottiePlayer
+    || loadScript(`${window.hlx.codeBasePath}${LOTTIE_PLAYER}`).then(() => window.lottie);
+  return lottiePlayer;
+}
+
+/**
+ * Plays a Lottie animation in the container, after the page has rendered: the player is
+ * loaded when the hero comes near the viewport and the browser is idle. The animation
+ * pauses off screen and shows its first frame for reduced motion.
+ */
+function playAnimation(container, path) {
+  const start = async () => {
+    const lottie = await loadLottiePlayer();
+    const still = prefersReducedMotion();
+    const animation = lottie.loadAnimation({
+      container,
+      path,
+      renderer: 'svg',
+      loop: true,
+      autoplay: !still,
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
+    });
+    if (still) {
+      animation.addEventListener('DOMLoaded', () => animation.goToAndStop(0, true));
+      return;
+    }
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) animation.play();
+      else animation.pause();
+    }).observe(container);
+  };
+
+  new IntersectionObserver((entries, observer) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 200));
+    idle(() => start().catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error('hero: failed to play the Lottie animation', error);
+    }));
+  }, { rootMargin: '200px' }).observe(container);
+}
+
+/** a cell holding only links (and Link Type values): the CTA List */
+function isCtaCell(cell) {
+  const links = [...cell.querySelectorAll('a[href]')];
+  if (!links.length || cell.querySelector(HEADINGS)) return false;
+  const linkText = links.map((a) => a.textContent).join('');
+  const rest = cell.textContent.replace(new RegExp(NEW_WINDOW, 'g'), '');
+  return rest.replace(/\s/g, '') === linkText.replace(/\s/g, '');
+}
+
+/** a cell holding only the hero image or an animation link */
+function isMediaCell(cell) {
+  if (cell.querySelector(HEADINGS)) return false;
+  const pictures = cell.querySelectorAll('picture');
+  const links = [...cell.querySelectorAll('a[href]')];
+  if (pictures.length === 1 && !cell.textContent.trim()) return true;
+  return links.length === 1 && isAnimation(links[0].href)
+    && cell.textContent.trim() === links[0].textContent.trim();
+}
+
+/** sorts the authored rows into content, media and CTA List cells */
+function readCells(block) {
+  const cells = { content: null, media: null, ctas: null };
+  [...block.children].forEach((row) => {
+    const cell = row.firstElementChild;
+    if (!cell) return;
+    // media first: an animation link alone would also pass as a CTA List
+    if (!cells.media && isMediaCell(cell)) cells.media = cell;
+    else if (!cells.ctas && isCtaCell(cell)) cells.ctas = cell;
+    else if (!cells.content) cells.content = cell;
+    else cells.content.append(...cell.childNodes);
+  });
+  return cells;
+}
+
+function buildMedia(block, cell) {
+  if (!cell) return null;
+  const media = document.createElement('div');
+  media.className = 'hero-media';
+  const picture = cell.querySelector('picture');
+  const link = cell.querySelector('a[href]');
+
+  if (block.classList.contains('lottie') && link && isAnimation(link.href)) {
+    const animation = document.createElement('div');
+    animation.className = 'hero-animation';
+    const label = link.title && link.title !== link.textContent ? link.title : '';
+    if (label) {
+      animation.setAttribute('role', 'img');
+      animation.setAttribute('aria-label', label);
+    } else {
+      animation.setAttribute('aria-hidden', 'true');
+    }
+    media.append(animation);
+    playAnimation(animation, link.href);
+  } else if (picture) {
+    // the hero image is the LCP candidate when the hero opens the page
+    const img = picture.querySelector('img');
+    if (img && block.closest('main > .section:first-of-type')) {
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    }
+    media.append(picture);
+  } else {
+    return null;
+  }
+  return media;
+}
+
+/** icon, eyebrow and title come before the heading, the description after it */
+function buildContent(cell) {
+  const content = document.createElement('div');
+  content.className = 'hero-content';
+  if (!cell) return content;
+
+  const elements = [...cell.children];
+  const heading = cell.querySelector(`:scope > :is(${HEADINGS})`);
+  const headingIndex = elements.indexOf(heading);
+  const description = document.createElement('div');
+  description.className = 'hero-description';
+
+  elements.forEach((el, i) => {
+    const picture = el.matches('picture') ? el : el.querySelector(':scope > picture');
+    const before = headingIndex < 0 || i < headingIndex;
+    if (picture && before && !content.querySelector('.hero-icon')
+      && !el.textContent.trim()) {
+      const icon = document.createElement('div');
+      icon.className = 'hero-icon';
+      icon.append(picture);
+      content.append(icon);
+    } else if (el === heading) {
+      el.classList.add('hero-title');
+      content.append(el);
+    } else if (before && headingIndex >= 0 && !content.querySelector('.hero-eyebrow')) {
+      el.classList.add('hero-eyebrow');
+      content.append(el);
+    } else {
+      description.append(el);
+    }
+  });
+  if (description.children.length) content.append(description);
+  return content;
+}
+
+/** splits the CTA List cell into items: list items, or runs separated by <hr> */
+function readCtaItems(cell) {
+  const list = cell.querySelector(':scope > ul');
+  if (list) return [...list.children].map((li) => [li]);
+  const items = [[]];
+  [...cell.children].forEach((el) => {
+    if (el.tagName === 'HR') items.push([]);
+    else items[items.length - 1].push(el);
+  });
+  return items.filter((item) => item.length);
+}
+
+function buildCtas(cell) {
+  if (!cell) return null;
+  const ctas = document.createElement('div');
+  ctas.className = 'hero-ctas';
+  readCtaItems(cell).forEach((item) => {
+    const a = item.map((el) => (el.matches('a[href]') ? el : el.querySelector('a[href]'))).find(Boolean);
+    if (!a) return;
+    const newWindow = item.some((el) => !el.contains(a) && el.textContent.trim() === NEW_WINDOW);
+    // CTA view: Primary / Secondary buttons; Default is a text link with an arrow
+    const { type } = readButtonOptions(a);
+    decorateButton(a, {
+      view: 'button',
+      type: ['primary', 'secondary'].includes(type) ? type : 'tertiary',
+      newWindow,
+    });
+    if (a.getAttribute('href').startsWith('#')) a.classList.add('hero-cta-down');
+    ctas.append(a);
+  });
+  return ctas.children.length ? ctas : null;
+}
+
+/**
+ * loads and decorates the block
+ * @param {Element} block The block element
+ */
+export default function decorate(block) {
+  const cells = readCells(block);
+  const media = buildMedia(block, cells.media);
+  const content = buildContent(cells.content);
+  const ctas = buildCtas(cells.ctas);
+  if (ctas) content.append(ctas);
+  // keep Universal Editor instrumentation of the authored cells
+  if (media) moveInstrumentation(cells.media, media);
+  if (cells.content) moveInstrumentation(cells.content, content);
+  if (ctas) moveInstrumentation(cells.ctas, ctas);
+
+  block.classList.toggle('hero-has-media', !!media);
+  block.replaceChildren(...[media, content].filter(Boolean));
+}

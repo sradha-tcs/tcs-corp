@@ -775,25 +775,224 @@
     "id": "hero",
     "fields": [
       {
+        "component": "tab",
+        "name": "imageSection",
+        "label": "Image"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "content_icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_iconAlt",
+        "label": "Icon Image Alt Text",
+        "description": "Leave empty if the icon is decorative."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_media",
+        "label": "Hero Image type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Lotto",
+            "value": "lottie"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "label": "Image",
+        "label": "Hero Image Path",
+        "description": "Default: an image. Lotto: a Lottie animation file (.json).",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
+        "label": "Hero Image alt text",
+        "description": "Leave empty if the image or animation is decorative."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Hero View",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "contentSection",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_titleType",
+        "label": "Title heading level",
+        "description": "Use H1 for the first hero of a page, H2 for the others.",
+        "value": "h1",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          }
+        ]
       },
       {
         "component": "richtext",
-        "name": "text",
+        "valueType": "string",
+        "name": "content_description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "tab",
+        "name": "linkSection",
+        "label": "Links"
+      },
+      {
+        "component": "container",
+        "name": "ctas",
+        "label": "CTA List",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "ctaText",
+            "label": "CTA Title"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "cta",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaTarget",
+            "label": "CTA Link Type",
+            "value": "",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Open in New Window",
+                "value": "new-window"
+              }
+            ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaType",
+            "label": "CTA view",
+            "value": "",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Secondary",
+                "value": "secondary"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "styleSection",
+        "label": "Style"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_alignment",
+        "label": "Alignment",
+        "value": "align-middle",
+        "options": [
+          {
+            "name": "Top",
+            "value": "align-top"
+          },
+          {
+            "name": "Middle",
+            "value": "align-middle"
+          },
+          {
+            "name": "Bottom",
+            "value": "align-bottom"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_background",
+        "label": "BG Color",
         "value": "",
-        "label": "Text",
-        "valueType": "string"
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Dark blue",
+            "value": "bg-dark"
+          },
+          {
+            "name": "Dark blue (subtle)",
+            "value": "bg-dark-subtle"
+          },
+          {
+            "name": "Black",
+            "value": "bg-black"
+          }
+        ]
       }
     ]
   },
