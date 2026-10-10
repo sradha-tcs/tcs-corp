@@ -37,6 +37,23 @@
           ]
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "sectionWidth",
+          "label": "Width Type",
+          "value": "full-width",
+          "options": [
+            {
+              "name": "Full Width",
+              "value": "full-width"
+            },
+            {
+              "name": "Fixed Width",
+              "value": "fixed-width"
+            }
+          ]
+        },
+        {
           "component": "boolean",
           "valueType": "boolean",
           "name": "roundedEdge",
