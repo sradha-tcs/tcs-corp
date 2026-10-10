@@ -17,7 +17,19 @@ const CONTENT_ROOT = /^\/content\/(?!dam\/)[^/]+(?=\/|$)/;
 
 const LINK_STYLES = ['primary', 'secondary'];
 
-const text = (name) => getMetadata(name).trim();
+/**
+ * Reads a property's meta tag. Field names are camelCase in the model (e.g. pageCategory);
+ * published meta names may be normalized, so the lowercase and kebab-case forms are tried too.
+ * @param {string} name The field name in models/_page.json
+ * @returns {string}
+ */
+function text(name) {
+  const kebab = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+  const value = [name, name.toLowerCase(), kebab]
+    .map((candidate) => getMetadata(candidate))
+    .find(Boolean);
+  return (value || '').trim();
+}
 
 const flag = (name) => ['true', 'on', 'yes', '1'].includes(text(name).toLowerCase());
 
@@ -75,32 +87,32 @@ function tag(id) {
  * Rich-text values are raw HTML; render them with renderRichText().
  */
 export function getPageProperties() {
-  const linkStyle = text('story-link-style');
+  const linkStyle = text('storyLinkStyle');
   return {
-    pageType: text('page-type'),
-    iconImage: image('icon-image', 'icon-image-alt'),
+    pageType: text('pageCategory'),
+    iconImage: image('iconImage', 'iconImageAlt'),
     seo: {
-      title: text('og-title'),
-      description: text('og-description'),
-      keywords: list('og-keywords'),
+      title: text('ogHeading'),
+      description: text('ogDescription'),
+      keywords: list('ogKeywords'),
     },
     story: {
-      tags: list('story-tags').map(tag),
-      title: text('story-title'),
-      description: text('story-description'),
+      tags: list('storyTags').map(tag),
+      title: text('storyHeading'),
+      description: text('storyDesc'),
       link: {
-        title: text('story-link-title'),
-        href: toSitePath(text('story-link-path')),
-        newWindow: text('story-link-type') === 'new-window',
+        title: text('storyLinkLabel'),
+        href: toSitePath(text('storyLinkPath')),
+        newWindow: text('storyLinkBehavior') === '_blank',
         style: LINK_STYLES.includes(linkStyle) ? linkStyle : '',
       },
       author: {
-        image: image('author-image', 'author-image-alt'),
-        designationLocation: text('author-designation-location'),
+        image: image('authorImage', 'authorImageAlt'),
+        designationLocation: text('designationLocation'),
       },
-      socialShare: flag('social-share'),
-      publishDate: date('publish-date'),
-      readingTime: text('reading-time'),
+      socialShare: flag('socialShare'),
+      publishDate: date('publishDate'),
+      readingTime: text('timeToRead'),
       download: flag('download'),
     },
   };
