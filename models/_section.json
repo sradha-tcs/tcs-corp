@@ -50,6 +50,7 @@
         "hero",
         "byline",
         "cards",
+        "tabs",
         "tags",
         "columns",
         "fragment"
