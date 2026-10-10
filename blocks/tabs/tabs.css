@@ -1,0 +1,137 @@
+.tabs .tabs-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-300);
+}
+
+.tabs .tabs-list {
+  display: flex;
+  flex: 0 1 auto;
+  gap: var(--space-300);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tabs .tabs-tab {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-300);
+  margin: 0;
+  border: 0;
+  border-bottom: var(--border-width-100) solid var(--color-border-neutral-tertiary);
+  border-radius: 0;
+  padding: var(--space-100) var(--space-300);
+  background: none;
+  color: var(--color-text-secondary);
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: var(--font-weight-regular);
+  line-height: 29px;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tabs .tabs-tab:hover {
+  color: var(--color-text-neutral);
+}
+
+.tabs .tabs-tab[aria-selected="true"],
+.tabs .tabs-more-toggle.active {
+  border-bottom-color: var(--color-border-brand);
+  color: var(--color-text-neutral);
+}
+
+.tabs .tabs-tab[aria-selected="true"]:hover,
+.tabs .tabs-more-toggle.active:hover {
+  color: var(--color-text-secondary);
+}
+
+/* the list clips overflow, so keep the focus ring inside the tab */
+.tabs .tabs-tab:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: calc(-1 * var(--border-width-200));
+}
+
+.tabs .tabs-tab[hidden],
+.tabs .tabs-more[hidden],
+.tabs .tabs-more-list[hidden] {
+  display: none;
+}
+
+/* overflow dropdown */
+.tabs .tabs-more {
+  position: relative;
+  flex: none;
+}
+
+.tabs .tabs-more-icon {
+  width: var(--space-400);
+  height: var(--space-400);
+  background-color: currentcolor;
+  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
+  transition: transform 0.2s;
+}
+
+.tabs .tabs-more-toggle[aria-expanded="true"] .tabs-more-icon {
+  transform: rotate(180deg);
+}
+
+.tabs .tabs-more-list {
+  position: absolute;
+  top: calc(100% + var(--space-100));
+  right: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  width: 190px;
+  margin: 0;
+  padding: var(--space-300);
+  list-style: none;
+  background-color: var(--color-bg-default);
+  box-shadow: var(--shadow-300);
+}
+
+.tabs .tabs-more-list li:not(:last-child) {
+  margin-bottom: 13px;
+  border-bottom: var(--border-width-100) solid var(--color-border-neutral-tertiary);
+  padding-bottom: 11px;
+}
+
+.tabs .tabs-more-item {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--color-text-default);
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  line-height: 26px;
+  text-align: start;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tabs .tabs-more-item:hover,
+.tabs .tabs-more-item:focus-visible,
+.tabs .tabs-more-item[aria-current] {
+  color: var(--color-text-brand);
+}
+
+/* panels */
+.tabs .tabs-panel {
+  padding-top: var(--space-600);
+}
+
+.tabs .tabs-panel[hidden] {
+  display: none;
+}
+
+.tabs .tabs-panel > div > :first-child {
+  margin-top: 0;
+}
