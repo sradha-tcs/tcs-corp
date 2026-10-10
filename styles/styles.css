@@ -972,10 +972,7 @@ main > .section > .section-background img {
   object-fit: cover;
 }
 
-/* inset from the viewport edges so the corners are visible, aligned to the section width */
 main .section.rounded {
-  max-width: none;
-  margin: var(--section-spacing) max(var(--section-padding-inline), calc((100% - var(--section-max-width)) / 2));
   border-radius: var(--radius-l);
   overflow: hidden;
 }
