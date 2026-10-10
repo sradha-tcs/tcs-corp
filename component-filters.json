@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "gen-carousel"
     ]
   },
   {
@@ -13,6 +14,7 @@
       "button",
       "title",
       "hero",
+      "teaser",
       "conversation-canvas",
       "cards",
       "columns",
@@ -44,6 +46,13 @@
     "id": "conversation-canvas",
     "components": [
       "conversation-canvas-button"
+    ]
+  },
+  {
+    "id": "gen-carousel",
+    "components": [
+      "hero",
+      "teaser"
     ]
   }
 ]

@@ -3,6 +3,7 @@ import {
   loadFooter,
   decorateIcons,
   decorateSections,
+  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
@@ -101,6 +102,40 @@ function buildSectionBackground(cell, alt) {
 }
 
 /**
+ * Gen Carousel sections (blocks/gen-carousel/_gen-carousel.json): the section's content, any
+ * block its filter allows, is wrapped in a synthetic gen-carousel block that turns each piece
+ * of content into a slide. The blocks keep their own markup, decoration and editor
+ * instrumentation; only the carousel options move from the section to the carousel block.
+ * @param {Element} container The main element, or the parent of re-rendered sections
+ */
+function buildCarouselSections(container) {
+  container.querySelectorAll(':scope > .section.gen-carousel-section').forEach((section) => {
+    if (section.querySelector(':scope > .gen-carousel-wrapper')) return;
+    const carousel = document.createElement('div');
+    carousel.className = 'gen-carousel';
+    const { carouselnavigation: navigation, carouselinterval: interval } = section.dataset;
+    if (navigation) carousel.classList.add(toClassName(navigation));
+    if (interval) carousel.dataset.interval = interval;
+
+    const contents = [...section.children].filter((el) => !el.matches('.section-background'));
+    const carouselWrapper = document.createElement('div');
+    carouselWrapper.append(carousel);
+    section.append(carouselWrapper);
+    // decorate the carousel while it's empty: decorateBlock() would treat slides as cells
+    decorateBlock(carousel);
+
+    // decorateBlocks() only finds blocks directly in a section, so decorate them here
+    contents.forEach((wrapper) => {
+      const block = wrapper.firstElementChild;
+      if (!wrapper.classList.contains('default-content-wrapper') && block?.className) {
+        decorateBlock(block);
+      }
+      carousel.append(wrapper);
+    });
+  });
+}
+
+/**
  * Decorates sections, including the section options: Width Type, Rounded edge, Background Image
  * and Image alt text. decorateSections() keeps only the URL of a metadata image, so these rows
  * are read and removed first, then applied to the decorated section.
@@ -140,6 +175,8 @@ export function decorateSectionsWithOptions(container) {
       section.classList.add('has-background');
     }
   });
+
+  buildCarouselSections(container);
 }
 
 /**

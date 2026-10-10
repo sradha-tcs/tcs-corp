@@ -1,0 +1,12 @@
+/* Teaser: skeleton styles until the design is defined */
+.teaser {
+  padding: var(--space-600);
+}
+
+.teaser .teaser-row > div > :first-child {
+  margin-top: 0;
+}
+
+.teaser .teaser-row > div > :last-child {
+  margin-bottom: 0;
+}
