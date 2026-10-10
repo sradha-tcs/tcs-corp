@@ -178,6 +178,10 @@
   --label-font-size: 14px;
   --label-line-height: 1.4;
 
+  /* buttons */
+  --button-font-size: 16px;
+  --button-height: 50px;
+
   /* ---------- spacing ---------- */
   --space-0: 0;
   --space-100: 4px;
@@ -441,22 +445,35 @@ button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-200);
   max-width: 100%;
+  min-height: var(--button-height);
   margin: 0;
   border: var(--border-width-100) solid transparent;
-  border-radius: var(--radius-m);
-  padding: var(--space-300) var(--space-600);
-  font: inherit;
-  font-size: var(--body-font-size-s);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.6;
-  letter-spacing: 0.0125em;
+  border-radius: var(--radius-full);
+  padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
+  background-color: transparent;
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, gap 0.2s;
+}
+
+/* trailing arrow icon, tinted with the current text color */
+a.button:any-link::after,
+button.button::after {
+  content: '';
+  flex-shrink: 0;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  background-color: currentcolor;
+  mask: url('../icons/arrow-right.svg') center / contain no-repeat;
 }
 
 a.button[aria-disabled="true"],
@@ -465,86 +482,91 @@ button.button:disabled {
   pointer-events: none;
 }
 
+/* primary */
 a.button.primary,
 button.button.primary {
-  border-color: var(--color-bg-brand);
-  background-color: var(--color-bg-brand);
-  color: var(--color-text-on-brand);
+  border-color: var(--color-border-neutral);
+  background-color: var(--color-bg-neutral);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--color-bg-brand-hover);
-  background-color: var(--color-bg-brand-hover);
-  color: var(--color-text-on-brand);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--color-bg-disabled);
-  border-color: var(--color-border-disabled);
   color: var(--color-text-disabled);
 }
 
+a.button.primary[aria-disabled="true"],
+button.button.primary:disabled {
+  border-color: transparent;
+  background-color: var(--color-bg-disabled);
+  padding-inline: var(--space-600);
+  color: var(--color-text-disabled);
+  font-weight: var(--font-weight-regular);
+}
+
+a.button.primary[aria-disabled="true"]::after,
+button.button.primary:disabled::after {
+  display: none;
+}
+
+/* secondary */
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--color-border-brand);
-  background-color: transparent;
-  color: var(--color-text-brand);
+  border-color: var(--color-border-neutral);
+  color: var(--color-text-neutral);
 }
 
 a.button.secondary:hover,
 a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
-  border-color: var(--color-bg-brand-hover);
-  background-color: var(--color-bg-brand-secondary-hover);
-  color: var(--color-text-brand-secondary);
+  border-color: var(--color-border-brand);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-brand);
 }
 
 a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--color-bg-disabled);
+button.button.secondary:disabled {
   border-color: var(--color-border-disabled);
-  color: var(--color-text-disabled);
+  background-color: var(--color-bg-disabled);
+  padding-inline: var(--space-600);
+  color: var(--color-text-neutral-tertiary);
 }
 
-/* high-impact call-to-action */
-a.button.accent,
-button.button.accent {
-  border-color: var(--color-bg-neutral);
-  background-color: var(--color-bg-neutral);
+/* tertiary: text + arrow, no container */
+a.button.tertiary,
+button.button.tertiary {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  color: var(--color-text-default);
+}
+
+a.button.tertiary:hover,
+a.button.tertiary:focus-visible,
+button.button.tertiary:hover,
+button.button.tertiary:focus-visible {
+  gap: 0;
+  color: var(--color-text-brand);
+}
+
+a.button.tertiary[aria-disabled="true"],
+button.button.tertiary:disabled {
+  gap: 0;
+  color: var(--color-text-neutral-tertiary);
+}
+
+/* buttons on dark sections */
+main .section.dark a.button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--color-border-neutral-tertiary);
   color: var(--color-text-on-neutral);
 }
 
-a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--color-bg-neutral-secondary);
-  background-color: var(--color-bg-neutral-secondary);
+main .section.dark a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--color-bg-disabled);
-  border-color: var(--color-border-disabled);
-  color: var(--color-text-disabled);
 }
 
 main img {

@@ -95,8 +95,8 @@ export function decorateButtons(main) {
 
     p.className = 'button-wrapper';
     a.className = 'button';
-    if (strong && em) { // high-impact call-to-action
-      a.classList.add('accent');
+    if (strong && em) { // text-only call-to-action
+      a.classList.add('tertiary');
       const outer = strong.contains(em) ? strong : em;
       outer.replaceWith(a);
     } else if (strong) {
