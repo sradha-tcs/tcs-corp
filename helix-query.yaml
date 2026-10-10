@@ -14,3 +14,58 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
+      # TCS Custom Properties used by listings and story cards
+      page-type:
+        select: head > meta[name="page-type"]
+        value: attribute(el, "content")
+      icon-image:
+        select: head > meta[name="icon-image"]
+        value: attribute(el, "content")
+      icon-image-alt:
+        select: head > meta[name="icon-image-alt"]
+        value: attribute(el, "content")
+      story-tags:
+        select: head > meta[name="story-tags"]
+        value: attribute(el, "content")
+      story-title:
+        select: head > meta[name="story-title"]
+        value: attribute(el, "content")
+      story-description:
+        select: head > meta[name="story-description"]
+        value: attribute(el, "content")
+      story-link-title:
+        select: head > meta[name="story-link-title"]
+        value: attribute(el, "content")
+      story-link-path:
+        select: head > meta[name="story-link-path"]
+        value: attribute(el, "content")
+      story-link-type:
+        select: head > meta[name="story-link-type"]
+        value: attribute(el, "content")
+      story-link-style:
+        select: head > meta[name="story-link-style"]
+        value: attribute(el, "content")
+      author-image:
+        select: head > meta[name="author-image"]
+        value: attribute(el, "content")
+      author-image-alt:
+        select: head > meta[name="author-image-alt"]
+        value: attribute(el, "content")
+      author-designation-location:
+        select: head > meta[name="author-designation-location"]
+        value: attribute(el, "content")
+      publish-date:
+        select: head > meta[name="publish-date"]
+        value: attribute(el, "content")
+      reading-time:
+        select: head > meta[name="reading-time"]
+        value: attribute(el, "content")
