@@ -1,6 +1,8 @@
 import { loadScript } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { decorateButton, readButtonOptions } from '../../decorators/button-decorator.js';
+import {
+  NEW_WINDOW, decorateButton, readButtonOptions, readLinkItems,
+} from '../../decorators/button-decorator.js';
 
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
@@ -14,7 +16,6 @@ import { decorateButton, readButtonOptions } from '../../decorators/button-decor
  */
 
 const LOTTIE_PLAYER = '/scripts/lib/lottie/lottie_light.min.js';
-const NEW_WINDOW = 'new-window';
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
 let lottiePlayer;
@@ -169,26 +170,11 @@ function buildContent(cell) {
   return content;
 }
 
-/** splits the CTA List cell into items: list items, or runs separated by <hr> */
-function readCtaItems(cell) {
-  const list = cell.querySelector(':scope > ul');
-  if (list) return [...list.children].map((li) => [li]);
-  const items = [[]];
-  [...cell.children].forEach((el) => {
-    if (el.tagName === 'HR') items.push([]);
-    else items[items.length - 1].push(el);
-  });
-  return items.filter((item) => item.length);
-}
-
 function buildCtas(cell) {
   if (!cell) return null;
   const ctas = document.createElement('div');
   ctas.className = 'hero-ctas';
-  readCtaItems(cell).forEach((item) => {
-    const a = item.map((el) => (el.matches('a[href]') ? el : el.querySelector('a[href]'))).find(Boolean);
-    if (!a) return;
-    const newWindow = item.some((el) => !el.contains(a) && el.textContent.trim() === NEW_WINDOW);
+  readLinkItems(cell).forEach(({ link: a, newWindow }) => {
     // CTA view: Primary / Secondary buttons; Default is a text link with an arrow
     const { type } = readButtonOptions(a);
     decorateButton(a, {
