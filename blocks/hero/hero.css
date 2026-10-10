@@ -1,37 +1,209 @@
+/* Hero (TCS.com DS Figma "L1 Header"): image or Lottie background, overlay, centered content */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
 }
 
 .hero {
+  /* Figma: Color/01121F and the overlay fills of the L1 Header frames */
+  --hero-navy: #01121f;
+  --hero-overlay: rgb(255 255 255 / 80%);
+  --hero-min-height: 560px;
+  --hero-padding-block: var(--space-1600);
+  --hero-padding-inline: var(--space-600);
+  --hero-title-color: var(--color-text-default);
+  --hero-eyebrow-color: var(--color-text-brand);
+  --hero-description-color: var(--color-text-secondary);
+  --hero-title-max-width: 1160px;
+  --hero-description-max-width: 480px;
+  --hero-gap-icon: var(--space-300);
+  --hero-gap-eyebrow: var(--space-600);
+  --hero-gap-content: var(--space-600);
+  --hero-gap-ctas: var(--space-800);
+
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  min-height: var(--hero-min-height);
+  padding: var(--hero-padding-block) var(--hero-padding-inline);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--color-bg-default);
+  text-align: center;
 }
 
-.hero img {
-  object-fit: cover;
+/* Alignment: vertical position of the content */
+.hero.align-top {
+  justify-content: flex-start;
+}
+
+.hero.align-bottom {
+  justify-content: flex-end;
+}
+
+/* BG Color */
+.hero.bg-dark,
+.hero.bg-dark-subtle,
+.hero.bg-black {
+  --hero-title-color: var(--color-text-on-neutral);
+  --hero-description-color: rgb(255 255 255 / 55%);
+}
+
+.hero.bg-dark {
+  --hero-overlay: rgb(1 18 31 / 80%);
+
+  background-color: var(--hero-navy);
+}
+
+.hero.bg-dark-subtle {
+  --hero-overlay: rgb(1 18 31 / 60%);
+
+  background-color: var(--hero-navy);
+}
+
+.hero.bg-black {
+  --hero-overlay: rgb(0 0 0 / 80%);
+
+  background-color: var(--black-1000);
+}
+
+/* media: the image or the Lottie animation behind the content, under the overlay */
+.hero .hero-media {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.hero .hero-media picture,
+.hero .hero-media img {
+  display: block;
   width: 100%;
   height: 100%;
 }
 
+.hero .hero-media img {
+  object-fit: cover;
+}
+
+.hero .hero-animation {
+  width: 100%;
+  height: 100%;
+}
+
+.hero.hero-has-media::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: var(--hero-overlay);
+}
+
+/* content */
+.hero .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1352px;
+}
+
+.hero .hero-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--hero-gap-icon);
+}
+
+.hero .hero-icon img {
+  display: block;
+  width: var(--icon-size-l);
+  height: var(--icon-size-l);
+  object-fit: contain;
+}
+
+.hero .hero-eyebrow {
+  margin: 0 0 var(--hero-gap-eyebrow);
+  color: var(--hero-eyebrow-color);
+  font-size: var(--body-font-size-l);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.625;
+}
+
+.hero .hero-title {
+  max-width: var(--hero-title-max-width);
+  margin: 0;
+  color: var(--hero-title-color);
+  font-size: var(--display-font-size-2);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--display-line-height);
+  letter-spacing: normal;
+}
+
+.hero .hero-description {
+  max-width: var(--hero-description-max-width);
+  margin-top: var(--hero-gap-content);
+  color: var(--hero-description-color);
+  font-size: var(--body-font-size-l);
+  line-height: 1.2;
+}
+
+.hero .hero-description > * {
+  margin: 0;
+}
+
+.hero .hero-description > * + * {
+  margin-top: var(--space-400);
+}
+
+.hero .hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-400) var(--hero-gap-ctas);
+  margin-top: var(--hero-gap-ctas);
+}
+
+/* in-page links (e.g. "Discover our story") point down */
+.hero .hero-ctas a.button.hero-cta-down::after {
+  mask-image: url('../../icons/arrow-down.svg');
+}
+
+/* CTAs on dark backgrounds */
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--color-text-on-neutral);
+  color: var(--color-text-on-neutral);
+}
+
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:not(:hover, :focus-visible) {
+  color: var(--color-text-on-neutral);
+}
+
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:is(:hover, :focus-visible) {
+  color: var(--brand-300);
+}
+
+@media (width >= 600px) {
+  .hero {
+    --hero-min-height: 640px;
+    --hero-padding-inline: var(--space-1000);
+  }
+}
+
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    --hero-min-height: 850px;
+    --hero-padding-block: var(--space-3000);
+    --hero-padding-inline: 44px;
+    --hero-gap-icon: var(--space-400);
+    --hero-gap-eyebrow: var(--space-1000);
+    --hero-gap-content: var(--space-1000);
+    --hero-gap-ctas: var(--space-1000);
+  }
+
+  .hero .hero-eyebrow {
+    font-size: var(--body-font-size-s);
   }
 }
