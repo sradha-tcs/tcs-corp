@@ -13,9 +13,16 @@
       "button",
       "title",
       "hero",
+      "byline",
       "cards",
       "columns",
       "fragment"
+    ]
+  },
+  {
+    "id": "byline",
+    "components": [
+      "author"
     ]
   },
   {
