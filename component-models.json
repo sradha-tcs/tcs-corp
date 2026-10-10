@@ -20,6 +20,217 @@
         "name": "keywords",
         "multi": true,
         "label": "Keywords"
+      },
+      {
+        "component": "tab",
+        "name": "tcsCustomProperties",
+        "label": "TCS Custom Properties"
+      },
+      {
+        "component": "container",
+        "name": "additionalPageProps",
+        "label": "Additional Page Props",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageCategory",
+            "label": "Page Type",
+            "options": [
+              {
+                "name": "Standard Page",
+                "value": "standard"
+              },
+              {
+                "name": "Article",
+                "value": "article"
+              },
+              {
+                "name": "Landing Page",
+                "value": "landing"
+              },
+              {
+                "name": "Listing Page",
+                "value": "listing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "additionalImageProps",
+        "label": "Additional Image Props",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "iconImage",
+            "label": "Icon Image",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "iconImageAlt",
+            "label": "Icon Alt Text"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "additionalSeo",
+        "label": "Additional SEO",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "ogHeading",
+            "label": "OG Title"
+          },
+          {
+            "component": "text-area",
+            "valueType": "string",
+            "name": "ogKeywords",
+            "label": "OG Keywords"
+          },
+          {
+            "component": "text-area",
+            "valueType": "string",
+            "name": "ogDescription",
+            "label": "OG Description"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "storyProps",
+        "label": "Story Props",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "aem-tag",
+            "valueType": "string",
+            "name": "storyTags",
+            "label": "Story Tags",
+            "multi": true
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "storyHeading",
+            "label": "Story Title"
+          },
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "storyDesc",
+            "label": "Story Desc"
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "storyLinkLabel",
+            "label": "Story Link Title"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "storyLinkPath",
+            "label": "Story Link Path"
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "storyLinkBehavior",
+            "label": "Story Link Type",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Open in New Window",
+                "value": "_blank"
+              }
+            ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "storyLinkStyle",
+            "label": "Story Link Style",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Primary",
+                "value": "primary"
+              },
+              {
+                "name": "Secondary",
+                "value": "secondary"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "authorInfo",
+        "label": "Author Info",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "authorImage",
+            "label": "Author Image",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "authorImageAlt",
+            "label": "Author Image Alt Text"
+          },
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "designationLocation",
+            "label": "Designation & Location"
+          },
+          {
+            "component": "boolean",
+            "valueType": "boolean",
+            "name": "socialShare",
+            "label": "Social Share"
+          },
+          {
+            "component": "date-time",
+            "valueType": "date",
+            "valueFormat": "YYYY-MM-DD",
+            "name": "publishDate",
+            "label": "Publish Date"
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "timeToRead",
+            "label": "Time to Read Content"
+          },
+          {
+            "component": "boolean",
+            "valueType": "boolean",
+            "name": "download",
+            "label": "Download"
+          }
+        ]
       }
     ]
   },
