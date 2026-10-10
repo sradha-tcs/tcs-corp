@@ -142,6 +142,31 @@
     ]
   },
   {
+    "id": "author",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Photo",
+        "description": "Optional. The first letter of the name is shown if no photo is set.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Name"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "role",
+        "label": "Role"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {

@@ -1,0 +1,31 @@
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-400) var(--space-600);
+}
+
+.byline .byline-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+}
+
+.byline .byline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.byline .byline-meta p {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--button-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+.byline .avatar-group-item {
+  display: flex;
+}
