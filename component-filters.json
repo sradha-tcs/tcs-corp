@@ -13,18 +13,9 @@
       "button",
       "title",
       "hero",
-      "byline",
       "cards",
-      "tabs",
-      "tags",
       "columns",
       "fragment"
-    ]
-  },
-  {
-    "id": "byline",
-    "components": [
-      "author"
     ]
   },
   {
@@ -46,12 +37,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "tab"
     ]
   }
 ]
