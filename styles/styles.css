@@ -209,7 +209,8 @@
   --spacing-l: var(--space-2000);
   --spacing-xl: var(--space-5000);
 
-  /* layout */
+  /* layout: full-width sections cap at the page max width, fixed-width ones at the content width */
+  --page-max-width: 1920px;
   --content-max-width: 1440px;
   --section-padding-inline: var(--spacing-s);
   --section-spacing: var(--spacing-m);
@@ -885,13 +886,19 @@ a.tag:focus-visible {
   margin-inline-start: var(--space-200);
 }
 
-/* sections */
+/* sections: full width (default) spans the page, fixed width uses the content width */
 main > .section {
+  --section-max-width: var(--page-max-width);
+
   margin: var(--section-spacing) 0;
 }
 
+main > .section.fixed-width {
+  --section-max-width: var(--content-max-width);
+}
+
 main > .section > div {
-  max-width: var(--content-max-width);
+  max-width: var(--section-max-width);
   margin: auto;
   padding: 0 var(--section-padding-inline);
   box-sizing: border-box;
@@ -930,12 +937,19 @@ main .section.dark a:hover:not(.button) {
   color: var(--color-text-on-neutral);
 }
 
-/* section options: background image and rounded edge */
+/* section options: width type, background image and rounded edge */
 main .section.has-background {
   position: relative;
   isolation: isolate;
   margin: 0;
   padding: var(--section-spacing) 0;
+}
+
+/* a fixed-width section box (and its background) is centered at the content width;
+   after the style and background rules, which reset margins */
+main .section.fixed-width {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
 main > .section > .section-background {
@@ -958,9 +972,10 @@ main > .section > .section-background img {
   object-fit: cover;
 }
 
-/* inset from the viewport edges so the corners are visible, aligned to the content width */
+/* inset from the viewport edges so the corners are visible, aligned to the section width */
 main .section.rounded {
-  margin: var(--section-spacing) max(var(--section-padding-inline), calc((100% - var(--content-max-width)) / 2));
+  max-width: none;
+  margin: var(--section-spacing) max(var(--section-padding-inline), calc((100% - var(--section-max-width)) / 2));
   border-radius: var(--radius-l);
   overflow: hidden;
 }

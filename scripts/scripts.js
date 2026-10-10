@@ -14,7 +14,7 @@ import {
 import { applyPageProperties, buildPropertyImage } from './page-properties.js';
 
 // section options (models/_section.json), keyed by their normalized section-metadata row name
-const SECTION_OPTIONS = ['roundededge', 'backgroundimage', 'backgroundimagealt'];
+const SECTION_OPTIONS = ['sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt'];
 const BACKGROUND_BREAKPOINTS = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
 
 /**
@@ -153,8 +153,8 @@ function buildSectionBackground(cell, alt) {
 }
 
 /**
- * Decorates sections, including the section options: Rounded edge, Background Image and
- * Image alt text. decorateSections() keeps only the URL of a metadata image, so these rows
+ * Decorates sections, including the section options: Width Type, Rounded edge, Background Image
+ * and Image alt text. decorateSections() keeps only the URL of a metadata image, so these rows
  * are read and removed first, then applied to the decorated section.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
@@ -175,6 +175,10 @@ export function decorateSectionsWithOptions(container) {
   decorateSections(container);
 
   options.forEach(({ section, rows }) => {
+    // full width is the default and needs no class
+    if (toClassName(rows.sectionwidth?.textContent.trim() || '') === 'fixed-width') {
+      section.classList.add('fixed-width');
+    }
     if (rows.roundededge?.textContent.trim().toLowerCase() === 'true') {
       section.classList.add('rounded');
     }
