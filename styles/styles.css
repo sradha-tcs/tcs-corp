@@ -694,6 +694,93 @@ main img {
   width: 100%;
 }
 
+/* tags: default (boxed), filter (pill), card (small caps), industry ("| text") */
+.tag {
+  --tag-color: var(--color-text-neutral);
+  --tag-bg: var(--color-bg-default);
+  --tag-border: var(--color-border-default);
+  --tag-hover-color: var(--color-text-on-brand);
+  --tag-hover-bg: var(--color-bg-brand);
+  --tag-hover-border: var(--color-border-brand);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-200);
+  border: var(--border-width-100) solid var(--tag-border);
+  border-radius: 1px;
+  padding: var(--space-200) var(--space-300);
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+  font-size: 18px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+a.tag:any-link {
+  color: var(--tag-color);
+  text-decoration: none;
+}
+
+a.tag:hover,
+a.tag:focus-visible {
+  border-color: var(--tag-hover-border);
+  background-color: var(--tag-hover-bg);
+  color: var(--tag-hover-color);
+  text-decoration: none;
+}
+
+.tag-filter {
+  --tag-color: var(--color-text-default);
+
+  border-radius: var(--radius-full);
+  padding: var(--space-300) var(--space-800);
+  font-weight: var(--font-weight-medium);
+  line-height: 29px;
+  letter-spacing: -0.005em;
+}
+
+.tag-filter.active,
+.tag-filter[aria-current] {
+  --tag-color: var(--color-text-on-brand);
+  --tag-bg: var(--color-bg-brand);
+  --tag-border: var(--color-border-brand);
+}
+
+.tag-card,
+.tag-industry {
+  --tag-bg: transparent;
+  --tag-border: transparent;
+  --tag-hover-color: var(--color-text-brand);
+  --tag-hover-bg: transparent;
+  --tag-hover-border: transparent;
+
+  border: 0;
+  padding: 0;
+  font-weight: var(--font-weight-medium);
+  line-height: 22px;
+}
+
+.tag-card {
+  --tag-color: var(--color-text-secondary);
+
+  font-size: var(--label-font-size);
+  text-transform: uppercase;
+}
+
+.tag-industry {
+  --tag-color: var(--color-text-default);
+
+  font-size: var(--button-font-size);
+  letter-spacing: 0;
+}
+
+.tag-industry::before {
+  content: '|' / '';
+}
+
 /* avatars: image or initial, large (default) / medium / small, circle (default) / square */
 .avatar {
   --avatar-size: 40px;
