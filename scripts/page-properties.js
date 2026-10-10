@@ -11,6 +11,7 @@ import {
   loadScript,
   toClassName,
 } from './aem.js';
+import { createButton } from '../decorators/button-decorator.js';
 
 // AEM publishes page links as /content/<site>/path(.html); the site serves them as /path
 const CONTENT_ROOT = /^\/content\/(?!dam\/)[^/]+(?=\/|$)/;
@@ -164,21 +165,19 @@ export function buildPropertyImage(img, breakpoints = [{ width: '750' }]) {
 }
 
 /**
- * Builds the story link with its target and the site's button / link-button style.
+ * Builds the story link: a button of the chosen style, or a link button for Default.
  * @param {Object} [link] Defaults to the current page's story link
  * @returns {HTMLAnchorElement | null}
  */
 export function buildStoryLink(link = getPageProperties().story.link) {
   if (!link?.href) return null;
-  const a = document.createElement('a');
-  a.href = link.href;
-  a.textContent = link.title || link.href;
-  a.className = link.style ? `button ${link.style}` : 'link-button';
-  if (link.newWindow) {
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-  }
-  return a;
+  return createButton({
+    href: link.href,
+    text: link.title,
+    view: link.style ? 'button' : 'link',
+    type: link.style,
+    newWindow: link.newWindow,
+  });
 }
 
 /**
