@@ -1,0 +1,13 @@
+{
+  "sites": {
+    "tcs-corp": {
+      "previewOrg": "sradha-tcs",
+      "previewSite": "tcs-corp",
+      "contentHostUrl": "author-p220207-e2271469.adobeaemcloud.com",
+      "aemSitePath": "/content/tcs-corp",
+      "aemAssetsFolderPath": "/content/dam/tcs-corp",
+      "aemSiteName": "tcs-corp",
+      "aemSiteTitle": "TCS Corporate"
+    }
+  }
+}
