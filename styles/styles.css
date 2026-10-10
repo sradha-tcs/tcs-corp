@@ -577,7 +577,7 @@ button.button.tertiary:disabled {
 }
 
 /* icon buttons: icon-only links, icon rendered as a mask so it follows the text color */
-a.button.icon-button:any-link {
+:is(a:any-link, button).button.icon-button {
   width: var(--icon-button-size);
   height: var(--icon-button-size);
   min-height: 0;
@@ -586,52 +586,53 @@ a.button.icon-button:any-link {
   gap: 0;
 }
 
-a.button.icon-button > span {
+:is(a, button).button.icon-button > span {
   display: none;
 }
 
-a.button.icon-button:any-link::after {
+:is(a:any-link, button).button.icon-button::after {
   display: block;
   width: var(--space-500);
   height: var(--space-500);
   mask-image: var(--icon-url);
 }
 
-a.button.icon-button.primary {
+:is(a, button).button.icon-button.primary {
   border-color: transparent;
   background-color: var(--color-bg-brand);
   color: var(--color-icon-on-brand);
 }
 
-a.button.icon-button.primary:hover,
-a.button.icon-button.primary:focus-visible {
+:is(a, button).button.icon-button.primary:hover,
+:is(a, button).button.icon-button.primary:focus-visible {
   background-color: var(--color-bg-brand-hover);
   color: var(--color-icon-on-brand);
 }
 
-a.button.icon-button.secondary {
+:is(a, button).button.icon-button.secondary {
   border-color: var(--color-border-brand);
   background-color: transparent;
   color: var(--color-icon-brand);
 }
 
-a.button.icon-button.secondary:hover,
-a.button.icon-button.secondary:focus-visible {
+:is(a, button).button.icon-button.secondary:hover,
+:is(a, button).button.icon-button.secondary:focus-visible {
   border-color: var(--color-border-brand-secondary);
   background-color: transparent;
   color: var(--color-icon-brand-secondary);
 }
 
-a.button.icon-button.tertiary {
+:is(a, button).button.icon-button.tertiary {
   color: var(--color-icon-brand);
 }
 
-a.button.icon-button.tertiary:hover,
-a.button.icon-button.tertiary:focus-visible {
+:is(a, button).button.icon-button.tertiary:hover,
+:is(a, button).button.icon-button.tertiary:focus-visible {
   color: var(--color-icon-brand-secondary);
 }
 
-a.button.icon-button[aria-disabled="true"] {
+:is(a, button).button.icon-button[aria-disabled="true"],
+button.button.icon-button:disabled {
   border-color: transparent;
   background-color: var(--color-bg-disabled);
   padding: var(--space-300);

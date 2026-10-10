@@ -13,9 +13,16 @@
       "button",
       "title",
       "hero",
+      "canvas",
       "cards",
       "columns",
       "fragment"
+    ]
+  },
+  {
+    "id": "canvas",
+    "components": [
+      "canvas-button"
     ]
   },
   {
