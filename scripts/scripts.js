@@ -9,8 +9,13 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  toClassName,
 } from './aem.js';
-import { applyPageProperties } from './page-properties.js';
+import { applyPageProperties, buildPropertyImage } from './page-properties.js';
+
+// section options (models/_section.json), keyed by their normalized section-metadata row name
+const SECTION_OPTIONS = ['roundededge', 'backgroundimage', 'backgroundimagealt'];
+const BACKGROUND_BREAKPOINTS = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -128,6 +133,64 @@ export function decorateButtons(main) {
 }
 
 /**
+ * Builds a section background from the Background Image metadata cell.
+ * @param {Element} cell The metadata value cell
+ * @param {string} [alt] Image alt text; empty marks the image as decorative
+ * @returns {Element | null} The picture or img element
+ */
+function buildSectionBackground(cell, alt) {
+  let image = cell.querySelector('picture') || cell.querySelector('img');
+  if (!image) {
+    const src = cell.querySelector('a')?.href || cell.textContent.trim();
+    image = buildPropertyImage(src ? { src, alt: '' } : null, BACKGROUND_BREAKPOINTS);
+  }
+  if (!image) return null;
+  const img = image.tagName === 'IMG' ? image : image.querySelector('img');
+  // the alt text field wins; otherwise keep an alt AEM may have merged into the image
+  if (alt) img.alt = alt;
+  else if (!img.hasAttribute('alt')) img.alt = '';
+  return image;
+}
+
+/**
+ * Decorates sections, including the section options: Rounded edge, Background Image and
+ * Image alt text. decorateSections() keeps only the URL of a metadata image, so these rows
+ * are read and removed first, then applied to the decorated section.
+ * @param {Element} container The main element, or the parent of re-rendered sections
+ */
+export function decorateSectionsWithOptions(container) {
+  const options = [...container.querySelectorAll(':scope > div:not([data-section-status]) > .section-metadata')]
+    .map((meta) => {
+      const rows = {};
+      [...meta.children].forEach((row) => {
+        const key = toClassName(row.children[0]?.textContent || '').replace(/-/g, '');
+        if (SECTION_OPTIONS.includes(key)) {
+          [, rows[key]] = row.children;
+          row.remove();
+        }
+      });
+      return { section: meta.parentElement, rows };
+    });
+
+  decorateSections(container);
+
+  options.forEach(({ section, rows }) => {
+    if (rows.roundededge?.textContent.trim().toLowerCase() === 'true') {
+      section.classList.add('rounded');
+    }
+    const background = rows.backgroundimage
+      && buildSectionBackground(rows.backgroundimage, rows.backgroundimagealt?.textContent.trim());
+    if (background) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'section-background';
+      wrapper.append(background);
+      section.prepend(wrapper);
+      section.classList.add('has-background');
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -135,7 +198,7 @@ export function decorateButtons(main) {
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
-  decorateSections(main);
+  decorateSectionsWithOptions(main);
   decorateBlocks(main);
   decorateButtons(main);
 }

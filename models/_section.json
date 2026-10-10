@@ -35,6 +35,26 @@
               "value": "highlight"
             }
           ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "roundedEdge",
+          "label": "Rounded edge"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "backgroundImage",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "backgroundImageAlt",
+          "label": "Image alt text",
+          "description": "Describe the image for screen readers. Leave empty if the image is decorative."
         }
       ]
     }
