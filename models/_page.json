@@ -114,10 +114,9 @@
           "fields": [
             {
               "component": "aem-tag",
-              "valueType": "string",
+              "valueType": "string[]",
               "name": "storyTags",
-              "label": "Story Tags",
-              "multi": true
+              "label": "Story Tags"
             },
             {
               "component": "text",
