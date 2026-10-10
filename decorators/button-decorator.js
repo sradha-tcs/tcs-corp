@@ -30,6 +30,52 @@ function preventWhenDisabled(e) {
   }
 }
 
+/** value of the "Open in New Window" Link Type option in the block models */
+export const NEW_WINDOW = 'new-window';
+
+/**
+ * Opens a link in a new tab (or back in the same tab).
+ * @param {HTMLAnchorElement} a
+ * @param {boolean} [newWindow]
+ */
+export function setLinkTarget(a, newWindow = true) {
+  if (a.tagName !== 'A') return;
+  if (newWindow) {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  } else {
+    a.removeAttribute('target');
+    a.removeAttribute('rel');
+  }
+}
+
+/**
+ * Reads a CTA List composite multifield cell: one link per item, each with an optional
+ * "new-window" Link Type value. Items are list items, or runs of elements between <hr>s.
+ * @param {Element} cell
+ * @returns {{ link: HTMLAnchorElement, newWindow: boolean }[]}
+ */
+export function readLinkItems(cell) {
+  if (!cell) return [];
+  const list = cell.querySelector(':scope > ul');
+  const items = list ? [...list.children].map((li) => [li]) : [[]];
+  if (!list) {
+    [...cell.children].forEach((el) => {
+      if (el.tagName === 'HR') items.push([]);
+      else items[items.length - 1].push(el);
+    });
+  }
+  return items.map((item) => {
+    const link = item.map((el) => (el.matches('a[href]') ? el : el.querySelector('a[href]')))
+      .find(Boolean);
+    const newWindow = item.some((el) => {
+      const text = el.contains(link) ? el.textContent.replace(link.textContent, '') : el.textContent;
+      return text.trim() === NEW_WINDOW;
+    });
+    return { link, newWindow };
+  }).filter(({ link }) => link);
+}
+
 /**
  * Sets or clears the disabled state of a button or link button.
  * Anchors keep their href so they stay styled, but can't be clicked or tabbed to.
@@ -114,10 +160,7 @@ export function decorateButton(button, options = {}) {
   }
 
   if (options.title) button.title = options.title;
-  if (options.newWindow && button.tagName === 'A') {
-    button.target = '_blank';
-    button.rel = 'noopener noreferrer';
-  }
+  if (options.newWindow) setLinkTarget(button);
   if (options.disabled !== undefined) setButtonDisabled(button, options.disabled);
   return button;
 }

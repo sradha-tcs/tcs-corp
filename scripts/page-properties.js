@@ -78,7 +78,7 @@ function date(name) {
  * Turns an AEM tag ID (e.g. "tcs:topics/artificial-intelligence") into an id and a label.
  * @returns {{ id: string, label: string }}
  */
-function tag(id) {
+export function tag(id) {
   const name = id.split(/[/:]/).pop().replace(/[-_]+/g, ' ').trim();
   return { id, label: name.charAt(0).toUpperCase() + name.slice(1) };
 }
