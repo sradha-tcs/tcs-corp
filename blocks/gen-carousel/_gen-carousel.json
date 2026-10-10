@@ -1,0 +1,85 @@
+{
+  "definitions": [
+    {
+      "title": "Gen Carousel",
+      "id": "gen-carousel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "name": "Gen Carousel",
+              "model": "gen-carousel",
+              "filter": "gen-carousel",
+              "style": "gen-carousel-section",
+              "carouselNavigation": "manual",
+              "carouselInterval": 5
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "gen-carousel",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "style",
+          "label": "Style",
+          "value": "gen-carousel-section",
+          "options": [
+            {
+              "name": "Default",
+              "value": "gen-carousel-section"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "carouselNavigation",
+          "label": "Navigation",
+          "description": "Manual: previous / next buttons, dots and swipe. Auto: slides advance on their own, with a pause button. Manual and Auto: both.",
+          "value": "manual",
+          "options": [
+            {
+              "name": "Manual",
+              "value": "manual"
+            },
+            {
+              "name": "Auto",
+              "value": "auto"
+            },
+            {
+              "name": "Manual and Auto",
+              "value": "manual-auto"
+            }
+          ]
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "carouselInterval",
+          "label": "Autoplay interval (seconds)",
+          "description": "Time each slide is shown before the next one appears.",
+          "value": 5,
+          "min": 2,
+          "max": 30,
+          "condition": { "!==": [{ "var": "carouselNavigation" }, "manual"] }
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "gen-carousel",
+      "components": [
+        "hero",
+        "teaser"
+      ]
+    }
+  ]
+}
