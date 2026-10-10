@@ -13,16 +13,10 @@
       "button",
       "title",
       "hero",
-      "canvas",
+      "conversation-canvas",
       "cards",
       "columns",
       "fragment"
-    ]
-  },
-  {
-    "id": "canvas",
-    "components": [
-      "canvas-button"
     ]
   },
   {
@@ -44,6 +38,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "conversation-canvas",
+    "components": [
+      "conversation-canvas-button"
     ]
   }
 ]

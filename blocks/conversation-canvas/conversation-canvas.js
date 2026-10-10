@@ -10,7 +10,7 @@ import {
   readButtonOptions,
 } from '../../decorators/button-decorator.js';
 
-// canvas properties (blocks/canvas/_canvas.json), keyed by their normalized row name
+// conversation canvas properties (_conversation-canvas.json), keyed by their normalized row name
 const FIELDS = [
   'classes', 'bgstyle', 'backgroundimage', 'icon', 'iconalt', 'eyebrow', 'title', 'titlesize',
   'text', 'menurootpath', 'menudepth', 'searchplaceholder', 'searchaudioicon',
@@ -20,7 +20,7 @@ const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
 const FLOAT_THRESHOLD = 8; // px scrolled before a primary canvas shows its floating search row
 
-let canvasCount = 0;
+let instanceCount = 0;
 
 const normalize = (text) => toClassName(text || '').replace(/-/g, '');
 
@@ -137,7 +137,7 @@ async function buildMenuList(root, depth) {
   } catch { /* an empty menu is shown */ }
   if (!list.children.length) {
     const li = document.createElement('li');
-    li.className = 'canvas-menu-empty';
+    li.className = 'conversation-canvas-menu-empty';
     li.textContent = 'No pages found';
     list.append(li);
   }
@@ -149,17 +149,17 @@ async function buildMenuList(root, depth) {
  */
 function buildSearch(config, id, block) {
   const row = document.createElement('div');
-  row.className = 'canvas-search';
+  row.className = 'conversation-canvas-search';
 
   // menu
   const menuToggle = document.createElement('button');
   menuToggle.type = 'button';
-  menuToggle.className = 'canvas-menu-toggle';
+  menuToggle.className = 'conversation-canvas-menu-toggle';
   menuToggle.setAttribute('aria-label', 'Menu');
   menuToggle.setAttribute('aria-expanded', 'false');
   menuToggle.setAttribute('aria-controls', `${id}-menu`);
   const menu = document.createElement('nav');
-  menu.className = 'canvas-menu';
+  menu.className = 'conversation-canvas-menu';
   menu.id = `${id}-menu`;
   menu.setAttribute('aria-label', 'Menu');
   menu.hidden = true;
@@ -192,7 +192,7 @@ function buildSearch(config, id, block) {
 
   // search form
   const form = document.createElement('form');
-  form.className = 'canvas-search-form';
+  form.className = 'conversation-canvas-search-form';
   const placeholder = textOf(config.searchplaceholder) || 'Ask us a question';
   const input = document.createElement('input');
   input.type = 'search';
@@ -201,18 +201,18 @@ function buildSearch(config, id, block) {
   input.placeholder = placeholder;
   input.autocomplete = 'off';
   const label = document.createElement('label');
-  label.className = 'canvas-visually-hidden';
+  label.className = 'conversation-canvas-visually-hidden';
   label.htmlFor = input.id;
   label.textContent = placeholder;
 
   // audio (speech input), only where the browser supports it
   const audio = document.createElement('button');
   audio.type = 'button';
-  audio.className = 'canvas-audio';
+  audio.className = 'conversation-canvas-audio';
   audio.setAttribute('aria-label', textOf(config.searchaudioiconalt) || 'Search by voice');
   const audioImage = imageOf(config.searchaudioicon, '');
   if (audioImage) audio.append(audioImage);
-  else audio.classList.add('canvas-audio-default');
+  else audio.classList.add('conversation-canvas-audio-default');
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (Recognition) {
     audio.addEventListener('click', () => {
@@ -245,7 +245,7 @@ function buildSearch(config, id, block) {
     const query = input.value.trim();
     if (!query) return;
     // hand the query to whichever search experience is wired up on the page
-    block.dispatchEvent(new CustomEvent('canvas:search', { bubbles: true, detail: { query } }));
+    block.dispatchEvent(new CustomEvent('conversation-canvas:search', { bubbles: true, detail: { query } }));
   });
 
   form.append(label, input, audio, submit);
@@ -277,11 +277,11 @@ function updateFloating() {
         : c.slot.getBoundingClientRect().bottom < 0;
     }
     if (float) assigned = true;
-    if (float && !c.row.classList.contains('is-floating') && !c.primary) {
+    if (float && !c.row.classList.contains('conversation-canvas-floating') && !c.primary) {
       // keep the space of the row while it floats, so the page doesn't jump
       c.slot.style.minHeight = `${c.slot.offsetHeight}px`;
     }
-    c.row.classList.toggle('is-floating', float);
+    c.row.classList.toggle('conversation-canvas-floating', float);
     if (!float && !c.primary) c.slot.style.minHeight = '';
   });
 }
@@ -292,13 +292,13 @@ function scheduleFloating() {
 }
 
 /**
- * Renders filter tags into the canvas filter list (Secondary style). The tags are dynamic, so
- * the list is empty until a script supplies them, e.g. from a personalisation service.
- * @param {Element} block The canvas block
+ * Renders filter tags into the conversation canvas filter list (Secondary style). The tags are
+ * dynamic, so the list is empty until a script supplies them, e.g. from a personalisation service.
+ * @param {Element} block The conversation canvas block
  * @param {Array<{ label: string, href?: string, active?: boolean }>} tags
  */
-export function setCanvasFilters(block, tags = []) {
-  const list = block.querySelector('.canvas-filters');
+export function setConversationCanvasFilters(block, tags = []) {
+  const list = block.querySelector('.conversation-canvas-filters');
   if (!list) return;
   list.replaceChildren(...tags.map(({ label, href, active }) => {
     const li = document.createElement('li');
@@ -317,56 +317,56 @@ export function setCanvasFilters(block, tags = []) {
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  canvasCount += 1;
-  const id = `canvas-${canvasCount}`;
+  instanceCount += 1;
+  const id = `conversation-canvas-${instanceCount}`;
   const { config, buttonRows } = readBlock(block);
 
   // style options
   const style = normalize(textOf(config.classes));
   if (STYLES.includes(style)) block.classList.add(style);
   const primary = block.classList.contains('primary');
-  block.classList.add(`bg-${toClassName(textOf(config.bgstyle)) || 'default'}`);
+  block.classList.add(`conversation-canvas-bg-${toClassName(textOf(config.bgstyle)) || 'default'}`);
   const titleSize = normalize(textOf(config.titlesize));
-  if (TITLE_SIZES.includes(titleSize)) block.classList.add(`title-${titleSize}`);
+  if (TITLE_SIZES.includes(titleSize)) block.classList.add(`conversation-canvas-title-${titleSize}`);
 
   const content = document.createElement('div');
-  content.className = 'canvas-content';
+  content.className = 'conversation-canvas-content';
 
   // background image
   const background = imageOf(config.backgroundimage, '');
   if (background) {
     const bg = document.createElement('div');
-    bg.className = 'canvas-background';
+    bg.className = 'conversation-canvas-background';
     bg.append(background);
-    block.classList.add('has-background');
+    block.classList.add('conversation-canvas-has-background');
     block.append(bg);
   }
 
   // icon, eyebrow, title, text
   const intro = document.createElement('div');
-  intro.className = 'canvas-intro';
+  intro.className = 'conversation-canvas-intro';
   const icon = imageOf(config.icon, textOf(config.iconalt));
   if (icon) {
     const iconWrap = document.createElement('div');
-    iconWrap.className = 'canvas-icon';
+    iconWrap.className = 'conversation-canvas-icon';
     iconWrap.append(icon);
     intro.append(iconWrap);
   }
   if (textOf(config.eyebrow)) {
     const eyebrow = document.createElement('p');
-    eyebrow.className = 'canvas-eyebrow';
+    eyebrow.className = 'conversation-canvas-eyebrow';
     eyebrow.textContent = textOf(config.eyebrow);
     intro.append(eyebrow);
   }
   if (textOf(config.title)) {
     const title = document.createElement(primary ? 'h1' : 'h2');
-    title.className = 'canvas-title';
+    title.className = 'conversation-canvas-title';
     title.textContent = textOf(config.title);
     intro.append(title);
   }
   if (config.text && textOf(config.text)) {
     const text = document.createElement('div');
-    text.className = 'canvas-text';
+    text.className = 'conversation-canvas-text';
     text.append(...config.text.childNodes);
     intro.append(text);
   }
@@ -374,15 +374,15 @@ export default function decorate(block) {
 
   // search row, in place (default, secondary) or floating only (primary)
   const slot = document.createElement('div');
-  slot.className = 'canvas-search-slot';
+  slot.className = 'conversation-canvas-search-slot';
   const row = buildSearch(config, id, block);
   slot.append(row);
   content.append(slot);
 
-  // filter tags (secondary): markup only, filled by setCanvasFilters()
+  // filter tags (secondary): markup only, filled by setConversationCanvasFilters()
   if (block.classList.contains('secondary')) {
     const filters = document.createElement('ul');
-    filters.className = 'canvas-filters';
+    filters.className = 'conversation-canvas-filters';
     filters.setAttribute('aria-label', 'Suggestions');
     content.append(filters);
   }
@@ -391,12 +391,12 @@ export default function decorate(block) {
   const buttons = buttonRows.map(buildListButton).filter(Boolean);
   if (buttons.length) {
     const list = document.createElement('ul');
-    list.className = 'canvas-buttons';
+    list.className = 'conversation-canvas-buttons';
     list.append(...buttons);
     content.append(list);
   }
 
-  block.replaceChildren(...block.querySelectorAll(':scope > .canvas-background'), content);
+  block.replaceChildren(...block.querySelectorAll(':scope > .conversation-canvas-background'), content);
 
   floating.push({ row, slot, primary });
   if (floating.length === 1) {
