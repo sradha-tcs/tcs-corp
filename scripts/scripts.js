@@ -79,17 +79,22 @@ export function decorateButtons(main) {
     a.title = a.title || a.textContent;
     const p = a.closest('p');
     const text = a.textContent.trim();
+    const icon = !text && a.children.length === 1 && a.querySelector(':scope > span.icon');
 
     // quick structural checks
-    if (a.querySelector('img') || p.textContent.trim() !== text) return;
+    if ((a.querySelector('img') && !icon) || p.textContent.trim() !== text) return;
 
     // skip URL display links
     try {
-      if (new URL(a.href).href === new URL(text, window.location).href) return;
+      if (!icon && new URL(a.href).href === new URL(text, window.location).href) return;
     } catch { /* continue */ }
 
     const strong = a.closest('strong');
     const em = a.closest('em');
+
+    // unformatted icon-only links stay plain
+    if (icon && !strong && !em) return;
+
     p.className = 'button-wrapper';
 
     // unformatted standalone links become link buttons
@@ -99,6 +104,14 @@ export function decorateButtons(main) {
     }
 
     a.className = 'button';
+    if (icon) {
+      const iconName = [...icon.classList].find((c) => c.startsWith('icon-')).substring(5);
+      const label = a.title || iconName.replace(/-/g, ' ');
+      a.classList.add('icon-button');
+      a.title = label;
+      a.setAttribute('aria-label', label);
+      a.style.setProperty('--icon-url', `url('${window.hlx.codeBasePath}/icons/${iconName}.svg')`);
+    }
     if (strong && em) { // text-only call-to-action
       a.classList.add('tertiary');
       const outer = strong.contains(em) ? strong : em;
