@@ -12,6 +12,10 @@ import {
   toClassName,
 } from './aem.js';
 import { applyPageProperties, buildPropertyImage } from './page-properties.js';
+import { decorateButtons } from '../decorators/button-decorator.js';
+
+// re-exported for scripts that import it from here, e.g. editor-support.js
+export { decorateButtons };
 
 // section options (models/_section.json), keyed by their normalized section-metadata row name
 const SECTION_OPTIONS = ['sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt'];
@@ -74,62 +78,6 @@ function buildAutoBlocks() {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
-}
-
-/**
- * Decorates formatted links to style them as buttons.
- * @param {HTMLElement} main The main container element
- */
-export function decorateButtons(main) {
-  main.querySelectorAll('p a[href]').forEach((a) => {
-    a.title = a.title || a.textContent;
-    const p = a.closest('p');
-    const text = a.textContent.trim();
-    const icon = !text && a.children.length === 1 && a.querySelector(':scope > span.icon');
-
-    // quick structural checks
-    if ((a.querySelector('img') && !icon) || p.textContent.trim() !== text) return;
-
-    // skip URL display links
-    try {
-      if (!icon && new URL(a.href).href === new URL(text, window.location).href) return;
-    } catch { /* continue */ }
-
-    const strong = a.closest('strong');
-    const em = a.closest('em');
-
-    // unformatted icon-only links stay plain
-    if (icon && !strong && !em) return;
-
-    p.className = 'button-wrapper';
-
-    // unformatted standalone links become link buttons
-    if (!strong && !em) {
-      a.classList.add('link-button');
-      return;
-    }
-
-    a.className = 'button';
-    if (icon) {
-      const iconName = [...icon.classList].find((c) => c.startsWith('icon-')).substring(5);
-      const label = a.title || iconName.replace(/-/g, ' ');
-      a.classList.add('icon-button');
-      a.title = label;
-      a.setAttribute('aria-label', label);
-      a.style.setProperty('--icon-url', `url('${window.hlx.codeBasePath}/icons/${iconName}.svg')`);
-    }
-    if (strong && em) { // text-only call-to-action
-      a.classList.add('tertiary');
-      const outer = strong.contains(em) ? strong : em;
-      outer.replaceWith(a);
-    } else if (strong) {
-      a.classList.add('primary');
-      strong.replaceWith(a);
-    } else {
-      a.classList.add('secondary');
-      em.replaceWith(a);
-    }
-  });
 }
 
 /**

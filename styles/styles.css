@@ -438,9 +438,22 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* buttons */
+/* buttons: views, types and states are set by decorators/button-decorator.js */
 p.button-wrapper {
   margin: var(--space-300) 0;
+}
+
+/* alignment of the buttons inside a container (setButtonAlignment) */
+.button-align-left {
+  text-align: start;
+}
+
+.button-align-center {
+  text-align: center;
+}
+
+.button-align-right {
+  text-align: end;
 }
 
 a.button:any-link,

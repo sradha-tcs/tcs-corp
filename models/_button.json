@@ -36,20 +36,92 @@
         },
         {
           "component": "select",
-          "name": "linkType",
-          "label": "Type",
+          "name": "buttonView",
+          "label": "Views",
+          "value": "button",
           "options": [
             {
-              "name": "default",
-              "value": ""
+              "name": "Button",
+              "value": "button"
             },
             {
-              "name": "primary",
+              "name": "Icon",
+              "value": "icon"
+            },
+            {
+              "name": "Link",
+              "value": "link"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "linkType",
+          "label": "Type",
+          "value": "primary",
+          "condition": {
+            "or": [
+              { "!": { "var": "buttonView" } },
+              { "===": [{ "var": "buttonView" }, "button"] },
+              { "===": [{ "var": "buttonView" }, "icon"] }
+            ]
+          },
+          "options": [
+            {
+              "name": "Primary",
               "value": "primary"
             },
             {
-              "name": "secondary",
+              "name": "Secondary",
               "value": "secondary"
+            },
+            {
+              "name": "Tertiary",
+              "value": "tertiary"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "buttonIcon",
+          "label": "Icon",
+          "condition": { "===": [{ "var": "buttonView" }, "icon"] },
+          "options": [
+            {
+              "name": "Arrow right",
+              "value": "arrow-right"
+            },
+            {
+              "name": "Chevron right",
+              "value": "chevron-right"
+            },
+            {
+              "name": "Chevron down",
+              "value": "chevron-down"
+            },
+            {
+              "name": "Search",
+              "value": "search"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "buttonAlignment",
+          "label": "Alignment",
+          "value": "left",
+          "options": [
+            {
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "name": "Center",
+              "value": "center"
+            },
+            {
+              "name": "Right",
+              "value": "right"
             }
           ]
         }
