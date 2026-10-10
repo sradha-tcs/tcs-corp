@@ -88,12 +88,16 @@ export function decorateButtons(main) {
       if (new URL(a.href).href === new URL(text, window.location).href) return;
     } catch { /* continue */ }
 
-    // require authored formatting for buttonization
     const strong = a.closest('strong');
     const em = a.closest('em');
-    if (!strong && !em) return;
-
     p.className = 'button-wrapper';
+
+    // unformatted standalone links become link buttons
+    if (!strong && !em) {
+      a.classList.add('link-button');
+      return;
+    }
+
     a.className = 'button';
     if (strong && em) { // text-only call-to-action
       a.classList.add('tertiary');
