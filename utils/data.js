@@ -1,5 +1,5 @@
 /**
- * Data utils: the locale's data spreadsheets under /{country}/{language}/data/ (see
+ * Data utils: the locale's data spreadsheets under /{locale}/data/, e.g. /de-de/data/ (see
  * utils/site.js), each loaded once per page. Rows are returned as typed objects with
  * camelCase properties; missing sheets give empty lists.
  *

@@ -43,6 +43,7 @@ The repository provides the basic structure, blocks, and configuration needed to
     └── editor-support.js           # JavaScript functions used to enhance the WYSIWYG authoring experience in Universal Editor
 ├── decorators/                 # Shared code that creates / decorates elements (buttons, headings, images, media, ...), see decorators/README.md
 ├── utils/                      # Shared helpers that build no UI (properties, metadata, placeholders, taxonomy, ...), see utils/README.md
+├── templates/                  # Code of the Site Global Templates, loaded by Page Type (home, article, blog, press-release), see templates/README.md
 ├── models/                     # Folder containing component definitions, models and filters for default content, pages, sections etc.
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
@@ -135,39 +136,53 @@ Blocks don't re-implement shared behavior; they import it from single-purpose mo
 
 ### Site structure and site data
 
-The AEM content tree (`/content/tcs-corp`) holds locale sites, each with its pages and its own references, error pages and data. Code resolves the locale from the page path with `utils/site.js` (`getLocale`, `localePagePath`, `localeSheetPath`); pages outside a locale (`site-global-templates`, `block-library`) use the default `us/en`.
+The AEM content tree (`/content/tcs-corp`) holds 13 locale sites, each with its pages and its own references, error pages, sheets, data and block library. Each is published at a language-only path (`paths.json`):
+
+| AEM path | Published | lang | | AEM path | Published | lang |
+|---|---|---|---|---|---|---|
+| `us/en` | `/en` | en-US | | `se/sv-se` | `/sv-se` | sv-SE |
+| `de/de-de` | `/de-de` | de-DE | | `dk/da-dk` | `/da-dk` | da-DK |
+| `fr/fr-fr` | `/fr-fr` | fr-FR | | `no/no-no` | `/no-no` | no-NO |
+| `ca/fr-ca` | `/fr-ca` | fr-CA | | `cn/zh-cn` | `/zh-cn` | zh-CN |
+| `es/es-es` | `/es-es` | es-ES | | `jp/ja-jp` | `/ja-jp` | ja-JP |
+| `pt/pt-pt` | `/pt-pt` | pt-PT | | `kr/ko-kr` | `/ko-kr` | ko-KR |
+| `nl/nl-nl` | `/nl-nl` | nl-NL | | | | |
+
+Code resolves the locale with `utils/site.js` (`LOCALES`, `getLocale`, `localePagePath`, `resolvePagePath`, `localeSheetPath`, `toPublishedPath`, `toAemPath`): from the AEM path when editing in Universal Editor, else from the published path. Pages outside a locale (`site-global-templates`, drafts) use the default `en`. **Keep `LOCALES` in `utils/site.js` and the mappings in `paths.json` in sync** when a locale is added.
 
 ```
 /content/tcs-corp/
-├── us/en/                  # a locale site (country/language); more locales follow the same layout
+├── us/en/                  # a locale site (country/language), published at /en/; the other 12 follow the same layout
 │   ├── index               # Home and the content pages
 │   ├── references/         # nav (header), footer and other fragments / reference pages
 │   ├── error-pages/        # 404, 403, 500
+│   ├── block-library/      # pages with every block variation, for validating blocks in the locale's language; not published
 │   ├── placeholders        # sheet: Key, Text, Description, Category
 │   ├── metadata            # sheet: bulk metadata (columns below)
 │   ├── taxonomy            # taxonomy page (tag, title; a sheet per language for translations)
 │   ├── redirects           # sheet: source, destination
 │   └── data/               # sheets: authors, locations, partners, social-links, media-contacts
-├── site-global-templates/  # page templates (not indexed)
-└── block-library/          # block library (not indexed)
+└── site-global-templates/  # template pages authors copy (home, press release, blog, article, ...); not published
 ```
 
 | Data | Source (published as) | Code |
 |---|---|---|
-| Header / Footer | `references/nav`, `references/footer` (a `nav` / `footer` metadata overrides) | `blocks/header`, `blocks/footer` |
-| Error pages | `error-pages/404` (403, 500) | `scripts.js` `loadErrorPage` loads the locale's 404 into `404.html`, keeping the built-in content when it isn't published; 403 / 500 are regular pages a CDN can serve |
-| Page metadata | Page properties (Title, Description, Keywords, Tags) and the bulk metadata sheet (`/metadata.json`, mapped from `us/en/metadata`) | `utils/metadata.js` (`getPageMetadata`, `getPageTags`, `getPageLanguage`); `decorators/seo-decorator.js` applies the SEO / social columns to the head; Page Type (or Template) becomes a body class |
+| Header / Footer | Configurable: the Navigation / Footer page properties (one page), else the `nav` / `footer` columns of the metadata sheet (a URL pattern, e.g. `/de-de/careers/**`), else the locale's `references/nav` / `references/footer`. Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`) | `blocks/header`, `blocks/footer` with `utils/site.js` `resolvePagePath` |
+| Templates | The Page Type page property, else the metadata sheet's `page-type` | `scripts.js` `loadTemplate` loads `templates/{name}/{name}.js|css` (see templates/README.md) |
+| Error pages | `/{locale}/error-pages/404` (403, 500) | `scripts.js` `loadErrorPage` loads the locale's 404 into `404.html`, keeping the built-in content when it isn't published; 403 / 500 are regular pages a CDN can serve |
+| Page metadata | Page properties and the locale's bulk metadata sheet (`/de-de/metadata.json`; the English sheet is mapped to `/metadata.json`) | `utils/metadata.js` (`getPageMetadata`, `getPageTags`, `getPageLanguage`); `decorators/seo-decorator.js` applies the SEO / social columns and `<html lang>`; Page Type becomes a body class |
 | UI text | `/{locale}/placeholders.json` (Key, Text; Description and Category are for authors) | `utils/placeholders.js`: `const t = await getPlaceholders(); t('nextSlide', 'Next slide')` — always pass an English fallback |
-| Tag labels | `/{locale}/taxonomy.json` (the locale's language sheet when translated) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
+| Tag labels | `/{locale}/taxonomy.json` (mapped per locale; the locale's language sheet when translated) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
 | Data sheets | `/{locale}/data/{authors,locations,partners,social-links,media-contacts}.json` | `utils/data.js` (`getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion`) |
 | Redirects | `/redirects.json` (mapped from `us/en/redirects`) | none, applied by the platform |
 
 Bulk metadata columns: `url`, `page-type`, `meta-title`, `meta-description`, `meta-keywords`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`. Each column is published as `<meta name="{column}">`; the SEO decorator maps meta-title, meta-description, meta-keywords, og-*, twitter-* and canonical-url to the standard tags in the browser (`robots` is standard and works server side). The Page Header uses page-type (layout), publish-date, reading-time and author-id (Authors sheet: name, designation, region, image, LinkedIn); the footer lists the Social Links sheet in sort-order.
 
 Notes:
-- Spreadsheets publish as `.json` at their own path; `paths.json` only maps the bulk metadata and redirects to the root (where the platform reads them) and the taxonomy page. Bulk metadata of additional locales must be added to the site configuration's `metadata.source` list (Admin API), and their redirects to the root redirects sheet.
-- The query index (`helix-query.yaml`) excludes references, error pages, data, nav / footer, templates and the block library, and indexes the metadata columns (pageType, contentType, authorId, publishDate, readingTime, thumbnailImage, featuredImage, featured, priority, region, country, language, persona, ...).
-- Page-specific values that aren't metadata (CTAs, author image overrides, share / download) are block fields. Don't hard-code user-facing strings in blocks; use placeholders.
+- `paths.json`: one mapping per locale (`/content/tcs-corp/de/de-de/:/de-de/`), one per taxonomy page, and the English metadata and redirects sheets mapped to the root (where the platform reads them). `includes` lists the 13 locale roots; `excludes` the 13 block libraries and `site-global-templates` (author only). Other sheets publish as `.json` at their locale path. Pages outside the locales (e.g. `/content/tcs-corp` itself) aren't published, so `/` needs a redirect to `/en/`.
+- The bulk metadata of the other 12 locales (`/de-de/metadata.json`, ...) must be listed in the site configuration's `metadata.source` (Admin API). Only the root redirects sheet is applied, so redirects of all locales go into the English redirects sheet.
+- The query index (`helix-query.yaml`) excludes each locale's references, error pages, data and nav / footer (and, as a safeguard, block libraries and templates), and indexes the metadata columns (pageType, contentType, authorId, publishDate, readingTime, thumbnailImage, featuredImage, featured, priority, region, country, language, persona, ...).
+- Page properties are Title, Description, Keywords, Page Type, Navigation and Footer; everything else page-level is a metadata sheet column. Page-specific values that aren't metadata (CTAs, author image overrides, share / download) are block fields. Don't hard-code user-facing strings in blocks; use placeholders.
 
 ### Three-Phase Page Loading
 

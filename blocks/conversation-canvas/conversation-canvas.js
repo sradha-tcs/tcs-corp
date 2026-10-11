@@ -100,7 +100,7 @@ function buildListButton(row) {
 }
 
 /**
- * Reads the Menu root path (default: the locale site, e.g. /us/en) and Menu depth properties.
+ * Reads the Menu root path (default: the locale site, e.g. /de-de) and Menu depth properties.
  * @returns {{ root: string, depth: number }}
  */
 function menuSettings(config) {

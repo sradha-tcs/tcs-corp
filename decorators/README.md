@@ -20,6 +20,9 @@ checks) live in [`../utils`](../utils/README.md).
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
 | `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
+| `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article, blog, press-release templates |
+| `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
+| `contact-list-decorator.js` | `buildContactList` (contacts with mail / phone links, e.g. Media Contacts) | press-release template |
 | `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, table-list, conversation-canvas |
 
 ## Guidelines

@@ -21,6 +21,35 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "page-type",
+          "label": "Page Type",
+          "description": "The Site Global Template of the page (layout and template code). Overrides the page-type column of the metadata sheet.",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Home", "value": "home" },
+            { "name": "Article", "value": "article" },
+            { "name": "Blog", "value": "blog" },
+            { "name": "Press Release", "value": "press-release" }
+          ]
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "nav",
+          "label": "Navigation",
+          "description": "The header (nav) page of this page. Empty: the nav column of the metadata sheet, else the locale's references/nav."
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "footer",
+          "label": "Footer",
+          "description": "The footer page of this page. Empty: the footer column of the metadata sheet, else the locale's references/footer."
         }
       ]
     }

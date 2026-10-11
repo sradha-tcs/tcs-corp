@@ -6,15 +6,17 @@ indices:
       - '/**'
     exclude:
       - '/**.json'
-      # not content pages: fragments (incl. nav and footer), error pages, data sheets,
-      # page templates and the block library
-      - '/*/*/references/**'
-      - '/*/*/error-pages/**'
-      - '/*/*/data/**'
-      - '/*/*/nav'
-      - '/*/*/footer'
+      # not content pages of the locale sites (/en, /de-de, ...): fragments (incl. nav and
+      # footer), error pages and data sheets; block libraries and templates aren't published
+      # (paths.json), excluded as a safeguard
+      - '/*/references/**'
+      - '/*/error-pages/**'
+      - '/*/data/**'
+      - '/*/nav'
+      - '/*/footer'
+      - '/*/block-library'
+      - '/*/block-library/**'
       - '/site-global-templates/**'
-      - '/block-library/**'
       - '/**/fragments/**'
       - '/**/modals/**'
     target: /query-index.json
@@ -37,7 +39,7 @@ indices:
       tags:
         select: head > meta[property="article:tag"]
         values: attribute(el, "content")
-      # columns of the locale's bulk metadata sheet (/{country}/{language}/metadata)
+      # columns of the locale's bulk metadata sheet (e.g. /de-de/metadata)
       metaTitle:
         select: head > meta[name="meta-title"]
         value: attribute(el, "content")

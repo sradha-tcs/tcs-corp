@@ -1,7 +1,7 @@
 /**
  * Metadata utils: the page's metadata, set on the page (Title, Description, Keywords, Tags)
- * or by the locale's bulk metadata spreadsheet (/{country}/{language}/metadata, published as
- * /metadata.json). Every sheet column is published as a <meta> named after it:
+ * or by the locale's bulk metadata spreadsheet (e.g. /de-de/metadata.json; the English one is
+ * published as /metadata.json). Every sheet column is published as a <meta> named after it:
  *
  * url (the pattern of the pages a row applies to), page-type, meta-title, meta-description,
  * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
@@ -41,12 +41,12 @@ export function getPageTags() {
 
 /**
  * The page language: the Language metadata when it's a language code (e.g. en, en-US),
- * otherwise the language of the locale site.
+ * otherwise the language tag of the locale site (e.g. de-DE).
  * @returns {string}
  */
 export function getPageLanguage() {
   const language = getMetadata('language');
-  return /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(language) ? language : getLocale().language;
+  return /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(language) ? language : getLocale().lang;
 }
 
 /**
