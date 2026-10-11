@@ -9,12 +9,15 @@
  *   /de-de/error-pages/           404, 403, 500
  *   /de-de/placeholders.json      UI text (Key, Text, Description, Category)
  *   /de-de/taxonomy.json          tag titles (paths.json maps each taxonomy page)
- *   /de-de/metadata.json          bulk metadata (en: mapped to /metadata.json)
+ *   /de-de/metadata.json          bulk metadata (listed in the site config's metadata.source)
  *   /de-de/data/*.json            authors, locations, partners, social-links, media-contacts
  *   block-library/                block test pages, on author only (excluded in paths.json)
  *
+ * Redirects sheets are per locale too (/de-de/redirects.json); the platform only applies a root
+ * /redirects.json, so they need another mechanism (e.g. CDN rules).
+ *
  * Pages outside a locale (e.g. site-global-templates, drafts) use the default locale.
- * Keep LOCALES and the mappings in paths.json in sync.
+ * paths.json is generated from LOCALES: run `npm run build:paths` after changing them.
  */
 
 /**

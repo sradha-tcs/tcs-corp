@@ -1,7 +1,8 @@
 /**
  * Metadata utils: the page's metadata, set on the page (Title, Description, Keywords, Tags)
- * or by the locale's bulk metadata spreadsheet (e.g. /de-de/metadata.json; the English one is
- * published as /metadata.json). Every sheet column is published as a <meta> named after it:
+ * or by the locale's bulk metadata spreadsheet (e.g. /de-de/metadata.json, applied once listed
+ * in the site configuration's metadata.source). Every sheet column is published as a <meta>
+ * named after it:
  *
  * url (the pattern of the pages a row applies to), page-type, meta-title, meta-description,
  * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
