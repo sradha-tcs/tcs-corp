@@ -2,6 +2,7 @@ import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { getPageTags } from '../../utils/metadata.js';
+import { getLocale } from '../../utils/site.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
 import { createButton } from '../../decorators/button-decorator.js';
@@ -99,12 +100,12 @@ function buildListButton(row) {
 }
 
 /**
- * Reads the Menu root path and Menu depth properties.
+ * Reads the Menu root path (default: the locale site, e.g. /us/en) and Menu depth properties.
  * @returns {{ root: string, depth: number }}
  */
 function menuSettings(config) {
   const root = toSitePath(config.menurootpath?.querySelector('a')?.getAttribute('href')
-    || textOf(config.menurootpath)) || '/';
+    || textOf(config.menurootpath)) || getLocale().root;
   const depth = Math.max(1, parseInt(textOf(config.menudepth), 10) || 1);
   return { root, depth };
 }

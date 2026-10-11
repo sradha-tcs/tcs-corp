@@ -6,9 +6,11 @@ URLs, ids and checks of the browsing context. Elements are created by the
 
 | Util | Exports | Used by |
 |---|---|---|
-| `metadata.js` | `getPageMetadata`, `getPageTags` (standard page metadata: title, description, image, template, category, tags, publication date, author) | page-header, conversation-canvas |
-| `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from `/placeholders.json`, with English fallbacks) | all blocks with UI text, header |
-| `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from `/taxonomy.json`) | teaser, page-header, conversation-canvas |
+| `site.js` | `getLocale`, `localePagePath`, `localeSheetPath`, `sheetRows`, `DEFAULT_LOCALE` (the locale site of a page and its references, error pages and sheets) | header, footer, `scripts.js`, placeholders, taxonomy, data, conversation-canvas |
+| `metadata.js` | `getPageMetadata`, `getPageTags`, `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | page-header, conversation-canvas, SEO decorator |
+| `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | all blocks with UI text, header, footer |
+| `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, conversation-canvas |
+| `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, footer |
 | `properties.js` | `readProperties`, `textOf`, `isOn`, `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, decorators |
 | `multifield.js` | `readMultifieldItems` (composite multifield items) | links util, testimonial, anchor-list |
 | `links.js` | `NEW_WINDOW`, `linkOf`, `readLinkItems` (CTA lists with Link Type) | hero, teaser, page-header |
@@ -22,18 +24,12 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `media.js` | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | media decorator, embed, video, hero |
 | `lottie.js` | `loadLottie` (the vendored Lottie player, loaded once per page) | hero |
 
-## Site data (Adobe-recommended, no custom page properties)
+## Site data
 
-| Data | Source | Read with |
-|---|---|---|
-| Page metadata | Page properties (Title, Description, Keywords) and the bulk metadata sheet `/metadata.json` (e.g. Template, Tags, Publication Date, Author, Category) | `metadata.js` |
-| UI text | Placeholders sheet `/placeholders.json` (Key, Text) | `placeholders.js` |
-| Tag labels | Published taxonomy `/taxonomy.json` | `taxonomy.js` |
-| Redirects | Redirects sheet `/redirects.json` (applied by the platform, no code) | — |
-
-All are mapped in `paths.json`. The Template metadata becomes a body class (core
-`decorateTemplateAndTheme`); the Page Header uses it to pick its layout (landing / listing:
-landing, otherwise article).
+Site data lives in each locale site (`/{country}/{language}/`, e.g. `/us/en/`): references
+(nav, footer, fragments), error pages, placeholders, metadata, taxonomy, redirects and the
+`data/` sheets. See "Site structure and site data" in [AGENTS.md](../AGENTS.md) for the
+structure, the bulk metadata columns and the path mappings.
 
 ## Guidelines
 

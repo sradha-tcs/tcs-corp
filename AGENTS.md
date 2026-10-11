@@ -133,18 +133,41 @@ Blocks don't re-implement shared behavior; they import it from single-purpose mo
 - `utils/` are helpers that build no UI: block properties, multifields, links, dates, tags, URLs, ids, environment / viewport checks, media URLs, Lottie, page metadata, placeholders and taxonomy.
 - Decorators may import utils; utils never import decorators. Keep one purpose per file and add new shared behavior there, not in a block. Each folder's README lists its modules, exports and users.
 
-### Site data: metadata, placeholders, taxonomy, redirects
+### Site structure and site data
 
-Following Adobe's recommendations, the project has no custom page-properties tab. Site data comes from standard sources (all mapped in `paths.json`):
+The AEM content tree (`/content/tcs-corp`) holds locale sites, each with its pages and its own references, error pages and data. Code resolves the locale from the page path with `utils/site.js` (`getLocale`, `localePagePath`, `localeSheetPath`); pages outside a locale (`site-global-templates`, `block-library`) use the default `us/en`.
 
-| Data | Source | Code |
+```
+/content/tcs-corp/
+├── us/en/                  # a locale site (country/language); more locales follow the same layout
+│   ├── index               # Home and the content pages
+│   ├── references/         # nav (header), footer and other fragments / reference pages
+│   ├── error-pages/        # 404, 403, 500
+│   ├── placeholders        # sheet: Key, Text, Description, Category
+│   ├── metadata            # sheet: bulk metadata (columns below)
+│   ├── taxonomy            # taxonomy page (tag, title; a sheet per language for translations)
+│   ├── redirects           # sheet: source, destination
+│   └── data/               # sheets: authors, locations, partners, social-links, media-contacts
+├── site-global-templates/  # page templates (not indexed)
+└── block-library/          # block library (not indexed)
+```
+
+| Data | Source (published as) | Code |
 |---|---|---|
-| Page metadata | Page properties (Title, Description, Keywords) and the bulk metadata sheet (`/metadata.json`): Template, Tags, Publication Date, Author, Category, ... | `utils/metadata.js` (`getPageMetadata`, `getPageTags`); Template becomes a body class via `decorateTemplateAndTheme` |
-| UI text | Placeholders sheet (`/placeholders.json`, columns Key and Text) | `utils/placeholders.js`: `const t = await getPlaceholders(); t('nextSlide', 'Next slide')` — always pass an English fallback |
-| Tag labels | Published taxonomy (`/taxonomy.json`) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
-| Redirects | Redirects sheet (`/redirects.json`) | none, applied by the platform |
+| Header / Footer | `references/nav`, `references/footer` (a `nav` / `footer` metadata overrides) | `blocks/header`, `blocks/footer` |
+| Error pages | `error-pages/404` (403, 500) | `scripts.js` `loadErrorPage` loads the locale's 404 into `404.html`, keeping the built-in content when it isn't published; 403 / 500 are regular pages a CDN can serve |
+| Page metadata | Page properties (Title, Description, Keywords, Tags) and the bulk metadata sheet (`/metadata.json`, mapped from `us/en/metadata`) | `utils/metadata.js` (`getPageMetadata`, `getPageTags`, `getPageLanguage`); `decorators/seo-decorator.js` applies the SEO / social columns to the head; Page Type (or Template) becomes a body class |
+| UI text | `/{locale}/placeholders.json` (Key, Text; Description and Category are for authors) | `utils/placeholders.js`: `const t = await getPlaceholders(); t('nextSlide', 'Next slide')` — always pass an English fallback |
+| Tag labels | `/{locale}/taxonomy.json` (the locale's language sheet when translated) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
+| Data sheets | `/{locale}/data/{authors,locations,partners,social-links,media-contacts}.json` | `utils/data.js` (`getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion`) |
+| Redirects | `/redirects.json` (mapped from `us/en/redirects`) | none, applied by the platform |
 
-Page-specific values that aren't metadata (CTAs, reading time, author image, share / download) are block fields (e.g. on the Page Header). Don't hard-code user-facing strings in blocks; use placeholders. The query index (`helix-query.yaml`) indexes the standard metadata (template, category, author, date, tags).
+Bulk metadata columns: `url`, `page-type`, `meta-title`, `meta-description`, `meta-keywords`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`. Each column is published as `<meta name="{column}">`; the SEO decorator maps meta-title, meta-description, meta-keywords, og-*, twitter-* and canonical-url to the standard tags in the browser (`robots` is standard and works server side). The Page Header uses page-type (layout), publish-date, reading-time and author-id (Authors sheet: name, designation, region, image, LinkedIn); the footer lists the Social Links sheet in sort-order.
+
+Notes:
+- Spreadsheets publish as `.json` at their own path; `paths.json` only maps the bulk metadata and redirects to the root (where the platform reads them) and the taxonomy page. Bulk metadata of additional locales must be added to the site configuration's `metadata.source` list (Admin API), and their redirects to the root redirects sheet.
+- The query index (`helix-query.yaml`) excludes references, error pages, data, nav / footer, templates and the block library, and indexes the metadata columns (pageType, contentType, authorId, publishDate, readingTime, thumbnailImage, featuredImage, featured, priority, region, country, language, persona, ...).
+- Page-specific values that aren't metadata (CTAs, author image overrides, share / download) are block fields. Don't hard-code user-facing strings in blocks; use placeholders.
 
 ### Three-Phase Page Loading
 

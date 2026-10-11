@@ -3,7 +3,10 @@ import { fromCell } from '../../decorators/content-decorator.js';
 import { buildTime } from '../../decorators/date-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
+import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
+import { getAuthor } from '../../utils/data.js';
 import { uniqueId } from '../../utils/ids.js';
 import { NEW_WINDOW, linkOf } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
@@ -15,11 +18,12 @@ import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
  * Page Header (blocks/page-header/_page-header.json).
- * From the page's standard metadata (set on the page or by the bulk metadata sheet,
- * /metadata.json): Title, Description, Tags (labels from /taxonomy.json), Publication Date,
- * Author and Template (the layout). From the block: CTAs, reading time, author image and
- * designation, share / download / listen actions, collection label and image collage.
- * UI text comes from /placeholders.json.
+ * From the page's metadata (set on the page or by the locale's bulk metadata sheet): Title,
+ * Description, Tags (labels from the locale's taxonomy), publish-date, reading-time,
+ * page-type (the layout) and author-id (name, image, designation and LinkedIn from the
+ * locale's Authors data sheet). The block's own fields override them: reading time, author
+ * name, image and designation. From the block only: CTAs, share / download / listen actions,
+ * collection label and image collage. UI text comes from the locale's placeholders.
  * Layouts (Figma "Secondary Page Header" / "L3 Header"):
  * - landing: tags as an eyebrow, large title; description and CTAs (or an image collage)
  * - article: meta row (tags, date, reading time, listen / download / share), title and author;
@@ -30,10 +34,10 @@ const LAYOUTS = ['landing', 'article'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
 const CTA_STYLES = ['primary', 'secondary'];
 
-/** the layout: the block Style, or the page Template (landing / listing: landing) */
-function layoutOf(block, props, template) {
+/** the layout: the block Style, or the Page Type (landing / listing: landing) */
+function layoutOf(block, props, pageType) {
   return optionOf(block, props.classes, LAYOUTS)
-    || (LANDING_TEMPLATES.includes(template.toLowerCase()) ? 'landing' : 'article');
+    || (LANDING_TEMPLATES.includes(pageType.toLowerCase()) ? 'landing' : 'article');
 }
 
 function buildDescription(text) {
@@ -108,14 +112,14 @@ function buildMetaRow(props, metadata, tags, t) {
 
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  const time = buildTime(metadata.publicationDate, 'dd/mm/yy');
+  const time = buildTime(metadata.publishDate, 'dd/mm/yy');
   if (time) {
     const date = document.createElement('p');
     date.className = 'page-header-date';
     date.append(`${t('published', 'Published')} `, time);
     info.append(date);
   }
-  const readingTime = textOf(props.readingtime);
+  const readingTime = textOf(props.readingtime) || metadata.readingTime;
   if (readingTime) {
     const reading = document.createElement('p');
     reading.className = 'page-header-reading-time';
@@ -130,10 +134,45 @@ function buildMetaRow(props, metadata, tags, t) {
   return row.children.length ? row : null;
 }
 
-function buildAuthor(props, metadata) {
+/** the author name: the block's, the Authors sheet entry's (linked to LinkedIn) or Author */
+function buildAuthorName(props, metadata, author) {
+  if (textOf(props.authorname)) return fromCell(props.authorname, 'p', 'page-header-author-name');
+  const text = author?.name || metadata.author;
+  if (!text) return null;
+  const name = document.createElement('p');
+  name.className = 'page-header-author-name';
+  if (author?.linkedin) {
+    const a = document.createElement('a');
+    a.href = author.linkedin;
+    a.textContent = text;
+    setLinkTarget(a);
+    name.append(a);
+  } else {
+    name.textContent = text;
+  }
+  return name;
+}
+
+/** the author designation: the block's, or the Authors sheet entry's designation and region */
+function buildAuthorDesignation(props, author) {
+  if (textOf(props.designationlocation)) {
+    return fromCell(props.designationlocation, 'div', 'page-header-author-designation');
+  }
+  const text = [author?.designation, author?.region].filter(Boolean).join(', ');
+  if (!text) return null;
+  const el = document.createElement('div');
+  el.className = 'page-header-author-designation';
+  const p = document.createElement('p');
+  p.textContent = text;
+  el.append(p);
+  return el;
+}
+
+function buildAuthor(props, metadata, author) {
   const el = document.createElement('div');
   el.className = 'page-header-author';
-  const picture = pictureOf(props.authorimage, props.authorimagealt);
+  const picture = pictureOf(props.authorimage, props.authorimagealt)
+    || buildImage(author?.image ? { src: author.image, alt: '' } : null);
   if (picture) {
     const wrapper = document.createElement('div');
     wrapper.className = 'page-header-author-image';
@@ -142,18 +181,10 @@ function buildAuthor(props, metadata) {
   }
   const details = document.createElement('div');
   details.className = 'page-header-author-details';
-  if (textOf(props.authorname)) {
-    details.append(fromCell(props.authorname, 'p', 'page-header-author-name'));
-  } else if (metadata.author) {
-    // the page's Author metadata when the block has no author name
-    const name = document.createElement('p');
-    name.className = 'page-header-author-name';
-    name.textContent = metadata.author;
-    details.append(name);
-  }
-  if (textOf(props.designationlocation)) {
-    details.append(fromCell(props.designationlocation, 'div', 'page-header-author-designation'));
-  }
+  details.append(...[
+    buildAuthorName(props, metadata, author),
+    buildAuthorDesignation(props, author),
+  ].filter(Boolean));
   if (details.children.length) el.append(details);
   return details.children.length ? el : null;
 }
@@ -204,8 +235,10 @@ function buildCollage(props) {
 export default async function decorate(block) {
   const props = readProperties(block);
   const metadata = getPageMetadata();
-  const [t, pageTags] = await Promise.all([getPlaceholders(), resolveTags(metadata.tags)]);
-  const layout = layoutOf(block, props, metadata.template);
+  const [t, pageTags, author] = await Promise.all([
+    getPlaceholders(), resolveTags(metadata.tags), getAuthor(metadata.authorId),
+  ]);
+  const layout = layoutOf(block, props, metadata.pageType);
 
   const title = document.createElement('h1');
   title.className = 'page-header-title';
@@ -237,8 +270,8 @@ export default async function decorate(block) {
   } else {
     const metaRow = buildMetaRow(props, metadata, tags, t);
     intro.append(title);
-    const author = buildAuthor(props, metadata);
-    if (author) intro.append(author);
+    const authorEl = buildAuthor(props, metadata, author);
+    if (authorEl) intro.append(authorEl);
     const columns = document.createElement('div');
     columns.className = 'page-header-columns';
     columns.append(...[intro, summary].filter((part) => part.children.length));

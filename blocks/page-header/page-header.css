@@ -144,6 +144,11 @@
   font-weight: var(--font-weight-light);
 }
 
+/* linked to the author's LinkedIn profile (Authors data sheet) */
+.page-header .page-header-author-name a {
+  color: inherit;
+}
+
 .page-header .page-header-author-designation {
   font-weight: var(--font-weight-medium);
 }

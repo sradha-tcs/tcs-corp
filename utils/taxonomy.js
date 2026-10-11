@@ -1,19 +1,20 @@
 /**
- * Taxonomy utils: tag labels from the published taxonomy (/taxonomy.json, see
- * https://www.aem.live/docs/authoring-taxonomy), loaded once per page. Tags missing from the
- * taxonomy fall back to a label derived from the tag ID.
+ * Taxonomy utils: tag labels from the locale's published taxonomy
+ * (/{country}/{language}/taxonomy.json, see https://www.aem.live/docs/authoring-taxonomy),
+ * loaded once per page. With translated tag titles the taxonomy has a sheet per language; the
+ * locale's language sheet is used, else the default one. Tags missing from the taxonomy fall
+ * back to a label derived from the tag ID.
  */
+import { getLocale, localeSheetPath, sheetRows } from './site.js';
 import { parseTag } from './tags.js';
-
-const TAXONOMY_PATH = '/taxonomy.json';
 
 let taxonomy;
 
 /** the taxonomy as a map of tag ID to title; empty when it isn't published */
 export function loadTaxonomy() {
-  taxonomy = taxonomy || fetch(TAXONOMY_PATH)
-    .then((response) => (response.ok ? response.json() : { data: [] }))
-    .then(({ data = [] }) => new Map(data
+  taxonomy = taxonomy || fetch(localeSheetPath('taxonomy'))
+    .then((response) => (response.ok ? response.json() : null))
+    .then((json) => new Map(sheetRows(json, getLocale().language)
       .filter((row) => row.tag)
       .map((row) => [row.tag.trim(), (row.title || '').trim()])))
     .catch(() => new Map());

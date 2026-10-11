@@ -25,8 +25,9 @@
           backBtn.href = pathname;
           backBtn.textContent = 'Go back';
           backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
+          // the built-in page, or an authored error page with a button
+          const btnContainer = document.querySelector('main .button-container');
+          if (btnContainer) btnContainer.append(backBtn);
         }
       }
     });
@@ -40,7 +41,12 @@
     main.error {
       min-height: calc(100vh - var(--nav-height));
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    main.error > .section {
+      width: 100%;
     }
 
     main.error .error-number {
@@ -56,6 +62,7 @@
 
 <body>
   <header></header>
+  <!-- built-in content, replaced by the locale's authored /{country}/{language}/error-pages/404 -->
   <main class="error">
     <div class="section">
       <svg viewBox="1 0 38 18" class="error-number">

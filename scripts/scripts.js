@@ -11,9 +11,12 @@ import {
   loadSections,
   loadCSS,
   toClassName,
+  getMetadata,
 } from './aem.js';
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
+import { decorateHead } from '../decorators/seo-decorator.js';
+import { localePagePath } from '../utils/site.js';
 
 // re-exported for scripts that import it from here, e.g. editor-support.js
 export { decorateButtons };
@@ -198,14 +201,49 @@ export function decorateMain(main) {
 }
 
 /**
+ * Error pages (404.html): the locale's authored error page (/{country}/{language}/error-pages/
+ * 404, 403 or 500) replaces the built-in content; the built-in content stays when the page
+ * isn't published.
+ * @param {Element} main The main element
+ */
+async function loadErrorPage(main) {
+  // the built-in Go home button leads to the locale's home page
+  main.querySelector('.error-button-home')?.setAttribute('href', localePagePath(''));
+  const path = localePagePath(`error-pages/${window.errorCode || '404'}`);
+  try {
+    const resp = await fetch(`${path}.plain.html`);
+    if (!resp.ok) return;
+    main.innerHTML = await resp.text();
+    // media of the error page is relative to it
+    main.querySelectorAll('img[src^="./media_"], source[srcset^="./media_"]').forEach((el) => {
+      const attr = el.tagName === 'IMG' ? 'src' : 'srcset';
+      el.setAttribute(attr, new URL(el.getAttribute(attr), new URL(path, window.location)).href);
+    });
+    main.classList.add('error-authored');
+  } catch {
+    // keep the built-in content
+  }
+}
+
+/**
+ * Adds the Page Type metadata (bulk metadata sheet) as a body class, like Template and Theme.
+ */
+function decoratePageType() {
+  const pageType = toClassName(getMetadata('page-type'));
+  if (pageType) document.body.classList.add(pageType);
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  decorateHead();
   decorateTemplateAndTheme();
+  decoratePageType();
   const main = doc.querySelector('main');
   if (main) {
+    if (window.isErrorPage) await loadErrorPage(main);
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
