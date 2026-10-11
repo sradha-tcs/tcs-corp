@@ -1,0 +1,27 @@
+# Decorators
+
+Decorators **create or decorate page elements** the same way in every block: buttons, links,
+headings, images, tags, dates, media players and accessibility helpers. Each file has a single
+purpose. Pure helpers that don't build UI (reading authored values, dates, URLs, environment
+checks) live in [`../utils`](../utils/README.md).
+
+| Decorator | Exports | Used by |
+|---|---|---|
+| `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, `page-properties.js`, header |
+| `icon-button-decorator.js` | `createIconButton` | gen-carousel, page-header, modal, embed, video, conversation-canvas |
+| `content-buttons-decorator.js` | `decorateButtons` (authored links in content become buttons) | `scripts.js`, `editor-support.js` |
+| `link-decorator.js` | `setLinkTarget` (open in a new window) | button decorator, teaser |
+| `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, form-variations |
+| `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
+| `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
+| `date-decorator.js` | `buildTime` (`<time>` for a date) | teaser, page-header |
+| `tag-decorator.js` | `buildTagList` | teaser, page-header |
+| `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
+| `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, table-list, conversation-canvas |
+
+## Guidelines
+
+- New blocks use these decorators for buttons and shared behavior instead of setting classes
+  or building the same elements themselves.
+- Keep one purpose per file; add a new decorator rather than growing an unrelated one.
+- Decorators may use utils; utils never import decorators.

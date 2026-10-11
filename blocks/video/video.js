@@ -1,94 +1,50 @@
 /*
  * Video Block (Block Collection): a video from a link (YouTube, Vimeo or a video file).
  * https://www.aem.live/developer/block-collection/video
- * Adapted: players are built with DOM APIs and the play button uses the shared button
+ * Adapted: players come from the media decorator and the play button from the button
  * decorator.
  */
-import { decorateButton } from '../../decorators/button-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import {
+  createVideoElement, createVimeoFrame, createYoutubeFrame,
+} from '../../decorators/media-decorator.js';
+import { prefersReducedMotion } from '../../utils/environment.js';
+import { isVimeo, isYoutube } from '../../utils/media.js';
+import { onVisible } from '../../utils/viewport.js';
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const FRAME_CLASS = 'video-frame';
 
-function createFrame(src, title, allow) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'video-frame';
-  const iframe = document.createElement('iframe');
-  iframe.src = src;
-  iframe.title = title;
-  iframe.loading = 'lazy';
-  iframe.allow = allow;
-  iframe.allowFullscreen = true;
-  wrapper.append(iframe);
-  return wrapper;
+function youtubeParams(autoplay, background) {
+  if (!background && !autoplay) return {};
+  return {
+    autoplay: autoplay ? '1' : '0',
+    mute: background ? '1' : '0',
+    controls: background ? '0' : '1',
+    disablekb: background ? '1' : '0',
+    loop: background ? '1' : '0',
+    playsinline: background ? '1' : '0',
+  };
 }
 
-function embedYoutube(url, autoplay, background) {
-  const usp = new URLSearchParams(url.search);
-  let vid = usp.get('v') || '';
-  if (url.hostname.includes('youtu.be')) [, vid] = url.pathname.split('/');
-  const src = new URL(vid ? `https://www.youtube.com/embed/${encodeURIComponent(vid)}` : `https://www.youtube.com${url.pathname}`);
-  src.searchParams.set('rel', '0');
-  if (background || autoplay) {
-    Object.entries({
-      autoplay: autoplay ? '1' : '0',
-      mute: background ? '1' : '0',
-      controls: background ? '0' : '1',
-      disablekb: background ? '1' : '0',
-      loop: background ? '1' : '0',
-      playsinline: background ? '1' : '0',
-    }).forEach(([key, value]) => src.searchParams.set(key, value));
-  }
-  return createFrame(src.href, 'Content from YouTube', 'autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope');
-}
-
-function embedVimeo(url, autoplay, background) {
-  const [, video] = url.pathname.split('/');
-  const src = new URL(`https://player.vimeo.com/video/${encodeURIComponent(video)}`);
-  if (background || autoplay) {
-    src.searchParams.set('autoplay', autoplay ? '1' : '0');
-    src.searchParams.set('background', background ? '1' : '0');
-  }
-  return createFrame(src.href, 'Content from Vimeo', 'autoplay; fullscreen; picture-in-picture');
-}
-
-function getVideoElement(source, autoplay, background) {
-  const video = document.createElement('video');
-  video.controls = true;
-  if (autoplay) video.autoplay = true;
-  if (background) {
-    video.loop = true;
-    video.playsInline = true;
-    video.controls = false;
-    video.addEventListener('canplay', () => {
-      video.muted = true;
-      if (autoplay) video.play();
-    });
-  }
-  const sourceEl = document.createElement('source');
-  sourceEl.src = source;
-  sourceEl.type = `video/${source.split('?')[0].split('.').pop()}`;
-  video.append(sourceEl);
-  return video;
+function vimeoParams(autoplay, background) {
+  if (!background && !autoplay) return {};
+  return { autoplay: autoplay ? '1' : '0', background: background ? '1' : '0' };
 }
 
 function loadVideoEmbed(block, link, autoplay, background) {
   if (block.dataset.embedLoaded === 'true') return;
   const url = new URL(link);
-  const isYoutube = link.includes('youtube') || link.includes('youtu.be');
-  const isVimeo = link.includes('vimeo');
-  if (isYoutube || isVimeo) {
-    const frame = isYoutube
-      ? embedYoutube(url, autoplay, background)
-      : embedVimeo(url, autoplay, background);
+  const markLoaded = () => { block.dataset.embedLoaded = true; };
+  if (isYoutube(link) || isVimeo(link)) {
+    const frame = isYoutube(link)
+      ? createYoutubeFrame(url, youtubeParams(autoplay, background), FRAME_CLASS)
+      : createVimeoFrame(url, vimeoParams(autoplay, background), FRAME_CLASS);
     block.append(frame);
-    frame.querySelector('iframe').addEventListener('load', () => {
-      block.dataset.embedLoaded = true;
-    });
+    frame.querySelector('iframe').addEventListener('load', markLoaded);
   } else {
-    const videoEl = getVideoElement(link, autoplay, background);
-    block.append(videoEl);
-    videoEl.addEventListener('canplay', () => {
-      block.dataset.embedLoaded = true;
-    });
+    const video = createVideoElement(link, { autoplay, background });
+    block.append(video);
+    video.addEventListener('canplay', markLoaded);
   }
 }
 
@@ -111,28 +67,24 @@ export default async function decorate(block) {
     wrapper.append(placeholder);
 
     if (!autoplay) {
-      const play = document.createElement('button');
-      play.type = 'button';
-      play.className = 'video-placeholder-play';
-      play.setAttribute('aria-label', 'Play video');
-      decorateButton(play, { view: 'icon', type: 'primary', icon: 'play' });
-      play.addEventListener('click', () => {
-        wrapper.remove();
-        loadVideoEmbed(block, link, true, false);
-      });
-      wrapper.append(play);
+      wrapper.append(createIconButton({
+        label: 'Play video',
+        icon: 'play',
+        type: 'primary',
+        className: 'video-placeholder-play',
+        onClick: () => {
+          wrapper.remove();
+          loadVideoEmbed(block, link, true, false);
+        },
+      }));
     }
     block.append(wrapper);
   }
 
   if (!placeholder || autoplay) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        const playOnLoad = autoplay && !prefersReducedMotion.matches;
-        loadVideoEmbed(block, link, playOnLoad, autoplay);
-      }
+    onVisible(block, () => {
+      const playOnLoad = autoplay && !prefersReducedMotion();
+      loadVideoEmbed(block, link, playOnLoad, autoplay);
     });
-    observer.observe(block);
   }
 }

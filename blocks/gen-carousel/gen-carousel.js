@@ -1,4 +1,8 @@
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import { isEditing, prefersReducedMotion, scrollBehavior } from '../../utils/environment.js';
+import { watchVisibility } from '../../utils/viewport.js';
+import { uniqueId } from '../../utils/ids.js';
 
 /*
  * Gen Carousel: built by scripts.js from a Gen Carousel section. Every child of the block is a
@@ -11,12 +15,6 @@ const NAVIGATION_MODES = ['manual', 'auto', 'manual-auto'];
 const DEFAULT_INTERVAL = 5; // seconds
 const MIN_INTERVAL = 2; // seconds
 
-let carouselCount = 0;
-
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-// Universal Editor in edit mode: no autoplay and every slide stays selectable
-const isEditing = () => document.documentElement.classList.contains('adobe-ue-edit');
-
 function readNavigation(block) {
   const mode = NAVIGATION_MODES.find((name) => block.classList.contains(name)) || 'manual';
   return { manual: mode !== 'auto', auto: mode !== 'manual' };
@@ -28,23 +26,12 @@ function readInterval(block) {
   return Math.max(MIN_INTERVAL, seconds) * 1000;
 }
 
-function createIconButton(className, label, icon) {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = className;
-  button.setAttribute('aria-label', label);
-  return decorateButton(button, {
-    view: 'icon', type: 'secondary', icon, title: label,
-  });
-}
-
 /**
  * loads and decorates the block
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  carouselCount += 1;
-  const id = `gen-carousel-${carouselCount}`;
+  const id = uniqueId('gen-carousel');
   const nav = readNavigation(block);
   const interval = readInterval(block);
 
@@ -108,7 +95,7 @@ export default function decorate(block) {
 
   const goTo = (index) => {
     const i = (index + slides.length) % slides.length;
-    track.scrollTo({ left: slides[i].offsetLeft, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    track.scrollTo({ left: slides[i].offsetLeft, behavior: scrollBehavior() });
     setCurrent(i);
   };
 
@@ -148,7 +135,7 @@ export default function decorate(block) {
   };
 
   if (nav.auto) {
-    toggle = createIconButton('gen-carousel-toggle', 'Pause slides', 'pause');
+    toggle = createIconButton({ className: 'gen-carousel-toggle', label: 'Pause slides', icon: 'pause' });
     toggle.setAttribute('aria-controls', track.id);
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;
@@ -160,8 +147,8 @@ export default function decorate(block) {
   }
 
   if (nav.manual) {
-    const prev = createIconButton('gen-carousel-prev', 'Previous slide', 'chevron-left');
-    const next = createIconButton('gen-carousel-next', 'Next slide', 'chevron-right');
+    const prev = createIconButton({ className: 'gen-carousel-prev', label: 'Previous slide', icon: 'chevron-left' });
+    const next = createIconButton({ className: 'gen-carousel-next', label: 'Next slide', icon: 'chevron-right' });
     prev.setAttribute('aria-controls', track.id);
     next.setAttribute('aria-controls', track.id);
     prev.addEventListener('click', () => { goTo(current - 1); schedule(); });
@@ -193,10 +180,10 @@ export default function decorate(block) {
   }, { root: track, threshold: 0.6 });
   slides.forEach((slide) => slideObserver.observe(slide));
 
-  new IntersectionObserver(([entry]) => {
-    onScreen = entry.isIntersecting;
+  watchVisibility(block, (visible) => {
+    onScreen = visible;
     schedule();
-  }, { threshold: 0.25 }).observe(block);
+  }, { threshold: 0.25 });
 
   track.addEventListener('pointerenter', () => { hovered = true; stop(); });
   track.addEventListener('pointerleave', () => { hovered = false; schedule(); });

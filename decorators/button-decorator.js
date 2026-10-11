@@ -8,72 +8,22 @@
  * setButtonDisabled() or the `disabled` option, and styled for every view and type.
  * Alignment: left | center | right, applied to the element containing the button.
  *
- * Blocks should use createButton() / decorateButton() instead of setting button classes.
+ * Related: icon-button-decorator.js (icon-only buttons), content-buttons-decorator.js
+ * (authored links in content), utils/buttons.js (vocabulary and reading options).
  */
-
-export const BUTTON_VIEWS = ['button', 'icon', 'link'];
-export const BUTTON_TYPES = ['primary', 'secondary', 'tertiary'];
-export const BUTTON_ALIGNMENTS = ['left', 'center', 'right'];
+import {
+  BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, pick,
+} from '../utils/buttons.js';
+import { setLinkTarget } from './link-decorator.js';
 
 const BUTTON_CLASSES = ['button', 'icon-button', 'link-button', ...BUTTON_TYPES];
 const ALIGNMENT_CLASSES = BUTTON_ALIGNMENTS.map((alignment) => `button-align-${alignment}`);
-
-const pick = (value, allowed, fallback = '') => {
-  const normalized = String(value || '').trim().toLowerCase();
-  return allowed.includes(normalized) ? normalized : fallback;
-};
 
 function preventWhenDisabled(e) {
   if (e.currentTarget.getAttribute('aria-disabled') === 'true') {
     e.preventDefault();
     e.stopImmediatePropagation();
   }
-}
-
-/** value of the "Open in New Window" Link Type option in the block models */
-export const NEW_WINDOW = 'new-window';
-
-/**
- * Opens a link in a new tab (or back in the same tab).
- * @param {HTMLAnchorElement} a
- * @param {boolean} [newWindow]
- */
-export function setLinkTarget(a, newWindow = true) {
-  if (a.tagName !== 'A') return;
-  if (newWindow) {
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-  } else {
-    a.removeAttribute('target');
-    a.removeAttribute('rel');
-  }
-}
-
-/**
- * Reads a CTA List composite multifield cell: one link per item, each with an optional
- * "new-window" Link Type value. Items are list items, or runs of elements between <hr>s.
- * @param {Element} cell
- * @returns {{ link: HTMLAnchorElement, newWindow: boolean }[]}
- */
-export function readLinkItems(cell) {
-  if (!cell) return [];
-  const list = cell.querySelector(':scope > ul');
-  const items = list ? [...list.children].map((li) => [li]) : [[]];
-  if (!list) {
-    [...cell.children].forEach((el) => {
-      if (el.tagName === 'HR') items.push([]);
-      else items[items.length - 1].push(el);
-    });
-  }
-  return items.map((item) => {
-    const link = item.map((el) => (el.matches('a[href]') ? el : el.querySelector('a[href]')))
-      .find(Boolean);
-    const newWindow = item.some((el) => {
-      const text = el.contains(link) ? el.textContent.replace(link.textContent, '') : el.textContent;
-      return text.trim() === NEW_WINDOW;
-    });
-    return { link, newWindow };
-  }).filter(({ link }) => link);
 }
 
 /**
@@ -107,6 +57,23 @@ export function setButtonAlignment(container, alignment) {
   if (!container || !value) return;
   container.classList.remove(...ALIGNMENT_CLASSES);
   container.classList.add(`button-align-${value}`);
+}
+
+/**
+ * Turns a decorated button back into a plain link (e.g. a logo link in the header):
+ * removes the view, type and icon, and the wrapper and alignment classes of its paragraph.
+ * @param {HTMLAnchorElement|HTMLButtonElement} button
+ */
+export function removeButtonDecoration(button) {
+  if (!button) return;
+  button.classList.remove(...BUTTON_CLASSES);
+  button.style.removeProperty('--icon-url');
+  if (!button.classList.length) button.removeAttribute('class');
+  const wrapper = button.closest('.button-wrapper');
+  if (wrapper) {
+    wrapper.classList.remove('button-wrapper', ...ALIGNMENT_CLASSES);
+    if (!wrapper.classList.length) wrapper.removeAttribute('class');
+  }
 }
 
 /**
@@ -177,84 +144,4 @@ export function createButton({ href, text = '', ...options }) {
   a.href = href;
   a.textContent = text || href;
   return decorateButton(a, options);
-}
-
-/**
- * Reads the view, type, icon and alignment of an authored link from its markup:
- * - bold / italic / bold + italic formatting: primary / secondary / tertiary
- * - a link containing only an icon: icon view
- * - values from the Button component properties, as data attributes or classes of the link
- *   or its paragraph: a type class (primary), view-<view> and align-<alignment> classes, or
- *   view / type / alignment data values. A bare "button" class is not read as a view.
- * @param {HTMLAnchorElement} a
- * @returns {{ view: string, type: string, icon: string, alignment: string }}
- */
-export function readButtonOptions(a) {
-  const wrapper = a.closest('p');
-  const classes = [...a.classList, ...(wrapper?.classList || [])].map((c) => c.toLowerCase());
-  // skip Universal Editor instrumentation (data-aue-*, data-richtext-*), e.g. data-aue-label
-  const data = [...Object.entries(a.dataset), ...Object.entries(wrapper?.dataset || {})]
-    .filter(([key]) => !/^(aue|richtext)/.test(key))
-    .map(([, value]) => String(value).trim().toLowerCase());
-  const find = (allowed, prefix) => allowed.find((value) => data.includes(value)
-    || classes.includes(prefix ? `${prefix}-${value}` : value)) || '';
-
-  const strong = a.closest('strong');
-  const em = a.closest('em');
-  let formatted = '';
-  if (strong && em) formatted = 'tertiary';
-  else if (strong) formatted = 'primary';
-  else if (em) formatted = 'secondary';
-
-  const iconSpan = !a.textContent.trim() && a.children.length === 1
-    && a.querySelector(':scope > span.icon');
-  const icon = [...(iconSpan?.classList || [])].find((c) => c.startsWith('icon-'))?.substring(5)
-    || a.dataset.buttonIcon || wrapper?.dataset.buttonIcon || '';
-
-  return {
-    view: find(BUTTON_VIEWS, 'view'),
-    type: find(BUTTON_TYPES) || formatted,
-    icon,
-    alignment: find(BUTTON_ALIGNMENTS, 'align'),
-  };
-}
-
-/**
- * Turns standalone authored links into buttons:
- * - formatted links (bold / italic / bold + italic) or links with a Type: buttons
- * - icon-only formatted links: icon buttons (unformatted icon links stay plain)
- * - other standalone links: link buttons
- * Inline links, links showing their own URL and image links are left alone.
- * @param {Element} container
- */
-export function decorateButtons(container) {
-  container.querySelectorAll('p a[href]').forEach((a) => {
-    a.title = a.title || a.textContent;
-    const p = a.closest('p');
-    const text = a.textContent.trim();
-    const options = readButtonOptions(a);
-
-    // quick structural checks
-    if ((a.querySelector('img') && !options.icon) || p.textContent.trim() !== text) return;
-
-    // skip URL display links
-    try {
-      if (!options.icon && new URL(a.href).href === new URL(text, window.location).href) return;
-    } catch { /* continue */ }
-
-    // unformatted icon-only links stay plain
-    if (options.icon && !options.type && !options.view) return;
-
-    const view = options.view || (options.icon && 'icon') || (options.type ? 'button' : 'link');
-
-    // drop the bold / italic formatting that encoded the type
-    const formatting = [a.closest('strong'), a.closest('em')]
-      .filter((el) => el && p.contains(el))
-      .sort((x, y) => (x.contains(y) ? -1 : 1))[0];
-    if (formatting) formatting.replaceWith(a);
-
-    p.className = 'button-wrapper';
-    setButtonAlignment(p, options.alignment);
-    decorateButton(a, { view, type: options.type, icon: options.icon });
-  });
 }

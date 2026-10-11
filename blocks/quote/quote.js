@@ -1,6 +1,7 @@
-import {
-  buildHeading, fromCell, optionOf, pictureOf, readProperties, textOf,
-} from '../../decorators/block-properties.js';
+import { fromCell } from '../../decorators/content-decorator.js';
+import { buildHeading } from '../../decorators/heading-decorator.js';
+import { pictureOf } from '../../decorators/image-decorator.js';
+import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 
 /*
  * Quote (blocks/quote/_quote.json): a key-value block. Eyebrow and title above a quote card

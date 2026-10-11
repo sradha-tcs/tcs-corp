@@ -4,20 +4,18 @@
  * Adapted: ARIA tabs keyboard support (arrow keys, Home, End) with a roving tabindex.
  */
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
-// number of tab blocks on the page, for unique ids
-let tabBlockCount = 0;
+import { nextInstance } from '../../utils/ids.js';
 
 /**
  * loads and decorates the block
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
-  tabBlockCount += 1;
+  const instance = nextInstance('tabs');
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
-  tablist.id = `tablist-${tabBlockCount}`;
+  tablist.id = `tablist-${instance}`;
 
   // the first cell of each row is the title of the tab
   const tabHeadings = [...block.children]
@@ -39,7 +37,7 @@ export default async function decorate(block) {
   };
 
   tabHeadings.forEach((tab, i) => {
-    const id = `tabpanel-${tabBlockCount}-tab-${i + 1}`;
+    const id = `tabpanel-${instance}-tab-${i + 1}`;
     const tabpanel = tab.parentElement;
     tabpanel.className = 'tabs-panel';
     tabpanel.id = id;

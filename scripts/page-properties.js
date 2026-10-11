@@ -12,9 +12,8 @@ import {
   toClassName,
 } from './aem.js';
 import { createButton } from '../decorators/button-decorator.js';
-
-// AEM publishes page links as /content/<site>/path(.html); the site serves them as /path
-const CONTENT_ROOT = /^\/content\/(?!dam\/)[^/]+(?=\/|$)/;
+import { parseTag } from '../utils/tags.js';
+import { toSitePath } from '../utils/urls.js';
 
 const LINK_STYLES = ['primary', 'secondary'];
 
@@ -38,23 +37,6 @@ const flag = (name) => ['true', 'on', 'yes', '1'].includes(text(name).toLowerCas
 const list = (name) => text(name).split(/[,\n]/).map((value) => value.trim()).filter(Boolean);
 
 /**
- * Converts an AEM content path to the path the site serves; other URLs pass through.
- * @param {string} path An AEM path or URL
- * @returns {string}
- */
-export function toSitePath(path) {
-  if (!path) return '';
-  try {
-    const url = new URL(path, window.location.href);
-    if (url.origin !== window.location.origin) return url.href;
-    const pathname = url.pathname.replace(CONTENT_ROOT, '').replace(/\.html$/, '') || '/';
-    return `${pathname}${url.search}${url.hash}`;
-  } catch {
-    return path;
-  }
-}
-
-/**
  * Reads an image reference and its alt text.
  * @returns {{ src: string, alt: string } | null}
  */
@@ -75,15 +57,6 @@ function date(name) {
 }
 
 /**
- * Turns an AEM tag ID (e.g. "tcs:topics/artificial-intelligence") into an id and a label.
- * @returns {{ id: string, label: string }}
- */
-export function tag(id) {
-  const name = id.split(/[/:]/).pop().replace(/[-_]+/g, ' ').trim();
-  return { id, label: name.charAt(0).toUpperCase() + name.slice(1) };
-}
-
-/**
  * Returns all TCS Custom Properties of the current page as typed values.
  * Rich-text values are raw HTML; render them with renderRichText().
  */
@@ -98,7 +71,7 @@ export function getPageProperties() {
       keywords: list('ogKeywords'),
     },
     story: {
-      tags: list('storyTags').map(tag),
+      tags: list('storyTags').map(parseTag),
       title: text('storyHeading'),
       description: text('storyDesc'),
       link: {

@@ -10,6 +10,7 @@ import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
 
 export async function createModal(contentNodes) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
@@ -19,12 +20,13 @@ export async function createModal(contentNodes) {
   dialogContent.append(...contentNodes);
   dialog.append(dialogContent);
 
-  const closeButton = document.createElement('button');
-  closeButton.type = 'button';
-  closeButton.className = 'close-button';
-  closeButton.setAttribute('aria-label', 'Close');
-  decorateButton(closeButton, { view: 'icon', type: 'tertiary', icon: 'close' });
-  closeButton.addEventListener('click', () => dialog.close());
+  const closeButton = createIconButton({
+    label: 'Close',
+    icon: 'close',
+    type: 'tertiary',
+    className: 'close-button',
+    onClick: () => dialog.close(),
+  });
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');

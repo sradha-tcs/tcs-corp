@@ -1,6 +1,9 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { toSitePath } from '../../scripts/page-properties.js';
+import { createHiddenText } from '../../decorators/a11y-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
+import { toSitePath } from '../../utils/urls.js';
+import { onVisible } from '../../utils/viewport.js';
 
 /*
  * Table List (blocks/table-list/_table-list.json): a heading with a "View all" link and up to
@@ -220,10 +223,7 @@ function buildTable(cards, display) {
       const th = document.createElement('th');
       th.scope = 'col';
       if (label === 'Link') {
-        const hidden = document.createElement('span');
-        hidden.className = 'table-list-visually-hidden';
-        hidden.textContent = label;
-        th.append(hidden);
+        th.append(createHiddenText(label));
       } else {
         th.textContent = label;
       }
@@ -276,19 +276,10 @@ function buildTable(cards, display) {
 function observeMotion(block, motionType) {
   const cards = [...block.querySelectorAll('.table-list-card')];
   if (motionType === 'none' || !cards.length || !('IntersectionObserver' in window)) return;
-  if (document.documentElement.classList.contains('adobe-ue-edit')) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.15 });
+  if (isEditing() || prefersReducedMotion()) return;
 
   block.classList.add('motion-ready');
-  cards.forEach((card) => observer.observe(card));
+  cards.forEach((card) => onVisible(card, () => card.classList.add('is-visible'), { threshold: 0.15 }));
 }
 
 /**

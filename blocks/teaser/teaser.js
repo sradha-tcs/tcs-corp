@@ -1,12 +1,18 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { hideVisually } from '../../decorators/a11y-decorator.js';
+import { decorateButton } from '../../decorators/button-decorator.js';
+import { fromCell } from '../../decorators/content-decorator.js';
+import { buildTime } from '../../decorators/date-decorator.js';
+import { buildHeading } from '../../decorators/heading-decorator.js';
+import { pictureOf } from '../../decorators/image-decorator.js';
+import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { buildTagList } from '../../decorators/tag-decorator.js';
+import { NEW_WINDOW, linkOf, readLinkItems } from '../../utils/links.js';
 import {
-  NEW_WINDOW, decorateButton, readLinkItems, setLinkTarget,
-} from '../../decorators/button-decorator.js';
-import {
-  buildHeading, buildTagList, buildTime, fromCell, isOn, optionOf as option, pictureOf,
-  readProperties, readTags, textOf,
-} from '../../decorators/block-properties.js';
+  isOn, optionOf as option, readProperties, textOf,
+} from '../../utils/properties.js';
+import { readTags } from '../../utils/tags.js';
 
 /*
  * Teaser (blocks/teaser/_teaser.json): a key-value block, one row per property.
@@ -31,11 +37,6 @@ function buildMeta(props) {
   const tags = isOn(props.displaytags) ? buildTagList(readTags(props.tags), 'teaser-tags') : null;
   if (tags) meta.append(tags);
   return meta.children.length ? meta : null;
-}
-
-/** the link of a single-link property (link + text collapsed into one anchor) */
-function linkOf(cell) {
-  return cell?.querySelector('a[href]') || null;
 }
 
 /**
@@ -144,7 +145,8 @@ export default function decorate(block) {
   headingRow.className = 'teaser-heading-row';
   const title = buildTitle(props);
   if (title) {
-    if (isOn(props.titlehidden)) title.classList.add('teaser-title-hidden');
+    // Hide Title: kept for screen readers
+    if (isOn(props.titlehidden)) hideVisually(title);
     headingRow.append(title);
   }
   const viewAll = linkOf(props.viewall);

@@ -1,75 +1,57 @@
 /*
  * Embed Block (Block Collection): videos and social posts from a URL.
  * https://www.aem.live/developer/block-collection/embed
- * Adapted: players are built with DOM APIs (no authored URL in HTML strings) and the play
- * button uses the shared button decorator.
+ * Adapted: players come from the media decorator (DOM-built, no authored URL in HTML strings)
+ * and the play button from the button decorator.
  */
 import { loadScript } from '../../scripts/aem.js';
-import { decorateButton } from '../../decorators/button-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import {
+  createFrame, createVimeoFrame, createYoutubeFrame,
+} from '../../decorators/media-decorator.js';
+import { isVimeo, isYoutube } from '../../utils/media.js';
+import { onVisible } from '../../utils/viewport.js';
 
-/** a responsive 16:9 iframe */
-function createFrame(src, title, allow = 'encrypted-media') {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'embed-frame';
-  const iframe = document.createElement('iframe');
-  iframe.src = src;
-  iframe.title = title;
-  iframe.loading = 'lazy';
-  iframe.allow = allow;
-  iframe.allowFullscreen = true;
-  wrapper.append(iframe);
-  return wrapper;
-}
+const FRAME_CLASS = 'embed-frame';
+const AUTOPLAY = { muted: '1', autoplay: '1' };
 
-const embedYoutube = (url, autoplay) => {
-  const usp = new URLSearchParams(url.search);
-  let vid = usp.get('v') || '';
-  if (url.hostname.includes('youtu.be')) [, vid] = url.pathname.split('/');
-  const src = new URL(vid ? `https://www.youtube.com/embed/${encodeURIComponent(vid)}` : `https://www.youtube.com${url.pathname}`);
-  src.searchParams.set('rel', '0');
-  if (autoplay) {
-    src.searchParams.set('muted', '1');
-    src.searchParams.set('autoplay', '1');
-  }
-  return createFrame(src.href, 'Content from YouTube', 'autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope');
-};
-
-const embedVimeo = (url, autoplay) => {
-  const [, video] = url.pathname.split('/');
-  const src = new URL(`https://player.vimeo.com/video/${encodeURIComponent(video)}`);
-  if (autoplay) {
-    src.searchParams.set('muted', '1');
-    src.searchParams.set('autoplay', '1');
-  }
-  return createFrame(src.href, 'Content from Vimeo', 'autoplay; fullscreen; picture-in-picture');
-};
-
-const embedTwitter = (url) => {
-  const href = url.href.replace('https://x.com', 'https://twitter.com');
+function embedTwitter(url) {
   const quote = document.createElement('blockquote');
   quote.className = 'twitter-tweet';
   const a = document.createElement('a');
-  a.href = href;
+  a.href = url.href.replace('https://x.com', 'https://twitter.com');
   quote.append(a);
   loadScript('https://platform.twitter.com/widgets.js');
   return quote;
-};
+}
 
 const EMBEDS = [
-  { match: ['youtube', 'youtu.be'], embed: embedYoutube },
-  { match: ['vimeo'], embed: embedVimeo },
-  { match: ['twitter', 'x.com'], embed: embedTwitter },
+  {
+    name: 'youtube',
+    match: isYoutube,
+    embed: (url, autoplay) => createYoutubeFrame(url, autoplay ? AUTOPLAY : {}, FRAME_CLASS),
+  },
+  {
+    name: 'vimeo',
+    match: isVimeo,
+    embed: (url, autoplay) => createVimeoFrame(url, autoplay ? AUTOPLAY : {}, FRAME_CLASS),
+  },
+  {
+    name: 'twitter',
+    match: (link) => /twitter\.com|x\.com/.test(link),
+    embed: embedTwitter,
+  },
 ];
 
 function loadEmbed(block, link, autoplay) {
   if (block.classList.contains('embed-is-loaded')) return;
   const url = new URL(link);
-  const config = EMBEDS.find((e) => e.match.some((match) => link.includes(match)));
+  const config = EMBEDS.find((e) => e.match(link));
   const content = config
     ? config.embed(url, autoplay)
-    : createFrame(url.href, `Content from ${url.hostname}`);
+    : createFrame({ src: url.href, title: `Content from ${url.hostname}`, className: FRAME_CLASS });
   block.replaceChildren(content);
-  if (config) block.classList.add(`embed-${config.match[0].replace('.', '')}`);
+  if (config) block.classList.add(`embed-${config.name}`);
   block.classList.add('embed-is-loaded');
 }
 
@@ -86,21 +68,16 @@ export default function decorate(block) {
   if (placeholder) {
     const wrapper = document.createElement('div');
     wrapper.className = 'embed-placeholder';
-    const play = document.createElement('button');
-    play.type = 'button';
-    play.className = 'embed-placeholder-play';
-    play.setAttribute('aria-label', 'Play');
-    decorateButton(play, { view: 'icon', type: 'primary', icon: 'play' });
-    play.addEventListener('click', () => loadEmbed(block, link, true));
+    const play = createIconButton({
+      label: 'Play',
+      icon: 'play',
+      type: 'primary',
+      className: 'embed-placeholder-play',
+      onClick: () => loadEmbed(block, link, true),
+    });
     wrapper.append(placeholder, play);
     block.append(wrapper);
   } else {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadEmbed(block, link);
-      }
-    });
-    observer.observe(block);
+    onVisible(block, () => loadEmbed(block, link));
   }
 }
