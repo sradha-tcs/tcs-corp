@@ -1,0 +1,12 @@
+{
+  "mappings": [
+    "/content/tcs-corp/:/",
+    "/content/tcs-corp/metadata:/metadata.json",
+    "/content/tcs-corp/redirects:/redirects.json",
+    "/content/tcs-corp/placeholders:/placeholders.json",
+    "/content/tcs-corp/taxonomy:/taxonomy.json"
+  ],
+  "includes": [
+    "/content/tcs-corp/"
+  ]
+}
