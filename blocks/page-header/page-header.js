@@ -1,21 +1,25 @@
-import { getMetadata } from '../../scripts/aem.js';
-import {
-  buildPropertyImage, buildStoryLink, getPageProperties, renderRichText,
-} from '../../scripts/page-properties.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildTime } from '../../decorators/date-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
-import { NEW_WINDOW, linkOf } from '../../utils/links.js';
-import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 import { uniqueId } from '../../utils/ids.js';
+import { NEW_WINDOW, linkOf } from '../../utils/links.js';
+import { getPageMetadata } from '../../utils/metadata.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
+import {
+  isOn, optionOf, readProperties, textOf,
+} from '../../utils/properties.js';
+import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
- * Page Header (blocks/page-header/_page-header.json): built from the page properties
- * (TCS Custom Properties); the block itself only holds what the page has no property for
- * (image collage, second CTA, author name, collection label, listen link).
+ * Page Header (blocks/page-header/_page-header.json).
+ * From the page's standard metadata (set on the page or by the bulk metadata sheet,
+ * /metadata.json): Title, Description, Tags (labels from /taxonomy.json), Publication Date,
+ * Author and Template (the layout). From the block: CTAs, reading time, author image and
+ * designation, share / download / listen actions, collection label and image collage.
+ * UI text comes from /placeholders.json.
  * Layouts (Figma "Secondary Page Header" / "L3 Header"):
  * - landing: tags as an eyebrow, large title; description and CTAs (or an image collage)
  * - article: meta row (tags, date, reading time, listen / download / share), title and author;
@@ -23,34 +27,27 @@ import { uniqueId } from '../../utils/ids.js';
  */
 
 const LAYOUTS = ['landing', 'article'];
-const LANDING_PAGE_TYPES = ['landing', 'listing'];
+const LANDING_TEMPLATES = ['landing', 'listing'];
 const CTA_STYLES = ['primary', 'secondary'];
 
-/** the layout: the block Style, or the Page Type (Landing / Listing pages: landing) */
-function layoutOf(block, props, pageType) {
+/** the layout: the block Style, or the page Template (landing / listing: landing) */
+function layoutOf(block, props, template) {
   return optionOf(block, props.classes, LAYOUTS)
-    || (LANDING_PAGE_TYPES.includes(pageType) ? 'landing' : 'article');
+    || (LANDING_TEMPLATES.includes(template.toLowerCase()) ? 'landing' : 'article');
 }
 
-/** rich text from a page property: HTML is sanitized, plain text is used as is */
-async function richText(html, className) {
+function buildDescription(text) {
+  if (!text) return null;
   const el = document.createElement('div');
-  el.className = className;
-  if (/<[a-z][\s\S]*>/i.test(html)) el.append(await renderRichText(html));
-  else if (html) {
-    const p = document.createElement('p');
-    p.textContent = html;
-    el.append(p);
-  }
-  return el.children.length ? el : null;
+  el.className = 'page-header-description';
+  const p = document.createElement('p');
+  p.textContent = text;
+  el.append(p);
+  return el;
 }
-
-const iconButton = (label, icon, onClick) => createIconButton({
-  label, icon, type: 'tertiary', onClick,
-});
 
 /** listen (authored link), download (prints / saves as PDF) and share actions */
-function buildActions(props, story, title) {
+function buildActions(props, title, t) {
   const actions = document.createElement('div');
   actions.className = 'page-header-actions';
   const status = document.createElement('p');
@@ -60,27 +57,37 @@ function buildActions(props, story, title) {
 
   const listen = linkOf(props.listenlink);
   if (listen) {
-    listen.textContent = 'Listen to this page';
+    listen.textContent = t('listenToThisPage', 'Listen to this page');
     decorateButton(listen, { view: 'icon', type: 'tertiary', icon: 'headphones' });
     actions.append(listen);
   }
-  if (story.download) {
-    actions.append(iconButton('Download this page', 'download', () => window.print()));
+  if (isOn(props.download)) {
+    actions.append(createIconButton({
+      label: t('downloadThisPage', 'Download this page'),
+      icon: 'download',
+      type: 'tertiary',
+      onClick: () => window.print(),
+    }));
   }
-  if (story.socialShare) {
-    actions.append(iconButton('Share this page', 'share', async () => {
-      const url = window.location.href;
-      try {
-        if (navigator.share) {
-          await navigator.share({ title, url });
-          return;
+  if (isOn(props.socialshare)) {
+    actions.append(createIconButton({
+      label: t('shareThisPage', 'Share this page'),
+      icon: 'share',
+      type: 'tertiary',
+      onClick: async () => {
+        const url = window.location.href;
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, url });
+            return;
+          }
+          await navigator.clipboard.writeText(url);
+          status.textContent = t('linkCopied', 'Link copied to clipboard');
+          setTimeout(() => { status.textContent = ''; }, 3000);
+        } catch {
+          // share dialog dismissed, or the clipboard is unavailable
         }
-        await navigator.clipboard.writeText(url);
-        status.textContent = 'Link copied to clipboard';
-        setTimeout(() => { status.textContent = ''; }, 3000);
-      } catch {
-        // share dialog dismissed, or the clipboard is unavailable
-      }
+      },
     }));
   }
   if (!actions.children.length) return null;
@@ -88,7 +95,7 @@ function buildActions(props, story, title) {
   return actions;
 }
 
-function buildMetaRow(props, story, tags, title) {
+function buildMetaRow(props, metadata, tags, t) {
   const row = document.createElement('div');
   row.className = 'page-header-meta-row';
 
@@ -101,62 +108,76 @@ function buildMetaRow(props, story, tags, title) {
 
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  if (story.publishDate) {
+  const time = buildTime(metadata.publicationDate, 'dd/mm/yy');
+  if (time) {
     const date = document.createElement('p');
     date.className = 'page-header-date';
-    const time = buildTime(story.publishDate.toISOString(), 'dd/mm/yy', '');
-    date.append('Published ', time);
+    date.append(`${t('published', 'Published')} `, time);
     info.append(date);
   }
-  if (story.readingTime) {
+  const readingTime = textOf(props.readingtime);
+  if (readingTime) {
     const reading = document.createElement('p');
     reading.className = 'page-header-reading-time';
-    reading.textContent = /^\d+$/.test(story.readingTime)
-      ? `${story.readingTime} min read` : story.readingTime;
+    reading.textContent = /^\d+$/.test(readingTime)
+      ? t('minRead', '{n} min read', { n: readingTime }) : readingTime;
     info.append(reading);
   }
-  const actions = buildActions(props, story, title);
+  const actions = buildActions(props, metadata.title, t);
   if (actions) info.append(actions);
 
   row.append(...[labels, info].filter((part) => part.children.length));
   return row.children.length ? row : null;
 }
 
-async function buildAuthor(props, author) {
+function buildAuthor(props, metadata) {
   const el = document.createElement('div');
   el.className = 'page-header-author';
-  const image = buildPropertyImage(author.image);
-  if (image) {
+  const picture = pictureOf(props.authorimage, props.authorimagealt);
+  if (picture) {
     const wrapper = document.createElement('div');
     wrapper.className = 'page-header-author-image';
-    wrapper.append(image);
+    wrapper.append(picture);
     el.append(wrapper);
   }
   const details = document.createElement('div');
   details.className = 'page-header-author-details';
-  if (textOf(props.authorname)) details.append(fromCell(props.authorname, 'p', 'page-header-author-name'));
-  const designation = await richText(author.designationLocation, 'page-header-author-designation');
-  if (designation) details.append(designation);
+  if (textOf(props.authorname)) {
+    details.append(fromCell(props.authorname, 'p', 'page-header-author-name'));
+  } else if (metadata.author) {
+    // the page's Author metadata when the block has no author name
+    const name = document.createElement('p');
+    name.className = 'page-header-author-name';
+    name.textContent = metadata.author;
+    details.append(name);
+  }
+  if (textOf(props.designationlocation)) {
+    details.append(fromCell(props.designationlocation, 'div', 'page-header-author-designation'));
+  }
   if (details.children.length) el.append(details);
   return details.children.length ? el : null;
+}
+
+/** a CTA from its link, Link Type and Link Style properties */
+function buildCta(cell, targetCell, styleCell, fallbackStyle) {
+  const link = linkOf(cell);
+  if (!link) return null;
+  const style = styleCell ? textOf(styleCell).toLowerCase() : fallbackStyle;
+  const type = CTA_STYLES.includes(style) ? style : '';
+  return decorateButton(link, {
+    view: type ? 'button' : 'link',
+    type,
+    newWindow: textOf(targetCell) === NEW_WINDOW,
+  });
 }
 
 function buildCtas(props) {
   const ctas = document.createElement('div');
   ctas.className = 'page-header-ctas';
-  const story = buildStoryLink();
-  if (story) ctas.append(story);
-  const second = linkOf(props.secondarycta);
-  if (second) {
-    const style = textOf(props.secondaryctastyle).toLowerCase();
-    const type = CTA_STYLES.includes(style) ? style : '';
-    decorateButton(second, {
-      view: type ? 'button' : 'link',
-      type,
-      newWindow: textOf(props.secondaryctatarget) === NEW_WINDOW,
-    });
-    ctas.append(second);
-  }
+  ctas.append(...[
+    buildCta(props.primarycta, props.primaryctatarget, props.primaryctastyle, 'primary'),
+    buildCta(props.secondarycta, props.secondaryctatarget, props.secondaryctastyle, ''),
+  ].filter(Boolean));
   return ctas.children.length ? ctas : null;
 }
 
@@ -182,19 +203,16 @@ function buildCollage(props) {
  */
 export default async function decorate(block) {
   const props = readProperties(block);
-  const { pageType, story } = getPageProperties();
-  const layout = layoutOf(block, props, pageType);
+  const metadata = getPageMetadata();
+  const [t, pageTags] = await Promise.all([getPlaceholders(), resolveTags(metadata.tags)]);
+  const layout = layoutOf(block, props, metadata.template);
 
-  const titleText = story.title || getMetadata('og:title') || document.title;
   const title = document.createElement('h1');
   title.className = 'page-header-title';
-  title.textContent = titleText;
+  title.textContent = metadata.title;
 
-  const tags = buildTagList(story.tags, 'page-header-tags');
-  const description = await richText(
-    story.description || getMetadata('description'),
-    'page-header-description',
-  );
+  const tags = buildTagList(pageTags, 'page-header-tags');
+  const description = buildDescription(metadata.description);
   const ctas = buildCtas(props);
   const collage = layout === 'landing' ? buildCollage(props) : null;
 
@@ -217,9 +235,9 @@ export default async function decorate(block) {
       parts.push(intro, summary);
     }
   } else {
-    const metaRow = buildMetaRow(props, story, tags, titleText);
+    const metaRow = buildMetaRow(props, metadata, tags, t);
     intro.append(title);
-    const author = await buildAuthor(props, story.author);
+    const author = buildAuthor(props, metadata);
     if (author) intro.append(author);
     const columns = document.createElement('div');
     columns.className = 'page-header-columns';

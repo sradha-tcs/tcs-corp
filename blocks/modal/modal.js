@@ -11,8 +11,10 @@ import {
 } from '../../scripts/aem.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 export async function createModal(contentNodes) {
+  const t = await getPlaceholders();
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
   const dialog = document.createElement('dialog');
   const dialogContent = document.createElement('div');
@@ -21,7 +23,7 @@ export async function createModal(contentNodes) {
   dialog.append(dialogContent);
 
   const closeButton = createIconButton({
-    label: 'Close',
+    label: t('close', 'Close'),
     icon: 'close',
     type: 'tertiary',
     className: 'close-button',

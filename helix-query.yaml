@@ -23,50 +23,19 @@ indices:
       image:
         select: head > meta[property="og:image"]
         value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
-      # TCS Custom Properties used by listings and story cards; published meta names may be
-      # the field name, its lowercase or kebab-case form, so all three are matched
-      pageCategory:
-        select: head > meta[name="pageCategory"], head > meta[name="pagecategory"], head > meta[name="page-category"]
+      # standard metadata: set on the page or by the bulk metadata sheet (/metadata.json)
+      template:
+        select: head > meta[name="template"]
         value: attribute(el, "content")
-      iconImage:
-        select: head > meta[name="iconImage"], head > meta[name="iconimage"], head > meta[name="icon-image"]
+      category:
+        select: head > meta[name="category"]
         value: attribute(el, "content")
-      iconImageAlt:
-        select: head > meta[name="iconImageAlt"], head > meta[name="iconimagealt"], head > meta[name="icon-image-alt"]
+      author:
+        select: head > meta[name="author"]
         value: attribute(el, "content")
-      storyTags:
-        select: head > meta[name="storyTags"], head > meta[name="storytags"], head > meta[name="story-tags"]
+      date:
+        select: head > meta[name="publication-date"]
         value: attribute(el, "content")
-      storyHeading:
-        select: head > meta[name="storyHeading"], head > meta[name="storyheading"], head > meta[name="story-heading"]
-        value: attribute(el, "content")
-      storyDesc:
-        select: head > meta[name="storyDesc"], head > meta[name="storydesc"], head > meta[name="story-desc"]
-        value: attribute(el, "content")
-      storyLinkLabel:
-        select: head > meta[name="storyLinkLabel"], head > meta[name="storylinklabel"], head > meta[name="story-link-label"]
-        value: attribute(el, "content")
-      storyLinkPath:
-        select: head > meta[name="storyLinkPath"], head > meta[name="storylinkpath"], head > meta[name="story-link-path"]
-        value: attribute(el, "content")
-      storyLinkBehavior:
-        select: head > meta[name="storyLinkBehavior"], head > meta[name="storylinkbehavior"], head > meta[name="story-link-behavior"]
-        value: attribute(el, "content")
-      storyLinkStyle:
-        select: head > meta[name="storyLinkStyle"], head > meta[name="storylinkstyle"], head > meta[name="story-link-style"]
-        value: attribute(el, "content")
-      authorImage:
-        select: head > meta[name="authorImage"], head > meta[name="authorimage"], head > meta[name="author-image"]
-        value: attribute(el, "content")
-      authorImageAlt:
-        select: head > meta[name="authorImageAlt"], head > meta[name="authorimagealt"], head > meta[name="author-image-alt"]
-        value: attribute(el, "content")
-      designationLocation:
-        select: head > meta[name="designationLocation"], head > meta[name="designationlocation"], head > meta[name="designation-location"]
-        value: attribute(el, "content")
-      publishDate:
-        select: head > meta[name="publishDate"], head > meta[name="publishdate"], head > meta[name="publish-date"]
-        value: attribute(el, "content")
-      timeToRead:
-        select: head > meta[name="timeToRead"], head > meta[name="timetoread"], head > meta[name="time-to-read"]
-        value: attribute(el, "content")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")

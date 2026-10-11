@@ -459,7 +459,8 @@
                 "template": {
                   "name": "Page Header",
                   "model": "page-header",
-                  "key-value": true
+                  "key-value": true,
+                  "primaryCtaStyle": "primary"
                 }
               }
             }

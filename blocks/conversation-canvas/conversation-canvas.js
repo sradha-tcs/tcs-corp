@@ -1,6 +1,8 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { buildPropertyImage, getPageProperties } from '../../scripts/page-properties.js';
+import { buildImage } from '../../decorators/responsive-image-decorator.js';
+import { getPageTags } from '../../utils/metadata.js';
+import { resolveTags } from '../../utils/taxonomy.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
 import { createButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
@@ -10,6 +12,10 @@ import {
 import { normalizeKey as normalize, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { uniqueId } from '../../utils/ids.js';
+import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+
+// UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
+let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 // conversation canvas properties (_conversation-canvas.json), keyed by their normalized row name
 const FIELDS = [
@@ -53,7 +59,7 @@ function imageOf(cell, alt) {
   let image = cell.querySelector('picture') || cell.querySelector('img');
   if (!image) {
     const src = cell.querySelector('a')?.href || textOf(cell);
-    image = buildPropertyImage(src ? { src, alt: '' } : null);
+    image = buildImage(src ? { src, alt: '' } : null);
   }
   if (!image) return null;
   const img = image.tagName === 'IMG' ? image : image.querySelector('img');
@@ -159,7 +165,7 @@ async function buildMenuList(root, depth) {
   if (!list.children.length) {
     const li = document.createElement('li');
     li.className = 'conversation-canvas-menu-empty';
-    li.textContent = 'No pages found';
+    li.textContent = t('noPagesFound', 'No pages found');
     list.append(li);
   }
   return list;
@@ -168,7 +174,7 @@ async function buildMenuList(root, depth) {
 /**
  * Builds the menu toggle button (round, with the menu icon).
  */
-function buildMenuToggle(controls, label = 'Menu') {
+function buildMenuToggle(controls, label = t('menu', 'Menu')) {
   const toggle = document.createElement('button');
   toggle.type = 'button';
   toggle.className = 'conversation-canvas-menu-toggle';
@@ -185,7 +191,7 @@ function buildMenuToggle(controls, label = 'Menu') {
 function buildSearchForm(config, id, block) {
   const form = document.createElement('form');
   form.className = 'conversation-canvas-search-form';
-  const placeholder = textOf(config.searchplaceholder) || 'Ask us a question';
+  const placeholder = textOf(config.searchplaceholder) || t('searchPlaceholder', 'Ask us a question');
   const input = document.createElement('input');
   input.type = 'search';
   input.name = 'q';
@@ -200,7 +206,7 @@ function buildSearchForm(config, id, block) {
   const audio = document.createElement('button');
   audio.type = 'button';
   audio.className = 'conversation-canvas-audio';
-  audio.setAttribute('aria-label', textOf(config.searchaudioiconalt) || 'Search by voice');
+  audio.setAttribute('aria-label', textOf(config.searchaudioiconalt) || t('searchByVoice', 'Search by voice'));
   const audioImage = imageOf(config.searchaudioicon, '');
   if (audioImage) audio.append(audioImage);
   else audio.classList.add('conversation-canvas-audio-default');
@@ -220,7 +226,7 @@ function buildSearchForm(config, id, block) {
   }
 
   // submit: an icon button from the button decorator (icon button types)
-  const submitLabel = textOf(config.searchbuttonlabel) || 'Submit';
+  const submitLabel = textOf(config.searchbuttonlabel) || t('submit', 'Submit');
   const submit = createIconButton({
     label: submitLabel,
     icon: 'arrow-right',
@@ -253,7 +259,7 @@ function buildSearch(config, id, block) {
   const menu = document.createElement('nav');
   menu.className = 'conversation-canvas-menu';
   menu.id = `${id}-menu`;
-  menu.setAttribute('aria-label', 'Menu');
+  menu.setAttribute('aria-label', t('menu', 'Menu'));
   menu.hidden = true;
   const { root, depth } = menuSettings(config);
   let menuLoaded = false;
@@ -291,7 +297,7 @@ function buildSearch(config, id, block) {
  * - home (the menu root): pills for the top-level sections
  * - a page with sub-pages: pills for its sub-pages; pills with their own sub-pages open a
  *   panel listing them, shown in place of the search row
- * - a page without sub-pages: suggestion pills (dynamic, or the page's story tags), or its
+ * - a page without sub-pages: suggestion pills (dynamic, or the page's Tags), or its
  *   parent's sub-pages when there are no suggestions
  * The menu button next to the search toggles the full menu (top-level sections); the back
  * button in the navigation goes up one level.
@@ -339,7 +345,7 @@ function buildDock(config, id, block) {
   const nav = document.createElement('nav');
   nav.className = 'conversation-canvas-nav';
   nav.id = `${id}-nav`;
-  nav.setAttribute('aria-label', 'Site');
+  nav.setAttribute('aria-label', t('siteNavigation', 'Site'));
 
   dock.append(panel, row, nav);
 
@@ -420,7 +426,7 @@ function buildDock(config, id, block) {
       const back = document.createElement('button');
       back.type = 'button';
       back.className = 'conversation-canvas-nav-back';
-      back.setAttribute('aria-label', 'Back');
+      back.setAttribute('aria-label', t('back', 'Back'));
       back.addEventListener('click', () => setView(parentView(view)));
       items.push(back);
     }
@@ -491,8 +497,10 @@ function buildDock(config, id, block) {
   });
 
   const { root, depth } = menuSettings(config);
-  state.suggestions = getPageProperties().story.tags.map((t) => t.label);
-  loadMenuTree(root, depth).then((tree) => {
+  // suggestions: the page's tags (Tags metadata), labelled from the taxonomy
+  const tagLabels = resolveTags(getPageTags()).then((tags) => tags.map((tag) => tag.label));
+  Promise.all([loadMenuTree(root, depth), tagLabels]).then(([tree, labels]) => {
+    if (!state.suggestions.length) state.suggestions = labels;
     state.tree = tree;
     state.current = findNode(tree, normalizePath(window.location.pathname));
     setView(defaultView());
@@ -598,7 +606,8 @@ export function setConversationCanvasFilters(block, tags = []) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  t = await getPlaceholders();
   const id = uniqueId('conversation-canvas');
   const { config, buttonRows } = readBlock(block);
 
@@ -672,7 +681,7 @@ export default function decorate(block) {
   if (block.classList.contains('secondary')) {
     const filters = document.createElement('ul');
     filters.className = 'conversation-canvas-filters';
-    filters.setAttribute('aria-label', 'Suggestions');
+    filters.setAttribute('aria-label', t('suggestions', 'Suggestions'));
     content.append(filters);
   }
 

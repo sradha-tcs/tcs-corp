@@ -3,6 +3,7 @@ import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { isEditing, prefersReducedMotion, scrollBehavior } from '../../utils/environment.js';
 import { watchVisibility } from '../../utils/viewport.js';
 import { uniqueId } from '../../utils/ids.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 /*
  * Gen Carousel: built by scripts.js from a Gen Carousel section. Every child of the block is a
@@ -30,14 +31,15 @@ function readInterval(block) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  const t = await getPlaceholders();
   const id = uniqueId('gen-carousel');
   const nav = readNavigation(block);
   const interval = readInterval(block);
 
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'carousel');
-  if (!block.hasAttribute('aria-label')) block.setAttribute('aria-label', 'Carousel');
+  if (!block.hasAttribute('aria-label')) block.setAttribute('aria-label', t('carousel', 'Carousel'));
 
   const track = document.createElement('ul');
   track.className = 'gen-carousel-slides';
@@ -51,7 +53,7 @@ export default function decorate(block) {
     slide.id = `${id}-slide-${i + 1}`;
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
-    slide.setAttribute('aria-label', `${i + 1} of ${contents.length}`);
+    slide.setAttribute('aria-label', t('slideOf', '{n} of {total}', { n: i + 1, total: contents.length }));
     slide.append(content);
     track.append(slide);
     return slide;
@@ -74,7 +76,7 @@ export default function decorate(block) {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'gen-carousel-dot';
-    dot.setAttribute('aria-label', `Show slide ${i + 1} of ${slides.length}`);
+    dot.setAttribute('aria-label', t('showSlide', 'Show slide {n} of {total}', { n: i + 1, total: slides.length }));
     dot.setAttribute('aria-controls', slide.id);
     li.append(dot);
     dots.append(li);
@@ -125,7 +127,7 @@ export default function decorate(block) {
   };
 
   const updateToggle = () => {
-    const label = playing() ? 'Pause slides' : 'Play slides';
+    const label = playing() ? t('pauseSlides', 'Pause slides') : t('playSlides', 'Play slides');
     toggle.setAttribute('aria-label', label);
     decorateButton(toggle, {
       view: 'icon', type: 'secondary', icon: playing() ? 'pause' : 'play', title: label,
@@ -135,7 +137,7 @@ export default function decorate(block) {
   };
 
   if (nav.auto) {
-    toggle = createIconButton({ className: 'gen-carousel-toggle', label: 'Pause slides', icon: 'pause' });
+    toggle = createIconButton({ className: 'gen-carousel-toggle', label: t('pauseSlides', 'Pause slides'), icon: 'pause' });
     toggle.setAttribute('aria-controls', track.id);
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;
@@ -147,8 +149,8 @@ export default function decorate(block) {
   }
 
   if (nav.manual) {
-    const prev = createIconButton({ className: 'gen-carousel-prev', label: 'Previous slide', icon: 'chevron-left' });
-    const next = createIconButton({ className: 'gen-carousel-next', label: 'Next slide', icon: 'chevron-right' });
+    const prev = createIconButton({ className: 'gen-carousel-prev', label: t('previousSlide', 'Previous slide'), icon: 'chevron-left' });
+    const next = createIconButton({ className: 'gen-carousel-next', label: t('nextSlide', 'Next slide'), icon: 'chevron-right' });
     prev.setAttribute('aria-controls', track.id);
     next.setAttribute('aria-controls', track.id);
     prev.addEventListener('click', () => { goTo(current - 1); schedule(); });

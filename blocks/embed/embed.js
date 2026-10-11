@@ -11,6 +11,7 @@ import {
 } from '../../decorators/media-decorator.js';
 import { isVimeo, isYoutube } from '../../utils/media.js';
 import { onVisible } from '../../utils/viewport.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 const FRAME_CLASS = 'embed-frame';
 const AUTOPLAY = { muted: '1', autoplay: '1' };
@@ -59,17 +60,18 @@ function loadEmbed(block, link, autoplay) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   const placeholder = block.querySelector('picture');
   const link = block.querySelector('a')?.href;
   block.textContent = '';
   if (!link) return;
 
   if (placeholder) {
+    const t = await getPlaceholders();
     const wrapper = document.createElement('div');
     wrapper.className = 'embed-placeholder';
     const play = createIconButton({
-      label: 'Play',
+      label: t('play', 'Play'),
       icon: 'play',
       type: 'primary',
       className: 'embed-placeholder-play',

@@ -14,13 +14,21 @@ export function parseTag(id) {
 }
 
 /**
- * Reads tags from a multi-value property cell (list items or a comma-separated list).
+ * Reads the tag values of a multi-value property cell (list items or a comma-separated list).
+ * Resolve labels with utils/taxonomy.js resolveTags().
  * @param {Element} cell
- * @returns {{ id: string, label: string }[]}
+ * @returns {string[]} tag IDs as authored
  */
-export function readTags(cell) {
+export function readTagValues(cell) {
   if (!cell) return [];
   const items = cell.querySelectorAll('li');
   const values = items.length ? [...items].map((li) => li.textContent) : textOf(cell).split(',');
-  return values.map((value) => value.trim()).filter(Boolean).map((id) => parseTag(id));
+  return values.map((value) => value.trim()).filter(Boolean);
 }
+
+/**
+ * Reads tags with labels derived from their IDs (no taxonomy lookup).
+ * @param {Element} cell
+ * @returns {{ id: string, label: string }[]}
+ */
+export const readTags = (cell) => readTagValues(cell).map((id) => parseTag(id));

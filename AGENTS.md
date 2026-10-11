@@ -41,6 +41,8 @@ The repository provides the basic structure, blocks, and configuration needed to
     ├── scripts.js                  # Global JavaScript utilities, main entry point for page decoration
     └── delayed.js                  # Delayed functionality such as martech loading
     └── editor-support.js           # JavaScript functions used to enhance the WYSIWYG authoring experience in Universal Editor
+├── decorators/                 # Shared code that creates / decorates elements (buttons, headings, images, media, ...), see decorators/README.md
+├── utils/                      # Shared helpers that build no UI (properties, metadata, placeholders, taxonomy, ...), see utils/README.md
 ├── models/                     # Folder containing component definitions, models and filters for default content, pages, sections etc.
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
@@ -122,6 +124,27 @@ export default async function decorate(block) {
 Use `curl` and `console.log` to inspect the HTML delivered by the backend and the DOM nodes to be decorated before making assumptions. Remember that authors may omit or add fields to a block, so your code must handle this gracefully.
 
 Each block should be self-contained and re-useable, with CSS and JS files following the naming convention: `blockname.css`, `blockname.js`. Blocks should be responsive and accessible by default.
+
+### Shared code: decorators and utils
+
+Blocks don't re-implement shared behavior; they import it from single-purpose modules:
+
+- `decorators/` create or decorate elements: buttons (`button-decorator.js`, `icon-button-decorator.js`, `content-buttons-decorator.js`), links, headings, content, images, dates, tags, media players and accessibility helpers. Every button and link button goes through the button decorators.
+- `utils/` are helpers that build no UI: block properties, multifields, links, dates, tags, URLs, ids, environment / viewport checks, media URLs, Lottie, page metadata, placeholders and taxonomy.
+- Decorators may import utils; utils never import decorators. Keep one purpose per file and add new shared behavior there, not in a block. Each folder's README lists its modules, exports and users.
+
+### Site data: metadata, placeholders, taxonomy, redirects
+
+Following Adobe's recommendations, the project has no custom page-properties tab. Site data comes from standard sources (all mapped in `paths.json`):
+
+| Data | Source | Code |
+|---|---|---|
+| Page metadata | Page properties (Title, Description, Keywords) and the bulk metadata sheet (`/metadata.json`): Template, Tags, Publication Date, Author, Category, ... | `utils/metadata.js` (`getPageMetadata`, `getPageTags`); Template becomes a body class via `decorateTemplateAndTheme` |
+| UI text | Placeholders sheet (`/placeholders.json`, columns Key and Text) | `utils/placeholders.js`: `const t = await getPlaceholders(); t('nextSlide', 'Next slide')` — always pass an English fallback |
+| Tag labels | Published taxonomy (`/taxonomy.json`) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
+| Redirects | Redirects sheet (`/redirects.json`) | none, applied by the platform |
+
+Page-specific values that aren't metadata (CTAs, reading time, author image, share / download) are block fields (e.g. on the Page Header). Don't hard-code user-facing strings in blocks; use placeholders. The query index (`helix-query.yaml`) indexes the standard metadata (template, category, author, date, tags).
 
 ### Three-Phase Page Loading
 

@@ -4,6 +4,10 @@ import { decorateButton } from '../../decorators/button-decorator.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
 import { toSitePath } from '../../utils/urls.js';
 import { onVisible } from '../../utils/viewport.js';
+import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+
+// UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
+let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 /*
  * Table List (blocks/table-list/_table-list.json): a heading with a "View all" link and up to
@@ -116,7 +120,8 @@ function createHeader(properties, headerRow) {
 
   const heading = document.createElement('h2');
   heading.className = 'table-list-heading';
-  heading.textContent = properties.listTitle || getText(headingCell) || DEFAULTS.listTitle;
+  heading.textContent = properties.listTitle || getText(headingCell)
+    || t('tableListTitle', DEFAULTS.listTitle);
   header.append(heading);
 
   const authoredLink = linkCell?.querySelector('a[href]');
@@ -126,7 +131,8 @@ function createHeader(properties, headerRow) {
     explore.className = 'table-list-explore';
     const link = document.createElement('a');
     link.href = href;
-    link.textContent = properties.viewAllTitle || getText(authoredLink) || DEFAULTS.viewAllTitle;
+    link.textContent = properties.viewAllTitle || getText(authoredLink)
+      || t('viewAll', DEFAULTS.viewAllTitle);
     decorateButton(link, { view: 'link' });
     explore.append(link);
     header.append(explore);
@@ -166,7 +172,7 @@ function createCardAction(cell, title) {
   action.className = 'table-list-arrow';
   if (destination) {
     action.href = destination;
-    action.setAttribute('aria-label', `Explore ${title || 'card'}`);
+    action.setAttribute('aria-label', t('exploreItem', 'Explore {title}', { title: title || t('card', 'card') }));
   } else {
     action.setAttribute('aria-hidden', 'true');
   }
@@ -217,18 +223,20 @@ function buildTable(cards, display) {
   table.className = 'table-list-table';
 
   const headerRow = document.createElement('tr');
-  ['Number', showTitle && 'Title', showDescription && 'Description', 'Link']
-    .filter(Boolean)
-    .forEach((label) => {
-      const th = document.createElement('th');
-      th.scope = 'col';
-      if (label === 'Link') {
-        th.append(createHiddenText(label));
-      } else {
-        th.textContent = label;
-      }
-      headerRow.append(th);
-    });
+  [
+    ['number', 'Number'],
+    showTitle && ['title', 'Title'],
+    showDescription && ['description', 'Description'],
+    ['link', 'Link'],
+  ].filter(Boolean).forEach(([key, fallback]) => {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    const label = t(`${key}Column`, fallback);
+    // the link column has no visible header
+    if (key === 'link') th.append(createHiddenText(label));
+    else th.textContent = label;
+    headerRow.append(th);
+  });
   const thead = document.createElement('thead');
   thead.append(headerRow);
 
@@ -286,7 +294,8 @@ function observeMotion(block, motionType) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  t = await getPlaceholders();
   const { properties, contentRows, hasVariationConfig } = readBlockConfig(block);
 
   const existingVariation = VALID_VARIATIONS

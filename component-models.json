@@ -20,216 +20,6 @@
         "name": "keywords",
         "multi": true,
         "label": "Keywords"
-      },
-      {
-        "component": "tab",
-        "name": "tcsCustomProperties",
-        "label": "TCS Custom Properties"
-      },
-      {
-        "component": "container",
-        "name": "additionalPageProps",
-        "label": "Additional Page Props",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "select",
-            "valueType": "string",
-            "name": "pageCategory",
-            "label": "Page Type",
-            "options": [
-              {
-                "name": "Standard Page",
-                "value": "standard"
-              },
-              {
-                "name": "Article",
-                "value": "article"
-              },
-              {
-                "name": "Landing Page",
-                "value": "landing"
-              },
-              {
-                "name": "Listing Page",
-                "value": "listing"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "additionalImageProps",
-        "label": "Additional Image Props",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "reference",
-            "valueType": "string",
-            "name": "iconImage",
-            "label": "Icon Image",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "iconImageAlt",
-            "label": "Icon Alt Text"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "additionalSeo",
-        "label": "Additional SEO",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "ogHeading",
-            "label": "OG Title"
-          },
-          {
-            "component": "text-area",
-            "valueType": "string",
-            "name": "ogKeywords",
-            "label": "OG Keywords"
-          },
-          {
-            "component": "text-area",
-            "valueType": "string",
-            "name": "ogDescription",
-            "label": "OG Description"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "storyProps",
-        "label": "Story Props",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "aem-tag",
-            "valueType": "string[]",
-            "name": "storyTags",
-            "label": "Story Tags"
-          },
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "storyHeading",
-            "label": "Story Title"
-          },
-          {
-            "component": "richtext",
-            "valueType": "string",
-            "name": "storyDesc",
-            "label": "Story Desc"
-          },
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "storyLinkLabel",
-            "label": "Story Link Title"
-          },
-          {
-            "component": "aem-content",
-            "valueType": "string",
-            "name": "storyLinkPath",
-            "label": "Story Link Path"
-          },
-          {
-            "component": "select",
-            "valueType": "string",
-            "name": "storyLinkBehavior",
-            "label": "Story Link Type",
-            "options": [
-              {
-                "name": "Default",
-                "value": ""
-              },
-              {
-                "name": "Open in New Window",
-                "value": "_blank"
-              }
-            ]
-          },
-          {
-            "component": "select",
-            "valueType": "string",
-            "name": "storyLinkStyle",
-            "label": "Story Link Style",
-            "options": [
-              {
-                "name": "Default",
-                "value": ""
-              },
-              {
-                "name": "Primary",
-                "value": "primary"
-              },
-              {
-                "name": "Secondary",
-                "value": "secondary"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "authorInfo",
-        "label": "Author Info",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "reference",
-            "valueType": "string",
-            "name": "authorImage",
-            "label": "Author Image",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "authorImageAlt",
-            "label": "Author Image Alt Text"
-          },
-          {
-            "component": "richtext",
-            "valueType": "string",
-            "name": "designationLocation",
-            "label": "Designation & Location"
-          },
-          {
-            "component": "boolean",
-            "valueType": "boolean",
-            "name": "socialShare",
-            "label": "Social Share"
-          },
-          {
-            "component": "date-time",
-            "valueType": "date",
-            "valueFormat": "YYYY-MM-DD",
-            "name": "publishDate",
-            "label": "Publish Date"
-          },
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "timeToRead",
-            "label": "Time to Read Content"
-          },
-          {
-            "component": "boolean",
-            "valueType": "boolean",
-            "name": "download",
-            "label": "Download"
-          }
-        ]
       }
     ]
   },
@@ -1509,11 +1299,11 @@
         "valueType": "string",
         "name": "classes",
         "label": "Style",
-        "description": "Title, description, tags, date, reading time, author, story link, download and share come from the page properties.",
+        "description": "Title, description, tags, publication date and author come from the page metadata (page properties or the bulk metadata sheet). Auto picks the layout from the Template metadata.",
         "value": "",
         "options": [
           {
-            "name": "Auto (by Page Type)",
+            "name": "Auto (by Template)",
             "value": ""
           },
           {
@@ -1528,59 +1318,64 @@
       },
       {
         "component": "tab",
-        "name": "imagesTab",
-        "label": "Image Collage"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "collageImage1",
-        "label": "Image 1 (large, top left)",
-        "multi": false
+        "name": "ctaTab",
+        "label": "CTAs"
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "collageImage1Alt",
-        "label": "Image 1 alt text"
+        "name": "primaryCtaText",
+        "label": "Primary CTA Title"
       },
       {
-        "component": "reference",
+        "component": "aem-content",
         "valueType": "string",
-        "name": "collageImage2",
-        "label": "Image 2 (bottom left)",
-        "multi": false
+        "name": "primaryCta",
+        "label": "Primary CTA Link"
       },
       {
-        "component": "text",
+        "component": "select",
         "valueType": "string",
-        "name": "collageImage2Alt",
-        "label": "Image 2 alt text"
+        "name": "primaryCtaTarget",
+        "label": "Primary CTA Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ]
       },
       {
-        "component": "reference",
+        "component": "select",
         "valueType": "string",
-        "name": "collageImage3",
-        "label": "Image 3 (right)",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "collageImage3Alt",
-        "label": "Image 3 alt text"
-      },
-      {
-        "component": "tab",
-        "name": "linksTab",
-        "label": "Second CTA"
+        "name": "primaryCtaStyle",
+        "label": "Primary CTA Link Style",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Default (text link)",
+            "value": ""
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "secondary"
+          }
+        ]
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "secondaryCtaText",
-        "label": "Second CTA Title",
-        "description": "Shown after the page's story link."
+        "label": "Second CTA Title"
       },
       {
         "component": "aem-content",
@@ -1636,7 +1431,35 @@
         "valueType": "string",
         "name": "authorName",
         "label": "Author Name",
-        "description": "Shown above the page's Designation & Location."
+        "description": "Defaults to the page's Author metadata."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "authorImage",
+        "label": "Author Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "authorImageAlt",
+        "label": "Author Image Alt Text",
+        "description": "Leave empty if the author's name is shown next to the image."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "designationLocation",
+        "label": "Designation & Location",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "readingTime",
+        "label": "Time to Read",
+        "description": "Minutes (e.g. 14) or a text such as \"14 min read\"."
       },
       {
         "component": "text",
@@ -1651,6 +1474,65 @@
         "name": "listenLink",
         "label": "Listen Link",
         "description": "Audio version of the page (shows a headphones icon)."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "socialShare",
+        "label": "Social Share",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "download",
+        "label": "Download",
+        "description": "Lets visitors print or save the page as a PDF.",
+        "value": false
+      },
+      {
+        "component": "tab",
+        "name": "imagesTab",
+        "label": "Image Collage"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage1",
+        "label": "Image 1 (large, top left)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage1Alt",
+        "label": "Image 1 alt text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage2",
+        "label": "Image 2 (bottom left)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage2Alt",
+        "label": "Image 2 alt text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collageImage3",
+        "label": "Image 3 (right)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collageImage3Alt",
+        "label": "Image 3 alt text"
       }
     ]
   },
