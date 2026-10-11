@@ -16,7 +16,9 @@ import {
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
-import { localePagePath } from '../utils/site.js';
+import {
+  DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
+} from '../utils/site.js';
 
 // re-exported for scripts that import it from here, e.g. editor-support.js
 export { decorateButtons };
@@ -201,27 +203,60 @@ export function decorateMain(main) {
 }
 
 /**
- * Error pages (404.html): the locale's authored error page (/{locale}/error-pages/
- * 404, 403 or 500) replaces the built-in content; the built-in content stays when the page
- * isn't published.
+ * Loads the content of an authored page into main.
+ * @param {Element} main The main element
+ * @param {string} path The page path
+ * @returns {Promise<boolean>} whether the page was loaded
+ */
+async function loadPageContent(main, path) {
+  try {
+    const resp = await fetch(`${path}.plain.html`);
+    if (!resp.ok) return false;
+    main.innerHTML = await resp.text();
+    // media of the page is relative to it
+    main.querySelectorAll('img[src^="./media_"], source[srcset^="./media_"]').forEach((el) => {
+      const attr = el.tagName === 'IMG' ? 'src' : 'srcset';
+      el.setAttribute(attr, new URL(el.getAttribute(attr), new URL(path, window.location)).href);
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The 404 page (404.html), authorable and locale specific. The first page that loads is shown:
+ * 1. the 404 Page (error-page) of the missing page's nearest parent page up to Home (page
+ *    property, or the metadata sheet's error-page column), like an inherited page property
+ * 2. the locale's error-pages/404 (e.g. /de-de/error-pages/404 for /de-de/...)
+ * 3. the default locale's /en/error-pages/404
+ * Content from another locale is marked as its language.
+ * else the built-in content stays. 403 and 500 are served by the CDN, not by code.
  * @param {Element} main The main element
  */
 async function loadErrorPage(main) {
   // the built-in Go home button leads to the locale's home page
   main.querySelector('.error-button-home')?.setAttribute('href', localePagePath(''));
-  const path = localePagePath(`error-pages/${window.errorCode || '404'}`);
-  try {
-    const resp = await fetch(`${path}.plain.html`);
-    if (!resp.ok) return;
-    main.innerHTML = await resp.text();
-    // media of the error page is relative to it
-    main.querySelectorAll('img[src^="./media_"], source[srcset^="./media_"]').forEach((el) => {
-      const attr = el.tagName === 'IMG' ? 'src' : 'srcset';
-      el.setAttribute(attr, new URL(el.getAttribute(attr), new URL(path, window.location)).href);
-    });
-    main.classList.add('error-authored');
-  } catch {
-    // keep the built-in content
+  if (window.errorCode && window.errorCode !== '404') return;
+  // loaded on 404 pages only
+  const { getInheritedMetadata } = await import('../utils/inherited-metadata.js');
+  const configured = await getInheritedMetadata('error-page');
+  const paths = [
+    configured && resolvePagePath(configured, 'error-pages/404'),
+    localePagePath('error-pages/404'),
+    localePagePath('error-pages/404', `/${DEFAULT_LOCALE.code}/`),
+  ].filter((path, i, all) => path && all.indexOf(path) === i);
+  const { code } = getLocale();
+  // eslint-disable-next-line no-restricted-syntax
+  for (const path of paths) {
+    // eslint-disable-next-line no-await-in-loop
+    if (await loadPageContent(main, path)) {
+      main.classList.add('error-authored');
+      // content of another locale (e.g. the /en/ fallback) is marked as its language
+      const source = getLocale(path);
+      if (source.code !== code) main.lang = source.lang;
+      return;
+    }
   }
 }
 

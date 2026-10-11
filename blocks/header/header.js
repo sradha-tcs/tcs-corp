@@ -1,7 +1,7 @@
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
@@ -120,13 +120,15 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
   t = await getPlaceholders();
-  // load nav as fragment: the nav metadata (page properties Navigation, or the metadata sheet's
-  // nav column), else the locale's references/nav
-  const navPath = resolvePagePath(getMetadata('nav'), 'references/nav');
+  // load nav as fragment: the Navigation page property of the page or, inherited, of its nearest
+  // parent page up to Home (or the metadata sheet's nav column), else the locale's references/nav
+  const navPath = resolvePagePath(await getInheritedMetadata('nav'), 'references/nav');
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
+  // no nav page published (e.g. a new locale): leave the header empty
+  if (!fragment) return;
   const nav = document.createElement('nav');
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
