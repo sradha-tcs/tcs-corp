@@ -5,6 +5,10 @@ import { buildHeading } from '../../decorators/heading-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
 import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
+import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+
+// UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
+let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 /*
  * Form Variations (blocks/form-variations/_form-variations.json): a form built from child
@@ -22,7 +26,6 @@ const ITEM_TYPES = [
 ];
 const INPUT_KINDS = ['text', 'email', 'tel'];
 const DEFAULT_MAX_LENGTH = 1500;
-const SUCCESS_MESSAGE = 'Thank you, your details were sent.';
 
 const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
@@ -116,7 +119,7 @@ function buildSelectField(cells, nextId) {
 
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = 'Select an option';
+  placeholder.textContent = t('selectAnOption', 'Select an option');
   placeholder.disabled = true;
   placeholder.defaultSelected = true;
   select.append(placeholder);
@@ -236,7 +239,7 @@ function buildSubmit(cells) {
   const group = createGroup(['field-submit', 'full-width'], textOf(dependsCell));
   const button = document.createElement('button');
   button.type = 'submit';
-  button.textContent = textOf(labelCell) || 'Send';
+  button.textContent = textOf(labelCell) || t('send', 'Send');
   instrument(labelCell, button);
   decorateButton(button, { view: 'button', type: 'primary' });
   group.append(button);
@@ -291,7 +294,8 @@ function collectData(form) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  t = await getPlaceholders();
   const nextId = createIdFactory(uniqueId('form-variations'));
   const editing = isInEditor(block);
 
@@ -313,7 +317,7 @@ export default function decorate(block) {
     if (editing && el.dataset.dependsOn) {
       const note = document.createElement('p');
       note.className = 'form-variations-condition';
-      note.textContent = `Shown when a dropdown value is "${el.dataset.dependsOn}"`;
+      note.textContent = t('shownWhenValue', 'Shown when a dropdown value is "{value}"', { value: el.dataset.dependsOn });
       el.prepend(note);
     }
     form.append(el);
@@ -349,7 +353,7 @@ export default function decorate(block) {
     form.reset();
     form.querySelectorAll('textarea').forEach((textarea) => textarea.dispatchEvent(new Event('input')));
     updateVisibility(form, editing);
-    status.textContent = SUCCESS_MESSAGE;
+    status.textContent = t('formSuccess', 'Thank you, your details were sent.');
   });
 
   block.replaceChildren(...(header.children.length ? [header] : []), form, status);

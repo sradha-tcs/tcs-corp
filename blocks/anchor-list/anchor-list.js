@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import { scrollBehavior } from '../../utils/environment.js';
 import { readMultifieldItems } from '../../utils/multifield.js';
 import { isOn, readProperties } from '../../utils/properties.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 /*
  * Anchor List (blocks/anchor-list/_anchor-list.json): chapter navigation. Each link jumps to
@@ -45,14 +46,15 @@ function scrollOffset(block) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  const t = await getPlaceholders();
   const props = readProperties(block);
   const anchors = readAnchors(props.anchors);
   block.classList.toggle('sticky', isOn(props.sticky));
 
   const nav = document.createElement('nav');
   nav.className = 'anchor-list-nav';
-  nav.setAttribute('aria-label', 'On this page');
+  nav.setAttribute('aria-label', t('onThisPage', 'On this page'));
   const list = document.createElement('ul');
   list.className = 'anchor-list-items';
   if (props.anchors) moveInstrumentation(props.anchors, list);

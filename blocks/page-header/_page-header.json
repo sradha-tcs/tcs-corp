@@ -10,7 +10,8 @@
             "template": {
               "name": "Page Header",
               "model": "page-header",
-              "key-value": true
+              "key-value": true,
+              "primaryCtaStyle": "primary"
             }
           }
         }
@@ -31,13 +32,157 @@
           "valueType": "string",
           "name": "classes",
           "label": "Style",
-          "description": "Title, description, tags, date, reading time, author, story link, download and share come from the page properties.",
+          "description": "Title, description, tags, publication date and author come from the page metadata (page properties or the bulk metadata sheet). Auto picks the layout from the Template metadata.",
           "value": "",
           "options": [
-            { "name": "Auto (by Page Type)", "value": "" },
+            { "name": "Auto (by Template)", "value": "" },
             { "name": "Landing", "value": "landing" },
             { "name": "Article", "value": "article" }
           ]
+        },
+        {
+          "component": "tab",
+          "name": "ctaTab",
+          "label": "CTAs"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "primaryCtaText",
+          "label": "Primary CTA Title"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "primaryCta",
+          "label": "Primary CTA Link"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "primaryCtaTarget",
+          "label": "Primary CTA Link Type",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Open in New Window", "value": "new-window" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "primaryCtaStyle",
+          "label": "Primary CTA Link Style",
+          "value": "primary",
+          "options": [
+            { "name": "Default (text link)", "value": "" },
+            { "name": "Primary Button", "value": "primary" },
+            { "name": "Secondary Button", "value": "secondary" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "secondaryCtaText",
+          "label": "Second CTA Title"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "secondaryCta",
+          "label": "Second CTA Link"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaTarget",
+          "label": "Second CTA Link Type",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Open in New Window", "value": "new-window" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaStyle",
+          "label": "Second CTA Link Style",
+          "value": "",
+          "options": [
+            { "name": "Default (text link)", "value": "" },
+            { "name": "Primary Button", "value": "primary" },
+            { "name": "Secondary Button", "value": "secondary" }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "metaTab",
+          "label": "Author & Meta"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "authorName",
+          "label": "Author Name",
+          "description": "Defaults to the page's Author metadata."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "authorImage",
+          "label": "Author Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "authorImageAlt",
+          "label": "Author Image Alt Text",
+          "description": "Leave empty if the author's name is shown next to the image."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "designationLocation",
+          "label": "Designation & Location",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "readingTime",
+          "label": "Time to Read",
+          "description": "Minutes (e.g. 14) or a text such as \"14 min read\"."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "collectionLabel",
+          "label": "Collection Label",
+          "description": "Shown after the tags, e.g. Collection."
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "listenLink",
+          "label": "Listen Link",
+          "description": "Audio version of the page (shows a headphones icon)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "socialShare",
+          "label": "Social Share",
+          "value": false
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "download",
+          "label": "Download",
+          "description": "Lets visitors print or save the page as a PDF.",
+          "value": false
         },
         {
           "component": "tab",
@@ -82,73 +227,6 @@
           "valueType": "string",
           "name": "collageImage3Alt",
           "label": "Image 3 alt text"
-        },
-        {
-          "component": "tab",
-          "name": "linksTab",
-          "label": "Second CTA"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "secondaryCtaText",
-          "label": "Second CTA Title",
-          "description": "Shown after the page's story link."
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "secondaryCta",
-          "label": "Second CTA Link"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "secondaryCtaTarget",
-          "label": "Second CTA Link Type",
-          "value": "",
-          "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Open in New Window", "value": "new-window" }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "secondaryCtaStyle",
-          "label": "Second CTA Link Style",
-          "value": "",
-          "options": [
-            { "name": "Default (text link)", "value": "" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
-          ]
-        },
-        {
-          "component": "tab",
-          "name": "metaTab",
-          "label": "Author & Meta"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "authorName",
-          "label": "Author Name",
-          "description": "Shown above the page's Designation & Location."
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "collectionLabel",
-          "label": "Collection Label",
-          "description": "Shown after the tags, e.g. Collection."
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "listenLink",
-          "label": "Listen Link",
-          "description": "Audio version of the page (shows a headphones icon)."
         }
       ]
     }

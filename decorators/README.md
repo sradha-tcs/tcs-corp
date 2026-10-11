@@ -7,13 +7,14 @@ checks) live in [`../utils`](../utils/README.md).
 
 | Decorator | Exports | Used by |
 |---|---|---|
-| `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, `page-properties.js`, header |
+| `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, header |
 | `icon-button-decorator.js` | `createIconButton` | gen-carousel, page-header, modal, embed, video, conversation-canvas |
 | `content-buttons-decorator.js` | `decorateButtons` (authored links in content become buttons) | `scripts.js`, `editor-support.js` |
 | `link-decorator.js` | `setLinkTarget` (open in a new window) | button decorator, teaser |
 | `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, form-variations |
 | `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
 | `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
+| `responsive-image-decorator.js` | `buildImage` (image from a URL; site media optimized) | `scripts.js` (section backgrounds), conversation-canvas |
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | teaser, page-header |
 | `tag-decorator.js` | `buildTagList` | teaser, page-header |
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |

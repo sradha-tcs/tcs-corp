@@ -12,7 +12,8 @@ import { NEW_WINDOW, linkOf, readLinkItems } from '../../utils/links.js';
 import {
   isOn, optionOf as option, readProperties, textOf,
 } from '../../utils/properties.js';
-import { readTags } from '../../utils/tags.js';
+import { readTagValues } from '../../utils/tags.js';
+import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
  * Teaser (blocks/teaser/_teaser.json): a key-value block, one row per property.
@@ -27,14 +28,16 @@ const LINK_STYLES = ['list', 'primary', 'secondary'];
 
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
 
-function buildMeta(props) {
+/** date and tags (labels from the taxonomy) */
+async function buildMeta(props) {
   const meta = document.createElement('div');
   meta.className = 'teaser-meta';
   const date = textOf(props.date);
   if (isOn(props.showdate) && date) {
     meta.append(buildTime(date, toClassName(textOf(props.dateformat)), 'teaser-date'));
   }
-  const tags = isOn(props.displaytags) ? buildTagList(readTags(props.tags), 'teaser-tags') : null;
+  const tags = isOn(props.displaytags)
+    ? buildTagList(await resolveTags(readTagValues(props.tags)), 'teaser-tags') : null;
   if (tags) meta.append(tags);
   return meta.children.length ? meta : null;
 }
@@ -125,7 +128,7 @@ function buildImage(block, props) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   const props = readProperties(block);
   const style = option(block, props.classes, STYLES);
   const bgColor = option(block, props.bgcolor, BG_COLORS);
@@ -138,7 +141,7 @@ export default function decorate(block) {
   if (isOn(props.showeyebrow) && textOf(props.eyebrow)) {
     header.append(fromCell(props.eyebrow, 'p', 'teaser-eyebrow'));
   }
-  const meta = buildMeta(props);
+  const meta = await buildMeta(props);
   if (meta) header.append(meta);
 
   const headingRow = document.createElement('div');

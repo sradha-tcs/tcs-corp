@@ -11,6 +11,7 @@ import {
 import { prefersReducedMotion } from '../../utils/environment.js';
 import { isVimeo, isYoutube } from '../../utils/media.js';
 import { onVisible } from '../../utils/viewport.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 const FRAME_CLASS = 'video-frame';
 
@@ -67,8 +68,9 @@ export default async function decorate(block) {
     wrapper.append(placeholder);
 
     if (!autoplay) {
+      const t = await getPlaceholders();
       wrapper.append(createIconButton({
-        label: 'Play video',
+        label: t('playVideo', 'Play video'),
         icon: 'play',
         type: 'primary',
         className: 'video-placeholder-play',

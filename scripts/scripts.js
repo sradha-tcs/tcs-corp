@@ -12,7 +12,7 @@ import {
   loadCSS,
   toClassName,
 } from './aem.js';
-import { applyPageProperties, buildPropertyImage } from './page-properties.js';
+import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 
 // re-exported for scripts that import it from here, e.g. editor-support.js
@@ -93,7 +93,7 @@ function buildSectionBackground(cell, alt) {
   let image = cell.querySelector('picture') || cell.querySelector('img');
   if (!image) {
     const src = cell.querySelector('a')?.href || cell.textContent.trim();
-    image = buildPropertyImage(src ? { src, alt: '' } : null, BACKGROUND_BREAKPOINTS);
+    image = buildImage(src ? { src, alt: '' } : null, BACKGROUND_BREAKPOINTS);
   }
   if (!image) return null;
   const img = image.tagName === 'IMG' ? image : image.querySelector('img');
@@ -204,7 +204,6 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  applyPageProperties();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
