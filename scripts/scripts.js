@@ -226,7 +226,24 @@ async function loadEager(doc) {
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
+/**
+ * Opens links to a /modals/ page as a modal (blocks/modal).
+ * @param {Document} doc
+ */
+function autolinkModals(doc) {
+  doc.addEventListener('click', async (e) => {
+    const origin = e.target.closest('a');
+    // links already handled (e.g. by the Modal block) are skipped
+    if (!e.defaultPrevented && origin?.href && new URL(origin.href).pathname.includes('/modals/')) {
+      e.preventDefault();
+      const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+      openModal(origin.href);
+    }
+  });
+}
+
 async function loadLazy(doc) {
+  autolinkModals(doc);
   loadHeader(doc.querySelector('header'));
 
   const main = doc.querySelector('main');

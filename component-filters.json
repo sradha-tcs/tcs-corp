@@ -19,10 +19,27 @@
       "quote",
       "testimonial",
       "anchor-list",
+      "accordion",
+      "tabs",
+      "table",
+      "table-list",
+      "list",
+      "embed",
+      "video",
+      "modal",
+      "form-variations",
+      "filter-list",
+      "interactive-dashboard",
       "conversation-canvas",
       "cards",
       "columns",
       "fragment"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
     ]
   },
   {
@@ -53,10 +70,68 @@
     ]
   },
   {
+    "id": "form-variations",
+    "components": [
+      "field-text",
+      "field-select",
+      "field-textarea",
+      "field-checkbox",
+      "contact-card",
+      "field-submit"
+    ]
+  },
+  {
     "id": "gen-carousel",
     "components": [
       "hero",
       "teaser"
     ]
+  },
+  {
+    "id": "table-list",
+    "components": [
+      "table-list-header",
+      "table-list-card"
+    ]
+  },
+  {
+    "id": "table",
+    "components": [
+      "table-row"
+    ]
+  },
+  {
+    "id": "table-2-columns",
+    "components": [
+      "table-col-2"
+    ]
+  },
+  {
+    "id": "table-3-columns",
+    "components": [
+      "table-col-3"
+    ]
+  },
+  {
+    "id": "table-4-columns",
+    "components": [
+      "table-col-4"
+    ]
+  },
+  {
+    "id": "table-5-columns",
+    "components": [
+      "table-col-5"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
+    ]
+  },
+  {
+    "id": "video",
+    "components": []
   }
 ]

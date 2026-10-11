@@ -493,6 +493,25 @@
     ]
   },
   {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "summary",
+        "value": "",
+        "label": "Summary"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "anchor-list",
     "fields": [
       {
@@ -742,6 +761,346 @@
             "placeholder": "Submit"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "embed",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "embed_placeholder",
+        "label": "Placeholder Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "embed_placeholderAlt",
+        "value": "",
+        "label": "Placeholder Image Alt Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "embed_uri",
+        "label": "URI"
+      }
+    ]
+  },
+  {
+    "id": "filter-list",
+    "fields": []
+  },
+  {
+    "id": "form-variations",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "formHeading",
+        "label": "Form Title / Heading"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "formDescription",
+        "label": "Form Description",
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Theme",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "field-text",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-text",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Field Name / ID",
+        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop.",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Field Label",
+        "description": "e.g. First name",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "inputKind",
+        "label": "Input Type",
+        "value": "text",
+        "options": [
+          {
+            "name": "Text",
+            "value": "text"
+          },
+          {
+            "name": "Email",
+            "value": "email"
+          },
+          {
+            "name": "Tel",
+            "value": "tel"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals",
+        "description": "Leave empty to always show the field."
+      }
+    ]
+  },
+  {
+    "id": "field-select",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-select",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Dropdown Name / ID",
+        "description": "Submitted as the field key, e.g. sector or region.",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Dropdown Label",
+        "description": "e.g. Sector",
+        "required": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "options",
+        "label": "Options",
+        "description": "Comma separated, e.g. Technology, Sport, Asia Pacific, India"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals",
+        "description": "Leave empty to always show the field."
+      }
+    ]
+  },
+  {
+    "id": "field-textarea",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-textarea",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Field Name / ID",
+        "description": "Submitted as the field key, e.g. feedback.",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Field Label",
+        "description": "e.g. How can we help you?",
+        "required": true
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "maxLength",
+        "label": "Max Character Limit",
+        "value": 1500
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals",
+        "description": "Leave empty to always show the field."
+      }
+    ]
+  },
+  {
+    "id": "field-checkbox",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-checkbox",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Checkbox Name / ID",
+        "description": "Submitted as the field key, e.g. consent.",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "label": "Consent Text / Disclaimer",
+        "required": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals",
+        "description": "Leave empty to always show the field."
+      }
+    ]
+  },
+  {
+    "id": "contact-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "contact-card",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "region",
+        "label": "Show when dropdown value equals",
+        "description": "e.g. India",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "contactName",
+        "label": "Contact Name",
+        "description": "e.g. Iris Tham",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "emails",
+        "label": "Emails",
+        "description": "Comma separated"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "phones",
+        "label": "Phones",
+        "description": "Comma separated"
+      }
+    ]
+  },
+  {
+    "id": "field-submit",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-submit",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Button Label",
+        "value": "Send"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals",
+        "description": "Leave empty to always show the button."
       }
     ]
   },
@@ -1039,6 +1398,105 @@
     ]
   },
   {
+    "id": "interactive-dashboard",
+    "fields": []
+  },
+  {
+    "id": "list",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Type",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "CTA Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "CTA Text"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkType",
+        "label": "CTA Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (text link)",
+            "value": ""
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "modal",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Modal Content",
+        "description": "A fragment page, e.g. under /modals/. Opens in a dialog."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Button Text"
+      }
+    ]
+  },
+  {
     "id": "page-header",
     "fields": [
       {
@@ -1302,6 +1760,495 @@
             "value": "grey"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "table-list",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "variations",
+        "label": "Variations",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Compact",
+            "value": "compact"
+          },
+          {
+            "name": "No Description",
+            "value": "no-description"
+          },
+          {
+            "name": "Black Theme",
+            "value": "dark"
+          },
+          {
+            "name": "Featured Industry",
+            "value": "featured-industry"
+          },
+          {
+            "name": "No Number",
+            "value": "no-number"
+          },
+          {
+            "name": "Description First",
+            "value": "description-first"
+          },
+          {
+            "name": "Title Right",
+            "value": "title-right"
+          }
+        ]
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "maxCards",
+        "label": "Maximum Cards",
+        "description": "Display between 1 and 4 cards.",
+        "value": 4,
+        "validation": {
+          "numberMin": 1,
+          "numberMax": 4,
+          "customErrorMsg": "Maximum Cards must be between 1 and 4."
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showTags",
+        "label": "Show Tags",
+        "description": "Display each card's tags above its description (Title Right variation only).",
+        "value": false
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "view",
+        "label": "View",
+        "value": "list",
+        "options": [
+          {
+            "name": "List",
+            "value": "list"
+          },
+          {
+            "name": "Table",
+            "value": "table"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cardColor",
+        "label": "Card Color",
+        "value": "white",
+        "options": [
+          {
+            "name": "White",
+            "value": "white"
+          },
+          {
+            "name": "Blue",
+            "value": "blue"
+          },
+          {
+            "name": "Black",
+            "value": "black"
+          },
+          {
+            "name": "Grey",
+            "value": "grey"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "display",
+        "label": "Display",
+        "value": "title-description",
+        "options": [
+          {
+            "name": "Title and Description",
+            "value": "title-description"
+          },
+          {
+            "name": "Title only",
+            "value": "title"
+          },
+          {
+            "name": "Description only",
+            "value": "description"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "viewAllLabel",
+        "label": "View All Title",
+        "value": "View all",
+        "description": "Text of the header \"View all\" link."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "viewAllLink",
+        "label": "View All Link",
+        "description": "Destination URL for the header \"View all\" link. The link is shown only when set.",
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "motion",
+        "label": "Motion Type",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Fade",
+            "value": "fade"
+          },
+          {
+            "name": "Slide",
+            "value": "slide"
+          },
+          {
+            "name": "Reveal",
+            "value": "reveal"
+          }
+        ],
+        "description": "Animates the cards as they scroll into view (not in table view, or when reduced motion is preferred)."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "listHeading",
+        "label": "List Title",
+        "value": "",
+        "description": "Heading of the list. Leave blank to use the Table List Header item heading."
+      }
+    ]
+  },
+  {
+    "id": "table-list-header",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heading",
+        "label": "Heading",
+        "value": "Our transformation solutions"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "exploreLink",
+        "label": "Explore All Link",
+        "description": "Legacy header link. The parent View All settings take precedence when configured.",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "table-list-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "number",
+        "label": "Number",
+        "description": "Optional. Leave blank to number cards automatically.",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": "TwinX"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value": "Risk free business experimentation and decision making"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Page Reference",
+        "description": "Destination page path for the card.",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag1",
+        "label": "Tag 1",
+        "description": "Optional. Displayed above the description when Show Tags is enabled.",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag2",
+        "label": "Tag 2",
+        "description": "Optional second tag displayed above the description.",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Border",
+            "children": [
+              {
+                "name": "Striped",
+                "value": "striped"
+              },
+              {
+                "name": "Bordered",
+                "value": "bordered"
+              }
+            ]
+          },
+          {
+            "name": "Header",
+            "children": [
+              {
+                "name": "No Header",
+                "value": "no-header"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "filter",
+        "label": "Columns",
+        "valueType": "string",
+        "value": "table",
+        "options": [
+          {
+            "name": "1 Column",
+            "value": "table"
+          },
+          {
+            "name": "2 Columns",
+            "value": "table-2-columns"
+          },
+          {
+            "name": "3 Columns",
+            "value": "table-3-columns"
+          },
+          {
+            "name": "4 Columns",
+            "value": "table-4-columns"
+          },
+          {
+            "name": "5 Columns",
+            "value": "table-5-columns"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table-row",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      }
+    ]
+  },
+  {
+    "id": "table-col-2",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      }
+    ]
+  },
+  {
+    "id": "table-col-3",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column3"
+      }
+    ]
+  },
+  {
+    "id": "table-col-4",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column4"
+      }
+    ]
+  },
+  {
+    "id": "table-col-5",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column5"
+      }
+    ]
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Tab Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_heading",
+        "value": "",
+        "label": "Heading"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_headingType",
+        "value": "",
+        "label": "Heading Type",
+        "options": [
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "content_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "content_richtext",
+        "value": "",
+        "label": "Content",
+        "valueType": "string"
       }
     ]
   },
@@ -2026,6 +2973,49 @@
             "value": ""
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "uri",
+        "label": "Video"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Auto Play",
+            "children": [
+              {
+                "name": "AutoPlay",
+                "value": "autoplay"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "placeholder_image",
+        "label": "Placeholder Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "placeholder_imageAlt",
+        "value": "",
+        "label": "Placeholder Image Alt Text"
       }
     ]
   }

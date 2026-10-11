@@ -1,0 +1,52 @@
+/* Modal (Block Collection), site styles */
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal dialog::backdrop {
+  background-color: rgb(12 12 13 / 75%);
+}
+
+.modal dialog {
+  width: calc(100vw - 48px);
+  max-width: 900px;
+  max-height: calc(100dvh - (2 * var(--nav-height)));
+  border: 0;
+  border-radius: var(--radius-l);
+  padding: 0;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
+}
+
+.modal dialog .modal-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: calc(100dvh - (2 * var(--nav-height)) - 48px);
+  margin-top: var(--space-1200);
+  padding: 0 var(--space-600) var(--space-600);
+  overflow-y: auto;
+  overscroll-behavior: none;
+}
+
+.modal .close-button {
+  position: absolute;
+  top: var(--space-200);
+  right: var(--space-200);
+}
+
+.modal dialog .section {
+  padding: 0;
+}
+
+@media (width >= 900px) {
+  .modal dialog {
+    width: calc(100vw - 64px);
+  }
+
+  .modal dialog .modal-content {
+    max-height: calc(100dvh - (2 * var(--nav-height)) - 64px);
+    padding: 0 var(--space-800) var(--space-800);
+  }
+}
