@@ -1,8 +1,8 @@
 /**
  * Placeholders utils: user-facing UI text from the locale's placeholders spreadsheet
- * (/{country}/{language}/placeholders.json, columns Key, Text, Description and Category; code
- * uses Key and Text), loaded once per page, so labels are authorable and translated per locale
- * site. Code always passes an English fallback for missing keys.
+ * (/{locale}/placeholders.json, e.g. /de-de/placeholders.json; columns Key, Text, Description
+ * and Category, code uses Key and Text), loaded once per page, so labels are authorable and
+ * translated per locale site. Code always passes an English fallback for missing keys.
  *
  * Keys are camelCase in code; the sheet's Key column may use any casing or separators, e.g.
  * "Pause Slides", "pause-slides" and "pauseSlides" all match pauseSlides.

@@ -2,7 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
-import { localePagePath } from '../../utils/site.js';
+import { resolvePagePath } from '../../utils/site.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
@@ -120,9 +120,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
   t = await getPlaceholders();
-  // load nav as fragment: the Nav metadata, or the locale's references/nav
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : localePagePath('references/nav');
+  // load nav as fragment: the nav metadata (page properties Navigation, or the metadata sheet's
+  // nav column), else the locale's references/nav
+  const navPath = resolvePagePath(getMetadata('nav'), 'references/nav');
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM

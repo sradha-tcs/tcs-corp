@@ -201,7 +201,7 @@ export function decorateMain(main) {
 }
 
 /**
- * Error pages (404.html): the locale's authored error page (/{country}/{language}/error-pages/
+ * Error pages (404.html): the locale's authored error page (/{locale}/error-pages/
  * 404, 403 or 500) replaces the built-in content; the built-in content stays when the page
  * isn't published.
  * @param {Element} main The main element
@@ -225,12 +225,37 @@ async function loadErrorPage(main) {
   }
 }
 
+// Site Global Templates (/content/tcs-corp/site-global-templates) with template code in
+// templates/{name}/: the page's Page Type (page properties or the metadata sheet's page-type)
+const TEMPLATES = ['home', 'article', 'blog', 'press-release'];
+
+/** the Page Type (page properties or the metadata sheet), else the Template metadata */
+const pageTypeOf = () => toClassName(getMetadata('page-type') || getMetadata('template'));
+
 /**
- * Adds the Page Type metadata (bulk metadata sheet) as a body class, like Template and Theme.
+ * Adds the Page Type as a body class, like Template and Theme.
  */
 function decoratePageType() {
   const pageType = toClassName(getMetadata('page-type'));
   if (pageType) document.body.classList.add(pageType);
+}
+
+/**
+ * Loads the template of the Page Type (templates/{name}/{name}.js and .css) and lets it add
+ * its structure to main before main is decorated.
+ * @param {Element} main The main element
+ */
+async function loadTemplate(main) {
+  const name = pageTypeOf();
+  if (!TEMPLATES.includes(name)) return;
+  try {
+    const base = `${window.hlx.codeBasePath}/templates/${name}/${name}`;
+    const [template] = await Promise.all([import(`${base}.js`), loadCSS(`${base}.css`)]);
+    if (template.default) await template.default(main);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`failed to load template ${name}`, error);
+  }
 }
 
 /**
@@ -244,6 +269,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     if (window.isErrorPage) await loadErrorPage(main);
+    else await loadTemplate(main);
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
