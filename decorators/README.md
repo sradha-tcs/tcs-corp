@@ -18,6 +18,8 @@ checks) live in [`../utils`](../utils/README.md).
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | teaser, page-header |
 | `tag-decorator.js` | `buildTagList` | teaser, page-header |
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
+| `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
+| `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
 | `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, table-list, conversation-canvas |
 
 ## Guidelines

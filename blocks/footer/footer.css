@@ -18,3 +18,26 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+
+/* social links (the locale's Social Links data sheet) */
+footer .footer .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+footer .footer .footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color);
+}
+
+footer .footer .footer-social .icon,
+footer .footer .footer-social img {
+  width: 24px;
+  height: 24px;
+}

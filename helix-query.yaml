@@ -6,6 +6,17 @@ indices:
       - '/**'
     exclude:
       - '/**.json'
+      # not content pages: fragments (incl. nav and footer), error pages, data sheets,
+      # page templates and the block library
+      - '/*/*/references/**'
+      - '/*/*/error-pages/**'
+      - '/*/*/data/**'
+      - '/*/*/nav'
+      - '/*/*/footer'
+      - '/site-global-templates/**'
+      - '/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modals/**'
     target: /query-index.json
     properties:
       lastModified:
@@ -23,19 +34,58 @@ indices:
       image:
         select: head > meta[property="og:image"]
         value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
-      # standard metadata: set on the page or by the bulk metadata sheet (/metadata.json)
-      template:
-        select: head > meta[name="template"]
-        value: attribute(el, "content")
-      category:
-        select: head > meta[name="category"]
-        value: attribute(el, "content")
-      author:
-        select: head > meta[name="author"]
-        value: attribute(el, "content")
-      date:
-        select: head > meta[name="publication-date"]
-        value: attribute(el, "content")
       tags:
         select: head > meta[property="article:tag"]
         values: attribute(el, "content")
+      # columns of the locale's bulk metadata sheet (/{country}/{language}/metadata)
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+      metaDescription:
+        select: head > meta[name="meta-description"]
+        value: attribute(el, "content")
+      pageType:
+        select: head > meta[name="page-type"]
+        value: attribute(el, "content")
+      contentType:
+        select: head > meta[name="content-type"]
+        value: attribute(el, "content")
+      authorId:
+        select: head > meta[name="author-id"]
+        value: attribute(el, "content")
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: attribute(el, "content")
+      modifiedDate:
+        select: head > meta[name="modified-date"]
+        value: attribute(el, "content")
+      readingTime:
+        select: head > meta[name="reading-time"]
+        value: attribute(el, "content")
+      thumbnailImage:
+        select: head > meta[name="thumbnail-image"]
+        value: attribute(el, "content")
+      featuredImage:
+        select: head > meta[name="featured-image"]
+        value: attribute(el, "content")
+      region:
+        select: head > meta[name="region"]
+        value: attribute(el, "content")
+      country:
+        select: head > meta[name="country"]
+        value: attribute(el, "content")
+      language:
+        select: head > meta[name="language"]
+        value: attribute(el, "content")
+      persona:
+        select: head > meta[name="persona"]
+        value: attribute(el, "content")
+      campaignId:
+        select: head > meta[name="campaign-id"]
+        value: attribute(el, "content")
+      featured:
+        select: head > meta[name="featured"]
+        value: attribute(el, "content")
+      priority:
+        select: head > meta[name="priority"]
+        value: attribute(el, "content")

@@ -1,9 +1,31 @@
 /**
- * Metadata utils: the page's standard metadata, set on the page (Title, Description) or by
- * the bulk metadata spreadsheet (/metadata.json), e.g. Template, Tags, Publication Date,
- * Author, Category. Names follow https://www.aem.live/docs/special-metadata-properties.
+ * Metadata utils: the page's metadata, set on the page (Title, Description, Keywords, Tags)
+ * or by the locale's bulk metadata spreadsheet (/{country}/{language}/metadata, published as
+ * /metadata.json). Every sheet column is published as a <meta> named after it:
+ *
+ * url (the pattern of the pages a row applies to), page-type, meta-title, meta-description,
+ * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
+ * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
+ * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
+ * featured-image, campaign-id, content-type, featured, priority
+ *
+ * The SEO and social columns are applied to the document head by decorators/seo-decorator.js.
  */
 import { getMetadata } from '../scripts/aem.js';
+import { getLocale } from './site.js';
+
+/** the first non-empty metadata value of the names */
+const metaOf = (...names) => names.map((name) => getMetadata(name)).find(Boolean) || '';
+
+// the page title and description as authored, read when the module loads: the SEO decorator
+// replaces document.title and the description <meta> with meta-title / meta-description
+const AUTHORED = {
+  title: getMetadata('og:title') || document.title,
+  description: getMetadata('description'),
+};
+
+/** true for yes / true / 1 / on */
+const isYes = (value) => ['yes', 'true', '1', 'on', 'y'].includes(value.trim().toLowerCase());
 
 /**
  * The page tags: each Tags value is published as <meta property="article:tag">.
@@ -18,21 +40,50 @@ export function getPageTags() {
 }
 
 /**
- * The page's standard metadata as typed values.
+ * The page language: the Language metadata when it's a language code (e.g. en, en-US),
+ * otherwise the language of the locale site.
+ * @returns {string}
+ */
+export function getPageLanguage() {
+  const language = getMetadata('language');
+  return /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(language) ? language : getLocale().language;
+}
+
+/**
+ * The page's metadata as typed values.
  * @returns {{
- *   title: string, description: string, image: string, template: string, category: string,
- *   tags: string[], publicationDate: string, author: string
+ *   title: string, description: string, image: string, pageType: string, contentType: string,
+ *   category: string, tags: string[], authorId: string, author: string, publishDate: string,
+ *   modifiedDate: string, readingTime: string, thumbnailImage: string, featuredImage: string,
+ *   region: string, country: string, language: string, persona: string, campaignId: string,
+ *   featured: boolean, priority: number | null
  * }}
  */
 export function getPageMetadata() {
+  const priority = parseFloat(getMetadata('priority'));
   return {
-    title: getMetadata('og:title') || document.title,
-    description: getMetadata('description'),
-    image: getMetadata('og:image'),
-    template: getMetadata('template'),
+    title: AUTHORED.title,
+    description: AUTHORED.description,
+    image: metaOf('featured-image', 'og:image'),
+    // Page Type; the standard Template metadata as a fallback
+    pageType: metaOf('page-type', 'template'),
+    contentType: getMetadata('content-type'),
     category: getMetadata('category'),
     tags: getPageTags(),
-    publicationDate: getMetadata('publication-date'),
+    authorId: getMetadata('author-id'),
+    // the standard Author metadata, for pages without an Author ID
     author: getMetadata('author'),
+    publishDate: metaOf('publish-date', 'publication-date'),
+    modifiedDate: getMetadata('modified-date'),
+    readingTime: getMetadata('reading-time'),
+    thumbnailImage: getMetadata('thumbnail-image'),
+    featuredImage: getMetadata('featured-image'),
+    region: getMetadata('region'),
+    country: getMetadata('country') || getLocale().country,
+    language: getPageLanguage(),
+    persona: getMetadata('persona'),
+    campaignId: getMetadata('campaign-id'),
+    featured: isYes(getMetadata('featured')),
+    priority: Number.isNaN(priority) ? null : priority,
   };
 }

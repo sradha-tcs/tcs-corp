@@ -1,10 +1,9 @@
 {
   "mappings": [
     "/content/tcs-corp/:/",
-    "/content/tcs-corp/metadata:/metadata.json",
-    "/content/tcs-corp/redirects:/redirects.json",
-    "/content/tcs-corp/placeholders:/placeholders.json",
-    "/content/tcs-corp/taxonomy:/taxonomy.json"
+    "/content/tcs-corp/us/en/metadata:/metadata",
+    "/content/tcs-corp/us/en/redirects:/redirects",
+    "/content/tcs-corp/us/en/taxonomy:/us/en/taxonomy.json"
   ],
   "includes": [
     "/content/tcs-corp/"
