@@ -13,7 +13,7 @@ import {
   toClassName,
 } from './aem.js';
 import { applyPageProperties, buildPropertyImage } from './page-properties.js';
-import { decorateButtons } from '../decorators/button-decorator.js';
+import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 
 // re-exported for scripts that import it from here, e.g. editor-support.js
 export { decorateButtons };

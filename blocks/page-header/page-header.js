@@ -2,10 +2,15 @@ import { getMetadata } from '../../scripts/aem.js';
 import {
   buildPropertyImage, buildStoryLink, getPageProperties, renderRichText,
 } from '../../scripts/page-properties.js';
-import { NEW_WINDOW, decorateButton } from '../../decorators/button-decorator.js';
-import {
-  buildTagList, buildTime, fromCell, optionOf, pictureOf, readProperties, textOf,
-} from '../../decorators/block-properties.js';
+import { decorateButton } from '../../decorators/button-decorator.js';
+import { fromCell } from '../../decorators/content-decorator.js';
+import { buildTime } from '../../decorators/date-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import { pictureOf } from '../../decorators/image-decorator.js';
+import { buildTagList } from '../../decorators/tag-decorator.js';
+import { NEW_WINDOW, linkOf } from '../../utils/links.js';
+import { optionOf, readProperties, textOf } from '../../utils/properties.js';
+import { uniqueId } from '../../utils/ids.js';
 
 /*
  * Page Header (blocks/page-header/_page-header.json): built from the page properties
@@ -20,8 +25,6 @@ import {
 const LAYOUTS = ['landing', 'article'];
 const LANDING_PAGE_TYPES = ['landing', 'listing'];
 const CTA_STYLES = ['primary', 'secondary'];
-
-let statusCount = 0;
 
 /** the layout: the block Style, or the Page Type (Landing / Listing pages: landing) */
 function layoutOf(block, props, pageType) {
@@ -42,15 +45,9 @@ async function richText(html, className) {
   return el.children.length ? el : null;
 }
 
-function iconButton(label, icon, onClick) {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.setAttribute('aria-label', label);
-  button.addEventListener('click', onClick);
-  return decorateButton(button, {
-    view: 'icon', type: 'tertiary', icon, title: label,
-  });
-}
+const iconButton = (label, icon, onClick) => createIconButton({
+  label, icon, type: 'tertiary', onClick,
+});
 
 /** listen (authored link), download (prints / saves as PDF) and share actions */
 function buildActions(props, story, title) {
@@ -59,10 +56,9 @@ function buildActions(props, story, title) {
   const status = document.createElement('p');
   status.className = 'page-header-status';
   status.setAttribute('role', 'status');
-  statusCount += 1;
-  status.id = `page-header-status-${statusCount}`;
+  status.id = uniqueId('page-header-status');
 
-  const listen = props.listenlink?.querySelector('a[href]');
+  const listen = linkOf(props.listenlink);
   if (listen) {
     listen.textContent = 'Listen to this page';
     decorateButton(listen, { view: 'icon', type: 'tertiary', icon: 'headphones' });
@@ -150,7 +146,7 @@ function buildCtas(props) {
   ctas.className = 'page-header-ctas';
   const story = buildStoryLink();
   if (story) ctas.append(story);
-  const second = props.secondarycta?.querySelector('a[href]');
+  const second = linkOf(props.secondarycta);
   if (second) {
     const style = textOf(props.secondaryctastyle).toLowerCase();
     const type = CTA_STYLES.includes(style) ? style : '';

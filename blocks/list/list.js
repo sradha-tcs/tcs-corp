@@ -5,7 +5,8 @@
  * Button components); the CTA uses the shared button decorator.
  */
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { decorateButton, readButtonOptions } from '../../decorators/button-decorator.js';
+import { decorateButton } from '../../decorators/button-decorator.js';
+import { readButtonOptions } from '../../utils/buttons.js';
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 

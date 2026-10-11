@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -131,12 +132,8 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button, .link-button');
-  if (brandLink) {
-    brandLink.className = '';
-    const wrapper = brandLink.closest('.button-wrapper');
-    if (wrapper) wrapper.className = '';
-  }
+  // the logo link is a plain link, not a button
+  removeButtonDecoration(navBrand.querySelector('.button, .link-button'));
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {

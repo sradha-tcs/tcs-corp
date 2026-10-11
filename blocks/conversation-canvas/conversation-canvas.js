@@ -1,14 +1,15 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { buildPropertyImage, getPageProperties, toSitePath } from '../../scripts/page-properties.js';
+import { buildPropertyImage, getPageProperties } from '../../scripts/page-properties.js';
+import { hideVisually } from '../../decorators/a11y-decorator.js';
+import { createButton } from '../../decorators/button-decorator.js';
+import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import {
-  BUTTON_ALIGNMENTS,
-  BUTTON_TYPES,
-  BUTTON_VIEWS,
-  createButton,
-  decorateButton,
-  readButtonOptions,
-} from '../../decorators/button-decorator.js';
+  BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, readButtonOptions,
+} from '../../utils/buttons.js';
+import { normalizeKey as normalize, textOf } from '../../utils/properties.js';
+import { toSitePath } from '../../utils/urls.js';
+import { uniqueId } from '../../utils/ids.js';
 
 // conversation canvas properties (_conversation-canvas.json), keyed by their normalized row name
 const FIELDS = [
@@ -18,10 +19,6 @@ const FIELDS = [
 ];
 const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
-
-let instanceCount = 0;
-
-const normalize = (text) => toClassName(text || '').replace(/-/g, '');
 
 /**
  * Reads the key-value property rows and the Button List item rows of the block.
@@ -46,8 +43,6 @@ function readBlock(block) {
   }
   return { config, buttonRows };
 }
-
-const textOf = (cell) => cell?.textContent.trim() || '';
 
 /**
  * Returns the image of an image property cell, with the given alt text (or one merged into it).
@@ -197,8 +192,7 @@ function buildSearchForm(config, id, block) {
   input.id = `${id}-q`;
   input.placeholder = placeholder;
   input.autocomplete = 'off';
-  const label = document.createElement('label');
-  label.className = 'conversation-canvas-visually-hidden';
+  const label = hideVisually(document.createElement('label'));
   label.htmlFor = input.id;
   label.textContent = placeholder;
 
@@ -227,14 +221,11 @@ function buildSearchForm(config, id, block) {
 
   // submit: an icon button from the button decorator (icon button types)
   const submitLabel = textOf(config.searchbuttonlabel) || 'Submit';
-  const submit = document.createElement('button');
-  submit.type = 'submit';
-  submit.textContent = submitLabel;
-  decorateButton(submit, {
-    view: 'icon',
-    type: textOf(config.searchbuttonstyle).toLowerCase() || 'primary',
+  const submit = createIconButton({
+    label: submitLabel,
     icon: 'arrow-right',
-    title: submitLabel,
+    type: textOf(config.searchbuttonstyle).toLowerCase() || 'primary',
+    buttonType: 'submit',
   });
 
   form.addEventListener('submit', (e) => {
@@ -608,8 +599,7 @@ export function setConversationCanvasFilters(block, tags = []) {
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  instanceCount += 1;
-  const id = `conversation-canvas-${instanceCount}`;
+  const id = uniqueId('conversation-canvas');
   const { config, buttonRows } = readBlock(block);
 
   // style options

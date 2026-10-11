@@ -1,8 +1,11 @@
-import { loadScript } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import {
-  NEW_WINDOW, decorateButton, readButtonOptions, readLinkItems,
-} from '../../decorators/button-decorator.js';
+import { decorateButton } from '../../decorators/button-decorator.js';
+import { readButtonOptions } from '../../utils/buttons.js';
+import { prefersReducedMotion } from '../../utils/environment.js';
+import { NEW_WINDOW, readLinkItems } from '../../utils/links.js';
+import { onVisible, watchVisibility } from '../../utils/viewport.js';
+import { loadLottie } from '../../utils/lottie.js';
+import { isAnimation } from '../../utils/media.js';
 
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
@@ -15,20 +18,7 @@ import {
  * bg-dark | bg-dark-subtle | bg-black.
  */
 
-const LOTTIE_PLAYER = '/scripts/lib/lottie/lottie_light.min.js';
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
-
-let lottiePlayer;
-
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isAnimation = (href) => /\.json([?#]|$)/i.test(href);
-
-/** loads the Lottie player once per page; loadScript() resolves early for repeat calls */
-function loadLottiePlayer() {
-  lottiePlayer = lottiePlayer
-    || loadScript(`${window.hlx.codeBasePath}${LOTTIE_PLAYER}`).then(() => window.lottie);
-  return lottiePlayer;
-}
 
 /**
  * Plays a Lottie animation in the container, after the page has rendered: the player is
@@ -37,7 +27,7 @@ function loadLottiePlayer() {
  */
 function playAnimation(container, path) {
   const start = async () => {
-    const lottie = await loadLottiePlayer();
+    const lottie = await loadLottie();
     const still = prefersReducedMotion();
     const animation = lottie.loadAnimation({
       container,
@@ -51,21 +41,19 @@ function playAnimation(container, path) {
       animation.addEventListener('DOMLoaded', () => animation.goToAndStop(0, true));
       return;
     }
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) animation.play();
+    watchVisibility(container, (visible) => {
+      if (visible) animation.play();
       else animation.pause();
-    }).observe(container);
+    });
   };
 
-  new IntersectionObserver((entries, observer) => {
-    if (!entries.some((entry) => entry.isIntersecting)) return;
-    observer.disconnect();
+  onVisible(container, () => {
     const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 200));
     idle(() => start().catch((error) => {
       // eslint-disable-next-line no-console
       console.error('hero: failed to play the Lottie animation', error);
     }));
-  }, { rootMargin: '200px' }).observe(container);
+  }, { rootMargin: '200px' });
 }
 
 /** a cell holding only links (and Link Type values): the CTA List */

@@ -1,6 +1,8 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { isOn, readProperties } from '../../decorators/block-properties.js';
+import { scrollBehavior } from '../../utils/environment.js';
+import { readMultifieldItems } from '../../utils/multifield.js';
+import { isOn, readProperties } from '../../utils/properties.js';
 
 /*
  * Anchor List (blocks/anchor-list/_anchor-list.json): chapter navigation. Each link jumps to
@@ -8,24 +10,13 @@ import { isOn, readProperties } from '../../decorators/block-properties.js';
  * The link of the section in view is marked current (Figma "Chapter Nav").
  */
 
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 /**
  * Reads the Links composite multifield: items are runs of elements between <hr>s (or list
  * items), each with a Link Title and an Anchor Name.
  * @returns {{ label: string, anchor: string }[]}
  */
 function readAnchors(cell) {
-  if (!cell) return [];
-  const list = cell.querySelector(':scope > ul');
-  const items = list ? [...list.children].map((li) => [li]) : [[]];
-  if (!list) {
-    [...cell.children].forEach((el) => {
-      if (el.tagName === 'HR') items.push([]);
-      else items[items.length - 1].push(el);
-    });
-  }
-  return items.map((item) => {
+  return readMultifieldItems(cell).map((item) => {
     const texts = item.map((el) => el.textContent.trim()).filter(Boolean);
     const [label, anchor] = texts;
     // an anchor name may be typed with or without "#"; fall back to the title
@@ -77,7 +68,7 @@ export default function decorate(block) {
       if (!target) return;
       e.preventDefault();
       target.style.scrollMarginTop = `${scrollOffset(block)}px`;
-      target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+      target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
       window.history.replaceState(null, '', `#${anchor}`);
       // move keyboard focus to the chapter without scrolling again
       if (!target.hasAttribute('tabindex')) target.tabIndex = -1;
@@ -101,7 +92,7 @@ export default function decorate(block) {
     link.setAttribute('aria-current', 'true');
     // keep the current link visible when the list scrolls sideways
     const left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
-    list.scrollTo({ left, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    list.scrollTo({ left, behavior: scrollBehavior() });
   };
   let frame = 0;
   const update = () => {

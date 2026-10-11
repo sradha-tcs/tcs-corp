@@ -125,16 +125,6 @@
   letter-spacing: -0.025em;
 }
 
-/* Hide Title: kept for screen readers */
-.teaser .teaser-title.teaser-title-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
 .teaser .teaser-view-all {
   flex: none;
 }

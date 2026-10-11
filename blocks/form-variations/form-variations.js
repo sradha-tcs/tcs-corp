@@ -1,7 +1,10 @@
-import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
-import { buildHeading, fromCell, textOf } from '../../decorators/block-properties.js';
+import { fromCell } from '../../decorators/content-decorator.js';
+import { buildHeading } from '../../decorators/heading-decorator.js';
+import { isInEditor } from '../../utils/environment.js';
+import { textOf } from '../../utils/properties.js';
+import { createIdFactory, uniqueId } from '../../utils/ids.js';
 
 /*
  * Form Variations (blocks/form-variations/_form-variations.json): a form built from child
@@ -20,8 +23,6 @@ const ITEM_TYPES = [
 const INPUT_KINDS = ['text', 'email', 'tel'];
 const DEFAULT_MAX_LENGTH = 1500;
 const SUCCESS_MESSAGE = 'Thank you, your details were sent.';
-
-let blockCount = 0;
 
 const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
@@ -46,22 +47,6 @@ function instrument(cell, el) {
   if (!cell) return;
   if (cell.children.length === 1) moveInstrumentation(cell.firstElementChild, el);
   moveInstrumentation(cell, el);
-}
-
-/** a unique id within the page for a field of this block instance */
-function createIdFactory(prefix) {
-  const used = new Set();
-  return (name) => {
-    const base = `${prefix}-${toClassName(name) || 'field'}`;
-    let id = base;
-    let n = 2;
-    while (used.has(id) || document.getElementById(id)) {
-      id = `${base}-${n}`;
-      n += 1;
-    }
-    used.add(id);
-    return id;
-  };
 }
 
 function createGroup(classNames, dependsOn) {
@@ -307,9 +292,8 @@ function collectData(form) {
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  blockCount += 1;
-  const nextId = createIdFactory(`form-variations-${blockCount}`);
-  const editing = block.hasAttribute('data-aue-resource');
+  const nextId = createIdFactory(uniqueId('form-variations'));
+  const editing = isInEditor(block);
 
   const form = document.createElement('form');
   form.className = 'form-variations-form';

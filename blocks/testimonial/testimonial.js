@@ -1,7 +1,12 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { hideVisually } from '../../decorators/a11y-decorator.js';
+import { fromCell } from '../../decorators/content-decorator.js';
+import { buildHeading } from '../../decorators/heading-decorator.js';
+import { pictureOf } from '../../decorators/image-decorator.js';
+import { readMultifieldItems } from '../../utils/multifield.js';
 import {
-  buildHeading, fromCell, isOn, optionOf, pictureOf, readProperties, textOf,
-} from '../../decorators/block-properties.js';
+  isOn, optionOf, readProperties, textOf,
+} from '../../utils/properties.js';
 
 /*
  * Testimonial (blocks/testimonial/_testimonial.json): a key-value block. A section title,
@@ -17,19 +22,14 @@ const BG_COLORS = ['grey'];
  * @returns {{ label: Element[], value: Element }[]}
  */
 function readStats(cell) {
-  if (!cell) return [];
-  const list = cell.querySelector(':scope > ul');
-  const items = list ? [...list.children].map((li) => [...li.children]) : [[]];
-  if (!list) {
-    [...cell.children].forEach((el) => {
-      if (el.tagName === 'HR') items.push([]);
-      else items[items.length - 1].push(el);
-    });
-  }
-  return items.filter((item) => item.length).map((item) => ({
-    label: item.slice(0, -1),
-    value: item[item.length - 1],
-  }));
+  return readMultifieldItems(cell)
+    // a list item holds the stat's elements
+    .map((item) => (item.length === 1 && item[0].tagName === 'LI' ? [...item[0].children] : item))
+    .filter((item) => item.length)
+    .map((item) => ({
+      label: item.slice(0, -1),
+      value: item[item.length - 1],
+    }));
 }
 
 function buildStats(cell) {
@@ -79,7 +79,8 @@ export default function decorate(block) {
   const bgColor = optionOf(block, props.bgcolor, BG_COLORS);
 
   const title = buildHeading(props.title, props.titletype, 'testimonial-title');
-  if (title && isOn(props.titlehidden)) title.classList.add('testimonial-title-hidden');
+  // Hide Title: kept for screen readers
+  if (title && isOn(props.titlehidden)) hideVisually(title);
 
   const figure = document.createElement('figure');
   figure.className = 'testimonial-quote';
