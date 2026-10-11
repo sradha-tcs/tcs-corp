@@ -92,6 +92,33 @@ export function getLocale(pathname = window.location.pathname) {
 }
 
 /**
+ * The parent pages of a page up to its locale's Home page (index), nearest first, as the URLs
+ * to load: published paths (/de-de/insights/blogs, /de-de/insights, /de-de/), or AEM page URLs
+ * when editing (/content/tcs-corp/de/de-de/insights.html, …/de/de-de/index.html). Empty for the
+ * Home page and for pages outside a locale.
+ * @param {string} [pathname] defaults to the current page
+ * @returns {string[]}
+ */
+export function getParentPages(pathname = window.location.pathname) {
+  const contentRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
+  const path = pathname.slice(contentRoot.length)
+    .replace(/(\.plain)?\.html$/, '')
+    .replace(/\/(index)?$/, '');
+  const locale = contentRoot ? localeOfAemPath(path) : localeOfSitePath(path);
+  if (!locale) return [];
+  const root = contentRoot ? aemRootOf(locale) : rootOf(locale);
+  const segments = path.slice(root.length).split('/').filter(Boolean);
+  if (!segments.length) return [];
+  const parents = [];
+  for (let depth = segments.length - 1; depth > 0; depth -= 1) {
+    const parent = `${root}/${segments.slice(0, depth).join('/')}`;
+    parents.push(contentRoot ? `${contentRoot}${parent}.html` : parent);
+  }
+  parents.push(contentRoot ? `${contentRoot}${root}/index.html` : `${root}/`);
+  return parents;
+}
+
+/**
  * Converts an AEM page path (/content/tcs-corp/de/de-de/about) to its published path
  * (/de-de/about), following paths.json; other paths are returned unchanged.
  * @param {string} pathname
@@ -125,9 +152,10 @@ export function toAemPath(pathname, contentRoot) {
  * The path of a page in the current locale, e.g. references/nav: /de-de/references/nav
  * (/content/tcs-corp/de/de-de/references/nav when editing in AEM).
  * @param {string} path relative to the locale root
+ * @param {string} [pathname] a page of the locale to use, defaults to the current page
  */
-export function localePagePath(path) {
-  const { root, aemRoot, contentRoot } = getLocale();
+export function localePagePath(path, pathname = window.location.pathname) {
+  const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
   return contentRoot ? `${contentRoot}${aemRoot}/${relative}` : `${root}/${relative}`;
 }

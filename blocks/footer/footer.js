@@ -1,8 +1,8 @@
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildSocialLinks } from '../../decorators/social-links-decorator.js';
 import { getSocialLinks } from '../../utils/data.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
+import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 /**
@@ -10,9 +10,10 @@ import { resolvePagePath } from '../../utils/site.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment: the footer metadata (page properties Footer, or the metadata sheet's
-  // footer column), else the locale's references/footer
-  const footerPath = resolvePagePath(getMetadata('footer'), 'references/footer');
+  // load footer as fragment: the Footer page property of the page or, inherited, of its nearest
+  // parent page up to Home (or the metadata sheet's footer column), else the locale's
+  // references/footer
+  const footerPath = resolvePagePath(await getInheritedMetadata('footer'), 'references/footer');
   const [fragment, socialLinks, t] = await Promise.all([
     loadFragment(footerPath), getSocialLinks(), getPlaceholders(),
   ]);
