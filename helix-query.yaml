@@ -39,7 +39,7 @@ indices:
       tags:
         select: head > meta[property="article:tag"]
         values: attribute(el, "content")
-      # columns of the locale's bulk metadata sheet (e.g. /de-de/metadata)
+      # columns of the locales' bulk metadata sheets (e.g. /de-de/metadata.json)
       metaTitle:
         select: head > meta[name="meta-title"]
         value: attribute(el, "content")
