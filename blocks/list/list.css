@@ -1,0 +1,37 @@
+/* List: title with a CTA on the right, site styles */
+.list .list-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-400) var(--space-600);
+}
+
+.list .list-title-slot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.list .list-title-slot :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-xxl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.list .list-cta-slot {
+  display: flex;
+  align-items: center;
+}
+
+@media (width >= 600px) {
+  .list .list-header-row {
+    align-items: center;
+  }
+
+  .list .list-cta-slot {
+    margin-inline-start: auto;
+  }
+}
