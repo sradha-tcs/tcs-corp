@@ -69,6 +69,13 @@
           "label": "Author Details"
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "authorName",
+          "label": "Author",
+          "description": "e.g. Ranil Boteju, Chief Data & Analytics Officer, Lloyds Banking Group"
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "authorImage",

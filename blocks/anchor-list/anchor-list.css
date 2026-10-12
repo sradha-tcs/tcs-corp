@@ -1,20 +1,17 @@
 /* Anchor List (TCS.com DS Figma "Chapter Nav", 404-15450) */
 
-/*
- * Sticky: a sticky element only sticks within its parent. In its own section, the section
- * sticks (through the rest of the page); in a section with other content, the list sticks while
- * that section is in view.
- */
-main > .section:has(> .anchor-list-wrapper:only-child > .anchor-list.sticky),
-main > .section > .anchor-list-wrapper:not(:only-child):has(> .anchor-list.sticky) {
-  position: sticky;
-  top: var(--nav-height, 0);
-  z-index: 10;
+/* Sticky: pinned to the top of the screen by anchor-list.js once scrolled up to it */
+.anchor-list.sticky {
   background-color: var(--color-bg-default);
 }
 
-.anchor-list.sticky {
-  background-color: var(--color-bg-default);
+.anchor-list.anchor-list-pinned {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  padding-inline: var(--section-padding-inline, 0);
 }
 
 .anchor-list .anchor-list-items {
@@ -72,12 +69,6 @@ main > .section > .anchor-list-wrapper:not(:only-child):has(> .anchor-list.stick
 }
 
 @media (width >= 900px) {
-  /* the site header scrolls away on desktop */
-  main > .section:has(> .anchor-list-wrapper:only-child > .anchor-list.sticky),
-  main > .section > .anchor-list-wrapper:not(:only-child):has(> .anchor-list.sticky) {
-    top: 0;
-  }
-
   .anchor-list .anchor-list-link {
     padding: var(--space-300) var(--space-1000);
   }

@@ -733,7 +733,15 @@
                 "template": {
                   "name": "Video",
                   "model": "video",
-                  "filter": "video"
+                  "key-value": true,
+                  "playback": "click",
+                  "controls": true,
+                  "pauseOffscreen": true,
+                  "aspectRatio": "16-9",
+                  "size": "large",
+                  "alignment": "center",
+                  "rounded": true,
+                  "privacyMode": true
                 }
               }
             }

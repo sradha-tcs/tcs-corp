@@ -10,8 +10,8 @@ import {
 
 /*
  * Testimonial (blocks/testimonial/_testimonial.json): a key-value block. A section title,
- * then a centered eyebrow, the testimonial quote (Description), the author and stats
- * (Figma "Testimonial Block").
+ * then a centered eyebrow, the testimonial quote (Description), the author (Author text, image
+ * and Designation & Location) and stats (Figma "Testimonial Block", 404-29822).
  */
 
 const BG_COLORS = ['grey'];
@@ -64,9 +64,15 @@ function buildAuthor(props) {
     image.append(picture);
     author.append(image);
   }
-  if (textOf(props.designationlocation)) {
-    author.append(fromCell(props.designationlocation, 'div', 'testimonial-author-details'));
+  const text = document.createElement('div');
+  text.className = 'testimonial-author-text';
+  if (textOf(props.authorname)) {
+    text.append(fromCell(props.authorname, 'p', 'testimonial-author-name'));
   }
+  if (textOf(props.designationlocation)) {
+    text.append(fromCell(props.designationlocation, 'div', 'testimonial-author-details'));
+  }
+  if (text.children.length) author.append(text);
   return author.children.length ? author : null;
 }
 
