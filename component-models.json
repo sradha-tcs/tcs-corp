@@ -1753,6 +1753,33 @@
     ]
   },
   {
+    "id": "tab",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "The label of the tab. The components after this Tab, up to the next Tab, are its content.",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tabId",
+        "label": "ID",
+        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "activeTab",
+        "label": "Active tab",
+        "description": "Shows this tab when the page loads (the first tab if no tab is active)."
+      }
+    ]
+  },
+  {
     "id": "table-list",
     "fields": [
       {
@@ -2184,49 +2211,126 @@
     ]
   },
   {
-    "id": "tab-section",
+    "id": "tabs",
     "fields": [
+      {
+        "component": "tab",
+        "name": "propertiesTab",
+        "label": "Properties"
+      },
       {
         "component": "select",
         "valueType": "string",
         "name": "style",
-        "label": "Style",
-        "value": "tab-section",
+        "label": "Component",
+        "value": "tabs-section",
         "options": [
           {
-            "name": "Default",
-            "value": "tab-section"
+            "name": "Tabs",
+            "value": "tabs-section"
           }
         ]
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "tabLabel",
-        "label": "Tab Label",
-        "description": "The label of the tab. Consecutive Tab sections form one set of tabs.",
-        "required": true
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "activeTab",
-        "label": "Active tab",
-        "description": "Shows this tab when the page loads (the first tab if no tab of the set is active)."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "anchorName",
         "label": "ID",
-        "description": "Links to #ID open this tab (deep link), also from Anchor List, e.g. overview (lowercase, no spaces)."
+        "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "sectionWidth",
+        "label": "Width Type",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full Width",
+            "value": "full-width"
+          },
+          {
+            "name": "Fixed Width",
+            "value": "fixed-width"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "accessibilityTab",
+        "label": "Accessibility"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "tabsAriaLabel",
-        "label": "Accessibility label",
-        "description": "Names the set of tabs for screen readers, e.g. Our services. Read from the first tab of the set."
+        "label": "Label",
+        "description": "Names the tab list for screen readers (aria-label), e.g. Our services."
+      },
+      {
+        "component": "tab",
+        "name": "stylesTab",
+        "label": "Styles"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsStyle",
+        "label": "Style",
+        "value": "underline",
+        "options": [
+          {
+            "name": "Underline",
+            "value": "underline"
+          },
+          {
+            "name": "Boxed",
+            "value": "boxed"
+          },
+          {
+            "name": "Pills",
+            "value": "pills"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsAlignment",
+        "label": "Alignment",
+        "value": "left",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Full width (stretch)",
+            "value": "stretch"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsOrientation",
+        "label": "Orientation",
+        "description": "Vertical: the tab list is on the left of the content on desktop, above it on mobile.",
+        "value": "horizontal",
+        "options": [
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          },
+          {
+            "name": "Vertical",
+            "value": "vertical"
+          }
+        ]
       }
     ]
   },

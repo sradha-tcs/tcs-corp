@@ -1,8 +1,13 @@
 /*
- * Tabs (Block Collection), site styles: underlined tabs like the Anchor List chapter nav.
- * The tab list is shared by the Tabs block and sets of Tab sections (scripts.js).
+ * Tabs: underlined tabs like the Anchor List chapter nav (Style: Underline), or boxed / pill
+ * tabs; Alignment left, center or stretch; Orientation horizontal, or vertical on desktop.
  */
-:is(.tabs, .tab-sections-nav) .tabs-list {
+.tabs {
+  /* a link to a tab's ID scrolls the tabs to below the fixed header */
+  scroll-margin-top: var(--nav-height);
+}
+
+.tabs .tabs-list {
   display: flex;
   max-width: 100%;
   overflow-x: auto;
@@ -10,15 +15,15 @@
   scrollbar-width: none;
 }
 
-:is(.tabs, .tab-sections-nav) .tabs-list::-webkit-scrollbar {
+.tabs .tabs-list::-webkit-scrollbar {
   display: none;
 }
 
-:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
+.tabs .tabs-list .tabs-tab {
   flex: none;
   margin: 0 0 calc(-1 * var(--border-width-100));
   border: 0;
-  border-bottom: 3px solid transparent;
+  border-bottom: var(--border-width-300) solid transparent;
   border-radius: 0;
   padding: var(--space-300) var(--space-600);
   background: none;
@@ -28,33 +33,83 @@
   line-height: 1.61;
   white-space: nowrap;
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab > * {
-  margin: 0;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-
-:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab:hover {
+.tabs .tabs-list .tabs-tab:hover {
   color: var(--color-text-default);
 }
 
-:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab:focus-visible {
+.tabs .tabs-list .tabs-tab:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
   outline-offset: -2px;
 }
 
-:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab[aria-selected='true'] {
+.tabs .tabs-list .tabs-tab[aria-selected='true'] {
   border-bottom-color: var(--color-border-brand);
   color: var(--color-text-default);
   font-weight: var(--font-weight-semibold);
 }
 
+/* Styles: Boxed, Pills; Alignment: Center, Full width (stretch) */
+.tabs.boxed .tabs-list {
+  gap: var(--space-100);
+}
+
+.tabs.pills .tabs-list {
+  gap: var(--space-200);
+  border-bottom: 0;
+}
+
+.tabs.center .tabs-list {
+  justify-content: safe center;
+}
+
+.tabs.boxed .tabs-list .tabs-tab {
+  border: var(--border-width-100) solid transparent;
+  border-radius: var(--radius-m) var(--radius-m) 0 0;
+  background-color: var(--color-bg-secondary);
+}
+
+.tabs.pills .tabs-list .tabs-tab {
+  margin: 0;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: var(--space-200) var(--space-600);
+}
+
+.tabs.stretch .tabs-list .tabs-tab {
+  flex: 1 0 auto;
+}
+
+.tabs.boxed .tabs-list .tabs-tab:hover {
+  background-color: var(--color-bg-secondary-hover);
+}
+
+.tabs.pills .tabs-list .tabs-tab:hover {
+  background-color: var(--color-bg-default-hover);
+}
+
+.tabs.boxed .tabs-list .tabs-tab[aria-selected='true'] {
+  border-color: var(--color-border-default);
+  border-bottom-color: var(--color-bg-default);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-brand);
+}
+
+.tabs.pills .tabs-list .tabs-tab[aria-selected='true'] {
+  border-color: var(--color-bg-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+/* panels */
 .tabs .tabs-panel {
   padding: var(--space-1000) 0 0;
+}
+
+.tabs .tabs-panel[hidden] {
+  display: none;
 }
 
 .tabs .tabs-panel:focus-visible {
@@ -62,46 +117,101 @@
   outline-offset: 4px;
 }
 
-.tabs .tabs-panel[aria-hidden='true'] {
-  display: none;
+.tabs .tabs-panel > div {
+  max-width: none;
+  padding: 0;
 }
 
 .tabs .tabs-panel img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-l);
+}
+
+/* the Tab items start the tabs: shown only in Universal Editor, to select and edit them */
+.tabs .tabs-panel > div:has(> .tab) {
+  display: none;
+}
+
+html.adobe-ue-edit .tabs .tabs-panel > div:has(> .tab) {
+  display: block;
+}
+
+.tabs .tabs-empty {
+  margin: 0;
+  border: var(--border-width-100) dashed var(--color-border-secondary);
+  border-radius: var(--radius-m);
+  padding: var(--space-600);
+  color: var(--color-text-secondary);
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
+  .tabs .tabs-list .tabs-tab {
     transition: none;
   }
 }
 
 @media (width >= 900px) {
-  :is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
+  .tabs .tabs-list .tabs-tab {
     padding: var(--space-300) var(--space-1000);
   }
-}
 
-/* Tab sections: only the selected tab's section shows, right below the tab list */
-main > .section.tab-sections-nav {
-  margin-bottom: 0;
+  .tabs.pills .tabs-list .tabs-tab {
+    padding: var(--space-200) var(--space-800);
+  }
 
-  /* a link to a tab's ID scrolls the tab list to below the fixed header */
-  scroll-margin-top: var(--nav-height);
-}
+  /* Orientation: Vertical, the tab list on the left of the panels */
+  .tabs.vertical {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) 3fr;
+    gap: 0 var(--space-1200);
+    align-items: start;
+  }
 
-main > .section.tab-section {
-  margin-top: 0;
-  padding-top: var(--space-1000);
-}
+  .tabs.vertical .tabs-list {
+    flex-direction: column;
+    border-bottom: 0;
+    border-left: var(--border-width-100) solid var(--color-border-default);
+  }
 
-main > .section.tab-section[hidden] {
-  display: none;
-}
+  .tabs.vertical .tabs-list .tabs-tab {
+    margin: 0 0 0 calc(-1 * var(--border-width-100));
+    border-bottom: 0;
+    border-left: var(--border-width-300) solid transparent;
+    padding: var(--space-300) var(--space-600);
+    text-align: start;
+    white-space: normal;
+  }
 
-main > .section.tab-section:focus-visible {
-  outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: 4px;
+  .tabs.vertical .tabs-list .tabs-tab[aria-selected='true'] {
+    border-left-color: var(--color-border-brand);
+  }
+
+  .tabs.vertical.boxed .tabs-list,
+  .tabs.vertical.pills .tabs-list {
+    border-left: 0;
+  }
+
+  .tabs.vertical.boxed .tabs-list .tabs-tab {
+    margin: 0;
+    border: var(--border-width-100) solid transparent;
+    border-radius: var(--radius-m);
+  }
+
+  .tabs.vertical.boxed .tabs-list .tabs-tab[aria-selected='true'] {
+    border-color: var(--color-border-default);
+  }
+
+  .tabs.vertical.pills .tabs-list .tabs-tab {
+    margin: 0;
+    border: var(--border-width-100) solid var(--color-border-default);
+  }
+
+  .tabs.vertical.pills .tabs-list .tabs-tab[aria-selected='true'] {
+    border-color: var(--color-bg-brand);
+  }
+
+  .tabs.vertical .tabs-panel {
+    padding: 0;
+  }
 }

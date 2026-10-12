@@ -1,86 +1,180 @@
+import { toClassName } from '../../scripts/aem.js';
+import { isEditing } from '../../utils/environment.js';
+import { uniqueId } from '../../utils/ids.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
+import { readTab } from '../tab/tab.js';
+
 /*
- * Tabs Block (Block Collection): one panel per item, its first cell is the tab title.
- * https://www.aem.live/developer/block-collection/tabs
- * Adapted: ARIA tabs keyboard support (arrow keys, Home, End) with a roving tabindex.
- * No longer offered in Universal Editor (tabs are Tab sections, see scripts.js buildTabSet);
- * kept so Tabs blocks already on pages still render.
+ * Tabs, like the Tabs core component of AEM: built by scripts.js from a Tabs section. The
+ * section's Tab items start the tabs; the components after a Tab (Columns, Title, Text, Image,
+ * Button), up to the next Tab, are its content. The block turns them into a tab list and one
+ * panel per tab; the components keep their own markup, decoration and editor instrumentation.
+ *
+ * Shown first: the tab shown before Universal Editor re-rendered the section, else the tab
+ * the page address names (#ID, a deep link), else the Active tab, else the first.
  */
-import { moveInstrumentation } from '../../scripts/scripts.js';
-import { nextInstance } from '../../utils/ids.js';
+
+// the tab shown per Tabs section, so a section re-rendered after an edit shows the same tab
+const shownTabs = new Map();
+let listeningToHash = false;
+
+/** the panel the page address names (#ID), if it's a tab panel */
+function panelOfHash() {
+  const id = toClassName(decodeURIComponent(window.location.hash.slice(1)));
+  const panel = id ? document.getElementById(id) : null;
+  return panel?.matches('.tabs .tabs-panel') ? panel : null;
+}
+
+/** deep links: a link to a tab's ID (or back / forward to one) opens the tab and scrolls to it */
+function openPanelOfHash() {
+  const panel = panelOfHash();
+  if (!panel) return;
+  document.getElementById(panel.getAttribute('aria-labelledby'))?.click();
+  panel.closest('.tabs').scrollIntoView();
+}
+
+function listenToHash() {
+  if (listeningToHash) return;
+  listeningToHash = true;
+  window.addEventListener('hashchange', openPanelOfHash);
+}
+
+/**
+ * Groups the block's content into tabs: each Tab item starts one, content before the first
+ * Tab starts an untitled one.
+ * @param {Element} block
+ * @returns {{ tab: Element|null, content: Element[] }[]}
+ */
+function groupTabs(block) {
+  const groups = [];
+  [...block.children].forEach((wrapper) => {
+    const tab = wrapper.querySelector(':scope > .tab');
+    if (tab || !groups.length) groups.push({ tab, content: [] });
+    groups[groups.length - 1].content.push(wrapper);
+  });
+  return groups;
+}
+
+/** an id not used on the page yet */
+function freeId(id) {
+  let free = id;
+  for (let n = 2; document.getElementById(free); n += 1) free = `${id}-${n}`;
+  return free;
+}
 
 /**
  * loads and decorates the block
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
-  const instance = nextInstance('tabs');
-  const tablist = document.createElement('div');
-  tablist.className = 'tabs-list';
-  tablist.setAttribute('role', 'tablist');
-  tablist.id = `tablist-${instance}`;
+  const t = await getPlaceholders();
+  const section = block.closest('.section');
+  const baseId = section?.id || uniqueId('tabs');
+  const key = section?.dataset.aueResource || baseId;
+  const vertical = block.classList.contains('vertical');
+  const groups = groupTabs(block);
 
-  // the first cell of each row is the title of the tab
-  const tabHeadings = [...block.children]
-    .filter((child) => child.firstElementChild && child.firstElementChild.children.length > 0)
-    .map((child) => child.firstElementChild);
+  if (!groups.length) {
+    block.replaceChildren();
+    if (isEditing()) {
+      const hint = document.createElement('p');
+      hint.className = 'tabs-empty';
+      hint.textContent = t('tabsEmpty', 'Add a Tab, then the components of the tab after it.');
+      block.append(hint);
+    }
+    return;
+  }
 
-  const buttons = [];
-  const panels = [];
+  const list = document.createElement('div');
+  list.className = 'tabs-list';
+  list.setAttribute('role', 'tablist');
+  if (vertical) list.setAttribute('aria-orientation', 'vertical');
+  if (block.dataset.label) list.setAttribute('aria-label', block.dataset.label);
 
-  const select = (index, focus = false) => {
-    buttons.forEach((button, i) => {
+  const tabs = groups.map(({ tab, content }, i) => {
+    const { title, id, active } = tab ? readTab(tab) : {};
+    const panel = document.createElement('div');
+    panel.className = 'tabs-panel';
+    panel.id = freeId(id || `${baseId}-item-${i + 1}`);
+    panel.setAttribute('role', 'tabpanel');
+    panel.tabIndex = 0;
+    panel.append(...content);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tabs-tab';
+    button.id = `${panel.id}-tab`;
+    button.setAttribute('role', 'tab');
+    button.setAttribute('aria-controls', panel.id);
+    button.textContent = title || t('tabNumber', 'Tab {n}', { n: i + 1 });
+    panel.setAttribute('aria-labelledby', button.id);
+    list.append(button);
+    return { button, panel, active };
+  });
+  block.replaceChildren(list, ...tabs.map(({ panel }) => panel));
+
+  const select = (index, { focus = false, notify = true } = {}) => {
+    tabs.forEach(({ button, panel }, i) => {
       const selected = i === index;
       button.setAttribute('aria-selected', selected);
       button.tabIndex = selected ? 0 : -1;
-      panels[i].setAttribute('aria-hidden', !selected);
-      panels[i].hidden = !selected;
+      panel.hidden = !selected;
     });
-    if (focus) buttons[index].focus();
+    if (focus) tabs[index].button.focus();
+    const changed = shownTabs.get(key) !== index;
+    shownTabs.set(key, index);
+    if (!notify || !changed) return;
+    const { panel, button } = tabs[index];
+    const detail = { index, id: panel.id, title: button.textContent };
+    block.dispatchEvent(new CustomEvent('tabs:change', { bubbles: true, detail }));
+    // Adobe Client Data Layer, when the site loads it (like the core component)
+    window.adobeDataLayer?.push({ event: 'cmp:show', eventInfo: { path: `component.${panel.id}` } });
   };
 
-  tabHeadings.forEach((tab, i) => {
-    const id = `tabpanel-${instance}-tab-${i + 1}`;
-    const tabpanel = tab.parentElement;
-    tabpanel.className = 'tabs-panel';
-    tabpanel.id = id;
-    tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
-    tabpanel.setAttribute('role', 'tabpanel');
-    tabpanel.tabIndex = 0;
-
-    const button = document.createElement('button');
-    button.className = 'tabs-tab';
-    button.id = `tab-${id}`;
-    button.type = 'button';
-    button.setAttribute('role', 'tab');
-    button.setAttribute('aria-controls', id);
-    button.append(...tab.childNodes);
-    button.addEventListener('click', () => select(i));
-
-    tablist.append(button);
-    buttons.push(button);
-    panels.push(tabpanel);
-
-    // remove the tab heading from the dom, which also removes it from the UE tree
-    tab.remove();
-    // remove the instrumentation from the button's heading (removes it from the tree)
-    if (button.firstElementChild) moveInstrumentation(button.firstElementChild, null);
-  });
-
-  tablist.addEventListener('keydown', (e) => {
-    const current = buttons.indexOf(document.activeElement);
+  tabs.forEach(({ button }, i) => button.addEventListener('click', () => select(i)));
+  list.addEventListener('keydown', (e) => {
+    const current = tabs.findIndex(({ button }) => button === document.activeElement);
     if (current < 0) return;
-    const last = buttons.length - 1;
-    const next = {
-      ArrowRight: current === last ? 0 : current + 1,
-      ArrowLeft: current === 0 ? last : current - 1,
+    const last = tabs.length - 1;
+    const previous = current === 0 ? last : current - 1;
+    const next = current === last ? 0 : current + 1;
+    const index = {
+      ArrowLeft: previous,
+      ArrowUp: previous,
+      ArrowRight: next,
+      ArrowDown: next,
       Home: 0,
       End: last,
     }[e.key];
-    if (next === undefined) return;
+    if (index === undefined) return;
     e.preventDefault();
-    select(next, true);
+    select(index, { focus: true });
   });
 
-  block.prepend(tablist);
-  if (buttons.length) select(0);
+  // Universal Editor: show the tab of the component selected in the editor
+  block.addEventListener('aue:ui-select', (e) => {
+    const panel = e.detail?.selected && e.target.closest('.tabs-panel');
+    const index = tabs.findIndex((tab) => tab.panel === panel);
+    if (index >= 0) select(index);
+  });
+  // a Tab edited in Universal Editor: update its tab
+  block.addEventListener('tabs:tab-update', (e) => {
+    const tab = tabs.find(({ panel }) => panel.contains(e.target));
+    if (tab && e.detail.title) tab.button.textContent = e.detail.title;
+  });
+
+  const linked = panelOfHash();
+  const shown = [
+    shownTabs.get(key) ?? -1,
+    tabs.findIndex(({ panel }) => panel === linked),
+    tabs.findIndex(({ active }) => active),
+  ].find((index) => index >= 0 && index < tabs.length);
+  select(shown ?? 0, { notify: false });
+
+  listenToHash();
+  // a page opened at a tab's ID: scroll to it once the page has its layout
+  if (linked && tabs.some(({ panel }) => panel === linked)) {
+    if (document.readyState === 'complete') requestAnimationFrame(openPanelOfHash);
+    else window.addEventListener('load', openPanelOfHash, { once: true });
+  }
 }
