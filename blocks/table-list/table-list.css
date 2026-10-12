@@ -1,398 +1,245 @@
-/* Table List: a heading with a "View all" link and numbered cards, as a list or a table.
-   Sizes and colors are custom properties set on the block, so variations, card colors and
-   breakpoints only change values; the element rules below read them. */
-
+/*
+ * Table List (TCS DS Figma "List"): a heading with a call to action above a divided list.
+ * Variation 1 (industries): title | description | arrow; on mobile the number and title above
+ * the description. Variation 2 (solutions): description | large title | outline button.
+ * Variation 3 (products): description | number and large title | diagonal arrow.
+ * Mobile first; tablet from 600px, desktop from 1200px.
+ */
 .table-list {
-  /* values without a site token */
-  --table-list-card-min-height: 108px;
-  --table-list-title-right-min: 180px;
-  --table-list-table-min-width: 640px;
-  --table-list-tracking: 0.04em;
+  --table-list-header-spacing: var(--space-1000);
+  --table-list-item-gap: var(--space-400);
+  --table-list-item-padding: var(--space-1000);
+  --table-list-divider: var(--border-width-100) solid var(--slate-400);
+  --table-list-arrow-size: 48px;
   --table-list-motion-duration: 500ms;
 
-  /* layout */
-  --table-list-number-col: var(--space-1000);
-  --table-list-link-col: var(--icon-button-size);
-  --table-list-columns: var(--table-list-number-col) minmax(0, 1fr) var(--table-list-link-col);
-  --table-list-column-gap: var(--space-200);
-  --table-list-header-spacing: var(--space-800);
-  --table-list-card-padding: var(--space-400);
-  --table-list-card-padding-inline: var(--space-0);
-  --table-list-card-min: var(--table-list-card-min-height);
-
-  /* type */
-  --table-list-heading-size: var(--heading-font-size-xl);
-  --table-list-title-size: var(--heading-font-size-l);
-  --table-list-number-size: var(--table-list-title-size);
-  --table-list-description-size: var(--body-font-size-m);
-  --table-list-arrow-size: var(--icon-size-s);
-
-  /* colors */
-  --table-list-card-bg: transparent;
-  --table-list-card-color: currentcolor;
-  --table-list-number-color: var(--color-text-neutral-tertiary);
-  --table-list-tag-color: var(--color-text-neutral-tertiary);
-  --table-list-border-color: var(--color-border-secondary);
-  --table-list-hover-color: var(--color-text-brand);
-  --table-list-featured-bg: var(--color-bg-secondary);
-  --table-list-featured-accent: var(--color-border-neutral);
-
-  box-sizing: border-box;
-  padding-block: var(--space-1000);
   color: var(--color-text-default);
 }
 
-/* compact: tighter cards and header */
-.table-list.compact {
-  --table-list-header-spacing: var(--space-600);
-  --table-list-card-padding: var(--space-300);
-  --table-list-card-min: var(--space-2000);
-}
-
-/* black theme */
-.table-list.dark {
-  --table-list-number-color: var(--color-text-light-overlay);
-  --table-list-tag-color: var(--color-text-light-overlay);
-  --table-list-border-color: var(--color-border-neutral-secondary);
-  --table-list-hover-color: var(--brand-300);
-  --table-list-featured-bg: var(--grey-800);
-  --table-list-featured-accent: var(--color-border-default);
-
-  padding-inline: var(--space-500);
-  background-color: var(--color-bg-neutral);
-  color: var(--color-text-on-neutral);
-}
-
-/* card colors (white cards take the block background) */
-.table-list.card-blue {
-  --table-list-card-bg: var(--color-bg-brand-secondary-hover);
-  --table-list-card-color: var(--color-text-default);
-  --table-list-card-padding-inline: var(--space-400);
-  --table-list-number-color: var(--color-text-neutral-secondary);
-  --table-list-tag-color: var(--color-text-neutral-secondary);
-  --table-list-border-color: var(--color-border-brand-secondary);
-  --table-list-hover-color: var(--color-text-brand-secondary);
-  --table-list-featured-bg: var(--color-bg-brand-secondary);
-  --table-list-featured-accent: var(--color-border-brand-secondary);
-}
-
-.table-list.card-grey {
-  --table-list-card-bg: var(--color-bg-secondary);
-  --table-list-card-color: var(--color-text-default);
-  --table-list-card-padding-inline: var(--space-400);
-  --table-list-number-color: var(--color-text-neutral-tertiary);
-  --table-list-tag-color: var(--color-text-neutral-tertiary);
-  --table-list-border-color: var(--color-border-neutral-tertiary);
-  --table-list-hover-color: var(--color-text-brand);
-  --table-list-featured-bg: var(--color-bg-tertiary);
-  --table-list-featured-accent: var(--color-border-neutral);
-}
-
-.table-list.card-black {
-  --table-list-card-bg: var(--color-bg-neutral);
-  --table-list-card-color: var(--color-text-on-neutral);
-  --table-list-card-padding-inline: var(--space-400);
-  --table-list-number-color: var(--color-text-light-overlay);
-  --table-list-tag-color: var(--color-text-light-overlay);
-  --table-list-border-color: var(--color-border-neutral-secondary);
-  --table-list-hover-color: var(--brand-300);
-  --table-list-featured-bg: var(--grey-900);
-  --table-list-featured-accent: var(--color-border-default);
-}
-
-/* description first and title right: two columns on mobile, the arrow next to the title */
-.table-list.description-first {
-  --table-list-columns: minmax(0, 1fr) var(--table-list-link-col);
-  --table-list-title-size: var(--heading-font-size-xxl);
-  --table-list-number-size: var(--heading-font-size-l);
-}
-
-.table-list.title-right {
-  --table-list-columns: minmax(0, 1fr) var(--table-list-link-col);
-}
-
-.table-list p {
-  margin: 0;
-}
-
-/* header */
+/* header: heading and call to action, which goes below the heading when they don't fit */
 .table-list .table-list-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-400) var(--space-600);
+  gap: var(--space-300);
   margin-bottom: var(--table-list-header-spacing);
 }
 
 .table-list .table-list-heading {
-  margin: 0;
-  font-size: var(--table-list-heading-size);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--display-line-height);
-}
-
-.table-list .table-list-explore a.link-button:any-link {
-  white-space: nowrap;
-}
-
-.table-list.dark .table-list-explore a.link-button:any-link {
-  color: var(--color-text-on-neutral);
-}
-
-.table-list.dark .table-list-explore a.link-button:hover,
-.table-list.dark .table-list-explore a.link-button:focus-visible {
-  color: var(--table-list-hover-color);
-}
-
-.table-list a:focus-visible {
-  outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: var(--border-width-200);
-}
-
-/* cards: number and title, then the description; the arrow at the end */
-.table-list .table-list-card {
-  position: relative;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: var(--table-list-columns);
-  column-gap: var(--table-list-column-gap);
-  align-items: center;
-  min-height: var(--table-list-card-min);
-  padding: var(--table-list-card-padding) var(--table-list-card-padding-inline);
-  border-bottom: var(--border-width-100) solid var(--table-list-border-color);
-  background-color: var(--table-list-card-bg);
-  color: var(--table-list-card-color);
-}
-
-.table-list .table-list-number {
-  grid-column: 1;
-  grid-row: 1;
-  color: var(--table-list-number-color);
-  font-size: var(--table-list-number-size);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--display-line-height);
-}
-
-.table-list .table-list-title-group {
-  grid-column: 2;
-  grid-row: 1;
+  flex: 1 1 50%;
   min-width: 0;
+  margin: 0;
+  font-size: 32px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.19;
+  letter-spacing: -0.03em;
+}
+
+.table-list .table-list-cta {
+  flex: none;
+  margin: 0;
+}
+
+.table-list .table-list-cta .button:not(.tertiary) {
+  font-size: var(--body-font-size-xs);
+}
+
+/* items */
+.table-list .table-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--table-list-item-gap);
+}
+
+.table-list .table-list-item {
+  position: relative;
+  display: grid;
+  grid-template: 'main action' 'description action' / minmax(0, 1fr) auto;
+  gap: var(--space-400) var(--space-1000);
+  padding-bottom: var(--table-list-item-padding);
+  border-bottom: var(--table-list-divider);
+}
+
+.table-list .table-list-main {
+  grid-area: main;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  min-width: 0;
+}
+
+.table-list .table-list-number,
+.table-list .table-list-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 .table-list .table-list-title {
-  margin: 0;
-  font-size: var(--table-list-title-size);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--display-line-height);
-  letter-spacing: normal;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
-.table-list .table-list-description-group {
-  grid-column: 2;
-  grid-row: 2;
-  min-width: 0;
-  margin-top: var(--space-100);
+/* the trademark sign keeps the title's size and baseline (the glyph is raised itself) */
+.table-list .table-list-trademark {
+  font-size: 1em;
+  line-height: 0;
+  vertical-align: baseline;
 }
 
 .table-list .table-list-description {
-  font-size: var(--table-list-description-size);
-  line-height: var(--label-line-height);
+  grid-area: description;
+  margin: 0;
 }
 
-.table-list .table-list-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-200) var(--space-300);
-  margin-bottom: var(--space-200);
+.table-list .table-list-action {
+  grid-area: action;
+  align-self: start;
 }
 
-.table-list .table-list-tag {
-  color: var(--table-list-tag-color);
-  font-size: var(--body-font-size-s);
-  line-height: var(--label-line-height);
-  letter-spacing: var(--table-list-tracking);
-  text-transform: uppercase;
-}
-
-.table-list .table-list-link {
-  display: flex;
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  justify-content: flex-end;
-  min-width: 0;
-}
-
-/* arrow: the site icon drawn in the current text color */
+/* arrows: the whole item is the link */
 .table-list .table-list-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--icon-button-size);
-  height: var(--icon-button-size);
-  color: inherit;
-  text-decoration: none;
-}
-
-.table-list .table-list-arrow::before {
-  content: '';
+  display: block;
   width: var(--table-list-arrow-size);
   height: var(--table-list-arrow-size);
   background-color: currentcolor;
+  color: var(--color-icon-default);
   mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+  transition: color 0.2s, transform 0.2s;
 }
 
-.table-list a.table-list-arrow {
-  transition: color 0.2s;
+.table-list .table-list-arrow.arrow-up-right {
+  mask-image: url('../../icons/arrow-up-right.svg');
 }
 
-.table-list a.table-list-arrow:hover,
+.table-list a.table-list-arrow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 .table-list a.table-list-arrow:focus-visible {
-  color: var(--table-list-hover-color);
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: 4px;
 }
 
-/* display modes and layout variations */
-.table-list.no-number .table-list-number,
-.table-list.title-right .table-list-number,
-.table-list.no-description .table-list-description-group,
-.table-list.display-title .table-list-description-group,
-.table-list.display-description .table-list-title-group {
-  display: none;
+.table-list a.table-list-arrow:focus-visible,
+.table-list .table-list-item:hover a.table-list-arrow {
+  color: var(--color-text-brand);
+  transform: translateX(var(--space-100));
 }
 
-.table-list.no-number .table-list-title-group,
-.table-list.no-number .table-list-description-group {
-  grid-column: 1 / 3;
-}
-
-.table-list.display-description .table-list-description-group {
-  grid-row: 1;
-  margin-top: 0;
-}
-
-.table-list.description-first .table-list-description-group,
-.table-list.title-right .table-list-description-group {
-  grid-column: 1;
-  grid-row: 1;
-  margin-top: 0;
-}
-
-.table-list.description-first .table-list-number {
-  grid-column: 2;
-  justify-self: end;
-}
-
-.table-list.description-first .table-list-title-group,
-.table-list.title-right .table-list-title-group {
-  grid-column: 1;
-  grid-row: 2;
-  margin-top: var(--space-200);
-}
-
-.table-list.description-first .table-list-link,
-.table-list.title-right .table-list-link {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.table-list.description-first .table-list-title {
-  line-height: 1;
-}
-
-/* featured industry: the first card is highlighted */
-.table-list.featured-industry .table-list-card-featured {
-  margin-bottom: var(--space-200);
-  padding-inline: var(--space-500);
-  border-bottom: 0;
-  border-inline-start: var(--space-100) solid var(--table-list-featured-accent);
-  border-radius: var(--radius-s);
-  background-color: var(--table-list-featured-bg);
-}
-
-.table-list.featured-industry .table-list-card-featured .table-list-title {
+/* Variation 1: number and title above the description on mobile */
+.table-list.industries .table-list-main {
+  font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-medium);
+  line-height: 1.375;
+  letter-spacing: -0.02em;
 }
 
-.table-list.title-right.no-description .table-list-title-group,
-.table-list.title-right.display-title .table-list-title-group,
-.table-list.title-right.no-description .table-list-link,
-.table-list.title-right.display-title .table-list-link {
-  grid-row: 1;
-  margin-top: 0;
-}
-
-.table-list .table-list-card:has(a.table-list-arrow:hover) .table-list-title,
-.table-list .table-list-card:has(a.table-list-arrow:focus-visible) .table-list-title {
-  text-decoration: underline;
-}
-
-/* table view */
-.table-list .table-list-table-scroll {
-  position: relative;
-  overflow-x: auto;
-}
-
-.table-list .table-list-table {
-  width: 100%;
-  min-width: var(--table-list-table-min-width);
-  border-collapse: collapse;
-  table-layout: fixed;
-  background-color: var(--table-list-card-bg);
-  color: var(--table-list-card-color);
-}
-
-.table-list .table-list-table th,
-.table-list .table-list-table td {
-  padding: var(--space-300) var(--space-200);
-  border-bottom: var(--border-width-100) solid var(--table-list-border-color);
-  text-align: left;
-  vertical-align: middle;
-}
-
-.table-list .table-list-table th {
-  font-size: var(--label-font-size);
+.table-list.industries .table-list-description {
+  font-size: 24px;
   font-weight: var(--font-weight-semibold);
-  line-height: var(--label-line-height);
-  letter-spacing: var(--table-list-tracking);
-  text-transform: uppercase;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
 }
 
-.table-list .table-list-table td {
-  font-size: var(--table-list-description-size);
-  line-height: var(--label-line-height);
+/* Variation 2: description, large title and button stacked on mobile */
+.table-list.solutions .table-list-item {
+  grid-template: 'description' 'main' 'action' / minmax(0, 1fr);
 }
 
-.table-list .table-list-table th:first-child,
-.table-list .table-list-table td:first-child {
-  width: var(--space-2000);
+.table-list.solutions .table-list-main {
+  font-size: 40px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-.table-list .table-list-table td:first-child {
-  color: var(--table-list-number-color);
+.table-list.solutions .table-list-description {
+  color: var(--grey-900);
+  font-size: var(--body-font-size-m);
+  line-height: 1.39;
 }
 
-.table-list .table-list-table th:last-child,
-.table-list .table-list-table td:last-child {
-  width: var(--space-3000);
-  text-align: right;
+/* Variation 3: description above the number and large title on mobile */
+.table-list.products {
+  --table-list-item-gap: var(--space-1000);
+  --table-list-divider: var(--border-width-200) solid var(--grey-200);
+  --table-list-arrow-size: var(--icon-size-m);
+
+  color: var(--grey-900);
 }
 
-/* motion: cards are hidden until they scroll into view (JS adds motion-ready and is-visible;
+.table-list.products .table-list-heading {
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+}
+
+.table-list.products .table-list-cta .button.tertiary {
+  font-size: var(--body-font-size-l);
+}
+
+.table-list.products .table-list-item {
+  grid-template: 'description action' 'main action' / minmax(0, 1fr) auto;
+}
+
+.table-list.products .table-list-main {
+  align-items: center;
+  gap: var(--space-400);
+  font-size: 48px;
+  line-height: 1.17;
+  letter-spacing: -0.025em;
+}
+
+.table-list.products .table-list-number {
+  color: var(--slate-300);
+  font-size: 0.5em;
+  letter-spacing: -0.025em;
+}
+
+.table-list.products .table-list-trademark {
+  margin-inline-start: 0.15em;
+}
+
+.table-list.products .table-list-description {
+  font-size: var(--body-font-size-m);
+  line-height: 1.39;
+}
+
+.table-list.products .table-list-action {
+  align-self: center;
+}
+
+.table-list.products .table-list-arrow {
+  color: var(--grey-900);
+}
+
+/* Variation 1: no divider below the last item */
+.table-list.industries .table-list-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* motion: items are hidden until they scroll into view (JS adds motion-ready and is-visible;
    never in the Universal Editor or with reduced motion) */
 @media (prefers-reduced-motion: no-preference) {
-  :root:not(.adobe-ue-edit) .table-list.motion-ready .table-list-card:not(.is-visible) {
+  :root:not(.adobe-ue-edit) .table-list.motion-ready .table-list-item:not(.is-visible) {
     opacity: 0;
   }
 
-  :root:not(.adobe-ue-edit) .table-list.motion-fade .table-list-card.is-visible {
+  :root:not(.adobe-ue-edit) .table-list.motion-fade .table-list-item.is-visible {
     animation: table-list-fade var(--table-list-motion-duration) ease backwards;
   }
 
-  :root:not(.adobe-ue-edit) .table-list.motion-slide .table-list-card.is-visible {
+  :root:not(.adobe-ue-edit) .table-list.motion-slide .table-list-item.is-visible {
     animation: table-list-slide var(--table-list-motion-duration) ease backwards;
   }
 
-  :root:not(.adobe-ue-edit) .table-list.motion-reveal .table-list-card.is-visible {
+  :root:not(.adobe-ue-edit) .table-list.motion-reveal .table-list-item.is-visible {
     animation: table-list-reveal var(--table-list-motion-duration) ease backwards;
   }
 }
@@ -418,209 +265,148 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .table-list a.table-list-arrow {
+  .table-list .table-list-arrow {
     transition: none;
   }
 }
 
+/* tablet: the parts side by side */
 @media (width >= 600px) {
   .table-list {
-    --table-list-number-col: var(--space-1200);
-    --table-list-column-gap: var(--space-400);
-    --table-list-header-spacing: var(--space-1200);
-    --table-list-heading-size: var(--heading-font-size-xxl);
-    --table-list-title-size: var(--heading-font-size-xl);
-    --table-list-description-size: var(--heading-font-size-m);
-
-    padding-block: var(--space-1600);
+    --table-list-header-spacing: var(--space-2000);
   }
 
-  .table-list.compact {
-    --table-list-header-spacing: var(--space-800);
-
-    padding-block: var(--space-1000);
+  .table-list .table-list-heading {
+    font-size: 40px;
+    line-height: 1.2;
   }
 
-  .table-list.dark {
-    padding-inline: var(--space-1000);
+  .table-list .table-list-item,
+  .table-list.solutions .table-list-item,
+  .table-list.products .table-list-item {
+    grid-template: 'main description action' / minmax(0, 1fr) minmax(0, 1fr) auto;
+    column-gap: var(--space-400);
   }
 
-  .table-list.description-first {
-    --table-list-title-size: var(--display-font-size-3);
-    --table-list-number-size: var(--heading-font-size-xl);
+  .table-list.solutions .table-list-item,
+  .table-list.products .table-list-item {
+    grid-template-areas: 'description main action';
+    align-items: center;
   }
 
-  .table-list.title-right {
-    --table-list-description-size: var(--body-font-size-l);
+  .table-list .table-list-action {
+    margin-inline-start: var(--space-600);
+  }
+
+  .table-list.solutions .table-list-action {
+    align-self: center;
+  }
+
+  .table-list.numbers-mobile .table-list-number {
+    display: none;
+  }
+
+  .table-list.industries .table-list-description {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .table-list.industries .table-list-arrow {
+    color: var(--slate-400);
+  }
+
+  .table-list.solutions .table-list-main,
+  .table-list.products .table-list-main {
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .table-list.solutions .table-list-description,
+  .table-list.products .table-list-description {
+    font-size: 18px;
+  }
+
+  .table-list.products .table-list-item {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto;
+  }
+
+  .table-list.products .table-list-main {
+    justify-content: space-between;
+    font-size: 56px;
+  }
+
+  .table-list.products .table-list-number {
+    font-size: 0.43em;
   }
 }
 
-@media (width >= 900px) {
+/* desktop */
+@media (width >= 1200px) {
   .table-list {
-    --table-list-number-col: var(--space-1600);
-    --table-list-link-col: var(--space-3000);
-    --table-list-columns: var(--table-list-number-col) minmax(0, 0.9fr) minmax(0, 1.8fr)
-      var(--table-list-link-col);
-    --table-list-column-gap: var(--space-500);
-    --table-list-header-spacing: var(--space-1600);
-    --table-list-title-size: var(--display-font-size-3);
-    --table-list-arrow-size: var(--icon-size-m);
+    --table-list-item-gap: var(--space-600);
   }
 
-  .table-list.compact {
-    --table-list-header-spacing: var(--space-1000);
-    --table-list-title-size: var(--heading-font-size-xl);
+  .table-list .table-list-heading {
+    font-size: 48px;
   }
 
-  .table-list.description-first {
-    --table-list-columns: repeat(4, minmax(0, 1fr));
-    --table-list-title-size: var(--display-font-size-2);
-    --table-list-number-size: var(--heading-font-size-xl);
+  .table-list .table-list-cta .button:not(.tertiary) {
+    font-size: var(--button-font-size);
   }
 
-  .table-list.title-right {
-    --table-list-columns: minmax(0, 1fr) minmax(var(--table-list-title-right-min), 0.8fr)
-      var(--icon-button-size);
-    --table-list-title-size: var(--heading-font-size-xxl);
-    --table-list-description-size: var(--heading-font-size-m);
+  .table-list .table-list-item {
+    column-gap: var(--space-600);
   }
 
-  .table-list.compact.description-first {
-    --table-list-title-size: var(--display-font-size-3);
-    --table-list-number-size: var(--heading-font-size-l);
+  .table-list .table-list-action {
+    margin-inline-start: var(--space-400);
   }
 
-  .table-list.compact.title-right {
-    --table-list-title-size: var(--heading-font-size-xl);
-    --table-list-description-size: var(--body-font-size-l);
-  }
-
-  .table-list.dark {
+  /* Variation 1: inset from the section edges, title emphasized */
+  .table-list.industries {
     padding-inline: var(--space-2000);
   }
 
-  /* one row: number | title | description | arrow */
-  .table-list .table-list-description-group {
-    grid-column: 3;
-    grid-row: 1;
-    margin-top: 0;
+  .table-list.industries .table-list-item {
+    align-items: center;
   }
 
-  .table-list .table-list-link {
-    grid-column: 4;
-    grid-row: 1;
+  .table-list.industries .table-list-main {
+    font-size: 28px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.39;
   }
 
-  .table-list.no-number .table-list-title-group {
-    grid-column: 1 / 3;
+  .table-list.industries .table-list-description {
+    font-weight: var(--font-weight-regular);
   }
 
-  .table-list.no-number .table-list-description-group {
-    grid-column: 3;
+  .table-list.solutions .table-list-main {
+    font-size: 64px;
+    line-height: 1.4;
   }
 
-  .table-list.no-description .table-list-title-group,
-  .table-list.display-title .table-list-title-group {
-    grid-column: 2 / 4;
+  .table-list.products {
+    --table-list-item-gap: var(--space-1000);
+    --table-list-arrow-size: var(--icon-size-l);
   }
 
-  .table-list.display-description .table-list-description-group {
-    grid-column: 2 / 4;
+  .table-list.products .table-list-item {
+    grid-template-columns: minmax(0, 476fr) minmax(0, 695fr) auto;
+    column-gap: var(--space-1000);
   }
 
-  /* description | number | title (right aligned) | arrow */
-  .table-list.description-first .table-list-description-group {
-    grid-column: 1;
-    padding-inline-end: var(--space-800);
+  .table-list.products .table-list-main {
+    font-size: 90px;
+    line-height: 1.4;
   }
 
-  .table-list.description-first .table-list-number {
-    grid-column: 2;
-    justify-self: start;
-    padding-inline-start: var(--space-500);
+  .table-list.products .table-list-number {
+    font-size: 0.444em;
   }
 
-  .table-list.description-first .table-list-title-group {
-    grid-column: 3;
-    grid-row: 1;
-    margin-top: 0;
-    text-align: right;
-  }
-
-  .table-list.description-first .table-list-link {
-    grid-column: 4;
-    grid-row: 1;
-    justify-content: center;
-  }
-
-  /* description | title (right aligned) | arrow */
-  .table-list.title-right .table-list-description-group {
-    grid-column: 1;
-    padding-inline-end: var(--space-800);
-  }
-
-  .table-list.title-right .table-list-title-group {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: 0;
-    text-align: right;
-  }
-
-  .table-list.title-right .table-list-link {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .table-list.no-number.description-first .table-list-title-group {
-    grid-column: 2 / 4;
-  }
-
-  .table-list.description-first.display-description .table-list-description-group {
-    grid-column: 1 / 4;
-  }
-
-  .table-list.title-right.no-description .table-list-title-group,
-  .table-list.title-right.display-title .table-list-title-group {
-    grid-column: 1 / 3;
-  }
-
-  .table-list.featured-industry .table-list-card-featured {
-    padding: var(--space-600);
-  }
-
-  .table-list .table-list-table th,
-  .table-list .table-list-table td {
-    padding: var(--space-400);
-  }
-}
-
-@media (width >= 1200px) {
-  .table-list {
-    --table-list-heading-size: var(--display-font-size-1);
-    --table-list-description-size: var(--heading-font-size-l);
-
-    padding-block: var(--space-2000) var(--space-2400);
-  }
-
-  .table-list.compact {
-    --table-list-description-size: var(--heading-font-size-m);
-
-    padding-block: var(--space-1200) var(--space-1600);
-  }
-
-  .table-list.description-first {
-    --table-list-title-size: var(--display-font-size-1);
-  }
-
-  .table-list.title-right {
-    --table-list-description-size: var(--heading-font-size-m);
-  }
-
-  .table-list.compact.description-first {
-    --table-list-title-size: var(--display-font-size-2);
-  }
-
-  .table-list.compact.title-right {
-    --table-list-description-size: var(--body-font-size-l);
+  .table-list.products .table-list-description {
+    font-size: 24px;
+    line-height: 1.42;
   }
 }
