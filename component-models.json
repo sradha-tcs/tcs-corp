@@ -2050,7 +2050,7 @@
         "value": ""
       },
       {
-        "component": "richtext",
+        "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title",
@@ -2079,11 +2079,11 @@
         ]
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "description",
         "label": "Description",
-        "value": "Risk free business experimentation and decision intelligence"
+        "value": "<p>Risk free business experimentation and decision intelligence</p>"
       },
       {
         "component": "aem-content",
