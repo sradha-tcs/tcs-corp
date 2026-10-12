@@ -46,7 +46,7 @@ function buildStats(cell) {
     const dd = document.createElement('dd');
     dd.className = 'testimonial-stat-value';
     dd.append(value);
-    // values first visually (larger), labels underneath, keeping dt / dd order for a11y
+    // the Stats Title on top, the value below it
     item.append(dt, dd);
     list.append(item);
   });
@@ -96,7 +96,8 @@ export default function decorate(block) {
   if (isOn(props.showdescription) && textOf(props.description)) {
     figure.append(fromCell(props.description, 'blockquote', 'testimonial-description'));
   }
-  const author = buildAuthor(props);
+  // Hide Author Details: the author, its image and designation are not shown
+  const author = isOn(props.hideauthor) ? null : buildAuthor(props);
   if (author) {
     const caption = document.createElement('figcaption');
     caption.append(author);

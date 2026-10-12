@@ -100,7 +100,7 @@
   margin: 0;
 }
 
-/* stats: value above its title, in columns under a divider */
+/* stats: title on top, value below it, in columns under a divider */
 .testimonial .testimonial-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -115,7 +115,7 @@
 
 .testimonial .testimonial-stat {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: var(--space-200);
 }
 
