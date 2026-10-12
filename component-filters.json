@@ -21,6 +21,7 @@
       "testimonial",
       "anchor-list",
       "accordion",
+      "tabs-block",
       "table",
       "table-list",
       "list",
@@ -134,6 +135,12 @@
       "text",
       "image",
       "button"
+    ]
+  },
+  {
+    "id": "tabs-block",
+    "components": [
+      "tabs-item"
     ]
   },
   {

@@ -2335,6 +2335,265 @@
     ]
   },
   {
+    "id": "tabs-block",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "propertiesTab",
+        "label": "Properties"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tabsId",
+        "label": "ID",
+        "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+      },
+      {
+        "component": "tab",
+        "name": "accessibilityTab",
+        "label": "Accessibility"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tabsAriaLabel",
+        "label": "Label",
+        "description": "Names the tab list for screen readers (aria-label), e.g. Our services."
+      },
+      {
+        "component": "tab",
+        "name": "stylesTab",
+        "label": "Styles"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsStyle",
+        "label": "Style",
+        "value": "underline",
+        "options": [
+          {
+            "name": "Underline",
+            "value": "underline"
+          },
+          {
+            "name": "Boxed",
+            "value": "boxed"
+          },
+          {
+            "name": "Pills",
+            "value": "pills"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsAlignment",
+        "label": "Alignment",
+        "value": "left",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Full width (stretch)",
+            "value": "stretch"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabsOrientation",
+        "label": "Orientation",
+        "description": "Vertical: the tab list is on the left of the content on desktop, above it on mobile.",
+        "value": "horizontal",
+        "options": [
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          },
+          {
+            "name": "Vertical",
+            "value": "vertical"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "tabTab",
+        "label": "Tab"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "The label of the tab.",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tabId",
+        "label": "ID",
+        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "activeTab",
+        "label": "Active tab",
+        "description": "Shows this tab when the page loads (the first tab if no tab is active)."
+      },
+      {
+        "component": "tab",
+        "name": "contentTab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_heading",
+        "label": "Heading"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_headingType",
+        "label": "Heading Type",
+        "value": "h3",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "content_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_imageAlt",
+        "label": "Image alt text",
+        "description": "Describe the image for screen readers. Leave empty if the image is decorative."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content_text",
+        "label": "Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "content_link",
+        "label": "Button link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_linkText",
+        "label": "Button text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_linkTitle",
+        "label": "Button title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "content_linkType",
+        "label": "Button type",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "name": "Tertiary",
+            "value": "tertiary"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "layout",
+        "label": "Layout",
+        "description": "Image left / right: the image and the text side by side on desktop (two columns), stacked on mobile.",
+        "value": "stacked",
+        "options": [
+          {
+            "name": "Stacked",
+            "value": "stacked"
+          },
+          {
+            "name": "Image left",
+            "value": "image-left"
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "fragmentTab",
+        "label": "Fragment"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "fragment",
+        "label": "Fragment",
+        "description": "A page whose content (any components, e.g. Columns) is shown in the tab, after the Content fields."
+      }
+    ]
+  },
+  {
     "id": "teaser",
     "fields": [
       {

@@ -164,6 +164,7 @@ function buildTabsSections(container) {
     if (section.querySelector(':scope > .tabs-wrapper')) return;
     const tabs = document.createElement('div');
     tabs.className = 'tabs';
+    tabs.dataset.source = 'section';
     const {
       tabsstyle, tabsalignment, tabsorientation, tabsarialabel,
     } = section.dataset;
