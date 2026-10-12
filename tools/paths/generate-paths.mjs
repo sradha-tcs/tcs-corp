@@ -3,10 +3,12 @@
  * paths and the code stay in sync. Run with `npm run build:paths` after changing LOCALES.
  *
  * Per locale (AEM /content/tcs-corp/{country}/{code}, published at /{code}):
+ * - the locale page itself is the Home page: /content/tcs-corp/de/de-de:/de-de/ (published as
+ *   /de-de/index, served at /de-de/)
  * - the locale folder: /content/tcs-corp/de/de-de/:/de-de/
  * - its spreadsheets (the system appends .json): …/data/authors:/de-de/data/authors
  * - its taxonomy page (not a spreadsheet): …/taxonomy:/de-de/taxonomy.json
- * - includes: the locale folder; excludes: its block library (author only)
+ * - includes: the locale page and folder; excludes: its block library (author only)
  */
 import { readFile, writeFile } from 'node:fs/promises';
 
@@ -31,14 +33,17 @@ const aemRoot = ({ country, code }) => `${SITE}/${country}/${code}`;
 
 const paths = {
   mappings: [
-    // locale folders first; the more specific sheet mappings follow (the last match wins)
+    // locale folders, then the locale Home pages, then the more specific sheet mappings (the
+    // last match wins: /de-de/index resolves to the locale page, not to a de-de/index child)
     ...LOCALES.map((locale) => `${aemRoot(locale)}/:/${locale.code}/`),
+    ...LOCALES.map((locale) => `${aemRoot(locale)}:/${locale.code}/`),
     ...LOCALES.flatMap((locale) => [
       ...SHEETS.map((sheet) => `${aemRoot(locale)}/${sheet}:/${locale.code}/${sheet}`),
       `${aemRoot(locale)}/taxonomy:/${locale.code}/taxonomy.json`,
     ]),
   ],
-  includes: LOCALES.map((locale) => `${aemRoot(locale)}/`),
+  // the locale page (Home) and everything below it
+  includes: LOCALES.map((locale) => aemRoot(locale)),
   excludes: [
     ...LOCALES.flatMap((locale) => [
       `${aemRoot(locale)}/block-library`,

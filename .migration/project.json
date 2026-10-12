@@ -7,7 +7,8 @@
       "aemSitePath": "/content/tcs-corp",
       "aemAssetsFolderPath": "/content/dam/tcs-corp",
       "aemSiteName": "tcs-corp",
-      "aemSiteTitle": "TCS Corporate"
+      "aemSiteTitle": "TCS Corporate",
+      "baseUrl": "https://main--tcs-corp--sradha-tcs.aem.live"
     }
   }
 }

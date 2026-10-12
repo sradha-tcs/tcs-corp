@@ -4,7 +4,7 @@
  * a language-only path (e.g. /de-de, see paths.json). Every locale site holds its pages and its
  * own references, error pages, sheets and block library:
  *
- *   /de-de/                       Home (index) and the content pages
+ *   /de-de/                       Home (the locale page itself) and the content pages
  *   /de-de/references/            Header (nav), Footer (footer) and other fragments
  *   /de-de/error-pages/           404, 403, 500
  *   /de-de/placeholders.json      UI text (Key, Text, Description, Category)
@@ -92,10 +92,10 @@ export function getLocale(pathname = window.location.pathname) {
 }
 
 /**
- * The parent pages of a page up to its locale's Home page (index), nearest first, as the URLs
- * to load: published paths (/de-de/insights/blogs, /de-de/insights, /de-de/), or AEM page URLs
- * when editing (/content/tcs-corp/de/de-de/insights.html, …/de/de-de/index.html). Empty for the
- * Home page and for pages outside a locale.
+ * The parent pages of a page up to its locale's Home page (the locale page itself), nearest
+ * first, as the URLs to load: published paths (/de-de/insights/blogs, /de-de/insights,
+ * /de-de/), or AEM page URLs when editing (/content/tcs-corp/de/de-de/insights.html, …,
+ * /content/tcs-corp/de/de-de.html). Empty for the Home page and for pages outside a locale.
  * @param {string} [pathname] defaults to the current page
  * @returns {string[]}
  */
@@ -114,7 +114,7 @@ export function getParentPages(pathname = window.location.pathname) {
     const parent = `${root}/${segments.slice(0, depth).join('/')}`;
     parents.push(contentRoot ? `${contentRoot}${parent}.html` : parent);
   }
-  parents.push(contentRoot ? `${contentRoot}${root}/index.html` : `${root}/`);
+  parents.push(contentRoot ? `${contentRoot}${root}.html` : `${root}/`);
   return parents;
 }
 
