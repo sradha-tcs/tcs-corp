@@ -2849,7 +2849,7 @@
       {
         "component": "tab",
         "name": "authorTab",
-        "label": "Author Details"
+        "label": "Author"
       },
       {
         "component": "text",
@@ -2941,6 +2941,14 @@
         "name": "showDescription",
         "label": "Show Description",
         "value": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hideAuthor",
+        "label": "Hide Author Details",
+        "description": "Hides the author, author image and designation & location",
+        "value": false
       },
       {
         "component": "tab",
