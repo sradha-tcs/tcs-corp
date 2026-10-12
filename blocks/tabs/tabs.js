@@ -11,8 +11,8 @@ import { readTab } from '../tab/tab.js';
 /*
  * Tabs, like the Tabs core component of AEM, from two sources:
  * - the Tabs block (in a section): its properties (ID, Label, Style, Alignment, Orientation)
- *   and one Tab item per tab, with Title, ID, Active tab, Content fields (heading, image, text,
- *   button; stacked or image left / right) and a Fragment, any page content shown in the tab
+ *   and one Tab item per tab, with Title, ID, Active tab and a Fragment: a page whose content
+ *   (any components, e.g. Columns) is shown in the tab
  * - a Tabs Container section (scripts.js buildTabsSections): its Tab items start the tabs, the
  *   components after a Tab (Columns, Title, Text, Image, Button), up to the next Tab, are its
  *   content; they keep their own markup, decoration and editor instrumentation
@@ -27,7 +27,6 @@ const BLOCK_FIELDS = ['tabsid', 'tabsarialabel', 'tabsstyle', 'tabsalignment', '
 const STYLES = ['underline', 'boxed', 'pills'];
 const ALIGNMENTS = ['left', 'center', 'stretch'];
 const ORIENTATIONS = ['horizontal', 'vertical'];
-const LAYOUTS = ['stacked', 'image-left', 'image-right'];
 
 // the tab shown per Tabs, so Tabs re-rendered after an edit show the same tab
 const shownTabs = new Map();
@@ -105,55 +104,29 @@ function readBlockProperties(block) {
 }
 
 /**
- * The Content fields of a Tab item: stacked, or the images and the text side by side.
- * @param {Element} cell the grouped Content cell (heading, image, text, button)
- * @param {string} layout
- * @returns {Element|null}
- */
-function buildContent(cell, layout) {
-  const elements = [...(cell?.children || [])];
-  if (!elements.length) return null;
-  const content = document.createElement('div');
-  content.className = `tabs-content ${layout}`;
-  const isMedia = (el) => el.matches('picture') || (!!el.querySelector('picture, img') && !el.textContent.trim());
-  const media = elements.filter(isMedia);
-  if (layout === 'stacked' || !media.length || media.length === elements.length) {
-    content.append(...elements);
-    return content;
-  }
-  const mediaColumn = document.createElement('div');
-  mediaColumn.className = 'tabs-content-media';
-  mediaColumn.append(...media);
-  const textColumn = document.createElement('div');
-  textColumn.className = 'tabs-content-text';
-  textColumn.append(...elements.filter((el) => !isMedia(el)));
-  content.append(mediaColumn, textColumn);
-  return content;
-}
-
-/**
- * The tab of a Tabs block item row: Title, ID, Active tab, Content, Layout, Fragment cells.
+ * The tab of a Tabs block item row: Title, ID, Active tab and Fragment cells. Items authored
+ * when the Tab had Content fields have more cells: the Fragment is the last one.
  * @param {Element} row
  * @returns {Promise<TabGroup>}
  */
 async function readItem(row) {
-  const [title, id, active, contentCell, layout, fragmentCell] = [...row.children];
-  const content = [buildContent(contentCell, pick(textOf(layout), LAYOUTS, 'stacked'))];
+  const cells = [...row.children];
+  const [title, id, active] = cells;
+  const fragmentCell = cells.length > 3 ? cells[cells.length - 1] : null;
   const path = fragmentCell?.querySelector('a')?.getAttribute('href') || textOf(fragmentCell);
-  if (path) {
-    const fragment = await loadFragment(path);
-    if (fragment) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'tabs-fragment';
-      wrapper.append(...fragment.childNodes);
-      content.push(wrapper);
-    }
+  const fragment = path ? await loadFragment(path) : null;
+  const content = [];
+  if (fragment) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'tabs-fragment';
+    wrapper.append(...fragment.childNodes);
+    content.push(wrapper);
   }
   return {
     title: textOf(title),
     id: toClassName(textOf(id)),
     active: isOn(active),
-    content: content.filter(Boolean),
+    content,
     source: row,
   };
 }
@@ -197,7 +170,7 @@ export default async function decorate(block) {
       hint.className = 'tabs-empty';
       hint.textContent = container
         ? t('tabsEmpty', 'Add a Tab, then the components of the tab after it.')
-        : t('tabsBlockEmpty', 'Add a Tab, then its content in the Tab properties.');
+        : t('tabsBlockEmpty', 'Add a Tab, then choose the Fragment it shows in the Tab properties.');
       block.append(hint);
     }
     return;

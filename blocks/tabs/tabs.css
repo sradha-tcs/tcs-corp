@@ -127,27 +127,7 @@
   height: auto;
 }
 
-/* Tabs block: a Tab's Content fields (stacked, or image left / right) and its Fragment */
-.tabs .tabs-content {
-  display: grid;
-  gap: var(--space-600);
-}
-
-.tabs .tabs-content > :first-child,
-.tabs .tabs-content-text > :first-child {
-  margin-top: 0;
-}
-
-.tabs .tabs-content-media img {
-  display: block;
-  width: 100%;
-  border-radius: var(--radius-l);
-}
-
-.tabs .tabs-content + .tabs-fragment {
-  margin-top: var(--space-1000);
-}
-
+/* Tabs block: a Tab's Fragment */
 .tabs .tabs-fragment > .section + .section {
   margin-top: var(--space-1000);
 }
@@ -183,17 +163,6 @@ html.adobe-ue-edit .tabs .tabs-panel > div:has(> .tab) {
 
   .tabs.pills .tabs-list .tabs-tab {
     padding: var(--space-200) var(--space-800);
-  }
-
-  .tabs .tabs-content.image-left,
-  .tabs .tabs-content.image-right {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-1200);
-    align-items: center;
-  }
-
-  .tabs .tabs-content.image-right .tabs-content-media {
-    order: 1;
   }
 
   /* Orientation: Vertical, the tab list on the left of the panels */

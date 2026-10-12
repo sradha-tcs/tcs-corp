@@ -717,9 +717,7 @@
                 "template": {
                   "name": "Tab",
                   "model": "tabs-item",
-                  "title": "Tab",
-                  "content_headingType": "h3",
-                  "layout": "stacked"
+                  "title": "Tab"
                 }
               }
             }
