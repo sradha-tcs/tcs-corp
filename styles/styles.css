@@ -24,6 +24,9 @@
   --brand-500: #4673db;
   --brand-600: #011627;
 
+  /* warning */
+  --warning-500: #e8b931;
+
   /* grey */
   --grey-100: #f5f5f5;
   --grey-200: #e6e6e6;
@@ -93,6 +96,7 @@
   --color-bg-neutral-secondary-hover: var(--black-600);
   --color-bg-neutral-tertiary: var(--black-500);
   --color-bg-neutral-tertiary-hover: var(--black-400);
+  --color-bg-warning: var(--warning-500);
 
   /* text */
   --color-text-default: var(--black-1000);
