@@ -1,7 +1,8 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { createHiddenText } from '../../decorators/a11y-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { pick } from '../../utils/buttons.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
+import { normalizeKey, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { onVisible } from '../../utils/viewport.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
@@ -10,49 +11,37 @@ import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 /*
- * Table List (blocks/table-list/_table-list.json): a heading with a "View all" link and up to
- * four numbered cards (number, title, description, arrow link), shown as a list or a table.
- * Block properties are read by position (one single-cell row per field); the items are a
- * header (2 cells) and cards (number, title, description, page reference, tag 1, tag 2).
+ * Table List (blocks/table-list/_table-list.json, TCS DS Figma "List" variations): a heading
+ * with a call to action and a list of items, everything set in the dialog:
+ * - Variation 1 (industries): title, description and arrow
+ * - Variation 2 (solutions): description, large title and an outline button
+ * - Variation 3 (products): description, number, large title and a diagonal arrow
+ * Call to action style, numbers and the item link default per variation and can be changed.
+ * Block properties are key-value rows, or one row per field in model order (blocks created
+ * before the model was key-value); items are rows of number, title, trademark, description
+ * and link (with its button text) cells.
  */
 
-const DEFAULTS = {
-  variations: '',
-  maxCards: 4,
-  showTags: false,
-  view: 'list',
-  cardColor: 'white',
-  display: 'title-description',
-  viewAllTitle: 'View all',
-  motionType: 'none',
-  listTitle: 'Our transformation solutions',
-};
-
-const VALID_VARIATIONS = [
-  '',
-  'compact',
-  'no-description',
-  'dark',
-  'featured-industry',
-  'no-number',
-  'description-first',
-  'title-right',
+// block properties (_table-list.json), in model order
+const FIELDS = [
+  'variations', 'listheading', 'maxcards', 'viewalllabel', 'viewalllink', 'ctastyle', 'numbers',
+  'itemaction', 'itembuttonlabel', 'motion',
 ];
+const VARIATIONS = ['industries', 'solutions', 'products'];
+const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
+const NUMBERS = ['show', 'mobile', 'hide'];
+const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'button'];
+const MOTIONS = ['none', 'fade', 'slide', 'reveal'];
+const HEADINGS = ['h2', 'h3', 'h4'];
+const TRADEMARKS = { tm: '™', r: '®' };
+const MAX_ITEMS = 10;
 
-const VALID_CARD_COLORS = ['white', 'blue', 'black', 'grey'];
-const VALID_DISPLAYS = ['title-description', 'title', 'description'];
-const VALID_MOTIONS = ['none', 'fade', 'slide', 'reveal'];
-
-const pick = (value, allowed, fallback) => (allowed.includes(value) ? value : fallback);
-
-function getText(element) {
-  return element?.textContent?.trim() || '';
-}
-
-function getFieldLink(element) {
-  const link = element?.querySelector('a[href]');
-  return link?.getAttribute('href') || getText(element);
-}
+// what each variation shows unless the dialog says otherwise
+const VARIATION_DEFAULTS = {
+  industries: { ctaStyle: 'primary', numbers: 'mobile', itemAction: 'arrow' },
+  solutions: { ctaStyle: 'secondary', numbers: 'hide', itemAction: 'button' },
+  products: { ctaStyle: 'tertiary', numbers: 'show', itemAction: 'arrow-up-right' },
+};
 
 /**
  * Turns an authored link value into a destination the site serves: site paths ("/en/page"),
@@ -67,227 +56,175 @@ function toDestination(value) {
   return '';
 }
 
+/** the destination of a link cell: its link, or a path typed as text */
+const linkOf = (cell) => toDestination(cell?.querySelector('a[href]')?.getAttribute('href')
+  || textOf(cell));
+
 /**
- * Extracts the destination of an authored page-reference cell.
- * The path is used as a destination, never as visible card text.
- * @param {Element|null} cell Authored reference cell
- * @returns {string} Destination or an empty string
+ * The text of a link cell, when authored: a link without its own text shows its URL.
+ * @param {Element} cell
  */
-function getPageReference(cell) {
-  if (!cell) return '';
-  const anchor = cell.querySelector('a[href]');
-  return [anchor?.getAttribute('href'), cell.getAttribute('href'), getText(cell)]
-    .map(toDestination)
-    .find(Boolean) || '';
+function linkTextOf(cell) {
+  const a = cell?.querySelector('a[href]');
+  const text = textOf(a);
+  if (!text || text === a.getAttribute('href') || /^(\/|https?:)/i.test(text)) return '';
+  return text;
 }
 
-function readBlockConfig(block) {
-  const configRows = [];
-  const contentRows = [];
-
+/**
+ * Reads the block: its properties (key-value rows, or single-cell rows in model order), the
+ * item rows and a legacy header item (heading | link) of lists created before the heading and
+ * link were block fields.
+ * @param {Element} block
+ */
+function readBlock(block) {
+  const cells = {};
+  const unkeyed = [];
+  const items = [];
+  let header = null;
   [...block.children].forEach((row) => {
-    if (row.children.length === 1) configRows.push(row);
-    else contentRows.push(row);
+    const rowCells = [...row.children];
+    const key = rowCells.length === 2 ? normalizeKey(rowCells[0].textContent) : '';
+    if (FIELDS.includes(key)) [, cells[key]] = rowCells;
+    else if (rowCells.length === 1) unkeyed.push(rowCells[0]);
+    else if (rowCells.length === 2) header = row;
+    else items.push(row);
   });
+  if (!Object.keys(cells).length) {
+    FIELDS.forEach((field, i) => { if (unkeyed[i]) cells[field] = unkeyed[i]; });
+  }
 
-  const cell = (index) => configRows[index]?.children[0];
-  const value = (index) => getText(cell(index));
-  const rawShowTags = value(2).toLowerCase();
-  const maxCards = Number.parseInt(value(1), 10);
-
-  const properties = {
-    variations: pick(value(0), VALID_VARIATIONS, DEFAULTS.variations),
-    maxCards: Number.isNaN(maxCards) ? DEFAULTS.maxCards : Math.min(Math.max(maxCards, 1), 4),
-    showTags: rawShowTags ? ['true', 'yes', '1'].includes(rawShowTags) : DEFAULTS.showTags,
-    view: pick(value(3), ['list', 'table'], DEFAULTS.view),
-    cardColor: pick(value(4), VALID_CARD_COLORS, DEFAULTS.cardColor),
-    display: pick(value(5), VALID_DISPLAYS, DEFAULTS.display),
-    // no defaults here, so the authored header item can fill in the heading and link text
-    viewAllTitle: value(6),
-    viewAllLink: toDestination(getFieldLink(cell(7))),
-    motionType: pick(value(8), VALID_MOTIONS, DEFAULTS.motionType),
-    listTitle: value(9),
+  const variation = pick(textOf(cells.variations), VARIATIONS, 'industries');
+  const defaults = VARIATION_DEFAULTS[variation];
+  const maxItems = Number.parseInt(textOf(cells.maxcards), 10);
+  const headingCell = cells.listheading;
+  return {
+    variation,
+    heading: textOf(headingCell),
+    headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS.map((h) => h.toUpperCase()), 'H2').toLowerCase(),
+    maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
+    ctaText: textOf(cells.viewalllabel),
+    ctaLink: linkOf(cells.viewalllink),
+    ctaStyle: pick(textOf(cells.ctastyle), CTA_STYLES, defaults.ctaStyle),
+    numbers: pick(textOf(cells.numbers), NUMBERS, defaults.numbers),
+    itemAction: pick(textOf(cells.itemaction), ITEM_ACTIONS, defaults.itemAction),
+    buttonText: textOf(cells.itembuttonlabel),
+    motion: pick(textOf(cells.motion), MOTIONS, 'none'),
+    items,
+    header,
   };
-
-  return { properties, contentRows, hasVariationConfig: Boolean(configRows[0]) };
 }
 
-function createHeader(properties, headerRow) {
+function buildHeader(config) {
   const header = document.createElement('div');
   header.className = 'table-list-header';
-  const [headingCell, linkCell] = headerRow ? [...headerRow.children] : [];
-  if (headerRow) moveInstrumentation(headerRow, header);
+  const [legacyHeading, legacyLink] = config.header ? [...config.header.children] : [];
+  if (config.header) moveInstrumentation(config.header, header);
 
-  const heading = document.createElement('h2');
-  heading.className = 'table-list-heading';
-  heading.textContent = properties.listTitle || getText(headingCell)
-    || t('tableListTitle', DEFAULTS.listTitle);
-  header.append(heading);
+  const text = config.heading || textOf(legacyHeading);
+  if (text) {
+    const heading = document.createElement(config.headingType);
+    heading.className = 'table-list-heading';
+    heading.textContent = text;
+    header.append(heading);
+  }
 
-  const authoredLink = linkCell?.querySelector('a[href]');
-  const href = properties.viewAllLink || toDestination(authoredLink?.getAttribute('href'));
+  const href = config.ctaLink || linkOf(legacyLink);
   if (href) {
-    const explore = document.createElement('p');
-    explore.className = 'table-list-explore';
+    const cta = document.createElement('p');
+    cta.className = 'table-list-cta';
     const link = document.createElement('a');
     link.href = href;
-    link.textContent = properties.viewAllTitle || getText(authoredLink)
-      || t('viewAll', DEFAULTS.viewAllTitle);
-    decorateButton(link, { view: 'link' });
-    explore.append(link);
-    header.append(explore);
+    link.textContent = config.ctaText || linkTextOf(legacyLink) || t('viewAll', 'View all');
+    decorateButton(link, { view: 'button', type: config.ctaStyle });
+    cta.append(link);
+    header.append(cta);
   }
-
-  return header;
-}
-
-function createTags(cells) {
-  const tags = document.createElement('div');
-  tags.className = 'table-list-tags';
-  cells.forEach((cell) => {
-    const text = getText(cell);
-    if (!text) return;
-    const tag = document.createElement('span');
-    tag.className = 'table-list-tag';
-    tag.textContent = text;
-    moveInstrumentation(cell, tag);
-    tags.append(tag);
-  });
-  return tags.children.length ? tags : null;
-}
-
-/**
- * Builds the arrow-only card action: a labelled link, or a decorative arrow without a link.
- * The arrow itself is drawn in CSS.
- * @param {Element} cell Authored page-reference cell
- * @param {string} title Card title, for the accessible name
- * @returns {HTMLElement} Arrow action wrapper
- */
-function createCardAction(cell, title) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'table-list-link';
-
-  const destination = getPageReference(cell);
-  const action = document.createElement(destination ? 'a' : 'span');
-  action.className = 'table-list-arrow';
-  if (destination) {
-    action.href = destination;
-    action.setAttribute('aria-label', t('exploreItem', 'Explore {title}', { title: title || t('card', 'card') }));
-  } else {
-    action.setAttribute('aria-hidden', 'true');
-  }
-
-  wrapper.append(action);
-  return wrapper;
+  return header.children.length ? header : null;
 }
 
 /** replaces an authored cell with a new element holding its text and its instrumentation */
 function fromCell(cell, tagName, className) {
   const element = document.createElement(tagName);
   element.className = className;
-  element.textContent = getText(cell);
+  element.textContent = textOf(cell);
   if (cell) moveInstrumentation(cell, element);
   return element;
 }
 
-function decorateCard(row, index, { showTags, variation }) {
-  const [numberCell, titleCell, descriptionCell, pageReferenceCell, ...tagCells] = row.children;
+/**
+ * The item's link: an arrow (the whole item is clickable) or a button.
+ * @returns {Element|null}
+ */
+function buildAction(linkCell, title, config) {
+  const href = linkOf(linkCell);
+  const action = document.createElement('div');
+  action.className = 'table-list-action';
+  if (config.itemAction === 'button') {
+    if (!href) return null;
+    const button = document.createElement('a');
+    button.href = href;
+    button.textContent = linkTextOf(linkCell) || config.buttonText || t('explore', 'Explore');
+    button.setAttribute('aria-label', `${button.textContent}: ${title}`);
+    decorateButton(button, { view: 'button', type: 'secondary' });
+    action.append(button);
+    return action;
+  }
+  const arrow = document.createElement(href ? 'a' : 'span');
+  arrow.className = `table-list-arrow ${config.itemAction}`;
+  if (href) {
+    arrow.href = href;
+    arrow.setAttribute('aria-label', t('exploreItem', 'Explore {title}', { title }));
+  } else {
+    arrow.setAttribute('aria-hidden', 'true');
+  }
+  action.append(arrow);
+  return action;
+}
 
-  const number = fromCell(numberCell, 'span', 'table-list-number');
-  if (!number.textContent) number.textContent = String(index + 1).padStart(2, '0');
+function decorateItem(row, index, config) {
+  const [numberCell, titleCell, trademarkCell, descriptionCell, linkCell] = row.children;
 
+  const main = document.createElement('div');
+  main.className = 'table-list-main';
+  if (config.numbers !== 'hide') {
+    const number = fromCell(numberCell, 'span', 'table-list-number');
+    if (!number.textContent) number.textContent = String(index + 1).padStart(2, '0');
+    main.append(number);
+  }
   const title = fromCell(titleCell, 'h3', 'table-list-title');
-  const titleGroup = document.createElement('div');
-  titleGroup.className = 'table-list-title-group';
-  titleGroup.append(title);
+  const trademark = TRADEMARKS[textOf(trademarkCell).toLowerCase()];
+  if (trademark) {
+    const sup = document.createElement('sup');
+    sup.className = 'table-list-trademark';
+    sup.textContent = trademark;
+    title.append(sup);
+  }
+  main.append(title);
 
-  const descriptionGroup = document.createElement('div');
-  descriptionGroup.className = 'table-list-description-group';
-  const tags = showTags && variation === 'title-right' ? createTags(tagCells.slice(0, 2)) : null;
-  if (tags) descriptionGroup.append(tags);
-  descriptionGroup.append(fromCell(descriptionCell, 'p', 'table-list-description'));
-
-  const action = createCardAction(pageReferenceCell, title.textContent);
+  const parts = [main];
+  if (textOf(descriptionCell)) {
+    parts.push(fromCell(descriptionCell, 'p', 'table-list-description'));
+  }
+  const action = buildAction(linkCell, textOf(titleCell), config);
+  if (action) parts.push(action);
 
   // the row is kept, so its Universal Editor instrumentation stays in place
-  row.className = 'table-list-card';
-  row.replaceChildren(number, titleGroup, descriptionGroup, action);
+  row.className = 'table-list-item';
+  row.replaceChildren(...parts);
   return row;
 }
 
-function buildTable(cards, display) {
-  const showTitle = display !== 'description';
-  const showDescription = display !== 'title';
-
-  const table = document.createElement('table');
-  table.className = 'table-list-table';
-
-  const headerRow = document.createElement('tr');
-  [
-    ['number', 'Number'],
-    showTitle && ['title', 'Title'],
-    showDescription && ['description', 'Description'],
-    ['link', 'Link'],
-  ].filter(Boolean).forEach(([key, fallback]) => {
-    const th = document.createElement('th');
-    th.scope = 'col';
-    const label = t(`${key}Column`, fallback);
-    // the link column has no visible header
-    if (key === 'link') th.append(createHiddenText(label));
-    else th.textContent = label;
-    headerRow.append(th);
-  });
-  const thead = document.createElement('thead');
-  thead.append(headerRow);
-
-  const tbody = document.createElement('tbody');
-  cards.forEach((card) => {
-    const row = document.createElement('tr');
-    moveInstrumentation(card, row);
-
-    const sources = [
-      card.querySelector('.table-list-number'),
-      showTitle && card.querySelector('.table-list-title'),
-      showDescription && card.querySelector('.table-list-description'),
-    ].filter((source) => source !== false);
-
-    sources.forEach((source) => {
-      const td = document.createElement('td');
-      td.textContent = getText(source);
-      if (source) moveInstrumentation(source, td);
-      row.append(td);
-    });
-
-    const actionCell = document.createElement('td');
-    const link = card.querySelector('a.table-list-arrow');
-    if (link) {
-      // keeps the aria-label, the link's only accessible name
-      const actionLink = link.cloneNode(true);
-      actionLink.classList.add('table-list-table-link');
-      actionCell.append(actionLink);
-    }
-    row.append(actionCell);
-    tbody.append(row);
-  });
-
-  table.append(thead, tbody);
-  const scroller = document.createElement('div');
-  scroller.className = 'table-list-table-scroll';
-  scroller.append(table);
-  return scroller;
-}
-
 /**
- * Reveals the cards with the chosen motion as they scroll into view. Skipped in the
- * Universal Editor and for reduced motion, where the cards are always shown.
+ * Reveals the items with the chosen motion as they scroll into view. Skipped in the
+ * Universal Editor and for reduced motion, where the items are always shown.
  */
-function observeMotion(block, motionType) {
-  const cards = [...block.querySelectorAll('.table-list-card')];
-  if (motionType === 'none' || !cards.length || !('IntersectionObserver' in window)) return;
+function observeMotion(block, motion) {
+  const items = [...block.querySelectorAll('.table-list-item')];
+  if (motion === 'none' || !items.length || !('IntersectionObserver' in window)) return;
   if (isEditing() || prefersReducedMotion()) return;
-
   block.classList.add('motion-ready');
-  cards.forEach((card) => onVisible(card, () => card.classList.add('is-visible'), { threshold: 0.15 }));
+  items.forEach((item) => onVisible(item, () => item.classList.add('is-visible'), { threshold: 0.15 }));
 }
 
 /**
@@ -296,41 +233,19 @@ function observeMotion(block, motionType) {
  */
 export default async function decorate(block) {
   t = await getPlaceholders();
-  const { properties, contentRows, hasVariationConfig } = readBlockConfig(block);
+  const config = readBlock(block);
 
-  const existingVariation = VALID_VARIATIONS
-    .find((variation) => variation && block.classList.contains(variation)) || '';
-  const variation = hasVariationConfig ? properties.variations : existingVariation;
+  block.classList.add(config.variation, `numbers-${config.numbers}`, `motion-${config.motion}`);
 
-  const headerRow = contentRows.find((row) => row.children.length === 2);
-  const cardRows = contentRows.filter((row) => row.children.length >= 4);
+  const list = document.createElement('div');
+  list.className = 'table-list-items';
+  list.setAttribute('role', 'list');
+  config.items.slice(0, config.maxItems).forEach((row, i) => {
+    const item = decorateItem(row, i, config);
+    item.setAttribute('role', 'listitem');
+    list.append(item);
+  });
 
-  block.classList.remove(...VALID_VARIATIONS.filter(Boolean));
-  if (variation) block.classList.add(variation);
-  block.classList.add(
-    `card-${properties.cardColor}`,
-    `motion-${properties.motionType}`,
-    `display-${properties.display}`,
-  );
-  if (properties.showTags) block.classList.add('show-tags');
-
-  const header = createHeader(properties, headerRow);
-
-  const cardsContainer = document.createElement('div');
-  cardsContainer.className = 'table-list-cards';
-  const cards = cardRows
-    .slice(0, properties.maxCards)
-    .map((row, index) => decorateCard(row, index, { showTags: properties.showTags, variation }));
-  cardsContainer.append(...cards);
-
-  if (variation === 'featured-industry') cards[0]?.classList.add('table-list-card-featured');
-
-  block.replaceChildren(header);
-  if (properties.view === 'table' && cards.length) {
-    block.classList.add('view-table');
-    block.append(buildTable(cards, properties.display));
-  } else {
-    block.append(cardsContainer);
-    observeMotion(block, properties.motionType);
-  }
+  block.replaceChildren(...[buildHeader(config), list].filter(Boolean));
+  observeMotion(block, config.motion);
 }

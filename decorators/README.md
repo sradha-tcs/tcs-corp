@@ -23,7 +23,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article, blog, press-release templates |
 | `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
 | `contact-list-decorator.js` | `buildContactList` (contacts with mail / phone links, e.g. Media Contacts) | press-release template |
-| `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, table-list, conversation-canvas |
+| `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, conversation-canvas |
 
 ## Guidelines
 

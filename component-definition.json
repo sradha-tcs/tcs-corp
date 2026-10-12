@@ -525,7 +525,16 @@
                 "template": {
                   "name": "Table List",
                   "model": "table-list",
-                  "filter": "table-list"
+                  "filter": "table-list",
+                  "key-value": true,
+                  "variations": "industries",
+                  "listHeadingType": "h2",
+                  "maxCards": 4,
+                  "ctaStyle": "",
+                  "numbers": "",
+                  "itemAction": "",
+                  "itemButtonLabel": "Explore",
+                  "motion": "none"
                 }
               }
             }
@@ -547,15 +556,17 @@
           }
         },
         {
-          "title": "Table List Card",
+          "title": "Table List Item",
           "id": "table-list-card",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Table List Card",
-                  "model": "table-list-card"
+                  "name": "Table List Item",
+                  "model": "table-list-card",
+                  "title": "TwinX",
+                  "description": "Risk free business experimentation and decision intelligence"
                 }
               }
             }

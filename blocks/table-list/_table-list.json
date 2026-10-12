@@ -10,7 +10,16 @@
             "template": {
               "name": "Table List",
               "model": "table-list",
-              "filter": "table-list"
+              "filter": "table-list",
+              "key-value": true,
+              "variations": "industries",
+              "listHeadingType": "h2",
+              "maxCards": 4,
+              "ctaStyle": "",
+              "numbers": "",
+              "itemAction": "",
+              "itemButtonLabel": "Explore",
+              "motion": "none"
             }
           }
         }
@@ -32,15 +41,17 @@
       }
     },
     {
-      "title": "Table List Card",
+      "title": "Table List Item",
       "id": "table-list-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Table List Card",
-              "model": "table-list-card"
+              "name": "Table List Item",
+              "model": "table-list-card",
+              "title": "TwinX",
+              "description": "Risk free business experimentation and decision intelligence"
             }
           }
         }
@@ -52,43 +63,57 @@
       "id": "table-list",
       "fields": [
         {
+          "component": "tab",
+          "name": "contentTab",
+          "label": "Content"
+        },
+        {
           "component": "select",
           "valueType": "string",
           "name": "variations",
-          "label": "Variations",
-          "value": "",
+          "label": "Variation",
+          "description": "Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow.",
+          "value": "industries",
           "options": [
             {
-              "name": "Default",
-              "value": ""
+              "name": "Variation 1 - Title, description, arrow",
+              "value": "industries"
             },
             {
-              "name": "Compact",
-              "value": "compact"
+              "name": "Variation 2 - Description, large title, button",
+              "value": "solutions"
             },
             {
-              "name": "No Description",
-              "value": "no-description"
+              "name": "Variation 3 - Description, number, large title, arrow",
+              "value": "products"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "listHeading",
+          "label": "Heading",
+          "value": ""
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "listHeadingType",
+          "label": "Heading Type",
+          "value": "h2",
+          "options": [
+            {
+              "name": "H2",
+              "value": "h2"
             },
             {
-              "name": "Black Theme",
-              "value": "dark"
+              "name": "H3",
+              "value": "h3"
             },
             {
-              "name": "Featured Industry",
-              "value": "featured-industry"
-            },
-            {
-              "name": "No Number",
-              "value": "no-number"
-            },
-            {
-              "name": "Description First",
-              "value": "description-first"
-            },
-            {
-              "name": "Title Right",
-              "value": "title-right"
+              "name": "H4",
+              "value": "h4"
             }
           ]
         },
@@ -96,107 +121,161 @@
           "component": "number",
           "valueType": "number",
           "name": "maxCards",
-          "label": "Maximum Cards",
-          "description": "Display between 1 and 4 cards.",
+          "label": "Maximum items",
+          "description": "Display between 1 and 10 items.",
           "value": 4,
           "validation": {
             "numberMin": 1,
-            "numberMax": 4,
-            "customErrorMsg": "Maximum Cards must be between 1 and 4."
+            "numberMax": 10,
+            "customErrorMsg": "Maximum items must be between 1 and 10."
           }
         },
         {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "showTags",
-          "label": "Show Tags",
-          "description": "Display each card's tags above its description (Title Right variation only).",
-          "value": false
+          "component": "tab",
+          "name": "ctaTab",
+          "label": "Call to action"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "viewAllLabel",
+          "label": "Text",
+          "description": "Text of the link next to the heading, e.g. Industries or All Products & Platforms.",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "viewAllLink",
+          "label": "Link",
+          "description": "Destination of the link next to the heading. The link is shown only when set."
         },
         {
           "component": "select",
           "valueType": "string",
-          "name": "view",
-          "label": "View",
-          "value": "list",
+          "name": "ctaStyle",
+          "label": "Style",
+          "description": "Variation default: filled button (Variation 1), outline button (Variation 2), text link (Variation 3).",
+          "value": "",
           "options": [
             {
-              "name": "List",
-              "value": "list"
+              "name": "Variation default",
+              "value": ""
             },
             {
-              "name": "Table",
-              "value": "table"
+              "name": "Filled button",
+              "value": "primary"
+            },
+            {
+              "name": "Outline button",
+              "value": "secondary"
+            },
+            {
+              "name": "Text link",
+              "value": "tertiary"
+            }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "itemsTab",
+          "label": "Items"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "numbers",
+          "label": "Numbers",
+          "description": "Variation default: on mobile only (Variation 1), hidden (Variation 2), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number.",
+          "value": "",
+          "options": [
+            {
+              "name": "Variation default",
+              "value": ""
+            },
+            {
+              "name": "Show",
+              "value": "show"
+            },
+            {
+              "name": "Show on mobile only",
+              "value": "mobile"
+            },
+            {
+              "name": "Hide",
+              "value": "hide"
             }
           ]
         },
         {
           "component": "select",
           "valueType": "string",
-          "name": "cardColor",
-          "label": "Card Color",
-          "value": "white",
+          "name": "itemAction",
+          "label": "Item link",
+          "description": "Variation default: arrow (Variation 1), button (Variation 2), diagonal arrow (Variation 3).",
+          "value": "",
           "options": [
             {
-              "name": "White",
-              "value": "white"
+              "name": "Variation default",
+              "value": ""
             },
             {
-              "name": "Blue",
-              "value": "blue"
+              "name": "Arrow",
+              "value": "arrow"
             },
             {
-              "name": "Black",
-              "value": "black"
+              "name": "Diagonal arrow",
+              "value": "arrow-up-right"
             },
             {
-              "name": "Grey",
-              "value": "grey"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "display",
-          "label": "Display",
-          "value": "title-description",
-          "options": [
-            {
-              "name": "Title and Description",
-              "value": "title-description"
-            },
-            {
-              "name": "Title only",
-              "value": "title"
-            },
-            {
-              "name": "Description only",
-              "value": "description"
+              "name": "Button",
+              "value": "button"
             }
           ]
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "viewAllLabel",
-          "label": "View All Title",
-          "value": "View all",
-          "description": "Text of the header \"View all\" link."
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "viewAllLink",
-          "label": "View All Link",
-          "description": "Destination URL for the header \"View all\" link. The link is shown only when set.",
-          "value": ""
+          "name": "itemButtonLabel",
+          "label": "Button text",
+          "description": "Text of the item buttons; an item can have its own.",
+          "value": "Explore",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "itemAction"
+                  },
+                  "button"
+                ]
+              },
+              {
+                "and": [
+                  {
+                    "!": {
+                      "var": "itemAction"
+                    }
+                  },
+                  {
+                    "===": [
+                      {
+                        "var": "variations"
+                      },
+                      "solutions"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "motion",
           "label": "Motion Type",
+          "description": "Animates the items as they scroll into view (not when reduced motion is preferred).",
           "value": "none",
           "options": [
             {
@@ -215,16 +294,7 @@
               "name": "Reveal",
               "value": "reveal"
             }
-          ],
-          "description": "Animates the cards as they scroll into view (not in table view, or when reduced motion is preferred)."
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "listHeading",
-          "label": "List Title",
-          "value": "",
-          "description": "Heading of the list. Leave blank to use the Table List Header item heading."
+          ]
         }
       ]
     },
@@ -256,7 +326,7 @@
           "valueType": "string",
           "name": "number",
           "label": "Number",
-          "description": "Optional. Leave blank to number cards automatically.",
+          "description": "Optional. Leave blank to number items automatically (01, 02, ...).",
           "value": ""
         },
         {
@@ -267,34 +337,48 @@
           "value": "TwinX"
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "trademark",
+          "label": "Trademark",
+          "description": "A trademark sign after the title, e.g. TwinX™.",
+          "value": "",
+          "options": [
+            {
+              "name": "None",
+              "value": ""
+            },
+            {
+              "name": "™ Trademark",
+              "value": "tm"
+            },
+            {
+              "name": "® Registered",
+              "value": "r"
+            }
+          ]
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "description",
           "label": "Description",
-          "value": "Risk free business experimentation and decision making"
+          "value": "Risk free business experimentation and decision intelligence"
         },
         {
           "component": "aem-content",
           "valueType": "string",
           "name": "link",
-          "label": "Page Reference",
-          "description": "Destination page path for the card.",
+          "label": "Link",
+          "description": "Destination page of the item.",
           "value": ""
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "tag1",
-          "label": "Tag 1",
-          "description": "Optional. Displayed above the description when Show Tags is enabled.",
-          "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "tag2",
-          "label": "Tag 2",
-          "description": "Optional second tag displayed above the description.",
+          "name": "linkText",
+          "label": "Button text",
+          "description": "Optional. Overrides the block Button text for this item (button item links only).",
           "value": ""
         }
       ]
@@ -304,7 +388,6 @@
     {
       "id": "table-list",
       "components": [
-        "table-list-header",
         "table-list-card"
       ]
     }
