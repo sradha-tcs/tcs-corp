@@ -77,6 +77,9 @@ export function createVideoElement(source, options = {}) {
   const muted = background || (options.muted ?? autoplay);
   const video = document.createElement('video');
   video.controls = !background && options.controls !== false;
+  // no Download in the player's menu (Chrome, Edge), nor "Save video as" on right-click
+  video.setAttribute('controlslist', 'nodownload');
+  video.addEventListener('contextmenu', (e) => e.preventDefault());
   video.loop = background || !!options.loop;
   video.muted = muted;
   // the muted attribute too: browsers only autoplay videos that are muted from the start
