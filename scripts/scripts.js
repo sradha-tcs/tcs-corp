@@ -145,12 +145,36 @@ function buildCarouselSections(container) {
   });
 }
 
+let listeningToTabHash = false;
+
 /**
- * Tab sections (blocks/tabs/_tabs.json "Tab"): each tab is a section with a Tab Title, holding
- * any components its filter allows (title, text, image, button). Consecutive Tab sections form
- * one set of tabs: a tab list section is added before them and only the selected tab's
- * section is shown. The sections keep their place and editor instrumentation; selecting a
- * component in Universal Editor shows its tab.
+ * The tab of the tab section the page address names (#id), if any.
+ * @returns {HTMLButtonElement|null}
+ */
+function tabOfHash() {
+  const anchor = toClassName(decodeURIComponent(window.location.hash.slice(1)));
+  if (!anchor) return null;
+  return document.querySelector(`.tab-sections-nav [role="tab"][aria-controls="${CSS.escape(anchor)}"]`);
+}
+
+/**
+ * Deep links: a link to a tab's ID (or back / forward to one) opens the tab and scrolls to it.
+ */
+function openTabOfHash() {
+  const tab = tabOfHash();
+  if (!tab) return;
+  tab.click();
+  tab.closest('.tab-sections-nav').scrollIntoView();
+}
+
+/**
+ * Tab sections (blocks/tabs/_tabs.json "Tab"), like the Tabs core component of AEM: each tab is
+ * a section with a Tab Label, holding Columns whose columns hold title, text, image and button.
+ * Consecutive Tab sections form one set of tabs: a tab list section is added before them and
+ * only the selected tab's section is shown. Shown first: the one shown before a rebuild (e.g.
+ * after an edit), else the tab the page address names (its ID), else the Active tab, else the
+ * first. The first tab's Accessibility label names the tab list. The sections keep their place
+ * and editor instrumentation; selecting a component in Universal Editor shows its tab.
  * @param {Element[]} sections consecutive tab sections
  */
 function buildTabSet(sections) {
@@ -164,6 +188,8 @@ function buildTabSet(sections) {
   const list = document.createElement('div');
   list.className = 'tabs-list';
   list.setAttribute('role', 'tablist');
+  const label = sections[0].dataset.tabsarialabel?.trim();
+  if (label) list.setAttribute('aria-label', label);
   wrapper.append(list);
   nav.append(wrapper);
 
@@ -214,8 +240,12 @@ function buildTabSet(sections) {
   }));
 
   sections[0].before(nav);
-  const shown = sections.findIndex((section) => section.dataset.tabSelected === 'true');
-  select(shown >= 0 ? shown : 0);
+  const shown = [
+    sections.findIndex((section) => section.dataset.tabSelected === 'true'),
+    buttons.indexOf(tabOfHash()),
+    sections.findIndex((section) => section.dataset.activetab === 'true'),
+  ].find((index) => index >= 0);
+  select(shown ?? 0);
 }
 
 /**
@@ -241,6 +271,12 @@ function buildTabSections(container) {
   if (!sets.length) return;
   loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
   sets.forEach(buildTabSet);
+  if (!listeningToTabHash) {
+    listeningToTabHash = true;
+    window.addEventListener('hashchange', openTabOfHash);
+    // a page opened at a tab's ID: scroll to it once the page has its layout
+    if (tabOfHash()) window.addEventListener('load', openTabOfHash, { once: true });
+  }
 }
 
 /**
