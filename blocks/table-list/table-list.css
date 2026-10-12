@@ -95,6 +95,17 @@
   margin: 0;
 }
 
+/* rich text: the description's paragraphs and lists keep its size */
+.table-list .table-list-description > * {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.table-list .table-list-description > * + * {
+  margin-top: var(--space-200);
+}
+
 .table-list .table-list-action {
   grid-area: action;
   align-self: start;

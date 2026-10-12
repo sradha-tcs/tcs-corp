@@ -566,7 +566,7 @@
                   "name": "Table List Item",
                   "model": "table-list-card",
                   "title": "TwinX",
-                  "description": "Risk free business experimentation and decision intelligence"
+                  "description": "<p>Risk free business experimentation and decision intelligence</p>"
                 }
               }
             }

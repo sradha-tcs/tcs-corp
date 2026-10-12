@@ -17,9 +17,10 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
  * - Variation 2 (solutions): description, large title and an outline button
  * - Variation 3 (products): description, number, large title and a diagonal arrow
  * Call to action style, numbers and the item link default per variation and can be changed.
- * Block properties are key-value rows, or one row per field in model order (blocks created
- * before the model was key-value); items are rows of number, title, trademark, description
- * and link (with its button text) cells.
+ * Block properties are key-value rows (name | value), or one row per field in model order;
+ * items are rows of number, title, trademark, description and link (with its button text)
+ * cells. Unkeyed rows and item cells are matched to their fields by order and content, so
+ * fields AEM leaves out (never set) don't shift the others.
  */
 
 // block properties (_table-list.json), in model order
@@ -34,6 +35,7 @@ const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'button'];
 const MOTIONS = ['none', 'fade', 'slide', 'reveal'];
 const HEADINGS = ['h2', 'h3', 'h4'];
 const TRADEMARKS = { tm: '™', r: '®' };
+const ITEM_FIELDS = ['number', 'title', 'trademark', 'description', 'link'];
 const MAX_ITEMS = 10;
 
 // what each variation shows unless the dialog says otherwise
@@ -71,28 +73,99 @@ function linkTextOf(cell) {
   return text;
 }
 
+const isEmpty = (cell) => !textOf(cell) && !cell.querySelector('a[href], picture, img');
+const hasHeading = (cell) => !!cell.querySelector('h1, h2, h3, h4, h5, h6');
+const isNumber = (cell) => /^\d{1,3}[.)]?$/.test(textOf(cell));
+const isLink = (cell) => {
+  const a = cell.querySelector('a[href]');
+  return a ? textOf(cell) === textOf(a) : /^(\/|https?:\/\/|#)\S*$/i.test(textOf(cell));
+};
+const isOneOf = (values) => (cell) => values.includes(textOf(cell).toLowerCase());
+const OPTION_VALUES = [...VARIATIONS, ...CTA_STYLES, ...NUMBERS, ...ITEM_ACTIONS, ...MOTIONS];
+const isText = (cell) => !isNumber(cell) && !isLink(cell) && !hasHeading(cell)
+  && !OPTION_VALUES.includes(textOf(cell).toLowerCase());
+
+// what the value of each field looks like
+const PROPERTY_MATCHERS = {
+  variations: isOneOf(VARIATIONS),
+  listheading: (cell) => hasHeading(cell) || isText(cell),
+  maxcards: isNumber,
+  viewalllabel: isText,
+  viewalllink: isLink,
+  ctastyle: isOneOf(CTA_STYLES),
+  numbers: isOneOf(NUMBERS),
+  itemaction: isOneOf(ITEM_ACTIONS),
+  itembuttonlabel: isText,
+  motion: isOneOf(MOTIONS),
+};
+const ITEM_MATCHERS = {
+  number: isNumber,
+  title: (cell) => !isLink(cell),
+  trademark: isOneOf(Object.keys(TRADEMARKS)),
+  description: (cell) => !isLink(cell),
+  link: isLink,
+};
+
 /**
- * Reads the block: its properties (key-value rows, or single-cell rows in model order), the
- * item rows and a legacy header item (heading | link) of lists created before the heading and
- * link were block fields.
+ * Matches cells to fields in model order: an empty cell keeps its field's place, a cell with a
+ * value goes to the next field it fits (a field AEM left out is skipped).
+ * @param {Element[]} cells
+ * @param {string[]} fields
+ * @param {Object<string, (cell: Element) => boolean>} matchers
+ * @returns {Object<string, Element>}
+ */
+function matchFields(cells, fields, matchers) {
+  const matched = {};
+  let next = 0;
+  cells.forEach((cell) => {
+    if (next >= fields.length) return;
+    if (isEmpty(cell)) {
+      next += 1;
+      return;
+    }
+    const index = fields.findIndex((field, i) => i >= next && matchers[field](cell));
+    if (index < 0) return;
+    matched[fields[index]] = cell;
+    next = index + 1;
+  });
+  return matched;
+}
+
+/**
+ * Whether a row is an item (or the legacy header item) rather than a block property: the
+ * editor marks items with their model; otherwise property rows have one cell (or two, keyed).
+ */
+function isItemRow(row) {
+  const model = row.dataset.aueModel;
+  if (model) return model !== 'table-list';
+  return row.children.length > 2 || (row.children.length === 2
+    && !FIELDS.includes(normalizeKey(row.children[0].textContent)));
+}
+
+/**
+ * Reads the block: its properties (key-value rows, or single-cell rows matched to the fields),
+ * the item rows and a legacy header item (heading | link) of lists created before the heading
+ * and link were block fields.
  * @param {Element} block
  */
 function readBlock(block) {
-  const cells = {};
+  let cells = {};
   const unkeyed = [];
   const items = [];
   let header = null;
   [...block.children].forEach((row) => {
     const rowCells = [...row.children];
+    if (isItemRow(row)) {
+      if (row.dataset.aueModel === 'table-list-header' || (!row.dataset.aueModel
+        && rowCells.length === 2)) header = row;
+      else items.push(row);
+      return;
+    }
     const key = rowCells.length === 2 ? normalizeKey(rowCells[0].textContent) : '';
     if (FIELDS.includes(key)) [, cells[key]] = rowCells;
-    else if (rowCells.length === 1) unkeyed.push(rowCells[0]);
-    else if (rowCells.length === 2) header = row;
-    else items.push(row);
+    else if (rowCells.length) unkeyed.push(rowCells[rowCells.length - 1]);
   });
-  if (!Object.keys(cells).length) {
-    FIELDS.forEach((field, i) => { if (unkeyed[i]) cells[field] = unkeyed[i]; });
-  }
+  if (!Object.keys(cells).length) cells = matchFields(unkeyed, FIELDS, PROPERTY_MATCHERS);
 
   const variation = pick(textOf(cells.variations), VARIATIONS, 'industries');
   const defaults = VARIATION_DEFAULTS[variation];
@@ -101,7 +174,7 @@ function readBlock(block) {
   return {
     variation,
     heading: textOf(headingCell),
-    headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS.map((h) => h.toUpperCase()), 'H2').toLowerCase(),
+    headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h2'),
     maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
     ctaText: textOf(cells.viewalllabel),
     ctaLink: linkOf(cells.viewalllink),
@@ -113,6 +186,25 @@ function readBlock(block) {
     items,
     header,
   };
+}
+
+/**
+ * A link styled as a button. Without a destination it's only shown in Universal Editor (as a
+ * preview of the authored text and style, not focusable), so authors see it before the Link
+ * is set; on the page it's left out.
+ * @returns {HTMLAnchorElement|null}
+ */
+function buildButton(href, text, type) {
+  if (!href && !isEditing()) return null;
+  const link = document.createElement('a');
+  link.href = href || '#';
+  link.textContent = text;
+  if (!href) {
+    link.tabIndex = -1;
+    link.setAttribute('aria-hidden', 'true');
+    link.addEventListener('click', (e) => e.preventDefault());
+  }
+  return decorateButton(link, { view: 'button', type });
 }
 
 function buildHeader(config) {
@@ -130,13 +222,12 @@ function buildHeader(config) {
   }
 
   const href = config.ctaLink || linkOf(legacyLink);
-  if (href) {
+  const ctaText = config.ctaText || linkTextOf(legacyLink);
+  const link = (href || ctaText)
+    && buildButton(href, ctaText || t('viewAll', 'View all'), config.ctaStyle);
+  if (link) {
     const cta = document.createElement('p');
     cta.className = 'table-list-cta';
-    const link = document.createElement('a');
-    link.href = href;
-    link.textContent = config.ctaText || linkTextOf(legacyLink) || t('viewAll', 'View all');
-    decorateButton(link, { view: 'button', type: config.ctaStyle });
     cta.append(link);
     header.append(cta);
   }
@@ -161,12 +252,10 @@ function buildAction(linkCell, title, config) {
   const action = document.createElement('div');
   action.className = 'table-list-action';
   if (config.itemAction === 'button') {
-    if (!href) return null;
-    const button = document.createElement('a');
-    button.href = href;
-    button.textContent = linkTextOf(linkCell) || config.buttonText || t('explore', 'Explore');
-    button.setAttribute('aria-label', `${button.textContent}: ${title}`);
-    decorateButton(button, { view: 'button', type: 'secondary' });
+    const text = linkTextOf(linkCell) || config.buttonText || t('explore', 'Explore');
+    const button = buildButton(href, text, 'secondary');
+    if (!button) return null;
+    if (href) button.setAttribute('aria-label', `${text}: ${title}`);
     action.append(button);
     return action;
   }
@@ -182,8 +271,25 @@ function buildAction(linkCell, title, config) {
   return action;
 }
 
+/** the description: authored rich text, or the text of a plain cell */
+function buildDescription(cell) {
+  const description = document.createElement('div');
+  description.className = 'table-list-description';
+  moveInstrumentation(cell, description);
+  if (cell.querySelector('p, ul, ol')) description.append(...cell.childNodes);
+  else {
+    const p = document.createElement('p');
+    p.textContent = textOf(cell);
+    description.append(p);
+  }
+  return description;
+}
+
 function decorateItem(row, index, config) {
-  const [numberCell, titleCell, trademarkCell, descriptionCell, linkCell] = row.children;
+  const {
+    number: numberCell, title: titleCell, trademark: trademarkCell,
+    description: descriptionCell, link: linkCell,
+  } = matchFields([...row.children], ITEM_FIELDS, ITEM_MATCHERS);
 
   const main = document.createElement('div');
   main.className = 'table-list-main';
@@ -203,9 +309,7 @@ function decorateItem(row, index, config) {
   main.append(title);
 
   const parts = [main];
-  if (textOf(descriptionCell)) {
-    parts.push(fromCell(descriptionCell, 'p', 'table-list-description'));
-  }
+  if (descriptionCell) parts.push(buildDescription(descriptionCell));
   const action = buildAction(linkCell, textOf(titleCell), config);
   if (action) parts.push(action);
 
