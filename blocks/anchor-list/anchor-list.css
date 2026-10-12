@@ -1,8 +1,12 @@
 /* Anchor List (TCS.com DS Figma "Chapter Nav", 404-15450) */
 
-/* Sticky: a sticky element only sticks within its parent, so the section holding the list
-   sticks (place the Anchor List in its own section) */
-main > .section:has(> .anchor-list-wrapper > .anchor-list.sticky) {
+/*
+ * Sticky: a sticky element only sticks within its parent. In its own section, the section
+ * sticks (through the rest of the page); in a section with other content, the list sticks while
+ * that section is in view.
+ */
+main > .section:has(> .anchor-list-wrapper:only-child > .anchor-list.sticky),
+main > .section > .anchor-list-wrapper:not(:only-child):has(> .anchor-list.sticky) {
   position: sticky;
   top: var(--nav-height, 0);
   z-index: 10;
@@ -69,7 +73,8 @@ main > .section:has(> .anchor-list-wrapper > .anchor-list.sticky) {
 
 @media (width >= 900px) {
   /* the site header scrolls away on desktop */
-  main > .section:has(> .anchor-list-wrapper > .anchor-list.sticky) {
+  main > .section:has(> .anchor-list-wrapper:only-child > .anchor-list.sticky),
+  main > .section > .anchor-list-wrapper:not(:only-child):has(> .anchor-list.sticky) {
     top: 0;
   }
 

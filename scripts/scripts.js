@@ -89,15 +89,17 @@ function buildAutoBlocks() {
 }
 
 /**
- * Builds a section background from the Background Image metadata cell.
- * @param {Element} cell The metadata value cell
+ * Builds a section background from the Background Image option.
+ * @param {{ text: string, cell?: Element }} option The option: a metadata cell, or a URL from
+ *   the section's data attribute
  * @param {string} [alt] Image alt text; empty marks the image as decorative
  * @returns {Element | null} The picture or img element
  */
-function buildSectionBackground(cell, alt) {
-  let image = cell.querySelector('picture') || cell.querySelector('img');
+function buildSectionBackground(option, alt) {
+  const { cell, text } = option;
+  let image = cell?.querySelector('picture') || cell?.querySelector('img');
   if (!image) {
-    const src = cell.querySelector('a')?.href || cell.textContent.trim();
+    const src = cell?.querySelector('a')?.href || text;
     image = buildImage(src ? { src, alt: '' } : null, BACKGROUND_BREAKPOINTS);
   }
   if (!image) return null;
@@ -143,40 +145,59 @@ function buildCarouselSections(container) {
 }
 
 /**
- * Decorates sections, including the section options: Width Type, Rounded edge, Background Image,
- * Image alt text and Anchor name. decorateSections() keeps only the URL of a metadata image,
- * so these rows are read and removed first, then applied to the decorated section.
+ * Reads the section options of a section before it is decorated. AEM authoring delivers the
+ * section properties as data attributes of the section (data-anchorname, data-style, ...);
+ * documents use a section-metadata block. decorateSections() keeps only the URL of a metadata
+ * image, so the option rows are read and removed first.
+ * @param {Element} section The undecorated section
+ * @returns {{ section: Element, style: string, rows: Object }} rows: option name to
+ *   { text, cell } (cell for metadata rows)
+ */
+function readSectionOptions(section) {
+  const rows = {};
+  SECTION_OPTIONS.forEach((key) => {
+    const value = section.dataset[key];
+    if (value) rows[key] = { text: value.trim() };
+  });
+  const meta = section.querySelector(':scope > .section-metadata');
+  [...(meta?.children || [])].forEach((row) => {
+    const key = toClassName(row.children[0]?.textContent || '').replace(/-/g, '');
+    if (SECTION_OPTIONS.includes(key)) {
+      const cell = row.children[1];
+      rows[key] = { text: cell?.textContent.trim() || '', cell };
+      row.remove();
+    }
+  });
+  // Style of AEM authoring sections (a section-metadata Style is applied by decorateSections)
+  return { section, style: section.dataset.style || '', rows };
+}
+
+/**
+ * Decorates sections, including the section options: Style, Width Type, Rounded edge,
+ * Background Image, Image alt text and Anchor name.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
 export function decorateSectionsWithOptions(container) {
-  const options = [...container.querySelectorAll(':scope > div:not([data-section-status]) > .section-metadata')]
-    .map((meta) => {
-      const rows = {};
-      [...meta.children].forEach((row) => {
-        const key = toClassName(row.children[0]?.textContent || '').replace(/-/g, '');
-        if (SECTION_OPTIONS.includes(key)) {
-          [, rows[key]] = row.children;
-          row.remove();
-        }
-      });
-      return { section: meta.parentElement, rows };
-    });
+  const options = [...container.querySelectorAll(':scope > div:not([data-section-status])')]
+    .map(readSectionOptions);
 
   decorateSections(container);
 
-  options.forEach(({ section, rows }) => {
+  options.forEach(({ section, style, rows }) => {
+    style.split(',').map((value) => toClassName(value.trim())).filter(Boolean)
+      .forEach((name) => section.classList.add(name));
     // full width is the default and needs no class
-    if (toClassName(rows.sectionwidth?.textContent.trim() || '') === 'fixed-width') {
+    if (toClassName(rows.sectionwidth?.text || '') === 'fixed-width') {
       section.classList.add('fixed-width');
     }
-    if (rows.roundededge?.textContent.trim().toLowerCase() === 'true') {
+    if (rows.roundededge?.text.toLowerCase() === 'true') {
       section.classList.add('rounded');
     }
     // Anchor name: the id Anchor List links jump to
-    const anchor = toClassName(rows.anchorname?.textContent.trim().replace(/^#/, '') || '');
+    const anchor = toClassName(rows.anchorname?.text.replace(/^#/, '') || '');
     if (anchor && !document.getElementById(anchor)) section.id = anchor;
     const background = rows.backgroundimage
-      && buildSectionBackground(rows.backgroundimage, rows.backgroundimagealt?.textContent.trim());
+      && buildSectionBackground(rows.backgroundimage, rows.backgroundimagealt?.text);
     if (background) {
       const wrapper = document.createElement('div');
       wrapper.className = 'section-background';
