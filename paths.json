@@ -157,7 +157,8 @@
     "/content/tcs-corp/no/no-no",
     "/content/tcs-corp/cn/zh-cn",
     "/content/tcs-corp/jp/ja-jp",
-    "/content/tcs-corp/kr/ko-kr"
+    "/content/tcs-corp/kr/ko-kr",
+    "/content/dam/tcs-corp/"
   ],
   "excludes": [
     "/content/tcs-corp/us/en/block-library",

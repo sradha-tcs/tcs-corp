@@ -9,10 +9,12 @@
  * - its spreadsheets (the system appends .json): …/data/authors:/de-de/data/authors
  * - its taxonomy page (not a spreadsheet): …/taxonomy:/de-de/taxonomy.json
  * - includes: the locale page and folder; excludes: its block library (author only)
+ * Plus the AEM Assets folder, so assets used on the pages are published with them
  */
 import { readFile, writeFile } from 'node:fs/promises';
 
 const SITE = '/content/tcs-corp';
+const ASSETS = '/content/dam/tcs-corp/';
 const SHEETS = [
   'placeholders',
   'metadata',
@@ -42,8 +44,9 @@ const paths = {
       `${aemRoot(locale)}/taxonomy:/${locale.code}/taxonomy.json`,
     ]),
   ],
-  // the locale page (Home) and everything below it
-  includes: LOCALES.map((locale) => aemRoot(locale)),
+  // the locale page (Home) and everything below it; AEM Assets used on the pages (videos,
+  // PDFs) are published with them at their own path, e.g. /content/dam/tcs-corp/intro.mp4
+  includes: [...LOCALES.map((locale) => aemRoot(locale)), ASSETS],
   excludes: [
     ...LOCALES.flatMap((locale) => [
       `${aemRoot(locale)}/block-library`,
