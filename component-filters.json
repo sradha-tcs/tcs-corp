@@ -33,7 +33,8 @@
       "conversation-canvas",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "footer"
     ]
   },
   {
