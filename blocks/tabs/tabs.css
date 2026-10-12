@@ -1,5 +1,8 @@
-/* Tabs (Block Collection), site styles: underlined tabs like the Anchor List chapter nav */
-.tabs .tabs-list {
+/*
+ * Tabs (Block Collection), site styles: underlined tabs like the Anchor List chapter nav.
+ * The tab list is shared by the Tabs block and sets of Tab sections (scripts.js).
+ */
+:is(.tabs, .tab-sections-nav) .tabs-list {
   display: flex;
   max-width: 100%;
   overflow-x: auto;
@@ -7,11 +10,11 @@
   scrollbar-width: none;
 }
 
-.tabs .tabs-list::-webkit-scrollbar {
+:is(.tabs, .tab-sections-nav) .tabs-list::-webkit-scrollbar {
   display: none;
 }
 
-.tabs .tabs-list .tabs-tab {
+:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
   flex: none;
   margin: 0 0 calc(-1 * var(--border-width-100));
   border: 0;
@@ -28,23 +31,23 @@
   transition: color 0.2s, border-color 0.2s;
 }
 
-.tabs .tabs-list .tabs-tab > * {
+:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab > * {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
 }
 
-.tabs .tabs-list .tabs-tab:hover {
+:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab:hover {
   color: var(--color-text-default);
 }
 
-.tabs .tabs-list .tabs-tab:focus-visible {
+:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
   outline-offset: -2px;
 }
 
-.tabs .tabs-list .tabs-tab[aria-selected='true'] {
+:is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab[aria-selected='true'] {
   border-bottom-color: var(--color-border-brand);
   color: var(--color-text-default);
   font-weight: var(--font-weight-semibold);
@@ -70,13 +73,32 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tabs .tabs-list .tabs-tab {
+  :is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
     transition: none;
   }
 }
 
 @media (width >= 900px) {
-  .tabs .tabs-list .tabs-tab {
+  :is(.tabs, .tab-sections-nav) .tabs-list .tabs-tab {
     padding: var(--space-300) var(--space-1000);
   }
+}
+
+/* Tab sections: only the selected tab's section shows, right below the tab list */
+main > .section.tab-sections-nav {
+  margin-bottom: 0;
+}
+
+main > .section.tab-section {
+  margin-top: 0;
+  padding-top: var(--space-1000);
+}
+
+main > .section.tab-section[hidden] {
+  display: none;
+}
+
+main > .section.tab-section:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: 4px;
 }

@@ -3,7 +3,8 @@
     "id": "main",
     "components": [
       "section",
-      "gen-carousel"
+      "gen-carousel",
+      "tab-section"
     ]
   },
   {

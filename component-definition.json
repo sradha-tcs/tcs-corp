@@ -666,6 +666,24 @@
           }
         },
         {
+          "title": "Tab",
+          "id": "tab-section",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Tab",
+                  "model": "tab-section",
+                  "filter": "tab-section",
+                  "style": "tab-section",
+                  "tabLabel": "Tab"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Tabs Item",
           "id": "tabs-item",
           "plugins": {
