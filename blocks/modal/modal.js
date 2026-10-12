@@ -66,7 +66,7 @@ export async function createModal(contentNodes) {
       opener = document.activeElement;
       dialog.showModal();
       // reset scroll position
-      setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
+      setTimeout(() => { dialog.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');
     },
   };
