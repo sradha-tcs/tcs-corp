@@ -10,7 +10,15 @@
             "template": {
               "name": "Video",
               "model": "video",
-              "filter": "video"
+              "key-value": true,
+              "playback": "click",
+              "controls": true,
+              "pauseOffscreen": true,
+              "aspectRatio": "16-9",
+              "size": "large",
+              "alignment": "center",
+              "rounded": true,
+              "privacyMode": true
             }
           }
         }
@@ -22,34 +30,45 @@
       "id": "video",
       "fields": [
         {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "uri",
+          "component": "tab",
+          "name": "videoTab",
           "label": "Video"
         },
         {
-          "component": "multiselect",
-          "name": "classes",
-          "value": "",
-          "label": "Options",
+          "component": "aem-content",
           "valueType": "string",
-          "options": [
-            {
-              "name": "Auto Play",
-              "children": [
-                {
-                  "name": "AutoPlay",
-                  "value": "autoplay"
-                }
-              ]
-            }
-          ]
+          "name": "uri",
+          "label": "Video",
+          "description": "A video file from AEM Assets (MP4, WebM), or a YouTube or Vimeo link",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "label",
+          "label": "Title",
+          "description": "Names the video for screen readers (e.g. \"TCS AI lab tour\"); not shown on the page"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "caption",
+          "label": "Caption",
+          "description": "Shown below the video"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "transcript",
+          "label": "Transcript",
+          "description": "A page or document with the transcript; shown as a link below the video"
         },
         {
           "component": "reference",
           "valueType": "string",
           "name": "placeholder_image",
-          "label": "Placeholder Image",
+          "label": "Poster Image",
+          "description": "Shown before the video plays, with a play button",
           "multi": false
         },
         {
@@ -57,7 +76,213 @@
           "valueType": "string",
           "name": "placeholder_imageAlt",
           "value": "",
-          "label": "Placeholder Image Alt Text"
+          "label": "Poster Image Alt Text"
+        },
+        {
+          "component": "tab",
+          "name": "playbackTab",
+          "label": "Playback"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "playback",
+          "label": "Playback",
+          "value": "click",
+          "options": [
+            {
+              "name": "Play button (on the poster image)",
+              "value": "click"
+            },
+            {
+              "name": "Autoplay when in view (muted)",
+              "value": "autoplay"
+            },
+            {
+              "name": "Background video (autoplay, muted, loop, no controls)",
+              "value": "background"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "muted",
+          "label": "Muted",
+          "description": "Start without sound (always on for autoplay and background videos)",
+          "value": false
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "loop",
+          "label": "Loop",
+          "value": false
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "controls",
+          "label": "Show Player Controls",
+          "description": "Background videos never show controls",
+          "value": true
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "startTime",
+          "label": "Start At (seconds)",
+          "description": "Optional, e.g. 30"
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "endTime",
+          "label": "End At (seconds)",
+          "description": "Optional"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "openInModal",
+          "label": "Play in a Pop-up",
+          "description": "The play button opens the video in a dialog over the page",
+          "value": false
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "pauseOffscreen",
+          "label": "Pause When Out of View",
+          "description": "Autoplay and background video files pause when scrolled away and resume when back",
+          "value": true
+        },
+        {
+          "component": "tab",
+          "name": "captionsTab",
+          "label": "Captions"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "captions",
+          "label": "Captions File (WebVTT)",
+          "description": "Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "captionsLanguage",
+          "label": "Captions Language",
+          "description": "Language code, e.g. en, de, ja (default: the page language)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "captionsLabel",
+          "label": "Captions Name",
+          "description": "Shown in the player's captions menu, e.g. English"
+        },
+        {
+          "component": "tab",
+          "name": "displayTab",
+          "label": "Display"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "aspectRatio",
+          "label": "Aspect Ratio",
+          "value": "16-9",
+          "options": [
+            {
+              "name": "16:9 (widescreen)",
+              "value": "16-9"
+            },
+            {
+              "name": "4:3",
+              "value": "4-3"
+            },
+            {
+              "name": "1:1 (square)",
+              "value": "1-1"
+            },
+            {
+              "name": "21:9 (cinema)",
+              "value": "21-9"
+            },
+            {
+              "name": "9:16 (vertical)",
+              "value": "9-16"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "size",
+          "label": "Size",
+          "value": "large",
+          "options": [
+            {
+              "name": "Full width",
+              "value": "full"
+            },
+            {
+              "name": "Large (900px)",
+              "value": "large"
+            },
+            {
+              "name": "Medium (640px)",
+              "value": "medium"
+            },
+            {
+              "name": "Small (420px)",
+              "value": "small"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "alignment",
+          "label": "Alignment",
+          "description": "For sizes other than full width",
+          "value": "center",
+          "options": [
+            {
+              "name": "Center",
+              "value": "center"
+            },
+            {
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "name": "Right",
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "rounded",
+          "label": "Rounded Corners",
+          "value": true
+        },
+        {
+          "component": "tab",
+          "name": "privacyTab",
+          "label": "Privacy"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "privacyMode",
+          "label": "Privacy-enhanced Mode",
+          "description": "YouTube: no cookies until the video plays (youtube-nocookie.com); Vimeo: do not track",
+          "value": true
         }
       ]
     }
