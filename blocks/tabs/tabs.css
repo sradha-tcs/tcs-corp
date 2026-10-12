@@ -87,6 +87,9 @@
 /* Tab sections: only the selected tab's section shows, right below the tab list */
 main > .section.tab-sections-nav {
   margin-bottom: 0;
+
+  /* a link to a tab's ID scrolls the tab list to below the fixed header */
+  scroll-margin-top: var(--nav-height);
 }
 
 main > .section.tab-section {

@@ -2,6 +2,8 @@
  * Tabs Block (Block Collection): one panel per item, its first cell is the tab title.
  * https://www.aem.live/developer/block-collection/tabs
  * Adapted: ARIA tabs keyboard support (arrow keys, Home, End) with a roving tabindex.
+ * No longer offered in Universal Editor (tabs are Tab sections, see scripts.js buildTabSet);
+ * kept so Tabs blocks already on pages still render.
  */
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { nextInstance } from '../../utils/ids.js';
