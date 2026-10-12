@@ -1723,6 +1723,42 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "imagePosition",
+        "label": "Image Position (Desktop)",
+        "description": "Side of the image on desktop (900px and wider); the quote overlaps it.",
+        "value": "right",
+        "options": [
+          {
+            "name": "Right",
+            "value": "right"
+          },
+          {
+            "name": "Left",
+            "value": "left"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "imagePositionMobile",
+        "label": "Image Position (Mobile)",
+        "description": "Image above or below the quote on mobile and tablet (narrower than 900px).",
+        "value": "top",
+        "options": [
+          {
+            "name": "Top",
+            "value": "top"
+          },
+          {
+            "name": "Bottom",
+            "value": "bottom"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes",
         "label": "Style",
         "value": "",

@@ -5,10 +5,13 @@ import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 
 /*
  * Quote (blocks/quote/_quote.json): a key-value block. Eyebrow and title above a quote card
- * with large quote marks, overlapping a portrait image (Figma "Text & Image Overlap").
+ * with large quote marks, overlapping a portrait image (Figma "Text & Image Overlap"). The image
+ * is on the right (or left) on desktop, above (or below) the quote on mobile.
  */
 
 const BG_COLORS = ['grey'];
+const IMAGE_POSITIONS = ['right', 'left'];
+const IMAGE_POSITIONS_MOBILE = ['top', 'bottom'];
 
 /**
  * loads and decorates the block
@@ -17,6 +20,9 @@ const BG_COLORS = ['grey'];
 export default function decorate(block) {
   const props = readProperties(block);
   const bgColor = optionOf(block, props.bgcolor, BG_COLORS);
+  const imagePosition = optionOf(block, props.imageposition, IMAGE_POSITIONS) || 'right';
+  const imagePositionMobile = optionOf(block, props.imagepositionmobile, IMAGE_POSITIONS_MOBILE)
+    || 'top';
 
   const header = document.createElement('div');
   header.className = 'quote-header';
@@ -46,5 +52,7 @@ export default function decorate(block) {
   block.classList.remove(...BG_COLORS.map((color) => `bg-${color}`));
   if (bgColor) block.classList.add(`bg-${bgColor}`);
   block.classList.toggle('quote-has-media', !!picture);
+  block.classList.toggle('image-left', imagePosition === 'left');
+  block.classList.toggle('image-bottom', imagePositionMobile === 'bottom');
   block.replaceChildren(...[header, body].filter((part) => part.children.length));
 }

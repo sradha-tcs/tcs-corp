@@ -75,6 +75,15 @@
   margin: calc(-1 * var(--space-1200)) var(--space-400) 0;
 }
 
+/* Image Position (Mobile) Bottom: the image below, the card overlaps its top edge */
+.quote.image-bottom .quote-media {
+  order: 1;
+}
+
+.quote.image-bottom:where(.quote-has-media) .quote-card {
+  margin: 0 var(--space-400) calc(-1 * var(--space-1200));
+}
+
 /* opening and closing quote marks (Figma: 120px brand blue, closing mark at the bottom) */
 .quote .quote-card::before,
 .quote .quote-card::after {
@@ -166,5 +175,18 @@
   .quote:not(.quote-has-media) .quote-card {
     grid-template-columns: 66px minmax(0, 1fr) 46px;
     padding: var(--space-600) var(--space-1000);
+  }
+
+  /* Image Position (Desktop) Left: mirrored, the card overlaps the image's right edge */
+  .quote.quote-has-media.image-left .quote-body {
+    grid-template-columns: 418fr 204fr 498fr;
+  }
+
+  .quote.quote-has-media.image-left .quote-card {
+    grid-area: 1 / 2 / 2 / 4;
+  }
+
+  .quote.quote-has-media.image-left .quote-media {
+    grid-area: 1 / 1 / 2 / 3;
   }
 }

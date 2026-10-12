@@ -492,7 +492,9 @@
                   "name": "Quote",
                   "model": "quote",
                   "key-value": true,
-                  "titleType": "h2"
+                  "titleType": "h2",
+                  "imagePosition": "right",
+                  "imagePositionMobile": "top"
                 }
               }
             }
