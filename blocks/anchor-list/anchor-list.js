@@ -27,12 +27,16 @@ function readAnchors(cell) {
 
 const targetOf = (anchor) => document.getElementById(anchor);
 
+/** the element that sticks: the list's own section, or its wrapper in a shared section */
+const stickyElementOf = (block) => [block.closest('.section'), block.parentElement]
+  .find((el) => el && getComputedStyle(el).position === 'sticky');
+
 /**
  * Space to leave above a target: below this list when it is sticky, otherwise below the site
  * header when that is fixed (mobile).
  */
 function scrollOffset(block) {
-  const sticky = block.classList.contains('sticky') ? block.closest('.section') || block : null;
+  const sticky = block.classList.contains('sticky') ? stickyElementOf(block) : null;
   if (sticky) {
     const top = parseFloat(getComputedStyle(sticky).top) || 0;
     return Math.ceil(top + sticky.getBoundingClientRect().height + 16);
@@ -59,6 +63,21 @@ export default async function decorate(block) {
   list.className = 'anchor-list-items';
   if (props.anchors) moveInstrumentation(props.anchors, list);
 
+  // the current chapter; set by the scroll position, and right away by a click
+  let current = null;
+  // while a clicked chapter scrolls into view, the scroll position doesn't change the current one
+  let lockedUntil = 0;
+  const setCurrent = (link) => {
+    if (link === current) return;
+    current?.removeAttribute('aria-current');
+    current = link;
+    if (!link) return;
+    link.setAttribute('aria-current', 'true');
+    // keep the current link visible when the list scrolls sideways
+    const left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
+    list.scrollTo({ left, behavior: scrollBehavior() });
+  };
+
   const links = anchors.map(({ label, anchor }) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -66,9 +85,13 @@ export default async function decorate(block) {
     a.href = `#${anchor}`;
     a.textContent = label;
     a.addEventListener('click', (e) => {
-      const target = targetOf(anchor);
-      if (!target) return;
       e.preventDefault();
+      setCurrent(a);
+      // until the scroll to the chapter ends (scrollend), with a fallback for older browsers
+      lockedUntil = Date.now() + 3000;
+      const target = targetOf(anchor);
+      // no target on this page (e.g. the block library): only the link is marked current
+      if (!target) return;
       target.style.scrollMarginTop = `${scrollOffset(block)}px`;
       target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
       window.history.replaceState(null, '', `#${anchor}`);
@@ -85,20 +108,10 @@ export default async function decorate(block) {
   if (!links.length) return;
 
   // current chapter: the last target whose top has scrolled past the offset
-  let current = null;
-  const setCurrent = (link) => {
-    if (link === current) return;
-    current?.removeAttribute('aria-current');
-    current = link;
-    if (!link) return;
-    link.setAttribute('aria-current', 'true');
-    // keep the current link visible when the list scrolls sideways
-    const left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
-    list.scrollTo({ left, behavior: scrollBehavior() });
-  };
   let frame = 0;
   const update = () => {
     frame = 0;
+    if (Date.now() < lockedUntil) return;
     const offset = scrollOffset(block) + 1;
     const visible = anchors.map(({ anchor }, i) => ({ target: targetOf(anchor), link: links[i] }))
       // skip missing targets and sections that are still hidden while the page loads
@@ -110,10 +123,18 @@ export default async function decorate(block) {
     // at the end of the page the last chapter may never reach the top
     const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
     if (atEnd && visible.length && window.scrollY > 0) active = visible[visible.length - 1].link;
+    // without targets on the page, keep the clicked (or first) link
+    if (!visible.length) {
+      if (!current) setCurrent(links[0]);
+      return;
+    }
     setCurrent(active || links[0]);
   };
   const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
   window.addEventListener('scroll', schedule, { passive: true });
+  // the clicked chapter has scrolled into view: it stays current until the next scroll (near the
+  // end of the page the scroll position could point to a later chapter)
+  window.addEventListener('scrollend', () => { lockedUntil = 0; });
   window.addEventListener('resize', schedule);
   window.addEventListener('load', schedule);
   // sections are shown as they load: check again once they are visible
