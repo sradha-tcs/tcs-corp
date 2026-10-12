@@ -2,13 +2,16 @@
  * Modal (Block Collection): shows a fragment in a dialog.
  * https://www.aem.live/developer/block-collection/modal
  * Links to a /modals/ path open as a modal (scripts.js); other blocks can use createModal()
- * and openModal(). An authored Modal block renders its link as a button that opens the modal.
+ * and openModal(). An authored Modal block renders its link as a button that opens the modal:
+ * a <button>, not a link, so it opens the dialog in Universal Editor's preview too (the editor
+ * navigates to the target of clicked links).
  * Adapted: close button and opener use the shared button decorator.
  */
 import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -81,16 +84,24 @@ export async function openModal(fragmentUrl) {
 }
 
 /**
- * Authored Modal block: its link (to a fragment) becomes a button opening the modal.
+ * Authored Modal block: its link (to a fragment page) becomes a button opening the page's
+ * content in the modal.
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   const link = block.querySelector('a[href]');
   if (!link) return;
-  decorateButton(link, { view: 'button', type: 'primary' });
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    openModal(link.href);
-  });
-  block.replaceChildren(link);
+  const t = await getPlaceholders();
+  const href = link.getAttribute('href');
+  const text = link.textContent.trim();
+  const button = document.createElement('button');
+  button.type = 'button';
+  // a link without its own text shows its URL
+  button.textContent = text && text !== href ? text : t('open', 'Open');
+  if (link.title && link.title !== text && link.title !== href) button.title = link.title;
+  button.setAttribute('aria-haspopup', 'dialog');
+  moveInstrumentation(link, button);
+  decorateButton(button, { view: 'button', type: 'primary' });
+  button.addEventListener('click', () => openModal(href));
+  block.replaceChildren(button);
 }
