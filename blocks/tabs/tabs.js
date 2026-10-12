@@ -1,20 +1,35 @@
 import { toClassName } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+import { pick } from '../../utils/buttons.js';
 import { isEditing } from '../../utils/environment.js';
 import { uniqueId } from '../../utils/ids.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
+import { isOn, normalizeKey, textOf } from '../../utils/properties.js';
+import { loadFragment } from '../fragment/fragment.js';
 import { readTab } from '../tab/tab.js';
 
 /*
- * Tabs, like the Tabs core component of AEM: built by scripts.js from a Tabs section. The
- * section's Tab items start the tabs; the components after a Tab (Columns, Title, Text, Image,
- * Button), up to the next Tab, are its content. The block turns them into a tab list and one
- * panel per tab; the components keep their own markup, decoration and editor instrumentation.
+ * Tabs, like the Tabs core component of AEM, from two sources:
+ * - the Tabs block (in a section): its properties (ID, Label, Style, Alignment, Orientation)
+ *   and one Tab item per tab, with Title, ID, Active tab, Content fields (heading, image, text,
+ *   button; stacked or image left / right) and a Fragment, any page content shown in the tab
+ * - a Tabs Container section (scripts.js buildTabsSections): its Tab items start the tabs, the
+ *   components after a Tab (Columns, Title, Text, Image, Button), up to the next Tab, are its
+ *   content; they keep their own markup, decoration and editor instrumentation
+ * Both become a tab list and one panel per tab.
  *
- * Shown first: the tab shown before Universal Editor re-rendered the section, else the tab
- * the page address names (#ID, a deep link), else the Active tab, else the first.
+ * Shown first: the tab shown before Universal Editor re-rendered the Tabs, else the tab the
+ * page address names (#ID, a deep link), else the Active tab, else the first.
  */
 
-// the tab shown per Tabs section, so a section re-rendered after an edit shows the same tab
+// Tabs block properties (_tabs.json tabs-block), keyed by their normalized row name
+const BLOCK_FIELDS = ['tabsid', 'tabsarialabel', 'tabsstyle', 'tabsalignment', 'tabsorientation'];
+const STYLES = ['underline', 'boxed', 'pills'];
+const ALIGNMENTS = ['left', 'center', 'stretch'];
+const ORIENTATIONS = ['horizontal', 'vertical'];
+const LAYOUTS = ['stacked', 'image-left', 'image-right'];
+
+// the tab shown per Tabs, so Tabs re-rendered after an edit show the same tab
 const shownTabs = new Map();
 let listeningToHash = false;
 
@@ -40,19 +55,107 @@ function listenToHash() {
 }
 
 /**
- * Groups the block's content into tabs: each Tab item starts one, content before the first
- * Tab starts an untitled one.
- * @param {Element} block
- * @returns {{ tab: Element|null, content: Element[] }[]}
+ * @typedef {Object} TabGroup
+ * @property {string} [title]
+ * @property {string} [id]
+ * @property {boolean} [active]
+ * @property {Element[]} content the panel's content
+ * @property {Element} [source] the authored Tab item, whose editor instrumentation moves to
+ *   the panel
  */
-function groupTabs(block) {
+
+/**
+ * The tabs of a Tabs Container: each Tab item starts one, content before the first Tab starts
+ * an untitled one.
+ * @param {Element} block
+ * @returns {TabGroup[]}
+ */
+function groupContainerTabs(block) {
   const groups = [];
   [...block.children].forEach((wrapper) => {
     const tab = wrapper.querySelector(':scope > .tab');
-    if (tab || !groups.length) groups.push({ tab, content: [] });
+    if (tab || !groups.length) groups.push({ ...(tab ? readTab(tab) : {}), content: [] });
     groups[groups.length - 1].content.push(wrapper);
   });
   return groups;
+}
+
+/**
+ * Reads the Tabs block's property rows (key | value) and applies them: the Styles options as
+ * classes, the Label for the tab list.
+ * @param {Element} block
+ * @returns {{ id: string, items: Element[] }} the Tabs ID and the Tab item rows
+ */
+function readBlockProperties(block) {
+  const properties = {};
+  const items = [];
+  [...block.children].forEach((row) => {
+    const cells = [...row.children];
+    const key = cells.length === 2 ? normalizeKey(cells[0].textContent) : '';
+    if (BLOCK_FIELDS.includes(key)) properties[key] = textOf(cells[1]);
+    else items.push(row);
+  });
+  [
+    pick(properties.tabsstyle, STYLES),
+    pick(properties.tabsalignment, ALIGNMENTS),
+    pick(properties.tabsorientation, ORIENTATIONS),
+  ].filter(Boolean).forEach((name) => block.classList.add(name));
+  if (properties.tabsarialabel) block.dataset.label = properties.tabsarialabel;
+  return { id: toClassName(properties.tabsid || ''), items };
+}
+
+/**
+ * The Content fields of a Tab item: stacked, or the images and the text side by side.
+ * @param {Element} cell the grouped Content cell (heading, image, text, button)
+ * @param {string} layout
+ * @returns {Element|null}
+ */
+function buildContent(cell, layout) {
+  const elements = [...(cell?.children || [])];
+  if (!elements.length) return null;
+  const content = document.createElement('div');
+  content.className = `tabs-content ${layout}`;
+  const isMedia = (el) => el.matches('picture') || (!!el.querySelector('picture, img') && !el.textContent.trim());
+  const media = elements.filter(isMedia);
+  if (layout === 'stacked' || !media.length || media.length === elements.length) {
+    content.append(...elements);
+    return content;
+  }
+  const mediaColumn = document.createElement('div');
+  mediaColumn.className = 'tabs-content-media';
+  mediaColumn.append(...media);
+  const textColumn = document.createElement('div');
+  textColumn.className = 'tabs-content-text';
+  textColumn.append(...elements.filter((el) => !isMedia(el)));
+  content.append(mediaColumn, textColumn);
+  return content;
+}
+
+/**
+ * The tab of a Tabs block item row: Title, ID, Active tab, Content, Layout, Fragment cells.
+ * @param {Element} row
+ * @returns {Promise<TabGroup>}
+ */
+async function readItem(row) {
+  const [title, id, active, contentCell, layout, fragmentCell] = [...row.children];
+  const content = [buildContent(contentCell, pick(textOf(layout), LAYOUTS, 'stacked'))];
+  const path = fragmentCell?.querySelector('a')?.getAttribute('href') || textOf(fragmentCell);
+  if (path) {
+    const fragment = await loadFragment(path);
+    if (fragment) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'tabs-fragment';
+      wrapper.append(...fragment.childNodes);
+      content.push(wrapper);
+    }
+  }
+  return {
+    title: textOf(title),
+    id: toClassName(textOf(id)),
+    active: isOn(active),
+    content: content.filter(Boolean),
+    source: row,
+  };
 }
 
 /** an id not used on the page yet */
@@ -68,18 +171,33 @@ function freeId(id) {
  */
 export default async function decorate(block) {
   const t = await getPlaceholders();
+  const container = block.dataset.source === 'section';
   const section = block.closest('.section');
-  const baseId = section?.id || uniqueId('tabs');
-  const key = section?.dataset.aueResource || baseId;
+  let groups;
+  let baseId;
+  let key;
+  if (container) {
+    groups = groupContainerTabs(block);
+    baseId = section?.id;
+    key = section?.dataset.aueResource;
+  } else {
+    const { id, items } = readBlockProperties(block);
+    groups = await Promise.all(items.map(readItem));
+    baseId = id;
+    key = block.dataset.aueResource;
+  }
+  baseId = baseId || uniqueId('tabs');
+  key = key || baseId;
   const vertical = block.classList.contains('vertical');
-  const groups = groupTabs(block);
 
   if (!groups.length) {
     block.replaceChildren();
     if (isEditing()) {
       const hint = document.createElement('p');
       hint.className = 'tabs-empty';
-      hint.textContent = t('tabsEmpty', 'Add a Tab, then the components of the tab after it.');
+      hint.textContent = container
+        ? t('tabsEmpty', 'Add a Tab, then the components of the tab after it.')
+        : t('tabsBlockEmpty', 'Add a Tab, then its content in the Tab properties.');
       block.append(hint);
     }
     return;
@@ -91,9 +209,11 @@ export default async function decorate(block) {
   if (vertical) list.setAttribute('aria-orientation', 'vertical');
   if (block.dataset.label) list.setAttribute('aria-label', block.dataset.label);
 
-  const tabs = groups.map(({ tab, content }, i) => {
-    const { title, id, active } = tab ? readTab(tab) : {};
+  const tabs = groups.map(({
+    title, id, active, content, source,
+  }, i) => {
     const panel = document.createElement('div');
+    if (source) moveInstrumentation(source, panel);
     panel.className = 'tabs-panel';
     panel.id = freeId(id || `${baseId}-item-${i + 1}`);
     panel.setAttribute('role', 'tabpanel');
