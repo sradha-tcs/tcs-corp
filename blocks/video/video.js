@@ -13,6 +13,7 @@
  * Videos never autoplay for visitors who prefer reduced motion. Blocks authored before the
  * key-value model (link, poster, "autoplay" option) still work.
  */
+import { toClassName } from '../../scripts/aem.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
@@ -24,7 +25,7 @@ import { linkOf } from '../../utils/links.js';
 import { isVimeo, isYoutube, youtubeId } from '../../utils/media.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import {
-  isOn, optionOf, readProperties, textOf,
+  isOn, normalizeKey, optionOf, readProperties, textOf,
 } from '../../utils/properties.js';
 import { getLocale } from '../../utils/site.js';
 import { onVisible, watchVisibility } from '../../utils/viewport.js';
@@ -46,12 +47,41 @@ const seconds = (cell) => Math.max(0, parseFloat(textOf(cell)) || 0);
 /** the URL of a link or path property */
 const urlOf = (cell) => linkOf(cell)?.href || textOf(cell);
 
+// the model fields in dialog order (the image alt text is merged into the image)
+const FIELDS = [
+  'uri', 'label', 'caption', 'transcript', 'placeholderimage', 'playback', 'muted', 'loop',
+  'controls', 'starttime', 'endtime', 'openinmodal', 'pauseoffscreen', 'captions',
+  'captionslanguage', 'captionslabel', 'aspectratio', 'size', 'alignment', 'rounded',
+  'privacymode',
+];
+
+/**
+ * The block's property cells, by normalized field name. AEM delivers a block added with the
+ * current model as key-value rows (name | value); a block added before the model became
+ * key-value delivers one row per field, in dialog order.
+ * @returns {Object<string, Element>} empty for blocks of the first model (link and picture)
+ */
+function readFields(block) {
+  const rows = [...block.children];
+  const keyed = rows.some((row) => row.children.length === 2
+    && FIELDS.includes(normalizeKey(row.children[0].textContent)));
+  if (keyed) return readProperties(block);
+  // one row per field: the playback row tells it apart from the first model
+  const playback = toClassName(textOf(rows[FIELDS.indexOf('playback')]));
+  if (!PLAYBACKS.includes(playback)) return {};
+  const props = {};
+  FIELDS.forEach((field, i) => {
+    if (rows[i]) props[field] = rows[i].firstElementChild || rows[i];
+  });
+  return props;
+}
+
 /**
  * Reads the block's properties; falls back to blocks authored before the key-value model
  * (a link, a picture and an "autoplay" block option).
  */
 function readConfig(block) {
-  const props = readProperties(block);
+  const props = readFields(block);
   const legacy = !props.uri;
   const poster = legacy
     ? block.querySelector('picture')
