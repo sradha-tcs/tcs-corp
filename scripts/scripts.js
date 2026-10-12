@@ -16,7 +16,6 @@ import {
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
-import { nextInstance } from '../utils/ids.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -112,10 +111,34 @@ function buildSectionBackground(option, alt) {
 }
 
 /**
- * Gen Carousel sections (blocks/gen-carousel/_gen-carousel.json): the section's content, any
- * block its filter allows, is wrapped in a synthetic gen-carousel block that turns each piece
- * of content into a slide. The blocks keep their own markup, decoration and editor
- * instrumentation; only the carousel options move from the section to the carousel block.
+ * Wraps the content of a section, any blocks and default content its filter allows, in a
+ * synthetic block (container sections like Gen Carousel and Tabs). The blocks keep their own
+ * markup, decoration and editor instrumentation.
+ * @param {Element} section The decorated section
+ * @param {Element} block The synthetic block, with its options
+ */
+function wrapSectionContent(section, block) {
+  const contents = [...section.children].filter((el) => !el.matches('.section-background'));
+  const blockWrapper = document.createElement('div');
+  blockWrapper.append(block);
+  section.append(blockWrapper);
+  // decorate the block while it's empty: decorateBlock() would treat its content as cells
+  decorateBlock(block);
+
+  // decorateBlocks() only finds blocks directly in a section, so decorate them here
+  contents.forEach((wrapper) => {
+    const child = wrapper.firstElementChild;
+    if (!wrapper.classList.contains('default-content-wrapper') && child?.className) {
+      decorateBlock(child);
+    }
+    block.append(wrapper);
+  });
+}
+
+/**
+ * Gen Carousel sections (blocks/gen-carousel/_gen-carousel.json): the section's content is
+ * wrapped in a synthetic gen-carousel block that turns each piece of content into a slide;
+ * the carousel options move from the section to the carousel block.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
 function buildCarouselSections(container) {
@@ -126,157 +149,29 @@ function buildCarouselSections(container) {
     const { carouselnavigation: navigation, carouselinterval: interval } = section.dataset;
     if (navigation) carousel.classList.add(toClassName(navigation));
     if (interval) carousel.dataset.interval = interval;
-
-    const contents = [...section.children].filter((el) => !el.matches('.section-background'));
-    const carouselWrapper = document.createElement('div');
-    carouselWrapper.append(carousel);
-    section.append(carouselWrapper);
-    // decorate the carousel while it's empty: decorateBlock() would treat slides as cells
-    decorateBlock(carousel);
-
-    // decorateBlocks() only finds blocks directly in a section, so decorate them here
-    contents.forEach((wrapper) => {
-      const block = wrapper.firstElementChild;
-      if (!wrapper.classList.contains('default-content-wrapper') && block?.className) {
-        decorateBlock(block);
-      }
-      carousel.append(wrapper);
-    });
+    wrapSectionContent(section, carousel);
   });
 }
 
-let listeningToTabHash = false;
-
 /**
- * The tab of the tab section the page address names (#id), if any.
- * @returns {HTMLButtonElement|null}
- */
-function tabOfHash() {
-  const anchor = toClassName(decodeURIComponent(window.location.hash.slice(1)));
-  if (!anchor) return null;
-  return document.querySelector(`.tab-sections-nav [role="tab"][aria-controls="${CSS.escape(anchor)}"]`);
-}
-
-/**
- * Deep links: a link to a tab's ID (or back / forward to one) opens the tab and scrolls to it.
- */
-function openTabOfHash() {
-  const tab = tabOfHash();
-  if (!tab) return;
-  tab.click();
-  tab.closest('.tab-sections-nav').scrollIntoView();
-}
-
-/**
- * Tab sections (blocks/tabs/_tabs.json "Tab"), like the Tabs core component of AEM: each tab is
- * a section with a Tab Label, holding Columns whose columns hold title, text, image and button.
- * Consecutive Tab sections form one set of tabs: a tab list section is added before them and
- * only the selected tab's section is shown. Shown first: the one shown before a rebuild (e.g.
- * after an edit), else the tab the page address names (its ID), else the Active tab, else the
- * first. The first tab's Accessibility label names the tab list. The sections keep their place
- * and editor instrumentation; selecting a component in Universal Editor shows its tab.
- * @param {Element[]} sections consecutive tab sections
- */
-function buildTabSet(sections) {
-  const id = `tabset-${nextInstance('tab-sections')}`;
-  // a <section> (no landmark without a name), so decorateBlocks() doesn't take the list for a block
-  const nav = document.createElement('section');
-  nav.className = 'section tab-sections-nav';
-  // nothing to load (loadSections() only loads div sections)
-  nav.dataset.sectionStatus = 'loaded';
-  const wrapper = document.createElement('div');
-  const list = document.createElement('div');
-  list.className = 'tabs-list';
-  list.setAttribute('role', 'tablist');
-  const label = sections[0].dataset.tabsarialabel?.trim();
-  if (label) list.setAttribute('aria-label', label);
-  wrapper.append(list);
-  nav.append(wrapper);
-
-  const buttons = sections.map((section, i) => {
-    if (!section.id) section.id = `${id}-panel-${i + 1}`;
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'tabs-tab';
-    button.id = `${id}-tab-${i + 1}`;
-    button.setAttribute('role', 'tab');
-    button.setAttribute('aria-controls', section.id);
-    button.textContent = section.dataset.tablabel?.trim() || `Tab ${i + 1}`;
-    section.setAttribute('role', 'tabpanel');
-    section.setAttribute('aria-labelledby', button.id);
-    list.append(button);
-    return button;
-  });
-
-  const select = (index, focus = false) => {
-    buttons.forEach((button, i) => {
-      const selected = i === index;
-      button.setAttribute('aria-selected', selected);
-      button.tabIndex = selected ? 0 : -1;
-      sections[i].hidden = !selected;
-      // remembered, so a rebuilt set (e.g. after an edit) shows the same tab
-      sections[i].dataset.tabSelected = selected;
-    });
-    if (focus) buttons[index].focus();
-  };
-  buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
-  list.addEventListener('keydown', (e) => {
-    const current = buttons.indexOf(document.activeElement);
-    if (current < 0) return;
-    const last = buttons.length - 1;
-    const next = {
-      ArrowRight: current === last ? 0 : current + 1,
-      ArrowLeft: current === 0 ? last : current - 1,
-      Home: 0,
-      End: last,
-    }[e.key];
-    if (next === undefined) return;
-    e.preventDefault();
-    select(next, true);
-  });
-  // Universal Editor: show the tab of the component selected in the editor
-  sections.forEach((section, i) => section.addEventListener('aue:ui-select', (e) => {
-    if (e.detail?.selected) select(i);
-  }));
-
-  sections[0].before(nav);
-  const shown = [
-    sections.findIndex((section) => section.dataset.tabSelected === 'true'),
-    buttons.indexOf(tabOfHash()),
-    sections.findIndex((section) => section.dataset.activetab === 'true'),
-  ].find((index) => index >= 0);
-  select(shown ?? 0);
-}
-
-/**
- * Groups consecutive Tab sections into sets of tabs (see buildTabSet). Rebuilds the sets of
- * the container, so it can run again after sections change in Universal Editor.
+ * Tabs sections (blocks/tabs/_tabs.json): the section's Tab items and the components after
+ * them are wrapped in a synthetic tabs block that builds the tab list and panels; the Styles
+ * options become block classes, the Accessibility label the tab list's label.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
-function buildTabSections(container) {
-  container.querySelectorAll(':scope > .tab-sections-nav').forEach((nav) => nav.remove());
-  const sets = [];
-  let set = null;
-  [...container.children].forEach((el) => {
-    if (!el.matches('.section.tab-section')) {
-      set = null;
-      return;
-    }
-    if (!set) {
-      set = [];
-      sets.push(set);
-    }
-    set.push(el);
+function buildTabsSections(container) {
+  container.querySelectorAll(':scope > .section.tabs-section').forEach((section) => {
+    if (section.querySelector(':scope > .tabs-wrapper')) return;
+    const tabs = document.createElement('div');
+    tabs.className = 'tabs';
+    const {
+      tabsstyle, tabsalignment, tabsorientation, tabsarialabel,
+    } = section.dataset;
+    [tabsstyle, tabsalignment, tabsorientation].map((value) => toClassName(value || ''))
+      .filter(Boolean).forEach((name) => tabs.classList.add(name));
+    if (tabsarialabel?.trim()) tabs.dataset.label = tabsarialabel.trim();
+    wrapSectionContent(section, tabs);
   });
-  if (!sets.length) return;
-  loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
-  sets.forEach(buildTabSet);
-  if (!listeningToTabHash) {
-    listeningToTabHash = true;
-    window.addEventListener('hashchange', openTabOfHash);
-    // a page opened at a tab's ID: scroll to it once the page has its layout
-    if (tabOfHash()) window.addEventListener('load', openTabOfHash, { once: true });
-  }
 }
 
 /**
@@ -343,7 +238,7 @@ export function decorateSectionsWithOptions(container) {
   });
 
   buildCarouselSections(container);
-  buildTabSections(container);
+  buildTabsSections(container);
 }
 
 /**

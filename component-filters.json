@@ -4,7 +4,7 @@
     "components": [
       "section",
       "gen-carousel",
-      "tab-section"
+      "tabs"
     ]
   },
   {
@@ -126,9 +126,14 @@
     ]
   },
   {
-    "id": "tab-section",
+    "id": "tabs",
     "components": [
-      "columns"
+      "tab",
+      "columns",
+      "title",
+      "text",
+      "image",
+      "button"
     ]
   },
   {

@@ -1,18 +1,20 @@
 {
   "definitions": [
     {
-      "title": "Tab",
-      "id": "tab-section",
+      "title": "Tabs",
+      "id": "tabs",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/section/v1/section",
             "template": {
-              "name": "Tab",
-              "model": "tab-section",
-              "filter": "tab-section",
-              "style": "tab-section",
-              "tabLabel": "Tab"
+              "name": "Tabs",
+              "model": "tabs",
+              "filter": "tabs",
+              "style": "tabs-section",
+              "tabsStyle": "underline",
+              "tabsAlignment": "left",
+              "tabsOrientation": "horizontal"
             }
           }
         }
@@ -21,58 +23,140 @@
   ],
   "models": [
     {
-      "id": "tab-section",
+      "id": "tabs",
       "fields": [
+        {
+          "component": "tab",
+          "name": "propertiesTab",
+          "label": "Properties"
+        },
         {
           "component": "select",
           "valueType": "string",
           "name": "style",
-          "label": "Style",
-          "value": "tab-section",
+          "label": "Component",
+          "value": "tabs-section",
           "options": [
             {
-              "name": "Default",
-              "value": "tab-section"
+              "name": "Tabs",
+              "value": "tabs-section"
             }
           ]
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "tabLabel",
-          "label": "Tab Label",
-          "description": "The label of the tab. Consecutive Tab sections form one set of tabs.",
-          "required": true
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "activeTab",
-          "label": "Active tab",
-          "description": "Shows this tab when the page loads (the first tab if no tab of the set is active)."
-        },
-        {
-          "component": "text",
-          "valueType": "string",
           "name": "anchorName",
           "label": "ID",
-          "description": "Links to #ID open this tab (deep link), also from Anchor List, e.g. overview (lowercase, no spaces)."
+          "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "sectionWidth",
+          "label": "Width Type",
+          "value": "full-width",
+          "options": [
+            {
+              "name": "Full Width",
+              "value": "full-width"
+            },
+            {
+              "name": "Fixed Width",
+              "value": "fixed-width"
+            }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "accessibilityTab",
+          "label": "Accessibility"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "tabsAriaLabel",
-          "label": "Accessibility label",
-          "description": "Names the set of tabs for screen readers, e.g. Our services. Read from the first tab of the set."
+          "label": "Label",
+          "description": "Names the tab list for screen readers (aria-label), e.g. Our services."
+        },
+        {
+          "component": "tab",
+          "name": "stylesTab",
+          "label": "Styles"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tabsStyle",
+          "label": "Style",
+          "value": "underline",
+          "options": [
+            {
+              "name": "Underline",
+              "value": "underline"
+            },
+            {
+              "name": "Boxed",
+              "value": "boxed"
+            },
+            {
+              "name": "Pills",
+              "value": "pills"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tabsAlignment",
+          "label": "Alignment",
+          "value": "left",
+          "options": [
+            {
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "name": "Center",
+              "value": "center"
+            },
+            {
+              "name": "Full width (stretch)",
+              "value": "stretch"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tabsOrientation",
+          "label": "Orientation",
+          "description": "Vertical: the tab list is on the left of the content on desktop, above it on mobile.",
+          "value": "horizontal",
+          "options": [
+            {
+              "name": "Horizontal",
+              "value": "horizontal"
+            },
+            {
+              "name": "Vertical",
+              "value": "vertical"
+            }
+          ]
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "tab-section",
+      "id": "tabs",
       "components": [
-        "columns"
+        "tab",
+        "columns",
+        "title",
+        "text",
+        "image",
+        "button"
       ]
     }
   ]

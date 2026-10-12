@@ -12,7 +12,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | all blocks with UI text, header, footer |
 | `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, conversation-canvas |
 | `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, footer, templates |
-| `properties.js` | `readProperties`, `textOf`, `isOn`, `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, decorators |
+| `properties.js` | `readProperties`, `textOf`, `isOn`, `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, tab, decorators |
 | `multifield.js` | `readMultifieldItems` (composite multifield items) | links util, testimonial, anchor-list |
 | `links.js` | `NEW_WINDOW`, `linkOf`, `readLinkItems` (CTA lists with Link Type) | hero, teaser, page-header |
 | `buttons.js` | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | button decorators, hero, list, conversation-canvas |
@@ -20,7 +20,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `tags.js` | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | teaser, taxonomy util |
 | `urls.js` | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | table-list, conversation-canvas |
 | `ids.js` | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance) | tabs, gen-carousel, page-header, form-variations, conversation-canvas |
-| `environment.js` | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor` | gen-carousel, hero, table-list, anchor-list, video, form-variations |
+| `environment.js` | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor` | gen-carousel, tabs, hero, table-list, anchor-list, video, form-variations |
 | `viewport.js` | `onVisible` (once), `watchVisibility` (on / off screen) | gen-carousel, hero, table-list, embed, video |
 | `media.js` | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | media decorator, embed, video, hero |
 | `lottie.js` | `loadLottie` (the vendored Lottie player, loaded once per page) | hero |
