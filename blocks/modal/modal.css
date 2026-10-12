@@ -1,4 +1,7 @@
-/* Modal (Block Collection), site styles */
+/*
+ * Modal (Block Collection), site styles. Long content scrolls inside the dialog (the page behind
+ * stays still): the whole dialog is the scrolling area, with the close button kept at the top.
+ */
 body.modal-open {
   overflow: hidden;
 }
@@ -14,26 +17,32 @@ body.modal-open {
   border: 0;
   border-radius: var(--radius-l);
   padding: 0;
-  overflow-y: hidden;
-  overscroll-behavior: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
+}
+
+.modal dialog[open] {
+  display: flex;
+  flex-direction: column;
 }
 
 .modal dialog .modal-content {
   box-sizing: border-box;
   width: 100%;
-  max-height: calc(100dvh - (2 * var(--nav-height)) - 48px);
-  margin-top: var(--space-1200);
   padding: 0 var(--space-600) var(--space-600);
-  overflow-y: auto;
-  overscroll-behavior: none;
 }
 
+/* the close button stays at the top right while the content scrolls below it */
 .modal .close-button {
-  position: absolute;
+  position: sticky;
   top: var(--space-200);
-  right: var(--space-200);
+  z-index: 1;
+  flex: none;
+  align-self: flex-end;
+  margin: var(--space-200) var(--space-200) 0 0;
+  background-color: var(--color-bg-default);
 }
 
 .modal dialog .section {
@@ -46,7 +55,6 @@ body.modal-open {
   }
 
   .modal dialog .modal-content {
-    max-height: calc(100dvh - (2 * var(--nav-height)) - 64px);
     padding: 0 var(--space-800) var(--space-800);
   }
 }
