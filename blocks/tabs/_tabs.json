@@ -50,9 +50,7 @@
             "template": {
               "name": "Tab",
               "model": "tabs-item",
-              "title": "Tab",
-              "content_headingType": "h3",
-              "layout": "stacked"
+              "title": "Tab"
             }
           }
         }
@@ -310,127 +308,6 @@
         },
         {
           "component": "tab",
-          "name": "contentTab",
-          "label": "Content"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "content_heading",
-          "label": "Heading"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "content_headingType",
-          "label": "Heading Type",
-          "value": "h3",
-          "options": [
-            {
-              "name": "H2",
-              "value": "h2"
-            },
-            {
-              "name": "H3",
-              "value": "h3"
-            },
-            {
-              "name": "H4",
-              "value": "h4"
-            },
-            {
-              "name": "H5",
-              "value": "h5"
-            },
-            {
-              "name": "H6",
-              "value": "h6"
-            }
-          ]
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "content_image",
-          "label": "Image",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "content_imageAlt",
-          "label": "Image alt text",
-          "description": "Describe the image for screen readers. Leave empty if the image is decorative."
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "content_text",
-          "label": "Text"
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "content_link",
-          "label": "Button link"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "content_linkText",
-          "label": "Button text"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "content_linkTitle",
-          "label": "Button title"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "content_linkType",
-          "label": "Button type",
-          "value": "primary",
-          "options": [
-            {
-              "name": "Primary",
-              "value": "primary"
-            },
-            {
-              "name": "Secondary",
-              "value": "secondary"
-            },
-            {
-              "name": "Tertiary",
-              "value": "tertiary"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "layout",
-          "label": "Layout",
-          "description": "Image left / right: the image and the text side by side on desktop (two columns), stacked on mobile.",
-          "value": "stacked",
-          "options": [
-            {
-              "name": "Stacked",
-              "value": "stacked"
-            },
-            {
-              "name": "Image left",
-              "value": "image-left"
-            },
-            {
-              "name": "Image right",
-              "value": "image-right"
-            }
-          ]
-        },
-        {
-          "component": "tab",
           "name": "fragmentTab",
           "label": "Fragment"
         },
@@ -439,7 +316,7 @@
           "valueType": "string",
           "name": "fragment",
           "label": "Fragment",
-          "description": "A page whose content (any components, e.g. Columns) is shown in the tab, after the Content fields."
+          "description": "A page whose content (any components, e.g. Columns, Title, Text, Image, Button) is shown in the tab."
         }
       ]
     }

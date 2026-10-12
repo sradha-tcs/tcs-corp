@@ -24,7 +24,6 @@ module.exports = {
       '*': 4,
       section: 6,
       tabs: 7,
-      'tabs-item': 6,
       'table-list': 10,
       'table-list-card': 6,
       'table-col-5': 5,
