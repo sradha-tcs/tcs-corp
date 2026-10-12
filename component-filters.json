@@ -3,7 +3,8 @@
     "id": "main",
     "components": [
       "section",
-      "gen-carousel"
+      "gen-carousel",
+      "tab-section"
     ]
   },
   {
@@ -20,7 +21,6 @@
       "testimonial",
       "anchor-list",
       "accordion",
-      "tabs",
       "table",
       "table-list",
       "list",
@@ -123,6 +123,15 @@
     "id": "table-5-columns",
     "components": [
       "table-col-5"
+    ]
+  },
+  {
+    "id": "tab-section",
+    "components": [
+      "title",
+      "text",
+      "image",
+      "button"
     ]
   },
   {

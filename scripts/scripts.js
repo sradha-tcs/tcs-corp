@@ -16,6 +16,7 @@ import {
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
+import { nextInstance } from '../utils/ids.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -145,6 +146,104 @@ function buildCarouselSections(container) {
 }
 
 /**
+ * Tab sections (blocks/tabs/_tabs.json "Tab"): each tab is a section with a Tab Title, holding
+ * any components its filter allows (title, text, image, button). Consecutive Tab sections form
+ * one set of tabs: a tab list section is added before them and only the selected tab's
+ * section is shown. The sections keep their place and editor instrumentation; selecting a
+ * component in Universal Editor shows its tab.
+ * @param {Element[]} sections consecutive tab sections
+ */
+function buildTabSet(sections) {
+  const id = `tabset-${nextInstance('tab-sections')}`;
+  // a <section> (no landmark without a name), so decorateBlocks() doesn't take the list for a block
+  const nav = document.createElement('section');
+  nav.className = 'section tab-sections-nav';
+  // nothing to load (loadSections() only loads div sections)
+  nav.dataset.sectionStatus = 'loaded';
+  const wrapper = document.createElement('div');
+  const list = document.createElement('div');
+  list.className = 'tabs-list';
+  list.setAttribute('role', 'tablist');
+  wrapper.append(list);
+  nav.append(wrapper);
+
+  const buttons = sections.map((section, i) => {
+    if (!section.id) section.id = `${id}-panel-${i + 1}`;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tabs-tab';
+    button.id = `${id}-tab-${i + 1}`;
+    button.setAttribute('role', 'tab');
+    button.setAttribute('aria-controls', section.id);
+    button.textContent = section.dataset.tablabel?.trim() || `Tab ${i + 1}`;
+    section.setAttribute('role', 'tabpanel');
+    section.setAttribute('aria-labelledby', button.id);
+    list.append(button);
+    return button;
+  });
+
+  const select = (index, focus = false) => {
+    buttons.forEach((button, i) => {
+      const selected = i === index;
+      button.setAttribute('aria-selected', selected);
+      button.tabIndex = selected ? 0 : -1;
+      sections[i].hidden = !selected;
+      // remembered, so a rebuilt set (e.g. after an edit) shows the same tab
+      sections[i].dataset.tabSelected = selected;
+    });
+    if (focus) buttons[index].focus();
+  };
+  buttons.forEach((button, i) => button.addEventListener('click', () => select(i)));
+  list.addEventListener('keydown', (e) => {
+    const current = buttons.indexOf(document.activeElement);
+    if (current < 0) return;
+    const last = buttons.length - 1;
+    const next = {
+      ArrowRight: current === last ? 0 : current + 1,
+      ArrowLeft: current === 0 ? last : current - 1,
+      Home: 0,
+      End: last,
+    }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    select(next, true);
+  });
+  // Universal Editor: show the tab of the component selected in the editor
+  sections.forEach((section, i) => section.addEventListener('aue:ui-select', (e) => {
+    if (e.detail?.selected) select(i);
+  }));
+
+  sections[0].before(nav);
+  const shown = sections.findIndex((section) => section.dataset.tabSelected === 'true');
+  select(shown >= 0 ? shown : 0);
+}
+
+/**
+ * Groups consecutive Tab sections into sets of tabs (see buildTabSet). Rebuilds the sets of
+ * the container, so it can run again after sections change in Universal Editor.
+ * @param {Element} container The main element, or the parent of re-rendered sections
+ */
+function buildTabSections(container) {
+  container.querySelectorAll(':scope > .tab-sections-nav').forEach((nav) => nav.remove());
+  const sets = [];
+  let set = null;
+  [...container.children].forEach((el) => {
+    if (!el.matches('.section.tab-section')) {
+      set = null;
+      return;
+    }
+    if (!set) {
+      set = [];
+      sets.push(set);
+    }
+    set.push(el);
+  });
+  if (!sets.length) return;
+  loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
+  sets.forEach(buildTabSet);
+}
+
+/**
  * Reads the section options of a section before it is decorated. AEM authoring delivers the
  * section properties as data attributes of the section (data-anchorname, data-style, ...);
  * documents use a section-metadata block. decorateSections() keeps only the URL of a metadata
@@ -208,6 +307,7 @@ export function decorateSectionsWithOptions(container) {
   });
 
   buildCarouselSections(container);
+  buildTabSections(container);
 }
 
 /**

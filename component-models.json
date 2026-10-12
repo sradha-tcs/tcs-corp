@@ -2184,6 +2184,32 @@
     ]
   },
   {
+    "id": "tab-section",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "style",
+        "label": "Style",
+        "value": "tab-section",
+        "options": [
+          {
+            "name": "Default",
+            "value": "tab-section"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tabLabel",
+        "label": "Tab Label",
+        "description": "The label of the tab. Consecutive Tab sections form one set of tabs.",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "tabs-item",
     "fields": [
       {
