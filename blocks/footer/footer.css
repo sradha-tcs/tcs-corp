@@ -1,30 +1,35 @@
 /*
- * Footer (Figma "Footer - Desktop / Tablet / Mobile"). The page footer holds the sections of
+ * Footer (Figma "Footer - Desktop / Tablet / Mobile": 229-37226, 4347-44552, 4347-44593; 1440 × 802,
+ * 1024 × 956, 399 × 800). The page footer holds the sections of
  * the footer page (e.g. a conversation canvas, then the Footer bar) on a white background with
  * soft brand and warning glows at the bottom.
  */
 footer {
   /* component tokens (Figma: TB Padding, LR Padding, Large-Spacing, Body/Inter-16) */
-  --footer-padding-block-start: var(--space-1000);
-  --footer-padding-inline: var(--space-1000);
-  --footer-padding-block-end: var(--space-1000);
+  --footer-padding-block-start: 3.5rem;
+  --footer-padding-inline: var(--space-500);
+  --footer-padding-block-end: var(--space-600);
   --footer-section-gap: var(--space-2000);
-  --footer-text-size: 1rem;
-  --footer-text-line-height: 1.375rem;
+  --footer-text-size: 0.75rem;
+  --footer-text-line-height: 1.0625rem;
   --footer-text-weight: var(--font-weight-medium);
   --footer-text-color: var(--color-text-default);
   --footer-row-gap: var(--space-400);
   --footer-column-gap: var(--space-600);
 
   /* with a conversation canvas: the Figma frame height, the bar at the bottom */
-  --footer-canvas-min-height: 47.9375rem;
-  --footer-canvas-gap: var(--space-1000);
-  --footer-canvas-padding-block-start: 6rem;
-  --footer-canvas-title-size: 2.75rem;
-  --footer-canvas-title-line-height: 3.3125rem;
+  --footer-canvas-min-height: 50rem;
+  --footer-canvas-gap: var(--space-1600);
+  --footer-canvas-padding-block-start: 0;
+  --footer-canvas-title-size: 3.25rem;
+  --footer-canvas-title-line-height: 3.875rem;
+  --footer-canvas-title-max-width: 20rem;
   --footer-canvas-buttons-direction: column;
   --footer-button-text-size: 0.75rem;
-  --footer-search-text-size: 0.875rem;
+  --footer-search-text-size: 1rem;
+  --footer-search-width: 38.0625rem;
+  --footer-search-gap: 1.0625rem;
+  --footer-menu-display: none;
 
   /* Figma's mobile search row overflows the column; 16px keeps the placeholder visible */
   --footer-search-padding-start: var(--space-400);
@@ -116,15 +121,32 @@ footer .footer-canvas .conversation-canvas::before {
   content: none;
 }
 
-/* Figma footer canvas: mobile 96px above the title, buttons stacked; tablet 52 / 62 title */
+/* Figma footer canvas: 64px (mobile) / 80px gaps, buttons stacked on mobile */
 footer .footer-canvas .conversation-canvas .conversation-canvas-content {
   gap: var(--footer-canvas-gap);
   padding-block-start: var(--footer-canvas-padding-block-start);
 }
 
-footer .footer-canvas .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
+footer .footer-canvas .conversation-canvas .conversation-canvas-title {
+  max-width: var(--footer-canvas-title-max-width);
+  margin-inline: auto;
+  color: #1e2222;
   font-size: var(--footer-canvas-title-size);
+  font-weight: var(--font-weight-medium);
   line-height: var(--footer-canvas-title-line-height);
+  letter-spacing: calc(-0.03 * var(--footer-canvas-title-size));
+  text-wrap: balance;
+}
+
+/* Figma "Floating menu": the menu button (not on mobile: the site header has the navigation),
+   17px, the search field; 609px wide */
+footer .footer-canvas .conversation-canvas .conversation-canvas-search {
+  gap: var(--footer-search-gap);
+  width: min(100%, var(--footer-search-width));
+}
+
+footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
+  display: var(--footer-menu-display);
 }
 
 footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
@@ -132,8 +154,10 @@ footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
   align-items: center;
 }
 
-/* Figma "AI input container": 12px padding (72px tall), 24px before the text; mobile 14 / 20 */
+/* Figma "AI input container": 12px padding (72px tall), 24px before the 16 / 22 text */
 footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
+  flex: 1;
+  min-width: 0;
   padding: var(--space-300) var(--space-300) var(--space-300) var(--footer-search-padding-start);
 }
 
@@ -174,6 +198,11 @@ footer .footer-bar {
   font-size: var(--footer-text-size);
   font-weight: var(--footer-text-weight);
   line-height: var(--footer-text-line-height);
+}
+
+/* Figma: the copyright is at least 310px wide, so the links go below it on mobile */
+footer .footer-copyright {
+  min-width: min(100%, 19.375rem);
 }
 
 footer .footer-links ul {
@@ -218,38 +247,35 @@ footer .footer .footer-social img {
   height: 1.5rem;
 }
 
-/* tablet (Figma 1024): 24px sides and bottom, 14 / 20 text */
+/* tablet (Figma 1024): 120 / 20 / 40 padding, 96 / 115 title, 16 / 22 text, the menu button */
 @media (width >= 600px) {
   footer {
-    --footer-padding-block-start: var(--space-2000);
-    --footer-padding-inline: var(--space-600);
-    --footer-padding-block-end: var(--space-600);
-    --footer-text-size: 0.875rem;
-    --footer-text-line-height: 1.25rem;
+    --footer-padding-block-start: var(--space-3000);
+    --footer-padding-inline: var(--space-500);
+    --footer-padding-block-end: var(--space-1000);
+    --footer-text-size: 1rem;
+    --footer-text-line-height: 1.375rem;
     --footer-glow-blue-position: 25% calc(100% + 13.75rem);
     --footer-glow-yellow-position: 88% calc(100% + 9.8125rem);
-    --footer-canvas-min-height: 58rem;
+    --footer-canvas-min-height: 59.75rem;
     --footer-canvas-gap: var(--space-2000);
-    --footer-canvas-padding-block-start: 0;
-    --footer-canvas-title-size: 3.25rem;
-    --footer-canvas-title-line-height: 3.875rem;
+    --footer-canvas-title-size: 6rem;
+    --footer-canvas-title-line-height: 7.1875rem;
+    --footer-canvas-title-max-width: none;
     --footer-canvas-buttons-direction: row;
     --footer-button-text-size: 1rem;
-    --footer-search-text-size: var(--button-font-size);
     --footer-search-padding-start: var(--space-600);
+    --footer-menu-display: grid;
   }
 }
 
-/* desktop (Figma 1440): 120px top, 80px sides, 40px bottom, 16 / 22 text */
+/* desktop (Figma 1440): 802px tall, 120px top, 80px sides, 40px bottom; the title on two lines */
 @media (width >= 1200px) {
   footer {
     --footer-padding-block-start: var(--space-3000);
     --footer-padding-inline: var(--space-2000);
     --footer-padding-block-end: var(--space-1000);
-    --footer-text-size: 1rem;
-    --footer-text-line-height: 1.375rem;
-    --footer-canvas-min-height: 62.5rem;
-    --footer-canvas-title-size: 5rem;
-    --footer-canvas-title-line-height: 6rem;
+    --footer-canvas-min-height: 50.125rem;
+    --footer-canvas-title-max-width: 61.5rem;
   }
 }
