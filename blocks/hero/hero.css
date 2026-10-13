@@ -1,4 +1,8 @@
-/* Hero (TCS.com DS Figma "L1 Header"): image or Lottie background, overlay, centered content */
+/*
+ * Hero (TCS.com DS Figma "L1 Header" variations): an image or Lottie background (filling the
+ * hero, or contained for illustrations) under a light, dark or no overlay; the content aligned
+ * vertically and horizontally; an optional motion when the hero comes into view.
+ */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -15,7 +19,9 @@
   --hero-eyebrow-color: var(--color-text-brand);
   --hero-description-color: var(--color-text-secondary);
   --hero-title-max-width: 1160px;
-  --hero-description-max-width: 480px;
+  --hero-description-max-width: 850px;
+  --hero-align: center;
+  --hero-text-align: center;
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -32,10 +38,10 @@
   overflow: hidden;
   isolation: isolate;
   background-color: var(--color-bg-default);
-  text-align: center;
+  text-align: var(--hero-text-align);
 }
 
-/* Alignment: vertical position of the content */
+/* Vertical Alignment: position of the content */
 .hero.align-top {
   justify-content: flex-start;
 }
@@ -44,12 +50,28 @@
   justify-content: flex-end;
 }
 
-/* BG Color */
+/* Horizontal Alignment: the content and its CTAs */
+.hero.align-left {
+  --hero-align: flex-start;
+  --hero-text-align: start;
+}
+
+.hero.align-right {
+  --hero-align: flex-end;
+  --hero-text-align: end;
+}
+
+/* BG Color: Light, no overlay shows the image as is (e.g. a light gradient) */
+.hero.bg-light {
+  --hero-overlay: transparent;
+}
+
 .hero.bg-dark,
 .hero.bg-dark-subtle,
 .hero.bg-black {
   --hero-title-color: var(--color-text-on-neutral);
-  --hero-description-color: rgb(255 255 255 / 55%);
+  --hero-description-color: rgb(255 255 255 / 50%);
+  --hero-description-weight: var(--font-weight-medium);
 }
 
 .hero.bg-dark {
@@ -105,14 +127,14 @@
 .hero .hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: var(--hero-align);
   width: 100%;
   max-width: 1352px;
 }
 
 .hero .hero-icon {
   display: flex;
-  justify-content: center;
+  justify-content: var(--hero-align);
   margin-bottom: var(--hero-gap-icon);
 }
 
@@ -120,6 +142,26 @@
   display: block;
   width: var(--icon-size-l);
   height: var(--icon-size-l);
+  object-fit: contain;
+}
+
+/* Hero View: Contained image, the whole image (e.g. an illustration) centered behind the content */
+.hero.media-contained .hero-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-600);
+}
+
+.hero.media-contained .hero-media picture {
+  display: contents;
+}
+
+.hero.media-contained .hero-media img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -138,7 +180,7 @@
   font-size: var(--display-font-size-2);
   font-weight: var(--font-weight-medium);
   line-height: var(--display-line-height);
-  letter-spacing: normal;
+  letter-spacing: -0.025em;
 }
 
 .hero .hero-description {
@@ -146,7 +188,9 @@
   margin-top: var(--hero-gap-content);
   color: var(--hero-description-color);
   font-size: var(--body-font-size-l);
+  font-weight: var(--hero-description-weight, var(--font-weight-regular));
   line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 .hero .hero-description > * {
@@ -161,7 +205,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: var(--hero-align);
   gap: var(--space-400) var(--hero-gap-ctas);
   margin-top: var(--hero-gap-ctas);
 }
@@ -185,6 +229,45 @@
   color: var(--brand-300);
 }
 
+/* Motion Type: played when the hero comes into view (hero.js adds motion-ready and is-visible;
+   never in Universal Editor or with reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not(.adobe-ue-edit) .hero.motion-fade.is-visible .hero-content {
+    animation: hero-fade 800ms ease both;
+  }
+
+  :root:not(.adobe-ue-edit) .hero.motion-slide.is-visible .hero-content {
+    animation: hero-slide 800ms ease both;
+  }
+
+  :root:not(.adobe-ue-edit) .hero.motion-zoom.is-visible .hero-media {
+    animation: hero-zoom 1600ms ease-out both;
+  }
+
+  :root:not(.adobe-ue-edit) .hero.motion-ready:is(.motion-fade, .motion-slide):not(.is-visible) .hero-content {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-slide {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-800));
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+}
+
 @media (width >= 600px) {
   .hero {
     --hero-min-height: 640px;
@@ -197,7 +280,7 @@
     --hero-min-height: 850px;
     --hero-padding-block: var(--space-3000);
     --hero-padding-inline: 44px;
-    --hero-gap-icon: var(--space-400);
+    --hero-gap-icon: var(--space-200);
     --hero-gap-eyebrow: var(--space-1000);
     --hero-gap-content: var(--space-1000);
     --hero-gap-ctas: var(--space-1000);
@@ -205,5 +288,10 @@
 
   .hero .hero-eyebrow {
     font-size: var(--body-font-size-s);
+  }
+
+  .hero .hero-icon img {
+    width: 48px;
+    height: 48px;
   }
 }

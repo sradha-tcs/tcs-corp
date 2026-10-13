@@ -1106,7 +1106,8 @@
             "name": "Lotto",
             "value": "lottie"
           }
-        ]
+        ],
+        "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background."
       },
       {
         "component": "reference",
@@ -1133,8 +1134,13 @@
           {
             "name": "Default",
             "value": ""
+          },
+          {
+            "name": "Contained image",
+            "value": "media-contained"
           }
-        ]
+        ],
+        "description": "Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content."
       },
       {
         "component": "tab",
@@ -1242,6 +1248,32 @@
         ]
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_motion",
+        "label": "Motion Type",
+        "description": "Animates the hero when it comes into view (not when reduced motion is preferred).",
+        "value": "",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Fade in",
+            "value": "motion-fade"
+          },
+          {
+            "name": "Slide up",
+            "value": "motion-slide"
+          },
+          {
+            "name": "Zoom (image)",
+            "value": "motion-zoom"
+          }
+        ]
+      },
+      {
         "component": "tab",
         "name": "styleSection",
         "label": "Style"
@@ -1250,7 +1282,7 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_alignment",
-        "label": "Alignment",
+        "label": "Vertical Alignment",
         "value": "align-middle",
         "options": [
           {
@@ -1270,6 +1302,27 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_horizontal",
+        "label": "Horizontal Alignment",
+        "value": "align-center",
+        "options": [
+          {
+            "name": "Left",
+            "value": "align-left"
+          },
+          {
+            "name": "Center",
+            "value": "align-center"
+          },
+          {
+            "name": "Right",
+            "value": "align-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_background",
         "label": "BG Color",
         "value": "",
@@ -1277,6 +1330,10 @@
           {
             "name": "Default",
             "value": ""
+          },
+          {
+            "name": "Light, no overlay",
+            "value": "bg-light"
           },
           {
             "name": "Dark blue",
@@ -1290,7 +1347,8 @@
             "name": "Black",
             "value": "bg-black"
           }
-        ]
+        ],
+        "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay."
       }
     ]
   },

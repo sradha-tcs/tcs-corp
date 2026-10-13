@@ -412,7 +412,8 @@
                   "name": "Hero",
                   "model": "hero",
                   "classes_alignment": "align-middle",
-                  "content_titleType": "h1"
+                  "content_titleType": "h1",
+                  "classes_horizontal": "align-center"
                 }
               }
             }

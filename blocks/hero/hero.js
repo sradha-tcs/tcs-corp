@@ -1,7 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { readButtonOptions } from '../../utils/buttons.js';
-import { prefersReducedMotion } from '../../utils/environment.js';
+import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
 import { NEW_WINDOW, readLinkItems } from '../../utils/links.js';
 import { onVisible, watchVisibility } from '../../utils/viewport.js';
 import { loadLottie } from '../../utils/lottie.js';
@@ -14,9 +14,14 @@ import { isAnimation } from '../../utils/media.js';
  * - CTA List: a composite multifield, one link per item, each with an optional
  *   "new-window" Link Type value; the CTA view is the link's bold (primary) / italic
  *   (secondary) formatting
- * Block options: lottie, align-top | align-middle | align-bottom,
- * bg-dark | bg-dark-subtle | bg-black.
+ * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
+ * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type),
+ * align-top | align-middle | align-bottom (Vertical Alignment),
+ * align-left | align-center | align-right (Horizontal Alignment),
+ * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color).
  */
+
+const MOTIONS = ['motion-fade', 'motion-slide', 'motion-zoom'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
@@ -54,6 +59,17 @@ function playAnimation(container, path) {
       console.error('hero: failed to play the Lottie animation', error);
     }));
   }, { rootMargin: '200px' });
+}
+
+/**
+ * Motion Type: the animation plays when the hero comes into view. Without it (none, reduced
+ * motion, Universal Editor) the hero shows as is.
+ */
+function observeMotion(block) {
+  if (!MOTIONS.some((motion) => block.classList.contains(motion))) return;
+  if (isEditing() || prefersReducedMotion()) return;
+  block.classList.add('motion-ready');
+  onVisible(block, () => block.classList.add('is-visible'), { threshold: 0.1 });
 }
 
 /** a cell holding only links (and Link Type values): the CTA List */
@@ -193,4 +209,5 @@ export default function decorate(block) {
 
   block.classList.toggle('hero-has-media', !!media);
   block.replaceChildren(...[media, content].filter(Boolean));
+  observeMotion(block);
 }
