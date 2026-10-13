@@ -1,10 +1,10 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { createAnimation } from '../../decorators/animation-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { readButtonOptions } from '../../utils/buttons.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
 import { NEW_WINDOW, readLinkItems } from '../../utils/links.js';
-import { onVisible, watchVisibility } from '../../utils/viewport.js';
-import { loadLottie } from '../../utils/lottie.js';
+import { onVisible } from '../../utils/viewport.js';
 import { isAnimation } from '../../utils/media.js';
 
 /*
@@ -29,42 +29,6 @@ const ARROWS = ['right', 'down'];
 const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
-
-/**
- * Plays a Lottie animation in the container, after the page has rendered: the player is
- * loaded when the hero comes near the viewport and the browser is idle. The animation
- * pauses off screen and shows its first frame for reduced motion.
- */
-function playAnimation(container, path) {
-  const start = async () => {
-    const lottie = await loadLottie();
-    const still = prefersReducedMotion();
-    const animation = lottie.loadAnimation({
-      container,
-      path,
-      renderer: 'svg',
-      loop: true,
-      autoplay: !still,
-      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
-    });
-    if (still) {
-      animation.addEventListener('DOMLoaded', () => animation.goToAndStop(0, true));
-      return;
-    }
-    watchVisibility(container, (visible) => {
-      if (visible) animation.play();
-      else animation.pause();
-    });
-  };
-
-  onVisible(container, () => {
-    const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 200));
-    idle(() => start().catch((error) => {
-      // eslint-disable-next-line no-console
-      console.error('hero: failed to play the Lottie animation', error);
-    }));
-  }, { rootMargin: '200px' });
-}
 
 /**
  * Motion Type: the animation plays when the hero comes into view. Without it (none, reduced
@@ -123,17 +87,8 @@ function buildMedia(block, cell) {
   const link = cell.querySelector('a[href]');
 
   if (block.classList.contains('lottie') && link && isAnimation(link.href)) {
-    const animation = document.createElement('div');
-    animation.className = 'hero-animation';
     const label = link.title && link.title !== link.textContent ? link.title : '';
-    if (label) {
-      animation.setAttribute('role', 'img');
-      animation.setAttribute('aria-label', label);
-    } else {
-      animation.setAttribute('aria-hidden', 'true');
-    }
-    media.append(animation);
-    playAnimation(animation, link.href);
+    media.append(createAnimation(link.href, { label, className: 'hero-animation' }));
   } else if (picture) {
     // the hero image is the LCP candidate when the hero opens the page
     const img = picture.querySelector('img');

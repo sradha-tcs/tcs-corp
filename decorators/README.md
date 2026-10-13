@@ -18,6 +18,8 @@ checks) live in [`../utils`](../utils/README.md).
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | teaser, page-header |
 | `tag-decorator.js` | `buildTagList` | teaser, page-header |
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
+| `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport) | hero, teaser |
+| `stats-decorator.js` | `buildStats` (Stats composite multifield as a description list) | testimonial, teaser |
 | `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article, blog, press-release templates |
