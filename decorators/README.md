@@ -8,18 +8,18 @@ checks) live in [`../utils`](../utils/README.md).
 | Decorator | Exports | Used by |
 |---|---|---|
 | `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, header |
-| `icon-button-decorator.js` | `createIconButton` | gen-carousel, article meta decorator, modal, embed, video, conversation-canvas |
+| `icon-button-decorator.js` | `createIconButton` | gen-carousel, article meta decorator, modal, embed, video, filter-list, conversation-canvas |
 | `content-buttons-decorator.js` | `decorateButtons` (authored links in content become buttons) | `scripts.js`, `editor-support.js` |
 | `link-decorator.js` | `setLinkTarget` (open in a new window) | button decorator, teaser |
-| `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, form-variations |
+| `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, filter-list, form-variations |
 | `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
 | `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
-| `responsive-image-decorator.js` | `buildImage` (image from a URL; site media optimized) | `scripts.js` (section backgrounds), conversation-canvas |
-| `date-decorator.js` | `buildTime` (`<time>` for a date) | article meta decorator |
+| `responsive-image-decorator.js` | `buildImage` (image from a URL; site media optimized) | `scripts.js` (section backgrounds), page-header, filter-list, conversation-canvas |
+| `date-decorator.js` | `buildTime` (`<time>` for a date) | article meta decorator, filter-list |
 | `tag-decorator.js` | `buildTagList` | teaser, page-header |
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
 | `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport) | hero, teaser |
-| `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser |
+| `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser, filter-list |
 | `stats-decorator.js` | `buildStats` (Stats composite multifield as a description list) | testimonial, teaser |
 | `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |

@@ -632,7 +632,112 @@
   },
   {
     "id": "filter-list",
-    "fields": []
+    "fields": [
+      {
+        "component": "tab",
+        "name": "contentTab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "e.g. Explore the Agentic bank"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Type",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "filtersLabel",
+        "label": "Filters label",
+        "value": "Filters"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showAll",
+        "label": "Show All filter",
+        "description": "An All filter before the others, showing the results of every filter.",
+        "value": true
+      },
+      {
+        "component": "container",
+        "name": "filters",
+        "label": "Filters",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "filterLabel",
+            "label": "Tag title",
+            "description": "The filter's label, e.g. AI & Data."
+          },
+          {
+            "component": "aem-tag",
+            "valueType": "string",
+            "name": "filterTags",
+            "label": "Tags",
+            "description": "Pages with any of these tags (page metadata) are the filter's results.",
+            "multi": true
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "resultsTab",
+        "label": "Results"
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "cardsPerPage",
+        "label": "Cards per page",
+        "description": "Cards shown before Load more (rows of 4 on desktop).",
+        "value": 8,
+        "min": 4,
+        "max": 48
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "featuredPosition",
+        "label": "Feature cards",
+        "description": "Pages with feature-card = yes in their metadata, ranked by featured-priority (1 first), show as large horizontal cards.",
+        "value": "after",
+        "options": [
+          {
+            "name": "After each page of cards",
+            "value": "after"
+          },
+          {
+            "name": "Before each page of cards",
+            "value": "before"
+          },
+          {
+            "name": "Before and after the first page",
+            "value": "both"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "footer",

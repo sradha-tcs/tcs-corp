@@ -7,7 +7,8 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 /**
  * Formats a date (YYYY-MM-DD, possibly with a time) using its calendar date as authored.
  * @param {string} value
- * @param {string} format dd-mm-yyyy (default) | mm-dd-yyyy | mmm-d-yyyy | dd/mm/yy
+ * @param {string} format dd-mm-yyyy (default) | mm-dd-yyyy | mmm-d-yyyy | dd/mm/yy | dd-mmm-yy
+ *   (04 Sep 26)
  * @returns {{ iso: string, text: string }} iso is YYYY-MM-DD, or '' when the value isn't a date
  */
 // eslint-disable-next-line import/prefer-default-export
@@ -21,5 +22,8 @@ export function formatDate(value, format) {
     return { iso, text: `${MONTHS[Number(month) - 1]} ${Number(day)}, ${year}` };
   }
   if (format === 'dd/mm/yy') return { iso, text: `${day}/${month}/${year.slice(2)}` };
+  if (format === 'dd-mmm-yy') {
+    return { iso, text: `${day} ${MONTHS[Number(month) - 1]} ${year.slice(2)}` };
+  }
   return { iso, text: `${day}-${month}-${year}` };
 }

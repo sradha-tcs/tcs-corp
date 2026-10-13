@@ -91,3 +91,10 @@ indices:
       priority:
         select: head > meta[name="priority"]
         value: attribute(el, "content")
+      # Filter List feature cards: shown as the large horizontal card, ranked by the priority
+      featureCard:
+        select: head > meta[name="feature-card"]
+        value: attribute(el, "content")
+      featuredPriority:
+        select: head > meta[name="featured-priority"]
+        value: attribute(el, "content")
