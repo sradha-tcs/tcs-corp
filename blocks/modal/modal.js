@@ -16,6 +16,46 @@ import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
+/**
+ * Keeps the dialog in the visible part of the page. In a frame that is taller than what shows
+ * (e.g. the page in Universal Editor) the viewport isn't what the visitor sees: the visible
+ * part is where the page intersects the screen, reported by an IntersectionObserver. The
+ * dialog is hidden until it's measured, and wheel scrolling outside it or past the end of its
+ * content doesn't scroll the frame's container (which would move the dialog out of view).
+ * At the top level the viewport is visible and CSS uses it.
+ * @param {HTMLDialogElement} dialog
+ * @returns {() => void} stops tracking
+ */
+function trackVisibleArea(dialog) {
+  if (window.self === window.top || !('IntersectionObserver' in window)) return () => {};
+  dialog.dataset.measuring = '';
+  const observer = new IntersectionObserver(([entry]) => {
+    const { top, height } = entry.intersectionRect;
+    if (height >= 1) {
+      dialog.style.setProperty('--modal-top', `${Math.round(top)}px`);
+      dialog.style.setProperty('--modal-height', `${Math.round(height)}px`);
+    }
+    delete dialog.dataset.measuring;
+  }, { threshold: Array.from({ length: 101 }, (_, i) => i / 100) });
+  observer.observe(document.documentElement);
+
+  const onWheel = (e) => {
+    const {
+      left, right, top, bottom,
+    } = dialog.getBoundingClientRect();
+    const outside = e.clientX < left || e.clientX > right || e.clientY < top || e.clientY > bottom;
+    const atTop = e.deltaY < 0 && dialog.scrollTop <= 0;
+    const atEnd = e.deltaY > 0
+      && dialog.scrollTop + dialog.clientHeight >= dialog.scrollHeight - 1;
+    if (outside || atTop || atEnd) e.preventDefault();
+  };
+  document.addEventListener('wheel', onWheel, { passive: false });
+  return () => {
+    observer.disconnect();
+    document.removeEventListener('wheel', onWheel);
+  };
+}
+
 export async function createModal(contentNodes) {
   const t = await getPlaceholders();
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
@@ -51,7 +91,9 @@ export async function createModal(contentNodes) {
   });
 
   let opener = null;
+  let stopTracking = () => {};
   dialog.addEventListener('close', () => {
+    stopTracking();
     document.body.classList.remove('modal-open');
     block.remove();
     opener?.focus();
@@ -64,6 +106,7 @@ export async function createModal(contentNodes) {
     block,
     showModal: () => {
       opener = document.activeElement;
+      stopTracking = trackVisibleArea(dialog);
       dialog.showModal();
       // reset scroll position
       setTimeout(() => { dialog.scrollTop = 0; }, 0);
