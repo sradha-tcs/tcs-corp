@@ -10,8 +10,7 @@
             "template": {
               "name": "Page Header",
               "model": "page-header",
-              "key-value": true,
-              "primaryCtaStyle": "primary"
+              "key-value": true
             }
           }
         }
@@ -31,13 +30,30 @@
           "component": "select",
           "valueType": "string",
           "name": "classes",
-          "label": "Style",
-          "description": "Title, description, tags, publication date and author come from the page metadata (page properties or the bulk metadata sheet). Auto picks the layout from the Template metadata.",
+          "label": "Layout",
+          "description": "The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article.",
           "value": "",
           "options": [
-            { "name": "Auto (by Template)", "value": "" },
-            { "name": "Landing", "value": "landing" },
-            { "name": "Article", "value": "article" }
+            {
+              "name": "Default (from the Page Type)",
+              "value": ""
+            },
+            {
+              "name": "Landing (with the featured image)",
+              "value": "landing"
+            },
+            {
+              "name": "Secondary (title left, text right)",
+              "value": "secondary"
+            },
+            {
+              "name": "Article (meta row, author)",
+              "value": "article"
+            },
+            {
+              "name": "Display (large title)",
+              "value": "display"
+            }
           ]
         },
         {
@@ -46,187 +62,62 @@
           "label": "CTAs"
         },
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "primaryCtaText",
-          "label": "Primary CTA Title"
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "primaryCta",
-          "label": "Primary CTA Link"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "primaryCtaTarget",
-          "label": "Primary CTA Link Type",
-          "value": "",
-          "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Open in New Window", "value": "new-window" }
+          "component": "container",
+          "name": "ctas",
+          "label": "CTA List",
+          "multi": true,
+          "fields": [
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "ctaText",
+              "label": "CTA Title"
+            },
+            {
+              "component": "aem-content",
+              "valueType": "string",
+              "name": "cta",
+              "label": "CTA Link"
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaTarget",
+              "label": "CTA Link Type",
+              "value": "",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "Open in New Window",
+                  "value": "new-window"
+                }
+              ]
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaStyle",
+              "label": "CTA Link Style",
+              "value": "primary",
+              "options": [
+                {
+                  "name": "Text link",
+                  "value": ""
+                },
+                {
+                  "name": "Primary Button",
+                  "value": "primary"
+                },
+                {
+                  "name": "Secondary Button",
+                  "value": "secondary"
+                }
+              ]
+            }
           ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "primaryCtaStyle",
-          "label": "Primary CTA Link Style",
-          "value": "primary",
-          "options": [
-            { "name": "Default (text link)", "value": "" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
-          ]
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "secondaryCtaText",
-          "label": "Second CTA Title"
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "secondaryCta",
-          "label": "Second CTA Link"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "secondaryCtaTarget",
-          "label": "Second CTA Link Type",
-          "value": "",
-          "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Open in New Window", "value": "new-window" }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "secondaryCtaStyle",
-          "label": "Second CTA Link Style",
-          "value": "",
-          "options": [
-            { "name": "Default (text link)", "value": "" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
-          ]
-        },
-        {
-          "component": "tab",
-          "name": "metaTab",
-          "label": "Author & Meta"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "authorName",
-          "label": "Author Name",
-          "description": "Defaults to the page's Author metadata."
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "authorImage",
-          "label": "Author Image",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "authorImageAlt",
-          "label": "Author Image Alt Text",
-          "description": "Leave empty if the author's name is shown next to the image."
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "designationLocation",
-          "label": "Designation & Location",
-          "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "readingTime",
-          "label": "Time to Read",
-          "description": "Minutes (e.g. 14) or a text such as \"14 min read\"."
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "collectionLabel",
-          "label": "Collection Label",
-          "description": "Shown after the tags, e.g. Collection."
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "listenLink",
-          "label": "Listen Link",
-          "description": "Audio version of the page (shows a headphones icon)."
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "socialShare",
-          "label": "Social Share",
-          "value": false
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "download",
-          "label": "Download",
-          "description": "Lets visitors print or save the page as a PDF.",
-          "value": false
-        },
-        {
-          "component": "tab",
-          "name": "imagesTab",
-          "label": "Image Collage"
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "collageImage1",
-          "label": "Image 1 (large, top left)",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "collageImage1Alt",
-          "label": "Image 1 alt text"
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "collageImage2",
-          "label": "Image 2 (bottom left)",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "collageImage2Alt",
-          "label": "Image 2 alt text"
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "collageImage3",
-          "label": "Image 3 (right)",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "collageImage3Alt",
-          "label": "Image 3 alt text"
         }
       ]
     }
