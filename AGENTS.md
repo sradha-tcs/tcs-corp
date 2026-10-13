@@ -67,6 +67,8 @@ The repository provides the basic structure, blocks, and configuration needed to
 - Use modern CSS features (CSS Grid, Flexbox, CSS Custom Properties)
 - Maintain responsive design principles
   - Declare styles mobile first, use `min-width` media queries at 600px/900px/1200px for tablet and desktop
+- Use `rem` for all sizes (1rem = 16px; at most 4 decimals), not `px` or `em`; only the media query breakpoints stay in px
+  - Letter-spacing and other font-relative values are derived from the rule's font size, e.g. `letter-spacing: calc(-0.02 * var(--heading-font-size-l))` or `-0.06rem` for a 3rem title. Where a rule resizes an element (a heading, button or tag), set its letter-spacing for the new size too
 - Ensure all selectors are scoped to the block.
   - Bad: `.item-list`
   - Good: `.{blockname} .item-list`   

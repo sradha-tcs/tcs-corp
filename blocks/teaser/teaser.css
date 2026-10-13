@@ -80,7 +80,7 @@
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-light);
   line-height: 1.21;
-  letter-spacing: 0.005em;
+  letter-spacing: calc(0.005 * var(--body-font-size-xs));
 }
 
 .teaser .teaser-actions {
@@ -131,7 +131,7 @@
 .teaser .teaser-author-details {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
   color: var(--teaser-title-color);
   font-size: var(--heading-font-size-xs);
   line-height: 1.375;
@@ -219,7 +219,7 @@
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.57;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(0.01 * var(--body-font-size-xs));
   text-transform: uppercase;
 }
 
@@ -232,7 +232,7 @@
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.57;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(0.01 * var(--body-font-size-xs));
 }
 
 /* tags: uppercase, separated by a bar (Figma "BANKING | AI NATIVE") */
@@ -266,7 +266,7 @@
   font-size: var(--heading-font-size-xl);
   font-weight: var(--font-weight-semibold);
   line-height: 1.4;
-  letter-spacing: -0.025em;
+  letter-spacing: calc(-0.025 * var(--heading-font-size-xl));
 }
 
 .teaser .teaser-view-all {
@@ -297,7 +297,7 @@
 
 .teaser .teaser-stat {
   display: flex;
-  flex: 1 0 180px;
+  flex: 1 0 11.25rem;
   flex-direction: column;
   gap: var(--space-100);
 }
@@ -357,7 +357,7 @@
   color: var(--teaser-link-color);
   font-size: var(--heading-font-size-m);
   line-height: 1.417;
-  letter-spacing: -0.015em;
+  letter-spacing: calc(-0.015 * var(--heading-font-size-m));
   text-decoration: none;
 }
 
@@ -421,7 +421,7 @@
 .teaser:not(.teaser-has-media) .teaser-title {
   font-size: var(--heading-font-size-xxl);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 .teaser.no-image .teaser-title {
@@ -477,14 +477,14 @@
 .teaser.background {
   align-items: center;
   justify-content: center;
-  min-height: 560px;
+  min-height: 35rem;
   padding: var(--space-2000) var(--space-600);
 }
 
 .teaser.background .teaser-title {
   font-size: var(--heading-font-size-xxl);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 /* Card: rounded, the header at the top and the links at the bottom (Figma "Media Kit") */
@@ -492,7 +492,7 @@
   --teaser-overlay: rgb(0 0 0 / 70%);
 
   align-items: stretch;
-  min-height: 400px;
+  min-height: 25rem;
   border-radius: var(--radius-l);
   padding: var(--space-600);
 }
@@ -504,10 +504,10 @@
 }
 
 .teaser.card .teaser-title {
-  max-width: 500px;
+  max-width: 31.25rem;
   font-size: var(--heading-font-size-xxl);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 /* Text alignment: Right */
@@ -527,7 +527,7 @@
 .teaser:not(.no-image, .teaser-has-media, .card, .text-left, .text-right) .teaser-content,
 .teaser.text-center:not(.no-image) .teaser-content {
   width: 100%;
-  max-width: 600px;
+  max-width: 37.5rem;
   margin-inline: auto;
   text-align: center;
 }
@@ -585,25 +585,25 @@
 .teaser.title-m .teaser-title {
   font-size: var(--heading-font-size-xl);
   line-height: 1.4;
-  letter-spacing: -0.025em;
+  letter-spacing: calc(-0.025 * var(--heading-font-size-xl));
 }
 
 .teaser.title-l .teaser-title {
   font-size: var(--heading-font-size-xxl);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 .teaser.title-xl .teaser-title {
   font-size: var(--display-font-size-2);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--display-font-size-2));
 }
 
 .teaser.title-display .teaser-title {
   font-size: var(--display-font-size-1);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: calc(-0.02 * var(--display-font-size-1));
 }
 
 .teaser.title-regular .teaser-title {
@@ -643,7 +643,7 @@
   }
 
   .teaser .teaser-stat-value {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .teaser.teaser-has-media {
@@ -697,16 +697,17 @@
   }
 
   .teaser.background {
-    min-height: 780px;
+    min-height: 48.75rem;
     padding: var(--space-3000) var(--space-2000);
   }
 
   .teaser.card {
-    min-height: 570px;
+    min-height: 35.625rem;
     padding: var(--space-1000);
   }
 
   .teaser.title-display .teaser-title {
-    font-size: 96px;
+    font-size: 6rem;
+    letter-spacing: -0.12rem;
   }
 }

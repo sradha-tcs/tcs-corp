@@ -17,7 +17,7 @@
   font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 /* eyebrow, quote and author, centered */
@@ -26,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-300);
-  max-width: 950px;
+  max-width: 59.375rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -38,17 +38,17 @@
   font-size: var(--heading-font-size-xs);
   font-weight: var(--font-weight-regular);
   line-height: 1.625;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(0.01 * var(--heading-font-size-xs));
 }
 
 .testimonial .testimonial-description {
-  max-width: 900px;
+  max-width: 56.25rem;
   margin: 0;
   color: var(--color-text-brand);
   font-size: var(--heading-font-size-xl);
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
-  letter-spacing: -0.02em;
+  letter-spacing: calc(-0.02 * var(--heading-font-size-xl));
 }
 
 .testimonial .testimonial-description > * {
@@ -93,7 +93,7 @@
   font-size: var(--heading-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
-  letter-spacing: -0.01em;
+  letter-spacing: calc(-0.01 * var(--heading-font-size-xs));
 }
 
 .testimonial .testimonial-author-details > * {
@@ -103,10 +103,10 @@
 /* stats: title on top, value below it, in columns under a divider */
 .testimonial .testimonial-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: var(--space-800) var(--space-1000);
   width: 100%;
-  max-width: 1120px;
+  max-width: 70rem;
   margin: 0 auto;
   padding-top: var(--space-1000);
   border-top: var(--border-width-100) solid var(--color-border-default);
@@ -125,7 +125,7 @@
   font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 .testimonial .testimonial-stat-label {

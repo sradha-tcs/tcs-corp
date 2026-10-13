@@ -18,7 +18,7 @@
   font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 .list .list-cta-slot {

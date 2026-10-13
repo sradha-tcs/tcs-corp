@@ -18,7 +18,7 @@
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.57;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(0.01 * var(--body-font-size-xs));
   text-transform: uppercase;
 }
 
@@ -36,7 +36,7 @@
   font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-regular);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
 .page-header .page-header-intro,
@@ -96,7 +96,7 @@
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-light);
   line-height: 1.21;
-  letter-spacing: 0.005em;
+  letter-spacing: calc(0.005 * var(--body-font-size-xs));
 }
 
 /* the content type next to the tags (Figma "Collection") */
@@ -156,7 +156,7 @@
 .page-header .page-header-author-details {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
   color: var(--color-text-default);
   font-size: var(--heading-font-size-xs);
   line-height: 1.375;
@@ -191,6 +191,7 @@
 
 .page-header.landing .page-header-title {
   font-size: var(--display-font-size-1);
+  letter-spacing: calc(-0.03 * var(--display-font-size-1));
   font-weight: var(--font-weight-semibold);
 }
 
@@ -219,6 +220,7 @@
 /* article: large regular title */
 .page-header.article .page-header-title {
   font-size: var(--display-font-size-2);
+  letter-spacing: calc(-0.03 * var(--display-font-size-2));
 }
 
 /* display: the tags as a pipe-separated eyebrow, a display title */
@@ -235,7 +237,7 @@
   color: var(--color-text-neutral);
   font-size: var(--display-font-size-1);
   font-weight: var(--font-weight-medium);
-  letter-spacing: -0.02em;
+  letter-spacing: calc(-0.02 * var(--display-font-size-1));
 }
 
 @media (width >= 900px) {
@@ -263,6 +265,14 @@
   }
 
   .page-header:is(.landing, .display) .page-header-title {
-    font-size: 96px;
+    font-size: 6rem;
+  }
+
+  .page-header.landing .page-header-title {
+    letter-spacing: -0.18rem;
+  }
+
+  .page-header.display .page-header-title {
+    letter-spacing: -0.12rem;
   }
 }

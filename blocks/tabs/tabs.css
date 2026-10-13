@@ -42,7 +42,7 @@
 
 .tabs .tabs-list .tabs-tab:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: -2px;
+  outline-offset: -0.125rem;
 }
 
 .tabs .tabs-list .tabs-tab[aria-selected='true'] {
@@ -114,7 +114,7 @@
 
 .tabs .tabs-panel:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: 4px;
+  outline-offset: 0.25rem;
 }
 
 .tabs .tabs-panel > div {
@@ -168,7 +168,7 @@ html.adobe-ue-edit .tabs .tabs-panel > div:has(> .tab) {
   /* Orientation: Vertical, the tab list on the left of the panels */
   .tabs.vertical {
     display: grid;
-    grid-template-columns: minmax(200px, 1fr) 3fr;
+    grid-template-columns: minmax(12.5rem, 1fr) 3fr;
     gap: 0 var(--space-1200);
     align-items: start;
   }

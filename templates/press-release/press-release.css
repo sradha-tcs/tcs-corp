@@ -3,12 +3,13 @@
 /* Media contacts (Media Contacts data sheet) */
 main .template-media-contacts .contact-list {
   padding-block-start: var(--space-600);
-  border-block-start: 1px solid var(--color-border-default);
+  border-block-start: 0.0625rem solid var(--color-border-default);
 }
 
 main .template-media-contacts .contact-list-heading {
   margin: 0 0 var(--space-500);
   font-size: var(--heading-font-size-s);
+  letter-spacing: calc(-0.025 * var(--heading-font-size-s));
 }
 
 main .template-media-contacts ul {

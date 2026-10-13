@@ -13,18 +13,18 @@
   /* Figma: Color/01121F and the overlay fills of the L1 Header frames */
   --hero-navy: #01121f;
   --hero-overlay: rgb(255 255 255 / 80%);
-  --hero-min-height: 560px;
+  --hero-min-height: 35rem;
   --hero-padding-block: var(--space-1600);
   --hero-padding-inline: var(--space-600);
   --hero-title-color: var(--color-text-default);
   --hero-eyebrow-color: var(--color-text-brand);
   --hero-description-color: var(--color-text-secondary);
-  --hero-title-max-width: 1160px;
-  --hero-description-max-width: 850px;
+  --hero-title-max-width: 72.5rem;
+  --hero-description-max-width: 53.125rem;
   --hero-position: center;
   --hero-text-align: center;
   --hero-align: center;
-  --hero-content-max-width: 1352px;
+  --hero-content-max-width: 84.5rem;
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -204,7 +204,7 @@
   font-size: var(--display-font-size-2);
   font-weight: var(--font-weight-medium);
   line-height: var(--display-line-height);
-  letter-spacing: -0.025em;
+  letter-spacing: calc(-0.025 * var(--display-font-size-2));
 }
 
 .hero .hero-description {
@@ -214,7 +214,7 @@
   font-size: var(--body-font-size-l);
   font-weight: var(--hero-description-weight, var(--font-weight-regular));
   line-height: 1.2;
-  letter-spacing: -0.025em;
+  letter-spacing: calc(-0.025 * var(--body-font-size-l));
 }
 
 .hero .hero-description > * {
@@ -294,16 +294,16 @@
 
 @media (width >= 600px) {
   .hero {
-    --hero-min-height: 640px;
+    --hero-min-height: 40rem;
     --hero-padding-inline: var(--space-1000);
   }
 }
 
 @media (width >= 900px) {
   .hero {
-    --hero-min-height: 850px;
+    --hero-min-height: 53.125rem;
     --hero-padding-block: var(--space-3000);
-    --hero-padding-inline: 44px;
+    --hero-padding-inline: 2.75rem;
     --hero-gap-icon: var(--space-200);
     --hero-gap-eyebrow: var(--space-1000);
     --hero-gap-content: var(--space-1000);
@@ -315,12 +315,12 @@
   }
 
   .hero .hero-icon img {
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
   }
 
   /* on the left or right the content block takes part of the width, so its position shows */
   .hero:is(.align-left, .align-right) {
-    --hero-content-max-width: 760px;
+    --hero-content-max-width: 47.5rem;
   }
 }

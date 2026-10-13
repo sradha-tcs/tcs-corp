@@ -15,10 +15,10 @@ body.modal-open {
 .modal dialog {
   --modal-gap: var(--space-600);
 
-  top: calc(var(--modal-top, 0px) + var(--modal-height, 100dvh) / 2);
+  top: calc(var(--modal-top, 0rem) + var(--modal-height, 100dvh) / 2);
   bottom: auto;
-  width: calc(100vw - 48px);
-  max-width: 900px;
+  width: calc(100vw - 3rem);
+  max-width: 56.25rem;
   max-height: calc(var(--modal-height, 100dvh) - 2 * var(--modal-gap));
   margin: 0 auto;
   border: 0;
@@ -66,7 +66,7 @@ body.modal-open {
   .modal dialog {
     --modal-gap: var(--space-1000);
 
-    width: calc(100vw - 64px);
+    width: calc(100vw - 4rem);
   }
 
   .modal dialog .modal-content {

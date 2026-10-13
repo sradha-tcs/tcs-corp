@@ -10,7 +10,7 @@
   --table-list-item-gap: var(--space-400);
   --table-list-item-padding: var(--space-1000);
   --table-list-divider: var(--border-width-100) solid var(--slate-400);
-  --table-list-arrow-size: 48px;
+  --table-list-arrow-size: 3rem;
   --table-list-motion-duration: 500ms;
 
   color: var(--color-text-default);
@@ -30,10 +30,10 @@
   flex: 1 1 50%;
   min-width: 0;
   margin: 0;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: var(--font-weight-semibold);
   line-height: 1.19;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.06rem;
 }
 
 .table-list .table-list-cta {
@@ -43,6 +43,7 @@
 
 .table-list .table-list-cta .button:not(.tertiary) {
   font-size: var(--body-font-size-xs);
+  letter-spacing: calc(0.01 * var(--body-font-size-xs));
 }
 
 /* items */
@@ -65,7 +66,7 @@
   grid-area: main;
   display: flex;
   align-items: baseline;
-  gap: 0.3em;
+  gap: 0.3rem;
   min-width: 0;
 }
 
@@ -85,7 +86,7 @@
 
 /* the trademark sign keeps the title's size and baseline (the glyph is raised itself) */
 .table-list .table-list-trademark {
-  font-size: 1em;
+  font-size: inherit;
   line-height: 0;
   vertical-align: baseline;
 }
@@ -134,7 +135,7 @@
 
 .table-list a.table-list-arrow:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: 4px;
+  outline-offset: 0.25rem;
 }
 
 .table-list a.table-list-arrow:focus-visible,
@@ -148,14 +149,15 @@
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
-  letter-spacing: -0.02em;
+  letter-spacing: calc(-0.02 * var(--body-font-size-m));
+  gap: calc(0.3 * var(--body-font-size-m));
 }
 
 .table-list.industries .table-list-description {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: var(--font-weight-semibold);
   line-height: 1.42;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015rem;
 }
 
 /* Variation 2: description, large title and button stacked on mobile */
@@ -164,10 +166,11 @@
 }
 
 .table-list.solutions .table-list-main {
-  font-size: 40px;
+  gap: 0.75rem;
+  font-size: 2.5rem;
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025rem;
 }
 
 .table-list.solutions .table-list-description {
@@ -192,6 +195,7 @@
 
 .table-list.products .table-list-cta .button.tertiary {
   font-size: var(--body-font-size-l);
+  letter-spacing: calc(0.01 * var(--body-font-size-l));
 }
 
 .table-list.products .table-list-item {
@@ -201,19 +205,19 @@
 .table-list.products .table-list-main {
   align-items: center;
   gap: var(--space-400);
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 1.17;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.075rem;
 }
 
 .table-list.products .table-list-number {
   color: var(--slate-300);
-  font-size: 0.5em;
-  letter-spacing: -0.025em;
+  font-size: 1.5rem;
+  letter-spacing: -0.0375rem;
 }
 
 .table-list.products .table-list-trademark {
-  margin-inline-start: 0.15em;
+  margin-inline-start: 0.45rem;
 }
 
 .table-list.products .table-list-description {
@@ -288,7 +292,8 @@
   }
 
   .table-list .table-list-heading {
-    font-size: 40px;
+    font-size: 2.5rem;
+    letter-spacing: -0.075rem;
     line-height: 1.2;
   }
 
@@ -318,7 +323,8 @@
   }
 
   .table-list.industries .table-list-description {
-    font-size: 20px;
+    font-size: 1.25rem;
+    letter-spacing: -0.0125rem;
     line-height: 1.4;
   }
 
@@ -334,7 +340,7 @@
 
   .table-list.solutions .table-list-description,
   .table-list.products .table-list-description {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .table-list.products .table-list-item {
@@ -343,11 +349,17 @@
 
   .table-list.products .table-list-main {
     justify-content: space-between;
-    font-size: 56px;
+    font-size: 3.5rem;
+    letter-spacing: -0.0875rem;
   }
 
   .table-list.products .table-list-number {
-    font-size: 0.43em;
+    font-size: 1.505rem;
+    letter-spacing: -0.0376rem;
+  }
+
+  .table-list.products .table-list-trademark {
+    margin-inline-start: 0.525rem;
   }
 }
 
@@ -358,11 +370,13 @@
   }
 
   .table-list .table-list-heading {
-    font-size: 48px;
+    font-size: 3rem;
+    letter-spacing: -0.09rem;
   }
 
   .table-list .table-list-cta .button:not(.tertiary) {
     font-size: var(--button-font-size);
+    letter-spacing: calc(0.01 * var(--button-font-size));
   }
 
   .table-list .table-list-item {
@@ -383,7 +397,9 @@
   }
 
   .table-list.industries .table-list-main {
-    font-size: 28px;
+    gap: 0.525rem;
+    font-size: 1.75rem;
+    letter-spacing: -0.035rem;
     font-weight: var(--font-weight-semibold);
     line-height: 1.39;
   }
@@ -393,7 +409,9 @@
   }
 
   .table-list.solutions .table-list-main {
-    font-size: 64px;
+    gap: 1.2rem;
+    font-size: 4rem;
+    letter-spacing: -0.04rem;
     line-height: 1.4;
   }
 
@@ -408,16 +426,22 @@
   }
 
   .table-list.products .table-list-main {
-    font-size: 90px;
+    font-size: 5.625rem;
+    letter-spacing: -0.1406rem;
     line-height: 1.4;
   }
 
   .table-list.products .table-list-number {
-    font-size: 0.444em;
+    font-size: 2.4975rem;
+    letter-spacing: -0.0624rem;
+  }
+
+  .table-list.products .table-list-trademark {
+    margin-inline-start: 0.8438rem;
   }
 
   .table-list.products .table-list-description {
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1.42;
   }
 }
