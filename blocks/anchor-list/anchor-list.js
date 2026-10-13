@@ -97,7 +97,7 @@ export default async function decorate(block) {
     current?.removeAttribute('aria-current');
     current = link;
     if (!link) return;
-    link.setAttribute('aria-current', 'true');
+    link.setAttribute('aria-current', 'location');
     // keep the current link visible when the list scrolls sideways
     const left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
     list.scrollTo({ left, behavior: scrollBehavior() });

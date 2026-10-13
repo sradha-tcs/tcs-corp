@@ -4,6 +4,12 @@
   overflow-x: auto;
 }
 
+/* a table wider than its container: a focusable region */
+.table.block:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: var(--space-100);
+}
+
 .table.block table {
   width: 100%;
   max-width: 100%;
@@ -59,4 +65,10 @@
   .table.block table {
     font-size: var(--body-font-size-m);
   }
+}
+
+/* First Column Header: row headers */
+.table.block tbody th {
+  font-weight: var(--font-weight-semibold);
+  text-align: start;
 }

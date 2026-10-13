@@ -218,6 +218,11 @@
   cursor: pointer;
 }
 
+.conversation-canvas .conversation-canvas-audio[aria-pressed="true"] {
+  color: var(--color-text-brand);
+  outline: var(--border-width-200) solid currentcolor;
+}
+
 .conversation-canvas .conversation-canvas-audio[hidden] {
   display: none;
 }
@@ -691,7 +696,8 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
     background-color: var(--color-bg-default);
   }
 
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-pressed="true"] {
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-pressed="true"],
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-expanded="false"] {
     border-color: var(--conversation-canvas-active);
     color: var(--conversation-canvas-active);
   }

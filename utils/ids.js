@@ -26,6 +26,23 @@ export function nextInstance(name) {
 export const uniqueId = (name) => `${name}-${nextInstance(name)}`;
 
 /**
+ * An id not used by another element on the page: the id itself, else with a -2, -3, ... suffix
+ * (for authored ids, e.g. anchors and tab ids).
+ * @param {string} id
+ * @param {Element} [self] the element that will have the id (its own id isn't a conflict)
+ * @returns {string}
+ */
+export function availableId(id, self = null) {
+  const taken = (value) => {
+    const el = document.getElementById(value);
+    return el && el !== self;
+  };
+  let free = id;
+  for (let n = 2; taken(free); n += 1) free = `${id}-${n}`;
+  return free;
+}
+
+/**
  * Creates an id generator for the elements of one block instance: ids are prefixed, made safe
  * for ids, and de-duplicated against each other and the page.
  * @param {string} prefix e.g. "form-variations-1"

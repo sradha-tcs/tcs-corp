@@ -2,7 +2,7 @@ import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
-import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { getAuthor } from '../../utils/data.js';
@@ -68,7 +68,7 @@ function buildCtas(cell) {
 }
 
 /** the author name, linked to the author's LinkedIn profile when the Authors sheet has one */
-function buildAuthorName(metadata, author) {
+function buildAuthorName(metadata, author, t) {
   const text = author?.name || metadata.author;
   if (!text) return null;
   const name = document.createElement('p');
@@ -78,6 +78,7 @@ function buildAuthorName(metadata, author) {
     a.href = author.linkedin;
     a.textContent = text;
     setLinkTarget(a);
+    announceNewTab(a, t('opensInNewTab', '(opens in a new tab)'));
     name.append(a);
   } else {
     name.textContent = text;
@@ -85,11 +86,11 @@ function buildAuthorName(metadata, author) {
   return name;
 }
 
-function buildAuthor(metadata, author) {
+function buildAuthor(metadata, author, t) {
   const designation = [author?.designation, author?.region].filter(Boolean).join(', ');
   return buildAuthorLockup({
     picture: buildImage(author?.image ? { src: author.image, alt: '' } : null),
-    name: buildAuthorName(metadata, author),
+    name: buildAuthorName(metadata, author, t),
     designation: textElement('p', 'page-header-author-designation', designation),
     prefix: 'page-header',
   });
@@ -186,7 +187,7 @@ export default async function decorate(block) {
     columns.append(...[intro, summary].filter((part) => part.children.length));
     parts.push(columns);
   } else {
-    intro.append(...[title, buildAuthor(metadata, author)].filter(Boolean));
+    intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
     parts.push(buildMetaRow(metadata, tags, t), columns);
   }

@@ -122,6 +122,26 @@
   outline-color: var(--form-variations-error);
 }
 
+/* the error of a field, linked to it (text, not only the colour) */
+.form-variations .form-variations-control[aria-invalid='true'] {
+  border-color: var(--form-variations-error);
+}
+
+.form-variations .form-variations-error {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--form-variations-error);
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-variations .form-variations-required-note {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--form-variations-muted);
+  font-size: var(--body-font-size-xs);
+}
+
 .form-variations .form-variations-counter {
   align-self: flex-end;
   color: var(--form-variations-muted);

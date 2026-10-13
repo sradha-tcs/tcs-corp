@@ -153,6 +153,18 @@
   gap: var(--teaser-body-gap);
 }
 
+/* the Lottie animation's pause / play button (WCAG 2.2.2), in the media's corner */
+.teaser .teaser-media:has(> .animation-toggle) {
+  position: relative;
+}
+
+.teaser .teaser-media > .animation-toggle {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: var(--space-300);
+  inset-inline-end: var(--space-300);
+}
+
 /* image (or Lottie animation): Image ratio and Image corners */
 .teaser .teaser-media picture,
 .teaser .teaser-media img,

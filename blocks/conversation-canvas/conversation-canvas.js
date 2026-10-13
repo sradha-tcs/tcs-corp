@@ -2,6 +2,7 @@ import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { getPageTags } from '../../utils/metadata.js';
+import { getPages } from '../../utils/query-index.js';
 import { getLocale } from '../../utils/site.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
@@ -123,8 +124,7 @@ async function loadMenuTree(root, depth) {
     path: base || '/', title: '', parent: null, children: [],
   };
   try {
-    const resp = await fetch('/query-index.json');
-    const { data = [] } = resp.ok ? await resp.json() : {};
+    const data = await getPages();
     const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
     const nodes = new Map([[tree.path, tree]]);
     data
@@ -213,14 +213,31 @@ function buildSearchForm(config, id, block) {
   else audio.classList.add('conversation-canvas-audio-default');
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (Recognition) {
+    let recognition = null;
+    audio.setAttribute('aria-pressed', 'false');
+    const stopListening = () => {
+      recognition = null;
+      audio.setAttribute('aria-pressed', 'false');
+    };
     audio.addEventListener('click', () => {
-      const recognition = new Recognition();
+      if (recognition) {
+        recognition.stop();
+        return;
+      }
+      recognition = new Recognition();
       recognition.lang = document.documentElement.lang || 'en';
       recognition.addEventListener('result', (e) => {
         input.value = e.results[0][0].transcript;
         input.focus();
       });
-      recognition.start();
+      recognition.addEventListener('end', stopListening);
+      recognition.addEventListener('error', stopListening);
+      try {
+        recognition.start();
+        audio.setAttribute('aria-pressed', 'true');
+      } catch {
+        stopListening();
+      }
     });
   } else {
     audio.hidden = true;
@@ -286,8 +303,11 @@ function buildSearch(config, id, block) {
   document.addEventListener('click', (e) => {
     if (!menu.hidden && !row.contains(e.target)) closeMenu();
   });
+  row.addEventListener('focusout', (e) => {
+    if (!menu.hidden && e.relatedTarget && !row.contains(e.relatedTarget)) closeMenu();
+  });
 
-  row.append(menuToggle, buildSearchForm(config, id, block), menu);
+  row.append(menuToggle, menu, buildSearchForm(config, id, block));
   return row;
 }
 
@@ -339,7 +359,6 @@ function buildDock(config, id, block) {
   const row = document.createElement('div');
   row.className = 'conversation-canvas-search';
   const menuToggle = buildMenuToggle(`${id}-nav`);
-  menuToggle.setAttribute('aria-pressed', 'false');
   const form = buildSearchForm(config, id, block);
   row.append(menuToggle, form);
 
@@ -458,8 +477,10 @@ function buildDock(config, id, block) {
           item = pill('a', textOfNode(child));
           item.href = child.path;
         }
-        if (state.current && isWithin(state.current, child)) item.classList.add('conversation-canvas-nav-current');
-        if (state.current === child) item.setAttribute('aria-current', 'page');
+        if (state.current && isWithin(state.current, child)) {
+          item.classList.add('conversation-canvas-nav-current');
+          item.setAttribute('aria-current', state.current === child ? 'page' : 'true');
+        }
         items.push(item);
       });
     }
@@ -472,8 +493,13 @@ function buildDock(config, id, block) {
     }));
     nav.replaceChildren(list);
     nav.hidden = state.collapsed || !items.length;
-    const fullMenu = view.type === 'root' && defaultView().type !== 'root';
-    menuToggle.setAttribute('aria-pressed', String(fullMenu || state.collapsed));
+    if (defaultView().type === 'root') {
+      menuToggle.removeAttribute('aria-pressed');
+      menuToggle.setAttribute('aria-expanded', String(!state.collapsed));
+    } else {
+      menuToggle.removeAttribute('aria-expanded');
+      menuToggle.setAttribute('aria-pressed', String(view.type === 'root'));
+    }
   }
 
   // menu button: full menu on / off (on home, where the full menu is the default: show / hide)
@@ -596,8 +622,15 @@ export function setConversationCanvasFilters(block, tags = []) {
     const tag = document.createElement(href ? 'a' : 'button');
     tag.className = `tag tag-filter${active ? ' active' : ''}`;
     tag.textContent = label;
-    if (href) tag.href = href;
-    else tag.type = 'button';
+    if (href) {
+      tag.href = href;
+      if (active) tag.setAttribute('aria-current', 'true');
+    } else {
+      tag.type = 'button';
+      tag.setAttribute('aria-pressed', String(!!active));
+    }
+    tag.dataset.cmpInteraction = 'filter';
+    tag.dataset.cmpValue = label;
     li.append(tag);
     return li;
   }));

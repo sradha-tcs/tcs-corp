@@ -139,6 +139,14 @@
   height: 100%;
 }
 
+/* the Lottie animation's pause / play button (WCAG 2.2.2) */
+.hero .animation-toggle {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: var(--space-400);
+  inset-inline-end: var(--space-400);
+}
+
 .hero.hero-has-media::before {
   content: '';
   position: absolute;

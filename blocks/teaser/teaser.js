@@ -195,11 +195,12 @@ function buildMedia(block, props, layout) {
   const link = props.image.querySelector('a[href]');
   if (option(block, props.imageformat, ['lottie']) && link && isAnimation(link.href)) {
     const behind = layout === 'background' || layout === 'card';
-    media.append(createAnimation(link.href, {
+    const animation = createAnimation(link.href, {
       label: textOf(props.imagealt),
       className: 'teaser-animation',
       fit: behind ? 'xMidYMid slice' : 'xMidYMid meet',
-    }));
+    });
+    media.append(animation, animation.animationToggle);
     return media;
   }
   const picture = pictureOf(props.image, props.imagealt);

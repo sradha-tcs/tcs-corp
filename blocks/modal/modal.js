@@ -14,6 +14,9 @@ import {
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import { componentIdOf } from '../../decorators/data-layer-decorator.js';
+import { pushComponentEvent } from '../../utils/analytics.js';
+import { uniqueId } from '../../utils/ids.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
 /**
@@ -64,6 +67,14 @@ export async function createModal(contentNodes) {
   dialogContent.classList.add('modal-content');
   dialogContent.append(...contentNodes);
   dialog.append(dialogContent);
+  // the dialog's name: its first heading, else a generic one
+  const heading = dialogContent.querySelector('h1, h2, h3, h4, h5, h6');
+  if (heading) {
+    heading.id = heading.id || uniqueId('modal-title');
+    dialog.setAttribute('aria-labelledby', heading.id);
+  } else {
+    dialog.setAttribute('aria-label', t('dialog', 'Dialog'));
+  }
 
   const closeButton = createIconButton({
     label: t('close', 'Close'),
@@ -79,8 +90,9 @@ export async function createModal(contentNodes) {
   decorateBlock(block);
   await loadBlock(block);
 
-  // close on click outside the dialog
+  // close on a click on the backdrop (the dialog itself; keyboard clicks inside have no position)
   dialog.addEventListener('click', (e) => {
+    if (e.target !== dialog) return;
     const {
       left, right, top, bottom,
     } = dialog.getBoundingClientRect();
@@ -99,8 +111,7 @@ export async function createModal(contentNodes) {
     opener?.focus();
   });
 
-  block.innerHTML = '';
-  block.append(dialog);
+  block.replaceChildren(dialog);
 
   return {
     block,
@@ -108,6 +119,7 @@ export async function createModal(contentNodes) {
       opener = document.activeElement;
       stopTracking = trackVisibleArea(dialog);
       dialog.showModal();
+      pushComponentEvent('cmp:show', componentIdOf(block), { interaction: 'dialog' });
       // reset scroll position
       setTimeout(() => { dialog.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');

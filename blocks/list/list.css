@@ -674,7 +674,7 @@
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.list .list-row:hover .list-row-arrow {
+.list .list-row:is(:hover, :focus-within) .list-row-arrow {
   background-color: var(--color-icon-brand);
   transform: translateX(var(--space-100));
 }

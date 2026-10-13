@@ -1,8 +1,9 @@
+import { pushComponentEvent } from '../../utils/analytics.js';
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { pick } from '../../utils/buttons.js';
 import { isEditing } from '../../utils/environment.js';
-import { uniqueId } from '../../utils/ids.js';
+import { availableId, uniqueId } from '../../utils/ids.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { isOn, normalizeKey, textOf } from '../../utils/properties.js';
 import { loadFragment } from '../fragment/fragment.js';
@@ -131,13 +132,6 @@ async function readItem(row) {
   };
 }
 
-/** an id not used on the page yet */
-function freeId(id) {
-  let free = id;
-  for (let n = 2; document.getElementById(free); n += 1) free = `${id}-${n}`;
-  return free;
-}
-
 /**
  * loads and decorates the block
  * @param {Element} block The block element
@@ -180,7 +174,7 @@ export default async function decorate(block) {
   list.className = 'tabs-list';
   list.setAttribute('role', 'tablist');
   if (vertical) list.setAttribute('aria-orientation', 'vertical');
-  if (block.dataset.label) list.setAttribute('aria-label', block.dataset.label);
+  list.setAttribute('aria-label', block.dataset.label || t('tabs', 'Tabs'));
 
   const tabs = groups.map(({
     title, id, active, content, source,
@@ -188,7 +182,7 @@ export default async function decorate(block) {
     const panel = document.createElement('div');
     if (source) moveInstrumentation(source, panel);
     panel.className = 'tabs-panel';
-    panel.id = freeId(id || `${baseId}-item-${i + 1}`);
+    panel.id = availableId(id || `${baseId}-item-${i + 1}`);
     panel.setAttribute('role', 'tabpanel');
     panel.tabIndex = 0;
     panel.append(...content);
@@ -220,8 +214,8 @@ export default async function decorate(block) {
     const { panel, button } = tabs[index];
     const detail = { index, id: panel.id, title: button.textContent };
     block.dispatchEvent(new CustomEvent('tabs:change', { bubbles: true, detail }));
-    // Adobe Client Data Layer, when the site loads it (like the core component)
-    window.adobeDataLayer?.push({ event: 'cmp:show', eventInfo: { path: `component.${panel.id}` } });
+    // Adobe Client Data Layer (like the core component)
+    pushComponentEvent('cmp:show', panel.id, { 'dc:title': button.textContent.trim() });
   };
 
   tabs.forEach(({ button }, i) => button.addEventListener('click', () => select(i)));

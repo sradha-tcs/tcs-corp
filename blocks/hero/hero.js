@@ -88,7 +88,10 @@ function buildMedia(block, cell) {
 
   if (block.classList.contains('lottie') && link && isAnimation(link.href)) {
     const label = link.title && link.title !== link.textContent ? link.title : '';
-    media.append(createAnimation(link.href, { label, className: 'hero-animation' }));
+    const animation = createAnimation(link.href, { label, className: 'hero-animation' });
+    media.append(animation);
+    // the pause / play button above the overlay and the content, in the block's corner
+    block.append(animation.animationToggle);
   } else if (picture) {
     // the hero image is the LCP candidate when the hero opens the page
     const img = picture.querySelector('img');

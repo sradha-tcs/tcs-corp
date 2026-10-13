@@ -1,5 +1,5 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { buildImage } from '../../decorators/responsive-image-decorator.js';
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -14,10 +14,12 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  // the image (with its Image alt text) from the image decorator: site media optimized
   ul.querySelectorAll('picture > img').forEach((img) => {
-    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
-    moveInstrumentation(img, optimizedPic.querySelector('img'));
-    img.closest('picture').replaceWith(optimizedPic);
+    const image = buildImage({ src: img.src, alt: img.alt });
+    if (!image) return;
+    moveInstrumentation(img, image.querySelector('img') || image);
+    img.closest('picture').replaceWith(image);
   });
   block.replaceChildren(ul);
 }

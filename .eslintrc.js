@@ -23,7 +23,7 @@ module.exports = {
     'xwalk/max-cells': ['error', {
       '*': 4,
       section: 6,
-      tabs: 7,
+      tabs: 8,
       'table-list': 10,
       'table-list-card': 6,
       'list-item': 13,

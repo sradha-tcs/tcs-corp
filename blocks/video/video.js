@@ -14,6 +14,7 @@
  * key-value model (link, poster, "autoplay" option) still work.
  */
 import { toClassName } from '../../scripts/aem.js';
+import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
@@ -174,6 +175,59 @@ function buildPlayer(config, { autoplay, background, started = false }) {
   });
 }
 
+/** moves keyboard focus into a player once it shows (the focused Play button is gone) */
+function focusWhenLoaded(player) {
+  if (player.tagName === 'VIDEO') {
+    player.addEventListener('canplay', () => player.focus(), { once: true });
+    return;
+  }
+  const iframe = player.querySelector('iframe');
+  iframe?.addEventListener('load', () => iframe.focus(), { once: true });
+}
+
+/**
+ * Pause / play (a video file) or stop / play (a YouTube or Vimeo frame) for a video playing on
+ * its own without controls (WCAG 2.2.2).
+ * @param {Element} media
+ * @param {Element} player
+ * @param {() => Element} rebuild a new player (frames restart when played again)
+ * @param {Function} t placeholders
+ */
+function addPlaybackToggle(media, player, rebuild, t) {
+  let current = player;
+  let playing = true;
+  const file = player.tagName === 'VIDEO';
+  const button = createIconButton({ label: '', icon: 'pause', className: 'video-toggle' });
+  button.dataset.cmpInteraction = 'playback';
+  const update = () => {
+    let label = t('playVideo', 'Play video');
+    if (playing) label = file ? t('pauseVideo', 'Pause video') : t('stopVideo', 'Stop video');
+    button.setAttribute('aria-label', label);
+    decorateButton(button, {
+      view: 'icon', type: 'secondary', icon: playing ? 'pause' : 'play', title: label,
+    });
+  };
+  button.addEventListener('click', () => {
+    playing = !playing;
+    if (file) {
+      if (playing) current.play();
+      else current.pause();
+    } else if (playing) {
+      current = rebuild();
+      media.prepend(current);
+    } else {
+      current.remove();
+    }
+    update();
+  });
+  if (file) {
+    current.addEventListener('pause', () => { playing = false; update(); });
+    current.addEventListener('play', () => { playing = true; update(); });
+  }
+  update();
+  media.append(button);
+}
+
 /** marks the block loaded once the player can play, so the poster gives way to it */
 function whenLoaded(block, player) {
   const done = () => { block.dataset.embedLoaded = true; };
@@ -275,7 +329,7 @@ export default async function decorate(block) {
         const player = buildPlayer(config, { autoplay: true, background: false, started: true });
         whenLoaded(block, player);
         media.append(player);
-        player.focus?.();
+        focusWhenLoaded(player);
       });
       media.append(poster);
     } else {
@@ -295,11 +349,17 @@ export default async function decorate(block) {
     media.append(buildPoster(config, playLabel, null));
   }
   onVisible(media, () => {
-    const player = buildPlayer(config, {
-      autoplay: true, background: playback === 'background',
-    });
+    const background = playback === 'background';
+    const build = () => buildPlayer(config, { autoplay: true, background });
+    const player = build();
     whenLoaded(block, player);
+    // a background video is decorative: not announced, not a stop for the keyboard
+    if (background) {
+      player.setAttribute('aria-hidden', 'true');
+      player.querySelector('iframe')?.setAttribute('tabindex', '-1');
+    }
     media.append(player);
     if (player.tagName === 'VIDEO' && config.pauseOffscreen) pauseOffscreen(player);
+    if (background || !config.controls) addPlaybackToggle(media, player, build, t);
   });
 }

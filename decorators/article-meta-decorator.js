@@ -60,18 +60,21 @@ export function buildPageActions({
   if (listen) {
     listen.textContent = t('listenToThisPage', 'Listen to this page');
     decorateButton(listen, { view: 'icon', type: 'tertiary', icon: 'headphones' });
+    listen.dataset.cmpInteraction = 'listen';
     actions.append(listen);
   }
   if (download) {
-    actions.append(createIconButton({
+    const button = createIconButton({
       label: t('downloadThisPage', 'Download this page'),
       icon: 'download',
       type: 'tertiary',
       onClick: () => window.print(),
-    }));
+    });
+    button.dataset.cmpInteraction = 'download';
+    actions.append(button);
   }
   if (share) {
-    actions.append(createIconButton({
+    const shareButton = createIconButton({
       label: t('shareThisPage', 'Share this page'),
       icon: 'share',
       type: 'tertiary',
@@ -89,7 +92,9 @@ export function buildPageActions({
           // share dialog dismissed, or the clipboard is unavailable
         }
       },
-    }));
+    });
+    shareButton.dataset.cmpInteraction = 'share';
+    actions.append(shareButton);
   }
   if (!actions.children.length) return null;
   actions.append(status);

@@ -31,3 +31,12 @@ export function watchVisibility(el, callback, options = {}) {
   observer.observe(el);
   return observer;
 }
+
+/**
+ * The current breakpoint (the project's: mobile < 600px, tablet 600-1199px, desktop >= 1200px).
+ * @returns {'desktop'|'tablet'|'mobile'}
+ */
+export function currentBreakpoint() {
+  if (window.matchMedia('(min-width: 1200px)').matches) return 'desktop';
+  return window.matchMedia('(min-width: 600px)').matches ? 'tablet' : 'mobile';
+}

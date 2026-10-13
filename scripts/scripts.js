@@ -13,6 +13,8 @@ import {
   toClassName,
   getMetadata,
 } from './aem.js';
+import { applyBlockOptions } from '../decorators/block-options-decorator.js';
+import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorator.js';
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
@@ -252,6 +254,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSectionsWithOptions(main);
   decorateBlocks(main);
+  applyBlockOptions(main);
   decorateButtons(main);
 }
 
@@ -352,6 +355,7 @@ async function loadTemplate(main) {
  */
 async function loadEager(doc) {
   decorateHead();
+  trackInteractions();
   decorateTemplateAndTheme();
   decoratePageType();
   const main = doc.querySelector('main');
@@ -399,6 +403,7 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  trackBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -416,7 +421,11 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    // header, footer and blocks loaded later (e.g. modals)
+    trackBlocks(document);
+    import('./delayed.js');
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 
