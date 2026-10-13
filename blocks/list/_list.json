@@ -10,7 +10,50 @@
             "template": {
               "name": "List",
               "model": "list",
-              "titleType": "h2"
+              "filter": "list",
+              "key-value": true,
+              "titleType": "h2",
+              "source": "fixed",
+              "orderBy": "manual",
+              "sortOrder": "ascending",
+              "maxItems": 0,
+              "displayAsTeaser": true,
+              "cardStyle": "image",
+              "imageRatio": "16-9",
+              "panelHeight": "portrait",
+              "linkItems": true,
+              "showImage": true,
+              "showEyebrow": true,
+              "showTags": true,
+              "showDescription": true,
+              "showDate": true,
+              "dateFormat": "dd-mmm-yy",
+              "showCta": true,
+              "imageLoading": "lazy",
+              "desktopMode": "grid",
+              "desktopColumns": 4,
+              "tabletMode": "grid",
+              "tabletColumns": 4,
+              "mobileMode": "grid",
+              "mobileColumns": 1,
+              "scrollSnap": true,
+              "emptyBehavior": "message",
+              "analyticsEnabled": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "List Item",
+      "id": "list-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "List Item",
+              "model": "list-item"
             }
           }
         }
@@ -22,52 +65,1427 @@
       "id": "list",
       "fields": [
         {
+          "component": "tab",
+          "name": "contentTab",
+          "label": "Content"
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "title",
-          "label": "Title"
+          "label": "Title",
+          "description": "The heading of the list, e.g. Related to Agentic AI."
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "titleType",
-          "label": "Title Type",
+          "label": "Heading type",
           "value": "h2",
           "options": [
-            { "name": "H1", "value": "h1" },
-            { "name": "H2", "value": "h2" },
-            { "name": "H3", "value": "h3" },
-            { "name": "H4", "value": "h4" },
-            { "name": "H5", "value": "h5" },
-            { "name": "H6", "value": "h6" }
+            {
+              "name": "H2",
+              "value": "h2"
+            },
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
           ]
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description"
         },
         {
           "component": "aem-content",
           "valueType": "string",
           "name": "link",
-          "label": "CTA Link"
+          "label": "CTA link"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "linkText",
-          "label": "CTA Text"
+          "label": "CTA text"
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "linkType",
-          "label": "CTA Style",
+          "label": "CTA style",
           "value": "",
           "options": [
-            { "name": "Default (text link)", "value": "" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "Primary button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary button",
+              "value": "secondary"
+            }
           ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "listLabel",
+          "label": "Accessible list label",
+          "description": "Names the list for screen readers when it has no title."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "componentId",
+          "label": "Component ID",
+          "description": "Unique on the page (letters, digits, - and _); used for deep links and analytics, so changing it changes those. Empty: generated.",
+          "validation": {
+            "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "customErrorMsg": "Start with a letter; use letters, digits, - and _."
+          }
+        },
+        {
+          "component": "tab",
+          "name": "sourceTab",
+          "label": "Source"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "source",
+          "label": "List source",
+          "value": "fixed",
+          "options": [
+            {
+              "name": "Child pages",
+              "value": "parent"
+            },
+            {
+              "name": "Fixed list",
+              "value": "fixed"
+            },
+            {
+              "name": "Tagged pages",
+              "value": "tags"
+            }
+          ],
+          "required": true,
+          "description": "Child pages of a page, a fixed list of pages and links (add List Items to the block), or pages with tags."
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "parentPath",
+          "label": "Parent page",
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "parent"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "parentUseCurrentPage",
+          "label": "Use the current page when empty",
+          "value": true,
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "parent"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "directChildrenOnly",
+          "label": "Direct children only",
+          "value": true,
+          "description": "Off: pages down to the Child depth.",
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "parent"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "childDepth",
+          "label": "Child depth",
+          "value": 2,
+          "min": 1,
+          "max": 10,
+          "description": "Levels below the parent page (1: its children).",
+          "condition": {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "source"
+                  },
+                  "parent"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "directChildrenOnly"
+                  },
+                  false
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "rootPath",
+          "label": "Search root",
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "tags"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "tagsUseCurrentPage",
+          "label": "Use the current page when empty",
+          "value": true,
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "tags"
+            ]
+          }
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "tags",
+          "label": "Tags",
+          "multi": true,
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "tags"
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tagMatch",
+          "label": "Match",
+          "value": "any",
+          "options": [
+            {
+              "name": "Any of the tags",
+              "value": "any"
+            },
+            {
+              "name": "All of the tags",
+              "value": "all"
+            }
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "tags"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "includeDescendants",
+          "label": "Include descendant pages",
+          "value": true,
+          "description": "Off: only the children of the search root.",
+          "condition": {
+            "===": [
+              {
+                "var": "source"
+              },
+              "tags"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "maxDepth",
+          "label": "Maximum search depth",
+          "value": 0,
+          "min": 0,
+          "max": 10,
+          "description": "0: no limit.",
+          "condition": {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "source"
+                  },
+                  "tags"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "includeDescendants"
+                  },
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "orderBy",
+          "label": "Order by",
+          "value": "manual",
+          "options": [
+            {
+              "name": "Manual (as authored; path order for pages)",
+              "value": "manual"
+            },
+            {
+              "name": "Title",
+              "value": "title"
+            },
+            {
+              "name": "Last modified",
+              "value": "lastModified"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "sortOrder",
+          "label": "Sort order",
+          "value": "ascending",
+          "options": [
+            {
+              "name": "Ascending",
+              "value": "ascending"
+            },
+            {
+              "name": "Descending",
+              "value": "descending"
+            }
+          ],
+          "condition": {
+            "!==": [
+              {
+                "var": "orderBy"
+              },
+              "manual"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "maxItems",
+          "label": "Maximum items",
+          "value": 0,
+          "min": 0,
+          "max": 200,
+          "description": "0: all of them."
+        },
+        {
+          "component": "tab",
+          "name": "cardsTab",
+          "label": "Cards"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "displayAsTeaser",
+          "label": "Display as teaser",
+          "value": true,
+          "description": "Cards; off: a list of links (title rows)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cardStyle",
+          "label": "Card style",
+          "value": "image",
+          "options": [
+            {
+              "name": "Image card",
+              "value": "image"
+            },
+            {
+              "name": "Panel",
+              "value": "panel"
+            },
+            {
+              "name": "Report",
+              "value": "report"
+            },
+            {
+              "name": "Statistic",
+              "value": "stat"
+            },
+            {
+              "name": "Mixed (by page)",
+              "value": "mixed"
+            }
+          ],
+          "description": "Mixed: Report pages as report cards, pages without an image as panels, others as image cards.",
+          "condition": {
+            "===": [
+              {
+                "var": "displayAsTeaser"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cardTheme",
+          "label": "Card colour",
+          "value": "",
+          "options": [
+            {
+              "name": "Default for the style",
+              "value": ""
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Navy",
+              "value": "navy"
+            },
+            {
+              "name": "Brand blue",
+              "value": "brand"
+            },
+            {
+              "name": "Light blue",
+              "value": "brand-light"
+            },
+            {
+              "name": "Light grey",
+              "value": "grey"
+            },
+            {
+              "name": "Mid grey",
+              "value": "mid-grey"
+            },
+            {
+              "name": "Grey gradient",
+              "value": "gradient"
+            },
+            {
+              "name": "Image background",
+              "value": "image"
+            }
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "displayAsTeaser"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imageRatio",
+          "label": "Image ratio",
+          "value": "16-9",
+          "options": [
+            {
+              "name": "16:9",
+              "value": "16-9"
+            },
+            {
+              "name": "1:1",
+              "value": "1-1"
+            },
+            {
+              "name": "4:3",
+              "value": "4-3"
+            },
+            {
+              "name": "3:2",
+              "value": "3-2"
+            }
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "displayAsTeaser"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "panelHeight",
+          "label": "Panel height",
+          "value": "portrait",
+          "options": [
+            {
+              "name": "Portrait (2:3)",
+              "value": "portrait"
+            },
+            {
+              "name": "Compact",
+              "value": "compact"
+            },
+            {
+              "name": "Content",
+              "value": "auto"
+            }
+          ],
+          "description": "Panel, report and statistic cards.",
+          "condition": {
+            "===": [
+              {
+                "var": "displayAsTeaser"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "featureFirst",
+          "label": "First card as feature",
+          "value": false,
+          "description": "The first card as a large spotlight above the others.",
+          "condition": {
+            "===": [
+              {
+                "var": "displayAsTeaser"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "linkItems",
+          "label": "Link items",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "openInNewTab",
+          "label": "Open links in a new tab",
+          "value": false,
+          "description": "The default for the items."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showImage",
+          "label": "Show image",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showEyebrow",
+          "label": "Show eyebrow",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showTags",
+          "label": "Show tags",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showDescription",
+          "label": "Show description",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showDate",
+          "label": "Show date",
+          "value": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "dateFormat",
+          "label": "Date format",
+          "value": "dd-mmm-yy",
+          "options": [
+            {
+              "name": "04 Sep 26",
+              "value": "dd-mmm-yy"
+            },
+            {
+              "name": "04-09-2026",
+              "value": "dd-mm-yyyy"
+            },
+            {
+              "name": "09-04-2026",
+              "value": "mm-dd-yyyy"
+            },
+            {
+              "name": "Sep 4, 2026",
+              "value": "mmm-d-yyyy"
+            },
+            {
+              "name": "04/09/26",
+              "value": "dd/mm/yy"
+            }
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "showDate"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showCta",
+          "label": "Show call to action",
+          "value": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imageLoading",
+          "label": "Image loading",
+          "value": "lazy",
+          "options": [
+            {
+              "name": "Lazy",
+              "value": "lazy"
+            },
+            {
+              "name": "Eager (first screen)",
+              "value": "eager"
+            }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "layoutTab",
+          "label": "Layout"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "desktopMode",
+          "label": "Desktop display",
+          "value": "grid",
+          "options": [
+            {
+              "name": "Grid",
+              "value": "grid"
+            },
+            {
+              "name": "Horizontal scroll",
+              "value": "horizontal-scroll"
+            }
+          ],
+          "description": "Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "desktopColumns",
+          "label": "Desktop columns",
+          "value": 4,
+          "min": 1,
+          "max": 6,
+          "condition": {
+            "===": [
+              {
+                "var": "desktopMode"
+              },
+              "grid"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "desktopGap",
+          "label": "Desktop gap (px)",
+          "value": 24,
+          "min": 0,
+          "max": 120,
+          "description": "Space between the cards."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "desktopVisible",
+          "label": "Desktop items visible",
+          "value": 4.2,
+          "min": 1,
+          "max": 8,
+          "description": "Cards in view, e.g. 4.2 shows 4 and a part of the next one.",
+          "condition": {
+            "===": [
+              {
+                "var": "desktopMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "desktopCardWidth",
+          "label": "Desktop card width (px)",
+          "value": 0,
+          "min": 0,
+          "max": 1200,
+          "description": "A fixed card width (120 or more); 0 uses Items visible.",
+          "condition": {
+            "===": [
+              {
+                "var": "desktopMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "desktopControls",
+          "label": "Previous / next buttons on desktop",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "desktopMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "desktopIndicator",
+          "label": "Scroll indicator on desktop",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "desktopMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tabletMode",
+          "label": "Tablet display",
+          "value": "grid",
+          "options": [
+            {
+              "name": "Grid",
+              "value": "grid"
+            },
+            {
+              "name": "Horizontal scroll",
+              "value": "horizontal-scroll"
+            }
+          ],
+          "description": "Grid or horizontal scroll on tablet (600 to 1199px), independently of the other breakpoints."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "tabletColumns",
+          "label": "Tablet columns",
+          "value": 4,
+          "min": 1,
+          "max": 6,
+          "condition": {
+            "===": [
+              {
+                "var": "tabletMode"
+              },
+              "grid"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "tabletGap",
+          "label": "Tablet gap (px)",
+          "value": 24,
+          "min": 0,
+          "max": 120,
+          "description": "Space between the cards."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "tabletVisible",
+          "label": "Tablet items visible",
+          "value": 3.3,
+          "min": 1,
+          "max": 8,
+          "description": "Cards in view, e.g. 4.2 shows 4 and a part of the next one.",
+          "condition": {
+            "===": [
+              {
+                "var": "tabletMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "tabletCardWidth",
+          "label": "Tablet card width (px)",
+          "value": 0,
+          "min": 0,
+          "max": 1200,
+          "description": "A fixed card width (120 or more); 0 uses Items visible.",
+          "condition": {
+            "===": [
+              {
+                "var": "tabletMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "tabletControls",
+          "label": "Previous / next buttons on tablet",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "tabletMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "tabletIndicator",
+          "label": "Scroll indicator on tablet",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "tabletMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "mobileMode",
+          "label": "Mobile display",
+          "value": "grid",
+          "options": [
+            {
+              "name": "Grid",
+              "value": "grid"
+            },
+            {
+              "name": "Horizontal scroll",
+              "value": "horizontal-scroll"
+            }
+          ],
+          "description": "Grid or horizontal scroll on mobile (up to 599px), independently of the other breakpoints."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "mobileColumns",
+          "label": "Mobile columns",
+          "value": 1,
+          "min": 1,
+          "max": 6,
+          "condition": {
+            "===": [
+              {
+                "var": "mobileMode"
+              },
+              "grid"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "mobileGap",
+          "label": "Mobile gap (px)",
+          "value": 16,
+          "min": 0,
+          "max": 120,
+          "description": "Space between the cards."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "mobileVisible",
+          "label": "Mobile items visible",
+          "value": 1.2,
+          "min": 1,
+          "max": 8,
+          "description": "Cards in view, e.g. 4.2 shows 4 and a part of the next one.",
+          "condition": {
+            "===": [
+              {
+                "var": "mobileMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "mobileCardWidth",
+          "label": "Mobile card width (px)",
+          "value": 0,
+          "min": 0,
+          "max": 1200,
+          "description": "A fixed card width (120 or more); 0 uses Items visible.",
+          "condition": {
+            "===": [
+              {
+                "var": "mobileMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "mobileControls",
+          "label": "Previous / next buttons on mobile",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "mobileMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "mobileIndicator",
+          "label": "Scroll indicator on mobile",
+          "value": true,
+          "condition": {
+            "===": [
+              {
+                "var": "mobileMode"
+              },
+              "horizontal-scroll"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "equalHeight",
+          "label": "Equal card height",
+          "value": false,
+          "description": "All rows as tall as the tallest card."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "stretchCards",
+          "label": "Stretch cards to row height",
+          "value": true
+        },
+        {
+          "component": "tab",
+          "name": "scrollTab",
+          "label": "Scroll"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "scrollSnap",
+          "label": "Scroll snap",
+          "value": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "snapAlign",
+          "label": "Snap alignment",
+          "value": "start",
+          "options": [
+            {
+              "name": "Start",
+              "value": "start"
+            },
+            {
+              "name": "Center",
+              "value": "center"
+            }
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "scrollSnap"
+              },
+              true
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "hideScrollbar",
+          "label": "Hide native scrollbar",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "mouseDrag",
+          "label": "Allow mouse drag",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "touchSwipe",
+          "label": "Allow touch swipe",
+          "value": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "keyboardScrolling",
+          "label": "Keyboard scrolling",
+          "value": true,
+          "description": "Arrow keys, Home and End when the list has focus."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "scrollStep",
+          "label": "Scroll step",
+          "value": "one-card",
+          "options": [
+            {
+              "name": "One card",
+              "value": "one-card"
+            },
+            {
+              "name": "Viewport",
+              "value": "viewport"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "loop",
+          "label": "Loop",
+          "value": false,
+          "description": "Next at the end goes back to the start."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "initialIndex",
+          "label": "Initial item index",
+          "value": 0,
+          "min": 0,
+          "max": 200,
+          "description": "The card shown first (0: the first)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "edgePadding",
+          "label": "Edge",
+          "value": "bleed",
+          "options": [
+            {
+              "name": "Cards run to the edge",
+              "value": "bleed"
+            },
+            {
+              "name": "Inside the content width",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "reducedMotion",
+          "label": "Reduced motion support",
+          "value": true,
+          "description": "No smooth scrolling for visitors who prefer reduced motion."
+        },
+        {
+          "component": "tab",
+          "name": "advancedTab",
+          "label": "Advanced"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "emptyBehavior",
+          "label": "When there are no items",
+          "value": "message",
+          "options": [
+            {
+              "name": "Hide the list",
+              "value": "hide"
+            },
+            {
+              "name": "Show a message",
+              "value": "message"
+            },
+            {
+              "name": "Show the fallback items",
+              "value": "fallback"
+            }
+          ],
+          "description": "Fallback: the List Items of the block (for Child pages and Tagged pages)."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "emptyMessage",
+          "label": "Empty message",
+          "condition": {
+            "===": [
+              {
+                "var": "emptyBehavior"
+              },
+              "message"
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "analyticsEnabled",
+          "label": "Analytics",
+          "value": true,
+          "description": "Card clicks and scrolling in the Adobe Data Layer."
+        },
+        {
+          "component": "multiselect",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style options",
+          "options": [
+            {
+              "name": "Compact statistic title",
+              "value": "stat-compact"
+            },
+            {
+              "name": "Dividers between rows",
+              "value": "dividers"
+            },
+            {
+              "name": "Header centred",
+              "value": "header-center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "list-item",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "linkTab",
+          "label": "Link"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "Page or link",
+          "required": true,
+          "description": "A page of the site, a path or an external URL (https://...)."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "Link text",
+          "description": "The link text when the page has no title."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "newTab",
+          "label": "Open in a new tab",
+          "value": "",
+          "options": [
+            {
+              "name": "As the list",
+              "value": ""
+            },
+            {
+              "name": "Yes",
+              "value": "true"
+            },
+            {
+              "name": "No",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "contentTab",
+          "label": "Content"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "headline",
+          "label": "Title",
+          "description": "Overrides the page title."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "summary",
+          "label": "Description",
+          "description": "Overrides the page description."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false,
+          "description": "Overrides the page image."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image alt text",
+          "description": "Empty: the image is decorative."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "tags",
+          "label": "Tags",
+          "multi": true,
+          "description": "Overrides the page tags."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "subtitle",
+          "label": "Label",
+          "description": "Statistic cards: the label above the description."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaLabel",
+          "label": "Call to action label"
+        },
+        {
+          "component": "tab",
+          "name": "displayTab",
+          "label": "Display"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "kind",
+          "label": "Card style",
+          "value": "",
+          "options": [
+            {
+              "name": "As the list",
+              "value": ""
+            },
+            {
+              "name": "Image card",
+              "value": "image"
+            },
+            {
+              "name": "Panel",
+              "value": "panel"
+            },
+            {
+              "name": "Report",
+              "value": "report"
+            },
+            {
+              "name": "Statistic",
+              "value": "stat"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "theme",
+          "label": "Card colour",
+          "value": "",
+          "options": [
+            {
+              "name": "As the list",
+              "value": ""
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Navy",
+              "value": "navy"
+            },
+            {
+              "name": "Brand blue",
+              "value": "brand"
+            },
+            {
+              "name": "Light blue",
+              "value": "brand-light"
+            },
+            {
+              "name": "Light grey",
+              "value": "grey"
+            },
+            {
+              "name": "Mid grey",
+              "value": "mid-grey"
+            },
+            {
+              "name": "Grey gradient",
+              "value": "gradient"
+            },
+            {
+              "name": "Image background",
+              "value": "image"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "analyticsLabel",
+          "label": "Analytics label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ariaLabel",
+          "label": "Accessibility label",
+          "description": "The link name for screen readers, e.g. Read the TwinX case study."
         }
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "list",
+      "components": [
+        "list-item"
+      ]
+    }
+  ]
 }

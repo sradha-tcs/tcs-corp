@@ -14,6 +14,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, filter-list, form-variations |
 | `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
 | `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
+| `scroller-decorator.js` | `createScroller` (previous / next, scroll indicator, mouse drag, keyboard, loop and initial item for a CSS horizontal scroller; active only while it scrolls) | list |
 | `masonry-decorator.js` | `layoutMasonry` (a grid's items of different heights packed in columns, in reading order; native masonry where supported) | filter-list |
 | `responsive-image-decorator.js` | `buildImage` (image from a URL; site media optimized) | `scripts.js` (section backgrounds), page-header, filter-list, conversation-canvas |
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | article meta decorator, filter-list |

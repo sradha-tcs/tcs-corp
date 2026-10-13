@@ -90,6 +90,12 @@
     ]
   },
   {
+    "id": "list",
+    "components": [
+      "list-item"
+    ]
+  },
+  {
     "id": "table-list",
     "components": [
       "table-list-card"

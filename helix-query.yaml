@@ -101,3 +101,29 @@ indices:
       featuredPriority:
         select: head > meta[name="featured-priority"]
         value: attribute(el, "content")
+      # List cards: card-specific metadata (else the page's title, description and images)
+      cardTitle:
+        select: head > meta[name="card-title"]
+        value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
+        value: attribute(el, "content")
+      cardImage:
+        select: head > meta[name="card-image"]
+        value: attribute(el, "content")
+      cardImageAlt:
+        select: head > meta[name="card-image-alt"]
+        value: attribute(el, "content")
+      imageAlt:
+        select: head > meta[name="image-alt"]
+        value: attribute(el, "content")
+      eyebrow:
+        select: head > meta[name="eyebrow"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      # pages hidden from navigation aren't listed by the List block
+      hideInNav:
+        select: head > meta[name="hide-in-nav"]
+        value: attribute(el, "content")
