@@ -1,13 +1,13 @@
+import {
+  buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
+} from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
-import { buildTime } from '../../decorators/date-decorator.js';
-import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { getAuthor } from '../../utils/data.js';
-import { uniqueId } from '../../utils/ids.js';
 import { NEW_WINDOW, linkOf } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -50,55 +50,6 @@ function buildDescription(text) {
   return el;
 }
 
-/** listen (authored link), download (prints / saves as PDF) and share actions */
-function buildActions(props, title, t) {
-  const actions = document.createElement('div');
-  actions.className = 'page-header-actions';
-  const status = document.createElement('p');
-  status.className = 'page-header-status';
-  status.setAttribute('role', 'status');
-  status.id = uniqueId('page-header-status');
-
-  const listen = linkOf(props.listenlink);
-  if (listen) {
-    listen.textContent = t('listenToThisPage', 'Listen to this page');
-    decorateButton(listen, { view: 'icon', type: 'tertiary', icon: 'headphones' });
-    actions.append(listen);
-  }
-  if (isOn(props.download)) {
-    actions.append(createIconButton({
-      label: t('downloadThisPage', 'Download this page'),
-      icon: 'download',
-      type: 'tertiary',
-      onClick: () => window.print(),
-    }));
-  }
-  if (isOn(props.socialshare)) {
-    actions.append(createIconButton({
-      label: t('shareThisPage', 'Share this page'),
-      icon: 'share',
-      type: 'tertiary',
-      onClick: async () => {
-        const url = window.location.href;
-        try {
-          if (navigator.share) {
-            await navigator.share({ title, url });
-            return;
-          }
-          await navigator.clipboard.writeText(url);
-          status.textContent = t('linkCopied', 'Link copied to clipboard');
-          setTimeout(() => { status.textContent = ''; }, 3000);
-        } catch {
-          // share dialog dismissed, or the clipboard is unavailable
-        }
-      },
-    }));
-  }
-  if (!actions.children.length) return null;
-  actions.append(status);
-  return actions;
-}
-
 function buildMetaRow(props, metadata, tags, t) {
   const row = document.createElement('div');
   row.className = 'page-header-meta-row';
@@ -112,23 +63,19 @@ function buildMetaRow(props, metadata, tags, t) {
 
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  const time = buildTime(metadata.publishDate, 'dd/mm/yy');
-  if (time) {
-    const date = document.createElement('p');
-    date.className = 'page-header-date';
-    date.append(`${t('published', 'Published')} `, time);
-    info.append(date);
-  }
-  const readingTime = textOf(props.readingtime) || metadata.readingTime;
-  if (readingTime) {
-    const reading = document.createElement('p');
-    reading.className = 'page-header-reading-time';
-    reading.textContent = /^\d+$/.test(readingTime)
-      ? t('minRead', '{n} min read', { n: readingTime }) : readingTime;
-    info.append(reading);
-  }
-  const actions = buildActions(props, metadata.title, t);
-  if (actions) info.append(actions);
+  const prefix = 'page-header';
+  info.append(...[
+    buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),
+    buildReadingTime(textOf(props.readingtime) || metadata.readingTime, t, prefix),
+    buildPageActions({
+      listen: linkOf(props.listenlink),
+      download: isOn(props.download),
+      share: isOn(props.socialshare),
+      title: metadata.title,
+      t,
+      prefix,
+    }),
+  ].filter(Boolean));
 
   row.append(...[labels, info].filter((part) => part.children.length));
   return row.children.length ? row : null;
@@ -169,24 +116,13 @@ function buildAuthorDesignation(props, author) {
 }
 
 function buildAuthor(props, metadata, author) {
-  const el = document.createElement('div');
-  el.className = 'page-header-author';
-  const picture = pictureOf(props.authorimage, props.authorimagealt)
-    || buildImage(author?.image ? { src: author.image, alt: '' } : null);
-  if (picture) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'page-header-author-image';
-    wrapper.append(picture);
-    el.append(wrapper);
-  }
-  const details = document.createElement('div');
-  details.className = 'page-header-author-details';
-  details.append(...[
-    buildAuthorName(props, metadata, author),
-    buildAuthorDesignation(props, author),
-  ].filter(Boolean));
-  if (details.children.length) el.append(details);
-  return details.children.length ? el : null;
+  return buildAuthorLockup({
+    picture: pictureOf(props.authorimage, props.authorimagealt)
+      || buildImage(author?.image ? { src: author.image, alt: '' } : null),
+    name: buildAuthorName(props, metadata, author),
+    designation: buildAuthorDesignation(props, author),
+    prefix: 'page-header',
+  });
 }
 
 /** a CTA from its link, Link Type and Link Style properties */
