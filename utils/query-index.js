@@ -11,7 +11,7 @@ const YES = ['yes', 'true', '1', 'on', 'y'];
 let pages;
 
 /** a multi-value column: a JSON array, or a comma-separated list */
-function listOf(value) {
+export function listOf(value) {
   if (Array.isArray(value)) return value;
   const text = String(value || '').trim();
   if (text.startsWith('[')) {
@@ -29,6 +29,11 @@ const numberOf = (value) => {
   return Number.isNaN(number) ? null : number;
 };
 
+const isYes = (value) => YES.includes(String(value || '').trim().toLowerCase());
+
+/** a metadata column name (e.g. featured-image) as the index names it (featuredImage) */
+const columnName = (name) => String(name || '').trim().replace(/-([a-z])/g, (m, c) => c.toUpperCase());
+
 /**
  * A page of the index with its metadata columns.
  * @typedef {Object} IndexedPage
@@ -37,15 +42,18 @@ const numberOf = (value) => {
  * @property {string} description
  * @property {string} image the og:image path
  * @property {string[]} tags tag IDs
+ * @property {string} pageType
  * @property {string} contentType
  * @property {string} publishDate
  * @property {string} readingTime
  * @property {string} thumbnailImage
  * @property {string} featuredImage
+ * @property {string} author
  * @property {string} authorId
- * @property {boolean} featureCard the feature-card column (or the featured column)
- * @property {number|null} featuredPriority the featured-priority column (or priority)
+ * @property {boolean} featured the featured column (or feature-card)
+ * @property {number|null} priority the priority column (or featured-priority)
  * @property {number} lastModified
+ * @property {Object<string, string>} row every column of the page, by its index name
  */
 function toPage(row) {
   return {
@@ -54,16 +62,30 @@ function toPage(row) {
     description: row.description || '',
     image: row.image || '',
     tags: listOf(row.tags),
+    pageType: row.pageType || '',
     contentType: row.contentType || '',
     publishDate: row.publishDate || '',
     readingTime: row.readingTime || '',
     thumbnailImage: row.thumbnailImage || '',
     featuredImage: row.featuredImage || '',
+    author: row.author || '',
     authorId: row.authorId || '',
-    featureCard: YES.includes(String(row.featureCard || row.featured || '').trim().toLowerCase()),
-    featuredPriority: numberOf(row.featuredPriority) ?? numberOf(row.priority),
+    featured: isYes(row.featured) || isYes(row.featureCard),
+    priority: numberOf(row.priority) ?? numberOf(row.featuredPriority),
     lastModified: Number(row.lastModified) || 0,
+    row,
   };
+}
+
+/**
+ * A column of a page by its metadata name (e.g. featured-image, content-type or path).
+ * @param {IndexedPage} page
+ * @param {string} name
+ * @returns {*} the value, or ''
+ */
+export function columnOf(page, name) {
+  const key = columnName(name);
+  return page.row[key] ?? page.row[name] ?? page[key] ?? '';
 }
 
 async function fetchAll() {
@@ -81,10 +103,10 @@ async function fetchAll() {
 }
 
 /**
- * The pages of the current locale site (its published path, e.g. /de-de/...).
+ * The pages of the current locale site (its published path, e.g. /de-de/...), loaded once and
+ * cached in memory.
  * @returns {Promise<IndexedPage[]>} empty when the index isn't available (e.g. in the editor)
  */
-// eslint-disable-next-line import/prefer-default-export
 export async function getPages() {
   pages = pages || fetchAll().catch(() => []);
   const { root } = getLocale();

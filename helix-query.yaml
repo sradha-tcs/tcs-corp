@@ -52,6 +52,9 @@ indices:
       contentType:
         select: head > meta[name="content-type"]
         value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
       authorId:
         select: head > meta[name="author-id"]
         value: attribute(el, "content")
@@ -91,7 +94,7 @@ indices:
       priority:
         select: head > meta[name="priority"]
         value: attribute(el, "content")
-      # Filter List feature cards: shown as the large horizontal card, ranked by the priority
+      # earlier names of featured / priority (Filter List), read as fallbacks
       featureCard:
         select: head > meta[name="feature-card"]
         value: attribute(el, "content")
