@@ -8,7 +8,7 @@
  * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
  * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
  * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
- * featured-image, campaign-id, content-type, featured, priority
+ * featured-image, campaign-id, content-type, featured, priority, listen-link
  *
  * The SEO and social columns are applied to the document head by decorators/seo-decorator.js.
  */
@@ -56,6 +56,7 @@ export function getPageLanguage() {
  *   title: string, description: string, image: string, pageType: string, contentType: string,
  *   category: string, tags: string[], authorId: string, author: string, publishDate: string,
  *   modifiedDate: string, readingTime: string, thumbnailImage: string, featuredImage: string,
+ *   listenLink: string,
  *   region: string, country: string, language: string, persona: string, campaignId: string,
  *   featured: boolean, priority: number | null
  * }}
@@ -77,6 +78,8 @@ export function getPageMetadata() {
     publishDate: metaOf('publish-date', 'publication-date'),
     modifiedDate: getMetadata('modified-date'),
     readingTime: getMetadata('reading-time'),
+    // an audio version of the page (the page header's listen action)
+    listenLink: getMetadata('listen-link'),
     thumbnailImage: getMetadata('thumbnail-image'),
     featuredImage: getMetadata('featured-image'),
     region: getMetadata('region'),

@@ -1,24 +1,33 @@
-/* Page Header (TCS.com DS Figma "Secondary Page Header" / "L3 Header") */
+/*
+ * Page Header (TCS.com DS Figma "Secondary Page Header" / "L3 Header"). Layouts: landing
+ * (text and the featured image), secondary (eyebrow above title | text), article (meta row,
+ * title and author | text) and display (tags and a display title | text).
+ */
 .page-header {
   display: flex;
   flex-direction: column;
   gap: var(--space-1000);
+  padding-top: var(--space-1000);
 }
 
-/* tags: uppercase grey labels (Figma Eyebrow / Tag) */
+/* eyebrow: the content type, or the tags (Figma Eyebrow / Tag) */
+.page-header .page-header-eyebrow,
 .page-header .page-header-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-200) var(--space-400);
   margin: 0;
-  padding: 0;
-  list-style: none;
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.57;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+}
+
+.page-header .page-header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-200) var(--space-400);
+  padding: 0;
+  list-style: none;
 }
 
 .page-header .page-header-title {
@@ -52,14 +61,15 @@
   margin-top: var(--space-600);
 }
 
+/* the CTA List: buttons and text links, wrapping */
 .page-header .page-header-ctas {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-400) var(--space-600);
+  gap: var(--space-400) var(--space-1000);
 }
 
-/* article: meta row (tags, collection | date, reading time, actions) */
+/* article: meta row (tags, content type | date, reading time, actions) */
 .page-header .page-header-meta-row {
   display: flex;
   flex-wrap: wrap;
@@ -76,13 +86,26 @@
   gap: var(--space-200) var(--space-1000);
 }
 
-.page-header :is(.page-header-collection, .page-header-date, .page-header-reading-time) {
+.page-header .page-header-labels {
+  gap: var(--space-200) var(--space-600);
+}
+
+.page-header :is(.page-header-date, .page-header-reading-time) {
   margin: 0;
   color: var(--color-text-default);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-light);
   line-height: 1.21;
   letter-spacing: 0.005em;
+}
+
+/* the content type next to the tags (Figma "Collection") */
+.page-header .page-header-collection {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375;
 }
 
 .page-header .page-header-actions {
@@ -139,8 +162,11 @@
   line-height: 1.375;
 }
 
-.page-header .page-header-author-name {
+.page-header :is(.page-header-author-name, .page-header-author-designation) {
   margin: 0;
+}
+
+.page-header .page-header-author-name {
   font-weight: var(--font-weight-light);
 }
 
@@ -153,95 +179,90 @@
   font-weight: var(--font-weight-medium);
 }
 
-.page-header .page-header-author-designation > * {
-  margin: 0;
-}
-
 .page-header .page-header-columns {
   display: grid;
   gap: var(--space-1000);
 }
 
-/* landing: tags as a pipe-separated eyebrow, large title */
-.page-header.landing .page-header-tags li + li::before {
-  content: '|';
-  margin-right: var(--space-400);
-}
-
-.page-header.landing .page-header-title {
-  font-size: var(--display-font-size-1);
-  font-weight: var(--font-weight-medium);
-}
-
+/* landing: content type eyebrow, large semibold title, smaller text; the featured image */
 .page-header.landing .page-header-intro {
   gap: var(--space-400);
 }
 
-.page-header.landing .page-header-intro .page-header-description {
+.page-header.landing .page-header-title {
+  font-size: var(--display-font-size-1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-header.landing .page-header-description {
+  margin-top: var(--space-1000);
+  font-size: var(--body-font-size-m);
+  line-height: 1.61;
+}
+
+.page-header.landing .page-header-ctas {
   margin-top: var(--space-600);
 }
 
-/* landing with collage: 3 photos placed as in Figma (580 x 645 frame) */
-.page-header .page-header-collage {
-  position: relative;
-  aspect-ratio: 580 / 645;
-}
-
-.page-header .page-header-collage-item {
-  position: absolute;
-}
-
-.page-header .page-header-collage-item picture,
-.page-header .page-header-collage-item img {
+.page-header .page-header-media picture,
+.page-header .page-header-media img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
-.page-header .page-header-collage-item-1 {
-  top: 0;
-  left: 0;
-  width: 57.2%;
-  height: 52.4%;
+/* secondary: semibold title */
+.page-header.secondary .page-header-title {
+  font-weight: var(--font-weight-semibold);
 }
 
-.page-header .page-header-collage-item-2 {
-  top: 55.3%;
-  left: 17.2%;
-  width: 40%;
-  height: 42.5%;
+/* article: large regular title */
+.page-header.article .page-header-title {
+  font-size: var(--display-font-size-2);
 }
 
-.page-header .page-header-collage-item-3 {
-  top: 35.5%;
-  left: 59.7%;
-  width: 40.2%;
-  height: 49.9%;
+/* display: the tags as a pipe-separated eyebrow, a display title */
+.page-header.display .page-header-tags li + li::before {
+  content: '|';
+  margin-right: var(--space-400);
 }
 
-.page-header.landing.page-header-has-collage .page-header-description {
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+.page-header.display .page-header-intro {
+  gap: var(--space-300);
+}
+
+.page-header.display .page-header-title {
+  color: var(--color-text-neutral);
+  font-size: var(--display-font-size-1);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.02em;
 }
 
 @media (width >= 900px) {
-  .page-header.landing {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-2000);
-    align-items: center;
-  }
-
-  .page-header.landing.page-header-has-collage {
-    gap: var(--space-3000);
+  .page-header {
+    padding-top: var(--space-3000);
   }
 
   .page-header .page-header-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .page-header.article .page-header-summary {
+  .page-header:is(.secondary, .article) .page-header-summary {
     padding-top: var(--space-300);
+  }
+
+  .page-header.landing.page-header-has-image {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2000);
+    align-items: center;
+  }
+
+  .page-header.display .page-header-columns {
+    align-items: center;
+  }
+
+  .page-header:is(.landing, .display) .page-header-title {
+    font-size: 96px;
   }
 }
