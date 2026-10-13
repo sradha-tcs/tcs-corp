@@ -3640,6 +3640,1155 @@
     ]
   },
   {
+    "id": "separator",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "generalTab",
+        "label": "General"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "componentId",
+        "label": "Component ID",
+        "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order).",
+        "validation": {
+          "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
+          "customErrorMsg": "Start with a letter; use letters, digits, - and _."
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "accessibilityMode",
+        "label": "Accessibility mode",
+        "value": "decorative",
+        "options": [
+          {
+            "name": "Decorative (visual only)",
+            "value": "decorative"
+          },
+          {
+            "name": "Semantic (a thematic break)",
+            "value": "semantic"
+          }
+        ],
+        "description": "Semantic: screen readers announce a separator (a change of topic). Decorative: hidden from them (visual division only)."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "accessibleLabel",
+        "label": "Accessible label",
+        "description": "Optional. Names the break for screen readers, e.g. \"End of the case study\". Most separators need none.",
+        "condition": {
+          "===": [
+            {
+              "var": "accessibilityMode"
+            },
+            "semantic"
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "variant",
+        "label": "Separator variant",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "Subtle",
+            "value": "subtle"
+          },
+          {
+            "name": "Strong",
+            "value": "strong"
+          },
+          {
+            "name": "Inset",
+            "value": "inset"
+          },
+          {
+            "name": "Full width",
+            "value": "full-width"
+          },
+          {
+            "name": "Dotted",
+            "value": "dotted"
+          },
+          {
+            "name": "Dashed",
+            "value": "dashed"
+          },
+          {
+            "name": "Gradient",
+            "value": "gradient"
+          },
+          {
+            "name": "Branded",
+            "value": "branded"
+          },
+          {
+            "name": "Custom (only the Appearance settings)",
+            "value": "custom-design"
+          }
+        ],
+        "description": "A preset of line style, thickness, colour and width; the Appearance settings override it."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "theme",
+        "label": "Theme",
+        "value": "auto",
+        "options": [
+          {
+            "name": "Auto (as the section)",
+            "value": "auto"
+          },
+          {
+            "name": "Light background",
+            "value": "light"
+          },
+          {
+            "name": "Dark background",
+            "value": "dark"
+          },
+          {
+            "name": "Brand background",
+            "value": "brand"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "appearanceTab",
+        "label": "Appearance"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "lineStyle",
+        "label": "Line style",
+        "value": "",
+        "options": [
+          {
+            "name": "As the variant",
+            "value": ""
+          },
+          {
+            "name": "Solid",
+            "value": "solid"
+          },
+          {
+            "name": "Dashed",
+            "value": "dashed"
+          },
+          {
+            "name": "Dotted",
+            "value": "dotted"
+          },
+          {
+            "name": "Gradient",
+            "value": "gradient"
+          },
+          {
+            "name": "None (spacing only)",
+            "value": "none"
+          }
+        ],
+        "description": "None keeps the spacing without a line. A semantic separator stays a break for screen readers but shows nothing; prefer Decorative or remove it."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "lineThickness",
+        "label": "Line thickness",
+        "value": "",
+        "options": [
+          {
+            "name": "As the variant",
+            "value": ""
+          },
+          {
+            "name": "Thin (1px)",
+            "value": "thin"
+          },
+          {
+            "name": "Medium (2px)",
+            "value": "medium"
+          },
+          {
+            "name": "Thick (3px)",
+            "value": "thick"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "lineColor",
+        "label": "Line colour",
+        "value": "",
+        "options": [
+          {
+            "name": "As the variant",
+            "value": ""
+          },
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "Subtle",
+            "value": "subtle"
+          },
+          {
+            "name": "Neutral",
+            "value": "neutral"
+          },
+          {
+            "name": "Strong",
+            "value": "strong"
+          },
+          {
+            "name": "Primary (brand)",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary (light brand)",
+            "value": "secondary"
+          },
+          {
+            "name": "Accent",
+            "value": "accent"
+          },
+          {
+            "name": "Inverse (on dark)",
+            "value": "inverse"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "lineOpacity",
+        "label": "Line opacity",
+        "value": "100",
+        "options": [
+          {
+            "name": "25%",
+            "value": "25"
+          },
+          {
+            "name": "50%",
+            "value": "50"
+          },
+          {
+            "name": "75%",
+            "value": "75"
+          },
+          {
+            "name": "100%",
+            "value": "100"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "width",
+        "label": "Separator width",
+        "value": "",
+        "options": [
+          {
+            "name": "As the variant",
+            "value": ""
+          },
+          {
+            "name": "Auto (as the variant)",
+            "value": "auto"
+          },
+          {
+            "name": "25%",
+            "value": "25-percent"
+          },
+          {
+            "name": "50%",
+            "value": "50-percent"
+          },
+          {
+            "name": "75%",
+            "value": "75-percent"
+          },
+          {
+            "name": "100%",
+            "value": "100-percent"
+          },
+          {
+            "name": "Content width",
+            "value": "content-width"
+          },
+          {
+            "name": "Full bleed (section edge to edge)",
+            "value": "full-bleed"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "maxWidth",
+        "label": "Maximum width",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Small (320px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (640px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (960px)",
+            "value": "large"
+          },
+          {
+            "name": "Extra large (1280px)",
+            "value": "extra-large"
+          },
+          {
+            "name": "Content container",
+            "value": "content-container"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "alignment",
+        "label": "Alignment",
+        "value": "center",
+        "options": [
+          {
+            "name": "Start",
+            "value": "start"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "End",
+            "value": "end"
+          }
+        ],
+        "description": "For partial widths. Start and end follow the reading direction (right to left languages too)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "startDecoration",
+        "label": "Start decoration",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Dot",
+            "value": "dot"
+          },
+          {
+            "name": "Square",
+            "value": "square"
+          },
+          {
+            "name": "Diamond",
+            "value": "diamond"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "centerDecoration",
+        "label": "Center decoration",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Dot",
+            "value": "dot"
+          },
+          {
+            "name": "Square",
+            "value": "square"
+          },
+          {
+            "name": "Diamond",
+            "value": "diamond"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "endDecoration",
+        "label": "End decoration",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Dot",
+            "value": "dot"
+          },
+          {
+            "name": "Square",
+            "value": "square"
+          },
+          {
+            "name": "Diamond",
+            "value": "diamond"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "contrastMode",
+        "label": "Background contrast",
+        "value": "standard",
+        "options": [
+          {
+            "name": "Standard",
+            "value": "standard"
+          },
+          {
+            "name": "High (stronger line)",
+            "value": "high"
+          }
+        ],
+        "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
+      },
+      {
+        "component": "tab",
+        "name": "responsiveTab",
+        "label": "Responsive"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showDesktop",
+        "label": "Show on desktop",
+        "value": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showTablet",
+        "label": "Show on tablet",
+        "value": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showMobile",
+        "label": "Show on mobile",
+        "value": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "desktopWidth",
+        "label": "Desktop width",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Auto (as the variant)",
+            "value": "auto"
+          },
+          {
+            "name": "25%",
+            "value": "25-percent"
+          },
+          {
+            "name": "50%",
+            "value": "50-percent"
+          },
+          {
+            "name": "75%",
+            "value": "75-percent"
+          },
+          {
+            "name": "100%",
+            "value": "100-percent"
+          },
+          {
+            "name": "Content width",
+            "value": "content-width"
+          },
+          {
+            "name": "Full bleed (section edge to edge)",
+            "value": "full-bleed"
+          }
+        ],
+        "description": "1200px and wider"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "desktopThickness",
+        "label": "Desktop thickness",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Thin (1px)",
+            "value": "thin"
+          },
+          {
+            "name": "Medium (2px)",
+            "value": "medium"
+          },
+          {
+            "name": "Thick (3px)",
+            "value": "thick"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "desktopAlignment",
+        "label": "Desktop alignment",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Start",
+            "value": "start"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "End",
+            "value": "end"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabletWidth",
+        "label": "Tablet width",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Auto (as the variant)",
+            "value": "auto"
+          },
+          {
+            "name": "25%",
+            "value": "25-percent"
+          },
+          {
+            "name": "50%",
+            "value": "50-percent"
+          },
+          {
+            "name": "75%",
+            "value": "75-percent"
+          },
+          {
+            "name": "100%",
+            "value": "100-percent"
+          },
+          {
+            "name": "Content width",
+            "value": "content-width"
+          },
+          {
+            "name": "Full bleed (section edge to edge)",
+            "value": "full-bleed"
+          }
+        ],
+        "description": "600 to 1199px"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabletThickness",
+        "label": "Tablet thickness",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Thin (1px)",
+            "value": "thin"
+          },
+          {
+            "name": "Medium (2px)",
+            "value": "medium"
+          },
+          {
+            "name": "Thick (3px)",
+            "value": "thick"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabletAlignment",
+        "label": "Tablet alignment",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Start",
+            "value": "start"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "End",
+            "value": "end"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mobileWidth",
+        "label": "Mobile width",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Auto (as the variant)",
+            "value": "auto"
+          },
+          {
+            "name": "25%",
+            "value": "25-percent"
+          },
+          {
+            "name": "50%",
+            "value": "50-percent"
+          },
+          {
+            "name": "75%",
+            "value": "75-percent"
+          },
+          {
+            "name": "100%",
+            "value": "100-percent"
+          },
+          {
+            "name": "Content width",
+            "value": "content-width"
+          },
+          {
+            "name": "Full bleed (section edge to edge)",
+            "value": "full-bleed"
+          }
+        ],
+        "description": "up to 599px"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mobileThickness",
+        "label": "Mobile thickness",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Thin (1px)",
+            "value": "thin"
+          },
+          {
+            "name": "Medium (2px)",
+            "value": "medium"
+          },
+          {
+            "name": "Thick (3px)",
+            "value": "thick"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mobileAlignment",
+        "label": "Mobile alignment",
+        "value": "inherit",
+        "options": [
+          {
+            "name": "As Appearance",
+            "value": "inherit"
+          },
+          {
+            "name": "Start",
+            "value": "start"
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "End",
+            "value": "end"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "spacingTab",
+        "label": "Spacing"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "desktopTopSpacing",
+        "label": "Desktop top spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "desktopBottomSpacing",
+        "label": "Desktop bottom spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabletTopSpacing",
+        "label": "Tablet top spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tabletBottomSpacing",
+        "label": "Tablet bottom spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mobileTopSpacing",
+        "label": "Mobile top spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mobileBottomSpacing",
+        "label": "Mobile bottom spacing",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "2XS (4px)",
+            "value": "2xs"
+          },
+          {
+            "name": "XS (8px)",
+            "value": "xs"
+          },
+          {
+            "name": "Small (16px)",
+            "value": "small"
+          },
+          {
+            "name": "Medium (24px)",
+            "value": "medium"
+          },
+          {
+            "name": "Large (40px)",
+            "value": "large"
+          },
+          {
+            "name": "XL (64px)",
+            "value": "xl"
+          },
+          {
+            "name": "2XL (80px)",
+            "value": "2xl"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "useSectionPadding",
+        "label": "Use section padding",
+        "value": false,
+        "description": "On: no spacing of its own (the section's spacing only), so there's no double spacing."
+      },
+      {
+        "component": "tab",
+        "name": "advancedTab",
+        "label": "Advanced"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "stretchToContainer",
+        "label": "Stretch to container width",
+        "value": false,
+        "description": "The line fills its container on every breakpoint."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "respectMaxWidth",
+        "label": "Respect content maximum width",
+        "value": true,
+        "description": "Never wider than the site's content width (also full bleed)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "animateOnView",
+        "label": "Animate on view",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Fade",
+            "value": "fade"
+          },
+          {
+            "name": "Draw from start",
+            "value": "draw-from-start"
+          },
+          {
+            "name": "Draw from center",
+            "value": "draw-from-center"
+          }
+        ],
+        "description": "Once, when the separator scrolls into view."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "reducedMotionFallback",
+        "label": "Reduced motion fallback",
+        "value": "static",
+        "options": [
+          {
+            "name": "Show immediately",
+            "value": "static"
+          },
+          {
+            "name": "Short fade",
+            "value": "fade"
+          }
+        ],
+        "description": "For visitors who prefer reduced motion.",
+        "condition": {
+          "!==": [
+            {
+              "var": "animateOnView"
+            },
+            "none"
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "printVisibility",
+        "label": "Print",
+        "value": "show",
+        "options": [
+          {
+            "name": "Show when printed",
+            "value": "show"
+          },
+          {
+            "name": "Hide when printed",
+            "value": "hide"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "analyticsEnabled",
+        "label": "Analytics",
+        "value": false,
+        "description": "Adds the separator to the Adobe Data Layer (no interaction events)."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "analyticsLabel",
+        "label": "Analytics label",
+        "condition": {
+          "===": [
+            {
+              "var": "analyticsEnabled"
+            },
+            true
+          ]
+        }
+      }
+    ]
+  },
+  {
     "id": "tab",
     "fields": [
       {
