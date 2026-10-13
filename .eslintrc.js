@@ -26,6 +26,7 @@ module.exports = {
       tabs: 7,
       'table-list': 10,
       'table-list-card': 6,
+      'list-item': 13,
       'table-col-5': 5,
       'field-text': 6,
       'field-select': 6,
@@ -34,4 +35,16 @@ module.exports = {
       'contact-card': 5,
     }],
   },
+  overrides: [
+    {
+      // unit tests (node --test): Node globals, ES module test files, long assertion lines
+      files: ['test/**/*.mjs'],
+      env: { node: true },
+      rules: {
+        'import/extensions': ['error', { js: 'always', mjs: 'always' }],
+        'max-len': 'off',
+        'object-curly-newline': 'off',
+      },
+    },
+  ],
 };

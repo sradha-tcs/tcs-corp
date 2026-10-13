@@ -470,7 +470,50 @@
                 "template": {
                   "name": "List",
                   "model": "list",
-                  "titleType": "h2"
+                  "filter": "list",
+                  "key-value": true,
+                  "titleType": "h2",
+                  "source": "fixed",
+                  "orderBy": "manual",
+                  "sortOrder": "ascending",
+                  "maxItems": 0,
+                  "displayAsTeaser": true,
+                  "cardStyle": "image",
+                  "imageRatio": "16-9",
+                  "panelHeight": "portrait",
+                  "linkItems": true,
+                  "showImage": true,
+                  "showEyebrow": true,
+                  "showTags": true,
+                  "showDescription": true,
+                  "showDate": true,
+                  "dateFormat": "dd-mmm-yy",
+                  "showCta": true,
+                  "imageLoading": "lazy",
+                  "desktopMode": "grid",
+                  "desktopColumns": 4,
+                  "tabletMode": "grid",
+                  "tabletColumns": 4,
+                  "mobileMode": "grid",
+                  "mobileColumns": 1,
+                  "scrollSnap": true,
+                  "emptyBehavior": "message",
+                  "analyticsEnabled": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "List Item",
+          "id": "list-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "List Item",
+                  "model": "list-item"
                 }
               }
             }
