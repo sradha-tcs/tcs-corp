@@ -52,12 +52,30 @@
           "label": "Title Type",
           "value": "h2",
           "options": [
-            { "name": "H1", "value": "h1" },
-            { "name": "H2", "value": "h2" },
-            { "name": "H3", "value": "h3" },
-            { "name": "H4", "value": "h4" },
-            { "name": "H5", "value": "h5" },
-            { "name": "H6", "value": "h6" }
+            {
+              "name": "H1",
+              "value": "h1"
+            },
+            {
+              "name": "H2",
+              "value": "h2"
+            },
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
           ]
         },
         {
@@ -89,6 +107,178 @@
         },
         {
           "component": "tab",
+          "name": "imageTab",
+          "label": "Image"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imageFormat",
+          "label": "Image type",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Lotto",
+              "value": "lottie"
+            }
+          ],
+          "description": "Default: the Image is a picture. Lotto: the Image is a Lottie animation file (.json)."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false,
+          "description": "Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image alt text",
+          "description": "Leave empty if the image is decorative."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imagePosition",
+          "label": "Image position",
+          "value": "left",
+          "condition": {
+            "or": [
+              {
+                "!": {
+                  "var": "classes"
+                }
+              },
+              {
+                "===": [
+                  {
+                    "var": "classes"
+                  },
+                  ""
+                ]
+              }
+            ]
+          },
+          "options": [
+            {
+              "name": "Left",
+              "value": "left"
+            },
+            {
+              "name": "Right",
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imageRatio",
+          "label": "Image ratio",
+          "value": "",
+          "options": [
+            {
+              "name": "Default (10:9)",
+              "value": ""
+            },
+            {
+              "name": "Portrait (8:9)",
+              "value": "ratio-8-9"
+            },
+            {
+              "name": "Square (1:1)",
+              "value": "ratio-1-1"
+            },
+            {
+              "name": "Original",
+              "value": "ratio-original"
+            }
+          ],
+          "condition": {
+            "or": [
+              {
+                "!": {
+                  "var": "classes"
+                }
+              },
+              {
+                "or": [
+                  {
+                    "===": [
+                      {
+                        "var": "classes"
+                      },
+                      ""
+                    ]
+                  },
+                  {
+                    "===": [
+                      {
+                        "var": "classes"
+                      },
+                      "no-image"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "imageCorners",
+          "label": "Image corners",
+          "value": "",
+          "options": [
+            {
+              "name": "Rounded",
+              "value": ""
+            },
+            {
+              "name": "Square",
+              "value": "square"
+            }
+          ],
+          "condition": {
+            "or": [
+              {
+                "!": {
+                  "var": "classes"
+                }
+              },
+              {
+                "or": [
+                  {
+                    "===": [
+                      {
+                        "var": "classes"
+                      },
+                      ""
+                    ]
+                  },
+                  {
+                    "===": [
+                      {
+                        "var": "classes"
+                      },
+                      "no-image"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "tab",
           "name": "styleTab",
           "label": "Style"
         },
@@ -96,19 +286,27 @@
           "component": "select",
           "valueType": "string",
           "name": "classes",
-          "label": "Style",
+          "label": "Layout",
           "value": "",
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "No Image, Right Desc & Links", "value": "no-image" }
-          ]
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "personalization",
-          "label": "Personalization",
-          "value": false
+            {
+              "name": "Image & Text",
+              "value": ""
+            },
+            {
+              "name": "Text split (title left, text right)",
+              "value": "no-image"
+            },
+            {
+              "name": "Background image",
+              "value": "background"
+            },
+            {
+              "name": "Card",
+              "value": "card"
+            }
+          ],
+          "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
         },
         {
           "component": "select",
@@ -117,39 +315,180 @@
           "label": "BG Color",
           "value": "",
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Grey", "value": "grey" },
-            { "name": "Dark", "value": "dark" },
-            { "name": "Dark green", "value": "dark-green" }
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Grey",
+              "value": "grey"
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Dark green",
+              "value": "dark-green"
+            }
           ]
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false,
-          "condition": { "!==": [{ "var": "classes" }, "no-image"] }
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "imageAlt",
-          "label": "Image alt text",
-          "description": "Leave empty if the image is decorative.",
-          "condition": { "!==": [{ "var": "classes" }, "no-image"] }
         },
         {
           "component": "select",
           "valueType": "string",
-          "name": "imagePosition",
-          "label": "Image position",
-          "value": "left",
-          "condition": { "!==": [{ "var": "classes" }, "no-image"] },
+          "name": "textAlignment",
+          "label": "Text alignment",
+          "value": "",
           "options": [
-            { "name": "Left", "value": "left" },
-            { "name": "Right", "value": "right" }
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Left",
+              "value": "text-left"
+            },
+            {
+              "name": "Center",
+              "value": "text-center"
+            }
+          ],
+          "description": "Layout default: left, centered for Background image and when Image & Text has no image."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "verticalAlignment",
+          "label": "Vertical alignment",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Top",
+              "value": "valign-top"
+            },
+            {
+              "name": "Middle",
+              "value": "valign-middle"
+            }
+          ],
+          "description": "How the text and the image (or the two text columns) line up. Layout default: middle, top for Text split."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleSize",
+          "label": "Title size",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Medium (40px)",
+              "value": "title-m"
+            },
+            {
+              "name": "Large (48px)",
+              "value": "title-l"
+            },
+            {
+              "name": "Extra large (64px)",
+              "value": "title-xl"
+            },
+            {
+              "name": "Display (96px)",
+              "value": "title-display"
+            }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleWeight",
+          "label": "Title weight",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Regular",
+              "value": "title-regular"
+            },
+            {
+              "name": "Semibold",
+              "value": "title-semibold"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionSize",
+          "label": "Description size",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Regular (18px)",
+              "value": "text-regular"
+            },
+            {
+              "name": "Large (24px)",
+              "value": "text-large"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "eyebrowStyle",
+          "label": "Eyebrow style",
+          "value": "",
+          "options": [
+            {
+              "name": "Brand",
+              "value": ""
+            },
+            {
+              "name": "Label (uppercase, grey)",
+              "value": "eyebrow-label"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "topSpacing",
+          "label": "Top spacing",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Page header (extra space above)",
+              "value": "spacing-header"
+            }
+          ],
+          "description": "Page header: the larger space above a teaser that opens a page."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "personalization",
+          "label": "Personalization",
+          "value": false
         },
         {
           "component": "tab",
@@ -183,8 +522,7 @@
           "valueType": "boolean",
           "name": "hideImage",
           "label": "Hide Image",
-          "value": false,
-          "condition": { "!==": [{ "var": "classes" }, "no-image"] }
+          "value": false
         },
         {
           "component": "boolean",
@@ -198,7 +536,14 @@
           "valueType": "date",
           "name": "date",
           "label": "Date",
-          "condition": { "===": [{ "var": "showDate" }, true] }
+          "condition": {
+            "===": [
+              {
+                "var": "showDate"
+              },
+              true
+            ]
+          }
         },
         {
           "component": "select",
@@ -206,11 +551,27 @@
           "name": "dateFormat",
           "label": "Date Format",
           "value": "dd-mm-yyyy",
-          "condition": { "===": [{ "var": "showDate" }, true] },
+          "condition": {
+            "===": [
+              {
+                "var": "showDate"
+              },
+              true
+            ]
+          },
           "options": [
-            { "name": "DD-MM-YYYY", "value": "dd-mm-yyyy" },
-            { "name": "MM-DD-YYYY", "value": "mm-dd-yyyy" },
-            { "name": "MMM d, yyyy", "value": "mmm-d-yyyy" }
+            {
+              "name": "DD-MM-YYYY",
+              "value": "dd-mm-yyyy"
+            },
+            {
+              "name": "MM-DD-YYYY",
+              "value": "mm-dd-yyyy"
+            },
+            {
+              "name": "MMM d, yyyy",
+              "value": "mmm-d-yyyy"
+            }
           ]
         },
         {
@@ -226,7 +587,14 @@
           "name": "tags",
           "label": "Tags",
           "multi": true,
-          "condition": { "===": [{ "var": "displayTags" }, true] }
+          "condition": {
+            "===": [
+              {
+                "var": "displayTags"
+              },
+              true
+            ]
+          }
         },
         {
           "component": "tab",
@@ -237,7 +605,7 @@
           "component": "boolean",
           "valueType": "boolean",
           "name": "multiLinks",
-          "label": "MultiLinks",
+          "label": "Multiple links",
           "description": "On: a list of links. Off: a primary and a secondary button.",
           "value": false
         },
@@ -246,7 +614,14 @@
           "name": "links",
           "label": "Links",
           "multi": true,
-          "condition": { "===": [{ "var": "multiLinks" }, true] },
+          "condition": {
+            "===": [
+              {
+                "var": "multiLinks"
+              },
+              true
+            ]
+          },
           "fields": [
             {
               "component": "text",
@@ -267,8 +642,14 @@
               "label": "CTA Link Type",
               "value": "",
               "options": [
-                { "name": "Default", "value": "" },
-                { "name": "Open in New Window", "value": "new-window" }
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "Open in New Window",
+                  "value": "new-window"
+                }
               ]
             }
           ]
@@ -279,27 +660,72 @@
           "name": "multiLinkStyle",
           "label": "Multi Link Style",
           "value": "",
-          "condition": { "===": [{ "var": "multiLinks" }, true] },
+          "condition": {
+            "===": [
+              {
+                "var": "multiLinks"
+              },
+              true
+            ]
+          },
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "List", "value": "list" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "List",
+              "value": "list"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary Button",
+              "value": "secondary"
+            }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "linkArrow",
+          "label": "List arrow",
+          "value": "",
+          "options": [
+            {
+              "name": "Right",
+              "value": ""
+            },
+            {
+              "name": "Down right",
+              "value": "arrow-down-right"
+            }
+          ],
+          "description": "Arrow of the List link style."
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "primaryCtaText",
           "label": "Primary CTA Title",
-          "condition": { "!": { "var": "multiLinks" } }
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          }
         },
         {
           "component": "aem-content",
           "valueType": "string",
           "name": "primaryCta",
           "label": "Primary CTA Link",
-          "condition": { "!": { "var": "multiLinks" } }
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          }
         },
         {
           "component": "select",
@@ -307,10 +733,20 @@
           "name": "primaryCtaTarget",
           "label": "Primary CTA Link Type",
           "value": "",
-          "condition": { "!": { "var": "multiLinks" } },
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Open in New Window", "value": "new-window" }
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
+            }
           ]
         },
         {
@@ -319,12 +755,28 @@
           "name": "primaryCtaStyle",
           "label": "Primary CTA Link Style",
           "value": "primary",
-          "condition": { "!": { "var": "multiLinks" } },
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "List", "value": "list" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "List",
+              "value": "list"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary Button",
+              "value": "secondary"
+            }
           ]
         },
         {
@@ -332,14 +784,22 @@
           "valueType": "string",
           "name": "secondaryCtaText",
           "label": "Secondary CTA Title",
-          "condition": { "!": { "var": "multiLinks" } }
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          }
         },
         {
           "component": "aem-content",
           "valueType": "string",
           "name": "secondaryCta",
           "label": "Secondary CTA Link",
-          "condition": { "!": { "var": "multiLinks" } }
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          }
         },
         {
           "component": "select",
@@ -347,10 +807,20 @@
           "name": "secondaryCtaTarget",
           "label": "Secondary CTA Link Type",
           "value": "",
-          "condition": { "!": { "var": "multiLinks" } },
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "Open in New Window", "value": "new-window" }
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
+            }
           ]
         },
         {
@@ -359,12 +829,56 @@
           "name": "secondaryCtaStyle",
           "label": "Secondary CTA Link Style",
           "value": "secondary",
-          "condition": { "!": { "var": "multiLinks" } },
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
           "options": [
-            { "name": "Default", "value": "" },
-            { "name": "List", "value": "list" },
-            { "name": "Primary Button", "value": "primary" },
-            { "name": "Secondary Button", "value": "secondary" }
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "List",
+              "value": "list"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary Button",
+              "value": "secondary"
+            }
+          ]
+        },
+        {
+          "component": "tab",
+          "name": "statsTab",
+          "label": "Stats"
+        },
+        {
+          "component": "container",
+          "name": "stats",
+          "label": "Stats",
+          "multi": true,
+          "fields": [
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "statLabel",
+              "label": "Stats Title",
+              "value": ""
+            },
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "statValue",
+              "label": "Stats Value",
+              "description": "A single line, e.g. 40%.",
+              "value": ""
+            }
           ]
         }
       ]

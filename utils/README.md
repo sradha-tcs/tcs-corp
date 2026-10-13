@@ -13,7 +13,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, conversation-canvas |
 | `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, footer, templates |
 | `properties.js` | `readProperties`, `textOf`, `isOn`, `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, tab, tabs, table-list, decorators |
-| `multifield.js` | `readMultifieldItems` (composite multifield items) | links util, testimonial, anchor-list |
+| `multifield.js` | `readMultifieldItems` (composite multifield items) | links util, stats decorator, anchor-list |
 | `links.js` | `NEW_WINDOW`, `linkOf`, `readLinkItems` (CTA lists with Link Type and the items' other select values) | hero, teaser, page-header, footer |
 | `buttons.js` | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | button decorators, hero, list, conversation-canvas, tabs, table-list |
 | `dates.js` | `formatDate` (DD-MM-YYYY, MM-DD-YYYY, MMM d, yyyy, DD/MM/YY; no time zone shift) | date decorator |
@@ -22,8 +22,8 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `ids.js` | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance) | tabs, gen-carousel, page-header, form-variations, conversation-canvas |
 | `environment.js` | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor` | gen-carousel, tabs, hero, table-list, anchor-list, video, form-variations |
 | `viewport.js` | `onVisible` (once), `watchVisibility` (on / off screen) | gen-carousel, hero, table-list, embed, video |
-| `media.js` | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | media decorator, embed, video, hero |
-| `lottie.js` | `loadLottie` (the vendored Lottie player, loaded once per page) | hero |
+| `media.js` | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | media decorator, embed, video, hero, teaser |
+| `lottie.js` | `loadLottie` (the vendored Lottie player, loaded once per page) | animation decorator |
 
 ## Site data
 
