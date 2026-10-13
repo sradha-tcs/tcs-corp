@@ -1,19 +1,387 @@
-/* Filter List: placeholder until the design and logic are defined */
-.filter-list:empty {
+/*
+ * Filter List (TCS.com DS Figma "Explore the Agentic bank" / "Explore insights & opinions"):
+ * the title, the filters (outline pills and the funnel), a grid of cards (standard, report and
+ * dark) and the full-width feature cards; Load more below.
+ */
+.filter-list {
+  --filter-list-dark: var(--brand-600);
+  --filter-list-report: linear-gradient(160deg, var(--brand-200) 0%, var(--color-bg-default) 70%);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1000);
+}
+
+.filter-list .filter-list-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-800);
+}
+
+.filter-list .filter-list-title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--display-font-size-2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--display-line-height);
+  letter-spacing: -0.02em;
+}
+
+/* the filters: label, pills and the funnel */
+.filter-list .filter-list-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-400) var(--space-600);
+}
+
+.filter-list .filter-list-label {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--label-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--label-line-height);
+}
+
+.filter-list .filter-list-filters {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  gap: var(--space-300);
+  order: 1;
+}
+
+.filter-list .filter-list-toolbar:has(.filter-list-toggle[aria-expanded='false']) .filter-list-filters {
   display: none;
 }
 
-/* Universal Editor: a visible, selectable placeholder */
-.adobe-ue-edit .filter-list:empty {
-  display: grid;
-  place-items: center;
-  min-height: 160px;
-  border: var(--border-width-200) dashed var(--color-border-secondary);
-  border-radius: var(--radius-l);
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-m);
+.filter-list .filter-list-filter {
+  min-height: var(--icon-button-size);
+  margin: 0;
+  padding: var(--space-200) var(--space-500);
+  border: var(--border-width-100) solid var(--color-border-secondary);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-default);
+  color: var(--color-text-default);
+  font: inherit;
+  font-size: var(--label-font-size);
+  line-height: var(--label-line-height);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.adobe-ue-edit .filter-list:empty::before {
-  content: attr(data-placeholder) ' (placeholder)';
+.filter-list .filter-list-filter:hover {
+  border-color: var(--color-border-brand);
+  color: var(--color-text-brand);
+}
+
+.filter-list .filter-list-filter:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: var(--border-width-200);
+}
+
+.filter-list .filter-list-filter[aria-pressed='true'] {
+  border-color: var(--color-bg-neutral);
+  background: var(--color-bg-neutral);
+  color: var(--color-text-on-neutral);
+}
+
+/* the funnel: a round brand outline icon button */
+.filter-list .filter-list-toggle.button.icon-button {
+  margin-left: auto;
+  border-color: var(--color-border-brand);
+  color: var(--color-icon-brand);
+}
+
+/* the cards */
+.filter-list .filter-list-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1000) var(--space-600);
+}
+
+.filter-list .filter-list-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+  min-width: 0;
+}
+
+.filter-list .filter-list-card-media {
+  overflow: hidden;
+  margin-bottom: var(--space-300);
+  border-radius: var(--radius-l);
+  background: var(--color-bg-secondary);
+  aspect-ratio: 4 / 3;
+}
+
+.filter-list .filter-list-card-media :is(picture, img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* tags and reading time: uppercase grey, separated by bars */
+.filter-list :is(.filter-list-card-tags, .filter-list-card-meta) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-100) var(--space-200);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.57;
+}
+
+.filter-list .filter-list-card-tags {
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.filter-list :is(.filter-list-card-tags, .filter-list-card-meta) > * + *::before {
+  content: '|' / '';
+  margin-right: var(--space-200);
+}
+
+.filter-list .filter-list-card-meta {
+  color: var(--color-text-neutral-secondary);
+  font-weight: var(--font-weight-regular);
+}
+
+.filter-list .filter-list-card-title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.33;
+}
+
+/* the title link covers the card */
+.filter-list .filter-list-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.filter-list .filter-list-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.filter-list .filter-list-card-link:hover {
+  text-decoration: underline;
+}
+
+.filter-list .filter-list-card-link:focus-visible {
+  outline: none;
+}
+
+.filter-list .filter-list-card-link:focus-visible::after {
+  border-radius: var(--radius-l);
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: var(--space-100);
+}
+
+.filter-list .filter-list-card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--color-text-neutral-secondary);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.filter-list .filter-list-card-action {
+  margin: auto 0 0;
+  padding-top: var(--space-600);
+}
+
+/* report and dark cards: a panel with the title, description and a button at the bottom */
+.filter-list :is(.filter-list-card-report, .filter-list-card-dark) {
+  gap: var(--space-400);
+  min-height: 360px;
+  padding: var(--space-800) var(--space-600);
+  border-radius: var(--radius-l);
+}
+
+.filter-list .filter-list-card-report {
+  background: var(--filter-list-report);
+}
+
+.filter-list .filter-list-card-report .filter-list-card-title {
+  font-weight: var(--font-weight-semibold);
+}
+
+.filter-list .filter-list-card-dark {
+  background: var(--filter-list-dark);
+  color: var(--color-text-on-neutral);
+}
+
+.filter-list .filter-list-card-dark .filter-list-card-tags {
+  color: var(--color-text-light-overlay);
+}
+
+.filter-list .filter-list-card-dark .filter-list-card-title {
+  color: var(--color-text-on-neutral);
+  font-weight: var(--font-weight-semibold);
+}
+
+.filter-list .filter-list-card-dark .filter-list-card-description {
+  color: var(--color-text-light-overlay);
+}
+
+.filter-list .filter-list-card-dark .button.tertiary {
+  color: var(--color-text-on-neutral);
+}
+
+/* feature card: full width, the image behind a light overlay, the author at the bottom */
+.filter-list .filter-list-card-feature {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  min-height: 480px;
+  border-radius: var(--radius-l);
+  background: var(--color-bg-secondary);
+}
+
+.filter-list .filter-list-card-feature .filter-list-card-media {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border-radius: 0;
+  aspect-ratio: auto;
+}
+
+.filter-list .filter-list-card-feature .filter-list-card-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--white-800) 0%, var(--white-500) 55%, transparent 100%);
+}
+
+.filter-list .filter-list-card-content {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-400);
+  padding: var(--space-800) var(--space-600);
+}
+
+.filter-list .filter-list-card-feature .filter-list-card-tags {
+  color: var(--color-text-neutral-secondary);
+}
+
+.filter-list .filter-list-card-feature .filter-list-card-title {
+  max-width: 800px;
+  font-size: var(--display-font-size-3);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--display-line-height);
+  letter-spacing: -0.02em;
+}
+
+.filter-list .filter-list-card-feature .filter-list-card-link:focus-visible::after {
+  outline-offset: calc(-1 * var(--border-width-200));
+}
+
+.filter-list .filter-list-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-300);
+  margin-top: auto;
+  padding-top: var(--space-1000);
+}
+
+.filter-list .filter-list-author .filter-list-author-image img {
+  display: block;
+  width: var(--space-1200);
+  height: var(--space-1200);
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.filter-list .filter-list-author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-xs);
+  line-height: 1.375;
+}
+
+.filter-list :is(.filter-list-author-name, .filter-list-author-designation) {
+  margin: 0;
+}
+
+.filter-list .filter-list-author-name {
+  font-weight: var(--font-weight-semibold);
+}
+
+.filter-list .filter-list-author-designation {
+  color: var(--color-text-neutral-secondary);
+}
+
+/* hover: the image zooms */
+.filter-list .filter-list-card:hover .filter-list-card-media img {
+  transform: scale(1.04);
+}
+
+.filter-list .filter-list-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: var(--space-1000);
+  border-radius: var(--radius-l);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-neutral-secondary);
+  text-align: center;
+}
+
+.filter-list .filter-list-more {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.filter-list .filter-list-more[hidden] {
+  display: none;
+}
+
+@media (width >= 600px) {
+  .filter-list .filter-list-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .filter-list .filter-list-title {
+    font-size: var(--display-font-size-1);
+  }
+
+  .filter-list .filter-list-filters {
+    flex: 0 1 auto;
+    order: 0;
+  }
+
+  .filter-list .filter-list-toggle.button.icon-button {
+    margin-left: 0;
+  }
+
+  .filter-list .filter-list-card-content {
+    padding: var(--space-1200);
+  }
+
+  .filter-list .filter-list-card-feature .filter-list-card-title {
+    font-size: 48px;
+  }
+}
+
+@media (width >= 1200px) {
+  .filter-list .filter-list-results {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
