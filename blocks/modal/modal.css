@@ -1,6 +1,8 @@
 /*
- * Modal (Block Collection), site styles. Long content scrolls inside the dialog (the page behind
- * stays still): the whole dialog is the scrolling area, with the close button kept at the top.
+ * Modal (Block Collection), site styles. The dialog is centered in the visible area and never
+ * taller than it: --modal-top and --modal-height are the visible part of the page (modal.js;
+ * in a frame, e.g. Universal Editor, that's less than the frame), else the viewport. Long
+ * content scrolls inside the dialog (the page behind stays still), the close button at the top.
  */
 body.modal-open {
   overflow: hidden;
@@ -11,9 +13,14 @@ body.modal-open {
 }
 
 .modal dialog {
+  --modal-gap: var(--space-600);
+
+  top: calc(var(--modal-top, 0px) + var(--modal-height, 100dvh) / 2);
+  bottom: auto;
   width: calc(100vw - 48px);
   max-width: 900px;
-  max-height: calc(100dvh - (2 * var(--nav-height)));
+  max-height: calc(var(--modal-height, 100dvh) - 2 * var(--modal-gap));
+  margin: 0 auto;
   border: 0;
   border-radius: var(--radius-l);
   padding: 0;
@@ -21,11 +28,17 @@ body.modal-open {
   overscroll-behavior: contain;
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
+  transform: translateY(-50%);
 }
 
 .modal dialog[open] {
   display: flex;
   flex-direction: column;
+}
+
+/* in a frame, until the visible area is measured (modal.js) */
+.modal dialog[data-measuring] {
+  visibility: hidden;
 }
 
 .modal dialog .modal-content {
@@ -51,6 +64,8 @@ body.modal-open {
 
 @media (width >= 900px) {
   .modal dialog {
+    --modal-gap: var(--space-1000);
+
     width: calc(100vw - 64px);
   }
 
