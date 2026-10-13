@@ -12,16 +12,21 @@ import { isAnimation } from '../../utils/media.js';
  * - content: icon, eyebrow, title (heading) and description (element group "content_")
  * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
  * - CTA List: a composite multifield, one link per item, each with an optional
- *   "new-window" Link Type value; the CTA view is the link's bold (primary) / italic
+ *   "new-window" Link Type value and a CTA Arrow (right | down; without one, links to the
+ *   page's own sections point down); the CTA view is the link's bold (primary) / italic
  *   (secondary) formatting
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type),
  * align-top | align-middle | align-bottom (Vertical Alignment),
- * align-left | align-center | align-right (Horizontal Alignment),
+ * align-left | align-center | align-right (Horizontal Alignment, the content position),
+ * text-left | text-center | text-right (Text Alignment, inside the content),
  * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color).
  */
 
 const MOTIONS = ['motion-fade', 'motion-slide', 'motion-zoom'];
+// CTA Arrow values, and every value a CTA List item holds besides its link
+const ARROWS = ['right', 'down'];
+const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
@@ -77,8 +82,12 @@ function isCtaCell(cell) {
   const links = [...cell.querySelectorAll('a[href]')];
   if (!links.length || cell.querySelector(HEADINGS)) return false;
   const linkText = links.map((a) => a.textContent).join('');
-  const rest = cell.textContent.replace(new RegExp(NEW_WINDOW, 'g'), '');
-  return rest.replace(/\s/g, '') === linkText.replace(/\s/g, '');
+  const rest = cell.cloneNode(true);
+  rest.querySelectorAll('p, li, div, span').forEach((el) => {
+    if (CTA_VALUES.includes(el.textContent.trim())) el.remove();
+  });
+  const text = rest.textContent.replace(new RegExp(NEW_WINDOW, 'g'), '');
+  return text.replace(/\s/g, '') === linkText.replace(/\s/g, '');
 }
 
 /** a cell holding only the hero image or an animation link */
@@ -178,7 +187,7 @@ function buildCtas(cell) {
   if (!cell) return null;
   const ctas = document.createElement('div');
   ctas.className = 'hero-ctas';
-  readLinkItems(cell).forEach(({ link: a, newWindow }) => {
+  readLinkItems(cell).forEach(({ link: a, newWindow, values }) => {
     // CTA view: Primary / Secondary buttons; Default is a text link with an arrow
     const { type } = readButtonOptions(a);
     decorateButton(a, {
@@ -186,7 +195,10 @@ function buildCtas(cell) {
       type: ['primary', 'secondary'].includes(type) ? type : 'tertiary',
       newWindow,
     });
-    if (a.getAttribute('href').startsWith('#')) a.classList.add('hero-cta-down');
+    const arrow = values.find((value) => ARROWS.includes(value));
+    if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
+      a.classList.add('hero-cta-down');
+    }
     ctas.append(a);
   });
   return ctas.children.length ? ctas : null;

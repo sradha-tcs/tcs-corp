@@ -413,7 +413,8 @@
                   "model": "hero",
                   "classes_alignment": "align-middle",
                   "content_titleType": "h1",
-                  "classes_horizontal": "align-center"
+                  "classes_horizontal": "align-center",
+                  "classes_textAlignment": "text-center"
                 }
               }
             }
