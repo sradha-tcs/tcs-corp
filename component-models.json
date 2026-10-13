@@ -1244,6 +1244,24 @@
                 "value": "secondary"
               }
             ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaArrow",
+            "label": "CTA Arrow",
+            "description": "Direction of the arrow next to the CTA text.",
+            "value": "right",
+            "options": [
+              {
+                "name": "Right",
+                "value": "right"
+              },
+              {
+                "name": "Down",
+                "value": "down"
+              }
+            ]
           }
         ]
       },
@@ -1297,7 +1315,8 @@
             "name": "Bottom",
             "value": "align-bottom"
           }
-        ]
+        ],
+        "description": "Position of the content block: top, middle or bottom of the hero."
       },
       {
         "component": "select",
@@ -1317,6 +1336,29 @@
           {
             "name": "Right",
             "value": "align-right"
+          }
+        ],
+        "description": "Position of the content block: left, center or right of the hero (on desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_textAlignment",
+        "label": "Text Alignment",
+        "description": "Alignment of the icon, text and CTAs inside the content block.",
+        "value": "text-center",
+        "options": [
+          {
+            "name": "Left align",
+            "value": "text-left"
+          },
+          {
+            "name": "Center align",
+            "value": "text-center"
+          },
+          {
+            "name": "Right align",
+            "value": "text-right"
           }
         ]
       },

@@ -1,7 +1,8 @@
 /*
  * Hero (TCS.com DS Figma "L1 Header" variations): an image or Lottie background (filling the
- * hero, or contained for illustrations) under a light, dark or no overlay; the content aligned
- * vertically and horizontally; an optional motion when the hero comes into view.
+ * hero, or contained for illustrations) under a light, dark or no overlay; the content block
+ * placed at one of nine positions (Vertical x Horizontal Alignment), its text aligned on its
+ * own (Text Alignment); an optional motion when the hero comes into view.
  */
 .hero-container .hero-wrapper {
   max-width: unset;
@@ -20,8 +21,10 @@
   --hero-description-color: var(--color-text-secondary);
   --hero-title-max-width: 1160px;
   --hero-description-max-width: 850px;
-  --hero-align: center;
+  --hero-position: center;
   --hero-text-align: center;
+  --hero-align: center;
+  --hero-content-max-width: 1352px;
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -30,7 +33,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: var(--hero-position);
   justify-content: center;
   box-sizing: border-box;
   min-height: var(--hero-min-height);
@@ -41,7 +44,7 @@
   text-align: var(--hero-text-align);
 }
 
-/* Vertical Alignment: position of the content */
+/* Vertical Alignment: position of the content block */
 .hero.align-top {
   justify-content: flex-start;
 }
@@ -50,15 +53,36 @@
   justify-content: flex-end;
 }
 
-/* Horizontal Alignment: the content and its CTAs */
+/*
+ * Horizontal Alignment: position of the content block. Its text follows unless a Text
+ * Alignment is set (heroes authored before the option).
+ */
 .hero.align-left {
-  --hero-align: flex-start;
+  --hero-position: flex-start;
   --hero-text-align: start;
+  --hero-align: flex-start;
 }
 
 .hero.align-right {
-  --hero-align: flex-end;
+  --hero-position: flex-end;
   --hero-text-align: end;
+  --hero-align: flex-end;
+}
+
+/* Text Alignment: the icon, text and CTAs inside the content block */
+.hero.text-left {
+  --hero-text-align: start;
+  --hero-align: flex-start;
+}
+
+.hero.text-center {
+  --hero-text-align: center;
+  --hero-align: center;
+}
+
+.hero.text-right {
+  --hero-text-align: end;
+  --hero-align: flex-end;
 }
 
 /* BG Color: Light, no overlay shows the image as is (e.g. a light gradient) */
@@ -129,7 +153,7 @@
   flex-direction: column;
   align-items: var(--hero-align);
   width: 100%;
-  max-width: 1352px;
+  max-width: var(--hero-content-max-width);
 }
 
 .hero .hero-icon {
@@ -293,5 +317,10 @@
   .hero .hero-icon img {
     width: 48px;
     height: 48px;
+  }
+
+  /* on the left or right the content block takes part of the width, so its position shows */
+  .hero:is(.align-left, .align-right) {
+    --hero-content-max-width: 760px;
   }
 }
