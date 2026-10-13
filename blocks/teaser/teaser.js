@@ -2,9 +2,11 @@ import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
 import { createAnimation } from '../../decorators/animation-decorator.js';
+import {
+  buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
+} from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
-import { buildTime } from '../../decorators/date-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { setLinkTarget } from '../../decorators/link-decorator.js';
@@ -12,6 +14,7 @@ import { buildStats } from '../../decorators/stats-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { NEW_WINDOW, linkOf, readLinkItems } from '../../utils/links.js';
 import { isAnimation } from '../../utils/media.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 import {
   isOn, optionOf as option, readProperties, textOf,
 } from '../../utils/properties.js';
@@ -24,8 +27,9 @@ import { resolveTags } from '../../utils/taxonomy.js';
  * Header", "Careers", "Media Coverage"). Layouts:
  * - Image & Text (default): image and text side by side, image left or right; centered
  *   without an image
- * - Text split (no-image): title left; description, image (e.g. a chart), stats, links and
- *   short description right; eyebrow, date and tags above both
+ * - Text split (no-image): title (and author) left; description, image (e.g. a chart), stats,
+ *   links and short description right; above both the eyebrow and tags, and on the right the
+ *   date, reading time and listen / download / share actions (Figma "L3 Header")
  * - Background image: the image behind centered text, under an overlay
  * - Card: a rounded card with the image behind its text, links at the bottom
  * The Image type Lotto plays a Lottie animation (.json) instead of a picture. The Style options
@@ -38,8 +42,9 @@ const BG_COLORS = ['grey', 'dark', 'dark-green'];
 const LINK_STYLES = ['list', 'primary', 'secondary'];
 // Style and Image options: property (normalized name) and its values, also block classes
 const OPTIONS = {
-  textalignment: ['text-left', 'text-center'],
-  verticalalignment: ['valign-top', 'valign-middle'],
+  textalignment: ['text-left', 'text-center', 'text-right'],
+  verticalalignment: ['valign-top', 'valign-middle', 'valign-bottom'],
+  imagepositionmobile: ['mobile-image-top', 'mobile-image-bottom'],
   titlesize: ['title-m', 'title-l', 'title-xl', 'title-display'],
   titleweight: ['title-regular', 'title-semibold'],
   descriptionsize: ['text-regular', 'text-large'],
@@ -55,18 +60,52 @@ const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser
 /** a Show toggle that defaults to on: only an authored "false" turns it off */
 const isShown = (cell) => !cell || isOn(cell);
 
-/** date and tags (labels from the taxonomy) */
+/** tags (labels from the taxonomy) */
 async function buildMeta(props) {
   const meta = document.createElement('div');
   meta.className = 'teaser-meta';
-  const date = textOf(props.date);
-  if (isOn(props.showdate) && date) {
-    meta.append(buildTime(date, toClassName(textOf(props.dateformat)), 'teaser-date'));
-  }
   const tags = isOn(props.displaytags)
     ? buildTagList(await resolveTags(readTagValues(props.tags)), 'teaser-tags') : null;
   if (tags) meta.append(tags);
   return meta.children.length ? meta : null;
+}
+
+/** date (with its label), reading time and listen / download / share actions */
+function buildInfo(props, t) {
+  const info = document.createElement('div');
+  info.className = 'teaser-info';
+  const prefix = 'teaser';
+  const date = isOn(props.showdate) && textOf(props.date)
+    ? buildPublished(textOf(props.date), {
+      label: textOf(props.datelabel),
+      // dd-mm-yyyy | mm-dd-yyyy | mmm-d-yyyy | dd/mm/yy
+      format: textOf(props.dateformat).toLowerCase() || 'dd-mm-yyyy',
+      prefix,
+    }) : null;
+  info.append(...[
+    date,
+    buildReadingTime(textOf(props.readingtime), t, prefix),
+    buildPageActions({
+      listen: linkOf(props.listenlink),
+      download: isOn(props.download),
+      share: isOn(props.socialshare),
+      title: textOf(props.title) || document.title,
+      t,
+      prefix,
+    }),
+  ].filter(Boolean));
+  return info.children.length ? info : null;
+}
+
+/** the author: image, name and designation */
+function buildAuthor(props) {
+  return buildAuthorLockup({
+    picture: pictureOf(props.authorimage, props.authorimagealt),
+    name: textOf(props.authorname) ? fromCell(props.authorname, 'p', 'teaser-author-name') : null,
+    designation: textOf(props.authordesignation)
+      ? fromCell(props.authordesignation, 'p', 'teaser-author-designation') : null,
+    prefix: 'teaser',
+  });
 }
 
 /**
@@ -116,9 +155,13 @@ function buildLinks(props) {
   let entries;
 
   if (isOn(props.multilinks)) {
-    // MultiLinks: the Links multifield, all in the Multi Link Style
-    const style = linkStyleOf(props.multilinkstyle);
-    entries = readLinkItems(props.links).map((item) => ({ ...item, style }));
+    // Multiple links: the Links multifield, each in its CTA Link Style (links authored before
+    // the style was per link use the former Multi Link Style)
+    const fallback = linkStyleOf(props.multilinkstyle);
+    entries = readLinkItems(props.links).map((item) => ({
+      ...item,
+      style: item.values.find((value) => LINK_STYLES.includes(value)) || fallback,
+    }));
     if (props.links) moveInstrumentation(props.links, links);
   } else {
     // Primary and Secondary CTA, each in its own Link Style
@@ -171,6 +214,7 @@ function buildMedia(block, props, layout) {
  */
 export default async function decorate(block) {
   const props = readProperties(block);
+  const t = await getPlaceholders();
   const layout = option(block, props.classes, LAYOUTS);
   const bgColor = option(block, props.bgcolor, BG_COLORS);
   const imageRight = toClassName(textOf(props.imageposition)) === 'right'
@@ -188,6 +232,8 @@ export default async function decorate(block) {
   }
   const meta = await buildMeta(props);
   if (meta) kicker.append(meta);
+  const info = buildInfo(props, t);
+  if (info) kicker.append(info);
   if (kicker.children.length) header.append(kicker);
 
   const headingRow = document.createElement('div');
@@ -205,7 +251,13 @@ export default async function decorate(block) {
     moveInstrumentation(props.viewall, viewAll);
     headingRow.append(viewAll);
   }
-  if (headingRow.children.length) header.append(headingRow);
+  // intro: the title row and the author
+  const intro = document.createElement('div');
+  intro.className = 'teaser-intro';
+  if (headingRow.children.length) intro.append(headingRow);
+  const author = buildAuthor(props);
+  if (author) intro.append(author);
+  if (intro.children.length) header.append(intro);
 
   // body: description, image (Text split), stats, links, short description
   const body = document.createElement('div');
