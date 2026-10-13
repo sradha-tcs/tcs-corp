@@ -6,35 +6,23 @@
  *   -> sort -> limit
  * Pages come from the query index (helix-query.yaml); redirects from the redirects sheets.
  */
+import {
+  flag, hash, integer, isExternal, isSafeUrl, isYes, normalizePath, normalizePresentation,
+  pickValue as pick, text, toISODate,
+} from '../../utils/card-list-config.js';
 import { formatDate } from '../../utils/dates.js';
 import { columnOf, listOf } from '../../utils/query-index.js';
+
+// the presentation settings shared with the Cards block (re-exported for the List's users)
+export {
+  BREAKPOINTS, CARD_KINDS, CARD_STYLES, CARD_THEMES, DATE_FORMATS, DISPLAY_MODES, HEADINGS,
+  IMAGE_RATIOS, PANEL_HEIGHTS, RESPONSIVE_DEFAULTS, YES, hash, isExternal, isSafeUrl, kindOf,
+  normalizePath, toISODate, toSafeId,
+} from '../../utils/card-list-config.js';
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
 export const ORDER_BY = ['manual', 'title', 'lastmodified'];
 export const EMPTY_BEHAVIORS = ['hide', 'message', 'fallback'];
-export const CARD_STYLES = ['image', 'panel', 'report', 'stat', 'mixed'];
-export const CARD_KINDS = ['image', 'panel', 'report', 'stat'];
-export const CARD_THEMES = ['dark', 'navy', 'brand', 'brand-light', 'grey', 'mid-grey', 'gradient', 'image'];
-export const IMAGE_RATIOS = ['16-9', '1-1', '4-3', '3-2'];
-export const PANEL_HEIGHTS = ['auto', 'portrait', 'compact'];
-export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyyy', 'dd/mm/yy'];
-export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'];
-export const DISPLAY_MODES = ['grid', 'horizontal-scroll'];
-export const YES = ['yes', 'true', '1', 'on', 'y'];
-
-/** responsive defaults (TCS DS Figma List variations: 1440 / 1024 / 402 frames) */
-export const RESPONSIVE_DEFAULTS = {
-  desktop: {
-    mode: 'grid', columns: 4, gap: 24, visible: 4.2, cardWidth: 0, controls: false, indicator: false,
-  },
-  tablet: {
-    mode: 'grid', columns: 4, gap: 24, visible: 3.3, cardWidth: 0, controls: false, indicator: false,
-  },
-  mobile: {
-    mode: 'grid', columns: 1, gap: 16, visible: 1.2, cardWidth: 0, controls: false, indicator: true,
-  },
-};
 
 /**
  * Page metadata columns of the card parts, in order of preference (metadata names; the index
@@ -58,41 +46,9 @@ export const PAGE_MAPPING = {
 /** the site's default social image is no card image */
 const DEFAULT_IMAGE = /\/default-meta-image\.(png|jpe?g|webp)/i;
 
-const text = (value) => String(value ?? '').trim();
-const isYes = (value) => YES.includes(text(value).toLowerCase());
-const pick = (value, allowed, fallback) => {
-  const v = text(value).toLowerCase();
-  return allowed.includes(v) ? v : fallback;
-};
-const flag = (value, fallback) => (text(value) === '' ? fallback : isYes(value));
-const number = (value, fallback, { min = -Infinity, max = Infinity } = {}) => {
-  const n = parseFloat(value);
-  return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
-};
-const integer = (value, fallback, range) => Math.round(number(value, fallback, range));
-
-/** a path as the index lists it: no .html, query or hash, no trailing slash but the root's */
-export const normalizePath = (path) => text(path).replace(/[?#].*$/, '').replace(/\.html$/, '')
-  .replace(/(.)\/$/, '$1');
-
-/** a safe, DOM id: letters, digits, - and _, starting with a letter */
-export function toSafeId(value) {
-  const id = text(value).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
-  if (!id) return '';
-  return /^[a-z]/.test(id) ? id : `list-${id}`;
-}
-
-/** a short stable hash (djb2, base 36) */
-export function hash(value) {
-  let h = 5381;
-  [...String(value)].forEach((c) => {
-    h = ((h * 33) ^ c.charCodeAt(0)) >>> 0; // eslint-disable-line no-bitwise
-  });
-  return h.toString(36);
-}
-
 /**
- * Normalizes the authored properties (lower-case keys, text values) into the configuration;
+ * Normalizes the authored properties (lower-case keys, text values) into the configuration:
+ * the List's sources and order, and the shared presentation (utils/card-list-config.js);
  * missing or invalid values get their defaults, so a configuration never breaks rendering.
  * @param {Object<string, string>} raw
  * @returns {Object}
@@ -100,20 +56,6 @@ export function hash(value) {
 export function normalizeConfig(raw = {}) {
   const get = (key) => raw[key];
   const directOnly = flag(get('directchildrenonly'), true);
-  const responsive = {};
-  BREAKPOINTS.forEach((bp) => {
-    const d = RESPONSIVE_DEFAULTS[bp];
-    const cardWidth = number(get(`${bp}cardwidth`), 0, { min: 0, max: 1200 });
-    responsive[bp] = {
-      mode: pick(get(`${bp}mode`), DISPLAY_MODES, d.mode),
-      columns: integer(get(`${bp}columns`), d.columns, { min: 1, max: 6 }),
-      gap: number(get(`${bp}gap`), d.gap, { min: 0, max: 120 }),
-      visible: number(get(`${bp}visible`), d.visible, { min: 1, max: 8 }),
-      cardWidth: cardWidth >= 120 ? cardWidth : 0,
-      controls: flag(get(`${bp}controls`), d.controls),
-      indicator: flag(get(`${bp}indicator`), d.indicator),
-    };
-  });
   const maxItems = integer(get('maxitems'), 0, { min: 0 });
   return {
     source: pick(get('source'), SOURCES, 'fixed'),
@@ -132,42 +74,8 @@ export function normalizeConfig(raw = {}) {
     orderBy: pick(text(get('orderby')).replace(/[^a-z]/gi, ''), ORDER_BY, 'manual'),
     sortOrder: pick(get('sortorder'), ['ascending', 'descending'], 'ascending'),
     maxItems: maxItems > 0 ? maxItems : Infinity,
-    componentId: toSafeId(get('componentid')),
     emptyBehavior: pick(get('emptybehavior'), EMPTY_BEHAVIORS, 'message'),
-    emptyMessage: text(get('emptymessage')),
-    linkItems: flag(get('linkitems'), true),
-    showDescription: flag(get('showdescription'), true),
-    showDate: flag(get('showdate'), true),
-    dateFormat: pick(get('dateformat'), DATE_FORMATS, 'dd-mmm-yy'),
-    displayAsTeaser: flag(get('displayasteaser'), true),
-    showImage: flag(get('showimage'), true),
-    showEyebrow: flag(get('showeyebrow'), true),
-    showTags: flag(get('showtags'), true),
-    showCta: flag(get('showcta'), true),
-    openInNewTab: flag(get('openinnewtab'), false),
-    imageLoading: pick(get('imageloading'), ['lazy', 'eager'], 'lazy'),
-    analytics: flag(get('analyticsenabled'), true),
-    listLabel: text(get('listlabel')),
-    cardStyle: pick(get('cardstyle'), CARD_STYLES, 'image'),
-    cardTheme: pick(get('cardtheme'), ['', ...CARD_THEMES], ''),
-    imageRatio: pick(get('imageratio'), IMAGE_RATIOS, '16-9'),
-    panelHeight: pick(get('panelheight'), PANEL_HEIGHTS, 'portrait'),
-    featureFirst: flag(get('featurefirst'), false),
-    // responsive
-    responsive,
-    snap: flag(get('scrollsnap'), true),
-    snapAlign: pick(get('snapalign'), ['start', 'center'], 'start'),
-    hideScrollbar: flag(get('hidescrollbar'), true),
-    drag: flag(get('mousedrag'), true),
-    swipe: flag(get('touchswipe'), true),
-    keyboard: flag(get('keyboardscrolling'), true),
-    step: pick(get('scrollstep'), ['one-card', 'viewport'], 'one-card'),
-    loop: flag(get('loop'), false),
-    initialIndex: integer(get('initialindex'), 0, { min: 0, max: 200 }),
-    edge: pick(get('edgepadding'), ['bleed', 'none'], 'bleed'),
-    reducedMotion: flag(get('reducedmotion'), true),
-    equalHeight: flag(get('equalheight'), false),
-    stretch: flag(get('stretchcards'), true),
+    ...normalizePresentation(raw),
   };
 }
 
@@ -254,31 +162,6 @@ export function resolveTagPages(pages, {
 
 const firstColumn = (page, columns) => columns.map((column) => text(columnOf(page, column)))
   .find(Boolean) || '';
-
-/** a link that can be rendered: http(s), mailto, tel, or a path; never javascript: or data: */
-export function isSafeUrl(href) {
-  const value = text(href);
-  if (!value) return false;
-  if (/^(https?:|mailto:|tel:)/i.test(value)) return true;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false;
-  return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
-}
-
-/** whether a link leaves the site */
-export const isExternal = (href, origin = '') => /^https?:\/\//i.test(href)
-  && (!origin || !href.toLowerCase().startsWith(origin.toLowerCase()));
-
-/** a date column (YYYY-MM-DD or a timestamp in seconds) as YYYY-MM-DD, or '' */
-export function toISODate(value) {
-  const v = text(value);
-  if (/^\d{4}-\d{2}-\d{2}/.test(v)) return v.slice(0, 10);
-  if (/^\d{9,13}$/.test(v)) {
-    const ms = v.length > 10 ? Number(v) : Number(v) * 1000;
-    const date = new Date(ms);
-    return Number.isNaN(date.getTime()) ? '' : date.toISOString().slice(0, 10);
-  }
-  return '';
-}
 
 /**
  * The card of an index page: page metadata, then defaults.
@@ -461,17 +344,6 @@ export const withIds = (cards, componentId) => cards.map((card) => ({
   ...card,
   id: `${componentId}-item-${hash(dedupeKey(card))}`,
 }));
-
-/**
- * The card kind: an item's own kind, the list's style, or (mixed) report for Report pages,
- * panel for pages without an image, image otherwise.
- */
-export function kindOf(card, cardStyle) {
-  if (CARD_KINDS.includes(card.kind)) return card.kind;
-  if (cardStyle !== 'mixed') return cardStyle;
-  if (/report/i.test(card.contentType)) return 'report';
-  return card.image ? 'image' : 'panel';
-}
 
 /**
  * The whole pipeline for a source.

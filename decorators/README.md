@@ -14,7 +14,8 @@ checks) live in [`../utils`](../utils/README.md).
 | `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, filter-list, form-variations |
 | `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
 | `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
-| `scroller-decorator.js` | `createScroller` (previous / next, scroll indicator, mouse drag, keyboard, loop and initial item for a CSS horizontal scroller; active only while it scrolls) | list |
+| `scroller-decorator.js` | `createScroller` (previous / next, scroll indicator, mouse drag, keyboard, loop and initial item for a CSS horizontal scroller; active only while it scrolls) | card list decorator |
+| `card-list-decorator.js` | `buildCardListHeader`, `renderCardList`, `renderCard`, `renderRow`, `renderFeature`, `applyCardListLayout`, `renderCardListEmpty`, `cardListId`, `cardHeadingLevel`, `trackCardList` (the TCS DS Figma List cards: image, panel, report, statistic, feature, rows; grid / scroll per breakpoint; data layer state; styles in `styles/card-list.css`) | list, cards |
 | `masonry-decorator.js` | `layoutMasonry` (a grid's items of different heights packed in columns, in reading order; native masonry where supported) | filter-list |
 | `responsive-image-decorator.js` | `buildImage` (image from a URL; site media optimized) | `scripts.js` (section backgrounds), page-header, filter-list, conversation-canvas, cards |
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | article meta decorator, filter-list |
