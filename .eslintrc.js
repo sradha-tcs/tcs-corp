@@ -19,7 +19,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     // section properties render as section-metadata key/value rows, not block cells;
-    // the Table List settings and the form field / table items need one cell per value
+    // the Table List settings and the form field / table / card items need one cell per value
     'xwalk/max-cells': ['error', {
       '*': 4,
       section: 6,
@@ -27,6 +27,7 @@ module.exports = {
       'table-list': 10,
       'table-list-card': 6,
       'list-item': 13,
+      card: 16,
       'table-col-5': 5,
       'field-text': 6,
       'field-select': 6,

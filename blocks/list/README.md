@@ -3,16 +3,21 @@
 The AEM Core Components **List** for Edge Delivery Services (xwalk / Universal Editor): a list of
 pages or links, from **child pages**, a **fixed list** or **tagged pages**, shown as cards or as a
 list of links, in a grid or a horizontal scroller chosen separately for desktop, tablet and mobile.
-The presentation follows the TCS DS Figma List variations 1–14.
+The presentation follows the TCS DS Figma List variations 1–14. It is shared with the
+[Cards](../cards/README.md) block, the manual authoring alternative (cards typed in the block
+instead of pages): the same settings, markup and styles.
 
 Files:
 
 | File | Purpose |
 |---|---|
-| `blocks/list/_list.json` | Universal Editor definitions (List, List Item), models and filter |
-| `blocks/list/list.js` | Reads the block, renders the header, cards and scroller, analytics |
-| `blocks/list/list-data.js` | Configuration, discovery, page metadata mapping, overrides, deduplication, sorting, limits (no DOM; unit tested) |
-| `blocks/list/list.css` | Figma presentation; grid / scroll per breakpoint |
+| `blocks/list/_list.json` | Universal Editor definitions (List, List Item), models and filter; the presentation fields are the shared groups of `models/_card-list.json` (also used by Cards) |
+| `blocks/list/list.js` | Reads the block and the List Items, discovers the pages, renders through the card list decorator |
+| `blocks/list/list-data.js` | Sources, discovery, page metadata mapping, overrides, deduplication, sorting, limits (no DOM; unit tested); the presentation settings from `utils/card-list-config.js` |
+| `blocks/list/list.css` | Imports `styles/card-list.css` (shared with Cards) |
+| `decorators/card-list-decorator.js` | Header, cards, feature card, rows, grid / scroll classes, scroller, data layer state (shared with Cards) |
+| `utils/card-list-config.js` | Presentation settings, defaults, validation, card kinds (shared with Cards) |
+| `styles/card-list.css` | Figma presentation; grid / scroll per breakpoint (`.card-list`) |
 | `decorators/scroller-decorator.js` | Previous / next, scroll indicator, drag, keyboard, loop, initial item |
 | `utils/query-index.js` | The locale's pages from `/query-index.json` (loaded once, cached) |
 | `utils/redirects.js` | Redirect targets from `/{locale}/redirects.json` |
@@ -139,9 +144,9 @@ decorate(block)
     fixed   resolveFixedItems()      -> normalizePageToCard() / link card -> applyOverrides()
     -> deduplicateCards() -> sortCards() -> limitCards() -> withIds()
   resolveTags()           tag labels (taxonomy)
-  render: header, feature card, <ul> of cards or rows, previous / next, indicator
-  createScroller()        while a breakpoint scrolls
-  pushComponents()        data layer state, click events
+  renderCardList()        header, feature card, <ul> of cards or rows, previous / next,
+                          indicator, createScroller() (decorators/card-list-decorator.js)
+  trackCardList()         data layer state; clicks: the data layer decorator
 ```
 
 Rendering only uses the card model below; all text is set with `textContent` (no `innerHTML`).
@@ -349,10 +354,11 @@ grid on every breakpoint, so no list starts scrolling unless authored. The `titl
 
 ## Extension points
 
-- `PAGE_MAPPING` (metadata columns per card part), `RESPONSIVE_DEFAULTS`, `CARD_THEMES` in
-  `list-data.js`.
-- New card kinds: `kindOf()` and `renderCard()`; new data sources: a `resolve…()` returning index
-  pages or cards, added to `buildCards()`.
+- `PAGE_MAPPING` (metadata columns per card part) in `list-data.js`; `RESPONSIVE_DEFAULTS`,
+  `CARD_THEMES` in `utils/card-list-config.js` (List and Cards).
+- New card kinds: `kindOf()` (`utils/card-list-config.js`) and `renderCard()`
+  (`decorators/card-list-decorator.js`), for both blocks; new data sources: a `resolve…()`
+  returning index pages or cards, added to `buildCards()`.
 - `createScroller()` is a shared decorator usable by other blocks.
 
 ## Known limitations

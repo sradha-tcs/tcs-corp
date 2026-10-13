@@ -9,8 +9,32 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Cards",
+              "model": "cards",
               "filter": "cards",
-              "model": "cards"
+              "key-value": true,
+              "titleType": "h2",
+              "displayAsTeaser": true,
+              "cardStyle": "image",
+              "imageRatio": "16-9",
+              "panelHeight": "portrait",
+              "linkItems": true,
+              "showImage": true,
+              "showEyebrow": true,
+              "showTags": true,
+              "showDescription": true,
+              "showDate": true,
+              "dateFormat": "dd-mmm-yy",
+              "showCta": true,
+              "imageLoading": "lazy",
+              "desktopMode": "grid",
+              "desktopColumns": 4,
+              "tabletMode": "grid",
+              "tabletColumns": 4,
+              "mobileMode": "grid",
+              "mobileColumns": 1,
+              "scrollSnap": true,
+              "emptyBehavior": "hide",
+              "analyticsEnabled": true
             }
           }
         }
@@ -34,35 +58,66 @@
   ],
   "models": [
     {
-      "id": "card",
-      "fields": [
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "imageAlt",
-          "label": "Image alt text",
-          "value": "",
-          "description": "Describes the image for screen readers; leave empty when the image is decorative"
-        },
-        {
-          "component": "richtext",
-          "name": "text",
-          "value": "",
-          "label": "Text",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "cards",
       "fields": [
+        {
+          "component": "tab",
+          "name": "contentTab",
+          "label": "Content"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/header"
+        },
+        {
+          "component": "tab",
+          "name": "cardsTab",
+          "label": "Cards"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/cards"
+        },
+        {
+          "component": "tab",
+          "name": "layoutTab",
+          "label": "Layout"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/layout"
+        },
+        {
+          "component": "tab",
+          "name": "scrollTab",
+          "label": "Scroll"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/scroll"
+        },
+        {
+          "component": "tab",
+          "name": "advancedTab",
+          "label": "Advanced"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "emptyBehavior",
+          "label": "When there are no cards",
+          "options": [
+            {
+              "name": "Hide the block",
+              "value": "hide"
+            },
+            {
+              "name": "Show a message",
+              "value": "message"
+            }
+          ],
+          "value": "hide",
+          "description": "In the editor a hint is always shown."
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/advanced"
+        },
         {
           "component": "tab",
           "name": "additionalTab",
@@ -638,6 +693,228 @@
               "value": "mb-3000"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "card",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "contentTab",
+          "label": "Content"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image alt text",
+          "description": "Describes the image for screen readers; empty: decorative."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "eyebrow",
+          "label": "Eyebrow",
+          "description": "A short label above the title, e.g. Perspective."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title",
+          "description": "Statistic cards: the number, e.g. 4bn."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "label": "Description",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "subtitle",
+          "label": "Label",
+          "description": "Statistic cards: the label above the description, e.g. Revenue."
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "tags",
+          "label": "Tags",
+          "multi": true
+        },
+        {
+          "component": "date-time",
+          "valueType": "date",
+          "name": "date",
+          "label": "Date",
+          "description": "Shown in the Date format of the block."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "contentLabel",
+          "label": "Content type",
+          "description": "e.g. Article or Report (report cards in the Mixed style)."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "readingTime",
+          "label": "Reading time",
+          "description": "Minutes, e.g. 6 (shown as 6m)."
+        },
+        {
+          "component": "tab",
+          "name": "linkTab",
+          "label": "Link"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "Link",
+          "description": "A page of the site or https://…; empty: the card isn't linked."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "Link text",
+          "description": "The title when the card has none."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ctaLabel",
+          "label": "Call to action label",
+          "description": "Shows a call to action (the card's one link); empty: the title is the link."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "newTab",
+          "label": "Open in a new tab",
+          "options": [
+            {
+              "name": "As the block",
+              "value": ""
+            },
+            {
+              "name": "Yes",
+              "value": "true"
+            },
+            {
+              "name": "No",
+              "value": "false"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "tab",
+          "name": "displayTab",
+          "label": "Display"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "kind",
+          "label": "Card style",
+          "options": [
+            {
+              "name": "As the block",
+              "value": ""
+            },
+            {
+              "name": "Image card",
+              "value": "image"
+            },
+            {
+              "name": "Panel",
+              "value": "panel"
+            },
+            {
+              "name": "Report",
+              "value": "report"
+            },
+            {
+              "name": "Statistic",
+              "value": "stat"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "theme",
+          "label": "Card colour",
+          "options": [
+            {
+              "name": "As the block",
+              "value": ""
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Navy",
+              "value": "navy"
+            },
+            {
+              "name": "Brand blue",
+              "value": "brand"
+            },
+            {
+              "name": "Light blue",
+              "value": "brand-light"
+            },
+            {
+              "name": "Light grey",
+              "value": "grey"
+            },
+            {
+              "name": "Mid grey",
+              "value": "mid-grey"
+            },
+            {
+              "name": "Grey gradient",
+              "value": "gradient"
+            },
+            {
+              "name": "Image background",
+              "value": "image"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "analyticsLabel",
+          "label": "Analytics label",
+          "validation": {
+            "maxLength": 120
+          }
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "ariaLabel",
+          "label": "Accessibility label",
+          "description": "The link's accessible name, when the title or call to action isn't enough."
         }
       ]
     }
