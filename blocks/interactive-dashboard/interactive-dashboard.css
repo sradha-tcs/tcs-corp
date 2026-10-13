@@ -7,7 +7,7 @@
 .adobe-ue-edit .interactive-dashboard:empty {
   display: grid;
   place-items: center;
-  min-height: 160px;
+  min-height: 10rem;
   border: var(--border-width-200) dashed var(--color-border-secondary);
   border-radius: var(--radius-l);
   color: var(--color-text-secondary);

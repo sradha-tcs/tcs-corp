@@ -2,7 +2,7 @@
 .video {
   --video-aspect-ratio: 16 / 9;
   --video-radius: 0;
-  --video-max-width: 900px;
+  --video-max-width: 56.25rem;
 
   max-width: var(--video-max-width);
   margin: 0 auto;
@@ -18,11 +18,11 @@
 }
 
 .video.video-size-medium {
-  --video-max-width: 640px;
+  --video-max-width: 40rem;
 }
 
 .video.video-size-small {
-  --video-max-width: 420px;
+  --video-max-width: 26.25rem;
 }
 
 /* Alignment (sizes other than full width) */
@@ -117,7 +117,7 @@
 /* Play in a Pop-up: the player in the modal dialog */
 .modal .video-modal-player {
   position: relative;
-  width: min(90vw, 1200px, calc(80vh * (var(--video-aspect-ratio))));
+  width: min(90vw, 75rem, calc(80vh * (var(--video-aspect-ratio))));
   aspect-ratio: var(--video-aspect-ratio);
 }
 

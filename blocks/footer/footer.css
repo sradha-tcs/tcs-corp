@@ -9,34 +9,34 @@ footer {
   --footer-padding-inline: var(--space-1000);
   --footer-padding-block-end: var(--space-1000);
   --footer-section-gap: var(--space-2000);
-  --footer-text-size: 16px;
-  --footer-text-line-height: 22px;
+  --footer-text-size: 1rem;
+  --footer-text-line-height: 1.375rem;
   --footer-text-weight: var(--font-weight-medium);
   --footer-text-color: var(--color-text-default);
   --footer-row-gap: var(--space-400);
   --footer-column-gap: var(--space-600);
 
   /* with a conversation canvas: the Figma frame height, the bar at the bottom */
-  --footer-canvas-min-height: 767px;
+  --footer-canvas-min-height: 47.9375rem;
   --footer-canvas-gap: var(--space-1000);
-  --footer-canvas-padding-block-start: 96px;
-  --footer-canvas-title-size: 44px;
-  --footer-canvas-title-line-height: 53px;
+  --footer-canvas-padding-block-start: 6rem;
+  --footer-canvas-title-size: 2.75rem;
+  --footer-canvas-title-line-height: 3.3125rem;
   --footer-canvas-buttons-direction: column;
-  --footer-button-text-size: 12px;
-  --footer-search-text-size: 14px;
+  --footer-button-text-size: 0.75rem;
+  --footer-search-text-size: 0.875rem;
 
   /* Figma's mobile search row overflows the column; 16px keeps the placeholder visible */
   --footer-search-padding-start: var(--space-400);
 
   /* Figma "Button" in the footer canvas */
   --footer-button-background: var(--color-bg-default);
-  --footer-button-border: 2px solid #494c4e;
+  --footer-button-border: 0.125rem solid #494c4e;
   --footer-button-color: var(--color-text-default);
   --footer-button-weight: var(--font-weight-medium);
 
   /* 50px tall like Figma: 2px borders, 24px content */
-  --footer-button-padding: calc(var(--space-300) - 1px) var(--space-600);
+  --footer-button-padding: calc(var(--space-300) - 0.0625rem) var(--space-600);
 
   /*
    * glows: Figma "blue" (720 × 514) and "yellow" (664 × 474) at 30% opacity, centered below the
@@ -45,10 +45,10 @@ footer {
    */
   --footer-glow-blue: color-mix(in srgb, var(--color-bg-brand) 30%, transparent);
   --footer-glow-yellow: color-mix(in srgb, var(--color-bg-warning) 30%, transparent);
-  --footer-glow-blue-size: 720px 500px;
-  --footer-glow-yellow-size: 680px 460px;
-  --footer-glow-blue-position: 6% calc(100% + 220px);
-  --footer-glow-yellow-position: 130% calc(100% + 157px);
+  --footer-glow-blue-size: 45rem 31.25rem;
+  --footer-glow-yellow-size: 42.5rem 28.75rem;
+  --footer-glow-blue-position: 6% calc(100% + 13.75rem);
+  --footer-glow-yellow-position: 130% calc(100% + 9.8125rem);
 
   background-color: var(--color-bg-default);
   background-image:
@@ -144,6 +144,7 @@ footer .footer-canvas .conversation-canvas .conversation-canvas-search-form inpu
 footer .footer-canvas .conversation-canvas a.button.secondary {
   font-size: var(--footer-button-text-size);
   line-height: var(--footer-button-text-size);
+  letter-spacing: calc(0.01 * var(--footer-button-text-size));
 }
 
 footer .footer-canvas .conversation-canvas a.button.secondary:not(:hover, :focus-visible) {
@@ -155,7 +156,7 @@ footer .footer-canvas .conversation-canvas a.button.secondary:not(:hover, :focus
 }
 
 footer .footer-canvas .conversation-canvas a.button.secondary:is(:hover, :focus-visible) {
-  border-width: 2px;
+  border-width: 0.125rem;
   padding: var(--footer-button-padding);
   font-weight: var(--footer-button-weight);
 }
@@ -213,8 +214,8 @@ footer .footer .footer-social a {
 
 footer .footer .footer-social .icon,
 footer .footer .footer-social img {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* tablet (Figma 1024): 24px sides and bottom, 14 / 20 text */
@@ -223,17 +224,17 @@ footer .footer .footer-social img {
     --footer-padding-block-start: var(--space-2000);
     --footer-padding-inline: var(--space-600);
     --footer-padding-block-end: var(--space-600);
-    --footer-text-size: 14px;
-    --footer-text-line-height: 20px;
-    --footer-glow-blue-position: 25% calc(100% + 220px);
-    --footer-glow-yellow-position: 88% calc(100% + 157px);
-    --footer-canvas-min-height: 928px;
+    --footer-text-size: 0.875rem;
+    --footer-text-line-height: 1.25rem;
+    --footer-glow-blue-position: 25% calc(100% + 13.75rem);
+    --footer-glow-yellow-position: 88% calc(100% + 9.8125rem);
+    --footer-canvas-min-height: 58rem;
     --footer-canvas-gap: var(--space-2000);
     --footer-canvas-padding-block-start: 0;
-    --footer-canvas-title-size: 52px;
-    --footer-canvas-title-line-height: 62px;
+    --footer-canvas-title-size: 3.25rem;
+    --footer-canvas-title-line-height: 3.875rem;
     --footer-canvas-buttons-direction: row;
-    --footer-button-text-size: 16px;
+    --footer-button-text-size: 1rem;
     --footer-search-text-size: var(--button-font-size);
     --footer-search-padding-start: var(--space-600);
   }
@@ -245,10 +246,10 @@ footer .footer .footer-social img {
     --footer-padding-block-start: var(--space-3000);
     --footer-padding-inline: var(--space-2000);
     --footer-padding-block-end: var(--space-1000);
-    --footer-text-size: 16px;
-    --footer-text-line-height: 22px;
-    --footer-canvas-min-height: 1000px;
-    --footer-canvas-title-size: 80px;
-    --footer-canvas-title-line-height: 96px;
+    --footer-text-size: 1rem;
+    --footer-text-line-height: 1.375rem;
+    --footer-canvas-min-height: 62.5rem;
+    --footer-canvas-title-size: 5rem;
+    --footer-canvas-title-line-height: 6rem;
   }
 }

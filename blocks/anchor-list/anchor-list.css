@@ -37,12 +37,12 @@
 .anchor-list .anchor-list-link {
   display: block;
   padding: var(--space-300) var(--space-600);
-  border-bottom: 3px solid transparent;
+  border-bottom: 0.1875rem solid transparent;
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-regular);
   line-height: 1.61;
-  letter-spacing: -0.005em;
+  letter-spacing: calc(-0.005 * var(--body-font-size-m));
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -59,7 +59,7 @@
   border-bottom-color: var(--color-border-brand);
   color: var(--color-text-default);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.005em;
+  letter-spacing: calc(0.005 * var(--body-font-size-m));
 }
 
 @media (prefers-reduced-motion: reduce) {

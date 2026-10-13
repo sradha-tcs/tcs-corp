@@ -6,7 +6,7 @@
   position: relative;
   isolation: isolate;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   padding: var(--space-1600) var(--space-600);
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
@@ -57,7 +57,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-1000);
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
 }
 
@@ -79,18 +79,18 @@
 .conversation-canvas .conversation-canvas-eyebrow {
   margin: 0;
   color: var(--color-text-brand);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: var(--font-weight-semibold);
-  line-height: 19px;
+  line-height: 1.1875rem;
 }
 
 .conversation-canvas .conversation-canvas-title {
   margin: 0;
   color: var(--color-text-default);
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: var(--font-weight-medium);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.05rem;
 }
 
 /* 16px gap + 24px = 40px between the icon / eyebrow and the title */
@@ -100,22 +100,22 @@
 }
 
 .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-  font-size: 44px;
-  letter-spacing: -0.03em;
+  font-size: 2.75rem;
+  letter-spacing: -0.0825rem;
 }
 
 .conversation-canvas.conversation-canvas-title-medium .conversation-canvas-title {
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 1.4;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.0438rem;
 }
 
 .conversation-canvas .conversation-canvas-text {
-  max-width: 812px;
+  max-width: 50.75rem;
   font-size: var(--button-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: 26px;
-  letter-spacing: -0.005em;
+  line-height: 1.625rem;
+  letter-spacing: calc(-0.005 * var(--button-font-size));
 }
 
 .conversation-canvas .conversation-canvas-text > * {
@@ -134,15 +134,15 @@
   display: flex;
   align-items: center;
   gap: var(--space-300);
-  width: min(100%, 686px);
+  width: min(100%, 42.875rem);
 }
 
 .conversation-canvas .conversation-canvas-menu-toggle {
   display: grid;
   flex: none;
   place-items: center;
-  width: 59px;
-  height: 59px;
+  width: 3.6875rem;
+  height: 3.6875rem;
   margin: 0;
   border: var(--border-width-200) solid var(--conversation-canvas-outline);
   border-radius: var(--radius-full);
@@ -173,7 +173,7 @@
   gap: var(--space-200);
   min-width: 0;
   border: var(--border-width-200) solid var(--conversation-canvas-outline);
-  border-radius: 58px;
+  border-radius: 3.625rem;
   padding: var(--space-200) var(--space-200) var(--space-200) var(--space-400);
   background-color: var(--conversation-canvas-surface);
   transition: border-color 0.2s;
@@ -193,8 +193,8 @@
   color: var(--color-text-default);
   font-size: var(--button-font-size);
   font-weight: var(--font-weight-medium);
-  line-height: 22px;
-  letter-spacing: -0.005em;
+  line-height: 1.375rem;
+  letter-spacing: calc(-0.005 * var(--button-font-size));
   outline: none;
 }
 
@@ -243,8 +243,8 @@
   left: 0;
   z-index: 101;
   box-sizing: border-box;
-  min-width: 240px;
-  max-width: min(360px, calc(100vw - 2 * var(--space-600)));
+  min-width: 15rem;
+  max-width: min(22.5rem, calc(100vw - 2 * var(--space-600)));
   max-height: 60vh;
   overflow: auto;
   border-radius: var(--radius-l);
@@ -278,7 +278,7 @@
   padding: var(--space-200) var(--space-100);
   color: var(--color-text-default);
   font-size: var(--button-font-size);
-  line-height: 26px;
+  line-height: 1.625rem;
   text-decoration: none;
 }
 
@@ -297,7 +297,7 @@
   bottom: var(--space-600);
   left: 50%;
   z-index: 100;
-  width: min(686px, calc(100vw - 2 * var(--space-600)));
+  width: min(42.875rem, calc(100vw - 2 * var(--space-600)));
   transform: translateX(-50%);
   animation: conversation-canvas-float-in 0.3s ease-out;
 }
@@ -333,7 +333,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-300);
-  max-width: 900px;
+  max-width: 56.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -366,7 +366,7 @@
   }
 
   .conversation-canvas .conversation-canvas-search {
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   .conversation-canvas .conversation-canvas-search-form {
@@ -376,24 +376,28 @@
 
   .conversation-canvas .conversation-canvas-eyebrow {
     font-size: var(--label-font-size);
-    line-height: 22px;
+    line-height: 1.375rem;
   }
 
   .conversation-canvas .conversation-canvas-title {
-    font-size: 50px;
+    font-size: 3.125rem;
+    letter-spacing: -0.0625rem;
   }
 
   .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-    font-size: 64px;
+    font-size: 4rem;
+    letter-spacing: -0.12rem;
   }
 
   .conversation-canvas.conversation-canvas-title-medium .conversation-canvas-title {
-    font-size: 32px;
+    font-size: 2rem;
+    letter-spacing: -0.05rem;
   }
 
   .conversation-canvas .conversation-canvas-text {
-    font-size: 18px;
-    line-height: 29px;
+    font-size: 1.125rem;
+    letter-spacing: -0.0056rem;
+    line-height: 1.8125rem;
   }
 
 }
@@ -410,19 +414,22 @@
 
   .conversation-canvas .conversation-canvas-eyebrow {
     font-size: var(--button-font-size);
-    line-height: 26px;
+    line-height: 1.625rem;
   }
 
   .conversation-canvas .conversation-canvas-title {
-    font-size: 64px;
+    font-size: 4rem;
+    letter-spacing: -0.08rem;
   }
 
   .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-    font-size: 80px;
+    font-size: 5rem;
+    letter-spacing: -0.15rem;
   }
 
   .conversation-canvas.conversation-canvas-title-medium .conversation-canvas-title {
-    font-size: 40px;
+    font-size: 2.5rem;
+    letter-spacing: -0.0625rem;
   }
 
 
@@ -471,7 +478,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 37px;
+  gap: 2.3125rem;
   padding: var(--space-600);
   opacity: 0;
   pointer-events: none;
@@ -500,7 +507,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 }
 
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
-  width: min(100%, 340px);
+  width: min(100%, 21.25rem);
 }
 
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
@@ -520,7 +527,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   align-items: center;
   justify-content: center;
   gap: var(--space-300);
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -531,7 +538,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   display: inline-flex;
   align-items: center;
   gap: var(--space-200);
-  min-height: 48px;
+  min-height: 3rem;
   margin: 0;
   border: var(--border-width-100) solid var(--color-border-default);
   border-radius: var(--radius-full);
@@ -539,10 +546,10 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
   font-family: var(--body-font-family);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: var(--font-weight-regular);
-  line-height: 29px;
-  letter-spacing: -0.005em;
+  line-height: 1.8125rem;
+  letter-spacing: -0.0056rem;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -579,8 +586,8 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 .conversation-canvas .conversation-canvas-nav-back {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   margin: 0;
   border: var(--border-width-200) solid var(--color-border-default);
   border-radius: var(--radius-full);
@@ -601,16 +608,16 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 /* panel with a pill's sub-pages, in place of the search row */
 .conversation-canvas .conversation-canvas-nav-panel {
   box-sizing: border-box;
-  width: min(100%, 420px);
+  width: min(100%, 26.25rem);
   border: var(--border-width-200) solid var(--color-border-default);
-  border-radius: 20px;
+  border-radius: 1.25rem;
   padding: var(--space-300) var(--space-800);
   background-color: rgb(255 255 255 / 40%);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1.25rem);
 }
 
 .conversation-canvas .conversation-canvas-nav-panel.conversation-canvas-nav-panel-wide {
-  width: min(100%, 816px);
+  width: min(100%, 51rem);
 }
 
 .conversation-canvas .conversation-canvas-nav-panel-list {
@@ -637,7 +644,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   padding: var(--space-300) 0;
   color: var(--color-text-default);
   font-size: var(--button-font-size);
-  line-height: 22px;
+  line-height: 1.375rem;
   text-decoration: none;
 }
 
@@ -676,7 +683,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   }
 
   .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
-    width: min(100%, 607px);
+    width: min(100%, 37.9375rem);
   }
 
   .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {

@@ -18,7 +18,7 @@
   font-size: var(--heading-font-size-m);
   font-weight: var(--font-weight-medium);
   line-height: 1.417;
-  letter-spacing: -0.015em;
+  letter-spacing: calc(-0.015 * var(--heading-font-size-m));
   list-style: none;
   cursor: pointer;
   transition: color 0.2s;
@@ -51,7 +51,7 @@
 
 .accordion .accordion-item-label:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: 2px;
+  outline-offset: 0.125rem;
 }
 
 .accordion .accordion-item[open] .accordion-item-label::after {
