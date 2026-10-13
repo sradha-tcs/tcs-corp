@@ -1,5 +1,6 @@
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
+import { pushComponentEvent } from '../../utils/analytics.js';
 import { isEditing, prefersReducedMotion, scrollBehavior } from '../../utils/environment.js';
 import { watchVisibility } from '../../utils/viewport.js';
 import { uniqueId } from '../../utils/ids.js';
@@ -38,21 +39,23 @@ export default async function decorate(block) {
   const interval = readInterval(block);
 
   block.setAttribute('role', 'region');
-  block.setAttribute('aria-roledescription', 'carousel');
+  block.setAttribute('aria-roledescription', t('carouselRole', 'carousel'));
   if (!block.hasAttribute('aria-label')) block.setAttribute('aria-label', t('carousel', 'Carousel'));
 
-  const track = document.createElement('ul');
+  // slides are groups (WAI-ARIA carousel pattern), so the track isn't a list
+  const track = document.createElement('div');
   track.className = 'gen-carousel-slides';
   track.id = `${id}-slides`;
   track.setAttribute('aria-live', 'polite');
 
   const contents = [...block.children];
   const slides = contents.map((content, i) => {
-    const slide = document.createElement('li');
+    const slide = document.createElement('div');
     slide.className = 'gen-carousel-slide';
     slide.id = `${id}-slide-${i + 1}`;
+    slide.dataset.cmpId = slide.id;
     slide.setAttribute('role', 'group');
-    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-roledescription', t('slideRole', 'slide'));
     slide.setAttribute('aria-label', t('slideOf', '{n} of {total}', { n: i + 1, total: contents.length }));
     slide.append(content);
     track.append(slide);
@@ -84,6 +87,10 @@ export default async function decorate(block) {
   });
 
   const setCurrent = (index) => {
+    // a change of slide in the data layer (not the first slide on load)
+    if (index !== current && slides[index]) {
+      pushComponentEvent('cmp:show', slides[index].dataset.cmpId, { position: index + 1 });
+    }
     current = index;
     const editing = isEditing();
     slides.forEach((slide, i) => {
@@ -138,6 +145,7 @@ export default async function decorate(block) {
 
   if (nav.auto) {
     toggle = createIconButton({ className: 'gen-carousel-toggle', label: t('pauseSlides', 'Pause slides'), icon: 'pause' });
+    toggle.dataset.cmpInteraction = 'pause';
     toggle.setAttribute('aria-controls', track.id);
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;
@@ -151,6 +159,8 @@ export default async function decorate(block) {
   if (nav.manual) {
     const prev = createIconButton({ className: 'gen-carousel-prev', label: t('previousSlide', 'Previous slide'), icon: 'chevron-left' });
     const next = createIconButton({ className: 'gen-carousel-next', label: t('nextSlide', 'Next slide'), icon: 'chevron-right' });
+    prev.dataset.cmpInteraction = 'previous';
+    next.dataset.cmpInteraction = 'next';
     prev.setAttribute('aria-controls', track.id);
     next.setAttribute('aria-controls', track.id);
     prev.addEventListener('click', () => { goTo(current - 1); schedule(); });
@@ -158,8 +168,8 @@ export default async function decorate(block) {
     controls.append(prev, dots, next);
 
     block.addEventListener('keydown', (e) => {
-      if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
-      if (e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      // the arrow keys belong to the controls; widgets inside slides keep theirs
+      if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || !e.target.closest('.gen-carousel-controls')) return;
       e.preventDefault();
       goTo(current + (e.key === 'ArrowLeft' ? -1 : 1));
       dotButtons[current].focus({ preventScroll: true });

@@ -1,13 +1,13 @@
-import { createHiddenText } from '../../decorators/a11y-decorator.js';
 import { buildAuthorLockup } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
-import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { createScroller } from '../../decorators/scroller-decorator.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { pushComponentEvent, pushComponents } from '../../utils/analytics.js';
+import { trackPage } from '../../decorators/data-layer-decorator.js';
+import { pushComponents } from '../../utils/analytics.js';
 import { readButtonOptions } from '../../utils/buttons.js';
 import { matchCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
@@ -171,6 +171,7 @@ function buildHeader(read, ids) {
     if (label) link.textContent = label;
     const type = legacy ? readButtonOptions(link).type : textOf(props.linktype).toLowerCase();
     decorateButton(link, { view: 'button', type: ['primary', 'secondary'].includes(type) ? type : 'tertiary' });
+    link.dataset.cmpInteraction = 'cta';
     const ctaSlot = element('div', 'list-cta-slot');
     ctaSlot.append(link);
     header.append(ctaSlot);
@@ -182,13 +183,14 @@ function buildHeader(read, ids) {
 function cardLink(card, label, t) {
   const a = element('a', 'list-card-link', label);
   a.href = card.url;
+  if (card.accessibilityLabel) a.setAttribute('aria-label', card.accessibilityLabel);
   if (card.openInNewTab) {
     setLinkTarget(a, true);
-    a.append(createHiddenText(` ${t('opensInNewTab', '(opens in a new tab)')}`));
+    announceNewTab(a, t('opensInNewTab', '(opens in a new tab)'));
   }
   if (card.external) a.dataset.external = 'true';
-  if (card.accessibilityLabel) a.setAttribute('aria-label', card.accessibilityLabel);
   a.dataset.cardId = card.id;
+  a.dataset.cmpInteraction = 'card';
   if (card.analyticsLabel) a.dataset.analyticsLabel = card.analyticsLabel;
   return a;
 }
@@ -372,17 +374,17 @@ function applyLayout(block, config) {
   );
 }
 
-const responsiveMode = () => {
-  if (window.matchMedia('(min-width: 1200px)').matches) return 'desktop';
-  return window.matchMedia('(min-width: 600px)').matches ? 'tablet' : 'mobile';
-};
-
-/** the data layer entries of the list and its cards; card clicks as events */
+/**
+ * The data layer state of the list and its cards; clicks (cards, CTA, previous / next) are
+ * pushed by the data layer decorator from the data-cmp-* attributes.
+ */
 function trackList(block, config, cards, { id, title }) {
+  block.dataset.analytics = 'custom';
   const variant = config.displayAsTeaser ? config.cardStyle : 'links';
   const components = {
     [id]: {
       '@type': 'tcs-corp/components/list',
+      parentId: trackPage(),
       'dc:title': title,
       'xdm:listSource': config.source,
       'xdm:variant': variant,
@@ -399,23 +401,12 @@ function trackList(block, config, cards, { id, title }) {
     };
   });
   pushComponents(components);
-  block.addEventListener('click', (e) => {
-    const link = e.target.closest('a[data-card-id]');
-    if (!link) return;
-    pushComponentEvent('cmp:click', link.dataset.cardId, {
-      parentId: id,
-      position: cards.findIndex((card) => card.id === link.dataset.cardId) + 1,
-      interaction: 'card',
-      listSource: config.source,
-      responsiveMode: responsiveMode(),
-      variant,
-    });
-  });
 }
 
 /** a unique component id: the authored one (suffixed when taken), else a generated one */
-function componentIdOf(config) {
-  let id = config.componentId || uniqueId('list');
+function componentIdOf(config, block) {
+  // the Component ID, else the Anchor ID (Additional tab), else generated
+  let id = config.componentId || block.id || uniqueId('list');
   if (config.componentId && document.getElementById(id)) {
     debug(`component id "${id}" is used twice`);
     id = `${id}-${uniqueId('dup').split('-').pop()}`;
@@ -434,7 +425,7 @@ export default async function decorate(block) {
   const read = readBlockConfig(block);
   const config = normalizeConfig(read.raw);
   const t = await getPlaceholders();
-  const id = componentIdOf(config);
+  const id = componentIdOf(config, block);
   const { header, heading } = buildHeader(read, { base: id });
 
   // lists made before: a title and a CTA only
@@ -513,9 +504,11 @@ export default async function decorate(block) {
   if (config.listLabel) viewport.setAttribute('aria-label', config.listLabel);
   const list = element('ul', 'list-items');
   const fragment = document.createDocumentFragment();
-  listed.forEach((card) => {
+  listed.forEach((card, index) => {
     const li = element('li', 'list-item');
     li.dataset.cardId = card.id;
+    li.dataset.cmpId = card.id;
+    li.dataset.cmpPosition = String(index + 1);
     li.append(config.displayAsTeaser
       ? renderCard(card, config, { t, level, kind: kindOf(card, config.cardStyle) })
       : renderRow(card, config, { t, level }));
@@ -551,14 +544,12 @@ export default async function decorate(block) {
     keyboard: config.keyboard,
     reducedMotion: config.reducedMotion,
     initialIndex: config.initialIndex,
-    onNavigate: (direction) => {
-      if (!config.analytics) return;
-      pushComponentEvent('cmp:click', id, {
-        interaction: direction, listSource: config.source, responsiveMode: responsiveMode(),
-      });
-    },
   });
+  previous.dataset.cmpInteraction = 'previous';
+  next.dataset.cmpInteraction = 'next';
   if (config.analytics) {
     trackList(block, config, cards, { id, title: heading?.textContent.trim() || config.listLabel });
+  } else {
+    block.dataset.analytics = 'off';
   }
 }

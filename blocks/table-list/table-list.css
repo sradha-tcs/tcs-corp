@@ -133,6 +133,12 @@
   inset: 0;
 }
 
+/* links in the description stay clickable above the item's link */
+.table-list .table-list-description a {
+  position: relative;
+  z-index: 1;
+}
+
 .table-list a.table-list-arrow:focus-visible {
   outline: var(--border-width-200) solid var(--color-border-brand);
   outline-offset: 0.25rem;

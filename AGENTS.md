@@ -129,6 +129,12 @@ Use `curl` and `console.log` to inspect the HTML delivered by the backend and th
 
 Each block should be self-contained and re-useable, with CSS and JS files following the naming convention: `blockname.css`, `blockname.js`. Blocks should be responsive and accessible by default.
 
+**Additional tab.** Every block model except header and footer ends with an "Additional" tab: Anchor ID (`classes_anchor`, must start with `anchor-`, e.g. `anchor-our-services`), Hide block (`classes_hideblock`) and Padding / Margin Left, Right, Top, Bottom (`classes_padding*` / `classes_margin*`, the `--space-*` tokens in rem: `pt-400` = `var(--space-400)`). They are `classes_*` fields, so they arrive as block classes and never shift the rows of positional blocks. `decorators/block-options-decorator.js` makes the anchor class the block's id (de-duplicated with `-2`, `-3`, ...); `styles/styles.css` hides `hideblock` blocks on the page (dimmed and outlined in Universal Editor) and applies the spacing classes. Add the same tab to new blocks (copy it from an existing `_block.json`; `max-cells` allows 8 for the tab fields).
+
+**Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown).
+
+**Accessibility.** Blocks meet WCAG 2.1 AA: buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
+
 ### Shared code: decorators and utils
 
 Blocks don't re-implement shared behavior; they import it from single-purpose modules:

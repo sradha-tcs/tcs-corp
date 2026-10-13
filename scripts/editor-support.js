@@ -7,6 +7,7 @@ import {
   loadSections,
 } from './aem.js';
 import { decorateRichtext } from './editor-support-rte.js';
+import { applyBlockOptions } from '../decorators/block-options-decorator.js';
 import { decorateButtons, decorateMain, decorateSectionsWithOptions } from './scripts.js';
 
 let promiseChanges$ = Promise.resolve();
@@ -59,6 +60,7 @@ async function applyChanges(event) {
         decorateButtons(newBlock);
         decorateIcons(newBlock);
         decorateBlock(newBlock);
+        applyBlockOptions(newBlock);
         decorateRichtext(newBlock);
         await loadBlock(newBlock);
         block.remove();
@@ -79,6 +81,7 @@ async function applyChanges(event) {
           decorateRichtext(newSection);
           decorateSectionsWithOptions(parentElement);
           decorateBlocks(parentElement);
+          applyBlockOptions(parentElement);
           await loadSections(parentElement);
           element.remove();
           newSection.style.display = null;

@@ -83,6 +83,74 @@ function setRequired(control, required) {
   if (required) control.dataset.required = 'true';
 }
 
+/** the autocomplete value of a field from its name or type (WCAG 1.3.5 input purpose) */
+const AUTOCOMPLETE = [
+  [/first|given/, 'given-name'], [/last|surname|family/, 'family-name'], [/^(full[-_ ]?)?name$/, 'name'],
+  [/e-?mail/, 'email'], [/phone|mobile|tel/, 'tel'], [/company|organi[sz]ation/, 'organization'],
+  [/job|designation|position/, 'organization-title'], [/country/, 'country-name'],
+  [/city|town/, 'address-level2'], [/zip|postal|post[-_ ]?code/, 'postal-code'],
+];
+function autocompleteOf(name, type) {
+  if (type === 'email') return 'email';
+  if (type === 'tel') return 'tel';
+  const match = AUTOCOMPLETE.find(([pattern]) => pattern.test(name.toLowerCase()));
+  return match ? match[1] : '';
+}
+
+/** the visible error of a field, linked to it (aria-invalid, aria-describedby) */
+function showError(control, message) {
+  const id = `${control.id}-error`;
+  let error = control.form?.querySelector(`#${CSS.escape(id)}`);
+  if (!error) {
+    error = document.createElement('p');
+    error.className = 'form-variations-error';
+    error.id = id;
+    control.closest('.form-variations-group')?.append(error);
+  }
+  error.textContent = message;
+  control.setAttribute('aria-invalid', 'true');
+  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+  if (!described.includes(id)) control.setAttribute('aria-describedby', [...described, id].join(' '));
+}
+
+function clearError(control) {
+  control.removeAttribute('aria-invalid');
+  const id = `${control.id}-error`;
+  control.form?.querySelector(`#${CSS.escape(id)}`)?.remove();
+  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter((v) => v && v !== id);
+  if (described.length) control.setAttribute('aria-describedby', described.join(' '));
+  else control.removeAttribute('aria-describedby');
+}
+
+/** the message of an invalid field, from the placeholders */
+function errorOf(control) {
+  const { validity } = control;
+  if (validity.valueMissing) return t('fieldRequired', 'This field is required.');
+  if (validity.typeMismatch && control.type === 'email') return t('fieldEmail', 'Enter a valid email address.');
+  if (validity.typeMismatch || validity.patternMismatch) return t('fieldFormat', 'Enter a valid value.');
+  if (validity.tooLong) return t('fieldTooLong', 'This text is too long.');
+  return control.validationMessage;
+}
+
+/**
+ * Validates the visible fields: errors next to the fields, focus on the first invalid one.
+ * @returns {boolean} whether the form is valid
+ */
+function validate(form) {
+  const controls = [...form.elements].filter((el) => el.matches('input, select, textarea')
+    && !el.disabled && el.type !== 'hidden' && el.type !== 'submit');
+  const invalid = controls.filter((control) => {
+    if (control.checkValidity()) {
+      clearError(control);
+      return false;
+    }
+    showError(control, errorOf(control));
+    return true;
+  });
+  invalid[0]?.focus();
+  return !invalid.length;
+}
+
 function buildTextField(cells, nextId) {
   const [nameCell, labelCell, kindCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'text';
@@ -97,8 +165,8 @@ function buildTextField(cells, nextId) {
   input.type = INPUT_KINDS.includes(kind) ? kind : 'text';
   input.id = id;
   input.name = name;
-  if (input.type === 'email') input.autocomplete = 'email';
-  if (input.type === 'tel') input.autocomplete = 'tel';
+  const autocomplete = autocompleteOf(name, input.type);
+  if (autocomplete) input.autocomplete = autocomplete;
   setRequired(input, required);
   group.append(createLabel(id, labelCell, required, name), input);
   return group;
@@ -155,7 +223,6 @@ function buildTextareaField(cells, nextId) {
   const counter = document.createElement('span');
   counter.className = 'form-variations-counter';
   counter.id = `${id}-counter`;
-  counter.setAttribute('aria-live', 'polite');
   const update = () => { counter.textContent = `${textarea.value.length}/${limit}`; };
   textarea.setAttribute('aria-describedby', counter.id);
   textarea.addEventListener('input', update);
@@ -339,21 +406,35 @@ export default async function decorate(block) {
   const status = document.createElement('p');
   status.className = 'form-variations-status';
   status.setAttribute('role', 'status');
+  status.tabIndex = -1;
 
   form.addEventListener('change', (e) => {
     if (e.target.matches('select')) updateVisibility(form, editing);
   });
-  form.addEventListener('input', () => { status.textContent = ''; });
+  // the required marker explained once (it's hidden from screen readers, the fields are required)
+  if (form.querySelector('[required]')) {
+    const note = document.createElement('p');
+    note.className = 'form-variations-required-note';
+    note.textContent = t('requiredNote', '* Required fields');
+    form.prepend(note);
+  }
+
+  form.addEventListener('input', (e) => {
+    status.textContent = '';
+    if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) clearError(e.target);
+  });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     status.textContent = '';
-    if (!form.reportValidity()) return;
+    if (!validate(form)) return;
     const data = collectData(form);
     block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, detail: { data } }));
     form.reset();
     form.querySelectorAll('textarea').forEach((textarea) => textarea.dispatchEvent(new Event('input')));
     updateVisibility(form, editing);
     status.textContent = t('formSuccess', 'Thank you, your details were sent.');
+    // focus stays on the page (the submit button may be hidden by the reset)
+    status.focus();
   });
 
   block.replaceChildren(...(header.children.length ? [header] : []), form, status);

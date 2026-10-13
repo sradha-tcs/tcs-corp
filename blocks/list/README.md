@@ -305,9 +305,15 @@ entries pushed before it loads), following the Core Components data layer:
   'list-1': { '@type': 'tcs-corp/components/list', 'dc:title': 'Media Coverage', 'xdm:listSource': 'tags', 'xdm:variant': 'mixed' },
   'list-1-item-hxobwp': { '@type': 'tcs-corp/components/list/item', parentId: 'list-1', 'dc:title': '…', 'xdm:linkURL': '/en/…', 'xdm:position': 1, 'repo:modifyDate': '2026-09-04' },
 } }
-{ event: 'cmp:click', eventInfo: { path: 'component.list-1-item-hxobwp', parentId: 'list-1', position: 1, interaction: 'card', listSource: 'tags', responsiveMode: 'desktop', variant: 'mixed' } }
-{ event: 'cmp:click', eventInfo: { path: 'component.list-1', interaction: 'next', listSource: 'tags', responsiveMode: 'desktop' } }
+{ event: 'cmp:click', eventInfo: { path: 'component.list-1-item-hxobwp', interaction: 'card', position: 1, 'dc:title': '…', 'xdm:linkURL': '…', 'xdm:linkType': 'other', breakpoint: 'desktop' } }
+{ event: 'cmp:click', eventInfo: { path: 'component.list-1', interaction: 'next', 'dc:title': 'Next items', 'xdm:linkType': 'other', breakpoint: 'desktop' } }
 ```
+
+The list pushes its own component state (`data-analytics="custom"`); the clicks (cards, header
+CTA, previous / next) are captured by the site-wide data layer
+(`decorators/data-layer-decorator.js`) from the `data-cmp-id`, `data-cmp-interaction` and
+`data-cmp-position` attributes. With Analytics off the list is `data-analytics="off"`: no state
+and no events.
 
 Pushes are wrapped so an analytics error never breaks rendering or links. No repository details
 are exposed.

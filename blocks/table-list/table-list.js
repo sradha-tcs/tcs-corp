@@ -2,6 +2,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { pick } from '../../utils/buttons.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
+import { matchCells } from '../../utils/cells.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { onVisible } from '../../utils/viewport.js';
@@ -73,7 +74,6 @@ function linkTextOf(cell) {
   return text;
 }
 
-const isEmpty = (cell) => !textOf(cell) && !cell.querySelector('a[href], picture, img');
 const hasHeading = (cell) => !!cell.querySelector('h1, h2, h3, h4, h5, h6');
 const isNumber = (cell) => /^\d{1,3}[.)]?$/.test(textOf(cell));
 const isLink = (cell) => {
@@ -105,31 +105,6 @@ const ITEM_MATCHERS = {
   description: (cell) => !isLink(cell),
   link: isLink,
 };
-
-/**
- * Matches cells to fields in model order: an empty cell keeps its field's place, a cell with a
- * value goes to the next field it fits (a field AEM left out is skipped).
- * @param {Element[]} cells
- * @param {string[]} fields
- * @param {Object<string, (cell: Element) => boolean>} matchers
- * @returns {Object<string, Element>}
- */
-function matchFields(cells, fields, matchers) {
-  const matched = {};
-  let next = 0;
-  cells.forEach((cell) => {
-    if (next >= fields.length) return;
-    if (isEmpty(cell)) {
-      next += 1;
-      return;
-    }
-    const index = fields.findIndex((field, i) => i >= next && matchers[field](cell));
-    if (index < 0) return;
-    matched[fields[index]] = cell;
-    next = index + 1;
-  });
-  return matched;
-}
 
 /**
  * Whether a row is an item (or the legacy header item) rather than a block property: the
@@ -165,7 +140,7 @@ function readBlock(block) {
     if (FIELDS.includes(key)) [, cells[key]] = rowCells;
     else if (rowCells.length) unkeyed.push(rowCells[rowCells.length - 1]);
   });
-  if (!Object.keys(cells).length) cells = matchFields(unkeyed, FIELDS, PROPERTY_MATCHERS);
+  if (!Object.keys(cells).length) cells = matchCells(unkeyed, FIELDS, PROPERTY_MATCHERS);
 
   const variation = pick(textOf(cells.variations), VARIATIONS, 'industries');
   const defaults = VARIATION_DEFAULTS[variation];
@@ -255,7 +230,7 @@ function buildAction(linkCell, title, config) {
     const text = linkTextOf(linkCell) || config.buttonText || t('explore', 'Explore');
     const button = buildButton(href, text, 'secondary');
     if (!button) return null;
-    if (href) button.setAttribute('aria-label', `${text}: ${title}`);
+    if (href) button.setAttribute('aria-label', t('itemLinkLabel', '{text}: {title}', { text, title }));
     action.append(button);
     return action;
   }
@@ -289,7 +264,7 @@ function decorateItem(row, index, config) {
   const {
     number: numberCell, title: titleCell, trademark: trademarkCell,
     description: descriptionCell, link: linkCell,
-  } = matchFields([...row.children], ITEM_FIELDS, ITEM_MATCHERS);
+  } = matchCells([...row.children], ITEM_FIELDS, ITEM_MATCHERS);
 
   const main = document.createElement('div');
   main.className = 'table-list-main';
@@ -298,7 +273,7 @@ function decorateItem(row, index, config) {
     if (!number.textContent) number.textContent = String(index + 1).padStart(2, '0');
     main.append(number);
   }
-  const title = fromCell(titleCell, 'h3', 'table-list-title');
+  const title = fromCell(titleCell, config.itemHeadingType, 'table-list-title');
   const trademark = TRADEMARKS[textOf(trademarkCell).toLowerCase()];
   if (trademark) {
     const sup = document.createElement('sup');
@@ -340,6 +315,9 @@ export default async function decorate(block) {
   const config = readBlock(block);
 
   block.classList.add(config.variation, `numbers-${config.numbers}`, `motion-${config.motion}`);
+  // the item titles are a level below the list heading (h2 without one)
+  const level = Number(config.headingType.slice(1));
+  config.itemHeadingType = config.heading || config.header ? `h${level + 1}` : 'h2';
 
   const list = document.createElement('div');
   list.className = 'table-list-items';

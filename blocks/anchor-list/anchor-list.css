@@ -55,7 +55,12 @@
   text-decoration: none;
 }
 
-.anchor-list .anchor-list-link[aria-current='true'] {
+.anchor-list .anchor-list-link:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: -0.1875rem;
+}
+
+.anchor-list .anchor-list-link[aria-current='location'] {
   border-bottom-color: var(--color-border-brand);
   color: var(--color-text-default);
   font-weight: var(--font-weight-semibold);

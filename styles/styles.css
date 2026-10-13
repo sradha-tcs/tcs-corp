@@ -1018,3 +1018,470 @@ main .section.rounded {
   border-radius: var(--radius-l);
   overflow: hidden;
 }
+
+/* block options (the Additional tab of every block dialog) */
+
+/*
+ * Hide block: hidden on the page and in the editor's preview; in edit mode shown faded so authors
+ * can still select it. Padding and margin: the style guide's --space-* tokens (rem); the section
+ * selector outranks the blocks' own spacing rules.
+ */
+
+html:not(.adobe-ue-edit) main .block.hideblock,
+html:not(.adobe-ue-edit) main .section > div:has(> .block.hideblock) {
+  display: none;
+}
+
+html.adobe-ue-edit main .block.hideblock {
+  opacity: 0.45;
+  outline: var(--border-width-200) dashed var(--color-border-secondary);
+  outline-offset: var(--space-100);
+}
+
+main .section .block.pl-0 {
+  padding-left: var(--space-0);
+}
+
+main .section .block.pl-100 {
+  padding-left: var(--space-100);
+}
+
+main .section .block.pl-200 {
+  padding-left: var(--space-200);
+}
+
+main .section .block.pl-300 {
+  padding-left: var(--space-300);
+}
+
+main .section .block.pl-400 {
+  padding-left: var(--space-400);
+}
+
+main .section .block.pl-500 {
+  padding-left: var(--space-500);
+}
+
+main .section .block.pl-600 {
+  padding-left: var(--space-600);
+}
+
+main .section .block.pl-800 {
+  padding-left: var(--space-800);
+}
+
+main .section .block.pl-1000 {
+  padding-left: var(--space-1000);
+}
+
+main .section .block.pl-1200 {
+  padding-left: var(--space-1200);
+}
+
+main .section .block.pl-1600 {
+  padding-left: var(--space-1600);
+}
+
+main .section .block.pl-2000 {
+  padding-left: var(--space-2000);
+}
+
+main .section .block.pl-2400 {
+  padding-left: var(--space-2400);
+}
+
+main .section .block.pl-3000 {
+  padding-left: var(--space-3000);
+}
+
+main .section .block.pr-0 {
+  padding-right: var(--space-0);
+}
+
+main .section .block.pr-100 {
+  padding-right: var(--space-100);
+}
+
+main .section .block.pr-200 {
+  padding-right: var(--space-200);
+}
+
+main .section .block.pr-300 {
+  padding-right: var(--space-300);
+}
+
+main .section .block.pr-400 {
+  padding-right: var(--space-400);
+}
+
+main .section .block.pr-500 {
+  padding-right: var(--space-500);
+}
+
+main .section .block.pr-600 {
+  padding-right: var(--space-600);
+}
+
+main .section .block.pr-800 {
+  padding-right: var(--space-800);
+}
+
+main .section .block.pr-1000 {
+  padding-right: var(--space-1000);
+}
+
+main .section .block.pr-1200 {
+  padding-right: var(--space-1200);
+}
+
+main .section .block.pr-1600 {
+  padding-right: var(--space-1600);
+}
+
+main .section .block.pr-2000 {
+  padding-right: var(--space-2000);
+}
+
+main .section .block.pr-2400 {
+  padding-right: var(--space-2400);
+}
+
+main .section .block.pr-3000 {
+  padding-right: var(--space-3000);
+}
+
+main .section .block.pt-0 {
+  padding-top: var(--space-0);
+}
+
+main .section .block.pt-100 {
+  padding-top: var(--space-100);
+}
+
+main .section .block.pt-200 {
+  padding-top: var(--space-200);
+}
+
+main .section .block.pt-300 {
+  padding-top: var(--space-300);
+}
+
+main .section .block.pt-400 {
+  padding-top: var(--space-400);
+}
+
+main .section .block.pt-500 {
+  padding-top: var(--space-500);
+}
+
+main .section .block.pt-600 {
+  padding-top: var(--space-600);
+}
+
+main .section .block.pt-800 {
+  padding-top: var(--space-800);
+}
+
+main .section .block.pt-1000 {
+  padding-top: var(--space-1000);
+}
+
+main .section .block.pt-1200 {
+  padding-top: var(--space-1200);
+}
+
+main .section .block.pt-1600 {
+  padding-top: var(--space-1600);
+}
+
+main .section .block.pt-2000 {
+  padding-top: var(--space-2000);
+}
+
+main .section .block.pt-2400 {
+  padding-top: var(--space-2400);
+}
+
+main .section .block.pt-3000 {
+  padding-top: var(--space-3000);
+}
+
+main .section .block.pb-0 {
+  padding-bottom: var(--space-0);
+}
+
+main .section .block.pb-100 {
+  padding-bottom: var(--space-100);
+}
+
+main .section .block.pb-200 {
+  padding-bottom: var(--space-200);
+}
+
+main .section .block.pb-300 {
+  padding-bottom: var(--space-300);
+}
+
+main .section .block.pb-400 {
+  padding-bottom: var(--space-400);
+}
+
+main .section .block.pb-500 {
+  padding-bottom: var(--space-500);
+}
+
+main .section .block.pb-600 {
+  padding-bottom: var(--space-600);
+}
+
+main .section .block.pb-800 {
+  padding-bottom: var(--space-800);
+}
+
+main .section .block.pb-1000 {
+  padding-bottom: var(--space-1000);
+}
+
+main .section .block.pb-1200 {
+  padding-bottom: var(--space-1200);
+}
+
+main .section .block.pb-1600 {
+  padding-bottom: var(--space-1600);
+}
+
+main .section .block.pb-2000 {
+  padding-bottom: var(--space-2000);
+}
+
+main .section .block.pb-2400 {
+  padding-bottom: var(--space-2400);
+}
+
+main .section .block.pb-3000 {
+  padding-bottom: var(--space-3000);
+}
+
+main .section .block.ml-0 {
+  margin-left: var(--space-0);
+}
+
+main .section .block.ml-100 {
+  margin-left: var(--space-100);
+}
+
+main .section .block.ml-200 {
+  margin-left: var(--space-200);
+}
+
+main .section .block.ml-300 {
+  margin-left: var(--space-300);
+}
+
+main .section .block.ml-400 {
+  margin-left: var(--space-400);
+}
+
+main .section .block.ml-500 {
+  margin-left: var(--space-500);
+}
+
+main .section .block.ml-600 {
+  margin-left: var(--space-600);
+}
+
+main .section .block.ml-800 {
+  margin-left: var(--space-800);
+}
+
+main .section .block.ml-1000 {
+  margin-left: var(--space-1000);
+}
+
+main .section .block.ml-1200 {
+  margin-left: var(--space-1200);
+}
+
+main .section .block.ml-1600 {
+  margin-left: var(--space-1600);
+}
+
+main .section .block.ml-2000 {
+  margin-left: var(--space-2000);
+}
+
+main .section .block.ml-2400 {
+  margin-left: var(--space-2400);
+}
+
+main .section .block.ml-3000 {
+  margin-left: var(--space-3000);
+}
+
+main .section .block.mr-0 {
+  margin-right: var(--space-0);
+}
+
+main .section .block.mr-100 {
+  margin-right: var(--space-100);
+}
+
+main .section .block.mr-200 {
+  margin-right: var(--space-200);
+}
+
+main .section .block.mr-300 {
+  margin-right: var(--space-300);
+}
+
+main .section .block.mr-400 {
+  margin-right: var(--space-400);
+}
+
+main .section .block.mr-500 {
+  margin-right: var(--space-500);
+}
+
+main .section .block.mr-600 {
+  margin-right: var(--space-600);
+}
+
+main .section .block.mr-800 {
+  margin-right: var(--space-800);
+}
+
+main .section .block.mr-1000 {
+  margin-right: var(--space-1000);
+}
+
+main .section .block.mr-1200 {
+  margin-right: var(--space-1200);
+}
+
+main .section .block.mr-1600 {
+  margin-right: var(--space-1600);
+}
+
+main .section .block.mr-2000 {
+  margin-right: var(--space-2000);
+}
+
+main .section .block.mr-2400 {
+  margin-right: var(--space-2400);
+}
+
+main .section .block.mr-3000 {
+  margin-right: var(--space-3000);
+}
+
+main .section .block.mt-0 {
+  margin-top: var(--space-0);
+}
+
+main .section .block.mt-100 {
+  margin-top: var(--space-100);
+}
+
+main .section .block.mt-200 {
+  margin-top: var(--space-200);
+}
+
+main .section .block.mt-300 {
+  margin-top: var(--space-300);
+}
+
+main .section .block.mt-400 {
+  margin-top: var(--space-400);
+}
+
+main .section .block.mt-500 {
+  margin-top: var(--space-500);
+}
+
+main .section .block.mt-600 {
+  margin-top: var(--space-600);
+}
+
+main .section .block.mt-800 {
+  margin-top: var(--space-800);
+}
+
+main .section .block.mt-1000 {
+  margin-top: var(--space-1000);
+}
+
+main .section .block.mt-1200 {
+  margin-top: var(--space-1200);
+}
+
+main .section .block.mt-1600 {
+  margin-top: var(--space-1600);
+}
+
+main .section .block.mt-2000 {
+  margin-top: var(--space-2000);
+}
+
+main .section .block.mt-2400 {
+  margin-top: var(--space-2400);
+}
+
+main .section .block.mt-3000 {
+  margin-top: var(--space-3000);
+}
+
+main .section .block.mb-0 {
+  margin-bottom: var(--space-0);
+}
+
+main .section .block.mb-100 {
+  margin-bottom: var(--space-100);
+}
+
+main .section .block.mb-200 {
+  margin-bottom: var(--space-200);
+}
+
+main .section .block.mb-300 {
+  margin-bottom: var(--space-300);
+}
+
+main .section .block.mb-400 {
+  margin-bottom: var(--space-400);
+}
+
+main .section .block.mb-500 {
+  margin-bottom: var(--space-500);
+}
+
+main .section .block.mb-600 {
+  margin-bottom: var(--space-600);
+}
+
+main .section .block.mb-800 {
+  margin-bottom: var(--space-800);
+}
+
+main .section .block.mb-1000 {
+  margin-bottom: var(--space-1000);
+}
+
+main .section .block.mb-1200 {
+  margin-bottom: var(--space-1200);
+}
+
+main .section .block.mb-1600 {
+  margin-bottom: var(--space-1600);
+}
+
+main .section .block.mb-2000 {
+  margin-bottom: var(--space-2000);
+}
+
+main .section .block.mb-2400 {
+  margin-bottom: var(--space-2400);
+}
+
+main .section .block.mb-3000 {
+  margin-bottom: var(--space-3000);
+}

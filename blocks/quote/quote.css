@@ -95,10 +95,12 @@
 
 .quote .quote-card::before {
   content: '\201C';
+  content: '\201C' / '';
 }
 
 .quote .quote-card::after {
   content: '\201D';
+  content: '\201D' / '';
   align-self: end;
 }
 

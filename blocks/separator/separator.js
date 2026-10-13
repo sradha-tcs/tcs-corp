@@ -30,8 +30,9 @@ export function readBlockConfig(block) {
 }
 
 /** the separator's id: the authored one (suffixed when taken), else a generated one */
-function idOf(config) {
-  if (!config.componentId) return uniqueId('separator');
+function idOf(config, block) {
+  // the Component ID, else the Anchor ID (Additional tab), else generated
+  if (!config.componentId) return block.id || uniqueId('separator');
   if (!document.getElementById(config.componentId)) return config.componentId;
   debug(`component id "${config.componentId}" is used twice`);
   return `${config.componentId}-${uniqueId('dup').split('-').pop()}`;
@@ -84,7 +85,8 @@ function initializeAnimation(block, config) {
 }
 
 /** the separator in the Adobe Data Layer (state only: a separator has no interactions) */
-function initializeAnalytics(config, id) {
+function initializeAnalytics(block, config, id) {
+  block.dataset.analytics = config.analytics ? 'custom' : 'off';
   if (!config.analytics) return;
   try {
     pushComponents(analyticsEntry(config, id));
@@ -104,7 +106,7 @@ export default async function decorate(block) {
   const config = normalizeConfig(readBlockConfig(block));
   const warnings = validateConfig(config);
   debug(config, warnings);
-  const id = idOf(config);
+  const id = idOf(config, block);
   block.id = id;
   block.classList.add(...classesOf(config));
 
@@ -134,5 +136,5 @@ export default async function decorate(block) {
 
   block.replaceChildren(...parts);
   initializeAnimation(block, config);
-  initializeAnalytics(config, id);
+  initializeAnalytics(block, config, id);
 }

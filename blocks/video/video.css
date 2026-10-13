@@ -43,6 +43,14 @@
   background-color: var(--color-bg-neutral);
 }
 
+/* pause / stop for a video playing without controls (WCAG 2.2.2) */
+.video .video-media > .video-toggle {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: var(--space-300);
+  inset-inline-end: var(--space-300);
+}
+
 .video .video-media > video,
 .video .video-media > .video-frame,
 .video .video-media > .video-placeholder {

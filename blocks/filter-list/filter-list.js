@@ -374,6 +374,7 @@ export default async function decorate(block) {
   const grid = element('div', `filter-list-grid layout-${config.layout}`);
   if (config.layout === 'masonry') layoutMasonry(grid);
   const more = element('button', '', t('loadMore', 'Load more'));
+  more.dataset.cmpInteraction = 'load-more';
   more.type = 'button';
   decorateButton(more, { view: 'button', type: 'secondary' });
   const moreWrapper = element('p', 'filter-list-more');
@@ -453,6 +454,8 @@ export default async function decorate(block) {
   ];
   const pillButtons = pillList.map((filter) => {
     const button = element('button', 'filter-list-filter', filter.label);
+    button.dataset.cmpInteraction = 'filter';
+    button.dataset.cmpValue = filter.id || 'all';
     button.type = 'button';
     button.dataset.filter = filter.id;
     button.setAttribute('aria-controls', results.id);
@@ -503,6 +506,7 @@ export default async function decorate(block) {
         const item = element('li');
         const box = element('input');
         box.type = 'checkbox';
+        box.dataset.cmpInteraction = 'filter-option';
         box.id = `${id}-option-${c}-${o}`;
         box.value = tag;
         const label = element('label', '', labelOf(tag));
@@ -568,18 +572,21 @@ export default async function decorate(block) {
     selected.clear();
     syncPills();
     render();
-    pillButtons[0]?.focus();
+    // the reset button is gone with the empty message: focus back on the filters
+    (pillButtons[0] || toolbar.querySelector('button'))?.focus();
   });
   if (toolbar.children.length) header.append(toolbar);
   if (panel) header.append(panel);
   header.append(status);
 
-  // Load more: the next cards, focus on the first of them
+  // Load more: the next cards, focus on the first of them, how many are shown announced
   more.addEventListener('click', () => {
     const added = appendCards(config.moreCount);
     added[0]?.querySelector('a')?.focus();
-    status.textContent = resultText((arranged.hero ? 1 : 0) + arranged.featured.length
-      + arranged.cards.length);
+    const total = (arranged.hero ? 1 : 0) + arranged.featured.length + arranged.cards.length;
+    const n = (arranged.hero ? 1 : 0) + nextFeatured + shown;
+    status.textContent = n < total ? t('showingCount', 'Showing {n} of {total}', { n, total })
+      : resultText(total);
   });
 
   block.classList.add(`card-${config.style}`, `layout-${config.layout}`);
