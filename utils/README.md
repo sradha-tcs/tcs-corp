@@ -19,7 +19,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `dates.js` | `formatDate` (DD-MM-YYYY, MM-DD-YYYY, MMM d, yyyy, DD/MM/YY, DD MMM YY; no time zone shift) | date decorator |
 | `query-index.js` | `getPages` (the current locale's pages from `/query-index.json` with their metadata columns: tags, page and content type, dates, images, author, featured, priority; loaded once per page and cached), `columnOf` (a column by its metadata name, e.g. featured-image), `listOf` (a multi-value column) | filter-list, list |
 | `redirects.js` | `loadRedirects`, `resolveRedirect`, `normalizeRedirectPath` (redirect targets from the locale's redirects sheet, loaded once) | list |
-| `analytics.js` | `pushToDataLayer`, `pushComponents`, `pushComponentEvent` (Adobe Client Data Layer, Core Components schema; never throws) | list |
+| `analytics.js` | `pushToDataLayer`, `pushComponents`, `pushComponentEvent` (Adobe Client Data Layer, Core Components schema; never throws) | list, separator |
 | `cells.js` | `matchCells` (block item cells to model fields when AEM leaves out unset fields) | list |
 | `tags.js` | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | teaser, filter-list, taxonomy util |
 | `urls.js` | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | table-list, conversation-canvas |
