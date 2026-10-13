@@ -646,96 +646,548 @@
         "description": "e.g. Explore the Agentic bank"
       },
       {
-        "component": "select",
+        "component": "richtext",
         "valueType": "string",
-        "name": "titleType",
-        "label": "Title Type",
-        "value": "h2",
-        "options": [
-          {
-            "name": "H2",
-            "value": "h2"
-          },
-          {
-            "name": "H3",
-            "value": "h3"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "filtersLabel",
-        "label": "Filters label",
-        "value": "Filters"
+        "name": "description",
+        "label": "Description"
       },
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "showAll",
-        "label": "Show All filter",
-        "description": "An All filter before the others, showing the results of every filter.",
-        "value": true
+        "name": "showResultCount",
+        "label": "Show result count",
+        "value": false
       },
       {
-        "component": "container",
-        "name": "filters",
-        "label": "Filters",
-        "multi": true,
-        "fields": [
+        "component": "select",
+        "valueType": "string",
+        "name": "layout",
+        "label": "Default layout",
+        "value": "masonry",
+        "options": [
           {
-            "component": "text",
-            "valueType": "string",
-            "name": "filterLabel",
-            "label": "Tag title",
-            "description": "The filter's label, e.g. AI & Data."
+            "name": "Masonry",
+            "value": "masonry"
           },
           {
-            "component": "aem-tag",
-            "valueType": "string",
-            "name": "filterTags",
-            "label": "Tags",
-            "description": "Pages with any of these tags (page metadata) are the filter's results.",
-            "multi": true
+            "name": "Grid",
+            "value": "grid"
+          },
+          {
+            "name": "List",
+            "value": "list"
           }
         ]
-      },
-      {
-        "component": "tab",
-        "name": "resultsTab",
-        "label": "Results"
       },
       {
         "component": "number",
         "valueType": "number",
         "name": "cardsPerPage",
         "label": "Cards per page",
-        "description": "Cards shown before Load more (rows of 4 on desktop).",
-        "value": 8,
-        "min": 4,
+        "description": "Cards shown first; Load more shows the next ones.",
+        "value": 9,
+        "min": 1,
         "max": 48
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "loadMoreCount",
+        "label": "Load more count",
+        "description": "Cards added by each Load more.",
+        "value": 6,
+        "min": 1,
+        "max": 48
+      },
+      {
+        "component": "tab",
+        "name": "sourceTab",
+        "label": "Source"
       },
       {
         "component": "select",
         "valueType": "string",
-        "name": "featuredPosition",
-        "label": "Feature cards",
-        "description": "Pages with feature-card = yes in their metadata, ranked by featured-priority (1 first), show as large horizontal cards.",
-        "value": "after",
+        "name": "source",
+        "label": "Datasource",
+        "value": "query-index",
         "options": [
           {
-            "name": "After each page of cards",
-            "value": "after"
+            "name": "Query Index",
+            "value": "query-index"
           },
           {
-            "name": "Before each page of cards",
-            "value": "before"
-          },
-          {
-            "name": "Before and after the first page",
-            "value": "both"
+            "name": "Manual List",
+            "value": "manual"
           }
         ]
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "rootPath",
+        "label": "Root path",
+        "description": "Pages below this page, e.g. /en/insights. Empty: the whole site of the language.",
+        "condition": {
+          "!==": [
+            {
+              "var": "source"
+            },
+            "manual"
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "pages",
+        "label": "Pages",
+        "description": "The pages to list, in this order; their cards come from their metadata.",
+        "multi": true,
+        "condition": {
+          "===": [
+            {
+              "var": "source"
+            },
+            "manual"
+          ]
+        }
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "pageTypes",
+        "label": "Page types",
+        "description": "Only pages of these page types (page-type metadata). None: every page type.",
+        "options": [
+          {
+            "name": "Article",
+            "value": "article"
+          },
+          {
+            "name": "Blog",
+            "value": "blog"
+          },
+          {
+            "name": "Report",
+            "value": "report"
+          },
+          {
+            "name": "Case Study",
+            "value": "case-study"
+          },
+          {
+            "name": "News",
+            "value": "news"
+          },
+          {
+            "name": "Event",
+            "value": "event"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "contentTypes",
+        "label": "Content types",
+        "description": "Only pages of these content types (content-type metadata). None: every content type.",
+        "options": [
+          {
+            "name": "Article",
+            "value": "article"
+          },
+          {
+            "name": "Blog",
+            "value": "blog"
+          },
+          {
+            "name": "Report",
+            "value": "report"
+          },
+          {
+            "name": "Case Study",
+            "value": "case-study"
+          },
+          {
+            "name": "News",
+            "value": "news"
+          },
+          {
+            "name": "Event",
+            "value": "event"
+          },
+          {
+            "name": "Whitepaper",
+            "value": "whitepaper"
+          },
+          {
+            "name": "Podcast",
+            "value": "podcast"
+          },
+          {
+            "name": "Video",
+            "value": "video"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "sortBy",
+        "label": "Sort by",
+        "value": "latest",
+        "options": [
+          {
+            "name": "Latest First",
+            "value": "latest"
+          },
+          {
+            "name": "Featured First",
+            "value": "featured"
+          },
+          {
+            "name": "Priority",
+            "value": "priority"
+          },
+          {
+            "name": "Alphabetical",
+            "value": "alphabetical"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "filtersTab",
+        "label": "Filters"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "primaryCategory",
+        "label": "Primary filter category",
+        "description": "A tag root, e.g. tcs:industry. Without Primary filter tags, its tags used by the pages are the filters."
+      },
+      {
+        "component": "container",
+        "name": "primaryTags",
+        "label": "Primary filter tags",
+        "description": "The filters shown, in this order (labels from the taxonomy).",
+        "multi": true,
+        "fields": [
+          {
+            "component": "aem-tag",
+            "valueType": "string",
+            "name": "tagId",
+            "label": "Tag Id"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showAll",
+        "label": "Show All filter",
+        "value": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "multiSelect",
+        "label": "Allow multi select",
+        "description": "Several filters at once: pages with every selected tag.",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "advancedFilter",
+        "label": "Enable advanced filter",
+        "description": "The filter button opens the Advanced filter categories.",
+        "value": true
+      },
+      {
+        "component": "tab",
+        "name": "advancedTab",
+        "label": "Advanced"
+      },
+      {
+        "component": "container",
+        "name": "advancedCategories",
+        "label": "Advanced filter categories",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "categoryLabel",
+            "label": "Category label",
+            "description": "e.g. Industry"
+          },
+          {
+            "component": "aem-tag",
+            "valueType": "string",
+            "name": "taxonomyRoot",
+            "label": "Taxonomy root",
+            "description": "e.g. tcs:industry; its tags used by the pages are the options."
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "filterLogic",
+        "label": "Filter logic",
+        "description": "AND: pages with every selected option. OR: pages with any of them.",
+        "value": "and",
+        "options": [
+          {
+            "name": "AND",
+            "value": "and"
+          },
+          {
+            "name": "OR",
+            "value": "or"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "cardsTab",
+        "label": "Cards"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cardStyle",
+        "label": "Card style",
+        "value": "mixed",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "Compact",
+            "value": "compact"
+          },
+          {
+            "name": "Featured",
+            "value": "featured"
+          },
+          {
+            "name": "Mixed",
+            "value": "mixed"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "enableFeatured",
+        "label": "Enable featured cards",
+        "description": "Large cards, one after each page of cards.",
+        "value": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "featuredRule",
+        "label": "Featured rule",
+        "value": "featured",
+        "options": [
+          {
+            "name": "featured=true",
+            "value": "featured"
+          },
+          {
+            "name": "priority<=3",
+            "value": "priority"
+          },
+          {
+            "name": "Manual",
+            "value": "manual"
+          }
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "enableFeatured"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "featuredPages",
+        "label": "Featured pages",
+        "multi": true,
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "enableFeatured"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "featuredRule"
+                },
+                "manual"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "featuredCount",
+        "label": "Featured card count",
+        "value": 2,
+        "min": 1,
+        "max": 12,
+        "condition": {
+          "===": [
+            {
+              "var": "enableFeatured"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "enableHero",
+        "label": "Enable hero card",
+        "description": "A large spotlight card first.",
+        "value": false
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "heroRule",
+        "label": "Hero rule",
+        "value": "featured",
+        "options": [
+          {
+            "name": "Latest",
+            "value": "latest"
+          },
+          {
+            "name": "Featured",
+            "value": "featured"
+          },
+          {
+            "name": "Manual",
+            "value": "manual"
+          }
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "enableHero"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "heroPage",
+        "label": "Hero page",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "enableHero"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "heroRule"
+                },
+                "manual"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "tab",
+        "name": "mappingTab",
+        "label": "Mapping"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageSource",
+        "label": "Image source",
+        "description": "The metadata column of the card image.",
+        "value": "featured-image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fallbackImage",
+        "label": "Fallback image",
+        "description": "The column used when the page has no image source.",
+        "value": "thumbnail-image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrowSource",
+        "label": "Eyebrow source",
+        "description": "The content type label, e.g. Article.",
+        "value": "content-type"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "titleSource",
+        "label": "Title source",
+        "value": "title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "descriptionSource",
+        "label": "Description source",
+        "value": "description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tagSource",
+        "label": "Tag source",
+        "value": "tags"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "urlSource",
+        "label": "Url source",
+        "value": "path"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "authorSource",
+        "label": "Author source",
+        "description": "author, or author-id (from the Authors sheet).",
+        "value": "author"
       }
     ]
   },
