@@ -48,6 +48,9 @@ Three verified causes, plus one that must be confirmed in Universal Editor:
 | C-3 | **The item's content model changed.** Originally one rich text cell (heading, text, link). Now title, description, link and call to action are separate fields; old rich text is interpreted (first heading = title, last lone link = CTA) | `blocks/cards/cards.js` `readLegacyText` | Editing an old card in the new dialog is confusing: the title appears in Description, not in Title |
 | C-4 | **To confirm in Universal Editor:** adding Card items to a key-value container | The pattern is documented ("a container block could have key-value properties at the block level, with simple or structured child items") and used by List; not verified in this program's editor | If the **+** doesn't offer Card in this environment, authors can't add cards to new Cards blocks |
 
+C-1 to C-4 are recorded in the project handover (`docs/handover/TCS-CORP-HANDOVER.md`, version 1.1) as
+findings F-34, F-41, F-42 and open item O-20, and in chapter 6.15 (Issues 6 and 11).
+
 > **Important:** Before implementation, confirm C-4 in Universal Editor on a test page: add a new
 > Cards block, select it in the content tree, use **+**, and check that **Card** is offered and its
 > dialog opens. The recommended architecture works either way, but the migration priority differs.

@@ -7,9 +7,10 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 
 | File | Description |
 |---|---|
-| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 1.0, 13 October 2026 (999 pages): project overview, solution architecture, site structure, content architecture, authoring fundamentals, every component (31) with each variation, field specifications, business rules, troubleshooting and support runbooks, taxonomy, metadata, data sheets, error pages, analytics data layer, publishing and release, global troubleshooting, AMS runbook, appendix, and a register of findings and open items (Part 16) |
+| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 1.1, 14 October 2026 (version 1.0 of 13 October 2026 plus the Cards and Card analysis): project overview, solution architecture, site structure, content architecture, authoring fundamentals, every component (31) with each variation, field specifications, business rules, troubleshooting and support runbooks, taxonomy, metadata, data sheets, error pages, analytics data layer, publishing and release, global troubleshooting, AMS runbook, appendix, and a register of findings and open items (Part 16) |
 | [TCS-CORP-HANDOVER.md](TCS-CORP-HANDOVER.md) | The editable source of the PDF (Markdown) |
 | [screenshots/](screenshots/README.md) | Where the screenshots named in the document's placeholders go |
+| [../proposals/](../proposals/README.md) | Design proposals that follow up on the handover (e.g. the Cards and Card refactoring) |
 
 | Part | Contents |
 |---|---|
