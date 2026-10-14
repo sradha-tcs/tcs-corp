@@ -195,8 +195,10 @@ function buildMedia(block, props, layout) {
   const link = props.image.querySelector('a[href]');
   if (option(block, props.imageformat, ['lottie']) && link && isAnimation(link.href)) {
     const behind = layout === 'background' || layout === 'card';
+    // the Image alt text collapses into the animation link's title (as in the Hero)
+    const title = link.title && link.title !== link.textContent ? link.title.trim() : '';
     const animation = createAnimation(link.href, {
-      label: textOf(props.imagealt),
+      label: textOf(props.imagealt) || title,
       className: 'teaser-animation',
       fit: behind ? 'xMidYMid slice' : 'xMidYMid meet',
     });

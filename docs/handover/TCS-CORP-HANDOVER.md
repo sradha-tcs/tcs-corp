@@ -12,7 +12,7 @@ date: "October 14, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 1.3 |
+| Version | 1.4 |
 | Date | 14 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
@@ -28,6 +28,7 @@ date: "October 14, 2026"
 |:---------|:-----------|:-----------|:------------------------------------------------------------|
 | 0.1 | 11 October 2026 | Delivery team | First handover guides (author, developer and admin guides) |
 | 1.0 | 13 October 2026 | Delivery team | Complete enterprise handover: architecture, every component and variation, field specifications, metadata, taxonomy, sheets, operations, AMS runbook, findings register |
+| 1.4 | 14 October 2026 | Delivery team | Findings F-43 to F-48 fixed in the code: List Item cells read in model order (with a unit test against the model), the Video poster read from its grouped cell, the Conversation Canvas voice button and the Teaser Lotto animation named by their collapsed alt texts, the 404 "Go back" button added after the content is loaded (placeholder `goBack`), an inverse hover / focus style for secondary buttons on Dark, Navy and Brand cards; chapters 4.5.3, 6.28, 10.2, 13.7 and Part 16 updated |
 | 1.3 | 14 October 2026 | Delivery team | Every rendering screenshot (596) rebuilt from an authoring spec and followed by an **Authoring steps** table (Step, Where, Field, Value) that reproduces it in Universal Editor; every editor-step and console placeholder (405) replaced by its steps table; findings F-43 to F-48 from the spec work |
 | 1.2 | 14 October 2026 | Delivery team | Screenshots: 598 renderings of every component and variation (desktop, tablet, mobile; sample content on the preview), 31 annotated previews in editor mode and 32 dialog references generated from the component models embedded as figures; 403 placeholders remain for Universal Editor steps, AEM consoles and shots that need live video or third-party players (15.9) |
 | 1.1 | 14 October 2026 | Delivery team | Cards and Card analysis (`docs/proposals/cards-card-refactoring.md`): Cards blocks made before the redesign have no block model and changed appearance; chapter 6.15 (variation 45, Issues 6 and 11, known limitations), findings F-34, F-41, F-42, open item O-20, reference documents |
@@ -2094,7 +2095,7 @@ label.textContent = t('slideOf', '{n} of {total}', { n: 1, total: 4 });
 
 ### 4.5.3 Complete list of placeholder keys
 
-The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scripts/`, `templates/` and `utils/` (91 keys, extracted from the code on 13 October 2026). "Shown as" tells translators where the text appears: **Visible** (on the page), **Accessible name** (`aria-label`, read by screen readers, not visible), **Status** (announced live region text), **Editor only** (shown to authors in the Universal Editor, never to visitors).
+The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scripts/`, `templates/` and `utils/` (92 keys, extracted from the code on 13 October 2026; `goBack` added in version 1.4). "Shown as" tells translators where the text appears: **Visible** (on the page), **Accessible name** (`aria-label`, read by screen readers, not visible), **Status** (announced live region text), **Editor only** (shown to authors in the Universal Editor, never to visitors).
 
 | Key | English fallback | Variables | Component | Shown as |
 |:---------------------|:-------------------------|:----------------|:---------------------|:----------------------------------------|
@@ -2123,6 +2124,7 @@ The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scr
 | `filters` | Filters | none | Filter List | Visible toolbar label (when no Filters label is authored) and accessible name of the pill group |
 | `followUsOn` | Follow us on {platform} | {platform} (Social Links platform) | Footer | Accessible name of each social icon link |
 | `footerLinks` | Footer links | none | Footer | Accessible name of the footer link navigation |
+| `goBack` | Go back | none | 404 page | Visible "Go back" button (when the visitor came from a page of the site) |
 | `formSuccess` | Thank you, your details were sent. | none | Form Variations | Status message after a valid submit |
 | `itemLinkLabel` | {text}: {title} | {text}, {title} | Table List | Accessible name of an item button ("Explore: Item title") |
 | `linkCopied` | Link copied to clipboard | none | Page Header; Teaser (article meta) | Status message after Share copies the link |
@@ -2190,7 +2192,7 @@ The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scr
 | `viewAll` | View all | none | Table List | Visible View all button text (when no text is authored) |
 | `viewLinkedinProfile` | View LinkedIn profile | none | Article and Blog templates (author bio) | Visible link text |
 
-> **Note:** Texts that are **not** placeholders (as of this handover): the built-in content of `404.html` ("Page not found", "Go back"), shown only when no authored 404 page can be loaded; the English month abbreviations of the date formats with "mmm" (`utils/dates.js`, see 4.9.7); and the Filter List card action accessible names, which combine a placeholder with the page title ("Download: {title}"). Keys in the JSDoc example of `utils/placeholders.js` (`nextSlide`, `slideOf`) are the Gen Carousel keys listed above.
+> **Note:** Texts that are **not** placeholders (as of this handover): the built-in content of `404.html` ("Page not found", "Go home"), shown only when no authored 404 page can be loaded; the English month abbreviations of the date formats with "mmm" (`utils/dates.js`, see 4.9.7); and the Filter List card action accessible names, which combine a placeholder with the page title ("Download: {title}"). Keys in the JSDoc example of `utils/placeholders.js` (`nextSlide`, `slideOf`) are the Gen Carousel keys listed above.
 
 ### 4.5.4 Governance and best practices
 
@@ -49182,7 +49184,7 @@ language.
   <div><div>uri</div>
     <div><a href="/content/dam/tcs-corp/videos/ai-lab.mp4">ai-lab.mp4</a></div></div>
   <div><div>label</div><div>TCS AI lab tour</div></div>
-  <div><div>placeholder_image</div>
+  <div><div>placeholder</div>
     <div><picture><img src="./media_9f.jpg" alt="Lab"></picture></div></div>
   <div><div>playback</div><div>click</div></div>
   <div><div>aspectRatio</div><div>16-9</div></div>
@@ -49190,7 +49192,9 @@ language.
 </div>
 ```
 
-Keys are matched case- and separator-insensitively. Blocks authored with the earlier model (a
+The poster fields `placeholder_image` / `placeholder_imageAlt` are an element group: they arrive
+as one `placeholder` row with the alt text on the image (separately keyed `placeholder_image` /
+`placeholder_imageAlt` rows are read too). Keys are matched case- and separator-insensitively. Blocks authored with the earlier model (a
 link and a picture) or delivered as one row per field are also read (Variation 33).
 
 ### 6.28.10 Output Model
@@ -56899,7 +56903,7 @@ Error pages live in every locale site at `/content/tcs-corp/{country}/{code}/err
  decorateMain -> first section -> header (inherited nav) -> footer (inherited footer)
         |
         v
- window load: "Go back" button (same-origin referrer); RUM checkpoint '404'
+ lazy phase: "Go back" button (same-origin referrer); RUM checkpoint '404'
 ```
 
 ## 10.2 404 Not Found
@@ -56915,7 +56919,7 @@ When a requested path has no published page, Edge Delivery Services responds wit
 | CSP | Same policy as `head.html` (`script-src 'nonce-aem' 'strict-dynamic' …; base-uri 'self'; object-src 'none';`, moved to the HTTP header) |
 | Title | `<title>Page not found</title>`, `<meta property="og:title" content="Page not found">` (English, not localised) |
 | Flags | Inline script: `window.isErrorPage = true; window.errorCode = '404';` |
-| Scripts | `/scripts/scripts.js` (which imports `aem.js`); a "Go back" script; a RUM script `sampleRUM('404', { source: document.referrer })` |
+| Scripts | `/scripts/scripts.js` (which imports `aem.js`; it also adds the "Go back" button); a RUM script `sampleRUM('404', { source: document.referrer })` |
 | Styles | `styles.css`, `lazy-styles.css`, inline styles: `main.error` fills the viewport below the header (`min-height: calc(100vh - var(--nav-height))`, flex column, centred); `.error-number` SVG text in monospace |
 | Built-in content | `<main class="error">` with one section: an SVG "404", `<h2 class="error-message">Page Not Found</h2>`, `<p class="button-container"><a href="/" class="button secondary error-button-home">Go home</a></p>` |
 | Header / footer | Empty `<header>` and `<footer>`, filled by the lazy phase like any page |
@@ -56945,9 +56949,9 @@ When a requested path has no published page, Edge Delivery Services responds wit
 
 ### 10.2.4 "Go back" Button
 
-On `window.load`, if `document.referrer` is from the same origin, an `<a class="button error-button-back" href="{referrer path}">Go back</a>` (title "Go back") is appended to the first `main .button-container`. This works for the built-in content and for an authored 404 page that contains a button (a paragraph with a link decorated as a button). The label is English and hard-coded in `404.html` (not from placeholders).
+When the sections are loaded (lazy phase, `scripts/scripts.js` `addErrorBackButton`), if `document.referrer` is from the same origin, an `<a class="button primary error-button-back" href="{referrer path}">Go back</a>` is added to the first button paragraph of the page: the built-in Go home (`.button-container`) or, on an authored 404 page, the first paragraph decorated as a button (`.button-wrapper`). On an authored page without a button it is added in its own paragraph below the content. The label is the placeholder `goBack` (English fallback "Go back"), so it is translated in each locale's placeholders sheet.
 
-> **Note:** The built-in texts ("Page Not Found", "Go home", "Go back", the `<title>`) are English. Localised text comes from the authored 404 pages, so every locale should publish its `error-pages/404`.
+> **Note:** The built-in texts ("Page Not Found", "Go home", the `<title>`) are English. Localised text comes from the authored 404 pages, so every locale should publish its `error-pages/404`.
 
 ### 10.2.5 Inheritance of the 404 Page Property
 
@@ -58705,7 +58709,7 @@ issues are in each component chapter (section 6.X.13). Every issue lists the **S
 **Symptoms**
 - A missing German URL shows the English 404 page, or the built-in "404 Page Not Found" with
   "Go home" instead of the authored error page.
-- The "Go back" button is English on every locale.
+- The "Go back" button is English on a locale whose placeholders sheet has no `goBack` key.
 
 **Root Cause**
 - `scripts/scripts.js` `loadErrorPage()` tries, in order: the 404 Page (`error-page`) inherited from
@@ -58713,8 +58717,8 @@ issues are in each component chapter (section 6.X.13). Every issue lists the **S
   the first that loads is shown (content from another locale is marked with its `lang`); if none
   loads, the built-in content of `404.html` stays.
 - The locale's `error-pages/404` page is not published.
-- The "Go back" button and the built-in texts are hard-coded in `404.html` ("Go back",
-  "Page Not Found", "Go home") and are not translated through placeholders.
+- The built-in texts are hard-coded in `404.html` ("Page Not Found", "Go home") and are not
+  translated through placeholders; "Go back" is the placeholder `goBack`.
 
 **Diagnosis Steps**
 1. Open `/{locale}/error-pages/404.plain.html`; a 404 response means it isn't published.
@@ -58725,8 +58729,8 @@ issues are in each component chapter (section 6.X.13). Every issue lists the **S
 **Resolution Steps**
 1. Create and publish `/content/tcs-corp/{country}/{language}/error-pages/404` for every locale.
 2. Fix or clear wrong 404 Page values on parent pages.
-3. To translate the "Go back" label, a code change to `404.html` is needed (Not implemented as of
-   this handover).
+3. To translate the "Go back" label, add the key `goBack` to the locale's placeholders sheet and
+   publish it.
 
 **Validation Steps**
 - A non-existent URL in each locale (for example `/de-de/does-not-exist`) shows that locale's
@@ -59766,7 +59770,7 @@ Keys used by the code (English fallbacks in code):
 | 9 | List: statistic cards' smaller units ("bn") and Figma's two-tone title (Variation 6) are not styled separately | Design deviation | `blocks/list/README.md` | Single-colour titles |
 | 10 | Separator: site tokens until the Figma designs are applied; no brand-icon decoration (dot, square, diamond only); no free-form classes or colours; Accessible label not read by every screen reader | Design deviation | `blocks/separator/README.md` | Design follow-up |
 | 11 | Interactive Dashboard is a placeholder | Renders nothing on the site (only a labelled placeholder in the editor); only the Additional tab exists | `blocks/interactive-dashboard/interactive-dashboard.js` | Future development |
-| 12 | Built-in 404 texts ("Page Not Found", "Go home", "Go back") are English, not placeholders | Untranslated fallback 404 and the Go back button | `404.html` | Author 404 pages per locale; code change for "Go back" |
+| 12 | Built-in 404 texts ("Page Not Found", "Go home") are English, not placeholders | Untranslated fallback 404 | `404.html` | Author 404 pages per locale; "Go back" is the placeholder `goBack` |
 | 13 | One sitemap for all locales, no hreflang alternates; origin is the `.aem.live` host | SEO for multilingual pages | `helix-sitemap.yaml` | Configure per-locale sitemaps and production origin |
 | 14 | Inherited Navigation / Footer / 404 Page values cached per browser session | Changes to a parent's property show in a new session | `utils/inherited-metadata.js` | Communicate; new session |
 | 15 | Bulk metadata only applies once all locale sheets are listed in `metadata.source` | Metadata sheet columns ignored until configured | AGENTS.md | Configure (12.5) |
@@ -60125,7 +60129,7 @@ interactive-dashboard, conversation-canvas, cards, columns, fragment, footer.
 | Change the main navigation of a locale | Edit and publish `/content/tcs-corp/{country}/{language}/references/nav` (sections: brand, sections, tools) |
 | Special navigation for a section of the site | Create `references/nav-<name>`, set it as Navigation on the section's top page, publish both |
 | Change the footer | Edit and publish `references/footer` (Footer block: Conversation Canvas Page, Copyright Text with `{year}`, Link List); social icons come from `data/social-links` |
-| Locale 404 page | Create and publish `error-pages/404` (a Button in it gets the "Go back" button next to it) |
+| Locale 404 page | Create and publish `error-pages/404` (its first Button gets the "Go back" button next to it; without one, Go back is added below the content) |
 
 ## 15.6 Metadata Cheat Sheet
 
@@ -60344,7 +60348,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-17 | Hero, Teaser | New-window links don't announce "(opens in a new tab)"; the Hero eyebrow stays brand blue on dark backgrounds | Accessibility (3.2.5 advisory, contrast) | Use `announceNewTab`; adjust the eyebrow colour on dark | P3 | Development, Design | 6.10, 6.11 |
 | F-18 | Teaser | Some options have no effect in some layouts (text alignment Center in Text split, top spacing in Background image and Card, image ratio Original for animations) | Author confusion | Hide the options with conditions where they don't apply | P3 | Development | 6.11 |
 | F-19 | Dates | Month abbreviations are English in every locale (`utils/dates.js`) | Untranslated dates | Use `Intl.DateTimeFormat` with the page language | P2 | Development | 4.9 |
-| F-20 | 404 page | `404.html` has its title, "Page Not Found", "Go home" and "Go back" hard-coded in English | Untranslated fallback 404 | Read the texts from placeholders | P3 | Development | 10.2 |
+| F-20 | 404 page | `404.html` has its title, "Page Not Found" and "Go home" hard-coded in English ("Go back" is the placeholder `goBack` since version 1.4) | Untranslated fallback 404 | Read the texts from placeholders | P3 | Development | 10.2 |
 | F-21 | Sections | The Section dialog offers only "Highlight"; the dark, brand and light styles exist in CSS but can't be selected; Separator Theme Auto therefore always uses the light palette | Designs needing dark / brand sections can't be authored | Add the styles to the section model | P2 | Development, Design | 6.5, 6.26 |
 | F-22 | Additional tab | Anchor ID, Hide block and spacing apply to blocks only; on section-based components (Tabs container, Gen Carousel) their effect isn't verified | Options may do nothing there | Verify in Universal Editor; remove the tab from section models or support it | P3 | Development | 5.6, 6.21, 6.24 |
 | F-23 | Columns | The Columns / Rows dialog fields aren't read by the code (it counts the first row's cells); an empty Columns block logs `failed to load module for columns`; column widths are always equal | Author expectations; console error | Guard empty blocks; document or implement widths | P3 | Development | 6.14 |
@@ -60367,12 +60371,12 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-40 | Data | Locations and Partners sheets have loaders but no component reads them; `persona`, `country` and `campaign-id` are indexed but unused | Unused content effort | Confirm the roadmap or retire the sheets / columns | P3 | Product Owner | 9.6, 9.7, 8.2 |
 | F-41 | Cards | Cards blocks created before the redesign render with the new Figma List design instead of the original bordered auto-fill grid, without an author action | Existing pages changed appearance | Restore the original look as the Classic presentation for those blocks (Cards proposal, Phase 0) | P2 | Product Owner, Development | 6.15 |
 | F-42 | Cards | In cards made before the redesign (one rich text cell), the title stays inside Description in the Card dialog (it renders as the title) | Editing confusion | Move titles into the Title field when editing; optional editorial migration (Cards proposal, 7.2) | P3 | Content Lead | 6.15 |
-| F-43 | List | `blocks/list/list.js` reads List Item cells in the order link, headline, summary, image, eyebrow, tags, subtitle, ctaLabel, newTab, analyticsLabel, ariaLabel, kind, theme; the model (and so AEM) delivers link, newTab, headline, summary, image, eyebrow, tags, subtitle, ctaLabel, kind, theme, analyticsLabel, ariaLabel | Fixed-list items authored in Universal Editor are misread (title from the new-tab cell, description from the title, …) | Read the cells in model order (`ITEM_FIELDS` = the model order) and add a test with model-ordered rows | P1 for Fixed lists | Development | 6.16 |
-| F-44 | Video | The poster fields `placeholder_image` / `placeholder_imageAlt` are an element group, delivered as one `placeholder` cell; `video.js` looks for rows keyed `placeholderimage` / `placeholderimagealt` | The poster and the Play button may not appear on published pages | Read the grouped cell (or rename the fields without the group prefix); verify with AEM-delivered markup | P1 for videos with posters | Development | 6.28 |
-| F-45 | Conversation Canvas | `searchAudioIconAlt` collapses into the audio icon image's alt text (field collapse), but the block reads it from its own row | The voice button's name always falls back to "Search by voice" | Read the alt from the icon image | P3 | Development | 6.30 |
-| F-46 | Teaser | With Image type Lotto, the Image alt text collapses into the animation link's title, but `teaser.js` reads it from its own row | The animation gets no label and is hidden from screen readers | Read the link's title as the label | P3 | Development | 6.11 |
-| F-47 | 404 page | `404.html` adds "Go back" to `main .button-container`, but the button decorator names the paragraph `button-wrapper` | The Go back button never appears on authored 404 pages | Use the decorator's class (or add the button independently of it) | P3 | Development | 10.2 |
-| F-48 | Cards, List | On the Dark and Navy card colours, the call to action of statistic and report cards renders as a white button with white text (an empty white pill) | The call to action is unreadable on dark cards | Give secondary buttons on dark card colours the inverse style | P2 | Development, Design | 6.15, 6.16 |
+| F-43 | List | `blocks/list/list.js` reads List Item cells in the order link, headline, summary, image, eyebrow, tags, subtitle, ctaLabel, newTab, analyticsLabel, ariaLabel, kind, theme; the model (and so AEM) delivers link, newTab, headline, summary, image, eyebrow, tags, subtitle, ctaLabel, kind, theme, analyticsLabel, ariaLabel | Fixed-list items authored in Universal Editor are misread (title from the new-tab cell, description from the title, …) | **Fixed in 1.4:** `ITEM_FIELDS` (now in `blocks/list/list-data.js`) is the model order; `test/list` checks it against `_list.json` and reads a model-ordered row | Fixed (was P1) | Development | 6.16 |
+| F-44 | Video | The poster fields `placeholder_image` / `placeholder_imageAlt` are an element group, delivered as one `placeholder` cell; `video.js` looks for rows keyed `placeholderimage` / `placeholderimagealt` | The poster and the Play button may not appear on published pages | **Fixed in 1.4:** `video.js` reads the grouped `placeholder` cell (alt text on the image) and still reads separately keyed poster rows | Fixed (was P1) | Development | 6.28 |
+| F-45 | Conversation Canvas | `searchAudioIconAlt` collapses into the audio icon image's alt text (field collapse), but the block reads it from its own row | The voice button's name always falls back to "Search by voice" | **Fixed in 1.4:** the voice button is named by the icon image's alt text (a separate alt row is read too); the icon itself is decorative | Fixed (was P3) | Development | 6.30 |
+| F-46 | Teaser | With Image type Lotto, the Image alt text collapses into the animation link's title, but `teaser.js` reads it from its own row | The animation gets no label and is hidden from screen readers | **Fixed in 1.4:** the animation is named by the link's title, as in the Hero (a separate alt row is read too) | Fixed (was P3) | Development | 6.11 |
+| F-47 | 404 page | `404.html` adds "Go back" to `main .button-container`, but the button decorator names the paragraph `button-wrapper` | The Go back button never appears on authored 404 pages | **Fixed in 1.4:** `scripts.js` adds Go back after the sections are loaded, to the first `.button-wrapper` / `.button-container` or below the content; label from the placeholder `goBack` | Fixed (was P3) | Development | 10.2 |
+| F-48 | Cards, List | On the Dark and Navy card colours, the call to action of statistic and report cards renders as a white button with white text (an empty white pill) on hover and keyboard focus | The call to action is unreadable on dark cards | **Fixed in 1.4:** the white text met the white hover / focus fill of secondary buttons; `styles/card-list.css` gives them the inverse on Dark, Navy and Brand cards (card text colour as the fill, card colour as the text) | Fixed (was P2) | Development, Design | 6.15, 6.16 |
 
 ## 16.3 Open Items (To Be Confirmed)
 

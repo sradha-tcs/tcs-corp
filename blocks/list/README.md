@@ -13,7 +13,7 @@ Files:
 |---|---|
 | `blocks/list/_list.json` | Universal Editor definitions (List, List Item), models and filter; the presentation fields are the shared groups of `models/_card-list.json` (also used by Cards) |
 | `blocks/list/list.js` | Reads the block and the List Items, discovers the pages, renders through the card list decorator |
-| `blocks/list/list-data.js` | Sources, discovery, page metadata mapping, overrides, deduplication, sorting, limits (no DOM; unit tested); the presentation settings from `utils/card-list-config.js` |
+| `blocks/list/list-data.js` | The List Item cell order (`ITEM_FIELDS`, the model order, checked against `_list.json` by the tests); sources, discovery, page metadata mapping, overrides, deduplication, sorting, limits (no DOM; unit tested); the presentation settings from `utils/card-list-config.js` |
 | `blocks/list/list.css` | Imports `styles/card-list.css` (shared with Cards) |
 | `decorators/card-list-decorator.js` | Header, cards, feature card, rows, grid / scroll classes, scroller, data layer state (shared with Cards) |
 | `utils/card-list-config.js` | Presentation settings, defaults, validation, card kinds (shared with Cards) |

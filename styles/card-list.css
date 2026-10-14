@@ -637,6 +637,13 @@
   color: var(--list-card-fg);
 }
 
+/* inverse on hover and focus: the card's text colour as the fill, the card colour as the text */
+.card-list .list-card:is(.theme-dark, .theme-navy, .theme-brand) .button.secondary:is(:hover, :focus-visible) {
+  border-color: var(--list-card-fg);
+  background-color: var(--list-card-fg);
+  color: var(--list-card-bg);
+}
+
 /* rows of links (Figma variation 5): eyebrow and tag, a large title, an arrow */
 .card-list .list-row {
   position: relative;

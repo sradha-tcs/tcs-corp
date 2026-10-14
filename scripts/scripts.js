@@ -16,6 +16,7 @@ import {
 import { applyBlockOptions } from '../decorators/block-options-decorator.js';
 import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorator.js';
 import { buildImage } from '../decorators/responsive-image-decorator.js';
+import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import {
@@ -316,6 +317,34 @@ async function loadErrorPage(main) {
   }
 }
 
+/**
+ * Adds "Go back" to a 404 page reached from a page of the site: next to the page's first
+ * buttons (the built-in Go home, or an authored error page's button paragraph), else below the
+ * content. Runs once the content is decorated, so it finds the authored page's buttons.
+ * @param {Element} main The main element
+ */
+async function addErrorBackButton(main) {
+  if (!window.isErrorPage || !document.referrer) return;
+  const { origin, pathname } = new URL(document.referrer);
+  if (origin !== window.location.origin) return;
+  const { getPlaceholders } = await import('../utils/placeholders.js');
+  const t = await getPlaceholders();
+  const back = document.createElement('a');
+  back.href = pathname;
+  back.textContent = t('goBack', 'Go back');
+  decorateButton(back, { view: 'button', type: 'primary' });
+  back.classList.add('error-button-back');
+  let wrapper = main.querySelector('.button-wrapper, .button-container');
+  if (!wrapper) {
+    wrapper = document.createElement('p');
+    wrapper.className = 'button-wrapper';
+    const sections = main.querySelectorAll('.section');
+    const last = sections[sections.length - 1];
+    (last?.querySelector('.default-content-wrapper') || last || main).append(wrapper);
+  }
+  wrapper.append(back);
+}
+
 // Site Global Templates (/content/tcs-corp/site-global-templates) with template code in
 // templates/{name}/: the page's Page Type (page properties or the metadata sheet's page-type)
 const TEMPLATES = ['home', 'article', 'blog', 'press-release'];
@@ -404,6 +433,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
   trackBlocks(main);
+  addErrorBackButton(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

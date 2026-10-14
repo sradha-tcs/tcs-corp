@@ -7,7 +7,7 @@ checks) live in [`../utils`](../utils/README.md).
 
 | Decorator | Exports | Used by |
 |---|---|---|
-| `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, header |
+| `button-decorator.js` | `decorateButton`, `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | most blocks, header, `scripts.js` (404 Go back) |
 | `icon-button-decorator.js` | `createIconButton` | gen-carousel, article meta decorator, modal, embed, video, filter-list, conversation-canvas |
 | `content-buttons-decorator.js` | `decorateButtons` (authored links in content become buttons) | `scripts.js`, `editor-support.js` |
 | `link-decorator.js` | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | button decorator, teaser, list, page-header |

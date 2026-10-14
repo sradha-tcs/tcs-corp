@@ -48,9 +48,10 @@ const seconds = (cell) => Math.max(0, parseFloat(textOf(cell)) || 0);
 /** the URL of a link or path property */
 const urlOf = (cell) => linkOf(cell)?.href || textOf(cell);
 
-// the model fields in dialog order (the image alt text is merged into the image)
+// the model fields in dialog order (the poster fields placeholder_image / placeholder_imageAlt
+// are an element group, delivered as one "placeholder" cell, the alt text in the image)
 const FIELDS = [
-  'uri', 'label', 'caption', 'transcript', 'placeholderimage', 'playback', 'muted', 'loop',
+  'uri', 'label', 'caption', 'transcript', 'placeholder', 'playback', 'muted', 'loop',
   'controls', 'starttime', 'endtime', 'openinmodal', 'pauseoffscreen', 'captions',
   'captionslanguage', 'captionslabel', 'aspectratio', 'size', 'alignment', 'rounded',
   'privacymode',
@@ -86,7 +87,8 @@ function readConfig(block) {
   const legacy = !props.uri;
   const poster = legacy
     ? block.querySelector('picture')
-    : pictureOf(props.placeholderimage, props.placeholderimagealt);
+    // the grouped cell; separately keyed poster rows are read too
+    : pictureOf(props.placeholder || props.placeholderimage, props.placeholderimagealt);
   const link = legacy ? block.querySelector('a[href]')?.href : urlOf(props.uri);
   const captions = urlOf(props.captions);
   const language = textOf(props.captionslanguage) || getLocale().language;

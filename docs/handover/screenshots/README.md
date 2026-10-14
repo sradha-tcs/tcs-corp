@@ -1,6 +1,6 @@
 # Handover screenshots
 
-The figures of the project handover (`../TCS-CORP-HANDOVER.md`, version 1.3), referenced as
+The figures of the project handover (`../TCS-CORP-HANDOVER.md`, version 1.4), referenced as
 `screenshots/<file>.jpg`.
 
 | Kind | Files | Made from |
