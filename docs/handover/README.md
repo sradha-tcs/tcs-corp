@@ -7,7 +7,7 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 
 | File | Description |
 |---|---|
-| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.0, 14 October 2026 (3,410 pages in 13 volumes, one file). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (596) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (31) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
+| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.0, 14 October 2026 (3,398 pages; one table of contents with 1,226 linked entries, one page numbering, PDF bookmarks down to the variations). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (596) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (31) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
 | [TCS-CORP-HANDOVER.md](TCS-CORP-HANDOVER.md) | The editable source of the PDF (Markdown) |
 | [screenshots/](screenshots/README.md) | The 628 figures of the document (596 screenshots, 32 dialog references) |
 | [../proposals/](../proposals/README.md) | Design proposals that follow up on the handover (e.g. the Cards and Card refactoring) |
@@ -33,7 +33,8 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 Edit `TCS-CORP-HANDOVER.md`, then regenerate the PDF with pandoc and typst using the Adobe
 whitepaper template (the project-management whitepaper tooling). The whole document needs more
 memory than typst gets in a 4 GB container, so the PDF is built in 13 volumes of up to about
-13,000 Markdown lines each, merged into one file; each volume keeps its own cover and contents:
+13,000 Markdown lines each and merged into one document with a single cover, table of contents
+and page numbering:
 
 | Volume | Contents |
 |---|---|
@@ -51,8 +52,11 @@ memory than typst gets in a 4 GB container, so the PDF is built in 13 volumes of
 | 12 | Components 6.30–6.31, Parts 7–12 |
 | 13 | Parts 13–18 |
 
-For each volume (a slice of the Markdown starting at the headings above, with its own front
-matter), with the screenshots scaled to 900 px wide first (`convert -resize '900x>' -quality 70`):
+For each volume (a slice of the Markdown starting at the headings above), with the screenshots
+scaled to 900 px wide first (`convert -resize '900x>' -quality 70`), the template call is set to
+the project's volume template (`handover-volume.typ`, a copy of the whitepaper template with the
+options `cover: false`, `toc: false`, `first-page` and `total-pages`, which also lists the
+headings with their pages as `<handover-headings>` metadata):
 
 ```bash
 pandoc TCS-CORP-HANDOVER-Vol-1.md -f markdown-citations -t typst --standalone \
@@ -61,7 +65,17 @@ pandoc TCS-CORP-HANDOVER-Vol-1.md -f markdown-citations -t typst --standalone \
 typst compile -j 1 TCS-CORP-HANDOVER-Vol-1.typ TCS-CORP-HANDOVER-Vol-1.pdf
 ```
 
-Then merge the PDFs in order (e.g. with `pdf-lib`, `qpdf --empty --pages … --` or `pdfunite`).
+Then, in this order:
+
+1. Compile every volume with `first-page: 1` and read its page count and its headings
+   (`typst query <volume>.typ "<handover-headings>" --field value --one`).
+2. Generate the front matter (cover and the table of contents of levels 1–3) with each heading's
+   page in the whole document (front matter pages + the pages of the volumes before + the
+   heading's page in its volume) and compile it.
+3. Compile every volume again with its `first-page` (the page after the front matter and the
+   volumes before it) and `total-pages`, so the footers read "Page n of total".
+4. Merge the front matter and the volumes (e.g. with `pdf-lib`), add a link on each contents
+   entry to its page and the PDF bookmarks (levels 1–4) from the headings.
 `-f markdown-citations` keeps addresses such as `name@example.com` from being read as citations.
 Each volume needed at most 2.7 GB with `-j 1`; if a volume grows past that, split it at a
 chapter heading.
