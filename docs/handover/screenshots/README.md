@@ -1,21 +1,28 @@
 # Handover screenshots
 
-The project handover (`../TCS-CORP-HANDOVER.md`) has 1,034 screenshot placeholders. Each names
-the file to store here, for example:
+The figures of the project handover (`../TCS-CORP-HANDOVER.md`, version 1.2). The document
+references them as `screenshots/<file>`.
 
-> **[Screenshot Placeholder]**
-> **File name:** `screenshots/hero-desktop-view.png`
-> **Purpose:** Desktop rendering
+## Generated on 14 October 2026 (630 files, `.jpg`)
 
-Capture conventions (see 15.9 Screenshot Register in the document):
+| Kind | Files | Made from |
+|---|---|---|
+| Renderings | 567 (`<component>-desktop-view.jpg`, `-tablet-view.jpg`, `-mobile-view.jpg`, one per variation) | Test pages with sample content on the local preview of the code on `main`, captured per element at 1440, 1024 / 768 and 402 / 375 px with a scripted browser |
+| Annotated previews | 31 (`<component>-authoring-view.jpg`) | The same pages in editor mode with letter markers matching each chapter's annotation list — not Universal Editor screenshots |
+| Dialog references | 32 (`<component>-properties-panel.jpg`, `ue-page-properties-panel.jpg`) | Drawn from `component-models.json`: every tab and field in dialog order with defaults, options, descriptions and conditions — not Universal Editor screenshots |
 
-| Kind | How |
-|---|---|
-| `*-desktop-view.png` and variation images | The preview (`main--tcs-corp--sradha-tcs.aem.page`) at 1440px wide |
-| `*-tablet-view.png` | 1024px wide |
-| `*-mobile-view.png` | 402px wide |
-| `*-authoring-view.png`, `*-properties-panel.png`, `*-step-NN-*.png` | Universal Editor at 1440px; add the annotation letters (A, B, C, …) listed in the document |
+The sample content (images, pages, tags, authors) is neutral test content, not the site's
+published content.
 
-Use PNG, crop to the component, and don't show personal data or credentials. To show the images
-in the PDF, replace a placeholder with a Markdown image (`![Hero, desktop](screenshots/hero-desktop-view.png)`)
-and regenerate the PDF.
+## Still to capture (403 placeholders, `.png` names in the document)
+
+| Kind | Count | Where |
+|---|---|---|
+| Universal Editor authoring steps (`*-step-NN-*`) | 324 | Universal Editor, 1440px window |
+| AEM consoles and tools (Sites, Tagging, sheets, Sidekick, Admin API, debugger) | 56 | AEM author, browser tools |
+| Renderings needing live media or AEM screens (playing video, YouTube / Vimeo / X players, print preview) | 23 | The published site |
+
+Capture rules (15.9 Screenshot Register in the document): PNG, cropped to the component plus some
+context, no personal data or credentials. To show a capture in the PDF, replace its placeholder
+with a Markdown image (`![Caption](screenshots/<file>){width=100%}`) and regenerate the PDF
+(`../README.md`). Replace generated figures with captures of real content when available.
