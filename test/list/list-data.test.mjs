@@ -1,11 +1,13 @@
 /* Unit tests of the List block's data (blocks/list/list-data.js): run with npm test */
+import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  applyOverrides, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_FIELDS, applyOverrides, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
+import { matchCells } from '../../utils/cells.js';
 import { resolveRedirect } from '../../utils/redirects.js';
 import { PAGES } from './fixtures.mjs';
 
@@ -254,5 +256,45 @@ describe('card kinds', () => {
     assert.equal(kindOf(image, 'mixed'), 'image');
     assert.equal(kindOf(applyOverrides(image, { kind: 'stat' }), 'mixed'), 'stat');
     assert.equal(kindOf(image, 'panel'), 'panel');
+  });
+});
+
+describe('list item cells', () => {
+  const SUFFIXES = ['MimeType', 'Alt', 'Text', 'Title', 'Type'];
+  // the cells AEM renders for a model: one per field, tabs and classes left out, a field ending
+  // in Alt / Text / Title / Type / MimeType folded into its base field
+  const cellOrder = (model) => {
+    const names = model.fields.filter((f) => f.component !== 'tab' && f.name).map((f) => f.name);
+    return names.filter((name) => !/^classes/.test(name)
+      && !SUFFIXES.some((s) => name.endsWith(s) && names.includes(name.slice(0, -s.length))));
+  };
+  // a cell as matchCells sees it: its text, a link or an image
+  const cell = (value = '', { link, image } = {}) => ({
+    textContent: value,
+    querySelector: (selector) => {
+      if (link && /a\[href\]/.test(selector)) return { getAttribute: () => link };
+      if (image && /img|picture/.test(selector)) return {};
+      return null;
+    },
+  });
+
+  it('are read in the order of the list-item model', () => {
+    const { models } = JSON.parse(readFileSync(new URL('../../blocks/list/_list.json', import.meta.url)));
+    assert.deepEqual(ITEM_FIELDS, cellOrder(models.find((m) => m.id === 'list-item')));
+  });
+  it('reads a row with every model cell', () => {
+    const row = [cell('/en/insights/agentic-bank', { link: '/en/insights/agentic-bank' }), cell('true'),
+      cell('The agentic bank'), cell('Banking is entering a new era.'), cell('', { image: true }),
+      cell('Perspective'), cell('tcs:topic/ai'), cell('Revenue'), cell('Read more'), cell('panel'),
+      cell('navy'), cell('agentic-bank'), cell('Read the agentic bank')];
+    const cells = matchCells(row, ITEM_FIELDS, {});
+    const text = (field) => cells[field]?.textContent;
+    assert.equal(text('newTab'), 'true');
+    assert.equal(text('headline'), 'The agentic bank');
+    assert.equal(text('summary'), 'Banking is entering a new era.');
+    assert.equal(text('ctaLabel'), 'Read more');
+    assert.equal(text('kind'), 'panel');
+    assert.equal(text('theme'), 'navy');
+    assert.equal(text('ariaLabel'), 'Read the agentic bank');
   });
 });

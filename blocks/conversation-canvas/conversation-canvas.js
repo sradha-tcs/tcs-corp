@@ -19,12 +19,14 @@ import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
-// conversation canvas properties (_conversation-canvas.json), keyed by their normalized row name
+// conversation canvas properties (_conversation-canvas.json), keyed by their normalized row name;
+// the alt texts collapse into their images (field collapse), so rows without keys have none
 const FIELDS = [
   'classes', 'bgstyle', 'backgroundimage', 'icon', 'iconalt', 'eyebrow', 'title', 'titlesize',
   'text', 'menurootpath', 'menudepth', 'searchplaceholder', 'searchaudioicon',
   'searchaudioiconalt', 'searchbuttonstyle', 'searchbuttonlabel',
 ];
+const COLLAPSED = ['classes', 'iconalt', 'searchaudioiconalt'];
 const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
 
@@ -46,7 +48,7 @@ function readBlock(block) {
     else if (cells.length === 1) unkeyed.push(cells[0]);
   });
   if (!Object.keys(config).length) {
-    FIELDS.filter((field) => field !== 'classes')
+    FIELDS.filter((field) => !COLLAPSED.includes(field))
       .forEach((field, i) => { if (unkeyed[i]) config[field] = unkeyed[i]; });
   }
   return { config, buttonRows };
@@ -207,8 +209,14 @@ function buildSearchForm(config, id, block) {
   const audio = document.createElement('button');
   audio.type = 'button';
   audio.className = 'conversation-canvas-audio';
-  audio.setAttribute('aria-label', textOf(config.searchaudioiconalt) || t('searchByVoice', 'Search by voice'));
+  // the icon's alt text names the button (collapsed into the image; a separate row is read too)
+  const audioAlt = textOf(config.searchaudioiconalt)
+    || config.searchaudioicon?.querySelector('img')?.getAttribute('alt')?.trim();
+  audio.setAttribute('aria-label', audioAlt || t('searchByVoice', 'Search by voice'));
   const audioImage = imageOf(config.searchaudioicon, '');
+  // the button has the name, so the icon is decorative
+  const audioImg = audioImage?.tagName === 'IMG' ? audioImage : audioImage?.querySelector('img');
+  audioImg?.setAttribute('alt', '');
   if (audioImage) audio.append(audioImage);
   else audio.classList.add('conversation-canvas-audio-default');
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;

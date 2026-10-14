@@ -14,7 +14,7 @@ import { toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, buildCards, normalizeConfig, normalizePath, validateConfig,
+  HEADINGS, ITEM_FIELDS, buildCards, normalizeConfig, normalizePath, validateConfig,
 } from './list-data.js';
 
 /*
@@ -28,8 +28,6 @@ import {
  * ./list-data.js; lists made before (a title and a CTA only) render as they did.
  */
 
-const ITEM_FIELDS = ['link', 'headline', 'summary', 'image', 'eyebrow', 'tags', 'subtitle', 'ctaLabel',
-  'newTab', 'analyticsLabel', 'ariaLabel', 'kind', 'theme'];
 const TEXT_CELL = (cell) => !cell.querySelector('a[href], picture, img');
 const ITEM_MATCHERS = {
   link: (cell) => !!cell.querySelector('a[href]'),
