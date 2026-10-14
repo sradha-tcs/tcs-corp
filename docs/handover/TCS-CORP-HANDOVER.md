@@ -1,7 +1,7 @@
 ---
 title: "TCS Corporate Website — Project Handover"
 subtitle: "Adobe Experience Manager Edge Delivery Services with Universal Editor: architecture, authoring, components, operations and support"
-date: "October 13, 2026"
+date: "October 14, 2026"
 ---
 
 # Document Control
@@ -12,14 +12,14 @@ date: "October 13, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 1.0 |
-| Date | 13 October 2026 |
+| Version | 1.1 |
+| Date | 14 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -28,6 +28,7 @@ date: "October 13, 2026"
 |:---------|:-----------|:-----------|:------------------------------------------------------------|
 | 0.1 | 11 October 2026 | Delivery team | First handover guides (author, developer and admin guides) |
 | 1.0 | 13 October 2026 | Delivery team | Complete enterprise handover: architecture, every component and variation, field specifications, metadata, taxonomy, sheets, operations, AMS runbook, findings register |
+| 1.1 | 14 October 2026 | Delivery team | Cards and Card analysis (`docs/proposals/cards-card-refactoring.md`): Cards blocks made before the redesign have no block model and changed appearance; chapter 6.15 (variation 45, Issues 6 and 11, known limitations), findings F-34, F-41, F-42, open item O-20, reference documents |
 
 ## Review and Approval
 
@@ -17577,6 +17578,12 @@ Source files: `blocks/cards/cards.js`, `blocks/cards/cards-data.js`, `blocks/car
 with List: `decorators/card-list-decorator.js`, `utils/card-list-config.js`,
 `styles/card-list.css`, `models/_card-list.json`; unit tests: `test/cards/cards-data.test.mjs`.
 
+> **Important:** Cards blocks created before the redesign (pull request #62) behave differently:
+> they have no block model, so their settings can't be edited, and they render with the new design
+> instead of the original bordered grid (variation 45, Issue 6). The refactoring proposal
+> `docs/proposals/cards-card-refactoring.md` restores the original look as a "Classic" presentation for them, migrates their
+> instances, and plans the Cards container and Card item extensions (findings F-34, F-41, F-42).
+
 ### 6.15.1 Component Purpose
 
 **Business Objective**
@@ -19135,6 +19142,11 @@ per card, no block settings).
 
 **Business Purpose:** Existing pages keep working after the redesign.
 
+> **Note:** These blocks were created from the original definition, whose template had no block
+> model (`{ name: Cards, filter: cards }`). Universal Editor keeps the template stored on each
+> instance, so they show no usable block properties, and they now use the new design. Restoring
+> their original look (Classic) and migrating the instances is Phase 0 of `docs/proposals/cards-card-refactoring.md`.
+
 **Visual Example:**
 
 > **[Screenshot Placeholder]** \
@@ -20303,15 +20315,19 @@ indicator); count the cards against Items visible; inspect `.list-scroller[data-
 **Symptoms:** Changing Card style or layout has no effect on an existing block; or a card's title
 appears as plain description text.
 
-**Root Cause:** Blocks created before this version aren't key-value blocks, so the new settings
-aren't read; card rows with two cells or fewer are read as cards made before (image + rich
-text), where only the first heading or a bold-only first paragraph becomes the title.
+**Root Cause:** Blocks created before this version were created without a block model (the
+original template had none) and aren't key-value blocks, so their properties panel has no
+settings and new settings aren't read; card rows with two cells or fewer are read as cards made
+before (image + rich text), where only the first heading or a bold-only first paragraph becomes
+the title (in the Card dialog the title stays inside Description).
 
 **Diagnosis Steps:** Check the page's HTML (`.plain.html` of the page) for setting rows (key |
 value) and count the cells of the card rows.
 
-**Resolution Steps:** Add a new Cards block, set it up and move (or recreate) the cards; in an
-old card, format the title as a heading.
+**Resolution Steps:** Short term: add a new Cards block, set it up and move (or recreate) the
+cards; in an old card, format the title as a heading. Planned: AMS migration of the old instances
+(set `model = cards` and `key-value = true`, keep the original look as Classic) — see the
+migration approach (section 7) of `docs/proposals/cards-card-refactoring.md`.
 
 **Validation Steps:** The block responds to the settings; titles render as headings.
 
@@ -20385,6 +20401,29 @@ sheet (the List does for pages); the target page was moved or unpublished.
 **Preventive Measures:** Check card links after page moves (AEM shows references of a moved
 page).
 
+#### Issue 11 — Card items can't be added to a Cards block
+
+**Symptoms:** In Universal Editor, the **+** of a Cards block doesn't offer **Card**, or a new
+Card doesn't open its dialog; authors can't build a manual set of cards.
+
+**Root Cause:** [To be confirmed in this program's Universal Editor: open item O-20.] The code
+defines Cards as a key-value container whose filter allows only Card (`component-filters.json`:
+`cards` → `card`), the pattern the List block uses. Possible causes: the block is an older
+Cards block (Issue 6); the Universal Editor uses outdated component definitions; the author
+selected a Card (items can't hold items) instead of the Cards block.
+
+**Diagnosis Steps:** Select the Cards block itself in the content tree and use **+**; check that
+`component-definition.json`, `component-models.json` and `component-filters.json` on `main` contain
+`cards` and `card`; compare with a new Cards block on a test page.
+
+**Resolution Steps:** Use a new Cards block; if a new block doesn't offer Card either, escalate to
+L3 with the page path (definitions and filters) and to Adobe Support if they are correct.
+
+**Validation Steps:** **+** on the Cards block offers Card; the new card renders on the canvas.
+
+**Preventive Measures:** After model changes, run `npm run build:json` and check a new block in
+Universal Editor before releasing.
+
 ### 6.15.14 Support Runbook
 
 **Monitoring Requirements**
@@ -20417,7 +20456,8 @@ page).
 | Tag labels look technical | Tag missing in the locale taxonomy | Add / translate the tag, publish the taxonomy |
 | Text clipped | Portrait / Compact panel height | Shorter text or Panel height Content |
 | No scroll controls | Breakpoint in grid mode, setting off, or no overflow | Configure the breakpoint |
-| Settings have no effect | Block made before (not key-value) | Replace with a new Cards block |
+| Settings have no effect | Block made before (no block model, not key-value) | Replace with a new Cards block; planned migration (`docs/proposals/cards-card-refactoring.md`) |
+| Card can't be added | See Issue 11 (to be confirmed in Universal Editor) | Use a new Cards block; escalate to L3 |
 | `failed to load block cards` | Code deployment or network problem | Escalate to L3 |
 
 **Escalation Matrix**
@@ -20462,7 +20502,10 @@ manager].
 - Internal links aren't resolved through the redirects sheets.
 - The card text fields are edited in the properties panel; only the rich text description can
   be edited in place.
-- Blocks made before this version must be replaced to use the new settings.
+- Blocks made before this version have no block model: they must be replaced (or migrated) to use
+  the new settings, and they render with the new design instead of the original bordered grid.
+- Planned changes (carousel with autoplay and dots, masonry, vertical list, featured layout,
+  dynamic sources, filtering, more Card fields) are described in `docs/proposals/cards-card-refactoring.md`.
 - Card click events carry no `position` (it's in the component state), and feature card clicks
   are reported with the block's path.
 - The new-tab hint isn't announced on call to action buttons without an Accessibility label.
@@ -47193,7 +47236,8 @@ Keys used by the code (English fallbacks in code):
 | `blocks/list/README.md` | List: sources, field matrix, data flow, metadata and index contracts, Figma variations, accessibility, analytics, limitations |
 | `blocks/cards/README.md` | Cards: manual cards, relation to List, item fields, backward compatibility, limitations |
 | `blocks/separator/README.md` | Separator: variants, settings, accessibility, limitations |
-| `docs/handover/*.pdf` | Earlier author, developer and admin guides (11 October 2026) |
+| `docs/handover/*.pdf` | Earlier author, developer and admin guides (11 October 2026), superseded by this document |
+| `docs/proposals/cards-card-refactoring.md` | Cards and Card refactoring proposal: current state, gap analysis, target architecture, migration, decisions needed |
 | `helix-query.yaml`, `helix-sitemap.yaml`, `paths.json`, `fstab.yaml`, `head.html`, `.hlxignore`, `.eslintrc.js` | Index, sitemap, path mapping, content source, head and CSP, served-file exclusions, lint rules |
 
 ## 15.4 Content Modeling Standards
@@ -47572,13 +47616,15 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-31 | Table List | An item row with exactly two cells may be read as the legacy header item | An item could disappear | Verify with published content; rely on the item model | P3 | Development | 6.18 |
 | F-32 | Form Variations | Desktop: the "* Required fields" note takes a grid column; a checkbox error appears beside the consent text; field width depends on the field name ("name" = half width) | Layout | Span the note across columns; fix the error position; use an explicit width field | P3 | Development | 6.29 |
 | F-33 | Conversation Canvas | The footer canvas sample has the search button label "sradha" (tooltip and accessible name); Button Alignment and BG Style have no effect; the menu ignores hide-in-nav | Content and authoring confusion | Correct the label in the footer reference; remove unused options | P2 | Content Lead | 6.30 |
-| F-34 | Cards | Cards blocks created before the key-value model can't reliably use the new block settings | Older blocks keep the defaults | Recreate those blocks (move the cards into a new Cards block) | P3 | Content Lead | 6.15 |
+| F-34 | Cards | Cards blocks created before the redesign have no block model (the original template had none) and aren't key-value blocks: their settings can't be edited | Older blocks keep the defaults; authors experience the original capability as lost | Migrate the instances (model, key-value) or recreate the blocks — Phase 0 of the Cards proposal | P2 | Content Lead, AMS | 6.15 |
 | F-35 | Inheritance | Inherited Navigation, Footer and 404 Page values are cached per browser session (sessionStorage) | Changes show in a new session only | Document for authors; consider a version key | P3 | Development | 3.5 |
 | F-36 | Root URL | `/` returns 404 (no root mapping or redirect to `/en/`) | Visitors to the root see an error | Configure a CDN or root redirect | P1 for go-live | Site Administrator | 3.8 |
 | F-37 | Release | CI runs lint only (`npm test` isn't run); no release tags; `package.json` keeps the boilerplate version; the PR template and Sidekick project name keep boilerplate values | Weaker release control | Run tests in CI; tag releases; update the template and Sidekick config | P3 | Development | 12.2, 12.3 |
 | F-38 | Fonts | The Inter font covers Latin scripts only; Chinese, Japanese and Korean use system fonts | Visual consistency in CJK locales | Add CJK font strategy | P3 | Design | 4.9 |
 | F-39 | Localisation | No hreflang alternates, no language switcher, no translation automation in the code | SEO across locales; navigation between locales | Add hreflang in the head and a locale switcher | P2 | Product Owner, Development | 4.9 |
 | F-40 | Data | Locations and Partners sheets have loaders but no component reads them; `persona`, `country` and `campaign-id` are indexed but unused | Unused content effort | Confirm the roadmap or retire the sheets / columns | P3 | Product Owner | 9.6, 9.7, 8.2 |
+| F-41 | Cards | Cards blocks created before the redesign render with the new Figma List design instead of the original bordered auto-fill grid, without an author action | Existing pages changed appearance | Restore the original look as the Classic presentation for those blocks (Cards proposal, Phase 0) | P2 | Product Owner, Development | 6.15 |
+| F-42 | Cards | In cards made before the redesign (one rich text cell), the title stays inside Description in the Card dialog (it renders as the title) | Editing confusion | Move titles into the Title field when editing; optional editorial migration (Cards proposal, 7.2) | P3 | Content Lead | 6.15 |
 
 ## 16.3 Open Items (To Be Confirmed)
 
@@ -47603,6 +47649,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | O-17 | Formal browser support matrix | QA Lead | 1.7 |
 | O-18 | Whether AEM omits never-set fields in item rows of positional blocks (Form Variations reads fields by position) | Development | 6.29 |
 | O-19 | Screenshots for every placeholder in this document | Content Lead, QA | 15.9 |
+| O-20 | Whether Universal Editor offers Card in the **+** of a new (key-value) Cards block in this program, and the Product Owner decisions D-1 to D-6 of the Cards proposal | Product Owner, Content Lead | 6.15 |
 
 ## 16.4 Not Implemented (as of this handover)
 

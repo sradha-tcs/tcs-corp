@@ -145,8 +145,28 @@ Cards made before this version (Block Collection: an image and a rich text per c
 text only) render with the new design: the text's first heading (or a bold first paragraph) is the
 title, a link alone in the last paragraph is the call to action, the rest is the description. They
 use the default settings (image cards, 4 / 4 / 1 columns) until the block's properties are set.
-Cards blocks created before this version aren't key-value blocks: to use the new block settings on
-such a block, add a new Cards block and move its cards (new blocks are key-value).
+Cards blocks created before this version were created from a definition without a block model
+(`{ name: Cards, filter: cards }`) and aren't key-value blocks: Universal Editor shows no usable
+block settings for them. To use the new settings on such a block, add a new Cards block and move
+its cards (new blocks are key-value), or migrate the instance (planned, see below).
+
+## Known issues and planned refactoring
+
+Analysed in [docs/proposals/cards-card-refactoring.md](../../docs/proposals/cards-card-refactoring.md)
+(14 October 2026):
+
+| # | Issue | Planned resolution |
+|---|---|---|
+| C-1 | Cards blocks made before this version have no block model: their settings can't be edited | Migrate the instances (`model = cards`, `key-value = true`) — Phase 0 |
+| C-2 | They render with the new design instead of the original bordered auto-fill grid | Restore it as the Classic presentation, used for those blocks — Phase 0 |
+| C-3 | In their cards (one rich text cell) the title stays inside Description in the Card dialog | Move titles into Title when editing; optional editorial migration |
+| C-4 | To confirm in Universal Editor: **+** on a new Cards block offers Card | Test on a test page (decision D-1) |
+
+Planned extensions (phases 1–6): Card fields (background image, icon, badge, status, category,
+author, CTA style, analytics and personalization attributes), presentations (classic, carousel with
+autoplay and dots, vertical list, masonry, featured), sources (child pages, tags, query, related),
+client-side filtering, sorting and search — built from code shared with List, Filter List and Gen
+Carousel. The Product Owner decisions are listed in section 21 of the proposal.
 
 ## Known limitations
 
@@ -154,3 +174,5 @@ such a block, add a new Cards block and move its cards (new blocks are key-value
 - Internal links aren't resolved through the redirects sheets (the List does, for pages).
 - The cards' text fields are edited in the properties panel; the description (rich text) can be
   edited in place.
+- No carousel autoplay or dots, masonry, filtering, sorting or search yet (planned; use Filter List
+  for filterable listings today).
