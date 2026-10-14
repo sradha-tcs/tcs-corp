@@ -319,8 +319,9 @@ async function loadErrorPage(main) {
 
 /**
  * Adds "Go back" to a 404 page reached from a page of the site: next to the page's first
- * buttons (the built-in Go home, or an authored error page's button paragraph), else below the
- * content. Runs once the content is decorated, so it finds the authored page's buttons.
+ * buttons (the built-in Go home, or a button paragraph of an authored error page's text, not one
+ * inside a block), else below the content. Runs once the content is decorated, so it finds the
+ * authored page's buttons.
  * @param {Element} main The main element
  */
 async function addErrorBackButton(main) {
@@ -334,7 +335,7 @@ async function addErrorBackButton(main) {
   back.textContent = t('goBack', 'Go back');
   decorateButton(back, { view: 'button', type: 'primary' });
   back.classList.add('error-button-back');
-  let wrapper = main.querySelector('.button-wrapper, .button-container');
+  let wrapper = main.querySelector('.default-content-wrapper > .button-wrapper, .button-container');
   if (!wrapper) {
     wrapper = document.createElement('p');
     wrapper.className = 'button-wrapper';
