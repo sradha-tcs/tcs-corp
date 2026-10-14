@@ -7,9 +7,9 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 
 | File | Description |
 |---|---|
-| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 1.2, 14 October 2026 (with 630 figures: renderings of every component and variation, annotated previews and dialog references; the Cards and Card analysis of version 1.1): project overview, solution architecture, site structure, content architecture, authoring fundamentals, every component (31) with each variation, field specifications, business rules, troubleshooting and support runbooks, taxonomy, metadata, data sheets, error pages, analytics data layer, publishing and release, global troubleshooting, AMS runbook, appendix, and a register of findings and open items (Part 16) |
+| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 1.3, 14 October 2026 (1,598 pages in six volumes, one file): 596 screenshots of every component and variation, each followed by an **Authoring steps** table (which component to add and which field gets which value) to reproduce it in Universal Editor, steps tables for the editor and console steps, 32 dialog references; also project overview, solution architecture, site structure, content architecture, authoring fundamentals, every component (31) with each variation, field specifications, business rules, troubleshooting and support runbooks, taxonomy, metadata, data sheets, error pages, analytics data layer, publishing and release, global troubleshooting, AMS runbook, appendix, and a register of findings and open items (Part 16) |
 | [TCS-CORP-HANDOVER.md](TCS-CORP-HANDOVER.md) | The editable source of the PDF (Markdown) |
-| [screenshots/](screenshots/README.md) | The 630 figures of the document and the placeholders still to capture (Universal Editor steps, AEM consoles, live media) |
+| [screenshots/](screenshots/README.md) | The 628 figures of the document (596 screenshots, 32 dialog references) |
 | [../proposals/](../proposals/README.md) | Design proposals that follow up on the handover (e.g. the Cards and Card refactoring) |
 
 | Part | Contents |
@@ -29,12 +29,34 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 ### Updating the document
 
 Edit `TCS-CORP-HANDOVER.md`, then regenerate the PDF with pandoc and typst using the Adobe
-whitepaper template (the project-management whitepaper tooling):
+whitepaper template (the project-management whitepaper tooling). With its 628 figures the whole
+document needs more memory than typst gets in a 4 GB container, so the PDF (1,598 pages) is
+built in six volumes, merged into one file; each volume keeps its own cover and contents:
+
+| Volume | Contents |
+|---|---|
+| 1 | Document control, Parts 1–5, components 6.1–6.9 |
+| 2 | Components 6.10–6.14 |
+| 3 | Components 6.15–6.19 |
+| 4 | Components 6.20–6.25 |
+| 5 | Components 6.26–6.31 |
+| 6 | Parts 7–16 |
+
+For each volume (a slice of the Markdown starting at the headings above, with its own front
+matter), with the screenshots scaled to 900 px wide first (`convert -resize '900x>' -quality 70`):
 
 ```bash
-pandoc TCS-CORP-HANDOVER.md -o TCS-CORP-HANDOVER.pdf --pdf-engine=typst \
-  -V template="adobe-whitepaper.typ" -V mainfont="Adobe Clean" -V fontsize=10pt -V papersize=a4
+pandoc TCS-CORP-HANDOVER-Vol-1.md -f markdown-citations -t typst --standalone \
+  -V template="adobe-whitepaper.typ" -V mainfont="Adobe Clean" -V fontsize=10pt -V papersize=a4 \
+  -o TCS-CORP-HANDOVER-Vol-1.typ
+typst compile -j 1 TCS-CORP-HANDOVER-Vol-1.typ TCS-CORP-HANDOVER-Vol-1.pdf
 ```
+
+Then merge the six PDFs in order (e.g. with `pdf-lib`, `qpdf --empty --pages … --` or
+`pdfunite`). `-f markdown-citations` keeps addresses such as `name@example.com` from being read
+as citations. A smaller document can still be built in one step with
+`pandoc TCS-CORP-HANDOVER.md -o TCS-CORP-HANDOVER.pdf --pdf-engine=typst` and the same `-V`
+options.
 
 Update the revision history (Document Control) and Part 16 when the code, the content model or
 an open item changes.
