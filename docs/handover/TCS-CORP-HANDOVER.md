@@ -12,7 +12,7 @@ date: "October 14, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 1.1 |
+| Version | 1.2 |
 | Date | 14 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
@@ -28,6 +28,7 @@ date: "October 14, 2026"
 |:---------|:-----------|:-----------|:------------------------------------------------------------|
 | 0.1 | 11 October 2026 | Delivery team | First handover guides (author, developer and admin guides) |
 | 1.0 | 13 October 2026 | Delivery team | Complete enterprise handover: architecture, every component and variation, field specifications, metadata, taxonomy, sheets, operations, AMS runbook, findings register |
+| 1.2 | 14 October 2026 | Delivery team | Screenshots: 598 renderings of every component and variation (desktop, tablet, mobile; sample content on the preview), 31 annotated previews in editor mode and 32 dialog references generated from the component models embedded as figures; 403 placeholders remain for Universal Editor steps, AEM consoles and shots that need live video or third-party players (15.9) |
 | 1.1 | 14 October 2026 | Delivery team | Cards and Card analysis (`docs/proposals/cards-card-refactoring.md`): Cards blocks made before the redesign have no block model and changed appearance; chapter 6.15 (variation 45, Issues 6 and 11, known limitations), findings F-34, F-41, F-42, open item O-20, reference documents |
 
 ## Review and Approval
@@ -76,7 +77,8 @@ the text says `[To be confirmed: … — owner: …]`; Part 16 collects these op
 | `[To be confirmed: … — owner: …]` | A fact not available at handover; listed in Part 16 |
 | **Not implemented (as of this handover)** | A capability that doesn't exist in the code today |
 | `> **Note:**`, `> **Important:**`, `> **Tip:**`, `> **Warning:**` | Call-outs |
-| **[Screenshot Placeholder]** | A screenshot to capture and store under `docs/handover/screenshots/` with the given file name (see 15.9 Screenshot Register) |
+| Figures | Screenshots of the rendered components with sample content (generated on 14 October 2026 from the preview); "Annotated preview" figures show the component in editor mode with letter markers; "Dialog reference" figures are drawn from the component models — neither is a Universal Editor screenshot. Files under `docs/handover/screenshots/` |
+| **[Screenshot Placeholder]** | A screenshot still to capture (Universal Editor steps, AEM consoles, live media) and store under `docs/handover/screenshots/` with the given file name (see 15.9 Screenshot Register) |
 | Breakpoints | Mobile < 600px, tablet 600–1199px, desktop ≥ 1200px (some layouts and the header switch at 900px; each chapter states where) |
 | Paths | AEM paths (`/content/tcs-corp/us/en/…`) and published paths (`/en/…`); Part 3.2 maps them |
 
@@ -1659,10 +1661,7 @@ loadEager()
 - Do not add a Page Header block to the Home page unless the design calls for it; the Home template does not add one.
 - Keep the Home page's **Navigation**, **Footer** and **404 Page** properties set to the locale defaults (the published preview of `/en/` sets `nav` = `/en/references/nav`, `footer` = `/en/references/footer`, `error-page` = `/en/error-pages/404`); every page of the locale inherits them.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/template-home-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** The /en/ Home page at 1440 px wide showing the first section (Hero or Gen Carousel) directly under the header with no top gap, followed by the authored blocks.
+![Desktop rendering — The /en/ Home page at 1440 px wide showing the first section (Hero or Gen Carousel) directly under the header with no top gap, followed by the authored blocks. (Sample content on the preview; file screenshots/template-home-desktop-view.jpg)](screenshots/template-home-desktop-view.jpg){width=100%}
 
 ### 4.1.2 Article Template
 
@@ -1695,10 +1694,7 @@ loadEager()
 - Maintain each author in every locale's Authors sheet where they publish (sheets are per locale).
 - Use a square author image (it is cropped to a circle with `object-fit: cover`).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/template-article-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** An article page at 1440 px showing the generated Page Header (Article layout: tags and content type row, published date, reading time, listen / download / share icons, title, author lockup, description) and, at the end of the page, the "About the author" card with image, name, designation and LinkedIn link.
+![Desktop rendering — An article page at 1440 px showing the generated Page Header (Article layout: tags and content type row, published date, reading time, listen / download / share icons, title, author lockup, description) and, at the end of the page, the "About the author" card with image, name, designation and LinkedIn link. (Sample content on the preview; file screenshots/template-article-desktop-view.jpg)](screenshots/template-article-desktop-view.jpg){width=81%}
 
 ### 4.1.3 Blog Template
 
@@ -1722,10 +1718,7 @@ loadEager()
 
 **Best Practices:** As for articles. Set `author-id`, `publish-date`, `reading-time` and tags for every post.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/template-blog-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A blog post at 1440 px with the same generated Page Header and "About the author" card as an article; the body class `blog` visible in the browser developer tools.
+![Desktop rendering — A blog post at 1440 px with the same generated Page Header and "About the author" card as an article; the body class `blog` visible in the browser developer tools. (Sample content on the preview; file screenshots/template-blog-desktop-view.jpg)](screenshots/template-blog-desktop-view.jpg){width=100%}
 
 ### 4.1.4 Press Release Template
 
@@ -1756,10 +1749,7 @@ loadEager()
 - Set `publish-date` (YYYY-MM-DD) on every release; the Page Header shows it as "Published DD/MM/YY".
 - Do not type the media contacts into the release body; maintain them in the sheet so every release stays current.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/template-press-release-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A press release at 1440 px with the generated Page Header and, at the end, the "Media contacts" section: a top border, the heading and three columns of contacts (name, designation and region, email and phone links).
+![Desktop rendering — A press release at 1440 px with the generated Page Header and, at the end, the "Media contacts" section: a top border, the heading and three columns of contacts (name, designation and region, email and phone links). (Sample content on the preview; file screenshots/template-press-release-desktop-view.jpg)](screenshots/template-press-release-desktop-view.jpg){width=100%}
 
 ### 4.1.5 Default (no template)
 
@@ -2903,24 +2893,15 @@ Source files: `blocks/header/header.js`, `blocks/header/header.css`. The Header 
 
 ### 6.1.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** The header at 1440px wide: logo on the left, the top-level navigation sections in a row, the tools area on the right, one dropdown open below its section label with the light grey panel and the small pointer triangle.
+![Desktop rendering — The header at 1440px wide: logo on the left, the top-level navigation sections in a row, the tools area on the right, one dropdown open below its section label with the light grey panel and the small pointer triangle. (Sample content on the preview; file screenshots/header-desktop-view.jpg)](screenshots/header-desktop-view.jpg){width=100%}
 
 **Desktop (>= 1200px, and the same from 900px).** The navigation is a single horizontal row (flexbox, `justify-content: space-between`, 2rem gap) centred in the page with a maximum width of 79rem and 2rem padding left and right; the row height is `--nav-height` (4rem). The brand is on the left (an image is 8rem wide; text is shown at `--heading-font-size-s`, bold). The sections are a horizontal list (1.5rem gap, no wrapping: `white-space: nowrap`), first level medium weight (500), at `--body-font-size-s` (1rem from 900px). A section with a sub-list shows a small chevron drawn with borders to the right of its label; the chevron points down when closed and up when open. An open dropdown is an absolutely positioned panel 12.5rem wide, starting 150% of the item height below the label and 1.5rem to the left of it, with 1rem padding, the `--light-color` background (`--color-bg-secondary`) and a 0.5rem triangle pointing at the label; its items have 0.5rem vertical padding and regular weight (400). The hamburger button is hidden. The header scrolls away with the page (`.nav-wrapper` is `position: relative` from 900px).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The header at 768px wide with the menu closed: hamburger icon on the left, logo next to it, tools on the right; the navigation sections are hidden.
+![Tablet rendering — The header at 768px wide with the menu closed: hamburger icon on the left, logo next to it, tools on the right; the navigation sections are hidden. (Sample content on the preview; file screenshots/header-tablet-view.jpg)](screenshots/header-tablet-view.jpg){width=61%}
 
 **Tablet (600–899px).** Same as mobile: the header uses the mobile menu below 900px (the desktop navigation starts at 900px, not at the 1200px desktop breakpoint of the rest of the site). Between 900px and 1199px the desktop navigation is shown.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The header at 390px wide in two states: closed (hamburger, logo, tools in one 4rem row) and open (full-height menu with the close icon, the sections and their sub-lists stacked, the tools at the bottom).
+![Mobile rendering — The header at 390px wide in two states: closed (hamburger, logo, tools in one 4rem row) and open (full-height menu with the close icon, the sections and their sub-lists stacked, the tools at the bottom). (Sample content on the preview; file screenshots/header-mobile-view.jpg)](screenshots/header-mobile-view.jpg){width=67%}
 
 **Mobile (< 600px) and tablet (< 900px).** The navigation is a CSS grid with the areas `hamburger brand tools` in one 4rem row and 1.5rem padding (maximum width 78rem). The `.nav-wrapper` is `position: fixed` at the top (z-index 2), so the header stays visible while the page scrolls; the `<header>` element reserves its 4rem height. The hamburger icon (three 1.25rem bars, 0.125rem thick) is drawn in CSS. When the menu is open, the nav switches to the areas `hamburger brand` / `sections` / `tools`, takes at least the full viewport height (`100dvh`), scrolls internally (`overflow-y: auto`), the page behind it doesn't scroll (`body` `overflow-y: hidden`), the icon turns into an "X" (two rotated 1.5rem bars), the sections are listed vertically with all sub-lists visible, and the tools move to the bottom row.
 
@@ -2936,10 +2917,7 @@ The header has no style options. Its variations are the nav page it shows, the b
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-default-locale-navigation.png` \
-> **Purpose:** Default navigation of the /en locale \
-> **Description:** An /en content page showing the header built from /en/references/nav: TCS logo, top-level sections, tools.
+![Default navigation of the /en locale — An /en content page showing the header built from /en/references/nav: TCS logo, top-level sections, tools. (Sample content on the preview; file screenshots/header-default-locale-navigation.jpg)](screenshots/header-default-locale-navigation.jpg){width=100%}
 
 **Use Cases:** All locale pages; the Home page of each locale; error pages.
 
@@ -2963,10 +2941,7 @@ The header has no style options. Its variations are the nav page it shows, the b
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-alternate-navigation.png` \
-> **Purpose:** Area-specific navigation \
-> **Description:** A page below /en/careers showing the navigation from /en/references/nav-careers, with Careers-specific sections, compared side by side with the default navigation.
+![Area-specific navigation — A page below /en/careers showing the navigation from /en/references/nav-careers, with Careers-specific sections, compared side by side with the default navigation. (Sample content on the preview; file screenshots/header-alternate-navigation.jpg)](screenshots/header-alternate-navigation.jpg){width=100%}
 
 **Use Cases:** Section-specific navigation; microsites; landing pages with a reduced navigation.
 
@@ -2996,10 +2971,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-desktop-dropdown.png` \
-> **Purpose:** An open dropdown \
-> **Description:** Desktop header with one section's dropdown open: the chevron rotated up, the grey 12.5rem panel with the pointer triangle and the second-level links.
+![An open dropdown — Desktop header with one section's dropdown open: the chevron rotated up, the grey 12.5rem panel with the pointer triangle and the second-level links. (Sample content on the preview; file screenshots/header-desktop-dropdown.jpg)](screenshots/header-desktop-dropdown.jpg){width=100%}
 
 **Use Cases:** All desktop and large-tablet visits.
 
@@ -3023,10 +2995,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-mobile-menu.png` \
-> **Purpose:** Open mobile menu \
-> **Description:** 390px viewport, the menu open: "X" icon, logo, vertical list of sections with their second-level items visible, tools at the bottom, page behind not scrollable.
+![Open mobile menu — 390px viewport, the menu open: "X" icon, logo, vertical list of sections with their second-level items visible, tools at the bottom, page behind not scrollable. (Sample content on the preview; file screenshots/header-mobile-menu.jpg)](screenshots/header-mobile-menu.jpg){width=38%}
 
 **Use Cases:** Phones and tablets in portrait and landscape below 900px.
 
@@ -3050,10 +3019,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-unlinked-section-label.png` \
-> **Purpose:** Section label rendered as a button \
-> **Description:** Desktop header: the "Services" label with its chevron, focused with the keyboard focus ring, dropdown open.
+![Section label rendered as a button — Desktop header: the "Services" label with its chevron, focused with the keyboard focus ring, dropdown open. (Sample content on the preview; file screenshots/header-unlinked-section-label.jpg)](screenshots/header-unlinked-section-label.jpg){width=100%}
 
 **Use Cases:** Grouping labels such as "What we do", "Industries", "Insights".
 
@@ -3077,10 +3043,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-linked-section-label.png` \
-> **Purpose:** Linked label with dropdown toggle \
-> **Description:** Desktop header: "Industries" as a link, with its chevron; keyboard focus on the toggle button after the link.
+![Linked label with dropdown toggle — Desktop header: "Industries" as a link, with its chevron; keyboard focus on the toggle button after the link. (Sample content on the preview; file screenshots/header-linked-section-label.jpg)](screenshots/header-linked-section-label.jpg){width=100%}
 
 **Use Cases:** Sections such as "Industries" with an overview page.
 
@@ -3104,10 +3067,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-simple-section-link.png` \
-> **Purpose:** Plain first-level link \
-> **Description:** Desktop header with a first-level link without a chevron next to two dropdown sections.
+![Plain first-level link — Desktop header with a first-level link without a chevron next to two dropdown sections. (Sample content on the preview; file screenshots/header-simple-section-link.jpg)](screenshots/header-simple-section-link.jpg){width=100%}
 
 **Use Cases:** Single destination pages.
 
@@ -3131,10 +3091,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-tools-area.png` \
-> **Purpose:** Tools on the right of the header \
-> **Description:** Desktop header with a "Contact us" primary button and a text link in the tools area at the right end; mobile closed state with the tools in the top row.
+![Tools on the right of the header — Desktop header with a "Contact us" primary button and a text link in the tools area at the right end; mobile closed state with the tools in the top row. (Sample content on the preview; file screenshots/header-tools-area.jpg)](screenshots/header-tools-area.jpg){width=100%}
 
 **Use Cases:** Primary call to action, secondary utility links.
 
@@ -3152,10 +3109,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 ### 6.1.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-authoring-view.png` \
-> **Purpose:** Universal Editor canvas of the nav page \
-> **Description:** The page /content/tcs-corp/us/en/references/nav open in Universal Editor, showing three sections with the letters A to E marked.
+![Universal Editor canvas of the nav page — The page /content/tcs-corp/us/en/references/nav open in Universal Editor, showing three sections with the letters A to E marked. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/header-authoring-view.jpg)](screenshots/header-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -3167,10 +3121,7 @@ Alternatively, add a row to the locale's metadata sheet with the URL pattern (fo
 
 > **Note:** When the nav page is opened directly in Universal Editor, it is rendered as an ordinary page (sections and default content), not as a header; the header of that page is itself loaded from the nav page. Check the result on a content page.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/header-properties-panel.png` \
-> **Purpose:** Properties used to choose the nav page \
-> **Description:** Page Properties of a content page with the Navigation field (and Footer, 404 Page) highlighted; plus the properties panel of the Text component holding the list on the nav page.
+![Properties used to choose the nav page — Page Properties of a content page with the Navigation field (and Footer, 404 Page) highlighted; plus the properties panel of the Text component holding the list on the nav page. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/header-properties-panel.jpg)](screenshots/header-properties-panel.jpg){width=100%}
 
 **Properties panel description.** The Header block itself has no properties panel. The fields involved are:
 
@@ -3741,24 +3692,15 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 ### 6.2.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** The footer at 1440px: the conversation canvas title on two lines, the floating menu button and search field, the buttons in a row, and the bottom bar with the copyright on the left and the links on the right, over the white background with the soft blue and yellow glows at the bottom.
+![Desktop rendering — The footer at 1440px: the conversation canvas title on two lines, the floating menu button and search field, the buttons in a row, and the bottom bar with the copyright on the left and the links on the right, over the white background with the soft blue and yellow glows at the bottom. (Sample content on the preview; file screenshots/footer-desktop-view.jpg)](screenshots/footer-desktop-view.jpg){width=100%}
 
 **Desktop (>= 1200px).** White background (`--color-bg-default`) with two radial-gradient glows at the bottom edge: a blue glow (`--color-bg-brand` at 30%) and a yellow glow (`--color-bg-warning` at 30%). Content is a vertical flex column, maximum width `--page-max-width` (120rem), padding 7.5rem top, 5rem left and right, 2.5rem bottom, 5rem gap between the footer page's sections. With a conversation canvas the footer is at least 50.125rem high and the bar sits at the bottom; the canvas title is 6rem (line height 7.1875rem, letter-spacing −3%) with a maximum width of 61.5rem (two lines). The bar is a wrapping flex row (`justify-content: space-between`): copyright left (at least 19.375rem wide), links right with 1.5rem column gap; text 1rem, line height 1.375rem, medium weight. Social links follow as a wrapping row with 1rem gap and 1.5rem icons.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The footer at 1024px: canvas title one line wide (no maximum width), menu button visible, buttons in a row, bar below.
+![Tablet rendering — The footer at 1024px: canvas title one line wide (no maximum width), menu button visible, buttons in a row, bar below. (Sample content on the preview; file screenshots/footer-tablet-view.jpg)](screenshots/footer-tablet-view.jpg){width=82%}
 
 **Tablet (600–1199px).** Padding 7.5rem top, 1.25rem left and right, 2.5rem bottom; with a canvas the minimum height is 59.75rem, the canvas gap 5rem, the title 6rem without a maximum width, the canvas buttons in a row, the menu button of the canvas visible (`display: grid`), the search field padding 1.5rem at the start; bar text 1rem / 1.375rem. The glows move to 25% (blue) and 88% (yellow) of the width.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The footer at 390px: canvas title 3.25rem over several lines, buttons stacked, no menu button, the copyright above the links.
+![Mobile rendering — The footer at 390px: canvas title 3.25rem over several lines, buttons stacked, no menu button, the copyright above the links. (Sample content on the preview; file screenshots/footer-mobile-view.jpg)](screenshots/footer-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px).** Padding 3.5rem top, 1.25rem sides, 1.5rem bottom; with a canvas the minimum height is 50rem, the canvas gap 4rem, the title 3.25rem (line height 3.875rem) limited to 20rem wide and centred, the canvas buttons stacked in a column, the canvas menu button hidden (the site header has the navigation), the search field padding 1rem at the start. Bar text 0.75rem, line height 1.0625rem; the copyright takes at least 19.375rem (or the full width), so the links wrap below it. Glows: blue near the left edge (6%), yellow mostly beyond the right edge (130%).
 
@@ -3772,10 +3714,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-default-locale-footer.png` \
-> **Purpose:** Default footer of /en \
-> **Description:** An /en content page with the footer from /en/references/footer: canvas, copyright, Privacy & Terms link, social icons.
+![Default footer of /en — An /en content page with the footer from /en/references/footer: canvas, copyright, Privacy & Terms link, social icons. (Sample content on the preview; file screenshots/footer-default-locale-footer.jpg)](screenshots/footer-default-locale-footer.jpg){width=100%}
 
 **Use Cases:** All pages without their own Footer value.
 
@@ -3799,10 +3738,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-alternate-footer.png` \
-> **Purpose:** Area-specific footer \
-> **Description:** A campaign page with a footer bar only (no canvas) from references/footer-campaign.
+![Area-specific footer — A campaign page with a footer bar only (no canvas) from references/footer-campaign. (Sample content on the preview; file screenshots/footer-alternate-footer.jpg)](screenshots/footer-alternate-footer.jpg){width=100%}
 
 **Use Cases:** Campaign pages; areas with different legal links.
 
@@ -3826,10 +3762,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-bar-only.png` \
-> **Purpose:** Bar without canvas \
-> **Description:** Footer with only the copyright text and the link list in one row (desktop) and stacked (mobile).
+![Bar without canvas — Footer with only the copyright text and the link list in one row (desktop) and stacked (mobile). (Sample content on the preview; file screenshots/footer-bar-only.jpg)](screenshots/footer-bar-only.jpg){width=100%}
 
 **Use Cases:** Campaign footers, simple microsites.
 
@@ -3853,10 +3786,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-with-conversation-canvas.png` \
-> **Purpose:** Canvas in the footer \
-> **Description:** Desktop footer with the canvas title, the floating menu button and "Ask us a question" search field, secondary buttons with dark 2px borders, then the bar.
+![Canvas in the footer — Desktop footer with the canvas title, the floating menu button and "Ask us a question" search field, secondary buttons with dark 2px borders, then the bar. (Sample content on the preview; file screenshots/footer-with-conversation-canvas.jpg)](screenshots/footer-with-conversation-canvas.jpg){width=100%}
 
 **Use Cases:** Global footers of the corporate locales.
 
@@ -3880,10 +3810,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-social-links-icons.png` \
-> **Purpose:** Social icon row \
-> **Description:** A row of LinkedIn, X, Facebook, Instagram and YouTube icons (1.5rem) at the end of the footer.
+![Social icon row — A row of LinkedIn, X, Facebook, Instagram and YouTube icons (1.5rem) at the end of the footer. (Sample content on the preview; file screenshots/footer-social-links-icons.jpg)](screenshots/footer-social-links-icons.jpg){width=100%}
 
 **Use Cases:** Standard corporate channels.
 
@@ -3907,10 +3834,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-social-links-text-image.png` \
-> **Purpose:** Image and text fallbacks \
-> **Description:** Social row with one custom image icon and one text-only link "Follow us on Xing".
+![Image and text fallbacks — Social row with one custom image icon and one text-only link "Follow us on Xing". (Sample content on the preview; file screenshots/footer-social-links-text-image.jpg)](screenshots/footer-social-links-text-image.jpg){width=100%}
 
 **Use Cases:** Additional or regional channels.
 
@@ -3934,10 +3858,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-link-new-window.png` \
-> **Purpose:** New-window link \
-> **Description:** Footer bar with an "Investor relations" link to an external domain, the link's target highlighted in developer tools.
+![New-window link — Footer bar with an "Investor relations" link to an external domain, the link's target highlighted in developer tools. (Sample content on the preview; file screenshots/footer-link-new-window.jpg)](screenshots/footer-link-new-window.jpg){width=100%}
 
 **Use Cases:** Links to external sites (group company pages, regulatory sites).
 
@@ -3955,10 +3876,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 ### 6.2.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-authoring-view.png` \
-> **Purpose:** Universal Editor canvas of the footer page \
-> **Description:** /content/tcs-corp/us/en/references/footer open in Universal Editor with the Footer block selected and markers A to E.
+![Universal Editor canvas of the footer page — /content/tcs-corp/us/en/references/footer open in Universal Editor with the Footer block selected and markers A to E. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/footer-authoring-view.jpg)](screenshots/footer-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -3970,10 +3888,7 @@ The code decides the role by the block's parent: a block directly inside `<foote
 
 > **Note:** When the footer page itself is opened in Universal Editor, its own page footer is also loaded from the footer page; edit the block in the main content area, and check the final result on a content page.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/footer-properties-panel.png` \
-> **Purpose:** Footer block properties \
-> **Description:** The properties panel of the Footer block with Conversation Canvas Page, Copyright Text and the Link List with two items expanded.
+![Footer block properties — The properties panel of the Footer block with Conversation Canvas Page, Copyright Text and the Link List with two items expanded. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/footer-properties-panel.jpg)](screenshots/footer-properties-panel.jpg){width=100%}
 
 **Properties panel description.** The Footer model has no tabs (and no Additional tab). Fields, in order:
 
@@ -4497,24 +4412,15 @@ Source files: `blocks/fragment/fragment.js`, `blocks/fragment/fragment.css` (emp
 
 ### 6.3.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A content page at 1440px with a shared "Talk to our experts" section loaded from references/cta-banner between two authored sections, looking identical to authored content.
+![Desktop rendering — A content page at 1440px with a shared "Talk to our experts" section loaded from references/cta-banner between two authored sections, looking identical to authored content. (Sample content on the preview; file screenshots/fragment-desktop-view.jpg)](screenshots/fragment-desktop-view.jpg){width=100%}
 
 **Desktop (>= 1200px).** The Fragment block has no visual style of its own (`fragment.css` is empty). After loading, it contains the fragment page's sections, each rendered with its own section options (style, width, background) and blocks, inside the section of the current page that holds the Fragment block. Spacing comes from the inner sections and from the Additional tab padding / margin of the Fragment block.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same shared section at 768px, its blocks in their tablet layout.
+![Tablet rendering — The same shared section at 768px, its blocks in their tablet layout. (Sample content on the preview; file screenshots/fragment-tablet-view.jpg)](screenshots/fragment-tablet-view.jpg){width=57%}
 
 **Tablet (600–1199px).** The inner blocks follow their own tablet rules.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same shared section at 390px, stacked.
+![Mobile rendering — The same shared section at 390px, stacked. (Sample content on the preview; file screenshots/fragment-mobile-view.jpg)](screenshots/fragment-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px).** The inner blocks follow their own mobile rules. Before the fragment is loaded (or if it fails), the block shows its authored content: the Reference link.
 
@@ -4530,10 +4436,7 @@ The Fragment block has no style options. Its variations are the ways fragments a
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-authored-block.png` \
-> **Purpose:** Fragment block in a page \
-> **Description:** Universal Editor with a Fragment block selected, showing the content of references/cta-banner inside it.
+![Fragment block in a page — Universal Editor with a Fragment block selected, showing the content of references/cta-banner inside it. (Sample content on the preview; file screenshots/fragment-authored-block.jpg)](screenshots/fragment-authored-block.jpg){width=100%}
 
 **Use Cases:** Shared banners, disclaimers, contact sections.
 
@@ -4611,10 +4514,7 @@ The Fragment block has no style options. Its variations are the ways fragments a
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-tab-panel.png` \
-> **Purpose:** Fragment in a tab \
-> **Description:** A Tabs block whose second tab panel shows the content of a fragment page with Columns.
+![Fragment in a tab — A Tabs block whose second tab panel shows the content of a fragment page with Columns. (Sample content on the preview; file screenshots/fragment-tab-panel.jpg)](screenshots/fragment-tab-panel.jpg){width=100%}
 
 **Use Cases:** Tab content too complex for the tab's own fields.
 
@@ -4638,10 +4538,7 @@ The Fragment block has no style options. Its variations are the ways fragments a
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-modal.png` \
-> **Purpose:** Fragment in a modal \
-> **Description:** A dialog open over a page with the content of /en/modals/contact-form.
+![Fragment in a modal — A dialog open over a page with the content of /en/modals/contact-form. (Sample content on the preview; file screenshots/fragment-modal.jpg)](screenshots/fragment-modal.jpg){width=100%}
 
 **Use Cases:** Contact forms, video players, terms.
 
@@ -4659,20 +4556,14 @@ The Fragment block has no style options. Its variations are the ways fragments a
 
 ### 6.3.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A content page in Universal Editor with a Fragment block selected (marker A) and the included content (marker B).
+![Universal Editor canvas — A content page in Universal Editor with a Fragment block selected (marker A) and the included content (marker B). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/fragment-authoring-view.jpg)](screenshots/fragment-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
 - A = The Fragment block (select it to set Reference and the Additional options).
 - B = The included content of the fragment page (not editable here; edit it on the fragment page).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/fragment-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Fragment block's properties with the Content tab (Reference) and the Additional tab (Anchor ID, Hide block, padding and margin selects).
+![Properties panel — The Fragment block's properties with the Content tab (Reference) and the Additional tab (Anchor ID, Hide block, padding and margin selects). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/fragment-properties-panel.jpg)](screenshots/fragment-properties-panel.jpg){width=100%}
 
 **Properties panel description.**
 
@@ -5125,24 +5016,15 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 ### 6.4.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** An article page at 1440px: the meta row (tags, content type on the left; "Published dd/mm/yy", reading time and the three icon actions on the right), then two columns with the large title and author lockup on the left and the description and CTAs on the right.
+![Desktop rendering — An article page at 1440px: the meta row (tags, content type on the left; "Published dd/mm/yy", reading time and the three icon actions on the right), then two columns with the large title and author lockup on the left and the description and CTAs on the right. (Sample content on the preview; file screenshots/page-header-desktop-view.jpg)](screenshots/page-header-desktop-view.jpg){width=100%}
 
 **Desktop (>= 1200px; layout changes start at 900px).** The block is a vertical flex column with 2.5rem gaps and 7.5rem top padding. Secondary, Article and Display place the intro (title side) and the summary (description and CTAs) in two equal columns (`repeat(2, minmax(0, 1fr))`, 2.5rem gap); Secondary and Article move the summary down by 0.75rem; Display centres both columns vertically. Landing with a featured image is a two-column grid (text | image, 5rem gap, vertically centred). Title sizes from 900px: Landing and Display 6rem (letter-spacing −0.18rem and −0.12rem), Article `--display-font-size-2` (4rem), Secondary `--heading-font-size-xxl` (3rem, semibold). Description `--body-font-size-l` (1.5rem, line height 1.417); Landing description `--body-font-size-m` (1.125rem, line height 1.61).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same article page at 1024px (two columns) and at 768px (one column).
+![Tablet rendering — The same article page at 1024px (two columns) and at 768px (one column). (Sample content on the preview; file screenshots/page-header-tablet-view.jpg)](screenshots/page-header-tablet-view.jpg){width=84%}
 
 **Tablet (600–1199px).** From 900px as desktop. Between 600px and 899px as mobile (single column); the type tokens step at 900px.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The article page at 390px: meta row wrapping onto two lines, title, author, description and CTAs stacked.
+![Mobile rendering — The article page at 390px: meta row wrapping onto two lines, title, author, description and CTAs stacked. (Sample content on the preview; file screenshots/page-header-mobile-view.jpg)](screenshots/page-header-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px, and up to 899px).** Everything stacks in one column with 2.5rem gaps and 2.5rem top padding; the Landing image follows the text. Title sizes: Landing and Display `--display-font-size-1` (2.75rem), Article `--display-font-size-2` (2.5rem), Secondary `--heading-font-size-xxl` (2rem). Description 1rem. Eyebrow and tags 0.75rem uppercase; the meta row wraps (1rem row gap, 2.5rem column gap). Icon actions are 2.75rem square touch targets.
 
@@ -5156,10 +5038,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-default-layout.png` \
-> **Purpose:** Layout chosen by Page Type \
-> **Description:** Two pages with Layout = Default: a page with page-type landing rendering the Landing layout, and an article page rendering the Article layout.
+![Layout chosen by Page Type — Two pages with Layout = Default: a page with page-type landing rendering the Landing layout, and an article page rendering the Article layout. (Sample content on the preview; file screenshots/page-header-default-layout.jpg)](screenshots/page-header-default-layout.jpg){width=100%}
 
 **Use Cases:** Pages created from the Site Global Templates; the automatic Page Header of the templates.
 
@@ -5183,10 +5062,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-landing-with-image.png` \
-> **Purpose:** Landing with image \
-> **Description:** Desktop: eyebrow "INDUSTRY", 6rem semibold title, description, two CTAs on the left, the featured image on the right; mobile: image below the text.
+![Landing with image — Desktop: eyebrow "INDUSTRY", 6rem semibold title, description, two CTAs on the left, the featured image on the right; mobile: image below the text. (Sample content on the preview; file screenshots/page-header-landing-with-image.jpg)](screenshots/page-header-landing-with-image.jpg){width=92%}
 
 **Use Cases:** Industry, service and capability landing pages; listing pages.
 
@@ -5210,10 +5086,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-landing-text-only.png` \
-> **Purpose:** Landing without image \
-> **Description:** Eyebrow, very large title, description and CTAs stacked across the full width.
+![Landing without image — Eyebrow, very large title, description and CTAs stacked across the full width. (Sample content on the preview; file screenshots/page-header-landing-text-only.jpg)](screenshots/page-header-landing-text-only.jpg){width=100%}
 
 **Use Cases:** Listing pages ("All insights"), simple landing pages.
 
@@ -5237,10 +5110,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-secondary.png` \
-> **Purpose:** Secondary layout \
-> **Description:** Eyebrow above both columns; semibold title on the left; description and CTAs on the right, 0.75rem lower.
+![Secondary layout — Eyebrow above both columns; semibold title on the left; description and CTAs on the right, 0.75rem lower. (Sample content on the preview; file screenshots/page-header-secondary.jpg)](screenshots/page-header-secondary.jpg){width=100%}
 
 **Use Cases:** About, leadership, careers subpages.
 
@@ -5264,10 +5134,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-article.png` \
-> **Purpose:** Article layout \
-> **Description:** Meta row (tag list, content type | "Published 12/03/26", "6 min read", listen, download, share icons), then title with the author lockup (round photo, LinkedIn-linked name, designation and region) on the left and description and CTAs on the right.
+![Article layout — Meta row (tag list, content type | "Published 12/03/26", "6 min read", listen, download, share icons), then title with the author lockup (round photo, LinkedIn-linked name, designation and region) on the left and description and CTAs on the right. (Sample content on the preview; file screenshots/page-header-article.jpg)](screenshots/page-header-article.jpg){width=100%}
 
 **Use Cases:** Articles, blogs, insights, press releases (template default).
 
@@ -5291,10 +5158,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-display.png` \
-> **Purpose:** Display layout \
-> **Description:** Tags "CLOUD | AI | SUSTAINABILITY" pipe-separated above a 6rem medium-weight dark slate title on the left; description and CTAs vertically centred on the right.
+![Display layout — Tags "CLOUD | AI | SUSTAINABILITY" pipe-separated above a 6rem medium-weight dark slate title on the left; description and CTAs vertically centred on the right. (Sample content on the preview; file screenshots/page-header-display.jpg)](screenshots/page-header-display.jpg){width=100%}
 
 **Use Cases:** Thought leadership, campaign pages, topic hubs.
 
@@ -5318,10 +5182,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-template-automatic.png` \
-> **Purpose:** Template-generated header \
-> **Description:** A press release page without an authored Page Header, showing the Article layout built from its metadata.
+![Template-generated header — A press release page without an authored Page Header, showing the Article layout built from its metadata. (Sample content on the preview; file screenshots/page-header-template-automatic.jpg)](screenshots/page-header-template-automatic.jpg){width=100%}
 
 **Use Cases:** Pages with Page Type Article, Blog or Press Release.
 
@@ -5345,10 +5206,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-cta-primary.png` \
-> **Purpose:** Primary CTA \
-> **Description:** A filled brand-colour primary button "Talk to an expert" in the summary column.
+![Primary CTA — A filled brand-colour primary button "Talk to an expert" in the summary column. (Sample content on the preview; file screenshots/page-header-cta-primary.jpg)](screenshots/page-header-cta-primary.jpg){width=53%}
 
 **Use Cases:** "Contact us", "Talk to an expert".
 
@@ -5372,10 +5230,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-cta-secondary.png` \
-> **Purpose:** Secondary CTA \
-> **Description:** An outlined secondary button next to the primary button.
+![Secondary CTA — An outlined secondary button next to the primary button. (Sample content on the preview; file screenshots/page-header-cta-secondary.jpg)](screenshots/page-header-cta-secondary.jpg){width=53%}
 
 **Use Cases:** "Download the report", "Explore services".
 
@@ -5399,10 +5254,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-cta-text-link.png` \
-> **Purpose:** Text link CTA \
-> **Description:** A tertiary text-style link after the buttons.
+![Text link CTA — A tertiary text-style link after the buttons. (Sample content on the preview; file screenshots/page-header-cta-text-link.jpg)](screenshots/page-header-cta-text-link.jpg){width=53%}
 
 **Use Cases:** "Learn more", "View all".
 
@@ -5453,10 +5305,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-author-metadata.png` \
-> **Purpose:** Name-only author \
-> **Description:** The author name in light weight below the title, without photo or designation.
+![Name-only author — The author name in light weight below the title, without photo or designation. (Sample content on the preview; file screenshots/page-header-author-metadata.jpg)](screenshots/page-header-author-metadata.jpg){width=53%}
 
 **Use Cases:** Guest posts, external contributors.
 
@@ -5480,10 +5329,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-listen-action.png` \
-> **Purpose:** Listen icon \
-> **Description:** The headphones icon before the download and share icons in the meta row.
+![Listen icon — The headphones icon before the download and share icons in the meta row. (Sample content on the preview; file screenshots/page-header-listen-action.jpg)](screenshots/page-header-listen-action.jpg){width=38%}
 
 **Use Cases:** Articles with a recorded or generated audio file or podcast page.
 
@@ -5501,10 +5347,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 
 ### 6.4.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** An article page in Universal Editor with the Page Header selected and markers A to H on the rendered parts.
+![Universal Editor canvas — An article page in Universal Editor with the Page Header selected and markers A to H on the rendered parts. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/page-header-authoring-view.jpg)](screenshots/page-header-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -5517,10 +5360,7 @@ Source files: `blocks/page-header/page-header.js`, `blocks/page-header/page-head
 - G = CTA List items (authored in the block).
 - H = Featured image (Landing; metadata `featured-image`).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/page-header-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Page Header properties with the Style tab (Layout select open), the CTAs tab with two CTA List items, and the Additional tab.
+![Properties panel — The Page Header properties with the Style tab (Layout select open), the CTAs tab with two CTA List items, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/page-header-properties-panel.jpg)](screenshots/page-header-properties-panel.jpg){width=100%}
 
 **Properties panel description.**
 
@@ -6080,24 +5920,15 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 ### 6.5.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A page at 1440 px with three sections: a default section (white), a Highlight section (light grey band) and a Fixed Width section with a background image and rounded corners.
+![Desktop rendering — A page at 1440 px with three sections: a default section (white), a Highlight section (light grey band) and a Fixed Width section with a background image and rounded corners. (Sample content on the preview; file screenshots/section-desktop-view.jpg)](screenshots/section-desktop-view.jpg){width=100%}
 
 **Desktop (1200 px and above):** each section's content is centred and capped at 120rem (Full Width) or 90rem (Fixed Width), with 5rem side padding (`--section-padding-inline: var(--spacing-l)`). Sections are separated by a vertical margin of 7.5rem (`--section-spacing: var(--space-3000)`); the first section has no top margin. Highlight and background sections have no outer margin but 7.5rem padding top and bottom, so their colour or image fills the band.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same page at 768 px: narrower side padding, Highlight band edge to edge, background image cropped to cover the band.
+![Tablet rendering — The same page at 768 px: narrower side padding, Highlight band edge to edge, background image cropped to cover the band. (Sample content on the preview; file screenshots/section-tablet-view.jpg)](screenshots/section-tablet-view.jpg){width=61%}
 
 **Tablet (600–1199 px):** side padding 2.5rem (`--spacing-m`). The section spacing is 2.5rem up to 899 px and 5rem (`--spacing-l`) from 900 px. A Fixed Width section is narrower than 90rem on these screens anyway, so it looks like a Full Width section unless the viewport is wider than 90rem.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same page at 375 px: 1.5rem side padding, 2.5rem section spacing, the background image cropped around its centre.
+![Mobile rendering — The same page at 375 px: 1.5rem side padding, 2.5rem section spacing, the background image cropped around its centre. (Sample content on the preview; file screenshots/section-mobile-view.jpg)](screenshots/section-mobile-view.jpg){width=38%}
 
 **Mobile (below 600 px):** side padding 1.5rem (`--spacing-s`), section spacing 2.5rem (`--spacing-m`). Background images use the 750 px-wide rendition and `object-fit: cover`, so the left and right edges of wide images are cut off.
 
@@ -6111,10 +5942,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-default.png` \
-> **Purpose:** Default section \
-> **Description:** A white section with a Title, Text and a Teaser, content capped at the page width with standard side padding.
+![Default section — A white section with a Title, Text and a Teaser, content capped at the page width with standard side padding. (Sample content on the preview; file screenshots/section-default.jpg)](screenshots/section-default.jpg){width=100%}
 
 **Use Cases:** Body content, introductions, any block that brings its own background.
 
@@ -6138,10 +5966,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-highlight.png` \
-> **Purpose:** Highlight section \
-> **Description:** A light grey band spanning the viewport width with a Title, Text and a Button, between two white sections.
+![Highlight section — A light grey band spanning the viewport width with a Title, Text and a Button, between two white sections. (Sample content on the preview; file screenshots/section-highlight.jpg)](screenshots/section-highlight.jpg){width=100%}
 
 **Use Cases:** Key messages, statistics, a call-to-action band, alternating content bands.
 
@@ -6165,10 +5990,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-fixed-width.png` \
-> **Purpose:** Fixed Width section \
-> **Description:** On a 1920 px screen, a Highlight section with Fixed Width: the grey band is 1440 px wide and centred, with white space left and right.
+![Fixed Width section — On a 1920 px screen, a Highlight section with Fixed Width: the grey band is 1440 px wide and centred, with white space left and right. (Sample content on the preview; file screenshots/section-fixed-width.jpg)](screenshots/section-fixed-width.jpg){width=100%}
 
 **Use Cases:** Highlight or background bands that should not run edge to edge on large monitors; combined with Rounded edge for a framed band.
 
@@ -6192,10 +6014,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-rounded-edge.png` \
-> **Purpose:** Rounded edge section \
-> **Description:** A Fixed Width Highlight section with 16 px rounded corners on a 1920 px screen.
+![Rounded edge section — A Fixed Width Highlight section with 16 px rounded corners on a 1920 px screen. (Sample content on the preview; file screenshots/section-rounded-edge.jpg)](screenshots/section-rounded-edge.jpg){width=100%}
 
 **Use Cases:** Framed call-to-action bands, image bands inside a page with white margins.
 
@@ -6219,10 +6038,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-background-image.png` \
-> **Purpose:** Section with background image \
-> **Description:** A section with a full-cover photograph behind a white-on-image Title and Button; the photograph fills the band edge to edge.
+![Section with background image — A section with a full-cover photograph behind a white-on-image Title and Button; the photograph fills the band edge to edge. (Sample content on the preview; file screenshots/section-background-image.jpg)](screenshots/section-background-image.jpg){width=100%}
 
 **Use Cases:** Campaign bands, event teasers, section openers built from default content.
 
@@ -6246,10 +6062,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-anchored.png` \
-> **Purpose:** Anchored section \
-> **Description:** An Anchor List at the top of the page and the browser scrolled to the "Overview" section after selecting its link, with `#overview` in the address bar.
+![Anchored section — An Anchor List at the top of the page and the browser scrolled to the "Overview" section after selecting its link, with `#overview` in the address bar. (Sample content on the preview; file screenshots/section-anchored.jpg)](screenshots/section-anchored.jpg){width=100%}
 
 **Use Cases:** Long pages with chapter navigation, deep links from campaigns.
 
@@ -6269,10 +6082,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 
 ### 6.5.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-authoring-view.png` \
-> **Purpose:** Section on the Universal Editor canvas \
-> **Description:** A selected section on the canvas (blue selection frame around the band) with its background image, a Title and a Button inside, and the section highlighted in the content tree. Mark A to D.
+![Section on the Universal Editor canvas — A selected section on the canvas (blue selection frame around the band) with its background image, a Title and a Button inside, and the section highlighted in the content tree. Mark A to D. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/section-authoring-view.jpg)](screenshots/section-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -6281,10 +6091,7 @@ The listen link reports `interaction` `listen` with its `xdm:linkURL` (`xdm:link
 - C = default content inside the section (edited through its own component)
 - D = the section entry in the content tree (shows the Section Name)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/section-properties-panel.png` \
-> **Purpose:** Section properties panel \
-> **Description:** The Properties panel of a section showing Section Name, Style, Width Type, Rounded edge, Background Image, Image alt text and Anchor name.
+![Section properties panel — The Properties panel of a section showing Section Name, Style, Width Type, Rounded edge, Background Image, Image alt text and Anchor name. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/section-properties-panel.jpg)](screenshots/section-properties-panel.jpg){width=100%}
 
 The section dialog has a single list of fields (no tabs): **Section Name** (text, content tree label), **Style** (multi-select: Highlight), **Width Type** (select: Full Width / Fixed Width), **Rounded edge** (switch), **Background Image** (Assets picker), **Image alt text** (text, with the help text "Describe the image for screen readers. Leave empty if the image is decorative.") and **Anchor name** (text, help text "Lets Anchor List links jump to this section, e.g. overview (lowercase, no spaces)."). There is no Additional tab on sections.
 
@@ -6748,24 +6555,15 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 ### 6.6.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Text component at 1440 px with two paragraphs, a bulleted list, an inline link in brand blue and a standalone link rendered as a link button with a chevron.
+![Desktop rendering — A Text component at 1440 px with two paragraphs, a bulleted list, an inline link in brand blue and a standalone link rendered as a link button with a chevron. (Sample content on the preview; file screenshots/text-desktop-view.jpg)](screenshots/text-desktop-view.jpg){width=100%}
 
 **Desktop (1200 px and above):** body text in Inter (`--body-font-family`) at `--body-font-size-m` = 1.125rem (from 900 px), line height 1.6, letter-spacing −0.005 × font size. Paragraphs and lists have a top margin of 0.8 × and a bottom margin of 0.25 × the body size. Links are brand blue (`--color-text-brand`), not underlined, underlined and brand-600 on hover, with a 0.125rem brand outline on keyboard focus. Text spans the section content width (up to 120rem minus 5rem side padding).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Text at 768 px, wrapping within the 2.5rem section padding.
+![Tablet rendering — The same Text at 768 px, wrapping within the 2.5rem section padding. (Sample content on the preview; file screenshots/text-tablet-view.jpg)](screenshots/text-tablet-view.jpg){width=61%}
 
 **Tablet (600–1199 px):** body text 1rem below 900 px and 1.125rem from 900 px; 2.5rem section side padding.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same Text at 375 px with 1.5rem side padding; the link button on its own line.
+![Mobile rendering — The same Text at 375 px with 1.5rem side padding; the link button on its own line. (Sample content on the preview; file screenshots/text-mobile-view.jpg)](screenshots/text-mobile-view.jpg){width=38%}
 
 **Mobile (below 600 px):** body text 1rem; 1.5rem side padding; long URLs wrap (`overflow-wrap: break-word` on links).
 
@@ -6779,10 +6577,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-paragraphs.png` \
-> **Purpose:** Paragraphs \
-> **Description:** Two paragraphs with a bold phrase and an italic phrase.
+![Paragraphs — Two paragraphs with a bold phrase and an italic phrase. (Sample content on the preview; file screenshots/text-paragraphs.jpg)](screenshots/text-paragraphs.jpg){width=100%}
 
 **Use Cases:** Introductions, descriptions, explanations.
 
@@ -6806,10 +6601,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-lists.png` \
-> **Purpose:** Lists \
-> **Description:** A bulleted list of four services and a numbered list of three steps.
+![Lists — A bulleted list of four services and a numbered list of three steps. (Sample content on the preview; file screenshots/text-lists.jpg)](screenshots/text-lists.jpg){width=100%}
 
 **Use Cases:** Benefits, features, steps.
 
@@ -6833,10 +6625,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-inline-link.png` \
-> **Purpose:** Inline link \
-> **Description:** A paragraph with "learn more about our cloud services" linked in brand blue, shown in its hover state (underlined).
+![Inline link — A paragraph with "learn more about our cloud services" linked in brand blue, shown in its hover state (underlined). (Sample content on the preview; file screenshots/text-inline-link.jpg)](screenshots/text-inline-link.jpg){width=100%}
 
 **Use Cases:** References to other pages, documents and external sources.
 
@@ -6860,10 +6649,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-link-button.png` \
-> **Purpose:** Link button from text \
-> **Description:** A paragraph that contains only the link "Read the report", rendered underlined and semibold with a trailing chevron.
+![Link button from text — A paragraph that contains only the link "Read the report", rendered underlined and semibold with a trailing chevron. (Sample content on the preview; file screenshots/text-link-button.jpg)](screenshots/text-link-button.jpg){width=38%}
 
 **Use Cases:** "Read more", "View all", secondary navigation at the end of a text.
 
@@ -6887,10 +6673,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-primary-button.png` \
-> **Purpose:** Primary button from text \
-> **Description:** A black pill-shaped button "Contact us" with a trailing arrow, created from a bold link.
+![Primary button from text — A black pill-shaped button "Contact us" with a trailing arrow, created from a bold link. (Sample content on the preview; file screenshots/text-primary-button.jpg)](screenshots/text-primary-button.jpg){width=38%}
 
 **Use Cases:** Contact, download, register.
 
@@ -6914,10 +6697,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-secondary-button.png` \
-> **Purpose:** Secondary button from text \
-> **Description:** An outlined pill button "Explore services" with a trailing arrow, created from an italic link, next to its hover state with a blue border and text.
+![Secondary button from text — An outlined pill button "Explore services" with a trailing arrow, created from an italic link, next to its hover state with a blue border and text. (Sample content on the preview; file screenshots/text-secondary-button.jpg)](screenshots/text-secondary-button.jpg){width=38%}
 
 **Use Cases:** "Explore", "Learn more" next to a primary button.
 
@@ -6941,10 +6721,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-tertiary-button.png` \
-> **Purpose:** Tertiary button from text \
-> **Description:** The text "See all case studies" with a trailing arrow and no container, created from a bold and italic link.
+![Tertiary button from text — The text "See all case studies" with a trailing arrow and no container, created from a bold and italic link. (Sample content on the preview; file screenshots/text-tertiary-button.jpg)](screenshots/text-tertiary-button.jpg){width=38%}
 
 **Use Cases:** Inline-looking calls to action in dense layouts.
 
@@ -6962,10 +6739,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 
 ### 6.6.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-authoring-view.png` \
-> **Purpose:** Text on the Universal Editor canvas \
-> **Description:** A Text component in inline-editing mode with the rich text toolbar visible, a paragraph, a list and a standalone bold link. Mark A to D.
+![Text on the Universal Editor canvas — A Text component in inline-editing mode with the rich text toolbar visible, a paragraph, a list and a standalone bold link. Mark A to D. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/text-authoring-view.jpg)](screenshots/text-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -6974,10 +6748,7 @@ Authored HTML received from AEM (a section with options; the code reads the opti
 - C = an inline link
 - D = a standalone formatted link that becomes a button
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/text-properties-panel.png` \
-> **Purpose:** Text properties panel \
-> **Description:** The Properties panel with a Text component selected, showing the rich text field (no other fields, no tabs).
+![Text properties panel — The Properties panel with a Text component selected, showing the rich text field (no other fields, no tabs). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/text-properties-panel.jpg)](screenshots/text-properties-panel.jpg){width=100%}
 
 The Text component has no model fields (`models/_text.json` has an empty models list), so there are no tabs and no Additional tab. The content is the rich text itself, edited inline on the canvas (and, depending on the Universal Editor version, in a rich text field in the Properties panel). [To be confirmed: rich text toolbar options (headings, tables) enabled for this project — owner: AEM administrator]
 
@@ -7388,24 +7159,15 @@ The Text component itself is not a data layer component (default content is not 
 
 ### 6.7.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** Six Title components h1 to h6 stacked at 1440 px, showing the type scale.
+![Desktop rendering — Six Title components h1 to h6 stacked at 1440 px, showing the type scale. (Sample content on the preview; file screenshots/title-desktop-view.jpg)](screenshots/title-desktop-view.jpg){width=100%}
 
 **Desktop (from 900 px):** h1 3rem (line height 1.2, letter-spacing −0.03 × font size), h2 2.5rem, h3 1.75rem, h4 1.5rem, h5 1.25rem (light weight 300), h6 1rem (semibold 600); h1–h4 regular weight 400; line height 1.4 except h1. Each heading has a top margin of 0.8 × and a bottom margin of 0.25 × its font size.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same headings at 768 px.
+![Tablet rendering — The same headings at 768 px. (Sample content on the preview; file screenshots/title-tablet-view.jpg)](screenshots/title-tablet-view.jpg){width=61%}
 
 **Tablet:** below 900 px the mobile sizes apply; from 900 px the desktop sizes.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same headings at 375 px.
+![Mobile rendering — The same headings at 375 px. (Sample content on the preview; file screenshots/title-mobile-view.jpg)](screenshots/title-mobile-view.jpg){width=38%}
 
 **Mobile (below 900 px):** h1 2rem, h2 1.75rem, h3 1.5rem, h4 1.125rem, h5 1rem, h6 0.875rem. Headings wrap; all have `scroll-margin: 2.5rem` so anchor jumps leave space above them.
 
@@ -7419,10 +7181,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h1.png` \
-> **Purpose:** h1 \
-> **Description:** An h1 "Cloud transformation services" at desktop size.
+![h1 — An h1 "Cloud transformation services" at desktop size. (Sample content on the preview; file screenshots/title-h1.jpg)](screenshots/title-h1.jpg){width=100%}
 
 **Use Cases:** Page title on Default pages without a Page Header or a Hero with H1.
 
@@ -7446,10 +7205,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h2.png` \
-> **Purpose:** h2 \
-> **Description:** An h2 "Our services" at desktop size.
+![h2 — An h2 "Our services" at desktop size. (Sample content on the preview; file screenshots/title-h2.jpg)](screenshots/title-h2.jpg){width=100%}
 
 **Use Cases:** One per section.
 
@@ -7473,10 +7229,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h3.png` \
-> **Purpose:** h3 \
-> **Description:** An h3 "Cloud migration" below an h2.
+![h3 — An h3 "Cloud migration" below an h2. (Sample content on the preview; file screenshots/title-h3.jpg)](screenshots/title-h3.jpg){width=100%}
 
 **Use Cases:** Topics within a section.
 
@@ -7500,10 +7253,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h4.png` \
-> **Purpose:** h4 \
-> **Description:** An h4 below an h3.
+![h4 — An h4 below an h3. (Sample content on the preview; file screenshots/title-h4.jpg)](screenshots/title-h4.jpg){width=100%}
 
 **Use Cases:** Detailed documents, FAQs.
 
@@ -7527,10 +7277,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h5.png` \
-> **Purpose:** h5 \
-> **Description:** An h5 in light weight.
+![h5 — An h5 in light weight. (Sample content on the preview; file screenshots/title-h5.jpg)](screenshots/title-h5.jpg){width=100%}
 
 **Use Cases:** Rare; deep document structures.
 
@@ -7554,10 +7301,7 @@ The Text component itself is not a data layer component (default content is not 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-h6.png` \
-> **Purpose:** h6 \
-> **Description:** An h6 in semibold.
+![h6 — An h6 in semibold. (Sample content on the preview; file screenshots/title-h6.jpg)](screenshots/title-h6.jpg){width=100%}
 
 **Use Cases:** Rare.
 
@@ -7575,20 +7319,14 @@ The Text component itself is not a data layer component (default content is not 
 
 ### 6.7.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-authoring-view.png` \
-> **Purpose:** Title on the Universal Editor canvas \
-> **Description:** A selected Title component on the canvas with its heading text being edited inline. Mark A and B.
+![Title on the Universal Editor canvas — A selected Title component on the canvas with its heading text being edited inline. Mark A and B. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/title-authoring-view.jpg)](screenshots/title-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
 - A = the heading text (Title), editable inline
 - B = the heading level as rendered (Title Type), visible through the size
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/title-properties-panel.png` \
-> **Purpose:** Title properties panel \
-> **Description:** The Properties panel with Title (text) and Title Type (select h1–h6).
+![Title properties panel — The Properties panel with Title (text) and Title Type (select h1–h6). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/title-properties-panel.jpg)](screenshots/title-properties-panel.jpg){width=100%}
 
 The dialog has two fields and no tabs: **Title** (text) and **Title Type** (select with h1, h2, h3, h4, h5, h6). There is no Additional tab.
 
@@ -7944,24 +7682,15 @@ Authored HTML received from AEM:
 
 ### 6.8.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** An Image component between two paragraphs at 1440 px, showing the image at its natural size up to the content width.
+![Desktop rendering — An Image component between two paragraphs at 1440 px, showing the image at its natural size up to the content width. (Sample content on the preview; file screenshots/image-desktop-view.jpg)](screenshots/image-desktop-view.jpg){width=100%}
 
 **Desktop (1200 px and above):** the image is shown at its intrinsic width, never wider than the content area (`max-width: 100%`), with its aspect ratio preserved (`height: auto`). It sits in a paragraph inside `div.default-content-wrapper`, so it is left-aligned and gets the paragraph margins.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same image at 768 px, scaled down to the content width.
+![Tablet rendering — The same image at 768 px, scaled down to the content width. (Sample content on the preview; file screenshots/image-tablet-view.jpg)](screenshots/image-tablet-view.jpg){width=61%}
 
 **Tablet (600–1199 px):** the browser picks the large rendition (Edge Delivery typically serves 2000 px wide sources from 600 px) and scales it to the content width.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same image at 375 px, full content width with 1.5rem side padding.
+![Mobile rendering — The same image at 375 px, full content width with 1.5rem side padding. (Sample content on the preview; file screenshots/image-mobile-view.jpg)](screenshots/image-mobile-view.jpg){width=38%}
 
 **Mobile (below 600 px):** the small rendition (typically 750 px wide) is loaded and scaled to the content width; no cropping.
 
@@ -7975,10 +7704,7 @@ Authored HTML received from AEM:
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-informative.png` \
-> **Purpose:** Informative image \
-> **Description:** A diagram of the TCS cloud migration approach with its alt text shown in the developer tools inspector.
+![Informative image — A diagram of the TCS cloud migration approach with its alt text shown in the developer tools inspector. (Sample content on the preview; file screenshots/image-informative.jpg)](screenshots/image-informative.jpg){width=79%}
 
 **Use Cases:** Diagrams, product shots, photographs that support the text.
 
@@ -8002,10 +7728,7 @@ Authored HTML received from AEM:
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-decorative.png` \
-> **Purpose:** Decorative image \
-> **Description:** An abstract brand pattern image with an empty alt attribute in the inspector.
+![Decorative image — An abstract brand pattern image with an empty alt attribute in the inspector. (Sample content on the preview; file screenshots/image-decorative.jpg)](screenshots/image-decorative.jpg){width=100%}
 
 **Use Cases:** Mood images, separators made of images.
 
@@ -8023,20 +7746,14 @@ Authored HTML received from AEM:
 
 ### 6.8.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-authoring-view.png` \
-> **Purpose:** Image on the Universal Editor canvas \
-> **Description:** A selected Image component on the canvas and an asset being dragged onto it from the Assets panel. Mark A and B.
+![Image on the Universal Editor canvas — A selected Image component on the canvas and an asset being dragged onto it from the Assets panel. Mark A and B. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/image-authoring-view.jpg)](screenshots/image-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
 - A = the image (Image field; select it to open the Assets picker or drop an asset)
 - B = the alt text, not visible on the canvas but shown in the Properties panel (Alt Text)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/image-properties-panel.png` \
-> **Purpose:** Image properties panel \
-> **Description:** The Properties panel with the Image reference field (thumbnail and picker button) and the Alt Text field.
+![Image properties panel — The Properties panel with the Image reference field (thumbnail and picker button) and the Alt Text field. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/image-properties-panel.jpg)](screenshots/image-properties-panel.jpg){width=100%}
 
 The dialog has two fields and no tabs: **Image** (AEM Assets reference, single) and **Alt Text** (text). There is no Additional tab.
 
@@ -8412,24 +8129,15 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 ### 6.9.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A row of Button components at 1440 px: Primary, Secondary and Tertiary buttons, an Icon button (search) and a Link view, each in its own paragraph.
+![Desktop rendering — A row of Button components at 1440 px: Primary, Secondary and Tertiary buttons, an Icon button (search) and a Link view, each in its own paragraph. (Sample content on the preview; file screenshots/button-desktop-view.jpg)](screenshots/button-desktop-view.jpg){width=100%}
 
 **Desktop:** buttons are pill-shaped (`--radius-full`), at least 3.125rem high, label 1rem (`--button-font-size`), padding 0.75rem 1rem 0.75rem 1.5rem, with a 1.5rem trailing arrow; icon buttons are 2.75rem circles with a 1.25rem icon; the link view is a semibold underlined text with a 1rem chevron. Each button sits in its own `p.button-wrapper` (0.75rem top and bottom margin), aligned left, centre or right.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same buttons at 768 px.
+![Tablet rendering — The same buttons at 768 px. (Sample content on the preview; file screenshots/button-tablet-view.jpg)](screenshots/button-tablet-view.jpg){width=61%}
 
 **Tablet:** identical sizes (button tokens do not change per breakpoint).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The same buttons at 375 px; a long label clipped at the content edge.
+![Mobile rendering — The same buttons at 375 px; a long label clipped at the content edge. (Sample content on the preview; file screenshots/button-mobile-view.jpg)](screenshots/button-mobile-view.jpg){width=38%}
 
 **Mobile:** identical sizes; labels never wrap (`white-space: nowrap`), and a label wider than the content area is clipped (`max-width: 100%; overflow: hidden`).
 
@@ -8443,10 +8151,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-primary.png` \
-> **Purpose:** Primary button \
-> **Description:** Black pill button "Contact us" with a trailing arrow, default and hover states.
+![Primary button — Black pill button "Contact us" with a trailing arrow, default and hover states. (Sample content on the preview; file screenshots/button-primary.jpg)](screenshots/button-primary.jpg){width=38%}
 
 **Use Cases:** Contact, register, download.
 
@@ -8470,10 +8175,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-secondary.png` \
-> **Purpose:** Secondary button \
-> **Description:** Outlined pill button "Explore services", default and hover (blue border and label) states.
+![Secondary button — Outlined pill button "Explore services", default and hover (blue border and label) states. (Sample content on the preview; file screenshots/button-secondary.jpg)](screenshots/button-secondary.jpg){width=38%}
 
 **Use Cases:** "Learn more", "Explore".
 
@@ -8497,10 +8199,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-tertiary.png` \
-> **Purpose:** Tertiary button \
-> **Description:** Text "See all case studies" with an arrow and no container, default and hover (blue) states.
+![Tertiary button — Text "See all case studies" with an arrow and no container, default and hover (blue) states. (Sample content on the preview; file screenshots/button-tertiary.jpg)](screenshots/button-tertiary.jpg){width=38%}
 
 **Use Cases:** Third-level actions, dense layouts.
 
@@ -8524,10 +8223,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-icon.png` \
-> **Purpose:** Icon button \
-> **Description:** Three circular icon buttons with the search icon: primary (blue filled), secondary (blue outline) and tertiary (blue icon only).
+![Icon button — Three circular icon buttons with the search icon: primary (blue filled), secondary (blue outline) and tertiary (blue icon only). (Sample content on the preview; file screenshots/button-icon.jpg)](screenshots/button-icon.jpg){width=38%}
 
 **Use Cases:** Search entry points, "next" arrows, expand chevrons.
 
@@ -8551,10 +8247,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-link.png` \
-> **Purpose:** Link view \
-> **Description:** Underlined semibold "View all insights" with a trailing chevron, default and hover states.
+![Link view — Underlined semibold "View all insights" with a trailing chevron, default and hover states. (Sample content on the preview; file screenshots/button-link.jpg)](screenshots/button-link.jpg){width=38%}
 
 **Use Cases:** "View all", "Read more" at the end of a section.
 
@@ -8578,10 +8271,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-align-center.png` \
-> **Purpose:** Centre-aligned button \
-> **Description:** A primary button centred in its section below a centred heading.
+![Centre-aligned button — A primary button centred in its section below a centred heading. (Sample content on the preview; file screenshots/button-align-center.jpg)](screenshots/button-align-center.jpg){width=100%}
 
 **Use Cases:** Call-to-action bands, end-of-page actions.
 
@@ -8605,10 +8295,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-align-right.png` \
-> **Purpose:** Right-aligned button \
-> **Description:** A secondary button aligned to the right edge of the content area.
+![Right-aligned button — A secondary button aligned to the right edge of the content area. (Sample content on the preview; file screenshots/button-align-right.jpg)](screenshots/button-align-right.jpg){width=100%}
 
 **Use Cases:** "Next" actions, layouts mirroring a right-aligned element.
 
@@ -8628,10 +8315,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 
 ### 6.9.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-authoring-view.png` \
-> **Purpose:** Button on the Universal Editor canvas \
-> **Description:** A selected Button component on the canvas showing a primary button. Mark A to C.
+![Button on the Universal Editor canvas — A selected Button component on the canvas showing a primary button. Mark A to C. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/button-authoring-view.jpg)](screenshots/button-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -8639,10 +8323,7 @@ Authored HTML received from AEM / Edge Delivery (typical; the widths and formats
 - B = the button's appearance (Views, Type, Icon)
 - C = the button's position in its paragraph (Alignment)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/button-properties-panel.png` \
-> **Purpose:** Button properties panel \
-> **Description:** The Properties panel with Link, Text, Title, Views, Type, Icon (visible because Views is Icon) and Alignment.
+![Button properties panel — The Properties panel with Link, Text, Title, Views, Type, Icon (visible because Views is Icon) and Alignment. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-properties-panel.jpg)](screenshots/button-properties-panel.jpg){width=100%}
 
 The dialog has seven fields and no tabs: **Link** (AEM content picker or URL), **Text** (label), **Title** (tooltip), **Views** (Button / Icon / Link, default Button), **Type** (Primary / Secondary / Tertiary, default Primary; shown when Views is empty, Button or Icon), **Icon** (Arrow right / Chevron right / Chevron down / Search; shown only when Views is Icon) and **Alignment** (Left / Center / Right, default Left). There is no Additional tab.
 
@@ -9138,10 +8819,7 @@ would create a second H1 (see the SEO guidance).
 
 ### 6.10.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Hero at 1440 px wide with a full-bleed cover image under the default white overlay, centred content: icon, blue eyebrow, large title, grey description and a primary and a secondary CTA side by side.
+![Desktop rendering — A Hero at 1440 px wide with a full-bleed cover image under the default white overlay, centred content: icon, blue eyebrow, large title, grey description and a primary and a secondary CTA side by side. (Sample content on the preview; file screenshots/hero-desktop-view.jpg)](screenshots/hero-desktop-view.jpg){width=100%}
 
 **Desktop (900 px and wider; the same rules apply at 1200 px and above)**
 
@@ -9161,10 +8839,7 @@ would create a second H1 (see the SEO guidance).
 - Lottie: the pause / play button sits in the bottom-right corner of the hero, 1rem from the
   edges.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Hero at 768 px wide: minimum height 40rem, smaller title (2.5rem), description at 1rem, CTAs wrapping onto a second line when they do not fit.
+![Tablet rendering — The same Hero at 768 px wide: minimum height 40rem, smaller title (2.5rem), description at 1rem, CTAs wrapping onto a second line when they do not fit. (Sample content on the preview; file screenshots/hero-tablet-view.jpg)](screenshots/hero-tablet-view.jpg){width=61%}
 
 **Tablet (600 px to 1199 px)**
 
@@ -9175,10 +8850,7 @@ would create a second H1 (see the SEO guidance).
 - 900 px to 1199 px: the desktop rules above apply (minimum height 53.125rem, 4rem title,
   47.5rem content width for Left / Right).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Hero at 375 px wide: the cover image cropped to the centre, minimum height 35rem, stacked content with the title at 2.5rem and the CTAs wrapping one per line.
+![Mobile rendering — The Hero at 375 px wide: the cover image cropped to the centre, minimum height 35rem, stacked content with the title at 2.5rem and the CTAs wrapping one per line. (Sample content on the preview; file screenshots/hero-mobile-view.jpg)](screenshots/hero-mobile-view.jpg){width=38%}
 
 **Mobile (below 600 px)**
 
@@ -9206,10 +8878,7 @@ text.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-default-image.png` \
-> **Purpose:** Default image hero \
-> **Description:** A full-bleed photograph under the white 80 % overlay with centred dark title, description and CTAs.
+![Default image hero — A full-bleed photograph under the white 80 % overlay with centred dark title, description and CTAs. (Sample content on the preview; file screenshots/hero-default-image.jpg)](screenshots/hero-default-image.jpg){width=100%}
 
 **Use Cases:** Home page banner; service and industry landing pages.
 
@@ -9243,10 +8912,7 @@ vector Lottie animation instead of a video.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-lotto-animation.png` \
-> **Purpose:** Lottie animation hero \
-> **Description:** A hero playing a Lottie animation behind the content, with the round pause button visible in the bottom-right corner.
+![Lottie animation hero — A hero playing a Lottie animation behind the content, with the round pause button visible in the bottom-right corner. (Sample content on the preview; file screenshots/hero-lotto-animation.jpg)](screenshots/hero-lotto-animation.jpg){width=100%}
 
 **Use Cases:** Campaign launches, AI / innovation pages, animated brand moments.
 
@@ -9287,10 +8953,7 @@ of cropping it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-contained-image.png` \
-> **Purpose:** Contained image hero \
-> **Description:** A hero with a transparent illustration shown whole and centred, with the content over it.
+![Contained image hero — A hero with a transparent illustration shown whole and centred, with the content over it. (Sample content on the preview; file screenshots/hero-contained-image.jpg)](screenshots/hero-contained-image.jpg){width=100%}
 
 **Use Cases:** Illustrated hero artwork, product diagrams, logos or graphics that must not be
 cropped.
@@ -9319,10 +8982,7 @@ enough contrast (use the overlay of the BG Color).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-text-only.png` \
-> **Purpose:** Hero without media \
-> **Description:** A hero with only title, description and CTAs on a plain white (or navy / black) background, no overlay.
+![Hero without media — A hero with only title, description and CTAs on a plain white (or navy / black) background, no overlay. (Sample content on the preview; file screenshots/hero-text-only.jpg)](screenshots/hero-text-only.jpg){width=100%}
 
 **Use Cases:** Statement pages, temporary pages before imagery is ready, dark brand banners.
 
@@ -9349,10 +9009,7 @@ navy / black), which meet WCAG AA contrast.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-bg-default.png` \
-> **Purpose:** Default light overlay \
-> **Description:** A photograph seen through an 80 % white overlay with black title and grey description.
+![Default light overlay — A photograph seen through an 80 % white overlay with black title and grey description. (Sample content on the preview; file screenshots/hero-bg-default.jpg)](screenshots/hero-bg-default.jpg){width=100%}
 
 **Use Cases:** Most corporate banners.
 
@@ -9380,10 +9037,7 @@ with dark text.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-bg-light.png` \
-> **Purpose:** Light background without overlay \
-> **Description:** A hero with a light gradient image shown at full strength and dark text on it.
+![Light background without overlay — A hero with a light gradient image shown at full strength and dark text on it. (Sample content on the preview; file screenshots/hero-bg-light.jpg)](screenshots/hero-bg-light.jpg){width=100%}
 
 **Use Cases:** Pre-designed light backgrounds and gradients.
 
@@ -9410,10 +9064,7 @@ light images.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-bg-dark.png` \
-> **Purpose:** Dark blue overlay \
-> **Description:** A photograph under an 80 % navy overlay with white title, semi-transparent white description and white outline / text CTAs.
+![Dark blue overlay — A photograph under an 80 % navy overlay with white title, semi-transparent white description and white outline / text CTAs. (Sample content on the preview; file screenshots/hero-bg-dark.jpg)](screenshots/hero-bg-dark.jpg){width=100%}
 
 **Use Cases:** Brand statements, home page, technology themes.
 
@@ -9442,10 +9093,7 @@ in validation.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-bg-dark-subtle.png` \
-> **Purpose:** Subtle dark blue overlay \
-> **Description:** A photograph under a 60 % navy overlay, the image more visible than in Dark blue, white text.
+![Subtle dark blue overlay — A photograph under a 60 % navy overlay, the image more visible than in Dark blue, white text. (Sample content on the preview; file screenshots/hero-bg-dark-subtle.jpg)](screenshots/hero-bg-dark-subtle.jpg){width=100%}
 
 **Use Cases:** Dark banners with expressive imagery.
 
@@ -9471,10 +9119,7 @@ for the 50 % white description.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-bg-black.png` \
-> **Purpose:** Black overlay \
-> **Description:** A photograph under an 80 % black overlay with white text and CTAs.
+![Black overlay — A photograph under an 80 % black overlay with white text and CTAs. (Sample content on the preview; file screenshots/hero-bg-black.jpg)](screenshots/hero-bg-black.jpg){width=100%}
 
 **Use Cases:** Events, campaigns, cinematic imagery.
 
@@ -9500,10 +9145,7 @@ image visible.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-top.png` \
-> **Purpose:** Content at the top \
-> **Description:** The content block starting right below the top padding, the image subject visible in the lower half.
+![Content at the top — The content block starting right below the top padding, the image subject visible in the lower half. (Sample content on the preview; file screenshots/hero-align-top.jpg)](screenshots/hero-align-top.jpg){width=100%}
 
 **Use Cases:** Images with the subject at the bottom.
 
@@ -9528,10 +9170,7 @@ template).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-middle.png` \
-> **Purpose:** Content in the middle \
-> **Description:** The content block centred vertically in the hero.
+![Content in the middle — The content block centred vertically in the hero. (Sample content on the preview; file screenshots/hero-align-middle.jpg)](screenshots/hero-align-middle.jpg){width=100%}
 
 **Use Cases:** Most heroes.
 
@@ -9555,10 +9194,7 @@ template).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-bottom.png` \
-> **Purpose:** Content at the bottom \
-> **Description:** The content block resting above the bottom padding, the sky / subject of the image visible above it.
+![Content at the bottom — The content block resting above the bottom padding, the sky / subject of the image visible above it. (Sample content on the preview; file screenshots/hero-align-bottom.jpg)](screenshots/hero-align-bottom.jpg){width=100%}
 
 **Use Cases:** Images with the subject at the top; editorial looks.
 
@@ -9584,10 +9220,7 @@ side of the image free.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-left.png` \
-> **Purpose:** Content on the left \
-> **Description:** On desktop, a 47.5rem wide content block on the left of the hero, the image subject visible on the right.
+![Content on the left — On desktop, a 47.5rem wide content block on the left of the hero, the image subject visible on the right. (Sample content on the preview; file screenshots/hero-align-left.jpg)](screenshots/hero-align-left.jpg){width=100%}
 
 **Use Cases:** Images with the subject on the right.
 
@@ -9617,10 +9250,7 @@ template).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-center.png` \
-> **Purpose:** Content in the centre \
-> **Description:** The content block centred horizontally with centred text.
+![Content in the centre — The content block centred horizontally with centred text. (Sample content on the preview; file screenshots/hero-align-center.jpg)](screenshots/hero-align-center.jpg){width=100%}
 
 **Use Cases:** Most heroes.
 
@@ -9645,10 +9275,7 @@ harder to read.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-align-right.png` \
-> **Purpose:** Content on the right \
-> **Description:** On desktop, the content block on the right half of the hero.
+![Content on the right — On desktop, the content block on the right half of the hero. (Sample content on the preview; file screenshots/hero-align-right.jpg)](screenshots/hero-align-right.jpg){width=100%}
 
 **Use Cases:** Images with the subject on the left.
 
@@ -9673,10 +9300,7 @@ content block.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-text-left.png` \
-> **Purpose:** Left-aligned text \
-> **Description:** Icon, eyebrow, title, description and CTAs all starting at the left edge of the content block.
+![Left-aligned text — Icon, eyebrow, title, description and CTAs all starting at the left edge of the content block. (Sample content on the preview; file screenshots/hero-text-left.jpg)](screenshots/hero-text-left.jpg){width=100%}
 
 **Use Cases:** Left-positioned content; long descriptions.
 
@@ -9702,10 +9326,7 @@ template).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-text-center.png` \
-> **Purpose:** Centred text \
-> **Description:** Icon, title, description and the CTA row all centred inside the content block.
+![Centred text — Icon, title, description and the CTA row all centred inside the content block. (Sample content on the preview; file screenshots/hero-text-center.jpg)](screenshots/hero-text-center.jpg){width=100%}
 
 **Use Cases:** Default banners.
 
@@ -9730,10 +9351,7 @@ when the Horizontal Alignment is changed to Left or Right (change Text Alignment
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-text-right.png` \
-> **Purpose:** Right-aligned text \
-> **Description:** Title, description and CTAs aligned to the right edge of the content block.
+![Right-aligned text — Title, description and CTAs aligned to the right edge of the content block. (Sample content on the preview; file screenshots/hero-text-right.jpg)](screenshots/hero-text-right.jpg){width=100%}
 
 **Use Cases:** Right-positioned content blocks.
 
@@ -9757,10 +9375,7 @@ when the Horizontal Alignment is changed to Left or Right (change Text Alignment
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-motion-none.png` \
-> **Purpose:** No motion \
-> **Description:** The hero fully visible on page load with no entrance animation.
+![No motion — The hero fully visible on page load with no entrance animation. (Sample content on the preview; file screenshots/hero-motion-none.jpg)](screenshots/hero-motion-none.jpg){width=100%}
 
 **Use Cases:** Default; pages where motion is not wanted.
 
@@ -9784,10 +9399,7 @@ when the Horizontal Alignment is changed to Left or Right (change Text Alignment
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-motion-fade.png` \
-> **Purpose:** Fade-in motion \
-> **Description:** A frame captured mid-animation: the content block half transparent over the image.
+![Fade-in motion — A frame captured mid-animation: the content block half transparent over the image. (Sample content on the preview; file screenshots/hero-motion-fade.jpg)](screenshots/hero-motion-fade.jpg){width=100%}
 
 **Use Cases:** Heroes further down a page or in campaigns.
 
@@ -9815,10 +9427,7 @@ text slightly.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-motion-slide.png` \
-> **Purpose:** Slide-up motion \
-> **Description:** A frame captured mid-animation: the content block slightly below its final position and partly transparent.
+![Slide-up motion — A frame captured mid-animation: the content block slightly below its final position and partly transparent. (Sample content on the preview; file screenshots/hero-motion-slide.jpg)](screenshots/hero-motion-slide.jpg){width=100%}
 
 **Use Cases:** Campaign and product launch heroes.
 
@@ -9842,10 +9451,7 @@ text slightly.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-motion-zoom.png` \
-> **Purpose:** Zoom motion \
-> **Description:** A frame captured mid-animation: the background image slightly enlarged while the text is static.
+![Zoom motion — A frame captured mid-animation: the background image slightly enlarged while the text is static. (Sample content on the preview; file screenshots/hero-motion-zoom.jpg)](screenshots/hero-motion-zoom.jpg){width=100%}
 
 **Use Cases:** Photography-led banners.
 
@@ -9871,10 +9477,7 @@ hero's `overflow: hidden` clips the enlarged image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-default.png` \
-> **Purpose:** Default CTA view \
-> **Description:** A CTA rendered as text with a trailing right arrow, no border or fill.
+![Default CTA view — A CTA rendered as text with a trailing right arrow, no border or fill. (Sample content on the preview; file screenshots/hero-cta-default.jpg)](screenshots/hero-cta-default.jpg){width=38%}
 
 **Use Cases:** "Learn more", "Discover our story".
 
@@ -9900,10 +9503,7 @@ CSS.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-primary.png` \
-> **Purpose:** Primary CTA \
-> **Description:** A pill-shaped filled black button with white text and a right arrow.
+![Primary CTA — A pill-shaped filled black button with white text and a right arrow. (Sample content on the preview; file screenshots/hero-cta-primary.jpg)](screenshots/hero-cta-primary.jpg){width=38%}
 
 **Use Cases:** "Contact us", "Get started".
 
@@ -9929,10 +9529,7 @@ button styles.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-secondary.png` \
-> **Purpose:** Secondary CTA \
-> **Description:** A pill-shaped outline button; white outline and text on dark BG Colors.
+![Secondary CTA — A pill-shaped outline button; white outline and text on dark BG Colors. (Sample content on the preview; file screenshots/hero-cta-secondary.jpg)](screenshots/hero-cta-secondary.jpg){width=38%}
 
 **Use Cases:** "View our services" next to "Contact us".
 
@@ -9956,10 +9553,7 @@ button styles.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-arrow-right.png` \
-> **Purpose:** Right arrow CTA \
-> **Description:** A CTA with the standard right-pointing arrow.
+![Right arrow CTA — A CTA with the standard right-pointing arrow. (Sample content on the preview; file screenshots/hero-cta-arrow-right.jpg)](screenshots/hero-cta-arrow-right.jpg){width=38%}
 
 **Use Cases:** Links to other pages.
 
@@ -9984,10 +9578,7 @@ down automatically (see Variation 27).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-arrow-down.png` \
-> **Purpose:** Down arrow CTA \
-> **Description:** A "Discover our story" text CTA with a down-pointing arrow.
+![Down arrow CTA — A "Discover our story" text CTA with a down-pointing arrow. (Sample content on the preview; file screenshots/hero-cta-arrow-down.jpg)](screenshots/hero-cta-arrow-down.jpg){width=38%}
 
 **Use Cases:** "Discover our story" linking to `#anchor-our-story`.
 
@@ -10013,10 +9604,7 @@ stored and the link starts with `#`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-cta-new-window.png` \
-> **Purpose:** New-window CTA \
-> **Description:** A CTA to an external report; the browser status bar showing the link opens in a new tab.
+![New-window CTA — A CTA to an external report; the browser status bar showing the link opens in a new tab. (Sample content on the preview; file screenshots/hero-cta-new-window.jpg)](screenshots/hero-cta-new-window.jpg){width=38%}
 
 **Use Cases:** External partner sites, PDF reports.
 
@@ -10045,10 +9633,7 @@ without creating several H1 headings.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-title-h2.png` \
-> **Purpose:** Hero with an H2 title \
-> **Description:** A hero that looks identical to the H1 version; the browser's accessibility tree shows the heading level 2.
+![Hero with an H2 title — A hero that looks identical to the H1 version; the browser's accessibility tree shows the heading level 2. (Sample content on the preview; file screenshots/hero-title-h2.jpg)](screenshots/hero-title-h2.jpg){width=100%}
 
 **Use Cases:** Second and later heroes, carousel slides 2+, pages with a Page Header.
 
@@ -10067,10 +9652,7 @@ change. Default H1 (model and block template).
 
 ### 6.10.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Hero selected on the Universal Editor canvas with letters A–G marking the block, the background image, the icon, the eyebrow, the title, the description and the CTAs.
+![Universal Editor canvas — A Hero selected on the Universal Editor canvas with letters A–G marking the block, the background image, the icon, the eyebrow, the title, the description and the CTAs. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/hero-authoring-view.jpg)](screenshots/hero-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -10087,10 +9669,7 @@ the Lottie animation plays in the editor (with its pause / play button); a Hero 
 on is shown faded with a dashed outline. The text elements (eyebrow, title, description) can
 be edited in place on the canvas; images and CTAs are edited in the properties panel.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/hero-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Hero properties panel with its five tabs (Image, Content, Links, Style, Additional), the Image tab open showing Icon, Icon Image Alt Text, Hero Image type, Hero Image Path, Hero Image alt text and Hero View.
+![Properties panel — The Hero properties panel with its five tabs (Image, Content, Links, Style, Additional), the Image tab open showing Icon, Icon Image Alt Text, Hero Image type, Hero Image Path, Hero Image alt text and Hero View. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/hero-properties-panel.jpg)](screenshots/hero-properties-panel.jpg){width=100%}
 
 **Properties panel tabs and fields**
 
@@ -11181,10 +10760,7 @@ Gen Carousel sections (filters `section` and `gen-carousel`).
 
 ### 6.11.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** An Image & Text teaser at 1440 px: a rounded 10:9 image on the left, on the right a brand-blue eyebrow, a semibold title, grey description, a primary and a secondary button, vertically centred against the image.
+![Desktop rendering — An Image & Text teaser at 1440 px: a rounded 10:9 image on the left, on the right a brand-blue eyebrow, a semibold title, grey description, a primary and a secondary button, vertically centred against the image. (Sample content on the preview; file screenshots/teaser-desktop-view.jpg)](screenshots/teaser-desktop-view.jpg){width=100%}
 
 **Desktop (900 px and wider)**
 
@@ -11202,10 +10778,7 @@ Gen Carousel sections (filters `section` and `gen-carousel`).
 - Type: title 2.5rem (Image & Text with image) or 3rem (other layouts); description 1.125rem
   (1.5rem in Text split); eyebrow 1rem; stat values 6rem.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same teaser at 768 px: the image full width above the text, single column.
+![Tablet rendering — The same teaser at 768 px: the image full width above the text, single column. (Sample content on the preview; file screenshots/teaser-tablet-view.jpg)](screenshots/teaser-tablet-view.jpg){width=57%}
 
 **Tablet (600 px to 1199 px)**
 
@@ -11213,10 +10786,7 @@ Gen Carousel sections (filters `section` and `gen-carousel`).
   sizes.
 - 900 px to 1199 px: the desktop layout (two columns, desktop type sizes).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The teaser at 375 px: the image on top (or at the bottom with Image position (mobile) Bottom), then eyebrow, title, description and stacked buttons.
+![Mobile rendering — The teaser at 375 px: the image on top (or at the bottom with Image position (mobile) Bottom), then eyebrow, title, description and stacked buttons. (Sample content on the preview; file screenshots/teaser-mobile-view.jpg)](screenshots/teaser-mobile-view.jpg){width=38%}
 
 **Mobile (below 600 px)**
 
@@ -11244,10 +10814,7 @@ dialog (model `condition`) or have no effect, as noted.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-image-text-left.png` \
-> **Purpose:** Image & Text, image left \
-> **Description:** A rounded image on the left half, eyebrow, title, description and buttons on the right half.
+![Image & Text, image left — A rounded image on the left half, eyebrow, title, description and buttons on the right half. (Sample content on the preview; file screenshots/teaser-image-text-left.jpg)](screenshots/teaser-image-text-left.jpg){width=100%}
 
 **Use Cases:** Service and industry promotions, "about us" sections.
 
@@ -11276,10 +10843,7 @@ and mobile: one column, image above the text, 2.5rem gap.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-image-text-right.png` \
-> **Purpose:** Image & Text, image right \
-> **Description:** The text on the left half and the rounded image on the right half.
+![Image & Text, image right — The text on the left half and the rounded image on the right half. (Sample content on the preview; file screenshots/teaser-image-text-right.jpg)](screenshots/teaser-image-text-right.jpg){width=100%}
 
 **Use Cases:** Zig-zag sequences of teasers.
 
@@ -11307,10 +10871,7 @@ visually; the reading order stays logical.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-image-text-no-image.png` \
-> **Purpose:** Centred text teaser \
-> **Description:** Eyebrow, large title, description and buttons centred in a 37.5rem column.
+![Centred text teaser — Eyebrow, large title, description and buttons centred in a 37.5rem column. (Sample content on the preview; file screenshots/teaser-image-text-no-image.jpg)](screenshots/teaser-image-text-no-image.jpg){width=100%}
 
 **Use Cases:** Careers calls to action, newsletter sign-up prompts, section intros.
 
@@ -11338,10 +10899,7 @@ right (Figma "2 Slot Section", "Text Section - 2 Columns", "L3 Header").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-split.png` \
-> **Purpose:** Text split \
-> **Description:** The eyebrow and tags across the top, a large regular-weight title on the left, the description and text links on the right.
+![Text split — The eyebrow and tags across the top, a large regular-weight title on the left, the description and text links on the right. (Sample content on the preview; file screenshots/teaser-text-split.jpg)](screenshots/teaser-text-split.jpg){width=100%}
 
 **Use Cases:** Section introductions, article headers with meta, statistics sections.
 
@@ -11371,10 +10929,7 @@ below. Tablet below 900 px / mobile: single column.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-split-image.png` \
-> **Purpose:** Text split with a chart \
-> **Description:** Title left; on the right the description followed by a chart image shown whole without rounded corners.
+![Text split with a chart — Title left; on the right the description followed by a chart image shown whole without rounded corners. (Sample content on the preview; file screenshots/teaser-text-split-image.jpg)](screenshots/teaser-text-split-image.jpg){width=100%}
 
 **Use Cases:** Research highlights with a chart, product diagrams.
 
@@ -11405,10 +10960,7 @@ the text order (or top / bottom with Image position (mobile)).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-background-image.png` \
-> **Purpose:** Background image teaser \
-> **Description:** A wide image under a 60 % dark overlay with centred white eyebrow, title, description and white outline buttons.
+![Background image teaser — A wide image under a 60 % dark overlay with centred white eyebrow, title, description and white outline buttons. (Sample content on the preview; file screenshots/teaser-background-image.jpg)](screenshots/teaser-background-image.jpg){width=100%}
 
 **Use Cases:** Mid-page campaign banners, section breaks with a statement.
 
@@ -11437,10 +10989,7 @@ mobile: 35rem high, padding 5rem / 1.5rem.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-card.png` \
-> **Purpose:** Card teaser \
-> **Description:** A rounded card with a dark 70 % overlay over an image, the title at the top left and the links at the bottom.
+![Card teaser — A rounded card with a dark 70 % overlay over an image, the title at the top left and the links at the bottom. (Sample content on the preview; file screenshots/teaser-card.jpg)](screenshots/teaser-card.jpg){width=100%}
 
 **Use Cases:** Media kit downloads, media coverage, side-by-side cards in Columns.
 
@@ -11468,10 +11017,7 @@ space-between`) so the header is at the top and the body at the bottom; title ma
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-lotto-animation.png` \
-> **Purpose:** Lottie teaser \
-> **Description:** An Image & Text teaser with a Lottie animation in the image column and the round pause button in its bottom-right corner.
+![Lottie teaser — An Image & Text teaser with a Lottie animation in the image column and the round pause button in its bottom-right corner. (Sample content on the preview; file screenshots/teaser-lotto-animation.jpg)](screenshots/teaser-lotto-animation.jpg){width=100%}
 
 **Use Cases:** Innovation stories, explainer graphics.
 
@@ -11502,10 +11048,7 @@ ratio (10:9 by default; Original does not change an animation) and rounded corne
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-mobile-image-default.png` \
-> **Purpose:** Default mobile image position \
-> **Description:** At 375 px, an Image & Text teaser with the image above the text.
+![Default mobile image position — At 375 px, an Image & Text teaser with the image above the text. (Sample content on the preview; file screenshots/teaser-mobile-image-default.jpg)](screenshots/teaser-mobile-image-default.jpg){width=38%}
 
 **Use Cases:** Most teasers.
 
@@ -11530,10 +11073,7 @@ ratio (10:9 by default; Original does not change an animation) and rounded corne
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-mobile-image-top.png` \
-> **Purpose:** Mobile image on top \
-> **Description:** At 375 px, a Text split teaser with its chart moved to the top of the text part, above the description.
+![Mobile image on top — At 375 px, a Text split teaser with its chart moved to the top of the text part, above the description. (Sample content on the preview; file screenshots/teaser-mobile-image-top.jpg)](screenshots/teaser-mobile-image-top.jpg){width=38%}
 
 **Use Cases:** Text split teasers whose image should be seen first on mobile.
 
@@ -11559,10 +11099,7 @@ split the image moves to the top of the body (below the title).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-mobile-image-bottom.png` \
-> **Purpose:** Mobile image at the bottom \
-> **Description:** At 375 px, an Image & Text teaser with the text first and the image below the buttons.
+![Mobile image at the bottom — At 375 px, an Image & Text teaser with the text first and the image below the buttons. (Sample content on the preview; file screenshots/teaser-mobile-image-bottom.jpg)](screenshots/teaser-mobile-image-bottom.jpg){width=38%}
 
 **Use Cases:** Teasers where the message matters more than the picture.
 
@@ -11587,10 +11124,7 @@ split the image moves to the top of the body (below the title).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-ratio-10-9.png` \
-> **Purpose:** 10:9 image \
-> **Description:** An Image & Text teaser with a slightly wider-than-tall rounded image.
+![10:9 image — An Image & Text teaser with a slightly wider-than-tall rounded image. (Sample content on the preview; file screenshots/teaser-ratio-10-9.jpg)](screenshots/teaser-ratio-10-9.jpg){width=100%}
 
 **Use Cases:** Most Image & Text teasers.
 
@@ -11615,10 +11149,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-ratio-8-9.png` \
-> **Purpose:** 8:9 image \
-> **Description:** An Image & Text teaser with a slightly taller-than-wide image.
+![8:9 image — An Image & Text teaser with a slightly taller-than-wide image. (Sample content on the preview; file screenshots/teaser-ratio-8-9.jpg)](screenshots/teaser-ratio-8-9.jpg){width=100%}
 
 **Use Cases:** Portraits, leadership teasers.
 
@@ -11642,10 +11173,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-ratio-1-1.png` \
-> **Purpose:** Square image \
-> **Description:** An Image & Text teaser with a square image.
+![Square image — An Image & Text teaser with a square image. (Sample content on the preview; file screenshots/teaser-ratio-1-1.jpg)](screenshots/teaser-ratio-1-1.jpg){width=100%}
 
 **Use Cases:** Logos, icons-as-illustration, social-style imagery.
 
@@ -11669,10 +11197,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-ratio-original.png` \
-> **Purpose:** Original ratio \
-> **Description:** An Image & Text teaser showing a wide 16:9 image uncropped beside the text.
+![Original ratio — An Image & Text teaser showing a wide 16:9 image uncropped beside the text. (Sample content on the preview; file screenshots/teaser-ratio-original.jpg)](screenshots/teaser-ratio-original.jpg){width=100%}
 
 **Use Cases:** Diagrams, screenshots, charts.
 
@@ -11696,10 +11221,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-corners-rounded.png` \
-> **Purpose:** Rounded corners \
-> **Description:** An image with 1rem rounded corners.
+![Rounded corners — An image with 1rem rounded corners. (Sample content on the preview; file screenshots/teaser-corners-rounded.jpg)](screenshots/teaser-corners-rounded.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -11723,10 +11245,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-corners-square.png` \
-> **Purpose:** Square corners \
-> **Description:** An Image & Text teaser whose image has sharp 90-degree corners.
+![Square corners — An Image & Text teaser whose image has sharp 90-degree corners. (Sample content on the preview; file screenshots/teaser-corners-square.jpg)](screenshots/teaser-corners-square.jpg){width=100%}
 
 **Use Cases:** Diagrams, editorial photos.
 
@@ -11750,10 +11269,7 @@ split).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-bg-default.png` \
-> **Purpose:** No background colour \
-> **Description:** A teaser on the white page background without extra padding.
+![No background colour — A teaser on the white page background without extra padding. (Sample content on the preview; file screenshots/teaser-bg-default.jpg)](screenshots/teaser-bg-default.jpg){width=100%}
 
 **Use Cases:** Most teasers.
 
@@ -11778,10 +11294,7 @@ padding.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-bg-grey.png` \
-> **Purpose:** Grey panel \
-> **Description:** A Text split teaser on a light grey panel with generous padding.
+![Grey panel — A Text split teaser on a light grey panel with generous padding. (Sample content on the preview; file screenshots/teaser-bg-grey.jpg)](screenshots/teaser-bg-grey.jpg){width=100%}
 
 **Use Cases:** Alternating sections, stats panels.
 
@@ -11806,10 +11319,7 @@ padding.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-bg-dark.png` \
-> **Purpose:** Dark panel \
-> **Description:** A teaser on a near-black panel with white title, 70 % white text, light-blue stat values and white buttons.
+![Dark panel — A teaser on a near-black panel with white title, 70 % white text, light-blue stat values and white buttons. (Sample content on the preview; file screenshots/teaser-bg-dark.jpg)](screenshots/teaser-bg-dark.jpg){width=100%}
 
 **Use Cases:** Statement sections, stats on dark.
 
@@ -11835,10 +11345,7 @@ image the overlay is 80 %.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-bg-dark-green.png` \
-> **Purpose:** Dark green panel \
-> **Description:** A teaser on a dark green (#003b39) panel with white text.
+![Dark green panel — A teaser on a dark green (#003b39) panel with white text. (Sample content on the preview; file screenshots/teaser-bg-dark-green.jpg)](screenshots/teaser-bg-dark-green.jpg){width=100%}
 
 **Use Cases:** Sustainability and ESG themes.
 
@@ -11862,10 +11369,7 @@ image the overlay is 80 %.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-layout-default.png` \
-> **Purpose:** Layout default alignment \
-> **Description:** Side by side: a left-aligned Image & Text teaser and a centred Background image teaser.
+![Layout default alignment — Side by side: a left-aligned Image & Text teaser and a centred Background image teaser. (Sample content on the preview; file screenshots/teaser-text-layout-default.jpg)](screenshots/teaser-text-layout-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -11890,10 +11394,7 @@ image and Image & Text without image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-left.png` \
-> **Purpose:** Left-aligned text \
-> **Description:** A Background image teaser with its text left aligned.
+![Left-aligned text — A Background image teaser with its text left aligned. (Sample content on the preview; file screenshots/teaser-text-left.jpg)](screenshots/teaser-text-left.jpg){width=100%}
 
 **Use Cases:** Long text in Background image or no-image teasers.
 
@@ -11917,10 +11418,7 @@ image and Image & Text without image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-center.png` \
-> **Purpose:** Centred text \
-> **Description:** An Image & Text teaser whose text column is centred next to the image.
+![Centred text — An Image & Text teaser whose text column is centred next to the image. (Sample content on the preview; file screenshots/teaser-text-center.jpg)](screenshots/teaser-text-center.jpg){width=100%}
 
 **Use Cases:** Short promotional teasers.
 
@@ -11946,10 +11444,7 @@ none with media); kicker, tags, heading row, author and links centred.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-text-right.png` \
-> **Purpose:** Right-aligned text \
-> **Description:** A Card teaser with title, text and links aligned to the right.
+![Right-aligned text — A Card teaser with title, text and links aligned to the right. (Sample content on the preview; file screenshots/teaser-text-right.jpg)](screenshots/teaser-text-right.jpg){width=100%}
 
 **Use Cases:** Special designs; rarely needed in left-to-right languages.
 
@@ -11974,10 +11469,7 @@ none with media); kicker, tags, heading row, author and links centred.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-valign-default.png` \
-> **Purpose:** Layout default vertical alignment \
-> **Description:** An Image & Text teaser with the text centred vertically against the image.
+![Layout default vertical alignment — An Image & Text teaser with the text centred vertically against the image. (Sample content on the preview; file screenshots/teaser-valign-default.jpg)](screenshots/teaser-valign-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12003,10 +11495,7 @@ the top.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-valign-top.png` \
-> **Purpose:** Top alignment \
-> **Description:** An Image & Text teaser with the eyebrow level with the top edge of the image.
+![Top alignment — An Image & Text teaser with the eyebrow level with the top edge of the image. (Sample content on the preview; file screenshots/teaser-valign-top.jpg)](screenshots/teaser-valign-top.jpg){width=100%}
 
 **Use Cases:** Long text next to a tall image.
 
@@ -12032,10 +11521,7 @@ Background image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-valign-middle.png` \
-> **Purpose:** Centre alignment \
-> **Description:** A Text split teaser whose short title is vertically centred against the longer right column.
+![Centre alignment — A Text split teaser whose short title is vertically centred against the longer right column. (Sample content on the preview; file screenshots/teaser-valign-middle.jpg)](screenshots/teaser-valign-middle.jpg){width=100%}
 
 **Use Cases:** Text split with a short title and a long body.
 
@@ -12061,10 +11547,7 @@ the bottom.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-valign-bottom.png` \
-> **Purpose:** Bottom alignment \
-> **Description:** A Background image teaser with its text resting at the bottom of the banner.
+![Bottom alignment — A Background image teaser with its text resting at the bottom of the banner. (Sample content on the preview; file screenshots/teaser-valign-bottom.jpg)](screenshots/teaser-valign-bottom.jpg){width=100%}
 
 **Use Cases:** Editorial banners.
 
@@ -12089,10 +11572,7 @@ grid `align-items: end` from 900 px.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-default.png` \
-> **Purpose:** Default title size \
-> **Description:** An Image & Text teaser with a 2.5rem title and a Text split teaser with a 3rem title.
+![Default title size — An Image & Text teaser with a 2.5rem title and a Text split teaser with a 3rem title. (Sample content on the preview; file screenshots/teaser-title-default.jpg)](screenshots/teaser-title-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12117,10 +11597,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-m.png` \
-> **Purpose:** Medium title \
-> **Description:** A Background image teaser with a 2.5rem title.
+![Medium title — A Background image teaser with a 2.5rem title. (Sample content on the preview; file screenshots/teaser-title-m.jpg)](screenshots/teaser-title-m.jpg){width=100%}
 
 **Use Cases:** Long titles, dense pages.
 
@@ -12145,10 +11622,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-l.png` \
-> **Purpose:** Large title \
-> **Description:** An Image & Text teaser with a 3rem title.
+![Large title — An Image & Text teaser with a 3rem title. (Sample content on the preview; file screenshots/teaser-title-l.jpg)](screenshots/teaser-title-l.jpg){width=100%}
 
 **Use Cases:** Key promotions.
 
@@ -12172,10 +11646,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-xl.png` \
-> **Purpose:** Extra large title \
-> **Description:** A Text split teaser opening a page with a 4rem title.
+![Extra large title — A Text split teaser opening a page with a 4rem title. (Sample content on the preview; file screenshots/teaser-title-xl.jpg)](screenshots/teaser-title-xl.jpg){width=100%}
 
 **Use Cases:** Secondary page headers, campaign statements.
 
@@ -12199,10 +11670,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-display.png` \
-> **Purpose:** Display title \
-> **Description:** A teaser with a single short 6rem headline.
+![Display title — A teaser with a single short 6rem headline. (Sample content on the preview; file screenshots/teaser-title-display.jpg)](screenshots/teaser-title-display.jpg){width=100%}
 
 **Use Cases:** One- to three-word statements.
 
@@ -12227,10 +11695,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-weight-default.png` \
-> **Purpose:** Default title weight \
-> **Description:** A semibold Image & Text title next to a regular-weight Text split title.
+![Default title weight — A semibold Image & Text title next to a regular-weight Text split title. (Sample content on the preview; file screenshots/teaser-title-weight-default.jpg)](screenshots/teaser-title-weight-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12254,10 +11719,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-regular.png` \
-> **Purpose:** Regular title \
-> **Description:** An Image & Text teaser with a regular-weight title.
+![Regular title — An Image & Text teaser with a regular-weight title. (Sample content on the preview; file screenshots/teaser-title-regular.jpg)](screenshots/teaser-title-regular.jpg){width=100%}
 
 **Use Cases:** Large titles (XL, Display).
 
@@ -12281,10 +11743,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-semibold.png` \
-> **Purpose:** Semibold title \
-> **Description:** A Text split teaser with a semibold title.
+![Semibold title — A Text split teaser with a semibold title. (Sample content on the preview; file screenshots/teaser-title-semibold.jpg)](screenshots/teaser-title-semibold.jpg){width=100%}
 
 **Use Cases:** Emphasis.
 
@@ -12308,10 +11767,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-description-default.png` \
-> **Purpose:** Default description size \
-> **Description:** An Image & Text description at 1.125rem and a Text split description at 1.5rem.
+![Default description size — An Image & Text description at 1.125rem and a Text split description at 1.5rem. (Sample content on the preview; file screenshots/teaser-description-default.jpg)](screenshots/teaser-description-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12336,10 +11792,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-description-regular.png` \
-> **Purpose:** Regular description \
-> **Description:** A Text split teaser with 1.125rem body text.
+![Regular description — A Text split teaser with 1.125rem body text. (Sample content on the preview; file screenshots/teaser-description-regular.jpg)](screenshots/teaser-description-regular.jpg){width=100%}
 
 **Use Cases:** Longer copy.
 
@@ -12363,10 +11816,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-description-large.png` \
-> **Purpose:** Large description \
-> **Description:** An Image & Text teaser with a 1.5rem description.
+![Large description — An Image & Text teaser with a 1.5rem description. (Sample content on the preview; file screenshots/teaser-description-large.jpg)](screenshots/teaser-description-large.jpg){width=100%}
 
 **Use Cases:** Short, impactful copy.
 
@@ -12390,10 +11840,7 @@ heading XXL (2rem, 3rem) for every other layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-eyebrow-brand.png` \
-> **Purpose:** Brand eyebrow \
-> **Description:** A semibold blue eyebrow above the title.
+![Brand eyebrow — A semibold blue eyebrow above the title. (Sample content on the preview; file screenshots/teaser-eyebrow-brand.jpg)](screenshots/teaser-eyebrow-brand.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12418,10 +11865,7 @@ semibold; takes the full row of the kicker.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-eyebrow-label.png` \
-> **Purpose:** Label eyebrow \
-> **Description:** A small grey uppercase "PRESS RELEASE" label above the title.
+![Label eyebrow — A small grey uppercase "PRESS RELEASE" label above the title. (Sample content on the preview; file screenshots/teaser-eyebrow-label.jpg)](screenshots/teaser-eyebrow-label.jpg){width=100%}
 
 **Use Cases:** Content-type labels (Insight, Press release).
 
@@ -12445,10 +11889,7 @@ semibold; takes the full row of the kicker.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-top-spacing-default.png` \
-> **Purpose:** Default top spacing \
-> **Description:** A teaser in the middle of a page with the section's normal spacing.
+![Default top spacing — A teaser in the middle of a page with the section's normal spacing. (Sample content on the preview; file screenshots/teaser-top-spacing-default.jpg)](screenshots/teaser-top-spacing-default.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12473,10 +11914,7 @@ Header").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-spacing-header.png` \
-> **Purpose:** Page header spacing \
-> **Description:** A Text split teaser at the top of a page with 12.5rem space above it on desktop.
+![Page header spacing — A Text split teaser at the top of a page with 12.5rem space above it on desktop. (Sample content on the preview; file screenshots/teaser-spacing-header.jpg)](screenshots/teaser-spacing-header.jpg){width=100%}
 
 **Use Cases:** Landing pages without a Hero.
 
@@ -12502,10 +11940,7 @@ Padding top overrides it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-links-primary-secondary.png` \
-> **Purpose:** Two CTAs \
-> **Description:** A filled primary button above an outline secondary button.
+![Two CTAs — A filled primary button above an outline secondary button. (Sample content on the preview; file screenshots/teaser-links-primary-secondary.jpg)](screenshots/teaser-links-primary-secondary.jpg){width=100%}
 
 **Use Cases:** Most teasers.
 
@@ -12531,10 +11966,7 @@ empty style is a Text link; CTAs without a link are skipped.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-links-multiple.png` \
-> **Purpose:** Multiple links \
-> **Description:** A Text split teaser with four links in List style below the description.
+![Multiple links — A Text split teaser with four links in List style below the description. (Sample content on the preview; file screenshots/teaser-links-multiple.jpg)](screenshots/teaser-links-multiple.jpg){width=100%}
 
 **Use Cases:** Related links, resource lists.
 
@@ -12561,10 +11993,7 @@ Text link.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-link-text.png` \
-> **Purpose:** Text link \
-> **Description:** "Learn more" in black text with a right arrow, turning blue on hover.
+![Text link — "Learn more" in black text with a right arrow, turning blue on hover. (Sample content on the preview; file screenshots/teaser-link-text.jpg)](screenshots/teaser-link-text.jpg){width=100%}
 
 **Use Cases:** Secondary actions.
 
@@ -12589,10 +12018,7 @@ hover there.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-link-list.png` \
-> **Purpose:** List links \
-> **Description:** Three full-width link rows separated by grey dividers, each with an arrow at the right end.
+![List links — Three full-width link rows separated by grey dividers, each with an arrow at the right end. (Sample content on the preview; file screenshots/teaser-link-list.jpg)](screenshots/teaser-link-list.jpg){width=100%}
 
 **Use Cases:** Related services, resource lists.
 
@@ -12620,10 +12046,7 @@ Heading M (1.125rem / 1.5rem); hover: brand colour (light blue on dark).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-link-primary.png` \
-> **Purpose:** Primary button \
-> **Description:** A black pill button with white text and arrow.
+![Primary button — A black pill button with white text and arrow. (Sample content on the preview; file screenshots/teaser-link-primary.jpg)](screenshots/teaser-link-primary.jpg){width=100%}
 
 **Use Cases:** "Contact us", "Download the report".
 
@@ -12647,10 +12070,7 @@ Heading M (1.125rem / 1.5rem); hover: brand colour (light blue on dark).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-link-secondary.png` \
-> **Purpose:** Secondary button \
-> **Description:** An outline pill button; white outline on dark panels and images.
+![Secondary button — An outline pill button; white outline on dark panels and images. (Sample content on the preview; file screenshots/teaser-link-secondary.jpg)](screenshots/teaser-link-secondary.jpg){width=100%}
 
 **Use Cases:** "Explore more".
 
@@ -12674,10 +12094,7 @@ Heading M (1.125rem / 1.5rem); hover: brand colour (light blue on dark).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-links-mixed.png` \
-> **Purpose:** Mixed links \
-> **Description:** Two List rows followed by a primary button.
+![Mixed links — Two List rows followed by a primary button. (Sample content on the preview; file screenshots/teaser-links-mixed.jpg)](screenshots/teaser-links-mixed.jpg){width=100%}
 
 **Use Cases:** Resource lists with a final action.
 
@@ -12702,10 +12119,7 @@ Heading M (1.125rem / 1.5rem); hover: brand colour (light blue on dark).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-list-arrow-right.png` \
-> **Purpose:** Right arrow \
-> **Description:** List rows with right-pointing grey arrows.
+![Right arrow — List rows with right-pointing grey arrows. (Sample content on the preview; file screenshots/teaser-list-arrow-right.jpg)](screenshots/teaser-list-arrow-right.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -12729,10 +12143,7 @@ Heading M (1.125rem / 1.5rem); hover: brand colour (light blue on dark).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-list-arrow-down-right.png` \
-> **Purpose:** Down-right arrow \
-> **Description:** List rows with diagonal down-right arrows.
+![Down-right arrow — List rows with diagonal down-right arrows. (Sample content on the preview; file screenshots/teaser-list-arrow-down-right.jpg)](screenshots/teaser-list-arrow-down-right.jpg){width=100%}
 
 **Use Cases:** Design-specific link lists.
 
@@ -12758,10 +12169,7 @@ with stats).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-stats.png` \
-> **Purpose:** Stats \
-> **Description:** A Text split teaser with three stats side by side: a label above a large brand-blue value such as "40%".
+![Stats — A Text split teaser with three stats side by side: a label above a large brand-blue value such as "40%". (Sample content on the preview; file screenshots/teaser-stats.jpg)](screenshots/teaser-stats.jpg){width=100%}
 
 **Use Cases:** Case-study results, company facts.
 
@@ -12790,10 +12198,7 @@ dd.teaser-stat-value`; items flex at least 11.25rem wide, wrapping; value Displa
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-date.png` \
-> **Purpose:** Date \
-> **Description:** "Published 13-10-2026" in small light text at the right of the kicker.
+![Date — "Published 13-10-2026" in small light text at the right of the kicker. (Sample content on the preview; file screenshots/teaser-date.jpg)](screenshots/teaser-date.jpg){width=100%}
 
 **Use Cases:** Insights, news, events.
 
@@ -12819,10 +12224,7 @@ MM-DD-YYYY, MMM d, yyyy (English month abbreviations), DD/MM/YY.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-reading-time.png` \
-> **Purpose:** Reading time \
-> **Description:** "14 min read" next to the date.
+![Reading time — "14 min read" next to the date. (Sample content on the preview; file screenshots/teaser-reading-time.jpg)](screenshots/teaser-reading-time.jpg){width=100%}
 
 **Use Cases:** Articles, reports.
 
@@ -12847,10 +12249,7 @@ text is shown as typed.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-page-actions.png` \
-> **Purpose:** Page actions \
-> **Description:** Headphones, download and share icon buttons at the right of the kicker; after Share on desktop, "Link copied to clipboard" below them.
+![Page actions — Headphones, download and share icon buttons at the right of the kicker; after Share on desktop, "Link copied to clipboard" below them. (Sample content on the preview; file screenshots/teaser-page-actions.jpg)](screenshots/teaser-page-actions.jpg){width=100%}
 
 **Use Cases:** Article headers (Figma "L3 Header").
 
@@ -12879,10 +12278,7 @@ announced through the live status region.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-author.png` \
-> **Purpose:** Author \
-> **Description:** A round 2.5rem portrait next to the author's name and designation below the title.
+![Author — A round 2.5rem portrait next to the author's name and designation below the title. (Sample content on the preview; file screenshots/teaser-author.jpg)](screenshots/teaser-author.jpg){width=100%}
 
 **Use Cases:** Thought-leadership teasers and headers.
 
@@ -12910,10 +12306,7 @@ is next to it).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-tags.png` \
-> **Purpose:** Tags \
-> **Description:** Small grey uppercase tags separated by vertical bars below the eyebrow.
+![Tags — Small grey uppercase tags separated by vertical bars below the eyebrow. (Sample content on the preview; file screenshots/teaser-tags.jpg)](screenshots/teaser-tags.jpg){width=100%}
 
 **Use Cases:** Insights, industry teasers.
 
@@ -12938,10 +12331,7 @@ missing there show a label derived from the tag ID.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-view-all.png` \
-> **Purpose:** View All \
-> **Description:** The title on the left and a primary "View all" button on the right of the same row.
+![View All — The title on the left and a primary "View all" button on the right of the same row. (Sample content on the preview; file screenshots/teaser-view-all.jpg)](screenshots/teaser-view-all.jpg){width=100%}
 
 **Use Cases:** Section headings for news or insights.
 
@@ -12966,10 +12356,7 @@ missing there show a label derived from the tag ID.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-hide-title.png` \
-> **Purpose:** Hidden title \
-> **Description:** A teaser that visually starts with the description; the accessibility tree still shows the heading.
+![Hidden title — A teaser that visually starts with the description; the accessibility tree still shows the heading. (Sample content on the preview; file screenshots/teaser-hide-title.jpg)](screenshots/teaser-hide-title.jpg){width=100%}
 
 **Use Cases:** Designs without a visible heading.
 
@@ -12993,10 +12380,7 @@ missing there show a label derived from the tag ID.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-short-description.png` \
-> **Purpose:** Short description \
-> **Description:** A small paragraph shown below the buttons.
+![Short description — A small paragraph shown below the buttons. (Sample content on the preview; file screenshots/teaser-short-description.jpg)](screenshots/teaser-short-description.jpg){width=100%}
 
 **Use Cases:** Footnotes, sources of statistics.
 
@@ -13020,10 +12404,7 @@ missing there show a label derived from the tag ID.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-eyebrow-hidden.png` \
-> **Purpose:** Hidden eyebrow \
-> **Description:** A teaser starting directly with its title.
+![Hidden eyebrow — A teaser starting directly with its title. (Sample content on the preview; file screenshots/teaser-eyebrow-hidden.jpg)](screenshots/teaser-eyebrow-hidden.jpg){width=100%}
 
 **Use Cases:** Temporary changes, shared copy.
 
@@ -13048,10 +12429,7 @@ not just visually).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-description-hidden.png` \
-> **Purpose:** Hidden description \
-> **Description:** A teaser with only title and links.
+![Hidden description — A teaser with only title and links. (Sample content on the preview; file screenshots/teaser-description-hidden.jpg)](screenshots/teaser-description-hidden.jpg){width=100%}
 
 **Use Cases:** Compact teasers.
 
@@ -13075,10 +12453,7 @@ not just visually).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-title-type.png` \
-> **Purpose:** Heading level \
-> **Description:** Two identical-looking teasers; the accessibility tree shows H2 and H3.
+![Heading level — Two identical-looking teasers; the accessibility tree shows H2 and H3. (Sample content on the preview; file screenshots/teaser-title-type.jpg)](screenshots/teaser-title-type.jpg){width=100%}
 
 **Use Cases:** H1 for a page-opening teaser without Hero / Page Header; H3 inside a section
 with its own H2.
@@ -13103,10 +12478,7 @@ with its own H2.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-personalization.png` \
-> **Purpose:** Personalization marker \
-> **Description:** The browser's element inspector showing the teaser with class personalization and data-personalization="true"; the page looks unchanged.
+![Personalization marker — The browser's element inspector showing the teaser with class personalization and data-personalization="true"; the page looks unchanged. (Sample content on the preview; file screenshots/teaser-personalization.jpg)](screenshots/teaser-personalization.jpg){width=100%}
 
 **Use Cases:** Future Target activities.
 
@@ -13125,10 +12497,7 @@ implemented (as of this handover)).
 
 ### 6.11.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A fully populated Text split teaser selected on the Universal Editor canvas, with letters A–N marking the block, image, eyebrow, tags, date, reading time, page actions, title, View All, author, description, stats, links and short description.
+![Universal Editor canvas — A fully populated Text split teaser selected on the Universal Editor canvas, with letters A–N marking the block, image, eyebrow, tags, date, reading time, page actions, title, View All, author, description, stats, links and short description. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/teaser-authoring-view.jpg)](screenshots/teaser-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -13154,10 +12523,7 @@ description, can also be selected on the canvas). Fields hidden by a `condition`
 Date when Show Date is off) disappear from the panel until their toggle or Layout allows them.
 The Lottie animation plays in the editor. Personalization has no visible effect.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/teaser-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Teaser properties panel with its six tabs (Content, Image, Style, Links, Stats, Additional), the Content tab open with Show Date on so that Date, Date Format and Date label are visible.
+![Properties panel — The Teaser properties panel with its six tabs (Content, Image, Style, Links, Stats, Additional), the Content tab open with Show Date on so that Date, Date Format and Date label are visible. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/teaser-properties-panel.jpg)](screenshots/teaser-properties-panel.jpg){width=100%}
 
 **Properties panel tabs and fields**
 
@@ -14389,10 +13755,7 @@ analyst endorsements, articles, blogs and press releases (as a pull quote).
 
 ### 6.12.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Quote block at 1440px wide with eyebrow, brand-blue title, the white quote card with large blue opening and closing quote marks on the left, overlapping a tall portrait image on the right.
+![Desktop rendering — A Quote block at 1440px wide with eyebrow, brand-blue title, the white quote card with large blue opening and closing quote marks on the left, overlapping a tall portrait image on the right. (Sample content on the preview; file screenshots/quote-desktop-view.jpg)](screenshots/quote-desktop-view.jpg){width=100%}
 
 **Desktop (900px and wider):** The eyebrow (grey, semibold, 1.5rem) and the title (brand blue,
 medium weight, 3rem, tight letter-spacing) are stacked, 0.75rem apart, with 5rem space below
@@ -14407,10 +13770,7 @@ quote marks are 7.5rem high, in brand blue. The card padding is 1.5rem top and b
 left and right. The quote text is 1.75rem (line height 1.39); the author is 1.5rem (line height
 1.417); there is 2.5rem between quote and author.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Quote block at 768px wide: title above, the portrait image full width, the quote card overlapping the bottom edge of the image and inset from its sides.
+![Tablet rendering — The same Quote block at 768px wide: title above, the portrait image full width, the quote card overlapping the bottom edge of the image and inset from its sides. (Sample content on the preview; file screenshots/quote-tablet-view.jpg)](screenshots/quote-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 899px):** The block uses the stacked mobile layout (the block's only
 breakpoint is 900px). The image comes first and fills the width with a 4 : 5 aspect ratio. The
@@ -14420,10 +13780,7 @@ quote 1.5rem, author 1.125rem, eyebrow 1rem, quote marks 5rem in a 2.5rem column
 section's side padding grows to 2.5rem (`--section-padding-inline`), so the block is narrower
 than the screen by 5rem.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Quote block at 375px wide: eyebrow and title stacked, the image full width, the quote card with smaller quote marks overlapping the image's bottom edge.
+![Mobile rendering — The Quote block at 375px wide: eyebrow and title stacked, the image full width, the quote card with smaller quote marks overlapping the image's bottom edge. (Sample content on the preview; file screenshots/quote-mobile-view.jpg)](screenshots/quote-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px):** As for tablet, with the section side padding of 1.5rem. The header has
 0.75rem between eyebrow and title and 2.5rem below it. The card padding is 1.5rem on all sides
@@ -14447,10 +13804,7 @@ reads first (left) on desktop and the portrait sits to the right.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-default-image-right.png` \
-> **Purpose:** Default variation \
-> **Description:** Desktop Quote block with the white card on the left overlapping a portrait on the right; default white background.
+![Default variation — Desktop Quote block with the white card on the left overlapping a portrait on the right; default white background. (Sample content on the preview; file screenshots/quote-default-image-right.jpg)](screenshots/quote-default-image-right.jpg){width=100%}
 
 **Use Cases:** Client and leadership quotes on most pages; the first quote on a page.
 
@@ -14489,10 +13843,7 @@ the image faces right.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-image-left.png` \
-> **Purpose:** Image Left variation \
-> **Description:** Desktop Quote block with the portrait on the left and the quote card on the right, overlapping the image's right edge.
+![Image Left variation — Desktop Quote block with the portrait on the left and the quote card on the right, overlapping the image's right edge. (Sample content on the preview; file screenshots/quote-image-left.jpg)](screenshots/quote-image-left.jpg){width=100%}
 
 **Use Cases:** The second of two Quote blocks on a page (zig-zag rhythm); portraits whose subject
 looks to the right.
@@ -14524,10 +13875,7 @@ quote should be read before the reader scrolls past a tall image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-image-bottom-mobile.png` \
-> **Purpose:** Image Bottom (mobile) variation \
-> **Description:** Mobile Quote block (375px) with the quote card first and the portrait below it; the card overlaps the top edge of the image.
+![Image Bottom (mobile) variation — Mobile Quote block (375px) with the quote card first and the portrait below it; the card overlaps the top edge of the image. (Sample content on the preview; file screenshots/quote-image-bottom-mobile.jpg)](screenshots/quote-image-bottom-mobile.jpg){width=38%}
 
 **Use Cases:** Quotes high on a page on mobile; long portraits where the quote should stay above
 the fold.
@@ -14558,10 +13906,7 @@ panel, as in the Figma grey variant.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-grey-background.png` \
-> **Purpose:** Grey background variation \
-> **Description:** Desktop Quote block on a light grey panel with generous padding; the card is grey too and overlaps the portrait.
+![Grey background variation — Desktop Quote block on a light grey panel with generous padding; the card is grey too and overlaps the portrait. (Sample content on the preview; file screenshots/quote-grey-background.jpg)](screenshots/quote-grey-background.jpg){width=100%}
 
 **Use Cases:** Pages with several white blocks in a row; emphasising a quote between two text
 sections.
@@ -14592,10 +13937,7 @@ image would compete with other media.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-text-only.png` \
-> **Purpose:** Text-only variation \
-> **Description:** Desktop Quote block without an image: the card with quote marks centred in a 70rem column under the title.
+![Text-only variation — Desktop Quote block without an image: the card with quote marks centred in a 70rem column under the title. (Sample content on the preview; file screenshots/quote-text-only.jpg)](screenshots/quote-text-only.jpg){width=100%}
 
 **Use Cases:** Article and blog pull quotes; quotes from people without an approved portrait.
 
@@ -14617,10 +13959,7 @@ mobile: the card fills the block width with 1.5rem padding.
 
 ### 6.12.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Quote block selected in the Universal Editor canvas, with the letters A to E marking the eyebrow, title, quote text, quote author and image.
+![Universal Editor canvas — A Quote block selected in the Universal Editor canvas, with the letters A to E marking the eyebrow, title, quote text, quote author and image. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/quote-authoring-view.jpg)](screenshots/quote-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -14630,10 +13969,7 @@ mobile: the card fills the block width with 1.5rem padding.
 - D = Quote Author (rich text below the quote, editable in place)
 - E = Image (portrait, selected from AEM Assets)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/quote-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Universal Editor properties panel of the Quote block showing the Content tab with all fields and the Additional tab header.
+![Properties panel — The Universal Editor properties panel of the Quote block showing the Content tab with all fields and the Additional tab header. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/quote-properties-panel.jpg)](screenshots/quote-properties-panel.jpg){width=100%}
 
 The properties panel has two tabs:
 
@@ -15518,10 +14854,7 @@ pages, results summaries.
 
 ### 6.13.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Testimonial block at 1440px: left-aligned section title, centred eyebrow, large blue quote, author with round photo and designation, and four stats under a divider.
+![Desktop rendering — A Testimonial block at 1440px: left-aligned section title, centred eyebrow, large blue quote, author with round photo and designation, and four stats under a divider. (Sample content on the preview; file screenshots/testimonial-desktop-view.jpg)](screenshots/testimonial-desktop-view.jpg){width=100%}
 
 **Desktop (900px and wider):** The block is a vertical stack with 5rem between its parts (title,
 testimonial, stats). The section title is left aligned, 3rem, semibold, in the default text
@@ -15536,20 +14869,14 @@ divider on top and 2.5rem padding above the items. Each column is at least 10rem
 to a new row (gaps 2rem vertical, 2.5rem horizontal). Each stat shows its title (1rem, medium,
 grey) above its value (3rem, semibold, brand blue).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The Testimonial block at 768px: smaller type, the author row centred, three stats per row.
+![Tablet rendering — The Testimonial block at 768px: smaller type, the author row centred, three stats per row. (Sample content on the preview; file screenshots/testimonial-tablet-view.jpg)](screenshots/testimonial-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 899px):** The block uses the base (mobile) sizes; the only breakpoint of the
 block is 900px. Gaps between parts are 2.5rem. Type: title 2rem, description 1.75rem, eyebrow
 and author 0.875rem, stat values 2rem. The stats grid fits as many 10rem columns as the width
 allows (typically three at 768px).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Testimonial block at 375px: title, centred quote and author, stats stacked one per row.
+![Mobile rendering — The Testimonial block at 375px: title, centred quote and author, stats stacked one per row. (Sample content on the preview; file screenshots/testimonial-mobile-view.jpg)](screenshots/testimonial-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px):** As tablet, with the section side padding of 1.5rem. The author's photo
 and text wrap onto separate lines when there is not enough room (the author row wraps, centred).
@@ -15569,10 +14896,7 @@ author presentation, the stats and the Show / Hide toggles; they combine freely.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-default.png` \
-> **Purpose:** Default variation \
-> **Description:** Title, centred eyebrow, large blue quote and the author name with designation; white background, no stats.
+![Default variation — Title, centred eyebrow, large blue quote and the author name with designation; white background, no stats. (Sample content on the preview; file screenshots/testimonial-default.jpg)](screenshots/testimonial-default.jpg){width=100%}
 
 **Use Cases:** Client testimonials on service, industry and case study pages.
 
@@ -15605,10 +14929,7 @@ level; centred text is limited to 59.375rem for readability. Brand blue on white
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-grey-background.png` \
-> **Purpose:** Grey background variation \
-> **Description:** The full testimonial on a light grey panel with large padding on desktop.
+![Grey background variation — The full testimonial on a light grey panel with large padding on desktop. (Sample content on the preview; file screenshots/testimonial-grey-background.jpg)](screenshots/testimonial-grey-background.jpg){width=100%}
 
 **Use Cases:** Between white sections; to frame the testimonial and stats as one panel.
 
@@ -15634,10 +14955,7 @@ level; centred text is limited to 59.375rem for readability. Brand blue on white
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-author-photo.png` \
-> **Purpose:** Author with photo \
-> **Description:** The author row with a 3rem round photo to the left of the name and designation.
+![Author with photo — The author row with a 3rem round photo to the left of the name and designation. (Sample content on the preview; file screenshots/testimonial-author-photo.jpg)](screenshots/testimonial-author-photo.jpg){width=38%}
 
 **Use Cases:** Named client executives with an approved headshot.
 
@@ -15666,10 +14984,7 @@ the photo.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-author-text-only.png` \
-> **Purpose:** Author text only \
-> **Description:** The author name and the designation & location centred below the quote, without a photo.
+![Author text only — The author name and the designation & location centred below the quote, without a photo. (Sample content on the preview; file screenshots/testimonial-author-text-only.jpg)](screenshots/testimonial-author-text-only.jpg){width=38%}
 
 **Use Cases:** Anonymous or role-only attributions ("CIO, a leading European bank").
 
@@ -15697,10 +15012,7 @@ content; with none, no figcaption is added.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-with-stats.png` \
-> **Purpose:** Stats variation \
-> **Description:** Below the author, a divider and four stats, each with a grey title above a large blue value.
+![Stats variation — Below the author, a divider and four stats, each with a grey title above a large blue value. (Sample content on the preview; file screenshots/testimonial-with-stats.jpg)](screenshots/testimonial-with-stats.jpg){width=93%}
 
 **Use Cases:** Case study results; programme outcomes; benefit summaries.
 
@@ -15732,10 +15044,7 @@ the page).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-hide-eyebrow.png` \
-> **Purpose:** Hide Eyebrow variation \
-> **Description:** The testimonial without the eyebrow above the quote.
+![Hide Eyebrow variation — The testimonial without the eyebrow above the quote. (Sample content on the preview; file screenshots/testimonial-hide-eyebrow.jpg)](screenshots/testimonial-hide-eyebrow.jpg){width=100%}
 
 **Use Cases:** When the title already gives the context.
 
@@ -15760,10 +15069,7 @@ screen-reader navigation and the page outline.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-hide-title.png` \
-> **Purpose:** Hide Title variation \
-> **Description:** The testimonial starting with the centred eyebrow; no visible title above it.
+![Hide Title variation — The testimonial starting with the centred eyebrow; no visible title above it. (Sample content on the preview; file screenshots/testimonial-hide-title.jpg)](screenshots/testimonial-hide-title.jpg){width=100%}
 
 **Use Cases:** Testimonials directly below a section heading in default content.
 
@@ -15789,10 +15095,7 @@ remains the block's `dc:title` in the data layer.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-description-hidden.png` \
-> **Purpose:** Show Description off \
-> **Description:** The title, eyebrow, author and stats without the large quote.
+![Show Description off — The title, eyebrow, author and stats without the large quote. (Sample content on the preview; file screenshots/testimonial-description-hidden.jpg)](screenshots/testimonial-description-hidden.jpg){width=100%}
 
 **Use Cases:** Stats bands; reusing a block while the quote awaits approval.
 
@@ -15819,10 +15122,7 @@ deleting it, for example while approval is pending or for stats-only bands.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-hide-author.png` \
-> **Purpose:** Hide Author Details variation \
-> **Description:** The eyebrow and quote without the author row; stats below.
+![Hide Author Details variation — The eyebrow and quote without the author row; stats below. (Sample content on the preview; file screenshots/testimonial-hide-author.jpg)](screenshots/testimonial-hide-author.jpg){width=100%}
 
 **Use Cases:** Anonymous testimonials; stats-only bands (together with Show Description off).
 
@@ -15842,10 +15142,7 @@ if it matters to the meaning.
 
 ### 6.13.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Testimonial block selected in the canvas with letters A to H on the title, eyebrow, description, author image, author name, designation, stats titles and stats values.
+![Universal Editor canvas — A Testimonial block selected in the canvas with letters A to H on the title, eyebrow, description, author image, author name, designation, stats titles and stats values. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/testimonial-authoring-view.jpg)](screenshots/testimonial-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -15858,10 +15155,7 @@ if it matters to the meaning.
 - G = Stats Title (one per stat)
 - H = Stats Value (one per stat)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/testimonial-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Testimonial properties panel showing the six tabs (Content, Author, Style, Show / Hide, Stats, Additional) with the Stats tab open and two items.
+![Properties panel — The Testimonial properties panel showing the six tabs (Content, Author, Style, Show / Hide, Stats, Additional) with the Stats tab open and two items. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/testimonial-properties-panel.jpg)](screenshots/testimonial-properties-panel.jpg){width=100%}
 
 The properties panel has six tabs:
 
@@ -16774,10 +16068,7 @@ article and press release pages.
 
 ### 6.14.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A two-column Columns block at 1440px: an image on the left and a heading, text and a button on the right, vertically centred.
+![Desktop rendering — A two-column Columns block at 1440px: an image on the left and a heading, text and a button on the right, vertically centred. (Sample content on the preview; file screenshots/columns-desktop-view.jpg)](screenshots/columns-desktop-view.jpg){width=100%}
 
 **Desktop (900px and wider):** Each row is a horizontal flex row with a 1.5rem gap between
 columns. Every column takes an equal share of the width (`flex: 1`), whatever the number of
@@ -16786,20 +16077,14 @@ columns, and the columns of a row are vertically centred against each other
 crop). The columns appear in authored order. There is no gap between rows other than the
 content's own margins.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same block at 768px: the image above, the text and button below, full width.
+![Tablet rendering — The same block at 768px: the image above, the text and button below, full width. (Sample content on the preview; file screenshots/columns-tablet-view.jpg)](screenshots/columns-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 899px):** Each row is a vertical stack: the columns are full width, one under
 the other. A column that holds only an image is moved to the top of its row (CSS `order: 0`;
 other columns have `order: 1`). There is no gap between the stacked columns other than content
 margins. The section's side padding is 2.5rem from 600px.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The block at 375px: stacked columns, image first, text below.
+![Mobile rendering — The block at 375px: stacked columns, image first, text below. (Sample content on the preview; file screenshots/columns-mobile-view.jpg)](screenshots/columns-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px):** As tablet, with the section side padding of 1.5rem.
 
@@ -16817,10 +16102,7 @@ share the row; the CSS has no rules per count.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-two-columns.png` \
-> **Purpose:** Two-column variation \
-> **Description:** Two equal columns with text in each, side by side on desktop.
+![Two-column variation — Two equal columns with text in each, side by side on desktop. (Sample content on the preview; file screenshots/columns-two-columns.jpg)](screenshots/columns-two-columns.jpg){width=100%}
 
 **Use Cases:** Image and description; "Challenge" and "Solution"; two contact addresses.
 
@@ -16851,10 +16133,7 @@ can navigate them.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-three-columns.png` \
-> **Purpose:** Three-column variation \
-> **Description:** Three equal columns with a heading and short text each on desktop.
+![Three-column variation — Three equal columns with a heading and short text each on desktop. (Sample content on the preview; file screenshots/columns-three-columns.jpg)](screenshots/columns-three-columns.jpg){width=100%}
 
 **Use Cases:** "Mission / Vision / Values"; three key facts; a row of four logos.
 
@@ -16883,10 +16162,7 @@ small screens.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-image-column.png` \
-> **Purpose:** Image column variation \
-> **Description:** Desktop: text on the left, image on the right; mobile inset: the image moved above the text.
+![Image column variation — Desktop: text on the left, image on the right; mobile inset: the image moved above the text. (Sample content on the preview; file screenshots/columns-image-column.jpg)](screenshots/columns-image-column.jpg){width=100%}
 
 **Use Cases:** Text with an illustration on the right on desktop, image first on mobile.
 
@@ -16915,10 +16191,7 @@ grid of items.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-multiple-rows.png` \
-> **Purpose:** Multiple rows variation \
-> **Description:** Three rows of image and text pairs, the image alternating between left and right on desktop.
+![Multiple rows variation — Three rows of image and text pairs, the image alternating between left and right on desktop. (Sample content on the preview; file screenshots/columns-multiple-rows.jpg)](screenshots/columns-multiple-rows.jpg){width=100%}
 
 **Use Cases:** Feature lists with images; step-by-step explanations; zig-zag layouts.
 
@@ -16942,10 +16215,7 @@ navigation.
 
 ### 6.14.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Columns block selected in the canvas with letters A to E on the block, a column, a Title, a Text and an Image component inside the columns.
+![Universal Editor canvas — A Columns block selected in the canvas with letters A to E on the block, a column, a Title, a Text and an Image component inside the columns. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/columns-authoring-view.jpg)](screenshots/columns-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -16955,10 +16225,7 @@ navigation.
 - D = Text component inside a column (rich text, editable in place)
 - E = Image component inside a column (or a Button component)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/columns-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Columns properties panel with the Content tab (Columns, Rows) and the Additional tab header.
+![Properties panel — The Columns properties panel with the Content tab (Columns, Rows) and the Additional tab header. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/columns-properties-panel.jpg)](screenshots/columns-properties-panel.jpg){width=100%}
 
 The properties panel of the block has two tabs:
 
@@ -17677,10 +16944,7 @@ an internal page link or an external URL (`https://…`, `mailto:`, `tel:`), and
 
 ### 6.15.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Cards block at 1440 px wide with default settings: the header (title on the left, CTA text link with arrow on the right) above four image cards in one row (16:9 images with rounded corners, uppercase eyebrow and tags, title, description, content type and date).
+![Desktop rendering — A Cards block at 1440 px wide with default settings: the header (title on the left, CTA text link with arrow on the right) above four image cards in one row (16:9 images with rounded corners, uppercase eyebrow and tags, title, description, content type and date). (Sample content on the preview; file screenshots/cards-desktop-view.jpg)](screenshots/cards-desktop-view.jpg){width=100%}
 
 **Desktop (1200 px and wider).** The block is a vertical stack with a 5rem gap between the
 header, the cards and the navigation row. The header puts the title slot (title and
@@ -17696,10 +16960,7 @@ are coloured panels with a 1.5rem padding (from 900 px) and a 2:3 portrait shape
 In horizontal scroll mode, 4.2 cards are visible by default (the fifth card is cut off to show
 that the row scrolls) and the row runs to the right edge of the section (edge bleed).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Cards block at 1024 px: the header with a 2rem title, four narrower image cards in one row (default tablet columns 4), smaller card titles (1.25rem).
+![Tablet rendering — The same Cards block at 1024 px: the header with a 2rem title, four narrower image cards in one row (default tablet columns 4), smaller card titles (1.25rem). (Sample content on the preview; file screenshots/cards-tablet-view.jpg)](screenshots/cards-tablet-view.jpg){width=77%}
 
 **Tablet (600–1199 px).** The layout uses the tablet settings: grid with 4 columns by default
 (Tablet columns, 1–6) and a 1.5rem gap, or a horizontal scroller with 3.3 cards visible by
@@ -17710,10 +16971,7 @@ links lose their bottom border unless the Dividers style option is set. Because 
 be narrow on a 600 px screen, authors often set Tablet columns to 2 or 3 or use horizontal
 scroll.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Cards block at 402 px: the header stacked (title, description, CTA below), one image card per row in a single column with a 1rem gap.
+![Mobile rendering — The Cards block at 402 px: the header stacked (title, description, CTA below), one image card per row in a single column with a 1rem gap. (Sample content on the preview; file screenshots/cards-mobile-view.jpg)](screenshots/cards-mobile-view.jpg){width=32%}
 
 **Mobile (below 600 px).** One column by default (Mobile columns 1) with a 1rem gap (Mobile
 gap, 16 px); the block gap is 2.5rem. The header wraps: the title slot takes the full width and
@@ -17750,10 +17008,7 @@ capabilities, services and curated content.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-image-card.png` \
-> **Purpose:** Image card style \
-> **Description:** Four image cards in a row: 16:9 rounded image, uppercase grey kicker (eyebrow | tag | 6m), card title, two-line description, meta row "Article | 04 Sep 26".
+![Image card style — Four image cards in a row: 16:9 rounded image, uppercase grey kicker (eyebrow | tag | 6m), card title, two-line description, meta row "Article | 04 Sep 26". (Sample content on the preview; file screenshots/cards-image-card.jpg)](screenshots/cards-image-card.jpg){width=100%}
 
 **Use Cases:** Service and capability overviews; "Explore more" rows; related content.
 
@@ -17798,10 +17053,7 @@ for themes, topic hubs and navigation tiles (Figma variation 1 "Themes").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-panel-card.png` \
-> **Purpose:** Panel card style \
-> **Description:** Three tall (2:3) dark navy-grey panels (#20293c) with a small light kicker, a large light title, a short description and an "Explore" text link at the bottom.
+![Panel card style — Three tall (2:3) dark navy-grey panels (#20293c) with a small light kicker, a large light title, a short description and an "Explore" text link at the bottom. (Sample content on the preview; file screenshots/cards-panel-card.jpg)](screenshots/cards-panel-card.jpg){width=100%}
 
 **Use Cases:** Theme and topic tiles; industry entry points; campaign navigation.
 
@@ -17841,10 +17093,7 @@ title (WCAG 2.4.4).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-report-card.png` \
-> **Purpose:** Report card style \
-> **Description:** Tall cards with the grey gradient background (light blue-grey to warm grey), a kicker "REPORT | 04 Sep 26", a large dark title, a description and a "Download" outlined button at the bottom.
+![Report card style — Tall cards with the grey gradient background (light blue-grey to warm grey), a kicker "REPORT | 04 Sep 26", a large dark title, a description and a "Download" outlined button at the bottom. (Sample content on the preview; file screenshots/cards-report-card.jpg)](screenshots/cards-report-card.jpg){width=100%}
 
 **Use Cases:** Reports, research, annual report downloads, investor documents.
 
@@ -17878,10 +17127,7 @@ glance", "Banking today"; Figma variations 6, 7, 10, 12, 13, 14).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-statistic-card.png` \
-> **Purpose:** Statistic card style \
-> **Description:** Four light grey (#d9d9d9) cards, each with a small kicker at the top, a very large number such as "4bn", and at the bottom a bold label "Revenue" and a short description.
+![Statistic card style — Four light grey (#d9d9d9) cards, each with a small kicker at the top, a very large number such as "4bn", and at the bottom a bold label "Revenue" and a short description. (Sample content on the preview; file screenshots/cards-statistic-card.jpg)](screenshots/cards-statistic-card.jpg){width=100%}
 
 **Use Cases:** Company facts, investor highlights, impact numbers, survey results.
 
@@ -17917,10 +17163,7 @@ as in Figma variations 2, 3, 8 and 9.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-mixed.png` \
-> **Purpose:** Mixed card style \
-> **Description:** A row with an image card, a dark panel (a card without an image) and a gradient report card (Content type "Report") side by side.
+![Mixed card style — A row with an image card, a dark panel (a card without an image) and a gradient report card (Content type "Report") side by side. (Sample content on the preview; file screenshots/cards-mixed.jpg)](screenshots/cards-mixed.jpg){width=100%}
 
 **Use Cases:** Insight rows that combine articles, opinions and reports.
 
@@ -17952,10 +17195,7 @@ order.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-feature-card.png` \
-> **Purpose:** Feature card \
-> **Description:** A full-width card (about 35.6rem high on desktop) with the image filling it, a white gradient from the left, the tags and reading time and a large dark title on the left; below it a row of three smaller cards.
+![Feature card — A full-width card (about 35.6rem high on desktop) with the image filling it, a white gradient from the left, the tags and reading time and a large dark title on the left; below it a row of three smaller cards. (Sample content on the preview; file screenshots/cards-feature-card.jpg)](screenshots/cards-feature-card.jpg){width=100%}
 
 **Use Cases:** Lead story of an insights section; campaign spotlight.
 
@@ -17994,10 +17234,7 @@ announcement lists (Figma variation 5 "News").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-rows-of-links.png` \
-> **Purpose:** Rows of links \
-> **Description:** Full-width rows, each with an uppercase eyebrow and a tag, a large title, a description, a date and a grey arrow on the right that turns blue and moves on hover; thin grey lines between rows.
+![Rows of links — Full-width rows, each with an uppercase eyebrow and a tag, a large title, a description, a date and a grey arrow on the right that turns blue and moves on hover; thin grey lines between rows. (Sample content on the preview; file screenshots/cards-rows-of-links.jpg)](screenshots/cards-rows-of-links.jpg){width=100%}
 
 **Use Cases:** News lists, announcements, press links, document lists.
 
@@ -18033,10 +17270,7 @@ tiles.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-dark.png` \
-> **Purpose:** Dark card colour \
-> **Description:** A statistic card and a report card both rendered on #20293c with light text.
+![Dark card colour — A statistic card and a report card both rendered on #20293c with light text. (Sample content on the preview; file screenshots/cards-colour-dark.jpg)](screenshots/cards-colour-dark.jpg){width=100%}
 
 **Use Cases:** Themes; statistics on a light section; making one card stand out.
 
@@ -18065,10 +17299,7 @@ in Figma variations 8 and 9.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-navy.png` \
-> **Purpose:** Navy card colour \
-> **Description:** Report cards on a near-black navy background with light text and a light outlined Download button.
+![Navy card colour — Report cards on a near-black navy background with light text and a light outlined Download button. (Sample content on the preview; file screenshots/cards-colour-navy.jpg)](screenshots/cards-colour-navy.jpg){width=100%}
 
 **Use Cases:** Media coverage and investor relations report cards; premium highlights.
 
@@ -18094,10 +17325,7 @@ variations 1, 10 and 13).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-brand.png` \
-> **Purpose:** Brand blue card colour \
-> **Description:** A statistic card on brand blue with white number, label and description.
+![Brand blue card colour — A statistic card on brand blue with white number, label and description. (Sample content on the preview; file screenshots/cards-colour-brand.jpg)](screenshots/cards-colour-brand.jpg){width=38%}
 
 **Use Cases:** One highlighted statistic in a row; brand themes.
 
@@ -18126,10 +17354,7 @@ design sign-off — owner: design lead].
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-brand-light.png` \
-> **Purpose:** Light blue card colour \
-> **Description:** A statistic card on light blue with a black number and dark description.
+![Light blue card colour — A statistic card on light blue with a black number and dark description. (Sample content on the preview; file screenshots/cards-colour-brand-light.jpg)](screenshots/cards-colour-brand-light.jpg){width=38%}
 
 **Use Cases:** Statistic rows with alternating colours.
 
@@ -18155,10 +17380,7 @@ and reports (Figma variation 6).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-grey.png` \
-> **Purpose:** Light grey card colour \
-> **Description:** Panel cards on light grey with black titles instead of the dark default.
+![Light grey card colour — Panel cards on light grey with black titles instead of the dark default. (Sample content on the preview; file screenshots/cards-colour-grey.jpg)](screenshots/cards-colour-grey.jpg){width=100%}
 
 **Use Cases:** Calm, neutral panels; "At a glance" statistics.
 
@@ -18184,10 +17406,7 @@ muted 70 % black.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-mid-grey.png` \
-> **Purpose:** Mid grey card colour \
-> **Description:** A statistic card on mid grey with a black number and dark grey description.
+![Mid grey card colour — A statistic card on mid grey with a black number and dark grey description. (Sample content on the preview; file screenshots/cards-colour-mid-grey.jpg)](screenshots/cards-colour-mid-grey.jpg){width=38%}
 
 **Use Cases:** Four-up statistic rows with different colours.
 
@@ -18214,10 +17433,7 @@ variation 13).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-gradient.png` \
-> **Purpose:** Grey gradient card colour \
-> **Description:** A statistic card with the diagonal light blue-grey to warm grey gradient and dark text.
+![Grey gradient card colour — A statistic card with the diagonal light blue-grey to warm grey gradient and dark text. (Sample content on the preview; file screenshots/cards-colour-gradient.jpg)](screenshots/cards-colour-gradient.jpg){width=38%}
 
 **Use Cases:** Statistic or panel cards that should match report cards.
 
@@ -18243,10 +17459,7 @@ text #303030, muted 70 % black.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-colour-image.png` \
-> **Purpose:** Image background card colour \
-> **Description:** A tall panel whose image covers the whole card, with the kicker, title, description and Explore link on top of it.
+![Image background card colour — A tall panel whose image covers the whole card, with the kicker, title, description and Explore link on top of it. (Sample content on the preview; file screenshots/cards-colour-image.jpg)](screenshots/cards-colour-image.jpg){width=38%}
 
 **Use Cases:** Theme tiles with photography between solid-colour panels.
 
@@ -18277,10 +17490,7 @@ the dark text keeps a 4.5:1 contrast (WCAG 1.4.3); check every image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-ratio-1-1.png` \
-> **Purpose:** Square image ratio \
-> **Description:** Three image cards with square images above their texts.
+![Square image ratio — Three image cards with square images above their texts. (Sample content on the preview; file screenshots/cards-ratio-1-1.jpg)](screenshots/cards-ratio-1-1.jpg){width=100%}
 
 **Use Cases:** Portrait-like photography; "Intelligence in Action" and "2-up" layouts.
 
@@ -18306,10 +17516,7 @@ is cropped with `object-fit: cover`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-ratio-4-3.png` \
-> **Purpose:** 4:3 image ratio \
-> **Description:** Image cards with 4:3 images.
+![4:3 image ratio — Image cards with 4:3 images. (Sample content on the preview; file screenshots/cards-ratio-4-3.jpg)](screenshots/cards-ratio-4-3.jpg){width=100%}
 
 **Use Cases:** Photography that would be cropped too much at 16:9.
 
@@ -18333,10 +17540,7 @@ is cropped with `object-fit: cover`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-ratio-3-2.png` \
-> **Purpose:** 3:2 image ratio \
-> **Description:** Image cards with 3:2 images.
+![3:2 image ratio — Image cards with 3:2 images. (Sample content on the preview; file screenshots/cards-ratio-3-2.jpg)](screenshots/cards-ratio-3-2.jpg){width=100%}
 
 **Use Cases:** Camera photography without re-cropping.
 
@@ -18360,10 +17564,7 @@ is cropped with `object-fit: cover`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-panel-compact.png` \
-> **Purpose:** Compact panel height \
-> **Description:** Four statistic cards that are nearly square (9:10) instead of tall portrait.
+![Compact panel height — Four statistic cards that are nearly square (9:10) instead of tall portrait. (Sample content on the preview; file screenshots/cards-panel-compact.jpg)](screenshots/cards-panel-compact.jpg){width=100%}
 
 **Use Cases:** Statistic rows (Figma 6, 10, 13); panels with short texts.
 
@@ -18391,10 +17592,7 @@ but invisible to sighted users (WCAG 1.4.10 risk): keep the texts short.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-panel-content.png` \
-> **Purpose:** Content panel height \
-> **Description:** Dark panels whose height fits the text; the cards of a row share the tallest height.
+![Content panel height — Dark panels whose height fits the text; the cards of a row share the tallest height. (Sample content on the preview; file screenshots/cards-panel-content.jpg)](screenshots/cards-panel-content.jpg){width=100%}
 
 **Use Cases:** Panels with long descriptions or rich text lists.
 
@@ -18420,10 +17618,7 @@ number (Figma variations 7 and 12 "Statements").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-stat-compact.png` \
-> **Purpose:** Compact statistic title \
-> **Description:** Three statistic cards with a medium-size title such as "Net zero by 2030" instead of a huge number, a label and a description, and a call to action button.
+![Compact statistic title — Three statistic cards with a medium-size title such as "Net zero by 2030" instead of a huge number, a label and a description, and a call to action button. (Sample content on the preview; file screenshots/cards-stat-compact.jpg)](screenshots/cards-stat-compact.jpg){width=100%}
 
 **Use Cases:** Commitments, statements, short claims.
 
@@ -18451,10 +17646,7 @@ variation 5).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-dividers.png` \
-> **Purpose:** Dividers between rows \
-> **Description:** Rows of links on desktop separated by thin grey (#b2b2b2) lines.
+![Dividers between rows — Rows of links on desktop separated by thin grey (#b2b2b2) lines. (Sample content on the preview; file screenshots/cards-dividers.jpg)](screenshots/cards-dividers.jpg){width=100%}
 
 **Use Cases:** News and document lists that need visual separation.
 
@@ -18481,10 +17673,7 @@ always.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-header-centred.png` \
-> **Purpose:** Centred header \
-> **Description:** The block title, description and CTA centred above a row of statistic cards.
+![Centred header — The block title, description and CTA centred above a row of statistic cards. (Sample content on the preview; file screenshots/cards-header-centred.jpg)](screenshots/cards-header-centred.jpg){width=100%}
 
 **Use Cases:** Statistic rows and campaign sections with a centred heading.
 
@@ -18511,10 +17700,7 @@ button, Secondary button).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-header-cta.png` \
-> **Purpose:** Header call to action \
-> **Description:** The block header with the title and description on the left and a "View all" text link with an arrow on the right; a second capture with a primary (filled) button.
+![Header call to action — The block header with the title and description on the left and a "View all" text link with an arrow on the right; a second capture with a primary (filled) button. (Sample content on the preview; file screenshots/cards-header-cta.jpg)](screenshots/cards-header-cta.jpg){width=100%}
 
 **Use Cases:** Linking to an overview page of all items.
 
@@ -18545,10 +17731,7 @@ styles and new-window links.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-grid-all.png` \
-> **Purpose:** Grid on every breakpoint \
-> **Description:** Eight cards in two rows of four on desktop; the same cards in a single column on mobile.
+![Grid on every breakpoint — Eight cards in two rows of four on desktop; the same cards in a single column on mobile. (Sample content on the preview; file screenshots/cards-grid-all.jpg)](screenshots/cards-grid-all.jpg){width=100%}
 
 **Use Cases:** Overviews where every card must be visible without interaction.
 
@@ -18579,10 +17762,7 @@ and 9).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-all.png` \
-> **Purpose:** Horizontal scroll on every breakpoint \
-> **Description:** A row of cards with 4.2 visible on desktop, the fifth card cut off at the right edge of the screen, and the previous / next buttons and a scroll indicator below.
+![Horizontal scroll on every breakpoint — A row of cards with 4.2 visible on desktop, the fifth card cut off at the right edge of the screen, and the previous / next buttons and a scroll indicator below. (Sample content on the preview; file screenshots/cards-scroll-all.jpg)](screenshots/cards-scroll-all.jpg){width=100%}
 
 **Use Cases:** Related content, media coverage, long sets of cards in little vertical space.
 
@@ -18617,10 +17797,7 @@ buttons are named and `disabled` at the ends.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-desktop-only.png` \
-> **Purpose:** Desktop-only scroll \
-> **Description:** Desktop: a scrolling row of cards with buttons; tablet: a 2-column grid; mobile: one column.
+![Desktop-only scroll — Desktop: a scrolling row of cards with buttons; tablet: a 2-column grid; mobile: one column. (Sample content on the preview; file screenshots/cards-scroll-desktop-only.jpg)](screenshots/cards-scroll-desktop-only.jpg){width=100%}
 
 **Use Cases:** Long sets on wide screens where a grid would be too tall.
 
@@ -18646,10 +17823,7 @@ don't apply, and from 600 px the grid styles reset the scroller (`overflow-x: vi
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-tablet-only.png` \
-> **Purpose:** Tablet-only scroll \
-> **Description:** Desktop: a 4-column grid; tablet: a scrolling row with 2.5 cards visible; mobile: one column.
+![Tablet-only scroll — Desktop: a 4-column grid; tablet: a scrolling row with 2.5 cards visible; mobile: one column. (Sample content on the preview; file screenshots/cards-scroll-tablet-only.jpg)](screenshots/cards-scroll-tablet-only.jpg){width=82%}
 
 **Use Cases:** Many columns on desktop that don't fit tablets.
 
@@ -18675,10 +17849,7 @@ screens, a swipeable rail with an indicator on phones.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-mobile-only.png` \
-> **Purpose:** Mobile-only scroll \
-> **Description:** Mobile: 1.2 cards visible with the next card peeking at the right edge and a grey scroll indicator below.
+![Mobile-only scroll — Mobile: 1.2 cards visible with the next card peeking at the right edge and a grey scroll indicator below. (Sample content on the preview; file screenshots/cards-scroll-mobile-only.jpg)](screenshots/cards-scroll-mobile-only.jpg){width=38%}
 
 **Use Cases:** Statistic rows and themes that would be very long as a single column.
 
@@ -18703,10 +17874,7 @@ Scroll indicator on mobile is on by default); Desktop and Tablet display = Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-desktop-tablet.png` \
-> **Purpose:** Desktop and tablet scroll \
-> **Description:** Desktop and tablet: scrolling rows with buttons; mobile: a single column.
+![Desktop and tablet scroll — Desktop and tablet: scrolling rows with buttons; mobile: a single column. (Sample content on the preview; file screenshots/cards-scroll-desktop-tablet.jpg)](screenshots/cards-scroll-desktop-tablet.jpg){width=82%}
 
 **Use Cases:** Content where swiping on phones isn't wanted.
 
@@ -18730,10 +17898,7 @@ Scroll indicator on mobile is on by default); Desktop and Tablet display = Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-desktop-mobile.png` \
-> **Purpose:** Desktop and mobile scroll \
-> **Description:** Desktop and mobile: scrolling rows; tablet: a 2-column grid.
+![Desktop and mobile scroll — Desktop and mobile: scrolling rows; tablet: a 2-column grid. (Sample content on the preview; file screenshots/cards-scroll-desktop-mobile.jpg)](screenshots/cards-scroll-desktop-mobile.jpg){width=38%}
 
 **Use Cases:** Card sets whose count suits a 2-column tablet grid.
 
@@ -18758,10 +17923,7 @@ Scroll indicator on mobile is on by default); Desktop and Tablet display = Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-tablet-mobile.png` \
-> **Purpose:** Tablet and mobile scroll \
-> **Description:** Desktop: a 4-column grid; tablet and mobile: scrolling rows with an indicator.
+![Tablet and mobile scroll — Desktop: a 4-column grid; tablet and mobile: scrolling rows with an indicator. (Sample content on the preview; file screenshots/cards-scroll-tablet-mobile.jpg)](screenshots/cards-scroll-tablet-mobile.jpg){width=82%}
 
 **Use Cases:** Four or more cards that should be one row on desktop and swipeable elsewhere.
 
@@ -18785,10 +17947,7 @@ Scroll indicator on mobile is on by default); Desktop and Tablet display = Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-previous-next.png` \
-> **Purpose:** Previous and next buttons \
-> **Description:** Two round chevron icon buttons at the bottom right under a scrolling row; the previous button is disabled at the start.
+![Previous and next buttons — Two round chevron icon buttons at the bottom right under a scrolling row; the previous button is disabled at the start. (Sample content on the preview; file screenshots/cards-previous-next.jpg)](screenshots/cards-previous-next.jpg){width=100%}
 
 **Use Cases:** Desktop rails; rails with many cards.
 
@@ -18822,10 +17981,7 @@ variations 1, 6 and 10 on mobile).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-scroll-indicator.png` \
-> **Purpose:** Scroll indicator \
-> **Description:** A 4-pixel light grey track under the cards with a darker grey thumb whose width shows the visible share.
+![Scroll indicator — A 4-pixel light grey track under the cards with a darker grey thumb whose width shows the visible share. (Sample content on the preview; file screenshots/cards-scroll-indicator.jpg)](screenshots/cards-scroll-indicator.jpg){width=100%}
 
 **Use Cases:** Mobile rails (on by default for mobile).
 
@@ -18853,10 +18009,7 @@ scroll position via `--scroller-thumb-size` / `--scroller-thumb-offset`). Block 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-fixed-card-width.png` \
-> **Purpose:** Fixed card width \
-> **Description:** A scrolling row of 320 px wide cards on desktop; the number of visible cards depends on the screen width.
+![Fixed card width — A scrolling row of 320 px wide cards on desktop; the number of visible cards depends on the screen width. (Sample content on the preview; file screenshots/cards-fixed-card-width.jpg)](screenshots/cards-fixed-card-width.jpg){width=100%}
 
 **Use Cases:** Statistic cards or logos with a consistent width on all screens.
 
@@ -18884,10 +18037,7 @@ content width.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-edge-none.png` \
-> **Purpose:** Scroller inside the content width \
-> **Description:** Two captures: with bleed the last visible card is cut by the screen edge; with "Inside the content width" it is cut at the section's right padding.
+![Scroller inside the content width — Two captures: with bleed the last visible card is cut by the screen edge; with "Inside the content width" it is cut at the section's right padding. (Sample content on the preview; file screenshots/cards-edge-none.jpg)](screenshots/cards-edge-none.jpg){width=100%}
 
 **Use Cases:** Boxed sections or sections with a background where bleed looks wrong.
 
@@ -18913,10 +18063,7 @@ the same right padding; the visible-cards calculation subtracts it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-snap-center.png` \
-> **Purpose:** Centre snap alignment \
-> **Description:** On mobile, the current card centred with parts of the previous and next cards visible on both sides.
+![Centre snap alignment — On mobile, the current card centred with parts of the previous and next cards visible on both sides. (Sample content on the preview; file screenshots/cards-snap-center.jpg)](screenshots/cards-snap-center.jpg){width=38%}
 
 **Use Cases:** Mobile rails with 1.2 to 1.5 visible cards.
 
@@ -18942,10 +18089,7 @@ while dragging with a mouse.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-step-viewport.png` \
-> **Purpose:** Viewport scroll step \
-> **Description:** Before and after pressing Next: the whole visible set of cards is replaced by the next set.
+![Viewport scroll step — Before and after pressing Next: the whole visible set of cards is replaced by the next set. (Sample content on the preview; file screenshots/cards-step-viewport.jpg)](screenshots/cards-step-viewport.jpg){width=100%}
 
 **Use Cases:** Long rails on desktop.
 
@@ -18971,10 +18115,7 @@ to the end).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-loop.png` \
-> **Purpose:** Loop \
-> **Description:** At the last card the Next button is still enabled; pressing it shows the first card again.
+![Loop — At the last card the Next button is still enabled; pressing it shows the first card again. (Sample content on the preview; file screenshots/cards-loop.jpg)](screenshots/cards-loop.jpg){width=100%}
 
 **Use Cases:** Short rails that should never "dead-end".
 
@@ -18999,10 +18140,7 @@ timeline-like row).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-initial-item.png` \
-> **Purpose:** Initial item \
-> **Description:** A rail that opens scrolled to its third card, with the Previous button enabled.
+![Initial item — A rail that opens scrolled to its third card, with the Previous button enabled. (Sample content on the preview; file screenshots/cards-initial-item.jpg)](screenshots/cards-initial-item.jpg){width=100%}
 
 **Use Cases:** Rails where the most relevant card is not the first.
 
@@ -19027,10 +18165,7 @@ Out-of-range values go to the last card.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-equal-height.png` \
-> **Purpose:** Equal card height \
-> **Description:** Two grid rows of the same height although the second row's texts are shorter.
+![Equal card height — Two grid rows of the same height although the second row's texts are shorter. (Sample content on the preview; file screenshots/cards-equal-height.jpg)](screenshots/cards-equal-height.jpg){width=100%}
 
 **Use Cases:** Grids with several rows of panels.
 
@@ -19054,10 +18189,7 @@ Out-of-range values go to the last card.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-no-stretch.png` \
-> **Purpose:** Cards not stretched \
-> **Description:** Image cards of different heights aligned to the top of the row.
+![Cards not stretched — Image cards of different heights aligned to the top of the row. (Sample content on the preview; file screenshots/cards-no-stretch.jpg)](screenshots/cards-no-stretch.jpg){width=100%}
 
 **Use Cases:** Image cards with very different text lengths where empty space is unwanted.
 
@@ -19082,10 +18214,7 @@ bottom.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-unlinked.png` \
-> **Purpose:** Unlinked cards \
-> **Description:** Statistic cards without any link or button; hovering shows no pointer.
+![Unlinked cards — Statistic cards without any link or button; hovering shows no pointer. (Sample content on the preview; file screenshots/cards-unlinked.jpg)](screenshots/cards-unlinked.jpg){width=100%}
 
 **Use Cases:** Facts and figures; capability lists without detail pages.
 
@@ -19111,10 +18240,7 @@ Yes, No).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-new-tab.png` \
-> **Purpose:** New-tab links \
-> **Description:** A card linking to an external site; the browser's status bar shows the URL and the link opens a new tab.
+![New-tab links — A card linking to an external site; the browser's status bar shows the URL and the link opens a new tab. (Sample content on the preview; file screenshots/cards-new-tab.jpg)](screenshots/cards-new-tab.jpg){width=100%}
 
 **Use Cases:** Partner sites, external press articles.
 
@@ -19149,10 +18275,7 @@ per card, no block settings).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-legacy.png` \
-> **Purpose:** Legacy cards in the new design \
-> **Description:** An older Cards block (image and rich text cells) rendered as four image cards with the heading as title and the trailing link as call to action.
+![Legacy cards in the new design — An older Cards block (image and rich text cells) rendered as four image cards with the heading as title and the trailing link as call to action. (Sample content on the preview; file screenshots/cards-legacy.jpg)](screenshots/cards-legacy.jpg){width=100%}
 
 **Use Cases:** Pages created before this version.
 
@@ -19182,10 +18305,7 @@ message.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-empty-state.png` \
-> **Purpose:** Empty state \
-> **Description:** In Universal Editor: the block header and a grey box "Add a Card to the block and give it a title, a description or an image."
+![Empty state — In Universal Editor: the block header and a grey box "Add a Card to the block and give it a title, a description or an image." (Sample content on the preview; file screenshots/cards-empty-state.jpg)](screenshots/cards-empty-state.jpg){width=100%}
 
 **Use Cases:** Newly added blocks; blocks whose cards were removed.
 
@@ -19213,10 +18333,7 @@ reordered in the content tree. The decorated cards keep the Universal Editor ins
 their Card rows, so selecting a card on the canvas selects its Card item; the rich text
 Description can be edited in place on the canvas.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A page in Universal Editor with a Cards block selected: header with title, description and CTA, three image cards with images, kickers, titles, descriptions and dates, and the content tree on the left listing Cards with three Card children and the add (+) button.
+![Universal Editor canvas — A page in Universal Editor with a Cards block selected: header with title, description and CTA, three image cards with images, kickers, titles, descriptions and dates, and the content tree on the left listing Cards with three Card children and the add (+) button. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/cards-authoring-view.jpg)](screenshots/cards-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -19233,10 +18350,7 @@ Description can be edited in place on the canvas.
 - K = Previous / next buttons and scroll indicator (Layout tab, per breakpoint, in scroll mode)
 - L = Content tree: the Cards block with its Card items (add, duplicate, delete, drag to reorder)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/cards-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Universal Editor properties panel of a selected Cards block showing the tabs Content, Cards, Layout, Scroll, Advanced and Additional, with the Cards tab open (Display as teaser, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format, Image loading).
+![Properties panel — The Universal Editor properties panel of a selected Cards block showing the tabs Content, Cards, Layout, Scroll, Advanced and Additional, with the Cards tab open (Display as teaser, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format, Image loading). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/cards-properties-panel.jpg)](screenshots/cards-properties-panel.jpg){width=99%}
 
 **Block tabs (Cards)**
 
@@ -20613,10 +19727,7 @@ style, colour).
 
 ### 6.16.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A List at 1440 px with Child pages source and default settings: the header (title "Insights", description, "View all" text link on the right) and four image cards in a row built from the child pages' card images, eyebrows, titles, descriptions, content types and dates.
+![Desktop rendering — A List at 1440 px with Child pages source and default settings: the header (title "Insights", description, "View all" text link on the right) and four image cards in a row built from the child pages' card images, eyebrows, titles, descriptions, content types and dates. (Sample content on the preview; file screenshots/list-desktop-view.jpg)](screenshots/list-desktop-view.jpg){width=100%}
 
 **Desktop (1200 px and wider).** Identical to the Cards block (6.15.2): a vertical stack with a
 5rem gap; header with a 2.5rem semibold title, a 1.125rem grey description and the CTA on the
@@ -20626,10 +19737,7 @@ description and meta; panel, report and statistic cards as 2:3 coloured panels w
 padding; the feature card at least 35.625rem high. Card images from page metadata are requested
 at 750 px width (from 600 px) and 600 px below; feature images at 1600 px (from 900 px) and 750 px.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same List at 1024 px: a 2rem title, four narrower image cards (default Tablet columns 4) with 1.25rem titles and 0.875rem kicker and meta.
+![Tablet rendering — The same List at 1024 px: a 2rem title, four narrower image cards (default Tablet columns 4) with 1.25rem titles and 0.875rem kicker and meta. (Sample content on the preview; file screenshots/list-tablet-view.jpg)](screenshots/list-tablet-view.jpg){width=77%}
 
 **Tablet (600–1199 px).** The tablet settings apply: grid with 4 columns by default or a
 scroller with 3.3 cards visible; block title 2rem, card titles 1.25rem, kicker / meta 0.875rem,
@@ -20637,10 +19745,7 @@ panel titles 1.5rem, statistic numbers up to 4rem; coloured card padding 1rem be
 1.5rem from 900 px; feature card at least 27.1875rem; rows of links without borders unless
 Dividers is set.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The List at 402 px: the header stacked (title, description, CTA below) and the cards in one column with a 1rem gap.
+![Mobile rendering — The List at 402 px: the header stacked (title, description, CTA below) and the cards in one column with a 1rem gap. (Sample content on the preview; file screenshots/list-mobile-view.jpg)](screenshots/list-mobile-view.jpg){width=32%}
 
 **Mobile (below 600 px).** One column by default with a 1rem gap and a 2.5rem block gap; the
 header wraps with the CTA below the title; block title 1.75rem, card titles 1.125rem, kicker,
@@ -20665,10 +19770,7 @@ with the settings that reproduce it (Variations 56–69).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-source-child-pages.png` \
-> **Purpose:** Child pages source \
-> **Description:** An "Our industries" landing page with a List of its child pages as image cards (card images, titles and descriptions from each child page's metadata).
+![Child pages source — An "Our industries" landing page with a List of its child pages as image cards (card images, titles and descriptions from each child page's metadata). (Sample content on the preview; file screenshots/list-source-child-pages.jpg)](screenshots/list-source-child-pages.jpg){width=100%}
 
 **Use Cases:** Section landing pages; sub-navigation teasers; hub pages.
 
@@ -20702,10 +19804,7 @@ default 2).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-source-child-depth.png` \
-> **Purpose:** Child pages with depth \
-> **Description:** A List showing the child and grandchild pages of an insights section in one grid, ordered by title.
+![Child pages with depth — A List showing the child and grandchild pages of an insights section in one grid, ordered by title. (Sample content on the preview; file screenshots/list-source-child-depth.jpg)](screenshots/list-source-child-depth.jpg){width=100%}
 
 **Use Cases:** Hubs whose content sits in sub-folders (e.g. insights by year).
 
@@ -20732,10 +19831,7 @@ overrides of the card content.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-source-fixed.png` \
-> **Purpose:** Fixed list source \
-> **Description:** A List with four List Items: three site pages (cards from their metadata, one with an overridden title) and an external partner link with its own title and image.
+![Fixed list source — A List with four List Items: three site pages (cards from their metadata, one with an overridden title) and an external partner link with its own title and image. (Sample content on the preview; file screenshots/list-source-fixed.jpg)](screenshots/list-source-fixed.jpg){width=100%}
 
 **Use Cases:** Editor's picks; campaign selections; mixed internal and external links;
 statistic rows (overrides).
@@ -20770,10 +19866,7 @@ titles.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-source-tagged-any.png` \
-> **Purpose:** Tagged pages source (any) \
-> **Description:** A "Related to Agentic AI" rail of pages tagged with the AI topic (or its child tags), as mixed cards.
+![Tagged pages source (any) — A "Related to Agentic AI" rail of pages tagged with the AI topic (or its child tags), as mixed cards. (Sample content on the preview; file screenshots/list-source-tagged-any.jpg)](screenshots/list-source-tagged-any.jpg){width=100%}
 
 **Use Cases:** Related content; topic and industry pages; campaign pages pulling tagged insights.
 
@@ -20803,10 +19896,7 @@ and topic AI).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-source-tagged-all.png` \
-> **Purpose:** Tagged pages source (all) \
-> **Description:** A list of only those insights tagged with both "Banking" and "AI".
+![Tagged pages source (all) — A list of only those insights tagged with both "Banking" and "AI". (Sample content on the preview; file screenshots/list-source-tagged-all.jpg)](screenshots/list-source-tagged-all.jpg){width=100%}
 
 **Use Cases:** Intersections of industry, topic and content type.
 
@@ -20830,10 +19920,7 @@ and topic AI).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-order-title.png` \
-> **Purpose:** Order by title \
-> **Description:** Industry pages listed A to Z by their card titles.
+![Order by title — Industry pages listed A to Z by their card titles. (Sample content on the preview; file screenshots/list-order-title.jpg)](screenshots/list-order-title.jpg){width=100%}
 
 **Use Cases:** Industries, services, locations.
 
@@ -20859,10 +19946,7 @@ the page's language; "Item 2" before "Item 10"); ties by path. Applies to all so
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-order-last-modified.png` \
-> **Purpose:** Order by last modified \
-> **Description:** A news list with the most recently modified pages first, each with its date.
+![Order by last modified — A news list with the most recently modified pages first, each with its date. (Sample content on the preview; file screenshots/list-order-last-modified.jpg)](screenshots/list-order-last-modified.jpg){width=100%}
 
 **Use Cases:** News, press releases, latest insights.
 
@@ -20888,10 +19972,7 @@ the page's language; "Item 2" before "Item 10"); ties by path. Applies to all so
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-max-items.png` \
-> **Purpose:** Maximum items \
-> **Description:** A list of 40 tagged pages limited to the 4 newest.
+![Maximum items — A list of 40 tagged pages limited to the 4 newest. (Sample content on the preview; file screenshots/list-max-items.jpg)](screenshots/list-max-items.jpg){width=100%}
 
 **Use Cases:** Teaser rows of the latest content; home page sections.
 
@@ -20916,10 +19997,7 @@ negative or invalid values list all.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-fallback-items.png` \
-> **Purpose:** Fallback items \
-> **Description:** A tagged-pages List that found no pages showing its two fallback List Items instead.
+![Fallback items — A tagged-pages List that found no pages showing its two fallback List Items instead. (Sample content on the preview; file screenshots/list-fallback-items.jpg)](screenshots/list-fallback-items.jpg){width=100%}
 
 **Use Cases:** New topics without tagged pages yet; protecting important sections from empty
 lists.
@@ -20946,10 +20024,7 @@ Fixed list (overrides, order, maximum). If the fallback is empty too, the empty 
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-image-card.png` \
-> **Purpose:** Image card style \
-> **Description:** Four image cards with page images, kickers (eyebrow | tags | reading time), titles, descriptions and "Article | 04 Sep 26".
+![Image card style — Four image cards with page images, kickers (eyebrow | tags | reading time), titles, descriptions and "Article | 04 Sep 26". (Sample content on the preview; file screenshots/list-image-card.jpg)](screenshots/list-image-card.jpg){width=100%}
 
 **Use Cases:** Insights, services, any page listing.
 
@@ -20979,10 +20054,7 @@ Same contrast note as 6.15.3 Variation 1 (#999 kicker).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-panel-card.png` \
-> **Purpose:** Panel card style \
-> **Description:** Tall #20293c panels with the page eyebrow, a large light title, the description and "Explore".
+![Panel card style — Tall #20293c panels with the page eyebrow, a large light title, the description and "Explore". (Sample content on the preview; file screenshots/list-panel-card.jpg)](screenshots/list-panel-card.jpg){width=100%}
 
 **Use Cases:** Topic hubs, industries.
 
@@ -21007,10 +20079,7 @@ else first tag; no image unless Card colour = Image background.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-report-card.png` \
-> **Purpose:** Report card style \
-> **Description:** Gradient cards "REPORT | 12 Aug 26" with large titles and an outlined Download button.
+![Report card style — Gradient cards "REPORT | 12 Aug 26" with large titles and an outlined Download button. (Sample content on the preview; file screenshots/list-report-card.jpg)](screenshots/list-report-card.jpg){width=100%}
 
 **Use Cases:** Media coverage, investor relations, research pages.
 
@@ -21037,10 +20106,7 @@ title with the number.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-statistic-card.png` \
-> **Purpose:** Statistic card style \
-> **Description:** Four grey statistic cards (number, label, description) each linking to a detail page.
+![Statistic card style — Four grey statistic cards (number, label, description) each linking to a detail page. (Sample content on the preview; file screenshots/list-statistic-card.jpg)](screenshots/list-statistic-card.jpg){width=100%}
 
 **Use Cases:** Facts linked to their detail pages.
 
@@ -21066,10 +20132,7 @@ cards are always linked (Link items off removes the links); for unlinked statist
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-mixed.png` \
-> **Purpose:** Mixed card style \
-> **Description:** A rail with image cards (pages with images), a panel (a page without an image) and report cards (pages of content type Report).
+![Mixed card style — A rail with image cards (pages with images), a panel (a page without an image) and report cards (pages of content type Report). (Sample content on the preview; file screenshots/list-mixed.jpg)](screenshots/list-mixed.jpg){width=100%}
 
 **Use Cases:** Insight rails mixing articles and reports.
 
@@ -21095,10 +20158,7 @@ else image if the page has one; else panel.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-feature-card.png` \
-> **Purpose:** Feature card \
-> **Description:** A full-width feature with the page image, tags and reading time, a large title and the author's round photo, name and designation, above three smaller cards.
+![Feature card — A full-width feature with the page image, tags and reading time, a large title and the author's round photo, name and designation, above three smaller cards. (Sample content on the preview; file screenshots/list-feature-card.jpg)](screenshots/list-feature-card.jpg){width=100%}
 
 **Use Cases:** Lead insight of a hub.
 
@@ -21126,10 +20186,7 @@ round photo, `list-author-name`, `list-author-designation`).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-rows-of-links.png` \
-> **Purpose:** Rows of links \
-> **Description:** News rows with eyebrow and tag, a large title, description, date and an arrow on the right.
+![Rows of links — News rows with eyebrow and tag, a large title, description, date and an arrow on the right. (Sample content on the preview; file screenshots/list-rows-of-links.jpg)](screenshots/list-rows-of-links.jpg){width=100%}
 
 **Use Cases:** News, press releases, announcement lists.
 
@@ -21154,10 +20211,7 @@ descending.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-dark.png` \
-> **Purpose:** Dark card colour \
-> **Description:** Panel and statistic cards of a List on #20293c with light text.
+![Dark card colour — Panel and statistic cards of a List on #20293c with light text. (Sample content on the preview; file screenshots/list-colour-dark.jpg)](screenshots/list-colour-dark.jpg){width=100%}
 
 **Use Cases:** Themes, highlighted items.
 
@@ -21183,10 +20237,7 @@ buttons.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-navy.png` \
-> **Purpose:** Navy card colour \
-> **Description:** Report cards on #011627 with light text and light outlined buttons.
+![Navy card colour — Report cards on #011627 with light text and light outlined buttons. (Sample content on the preview; file screenshots/list-colour-navy.jpg)](screenshots/list-colour-navy.jpg){width=100%}
 
 **Use Cases:** Media coverage, investor relations.
 
@@ -21210,10 +20261,7 @@ buttons.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-brand.png` \
-> **Purpose:** Brand blue card colour \
-> **Description:** A brand blue statistic card with white text among grey ones.
+![Brand blue card colour — A brand blue statistic card with white text among grey ones. (Sample content on the preview; file screenshots/list-colour-brand.jpg)](screenshots/list-colour-brand.jpg){width=100%}
 
 **Use Cases:** Highlighting one item.
 
@@ -21238,10 +20286,7 @@ Variation 10).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-brand-light.png` \
-> **Purpose:** Light blue card colour \
-> **Description:** A light blue statistic card with black text.
+![Light blue card colour — A light blue statistic card with black text. (Sample content on the preview; file screenshots/list-colour-brand-light.jpg)](screenshots/list-colour-brand-light.jpg){width=100%}
 
 **Use Cases:** Colour rows of statistics.
 
@@ -21265,10 +20310,7 @@ Variation 10).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-grey.png` \
-> **Purpose:** Light grey card colour \
-> **Description:** Grey panels with black titles.
+![Light grey card colour — Grey panels with black titles. (Sample content on the preview; file screenshots/list-colour-grey.jpg)](screenshots/list-colour-grey.jpg){width=100%}
 
 **Use Cases:** Calm panels and statistics.
 
@@ -21292,10 +20334,7 @@ Variation 10).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-mid-grey.png` \
-> **Purpose:** Mid grey card colour \
-> **Description:** A mid grey statistic card with black text.
+![Mid grey card colour — A mid grey statistic card with black text. (Sample content on the preview; file screenshots/list-colour-mid-grey.jpg)](screenshots/list-colour-mid-grey.jpg){width=100%}
 
 **Use Cases:** Four-up colour rows.
 
@@ -21319,10 +20358,7 @@ Variation 10).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-gradient.png` \
-> **Purpose:** Grey gradient card colour \
-> **Description:** A statistic card with the diagonal grey gradient.
+![Grey gradient card colour — A statistic card with the diagonal grey gradient. (Sample content on the preview; file screenshots/list-colour-gradient.jpg)](screenshots/list-colour-gradient.jpg){width=100%}
 
 **Use Cases:** Matching statistics to report cards.
 
@@ -21347,10 +20383,7 @@ Variation 10).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-colour-image.png` \
-> **Purpose:** Image background card colour \
-> **Description:** A panel filled with the page image, the title and Explore link on top.
+![Image background card colour — A panel filled with the page image, the title and Explore link on top. (Sample content on the preview; file screenshots/list-colour-image.jpg)](screenshots/list-colour-image.jpg){width=100%}
 
 **Use Cases:** Theme tiles with photography.
 
@@ -21376,10 +20409,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-ratio-1-1.png` \
-> **Purpose:** Square image ratio \
-> **Description:** Image cards with square page images.
+![Square image ratio — Image cards with square page images. (Sample content on the preview; file screenshots/list-ratio-1-1.jpg)](screenshots/list-ratio-1-1.jpg){width=100%}
 
 **Use Cases:** Insight grids.
 
@@ -21403,10 +20433,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-ratio-4-3.png` \
-> **Purpose:** 4:3 image ratio \
-> **Description:** Image cards with 4:3 images.
+![4:3 image ratio — Image cards with 4:3 images. (Sample content on the preview; file screenshots/list-ratio-4-3.jpg)](screenshots/list-ratio-4-3.jpg){width=100%}
 
 **Use Cases:** People and product photography.
 
@@ -21430,10 +20457,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-ratio-3-2.png` \
-> **Purpose:** 3:2 image ratio \
-> **Description:** Image cards with 3:2 images.
+![3:2 image ratio — Image cards with 3:2 images. (Sample content on the preview; file screenshots/list-ratio-3-2.jpg)](screenshots/list-ratio-3-2.jpg){width=100%}
 
 **Use Cases:** Camera photography.
 
@@ -21457,10 +20481,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-panel-compact.png` \
-> **Purpose:** Compact panel height \
-> **Description:** Nearly square statistic cards.
+![Compact panel height — Nearly square statistic cards. (Sample content on the preview; file screenshots/list-panel-compact.jpg)](screenshots/list-panel-compact.jpg){width=100%}
 
 **Use Cases:** Statistic rows, short panels.
 
@@ -21484,10 +20505,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-panel-content.png` \
-> **Purpose:** Content panel height \
-> **Description:** Panels sized by their content, equal per row.
+![Content panel height — Panels sized by their content, equal per row. (Sample content on the preview; file screenshots/list-panel-content.jpg)](screenshots/list-panel-content.jpg){width=100%}
 
 **Use Cases:** Pages with long card descriptions.
 
@@ -21511,10 +20529,7 @@ cards ignore it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-stat-compact.png` \
-> **Purpose:** Compact statistic title \
-> **Description:** Statistic cards with medium-size statement titles and a call to action.
+![Compact statistic title — Statistic cards with medium-size statement titles and a call to action. (Sample content on the preview; file screenshots/list-stat-compact.jpg)](screenshots/list-stat-compact.jpg){width=100%}
 
 **Use Cases:** Commitments and claims.
 
@@ -21539,10 +20554,7 @@ title.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-dividers.png` \
-> **Purpose:** Dividers between rows \
-> **Description:** News rows separated by thin grey lines on desktop.
+![Dividers between rows — News rows separated by thin grey lines on desktop. (Sample content on the preview; file screenshots/list-dividers.jpg)](screenshots/list-dividers.jpg){width=100%}
 
 **Use Cases:** News lists.
 
@@ -21566,10 +20578,7 @@ title.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-header-centred.png` \
-> **Purpose:** Centred header \
-> **Description:** A centred list header above a grid of cards.
+![Centred header — A centred list header above a grid of cards. (Sample content on the preview; file screenshots/list-header-centred.jpg)](screenshots/list-header-centred.jpg){width=100%}
 
 **Use Cases:** Campaign and statistic sections.
 
@@ -21595,10 +20604,7 @@ button).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-header-cta.png` \
-> **Purpose:** Header call to action \
-> **Description:** The header with "View all news" as a primary button on the right.
+![Header call to action — The header with "View all news" as a primary button on the right. (Sample content on the preview; file screenshots/list-header-cta.jpg)](screenshots/list-header-cta.jpg){width=100%}
 
 **Use Cases:** Linking to an overview or archive page.
 
@@ -21623,10 +20629,7 @@ CTA style (bold / italic).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-grid-all.png` \
-> **Purpose:** Grid on every breakpoint \
-> **Description:** A 4-column desktop grid and the same list in one column on mobile.
+![Grid on every breakpoint — A 4-column desktop grid and the same list in one column on mobile. (Sample content on the preview; file screenshots/list-grid-all.jpg)](screenshots/list-grid-all.jpg){width=100%}
 
 **Use Cases:** Overviews.
 
@@ -21650,10 +20653,7 @@ CTA style (bold / italic).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-all.png` \
-> **Purpose:** Horizontal scroll on every breakpoint \
-> **Description:** A rail with 4.2 cards on desktop, bleeding to the right edge, with buttons and indicator.
+![Horizontal scroll on every breakpoint — A rail with 4.2 cards on desktop, bleeding to the right edge, with buttons and indicator. (Sample content on the preview; file screenshots/list-scroll-all.jpg)](screenshots/list-scroll-all.jpg){width=100%}
 
 **Use Cases:** Related content, media coverage.
 
@@ -21678,10 +20678,7 @@ indicator; Scroll tab.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-desktop-only.png` \
-> **Purpose:** Desktop-only scroll \
-> **Description:** Desktop rail; tablet and mobile grids.
+![Desktop-only scroll — Desktop rail; tablet and mobile grids. (Sample content on the preview; file screenshots/list-scroll-desktop-only.jpg)](screenshots/list-scroll-desktop-only.jpg){width=100%}
 
 **Use Cases:** Long lists on desktop.
 
@@ -21705,10 +20702,7 @@ indicator; Scroll tab.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-tablet-only.png` \
-> **Purpose:** Tablet-only scroll \
-> **Description:** Desktop grid; tablet rail; mobile column.
+![Tablet-only scroll — Desktop grid; tablet rail; mobile column. (Sample content on the preview; file screenshots/list-scroll-tablet-only.jpg)](screenshots/list-scroll-tablet-only.jpg){width=82%}
 
 **Use Cases:** Many desktop columns.
 
@@ -21732,10 +20726,7 @@ indicator; Scroll tab.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-mobile-only.png` \
-> **Purpose:** Mobile-only scroll \
-> **Description:** Mobile: 1.2 cards with the indicator below.
+![Mobile-only scroll — Mobile: 1.2 cards with the indicator below. (Sample content on the preview; file screenshots/list-scroll-mobile-only.jpg)](screenshots/list-scroll-mobile-only.jpg){width=38%}
 
 **Use Cases:** Themes, statistics, insight grids on phones.
 
@@ -21760,10 +20751,7 @@ Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-desktop-tablet.png` \
-> **Purpose:** Desktop and tablet scroll \
-> **Description:** Rails at 1440 and 1024 px, a column at 402 px.
+![Desktop and tablet scroll — Rails at 1440 and 1024 px, a column at 402 px. (Sample content on the preview; file screenshots/list-scroll-desktop-tablet.jpg)](screenshots/list-scroll-desktop-tablet.jpg){width=82%}
 
 **Use Cases:** Content where swiping isn't wanted on phones.
 
@@ -21787,10 +20775,7 @@ Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-desktop-mobile.png` \
-> **Purpose:** Desktop and mobile scroll \
-> **Description:** Rails at 1440 and 402 px, a 2-column grid at 1024 px.
+![Desktop and mobile scroll — Rails at 1440 and 402 px, a 2-column grid at 1024 px. (Sample content on the preview; file screenshots/list-scroll-desktop-mobile.jpg)](screenshots/list-scroll-desktop-mobile.jpg){width=77%}
 
 **Use Cases:** Even card counts on tablets.
 
@@ -21814,10 +20799,7 @@ Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-tablet-mobile.png` \
-> **Purpose:** Tablet and mobile scroll \
-> **Description:** A 4-column grid at 1440 px; rails at 1024 and 402 px.
+![Tablet and mobile scroll — A 4-column grid at 1440 px; rails at 1024 and 402 px. (Sample content on the preview; file screenshots/list-scroll-tablet-mobile.jpg)](screenshots/list-scroll-tablet-mobile.jpg){width=38%}
 
 **Use Cases:** Four-item rows.
 
@@ -21841,10 +20823,7 @@ Grid.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-previous-next.png` \
-> **Purpose:** Previous and next buttons \
-> **Description:** Two chevron buttons below a rail, Previous disabled at the start.
+![Previous and next buttons — Two chevron buttons below a rail, Previous disabled at the start. (Sample content on the preview; file screenshots/list-previous-next.jpg)](screenshots/list-previous-next.jpg){width=100%}
 
 **Use Cases:** Desktop rails.
 
@@ -21871,10 +20850,7 @@ unless Loop.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-scroll-indicator.png` \
-> **Purpose:** Scroll indicator \
-> **Description:** A thin grey track with a darker thumb below a mobile rail.
+![Scroll indicator — A thin grey track with a darker thumb below a mobile rail. (Sample content on the preview; file screenshots/list-scroll-indicator.jpg)](screenshots/list-scroll-indicator.jpg){width=38%}
 
 **Use Cases:** Mobile rails.
 
@@ -21898,10 +20874,7 @@ unless Loop.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-fixed-card-width.png` \
-> **Purpose:** Fixed card width \
-> **Description:** A rail of 320 px cards.
+![Fixed card width — A rail of 320 px cards. (Sample content on the preview; file screenshots/list-fixed-card-width.jpg)](screenshots/list-fixed-card-width.jpg){width=100%}
 
 **Use Cases:** Uniform report or statistic rails.
 
@@ -21926,10 +20899,7 @@ bleed, as in Figma).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-edge-none.png` \
-> **Purpose:** Scroller inside the content width \
-> **Description:** The last visible card cut at the section padding instead of the screen edge.
+![Scroller inside the content width — The last visible card cut at the section padding instead of the screen edge. (Sample content on the preview; file screenshots/list-edge-none.jpg)](screenshots/list-edge-none.jpg){width=100%}
 
 **Use Cases:** Sections with backgrounds or boxed layouts.
 
@@ -21953,10 +20923,7 @@ bleed, as in Figma).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-snap-center.png` \
-> **Purpose:** Centre snap alignment \
-> **Description:** A mobile rail with the current card centred.
+![Centre snap alignment — A mobile rail with the current card centred. (Sample content on the preview; file screenshots/list-snap-center.jpg)](screenshots/list-snap-center.jpg){width=38%}
 
 **Use Cases:** Mobile rails with peeking neighbours.
 
@@ -21980,10 +20947,7 @@ bleed, as in Figma).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-step-viewport.png` \
-> **Purpose:** Viewport scroll step \
-> **Description:** After Next, the next set of cards fills the rail.
+![Viewport scroll step — After Next, the next set of cards fills the rail. (Sample content on the preview; file screenshots/list-step-viewport.jpg)](screenshots/list-step-viewport.jpg){width=100%}
 
 **Use Cases:** Long desktop rails.
 
@@ -22007,10 +20971,7 @@ bleed, as in Figma).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-loop.png` \
-> **Purpose:** Loop \
-> **Description:** Next at the last card returns to the first.
+![Loop — Next at the last card returns to the first. (Sample content on the preview; file screenshots/list-loop.jpg)](screenshots/list-loop.jpg){width=100%}
 
 **Use Cases:** Short rails.
 
@@ -22034,10 +20995,7 @@ bleed, as in Figma).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-initial-item.png` \
-> **Purpose:** Initial item \
-> **Description:** A rail opened at its third card.
+![Initial item — A rail opened at its third card. (Sample content on the preview; file screenshots/list-initial-item.jpg)](screenshots/list-initial-item.jpg){width=100%}
 
 **Use Cases:** Timelines, ordered rails.
 
@@ -22062,10 +21020,7 @@ limited list (after the feature card is taken out).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-equal-height.png` \
-> **Purpose:** Equal card height \
-> **Description:** Two grid rows of identical height.
+![Equal card height — Two grid rows of identical height. (Sample content on the preview; file screenshots/list-equal-height.jpg)](screenshots/list-equal-height.jpg){width=100%}
 
 **Use Cases:** Grids of panels.
 
@@ -22089,10 +21044,7 @@ limited list (after the feature card is taken out).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-no-stretch.png` \
-> **Purpose:** Cards not stretched \
-> **Description:** Image cards of different heights aligned to the top.
+![Cards not stretched — Image cards of different heights aligned to the top. (Sample content on the preview; file screenshots/list-no-stretch.jpg)](screenshots/list-no-stretch.jpg){width=100%}
 
 **Use Cases:** Varying description lengths.
 
@@ -22116,10 +21068,7 @@ limited list (after the feature card is taken out).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-unlinked.png` \
-> **Purpose:** Unlinked cards \
-> **Description:** Statistic cards without links or buttons.
+![Unlinked cards — Statistic cards without links or buttons. (Sample content on the preview; file screenshots/list-unlinked.jpg)](screenshots/list-unlinked.jpg){width=100%}
 
 **Use Cases:** Statistics from a Fixed list (items require a link).
 
@@ -22145,10 +21094,7 @@ list, Yes, No).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-new-tab.png` \
-> **Purpose:** New-tab links \
-> **Description:** A fixed list item linking to an external partner site opening in a new tab.
+![New-tab links — A fixed list item linking to an external partner site opening in a new tab. (Sample content on the preview; file screenshots/list-new-tab.jpg)](screenshots/list-new-tab.jpg){width=100%}
 
 **Use Cases:** External links in Fixed lists.
 
@@ -22176,10 +21122,7 @@ key-value settings).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-legacy.png` \
-> **Purpose:** Legacy list \
-> **Description:** An older List rendered as its title (large heading) and CTA only.
+![Legacy list — An older List rendered as its title (large heading) and CTA only. (Sample content on the preview; file screenshots/list-legacy.jpg)](screenshots/list-legacy.jpg){width=100%}
 
 **Use Cases:** Pages authored with the earlier List.
 
@@ -22206,10 +21149,7 @@ state).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-empty-state.png` \
-> **Purpose:** Empty state \
-> **Description:** In Universal Editor a Tagged pages List showing "The pages show on the published page (from the query index)."; on the page a grey box "There are no items to show."
+![Empty state — In Universal Editor a Tagged pages List showing "The pages show on the published page (from the query index)."; on the page a grey box "There are no items to show." (Sample content on the preview; file screenshots/list-empty-state.jpg)](screenshots/list-empty-state.jpg){width=100%}
 
 **Use Cases:** New sections, new tags, misconfigured lists.
 
@@ -22244,10 +21184,7 @@ choice (any source works with every presentation); a typical source is suggested
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-01-themes.png` \
-> **Purpose:** Figma variation 1 \
-> **Description:** A row of tall panels: a dark panel, a brand blue panel and an image-background panel, each with eyebrow, large title, description and Explore; on mobile a rail with the scroll indicator.
+![Figma variation 1 — A row of tall panels: a dark panel, a brand blue panel and an image-background panel, each with eyebrow, large title, description and Explore; on mobile a rail with the scroll indicator. (Sample content on the preview; file screenshots/list-figma-01-themes.jpg)](screenshots/list-figma-01-themes.jpg){width=100%}
 
 **Use Cases:** Home page themes; industry entry points.
 
@@ -22281,10 +21218,7 @@ items `theme-dark`, `theme-brand`, `theme-image`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-02-insight-opinion.png` \
-> **Purpose:** Figma variation 2 \
-> **Description:** A feature card with image, tags, reading time, title and author, followed by square-image cards and panels in a 4-column grid; a "View all" text link in the header.
+![Figma variation 2 — A feature card with image, tags, reading time, title and author, followed by square-image cards and panels in a 4-column grid; a "View all" text link in the header. (Sample content on the preview; file screenshots/list-figma-02-insight-opinion.jpg)](screenshots/list-figma-02-insight-opinion.jpg){width=100%}
 
 **Use Cases:** Insights hubs; thought-leadership sections.
 
@@ -22318,10 +21252,7 @@ sheet); the others follow Mixed rules.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-03-related.png` \
-> **Purpose:** Figma variation 3 \
-> **Description:** A horizontally scrolling rail of mixed cards bleeding to the right edge on every breakpoint.
+![Figma variation 3 — A horizontally scrolling rail of mixed cards bleeding to the right edge on every breakpoint. (Sample content on the preview; file screenshots/list-figma-03-related.jpg)](screenshots/list-figma-03-related.jpg){width=100%}
 
 **Use Cases:** Related insights on article and blog pages.
 
@@ -22354,10 +21285,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-04-intelligence-in-action.png` \
-> **Purpose:** Figma variation 4 \
-> **Description:** Three image cards with square images, titles and descriptions; on mobile a rail.
+![Figma variation 4 — Three image cards with square images, titles and descriptions; on mobile a rail. (Sample content on the preview; file screenshots/list-figma-04-intelligence-in-action.jpg)](screenshots/list-figma-04-intelligence-in-action.jpg){width=100%}
 
 **Use Cases:** Case studies, client stories.
 
@@ -22391,10 +21319,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-05-news.png` \
-> **Purpose:** Figma variation 5 \
-> **Description:** Rows with eyebrow and tag, large titles, descriptions and dates, separated by lines, with an arrow on the right; a primary "All news" button in the header.
+![Figma variation 5 — Rows with eyebrow and tag, large titles, descriptions and dates, separated by lines, with an arrow on the right; a primary "All news" button in the header. (Sample content on the preview; file screenshots/list-figma-05-news.jpg)](screenshots/list-figma-05-news.jpg){width=100%}
 
 **Use Cases:** Newsroom, press releases, announcements.
 
@@ -22425,10 +21350,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-06-at-a-glance.png` \
-> **Purpose:** Figma variation 6 \
-> **Description:** Four light grey statistic cards with large numbers, labels and descriptions; a rail on mobile.
+![Figma variation 6 — Four light grey statistic cards with large numbers, labels and descriptions; a rail on mobile. (Sample content on the preview; file screenshots/list-figma-06-at-a-glance.jpg)](screenshots/list-figma-06-at-a-glance.jpg){width=100%}
 
 **Use Cases:** About us, investor pages.
 
@@ -22459,10 +21381,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-07-statements.png` \
-> **Purpose:** Figma variation 7 \
-> **Description:** Three statistic cards with medium statement titles, labels, descriptions and a "Learn more" outlined button.
+![Figma variation 7 — Three statistic cards with medium statement titles, labels, descriptions and a "Learn more" outlined button. (Sample content on the preview; file screenshots/list-figma-07-statements.jpg)](screenshots/list-figma-07-statements.jpg){width=100%}
 
 **Use Cases:** Sustainability and purpose statements.
 
@@ -22493,10 +21412,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-08-media-coverage.png` \
-> **Purpose:** Figma variation 8 \
-> **Description:** A rail mixing image cards and navy report cards on every breakpoint.
+![Figma variation 8 — A rail mixing image cards and navy report cards on every breakpoint. (Sample content on the preview; file screenshots/list-figma-08-media-coverage.jpg)](screenshots/list-figma-08-media-coverage.jpg){width=100%}
 
 **Use Cases:** Newsroom media coverage.
 
@@ -22527,10 +21443,7 @@ automatically) — use a Search root that doesn't contain it, or accept it.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-09-investor-relations.png` \
-> **Purpose:** Figma variation 9 \
-> **Description:** A rail of navy report cards (quarterly results) and image cards.
+![Figma variation 9 — A rail of navy report cards (quarterly results) and image cards. (Sample content on the preview; file screenshots/list-figma-09-investor-relations.jpg)](screenshots/list-figma-09-investor-relations.jpg){width=100%}
 
 **Use Cases:** Investor relations hub.
 
@@ -22555,10 +21468,7 @@ pages of the investors section ordered by Last modified, Descending.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-10-banking-today.png` \
-> **Purpose:** Figma variation 10 \
-> **Description:** Brand blue statistic cards with white numbers; a rail on mobile.
+![Figma variation 10 — Brand blue statistic cards with white numbers; a rail on mobile. (Sample content on the preview; file screenshots/list-figma-10-banking-today.jpg)](screenshots/list-figma-10-banking-today.jpg){width=100%}
 
 **Use Cases:** Industry pages.
 
@@ -22589,10 +21499,7 @@ pages of the investors section ordered by Last modified, Descending.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-11-2-up.png` \
-> **Purpose:** Figma variation 11 \
-> **Description:** Two image cards with square images on desktop and tablet, one column on mobile.
+![Figma variation 11 — Two image cards with square images on desktop and tablet, one column on mobile. (Sample content on the preview; file screenshots/list-figma-11-2-up.jpg)](screenshots/list-figma-11-2-up.jpg){width=100%}
 
 **Use Cases:** Two featured pages.
 
@@ -22623,10 +21530,7 @@ pages of the investors section ordered by Last modified, Descending.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-12-statements.png` \
-> **Purpose:** Figma variation 12 \
-> **Description:** Three compact statistic statements with calls to action.
+![Figma variation 12 — Three compact statistic statements with calls to action. (Sample content on the preview; file screenshots/list-figma-12-statements.jpg)](screenshots/list-figma-12-statements.jpg){width=100%}
 
 **Use Cases:** Purpose and values sections.
 
@@ -22651,10 +21555,7 @@ Call to action label).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-13-4-up-colours.png` \
-> **Purpose:** Figma variation 13 \
-> **Description:** Four statistic cards: brand blue, grey gradient, mid grey and light blue.
+![Figma variation 13 — Four statistic cards: brand blue, grey gradient, mid grey and light blue. (Sample content on the preview; file screenshots/list-figma-13-4-up-colours.jpg)](screenshots/list-figma-13-4-up-colours.jpg){width=100%}
 
 **Use Cases:** Highlight figures on campaign pages.
 
@@ -22685,10 +21586,7 @@ Call to action label).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-figma-14-statistics.png` \
-> **Purpose:** Figma variation 14 \
-> **Description:** A row of statistic cards within the content width.
+![Figma variation 14 — A row of statistic cards within the content width. (Sample content on the preview; file screenshots/list-figma-14-statistics.jpg)](screenshots/list-figma-14-statistics.jpg){width=100%}
 
 **Use Cases:** Facts sections.
 
@@ -22714,10 +21612,7 @@ conditions). Child pages and Tagged pages are discovered from the published quer
 isn't available in the editor: in Universal Editor such lists show the hint "The pages show on
 the published page (from the query index)." — check them in preview on `aem.page`.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A page in Universal Editor with a Fixed list List selected: the header (title, description, CTA), three cards and the content tree on the left listing the List with its List Item children.
+![Universal Editor canvas — A page in Universal Editor with a Fixed list List selected: the header (title, description, CTA), three cards and the content tree on the left listing the List with its List Item children. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/list-authoring-view.jpg)](screenshots/list-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -22734,10 +21629,7 @@ the published page (from the query index)." — check them in preview on `aem.pa
 - K = Previous / next buttons and scroll indicator (Layout tab)
 - L = Content tree: List with its List Items (Fixed list and fallback items)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/list-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of a selected List with the tabs Content, Source, Cards, Layout, Scroll, Advanced and Additional; the Source tab open with List source = Tagged pages and the Search root, Use the current page when empty, Tags, Match, Include descendant pages and Maximum search depth fields, followed by Order by, Sort order and Maximum items.
+![Properties panel — The properties panel of a selected List with the tabs Content, Source, Cards, Layout, Scroll, Advanced and Additional; the Source tab open with List source = Tagged pages and the Search root, Use the current page when empty, Tags, Match, Include descendant pages and Maximum search depth fields, followed by Order by, Sort order and Maximum items. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/list-properties-panel.jpg)](screenshots/list-properties-panel.jpg){width=83%}
 
 **Block tabs (List)**
 
@@ -24096,24 +22988,15 @@ The pages listed can be of any Page Type and Content Type. The dialog offers the
 
 ### 6.17.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Filter List at 1440px wide with Title, Description, the Filters label, All and four tag pills, the round advanced filter button, the hero spotlight, a four-column masonry grid of Mixed cards (image cards, a report card and a dark card), a full-width featured spotlight and the Load more button.
+![Desktop rendering — A Filter List at 1440px wide with Title, Description, the Filters label, All and four tag pills, the round advanced filter button, the hero spotlight, a four-column masonry grid of Mixed cards (image cards, a report card and a dark card), a full-width featured spotlight and the Load more button. (Sample content on the preview; file screenshots/filter-list-desktop-view.jpg)](screenshots/filter-list-desktop-view.jpg){width=72%}
 
 **Desktop (1200px and wider).** The block is a vertical stack (gap 2.5rem, `--space-1000`): header, results, Load more. The title is a semibold display heading (`--display-font-size-1` from 900px) with a letter-spacing of -0.02 of its size; the description is limited to 50rem wide in the secondary text colour at `--body-font-size-l`. The toolbar shows the "Filters" label, the pills (outline pills with a full radius; the selected pill is filled with the neutral background and light text) and the advanced filter toggle on the same line. The advanced filter panel, when open, is a light grey box (`--color-bg-secondary`, radius l) with a header (title and Clear all) and one column per category (auto-fit, at least 12rem each). The grid has 4 columns for the Default, Compact and Mixed card styles and 3 columns for the Featured card style; the List layout always has one column. Column gap is 1.5rem and row gap 2.5rem. Hero and featured spotlights span the full width: the image covers the card behind a white gradient (from 80% white at the left to transparent at the right), the content has 3rem padding, the spotlight title is 3rem semibold (letter-spacing -0.06rem). The hero is at least 35rem high, a featured spotlight at least 30rem. Card images zoom to 104% on hover and the card title is underlined.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Filter List at 768px wide (two columns) and at 1024px wide (three columns), showing the pills on their own row below the Filters label and the filter button, the panel open with its categories side by side, and the hero spotlight.
+![Tablet rendering — The same Filter List at 768px wide (two columns) and at 1024px wide (three columns), showing the pills on their own row below the Filters label and the filter button, the panel open with its categories side by side, and the hero spotlight. (Sample content on the preview; file screenshots/filter-list-tablet-view.jpg)](screenshots/filter-list-tablet-view.jpg){width=27%}
 
 **Tablet (600px to 1199px).** From 600px the grid has 2 columns (all layouts except List). From 900px it has 3 columns (2 for the Featured card style), the title grows to `--display-font-size-1`, the pills sit on the same line as the label (they no longer take a full row) and the toggle follows them; the spotlight content padding grows to 3rem and the spotlight title to 3rem. Between 600px and 899px the pills take a full row below the label and the toggle, and the toggle is pushed to the right edge. The panel shows its categories side by side (auto-fit columns of at least 12rem). In the List layout each card with an image becomes a two-column row: the image in the first third (spanning the rows of the text) and the text in the remaining two thirds, with a divider below each card.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Filter List at 375px wide: title, description, the Filters label with the filter button at the right, the pills wrapping below, one column of cards, a featured spotlight with the image behind its text, and the Load more button centred.
+![Mobile rendering — The Filter List at 375px wide: title, description, the Filters label with the filter button at the right, the pills wrapping below, one column of cards, a featured spotlight with the image behind its text, and the Load more button centred. (Sample content on the preview; file screenshots/filter-list-mobile-view.jpg)](screenshots/filter-list-mobile-view.jpg){width=18%}
 
 **Mobile (below 600px).** One column of cards in every layout. The title uses `--display-font-size-2`. The Filters label and the toggle share the first line (the toggle at the right), the pills wrap on the next lines (gap 0.75rem). Spotlight content padding is 2rem by 1.5rem and the spotlight title uses `--display-font-size-3`. List layout cards are stacked (image above the text). The Load more button is centred below the results. Report and dark cards keep a minimum height of 22.5rem.
 
@@ -24129,10 +23012,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-layout-masonry.png` \
-> **Purpose:** Masonry layout \
-> **Description:** Four columns of cards of different heights packed below each other without row gaps, in reading order 1, 2, 3, 4 across the top, with a full-width featured spotlight starting below all columns.
+![Masonry layout — Four columns of cards of different heights packed below each other without row gaps, in reading order 1, 2, 3, 4 across the top, with a full-width featured spotlight starting below all columns. (Sample content on the preview; file screenshots/filter-list-layout-masonry.jpg)](screenshots/filter-list-layout-masonry.jpg){width=100%}
 
 **Use Cases:** Insights hubs, resource libraries with mixed card heights, Mixed card style pages.
 
@@ -24156,10 +23036,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-layout-grid.png` \
-> **Purpose:** Grid layout \
-> **Description:** Four aligned columns of Default style cards in rows with a 2.5rem row gap; shorter cards leave space below them.
+![Grid layout — Four aligned columns of Default style cards in rows with a 2.5rem row gap; shorter cards leave space below them. (Sample content on the preview; file screenshots/filter-list-layout-grid.jpg)](screenshots/filter-list-layout-grid.jpg){width=100%}
 
 **Use Cases:** Catalogues of similar content (all with images and descriptions), event lists, Compact style lists.
 
@@ -24183,10 +23060,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-layout-list.png` \
-> **Purpose:** List layout \
-> **Description:** One card per row at tablet and desktop width, the 4:3 image in the left third and the tags, title and date in the right two thirds, with a divider line below each card.
+![List layout — One card per row at tablet and desktop width, the 4:3 image in the left third and the tags, title and date in the right two thirds, with a divider line below each card. (Sample content on the preview; file screenshots/filter-list-layout-list.jpg)](screenshots/filter-list-layout-list.jpg){width=100%}
 
 **Use Cases:** News, press releases, events, long text-led lists.
 
@@ -24210,10 +23084,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-default.png` \
-> **Purpose:** Default card style \
-> **Description:** A card with a 4:3 rounded image, an uppercase grey tag line (two tags and 5m separated by bars), a regular-weight title, a three-line description and a meta line "Article | 04 Sep 26".
+![Default card style — A card with a 4:3 rounded image, an uppercase grey tag line (two tags and 5m separated by bars), a regular-weight title, a three-line description and a meta line "Article | 04 Sep 26". (Sample content on the preview; file screenshots/filter-list-card-default.jpg)](screenshots/filter-list-card-default.jpg){width=38%}
 
 **Use Cases:** Insights and article listings where descriptions are well written.
 
@@ -24237,10 +23108,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-compact.png` \
-> **Purpose:** Compact card style \
-> **Description:** Outlined text cards with a tag line, a medium-size title and the meta line, no image and no description.
+![Compact card style — Outlined text cards with a tag line, a medium-size title and the meta line, no image and no description. (Sample content on the preview; file screenshots/filter-list-card-compact.jpg)](screenshots/filter-list-card-compact.jpg){width=100%}
 
 **Use Cases:** News, events, press, document libraries.
 
@@ -24264,10 +23132,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-featured.png` \
-> **Purpose:** Featured card style \
-> **Description:** Three-column large cards with an image, tags, a semibold title, a description, the meta line and a "Read more" text button at the bottom.
+![Featured card style — Three-column large cards with an image, tags, a semibold title, a description, the meta line and a "Read more" text button at the bottom. (Sample content on the preview; file screenshots/filter-list-card-featured.jpg)](screenshots/filter-list-card-featured.jpg){width=100%}
 
 **Use Cases:** Flagship reports, campaign pages, small curated collections.
 
@@ -24291,10 +23156,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-mixed.png` \
-> **Purpose:** Mixed card style \
-> **Description:** A masonry wall where most cards are image cards without a description, one card is a light gradient report panel with a Download button and one is a dark blue panel with an Explore link.
+![Mixed card style — A masonry wall where most cards are image cards without a description, one card is a light gradient report panel with a Download button and one is a dark blue panel with an Explore link. (Sample content on the preview; file screenshots/filter-list-card-mixed.jpg)](screenshots/filter-list-card-mixed.jpg){width=100%}
 
 **Use Cases:** Insights hubs with a mix of articles, reports and image-less pages.
 
@@ -24318,10 +23180,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-report.png` \
-> **Purpose:** Report card in the Mixed style \
-> **Description:** A card with a light brand-to-white diagonal gradient, the line "REPORT | 12 Aug 26", a semibold title, a three-line description and a secondary "Download" button at the bottom.
+![Report card in the Mixed style — A card with a light brand-to-white diagonal gradient, the line "REPORT | 12 Aug 26", a semibold title, a three-line description and a secondary "Download" button at the bottom. (Sample content on the preview; file screenshots/filter-list-card-report.jpg)](screenshots/filter-list-card-report.jpg){width=38%}
 
 **Use Cases:** Reports, whitepapers and other downloadable content in an insights hub.
 
@@ -24345,10 +23204,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-card-dark.png` \
-> **Purpose:** Dark card in the Mixed style \
-> **Description:** A dark brand-blue panel with one uppercase tag, a white semibold title, a light description and a white "Explore" text button at the bottom.
+![Dark card in the Mixed style — A dark brand-blue panel with one uppercase tag, a white semibold title, a light description and a white "Explore" text button at the bottom. (Sample content on the preview; file screenshots/filter-list-card-dark.jpg)](screenshots/filter-list-card-dark.jpg){width=38%}
 
 **Use Cases:** Opinion pieces, podcasts or pages that have no featured or thumbnail image.
 
@@ -24372,10 +23228,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-hero-featured.png` \
-> **Purpose:** Hero spotlight (Featured rule) \
-> **Description:** A full-width card at least 35rem high above the grid: the page's image covers the card behind a white gradient; at the left the tags, a 3rem semibold title, the description and the author lockup with a round photo, name and designation.
+![Hero spotlight (Featured rule) — A full-width card at least 35rem high above the grid: the page's image covers the card behind a white gradient; at the left the tags, a 3rem semibold title, the description and the author lockup with a round photo, name and designation. (Sample content on the preview; file screenshots/filter-list-hero-featured.jpg)](screenshots/filter-list-hero-featured.jpg){width=100%}
 
 **Use Cases:** Insights hub with a lead story.
 
@@ -24399,10 +23252,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-hero-latest.png` \
-> **Purpose:** Hero spotlight (Latest rule) \
-> **Description:** The hero spotlight showing the page with the most recent publish date of the list.
+![Hero spotlight (Latest rule) — The hero spotlight showing the page with the most recent publish date of the list. (Sample content on the preview; file screenshots/filter-list-hero-latest.jpg)](screenshots/filter-list-hero-latest.jpg){width=100%}
 
 **Use Cases:** News or blog hubs.
 
@@ -24426,10 +23276,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-hero-manual.png` \
-> **Purpose:** Hero spotlight (Manual rule) \
-> **Description:** The dialog's Cards tab with Hero rule = Manual and the Hero page picker filled, next to the resulting hero card.
+![Hero spotlight (Manual rule) — The dialog's Cards tab with Hero rule = Manual and the Hero page picker filled, next to the resulting hero card. (Sample content on the preview; file screenshots/filter-list-hero-manual.jpg)](screenshots/filter-list-hero-manual.jpg){width=100%}
 
 **Use Cases:** Campaign launches; a specific flagship report.
 
@@ -24453,10 +23300,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-featured-flag.png` \
-> **Purpose:** Featured spotlight (featured=true) \
-> **Description:** A full-width spotlight card at least 30rem high inserted after the first page of nine cards, with tags, title and author lockup over the image; a second one after the next Load more.
+![Featured spotlight (featured=true) — A full-width spotlight card at least 30rem high inserted after the first page of nine cards, with tags, title and author lockup over the image; a second one after the next Load more. (Sample content on the preview; file screenshots/filter-list-featured-flag.jpg)](screenshots/filter-list-featured-flag.jpg){width=66%}
 
 **Use Cases:** Editorially promoted pages inside a hub.
 
@@ -24480,10 +23324,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-featured-priority.png` \
-> **Purpose:** Featured spotlight (priority<=3) \
-> **Description:** A spotlight card for the page with priority 1 after the first page of cards.
+![Featured spotlight (priority<=3) — A spotlight card for the page with priority 1 after the first page of cards. (Sample content on the preview; file screenshots/filter-list-featured-priority.jpg)](screenshots/filter-list-featured-priority.jpg){width=100%}
 
 **Use Cases:** Ranked content programmes.
 
@@ -24507,10 +23348,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-featured-manual.png` \
-> **Purpose:** Featured spotlight (Manual) \
-> **Description:** The Cards tab with Featured rule = Manual and three Featured pages picked, and the resulting spotlights in the authored order.
+![Featured spotlight (Manual) — The Cards tab with Featured rule = Manual and three Featured pages picked, and the resulting spotlights in the authored order. (Sample content on the preview; file screenshots/filter-list-featured-manual.jpg)](screenshots/filter-list-featured-manual.jpg){width=83%}
 
 **Use Cases:** Campaign-driven promotion.
 
@@ -24534,10 +23372,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-source-query-index.png` \
-> **Purpose:** Query Index source settings \
-> **Description:** The Source tab with Datasource = Query Index, Root path /en/insights, Page types Article and Report selected and Sort by Latest First.
+![Query Index source settings — The Source tab with Datasource = Query Index, Root path /en/insights, Page types Article and Report selected and Sort by Latest First. (Sample content on the preview; file screenshots/filter-list-source-query-index.jpg)](screenshots/filter-list-source-query-index.jpg){width=100%}
 
 **Use Cases:** Hubs, listing pages, topic pages.
 
@@ -24561,10 +23396,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-source-manual.png` \
-> **Purpose:** Manual List source settings \
-> **Description:** The Source tab with Datasource = Manual List and five pages added in the Pages multifield.
+![Manual List source settings — The Source tab with Datasource = Manual List and five pages added in the Pages multifield. (Sample content on the preview; file screenshots/filter-list-source-manual.jpg)](screenshots/filter-list-source-manual.jpg){width=100%}
 
 **Use Cases:** Campaign pages, "recommended reading" sets.
 
@@ -24588,10 +23420,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-pills-single.png` \
-> **Purpose:** Single select pills \
-> **Description:** The pill row with "All" outlined and "Banking" filled dark (pressed), and the grid showing only banking pages.
+![Single select pills — The pill row with "All" outlined and "Banking" filled dark (pressed), and the grid showing only banking pages. (Sample content on the preview; file screenshots/filter-list-pills-single.jpg)](screenshots/filter-list-pills-single.jpg){width=100%}
 
 **Use Cases:** Topic hubs with a handful of topics.
 
@@ -24615,10 +23444,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-pills-multi.png` \
-> **Purpose:** Multi select pills \
-> **Description:** Two pills pressed ("Banking" and "AI") and the grid showing only pages tagged with both.
+![Multi select pills — Two pills pressed ("Banking" and "AI") and the grid showing only pages tagged with both. (Sample content on the preview; file screenshots/filter-list-pills-multi.jpg)](screenshots/filter-list-pills-multi.jpg){width=100%}
 
 **Use Cases:** Large libraries where visitors combine dimensions.
 
@@ -24642,10 +23468,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-advanced-and.png` \
-> **Purpose:** Advanced filter panel (AND) \
-> **Description:** The round filter button with a "2" badge and the open panel titled "Advanced filters" with Clear all, two category columns ("INDUSTRY", "SERVICE") of checkboxes, two of them checked.
+![Advanced filter panel (AND) — The round filter button with a "2" badge and the open panel titled "Advanced filters" with Clear all, two category columns ("INDUSTRY", "SERVICE") of checkboxes, two of them checked. (Sample content on the preview; file screenshots/filter-list-advanced-and.jpg)](screenshots/filter-list-advanced-and.jpg){width=100%}
 
 **Use Cases:** Resource libraries with several taxonomies.
 
@@ -24669,10 +23492,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-advanced-or.png` \
-> **Purpose:** Advanced filter panel (OR) \
-> **Description:** The open panel with three options checked across two categories and the grid showing pages that have any of them.
+![Advanced filter panel (OR) — The open panel with three options checked across two categories and the grid showing pages that have any of them. (Sample content on the preview; file screenshots/filter-list-advanced-or.jpg)](screenshots/filter-list-advanced-or.jpg){width=100%}
 
 **Use Cases:** Exploratory browsing.
 
@@ -24696,10 +23516,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-sort-latest.png` \
-> **Purpose:** Latest First order \
-> **Description:** Cards whose meta lines show dates descending from left to right, top to bottom.
+![Latest First order — Cards whose meta lines show dates descending from left to right, top to bottom. (Sample content on the preview; file screenshots/filter-list-sort-latest.jpg)](screenshots/filter-list-sort-latest.jpg){width=100%}
 
 **Use Cases:** News, blogs, insights.
 
@@ -24723,10 +23540,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-sort-featured.png` \
-> **Purpose:** Featured First order \
-> **Description:** The first standard cards are the featured pages (when the spotlights do not already take them), then the others by priority and date.
+![Featured First order — The first standard cards are the featured pages (when the spotlights do not already take them), then the others by priority and date. (Sample content on the preview; file screenshots/filter-list-sort-featured.jpg)](screenshots/filter-list-sort-featured.jpg){width=100%}
 
 **Use Cases:** Hubs where featured pages should come first even when spotlights are off.
 
@@ -24750,10 +23564,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-sort-priority.png` \
-> **Purpose:** Priority order \
-> **Description:** Cards ordered by their priority metadata 1, 2, 3, then pages without priority by date.
+![Priority order — Cards ordered by their priority metadata 1, 2, 3, then pages without priority by date. (Sample content on the preview; file screenshots/filter-list-sort-priority.jpg)](screenshots/filter-list-sort-priority.jpg){width=100%}
 
 **Use Cases:** Ranked programmes, "top 10" collections.
 
@@ -24777,10 +23588,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-sort-alphabetical.png` \
-> **Purpose:** Alphabetical order \
-> **Description:** Compact cards sorted A to Z by title.
+![Alphabetical order — Compact cards sorted A to Z by title. (Sample content on the preview; file screenshots/filter-list-sort-alphabetical.jpg)](screenshots/filter-list-sort-alphabetical.jpg){width=100%}
 
 **Use Cases:** Glossaries, case study directories, offices.
 
@@ -24798,10 +23606,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 ### 6.17.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A page open in Universal Editor with the Filter List selected (blue outline): the title, the description, the Filters label with the All pill and three Primary filter tag pills, the result count and the grey editor hint box "The results show on the published page, from the pages' metadata."
+![Universal Editor canvas — A page open in Universal Editor with the Filter List selected (blue outline): the title, the description, the Filters label with the All pill and three Primary filter tag pills, the result count and the grey editor hint box "The results show on the published page, from the pages' metadata." (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/filter-list-authoring-view.jpg)](screenshots/filter-list-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -24814,10 +23619,7 @@ The Filter List has no "variant" class field; its presentation and behaviour com
 
 > **Note:** The advanced filter button, cards, spotlights and Load more cannot be reviewed on the editor canvas. Review them on the preview URL (`https://main--tcs-corp--sradha-tcs.aem.page/...`) after previewing the page and the listed pages.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open.
+![Properties panel — The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/filter-list-properties-panel.jpg)](screenshots/filter-list-properties-panel.jpg){width=100%}
 
 The properties panel has seven tabs:
 
@@ -25694,24 +24496,15 @@ Authored text only: titles, rich-text descriptions, links to site pages, anchors
 
 ### 6.18.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Table List (Variation 1) at 1440px: the 3rem heading at the left and a filled "View all" button at the right, then four rows, each with a semibold title, a description in the middle column and a grey arrow at the right, separated by thin dividers; the block inset 5rem from the section edges.
+![Desktop rendering — A Table List (Variation 1) at 1440px: the 3rem heading at the left and a filled "View all" button at the right, then four rows, each with a semibold title, a description in the middle column and a grey arrow at the right, separated by thin dividers; the block inset 5rem from the section edges. (Sample content on the preview; file screenshots/table-list-desktop-view.jpg)](screenshots/table-list-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** The header is a flex row: the heading (3rem, semibold, letter-spacing -0.09rem, line-height 1.2) and the call to action (button font at `--button-font-size`) at the right; it wraps under the heading when there is not enough space. Header margin below: 5rem (`--space-2000`). Items are grid rows `main | description | action` with a column gap of 1.5rem and an item gap of 1.5rem (2.5rem for Variation 3), each with 2.5rem bottom padding and a divider (1px `--slate-400`; 2px `--grey-200` for Variation 3). Variation-specific sizes are listed per variation in 6.18.3.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Table List at 768px: the heading at 2.5rem with the button beside it, items in three columns (title, description, arrow), no numbers in Variation 1.
+![Tablet rendering — The same Table List at 768px: the heading at 2.5rem with the button beside it, items in three columns (title, description, arrow), no numbers in Variation 1. (Sample content on the preview; file screenshots/table-list-tablet-view.jpg)](screenshots/table-list-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 1199px).** The heading is 2.5rem (letter-spacing -0.075rem); header margin 5rem. Items switch to three columns: two equal text columns and the action (`minmax(0, 1fr) minmax(0, 1fr) auto`, column gap 1rem); Variation 2 and 3 put the description first and the title second, vertically centred, with the title right-aligned. The action has a start margin of 1.5rem. "Show on mobile only" numbers are hidden from 600px. The call-to-action button text uses `--body-font-size-xs`.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Table List at 375px: a 2rem heading with the button wrapping below it, then items with the number and title on the first line, the description below and the arrow at the top right.
+![Mobile rendering — The Table List at 375px: a 2rem heading with the button wrapping below it, then items with the number and title on the first line, the description below and the arrow at the top right. (Sample content on the preview; file screenshots/table-list-mobile-view.jpg)](screenshots/table-list-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** Heading 2rem (letter-spacing -0.06rem, line-height 1.19), header margin 2.5rem, call to action below the heading when it does not fit. Items are stacked grids: Variation 1 `main` over `description` with the arrow at the right; Variation 2 description, title and button stacked; Variation 3 description over the number and title with the arrow at the right. Item gap 1rem (2.5rem in Variation 3).
 
@@ -25727,10 +24520,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-industries.png` \
-> **Purpose:** Variation 1 (industries) \
-> **Description:** Rows with a semibold title ("Banking"), a description in the middle column and a grey right arrow; the last row has no divider; numbers visible only on mobile.
+![Variation 1 (industries) — Rows with a semibold title ("Banking"), a description in the middle column and a grey right arrow; the last row has no divider; numbers visible only on mobile. (Sample content on the preview; file screenshots/table-list-industries.jpg)](screenshots/table-list-industries.jpg){width=91%}
 
 **Use Cases:** Industries, capabilities, service lines.
 
@@ -25754,10 +24544,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-solutions.png` \
-> **Purpose:** Variation 2 (solutions) \
-> **Description:** Rows with a short description at the left, a 4rem semibold solution name right-aligned in the middle and an outline "Explore" button at the right.
+![Variation 2 (solutions) — Rows with a short description at the left, a 4rem semibold solution name right-aligned in the middle and an outline "Explore" button at the right. (Sample content on the preview; file screenshots/table-list-solutions.jpg)](screenshots/table-list-solutions.jpg){width=100%}
 
 **Use Cases:** Transformation solutions, offerings, programmes.
 
@@ -25781,10 +24568,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-products.png` \
-> **Purpose:** Variation 3 (products) \
-> **Description:** Rows with a description at the left, then a light grey number "01" and a 5.625rem product name "TwinX™" spread across the right column, and a diagonal arrow; 2px light grey dividers; a "All Products & Platforms" text link next to the regular-weight heading.
+![Variation 3 (products) — Rows with a description at the left, then a light grey number "01" and a 5.625rem product name "TwinX™" spread across the right column, and a diagonal arrow; 2px light grey dividers; a "All Products & Platforms" text link next to the regular-weight heading. (Sample content on the preview; file screenshots/table-list-products.jpg)](screenshots/table-list-products.jpg){width=100%}
 
 **Use Cases:** Products and platforms, numbered programmes.
 
@@ -25808,10 +24592,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-cta-filled.png` \
-> **Purpose:** Filled button call to action \
-> **Description:** The heading with a filled brand button "View all industries" at the right.
+![Filled button call to action — The heading with a filled brand button "View all industries" at the right. (Sample content on the preview; file screenshots/table-list-cta-filled.jpg)](screenshots/table-list-cta-filled.jpg){width=91%}
 
 **Use Cases:** Home page sections leading to a hub.
 
@@ -25835,10 +24616,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-cta-outline.png` \
-> **Purpose:** Outline button call to action \
-> **Description:** The heading with an outline button "All solutions".
+![Outline button call to action — The heading with an outline button "All solutions". (Sample content on the preview; file screenshots/table-list-cta-outline.jpg)](screenshots/table-list-cta-outline.jpg){width=100%}
 
 **Use Cases:** Solutions lists.
 
@@ -25862,10 +24640,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-cta-text-link.png` \
-> **Purpose:** Text link call to action \
-> **Description:** The heading with a text link "All Products & Platforms".
+![Text link call to action — The heading with a text link "All Products & Platforms". (Sample content on the preview; file screenshots/table-list-cta-text-link.jpg)](screenshots/table-list-cta-text-link.jpg){width=100%}
 
 **Use Cases:** Product lists.
 
@@ -25889,10 +24664,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-numbers-show.png` \
-> **Purpose:** Numbers shown \
-> **Description:** Items with "01", "02", "03" before the titles at desktop width.
+![Numbers shown — Items with "01", "02", "03" before the titles at desktop width. (Sample content on the preview; file screenshots/table-list-numbers-show.jpg)](screenshots/table-list-numbers-show.jpg){width=100%}
 
 **Use Cases:** Ordered steps, ranked products.
 
@@ -25916,10 +24688,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-numbers-mobile.png` \
-> **Purpose:** Numbers on mobile only \
-> **Description:** Side-by-side views: at 375px the items show "01 Banking"; at 1024px only "Banking".
+![Numbers on mobile only — Side-by-side views: at 375px the items show "01 Banking"; at 1024px only "Banking". (Sample content on the preview; file screenshots/table-list-numbers-mobile.jpg)](screenshots/table-list-numbers-mobile.jpg){width=100%}
 
 **Use Cases:** Industries lists.
 
@@ -25943,10 +24712,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-numbers-hide.png` \
-> **Purpose:** Numbers hidden \
-> **Description:** Items without numbers at any width.
+![Numbers hidden — Items without numbers at any width. (Sample content on the preview; file screenshots/table-list-numbers-hide.jpg)](screenshots/table-list-numbers-hide.jpg){width=38%}
 
 **Use Cases:** Solutions, unordered offerings.
 
@@ -25970,10 +24736,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-item-arrow.png` \
-> **Purpose:** Arrow item link \
-> **Description:** A row hovered: the arrow turns brand blue and moves slightly right.
+![Arrow item link — A row hovered: the arrow turns brand blue and moves slightly right. (Sample content on the preview; file screenshots/table-list-item-arrow.jpg)](screenshots/table-list-item-arrow.jpg){width=100%}
 
 **Use Cases:** Navigation lists.
 
@@ -25997,10 +24760,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-item-diagonal-arrow.png` \
-> **Purpose:** Diagonal arrow item link \
-> **Description:** A product row with an up-right arrow at the right.
+![Diagonal arrow item link — A product row with an up-right arrow at the right. (Sample content on the preview; file screenshots/table-list-item-diagonal-arrow.jpg)](screenshots/table-list-item-diagonal-arrow.jpg){width=100%}
 
 **Use Cases:** Products and platforms.
 
@@ -26024,10 +24784,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-item-button.png` \
-> **Purpose:** Button item link \
-> **Description:** A row with an outline "Explore" button at the right.
+![Button item link — A row with an outline "Explore" button at the right. (Sample content on the preview; file screenshots/table-list-item-button.jpg)](screenshots/table-list-item-button.jpg){width=100%}
 
 **Use Cases:** Solutions, offerings needing a verb.
 
@@ -26051,10 +24808,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-motion-none.png` \
-> **Purpose:** No motion \
-> **Description:** All items visible immediately.
+![No motion — All items visible immediately. (Sample content on the preview; file screenshots/table-list-motion-none.jpg)](screenshots/table-list-motion-none.jpg){width=100%}
 
 **Use Cases:** Most pages.
 
@@ -26078,10 +24832,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-motion-fade.png` \
-> **Purpose:** Fade motion \
-> **Description:** A sequence: items below the fold invisible, then fading in as they enter the viewport.
+![Fade motion — A sequence: items below the fold invisible, then fading in as they enter the viewport. (Sample content on the preview; file screenshots/table-list-motion-fade.jpg)](screenshots/table-list-motion-fade.jpg){width=100%}
 
 **Use Cases:** Storytelling sections.
 
@@ -26105,10 +24856,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-motion-slide.png` \
-> **Purpose:** Slide motion \
-> **Description:** Items moving up 1.25rem while fading in.
+![Slide motion — Items moving up 1.25rem while fading in. (Sample content on the preview; file screenshots/table-list-motion-slide.jpg)](screenshots/table-list-motion-slide.jpg){width=100%}
 
 **Use Cases:** Landing pages.
 
@@ -26132,10 +24880,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-motion-reveal.png` \
-> **Purpose:** Reveal motion \
-> **Description:** An item partially revealed by a clip from top to bottom.
+![Reveal motion — An item partially revealed by a clip from top to bottom. (Sample content on the preview; file screenshots/table-list-motion-reveal.jpg)](screenshots/table-list-motion-reveal.jpg){width=100%}
 
 **Use Cases:** Product showcases.
 
@@ -26159,10 +24904,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-trademark.png` \
-> **Purpose:** Trademark sign \
-> **Description:** "TwinX™" and "ignio®" product titles with the raised signs at title size.
+![Trademark sign — "TwinX™" and "ignio®" product titles with the raised signs at title size. (Sample content on the preview; file screenshots/table-list-trademark.jpg)](screenshots/table-list-trademark.jpg){width=100%}
 
 **Use Cases:** Product and platform names.
 
@@ -26180,10 +24922,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 
 ### 6.18.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Table List selected in Universal Editor (Variation 3) with the heading, the call to action, three items (number, title with trademark, description, arrow) and the content tree showing the Table List with three Table List Item children.
+![Universal Editor canvas — A Table List selected in Universal Editor (Variation 3) with the heading, the call to action, three items (number, title with trademark, description, arrow) and the content tree showing the Table List with three Table List Item children. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/table-list-authoring-view.jpg)](screenshots/table-list-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -26195,10 +24934,7 @@ The Variation select sets the layout and the defaults of the call-to-action styl
 - F = Item link (Table List Item › Link and Button text; arrow, diagonal arrow or button per Item link).
 - G = Items in the content tree (add, reorder and delete Table List Items; at most Maximum items are shown).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-list-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text.
+![Properties panel — The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/table-list-properties-panel.jpg)](screenshots/table-list-properties-panel.jpg){width=100%}
 
 Block tabs:
 
@@ -26881,24 +25617,15 @@ Links to sections, blocks or headings on the same page. Links to other pages are
 
 ### 6.19.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A centred row of four chapter links at 1440px below the page header: grey regular text, the current chapter "CH 2: Findings" dark, semibold, with a 3px brand-blue underline.
+![Desktop rendering — A centred row of four chapter links at 1440px below the page header: grey regular text, the current chapter "CH 2: Findings" dark, semibold, with a 3px brand-blue underline. (Sample content on the preview; file screenshots/anchor-list-desktop-view.jpg)](screenshots/anchor-list-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** A centred row of links (the list is as wide as its links, at most the full width). Each link has 0.75rem vertical and 2.5rem horizontal padding (from 900px), `--body-font-size-m` text, line-height 1.61, in `--color-text-secondary`, with a transparent 3px (0.1875rem) bottom border. The current link (`aria-current="location"`) is `--color-text-default`, semibold, with a `--color-border-brand` underline. Hover and keyboard focus turn the text dark; focus also shows a 2px brand outline inset by 3px. Colour and border changes transition over 0.2s (none with reduced motion). With Sticky the row has the default background colour and, once scrolled to, is fixed at the top of the screen (the site header is not fixed from 900px, so the row pins at the very top).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The Anchor List at 768px pinned directly below the fixed site header, the current link underlined, the row scrolled sideways to keep the current link centred.
+![Tablet rendering — The Anchor List at 768px pinned directly below the fixed site header, the current link underlined, the row scrolled sideways to keep the current link centred. (Sample content on the preview; file screenshots/anchor-list-tablet-view.jpg)](screenshots/anchor-list-tablet-view.jpg){width=61%}
 
 **Tablet (600px to 1199px).** Same design. From 900px the horizontal link padding is 2.5rem; below 900px it is 1.5rem. Below 900px the site header is fixed, so a sticky Anchor List pins directly below the header and clicked chapters scroll to just below both.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Anchor List at 375px: the links in one line overflowing to the right, scrollable sideways without a visible scrollbar, the current link brought into view.
+![Mobile rendering — The Anchor List at 375px: the links in one line overflowing to the right, scrollable sideways without a visible scrollbar, the current link brought into view. (Sample content on the preview; file screenshots/anchor-list-mobile-view.jpg)](screenshots/anchor-list-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** Links never wrap (`white-space: nowrap`); when they do not fit, the row scrolls horizontally (scrollbar hidden) and the current link is scrolled to the centre of the row automatically (smoothly, or instantly with reduced motion).
 
@@ -26912,10 +25639,7 @@ Links to sections, blocks or headings on the same page. Links to other pages are
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-default.png` \
-> **Purpose:** Default Anchor List \
-> **Description:** The row of chapter links in the page flow below the page header; after scrolling down it is no longer visible.
+![Default Anchor List — The row of chapter links in the page flow below the page header; after scrolling down it is no longer visible. (Sample content on the preview; file screenshots/anchor-list-default.jpg)](screenshots/anchor-list-default.jpg){width=100%}
 
 **Use Cases:** Medium-length pages, a table of contents at the top of an article.
 
@@ -26939,10 +25663,7 @@ Links to sections, blocks or headings on the same page. Links to other pages are
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-sticky.png` \
-> **Purpose:** Sticky Anchor List \
-> **Description:** The page scrolled into chapter 3: the Anchor List fixed at the top of the screen across the full width with a white background, "CH 3: Outlook" underlined.
+![Sticky Anchor List — The page scrolled into chapter 3: the Anchor List fixed at the top of the screen across the full width with a white background, "CH 3: Outlook" underlined. (Sample content on the preview; file screenshots/anchor-list-sticky.jpg)](screenshots/anchor-list-sticky.jpg){width=100%}
 
 **Use Cases:** Reports, long solution pages, case studies.
 
@@ -26960,10 +25681,7 @@ Links to sections, blocks or headings on the same page. Links to other pages are
 
 ### 6.19.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A page in Universal Editor with the Anchor List selected below the page header showing four links, and a section selected further down with its Anchor name visible in the section properties.
+![Universal Editor canvas — A page in Universal Editor with the Anchor List selected below the page header showing four links, and a section selected further down with its Anchor name visible in the section properties. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/anchor-list-authoring-view.jpg)](screenshots/anchor-list-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -26973,10 +25691,7 @@ Links to sections, blocks or headings on the same page. Links to other pages are
 - D = Sticky (Content tab), visible only on preview and live pages (not pinned in edit mode).
 - E = The target section's Anchor name (Section properties), which must match C.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/anchor-list-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Anchor List properties panel: the Content tab with the Links multifield (two items with Link Title and Anchor Name) and the Sticky toggle, and the Additional tab.
+![Properties panel — The Anchor List properties panel: the Content tab with the Links multifield (two items with Link Title and Anchor Name) and the Sticky toggle, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/anchor-list-properties-panel.jpg)](screenshots/anchor-list-properties-panel.jpg){width=100%}
 
 Tabs:
 
@@ -27528,10 +26243,7 @@ formatting offered by the rich text editor).
 
 ### 6.20.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** An Accordion with four items at a desktop width (1200px or wider), the second item open, showing the top divider, the dividers between items, the chevron on the right of each summary and the open item's chevron rotated upwards.
+![Desktop rendering — An Accordion with four items at a desktop width (1200px or wider), the second item open, showing the top divider, the dividers between items, the chevron on the right of each summary and the open item's chevron rotated upwards. (Sample content on the preview; file screenshots/accordion-desktop-view.jpg)](screenshots/accordion-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** The block spans the width of its section content area. A
 1px (0.0625rem) divider in the default border colour runs above the first item and below every
@@ -27543,20 +26255,14 @@ secondary neutral text colour, body size (1.125rem from 900px), line height 1.6,
 padding below. Hovering or keyboard-focusing a summary changes its text (and chevron) to the
 brand colour; keyboard focus also shows a 2px brand outline.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Accordion at a tablet width (600px to 1199px), showing that the layout is identical to desktop and that summaries wrap onto two lines when long.
+![Tablet rendering — The same Accordion at a tablet width (600px to 1199px), showing that the layout is identical to desktop and that summaries wrap onto two lines when long. (Sample content on the preview; file screenshots/accordion-tablet-view.jpg)](screenshots/accordion-tablet-view.jpg){width=77%}
 
 **Tablet (600px to 1199px).** The block has no breakpoints of its own; the layout is the same
 as on desktop. The type tokens step at 900px: below 900px summaries use 1.125rem and bodies
 1rem; from 900px they use 1.5rem and 1.125rem. Long summaries wrap; the chevron stays on the
 right, vertically centred.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Accordion at a mobile width (below 600px), first item open, showing the summary text at 1.125rem, the body text at 1rem and the chevron aligned to the right of wrapped summaries.
+![Mobile rendering — The Accordion at a mobile width (below 600px), first item open, showing the summary text at 1.125rem, the body text at 1rem and the chevron aligned to the right of wrapped summaries. (Sample content on the preview; file screenshots/accordion-mobile-view.jpg)](screenshots/accordion-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** Same single-column structure at the smaller type sizes (summary
 1.125rem, body 1rem). The section's own horizontal padding (1.5rem on mobile, 2.5rem from 600px)
@@ -27581,10 +26287,7 @@ the page loads.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-default.png` \
-> **Purpose:** Default Accordion variation \
-> **Description:** An Accordion with five FAQ items, all closed, with dividers between the items and a downward chevron on each summary; one summary in the hover state (brand colour).
+![Default Accordion variation — An Accordion with five FAQ items, all closed, with dividers between the items and a downward chevron on each summary; one summary in the hover state (brand colour). (Sample content on the preview; file screenshots/accordion-default.jpg)](screenshots/accordion-default.jpg){width=100%}
 
 **Use Cases**
 
@@ -27634,10 +26337,7 @@ FAQPage JSON-LD) is generated: Not implemented (as of this handover).
 
 ### 6.20.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** The Universal Editor canvas with an Accordion selected in a section, showing the block outline, two Accordion Items (one selected), the item Summary and the open item Text, with letters A to D placed on the elements.
+![Universal Editor canvas — The Universal Editor canvas with an Accordion selected in a section, showing the block outline, two Accordion Items (one selected), the item Summary and the open item Text, with letters A to D placed on the elements. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/accordion-authoring-view.jpg)](screenshots/accordion-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -27646,10 +26346,7 @@ FAQPage JSON-LD) is generated: Not implemented (as of this handover).
 - C = Summary of the item (plain text, the visible label).
 - D = Text of the item (rich text body, editable in place when the item is open).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/accordion-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Universal Editor properties panel for the Accordion block (Additional tab with Anchor ID, Hide block and the eight spacing selects) and, side by side, for an Accordion Item (Summary and Text).
+![Properties panel — The Universal Editor properties panel for the Accordion block (Additional tab with Anchor ID, Hide block and the eight spacing selects) and, side by side, for an Accordion Item (Summary and Text). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/accordion-properties-panel.jpg)](screenshots/accordion-properties-panel.jpg){width=100%}
 
 **Properties panel, Accordion block**
 
@@ -28338,10 +27035,7 @@ added inside any standard section (`section` filter, as `tabs-block`).
 
 ### 6.21.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A horizontal Underline Tabs at 1200px or wider with four tabs, the second selected (semibold label, 3px brand underline), the grey divider under the tab list and the selected panel's Columns content 2.5rem below the list.
+![Desktop rendering — A horizontal Underline Tabs at 1200px or wider with four tabs, the second selected (semibold label, 3px brand underline), the grey divider under the tab list and the selected panel's Columns content 2.5rem below the list. (Sample content on the preview; file screenshots/tabs-desktop-view.jpg)](screenshots/tabs-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** The tab list is a single row of buttons above the panels, with
 a 1px divider under the whole list. Each tab button has 0.75rem vertical and 2.5rem horizontal
@@ -28354,10 +27048,7 @@ the block becomes a two-column grid: the tab list on the left (at least 12.5rem,
 the width), the panel on the right (three quarters), 3rem apart; the list has a 1px left border
 and the selected tab a 3px brand left border; labels may wrap.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Tabs at about 768px, showing the horizontal tab list; when the labels are wider than the screen, the list scrolls horizontally without a visible scrollbar.
+![Tablet rendering — The same Tabs at about 768px, showing the horizontal tab list; when the labels are wider than the screen, the list scrolls horizontally without a visible scrollbar. (Sample content on the preview; file screenshots/tabs-tablet-view.jpg)](screenshots/tabs-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 1199px).** Between 900px and 1199px the layout is the desktop layout. Between
 600px and 899px tabs use the mobile padding (0.75rem by 1.5rem) and 1rem text, and Vertical tabs
@@ -28365,10 +27056,7 @@ are shown horizontally above the panel (the vertical layout starts at 900px). If
 not fit, the tab list scrolls horizontally (the scrollbar is hidden; swipe or use the arrow
 keys).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Tabs at 375px: the tab list cut off at the right edge, indicating that it scrolls sideways, and the selected panel stacked below with its content in one column.
+![Mobile rendering — The Tabs at 375px: the tab list cut off at the right edge, indicating that it scrolls sideways, and the selected panel stacked below with its content in one column. (Sample content on the preview; file screenshots/tabs-mobile-view.jpg)](screenshots/tabs-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** The tab list stays a single horizontal row that scrolls sideways; tab
 labels do not wrap. Panel content follows the responsive rules of the components inside it
@@ -28394,10 +27082,7 @@ separate fragment pages.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-container-mode.png` \
-> **Purpose:** Tabs Container variation \
-> **Description:** A Tabs Container with three tabs whose panels contain Columns with an image and text, a Title and a Button, as rendered on the page.
+![Tabs Container variation — A Tabs Container with three tabs whose panels contain Columns with an image and text, a Title and a Button, as rendered on the page. (Sample content on the preview; file screenshots/tabs-container-mode.jpg)](screenshots/tabs-container-mode.jpg){width=100%}
 
 **Use Cases**
 
@@ -28458,10 +27143,7 @@ pages, and keep complex panel content (any blocks) in its own page.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-block-fragments.png` \
-> **Purpose:** Tabs block variation \
-> **Description:** A Tabs block in a standard section with three Tab items, the selected panel showing the content of a fragment page (two sections with a Title, Text and Cards).
+![Tabs block variation — A Tabs block in a standard section with three Tab items, the selected panel showing the content of a fragment page (two sections with a Title, Text and Cards). (Sample content on the preview; file screenshots/tabs-block-fragments.jpg)](screenshots/tabs-block-fragments.jpg){width=100%}
 
 **Use Cases**
 
@@ -28522,10 +27204,7 @@ The standard, light tab style, matching the Anchor List chapter navigation.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-style-underline.png` \
-> **Purpose:** Underline style \
-> **Description:** Underline tabs: plain text labels, a grey divider under the list and a 3px brand underline under the selected, semibold label.
+![Underline style — Underline tabs: plain text labels, a grey divider under the list and a 3px brand underline under the selected, semibold label. (Sample content on the preview; file screenshots/tabs-style-underline.jpg)](screenshots/tabs-style-underline.jpg){width=100%}
 
 **Use Cases**
 
@@ -28570,10 +27249,7 @@ A stronger, folder-like look that ties the selected tab visually to its panel.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-style-boxed.png` \
-> **Purpose:** Boxed style \
-> **Description:** Boxed tabs with grey (secondary background) tab boxes with rounded top corners, 0.25rem apart, the selected tab white with a border and brand-coloured text, open towards the panel.
+![Boxed style — Boxed tabs with grey (secondary background) tab boxes with rounded top corners, 0.25rem apart, the selected tab white with a border and brand-coloured text, open towards the panel. (Sample content on the preview; file screenshots/tabs-style-boxed.jpg)](screenshots/tabs-style-boxed.jpg){width=100%}
 
 **Use Cases**
 
@@ -28619,10 +27295,7 @@ A compact, button-like filter look for short labels.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-style-pills.png` \
-> **Purpose:** Pills style \
-> **Description:** Pill tabs: rounded, outlined labels 0.5rem apart without a divider under the list, the selected pill filled with the brand colour and white text.
+![Pills style — Pill tabs: rounded, outlined labels 0.5rem apart without a divider under the list, the selected pill filled with the brand colour and white text. (Sample content on the preview; file screenshots/tabs-style-pills.jpg)](screenshots/tabs-style-pills.jpg){width=100%}
 
 **Use Cases**
 
@@ -28667,10 +27340,7 @@ Aligns the tab list with left-aligned headings and text.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-alignment-left.png` \
-> **Purpose:** Left alignment \
-> **Description:** A tab list starting at the left edge of the content area with free space on the right.
+![Left alignment — A tab list starting at the left edge of the content area with free space on the right. (Sample content on the preview; file screenshots/tabs-alignment-left.jpg)](screenshots/tabs-alignment-left.jpg){width=100%}
 
 **Use Cases**
 
@@ -28712,10 +27382,7 @@ Centres the tab list under a centred heading.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-alignment-center.png` \
-> **Purpose:** Center alignment \
-> **Description:** A tab list centred in the content area under a centred Title.
+![Center alignment — A tab list centred in the content area under a centred Title. (Sample content on the preview; file screenshots/tabs-alignment-center.jpg)](screenshots/tabs-alignment-center.jpg){width=100%}
 
 **Use Cases**
 
@@ -28760,10 +27427,7 @@ Makes the tabs share the full width of the content area, like a segmented contro
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-alignment-stretch.png` \
-> **Purpose:** Full width alignment \
-> **Description:** Three tabs that together fill the full width of the content area, each at least as wide as its label.
+![Full width alignment — Three tabs that together fill the full width of the content area, each at least as wide as its label. (Sample content on the preview; file screenshots/tabs-alignment-stretch.jpg)](screenshots/tabs-alignment-stretch.jpg){width=100%}
 
 **Use Cases**
 
@@ -28807,10 +27471,7 @@ Standard layout: tab list above the panel.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-orientation-horizontal.png` \
-> **Purpose:** Horizontal orientation \
-> **Description:** The tab list in a row above the panel, at desktop width.
+![Horizontal orientation — The tab list in a row above the panel, at desktop width. (Sample content on the preview; file screenshots/tabs-orientation-horizontal.jpg)](screenshots/tabs-orientation-horizontal.jpg){width=100%}
 
 **Use Cases**
 
@@ -28852,10 +27513,7 @@ Long or many tab labels on the left of the content, like a side menu, on desktop
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-orientation-vertical.png` \
-> **Purpose:** Vertical orientation \
-> **Description:** At 1200px: the tab list as a left column with a thin left border and the selected tab marked by a 3px brand left border; the panel in the right column, 3rem away.
+![Vertical orientation — At 1200px: the tab list as a left column with a thin left border and the selected tab marked by a 3px brand left border; the panel in the right column, 3rem away. (Sample content on the preview; file screenshots/tabs-orientation-vertical.jpg)](screenshots/tabs-orientation-vertical.jpg){width=100%}
 
 **Use Cases**
 
@@ -28902,10 +27560,7 @@ The Tabs Container section uses the page's maximum width (120rem).
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-width-full.png` \
-> **Purpose:** Full Width section \
-> **Description:** A Tabs Container spanning the full page width on a wide screen, with the section's inline padding.
+![Full Width section — A Tabs Container spanning the full page width on a wide screen, with the section's inline padding. (Sample content on the preview; file screenshots/tabs-width-full.jpg)](screenshots/tabs-width-full.jpg){width=100%}
 
 **Use Cases**
 
@@ -28948,10 +27603,7 @@ Limits the Tabs Container to the content width (90rem), centred.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-width-fixed.png` \
-> **Purpose:** Fixed Width section \
-> **Description:** A Tabs Container centred at the content width with empty space on both sides on a 1920px screen.
+![Fixed Width section — A Tabs Container centred at the content width with empty space on both sides on a 1920px screen. (Sample content on the preview; file screenshots/tabs-width-fixed.jpg)](screenshots/tabs-width-fixed.jpg){width=100%}
 
 **Use Cases**
 
@@ -28983,10 +27635,7 @@ Shorter line lengths support readability.
 
 ### 6.21.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Universal Editor edit mode with a Tabs Container selected: the tab list, the selected panel with its dashed Tab label chip, a Columns component in the panel, and in the content tree the Tabs Container with Tab, Columns, Tab, Text children; letters A to G placed on the elements.
+![Universal Editor canvas — Universal Editor edit mode with a Tabs Container selected: the tab list, the selected panel with its dashed Tab label chip, a Columns component in the panel, and in the content tree the Tabs Container with Tab, Columns, Tab, Text children; letters A to G placed on the elements. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/tabs-authoring-view.jpg)](screenshots/tabs-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -29003,10 +27652,7 @@ Shorter line lengths support readability.
 - F = Add (+) button of the container / block, to add a Tab or a component.
 - G = Empty-state hint (only when there is no tab yet, edit mode only).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tabs-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of a Tabs Container with its four tabs (Properties, Accessibility, Styles, Additional), next to the properties of a Tabs block Tab item with its Tab and Fragment tabs.
+![Properties panel — The properties panel of a Tabs Container with its four tabs (Properties, Accessibility, Styles, Additional), next to the properties of a Tabs block Tab item with its Tab and Fragment tabs. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tabs-properties-panel.jpg)](screenshots/tabs-properties-panel.jpg){width=100%}
 
 **Properties panel, Tabs Container (model `tabs`)**
 
@@ -29858,10 +28504,7 @@ Plain-text Title and ID, a boolean Active tab. The Tab has no content of its own
 
 ### 6.22.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A Tabs Container at 1200px on the published page, with the Tab markers' titles shown only as the tab buttons (Consulting, Cloud, Cybersecurity) and no marker visible inside the panel.
+![Desktop rendering — A Tabs Container at 1200px on the published page, with the Tab markers' titles shown only as the tab buttons (Consulting, Cloud, Cybersecurity) and no marker visible inside the panel. (Sample content on the preview; file screenshots/tab-desktop-view.jpg)](screenshots/tab-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** On the page the Tab marker is not visible: its wrapper inside
 the panel is hidden (`display: none`), and its Title appears as the label of its tab button in
@@ -29870,18 +28513,12 @@ shown at the top of its panel as an inline chip: dashed 1px brand border, 0.25re
 0.25rem by 0.75rem padding, brand-coloured semibold extra-small text (0.875rem from 900px),
 1rem space below.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Tabs Container at about 768px in Universal Editor edit mode, showing the dashed Tab chip above the panel content.
+![Tablet rendering — The same Tabs Container at about 768px in Universal Editor edit mode, showing the dashed Tab chip above the panel content. (Sample content on the preview; file screenshots/tab-tablet-view.jpg)](screenshots/tab-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 1199px).** Same behaviour: hidden on the page, chip in edit mode. The chip
 text uses 0.75rem below 900px and 0.875rem from 900px.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** The Tabs Container at 375px on the page: the tab titles in the scrolling tab list, no marker visible in the panel.
+![Mobile rendering — The Tabs Container at 375px on the page: the tab titles in the scrolling tab list, no marker visible in the panel. (Sample content on the preview; file screenshots/tab-mobile-view.jpg)](screenshots/tab-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** Same; the chip (edit mode) is 0.75rem text. The tab button labels
 (Titles) never wrap in the horizontal tab list.
@@ -29902,10 +28539,7 @@ Start a tab with a visible label; its id is generated.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-standard.png` \
-> **Purpose:** Standard Tab variation \
-> **Description:** Edit mode: a Tab chip "Cloud" at the top of a panel, and the "Cloud" tab button in the tab list.
+![Standard Tab variation — Edit mode: a Tab chip "Cloud" at the top of a panel, and the "Cloud" tab button in the tab list. (Sample content on the preview; file screenshots/tab-standard.jpg)](screenshots/tab-standard.jpg){width=100%}
 
 **Use Cases**
 
@@ -29950,10 +28584,7 @@ Show a specific tab, not the first one, when the page opens.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-active.png` \
-> **Purpose:** Active Tab variation \
-> **Description:** A Tabs Container loaded with its third tab selected because that Tab has Active tab switched on.
+![Active Tab variation — A Tabs Container loaded with its third tab selected because that Tab has Active tab switched on. (Sample content on the preview; file screenshots/tab-active.jpg)](screenshots/tab-active.jpg){width=100%}
 
 **Use Cases**
 
@@ -29997,10 +28628,7 @@ Give a tab a stable id so links (`page#cloud`), Anchor Lists and analytics can a
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-deep-link.png` \
-> **Purpose:** Tab with ID variation \
-> **Description:** A browser address ending in #cloud and the page scrolled to the Tabs with the Cloud tab selected.
+![Tab with ID variation — A browser address ending in #cloud and the page scrolled to the Tabs with the Cloud tab selected. (Sample content on the preview; file screenshots/tab-deep-link.jpg)](screenshots/tab-deep-link.jpg){width=100%}
 
 **Use Cases**
 
@@ -30033,10 +28661,7 @@ Deep links move the view to the Tabs and select the tab; focus is not moved.
 
 ### 6.22.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Edit mode with a Tab chip selected at the top of a panel of a Tabs Container, the corresponding tab button highlighted, and the Tab selected in the content tree; letters A to C placed on the elements.
+![Universal Editor canvas — Edit mode with a Tab chip selected at the top of a panel of a Tabs Container, the corresponding tab button highlighted, and the Tab selected in the content tree; letters A to C placed on the elements. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/tab-authoring-view.jpg)](screenshots/tab-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -30044,10 +28669,7 @@ Deep links move the view to the Tabs and select the tab; focus is not moved.
 - B = Tab button in the tab list (shows the Title).
 - C = The components after the Tab (its content, up to the next Tab).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tab-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of a Tab with the Content tab (Title, ID, Active tab) and the Additional tab.
+![Properties panel — The properties panel of a Tab with the Content tab (Title, ID, Active tab) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tab-properties-panel.jpg)](screenshots/tab-properties-panel.jpg){width=100%}
 
 **Properties panel, Tab (model `tab`)**
 
@@ -30562,10 +29184,7 @@ page.
 
 ### 6.23.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** At 1200px: the page dimmed by the dark 75% backdrop, a white dialog with 1rem rounded corners centred vertically, at most 56.25rem wide, the close (X) icon button at the top right, a heading and text inside with 2rem padding.
+![Desktop rendering — At 1200px: the page dimmed by the dark 75% backdrop, a white dialog with 1rem rounded corners centred vertically, at most 56.25rem wide, the close (X) icon button at the top right, a heading and text inside with 2rem padding. (Sample content on the preview; file screenshots/modal-desktop-view.jpg)](screenshots/modal-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** The opener is a primary button where the block is placed. When
 opened, the page behind is covered with a backdrop of near-black at 75% opacity and stops
@@ -30575,18 +29194,12 @@ and never taller than the visible area minus 2 × 2.5rem; longer content scrolls
 dialog. The close button (tertiary icon button) sticks to the top right (0.5rem from the top)
 while the content scrolls. Content padding is 2rem on the sides and bottom (from 900px).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** At about 768px: the dialog nearly full width with 1.5rem margins left and right, content padding 1.5rem, the sticky close button at the top right of a long, scrolling content.
+![Tablet rendering — At about 768px: the dialog nearly full width with 1.5rem margins left and right, content padding 1.5rem, the sticky close button at the top right of a long, scrolling content. (Sample content on the preview; file screenshots/modal-tablet-view.jpg)](screenshots/modal-tablet-view.jpg){width=61%}
 
 **Tablet (600px to 1199px).** From 900px as desktop. Between 600px and 899px the dialog is
 `calc(100vw - 3rem)` wide, the vertical gap is 1.5rem and the content padding 1.5rem.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** At 375px: the dialog 1.5rem from each screen edge, as tall as the content up to the screen height minus 3rem, with the close button at the top right and the content scrolling inside.
+![Mobile rendering — At 375px: the dialog 1.5rem from each screen edge, as tall as the content up to the screen height minus 3rem, with the close button at the top right and the content scrolling inside. (Sample content on the preview; file screenshots/modal-mobile-view.jpg)](screenshots/modal-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** Same as small tablet: full width minus 3rem, 1.5rem padding, height
 limited to the dynamic viewport height (`100dvh`) minus 3rem; the content scrolls inside the
@@ -30606,10 +29219,7 @@ Give authors an explicit button that opens a fragment page in a dialog.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-block-button.png` \
-> **Purpose:** Modal block variation \
-> **Description:** A primary button "View our awards" on the page and, next to it, the dialog it opens.
+![Modal block variation — A primary button "View our awards" on the page and, next to it, the dialog it opens. (Sample content on the preview; file screenshots/modal-block-button.jpg)](screenshots/modal-block-button.jpg){width=100%}
 
 **Use Cases**
 
@@ -30665,10 +29275,7 @@ Modal block.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-auto-link.png` \
-> **Purpose:** Auto-linked modal variation \
-> **Description:** A text link "privacy notice" in a paragraph and the dialog showing the /en/modals/privacy-notice fragment.
+![Auto-linked modal variation — A text link "privacy notice" in a paragraph and the dialog showing the /en/modals/privacy-notice fragment. (Sample content on the preview; file screenshots/modal-auto-link.jpg)](screenshots/modal-auto-link.jpg){width=100%}
 
 **Use Cases**
 
@@ -30719,10 +29326,7 @@ a Pop-up** option.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-video-popup.png` \
-> **Purpose:** Component dialog variation \
-> **Description:** A video playing in the modal dialog over the dimmed page after the visitor selected the play button of a Video block with Play in a Pop-up on.
+![Component dialog variation — A video playing in the modal dialog over the dimmed page after the visitor selected the play button of a Video block with Play in a Pop-up on. (Sample content on the preview; file screenshots/modal-video-popup.jpg)](screenshots/modal-video-popup.jpg){width=100%}
 
 **Use Cases**
 
@@ -30757,20 +29361,14 @@ returns to the play button on close.
 
 ### 6.23.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Edit mode with a Modal block selected in a section, showing the opener button labelled with the Button Text and the block outline; letters A and B on the elements.
+![Universal Editor canvas — Edit mode with a Modal block selected in a section, showing the opener button labelled with the Button Text and the block outline; letters A and B on the elements. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/modal-authoring-view.jpg)](screenshots/modal-authoring-view.jpg){width=100%}
 
 **Annotations**
 
 - A = Modal block (select it for Modal Content, Button Text and Additional).
 - B = Opener button (shows the Button Text; in Preview mode it opens the dialog).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/modal-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Modal properties panel with the Content tab (Modal Content picker and Button Text) and the Additional tab.
+![Properties panel — The Modal properties panel with the Content tab (Modal Content picker and Button Text) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-panel.jpg)](screenshots/modal-properties-panel.jpg){width=100%}
 
 **Properties panel, Modal (model `modal`)**
 
@@ -31357,10 +29955,7 @@ Hero and Teaser blocks with their own images, headings, text and CTAs.
 
 ### 6.24.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** At 1200px: a Gen Carousel of three Hero slides showing slide 1 at full content width, and centred below it 2rem lower the pause button, previous arrow, three dots (the first a wider brand-coloured pill) and next arrow.
+![Desktop rendering — At 1200px: a Gen Carousel of three Hero slides showing slide 1 at full content width, and centred below it 2rem lower the pause button, previous arrow, three dots (the first a wider brand-coloured pill) and next arrow. (Sample content on the preview; file screenshots/gen-carousel-desktop-view.jpg)](screenshots/gen-carousel-desktop-view.jpg){width=100%}
 
 **Desktop (1200px and wider).** One slide fills the full width of the section content area;
 slides of different blocks are stretched to the same height. Below the slides, the controls
@@ -31370,19 +29965,13 @@ area with a 0.5rem dot in the tertiary neutral border colour; the current slide'
 1.5rem wide brand-coloured pill; hovering a dot turns it to the brand hover colour. Slides move
 with a smooth horizontal scroll and snap into place.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** At about 768px: a Teaser slide filling the width, with the controls centred below it 1.5rem lower.
+![Tablet rendering — At about 768px: a Teaser slide filling the width, with the controls centred below it 1.5rem lower. (Sample content on the preview; file screenshots/gen-carousel-tablet-view.jpg)](screenshots/gen-carousel-tablet-view.jpg){width=57%}
 
 **Tablet (600px to 1199px).** Same layout. Below 900px the controls are 1.5rem below the
 slides. In Manual modes the slides can be swiped horizontally (scroll snap, one slide at a
 time).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** At 375px: a Hero slide in its mobile layout, and below it the controls wrapped onto two lines if there are many dots.
+![Mobile rendering — At 375px: a Hero slide in its mobile layout, and below it the controls wrapped onto two lines if there are many dots. (Sample content on the preview; file screenshots/gen-carousel-mobile-view.jpg)](screenshots/gen-carousel-mobile-view.jpg){width=38%}
 
 **Mobile (below 600px).** One slide at full width in its own mobile layout (from the Hero /
 Teaser CSS); swipe in Manual modes; the controls and dots wrap onto several lines when they do
@@ -31402,10 +29991,7 @@ The visitor controls the slides; nothing moves on its own (the most accessible o
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-manual.png` \
-> **Purpose:** Manual navigation \
-> **Description:** Controls with previous arrow, dots and next arrow, no pause button.
+![Manual navigation — Controls with previous arrow, dots and next arrow, no pause button. (Sample content on the preview; file screenshots/gen-carousel-manual.jpg)](screenshots/gen-carousel-manual.jpg){width=100%}
 
 **Use Cases**
 
@@ -31450,10 +30036,7 @@ Slides advance on their own, like a rotating banner, with a pause button.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-auto.png` \
-> **Purpose:** Auto navigation \
-> **Description:** Controls with only the pause button and the dots; no previous / next arrows.
+![Auto navigation — Controls with only the pause button and the dots; no previous / next arrows. (Sample content on the preview; file screenshots/gen-carousel-auto.jpg)](screenshots/gen-carousel-auto.jpg){width=100%}
 
 **Use Cases**
 
@@ -31502,10 +30085,7 @@ Rotating slides that the visitor can also control.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-manual-auto.png` \
-> **Purpose:** Manual and Auto navigation \
-> **Description:** Controls with the pause button, previous arrow, dots and next arrow.
+![Manual and Auto navigation — Controls with the pause button, previous arrow, dots and next arrow. (Sample content on the preview; file screenshots/gen-carousel-manual-auto.jpg)](screenshots/gen-carousel-manual-auto.jpg){width=100%}
 
 **Use Cases**
 
@@ -31549,10 +30129,7 @@ as a static block.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-single-slide.png` \
-> **Purpose:** Single slide \
-> **Description:** A Gen Carousel with one Hero and no controls below it.
+![Single slide — A Gen Carousel with one Hero and no controls below it. (Sample content on the preview; file screenshots/gen-carousel-single-slide.jpg)](screenshots/gen-carousel-single-slide.jpg){width=100%}
 
 **Use Cases**
 
@@ -31595,10 +30172,7 @@ Full-impact slides with background image, heading, text and CTAs.
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-hero-slides.png` \
-> **Purpose:** Hero slides \
-> **Description:** A carousel of Hero blocks, each with a full-width image, a heading and a primary CTA.
+![Hero slides — A carousel of Hero blocks, each with a full-width image, a heading and a primary CTA. (Sample content on the preview; file screenshots/gen-carousel-hero-slides.jpg)](screenshots/gen-carousel-hero-slides.jpg){width=100%}
 
 **Use Cases**
 
@@ -31644,10 +30218,7 @@ Lighter slides (image and text side by side, story teasers) in the same rotation
 
 **Visual Example**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-teaser-slides.png` \
-> **Purpose:** Teaser slides \
-> **Description:** A carousel of Teaser blocks with image and text, the dots below.
+![Teaser slides — A carousel of Teaser blocks with image and text, the dots below. (Sample content on the preview; file screenshots/gen-carousel-teaser-slides.jpg)](screenshots/gen-carousel-teaser-slides.jpg){width=100%}
 
 **Use Cases**
 
@@ -31679,10 +30250,7 @@ As Variation 5.
 
 ### 6.24.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Edit mode with a Gen Carousel section selected, the second slide (a Teaser) shown because it is selected in the content tree, and the controls below; letters A to E placed on the elements.
+![Universal Editor canvas — Edit mode with a Gen Carousel section selected, the second slide (a Teaser) shown because it is selected in the content tree, and the controls below; letters A to E placed on the elements. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/gen-carousel-authoring-view.jpg)](screenshots/gen-carousel-authoring-view.jpg){width=100%}
 
 **Annotations**
 
@@ -31692,10 +30260,7 @@ As Variation 5.
 - D = Dots (one per slide).
 - E = Pause / play button (Auto modes; autoplay never runs in edit mode).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/gen-carousel-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Gen Carousel properties panel with the Content tab (Style, Navigation, Autoplay interval) and the Additional tab.
+![Properties panel — The Gen Carousel properties panel with the Content tab (Style, Navigation, Autoplay interval) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carousel-properties-panel.jpg)](screenshots/gen-carousel-properties-panel.jpg){width=100%}
 
 **Properties panel, Gen Carousel (model `gen-carousel`)**
 
@@ -32362,10 +30927,7 @@ line breaks. Images in cells are not part of the design (Recommended: text only)
 
 ### 6.25.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** A 4-column Table with a header row below a "Quarterly results" heading, at a viewport of 1440px; header row in semibold with a dark 2px rule below it, body rows separated by light 1px rules.
+![Desktop rendering — A 4-column Table with a header row below a "Quarterly results" heading, at a viewport of 1440px; header row in semibold with a dark 2px rule below it, body rows separated by light 1px rules. (Sample content on the preview; file screenshots/table-desktop-view.jpg)](screenshots/table-desktop-view.jpg){width=100%}
 
 **Desktop (≥ 1200px):** The table spans the full width of its section content (`width: 100%`).
 From 900px the text size is `--body-font-size-m` (1.125rem). Cells have 0.75rem vertical and 1rem
@@ -32375,10 +30937,7 @@ cells (`th`) are semibold. The header row has a 2px bottom border in `--color-bo
 #e6e6e6). Paragraphs inside cells have no margin; a second paragraph in a data cell is spaced
 0.25rem below the first.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** The same Table at 768px and at 1024px, showing the smaller text below 900px and, at 768px, the table still fitting the content width.
+![Tablet rendering — The same Table at 768px and at 1024px, showing the smaller text below 900px and, at 768px, the table still fitting the content width. (Sample content on the preview; file screenshots/table-tablet-view.jpg)](screenshots/table-tablet-view.jpg){width=57%}
 
 **Tablet (600–1199px):** Same layout. Between 600px and 899px the text size is
 `--body-font-size-s` (0.75rem); from 900px it is 1.125rem. Columns shrink to fit; long words wrap.
@@ -32386,10 +30945,7 @@ If the content cannot shrink further (long unbreakable values, many columns), th
 horizontally scrollable inside the block (`overflow-x: auto`) and the block becomes a focusable
 region (see Variation 12).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** A 5-column Table at 390px that is wider than the screen: the visible part of the table with a horizontal scroll, and the 2px brand-blue focus outline around the block after tabbing to it.
+![Mobile rendering — A 5-column Table at 390px that is wider than the screen: the visible part of the table with a horizontal scroll, and the 2px brand-blue focus outline around the block after tabbing to it. (Sample content on the preview; file screenshots/table-mobile-view.jpg)](screenshots/table-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px):** No stacking or card layout: the table keeps its rows and columns. Text is
 0.75rem. Tables with three or more columns usually exceed the viewport and scroll horizontally
@@ -32412,10 +30968,7 @@ be combined.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-standard.png` \
-> **Purpose:** Variation example \
-> **Description:** A 3-column table "Service / Region / Availability" with a semibold header row, a 2px dark rule below it and three body rows with light separators.
+![Variation example — A 3-column table "Service / Region / Availability" with a semibold header row, a 2px dark rule below it and three body rows with light separators. (Sample content on the preview; file screenshots/table-standard.jpg)](screenshots/table-standard.jpg){width=100%}
 
 **Use Cases:** Comparisons, results tables, schedules.
 
@@ -32447,10 +31000,7 @@ key facts in two columns).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-no-header.png` \
-> **Purpose:** Variation example \
-> **Description:** A 2-column table without a header row; the first body row has a 2px dark rule above it, all rows have regular weight text.
+![Variation example — A 2-column table without a header row; the first body row has a 2px dark rule above it, all rows have regular weight text. (Sample content on the preview; file screenshots/table-no-header.jpg)](screenshots/table-no-header.jpg){width=100%}
 
 **Use Cases:** Fact sheets, key / value lists where a header would repeat the obvious.
 
@@ -32478,10 +31028,7 @@ give context, for example "Capability × Region".
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-first-column-header.png` \
-> **Purpose:** Variation example \
-> **Description:** A 4-column matrix: header row in semibold, and in each body row the first cell in semibold as the row title.
+![Variation example — A 4-column matrix: header row in semibold, and in each body row the first cell in semibold as the row title. (Sample content on the preview; file screenshots/table-first-column-header.jpg)](screenshots/table-first-column-header.jpg){width=100%}
 
 **Use Cases:** Feature matrices, specification tables, pricing or plan comparisons.
 
@@ -32511,10 +31058,7 @@ column title row (for example "Founded | 1968", "Headquarters | Mumbai").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-row-headers-only.png` \
-> **Purpose:** Variation example \
-> **Description:** A 2-column fact table with a 2px dark rule above the first row; the first column (labels) in semibold, values in regular weight.
+![Variation example — A 2-column fact table with a 2px dark rule above the first row; the first column (labels) in semibold, values in regular weight. (Sample content on the preview; file screenshots/table-row-headers-only.jpg)](screenshots/table-row-headers-only.jpg){width=100%}
 
 **Use Cases:** Company facts, contact details, document properties.
 
@@ -32539,10 +31083,7 @@ top border of the first row from the No Header style.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-striped.png` \
-> **Purpose:** Variation example \
-> **Description:** A 3-column table with 8 body rows in which the 1st, 3rd, 5th and 7th body rows have a light grey background.
+![Variation example — A 3-column table with 8 body rows in which the 1st, 3rd, 5th and 7th body rows have a light grey background. (Sample content on the preview; file screenshots/table-striped.jpg)](screenshots/table-striped.jpg){width=100%}
 
 **Use Cases:** Long schedules, results tables, directories.
 
@@ -32570,10 +31111,7 @@ separated.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-bordered.png` \
-> **Purpose:** Variation example \
-> **Description:** A 5-column numeric table with a 1px light grey border around every cell.
+![Variation example — A 5-column numeric table with a 1px light grey border around every cell. (Sample content on the preview; file screenshots/table-bordered.jpg)](screenshots/table-bordered.jpg){width=100%}
 
 **Use Cases:** Financial figures, specification grids.
 
@@ -32598,10 +31136,7 @@ The row borders of the standard style remain.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-1-column.png` \
-> **Purpose:** Variation example \
-> **Description:** A one-column table with a header cell and four rows.
+![Variation example — A one-column table with a header cell and four rows. (Sample content on the preview; file screenshots/table-1-column.jpg)](screenshots/table-1-column.jpg){width=100%}
 
 **Use Cases:** A titled list where table semantics are wanted (Recommended: prefer a list in
 default content).
@@ -32628,10 +31163,7 @@ selected.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-2-columns.png` \
-> **Purpose:** Variation example \
-> **Description:** A two-column "Term / Definition" table.
+![Variation example — A two-column "Term / Definition" table. (Sample content on the preview; file screenshots/table-2-columns.jpg)](screenshots/table-2-columns.jpg){width=100%}
 
 **Use Cases:** Glossaries, facts, contact lists.
 
@@ -32656,10 +31188,7 @@ Column1 and Column2.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-3-columns.png` \
-> **Purpose:** Variation example \
-> **Description:** A three-column agenda "Time / Session / Speaker".
+![Variation example — A three-column agenda "Time / Session / Speaker". (Sample content on the preview; file screenshots/table-3-columns.jpg)](screenshots/table-3-columns.jpg){width=100%}
 
 **Use Cases:** Agendas, simple comparisons.
 
@@ -32684,10 +31213,7 @@ values.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-4-columns.png` \
-> **Purpose:** Variation example \
-> **Description:** A four-column results table "Quarter / Revenue / Growth / Margin".
+![Variation example — A four-column results table "Quarter / Revenue / Growth / Margin". (Sample content on the preview; file screenshots/table-4-columns.jpg)](screenshots/table-4-columns.jpg){width=100%}
 
 **Use Cases:** Quarterly figures, office directories.
 
@@ -32712,10 +31238,7 @@ keyboard.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-5-columns.png` \
-> **Purpose:** Variation example \
-> **Description:** A five-column comparison table on desktop, and the same table scrolling horizontally on mobile.
+![Variation example — A five-column comparison table on desktop, and the same table scrolling horizontally on mobile. (Sample content on the preview; file screenshots/table-5-columns.jpg)](screenshots/table-5-columns.jpg){width=100%}
 
 **Use Cases:** Plan or capability comparisons with five attributes.
 
@@ -32740,10 +31263,7 @@ layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-scroll-region.png` \
-> **Purpose:** Variation example \
-> **Description:** A 5-column table on a 390px screen with a horizontal scrollbar and the focus outline drawn around the block after pressing Tab.
+![Variation example — A 5-column table on a 390px screen with a horizontal scrollbar and the focus outline drawn around the block after pressing Tab. (Sample content on the preview; file screenshots/table-scroll-region.jpg)](screenshots/table-scroll-region.jpg){width=38%}
 
 **Use Cases:** Any table whose content is wider than its container.
 
@@ -32768,10 +31288,7 @@ layout.
 
 ### 6.25.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Universal Editor in edit mode showing a heading followed by a 3-column Table; the Table block is selected (blue outline) and one Row is hovered; the content tree on the left lists the Table with its Rows.
+![Universal Editor canvas — Universal Editor in edit mode showing a heading followed by a 3-column Table; the Table block is selected (blue outline) and one Row is hovered; the content tree on the left lists the Table with its Rows. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/table-authoring-view.jpg)](screenshots/table-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -32782,10 +31299,7 @@ layout.
 - E = A body Row (select to edit its columns in the properties panel)
 - F = The "Add" (+) control of the block in the content tree, which adds a Row of the type chosen in Columns
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/table-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of the selected Table showing the Content tab (Options multiselect with Border and Header groups, Columns select) and the Additional tab.
+![Properties panel — The properties panel of the selected Table showing the Content tab (Options multiselect with Border and Header groups, Columns select) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/table-properties-panel.jpg)](screenshots/table-properties-panel.jpg){width=100%}
 
 **Properties panel, block (model `table`):**
 
@@ -33468,10 +31982,7 @@ images on the published page. An `<hr>` authored inside the block is reused.
 
 ### 6.26.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** At 1440px: a Default separator (1px, slate 400 line, 100% of the content width) between two text paragraphs, with 1.5rem space above and below; next to it a Branded 25% Start separator under a heading.
+![Desktop rendering — At 1440px: a Default separator (1px, slate 400 line, 100% of the content width) between two text paragraphs, with 1.5rem space above and below; next to it a Branded 25% Start separator under a heading. (Sample content on the preview; file screenshots/separator-desktop-view.jpg)](screenshots/separator-desktop-view.jpg){width=100%}
 
 **Desktop (≥ 1200px):** The block is a flex row; the line (`.separator-line` containing the
 `<hr class="separator-rule">`) is centred by default (`justify-content` from Alignment). Default
@@ -33481,19 +31992,13 @@ look: a solid 1px (`--border-width-100`) line in the default palette colour
 and below is padding of 1.5rem (`--space-600`, "24px"). Settings prefixed "Desktop" apply only
 here.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** At 1024px: the same separators; one configured with Tablet width 50% shows at half width; a separator with Show on tablet off is absent.
+![Tablet rendering — At 1024px: the same separators; one configured with Tablet width 50% shows at half width; a separator with Show on tablet off is absent. (Sample content on the preview; file screenshots/separator-tablet-view.jpg)](screenshots/separator-tablet-view.jpg){width=82%}
 
 **Tablet (600–1199px):** Same rendering; Tablet width / thickness / alignment / spacing
 overrides and Show on tablet apply only in this range (`@media (600px <= width < 1200px)`). Full
 bleed adds 2 × `--section-padding-inline` (2.5rem each side at this size).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** At 390px: a separator at 100% width with Mobile top spacing None directly under a paragraph; a full-bleed separator touching both screen edges.
+![Mobile rendering — At 390px: a separator at 100% width with Mobile top spacing None directly under a paragraph; a full-bleed separator touching both screen edges. (Sample content on the preview; file screenshots/separator-mobile-view.jpg)](screenshots/separator-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px):** Same rendering with Mobile overrides and Show on mobile
 (`@media (width < 600px)`). Full bleed extends by the mobile section padding (1.5rem each side)
@@ -33514,10 +32019,7 @@ other than "As the variant" overrides that part of the preset.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-decorative.png` \
-> **Purpose:** Variation example \
-> **Description:** A default thin grey line between two paragraphs; the DevTools accessibility tree beside it shows the line as ignored (aria-hidden).
+![Variation example — A default thin grey line between two paragraphs; the DevTools accessibility tree beside it shows the line as ignored (aria-hidden). (Sample content on the preview; file screenshots/separator-decorative.jpg)](screenshots/separator-decorative.jpg){width=100%}
 
 **Use Cases:** Rules between related content blocks, visual rhythm in a section.
 
@@ -33545,10 +32047,7 @@ element intends.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-semantic.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator between two stories; the accessibility tree shows a "separator" role named "End of the story".
+![Variation example — A separator between two stories; the accessibility tree shows a "separator" role named "End of the story". (Sample content on the preview; file screenshots/separator-semantic.jpg)](screenshots/separator-semantic.jpg){width=100%}
 
 **Use Cases:** Between two stories, before an appendix, between chapters.
 
@@ -33577,10 +32076,7 @@ names the break; most screen readers read it, not all (README known limitation).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-spacing-only.png` \
-> **Purpose:** Variation example \
-> **Description:** Two paragraphs with a 4rem gap and no line; in Universal Editor the empty block area is selectable.
+![Variation example — Two paragraphs with a 4rem gap and no line; in Universal Editor the empty block area is selectable. (Sample content on the preview; file screenshots/separator-spacing-only.jpg)](screenshots/separator-spacing-only.jpg){width=100%}
 
 **Use Cases:** Extra breathing room before a call to action where section spacing is too small.
 
@@ -33610,10 +32106,7 @@ Semantic + None (an announced break that nobody sees).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-default.png` \
-> **Purpose:** Variation example \
-> **Description:** A solid 1px slate-400 line at 100% width.
+![Variation example — A solid 1px slate-400 line at 100% width. (Sample content on the preview; file screenshots/separator-variant-default.jpg)](screenshots/separator-variant-default.jpg){width=100%}
 
 **Use Cases:** Most dividers.
 
@@ -33642,10 +32135,7 @@ use Strong or High contrast where the line must be perceivable.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-subtle.png` \
-> **Purpose:** Variation example \
-> **Description:** A solid 1px very light grey (grey 200) line under a section intro.
+![Variation example — A solid 1px very light grey (grey 200) line under a section intro. (Sample content on the preview; file screenshots/separator-variant-subtle.jpg)](screenshots/separator-variant-subtle.jpg){width=100%}
 
 **Use Cases:** Under introductions, between closely related paragraphs.
 
@@ -33670,10 +32160,7 @@ grey 200 #e6e6e6; dark: slate 800; brand: brand 300).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-strong.png` \
-> **Purpose:** Variation example \
-> **Description:** A solid 2px near-black (slate 900) line between two chapters.
+![Variation example — A solid 2px near-black (slate 900) line between two chapters. (Sample content on the preview; file screenshots/separator-variant-strong.jpg)](screenshots/separator-variant-strong.jpg){width=100%}
 
 **Use Cases:** Chapter breaks, the end of a main article before related content.
 
@@ -33698,10 +32185,7 @@ grey 200 #e6e6e6; dark: slate 800; brand: brand 300).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-inset.png` \
-> **Purpose:** Variation example \
-> **Description:** A thin grey line inset 2.5rem from the left and right content edges.
+![Variation example — A thin grey line inset 2.5rem from the left and right content edges. (Sample content on the preview; file screenshots/separator-variant-inset.jpg)](screenshots/separator-variant-inset.jpg){width=100%}
 
 **Use Cases:** Dividers inside content areas that should not touch the edges.
 
@@ -33726,10 +32210,7 @@ inline padding of `.separator-line`; start / end decorations are positioned at t
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-full-width.png` \
-> **Purpose:** Variation example \
-> **Description:** A thin line spanning the full section width including the section's side padding.
+![Variation example — A thin line spanning the full section width including the section's side padding. (Sample content on the preview; file screenshots/separator-variant-full-width.jpg)](screenshots/separator-variant-full-width.jpg){width=100%}
 
 **Use Cases:** Strong page structure, dividing full-width sections' content.
 
@@ -33757,10 +32238,7 @@ section padding but never overflows the page.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-dotted.png` \
-> **Purpose:** Variation example \
-> **Description:** A 2px dotted grey line.
+![Variation example — A 2px dotted grey line. (Sample content on the preview; file screenshots/separator-variant-dotted.jpg)](screenshots/separator-variant-dotted.jpg){width=100%}
 
 **Use Cases:** Between informal content items, footnotes.
 
@@ -33785,10 +32263,7 @@ of the `<hr>`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-dashed.png` \
-> **Purpose:** Variation example \
-> **Description:** A 1px dashed grey line.
+![Variation example — A 1px dashed grey line. (Sample content on the preview; file screenshots/separator-variant-dashed.jpg)](screenshots/separator-variant-dashed.jpg){width=100%}
 
 **Use Cases:** Before optional / supplementary content.
 
@@ -33812,10 +32287,7 @@ of the `<hr>`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-gradient.png` \
-> **Purpose:** Variation example \
-> **Description:** A 2px brand-blue line fading to transparent at the left and right ends.
+![Variation example — A 2px brand-blue line fading to transparent at the left and right ends. (Sample content on the preview; file screenshots/separator-variant-gradient.jpg)](screenshots/separator-variant-gradient.jpg){width=100%}
 
 **Use Cases:** Premium / campaign pages, below hero-like intros.
 
@@ -33842,10 +32314,7 @@ forced-colours mode the background becomes `CanvasText`.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-branded.png` \
-> **Purpose:** Variation example \
-> **Description:** A 2px brand-blue line at 25% width aligned to the start under a heading.
+![Variation example — A 2px brand-blue line at 25% width aligned to the start under a heading. (Sample content on the preview; file screenshots/separator-variant-branded.jpg)](screenshots/separator-variant-branded.jpg){width=100%}
 
 **Use Cases:** Accent under titles (with 25%, Start), branded section breaks.
 
@@ -33870,10 +32339,7 @@ brand 300 on dark; brand 500 on brand.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-variant-custom.png` \
-> **Purpose:** Variation example \
-> **Description:** A custom separator: dashed, thick, accent (yellow) line at 75% width, end aligned.
+![Variation example — A custom separator: dashed, thick, accent (yellow) line at 75% width, end aligned. (Sample content on the preview; file screenshots/separator-variant-custom.jpg)](screenshots/separator-variant-custom.jpg){width=100%}
 
 **Use Cases:** Cases not covered by a preset.
 
@@ -33900,10 +32366,7 @@ for meaningful lines).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-theme-auto.png` \
-> **Purpose:** Variation example \
-> **Description:** The same Default separator in a white section (slate 400 line) and in a Highlight (light grey) section.
+![Variation example — The same Default separator in a white section (slate 400 line) and in a Highlight (light grey) section. (Sample content on the preview; file screenshots/separator-theme-auto.jpg)](screenshots/separator-theme-auto.jpg){width=100%}
 
 **Use Cases:** All separators on standard sections.
 
@@ -33933,10 +32396,7 @@ owner]).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-theme-light.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator on a light section background image using the light palette.
+![Variation example — A separator on a light section background image using the light palette. (Sample content on the preview; file screenshots/separator-theme-light.jpg)](screenshots/separator-theme-light.jpg){width=100%}
 
 **Use Cases:** Sections whose background image is light.
 
@@ -33961,10 +32421,7 @@ slate 900, primary brand 500, secondary brand 300, accent warning 500 (#e8b931),
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-theme-dark.png` \
-> **Purpose:** Variation example \
-> **Description:** A Strong separator (slate 200) on a dark background image.
+![Variation example — A Strong separator (slate 200) on a dark background image. (Sample content on the preview; file screenshots/separator-theme-dark.jpg)](screenshots/separator-theme-dark.jpg){width=100%}
 
 **Use Cases:** Sections with a dark background image.
 
@@ -33989,10 +32446,7 @@ slate 200, primary brand 300, secondary brand 400, inverse black 70%; accent unc
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-theme-brand.png` \
-> **Purpose:** Variation example \
-> **Description:** A Default separator (brand 500) on a light-blue brand background.
+![Variation example — A Default separator (brand 500) on a light-blue brand background. (Sample content on the preview; file screenshots/separator-theme-brand.jpg)](screenshots/separator-theme-brand.jpg){width=100%}
 
 **Use Cases:** Campaign sections with brand backgrounds.
 
@@ -34017,10 +32471,7 @@ brand 600 (#011627), primary brand 500, secondary brand 400, inverse white.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-contrast-high.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator on a tinted background using the strong palette colour.
+![Variation example — A separator on a tinted background using the strong palette colour. (Sample content on the preview; file screenshots/separator-contrast-high.jpg)](screenshots/separator-contrast-high.jpg){width=100%}
 
 **Use Cases:** Background images, Highlight sections.
 
@@ -34046,10 +32497,7 @@ brand 600 (#011627), primary brand 500, secondary brand 400, inverse white.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-opacity.png` \
-> **Purpose:** Variation example \
-> **Description:** Four Strong separators at 100%, 75%, 50% and 25% opacity.
+![Variation example — Four Strong separators at 100%, 75%, 50% and 25% opacity. (Sample content on the preview; file screenshots/separator-opacity.jpg)](screenshots/separator-opacity.jpg){width=100%}
 
 **Use Cases:** Fine-tuning of brand or strong lines.
 
@@ -34075,10 +32523,7 @@ always uses opacity 1.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-partial-width.png` \
-> **Purpose:** Variation example \
-> **Description:** Three separators at 25%, 50% and 75% width, centred.
+![Variation example — Three separators at 25%, 50% and 75% width, centred. (Sample content on the preview; file screenshots/separator-partial-width.jpg)](screenshots/separator-partial-width.jpg){width=100%}
 
 **Use Cases:** Accent under a title (25%), light division under an intro (50%).
 
@@ -34106,10 +32551,7 @@ too).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-content-width.png` \
-> **Purpose:** Variation example \
-> **Description:** On a 2560px screen, a line capped at 90rem in a full-width section.
+![Variation example — On a 2560px screen, a line capped at 90rem in a full-width section. (Sample content on the preview; file screenshots/separator-content-width.jpg)](screenshots/separator-content-width.jpg){width=100%}
 
 **Use Cases:** Full-width sections on very wide screens.
 
@@ -34133,10 +32575,7 @@ too).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-full-bleed.png` \
-> **Purpose:** Variation example \
-> **Description:** A Branded line covering the section padding on both sides at mobile width.
+![Variation example — A Branded line covering the section padding on both sides at mobile width. (Sample content on the preview; file screenshots/separator-full-bleed.jpg)](screenshots/separator-full-bleed.jpg){width=38%}
 
 **Use Cases:** Strong section divisions on mobile and desktop.
 
@@ -34164,10 +32603,7 @@ sides, negative margins).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-max-width.png` \
-> **Purpose:** Variation example \
-> **Description:** A 100% separator capped at Medium (40rem) on desktop, centred.
+![Variation example — A 100% separator capped at Medium (40rem) on desktop, centred. (Sample content on the preview; file screenshots/separator-max-width.jpg)](screenshots/separator-max-width.jpg){width=100%}
 
 **Use Cases:** Consistent short dividers on wide screens.
 
@@ -34193,10 +32629,7 @@ percentage width usually wins.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-stretch.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator configured at 25% that still fills its container because Stretch is on.
+![Variation example — A separator configured at 25% that still fills its container because Stretch is on. (Sample content on the preview; file screenshots/separator-stretch.jpg)](screenshots/separator-stretch.jpg){width=100%}
 
 **Use Cases:** Overriding widths inherited from a variant without changing each width field.
 
@@ -34221,10 +32654,7 @@ margins). The maximum width caps still apply.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-decoration-dot.png` \
-> **Purpose:** Variation example \
-> **Description:** A thin line with a dot at its centre.
+![Variation example — A thin line with a dot at its centre. (Sample content on the preview; file screenshots/separator-decoration-dot.jpg)](screenshots/separator-decoration-dot.jpg){width=100%}
 
 **Use Cases:** Decorative chapter breaks.
 
@@ -34252,10 +32682,7 @@ centred on the line.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-decoration-square.png` \
-> **Purpose:** Variation example \
-> **Description:** A line with squares at the start and the end.
+![Variation example — A line with squares at the start and the end. (Sample content on the preview; file screenshots/separator-decoration-square.jpg)](screenshots/separator-decoration-square.jpg){width=100%}
 
 **Use Cases:** Technical / structured design accents.
 
@@ -34279,10 +32706,7 @@ centred on the line.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-decoration-diamond.png` \
-> **Purpose:** Variation example \
-> **Description:** A medium line at 50% width with a diamond at the centre.
+![Variation example — A medium line at 50% width with a diamond at the centre. (Sample content on the preview; file screenshots/separator-decoration-diamond.jpg)](screenshots/separator-decoration-diamond.jpg){width=100%}
 
 **Use Cases:** "A decorated chapter break: Semantic, Medium, 50%, Center decoration Diamond"
 (README example).
@@ -34307,10 +32731,7 @@ centred on the line.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-hidden-desktop.png` \
-> **Purpose:** Variation example \
-> **Description:** Mobile view with the separator between stacked content; desktop view of the same page without it.
+![Variation example — Mobile view with the separator between stacked content; desktop view of the same page without it. (Sample content on the preview; file screenshots/separator-hidden-desktop.jpg)](screenshots/separator-hidden-desktop.jpg){width=100%}
 
 **Use Cases:** Separating stacked columns on mobile / tablet.
 
@@ -34334,10 +32755,7 @@ centred on the line.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-hidden-tablet.png` \
-> **Purpose:** Variation example \
-> **Description:** The page at 1024px without the separator, and at 1440px with it.
+![Variation example — The page at 1024px without the separator, and at 1440px with it. (Sample content on the preview; file screenshots/separator-hidden-tablet.jpg)](screenshots/separator-hidden-tablet.jpg){width=100%}
 
 **Use Cases:** Layouts that look crowded on tablet.
 
@@ -34361,10 +32779,7 @@ centred on the line.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-hidden-mobile.png` \
-> **Purpose:** Variation example \
-> **Description:** Desktop view with the separator; mobile view without it.
+![Variation example — Desktop view with the separator; mobile view without it. (Sample content on the preview; file screenshots/separator-hidden-mobile.jpg)](screenshots/separator-hidden-mobile.jpg){width=100%}
 
 **Use Cases:** "A desktop-only divider of two columns: Show on tablet / mobile off" (README).
 
@@ -34390,10 +32805,7 @@ recommended; Hide block on the Additional tab does the same more clearly).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-hidden-all.png` \
-> **Purpose:** Variation example \
-> **Description:** Universal Editor edit mode: a dashed placeholder box with the note "Separator hidden on all devices"; the published page shows nothing.
+![Variation example — Universal Editor edit mode: a dashed placeholder box with the note "Separator hidden on all devices"; the published page shows nothing. (Sample content on the preview; file screenshots/separator-hidden-all.jpg)](screenshots/separator-hidden-all.jpg){width=100%}
 
 **Use Cases:** Temporary removal.
 
@@ -34422,10 +32834,7 @@ devices").
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-desktop-overrides.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator that is 100% thin on mobile and 50% medium, start-aligned on desktop.
+![Variation example — A separator that is 100% thin on mobile and 50% medium, start-aligned on desktop. (Sample content on the preview; file screenshots/separator-desktop-overrides.jpg)](screenshots/separator-desktop-overrides.jpg){width=100%}
 
 **Use Cases:** Shorter accent lines on wide screens.
 
@@ -34453,10 +32862,7 @@ other than Full bleed removes the bleed.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-tablet-overrides.png` \
-> **Purpose:** Variation example \
-> **Description:** At 1024px a separator at 75% width, centred, while desktop shows 50%.
+![Variation example — At 1024px a separator at 75% width, centred, while desktop shows 50%. (Sample content on the preview; file screenshots/separator-tablet-overrides.jpg)](screenshots/separator-tablet-overrides.jpg){width=100%}
 
 **Use Cases:** Intermediate widths for tablet layouts.
 
@@ -34481,10 +32887,7 @@ other than Full bleed removes the bleed.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-mobile-overrides.png` \
-> **Purpose:** Variation example \
-> **Description:** At 390px a separator at 100% thin while desktop shows a 25% medium accent.
+![Variation example — At 390px a separator at 100% thin while desktop shows a 25% medium accent. (Sample content on the preview; file screenshots/separator-mobile-overrides.jpg)](screenshots/separator-mobile-overrides.jpg){width=100%}
 
 **Use Cases:** Full-width lines on small screens.
 
@@ -34508,10 +32911,7 @@ other than Full bleed removes the bleed.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-desktop-spacing.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator with Desktop top spacing None and bottom spacing Large under a heading.
+![Variation example — A separator with Desktop top spacing None and bottom spacing Large under a heading. (Sample content on the preview; file screenshots/separator-desktop-spacing.jpg)](screenshots/separator-desktop-spacing.jpg){width=100%}
 
 **Use Cases:** "A brand accent under a title: Desktop top spacing None" (README).
 
@@ -34540,10 +32940,7 @@ neighbouring margins.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-tablet-spacing.png` \
-> **Purpose:** Variation example \
-> **Description:** At 1024px a separator with Small spacing above and below.
+![Variation example — At 1024px a separator with Small spacing above and below. (Sample content on the preview; file screenshots/separator-tablet-spacing.jpg)](screenshots/separator-tablet-spacing.jpg){width=82%}
 
 **Use Cases:** Tighter rhythm on tablet.
 
@@ -34567,10 +32964,7 @@ neighbouring margins.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-mobile-spacing.png` \
-> **Purpose:** Variation example \
-> **Description:** At 390px a separator with XS spacing above and below.
+![Variation example — At 390px a separator with XS spacing above and below. (Sample content on the preview; file screenshots/separator-mobile-spacing.jpg)](screenshots/separator-mobile-spacing.jpg){width=38%}
 
 **Use Cases:** Less whitespace on small screens.
 
@@ -34594,10 +32988,7 @@ neighbouring margins.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-section-padding.png` \
-> **Purpose:** Variation example \
-> **Description:** A separator at the top of a Highlight section with no space of its own.
+![Variation example — A separator at the top of a Highlight section with no space of its own. (Sample content on the preview; file screenshots/separator-section-padding.jpg)](screenshots/separator-section-padding.jpg){width=100%}
 
 **Use Cases:** A separator as the first or last element of a padded section.
 
@@ -34622,10 +33013,7 @@ six spacing selects are then ignored.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-animate-fade.png` \
-> **Purpose:** Variation example \
-> **Description:** Two frames: the line invisible before it enters the viewport, then fully visible.
+![Variation example — Two frames: the line invisible before it enters the viewport, then fully visible. (Sample content on the preview; file screenshots/separator-animate-fade.jpg)](screenshots/separator-animate-fade.jpg){width=100%}
 
 **Use Cases:** Storytelling pages.
 
@@ -34654,10 +33042,7 @@ IntersectionObserver (threshold 0.1) → opacity 1 with a 0.6s ease-out transiti
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-animate-draw-start.png` \
-> **Purpose:** Variation example \
-> **Description:** Three frames of the line growing from the left edge.
+![Variation example — Three frames of the line growing from the left edge. (Sample content on the preview; file screenshots/separator-animate-draw-start.jpg)](screenshots/separator-animate-draw-start.jpg){width=100%}
 
 **Use Cases:** Emphasis at chapter starts.
 
@@ -34682,10 +33067,7 @@ pages, `:dir(rtl)`), animated to full width in 0.6s.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-animate-draw-center.png` \
-> **Purpose:** Variation example \
-> **Description:** Three frames of the line growing from its centre to both ends.
+![Variation example — Three frames of the line growing from its centre to both ends. (Sample content on the preview; file screenshots/separator-animate-draw-center.jpg)](screenshots/separator-animate-draw-center.jpg){width=100%}
 
 **Use Cases:** Centred, symmetrical layouts.
 
@@ -34737,10 +33119,7 @@ animated.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-analytics.png` \
-> **Purpose:** Variation example \
-> **Description:** The browser console showing window.adobeDataLayer with the separator's component entry.
+![Variation example — The browser console showing window.adobeDataLayer with the separator's component entry. (Sample content on the preview; file screenshots/separator-analytics.jpg)](screenshots/separator-analytics.jpg){width=100%}
 
 **Use Cases:** A/B or design tests that need the separator's configuration in the data layer.
 
@@ -34761,10 +33140,7 @@ characters (Enforced in code).
 
 ### 6.26.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Universal Editor edit mode with a Separator selected between two text components; the blue selection outline around the thin line and its spacing; the content tree shows "Separator" in the section.
+![Universal Editor canvas — Universal Editor edit mode with a Separator selected between two text components; the blue selection outline around the thin line and its spacing; the content tree shows "Separator" in the section. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/separator-authoring-view.jpg)](screenshots/separator-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -34774,10 +33150,7 @@ characters (Enforced in code).
 - D = The editor note ("Separator hidden on all devices" or "Semantic separator without a line: …"), shown only in edit mode when a warning applies
 - E = The block entry "Separator" in the content tree
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/separator-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of a selected Separator with its tabs General, Appearance, Responsive, Spacing, Advanced and Additional; the General tab open.
+![Properties panel — The properties panel of a selected Separator with its tabs General, Appearance, Responsive, Spacing, Advanced and Additional; the General tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/separator-properties-panel.jpg)](screenshots/separator-properties-panel.jpg){width=100%}
 
 **Properties panel tabs:**
 
@@ -35525,10 +33898,7 @@ Vimeo (`vimeo.com/{id}`); Twitter / X post URLs (`twitter.com`, `x.com`, with or
 
 ### 6.27.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** At 1440px: a YouTube embed with a placeholder image and a large round brand-blue Play button in the centre, 900px wide, centred in the section, with 1rem rounded corners.
+![Desktop rendering — At 1440px: a YouTube embed with a placeholder image and a large round brand-blue Play button in the centre, 900px wide, centred in the section, with 1rem rounded corners. (Sample content on the preview; file screenshots/embed-desktop-view.jpg)](screenshots/embed-desktop-view.jpg){width=100%}
 
 **Desktop (≥ 1200px):** The block is centred with a maximum width of 56.25rem (900px). Video and
 iframe embeds are 16:9 (`aspect-ratio: 16 / 9`) with 1rem rounded corners (`--radius-l`) and the
@@ -35536,18 +33906,12 @@ iframe filling the frame without a border. With a placeholder image, the image c
 area (`object-fit: cover`) and the Play button (a primary icon button, 2.75rem, scaled ×1.4) is
 centred on it. Twitter / X posts are centred and take the height the widget renders.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** At 768px: a Vimeo player in a 16:9 frame filling the content width.
+![Tablet rendering — At 768px: a Vimeo player in a 16:9 frame filling the content width. (Sample content on the preview; file screenshots/embed-tablet-view.jpg)](screenshots/embed-tablet-view.jpg){width=61%}
 
 **Tablet (600–1199px):** Same layout; below 900px of available width the embed fills the content
 width and keeps 16:9. There are no breakpoint-specific rules in `embed.css`.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** At 390px: an embedded X post centred, and below it a YouTube placeholder image at full width with the Play button.
+![Mobile rendering — At 390px: an embedded X post centred, and below it a YouTube placeholder image at full width with the Play button. (Sample content on the preview; file screenshots/embed-mobile-view.jpg)](screenshots/embed-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px):** Same layout at full content width. Before an embed without placeholder
 loads, the block reserves a 16:9 area to avoid layout shift (`.embed:not(.embed-is-loaded,
@@ -35666,10 +34030,7 @@ Limitations).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-generic-iframe.png` \
-> **Purpose:** Variation example \
-> **Description:** A third-party interactive page displayed in a 16:9 rounded frame.
+![Variation example — A third-party interactive page displayed in a 16:9 rounded frame. (Sample content on the preview; file screenshots/embed-generic-iframe.jpg)](screenshots/embed-generic-iframe.jpg){width=74%}
 
 **Use Cases:** Approved interactive content, maps or reports from partners.
 
@@ -35700,10 +34061,7 @@ visitor chooses Play; a branded image replaces the provider's preview.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-placeholder-play.png` \
-> **Purpose:** Variation example \
-> **Description:** A 16:9 placeholder image with the round brand-blue Play button centred; second frame: the YouTube player playing after the click.
+![Variation example — A 16:9 placeholder image with the round brand-blue Play button centred; second frame: the YouTube player playing after the click. (Sample content on the preview; file screenshots/embed-placeholder-play.jpg)](screenshots/embed-placeholder-play.jpg){width=74%}
 
 **Use Cases:** Above-the-fold videos, pages with several videos, campaign pages with branded
 thumbnails.
@@ -35734,10 +34092,7 @@ image (WCAG 1.1.1).
 
 ### 6.27.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Universal Editor edit mode with an Embed block selected that has a placeholder image and Play button; the properties panel open on the Content tab.
+![Universal Editor canvas — Universal Editor edit mode with an Embed block selected that has a placeholder image and Play button; the properties panel open on the Content tab. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/embed-authoring-view.jpg)](screenshots/embed-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -35746,10 +34101,7 @@ image (WCAG 1.1.1).
 - C = The Play button (generated, not authorable; label from the placeholders sheet)
 - D = The player area (the embed loaded from the URI after Play, or on scroll without a placeholder)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/embed-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Embed properties panel: Content tab with Placeholder Image, Placeholder Image Alt Text and URI; the Additional tab.
+![Properties panel — The Embed properties panel: Content tab with Placeholder Image, Placeholder Image Alt Text and URI; the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/embed-properties-panel.jpg)](screenshots/embed-properties-panel.jpg){width=100%}
 
 **Properties panel tabs:**
 
@@ -36314,10 +34666,7 @@ extension), YouTube URLs (watch, `youtu.be`, `/embed/`, `/shorts/`, `/live/`), V
 
 ### 6.28.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** At 1440px: a Large (900px) 16:9 video, centred, with 1rem rounded corners, a poster image and a round brand-blue Play button in the centre; a grey caption and a "Read the transcript" link below.
+![Desktop rendering — At 1440px: a Large (900px) 16:9 video, centred, with 1rem rounded corners, a poster image and a round brand-blue Play button in the centre; a grey caption and a "Read the transcript" link below. (Sample content on the preview; file screenshots/video-desktop-view.jpg)](screenshots/video-desktop-view.jpg){width=74%}
 
 **Desktop (≥ 1200px):** The block's maximum width depends on Size (Large 56.25rem default, Medium
 40rem, Small 26.25rem, Full width none) and its position on Alignment (centre default; left /
@@ -36328,19 +34677,13 @@ right for sizes other than full width). The media area keeps the chosen aspect r
 Below: caption (0.75rem top margin, `--color-text-secondary`, small body size) and the transcript
 link (0.5rem top margin, small body size).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** At 768px: the same video filling the content width with the aspect ratio kept; a background video with the pause button in the bottom-right corner.
+![Tablet rendering — At 768px: the same video filling the content width with the aspect ratio kept; a background video with the pause button in the bottom-right corner. (Sample content on the preview; file screenshots/video-tablet-view.jpg)](screenshots/video-tablet-view.jpg){width=57%}
 
 **Tablet (600–1199px):** Same rules; when the content width is less than the Size maximum, the
 video fills the content width. There are no breakpoint-specific rules in `video.css`; the body
 font size of caption and transcript steps up at 900px (global tokens).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** At 390px: a 9:16 vertical video at full width, and a 16:9 video with poster and Play button; caption below.
+![Mobile rendering — At 390px: a 9:16 vertical video at full width, and a 16:9 video with poster and Play button; caption below. (Sample content on the preview; file screenshots/video-mobile-view.jpg)](screenshots/video-mobile-view.jpg){width=38%}
 
 **Mobile (< 600px):** Full content width for all sizes; aspect ratio kept (a 9:16 video becomes
 tall: limit its Size to Small or Medium). Video files play inline (`playsinline`), not in the
@@ -36454,10 +34797,7 @@ class).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-play-button-poster.png` \
-> **Purpose:** Variation example \
-> **Description:** A poster image with the centred Play button; second frame: the video playing in place.
+![Variation example — A poster image with the centred Play button; second frame: the video playing in place. (Sample content on the preview; file screenshots/video-play-button-poster.jpg)](screenshots/video-play-button-poster.jpg){width=74%}
 
 **Use Cases:** Most content videos.
 
@@ -36515,10 +34855,7 @@ Loop, controls and times apply.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-popup.png` \
-> **Purpose:** Variation example \
-> **Description:** The page dimmed behind a dialog containing the playing video and a Close button at the top.
+![Variation example — The page dimmed behind a dialog containing the playing video and a Close button at the top. (Sample content on the preview; file screenshots/video-popup.jpg)](screenshots/video-popup.jpg){width=100%}
 
 **Use Cases:** Teaser images that open a keynote; compact layouts.
 
@@ -36581,10 +34918,7 @@ action (WCAG 1.4.2).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-autoplay-no-controls.png` \
-> **Purpose:** Variation example \
-> **Description:** A playing video without controls and a round "Pause video" button in the bottom-right corner.
+![Variation example — A playing video without controls and a round "Pause video" button in the bottom-right corner. (Sample content on the preview; file screenshots/video-autoplay-no-controls.jpg)](screenshots/video-autoplay-no-controls.jpg){width=74%}
 
 **Use Cases:** Visual storytelling sections.
 
@@ -36612,10 +34946,7 @@ with the state.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-background.png` \
-> **Purpose:** Variation example \
-> **Description:** A full-width looping silent video with only the small pause button in the corner.
+![Variation example — A full-width looping silent video with only the small pause button in the corner. (Sample content on the preview; file screenshots/video-background.jpg)](screenshots/video-background.jpg){width=100%}
 
 **Use Cases:** Atmosphere at the top of campaign pages.
 
@@ -36786,10 +35117,7 @@ code. One track; it is the default track.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-caption-transcript.png` \
-> **Purpose:** Variation example \
-> **Description:** A video with a caption line below and a "Read the transcript" link.
+![Variation example — A video with a caption line below and a "Read the transcript" link. (Sample content on the preview; file screenshots/video-caption-transcript.jpg)](screenshots/video-caption-transcript.jpg){width=53%}
 
 **Use Cases:** Interviews, keynotes, any video with information.
 
@@ -36817,10 +35145,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-ratio-16-9.png` \
-> **Purpose:** Variation example \
-> **Description:** A 16:9 media area.
+![Variation example — A 16:9 media area. (Sample content on the preview; file screenshots/video-ratio-16-9.jpg)](screenshots/video-ratio-16-9.jpg){width=53%}
 
 **Use Cases:** Most videos.
 
@@ -36844,10 +35169,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-ratio-4-3.png` \
-> **Purpose:** Variation example \
-> **Description:** A 4:3 media area.
+![Variation example — A 4:3 media area. (Sample content on the preview; file screenshots/video-ratio-4-3.jpg)](screenshots/video-ratio-4-3.jpg){width=53%}
 
 **Use Cases:** Archive footage, slide recordings.
 
@@ -36872,10 +35194,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-ratio-1-1.png` \
-> **Purpose:** Variation example \
-> **Description:** A square video, Size Medium, centred.
+![Variation example — A square video, Size Medium, centred. (Sample content on the preview; file screenshots/video-ratio-1-1.jpg)](screenshots/video-ratio-1-1.jpg){width=100%}
 
 **Use Cases:** Social cut-downs.
 
@@ -36899,10 +35218,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-ratio-21-9.png` \
-> **Purpose:** Variation example \
-> **Description:** A 21:9 full-width background video.
+![Variation example — A 21:9 full-width background video. (Sample content on the preview; file screenshots/video-ratio-21-9.jpg)](screenshots/video-ratio-21-9.jpg){width=100%}
 
 **Use Cases:** Background videos at the top of a page.
 
@@ -36926,10 +35242,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-ratio-9-16.png` \
-> **Purpose:** Variation example \
-> **Description:** A vertical video, Size Small, centred on desktop; full width on mobile.
+![Variation example — A vertical video, Size Small, centred on desktop; full width on mobile. (Sample content on the preview; file screenshots/video-ratio-9-16.jpg)](screenshots/video-ratio-9-16.jpg){width=100%}
 
 **Use Cases:** YouTube Shorts, social clips.
 
@@ -36953,10 +35266,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-size-full.png` \
-> **Purpose:** Variation example \
-> **Description:** A video spanning the full content width of the section.
+![Variation example — A video spanning the full content width of the section. (Sample content on the preview; file screenshots/video-size-full.jpg)](screenshots/video-size-full.jpg){width=100%}
 
 **Use Cases:** Background videos, hero-like videos.
 
@@ -36980,10 +35290,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-size-large.png` \
-> **Purpose:** Variation example \
-> **Description:** A 900px-wide video centred on desktop.
+![Variation example — A 900px-wide video centred on desktop. (Sample content on the preview; file screenshots/video-size-large.jpg)](screenshots/video-size-large.jpg){width=100%}
 
 **Use Cases:** Most videos.
 
@@ -37007,10 +35314,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-size-medium.png` \
-> **Purpose:** Variation example \
-> **Description:** A 640px-wide video.
+![Variation example — A 640px-wide video. (Sample content on the preview; file screenshots/video-size-medium.jpg)](screenshots/video-size-medium.jpg){width=100%}
 
 **Use Cases:** Supporting clips in articles.
 
@@ -37034,10 +35338,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-size-small.png` \
-> **Purpose:** Variation example \
-> **Description:** A 420px-wide vertical video aligned left.
+![Variation example — A 420px-wide vertical video aligned left. (Sample content on the preview; file screenshots/video-size-small.jpg)](screenshots/video-size-small.jpg){width=100%}
 
 **Use Cases:** 9:16 and 1:1 clips.
 
@@ -37061,10 +35362,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-align-center.png` \
-> **Purpose:** Variation example \
-> **Description:** A Medium video centred in the section.
+![Variation example — A Medium video centred in the section. (Sample content on the preview; file screenshots/video-align-center.jpg)](screenshots/video-align-center.jpg){width=100%}
 
 **Use Cases:** Default.
 
@@ -37088,10 +35386,7 @@ transcript.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-align-left.png` \
-> **Purpose:** Variation example \
-> **Description:** A Small video aligned with the start of the text column.
+![Variation example — A Small video aligned with the start of the text column. (Sample content on the preview; file screenshots/video-align-left.jpg)](screenshots/video-align-left.jpg){width=100%}
 
 **Use Cases:** Editorial layouts.
 
@@ -37116,10 +35411,7 @@ pages "Left" aligns to the start (right) side.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-align-right.png` \
-> **Purpose:** Variation example \
-> **Description:** A Small video aligned to the right edge.
+![Variation example — A Small video aligned to the right edge. (Sample content on the preview; file screenshots/video-align-right.jpg)](screenshots/video-align-right.jpg){width=100%}
 
 **Use Cases:** Editorial layouts.
 
@@ -37143,10 +35435,7 @@ pages "Left" aligns to the start (right) side.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-rounded.png` \
-> **Purpose:** Variation example \
-> **Description:** A video with 1rem rounded corners.
+![Variation example — A video with 1rem rounded corners. (Sample content on the preview; file screenshots/video-rounded.jpg)](screenshots/video-rounded.jpg){width=53%}
 
 **Use Cases:** Default.
 
@@ -37170,10 +35459,7 @@ pages "Left" aligns to the start (right) side.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-square-corners.png` \
-> **Purpose:** Variation example \
-> **Description:** A full-width background video with square corners.
+![Variation example — A full-width background video with square corners. (Sample content on the preview; file screenshots/video-square-corners.jpg)](screenshots/video-square-corners.jpg){width=100%}
 
 **Use Cases:** Full-width background videos.
 
@@ -37254,10 +35540,7 @@ regular host).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-reduced-motion.png` \
-> **Purpose:** Variation example \
-> **Description:** A background video configured block shown with its poster and a Play button because the OS reduced-motion setting is on.
+![Variation example — A background video configured block shown with its poster and a Play button because the OS reduced-motion setting is on. (Sample content on the preview; file screenshots/video-reduced-motion.jpg)](screenshots/video-reduced-motion.jpg){width=74%}
 
 **Use Cases:** All autoplay and background videos.
 
@@ -37283,10 +35566,7 @@ videos so the reduced-motion view looks good.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-legacy.png` \
-> **Purpose:** Variation example \
-> **Description:** A Video block created with the earlier model rendering correctly.
+![Variation example — A Video block created with the earlier model rendering correctly. (Sample content on the preview; file screenshots/video-legacy.jpg)](screenshots/video-legacy.jpg){width=74%}
 
 **Use Cases:** Pages created before the current model.
 
@@ -37307,10 +35587,7 @@ holds click / autoplay / background.
 
 ### 6.28.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** Universal Editor edit mode with a Video block selected: poster image with Play button, caption and transcript link below; the properties panel open on the Video tab.
+![Universal Editor canvas — Universal Editor edit mode with a Video block selected: poster image with Play button, caption and transcript link below; the properties panel open on the Video tab. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/video-authoring-view.jpg)](screenshots/video-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
@@ -37322,10 +35599,7 @@ holds click / autoplay / background.
 - F = The transcript link (Transcript)
 - G = The pause / stop toggle (generated for autoplay without controls and background videos)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/video-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional.
+![Properties panel — The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg)](screenshots/video-properties-panel.jpg){width=100%}
 
 **Properties panel tabs:**
 
@@ -38069,10 +36343,7 @@ metadata; it works the same on every content type.
 
 ### 6.29.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** Form Variations at 1280 px wide, Default theme: title "Contact us",
+![Desktop rendering — Form Variations at 1280 px wide, Default theme: title "Contact us", (Sample content on the preview; file screenshots/form-variations-desktop-view.jpg)](screenshots/form-variations-desktop-view.jpg){width=59%}
 > description, "* Required fields" note, First name and Last name side by side, full-width
 > Email, Region dropdown, Message textarea with "0/1500" counter, consent checkbox, black
 > primary "Send" button with arrow.
@@ -38092,10 +36363,7 @@ phone links. The submit button is the site primary button (black, white text, tr
 left-aligned. The status message appears below the form in the brand colour after a successful
 submit.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** Form Variations at 768 px wide, Default theme: every field stacked in one
+![Tablet rendering — Form Variations at 768 px wide, Default theme: every field stacked in one (Sample content on the preview; file screenshots/form-variations-tablet-view.jpg)](screenshots/form-variations-tablet-view.jpg){width=57%}
 > column, including First name and Last name, counter under the textarea, button left-aligned.
 
 **Tablet (600–899 px):** One column: every item, including half-width name fields, is full
@@ -38103,10 +36371,7 @@ width. The block is still limited to 45rem and centred. In the Dark theme the pa
 to 3rem top/bottom and 2.5rem left/right. Between 900 and 1199 px the desktop two-column grid
 already applies (the form's only breakpoints are 600 px and 900 px).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** Form Variations at 375 px wide: single column, full-width inputs and
+![Mobile rendering — Form Variations at 375 px wide: single column, full-width inputs and (Sample content on the preview; file screenshots/form-variations-mobile-view.jpg)](screenshots/form-variations-mobile-view.jpg){width=38%}
 > dropdown, consent checkbox with wrapped text, primary Send button, success message under the
 > form after submitting.
 
@@ -38129,10 +36394,7 @@ background.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-default-theme.png` \
-> **Purpose:** Default theme \
-> **Description:** Light form on a white section: dark text, grey-bordered inputs, black
+![Default theme — Light form on a white section: dark text, grey-bordered inputs, black (Sample content on the preview; file screenshots/form-variations-default-theme.jpg)](screenshots/form-variations-default-theme.jpg){width=59%}
 > primary Send button, brand-coloured status message.
 
 **Use Cases:** Contact pages, enquiry sections in articles and landing pages.
@@ -38165,10 +36427,7 @@ campaign or conversion sections.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-dark-theme.png` \
-> **Purpose:** Dark theme \
-> **Description:** Black rounded panel spanning the section width, white text, transparent
+![Dark theme — Black rounded panel spanning the section width, white text, transparent (Sample content on the preview; file screenshots/form-variations-dark-theme.jpg)](screenshots/form-variations-dark-theme.jpg){width=100%}
 > inputs with light borders, white primary Send button, contact name in the light brand colour.
 
 **Use Cases:** "Get in touch" end-of-page panels, campaign landing pages, event registration
@@ -38206,10 +36465,7 @@ name side by side, matching the TCS design.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-half-width.png` \
-> **Purpose:** Half-width name fields \
-> **Description:** Desktop form where "First name" and "Last name" share one row and Email
+![Half-width name fields — Desktop form where "First name" and "Last name" share one row and Email (Sample content on the preview; file screenshots/form-variations-half-width.jpg)](screenshots/form-variations-half-width.jpg){width=59%}
 > spans the full width below.
 
 **Use Cases:** First / last name pairs; any pair of short text inputs.
@@ -38248,10 +36504,7 @@ so the visual order and the focus order match (WCAG 1.3.2, 2.4.3).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-full-width.png` \
-> **Purpose:** Single-column form \
-> **Description:** Desktop form where every field (Full name, Email, Phone, Message) spans the
+![Single-column form — Desktop form where every field (Full name, Email, Phone, Message) spans the (Sample content on the preview; file screenshots/form-variations-full-width.jpg)](screenshots/form-variations-full-width.jpg){width=59%}
 > full 45rem width.
 
 **Use Cases:** Short forms, feedback forms, forms with a single "fullName" field.
@@ -38279,10 +36532,7 @@ reflow) and screen magnifiers.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-input-text.png` \
-> **Purpose:** Text input \
-> **Description:** "Company" label with asterisk above an empty single-line input.
+![Text input — "Company" label with asterisk above an empty single-line input. (Sample content on the preview; file screenshots/form-variations-input-text.jpg)](screenshots/form-variations-input-text.jpg){width=59%}
 
 **Use Cases:** First name, last name, company, job title, country, city, postal code.
 
@@ -38313,10 +36563,7 @@ input purpose (WCAG 1.3.5); required state exposed by the native attribute.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-input-email.png` \
-> **Purpose:** Email input with error \
-> **Description:** "Business email" input with a red border and the inline error "Enter a valid
+![Email input with error — "Business email" input with a red border and the inline error "Enter a valid (Sample content on the preview; file screenshots/form-variations-input-email.jpg)](screenshots/form-variations-input-email.jpg){width=59%}
 > email address." below it.
 
 **Use Cases:** Business email, contact email.
@@ -38346,10 +36593,7 @@ layout.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-input-tel.png` \
-> **Purpose:** Phone input \
-> **Description:** "Phone number" input on a mobile screen with the numeric telephone keypad
+![Phone input — "Phone number" input on a mobile screen with the numeric telephone keypad (Sample content on the preview; file screenshots/form-variations-input-tel.jpg)](screenshots/form-variations-input-tel.jpg){width=38%}
 > open.
 
 **Use Cases:** Phone or mobile number.
@@ -38377,10 +36621,7 @@ drives conditional fields and contact cards.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-dropdown.png` \
-> **Purpose:** Dropdown field \
-> **Description:** "Region" dropdown open, showing the disabled prompt "Select an option" and
+![Dropdown field — "Region" dropdown open, showing the disabled prompt "Select an option" and (Sample content on the preview; file screenshots/form-variations-dropdown.jpg)](screenshots/form-variations-dropdown.jpg){width=59%}
 > the options "Asia Pacific", "Europe", "India", "North America".
 
 **Use Cases:** Sector, region, country, topic of enquiry, "How did you hear about us?".
@@ -38413,10 +36654,7 @@ visible label; the prompt option cannot be re-selected.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-textarea.png` \
-> **Purpose:** Textarea with counter \
-> **Description:** "How can we help you?" textarea four rows tall with some typed text and the
+![Textarea with counter — "How can we help you?" textarea four rows tall with some typed text and the (Sample content on the preview; file screenshots/form-variations-textarea.jpg)](screenshots/form-variations-textarea.jpg){width=59%}
 > counter "124/1500" right-aligned below it.
 
 **Use Cases:** Message, feedback, project description.
@@ -38448,10 +36686,7 @@ authorable rich text including links.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-consent-checkbox.png` \
-> **Purpose:** Consent checkbox \
-> **Description:** Checkbox followed by small text "I agree to the processing of my personal
+![Consent checkbox — Checkbox followed by small text "I agree to the processing of my personal (Sample content on the preview; file screenshots/form-variations-consent-checkbox.jpg)](screenshots/form-variations-consent-checkbox.jpg){width=59%}
 > data as described in the Privacy Notice" with "Privacy Notice" underlined as a link, and a red
 > asterisk.
 
@@ -38490,10 +36725,7 @@ dropdown answer.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-conditional-fields.png` \
-> **Purpose:** Conditional field shown \
-> **Description:** Sector dropdown set to "Other" and the newly visible "Please specify your
+![Conditional field shown — Sector dropdown set to "Other" and the newly visible "Please specify your (Sample content on the preview; file screenshots/form-variations-conditional-fields.jpg)](screenshots/form-variations-conditional-fields.jpg){width=59%}
 > sector" text input below it.
 
 **Use Cases:** "Other — please specify"; region-specific consent texts; a different submit
@@ -38531,10 +36763,7 @@ for the visitor's selection, without submitting anything.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-contact-card.png` \
-> **Purpose:** Contact card shown for a region \
-> **Description:** Region dropdown set to "India"; below it, after a thin divider line, the
+![Contact card shown for a region — Region dropdown set to "India"; below it, after a thin divider line, the (Sample content on the preview; file screenshots/form-variations-contact-card.jpg)](screenshots/form-variations-contact-card.jpg){width=59%}
 > contact name in brand blue and two mailto links and one phone link listed vertically.
 
 **Use Cases:** Regional media, sales or partner contacts; office contacts per country.
@@ -38568,10 +36797,7 @@ region-specific call to action).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-submit-button.png` \
-> **Purpose:** Submit button and success message \
-> **Description:** Black primary "Send" button with trailing arrow, and below the form the
+![Submit button and success message — Black primary "Send" button with trailing arrow, and below the form the (Sample content on the preview; file screenshots/form-variations-submit-button.jpg)](screenshots/form-variations-submit-button.jpg){width=59%}
 > brand-coloured message "Thank you, your details were sent.".
 
 **Use Cases:** "Send", "Submit enquiry", "Request a call back".
@@ -38597,10 +36823,7 @@ region that also receives focus (`tabindex="-1"`), so it is announced (WCAG 4.1.
 
 ### 6.29.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Form Variations block selected in Universal Editor with the content tree
+![Universal Editor canvas — A Form Variations block selected in Universal Editor with the content tree (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/form-variations-authoring-view.jpg)](screenshots/form-variations-authoring-view.jpg){width=61%}
 > showing its items; all conditional items visible with dashed borders and italic condition
 > notes; letters A–J marking the elements listed below.
 
@@ -38617,10 +36840,7 @@ region that also receives focus (`tabindex="-1"`), so it is announced (WCAG 4.1.
 - I = Condition note on a conditional item ("Shown when a dropdown value is "India""; editor only)
 - J = Submit Button item (button label)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/form-variations-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** The properties panel of the Form Variations block with the Content and
+![Properties panel — The properties panel of the Form Variations block with the Content and (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/form-variations-properties-panel.jpg)](screenshots/form-variations-properties-panel.jpg){width=100%}
 > Additional tabs, and, side by side, the panel of a Text Input Field item.
 
 **Block properties panel:**
@@ -39651,10 +37871,7 @@ the page's tags (suggestions) and its position in the site tree.
 
 ### 6.30.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** Default style at 1440 px: rounded white panel with soft blue and yellow
+![Desktop rendering — Default style at 1440 px: rounded white panel with soft blue and yellow (Sample content on the preview; file screenshots/conversation-canvas-desktop-view.jpg)](screenshots/conversation-canvas-desktop-view.jpg){width=100%}
 > glows at the bottom, centred icon, eyebrow, large title, intro text, the search row (round
 > menu button, pill search field with microphone and blue arrow button) and two buttons.
 
@@ -39669,20 +37886,14 @@ outline, translucent white, brand border on focus) containing the input, the mic
 row (min 15rem, max 22.5rem wide, max 60 % of the viewport height, scrolls). Buttons are
 centred, wrapping, 1.5rem apart. The Primary dock is described in Variation 3.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** Default style at 768 px: same layout with smaller title (3.125rem), panel
+![Tablet rendering — Default style at 768 px: same layout with smaller title (3.125rem), panel (Sample content on the preview; file screenshots/conversation-canvas-tablet-view.jpg)](screenshots/conversation-canvas-tablet-view.jpg){width=57%}
 > padding 5rem / 2.5rem, search row full width up to 42.875rem.
 
 **Tablet (600–1199 px):** Padding 5rem top/bottom, 2.5rem sides; content gap 2.5rem; eyebrow
 0.875rem; title 3.125rem (Bigger 4rem, Medium 2rem); text 1.125rem; search row gap 1.25rem; the
 field has 0.75rem / 1.5rem padding. The Primary dock shows its desktop form from 900 px.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** Default style at 375 px: compact panel, 2.5rem title, search row with menu
+![Mobile rendering — Default style at 375 px: compact panel, 2.5rem title, search row with menu (Sample content on the preview; file screenshots/conversation-canvas-mobile-view.jpg)](screenshots/conversation-canvas-mobile-view.jpg){width=38%}
 > button and narrow search pill, buttons wrapping below.
 
 **Mobile (< 600 px):** Padding 4rem top/bottom, 1.5rem sides; content gap 2.5rem; eyebrow
@@ -39700,10 +37911,7 @@ Primary dock shows only the search pill (no menu button, no navigation).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-default.png` \
-> **Purpose:** Default style \
-> **Description:** White rounded panel with blue / yellow glows, title "How can we help you
+![Default style — White rounded panel with blue / yellow glows, title "How can we help you (Sample content on the preview; file screenshots/conversation-canvas-default.jpg)](screenshots/conversation-canvas-default.jpg){width=100%}
 > today?", search row and buttons.
 
 **Use Cases:** Home page, landing pages, help / contact hubs.
@@ -39739,10 +37947,7 @@ example popular topics from a personalisation or search service).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-secondary.png` \
-> **Purpose:** Secondary style \
-> **Description:** Panel with yellow glow on the left and blue on the right, larger top
+![Secondary style — Panel with yellow glow on the left and blue on the right, larger top (Sample content on the preview; file screenshots/conversation-canvas-secondary.jpg)](screenshots/conversation-canvas-secondary.jpg){width=100%}
 > padding, search row and a row of pill filter tags (one active in brand blue).
 
 **Use Cases:** Topic or industry hubs, insights landing pages.
@@ -39788,10 +37993,7 @@ navigation that stays available while the visitor scrolls.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-primary-dock.png` \
-> **Purpose:** Primary (sticky) dock on desktop \
-> **Description:** Bottom of a desktop page with a white fade: a round menu button, a search
+![Primary (sticky) dock on desktop — Bottom of a desktop page with a white fade: a round menu button, a search (Sample content on the preview; file screenshots/conversation-canvas-primary-dock.jpg)](screenshots/conversation-canvas-primary-dock.jpg){width=100%}
 > pill "Ask us a question" and, above it, a row of navigation pills (Back arrow, "Services",
 > "Industries" with chevron, current page outlined in blue).
 
@@ -39871,10 +38073,7 @@ setConversationCanvasSuggestions(dock, ['"What is agentic AI?"', 'Cloud migratio
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-title-default.png` \
-> **Purpose:** Default title size \
-> **Description:** Canvas title at 4rem on desktop.
+![Default title size — Canvas title at 4rem on desktop. (Sample content on the preview; file screenshots/conversation-canvas-title-default.jpg)](screenshots/conversation-canvas-title-default.jpg){width=100%}
 
 **Use Cases:** Most canvases.
 
@@ -39901,10 +38100,7 @@ eyebrow.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-title-bigger.png` \
-> **Purpose:** Bigger title \
-> **Description:** Canvas with a 5rem title on desktop.
+![Bigger title — Canvas with a 5rem title on desktop. (Sample content on the preview; file screenshots/conversation-canvas-title-bigger.jpg)](screenshots/conversation-canvas-title-bigger.jpg){width=100%}
 
 **Use Cases:** Home page canvas, campaign pages.
 
@@ -39930,10 +38126,7 @@ about 40 characters).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-title-medium.png` \
-> **Purpose:** Medium title \
-> **Description:** Canvas with a 2.5rem title on desktop and line height 1.4.
+![Medium title — Canvas with a 2.5rem title on desktop and line height 1.4. (Sample content on the preview; file screenshots/conversation-canvas-title-medium.jpg)](screenshots/conversation-canvas-title-medium.jpg){width=100%}
 
 **Use Cases:** Mid-page canvases, footer-adjacent panels.
 
@@ -39959,10 +38152,7 @@ image.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-bg-default.png` \
-> **Purpose:** Default background glow \
-> **Description:** White panel with blue (left) and yellow (right) radial glows rising from
+![Default background glow — White panel with blue (left) and yellow (right) radial glows rising from (Sample content on the preview; file screenshots/conversation-canvas-bg-default.jpg)](screenshots/conversation-canvas-bg-default.jpg){width=100%}
 > the bottom edge.
 
 **Use Cases:** Any canvas without photography.
@@ -39990,10 +38180,7 @@ added (`default` when empty) but has no CSS of its own today — it is a hook fo
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-background-image.png` \
-> **Purpose:** Background image \
-> **Description:** Canvas with a light abstract image filling the rounded panel behind the
+![Background image — Canvas with a light abstract image filling the rounded panel behind the (Sample content on the preview; file screenshots/conversation-canvas-background-image.jpg)](screenshots/conversation-canvas-background-image.jpg){width=100%}
 > centred title and search row.
 
 **Use Cases:** Campaign or event canvases.
@@ -40024,10 +38211,7 @@ does not add an overlay.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-search-primary.png` \
-> **Purpose:** Primary search button \
-> **Description:** Filled brand-blue round arrow button inside the search pill.
+![Primary search button — Filled brand-blue round arrow button inside the search pill. (Sample content on the preview; file screenshots/conversation-canvas-search-primary.jpg)](screenshots/conversation-canvas-search-primary.jpg){width=57%}
 
 **Use Cases:** Most canvases.
 
@@ -40054,10 +38238,7 @@ icon; hover brand-hover).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-search-secondary.png` \
-> **Purpose:** Secondary search button \
-> **Description:** Round arrow button with a brand-blue outline and transparent fill.
+![Secondary search button — Round arrow button with a brand-blue outline and transparent fill. (Sample content on the preview; file screenshots/conversation-canvas-search-secondary.jpg)](screenshots/conversation-canvas-search-secondary.jpg){width=57%}
 
 **Use Cases:** Canvases on image backgrounds where a filled button is too heavy.
 
@@ -40082,10 +38263,7 @@ hover secondary brand colours.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-search-tertiary.png` \
-> **Purpose:** Tertiary search button \
-> **Description:** Brand-blue arrow icon without fill or border inside the search pill.
+![Tertiary search button — Brand-blue arrow icon without fill or border inside the search pill. (Sample content on the preview; file screenshots/conversation-canvas-search-tertiary.jpg)](screenshots/conversation-canvas-search-tertiary.jpg){width=57%}
 
 **Use Cases:** Minimal designs.
 
@@ -40110,10 +38288,7 @@ outline is important.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-voice-default.png` \
-> **Purpose:** Voice input \
-> **Description:** Search pill with the microphone icon highlighted in brand blue with an
+![Voice input — Search pill with the microphone icon highlighted in brand blue with an (Sample content on the preview; file screenshots/conversation-canvas-voice-default.jpg)](screenshots/conversation-canvas-voice-default.jpg){width=57%}
 > outline while listening.
 
 **Use Cases:** All canvases (automatic).
@@ -40147,10 +38322,7 @@ asks for microphone permission.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-voice-custom-icon.png` \
-> **Purpose:** Custom audio icon \
-> **Description:** Search pill with a custom 1.5rem audio icon image in place of the default
+![Custom audio icon — Search pill with a custom 1.5rem audio icon image in place of the default (Sample content on the preview; file screenshots/conversation-canvas-voice-custom-icon.jpg)](screenshots/conversation-canvas-voice-custom-icon.jpg){width=57%}
 > microphone.
 
 **Use Cases:** Campaigns with their own icon set.
@@ -40178,10 +38350,7 @@ Same browser support rules as Variation 12.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-button-view.png` \
-> **Purpose:** Button items \
-> **Description:** Two centred pill buttons below the search row: a black primary "Contact
+![Button items — Two centred pill buttons below the search row: a black primary "Contact (Sample content on the preview; file screenshots/conversation-canvas-button-view.jpg)](screenshots/conversation-canvas-button-view.jpg){width=93%}
 > us" and an outlined secondary "Explore services", each with a trailing arrow.
 
 **Use Cases:** "Contact us", "Explore our services".
@@ -40211,10 +38380,7 @@ in a column on mobile).
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-icon-view.png` \
-> **Purpose:** Icon button item \
-> **Description:** A round brand-blue icon button with a chevron-right icon below the search
+![Icon button item — A round brand-blue icon button with a chevron-right icon below the search (Sample content on the preview; file screenshots/conversation-canvas-icon-view.jpg)](screenshots/conversation-canvas-icon-view.jpg){width=93%}
 > row.
 
 **Use Cases:** Secondary shortcuts.
@@ -40241,10 +38407,7 @@ for screen readers.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-link-view.png` \
-> **Purpose:** Link item \
-> **Description:** A text link "View all FAQs" with a trailing chevron below the search row.
+![Link item — A text link "View all FAQs" with a trailing chevron below the search row. (Sample content on the preview; file screenshots/conversation-canvas-link-view.jpg)](screenshots/conversation-canvas-link-view.jpg){width=93%}
 
 **Use Cases:** "View all FAQs", "Browse topics".
 
@@ -40268,10 +38431,7 @@ for screen readers.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-floating-row.png` \
-> **Purpose:** Floating search row \
-> **Description:** Mid-page scroll position with the menu button and search pill floating
+![Floating search row — Mid-page scroll position with the menu button and search pill floating (Sample content on the preview; file screenshots/conversation-canvas-floating-row.jpg)](screenshots/conversation-canvas-floating-row.jpg){width=100%}
 > centred 1.5rem above the bottom of the viewport, with shadow and blur.
 
 **Use Cases:** Automatic for every Default / Secondary canvas.
@@ -40305,10 +38465,7 @@ pages that use the footer.
 
 **Visual Example:**
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-footer.png` \
-> **Purpose:** Footer canvas \
-> **Description:** Site footer with a centred 3.25rem balanced title, the search row 38.0625rem
+![Footer canvas — Site footer with a centred 3.25rem balanced title, the search row 38.0625rem (Sample content on the preview; file screenshots/conversation-canvas-footer.jpg)](screenshots/conversation-canvas-footer.jpg){width=100%}
 > wide and stacked buttons on mobile, above the copyright and footer links bar.
 
 **Use Cases:** Site-wide footer entry point.
@@ -40334,10 +38491,7 @@ search widths (see the Footer chapter).
 
 ### 6.30.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** A Default-style Conversation Canvas selected in Universal Editor with the
+![Universal Editor canvas — A Default-style Conversation Canvas selected in Universal Editor with the (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/conversation-canvas-authoring-view.jpg)](screenshots/conversation-canvas-authoring-view.jpg){width=100%}
 > letters A–I marking the elements listed below.
 
 **Annotations:**
@@ -40353,10 +38507,7 @@ search widths (see the Footer chapter).
   hover text)
 - I = Conversation Canvas Button items
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/conversation-canvas-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** Properties panel with the Content tab (Canvas Style, BG Style, images,
+![Properties panel — Properties panel with the Content tab (Canvas Style, BG Style, images, (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/conversation-canvas-properties-panel.jpg)](screenshots/conversation-canvas-properties-panel.jpg){width=100%}
 > texts, collapsible Menu and Search bar groups) and the Additional tab.
 
 **Content tab:** Canvas Style (Default, Primary (sticky), Secondary); BG Style (Default); BG
@@ -41228,28 +39379,19 @@ any template.
 
 ### 6.31.2 Visual Overview
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/interactive-dashboard-desktop-view.png` \
-> **Purpose:** Desktop rendering \
-> **Description:** Desktop page on `.aem.page` where the section containing the Interactive
+![Desktop rendering — Desktop page on `.aem.page` where the section containing the Interactive (Sample content on the preview; file screenshots/interactive-dashboard-desktop-view.jpg)](screenshots/interactive-dashboard-desktop-view.jpg){width=100%}
 > Dashboard shows no dashboard content (empty space only from the section's own spacing).
 
 **Desktop (>= 1200 px):** Nothing is rendered: the block is empty and `display: none`
 (`.interactive-dashboard:empty`). Its wrapper and section remain, so a section containing only
 this block appears as empty space (the section's padding / margin).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/interactive-dashboard-tablet-view.png` \
-> **Purpose:** Tablet rendering \
-> **Description:** Tablet page with no visible dashboard.
+![Tablet rendering — Tablet page with no visible dashboard. (Sample content on the preview; file screenshots/interactive-dashboard-tablet-view.jpg)](screenshots/interactive-dashboard-tablet-view.jpg){width=82%}
 
 **Tablet (600–1199 px):** Same as desktop: nothing rendered; there are no breakpoints in the
 block CSS.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/interactive-dashboard-mobile-view.png` \
-> **Purpose:** Mobile rendering \
-> **Description:** Mobile page with no visible dashboard.
+![Mobile rendering — Mobile page with no visible dashboard. (Sample content on the preview; file screenshots/interactive-dashboard-mobile-view.jpg)](screenshots/interactive-dashboard-mobile-view.jpg){width=38%}
 
 **Mobile (< 600 px):** Same: nothing rendered.
 
@@ -41322,19 +39464,13 @@ visible effect (the block is not displayed).
 
 ### 6.31.4 Authoring Experience
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/interactive-dashboard-authoring-view.png` \
-> **Purpose:** Universal Editor canvas \
-> **Description:** The placeholder box selected in Universal Editor with marker A on the box.
+![Universal Editor canvas — The placeholder box selected in Universal Editor with marker A on the box. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/interactive-dashboard-authoring-view.jpg)](screenshots/interactive-dashboard-authoring-view.jpg){width=100%}
 
 **Annotations:**
 
 - A = The placeholder box (the block itself; it has no authorable elements on the canvas)
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/interactive-dashboard-properties-panel.png` \
-> **Purpose:** Properties panel \
-> **Description:** Properties panel of the block showing only the Additional tab.
+![Properties panel — Properties panel of the block showing only the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/interactive-dashboard-properties-panel.jpg)](screenshots/interactive-dashboard-properties-panel.jpg){width=100%}
 
 **Properties panel:** One tab, **Additional**: Anchor ID (text, validated
 `^anchor-[a-z0-9][a-z0-9-]*$`), Hide block (toggle), Padding left / right / top / bottom and
@@ -42297,10 +40433,7 @@ filter tags field (legacy "filters" with a Tag title and Tags) are still read.
 > **Purpose:** Configuring tag filters \
 > **Description:** Universal Editor properties panel of a Filter List, Filters tab, with Primary filter category `TCS Corp : Industry`, two Primary filter tags, Show All filter on and Allow multi select off.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/filter-list-tag-pills.png` \
-> **Purpose:** Tag filters on the page \
-> **Description:** A published Filter List showing the pills "All", "Banking", "Insurance" with "Banking" pressed, the filter button with a count badge and the open Advanced filters panel with a "Region" fieldset of checkboxes.
+![Tag filters on the page — A published Filter List showing the pills "All", "Banking", "Insurance" with "Banking" pressed, the filter button with a count badge and the open Advanced filters panel with a "Region" fieldset of checkboxes. (Sample content on the preview; file screenshots/filter-list-tag-pills.jpg)](screenshots/filter-list-tag-pills.jpg){width=100%}
 
 ### 7.8.4 Teaser Block — Tag List
 
@@ -42345,10 +40478,7 @@ reading time; the dark (image-less) card of the Mixed style shows the first tag 
 The canvas uses the labels of the page tags as its suggestion pills when no other suggestions
 have been supplied (`setConversationCanvasSuggestions`).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/tag-labels-rendered.png` \
-> **Purpose:** Tag labels on the site \
-> **Description:** A collage of rendered tag labels: a Page Header meta row with "Banking" and "Europe", a List image card kicker with eyebrow, two tags and "16m", and a Teaser tag list.
+![Tag labels on the site — A collage of rendered tag labels: a Page Header meta row with "Banking" and "Europe", a List image card kicker with eyebrow, two tags and "16m", and a Teaser tag list. (Sample content on the preview; file screenshots/tag-labels-rendered.jpg)](screenshots/tag-labels-rendered.jpg){width=100%}
 
 ## 7.9 Tags in the Query Index and Analytics
 
@@ -42450,10 +40580,7 @@ cheat sheet.
 > before using them in bulk.
 > [To be confirmed: column set of the 13 bulk metadata sheets — owner: content operations lead]
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/ue-page-properties-panel.png` \
-> **Purpose:** Page properties in Universal Editor \
-> **Description:** Universal Editor with the page selected and the properties panel showing Title, Description, Keywords, Page Type (select: Default, Home, Article, Blog, Press Release), Navigation, Footer and 404 Page, each with its help text.
+![Page properties in Universal Editor — Universal Editor with the page selected and the properties panel showing Title, Description, Keywords, Page Type (select: Default, Home, Article, Blog, Press Release), Navigation, Footer and 404 Page, each with its help text. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/ue-page-properties-panel.jpg)](screenshots/ue-page-properties-panel.jpg){width=100%}
 
 > **[Screenshot Placeholder]** \
 > **File name:** `screenshots/aem-bulk-metadata-sheet.png` \
@@ -43810,10 +41937,7 @@ The full current list: `tcs-corp:` (TCS Corp); `tcs-corp:content-type` (Content 
 
 **Step 4 — Verify.** Open `/en/taxonomy.json` on `.aem.page`: `"columns":["tag","title"]` and one row per tag (or one sheet per language). Then check a tagged page: the Page Header shows the titles, not the IDs.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/taxonomy-json-verify.png` \
-> **Purpose:** Verifying the taxonomy JSON \
-> **Description:** The browser showing /en/taxonomy.json with the 16 tag rows and the columns tag and title.
+![Verifying the taxonomy JSON — The browser showing /en/taxonomy.json with the 16 tag rows and the columns tag and title. (Sample content on the preview; file screenshots/taxonomy-json-verify.jpg)](screenshots/taxonomy-json-verify.jpg){width=100%}
 
 ## 9.4 Redirects
 
@@ -44387,10 +42511,7 @@ On `window.load`, if `document.referrer` is from the same origin, an `<a class="
 
 **Expected Result:** The canvas shows the content; the Button paragraph is rendered as a button (the "Go back" button will be added next to it on the site when the visitor came from the site).
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/error-pages-404-content.png` \
-> **Purpose:** Recommended 404 content \
-> **Description:** The 404 page canvas with the heading, explanation, Home button and a list of popular pages, all in German.
+![Recommended 404 content — The 404 page canvas with the heading, explanation, Home button and a list of popular pages, all in German. (Sample content on the preview; file screenshots/error-pages-404-content.jpg)](screenshots/error-pages-404-content.jpg){width=100%}
 
 **Step 4 — Set page properties**
 
@@ -44409,10 +42530,7 @@ On `window.load`, if `document.referrer` is from the same origin, an `<a class="
 
 **Expected Result:** The missing URL shows the authored German 404 content with the German header and footer; the browser's developer tools show HTTP status 404.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/error-pages-404-preview.png` \
-> **Purpose:** Verifying the authored 404 on preview \
-> **Description:** Browser on a missing /de-de URL of the aem.page host showing the authored German 404 content, the Go back button and the locale header and footer.
+![Verifying the authored 404 on preview — Browser on a missing /de-de URL of the aem.page host showing the authored German 404 content, the Go back button and the locale header and footer. (Sample content on the preview; file screenshots/error-pages-404-preview.jpg)](screenshots/error-pages-404-preview.jpg){width=100%}
 
 **Step 6 — Publish**
 
@@ -44455,10 +42573,7 @@ On `window.load`, if `document.referrer` is from the same origin, an `<a class="
 
 **Expected Result:** The careers 404 content is shown.
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/error-pages-area-404-result.png` \
-> **Purpose:** Verifying the area-specific 404 \
-> **Description:** Browser on a missing /en/careers/ URL showing the careers 404 content with the careers navigation.
+![Verifying the area-specific 404 — Browser on a missing /en/careers/ URL showing the careers 404 content with the careers navigation. (Sample content on the preview; file screenshots/error-pages-area-404-result.jpg)](screenshots/error-pages-area-404-result.jpg){width=100%}
 
 > **Tip:** Inherited values are cached per browser session; use a new private window to see a changed 404 Page, Navigation or Footer immediately.
 
@@ -44600,10 +42715,7 @@ Form Variations validates on submit: invalid fields get `aria-invalid="true"` an
 | Bad code deployment | — | Revert the commit on `main`; Code Sync deploys within seconds |
 | Wrong content published | — | Restore a previous page version in AEM and republish, or unpublish |
 
-> **[Screenshot Placeholder]** \
-> **File name:** `screenshots/error-pages-404-fallback-en.png` \
-> **Purpose:** Fallback behaviour \
-> **Description:** Browser on a missing /sv-se URL where the Swedish 404 isn't published, showing the English 404 content inside the Swedish header and footer.
+![Fallback behaviour — Browser on a missing /sv-se URL where the Swedish 404 isn't published, showing the English 404 content inside the Swedish header and footer. (Sample content on the preview; file screenshots/error-pages-404-fallback-en.jpg)](screenshots/error-pages-404-fallback-en.jpg){width=100%}
 
 # Part 11 — Analytics & Data Layer
 
@@ -47547,7 +45659,21 @@ comma-separated `tags` metadata value as a fallback.
 5. Save under `docs/handover/screenshots/` with the exact file name used in the document.
 6. Record the capture in the register below (date, page path, who).
 
-### 15.9.4 Register
+### 15.9.4 Generated Screenshots (14 October 2026)
+
+| Kind | Count | How they were made | Caption note |
+|:------------------|:------|:------------------------------------------------------------|:-------------------------|
+| Renderings (breakpoint views and variations) | 567 | Test pages with sample content (neutral images, sample pages, taxonomy, authors) on the local preview of the code on `main`, captured per element at 1440, 1024 / 768 and 402 / 375 px with a scripted browser; interactive states (open menus, tabs, dialogs, errors, scrolled rails) produced by scripted actions | Sample content on the preview |
+| Annotated previews (`*-authoring-view`) | 31 | The same pages in editor mode (`adobe-ue-edit`), with letter markers matching each chapter's annotation list | Annotated preview, not a Universal Editor screenshot |
+| Dialog references (`*-properties-panel`) | 32 | Drawn from `component-models.json`: every tab and field in dialog order, with defaults, options, descriptions and visibility conditions | Dialog reference, not a Universal Editor screenshot |
+| Still placeholders | 403 | Universal Editor authoring steps (324), AEM consoles and tools (56), and 23 renderings that need a playing video, a third-party player (YouTube, Vimeo, X), print preview or AEM screens | — |
+
+The generated files are JPEG (`.jpg`) under `docs/handover/screenshots/`; the remaining
+placeholders keep their `.png` names. When real content and Universal Editor access are
+available, replace figures and placeholders with captures from the published site and the
+editor (procedure 15.9.3) and regenerate the PDF.
+
+### 15.9.5 Register
 
 | File name | Chapter | Page path used | Width | Captured by | Date | Status |
 |:-----------------------------|:----------|:---------------|:-------|:--------------|:--------------|:---------|
