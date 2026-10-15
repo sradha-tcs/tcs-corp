@@ -64,6 +64,14 @@
           ]
         },
         {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "classes_nofloat",
+          "label": "Don't float",
+          "description": "The canvas stays in place: it's still a stop of the floating canvas, but its own search row doesn't float once scrolled past. The footer canvas never floats.",
+          "value": false
+        },
+        {
           "component": "select",
           "valueType": "string",
           "name": "bgStyle",
@@ -73,6 +81,10 @@
             {
               "name": "Default",
               "value": "default"
+            },
+            {
+              "name": "Dark (Primary)",
+              "value": "dark"
             }
           ]
         },
@@ -158,6 +170,24 @@
               "value": 1,
               "min": 1,
               "max": 3
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_navstyle",
+          "label": "Navigation style",
+          "description": "Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”).",
+          "value": "",
+          "options": [
+            {
+              "name": "Pills",
+              "value": ""
+            },
+            {
+              "name": "Text links",
+              "value": "text-links"
             }
           ]
         },

@@ -284,3 +284,19 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+/* header Canvas (a nav page section with a Conversation Canvas), below the nav */
+header:has(.nav-canvas) {
+  height: auto;
+}
+
+header .nav-canvas {
+  /* mobile: the nav is fixed, so the Canvas starts below it */
+  padding-top: var(--nav-height);
+}
+
+@media (width >= 900px) {
+  header .nav-canvas {
+    padding-top: 0;
+  }
+}

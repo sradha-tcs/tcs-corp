@@ -3,6 +3,12 @@
   --conversation-canvas-surface: rgb(255 255 255 / 60%);
   --conversation-canvas-outline: #494c4d;
 
+  /* space below the floating row, clear of the home indicator (canvas-controller.js reads it) */
+  --conversation-canvas-float-offset: calc(var(--space-600) + env(safe-area-inset-bottom, 0rem));
+
+  /* the floating canvas is above page content (blocks use z-index 10 at most) */
+  --conversation-canvas-z-floating: 100;
+
   position: relative;
   isolation: isolate;
   box-sizing: border-box;
@@ -127,6 +133,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  scroll-margin-bottom: var(--conversation-canvas-float-offset);
 }
 
 .conversation-canvas .conversation-canvas-search {
@@ -296,15 +303,41 @@
   color: var(--color-text-secondary);
 }
 
-/* floating at the bottom of the viewport while the page is scrolled */
+/*
+ * Floating journey (canvas-journey.js): the owner's row floats at the bottom of the viewport,
+ * lands on the next canvas's row (hidden while it comes up, so there's one row on screen) and
+ * stops at the footer canvas. Without one, the lift keeps it above the footer.
+ */
+.conversation-canvas.conversation-canvas-owner {
+  z-index: var(--conversation-canvas-z-floating);
+}
+
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating {
   position: fixed;
-  bottom: var(--space-600);
+  bottom: var(--conversation-canvas-float-offset);
   left: 50%;
-  z-index: 100;
+  z-index: var(--conversation-canvas-z-floating);
   width: min(42.875rem, calc(100vw - 2 * var(--space-600)));
   transform: translateX(-50%);
+  translate: 0 calc(-1 * var(--conversation-canvas-lift, 0rem));
   animation: conversation-canvas-float-in 0.3s ease-out;
+}
+
+/* lifting off a canvas's row in place: no entry animation, it's already there */
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff {
+  animation: none;
+}
+
+/* focused elements scroll clear of the floating row (WCAG 2.4.11) */
+html:has(.conversation-canvas-owner) {
+  scroll-padding-bottom: var(--conversation-canvas-obscured, 0);
+}
+
+/* the open mobile menu covers the page: no floating canvas over it */
+@media (width < 900px) {
+  body:has(header nav[data-expanded='true']) .conversation-canvas .conversation-canvas-floating {
+    visibility: hidden;
+  }
 }
 
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-menu-toggle,
@@ -479,12 +512,12 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 100;
+  z-index: var(--conversation-canvas-z-floating);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.3125rem;
-  padding: var(--space-600);
+  padding: var(--space-600) var(--space-600) var(--conversation-canvas-float-offset);
   opacity: 0;
   pointer-events: none;
   transform: translateY(var(--space-600));
@@ -495,6 +528,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 .conversation-canvas .conversation-canvas-dock.conversation-canvas-floating {
   opacity: 1;
   transform: none;
+  translate: 0 calc(-1 * var(--conversation-canvas-lift, 0rem));
   visibility: visible;
   transition: opacity 0.3s, transform 0.3s;
 }
@@ -683,7 +717,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 
 @media (width >= 900px) {
   .conversation-canvas .conversation-canvas-dock {
-    padding: var(--space-2000) var(--space-600) var(--space-600);
+    padding: var(--space-2000) var(--space-600) var(--conversation-canvas-float-offset);
     background: linear-gradient(0deg, var(--color-bg-default) 55%, rgb(255 255 255 / 0%) 100%);
   }
 
@@ -724,4 +758,95 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   .conversation-canvas.primary .conversation-canvas-dock.conversation-canvas-panel-open .conversation-canvas-search {
     display: none;
   }
+}
+
+/*
+ * Navigation style Text links ("Full menu - No Pill", Figma 1734:31279): the navigation items
+ * are text; the current one and an open toggle are filled pills.
+ */
+.conversation-canvas.text-links .conversation-canvas-nav-item {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.conversation-canvas.text-links .conversation-canvas-nav-item:hover,
+.conversation-canvas.text-links .conversation-canvas-nav-item:focus-visible {
+  border-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas.text-links .conversation-canvas-nav-current,
+.conversation-canvas.text-links .conversation-canvas-nav-toggle[aria-expanded="true"] {
+  border-color: var(--conversation-canvas-active);
+  background-color: var(--conversation-canvas-active);
+  color: var(--color-text-on-brand);
+}
+
+/*
+ * BG Style Dark, Primary (sticky) ("L1 Media & Investors", Figma 1734:38272): a black fade,
+ * a translucent dark search pill and light navigation.
+ */
+.conversation-canvas.primary.conversation-canvas-bg-dark {
+  --conversation-canvas-outline: var(--grey-300);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form,
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
+  border-color: var(--conversation-canvas-outline);
+  background-color: var(--black-400);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input,
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input::placeholder,
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-audio {
+  color: var(--color-text-on-neutral);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input {
+  font-weight: var(--font-weight-light);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-item {
+  border-color: var(--grey-200);
+  background-color: transparent;
+  color: var(--color-text-on-neutral);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-item {
+  border-color: transparent;
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-item:hover,
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-item:focus-visible,
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-current {
+  border-color: var(--conversation-canvas-active);
+  color: var(--color-text-on-neutral);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-current,
+.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-toggle[aria-expanded="true"] {
+  border-color: var(--conversation-canvas-active);
+  background-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-back {
+  border-color: var(--grey-200);
+  background-color: transparent;
+}
+
+@media (width >= 900px) {
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock {
+    background: linear-gradient(0deg, var(--black-1000) 55%, transparent 100%);
+  }
+
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    color: var(--conversation-canvas-active);
+  }
+}
+
+/* the next canvas's row is hidden while it comes up to the floating row (one row on screen) */
+.conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
+  opacity: 0;
 }

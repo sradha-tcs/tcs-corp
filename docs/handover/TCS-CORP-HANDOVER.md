@@ -33,6 +33,7 @@ date: "October 14, 2026"
 | 1.3 | 14 October 2026 | Delivery team | Every rendering screenshot (596) rebuilt from an authoring spec and followed by an **Authoring steps** table (Step, Where, Field, Value) that reproduces it in Universal Editor; every editor-step and console placeholder (405) replaced by its steps table; findings F-43 to F-48 from the spec work |
 | 1.4 | 14 October 2026 | Delivery team | Findings F-43 to F-48 fixed in the code: List Item cells read in model order (with a unit test against the model), the Video poster read from its grouped cell, the Conversation Canvas voice button and the Teaser Lotto animation named by their collapsed alt texts, the 404 "Go back" button added after the content is loaded (placeholder `goBack`), an inverse hover / focus style for secondary buttons on Dark, Navy and Brand cards; chapters 4.5.3, 6.28, 10.2, 13.7 and Part 16 updated |
 | 2.0 | 14 October 2026 | Delivery team | Complete enterprise handover package for the client brief: every screenshot (596) recaptured with callout letters on the fields and followed by its authoring block (Screenshot Details; Field Entry Table with Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules; Expected Page Output; Business Rules; Common Authoring Mistakes; Troubleshooting); a step-by-step walkthrough for every variation with a screenshot (461); per component Business Problem Solved, Supported Taxonomy, Target Personalization Output, Common Authoring Mistakes, Author Quick Reference Guide and Component Execution Example; new chapters 2.10 Architecture Component Considerations, 2.11 Data Flow Architecture, 6.0 Component Inventory, 8.4 Metadata Field Usage Matrix; an escalation process for every Part 13 issue; new Part 17 Operations Guide and Part 18 New Joiner Training Guide; corrections and findings F-49 to F-60 |
+| 2.1 | 15 October 2026 | Delivery team | Floating Canvas journey (Figma *New Screens from New DS*, Navigation and Home): one owner floats and lands on each Canvas in place, takes its variation after it and stops at the footer Canvas (fallback: above the footer); new options Don't float, BG Style Dark (Primary) and Navigation style Pills / Text links; a Canvas in the nav page becomes the header Canvas; chapter 6.30 (6.30.18 Floating journey), findings F-61 to F-66 |
 
 ## Review and Approval
 
@@ -110848,7 +110849,8 @@ conversational service without changing the authored content.
 - As the only route to content while no search service is connected: the query goes nowhere.
 - As a replacement for the site header navigation (the header remains the main navigation;
   on mobile the Primary dock shows only the search pill).
-- Several canvases on one page (only one can float; repeated search rows confuse visitors).
+- Several canvases with the same question on one page (only one floats at a time and the
+  journey hands it from Canvas to Canvas, 6.30.18; repeated identical rows confuse visitors).
 
 **Dependencies:**
 
@@ -111172,7 +111174,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The canvas floats over the page unexpectedly | Every Default canvas's search row floats once scrolled past | Use only one canvas per page; there is no setting to switch floating off |
+| The canvas floats over the page unexpectedly | Every Default canvas's search row floats once scrolled past (until the next Canvas or the footer Canvas, 6.30.18) | Turn on Don't float for a Canvas whose row should stay in place |
 | Explore services leads to a 404 | The target page /en/services is not published | Publish the linked page or select an existing one |
 | The title appears in bold body text | Title left empty and the question typed into Text | Enter the question in Title; Text is for one supporting sentence |
 
@@ -114000,13 +114002,13 @@ The spacing options are the same 15 values as in 6.29.6 (Default, 0, 0.25rem …
 | Owner | [To be confirmed: product owner]; technical owner: development team |
 | Dependencies | aem.js, scripts.js; responsive-image, a11y, button, icon-button, block-options, data-layer decorators; utils buttons, properties, query-index, site, urls, metadata, taxonomy, ids, placeholders; query index, taxonomy and placeholders sheets; Web Speech API |
 | Component Type | Container block (key-value properties) with `button` items (Conversation Canvas Button) |
-| Supported Variants | Canvas Style Default / Secondary / Primary (sticky); Title Type Default / Bigger / Medium; BG glow or image; search button Primary / Secondary / Tertiary; voice input; button views Button / Icon / Link; footer placement |
+| Supported Variants | Canvas Style Default / Secondary / Primary (sticky); Primary Navigation style Pills / Text links and BG Style Dark; Don't float; Title Type Default / Bigger / Medium; BG glow or image; search button Primary / Secondary / Tertiary; voice input; button views Button / Icon / Link; footer placement |
 | Supported Templates | Any page; the footer canvas reference page |
 | Supported Metadata | Page tags (`article:tag` meta, else `tags` metadata) for Primary suggestions; query index `path` and `title` (og:title) |
 | Supported Tags | Page tags, labelled from `/{locale}/taxonomy.json` (Primary suggestions) |
 | Supported Personalization | Script APIs `setConversationCanvasSuggestions` and `setConversationCanvasFilters` for a personalisation service (none connected); data layer `cmp:search` for Adobe Target / Journey Optimizer in future (Adobe Tags not installed) |
 | Caching Considerations | Page HTML cached by the CDN; `/query-index.json` fetched in pages of 500 rows once per page view and cached in memory; taxonomy and placeholders loaded once per page view; menu changes appear after the query index updates on publish |
-| Performance Considerations | Default / Secondary: the query index loads only when the menu is first opened; Primary: loads the index and taxonomy at decoration; images use `createOptimizedPicture` with lazy loading (a background image in the first section is not eager); listeners on scroll (passive, one animation frame per update), resize and a body ResizeObserver, shared by all canvases |
+| Performance Considerations | Default / Secondary: the query index loads only when the menu is first opened; Primary: loads the index and taxonomy at decoration; images use `createOptimizedPicture` with lazy loading (a background image in the first section is not eager); one controller for all canvases (`canvas-controller.js`): geometry measured on registration, resize and a body ResizeObserver, never while scrolling; the passive scroll listener reads only `scrollY` once per animation frame and writes classes only when the journey changes (6.30.18) |
 | Accessibility Compliance | Hidden label on the search input; labelled menu toggle with `aria-expanded` / `aria-controls`; labelled `nav`; Escape and click-outside close; `aria-pressed` voice and menu toggles; `aria-current` on the current page; hidden dock `inert`; reduced-motion support; icon buttons with `aria-label` and title |
 | SEO Compliance | One `h2` (not in Primary); menu and dock links are created by script; buttons are crawlable links; no structured data |
 
@@ -114615,6 +114617,43 @@ All other fields keep their default values.
 - The menu is built from getPages() (query index of the current locale) on first open, filtered to /en and two levels.
 - Submit dispatches conversation-canvas:search with { query }; the data layer pushes cmp:search for every submit, even empty ones (F-03 open).
 - The search row registers for floating: it becomes fixed at the bottom once scrolled past and no other in-place row is in view.
+
+### 6.30.18 Floating Journey
+
+All Conversation Canvases of a page (header, page body, footer) take part in one floating
+journey, decided by `blocks/conversation-canvas/canvas-journey.js` (a pure function, unit tested)
+and applied by `canvas-controller.js`. The block README (`blocks/conversation-canvas/README.md`)
+has the full state model and variation inventory.
+
+```
+Header Canvas -> floating -> section Canvas (docked) -> floating -> ... -> footer Canvas (final)
+```
+
+| Rule | Behaviour |
+|:-----------------|:------------------------------------------------------------|
+| Roles | From placement: the last Canvas in the footer is the final stop, the first other one the start (header, or first on the page), the rest intermediate. Primary (sticky) has no role |
+| Docked | A Default / Secondary search row on screen at or above the floating position: nothing floats |
+| Floating owner | The Primary (sticky) Canvas if present, else the last Canvas scrolled past the floating position (not Don't float); exactly one at a time |
+| Landing | The next Canvas's row is hidden while it comes up and replaces the floating row at the same position; no duplicate row, no page movement |
+| Final stop | Once the footer Canvas reaches the floating position (or the page bottom), nothing floats any more |
+| Fallback | Without a footer Canvas the floating row stays above the footer's top edge |
+| Mobile menu | The floating row is hidden while the mobile menu is open |
+| Focus | Focused elements scroll clear of the floating row (`scroll-padding-bottom`) |
+
+| Field | Values | Effect |
+|:-----------------|:------------------|:-----------------------------------------------|
+| Don't float | On / Off (default) | The Canvas is still a stop; its own row never floats, the previous one floats on after it |
+| BG Style | Default / Dark (Primary) | Dark: the Primary dock over a black fade with a dark search pill and light navigation (Figma "L1 Media & Investors") |
+| Navigation style | Pills (default) / Text links | Primary dock navigation as pills (Figma "Full menu") or text (Figma "Full menu - No Pill"); the current item is a filled pill |
+
+**Troubleshooting**
+
+| Symptom | Cause | Resolution |
+|:----------|:----------|:----------|
+| The floating row covers the footer Canvas title before it docks | The row lands on the footer Canvas's search row, which is below its title | Expected; keep the footer Canvas's intro short |
+| Nothing floats after the last section Canvas | That Canvas has Don't float and no earlier Canvas may float | Turn Don't float off on one Canvas |
+| The floating row stops above the footer instead of docking | No footer Canvas (the Footer block's Conversation Canvas Page is empty or unpublished) | Reference and publish the footer canvas page (`references/footer-conversation-canvas`) |
+| The journey state is needed for analysis | | `document.documentElement.dataset.canvasJourney` holds the state (`docked-header`, `floating`, `docked-section`, `docked-footer`, ...) |
 
 ## 6.31 Interactive Dashboard Block
 
@@ -122991,6 +123030,12 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-58 | Testimonial | The help texts of Author and Designation & Location (`_testimonial.json`) both suggest typing the name; the block shows Author and Designation separately | The name appears twice when authors follow the help text | Correct the help texts (Author = name only; Designation & Location = role, organisation, city) | P3 | Development | 6.13 |
 | F-59 | Universal Editor | Two components are titled "Tab" (`tab`, `tabs-item`) and five "Row" (`table-row`, `table-col-2` … `table-col-5`) | Authors pick the wrong component in the picker | Give each a distinct title (e.g. "Tab (section)", "Tab item", "Row (2 columns)") | P3 | Development | 5.4, 6.21, 6.22, 6.25 |
 | F-60 | Captions | Version 2.0 found captions of version 1.4 that did not match their screenshots (values, layouts, widths); the screen descriptions of 2.0 replace them | Readers compared screenshots with wrong descriptions | Keep generating captions from the specs; review captions when a spec changes | Closed (2.0) | Delivery team | 15.9 |
+| F-61 | Conversation Canvas | After several Canvases, the first one passed kept floating; floating stopped as soon as any Canvas touched the viewport bottom; no stop above a footer without a Canvas | The floating row didn't match the section and jumped near Canvases; it could cover footer links | Floating journey (6.30.18): last Canvas passed floats, lands on the next, final stop at the footer Canvas, fallback lift | Closed (2.1) | Development | 6.30 |
+| F-62 | Conversation Canvas | The floating row painted below later positioned content (`isolation: isolate` on the block) and over the open mobile menu | Floating search hidden behind cards, or covering the mobile menu | Owner block lifted to `--conversation-canvas-z-floating`; hidden while the mobile menu is open | Closed (2.1) | Development | 6.30 |
+| F-63 | Conversation Canvas | Layout was read for every Canvas and the footer on every scroll frame | Scroll jank on long pages | Geometry cached; scroll reads only `scrollY` | Closed (2.1) | Development | 6.30 |
+| F-64 | Header | Figma's desktop header is a logo bar (TCS left, TATA right, 124px high, 80px gutters); the header renders the nav page (64px) | Visual difference from Figma | Author the nav page as brand + TATA logo in tools; adjust `--nav-height` and gutters in a follow-up after a regression check of the nav | P3 | Product Owner, Development | 6.1 |
+| F-65 | Navigation content | The published nav page (`/en/references/nav`) still holds boilerplate items (Examples, Getting Started, Documentation) | The header shows placeholder navigation | Author the real nav page | P2 | Content authors | 6.1 |
+| F-66 | Figma | The www.tcs.com Figma Sites files can't be read through the Figma API; the journey's scrolling, docking and footer stop aren't prototyped in Figma | Behaviour supplemented from the requirement, not Figma | Design review of the journey on the feature preview | P3 | Design, Product Owner | 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)
 

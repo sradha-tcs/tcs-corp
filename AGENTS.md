@@ -134,6 +134,8 @@ Each block should be self-contained and re-useable, with CSS and JS files follow
 
 **Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown).
 
+**Floating Canvas.** All Conversation Canvases of a page (header nav page, body, footer canvas page) share one floating journey: `blocks/conversation-canvas/canvas-journey.js` (pure, unit tested) decides which one floats or is docked, `canvas-controller.js` measures the page (never while scrolling) and applies it; the header and footer only host Canvases (see the block README). Don't add Canvas logic to header.js or footer.js.
+
 **Accessibility.** Blocks meet WCAG 2.1 AA: buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
 
 ### Shared code: decorators and utils

@@ -148,6 +148,12 @@ export default async function decorate(block) {
   nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // sections with a Conversation Canvas are the header Canvas, below the nav (they aren't
+  // brand, sections or tools); the canvas block itself runs the floating journey
+  const canvasSections = [...nav.children]
+    .filter((section) => section.querySelector('.conversation-canvas'));
+  canvasSections.forEach((section) => section.remove());
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
@@ -179,4 +185,11 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  if (canvasSections.length) {
+    const navCanvas = document.createElement('div');
+    navCanvas.className = 'nav-canvas';
+    navCanvas.append(...canvasSections);
+    block.append(navCanvas);
+  }
 }
