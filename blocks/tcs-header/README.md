@@ -9,6 +9,7 @@ A key-value block with the TCS and TATA logos and their links (Figma *New Screen
 | TCS Logo Link | Usually the locale Home page |
 | TATA Logo, TATA Logo Alt Text | Image; default alt text "TATA Group" |
 | TATA Logo Link | Usually https://www.tata.com/ |
+| Navigation Root, Navigation Depth | The page whose sub-pages are the site header's tablet and mobile menu (e.g. the locale Home page), and its levels (1-3, default 3). Empty: the menu list authored on the Navigation page. Written as `data-navigation-root` / `data-navigation-depth` for `blocks/header` |
 | Additional tab | Anchor ID, Hide block, padding and margin (as every block) |
 
 - **On the Navigation page** (the first section, before the menu list): the site header

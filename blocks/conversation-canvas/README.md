@@ -141,6 +141,7 @@ on focus; navigation is in the site header); Default / Secondary rows float full
 | Quick actions (`classes_actions`) | Auto (default) / Pills (`action-pills`) / Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer. Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type) |
 | BG Style | Default / Dark (Primary) | Dark applies to the Primary dock |
 | Navigation style (`classes_navstyle`) | Pills / Text links | Primary dock navigation |
+| Menu root path, Menu depth | A page (default: the locale site, e.g. `/en`) / 1-3 | The site navigation: the published pages below the root, up to three levels (`utils/navigation.js`) |
 
 Authors never set offsets, coordinates, z-index or thresholds; roles (header / section / footer)
 come from where the Canvas is placed. For the footer final stop, the Footer block's
@@ -152,6 +153,29 @@ a TCS Header block in the same section stays the logo bar). Over an opening ligh
 `canvas-controller.js` writes `--conversation-canvas-first-section-bottom` (on load and resize,
 never while scrolling) and `blocks/header/header.css` places the host. Mobile keeps it below
 the bar (no Figma frame).
+
+## Site navigation
+
+The Primary dock and the menu of the Default and Secondary styles share one navigator
+(`createNavigator`), built from the navigation tree (`utils/navigation.js`: the published pages
+below Menu root path, at most three levels; label Navigation Title, else the title; order
+Navigation Order, then by name; Hide in navigation leaves a page out with its sub-pages; one
+tree per root and depth, loaded once per page from the query index). Figma *Full menu* 1124:26209.
+
+| | Primary dock | Menu (Default / Secondary) |
+|---|---|---|
+| Opens | Always shown on desktop | The menu button left of the search; it becomes Close (`aria-expanded`, "Close menu") |
+| First level (L1) | Pills; links | Pills; a page with sub-pages opens its level (button "Show {label} menu"), else a link |
+| A level (L2) | The level row: menu button (back to L1) or back arrow, then the sub-pages | The same, plus the level's own page (its title, as a link) after the back button |
+| L3 | A sub-page with sub-pages is a toggle opening the panel (two columns from 6 items) | The same; the panel starts with the L2 page's own link |
+| Current page | `aria-current="page"`; its ancestors `aria-current="true"` | The same; opening starts at the current page's level |
+| Keyboard | Escape closes the panel | Escape closes the panel (focus on its toggle), then the menu (focus on the menu button); a new level focuses its back button, back focuses the item it came from |
+| Place | In the dock | Above the search row (Figma), below it when there's more room there; height fitted to the room; centred on the row, at most 900px wide |
+
+Links are only the tree's own site paths (no `#` placeholders, no external or script URLs); an
+unpublished page isn't listed, nor are its sub-pages. Without pages the menu says "No pages
+found" (`noPagesFound`). Tablet and mobile also have the header's full-screen menu
+(`blocks/header`), from the same tree when the TCS Header has a Navigation Root.
 
 ## Figma gaps and decisions
 

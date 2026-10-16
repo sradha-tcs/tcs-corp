@@ -25,6 +25,14 @@ Instead of the brand and tools sections, the nav page may start with a **TCS Hea
 (`blocks/tcs-header`: TCS / TATA logo fields with alt texts and links); the header then takes the
 brand and tools from it and the first other section is the menu.
 
+**Menu from pages:** with a Navigation Root on the TCS Header (and no menu list authored on the
+nav page) the menu is the published pages below that root, up to its Navigation Depth (1-3,
+`utils/navigation.js`: Navigation Title, Navigation Order, Hide in navigation). It's built as the
+same nested list an authored menu has, after the header is shown (the logo bar never waits for
+it), so the levels, linked labels with their arrow button, Back, Escape and focus work the same;
+the current page is `aria-current="page"` and the sections it's in `aria-current="true"`.
+Without pages the menu button is hidden. An authored menu list wins over the root.
+
 ## Logo assets
 
 The logos are authored, not in the code: the TCS Header block's TCS Logo and TATA Logo fields
