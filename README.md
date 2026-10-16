@@ -9,3 +9,4 @@ Downloads for the TCS Home page implementation (sample content):
 - `home-content/tcs-corp-home-content-1.0.1.zip`: the previous package
 
 This branch holds files only (no site code).
+- `home-content/metadata-new-rows.tsv`: the two new rows of the Metadata sheet (1.0.2), tab-separated, to paste into the sheet in AEM (select the first empty row, paste); also change the publish-date of the Agentic AI in HR row to 2026-10-12
