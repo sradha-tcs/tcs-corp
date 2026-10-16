@@ -305,6 +305,9 @@
   :root {
     --section-padding-inline: var(--spacing-l);
     --section-spacing: var(--space-3000);
+
+    /* the desktop header is the TCS logo bar (Figma: 124px) */
+    --nav-height: 7.75rem;
   }
 }
 
