@@ -161,6 +161,31 @@ function buildLevel(navSections) {
   return level;
 }
 
+/**
+ * A TCS Header block on the nav page (blocks/tcs-header) supplies the brand (its TCS logo) and the
+ * tools (its TATA logo) in place of its section; the first other section is the menu.
+ * @returns {boolean} whether the nav page has one
+ */
+function applyLogoBar(nav) {
+  const bar = nav.querySelector(':scope > .section .tcs-header');
+  if (!bar) return false;
+  const asSection = (logo, role) => {
+    const section = document.createElement('div');
+    section.className = `section nav-${role}`;
+    const p = document.createElement('p');
+    if (logo) p.append(logo);
+    section.append(p);
+    return section;
+  };
+  const brand = asSection(bar.querySelector('.tcs-header-brand'), 'brand');
+  const tools = asSection(bar.querySelector('.tcs-header-group'), 'tools');
+  bar.closest('.section').replaceWith(brand);
+  const menu = [...nav.children].find((section) => section !== brand);
+  menu?.classList.add('nav-sections');
+  (menu || brand).after(tools);
+  return true;
+}
+
 /** the menu button (mobile), drawn by the CSS (an animated icon) */
 function buildHamburger(nav, navSections) {
   const hamburger = document.createElement('div');
@@ -199,11 +224,14 @@ export default async function decorate(block) {
   nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
-  });
+  // the logos from a TCS Header block, else the sections in order: brand, sections, tools
+  if (!applyLogoBar(nav)) {
+    const classes = ['brand', 'sections', 'tools'];
+    classes.forEach((c, i) => {
+      const section = nav.children[i];
+      if (section) section.classList.add(`nav-${c}`);
+    });
+  }
 
   // the logo link is a plain link, not a button
   const navBrand = nav.querySelector('.nav-brand');

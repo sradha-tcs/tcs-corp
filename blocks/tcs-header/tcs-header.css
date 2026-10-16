@@ -1,0 +1,42 @@
+/* TCS Header: the TCS and TATA logos (Figma "Nav Bar-NEW"); in the site header, see blocks/header */
+.tcs-header .tcs-header-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-600);
+}
+
+.tcs-header :is(.tcs-header-brand, .tcs-header-group) {
+  display: block;
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.tcs-header :is(.tcs-header-brand, .tcs-header-group) picture,
+.tcs-header :is(.tcs-header-brand, .tcs-header-group) img {
+  display: block;
+}
+
+.tcs-header :is(.tcs-header-brand, .tcs-header-group) img {
+  width: auto;
+  height: 1.25rem;
+}
+
+.tcs-header .tcs-header-group img {
+  height: var(--icon-size-s);
+}
+
+/* desktop: TCS logo left, TATA logo right */
+@media (width >= 1200px) {
+  .tcs-header .tcs-header-bar {
+    justify-content: space-between;
+  }
+
+  .tcs-header .tcs-header-brand img {
+    height: 2.1875rem;
+  }
+
+  .tcs-header .tcs-header-group img {
+    height: 2.75rem;
+  }
+}

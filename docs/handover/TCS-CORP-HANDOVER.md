@@ -6645,6 +6645,8 @@ unchanged. Details and the reuse decisions are in `blocks/header/README.md`.
 | Sections | The menu as a list: What we think, What we do (Capabilities, Industries (Banking, …), …), Who we are, Insights, Careers, Media & Investors; a nested list makes a level |
 | Tools | The TATA logo image, linked to https://www.tata.com/; alt text "TATA Group" |
 
+Alternatively the nav page starts with a **TCS Header** block (`blocks/tcs-header`, allowed in sections): TCS Logo, TCS Logo Alt Text, TCS Logo Link, TATA Logo, TATA Logo Alt Text, TATA Logo Link and the Additional tab. The header takes the brand and tools from it; the first other section is the menu. Placed in a page section, the block shows the logo bar.
+
 **Troubleshooting**
 
 | Symptom | Cause | Resolution |
