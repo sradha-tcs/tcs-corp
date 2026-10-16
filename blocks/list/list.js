@@ -3,7 +3,7 @@ import {
   trackCardList,
 } from '../../decorators/card-list-decorator.js';
 import { PRESENTATION_PROPERTIES } from '../../utils/card-list-config.js';
-import { matchCells } from '../../utils/cells.js';
+import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -14,7 +14,7 @@ import { toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_FIELDS, buildCards, normalizeConfig, normalizePath, validateConfig,
+  HEADINGS, ITEM_FIELDS, ITEM_LAYOUT, buildCards, normalizeConfig, normalizePath, validateConfig,
 } from './list-data.js';
 
 /*
@@ -81,7 +81,8 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const items = legacy ? [] : itemRows.map((row) => {
-    const cells = matchCells([...row.children], ITEM_FIELDS, ITEM_MATCHERS);
+    const fieldCells = withoutTabCells([...row.children], ITEM_LAYOUT);
+    const cells = matchCells(fieldCells, ITEM_FIELDS, ITEM_MATCHERS);
     const a = cells.link?.querySelector('a[href]');
     const href = a?.getAttribute('href') || '';
     const img = cells.image?.querySelector('img');

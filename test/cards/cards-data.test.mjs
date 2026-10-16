@@ -1,8 +1,9 @@
 // Cards data and the shared card list settings: node --test (npm test)
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
+import { CARD_LAYOUT, buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
 import { kindOf, normalizePresentation, toSafeId } from '../../utils/card-list-config.js';
+import modelLayout from '../model-layout.mjs';
 
 const config = (raw = {}) => normalizePresentation(raw, { idPrefix: 'cards' });
 const context = { id: 'cards-1', index: 0, origin: 'https://www.tcs.com' };
@@ -12,6 +13,9 @@ const UNSAFE = ['java', 'script:alert(1)'].join('');
 const body = (value) => ({ textContent: value });
 
 describe('card items', () => {
+  it('are read in the order of the card model, with its dialog tabs', () => {
+    assert.deepEqual(CARD_LAYOUT, modelLayout('blocks/cards/_cards.json', 'card'));
+  });
   it('maps the authored fields', () => {
     const card = itemToCard({
       href: '/en/insights/agentic-bank',

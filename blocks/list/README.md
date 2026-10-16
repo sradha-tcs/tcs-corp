@@ -22,7 +22,7 @@ Files:
 | `utils/query-index.js` | The locale's pages from `/query-index.json` (loaded once, cached) |
 | `utils/redirects.js` | Redirect targets from `/{locale}/redirects.json` |
 | `utils/analytics.js` | Adobe Client Data Layer entries and events |
-| `utils/cells.js` | Reads List Item cells when AEM leaves out fields that were never set |
+| `utils/cells.js` | Reads List Item cells: drops the empty cells AEM renders for the item's dialog tabs (Link, Content, Display) and handles fields AEM leaves out when never set |
 | `helix-query.yaml` | Index columns of the cards |
 | `test/list/*.test.mjs` | Unit tests (`npm test`) |
 

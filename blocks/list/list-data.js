@@ -21,11 +21,13 @@ export {
 } from '../../utils/card-list-config.js';
 
 /**
- * The cells of a List Item row, in the order of the list-item model fields (link text and image
- * alt fold into the link and image cells); test/list checks the order against _list.json
+ * The cells of a List Item row as AEM delivers them, in the order of the list-item model: a cell
+ * per field (link text and image alt fold into the link and image cells) and an empty cell per
+ * dialog tab (null); test/list checks the layout against _list.json
  */
-export const ITEM_FIELDS = ['link', 'newTab', 'headline', 'summary', 'image', 'eyebrow', 'tags',
-  'subtitle', 'ctaLabel', 'kind', 'theme', 'analyticsLabel', 'ariaLabel'];
+export const ITEM_LAYOUT = [null, 'link', 'newTab', null, 'headline', 'summary', 'image', 'eyebrow',
+  'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel'];
+export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
 export const ORDER_BY = ['manual', 'title', 'lastmodified'];
