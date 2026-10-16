@@ -10,6 +10,15 @@ import {
 import { formatDate } from '../../utils/dates.js';
 
 /**
+ * The cells of a Card row as AEM delivers them, in the order of the card model: a cell per field
+ * (image alt and link text fold into the image and link cells) and an empty cell per dialog tab
+ * (null)
+ */
+export const CARD_LAYOUT = [null, 'image', 'eyebrow', 'title', 'text', 'subtitle', 'tags', 'date',
+  'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', null, 'kind', 'theme',
+  'analyticsLabel', 'ariaLabel'];
+
+/**
  * The card of an authored item.
  * @param {Object} item the item's values ({ href, title, body, image, ... }; body: the
  *   description's element, rich text)

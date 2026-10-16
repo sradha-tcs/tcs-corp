@@ -1,13 +1,13 @@
 /* Unit tests of the List block's data (blocks/list/list-data.js): run with npm test */
-import { readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ITEM_FIELDS, applyOverrides, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
-import { matchCells } from '../../utils/cells.js';
+import { matchCells, withoutTabCells } from '../../utils/cells.js';
+import modelLayout from '../model-layout.mjs';
 import { resolveRedirect } from '../../utils/redirects.js';
 import { PAGES } from './fixtures.mjs';
 
@@ -260,14 +260,6 @@ describe('card kinds', () => {
 });
 
 describe('list item cells', () => {
-  const SUFFIXES = ['MimeType', 'Alt', 'Text', 'Title', 'Type'];
-  // the cells AEM renders for a model: one per field, tabs and classes left out, a field ending
-  // in Alt / Text / Title / Type / MimeType folded into its base field
-  const cellOrder = (model) => {
-    const names = model.fields.filter((f) => f.component !== 'tab' && f.name).map((f) => f.name);
-    return names.filter((name) => !/^classes/.test(name)
-      && !SUFFIXES.some((s) => name.endsWith(s) && names.includes(name.slice(0, -s.length))));
-  };
   // a cell as matchCells sees it: its text, a link or an image
   const cell = (value = '', { link, image } = {}) => ({
     textContent: value,
@@ -278,17 +270,13 @@ describe('list item cells', () => {
     },
   });
 
-  it('are read in the order of the list-item model', () => {
-    const { models } = JSON.parse(readFileSync(new URL('../../blocks/list/_list.json', import.meta.url)));
-    assert.deepEqual(ITEM_FIELDS, cellOrder(models.find((m) => m.id === 'list-item')));
-  });
-  it('reads a row with every model cell', () => {
-    const row = [cell('/en/insights/agentic-bank', { link: '/en/insights/agentic-bank' }), cell('true'),
-      cell('The agentic bank'), cell('Banking is entering a new era.'), cell('', { image: true }),
-      cell('Perspective'), cell('tcs:topic/ai'), cell('Revenue'), cell('Read more'), cell('panel'),
-      cell('navy'), cell('agentic-bank'), cell('Read the agentic bank')];
-    const cells = matchCells(row, ITEM_FIELDS, {});
+  const fields = () => [cell('/en/insights/agentic-bank', { link: '/en/insights/agentic-bank' }),
+    cell('true'), cell('The agentic bank'), cell('Banking is entering a new era.'),
+    cell('', { image: true }), cell('Perspective'), cell('tcs:topic/ai'), cell('Revenue'),
+    cell('Read more'), cell('panel'), cell('navy'), cell('agentic-bank'), cell('Read the agentic bank')];
+  const assertRead = (cells) => {
     const text = (field) => cells[field]?.textContent;
+    assert.equal(cells.link.querySelector('a[href]').getAttribute('href'), '/en/insights/agentic-bank');
     assert.equal(text('newTab'), 'true');
     assert.equal(text('headline'), 'The agentic bank');
     assert.equal(text('summary'), 'Banking is entering a new era.');
@@ -296,5 +284,23 @@ describe('list item cells', () => {
     assert.equal(text('kind'), 'panel');
     assert.equal(text('theme'), 'navy');
     assert.equal(text('ariaLabel'), 'Read the agentic bank');
+  };
+
+  it('are read in the order of the list-item model, with its dialog tabs', () => {
+    assert.deepEqual(ITEM_LAYOUT, modelLayout('blocks/list/_list.json', 'list-item'));
+    assert.deepEqual(ITEM_FIELDS, ITEM_LAYOUT.filter(Boolean));
+  });
+  it('reads a row with a cell per field', () => {
+    assertRead(matchCells(withoutTabCells(fields(), ITEM_LAYOUT), ITEM_FIELDS, {}));
+  });
+  it('reads a row as AEM delivers it, with an empty cell per dialog tab', () => {
+    const [link, newTab, ...content] = fields();
+    const row = [cell(), link, newTab, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
+    assert.equal(row.length, ITEM_LAYOUT.length);
+    assertRead(matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {}));
+  });
+  it('keeps a row whose tab cells have values', () => {
+    const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
+    assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
   });
 });

@@ -5,13 +5,13 @@ import {
 import {
   HEADINGS, PRESENTATION_PROPERTIES, normalizePresentation, pickValue,
 } from '../../utils/card-list-config.js';
-import { matchCells } from '../../utils/cells.js';
+import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
-import { buildManualCards } from './cards-data.js';
+import { CARD_LAYOUT, buildManualCards } from './cards-data.js';
 
 /*
  * Cards (blocks/cards/_cards.json): manually authored cards, the authoring alternative to the
@@ -24,9 +24,8 @@ import { buildManualCards } from './cards-data.js';
  * action.
  */
 
-// Card cells in model order (image alt and link text are part of the image and link cells)
-const CARD_FIELDS = ['image', 'eyebrow', 'title', 'text', 'subtitle', 'tags', 'date', 'contentLabel',
-  'readingTime', 'link', 'ctaLabel', 'newTab', 'kind', 'theme', 'analyticsLabel', 'ariaLabel'];
+// the Card fields in model order (the card layout without its dialog tabs)
+const CARD_FIELDS = CARD_LAYOUT.filter(Boolean);
 const LINE = (cell) => !cell.querySelector('a[href], picture, img, h1, h2, h3, h4, h5, h6, ul, ol')
   && cell.querySelectorAll('p').length <= 1;
 const CARD_MATCHERS = {
@@ -78,7 +77,7 @@ function readCard(row) {
       text: cells.find((cell) => !cell.querySelector('picture, img')),
     };
   } else {
-    matched = matchCells(cells, CARD_FIELDS, CARD_MATCHERS);
+    matched = matchCells(withoutTabCells(cells, CARD_LAYOUT), CARD_FIELDS, CARD_MATCHERS);
   }
   const get = (field) => textOf(matched[field]);
   const img = matched.image?.querySelector('img');
