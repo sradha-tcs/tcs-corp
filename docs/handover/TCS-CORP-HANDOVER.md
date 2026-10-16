@@ -33,6 +33,7 @@ date: "October 14, 2026"
 | 1.3 | 14 October 2026 | Delivery team | Every rendering screenshot (596) rebuilt from an authoring spec and followed by an **Authoring steps** table (Step, Where, Field, Value) that reproduces it in Universal Editor; every editor-step and console placeholder (405) replaced by its steps table; findings F-43 to F-48 from the spec work |
 | 1.4 | 14 October 2026 | Delivery team | Findings F-43 to F-48 fixed in the code: List Item cells read in model order (with a unit test against the model), the Video poster read from its grouped cell, the Conversation Canvas voice button and the Teaser Lotto animation named by their collapsed alt texts, the 404 "Go back" button added after the content is loaded (placeholder `goBack`), an inverse hover / focus style for secondary buttons on Dark, Navy and Brand cards; chapters 4.5.3, 6.28, 10.2, 13.7 and Part 16 updated |
 | 2.0 | 14 October 2026 | Delivery team | Complete enterprise handover package for the client brief: every screenshot (596) recaptured with callout letters on the fields and followed by its authoring block (Screenshot Details; Field Entry Table with Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules; Expected Page Output; Business Rules; Common Authoring Mistakes; Troubleshooting); a step-by-step walkthrough for every variation with a screenshot (461); per component Business Problem Solved, Supported Taxonomy, Target Personalization Output, Common Authoring Mistakes, Author Quick Reference Guide and Component Execution Example; new chapters 2.10 Architecture Component Considerations, 2.11 Data Flow Architecture, 6.0 Component Inventory, 8.4 Metadata Field Usage Matrix; an escalation process for every Part 13 issue; new Part 17 Operations Guide and Part 18 New Joiner Training Guide; corrections and findings F-49 to F-60 |
+| 2.2 | 16 October 2026 | Delivery team | TCS Header (Figma *New Screens from New DS*): desktop logo bar (TCS left, TATA right, 124px; navigation in the Conversation Canvas), tablet and mobile menu opening full screen one level at a time (Back, level title); a linked section label keeps its link; a tap on the open menu keeps it open; `--nav-height` 7.75rem from 1200px; chapter 6.1 (6.1.11, 6.1.18), findings F-70 to F-76 |
 
 ## Review and Approval
 
@@ -6335,16 +6336,16 @@ Blocks placed on the nav page are tracked as their own components with `parentId
 5. If the nav page can't be loaded (missing, not published, network error, or a path not starting with `/`), the header is left empty; no error is shown.
 6. The nav page's first section is the brand, the second the sections, the third the tools; further sections are appended without a role.
 7. In the brand section, the first button or link button is turned back into a plain link.
-8. Only first-level list items (`.default-content-wrapper > ul > li` in the sections section) that contain a nested list become dropdowns.
-9. An unlinked label becomes the toggle button's text; a label element containing a link keeps the link and gets an additional toggle button with the accessible name "Show {label} menu"; a list item whose first child is the link itself loses the link (it's replaced by a text button).
+8. Every list item in the sections section that contains a nested list becomes a section with a sub-level (any depth).
+9. An unlinked label becomes the section button's text; a linked label (the link itself, or an element containing it) keeps the link and gets an arrow button with the accessible name "Show {label} menu" (until 2.2 a list item whose first child was the link lost the link, F-70).
 10. Sub-list ids are `nav-submenu-{label}` (lower-case, hyphenated), unique on the page (suffix `-2`, `-3`, …); an existing id is kept.
-11. Desktop (>= 900px): selecting a toggle closes all other dropdowns and toggles its own; only one is open.
-12. Mobile (< 900px): the menu button toggles the whole menu; opening it marks all dropdowns expanded and locks page scrolling; closing it closes all dropdowns.
-13. Escape: on desktop closes the open dropdown and focuses its toggle (nothing happens if none is open); on mobile closes the open menu and focuses the menu button.
-14. Focus moving outside the nav closes all dropdowns (desktop) or the menu (mobile).
-15. Crossing the 900px breakpoint resets the state for the new mode.
-16. Accessible names come from the placeholders sheet (`mainNavigation`, `openNavigation`, `closeNavigation`, `showSubmenu`) with English fallbacks.
-17. The header is invisible until the block has loaded (`data-block-status="loaded"`), and its height is reserved (4rem) to avoid layout shift.
+11. Desktop (>= 1200px): the logo bar, brand left and tools right; the menu button and the sections are not shown (strict Figma, F-72).
+12. Tablet and mobile (< 1200px): the menu button opens the menu full screen at its first level ("Menu") and locks page scrolling; a section's button opens its sub-list in place of the level (one open section per level), with a Back button and the section's label as the title; closing the menu closes all levels.
+13. Escape closes the open menu and focuses the menu button; opening a level focuses Back; Back focuses the button of the section it closed.
+14. Focus moving to an element outside the nav closes the menu; a tap on the menu's background (focus moves to no element) keeps it open (F-71).
+15. Crossing the 1200px breakpoint resets the state for the new mode.
+16. Accessible names come from the placeholders sheet (`mainNavigation`, `openNavigation`, `closeNavigation`, `showSubmenu`, `menu`, `back`) with English fallbacks.
+17. The header is invisible until the block has loaded (`data-block-status="loaded"`), and its height is reserved (`--nav-height`: 4rem, 7.75rem from 1200px) to avoid layout shift.
 18. There is no hover-to-open behaviour and no outside-click handler; closing on outside clicks relies on focus leaving the nav.
 19. The header has no Additional tab (no anchor, hide or spacing options).
 
@@ -6622,6 +6623,37 @@ All other fields keep their default values.
 - The nav value is inherited through getInheritedMetadata and cached in sessionStorage tcs-inherited-metadata
 - Dropdowns are buttons with aria-expanded and aria-controls nav-submenu-*; the desktop row starts at 900 px
 - There is no hover opening and no outside-click handler
+
+### 6.1.18 TCS Header (version 2.2)
+
+The header follows the TCS Header of Figma *New Screens from New DS* (Navigation 1124:25825,
+mobile menu 1124:27418 / 1124:27432 / 1124:27453; Home 229:15426 / 671:52732 / 4082:120430).
+It is the project's Header block (no separate `tcs-header` block); the nav page contract is
+unchanged. Details and the reuse decisions are in `blocks/header/README.md`.
+
+| Breakpoint | Header |
+|:-----------------|:------------------------------------------------------------|
+| Desktop (>= 1200px) | Logo bar: TCS logo (brand) left, TATA logo (tools) right, 124px high, 80px gutters; no navigation (in the Conversation Canvas) |
+| Tablet (600–1199px) | 64px fixed bar, 24px gutters: TCS and TATA logos, 32px menu button |
+| Mobile (< 600px) | As tablet with 16px gutters |
+
+**Authoring the nav page for the TCS Header**
+
+| Section | Content |
+|:----------|:----------|
+| Brand | The TCS logo image, linked to the locale Home; alt text "Tata Consultancy Services" |
+| Sections | The menu as a list: What we think, What we do (Capabilities, Industries (Banking, …), …), Who we are, Insights, Careers, Media & Investors; a nested list makes a level |
+| Tools | The TATA logo image, linked to https://www.tata.com/; alt text "TATA Group" |
+
+Alternatively the nav page starts with a **TCS Header** block (`blocks/tcs-header`, allowed in sections): TCS Logo, TCS Logo Alt Text, TCS Logo Link, TATA Logo, TATA Logo Alt Text, TATA Logo Link and the Additional tab. The header takes the brand and tools from it; the first other section is the menu. Placed in a page section, the block shows the logo bar.
+
+**Troubleshooting**
+
+| Symptom | Cause | Resolution |
+|:----------|:----------|:----------|
+| No navigation on desktop | Expected: the desktop header is the logo bar (F-72) | Add a Conversation Canvas (Primary dock or a Canvas with its menu) to the page |
+| A text logo ("Button") instead of the TCS logo | The nav page's brand section holds placeholder content (F-74) | Put the TCS logo image, linked to Home, in the brand section |
+| A section's page can't be reached from the menu | The section label was the link itself (before 2.2) | Fixed in 2.2: the link stays, the arrow button opens the level |
 
 ## 6.2 Footer Block
 
@@ -122991,6 +123023,13 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-58 | Testimonial | The help texts of Author and Designation & Location (`_testimonial.json`) both suggest typing the name; the block shows Author and Designation separately | The name appears twice when authors follow the help text | Correct the help texts (Author = name only; Designation & Location = role, organisation, city) | P3 | Development | 6.13 |
 | F-59 | Universal Editor | Two components are titled "Tab" (`tab`, `tabs-item`) and five "Row" (`table-row`, `table-col-2` … `table-col-5`) | Authors pick the wrong component in the picker | Give each a distinct title (e.g. "Tab (section)", "Tab item", "Row (2 columns)") | P3 | Development | 5.4, 6.21, 6.22, 6.25 |
 | F-60 | Captions | Version 2.0 found captions of version 1.4 that did not match their screenshots (values, layouts, widths); the screen descriptions of 2.0 replace them | Readers compared screenshots with wrong descriptions | Keep generating captions from the specs; review captions when a spec changes | Closed (2.0) | Delivery team | 15.9 |
+| F-70 | Header | A section whose label was the link itself (`<li><a>…</a><ul>`) lost its link (replaced by a text button); only a link inside an element was kept | The section's page couldn't be reached from the navigation | The label link is kept and gets the arrow button (6.1.11 rule 9) | Closed (2.2) | Development | 6.1 |
+| F-71 | Header | Focus leaving the nav with no new focus target (a tap on the open mobile menu's background) closed the menu | The menu closed on stray taps | Only focus moving to an element outside the nav closes it | Closed (2.2) | Development | 6.1 |
+| F-72 | Header | Desktop (>= 1200px) shows the Figma logo bar only (product decision, 16 October 2026); desktop navigation comes from Conversation Canvas blocks | A page without a Canvas has no desktop navigation | Author a Conversation Canvas on every page template, or revisit the decision (the tablet menu could be shown on desktop by changing the 1200px breakpoint in `blocks/header`) | P2 | Product Owner, Design | 6.1 |
+| F-73 | Header, Conversation Canvas | PR #71 (floating Canvas) hides the floating row while the menu is open below 900px; the menu now exists below 1200px | Between 900 and 1199px the floating row could show over the open menu | When merging #71 and this change, use 1200px in that rule | Open | Development | 6.1, 6.30 |
+| F-74 | Navigation content | The published nav pages hold boilerplate content (brand "Button", Examples / Getting Started / Documentation, a search icon) | The TCS Header shows placeholder content | Author the nav pages as in 6.1.18 (logos and the menu) | P2 | Content authors | 6.1 |
+| F-75 | Header | Figma deviations for accessibility: menu arrows use `--color-icon-default` (Figma light grey fails 3:1); menu rows have 16px gutters (the Figma mock is edge to edge) | Slightly darker arrows, inset rows | Design review | P3 | Design | 6.1 |
+| F-76 | Handover | Open PRs #71 and #72 both add revision 2.1 and finding F-61 | Duplicate IDs once both merge | Renumber when merging | Open | Delivery team | 16 |
 
 ## 16.3 Open Items (To Be Confirmed)
 
