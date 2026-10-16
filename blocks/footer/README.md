@@ -1,120 +1,82 @@
 # Footer
 
-The page footer of every page, and the **Footer** block authored on a footer page. The footer
-page is chosen by the inherited **Footer** page property, so a site section (e.g. EMEA) gets its
-own footer by setting it once on its root page.
+The **Footer** block: a heading, a floating navigation (hamburger, search bar, page pills and a
+sub-menu of the locale's pages), CTA buttons, the copyright and legal links, on a white
+background with soft brand and warning glows.
 
 | File | Purpose |
 |---|---|
-| `blocks/footer/_footer.json` | Universal Editor definitions and models: Footer (block) and Footer Column (item) |
-| `blocks/footer/footer-rows.js` | The roles of the block's rows (no DOM; unit tested) |
-| `blocks/footer/footer.js` | The page footer (inherited footer page as a fragment, Social Links) and the Footer block |
-| `blocks/footer/footer.css` | All styling and responsive behaviour |
-| `models/_page.json` | The Footer page property (`footer`) |
-| `utils/inherited-metadata.js` | Inherited page properties (Navigation, Footer, 404 Page) |
-| `utils/site.js` | Locales, parent pages, `resolvePagePath` |
-| `test/footer/footer-rows.test.mjs` | Unit tests of the row roles (`npm test`) |
-| `test/inherited-metadata/footer-inheritance.test.mjs` | Integration tests of the footer inheritance (`npm test`) |
-| `test/site/site.test.mjs` | Unit tests of the locales and paths, incl. EMEA (`npm test`) |
+| `blocks/footer/_footer.json` | Universal Editor definitions and models: Footer (block) and its five item types |
+| `blocks/footer/footer.js` | Decoration, the floating navigation and the search bar |
+| `blocks/footer/footer.css` | All styling and responsive behaviour (mobile first; tablet 600px, desktop 1200px) |
 
-Figma "Footer - Desktop / Tablet / Mobile": 2496-91965 (1440 × 910), 4347-44552 (1024 × 956),
-4347-44593 (399 × 800).
+> **No footer page, no inheritance.** The block renders only its own authored content. The
+> page footer that aem.js adds to every page's `<footer>` is an empty Footer block, so it shows
+> only the default heading. The **Footer** page property and the locale's `references/footer`
+> pages are no longer read, so an EMEA (or any section) footer can't be set on a root page.
+> Place the authored Footer block where it should show (e.g. the last section of the pages).
 
-## Which footer a page shows
+## Authoring
 
-The page footer loads the footer page of the **Footer** page property (page properties, or the
-`footer` column of the locale's bulk metadata sheet), in this order:
-
-1. the page's own Footer;
-2. else the Footer of its nearest parent page, up to the locale's Home page (the locale page
-   itself);
-3. else the locale's `references/footer`.
-
-The value may be an AEM path (`/content/tcs-corp/emea/en/references/footer-emea`), a published
-path (`/en-emea/references/footer-emea`) or a path relative to the locale root
-(`references/footer-emea`). The footer page is loaded as `{footerPath}.plain.html` (the Fragment
-block's `loadFragment`); when editing in Universal Editor, the AEM path is loaded.
-
-Parent pages are looked up in parallel, once per page load and URL (the Navigation and Footer
-lookups share them), and their values are cached for the browser session (`sessionStorage`
-`tcs-inherited-metadata`); a changed parent property shows in a new session.
-
-### Example: the EMEA site
-
-The EMEA site is the locale `/content/tcs-corp/emea/en`, published at `/en-emea` (`lang`
-`en-GB`). The author sets the Footer **once**, on the EMEA Home page:
-
-| Page | Footer page property | Footer shown |
+| Item (component) | Fields | Notes |
 |---|---|---|
-| `/content/tcs-corp/emea/en` (Home) | `/content/tcs-corp/emea/en/references/footer-emea` | footer-emea |
-| `/content/tcs-corp/emea/en/about` | (empty) | footer-emea (inherited from Home) |
-| `/content/tcs-corp/emea/en/about/leadership` | (empty) | footer-emea (inherited from Home) |
-| `/content/tcs-corp/emea/en/careers` | `/content/tcs-corp/emea/en/references/footer-careers` | footer-careers (overrides) |
-| `/content/tcs-corp/emea/en/careers/jobs` | (empty) | footer-careers (nearest parent) |
+| Footer (block) | Heading Title | Default "Let's build the future together", shown on two lines |
+| Footer Hamburger | Hamburger Icon (image / SVG), Aria Label | Opens the floating navigation; default icon and label (`openNavigation`) when empty |
+| Footer Search Bar | Search Variation (Text & Voice / Text Only / Voice Only), Placeholder Text | Voice uses the browser's speech recognition where available |
+| Footer CTA Button | CTA Label, CTA Link, Target Type (Same Tab / New Tab) | Any number, in a row (stacked on mobile) |
+| Footer Copyright | Copyright Rich Text | |
+| Footer Legal Link | Legal Link Label, Legal Link, Target Type | Any number, after the copyright |
 
-Without a Footer anywhere in the chain, EMEA pages show `/en-emea/references/footer`. The other
-locales are unchanged: `/en/...` pages show `/en/references/footer` unless a page or parent sets
-another footer.
+Add the items in this order: Hamburger, Search Bar, CTA Buttons, Copyright, Legal Links. On the
+published page the rows carry no model name, so the block recognises them by their content (the
+search variation, the copyright text, an icon, a link before or after the copyright), then by
+position.
 
-## The Footer block (on the footer page)
+Links are AEM paths (`/content/tcs-corp/us/en/privacy`) and are published at the locale's path
+(`/en/privacy`). New Tab links open with `target="_blank" rel="noopener noreferrer"` and say so
+to screen readers.
 
-| Field | Row | Notes |
-|---|---|---|
-| Conversation Canvas Page | 1 | Optional: a page with the conversation-canvas block, shown at the top ("Let's build the future together") |
-| Copyright Text | 2 | Rich text; `{year}` becomes the current year |
-| Link List | 3 | The legal links of the bottom bar: Link Title, Link Path, Link Type (Default / Open in new window) |
-| Logo, Logo Alt Text | 4 | Optional: linked to the locale's Home page; the alt text names the link (else the `footerLogoHome` placeholder). The locale's Social Links go next to it |
-| **Footer Column** items | 5… | Optional: Column Title, Link List, Show As (Link column / Regional links) |
+## Floating navigation
 
-A footer with only the first three fields renders as before: the Figma layout (canvas, then the
-copyright and the links). Logo and columns are shown only when authored, between the canvas and
-the bottom bar:
+The hamburger opens pills of the locale's pages from the query index (`utils/query-index.js`;
+pages with `hide-in-nav` and the names in `EXCLUDED_PAGES` are left out), by the current page's
+level below the locale's Home page:
 
-- **Link columns**: one `<nav aria-label="Footer navigation">` with a column per item, its title
-  an `<h2>` that labels its list. 4 columns from 900px, 2 below.
-- **Regional links** (Show As: Regional links, e.g. "TCS in Europe": United Kingdom, Germany,
-  ...): a row of links below a divider, its own `<nav>` named by its title.
-- **Logo and social links**: on desktop (1200px+) to the left of the columns; on tablet a row
-  above them (logo left, icons right); stacked on mobile.
+- **L1** (Home): a pill per top-level page.
+- **L2** (1 or 2 levels below Home): the second-level pages of the current section; a pill with
+  child pages has a chevron that opens a sub-menu panel of them (also on hover).
+- **L3** (3+ levels): a back button to the parent page and suggestion pills that fill in the
+  search field.
 
-## Social links
+On pages below Home the navigation opens on load. Escape closes it and returns focus to the
+hamburger. Until the footer scrolls into view, the navigation floats at the bottom of the window
+(`is-fixed`); it docks in a `.hero-banner-sticky` or `.canvas-block-search-slot` element when one
+is on screen (none of the current blocks provides these slots). A footer without a hamburger and
+search bar has no floating navigation.
 
-From the locale's Social Links sheet (`/{locale}/data/social-links.json`: Platform, URL, Icon,
-Sort Order, e.g. `/en-emea/data/social-links.json`), in Sort Order. LinkedIn, YouTube, Instagram,
-Facebook and X (Twitter) have icons in `/icons`. External links open in a new tab with
-`target="_blank" rel="noopener noreferrer"` and say so to screen readers. The list sits next to the
-Logo when the footer has one, else after the footer page's content (as before).
+The search form doesn't search yet: it logs the query to the console.
 
 ## Placeholders
 
 | Key | English fallback | Used for |
 |---|---|---|
-| `footerLinks` | Footer links | Name of the bottom bar's link navigation |
-| `footerNavigation` | Footer navigation | Name of the link columns' navigation |
-| `footerRegionalLinks` | Regional links | Name of a regional links row without a title |
-| `footerSocialLinks` | Social media | Name of the social links list |
-| `footerLogoHome` | TCS home | Name of the Logo link when the Logo has no alt text |
-| `followUsOn` | Follow us on {platform} | Name of each social link |
-| `opensInNewTab` | (opens in a new tab) | Added to links that open in a new tab |
+| `footerHeading` | Let's build the future together | Heading when the Heading Title is empty |
+| `footerNavigation` | Footer navigation | Name of the floating navigation |
+| `footerLinks` | Footer links | Name of the legal links navigation |
+| `openNavigation` | Open navigation menu | Hamburger name when Aria Label is empty |
+| `searchPlaceholder` | Ask us a question | Search placeholder when Placeholder Text is empty |
+| `searchByVoice` | Search by voice | Microphone button |
+| `submitSearch` | Submit search | Submit button |
+| `expandSubpages` | Expand subpages for {title} | Chevron of an L2 pill |
+| `returnToParentPage` | Return to parent page | L3 back button |
+| `clickHere` | Click here | CTA without a label |
+| `copyright` | ©TATA Consultancy Services | Copyright row without text |
+| `privacyAndTerms` | Privacy & Terms | Legal link without a label |
+| `opensInNewTab` | (opens in a new tab) | Added to New Tab links |
 
 ## Accessibility
 
-Semantic `<footer>` (aem.js) with labelled `<nav>` landmarks; column titles are `<h2>` headings;
-the tab order follows the visual order (canvas, logo, social links, columns, regional links,
-bottom bar); links keep the global focus outline (`a:focus-visible`); new-tab links are
-announced; the logo link is named by its alt text.
-
-## Setting up the EMEA site (one-off, administrators)
-
-1. In AEM, create the EMEA locale below `/content/tcs-corp/emea/en` like the other locales: the
-   Home page (the locale page itself), `references/nav`, `references/footer` (the default),
-   `references/footer-emea`, `error-pages/404`, the sheets `placeholders`, `metadata`,
-   `redirects`, `taxonomy` and `data/` (`authors`, `locations`, `partners`, `social-links`,
-   `media-contacts`) and a `block-library`.
-2. Apply `paths.json` (generated from `LOCALES` in `utils/site.js` by `npm run build:paths`) to
-   the site configuration's `public.json` → `paths`; AEM uses that instead of the repository
-   file, so the EMEA pages aren't published at `/en-emea` until then.
-3. Add `/en-emea/metadata.json` to the site configuration's `metadata.source` (with the other
-   locales' sheets).
-4. On the EMEA Home page, set **Footer** to `/content/tcs-corp/emea/en/references/footer-emea`.
-   No other page needs a change.
+The heading is an `<h2>`; the floating navigation and the legal links are labelled `<nav>`
+landmarks; the hamburger has `aria-expanded` / `aria-controls`, the chevrons `aria-expanded`;
+the search field's box shows the keyboard focus; the microphone animation stops with
+`prefers-reduced-motion`.

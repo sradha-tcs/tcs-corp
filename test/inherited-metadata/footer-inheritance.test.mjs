@@ -1,7 +1,9 @@
 /*
- * Integration tests of the inherited Footer (utils/inherited-metadata.js with utils/site.js),
- * as the page footer resolves it (blocks/footer/footer.js): the page's own Footer property,
- * else the nearest parent page's, else the locale's references/footer. The published pages
+ * Integration tests of the inherited page properties (utils/inherited-metadata.js with
+ * utils/site.js), with the Footer property: the page's own value, else the nearest parent
+ * page's, else the locale's default page (resolvePagePath). The header (nav) and the 404 page
+ * (error-page) resolve their properties this way; the Footer block doesn't load a footer page
+ * since it was replaced (blocks/footer/README.md), so the Footer property has no effect. The published pages
  * are simulated: fetch returns their HTML heads, scripts/aem.js (a browser module) is replaced
  * by a getMetadata that reads the current page's metadata. npm test
  */

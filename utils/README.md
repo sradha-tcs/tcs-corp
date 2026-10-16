@@ -7,17 +7,17 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | Util | Exports | Used by |
 |---|---|---|
 | `site.js` | `LOCALES`, `DEFAULT_LOCALE`, `aemRootOf`, `getLocale`, `getParentPages`, `localePagePath`, `resolvePagePath`, `localeSheetPath`, `toPublishedPath`, `toAemPath`, `sheetRows` (the 14 locale sites incl. EMEA (`emea/en` → `/en-emea`), AEM ↔ published paths; references, configured nav / footer, error pages and sheets of a locale) | header, footer, `scripts.js`, placeholders, taxonomy, data, urls, inherited metadata, conversation-canvas, `tools/paths/generate-paths.mjs` |
-| `inherited-metadata.js` | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | header, footer, `scripts.js` (404) |
+| `inherited-metadata.js` | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | header, `scripts.js` (404) |
 | `metadata.js` | `getPageMetadata`, `getPageTags`, `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | page-header, conversation-canvas, SEO decorator, templates |
 | `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | all blocks with UI text, header, footer, `scripts.js` (404 Go back) |
 | `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, filter-list, conversation-canvas |
-| `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, filter-list, footer, templates |
+| `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, filter-list, templates |
 | `properties.js` | `readProperties`, `textOf`, `isOn`, `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, tab, tabs, table-list, decorators |
 | `multifield.js` | `readMultifieldItems` (composite multifield items) | links util, stats decorator, anchor-list, filter-list |
-| `links.js` | `NEW_WINDOW`, `linkOf`, `readLinkItems` (CTA lists with Link Type and the items' other select values) | hero, teaser, page-header, footer |
+| `links.js` | `NEW_WINDOW`, `linkOf`, `readLinkItems` (CTA lists with Link Type and the items' other select values) | hero, teaser, page-header |
 | `buttons.js` | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | button decorators, hero, list, conversation-canvas, tabs, table-list |
 | `dates.js` | `formatDate` (DD-MM-YYYY, MM-DD-YYYY, MMM d, yyyy, DD/MM/YY, DD MMM YY; no time zone shift) | date decorator |
-| `query-index.js` | `getPages` (the current locale's pages from `/query-index.json` with their metadata columns: tags, page and content type, dates, images, author, featured, priority; loaded once per page and cached), `columnOf` (a column by its metadata name, e.g. featured-image), `listOf` (a multi-value column) | filter-list, list, conversation-canvas |
+| `query-index.js` | `getPages` (the current locale's pages from `/query-index.json` with their metadata columns: tags, page and content type, dates, images, author, featured, priority; loaded once per page and cached), `columnOf` (a column by its metadata name, e.g. featured-image), `listOf` (a multi-value column) | filter-list, list, conversation-canvas, footer |
 | `redirects.js` | `loadRedirects`, `resolveRedirect`, `normalizeRedirectPath` (redirect targets from the locale's redirects sheet, loaded once) | list |
 | `analytics.js` | `pushToDataLayer`, `pushComponents`, `pushComponentEvent` (Adobe Client Data Layer, Core Components schema; never throws) | data layer decorator, list, separator, tabs, gen-carousel, modal |
 | `cells.js` | `matchCells` (block item cells to model fields when AEM leaves out unset fields) | list, table-list, cards |

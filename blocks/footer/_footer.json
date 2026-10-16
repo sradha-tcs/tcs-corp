@@ -9,23 +9,83 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Footer",
-              "filter": "footer",
-              "model": "footer"
+              "model": "footer",
+              "filter": "footer"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Column",
-      "id": "footer-column",
+      "title": "Footer Hamburger",
+      "id": "footer-hamburger",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Footer Column",
-              "model": "footer-column"
+              "name": "Footer Hamburger",
+              "model": "footer-hamburger"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Search Bar",
+      "id": "footer-search",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Search Bar",
+              "model": "footer-search"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer CTA Button",
+      "id": "footer-cta",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer CTA Button",
+              "model": "footer-cta"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Copyright",
+      "id": "footer-copyright",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Copyright",
+              "model": "footer-copyright"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Legal Link",
+      "id": "footer-legal-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Legal Link",
+              "model": "footer-legal-item"
             }
           }
         }
@@ -37,135 +97,139 @@
       "id": "footer",
       "fields": [
         {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "conversationCanvas",
-          "label": "Conversation Canvas Page",
-          "description": "A page with the conversation-canvas block (e.g. references/conversation-canvas), shown above the copyright and links"
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "copyright",
-          "label": "Copyright Text",
-          "description": "e.g. ©TATA Consultancy Services {year}; {year} is replaced with the current year"
-        },
-        {
-          "component": "container",
-          "name": "links",
-          "label": "Link List",
-          "multi": true,
-          "fields": [
-            {
-              "component": "text",
-              "valueType": "string",
-              "name": "linkText",
-              "label": "Link Title"
-            },
-            {
-              "component": "aem-content",
-              "valueType": "string",
-              "name": "link",
-              "label": "Link Path"
-            },
-            {
-              "component": "select",
-              "valueType": "string",
-              "name": "linkTarget",
-              "label": "Link Type",
-              "value": "",
-              "options": [
-                {
-                  "name": "Default",
-                  "value": ""
-                },
-                {
-                  "name": "Open in new window",
-                  "value": "new-window"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "logo",
-          "label": "Logo",
-          "multi": false,
-          "description": "Optional: shown above the link columns with the locale's Social Links next to it, linked to the locale's Home page"
-        },
-        {
           "component": "text",
+          "name": "title",
+          "label": "Heading Title",
           "valueType": "string",
-          "name": "logoAlt",
-          "label": "Logo Alt Text",
-          "description": "Names the Home link, e.g. TCS home; empty: the footerLogoHome placeholder"
+          "value": "Let's build the future together"
         }
       ]
     },
     {
-      "id": "footer-column",
+      "id": "footer-hamburger",
       "fields": [
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "title",
-          "label": "Column Title",
-          "description": "The heading of the column's links, e.g. What we do"
+          "component": "aem-content",
+          "name": "icon",
+          "label": "Hamburger Icon (Image / SVG)",
+          "valueType": "string"
         },
         {
-          "component": "container",
-          "name": "links",
-          "label": "Link List",
-          "multi": true,
-          "fields": [
+          "component": "text",
+          "name": "ariaLabel",
+          "label": "Aria Label",
+          "valueType": "string",
+          "value": "Open navigation menu"
+        }
+      ]
+    },
+    {
+      "id": "footer-search",
+      "fields": [
+        {
+          "component": "select",
+          "name": "searchVariation",
+          "label": "Search Variation",
+          "valueType": "string",
+          "value": "both",
+          "options": [
             {
-              "component": "text",
-              "valueType": "string",
-              "name": "linkText",
-              "label": "Link Title"
+              "name": "Text & Voice",
+              "value": "both"
             },
             {
-              "component": "aem-content",
-              "valueType": "string",
-              "name": "link",
-              "label": "Link Path"
+              "name": "Text Only",
+              "value": "text-only"
             },
             {
-              "component": "select",
-              "valueType": "string",
-              "name": "linkTarget",
-              "label": "Link Type",
-              "value": "",
-              "options": [
-                {
-                  "name": "Default",
-                  "value": ""
-                },
-                {
-                  "name": "Open in new window",
-                  "value": "new-window"
-                }
-              ]
+              "name": "Voice Only",
+              "value": "voice-only"
             }
           ]
         },
         {
-          "component": "select",
+          "component": "text",
+          "name": "placeholder",
+          "label": "Placeholder Text",
           "valueType": "string",
-          "name": "placement",
-          "label": "Show As",
-          "value": "",
-          "description": "Regional links: shown as a row of links (e.g. the EMEA countries) above the copyright instead of a column",
+          "value": "Ask us a question"
+        }
+      ]
+    },
+    {
+      "id": "footer-cta",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "CTA Label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "CTA Link",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "target",
+          "label": "Target Type",
+          "valueType": "string",
+          "value": "_self",
           "options": [
             {
-              "name": "Link column",
-              "value": ""
+              "name": "Same Tab (_self)",
+              "value": "_self"
             },
             {
-              "name": "Regional links",
-              "value": "regional"
+              "name": "New Tab (_blank)",
+              "value": "_blank"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer-copyright",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Copyright Rich Text",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footer-legal-item",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Legal Link Label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Legal Link",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "target",
+          "label": "Target Type",
+          "valueType": "string",
+          "value": "_self",
+          "options": [
+            {
+              "name": "Same Tab (_self)",
+              "value": "_self"
+            },
+            {
+              "name": "New Tab (_blank)",
+              "value": "_blank"
             }
           ]
         }
@@ -176,7 +240,11 @@
     {
       "id": "footer",
       "components": [
-        "footer-column"
+        "footer-hamburger",
+        "footer-search",
+        "footer-cta",
+        "footer-copyright",
+        "footer-legal-item"
       ]
     }
   ]

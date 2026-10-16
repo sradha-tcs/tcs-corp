@@ -64,7 +64,7 @@
           "valueType": "string",
           "name": "footer",
           "label": "Footer",
-          "description": "The footer page of this page and, unless they set their own, its child pages. Empty: the nearest parent page's Footer (or the metadata sheet's footer column), else the locale's references/footer."
+          "description": "Not used: the Footer block renders its own authored content and doesn't load a footer page."
         },
         {
           "component": "aem-content",

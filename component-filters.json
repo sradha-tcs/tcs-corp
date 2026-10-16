@@ -75,7 +75,11 @@
   {
     "id": "footer",
     "components": [
-      "footer-column"
+      "footer-hamburger",
+      "footer-search",
+      "footer-cta",
+      "footer-copyright",
+      "footer-legal-item"
     ]
   },
   {
