@@ -71,8 +71,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   nav.dataset.expanded = expanded ? 'false' : 'true';
   // the menu opens at its first level
   toggleAllNavSections(navSections, false);
-  button.setAttribute('aria-expanded', String(!expanded && !isDesktop.matches));
+  const open = !expanded && !isDesktop.matches;
+  button.setAttribute('aria-expanded', String(open));
   button.setAttribute('aria-label', expanded ? t('openNavigation', 'Open navigation') : t('closeNavigation', 'Close navigation'));
+  // the menu covers the page: e.g. the floating Canvas is hidden while it's open
+  document.dispatchEvent(new CustomEvent('header:menu', { detail: { open } }));
 }
 
 /** Escape closes the menu (mobile), focus back on its button */
@@ -224,6 +227,12 @@ export default async function decorate(block) {
   nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // sections with a Conversation Canvas are the header Canvas, below the nav (they aren't
+  // brand, sections or tools); the canvas block itself takes part in the floating journey
+  const canvasSections = [...nav.children]
+    .filter((section) => section.querySelector('.conversation-canvas'));
+  canvasSections.forEach((section) => section.remove());
+
   // the logos from a TCS Header block, else the sections in order: brand, sections, tools
   if (!applyLogoBar(nav)) {
     const classes = ['brand', 'sections', 'tools'];
@@ -265,4 +274,11 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  if (canvasSections.length) {
+    const navCanvas = document.createElement('div');
+    navCanvas.className = 'nav-canvas';
+    navCanvas.append(...canvasSections);
+    block.append(navCanvas);
+  }
 }

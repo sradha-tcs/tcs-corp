@@ -349,6 +349,22 @@ header nav .nav-sections .nav-drop[data-expanded='true'] > ul {
   display: block;
 }
 
+/* header Canvas (a nav page section with a Conversation Canvas), below the logos */
+header:has(.nav-canvas) {
+  height: auto;
+}
+
+header .nav-canvas {
+  /* the bar is fixed below 1200px, so the Canvas starts below it */
+  padding-top: var(--nav-height);
+}
+
+@media (width >= 1200px) {
+  header .nav-canvas {
+    padding-top: 0;
+  }
+}
+
 /* desktop: the logo bar; the site navigation is in the Conversation Canvas */
 @media (width >= 1200px) {
   header nav .nav-hamburger,

@@ -136,6 +136,8 @@ Each block should be self-contained and re-useable, with CSS and JS files follow
 
 **Header.** `blocks/header` is the TCS Header (see its README): the nav page's brand (TCS logo), sections (the menu, any depth) and tools (TATA logo); desktop (>= 1200px) is the Figma logo bar without navigation, tablet and mobile open the menu full screen one level at a time. Keep `header .nav-wrapper`, `#nav`, `nav[data-expanded]` and `--nav-height` (other blocks rely on them).
 
+**Floating Canvas.** All Conversation Canvases of a page (header nav page, body, footer canvas page) share one floating journey: `blocks/conversation-canvas/canvas-journey.js` (pure, unit tested; states initial, floating, section-docked, floating-after-section, footer-docked, hidden in `<html data-canvas-journey-state>`) decides which one floats or is docked, `canvas-controller.js` measures the page (never while scrolling) and applies it. The header only hosts header Canvases (`.nav-canvas`) and announces its menu with the `header:menu` event (`detail.open`; the journey is hidden while it's open); header and Canvas don't import each other. Don't add Canvas logic to header.js or footer.js.
+
 **Accessibility.** Blocks meet WCAG 2.1 AA: buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
 
 ### Shared code: decorators and utils
