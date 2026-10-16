@@ -71,6 +71,23 @@
           "description": "Usually https://www.tata.com/."
         },
         {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "navigationRoot",
+          "label": "Navigation Root",
+          "description": "The page whose sub-pages are the tablet and mobile menu (e.g. the locale Home page). Empty: the menu authored on the Navigation page."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "navigationDepth",
+          "label": "Navigation Depth",
+          "description": "Menu levels below the Navigation Root (1 to 3).",
+          "value": 3,
+          "min": 1,
+          "max": 3
+        },
+        {
           "component": "tab",
           "name": "additionalTab",
           "label": "Additional"

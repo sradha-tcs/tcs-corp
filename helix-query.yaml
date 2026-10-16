@@ -132,3 +132,10 @@ indices:
       hideInNav:
         select: head > meta[name="hide-in-nav"]
         value: attribute(el, "content")
+      # the site navigation's label and sibling order (utils/navigation.js)
+      navTitle:
+        select: head > meta[name="nav-title"]
+        value: attribute(el, "content")
+      navOrder:
+        select: head > meta[name="nav-order"]
+        value: attribute(el, "content")
