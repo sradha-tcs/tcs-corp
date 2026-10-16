@@ -122,6 +122,11 @@ header nav .nav-hamburger {
   align-items: center;
 }
 
+/* a menu from pages without pages (blocks/header fillMenu): no menu button */
+header nav .nav-hamburger[hidden] {
+  display: none;
+}
+
 header nav .nav-hamburger button {
   display: grid;
   place-items: center;
@@ -338,6 +343,15 @@ header nav .nav-sections li > a:hover,
 header nav .nav-sections li > p > a:hover,
 header nav .nav-sections .nav-drop-toggle:hover {
   color: var(--color-text-brand);
+}
+
+/* the current page and the sections it's in (a menu from pages) */
+header nav .nav-sections li > a[aria-current] {
+  color: var(--color-text-brand);
+}
+
+header nav .nav-sections li > a[aria-current="page"] {
+  font-weight: var(--font-weight-semibold);
 }
 
 /* sub-lists open as the next level: in place of their level, without the section's own row */

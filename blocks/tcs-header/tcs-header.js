@@ -5,8 +5,8 @@ import { readProperties, textOf } from '../../utils/properties.js';
 /*
  * TCS Header (blocks/tcs-header/_tcs-header.json): a key-value block with the TCS and TATA logos
  * and their links (Figma "Nav Bar-NEW", New Screens from New DS). On the Navigation page it
- * supplies the site header's brand (TCS logo) and tools (TATA logo), see blocks/header; anywhere
- * else it shows the logo bar.
+ * supplies the site header's brand (TCS logo) and tools (TATA logo), and with a Navigation Root
+ * the pages of its tablet and mobile menu, see blocks/header; anywhere else it shows the logo bar.
  */
 
 /**
@@ -39,4 +39,10 @@ export default function decorate(block) {
     buildLogo(props.tatalogo, props.tatalogoalt, props.tatalogolink, 'tcs-header-group'),
   ].filter(Boolean));
   block.replaceChildren(bar);
+  // the site header's menu from pages (blocks/header): Navigation Root and Depth
+  const root = linkOf(props.navigationroot)?.getAttribute('href') || textOf(props.navigationroot);
+  if (root) {
+    block.dataset.navigationRoot = root;
+    block.dataset.navigationDepth = textOf(props.navigationdepth) || '3';
+  }
 }

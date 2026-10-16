@@ -4,6 +4,10 @@ import { createIdFactory } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
+import { toSitePath } from '../../utils/urls.js';
+import {
+  findNode, isWithin, loadNavigationTree, MAX_DEPTH,
+} from '../../utils/navigation.js';
 
 /*
  * Header (TCS Header, Figma "New Screens from New DS"): the Navigation page (the page's
@@ -189,6 +193,36 @@ function applyLogoBar(nav) {
   return true;
 }
 
+/**
+ * The menu from pages (TCS Header Navigation Root and Depth): the navigation tree as the nested
+ * list an authored menu has, then decorated the same way (levels, linked labels with their arrow
+ * button). It loads after the header is shown; without pages the menu button is hidden.
+ */
+async function fillMenu(navSections, { root, depth }, nextId) {
+  const tree = await loadNavigationTree(root, depth);
+  const current = findNode(tree, window.location.pathname);
+  const toList = (nodes) => {
+    const list = document.createElement('ul');
+    nodes.forEach((node) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = node.path;
+      a.textContent = node.title;
+      if (current && isWithin(current, node)) a.setAttribute('aria-current', current === node ? 'page' : 'true');
+      li.append(a);
+      if (node.children.length) li.append(toList(node.children));
+      list.append(li);
+    });
+    return list;
+  };
+  navSections.querySelector('.default-content-wrapper > ul').replaceWith(toList(tree.children));
+  navSections.querySelectorAll(':scope .default-content-wrapper li').forEach((navSection) => {
+    if (navSection.querySelector(':scope > ul')) decorateDrop(navSection, nextId);
+  });
+  const hamburger = navSections.closest('nav')?.querySelector('.nav-hamburger');
+  if (hamburger) hamburger.hidden = !tree.children.length;
+}
+
 /** the menu button (mobile), drawn by the CSS (an animated icon) */
 function buildHamburger(nav, navSections) {
   const hamburger = document.createElement('div');
@@ -247,6 +281,14 @@ export default async function decorate(block) {
     section.remove();
   });
 
+  // a TCS Header block with a Navigation Root: the menu from pages, when no menu is authored
+  const bar = nav.querySelector(':scope > .section .tcs-header');
+  const navigationRoot = toSitePath(bar?.dataset.navigationRoot || '');
+  const navigation = navigationRoot ? {
+    root: navigationRoot,
+    depth: Math.min(MAX_DEPTH, Math.max(1, parseInt(bar.dataset.navigationDepth, 10) || MAX_DEPTH)),
+  } : null;
+
   // the logos from a TCS Header block, else the sections in order: brand, sections, tools
   if (!applyLogoBar(nav)) {
     const classes = ['brand', 'sections', 'tools'];
@@ -260,10 +302,24 @@ export default async function decorate(block) {
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) removeButtonDecoration(navBrand.querySelector('.button, .link-button'));
 
+  let fromPages = false;
+  if (navigation && !nav.querySelector('.nav-sections')) {
+    const section = document.createElement('div');
+    section.className = 'section nav-sections';
+    const wrapper = document.createElement('div');
+    wrapper.className = 'default-content-wrapper';
+    wrapper.append(document.createElement('ul'));
+    section.append(wrapper);
+    const navTools = nav.querySelector('.nav-tools');
+    if (navTools) navTools.before(section);
+    else nav.append(section);
+    fromPages = true;
+  }
+
   const navSections = nav.querySelector('.nav-sections');
+  const nextId = createIdFactory('nav-submenu');
   if (navSections) {
     navSections.id = 'nav-sections';
-    const nextId = createIdFactory('nav-submenu');
     navSections.querySelectorAll(':scope .default-content-wrapper li').forEach((navSection) => {
       if (navSection.querySelector(':scope > ul')) decorateDrop(navSection, nextId);
     });
@@ -283,6 +339,7 @@ export default async function decorate(block) {
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
   window.addEventListener('keydown', closeOnEscape);
   nav.addEventListener('focusout', closeOnFocusLost);
+  if (fromPages) fillMenu(navSections, navigation, nextId);
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
