@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { uniqueId } from '../../utils/ids.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
+import { readLinkItems } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { getPages } from '../../utils/query-index.js';
 import { getLocale, getParentPages, resolvePagePath } from '../../utils/site.js';
@@ -85,8 +86,14 @@ function element(tagName, className, text) {
   return el;
 }
 
-/** the path the site serves for an authored link (the locale's published path, e.g. /de-de/x) */
-const linkPath = (cell) => toSitePath(cell?.querySelector('a[href]')?.getAttribute('href') || '') || '#';
+/**
+ * the path the site serves for an authored link href (the locale's published path, e.g.
+ * /de-de/x); empty and in-page links (#...) stay as they are
+ */
+const sitePath = (href) => (!href || href.startsWith('#') ? href || '#' : toSitePath(href));
+
+/** the path the site serves for the link of a cell */
+const linkPath = (cell) => sitePath(cell?.querySelector('a[href]')?.getAttribute('href'));
 
 /**
  * The current page within its locale: its level (L1, L2 or L3) below the locale's Home page,
@@ -242,7 +249,12 @@ async function decorateFooterBlock(block) {
   // Heading Title
   const mainTitleRow = blockRows.shift();
   const rawTitle = mainTitleRow?.textContent.trim();
-  const titleText = rawTitle || t('footerHeading', 'Let’s build the future together');
+  // footer pages authored before the TCS footer start with the Conversation Canvas Page (a page
+  // path, often a link), not a title: they get the default heading until re-authored
+  const titleLink = mainTitleRow?.querySelector('a[href]');
+  const isPagePath = /^\/\S*$/.test(rawTitle || '')
+    || (!!titleLink && titleLink.textContent.trim() === rawTitle);
+  const titleText = (!isPagePath && rawTitle) || t('footerHeading', 'Let’s build the future together');
 
   const footerContent = element('div', 'footer-content');
   const heading = buildHeading(titleText);
@@ -469,6 +481,18 @@ async function decorateFooterBlock(block) {
       if (cells[0]?.childNodes.length) row.replaceChildren(...cells[0].childNodes);
       else row.textContent = t('copyright', '©TATA Consultancy Services');
       bottomRow.prepend(row);
+    } else if (model === 'footer-legal-item' && cells.length === 1 && cells[0].querySelector('a[href]')) {
+      // the Link List of a footer page authored before the TCS footer: several links in one
+      // cell, each a legal link
+      readLinkItems(cells[0]).forEach(({ link, newWindow }) => {
+        const item = element('div', 'footer-legal-item-wrapper');
+        const legalLink = element('a', 'footer-legal-link', link.textContent.trim());
+        legalLink.href = sitePath(link.getAttribute('href'));
+        setLinkTarget(legalLink, newWindow);
+        if (newWindow) announceNewTab(legalLink, newTabHint);
+        item.append(legalLink);
+        legalNav.append(item);
+      });
     } else if (model === 'footer-legal-item') {
       const label = cells[0]?.textContent.trim() || t('privacyAndTerms', 'Privacy & Terms');
       const target = cells[2]?.textContent.trim() || '_self';

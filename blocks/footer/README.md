@@ -55,7 +55,9 @@ configuration's `public.json` paths; add `/en-emea/metadata.json` to `metadata.s
 
 Add one Footer block to the footer page (e.g. `references/footer`, `references/footer-emea`).
 Footer pages authored with the previous Footer fields (Conversation Canvas Page, Copyright Text,
-Link List) must be re-authored: their first row is now read as the Heading Title.
+Link List) still render until they are re-authored: the canvas page path is ignored (the default
+heading shows), the copyright and the Link List's links (as legal links) show; the hamburger,
+search bar and CTA buttons appear only once those items are authored.
 
 | Item (component) | Fields | Notes |
 |---|---|---|
