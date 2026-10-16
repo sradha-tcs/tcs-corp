@@ -540,13 +540,15 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   }
 }
 
+/* mobile: the Ask TCS pill (Figma Mobile Ask TCS 1124:27452: 280px, 40% grey, 4px padding) */
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
-  width: min(100%, 21.25rem);
+  width: min(100%, 17.5rem);
 }
 
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
   border-color: transparent;
-  background-color: rgb(230 230 230 / 90%);
+  padding: var(--space-100) var(--space-100) var(--space-100) var(--space-400);
+  background-color: rgb(178 178 178 / 40%);
   backdrop-filter: blur(var(--blur-100));
 }
 
@@ -588,6 +590,17 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* levels (see Navigation levels below): first level pills, the levels below text items */
+.conversation-canvas :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
+  padding: var(--space-300) var(--space-800);
+  font-weight: var(--font-weight-medium);
+}
+
+.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-item {
+  border-color: transparent;
+  background-color: transparent;
 }
 
 .conversation-canvas .conversation-canvas-nav-item:hover,
@@ -637,6 +650,22 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   height: var(--space-500);
   background-color: currentcolor;
   mask: url('../../icons/arrow-left.svg') center / contain no-repeat;
+}
+
+/*
+ * Navigation levels (Figma Full menu 1124:26210 / 1124:26244): the first level as pills
+ * (12px 32px, medium), the levels below as text items with the open one filled; their row
+ * starts with the menu button (back to the first level) or a back arrow (deeper levels).
+ * :where() keeps the specificity of the pill rules, so the variants below still apply.
+ */
+.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-current {
+  border-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas .conversation-canvas-nav-back.conversation-canvas-nav-back-menu::before {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  mask-image: url('../../icons/menu.svg');
 }
 
 /* panel with a pill's sub-pages, in place of the search row */
@@ -716,25 +745,25 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
     background: linear-gradient(0deg, var(--color-bg-default) 55%, rgb(255 255 255 / 0%) 100%);
   }
 
+  /* Figma Full menu (1124:26210): the 530px search pill alone, 40% white with a light outline;
+     the full menu is reached from the row below (the menu button of a level, Figma 1124:26244) */
   .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
-    width: min(100%, 37.9375rem);
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {
-    display: grid;
-    background-color: var(--color-bg-default);
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-pressed="true"],
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle[aria-expanded="false"] {
-    border-color: var(--conversation-canvas-active);
-    color: var(--conversation-canvas-active);
+    width: min(100%, 33.125rem);
   }
 
   .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
-    border-color: var(--conversation-canvas-outline);
-    background-color: var(--color-bg-default);
+    border-color: var(--color-border-default);
+    padding: var(--space-300) var(--space-300) var(--space-300) var(--space-600);
+    background-color: var(--color-bg-opacity);
     backdrop-filter: none;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input {
+    font-weight: var(--font-weight-light);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
+    color: var(--color-text-default);
   }
 
   .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav {
@@ -762,6 +791,12 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 .conversation-canvas.text-links .conversation-canvas-nav-item {
   border-color: transparent;
   background-color: transparent;
+}
+
+/* the first level as text items too (no pills) */
+.conversation-canvas.text-links :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
+  padding: var(--space-200) var(--space-600);
+  font-weight: var(--font-weight-regular);
 }
 
 .conversation-canvas.text-links .conversation-canvas-nav-item:hover,
