@@ -119,11 +119,13 @@ Verified from the repository, the published content and Figma *New Screens from 
 |---|---|---|---|---|
 | Default | Hero (4082:120388), Intelligent Personalisation Block (251:41883), Footer (2496:91965) | Page body, header, footer | Canvas Style Default | Search row docks in place, floats once passed |
 | Secondary | — (repository) | Page body | Canvas Style Secondary | As Default; filter tags by script |
-| Floating search row | Floating menu (4308:42483): 59px menu button, 2px `#494c4d` outline, 60% white pill; 607×72 desktop, 463×72 tablet | Any Default / Secondary | — | The floating presentation of the owner row |
+| Section Canvas | Intelligent Personalisation Block (251:41883), tablet 2313:52736 | Page body (Default / Secondary) | — | Desktop: edge to edge in a Full Width section (no rounded corners), 160px / 80px padding, at least 800px high, 40px between title, text, search row and quick actions; search row 607px. Tablet: 24px gutters, at least 800px high, content centered |
+| Quick actions | Filter tag (state-5-pills, 251:41883); Footer CTA buttons (2496:91965) | Page body / footer | Quick actions (`classes_actions`) | Auto: pills in page sections (12px 32px, 1px `#e6e6e6`, 18px medium, no arrow, 12px apart, at most 900px wide), buttons in the footer |
+| Floating search row | Floating menu (4308:42483): 59px menu button, 2px `#494c4d` outline, 60% white pill; 607×72 desktop, 463×72 tablet | Any Default / Secondary | — | The floating presentation of the owner row. On tablet the row in place is 607px and the floating row 463px (both Figma), so it changes width as it floats and lands |
 | Primary — Pills | Full menu (1124:26210, 1124:26244) | Page body (first section) | Canvas Style Primary (sticky), Navigation style Pills | Whole dock floats; docks give way to Canvases in place. Desktop: the 530px search pill alone (40% white, `#e6e6e6` outline, light placeholder); first level as pills (12px 32px, medium), the levels below as text items with the open one filled, their row starting with the menu button (back to the first level; a back arrow deeper down) |
 | Primary — Text links | Full menu – No Pill (1734:31279) | As Primary | Navigation style Text links | Text items; current / open item as filled pill |
 | Primary — Dark | L1 Media & Investors (1734:38272) | As Primary | BG Style Dark (Primary) + Text links | Black fade, `--black-400` pill with `--grey-300` outline, light items |
-| Title Bigger / Medium, background image, icon, eyebrow, buttons | Hero, Intelligent Personalisation Block | Default / Secondary | Title Type, BG Background Image, Icon, Eyebrow, Button items | Unchanged |
+| Title Bigger / Medium, background image, icon, eyebrow, buttons | Hero, Intelligent Personalisation Block | Default / Secondary | Title Type, BG Background Image, Icon, Eyebrow, Button items | Title Bigger 96px on desktop (was 80px) |
 
 Mobile (< 900px): the Primary dock shows only the search pill (Figma Mobile Ask TCS 1124:27452:
 280px, 40% grey, 4px padding; the input keeps 16px, not Figma's 12px, so iOS Safari doesn't zoom
@@ -136,6 +138,7 @@ on focus; navigation is in the site header); Default / Secondary rows float full
 |---|---|---|
 | Canvas Style | Default / Primary (sticky) / Secondary | Variation |
 | Floating journey (`classes_journey`) | Floats and docks (default) / Docks only (`nofloat`) / Decorative (`decorative`) | Docks only: a stop of the journey whose own row never floats (the previous row floats on after it). Decorative: a Canvas in place that isn't part of the journey (Primary docks always are) |
+| Quick actions (`classes_actions`) | Auto (default) / Pills (`action-pills`) / Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer. Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type) |
 | BG Style | Default / Dark (Primary) | Dark applies to the Primary dock |
 | Navigation style (`classes_navstyle`) | Pills / Text links | Primary dock navigation |
 

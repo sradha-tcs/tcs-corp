@@ -128,6 +128,11 @@
   margin: 0;
 }
 
+/* 40px between the title and the text too (Figma 251:41883) */
+.conversation-canvas .conversation-canvas-title + .conversation-canvas-text {
+  margin-top: var(--space-600);
+}
+
 /* search row: menu button, search field with audio and submit buttons */
 .conversation-canvas .conversation-canvas-search-slot {
   display: flex;
@@ -141,7 +146,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-300);
-  width: min(100%, 42.875rem);
+  width: min(100%, 37.9375rem);
 }
 
 .conversation-canvas .conversation-canvas-menu-toggle {
@@ -317,7 +322,7 @@
   bottom: var(--conversation-canvas-float-offset);
   left: 50%;
   z-index: var(--conversation-canvas-z-floating);
-  width: min(42.875rem, calc(100vw - 2 * var(--space-600)));
+  width: min(28.9375rem, calc(100vw - 2 * var(--space-600)));
   transform: translateX(-50%);
   translate: 0 calc(-1 * var(--conversation-canvas-lift, 0rem));
   animation: conversation-canvas-float-in 0.3s ease-out;
@@ -387,6 +392,40 @@ html:has(.conversation-canvas-owner) {
   list-style: none;
 }
 
+/*
+ * Quick actions as pills (Figma Intelligent Personalisation Block 251:41883, Filter tag: the
+ * look of the shared .tag-filter): by default in page sections; buttons in the footer
+ * (Figma Footer 2496:91965) and with Quick actions = Buttons.
+ */
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons {
+  gap: var(--space-300);
+  max-width: 56.25rem;
+}
+
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button {
+  height: auto;
+  min-height: 0;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: var(--space-300) var(--space-800);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.8125rem;
+  letter-spacing: -0.0056rem;
+}
+
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
+  border-color: var(--color-border-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button::after {
+  display: none;
+}
+
 /* secondary */
 .conversation-canvas.secondary .conversation-canvas-intro {
   gap: var(--space-1000);
@@ -398,13 +437,22 @@ html:has(.conversation-canvas-owner) {
     padding: var(--space-2000) var(--space-1000);
   }
 
+  /* a section Canvas (Figma 2313:52736): at least 800px high, content centered, 24px gutters */
+  main .conversation-canvas:not(.primary) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 50rem;
+    padding-inline: var(--space-600);
+  }
+
   .conversation-canvas .conversation-canvas-search {
     gap: 1.25rem;
   }
 
   .conversation-canvas .conversation-canvas-search-form {
     gap: var(--space-300);
-    padding: var(--space-300) var(--space-300) var(--space-300) var(--space-600);
+    padding: var(--space-300) var(--space-600) var(--space-300) 1.75rem;
   }
 
   .conversation-canvas .conversation-canvas-eyebrow {
@@ -441,8 +489,17 @@ html:has(.conversation-canvas-owner) {
     padding: var(--space-3000) var(--space-2000) var(--space-2000);
   }
 
+  /* a section Canvas (Figma 251:41883): 160px / 80px */
+  main .conversation-canvas:not(.primary) {
+    padding: var(--space-4000) var(--space-2000);
+  }
+
   .conversation-canvas .conversation-canvas-content {
-    gap: var(--space-2000);
+    gap: var(--space-1000);
+  }
+
+  .conversation-canvas .conversation-canvas-search.conversation-canvas-floating {
+    width: min(37.9375rem, calc(100vw - 2 * var(--space-600)));
   }
 
   .conversation-canvas .conversation-canvas-eyebrow {
@@ -456,7 +513,7 @@ html:has(.conversation-canvas-owner) {
   }
 
   .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-    font-size: 5rem;
+    font-size: 6rem;
     letter-spacing: -0.15rem;
   }
 
@@ -879,4 +936,9 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 /* the next canvas's row is hidden while it comes up to the floating row (one row on screen) */
 .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
   opacity: 0;
+}
+
+/* a Canvas filling a Full Width section (no gutter) has no rounded corners (Figma 251:41883) */
+main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
+  border-radius: 0;
 }

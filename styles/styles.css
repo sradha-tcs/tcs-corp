@@ -331,6 +331,20 @@ header {
   height: var(--nav-height);
 }
 
+/*
+ * Desktop: on a page that opens with a light hero, the logo bar lies over the hero (Figma
+ * Logos 667:52520 / Hero 4082:120388). The header is out of the flow, so the hero never moves
+ * when it loads; the hero adds the header's height on top (blocks/hero). With a header Canvas
+ * the header is taller: blocks/header sets --header-height.
+ */
+@media (width >= 1200px) {
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2;
+  }
+}
+
 header .header,
 footer .footer {
   visibility: hidden;

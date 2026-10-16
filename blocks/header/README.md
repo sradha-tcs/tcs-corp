@@ -3,7 +3,8 @@
 The site header of every page, built by `scripts/aem.js` `loadHeader` inside `<header>` (authors
 don't add it). It loads the **Navigation page** as a fragment: the page's Navigation property,
 inherited from its parent pages up to Home (`utils/inherited-metadata.js`), else the locale's
-`references/nav` (`utils/site.js` `resolvePagePath`).
+`references/nav` (`utils/site.js` `resolvePagePath`). A configured Navigation page that can't be
+loaded (not published, moved) falls back to `references/nav`, so the page keeps a header.
 
 Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25825; mobile
 menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile (229:15426,
@@ -52,6 +53,14 @@ one level at a time: the title ("Menu", then the open section's label), a Back b
 second level, and the rows (text and arrow). Opening a section shows its sub-list in place of the
 level; Back returns one level and focuses the section's button again.
 
+Over a light hero (desktop): when the page's first section has a hero that isn't `bg-dark`,
+`bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos
+667:52520, Hero 4082:120388): its header Canvas loses its background and rounded corners. The
+header is out of the flow, so the hero never moves when it loads; the hero grows by the header's
+height (`--header-height`, set by the header while it has a Canvas; else `--nav-height`). Below
+1200px the header keeps its bar above the hero. A header Canvas loads with the header (lazy
+phase) and so shifts the page below 1200px (F-82).
+
 ### Accessibility
 
 - Menu button: `aria-controls="nav-sections"`, `aria-expanded`, name Open / Close navigation.
@@ -72,6 +81,7 @@ level; Back returns one level and focuses the section's button again.
 |---|---|
 | `header .nav-wrapper`, fixed below the logo bar breakpoint | `blocks/anchor-list` (offset below a fixed header) |
 | `--nav-height` (header height; 4rem, 7.75rem from 1200px) | `styles/styles.css` (header height reserved before load), `blocks/tabs` (scroll margin), `404.html` |
+| `--header-height` (the header's height with its Canvas, on `<html>`) | `styles/styles.css`, `blocks/hero` (desktop header over a light hero) |
 | `#nav`, `#nav-sections`, `.nav-hamburger button`, `nav[data-expanded]` | Conversation Canvas (PR #71: floating row hidden while the menu is open) |
 | `nav-brand`, `nav-sections`, `nav-tools` | The nav page authoring contract |
 
