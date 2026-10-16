@@ -213,7 +213,8 @@
   --spacing-l: var(--space-2000);
   --spacing-xl: var(--space-5000);
 
-  /* layout: full-width sections cap at the page max width, fixed-width ones at the content width */
+  /* layout: full-width sections fill the screen; fixed-width ones cap at the content width, inside
+     the section gutter (--section-padding-inline); the footer caps at the page max width */
   --page-max-width: 120rem;
   --content-max-width: 90rem;
   --section-padding-inline: var(--spacing-s);
@@ -928,11 +929,16 @@ a.tag:focus-visible {
   margin-inline-start: var(--space-200);
 }
 
-/* sections: full width (default) spans the page, fixed width uses the content width */
+/* sections (Width Type): full width (default) fills the screen edge to edge, without a gutter;
+   fixed width is centered at the content width, inside the section gutter */
 main > .section {
-  --section-max-width: var(--page-max-width);
+  --section-max-width: none;
 
   margin: var(--section-spacing) 0;
+}
+
+main > .section:not(.fixed-width) {
+  --section-padding-inline: 0;
 }
 
 main > .section.fixed-width {
