@@ -204,6 +204,12 @@ describe('tag-based pages', () => {
     assert.deepEqual(buildCards(config({ source: 'tags', rootpath: '/en', tags: 'tcs:topic/none' }), { pages: PAGES }), []);
     assert.deepEqual(applyTagMatching(PAGES, [], 'any'), []);
   });
+  it('leaves out the current page', () => {
+    const tags = config({ source: 'tags', rootpath: '/en', tags: 'tcs:topic/ai, tcs:industry/banking' });
+    const cards = buildCards(tags, { pages: PAGES, currentPath: '/en/insights/agentic-bank/' });
+    assert.deepEqual(paths(cards).sort(), ['/en/industries/banking', '/en/insights/2026/deep-dive',
+      '/en/insights/ai-report']);
+  });
   it('uses the current page as the root when empty', () => {
     const cards = buildCards(config({ source: 'tags', tags: 'tcs:industry/banking' }), { pages: PAGES, currentPath: '/en/industries' });
     assert.deepEqual(paths(cards), ['/en/industries/banking']);

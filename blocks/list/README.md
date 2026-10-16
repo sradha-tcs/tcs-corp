@@ -140,7 +140,7 @@ decorate(block)
   getPages() + loadRedirects() (+ getAuthors() for the feature card)   in parallel, cached
   buildCards():
     parent  resolveParentPages()     -> normalizePageToCard()
-    tags    resolveTagPages()        -> applyTagMatching() -> normalizePageToCard()
+    tags    resolveTagPages()        -> applyTagMatching() -> normalizePageToCard()   (never the current page)
     fixed   resolveFixedItems()      -> normalizePageToCard() / link card -> applyOverrides()
     -> deduplicateCards() -> sortCards() -> limitCards() -> withIds()
   resolveTags()           tag labels (taxonomy)
