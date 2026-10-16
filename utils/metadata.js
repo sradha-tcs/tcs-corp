@@ -29,12 +29,16 @@ const AUTHORED = {
 const isYes = (value) => ['yes', 'true', '1', 'on', 'y'].includes(value.trim().toLowerCase());
 
 /**
- * The page tags: each Tags value is published as <meta property="article:tag">.
- * @returns {string[]} tag IDs (e.g. tcs:topics/cloud) or titles, as authored
+ * The page tags: each Tags value published as <meta property="article:tag">, and the page's
+ * Tags (cq:tags) as AEM publishes them, one comma-separated <meta name="cq-tags">.
+ * @returns {string[]} tag IDs (e.g. tcs-corp:topic/cloud) or titles, as authored
  */
 export function getPageTags() {
   const tags = [...document.head.querySelectorAll('meta[property="article:tag"]')]
-    .map((meta) => meta.content.trim());
+    .map((meta) => meta.content.trim())
+    .concat(getMetadata('cq-tags').split(','))
+    .map((tag) => tag.trim())
+    .filter(Boolean);
   // a "tags" meta (comma separated) as a fallback, e.g. from the bulk metadata sheet
   const list = tags.length ? tags : getMetadata('tags').split(',');
   return [...new Set(list.map((tag) => tag.trim()).filter(Boolean))];

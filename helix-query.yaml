@@ -39,6 +39,11 @@ indices:
       tags:
         select: head > meta[property="article:tag"]
         values: attribute(el, "content")
+      # AEM (Universal Editor) publishes the page's Tags (cq:tags) as one comma-separated
+      # <meta name="cq-tags">; utils/query-index.js merges it into the tags
+      cqTags:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
       # columns of the locales' bulk metadata sheets (e.g. /de-de/metadata.json)
       metaTitle:
         select: head > meta[name="meta-title"]

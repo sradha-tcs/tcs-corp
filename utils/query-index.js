@@ -55,13 +55,24 @@ const columnName = (name) => String(name || '').trim().replace(/-([a-z])/g, (m, 
  * @property {number} lastModified
  * @property {Object<string, string>} row every column of the page, by its index name
  */
+/**
+ * The tags of an index row: the article:tag column and the cq-tags column (the page's Tags as
+ * AEM publishes them: one comma-separated meta).
+ * @param {Object<string, string>} row
+ * @returns {string[]} tag IDs
+ */
+export function tagsOf(row) {
+  return [...new Set([...listOf(row.tags), ...listOf(row.cqTags)])];
+}
+
 function toPage(row) {
+  const tags = tagsOf(row);
   return {
     path: row.path,
     title: row.title || '',
     description: row.description || '',
     image: row.image || '',
-    tags: listOf(row.tags),
+    tags,
     pageType: row.pageType || '',
     contentType: row.contentType || '',
     publishDate: row.publishDate || '',
@@ -73,7 +84,7 @@ function toPage(row) {
     featured: isYes(row.featured) || isYes(row.featureCard),
     priority: numberOf(row.priority) ?? numberOf(row.featuredPriority),
     lastModified: Number(row.lastModified) || 0,
-    row,
+    row: { ...row, tags },
   };
 }
 
