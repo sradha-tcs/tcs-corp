@@ -24,7 +24,7 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 | 7–9 | Taxonomy, metadata (every field, with the field usage matrix 8.4: search, analytics and personalisation usage), data sheets (every sheet) |
 | 10–11 | Error pages; analytics and data layer |
 | 12–15 | Publishing, deployment and release; global troubleshooting (each issue with its escalation process); operational runbook and AMS handover; appendix (glossary, cheat sheets, component inventory, screenshot register) |
-| 16 | Findings and open items register (F-01 … F-66, F-70 … F-82) |
+| 16 | Findings and open items register (F-01 … F-66, F-70 … F-83) |
 | 17 | Operations guide: daily, weekly, monthly, release, validation and governance activities; calendar and RACI |
 | 18 | New joiner training guide: learning paths per role, overviews, 27 hands-on exercises, 50 knowledge validation questions, training completion record |
 

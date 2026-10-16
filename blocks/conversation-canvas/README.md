@@ -145,7 +145,13 @@ on focus; navigation is in the site header); Default / Secondary rows float full
 Authors never set offsets, coordinates, z-index or thresholds; roles (header / section / footer)
 come from where the Canvas is placed. For the footer final stop, the Footer block's
 Conversation Canvas Page must reference a page with a Canvas (`references/footer-conversation-canvas`).
-For a header Canvas, add a section with a Canvas to the nav page (it is placed below the nav).
+For a header Canvas, add a section with a Canvas to the nav page (it is placed below the nav;
+a TCS Header block in the same section stays the logo bar). Over an opening light hero
+(from 600px) its search row lies on the hero, centred, 62px (tablet, 463px) / 52px (desktop,
+607px) above the hero's bottom edge (Figma home-tablet 671:52732, home-desktop 229:15426):
+`canvas-controller.js` writes `--conversation-canvas-first-section-bottom` (on load and resize,
+never while scrolling) and `blocks/header/header.css` places the host. Mobile keeps it below
+the bar (no Figma frame).
 
 ## Figma gaps and decisions
 

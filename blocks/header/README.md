@@ -57,9 +57,22 @@ Over a light hero (desktop): when the page's first section has a hero that isn't
 `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos
 667:52520, Hero 4082:120388): its header Canvas loses its background and rounded corners. The
 header is out of the flow, so the hero never moves when it loads; the hero grows by the header's
-height (`--header-height`, set by the header while it has a Canvas; else `--nav-height`). Below
-1200px the header keeps its bar above the hero. A header Canvas loads with the header (lazy
-phase) and so shifts the page below 1200px (F-82).
+height (`--header-height`, else `--nav-height`). Below 1200px the header keeps its bar above the
+hero.
+
+Header Canvas over an opening light hero (tablet and desktop, from 600px): the Canvas host
+(`.nav-canvas`) is out of the flow and the header keeps the bar's height, so the hero isn't
+pushed down. The search row is centred on the viewport, 62px (tablet, 463px wide) / 52px
+(desktop, 607px) above the hero's bottom edge (Figma home-tablet 671:52732, home-desktop
+229:15426). The Canvas controller writes `--conversation-canvas-first-section-bottom` on load
+and resize (never while scrolling); the host shows once the journey state is set. On mobile and
+on pages that don't open with a light hero the header Canvas stays below the bar, in the flow
+(Figma has no mobile frame with it; F-82).
+
+A TCS Header block authored in the same nav page section as a Conversation Canvas stays in the
+navigation as its own section (it's the logo bar); only the Canvas goes to `.nav-canvas`. Until
+2.7 the logos went with the Canvas: below the bar on desktop and not in the fixed bar below
+1200px (F-83).
 
 ### Accessibility
 
@@ -82,6 +95,7 @@ phase) and so shifts the page below 1200px (F-82).
 | `header .nav-wrapper`, fixed below the logo bar breakpoint | `blocks/anchor-list` (offset below a fixed header) |
 | `--nav-height` (header height; 4rem, 7.75rem from 1200px) | `styles/styles.css` (header height reserved before load), `blocks/tabs` (scroll margin), `404.html` |
 | `--header-height` (the header's height with its Canvas, on `<html>`) | `styles/styles.css`, `blocks/hero` (desktop header over a light hero) |
+| `--conversation-canvas-first-section-bottom` (written by `blocks/conversation-canvas/canvas-controller.js`) | `header .nav-canvas` over an opening light hero |
 | `#nav`, `#nav-sections`, `.nav-hamburger button`, `nav[data-expanded]` | Conversation Canvas (PR #71: floating row hidden while the menu is open) |
 | `nav-brand`, `nav-sections`, `nav-tools` | The nav page authoring contract |
 
