@@ -380,21 +380,67 @@ header .nav-canvas {
 }
 
 /*
- * desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos
- * and the header Canvas (Figma Hero 4082:120388: the search on the hero)
+ * Tablet and desktop over an opening light hero: the header Canvas lies on the hero, out of the
+ * flow (the header keeps the bar's height, so the hero isn't pushed down). Its search row is
+ * centred 62px (tablet, 463px wide) / 52px (desktop) above the hero's bottom edge (Figma
+ * home-tablet 671:52732, home-desktop 229:15426). canvas-controller.js sets
+ * --conversation-canvas-first-section-bottom (on load and resize) and the journey state; the
+ * Canvas shows once both are set.
  */
+@media (width >= 600px) {
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header:has(.nav-canvas) {
+    height: var(--nav-height);
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas {
+    position: absolute;
+    inset: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    height: var(--conversation-canvas-first-section-bottom, 100svh);
+    padding: 0 var(--space-600) 3.875rem;
+    pointer-events: none;
+  }
+
+  html:not([data-canvas-journey-state]) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas {
+    visibility: hidden;
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas {
+    border-radius: 0;
+    padding: 0;
+    background-color: transparent;
+    pointer-events: auto;
+  }
+
+  /* above the hero (positioned, later in the page); the floating owner keeps its own z-index */
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas:not(.conversation-canvas-owner) {
+    z-index: 2;
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas::before {
+    display: none;
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 28.9375rem);
+  }
+}
+
+/* desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos */
 @media (width >= 1200px) {
   body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
     background-color: transparent;
   }
 
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas {
-    border-radius: 0;
-    background-color: transparent;
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas {
+    padding-bottom: 3.25rem;
   }
 
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas::before {
-    display: none;
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 37.9375rem);
   }
 }
 

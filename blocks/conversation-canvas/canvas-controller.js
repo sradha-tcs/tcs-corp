@@ -27,6 +27,7 @@ let frame = 0;
 let dirty = true;
 let listening = false;
 let suppressed = false;
+let firstSectionBottom = null;
 
 // canvas blocks never contain each other, so b either follows or precedes a
 const byDomOrder = (a, b) => (
@@ -64,6 +65,14 @@ function measure() {
     inFooter: !!e.block.closest('footer'),
   })));
   const { scrollY } = window;
+  // the header Canvas over an opening hero lines up with the bottom of the first section
+  // (blocks/header/header.css); written before the rows are measured, as it moves that row
+  const bottom = firstSection
+    ? Math.round(firstSection.getBoundingClientRect().bottom + scrollY) : 0;
+  if (bottom !== firstSectionBottom) {
+    firstSectionBottom = bottom;
+    document.documentElement.style.setProperty('--conversation-canvas-first-section-bottom', `${bottom}px`);
+  }
   const canvases = live.map((e, i) => {
     if (e.primary) {
       return {
