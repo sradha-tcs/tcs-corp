@@ -19,7 +19,7 @@ Files:
 | `utils/card-list-config.js` | Presentation settings, defaults, validation, card kinds (shared with Cards) |
 | `styles/card-list.css` | Figma presentation; grid / scroll per breakpoint (`.card-list`) |
 | `decorators/scroller-decorator.js` | Previous / next, scroll indicator, drag, keyboard, loop, initial item |
-| `utils/query-index.js` | The locale's pages from `/query-index.json` (loaded once, cached) |
+| `utils/query-index.js` | The locale's pages from `/query-index.json` (loaded once, cached); List Item pages the index doesn't have (the editor) from their own HTML |
 | `utils/redirects.js` | Redirect targets from `/{locale}/redirects.json` |
 | `utils/analytics.js` | Adobe Client Data Layer entries and events |
 | `utils/cells.js` | Reads List Item cells: drops the empty cells AEM renders for the item's dialog tabs (Link, Content, Display) and handles fields AEM leaves out when never set |
@@ -329,7 +329,8 @@ are exposed.
 |---|---|
 | No parent / root and Use current page off; tags source without tags; fixed list without items | Editor: a message naming the problem; published: the empty behaviour |
 | No matching pages, missing parent page, index missing or failing | Empty behaviour: hide the list, the message (Empty message, else placeholder `listEmpty`), or the List Items as fallback |
-| In the editor (no index on author) | "The pages show on the published page" |
+| In the editor (no index on author) | Fixed lists: each List Item page is read from the page itself (title, description, first image, tags and metadata); child and tag lists: "The pages show on the published page" |
+| A List Item link without a text | AEM renders it as the path; the page title is used instead |
 | Invalid / unsafe link, item without a title | That item is skipped |
 | Duplicate items | Kept once |
 | Missing image, description, date, tags | The part isn't rendered |
@@ -367,7 +368,7 @@ grid on every breakpoint, so no list starts scrolling unless authored. The `titl
 - Child pages and tagged pages come from the query index: unpublished, excluded or not yet
   indexed pages aren't listed, and manual order is the path order.
 - Tag matching includes child tags; there's no full-text search (by design).
-- In the Universal Editor the index isn't available, so pages show on the published page.
+- In the Universal Editor the index isn't available: fixed lists read their pages from the pages themselves (`getPagesAt`), child and tag lists show their pages on the published page.
 - Statistic cards' "bn"-style smaller units in one title (Figma) aren't styled separately.
 - Figma's two-tone title (Variation 6) isn't an option; use the title as one colour.
 
