@@ -113,6 +113,61 @@ async function fetchAll() {
   return rows;
 }
 
+/** an image path of a loaded page: same-origin images by path, others by URL */
+function imagePath(src, pageUrl) {
+  if (!src) return '';
+  const url = new URL(src, pageUrl);
+  return url.origin === new URL(pageUrl).origin ? `${url.pathname}${url.search}` : url.href;
+}
+
+/**
+ * An index row read from a page's HTML, as helix-query.yaml reads it: every named meta by its
+ * column name (page-type → pageType, cq-tags → cqTags), og:title, description, og:image and the
+ * article:tag metas; without them (as AEM author renders a page), the title, first heading and
+ * first image of the page.
+ * @param {Document} doc
+ * @param {string} path the page path the row is for
+ * @param {string} pageUrl the page's URL, to resolve its image
+ * @returns {Object<string, string>}
+ */
+export function rowOfDocument(doc, path, pageUrl) {
+  const row = { path };
+  doc.head.querySelectorAll('meta[name]').forEach((meta) => {
+    row[columnName(meta.name)] = meta.content.trim();
+  });
+  const property = (name) => doc.head.querySelector(`meta[property="${name}"]`)?.content.trim() || '';
+  row.title = property('og:title') || doc.title.trim() || doc.querySelector('h1')?.textContent.trim() || '';
+  row.description = row.description || property('og:description');
+  const src = property('og:image') || doc.querySelector('main img[src]')?.getAttribute('src');
+  row.image = imagePath(src, pageUrl);
+  row.tags = [...doc.head.querySelectorAll('meta[property="article:tag"]')]
+    .map((meta) => meta.content.trim()).filter(Boolean).join(', ');
+  return row;
+}
+
+const loaded = new Map();
+
+/**
+ * Pages the index doesn't have, read from their own HTML: in the editor (AEM author has no query
+ * index) or a page not indexed yet. Loaded in parallel, once per page; a page that fails to load
+ * is left out.
+ * @param {string[]} paths page paths (AEM or published, e.g. /content/tcs-corp/us/en/x.html)
+ * @returns {Promise<IndexedPage[]>} with the paths as given
+ */
+export async function getPagesAt(paths) {
+  const rows = await Promise.all([...new Set(paths)].map((path) => {
+    if (!loaded.has(path)) {
+      const url = new URL(path, window.location.href).href;
+      loaded.set(path, fetch(url)
+        .then((response) => (response.ok ? response.text() : Promise.reject(response.status)))
+        .then((html) => rowOfDocument(new DOMParser().parseFromString(html, 'text/html'), path, url))
+        .catch(() => null));
+    }
+    return loaded.get(path);
+  }));
+  return rows.filter(Boolean).map(toPage);
+}
+
 /**
  * The pages of the current locale site (its published path, e.g. /de-de/...), loaded once and
  * cached in memory.
