@@ -1,0 +1,178 @@
+{
+  "root": "/content/tcs-corp/us/en/home",
+  "published": "/en/home",
+  "source": "Figma New Screens from New DS (yElx5Tf9wr8G2vCXopi49W), page Navigation 1124:25825, desktop Full menu 1124:26209 (labels and order as shown; two-column panels read column by column)",
+  "items": [
+    {
+      "title": "What we do", "name": "what-we-do", "figma": "1124:26210",
+      "children": [
+        {
+          "title": "Services", "name": "services", "figma": "1124:26244",
+          "children": [
+            { "title": "Artificial Intelligence and Data & Analytics", "name": "artificial-intelligence-and-data-analytics" },
+            { "title": "AI-led Data Centres", "name": "ai-led-data-centres" },
+            { "title": "Cloud", "name": "cloud" },
+            { "title": "Cognitive Business Operations", "name": "cognitive-business-operations" },
+            { "title": "Consulting", "name": "consulting" },
+            { "title": "Cybersecurity", "name": "cybersecurity" },
+            { "title": "Enterprise Solutions", "name": "enterprise-solutions" },
+            { "title": "Industrial Autonomy & Engineering", "name": "industrial-autonomy-and-engineering" },
+            { "title": "Network Solutions and Services", "name": "network-solutions-and-services" },
+            { "title": "Sustainability Services", "name": "sustainability-services" },
+            { "title": "TCS Interactive", "name": "tcs-interactive" }
+          ]
+        },
+        {
+          "title": "Industries", "name": "industries", "figma": "1124:27041",
+          "children": [
+            { "title": "Banking", "name": "banking" },
+            { "title": "Capital markets", "name": "capital-markets" },
+            { "title": "Insurance", "name": "insurance" },
+            { "title": "Consumer goods", "name": "consumer-goods" },
+            { "title": "Travel & logistics", "name": "travel-and-logistics" },
+            { "title": "Healthcare", "name": "healthcare" },
+            { "title": "Life sciences", "name": "life-sciences" },
+            { "title": "Education", "name": "education" },
+            { "title": "Energy & utility", "name": "energy-and-utility" },
+            { "title": "Consumer Packaged Goods & Distribution", "name": "consumer-packaged-goods-and-distribution" },
+            { "title": "Communications, Media, & Information Services", "name": "communications-media-and-information-services" },
+            { "title": "Manufacturing", "name": "manufacturing" },
+            { "title": "Public Services", "name": "public-services" },
+            { "title": "Retail", "name": "retail" }
+          ]
+        },
+        { "title": "Products", "name": "products", "figma": "1124:27183" },
+        { "title": "Customers", "name": "customers", "figma": "1124:27165" },
+        { "title": "Partnerships", "name": "partnerships", "figma": "1124:27296" },
+        { "title": "Research & innovation", "name": "research-and-innovation", "figma": "1124:27311" }
+      ]
+    },
+    {
+      "title": "Who we are", "name": "who-we-are", "figma": "1124:26366",
+      "children": [
+        {
+          "title": "About us", "name": "about-us", "figma": "1124:26385",
+          "children": [
+            { "title": "Who we are", "name": "who-we-are" },
+            { "title": "History", "name": "history" },
+            { "title": "Leadership", "name": "leadership" },
+            { "title": "Our brand", "name": "our-brand" }
+          ]
+        },
+        {
+          "title": "Our culture", "name": "our-culture", "figma": "1124:26432",
+          "children": [
+            { "title": "Values", "name": "values" },
+            { "title": "Aspiration", "name": "aspiration" },
+            { "title": "Inclusion & diversity", "name": "inclusion-and-diversity" },
+            { "title": "Our community", "name": "our-community" }
+          ]
+        },
+        {
+          "title": "Impact", "name": "impact", "figma": "1124:26479",
+          "children": [
+            { "title": "Sustainability", "name": "sustainability" },
+            { "title": "Awards and recognition", "name": "awards-and-recognition" }
+          ]
+        }
+      ]
+    },
+    { "title": "Insights", "name": "insights", "figma": "1124:26345" },
+    {
+      "title": "Careers", "name": "careers", "figma": "1124:26512",
+      "children": [
+        {
+          "title": "Career stage", "name": "career-stage", "figma": "1124:26534",
+          "children": [
+            { "title": "Graduate", "name": "graduate" },
+            { "title": "Experienced professional", "name": "experienced-professional" },
+            { "title": "Executive", "name": "executive" }
+          ]
+        },
+        {
+          "title": "Career areas", "name": "career-areas", "figma": "1124:26573",
+          "children": [
+            { "title": "AI and data science", "name": "ai-and-data-science" },
+            { "title": "Cloud", "name": "cloud" },
+            { "title": "Consulting", "name": "consulting" },
+            { "title": "Creative & Design", "name": "creative-and-design" },
+            { "title": "Customer & user experience", "name": "customer-and-user-experience" },
+            { "title": "Emerging tech", "name": "emerging-tech" },
+            { "title": "Engineering & manufacturing", "name": "engineering-and-manufacturing" },
+            { "title": "Finance", "name": "finance" },
+            { "title": "Marketing & communications", "name": "marketing-and-communications" },
+            { "title": "Program & project management", "name": "program-and-project-management" },
+            { "title": "Research & innovation", "name": "research-and-innovation" },
+            { "title": "Security", "name": "security" },
+            { "title": "Strategy", "name": "strategy" },
+            { "title": "Technology", "name": "technology" }
+          ]
+        },
+        {
+          "title": "Locations", "name": "locations", "figma": "1124:26692",
+          "children": [
+            { "title": "India", "name": "india" },
+            { "title": "North America", "name": "north-america" },
+            { "title": "South America", "name": "south-america" },
+            { "title": "Asia Pacific", "name": "asia-pacific" },
+            { "title": "Europe & UK", "name": "europe-and-uk" },
+            { "title": "Middle East & North Africa", "name": "middle-east-and-north-africa" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Media", "name": "media", "figma": "1124:26754",
+      "children": [
+        { "title": "Press releases", "name": "press-releases" },
+        { "title": "News alerts", "name": "news-alerts" },
+        { "title": "Media kit", "name": "media-kit" }
+      ]
+    },
+    {
+      "title": "Investors", "name": "investors", "figma": "1124:26773",
+      "children": [
+        { "title": "Management commentary", "name": "management-commentary" },
+        {
+          "title": "Financials", "name": "financials", "figma": "1124:26800",
+          "children": [
+            { "title": "Quarterly Earnings Reports", "name": "quarterly-earnings-reports" },
+            { "title": "Download TCS Data Sheet", "name": "download-tcs-data-sheet" },
+            { "title": "Erstwhile CMC Financials", "name": "erstwhile-cmc-financials" }
+          ]
+        },
+        {
+          "title": "News & events", "name": "news-and-events", "figma": "1124:26847",
+          "children": [
+            { "title": "Press releases", "name": "press-releases" },
+            { "title": "Corporate actions", "name": "corporate-actions" },
+            { "title": "Events", "name": "events" },
+            { "title": "Calendar", "name": "calendar" }
+          ]
+        },
+        {
+          "title": "ESG", "name": "esg", "figma": "1124:26901",
+          "children": [
+            { "title": "Environment", "name": "environment" },
+            { "title": "Social", "name": "social" },
+            { "title": "Governance", "name": "governance" },
+            { "title": "Policies & reports", "name": "policies-and-reports" },
+            { "title": "Stakeholder Engagement & Risk Management", "name": "stakeholder-engagement-and-risk-management" }
+          ]
+        },
+        {
+          "title": "Resources", "name": "resources", "figma": "1124:26963",
+          "children": [
+            { "title": "Investor FAQs", "name": "investor-faqs" },
+            { "title": "eTDS Portal", "name": "etds-portal" },
+            { "title": "Stock Information", "name": "stock-information" },
+            { "title": "Subsidiaries", "name": "subsidiaries" },
+            { "title": "Subscribe to Investor Updates", "name": "subscribe-to-investor-updates" },
+            { "title": "Shareholder Satisfaction Survey", "name": "shareholder-satisfaction-survey" },
+            { "title": "Unclaimed Dividend Information", "name": "unclaimed-dividend-information" }
+          ]
+        }
+      ]
+    }
+  ]
+}

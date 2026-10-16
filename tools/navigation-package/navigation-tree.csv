@@ -1,0 +1,104 @@
+level,title,parent,order,aem_path,published_path,figma_node
+L1,What we do,,1,/content/tcs-corp/us/en/home/what-we-do,/en/home/what-we-do,1124:26210
+L2,Services,What we do,1,/content/tcs-corp/us/en/home/what-we-do/services,/en/home/what-we-do/services,1124:26244
+L3,Artificial Intelligence and Data & Analytics,Services,1,/content/tcs-corp/us/en/home/what-we-do/services/artificial-intelligence-and-data-analytics,/en/home/what-we-do/services/artificial-intelligence-and-data-analytics,
+L3,AI-led Data Centres,Services,2,/content/tcs-corp/us/en/home/what-we-do/services/ai-led-data-centres,/en/home/what-we-do/services/ai-led-data-centres,
+L3,Cloud,Services,3,/content/tcs-corp/us/en/home/what-we-do/services/cloud,/en/home/what-we-do/services/cloud,
+L3,Cognitive Business Operations,Services,4,/content/tcs-corp/us/en/home/what-we-do/services/cognitive-business-operations,/en/home/what-we-do/services/cognitive-business-operations,
+L3,Consulting,Services,5,/content/tcs-corp/us/en/home/what-we-do/services/consulting,/en/home/what-we-do/services/consulting,
+L3,Cybersecurity,Services,6,/content/tcs-corp/us/en/home/what-we-do/services/cybersecurity,/en/home/what-we-do/services/cybersecurity,
+L3,Enterprise Solutions,Services,7,/content/tcs-corp/us/en/home/what-we-do/services/enterprise-solutions,/en/home/what-we-do/services/enterprise-solutions,
+L3,Industrial Autonomy & Engineering,Services,8,/content/tcs-corp/us/en/home/what-we-do/services/industrial-autonomy-and-engineering,/en/home/what-we-do/services/industrial-autonomy-and-engineering,
+L3,Network Solutions and Services,Services,9,/content/tcs-corp/us/en/home/what-we-do/services/network-solutions-and-services,/en/home/what-we-do/services/network-solutions-and-services,
+L3,Sustainability Services,Services,10,/content/tcs-corp/us/en/home/what-we-do/services/sustainability-services,/en/home/what-we-do/services/sustainability-services,
+L3,TCS Interactive,Services,11,/content/tcs-corp/us/en/home/what-we-do/services/tcs-interactive,/en/home/what-we-do/services/tcs-interactive,
+L2,Industries,What we do,2,/content/tcs-corp/us/en/home/what-we-do/industries,/en/home/what-we-do/industries,1124:27041
+L3,Banking,Industries,1,/content/tcs-corp/us/en/home/what-we-do/industries/banking,/en/home/what-we-do/industries/banking,
+L3,Capital markets,Industries,2,/content/tcs-corp/us/en/home/what-we-do/industries/capital-markets,/en/home/what-we-do/industries/capital-markets,
+L3,Insurance,Industries,3,/content/tcs-corp/us/en/home/what-we-do/industries/insurance,/en/home/what-we-do/industries/insurance,
+L3,Consumer goods,Industries,4,/content/tcs-corp/us/en/home/what-we-do/industries/consumer-goods,/en/home/what-we-do/industries/consumer-goods,
+L3,Travel & logistics,Industries,5,/content/tcs-corp/us/en/home/what-we-do/industries/travel-and-logistics,/en/home/what-we-do/industries/travel-and-logistics,
+L3,Healthcare,Industries,6,/content/tcs-corp/us/en/home/what-we-do/industries/healthcare,/en/home/what-we-do/industries/healthcare,
+L3,Life sciences,Industries,7,/content/tcs-corp/us/en/home/what-we-do/industries/life-sciences,/en/home/what-we-do/industries/life-sciences,
+L3,Education,Industries,8,/content/tcs-corp/us/en/home/what-we-do/industries/education,/en/home/what-we-do/industries/education,
+L3,Energy & utility,Industries,9,/content/tcs-corp/us/en/home/what-we-do/industries/energy-and-utility,/en/home/what-we-do/industries/energy-and-utility,
+L3,Consumer Packaged Goods & Distribution,Industries,10,/content/tcs-corp/us/en/home/what-we-do/industries/consumer-packaged-goods-and-distribution,/en/home/what-we-do/industries/consumer-packaged-goods-and-distribution,
+L3,"Communications, Media, & Information Services",Industries,11,/content/tcs-corp/us/en/home/what-we-do/industries/communications-media-and-information-services,/en/home/what-we-do/industries/communications-media-and-information-services,
+L3,Manufacturing,Industries,12,/content/tcs-corp/us/en/home/what-we-do/industries/manufacturing,/en/home/what-we-do/industries/manufacturing,
+L3,Public Services,Industries,13,/content/tcs-corp/us/en/home/what-we-do/industries/public-services,/en/home/what-we-do/industries/public-services,
+L3,Retail,Industries,14,/content/tcs-corp/us/en/home/what-we-do/industries/retail,/en/home/what-we-do/industries/retail,
+L2,Products,What we do,3,/content/tcs-corp/us/en/home/what-we-do/products,/en/home/what-we-do/products,1124:27183
+L2,Customers,What we do,4,/content/tcs-corp/us/en/home/what-we-do/customers,/en/home/what-we-do/customers,1124:27165
+L2,Partnerships,What we do,5,/content/tcs-corp/us/en/home/what-we-do/partnerships,/en/home/what-we-do/partnerships,1124:27296
+L2,Research & innovation,What we do,6,/content/tcs-corp/us/en/home/what-we-do/research-and-innovation,/en/home/what-we-do/research-and-innovation,1124:27311
+L1,Who we are,,2,/content/tcs-corp/us/en/home/who-we-are,/en/home/who-we-are,1124:26366
+L2,About us,Who we are,1,/content/tcs-corp/us/en/home/who-we-are/about-us,/en/home/who-we-are/about-us,1124:26385
+L3,Who we are,About us,1,/content/tcs-corp/us/en/home/who-we-are/about-us/who-we-are,/en/home/who-we-are/about-us/who-we-are,
+L3,History,About us,2,/content/tcs-corp/us/en/home/who-we-are/about-us/history,/en/home/who-we-are/about-us/history,
+L3,Leadership,About us,3,/content/tcs-corp/us/en/home/who-we-are/about-us/leadership,/en/home/who-we-are/about-us/leadership,
+L3,Our brand,About us,4,/content/tcs-corp/us/en/home/who-we-are/about-us/our-brand,/en/home/who-we-are/about-us/our-brand,
+L2,Our culture,Who we are,2,/content/tcs-corp/us/en/home/who-we-are/our-culture,/en/home/who-we-are/our-culture,1124:26432
+L3,Values,Our culture,1,/content/tcs-corp/us/en/home/who-we-are/our-culture/values,/en/home/who-we-are/our-culture/values,
+L3,Aspiration,Our culture,2,/content/tcs-corp/us/en/home/who-we-are/our-culture/aspiration,/en/home/who-we-are/our-culture/aspiration,
+L3,Inclusion & diversity,Our culture,3,/content/tcs-corp/us/en/home/who-we-are/our-culture/inclusion-and-diversity,/en/home/who-we-are/our-culture/inclusion-and-diversity,
+L3,Our community,Our culture,4,/content/tcs-corp/us/en/home/who-we-are/our-culture/our-community,/en/home/who-we-are/our-culture/our-community,
+L2,Impact,Who we are,3,/content/tcs-corp/us/en/home/who-we-are/impact,/en/home/who-we-are/impact,1124:26479
+L3,Sustainability,Impact,1,/content/tcs-corp/us/en/home/who-we-are/impact/sustainability,/en/home/who-we-are/impact/sustainability,
+L3,Awards and recognition,Impact,2,/content/tcs-corp/us/en/home/who-we-are/impact/awards-and-recognition,/en/home/who-we-are/impact/awards-and-recognition,
+L1,Insights,,3,/content/tcs-corp/us/en/home/insights,/en/home/insights,1124:26345
+L1,Careers,,4,/content/tcs-corp/us/en/home/careers,/en/home/careers,1124:26512
+L2,Career stage,Careers,1,/content/tcs-corp/us/en/home/careers/career-stage,/en/home/careers/career-stage,1124:26534
+L3,Graduate,Career stage,1,/content/tcs-corp/us/en/home/careers/career-stage/graduate,/en/home/careers/career-stage/graduate,
+L3,Experienced professional,Career stage,2,/content/tcs-corp/us/en/home/careers/career-stage/experienced-professional,/en/home/careers/career-stage/experienced-professional,
+L3,Executive,Career stage,3,/content/tcs-corp/us/en/home/careers/career-stage/executive,/en/home/careers/career-stage/executive,
+L2,Career areas,Careers,2,/content/tcs-corp/us/en/home/careers/career-areas,/en/home/careers/career-areas,1124:26573
+L3,AI and data science,Career areas,1,/content/tcs-corp/us/en/home/careers/career-areas/ai-and-data-science,/en/home/careers/career-areas/ai-and-data-science,
+L3,Cloud,Career areas,2,/content/tcs-corp/us/en/home/careers/career-areas/cloud,/en/home/careers/career-areas/cloud,
+L3,Consulting,Career areas,3,/content/tcs-corp/us/en/home/careers/career-areas/consulting,/en/home/careers/career-areas/consulting,
+L3,Creative & Design,Career areas,4,/content/tcs-corp/us/en/home/careers/career-areas/creative-and-design,/en/home/careers/career-areas/creative-and-design,
+L3,Customer & user experience,Career areas,5,/content/tcs-corp/us/en/home/careers/career-areas/customer-and-user-experience,/en/home/careers/career-areas/customer-and-user-experience,
+L3,Emerging tech,Career areas,6,/content/tcs-corp/us/en/home/careers/career-areas/emerging-tech,/en/home/careers/career-areas/emerging-tech,
+L3,Engineering & manufacturing,Career areas,7,/content/tcs-corp/us/en/home/careers/career-areas/engineering-and-manufacturing,/en/home/careers/career-areas/engineering-and-manufacturing,
+L3,Finance,Career areas,8,/content/tcs-corp/us/en/home/careers/career-areas/finance,/en/home/careers/career-areas/finance,
+L3,Marketing & communications,Career areas,9,/content/tcs-corp/us/en/home/careers/career-areas/marketing-and-communications,/en/home/careers/career-areas/marketing-and-communications,
+L3,Program & project management,Career areas,10,/content/tcs-corp/us/en/home/careers/career-areas/program-and-project-management,/en/home/careers/career-areas/program-and-project-management,
+L3,Research & innovation,Career areas,11,/content/tcs-corp/us/en/home/careers/career-areas/research-and-innovation,/en/home/careers/career-areas/research-and-innovation,
+L3,Security,Career areas,12,/content/tcs-corp/us/en/home/careers/career-areas/security,/en/home/careers/career-areas/security,
+L3,Strategy,Career areas,13,/content/tcs-corp/us/en/home/careers/career-areas/strategy,/en/home/careers/career-areas/strategy,
+L3,Technology,Career areas,14,/content/tcs-corp/us/en/home/careers/career-areas/technology,/en/home/careers/career-areas/technology,
+L2,Locations,Careers,3,/content/tcs-corp/us/en/home/careers/locations,/en/home/careers/locations,1124:26692
+L3,India,Locations,1,/content/tcs-corp/us/en/home/careers/locations/india,/en/home/careers/locations/india,
+L3,North America,Locations,2,/content/tcs-corp/us/en/home/careers/locations/north-america,/en/home/careers/locations/north-america,
+L3,South America,Locations,3,/content/tcs-corp/us/en/home/careers/locations/south-america,/en/home/careers/locations/south-america,
+L3,Asia Pacific,Locations,4,/content/tcs-corp/us/en/home/careers/locations/asia-pacific,/en/home/careers/locations/asia-pacific,
+L3,Europe & UK,Locations,5,/content/tcs-corp/us/en/home/careers/locations/europe-and-uk,/en/home/careers/locations/europe-and-uk,
+L3,Middle East & North Africa,Locations,6,/content/tcs-corp/us/en/home/careers/locations/middle-east-and-north-africa,/en/home/careers/locations/middle-east-and-north-africa,
+L1,Media,,5,/content/tcs-corp/us/en/home/media,/en/home/media,1124:26754
+L2,Press releases,Media,1,/content/tcs-corp/us/en/home/media/press-releases,/en/home/media/press-releases,
+L2,News alerts,Media,2,/content/tcs-corp/us/en/home/media/news-alerts,/en/home/media/news-alerts,
+L2,Media kit,Media,3,/content/tcs-corp/us/en/home/media/media-kit,/en/home/media/media-kit,
+L1,Investors,,6,/content/tcs-corp/us/en/home/investors,/en/home/investors,1124:26773
+L2,Management commentary,Investors,1,/content/tcs-corp/us/en/home/investors/management-commentary,/en/home/investors/management-commentary,
+L2,Financials,Investors,2,/content/tcs-corp/us/en/home/investors/financials,/en/home/investors/financials,1124:26800
+L3,Quarterly Earnings Reports,Financials,1,/content/tcs-corp/us/en/home/investors/financials/quarterly-earnings-reports,/en/home/investors/financials/quarterly-earnings-reports,
+L3,Download TCS Data Sheet,Financials,2,/content/tcs-corp/us/en/home/investors/financials/download-tcs-data-sheet,/en/home/investors/financials/download-tcs-data-sheet,
+L3,Erstwhile CMC Financials,Financials,3,/content/tcs-corp/us/en/home/investors/financials/erstwhile-cmc-financials,/en/home/investors/financials/erstwhile-cmc-financials,
+L2,News & events,Investors,3,/content/tcs-corp/us/en/home/investors/news-and-events,/en/home/investors/news-and-events,1124:26847
+L3,Press releases,News & events,1,/content/tcs-corp/us/en/home/investors/news-and-events/press-releases,/en/home/investors/news-and-events/press-releases,
+L3,Corporate actions,News & events,2,/content/tcs-corp/us/en/home/investors/news-and-events/corporate-actions,/en/home/investors/news-and-events/corporate-actions,
+L3,Events,News & events,3,/content/tcs-corp/us/en/home/investors/news-and-events/events,/en/home/investors/news-and-events/events,
+L3,Calendar,News & events,4,/content/tcs-corp/us/en/home/investors/news-and-events/calendar,/en/home/investors/news-and-events/calendar,
+L2,ESG,Investors,4,/content/tcs-corp/us/en/home/investors/esg,/en/home/investors/esg,1124:26901
+L3,Environment,ESG,1,/content/tcs-corp/us/en/home/investors/esg/environment,/en/home/investors/esg/environment,
+L3,Social,ESG,2,/content/tcs-corp/us/en/home/investors/esg/social,/en/home/investors/esg/social,
+L3,Governance,ESG,3,/content/tcs-corp/us/en/home/investors/esg/governance,/en/home/investors/esg/governance,
+L3,Policies & reports,ESG,4,/content/tcs-corp/us/en/home/investors/esg/policies-and-reports,/en/home/investors/esg/policies-and-reports,
+L3,Stakeholder Engagement & Risk Management,ESG,5,/content/tcs-corp/us/en/home/investors/esg/stakeholder-engagement-and-risk-management,/en/home/investors/esg/stakeholder-engagement-and-risk-management,
+L2,Resources,Investors,5,/content/tcs-corp/us/en/home/investors/resources,/en/home/investors/resources,1124:26963
+L3,Investor FAQs,Resources,1,/content/tcs-corp/us/en/home/investors/resources/investor-faqs,/en/home/investors/resources/investor-faqs,
+L3,eTDS Portal,Resources,2,/content/tcs-corp/us/en/home/investors/resources/etds-portal,/en/home/investors/resources/etds-portal,
+L3,Stock Information,Resources,3,/content/tcs-corp/us/en/home/investors/resources/stock-information,/en/home/investors/resources/stock-information,
+L3,Subsidiaries,Resources,4,/content/tcs-corp/us/en/home/investors/resources/subsidiaries,/en/home/investors/resources/subsidiaries,
+L3,Subscribe to Investor Updates,Resources,5,/content/tcs-corp/us/en/home/investors/resources/subscribe-to-investor-updates,/en/home/investors/resources/subscribe-to-investor-updates,
+L3,Shareholder Satisfaction Survey,Resources,6,/content/tcs-corp/us/en/home/investors/resources/shareholder-satisfaction-survey,/en/home/investors/resources/shareholder-satisfaction-survey,
+L3,Unclaimed Dividend Information,Resources,7,/content/tcs-corp/us/en/home/investors/resources/unclaimed-dividend-information,/en/home/investors/resources/unclaimed-dividend-information,
