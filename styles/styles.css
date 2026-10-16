@@ -333,15 +333,15 @@ header {
 
 /*
  * Desktop: on a page that opens with a light hero, the logo bar lies over the hero (Figma
- * Logos 667:52520 / Hero 4082:120388). The header keeps its height and overlaps the hero by
- * it; the hero adds the same height on top (blocks/hero), so nothing moves when it loads. With
- * a header Canvas the header is taller: blocks/header sets --header-height.
+ * Logos 667:52520 / Hero 4082:120388). The header is out of the flow, so the hero never moves
+ * when it loads; the hero adds the header's height on top (blocks/hero). With a header Canvas
+ * the header is taller: blocks/header sets --header-height.
  */
 @media (width >= 1200px) {
   body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
-    position: relative;
+    position: absolute;
+    inset: 0 0 auto;
     z-index: 2;
-    margin-bottom: calc(-1 * var(--header-height, var(--nav-height)));
   }
 }
 

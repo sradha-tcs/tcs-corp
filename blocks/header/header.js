@@ -288,8 +288,10 @@ export default async function decorate(block) {
     // the header grows by its Canvas: --header-height lets an opening light hero lie under all
     // of it on desktop (styles/styles.css, blocks/hero)
     const header = block.closest('header') || block;
-    new ResizeObserver(() => {
+    const setHeight = () => {
       document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
-    }).observe(header);
+    };
+    setHeight();
+    new ResizeObserver(setHeight).observe(header);
   }
 }
