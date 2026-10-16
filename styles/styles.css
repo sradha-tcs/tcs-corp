@@ -938,7 +938,8 @@ main > .section {
 }
 
 main > .section:not(.fixed-width) {
-  --section-padding-inline: 0;
+  /* a length (0rem, not 0): blocks use it in calc() with other lengths (card widths, bleeds) */
+  --section-padding-inline: 0rem;
 }
 
 main > .section.fixed-width {
