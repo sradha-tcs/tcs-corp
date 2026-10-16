@@ -216,7 +216,11 @@ export default async function decorate(block) {
   // load nav as fragment: the Navigation page property of the page or, inherited, of its nearest
   // parent page up to Home (or the metadata sheet's nav column), else the locale's references/nav
   const navPath = resolvePagePath(await getInheritedMetadata('nav'), 'references/nav');
-  const fragment = await loadFragment(navPath);
+  // a configured Navigation page that can't be loaded (unpublished, moved) falls back to the
+  // locale's references/nav, so the page keeps a header
+  const defaultPath = resolvePagePath('', 'references/nav');
+  const fragment = await loadFragment(navPath)
+    || (navPath !== defaultPath ? await loadFragment(defaultPath) : null);
 
   // decorate nav DOM
   block.textContent = '';
@@ -280,5 +284,12 @@ export default async function decorate(block) {
     navCanvas.className = 'nav-canvas';
     navCanvas.append(...canvasSections);
     block.append(navCanvas);
+
+    // the header grows by its Canvas: --header-height lets an opening light hero lie under all
+    // of it on desktop (styles/styles.css, blocks/hero)
+    const header = block.closest('header') || block;
+    new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
+    }).observe(header);
   }
 }

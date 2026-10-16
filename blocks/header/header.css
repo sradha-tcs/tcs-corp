@@ -379,6 +379,25 @@ header .nav-canvas {
   }
 }
 
+/*
+ * desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos
+ * and the header Canvas (Figma Hero 4082:120388: the search on the hero)
+ */
+@media (width >= 1200px) {
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
+    background-color: transparent;
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas {
+    border-radius: 0;
+    background-color: transparent;
+  }
+
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas::before {
+    display: none;
+  }
+}
+
 /* desktop: the logo bar; the site navigation is in the Conversation Canvas */
 @media (width >= 1200px) {
   header nav .nav-hamburger,
