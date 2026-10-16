@@ -1874,6 +1874,7 @@
         "valueType": "boolean",
         "name": "showDescription",
         "label": "Show description",
+        "description": "On image cards and link rows; panel, report and statistic cards always show theirs.",
         "value": true
       },
       {
@@ -1909,6 +1910,10 @@
           {
             "name": "04/09/26",
             "value": "dd/mm/yy"
+          },
+          {
+            "name": "4th September 2026",
+            "value": "do-mmmm-yyyy"
           }
         ],
         "condition": {
@@ -10651,6 +10656,7 @@
         "valueType": "boolean",
         "name": "showDescription",
         "label": "Show description",
+        "description": "On image cards and link rows; panel, report and statistic cards always show theirs.",
         "value": true
       },
       {
@@ -10686,6 +10692,10 @@
           {
             "name": "04/09/26",
             "value": "dd/mm/yy"
+          },
+          {
+            "name": "4th September 2026",
+            "value": "do-mmmm-yyyy"
           }
         ],
         "condition": {

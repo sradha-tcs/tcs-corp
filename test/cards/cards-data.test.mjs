@@ -2,7 +2,10 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { CARD_LAYOUT, buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
-import { kindOf, normalizePresentation, toSafeId } from '../../utils/card-list-config.js';
+import {
+  contentTypeLabel, kindOf, normalizePresentation, toSafeId,
+} from '../../utils/card-list-config.js';
+import { formatDate } from '../../utils/dates.js';
 import modelLayout from '../model-layout.mjs';
 
 const config = (raw = {}) => normalizePresentation(raw, { idPrefix: 'cards' });
@@ -129,5 +132,24 @@ describe('shared card list settings', () => {
     assert.equal(kindOf({ kind: '', contentType: '', image: '' }, 'mixed'), 'panel');
     assert.equal(kindOf({ kind: '', contentType: '', image: '/a.jpg' }, 'mixed'), 'image');
     assert.equal(kindOf({ kind: 'stat', contentType: '', image: '' }, 'image'), 'stat');
+  });
+});
+
+describe('content type labels and long dates', () => {
+  it('labels a content type by its tag, else in words', () => {
+    const labels = new Map([['tcs-corp:content-type/case-study', 'Case Study']]);
+    assert.equal(contentTypeLabel('case-study', ['tcs-corp:content-type/case-study'], labels), 'Case Study');
+    assert.equal(contentTypeLabel('case-study', [], labels), 'Case study');
+    assert.equal(contentTypeLabel('blog'), 'Blog');
+    assert.equal(contentTypeLabel(''), '');
+  });
+  it('formats 4th September 2026 with English ordinals', () => {
+    const long = (value) => formatDate(value, 'do-mmmm-yyyy').text;
+    assert.equal(long('2026-10-12'), '12th October 2026');
+    assert.deepEqual(
+      ['2026-10-01', '2026-10-02', '2026-10-03', '2026-10-04', '2026-10-11', '2026-10-13', '2026-10-21', '2026-10-22', '2026-10-31'].map(long),
+      ['1st October 2026', '2nd October 2026', '3rd October 2026', '4th October 2026', '11th October 2026', '13th October 2026', '21st October 2026', '22nd October 2026', '31st October 2026'],
+    );
+    assert.equal(formatDate('2026-10-12T10:00:00Z', 'do-mmmm-yyyy').iso, '2026-10-12');
   });
 });

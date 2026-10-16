@@ -3,12 +3,20 @@
  */
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const LONG_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December'];
+
+/** a day with its English ordinal suffix: 1st, 2nd, 3rd, 4th, 11th, 12th, 13th, 21st */
+const ordinal = (day) => {
+  const teen = day % 100 >= 11 && day % 100 <= 13;
+  return `${day}${(!teen && ['th', 'st', 'nd', 'rd'][day % 10]) || 'th'}`;
+};
 
 /**
  * Formats a date (YYYY-MM-DD, possibly with a time) using its calendar date as authored.
  * @param {string} value
  * @param {string} format dd-mm-yyyy (default) | mm-dd-yyyy | mmm-d-yyyy | dd/mm/yy | dd-mmm-yy
- *   (04 Sep 26)
+ *   (04 Sep 26) | do-mmmm-yyyy (4th September 2026)
  * @returns {{ iso: string, text: string }} iso is YYYY-MM-DD, or '' when the value isn't a date
  */
 // eslint-disable-next-line import/prefer-default-export
@@ -22,6 +30,9 @@ export function formatDate(value, format) {
     return { iso, text: `${MONTHS[Number(month) - 1]} ${Number(day)}, ${year}` };
   }
   if (format === 'dd/mm/yy') return { iso, text: `${day}/${month}/${year.slice(2)}` };
+  if (format === 'do-mmmm-yyyy') {
+    return { iso, text: `${ordinal(Number(day))} ${LONG_MONTHS[Number(month) - 1]} ${year}` };
+  }
   if (format === 'dd-mmm-yy') {
     return { iso, text: `${day} ${MONTHS[Number(month) - 1]} ${year.slice(2)}` };
   }
