@@ -3949,7 +3949,7 @@ To add a section: select **Main** in the content tree, select **Add (+)** and ch
 |:------------|:--------------|:--------------|:------------------------------------------------------------|
 | Section Name | Text | (empty) | Label of the section in the content tree only; not shown on the site |
 | Style | Multi-select | Highlight | Adds the class `highlight`: light grey background (`--color-bg-secondary`), no outer margin, vertical padding of one section spacing |
-| Width Type | Select | Full Width (default), Fixed Width | Fixed Width limits the section box (and its background) to the content width (90rem) and centres it; Full Width caps the content at the page width (120rem) |
+| Width Type | Select | Full Width (default), Fixed Width | Full Width: the blocks and content fill the screen edge to edge (no side gutter, no maximum width); Fixed Width limits the section box (and its background) to the content width (90rem), centres it and keeps the side gutter (1.5rem, 2.5rem from 600 px, 5rem from 1200 px) |
 | Rounded edge | Boolean | off | Adds `rounded`: corners with radius 1rem (`--radius-l`), content clipped |
 | Background Image | AEM Assets reference | (empty) | An image behind the section content, scaled to cover the section |
 | Image alt text | Text | (empty) | Alt text of the background image; empty marks it as decorative (`alt=""`) |
@@ -12829,7 +12829,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** Three bands: 'Our services' on white; 'Industries we serve' with the 'Explore industries' primary button on a full-width grey-100 band; 'Cloud transformation' with the 'Explore cloud services' secondary button over the pale blue light.svg gradient with rounded corners.
-- **Rendering behaviour:** From 1200 px the content of each band is capped at 120rem (90rem in the Fixed Width band) with 5rem side padding; the default section is separated by a 7.5rem margin, while the Highlight and background bands have no outer margin but 7.5rem padding top and bottom. At 1440 px the Fixed Width box is exactly 90rem, so it still spans the screen.
+- **Rendering behaviour:** Full Width bands fill the screen edge to edge, without side padding; the Fixed Width band is capped at 90rem with the side gutter (5rem from 1200 px); the default section is separated by a 7.5rem margin, while the Highlight and background bands have no outer margin but 7.5rem padding top and bottom. At 1440 px the Fixed Width box is exactly 90rem, so it still spans the screen.
 - **Publishing behaviour:** Publish to Preview shows the page on main--tcs-corp--sradha-tcs.aem.page and Publish to Live copies it to aem.live. light.svg must be published with the page (select it as a reference in the Publish dialog), otherwise the third band renders without its background.
 
 **Business Rules**
