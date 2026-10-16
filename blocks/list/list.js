@@ -2,7 +2,7 @@ import {
   applyCardListLayout, buildCardListHeader, cardListId, renderCardList, renderCardListEmpty,
   trackCardList,
 } from '../../decorators/card-list-decorator.js';
-import { PRESENTATION_PROPERTIES } from '../../utils/card-list-config.js';
+import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isEditing } from '../../utils/environment.js';
@@ -192,6 +192,7 @@ export default async function decorate(block) {
   const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
   cards.forEach((card) => {
     card.tags = card.tagIds.map((tag) => labels.get(tag) || tag);
+    card.contentTypeLabel = contentTypeLabel(card.contentType, card.tagIds, labels);
   });
   debug('cards', cards);
 

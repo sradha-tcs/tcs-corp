@@ -313,6 +313,10 @@
   text-transform: uppercase;
 }
 
+.card-list .list-card-kicker .list-card-reading-time {
+  text-transform: none;
+}
+
 .card-list :is(.list-card-kicker, .list-card-meta) > * + *::before {
   content: '|' / '';
   margin-right: var(--space-200);

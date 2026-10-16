@@ -82,8 +82,8 @@ validated again in code; invalid values fall back to the default.
 | `featureFirst` | First card as feature | boolean | all | no | off | — | The first card as a large spotlight above the others | teaser |
 | `linkItems` | Link items | boolean | all | no | on | — | Off: no links on the cards | always |
 | `openInNewTab` | Open links in a new tab | boolean | all | no | off | — | Default for the items (`target="_blank" rel="noopener noreferrer"`) | always |
-| `showImage` / `showEyebrow` / `showTags` / `showDescription` / `showDate` / `showCta` | Show … | boolean | all | no | on | — | Hide that part of the cards | always |
-| `dateFormat` | Date format | select | all | no | 04 Sep 26 | dd-mmm-yy, dd-mm-yyyy, mm-dd-yyyy, mmm-d-yyyy, dd/mm/yy | `<time datetime>` | Show date on |
+| `showImage` / `showEyebrow` / `showTags` / `showDescription` / `showDate` / `showCta` | Show … | boolean | all | no | on | — | Hide that part of the cards. Show description applies to image cards and link rows (panel, report and statistic cards always show theirs); Show tags also shows the reading time; on image cards an eyebrow takes the place of the tags | always |
+| `dateFormat` | Date format | select | all | no | 04 Sep 26 | dd-mmm-yy, dd-mm-yyyy, mm-dd-yyyy, mmm-d-yyyy, dd/mm/yy, do-mmmm-yyyy (4th September 2026) | `<time datetime>`; image cards show it after the content type label (taxonomy label of its content-type tag, e.g. Blog) | Show date on |
 | `imageLoading` | Image loading | select | all | no | lazy | lazy, eager | eager: for a list on the first screen | always |
 | `{desktop,tablet,mobile}Mode` | … display | select | all | no | grid | grid, horizontal-scroll | Per breakpoint, independently | always |
 | `{bp}Columns` | … columns | number | all | no | 4 / 4 / 1 | 1–6 | Grid columns | mode = grid |

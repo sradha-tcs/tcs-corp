@@ -113,8 +113,12 @@ const timeOf = (card) => {
   return time;
 };
 
-const readingTimeOf = (card, t) => (/^\d+$/.test(card.readingTime)
-  ? t('minutesShort', '{n}m', { n: card.readingTime }) : card.readingTime);
+/** the reading time (8m), in its own span: it keeps its case in the upper case kicker */
+const readingTimeOf = (card, t) => {
+  const value = /^\d+$/.test(card.readingTime)
+    ? t('minutesShort', '{n}m', { n: card.readingTime }) : card.readingTime;
+  return value ? element('span', 'list-card-reading-time', value) : '';
+};
 
 /** the description: the card's rich text (Cards) or its text */
 function descriptionOf(card, className) {
@@ -161,7 +165,7 @@ export function renderCard(card, config, { t, level, kind }) {
   // the call to action, when shown, is the card's one link; else the title is
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
-  const ctaType = { report: 'secondary', stat: 'secondary' }[kind] || 'tertiary';
+  const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
   const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
   if (cta) {
     if (!card.accessibilityLabel && card.title) cta.setAttribute('aria-label', `${ctaLabel}: ${card.title}`);
@@ -171,21 +175,27 @@ export function renderCard(card, config, { t, level, kind }) {
   const title = card.title ? element(level, 'list-card-title') : null;
   if (title && linked && !cta) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
-  const description = config.showDescription ? descriptionOf(card, 'list-card-description') : null;
+  // Show description hides it on image cards; text cards (panel, report, stat) always show it
+  const description = config.showDescription || kind !== 'image'
+    ? descriptionOf(card, 'list-card-description') : null;
   const date = config.showDate ? timeOf(card) : null;
+  const contentType = card.contentTypeLabel || card.contentType;
 
   let parts;
   if (kind === 'image') {
     parts = [
       mediaOf(card, config, IMAGE_BREAKPOINTS),
-      labelRow('list-card-kicker', [eyebrow, ...tags, config.showTags ? readingTime : '']),
+      // an eyebrow (e.g. client | industry) takes the place of the tags
+      labelRow('list-card-kicker', [eyebrow, ...(eyebrow ? [] : tags),
+        config.showTags ? readingTime : '']),
       title,
       description,
-      labelRow('list-card-meta', [card.contentType, date]),
+      labelRow('list-card-meta', [contentType, date]),
     ];
   } else if (kind === 'report') {
+    // Figma report card: its type over the title and description, then a Download link
     parts = [
-      labelRow('list-card-kicker', [card.contentType || eyebrow, date]),
+      labelRow('list-card-kicker', [contentType || eyebrow]),
       title,
       description,
     ];
@@ -222,8 +232,9 @@ export function renderRow(card, config, { t, level }) {
   if (title && linked) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
   article.append(...[
-    labelRow('list-card-kicker', [config.showEyebrow ? card.eyebrow || card.contentType : '',
-      config.showTags ? card.tags[0] : '']),
+    labelRow('list-card-kicker', [config.showEyebrow
+      ? card.eyebrow || card.contentTypeLabel || card.contentType : '',
+    config.showTags ? card.tags[0] : '']),
     title,
     config.showDescription ? descriptionOf(card, 'list-row-description') : null,
     config.showDate ? labelRow('list-card-meta', [timeOf(card)]) : null,
