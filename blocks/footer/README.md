@@ -1,22 +1,61 @@
 # Footer
 
-The **Footer** block: a heading, a floating navigation (hamburger, search bar, page pills and a
-sub-menu of the locale's pages), CTA buttons, the copyright and legal links, on a white
-background with soft brand and warning glows.
+The footer of every page, loaded like the header: the page footer loads the page's **footer
+page** as a fragment, and the **Footer** block authored on that page renders it: a heading, a
+floating navigation (hamburger, search bar, page pills and a sub-menu of the locale's pages),
+CTA buttons, the copyright and legal links, on a white background with soft brand and warning
+glows.
 
 | File | Purpose |
 |---|---|
 | `blocks/footer/_footer.json` | Universal Editor definitions and models: Footer (block) and its five item types |
-| `blocks/footer/footer.js` | Decoration, the floating navigation and the search bar |
+| `blocks/footer/footer.js` | The page footer (the inherited footer page as a fragment); the Footer block: decoration, floating navigation, search bar |
 | `blocks/footer/footer.css` | All styling and responsive behaviour (mobile first; tablet 600px, desktop 1200px) |
+| `models/_page.json` | The Footer page property (`footer`) |
+| `utils/inherited-metadata.js`, `utils/site.js` | Inherited page properties; locales, parent pages, `resolvePagePath` |
+| `test/inherited-metadata/footer-inheritance.test.mjs`, `test/site/site.test.mjs` | Tests of the footer inheritance and the locale paths, incl. EMEA (`npm test`) |
 
-> **No footer page, no inheritance.** The block renders only its own authored content. The
-> page footer that aem.js adds to every page's `<footer>` is an empty Footer block, so it shows
-> only the default heading. The **Footer** page property and the locale's `references/footer`
-> pages are no longer read, so an EMEA (or any section) footer can't be set on a root page.
-> Place the authored Footer block where it should show (e.g. the last section of the pages).
+## Which footer a page shows
 
-## Authoring
+Like the header with its Navigation page, the page footer loads the footer page of the
+**Footer** page property (page properties, or the `footer` column of the locale's bulk metadata
+sheet):
+
+1. the page's own Footer;
+2. else the Footer of its nearest parent page, up to the locale's Home page;
+3. else the locale's `references/footer`.
+
+The value may be an AEM path (`/content/tcs-corp/emea/en/references/footer-emea`), a published
+path (`/en-emea/references/footer-emea`) or a path relative to the locale root. The footer page
+is loaded as `{footerPath}.plain.html`; without a published footer page the footer stays empty
+(as the header does without a nav page). Parent pages are looked up in parallel, once per page
+load (shared with the Navigation lookup), and cached for the browser session (a changed parent
+property shows in a new session).
+
+### Example: the EMEA site
+
+The EMEA site is the locale `/content/tcs-corp/emea/en`, published at `/en-emea` (`en-GB`). The
+author sets Footer **once**, on the EMEA Home page:
+
+| Page | Footer page property | Footer shown |
+|---|---|---|
+| `/content/tcs-corp/emea/en` (Home) | `/content/tcs-corp/emea/en/references/footer-emea` | footer-emea |
+| `/content/tcs-corp/emea/en/about` | (empty) | footer-emea (inherited) |
+| `/content/tcs-corp/emea/en/careers` | `/content/tcs-corp/emea/en/references/footer-careers` | footer-careers (override) |
+| `/content/tcs-corp/emea/en/careers/jobs` | (empty) | footer-careers (nearest parent) |
+
+Without a Footer in the chain, EMEA pages show `/en-emea/references/footer`.
+
+Setting up EMEA (administrators, once): create the locale's pages and sheets in AEM (Home,
+`references/nav`, `references/footer`, `references/footer-emea`, `error-pages/404`,
+placeholders, metadata, redirects, taxonomy, `data/*`); apply `paths.json` to the site
+configuration's `public.json` paths; add `/en-emea/metadata.json` to `metadata.source`.
+
+## Authoring (the Footer block on the footer page)
+
+Add one Footer block to the footer page (e.g. `references/footer`, `references/footer-emea`).
+Footer pages authored with the previous Footer fields (Conversation Canvas Page, Copyright Text,
+Link List) must be re-authored: their first row is now read as the Heading Title.
 
 | Item (component) | Fields | Notes |
 |---|---|---|

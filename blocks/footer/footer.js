@@ -1,14 +1,22 @@
+import { loadFragment } from '../fragment/fragment.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { uniqueId } from '../../utils/ids.js';
+import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { getPages } from '../../utils/query-index.js';
-import { getLocale, getParentPages } from '../../utils/site.js';
+import { getLocale, getParentPages, resolvePagePath } from '../../utils/site.js';
 import { toSitePath } from '../../utils/urls.js';
 
 /*
- * Footer (blocks/footer/_footer.json): the Heading Title, then the authored items: Footer
- * Hamburger, Footer Search Bar, Footer CTA Buttons, Footer Copyright and Footer Legal Links.
+ * Footer: two roles with one block name.
+ * - The page footer (the block aem.js puts into <footer>): like the header with its nav page,
+ *   it loads the footer page as a fragment: the page's Footer page property or, inherited, its
+ *   nearest parent page's up to Home (or the metadata sheet's footer column), else the
+ *   locale's references/footer (e.g. the EMEA Home page sets references/footer-emea once).
+ * - The authored Footer block on that footer page (blocks/footer/_footer.json): the Heading
+ *   Title, then the items Footer Hamburger, Footer Search Bar, Footer CTA Buttons, Footer
+ *   Copyright and Footer Legal Links.
  * The hamburger opens a floating navigation of the locale's pages from the query index
  * (L1 / L2 pills, an L3 sub-menu, L3 suggestions with a back button), which floats at the
  * bottom of the window until the footer is reached (or docks in a hero / canvas search slot).
@@ -207,10 +215,26 @@ function buildHeading(text) {
 }
 
 /**
- * loads and decorates the footer
- * @param {Element} block The footer block element
+ * The page footer: the footer page as a fragment (its Footer block is decorated as it loads).
+ * @param {Element} block
  */
-export default async function decorate(block) {
+async function decoratePageFooter(block) {
+  const footerPath = resolvePagePath(await getInheritedMetadata('footer'), 'references/footer');
+  const fragment = await loadFragment(footerPath);
+
+  block.textContent = '';
+  // no footer page published (e.g. a new locale): leave the footer empty, like the header
+  if (!fragment) return;
+  const footer = document.createElement('div');
+  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+  block.append(footer);
+}
+
+/**
+ * The authored Footer block: the Heading Title row, then the item rows.
+ * @param {Element} block
+ */
+async function decorateFooterBlock(block) {
   const t = await getPlaceholders();
   const newTabHint = t('opensInNewTab', '(opens in a new tab)');
   const blockRows = [...block.children];
@@ -465,8 +489,8 @@ export default async function decorate(block) {
   if (hamburgerWrapperNode) searchRow.append(hamburgerWrapperNode);
   if (searchBoxWrapperNode) searchRow.append(searchBoxWrapperNode);
 
-  // without a hamburger or search bar there is no floating navigation (e.g. the empty footer
-  // block aem.js adds to <footer>), so no empty landmark floats at the bottom of the window
+  // without a hamburger or search bar there is no floating navigation, so no empty landmark
+  // floats at the bottom of the window
   const hasFloatingNav = searchRow.children.length > 0;
   if (hasFloatingNav) {
     floatingNav.append(searchRow, navPillsRow);
@@ -838,4 +862,14 @@ export default async function decorate(block) {
 
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
+}
+
+/**
+ * loads and decorates the footer
+ * @param {Element} block The footer block element
+ */
+export default async function decorate(block) {
+  // the page footer is the block aem.js puts directly into <footer>
+  if (block.parentElement?.tagName === 'FOOTER') await decoratePageFooter(block);
+  else await decorateFooterBlock(block);
 }

@@ -1,7 +1,8 @@
 /*
- * Footer: the heading, the floating navigation (hamburger, search bar, page pills and the
- * sub-menu), the CTA buttons and the bottom row (copyright, legal links) on a white background
- * with soft brand and warning glows. Mobile first: tablet from 600px, desktop from 1200px.
+ * Footer: the page footer (the footer page, see footer.js) and the authored block: the heading,
+ * the floating navigation (hamburger, search bar, page pills and the sub-menu), the CTA buttons
+ * and the bottom row (copyright, legal links) on a white background with soft brand and warning
+ * glows. Mobile first: tablet from 600px, desktop from 1200px.
  * The floating navigation can move out of the block (fixed at the bottom of the window, or
  * docked in a hero / canvas search slot), so its rules are scoped to .footer-floating-nav.
  */
@@ -27,7 +28,7 @@
   font-family: var(--body-font-family);
 }
 
-/* placed in a section: full window width */
+/* placed in a section of a page: full window width */
 main .footer {
   left: 50%;
   right: 50%;
@@ -60,6 +61,22 @@ main .footer {
   width: 41.5rem;
   height: 29.625rem;
   background: var(--color-bg-warning);
+}
+
+/*
+ * the page footer (the block aem.js puts into <footer>) only holds the footer page's sections,
+ * like the header with its nav page: the authored Footer block inside it has the styling
+ */
+footer > .footer {
+  overflow: visible;
+  isolation: auto;
+  padding: 0;
+  background: none;
+}
+
+footer > .footer::before,
+footer > .footer::after {
+  content: none;
 }
 
 .footer [hidden] {

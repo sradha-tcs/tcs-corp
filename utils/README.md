@@ -7,7 +7,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | Util | Exports | Used by |
 |---|---|---|
 | `site.js` | `LOCALES`, `DEFAULT_LOCALE`, `aemRootOf`, `getLocale`, `getParentPages`, `localePagePath`, `resolvePagePath`, `localeSheetPath`, `toPublishedPath`, `toAemPath`, `sheetRows` (the 14 locale sites incl. EMEA (`emea/en` → `/en-emea`), AEM ↔ published paths; references, configured nav / footer, error pages and sheets of a locale) | header, footer, `scripts.js`, placeholders, taxonomy, data, urls, inherited metadata, conversation-canvas, `tools/paths/generate-paths.mjs` |
-| `inherited-metadata.js` | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | header, `scripts.js` (404) |
+| `inherited-metadata.js` | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | header, footer, `scripts.js` (404) |
 | `metadata.js` | `getPageMetadata`, `getPageTags`, `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | page-header, conversation-canvas, SEO decorator, templates |
 | `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | all blocks with UI text, header, footer, `scripts.js` (404 Go back) |
 | `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, filter-list, conversation-canvas |
