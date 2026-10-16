@@ -2,7 +2,7 @@
 .tcs-header .tcs-header-bar {
   display: flex;
   align-items: center;
-  gap: var(--space-600);
+  gap: 1.7391rem;
 }
 
 /* a Full Width section has no gutter: the logo bar keeps the header's (Figma: 16 / 24 / 80px) */
@@ -36,11 +36,22 @@
 
 .tcs-header :is(.tcs-header-brand, .tcs-header-group) img {
   width: auto;
-  height: 1.25rem;
+  height: 1.2104rem;
 }
 
 .tcs-header .tcs-header-group img {
   height: var(--icon-size-s);
+}
+
+/* tablet (Figma Mobile Nav at 1024px): larger logos than mobile */
+@media (width >= 600px) {
+  .tcs-header .tcs-header-brand img {
+    height: 1.9165rem;
+  }
+
+  .tcs-header .tcs-header-group img {
+    height: 2.375rem;
+  }
 }
 
 /* desktop: TCS logo left, TATA logo right */
@@ -50,7 +61,7 @@
   }
 
   .tcs-header .tcs-header-brand img {
-    height: 2.1875rem;
+    height: 2.175rem;
   }
 
   .tcs-header .tcs-header-group img {

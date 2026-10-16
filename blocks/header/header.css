@@ -19,7 +19,9 @@ header nav {
     'brand tools hamburger' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 var(--space-600);
+
+  /* Figma: 27.8px between the TCS and TATA logos */
+  gap: 0 1.7391rem;
   margin: auto;
   max-width: var(--content-max-width);
   height: var(--nav-height);
@@ -81,19 +83,31 @@ header nav :is(.nav-brand, .nav-tools) :is(a, picture) {
   display: block;
 }
 
+/* one artwork per logo, sized per breakpoint (Figma Mobile Nav / Nav Bar-NEW): the width follows
+   the aspect ratio; the TCS logo 19.4 / 30.7 / 34.8px, the TATA logo 24 / 38 / 44px high */
 header nav :is(.nav-brand, .nav-tools) img {
   display: block;
   width: auto;
-  height: 1.25rem;
+  height: 1.2104rem;
 }
 
 header nav .nav-tools img {
   height: var(--icon-size-s);
 }
 
+@media (width >= 600px) {
+  header nav .nav-brand img {
+    height: 1.9165rem;
+  }
+
+  header nav .nav-tools img {
+    height: 2.375rem;
+  }
+}
+
 @media (width >= 1200px) {
   header nav .nav-brand img {
-    height: 2.1875rem;
+    height: 2.175rem;
   }
 
   header nav .nav-tools img {

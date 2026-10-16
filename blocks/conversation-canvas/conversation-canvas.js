@@ -455,7 +455,10 @@ function buildDock(config, id, block) {
       const back = document.createElement('button');
       back.type = 'button';
       back.className = 'conversation-canvas-nav-back';
-      back.setAttribute('aria-label', t('back', 'Back'));
+      // back to the full menu (Figma: the menu icon), else up one level (an arrow)
+      const toRoot = parentView(view).type === 'root';
+      back.classList.toggle('conversation-canvas-nav-back-menu', toRoot);
+      back.setAttribute('aria-label', toRoot ? t('menu', 'Menu') : t('back', 'Back'));
       back.addEventListener('click', () => setView(parentView(view)));
       items.push(back);
     }
@@ -501,6 +504,8 @@ function buildDock(config, id, block) {
       return li;
     }));
     nav.replaceChildren(list);
+    // the first level shows pills, the levels below text items (Figma Full menu)
+    nav.dataset.view = view.type;
     nav.hidden = state.collapsed || !items.length;
     if (defaultView().type === 'root') {
       menuToggle.removeAttribute('aria-pressed');
