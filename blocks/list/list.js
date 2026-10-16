@@ -2,19 +2,19 @@ import {
   applyCardListLayout, buildCardListHeader, cardListId, renderCardList, renderCardListEmpty,
   trackCardList,
 } from '../../decorators/card-list-decorator.js';
-import { PRESENTATION_PROPERTIES } from '../../utils/card-list-config.js';
-import { matchCells } from '../../utils/cells.js';
+import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
+import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
-import { getPages } from '../../utils/query-index.js';
+import { getPages, getPagesAt } from '../../utils/query-index.js';
 import { loadRedirects, resolveRedirect } from '../../utils/redirects.js';
 import { toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_FIELDS, buildCards, normalizeConfig, normalizePath, validateConfig,
+  HEADINGS, ITEM_FIELDS, ITEM_LAYOUT, buildCards, normalizeConfig, normalizePath, validateConfig,
 } from './list-data.js';
 
 /*
@@ -49,6 +49,27 @@ const debug = (...args) => {
   if (/[?&]debug=list\b/.test(window.location.search)) console.debug('[list]', ...args); // eslint-disable-line no-console
 };
 
+/** a link of this site as its path (and query); other links as they are */
+function sitePath(href) {
+  if (!/^https?:/i.test(href)) return href;
+  const url = new URL(href);
+  return url.origin === window.location.origin ? `${url.pathname}${url.search}` : href;
+}
+
+/** AEM author serves pages with their .html extension, which page paths leave out */
+const withPageExtension = (path) => (/^\/content\/(?:[^?#]*\/)?[^/.?#]+$/.test(path) ? `${path}.html` : path);
+
+/**
+ * The text of a List Item link, unless it is the link itself (AEM renders a link without a text
+ * as its path)
+ */
+function linkTextOf(a) {
+  const label = a?.textContent.trim() || '';
+  const href = a?.getAttribute('href') || '';
+  return label && normalizePath(label) !== normalizePath(href) && !/^(\/|https?:)\S*$/.test(label)
+    ? label : '';
+}
+
 /** a published page path from an aem-content value (a link or a path) */
 function pathOf(cell) {
   const href = cell?.querySelector('a[href]')?.getAttribute('href') || textOf(cell);
@@ -81,14 +102,15 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const items = legacy ? [] : itemRows.map((row) => {
-    const cells = matchCells([...row.children], ITEM_FIELDS, ITEM_MATCHERS);
+    const fieldCells = withoutTabCells([...row.children], ITEM_LAYOUT);
+    const cells = matchCells(fieldCells, ITEM_FIELDS, ITEM_MATCHERS);
     const a = cells.link?.querySelector('a[href]');
     const href = a?.getAttribute('href') || '';
     const img = cells.image?.querySelector('img');
     const get = (field) => textOf(cells[field]);
     return {
       href,
-      linkText: a && a.textContent.trim() !== href ? a.textContent.trim() : '',
+      linkText: linkTextOf(a),
       title: get('headline'),
       description: get('summary'),
       image: img?.getAttribute('src') || '',
@@ -143,16 +165,22 @@ export default async function decorate(block) {
   const warnings = validateConfig(config, { fixedCount: read.items.length });
   debug('config', config, warnings);
   const needsIndex = config.source !== 'fixed' || read.items.some((item) => item.href.startsWith('/'));
-  const [pages, redirects, authorRows] = await Promise.all([
+  const [indexed, redirects, authorRows] = await Promise.all([
     needsIndex ? getPages() : [],
     loadRedirects(),
     config.featureFirst ? getAuthors().catch(() => []) : [],
   ]);
+  // List Item pages the index doesn't have (in the editor, AEM author has no query index) are
+  // read from the pages themselves
+  const known = new Set(indexed.map((page) => normalizePath(page.path)));
+  const missing = read.items.map((item) => sitePath(item.href))
+    .filter((path) => path.startsWith('/') && !known.has(normalizePath(path)));
+  const pages = missing.length ? [...indexed, ...await getPagesAt(missing)] : indexed;
   const data = {
     pages,
     items: read.items,
     currentPath: normalizePath(toPublishedPath(window.location.pathname)),
-    resolveUrl: (path) => resolveRedirect(redirects, path),
+    resolveUrl: (path) => withPageExtension(resolveRedirect(redirects, path)),
     origin: window.location.origin,
     lang: document.documentElement.lang,
   };
@@ -164,6 +192,7 @@ export default async function decorate(block) {
   const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
   cards.forEach((card) => {
     card.tags = card.tagIds.map((tag) => labels.get(tag) || tag);
+    card.contentTypeLabel = contentTypeLabel(card.contentType, card.tagIds, labels);
   });
   debug('cards', cards);
 

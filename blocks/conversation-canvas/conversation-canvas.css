@@ -333,12 +333,7 @@ html:has(.conversation-canvas-owner) {
   scroll-padding-bottom: var(--conversation-canvas-obscured, 0);
 }
 
-/* the open mobile menu covers the page: no floating canvas over it */
-@media (width < 900px) {
-  body:has(header nav[data-expanded='true']) .conversation-canvas .conversation-canvas-floating {
-    visibility: hidden;
-  }
-}
+/* while the header menu is open the journey is HIDDEN (canvas-controller.js): nothing floats */
 
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-menu-toggle,
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form {

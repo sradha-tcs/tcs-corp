@@ -9,7 +9,8 @@ export const CARD_KINDS = ['image', 'panel', 'report', 'stat'];
 export const CARD_THEMES = ['dark', 'navy', 'brand', 'brand-light', 'grey', 'mid-grey', 'gradient', 'image'];
 export const IMAGE_RATIOS = ['16-9', '1-1', '4-3', '3-2'];
 export const PANEL_HEIGHTS = ['auto', 'portrait', 'compact'];
-export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyyy', 'dd/mm/yy'];
+export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyyy', 'dd/mm/yy',
+  'do-mmmm-yyyy'];
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'];
 export const DISPLAY_MODES = ['grid', 'horizontal-scroll'];
@@ -61,6 +62,21 @@ export const number = (value, fallback, { min = -Infinity, max = Infinity } = {}
 export const integer = (value, fallback, range) => Math.round(number(value, fallback, range));
 
 /** a path as the index lists it: no .html, query or hash, no trailing slash but the root's */
+/**
+ * The label of a content type (content-type metadata, e.g. case-study): the taxonomy label of its
+ * tag (…:content-type/case-study) when the card has it, else the value in words (Case study).
+ * @param {string} contentType
+ * @param {string[]} tagIds the card's tag IDs
+ * @param {Map<string, string>} labels tag labels by ID
+ */
+export function contentTypeLabel(contentType, tagIds = [], labels = new Map()) {
+  const value = text(contentType);
+  if (!value) return '';
+  const tag = tagIds.find((id) => id.endsWith(`content-type/${value}`));
+  const words = value.replace(/[-_]+/g, ' ');
+  return labels.get(tag) || `${words.charAt(0).toUpperCase()}${words.slice(1)}`;
+}
+
 export const normalizePath = (path) => text(path).replace(/[?#].*$/, '').replace(/\.html$/, '')
   .replace(/(.)\/$/, '$1');
 

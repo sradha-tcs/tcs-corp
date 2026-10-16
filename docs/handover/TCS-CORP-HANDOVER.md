@@ -33,7 +33,8 @@ date: "October 14, 2026"
 | 1.3 | 14 October 2026 | Delivery team | Every rendering screenshot (596) rebuilt from an authoring spec and followed by an **Authoring steps** table (Step, Where, Field, Value) that reproduces it in Universal Editor; every editor-step and console placeholder (405) replaced by its steps table; findings F-43 to F-48 from the spec work |
 | 1.4 | 14 October 2026 | Delivery team | Findings F-43 to F-48 fixed in the code: List Item cells read in model order (with a unit test against the model), the Video poster read from its grouped cell, the Conversation Canvas voice button and the Teaser Lotto animation named by their collapsed alt texts, the 404 "Go back" button added after the content is loaded (placeholder `goBack`), an inverse hover / focus style for secondary buttons on Dark, Navy and Brand cards; chapters 4.5.3, 6.28, 10.2, 13.7 and Part 16 updated |
 | 2.0 | 14 October 2026 | Delivery team | Complete enterprise handover package for the client brief: every screenshot (596) recaptured with callout letters on the fields and followed by its authoring block (Screenshot Details; Field Entry Table with Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules; Expected Page Output; Business Rules; Common Authoring Mistakes; Troubleshooting); a step-by-step walkthrough for every variation with a screenshot (461); per component Business Problem Solved, Supported Taxonomy, Target Personalization Output, Common Authoring Mistakes, Author Quick Reference Guide and Component Execution Example; new chapters 2.10 Architecture Component Considerations, 2.11 Data Flow Architecture, 6.0 Component Inventory, 8.4 Metadata Field Usage Matrix; an escalation process for every Part 13 issue; new Part 17 Operations Guide and Part 18 New Joiner Training Guide; corrections and findings F-49 to F-60 |
-| 2.1 | 15 October 2026 | Delivery team | Floating Canvas journey (Figma *New Screens from New DS*, Navigation and Home): one owner floats and lands on each Canvas in place, takes its variation after it and stops at the footer Canvas (fallback: above the footer); new options Don't float, BG Style Dark (Primary) and Navigation style Pills / Text links; a Canvas in the nav page becomes the header Canvas; chapter 6.30 (6.30.18 Floating journey), findings F-61 to F-66 |
+| 2.2 | 16 October 2026 | Delivery team | TCS Header (Figma *New Screens from New DS*): desktop logo bar (TCS left, TATA right, 124px; navigation in the Conversation Canvas), tablet and mobile menu opening full screen one level at a time (Back, level title); a linked section label keeps its link; a tap on the open menu keeps it open; `--nav-height` 7.75rem from 1200px; chapter 6.1 (6.1.11, 6.1.18), findings F-70 to F-76 |
+| 2.3 | 16 October 2026 | Delivery team | Floating Canvas journey (PR #71, validated and integrated with the TCS Header of 2.2; states initial, floating, section-docked, floating-after-section, footer-docked, hidden; hidden while the header menu is open, from its `header:menu` event; Floating journey field Floats and docks / Docks only / Decorative; F-73, F-76 closed) (Figma *New Screens from New DS*, Navigation and Home): one owner floats and lands on each Canvas in place, takes its variation after it and stops at the footer Canvas (fallback: above the footer); new options Floating journey (Docks only), BG Style Dark (Primary) and Navigation style Pills / Text links; a Canvas in the nav page becomes the header Canvas; chapter 6.30 (6.30.18 Floating journey), findings F-61 to F-66 |
 
 ## Review and Approval
 
@@ -3950,7 +3951,7 @@ To add a section: select **Main** in the content tree, select **Add (+)** and ch
 |:------------|:--------------|:--------------|:------------------------------------------------------------|
 | Section Name | Text | (empty) | Label of the section in the content tree only; not shown on the site |
 | Style | Multi-select | Highlight | Adds the class `highlight`: light grey background (`--color-bg-secondary`), no outer margin, vertical padding of one section spacing |
-| Width Type | Select | Full Width (default), Fixed Width | Fixed Width limits the section box (and its background) to the content width (90rem) and centres it; Full Width caps the content at the page width (120rem) |
+| Width Type | Select | Full Width (default), Fixed Width | Full Width: the blocks and content fill the screen edge to edge (no side gutter, no maximum width); Fixed Width limits the section box (and its background) to the content width (90rem), centres it and keeps the side gutter (1.5rem, 2.5rem from 600 px, 5rem from 1200 px) |
 | Rounded edge | Boolean | off | Adds `rounded`: corners with radius 1rem (`--radius-l`), content clipped |
 | Background Image | AEM Assets reference | (empty) | An image behind the section content, scaled to cover the section |
 | Image alt text | Text | (empty) | Alt text of the background image; empty marks it as decorative (`alt=""`) |
@@ -6336,16 +6337,16 @@ Blocks placed on the nav page are tracked as their own components with `parentId
 5. If the nav page can't be loaded (missing, not published, network error, or a path not starting with `/`), the header is left empty; no error is shown.
 6. The nav page's first section is the brand, the second the sections, the third the tools; further sections are appended without a role.
 7. In the brand section, the first button or link button is turned back into a plain link.
-8. Only first-level list items (`.default-content-wrapper > ul > li` in the sections section) that contain a nested list become dropdowns.
-9. An unlinked label becomes the toggle button's text; a label element containing a link keeps the link and gets an additional toggle button with the accessible name "Show {label} menu"; a list item whose first child is the link itself loses the link (it's replaced by a text button).
+8. Every list item in the sections section that contains a nested list becomes a section with a sub-level (any depth).
+9. An unlinked label becomes the section button's text; a linked label (the link itself, or an element containing it) keeps the link and gets an arrow button with the accessible name "Show {label} menu" (until 2.2 a list item whose first child was the link lost the link, F-70).
 10. Sub-list ids are `nav-submenu-{label}` (lower-case, hyphenated), unique on the page (suffix `-2`, `-3`, …); an existing id is kept.
-11. Desktop (>= 900px): selecting a toggle closes all other dropdowns and toggles its own; only one is open.
-12. Mobile (< 900px): the menu button toggles the whole menu; opening it marks all dropdowns expanded and locks page scrolling; closing it closes all dropdowns.
-13. Escape: on desktop closes the open dropdown and focuses its toggle (nothing happens if none is open); on mobile closes the open menu and focuses the menu button.
-14. Focus moving outside the nav closes all dropdowns (desktop) or the menu (mobile).
-15. Crossing the 900px breakpoint resets the state for the new mode.
-16. Accessible names come from the placeholders sheet (`mainNavigation`, `openNavigation`, `closeNavigation`, `showSubmenu`) with English fallbacks.
-17. The header is invisible until the block has loaded (`data-block-status="loaded"`), and its height is reserved (4rem) to avoid layout shift.
+11. Desktop (>= 1200px): the logo bar, brand left and tools right; the menu button and the sections are not shown (strict Figma, F-72).
+12. Tablet and mobile (< 1200px): the menu button opens the menu full screen at its first level ("Menu") and locks page scrolling; a section's button opens its sub-list in place of the level (one open section per level), with a Back button and the section's label as the title; closing the menu closes all levels.
+13. Escape closes the open menu and focuses the menu button; opening a level focuses Back; Back focuses the button of the section it closed.
+14. Focus moving to an element outside the nav closes the menu; a tap on the menu's background (focus moves to no element) keeps it open (F-71).
+15. Crossing the 1200px breakpoint resets the state for the new mode.
+16. Accessible names come from the placeholders sheet (`mainNavigation`, `openNavigation`, `closeNavigation`, `showSubmenu`, `menu`, `back`) with English fallbacks.
+17. The header is invisible until the block has loaded (`data-block-status="loaded"`), and its height is reserved (`--nav-height`: 4rem, 7.75rem from 1200px) to avoid layout shift.
 18. There is no hover-to-open behaviour and no outside-click handler; closing on outside clicks relies on focus leaving the nav.
 19. The header has no Additional tab (no anchor, hide or spacing options).
 
@@ -6623,6 +6624,37 @@ All other fields keep their default values.
 - The nav value is inherited through getInheritedMetadata and cached in sessionStorage tcs-inherited-metadata
 - Dropdowns are buttons with aria-expanded and aria-controls nav-submenu-*; the desktop row starts at 900 px
 - There is no hover opening and no outside-click handler
+
+### 6.1.18 TCS Header (version 2.2)
+
+The header follows the TCS Header of Figma *New Screens from New DS* (Navigation 1124:25825,
+mobile menu 1124:27418 / 1124:27432 / 1124:27453; Home 229:15426 / 671:52732 / 4082:120430).
+It is the project's Header block (no separate `tcs-header` block); the nav page contract is
+unchanged. Details and the reuse decisions are in `blocks/header/README.md`.
+
+| Breakpoint | Header |
+|:-----------------|:------------------------------------------------------------|
+| Desktop (>= 1200px) | Logo bar: TCS logo (brand) left, TATA logo (tools) right, 124px high, 80px gutters; no navigation (in the Conversation Canvas) |
+| Tablet (600–1199px) | 64px fixed bar, 24px gutters: TCS and TATA logos, 32px menu button |
+| Mobile (< 600px) | As tablet with 16px gutters |
+
+**Authoring the nav page for the TCS Header**
+
+| Section | Content |
+|:----------|:----------|
+| Brand | The TCS logo image, linked to the locale Home; alt text "Tata Consultancy Services" |
+| Sections | The menu as a list: What we think, What we do (Capabilities, Industries (Banking, …), …), Who we are, Insights, Careers, Media & Investors; a nested list makes a level |
+| Tools | The TATA logo image, linked to https://www.tata.com/; alt text "TATA Group" |
+
+Alternatively the nav page starts with a **TCS Header** block (`blocks/tcs-header`, allowed in sections): TCS Logo, TCS Logo Alt Text, TCS Logo Link, TATA Logo, TATA Logo Alt Text, TATA Logo Link and the Additional tab. The header takes the brand and tools from it; the first other section is the menu. Placed in a page section, the block shows the logo bar.
+
+**Troubleshooting**
+
+| Symptom | Cause | Resolution |
+|:----------|:----------|:----------|
+| No navigation on desktop | Expected: the desktop header is the logo bar (F-72) | Add a Conversation Canvas (Primary dock or a Canvas with its menu) to the page |
+| A text logo ("Button") instead of the TCS logo | The nav page's brand section holds placeholder content (F-74) | Put the TCS logo image, linked to Home, in the brand section |
+| A section's page can't be reached from the menu | The section label was the link itself (before 2.2) | Fixed in 2.2: the link stays, the arrow button opens the level |
 
 ## 6.2 Footer Block
 
@@ -12830,7 +12862,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** Three bands: 'Our services' on white; 'Industries we serve' with the 'Explore industries' primary button on a full-width grey-100 band; 'Cloud transformation' with the 'Explore cloud services' secondary button over the pale blue light.svg gradient with rounded corners.
-- **Rendering behaviour:** From 1200 px the content of each band is capped at 120rem (90rem in the Fixed Width band) with 5rem side padding; the default section is separated by a 7.5rem margin, while the Highlight and background bands have no outer margin but 7.5rem padding top and bottom. At 1440 px the Fixed Width box is exactly 90rem, so it still spans the screen.
+- **Rendering behaviour:** Full Width bands fill the screen edge to edge, without side padding; the Fixed Width band is capped at 90rem with the side gutter (5rem from 1200 px); the default section is separated by a 7.5rem margin, while the Highlight and background bands have no outer margin but 7.5rem padding top and bottom. At 1440 px the Fixed Width box is exactly 90rem, so it still spans the screen.
 - **Publishing behaviour:** Publish to Preview shows the page on main--tcs-corp--sradha-tcs.aem.page and Publish to Live copies it to aem.live. light.svg must be published with the page (select it as a reference in the Publish dialog), otherwise the third band renders without its background.
 
 **Business Rules**
@@ -111174,7 +111206,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The canvas floats over the page unexpectedly | Every Default canvas's search row floats once scrolled past (until the next Canvas or the footer Canvas, 6.30.18) | Turn on Don't float for a Canvas whose row should stay in place |
+| The canvas floats over the page unexpectedly | Every Default canvas's search row floats once scrolled past (until the next Canvas or the footer Canvas, 6.30.18) | Set Floating journey to Docks only for a Canvas whose row should stay in place |
 | Explore services leads to a 404 | The target page /en/services is not published | Publish the linked page or select an existing one |
 | The title appears in bold body text | Title left empty and the question typed into Text | Enter the question in Title; Text is for one supporting sentence |
 
@@ -114002,7 +114034,7 @@ The spacing options are the same 15 values as in 6.29.6 (Default, 0, 0.25rem …
 | Owner | [To be confirmed: product owner]; technical owner: development team |
 | Dependencies | aem.js, scripts.js; responsive-image, a11y, button, icon-button, block-options, data-layer decorators; utils buttons, properties, query-index, site, urls, metadata, taxonomy, ids, placeholders; query index, taxonomy and placeholders sheets; Web Speech API |
 | Component Type | Container block (key-value properties) with `button` items (Conversation Canvas Button) |
-| Supported Variants | Canvas Style Default / Secondary / Primary (sticky); Primary Navigation style Pills / Text links and BG Style Dark; Don't float; Title Type Default / Bigger / Medium; BG glow or image; search button Primary / Secondary / Tertiary; voice input; button views Button / Icon / Link; footer placement |
+| Supported Variants | Canvas Style Default / Secondary / Primary (sticky); Primary Navigation style Pills / Text links and BG Style Dark; Floating journey Floats and docks / Docks only / Decorative; Title Type Default / Bigger / Medium; BG glow or image; search button Primary / Secondary / Tertiary; voice input; button views Button / Icon / Link; footer placement |
 | Supported Templates | Any page; the footer canvas reference page |
 | Supported Metadata | Page tags (`article:tag` meta, else `tags` metadata) for Primary suggestions; query index `path` and `title` (og:title) |
 | Supported Tags | Page tags, labelled from `/{locale}/taxonomy.json` (Primary suggestions) |
@@ -114631,18 +114663,19 @@ Header Canvas -> floating -> section Canvas (docked) -> floating -> ... -> foote
 
 | Rule | Behaviour |
 |:-----------------|:------------------------------------------------------------|
-| Roles | From placement: the last Canvas in the footer is the final stop, the first other one the start (header, or first on the page), the rest intermediate. Primary (sticky) has no role |
+| Roles | From placement: a Canvas in the header (nav page), or the first Canvas when it is in the page's first section, is the header Canvas; the last Canvas in the footer is the final stop; the rest are sections. Primary (sticky) has no role |
 | Docked | A Default / Secondary search row on screen at or above the floating position: nothing floats |
-| Floating owner | The Primary (sticky) Canvas if present, else the last Canvas scrolled past the floating position (not Don't float); exactly one at a time |
+| Floating owner | The Primary (sticky) Canvas if present, else the last Canvas scrolled past the floating position (not Docks only); exactly one at a time |
 | Landing | The next Canvas's row is hidden while it comes up and replaces the floating row at the same position; no duplicate row, no page movement |
 | Final stop | Once the footer Canvas reaches the floating position (or the page bottom), nothing floats any more |
 | Fallback | Without a footer Canvas the floating row stays above the footer's top edge |
-| Mobile menu | The floating row is hidden while the mobile menu is open |
+| Header menu | The journey is `hidden` while the header menu is open (below 1200px; the header's `header:menu` event) |
+| States | `<html data-canvas-journey-state>`: initial, floating, section-docked, floating-after-section, footer-docked, hidden; computed from the scroll position (no stale state); continuous scrolling only makes the allowed transitions (`TRANSITIONS`) |
 | Focus | Focused elements scroll clear of the floating row (`scroll-padding-bottom`) |
 
 | Field | Values | Effect |
 |:-----------------|:------------------|:-----------------------------------------------|
-| Don't float | On / Off (default) | The Canvas is still a stop; its own row never floats, the previous one floats on after it |
+| Floating journey | Floats and docks (default) / Docks only / Decorative | Docks only: a stop whose own row never floats, the previous one floats on after it. Decorative: a Canvas in place that isn't part of the journey |
 | BG Style | Default / Dark (Primary) | Dark: the Primary dock over a black fade with a dark search pill and light navigation (Figma "L1 Media & Investors") |
 | Navigation style | Pills (default) / Text links | Primary dock navigation as pills (Figma "Full menu") or text (Figma "Full menu - No Pill"); the current item is a filled pill |
 
@@ -114651,9 +114684,9 @@ Header Canvas -> floating -> section Canvas (docked) -> floating -> ... -> foote
 | Symptom | Cause | Resolution |
 |:----------|:----------|:----------|
 | The floating row covers the footer Canvas title before it docks | The row lands on the footer Canvas's search row, which is below its title | Expected; keep the footer Canvas's intro short |
-| Nothing floats after the last section Canvas | That Canvas has Don't float and no earlier Canvas may float | Turn Don't float off on one Canvas |
+| Nothing floats after the last section Canvas (state hidden) | That Canvas is Docks only and no earlier Canvas may float | Set Floating journey to Floats and docks on one Canvas |
 | The floating row stops above the footer instead of docking | No footer Canvas (the Footer block's Conversation Canvas Page is empty or unpublished) | Reference and publish the footer canvas page (`references/footer-conversation-canvas`) |
-| The journey state is needed for analysis | | `document.documentElement.dataset.canvasJourney` holds the state (`docked-header`, `floating`, `docked-section`, `docked-footer`, ...) |
+| The journey state is needed for analysis | | `document.documentElement.dataset.canvasJourneyState` holds the state (`initial`, `floating`, `section-docked`, `floating-after-section`, `footer-docked`, `hidden`) |
 
 ## 6.31 Interactive Dashboard Block
 
@@ -123033,9 +123066,16 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-61 | Conversation Canvas | After several Canvases, the first one passed kept floating; floating stopped as soon as any Canvas touched the viewport bottom; no stop above a footer without a Canvas | The floating row didn't match the section and jumped near Canvases; it could cover footer links | Floating journey (6.30.18): last Canvas passed floats, lands on the next, final stop at the footer Canvas, fallback lift | Closed (2.1) | Development | 6.30 |
 | F-62 | Conversation Canvas | The floating row painted below later positioned content (`isolation: isolate` on the block) and over the open mobile menu | Floating search hidden behind cards, or covering the mobile menu | Owner block lifted to `--conversation-canvas-z-floating`; hidden while the mobile menu is open | Closed (2.1) | Development | 6.30 |
 | F-63 | Conversation Canvas | Layout was read for every Canvas and the footer on every scroll frame | Scroll jank on long pages | Geometry cached; scroll reads only `scrollY` | Closed (2.1) | Development | 6.30 |
-| F-64 | Header | Figma's desktop header is a logo bar (TCS left, TATA right, 124px high, 80px gutters); the header renders the nav page (64px) | Visual difference from Figma | Author the nav page as brand + TATA logo in tools; adjust `--nav-height` and gutters in a follow-up after a regression check of the nav | P3 | Product Owner, Development | 6.1 |
-| F-65 | Navigation content | The published nav page (`/en/references/nav`) still holds boilerplate items (Examples, Getting Started, Documentation) | The header shows placeholder navigation | Author the real nav page | P2 | Content authors | 6.1 |
+| F-64 | Header | Figma's desktop header is a logo bar (TCS left, TATA right, 124px high, 80px gutters); the header renders the nav page (64px) | Visual difference from Figma | Done in 2.2: the TCS Header (logo bar, 124px, `--nav-height` 7.75rem from 1200px), F-72 | Closed (2.2) | Development | 6.1 |
+| F-65 | Navigation content | The published nav page (`/en/references/nav`) still holds boilerplate items (Examples, Getting Started, Documentation) | The header shows placeholder navigation | Author the real nav page (tracked as F-74) | Duplicate of F-74 | Content authors | 6.1 |
 | F-66 | Figma | The www.tcs.com Figma Sites files can't be read through the Figma API; the journey's scrolling, docking and footer stop aren't prototyped in Figma | Behaviour supplemented from the requirement, not Figma | Design review of the journey on the feature preview | P3 | Design, Product Owner | 6.30 |
+| F-70 | Header | A section whose label was the link itself (`<li><a>…</a><ul>`) lost its link (replaced by a text button); only a link inside an element was kept | The section's page couldn't be reached from the navigation | The label link is kept and gets the arrow button (6.1.11 rule 9) | Closed (2.2) | Development | 6.1 |
+| F-71 | Header | Focus leaving the nav with no new focus target (a tap on the open mobile menu's background) closed the menu | The menu closed on stray taps | Only focus moving to an element outside the nav closes it | Closed (2.2) | Development | 6.1 |
+| F-72 | Header | Desktop (>= 1200px) shows the Figma logo bar only (product decision, 16 October 2026); desktop navigation comes from Conversation Canvas blocks | A page without a Canvas has no desktop navigation | Author a Conversation Canvas on every page template, or revisit the decision (the tablet menu could be shown on desktop by changing the 1200px breakpoint in `blocks/header`) | P2 | Product Owner, Design | 6.1 |
+| F-73 | Header, Conversation Canvas | PR #71 (floating Canvas) hides the floating row while the menu is open below 900px; the menu now exists below 1200px | Between 900 and 1199px the floating row could show over the open menu | When merging #71 and this change, use 1200px in that rule | Closed (2.3): the journey is hidden on the header's `header:menu` event at every width with a menu | Development | 6.1, 6.30 |
+| F-74 | Navigation content | The published nav pages hold boilerplate content (brand "Button", Examples / Getting Started / Documentation, a search icon) | The TCS Header shows placeholder content | Author the nav pages as in 6.1.18 (logos and the menu) | P2 | Content authors | 6.1 |
+| F-75 | Header | Figma deviations for accessibility: menu arrows use `--color-icon-default` (Figma light grey fails 3:1); menu rows have 16px gutters (the Figma mock is edge to edge) | Slightly darker arrows, inset rows | Design review | P3 | Design | 6.1 |
+| F-76 | Handover | Open PRs #71 and #72 both add revision 2.1 and finding F-61 | Duplicate IDs once both merge | Renumber when merging | Closed (2.3): #72 closed; #71 renumbered to revision 2.3 | Delivery team | 16 |
 
 ## 16.3 Open Items (To Be Confirmed)
 

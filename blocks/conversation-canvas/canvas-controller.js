@@ -1,4 +1,4 @@
-import { assignRoles, resolveJourney } from './canvas-journey.js';
+import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
 
 /*
  * Canvas controller: one per page, shared by every Conversation Canvas (header, page, footer).
@@ -8,7 +8,10 @@ import { assignRoles, resolveJourney } from './canvas-journey.js';
  *   the page resizes or content loads (ResizeObserver), never while scrolling
  * - on scroll (passive, one update per animation frame) reads only scrollY and toggles classes
  *   when the result changes; rows float with position: fixed in their own block, so the DOM
- *   (reading order, focus, listeners) never moves
+ *   (reading order, focus, listeners, editor instrumentation) never moves and is never cloned
+ * - the journey state is <html data-canvas-journey-state> (STATES); the header announces its
+ *   menu with a header:menu event ({ open }): the floating Canvas is HIDDEN while it's open
+ * - a failure here only stops the floating (nothing floats): page, header and footer still work
  */
 
 const FLOATING = 'conversation-canvas-floating';
@@ -23,15 +26,21 @@ let previous = {};
 let frame = 0;
 let dirty = true;
 let listening = false;
+let suppressed = false;
 
 // canvas blocks never contain each other, so b either follows or precedes a
 const byDomOrder = (a, b) => (
   a.block.compareDocumentPosition(b.block) === Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
 
+/** a Canvas back in its place: not floating, not landing, a Primary dock hidden */
 function release(entry) {
   entry.row.classList.remove(FLOATING, HANDOFF);
   entry.block.classList.remove(OWNER);
-  if (entry.slot) entry.slot.style.minHeight = '';
+  if (entry.primary) entry.row.inert = true;
+  if (entry.slot) {
+    entry.slot.style.minHeight = '';
+    entry.slot.classList.remove(APPROACHING);
+  }
 }
 
 /** reads the page geometry (layout reads only, the writes follow in apply) */
@@ -47,8 +56,12 @@ function measure() {
     }
   }
   const live = entries.filter((e) => e.block.isConnected).sort(byDomOrder);
+  const firstSection = document.querySelector('main > .section');
   const roles = assignRoles(live.map((e) => ({
-    primary: e.primary, inFooter: !!e.block.closest('footer'),
+    primary: e.primary,
+    inHeader: !!e.block.closest('header'),
+    inFirstSection: !!firstSection?.contains(e.block),
+    inFooter: !!e.block.closest('footer'),
   })));
   const { scrollY } = window;
   const canvases = live.map((e, i) => {
@@ -111,17 +124,23 @@ function apply(result) {
   const owner = canvases[result.owner];
   const obscured = owner && !owner.primary ? owner.rowHeight + offset : 0;
   document.documentElement.style.setProperty('--conversation-canvas-obscured', `${obscured}px`);
-  document.documentElement.dataset.canvasJourney = result.state;
+  document.documentElement.dataset.canvasJourneyState = result.state;
 }
 
 function update() {
   frame = 0;
-  if (dirty) measure();
-  if (!geometry?.live.length) return;
-  const result = resolveJourney({ ...geometry, scrollY: window.scrollY });
-  const changed = Object.keys(result).some((key) => result[key] !== previous[key]);
-  if (changed) apply(result);
-  previous = result;
+  try {
+    if (dirty) measure();
+    if (!geometry?.live.length) return;
+    const result = resolveJourney({ ...geometry, scrollY: window.scrollY, suppressed });
+    const changed = Object.keys(result).some((key) => result[key] !== previous[key]);
+    if (changed) apply(result);
+    previous = result;
+  } catch {
+    // isolate the failure: nothing floats, every row stays in its place
+    entries.forEach(release);
+    document.documentElement.dataset.canvasJourneyState = STATES.HIDDEN;
+  }
 }
 
 function schedule() {
@@ -151,6 +170,12 @@ export default function registerCanvas(entry) {
     listening = true;
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', remeasure);
+    // the header menu covers the page (blocks/header): no floating Canvas while it's open
+    suppressed = !!document.querySelector('header .nav-hamburger button[aria-expanded="true"]');
+    document.addEventListener('header:menu', (e) => {
+      suppressed = !!e.detail?.open;
+      schedule();
+    });
     // sections, images, fonts, header and footer load later and move the page
     new ResizeObserver(remeasure).observe(document.body);
   }

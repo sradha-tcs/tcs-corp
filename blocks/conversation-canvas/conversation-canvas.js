@@ -605,16 +605,20 @@ export default async function decorate(block) {
   block.classList.add(`conversation-canvas-bg-${toClassName(textOf(config.bgstyle)) || 'default'}`);
   const titleSize = normalize(textOf(config.titlesize));
   if (TITLE_SIZES.includes(titleSize)) block.classList.add(`conversation-canvas-title-${titleSize}`);
-  // Don't float: the canvas is still a stop of the floating journey, its own row stays in place
+  // Floating journey: Docks only (nofloat): a stop of the journey whose own row doesn't float;
+  // Decorative: a Canvas in place that isn't part of the journey (the Primary dock always is)
   const floats = !block.classList.contains('nofloat');
+  const inJourney = primary || !block.classList.contains('decorative');
 
   // primary (sticky): only the floating dock (search row and site navigation)
   if (primary) {
     const dock = buildDock(config, id, block);
     block.replaceChildren(dock);
-    registerCanvas({
-      block, row: dock, slot: null, primary, floats,
-    });
+    if (inJourney) {
+      registerCanvas({
+        block, row: dock, slot: null, primary, floats,
+      });
+    }
     return;
   }
 
@@ -686,7 +690,9 @@ export default async function decorate(block) {
   }
 
   block.replaceChildren(...block.querySelectorAll(':scope > .conversation-canvas-background'), content);
-  registerCanvas({
-    block, row, slot, primary, floats,
-  });
+  if (inJourney) {
+    registerCanvas({
+      block, row, slot, primary, floats,
+    });
+  }
 }

@@ -13,8 +13,8 @@ the footer (footer canvas page). All Canvases on a page take part in one **float
 | File | Responsibility |
 |---|---|
 | `conversation-canvas.js` | Decoration: reads the key-value rows, builds the intro, search row, menu, filters, buttons or the Primary dock; registers the block with the controller |
-| `canvas-journey.js` | The journey as a pure function (`STATES`, `ROLES`, `assignRoles`, `resolveJourney`): no DOM, unit tested in `test/conversation-canvas/` |
-| `canvas-controller.js` | One controller per page (`registerCanvas`): measures the page, applies the journey (classes, reserved space, footer lift, focus clearance) |
+| `canvas-journey.js` | The journey as a pure function (`STATES`, `ROLES`, `TRANSITIONS`, `isAllowedTransition`, `assignRoles`, `resolveJourney`): no DOM, unit tested in `test/conversation-canvas/` |
+| `canvas-controller.js` | One controller per page (`registerCanvas`): measures the page, applies the journey (`data-canvas-journey-state`, classes, reserved space, footer lift, focus clearance), HIDDEN on `header:menu` |
 | `conversation-canvas.css` | Styles, variations, floating / docked presentation |
 | `_conversation-canvas.json` | Universal Editor definition, model and filter |
 
@@ -25,40 +25,56 @@ as a fragment. Neither contains Canvas logic.
 ## Floating journey
 
 ```
-Header Canvas → floating → section Canvas (docked) → floating → … → footer Canvas (docked, final)
+INITIAL → FLOATING → SECTION_DOCKED → FLOATING_AFTER_SECTION → … → FOOTER_DOCKED   (HIDDEN: suppressed)
 ```
 
-- **Targets**: every Default / Secondary Canvas (it has a search row in place). Roles come from
-  DOM order and context: the last Canvas in `<footer>` is **final**, the first other one
-  **start** (in the header, or the first on the page), the rest **intermediate**.
+- **Targets**: every Default / Secondary Canvas in the journey (it has a search row in place).
+  Roles come from the semantic container, not DOM order: a Canvas in `<header>` (the nav page) is
+  **header**, as is the first Canvas when it is in the page's first section (the hero); the last
+  Canvas in `<footer>` is **footer** (the final stop; other Canvases in the footer are sections);
+  the rest are **section**. `data-canvas-role` on the block shows it.
 - **Dock line**: the top of the floating row (viewport height − floating offset − row height).
-- **Docked**: a target's search row is on screen at or above the dock line. Nothing floats.
+- **Docked**: a target's search row is on screen at or above the dock line; nothing floats. With
+  two rows in place, the one nearest to the dock line is the docked one; the state stays INITIAL
+  while the header Canvas is still in place.
 - **Owner** (the one floating row): the Primary (sticky) Canvas if there is one, else the last
-  target (DOM order) that has crossed the dock line and may float. So after each section Canvas
-  the floating row takes *that* Canvas's variation; scrolling up hands it back.
+  target (DOM order) that has crossed the dock line and may float. After each section Canvas the
+  floating row is that Canvas's, so it shows the section's variation; scrolling up hands it back.
 - **Approaching**: the next target coming up from below. Its own row is hidden (opacity, still
   focusable and read) until it reaches the dock line, where it replaces the floating row at the
   same position (no duplicate row, no jump).
 - **Final stop**: once the footer Canvas reaches the dock line (or the page bottom on a short
-  page) nothing floats any more, in either direction below it.
-- **Fallback** (no footer Canvas): the floating row is lifted to stay above the footer's top
-  edge; it never covers footer navigation or legal links.
+  page) nothing floats any more.
+- **No footer Canvas**: the floating row is lifted to stay above the footer's top edge; it never
+  covers footer navigation or legal links.
 
-| State (`<html data-canvas-journey>`) | Meaning |
+| State (`<html data-canvas-journey-state>`) | Meaning |
 |---|---|
-| `initial` | No Canvas floats yet (e.g. the first Canvas is further down) |
-| `docked-header` | The start Canvas is in place |
-| `floating` | The owner floats; no other target crossed yet |
-| `approaching-target` | Floating; an intermediate target is coming up |
-| `docked-section` | An intermediate target is in place |
-| `floating-between-targets` | Floating after crossing at least one other target |
-| `approaching-footer` | Floating; the footer Canvas is coming up |
-| `docked-footer` | Final stop |
-| `fallback` | Floating, lifted above a footer without a Canvas |
-| `disabled` | No Canvas on the page may float (all Don't float) |
+| `initial` | The header Canvas (or the hero) is in place, or no Canvas floats yet |
+| `floating` | The owner floats; no section Canvas crossed yet |
+| `section-docked` | A section Canvas is in place |
+| `floating-after-section` | Floating after at least one section Canvas |
+| `footer-docked` | The footer Canvas is in place: the final stop |
+| `hidden` | Suppressed: the header menu is open, or only Canvases that don't float were passed |
 
-`LEAVING_TARGET` from the requirement is the instant between `docked-*` and `floating*`, not a
-resting state.
+The state is computed from the scroll position, never from the previous state, so fast scrolling
+or a jump (anchor link, End key) can't leave a stale state. Continuous scrolling produces only
+the transitions of `TRANSITIONS` (`canvas-journey.js`, tested): the journey in both directions;
+INITIAL / SECTION_DOCKED / FOOTER_DOCKED handing over directly when two Canvases are on screen;
+FOOTER_DOCKED → FLOATING when no section Canvas was crossed; any state ↔ HIDDEN.
+
+### Ownership
+
+| Part | Owns |
+|---|---|
+| `blocks/header` (TCS Header) | Logos, navigation, the header Canvas host (`.nav-canvas`: nav page sections with a Canvas, below the nav); announces its menu with `document` event `header:menu` (`detail.open`) |
+| `blocks/conversation-canvas` | Canvas content, variations, interaction and authoring; registers itself with the controller when decorated (in the header, page or footer) |
+| `canvas-journey.js` | The state model (pure) |
+| `canvas-controller.js` | One controller per page: geometry, observers, the state attribute, the classes; listens to `header:menu` (HIDDEN) |
+
+The header and the Canvas don't import each other: the event is the only contract. Each Canvas
+block registers itself during its own decoration (EDS block lifecycle), so header decoration never
+waits for page Canvases.
 
 ### Mechanics
 
@@ -77,7 +93,10 @@ resting state.
   `transform` or the entry animation.
 - Universal Editor: re-decorated blocks register as new entries; removed ones are released on
   the next measurement. Fragment Canvases (header, footer) are decorated before they are
-  attached and join the journey once on the page.
+  attached and join the journey once on the page. The shared listeners and the ResizeObserver
+  are attached once per page (no MutationObserver).
+- Failures are isolated: an error in the controller releases every row (nothing floats, state
+  `hidden`); header, navigation, page and footer keep working.
 
 ### Accessibility
 
@@ -85,8 +104,8 @@ resting state.
   announced while scrolling; the hidden Primary dock is `inert`.
 - Focused elements scroll clear of the floating row (`scroll-padding-bottom`, WCAG 2.4.11).
 - The approaching row is shown again as soon as it holds focus (`:focus-within`).
-- The floating row is hidden while the mobile menu is open (`header nav[data-expanded='true']`
-  below 900px), so it never covers the menu.
+- The floating row is hidden while the header menu is open (state `hidden`, from the
+  `header:menu` event; the menu exists below 1200px), so it never covers the menu.
 - The floating offset includes `env(safe-area-inset-bottom)`; touch targets are 48–59px.
 - Entry animation and dock transitions are off with `prefers-reduced-motion: reduce`; a lift-off
   from a row in place has no entry animation.
@@ -114,12 +133,12 @@ header); Default / Secondary rows float full width minus 24px gutters.
 | Field | Values | Effect |
 |---|---|---|
 | Canvas Style | Default / Primary (sticky) / Secondary | Variation |
-| Don't float (`classes_nofloat`) | on / off | The Canvas stays a stop of the journey but its own row never floats; the previous row floats on after it |
+| Floating journey (`classes_journey`) | Floats and docks (default) / Docks only (`nofloat`) / Decorative (`decorative`) | Docks only: a stop of the journey whose own row never floats (the previous row floats on after it). Decorative: a Canvas in place that isn't part of the journey (Primary docks always are) |
 | BG Style | Default / Dark (Primary) | Dark applies to the Primary dock |
 | Navigation style (`classes_navstyle`) | Pills / Text links | Primary dock navigation |
 
-Authors never set offsets, coordinates, z-index or thresholds; roles (start / intermediate /
-final) come from where the Canvas is placed. For the footer final stop, the Footer block's
+Authors never set offsets, coordinates, z-index or thresholds; roles (header / section / footer)
+come from where the Canvas is placed. For the footer final stop, the Footer block's
 Conversation Canvas Page must reference a page with a Canvas (`references/footer-conversation-canvas`).
 For a header Canvas, add a section with a Canvas to the nav page (it is placed below the nav).
 
@@ -129,18 +148,17 @@ For a header Canvas, add a section with a Canvas to the nav page (it is placed b
   it (Figma is used for the visuals and positions).
 - The two `figma.com/site/…` files (www.tcs.com) are Figma Sites, which the Figma API can't read;
   they were not used.
-- Figma's desktop header is a logo bar (TCS logo left, TATA logo right, 124px, 80px gutters);
-  tablet / mobile: logo and menu icon. The header code is unchanged (navigation preserved): the
-  bar is reached by authoring the nav page (brand, empty sections, TATA logo in tools); its height
-  and gutters are a follow-up (global `--nav-height`).
+- The header is the TCS Header (`blocks/header`, PR #81): the Figma logo bar on desktop, the
+  menu below 1200px.
 - Hover states of the Text links and Dark navigation aren't in Figma; they reuse the pill's blue
   outline.
 
 ## Validation
 
-- Unit tests: `npm test` (`test/conversation-canvas/canvas-journey.test.mjs`: roles, downward /
-  upward journey, single owner, footer stop, short page, fallback, Don't float, Primary, missing
-  intermediate / footer Canvas).
+- Unit tests: `npm test` (`test/conversation-canvas/canvas-journey.test.mjs`: roles from
+  placement, the journey down and up, every transition of continuous scrolls against
+  `TRANSITIONS`, single owner, HIDDEN, Docks only, Primary, missing intermediate / footer Canvas,
+  two Canvases on screen, header Canvas with a hero, short page).
 - Local pages (`drafts/`, run `aem up --html-folder drafts`): `canvas-journey` (all variations
   and the full journey), `canvas-journey-primary`, `-primary-text`, `-primary-dark`,
   `canvas-journey-fallback` (footer without a Canvas), `canvas-journey-header` (Canvas in the nav

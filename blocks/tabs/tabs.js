@@ -2,6 +2,7 @@ import { pushComponentEvent } from '../../utils/analytics.js';
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { pick } from '../../utils/buttons.js';
+import { withoutTabCells } from '../../utils/cells.js';
 import { isEditing } from '../../utils/environment.js';
 import { availableId, uniqueId } from '../../utils/ids.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -104,6 +105,10 @@ function readBlockProperties(block) {
   return { id: toClassName(properties.tabsid || ''), items };
 }
 
+// a Tab item row as AEM delivers it: Title, ID, Active tab and Fragment, with an empty cell for
+// each of the item's two dialog tabs
+const ITEM_LAYOUT = [null, 'title', 'tabId', 'activeTab', null, 'fragment'];
+
 /**
  * The tab of a Tabs block item row: Title, ID, Active tab and Fragment cells. Items authored
  * when the Tab had Content fields have more cells: the Fragment is the last one.
@@ -111,7 +116,7 @@ function readBlockProperties(block) {
  * @returns {Promise<TabGroup>}
  */
 async function readItem(row) {
-  const cells = [...row.children];
+  const cells = withoutTabCells([...row.children], ITEM_LAYOUT);
   const [title, id, active] = cells;
   const fragmentCell = cells.length > 3 ? cells[cells.length - 1] : null;
   const path = fragmentCell?.querySelector('a')?.getAttribute('href') || textOf(fragmentCell);

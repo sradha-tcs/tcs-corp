@@ -112,8 +112,14 @@ function buildContent(cell) {
   content.className = 'hero-content';
   if (!cell) return content;
 
-  const elements = [...cell.children];
-  const heading = cell.querySelector(`:scope > :is(${HEADINGS})`);
+  let elements = [...cell.children];
+  // a cell that starts with the icon's picture is wrapped in one paragraph by aem.js
+  // (wrapTextNodes): read the paragraph's children instead
+  if (elements.length === 1 && elements[0].matches('p') && elements[0].children.length > 1
+    && elements[0].querySelector(`:scope > :is(${HEADINGS}, p, picture)`)) {
+    elements = [...elements[0].children];
+  }
+  const heading = elements.find((el) => el.matches(HEADINGS));
   const headingIndex = elements.indexOf(heading);
   const description = document.createElement('div');
   description.className = 'hero-description';

@@ -64,12 +64,26 @@
           ]
         },
         {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "classes_nofloat",
-          "label": "Don't float",
-          "description": "The canvas stays in place: it's still a stop of the floating canvas, but its own search row doesn't float once scrolled past. The footer canvas never floats.",
-          "value": false
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_journey",
+          "label": "Floating journey",
+          "description": "Floats and docks: the search row docks in place and floats once scrolled past, until the next Canvas or the footer Canvas. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). The footer Canvas never floats.",
+          "value": "",
+          "options": [
+            {
+              "name": "Floats and docks",
+              "value": ""
+            },
+            {
+              "name": "Docks only",
+              "value": "nofloat"
+            },
+            {
+              "name": "Decorative",
+              "value": "decorative"
+            }
+          ]
         },
         {
           "component": "select",
