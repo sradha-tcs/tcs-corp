@@ -2,7 +2,7 @@
  * Generates paths.json from the locale list in utils/site.js (LOCALES), so the published locale
  * paths and the code stay in sync. Run with `npm run build:paths` after changing LOCALES.
  *
- * Per locale (AEM /content/tcs-corp/{country}/{code}, published at /{code}):
+ * Per locale (AEM /content/tcs-corp/{country}/{folder or code}, published at /{code}):
  * - the locale page itself is the Home page: /content/tcs-corp/de/de-de:/de-de/ (published as
  *   /de-de/index, served at /de-de/)
  * - the locale folder: /content/tcs-corp/de/de-de/:/de-de/
@@ -29,9 +29,10 @@ const SHEETS = [
 const root = new URL('../../', import.meta.url);
 // utils/site.js is a browser module; load it as one to read LOCALES
 const source = await readFile(new URL('utils/site.js', root), 'utf8');
-const { LOCALES } = await import(`data:text/javascript,${encodeURIComponent(source)}`);
+const { LOCALES, aemRootOf } = await import(`data:text/javascript,${encodeURIComponent(source)}`);
 
-const aemRoot = ({ country, code }) => `${SITE}/${country}/${code}`;
+// e.g. /content/tcs-corp/de/de-de, /content/tcs-corp/emea/en (a locale with its own folder)
+const aemRoot = (locale) => `${SITE}${aemRootOf(locale)}`;
 
 const paths = {
   mappings: [

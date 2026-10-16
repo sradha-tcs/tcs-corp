@@ -38,9 +38,10 @@ module.exports = {
   },
   overrides: [
     {
-      // unit tests (node --test): Node globals, ES module test files, long assertion lines
+      // unit tests (node --test): Node globals (incl. globalThis for browser API stubs), ES
+      // module test files, long assertion lines
       files: ['test/**/*.mjs'],
-      env: { node: true },
+      env: { node: true, es2020: true },
       rules: {
         'import/extensions': ['error', { js: 'always', mjs: 'always' }],
         'max-len': 'off',

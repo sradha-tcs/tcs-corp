@@ -33,6 +33,7 @@ date: "October 14, 2026"
 | 1.3 | 14 October 2026 | Delivery team | Every rendering screenshot (596) rebuilt from an authoring spec and followed by an **Authoring steps** table (Step, Where, Field, Value) that reproduces it in Universal Editor; every editor-step and console placeholder (405) replaced by its steps table; findings F-43 to F-48 from the spec work |
 | 1.4 | 14 October 2026 | Delivery team | Findings F-43 to F-48 fixed in the code: List Item cells read in model order (with a unit test against the model), the Video poster read from its grouped cell, the Conversation Canvas voice button and the Teaser Lotto animation named by their collapsed alt texts, the 404 "Go back" button added after the content is loaded (placeholder `goBack`), an inverse hover / focus style for secondary buttons on Dark, Navy and Brand cards; chapters 4.5.3, 6.28, 10.2, 13.7 and Part 16 updated |
 | 2.0 | 14 October 2026 | Delivery team | Complete enterprise handover package for the client brief: every screenshot (596) recaptured with callout letters on the fields and followed by its authoring block (Screenshot Details; Field Entry Table with Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules; Expected Page Output; Business Rules; Common Authoring Mistakes; Troubleshooting); a step-by-step walkthrough for every variation with a screenshot (461); per component Business Problem Solved, Supported Taxonomy, Target Personalization Output, Common Authoring Mistakes, Author Quick Reference Guide and Component Execution Example; new chapters 2.10 Architecture Component Considerations, 2.11 Data Flow Architecture, 6.0 Component Inventory, 8.4 Metadata Field Usage Matrix; an escalation process for every Part 13 issue; new Part 17 Operations Guide and Part 18 New Joiner Training Guide; corrections and findings F-49 to F-60 |
+| 2.1 | 16 October 2026 | Delivery team | EMEA site and EMEA footer: the locale `/content/tcs-corp/emea/en` published at `/en-emea` (`en-GB`; `LOCALES` names its own AEM `folder`, `paths.json` regenerated, 154 mappings); the Footer set once on the EMEA Home page (`references/footer-emea`) and inherited by every EMEA page (3.2.1, 3.5.2, 6.2.18); the Footer block's optional Logo, Footer Column items (link columns, regional links) with the Social Links next to the Logo; new-tab footer and social links announced; desktop footer height corrected to the Figma frame (910px); placeholders `footerNavigation`, `footerRegionalLinks`, `footerSocialLinks`, `footerLogoHome`; unit and integration tests of the footer inheritance; finding F-61. The PDF is regenerated from this source separately |
 
 ## Review and Approval
 
@@ -2430,6 +2431,9 @@ The locales are defined once in `utils/site.js` (`LOCALES`); the first entry (`e
 | 11 | `/content/tcs-corp/cn/zh-cn` | `/zh-cn` | zh-CN | China | Asia Pacific |
 | 12 | `/content/tcs-corp/jp/ja-jp` | `/ja-jp` | ja-JP | Japan | Asia Pacific |
 | 13 | `/content/tcs-corp/kr/ko-kr` | `/ko-kr` | ko-KR | South Korea | Asia Pacific |
+| 14 | `/content/tcs-corp/emea/en` | `/en-emea` | en-GB | (regional site) | EMEA |
+
+> **Note:** The EMEA site is a regional locale: its AEM language folder (`en`) differs from its published code (`en-emea`, because `/en` is US English), so its `LOCALES` entry names the folder (`{ country: 'emea', folder: 'en', code: 'en-emea', lang: 'en-GB' }`). It has its own references, error pages, sheets and data like every locale.
 
 > **Note:** The "Region" column is descriptive only; the code doesn't group locales by region. The `region` metadata column (pages) and the `region` column of the Authors and Media Contacts sheets are separate, authored values (e.g. the Press Release template shows the media contacts of the page's `region`).
 
@@ -2618,6 +2622,7 @@ The header is not authored on each page; `scripts/aem.js` `loadHeader` creates a
 - The footer page is loaded as a fragment together with the locale's Social Links sheet (`/{locale}/data/social-links.json`, in `sort-order`), rendered as an icon list (`footer-social`, labels "Follow us on {platform}", placeholder `followUsOn`).
 - On the footer page, the authored **Footer** block (model `_footer.json`) renders: the Conversation Canvas Page (a page with the Conversation Canvas block, loaded as a fragment), the Copyright Text (rich text; `{year}` becomes the current year) and the Link List (Link Title, Link Path, Link Type Default / Open in new window) as `<nav class="footer-links" aria-label="Footer links">`.
 - Missing footer page: only the Social Links (if any) are shown.
+- Example, the EMEA site: the EMEA Home page (`/content/tcs-corp/emea/en`) sets Footer `/content/tcs-corp/emea/en/references/footer-emea` once; `/content/tcs-corp/emea/en/about` (no Footer) inherits it; `/content/tcs-corp/emea/en/careers` sets `references/footer-careers` and so do its child pages by inheritance. Without a Footer in the chain, EMEA pages show `/en-emea/references/footer`. See 6.2.18.
 
 ### 3.5.3 In-Page Navigation
 
@@ -3392,6 +3397,10 @@ The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scr
 | `filters` | Filters | none | Filter List | Visible toolbar label (when no Filters label is authored) and accessible name of the pill group |
 | `followUsOn` | Follow us on {platform} | {platform} (Social Links platform) | Footer | Accessible name of each social icon link |
 | `footerLinks` | Footer links | none | Footer | Accessible name of the footer link navigation |
+| `footerLogoHome` | TCS home | none | Footer | Accessible name of the Logo link when the Logo has no alt text |
+| `footerNavigation` | Footer navigation | none | Footer | Accessible name of the link columns' navigation |
+| `footerRegionalLinks` | Regional links | none | Footer | Accessible name of a regional links row without a title |
+| `footerSocialLinks` | Social media | none | Footer | Accessible name of the social links list |
 | `goBack` | Go back | none | 404 page | Visible "Go back" button (when the visitor came from a page of the site) |
 | `formSuccess` | Thank you, your details were sent. | none | Form Variations | Status message after a valid submit |
 | `itemLinkLabel` | {text}: {title} | {text}, {title} | Table List | Accessible name of an item button ("Explore: Item title") |
@@ -3416,7 +3425,7 @@ The table lists **every** placeholder key used in `blocks/`, `decorators/`, `scr
 | `onThisPage` | On this page | none | Anchor List | Accessible name of the anchor navigation |
 | `open` | Open | none | Modal | Visible button text of a Modal link without its own text |
 | `openNavigation` | Open navigation | none | Header | Accessible name of the mobile menu button when closed |
-| `opensInNewTab` | (opens in a new tab) | none | Page Header (author LinkedIn link); List and Cards (card links) | Hidden text / accessible name suffix of links opening a new tab |
+| `opensInNewTab` | (opens in a new tab) | none | Page Header (author LinkedIn link); List and Cards (card links); Footer (new-window and social links) | Hidden text / accessible name suffix of links opening a new tab |
 | `pauseAnimation` | Pause animation | none | Hero; Teaser (Lottie animation toggle) | Accessible name and title of the toggle |
 | `pauseSlides` | Pause slides | none | Gen Carousel | Accessible name of the auto-play toggle while playing |
 | `pauseVideo` | Pause video | none | Video | Accessible name of the play / pause button (video file playing) |
@@ -8170,6 +8179,15 @@ Reproduces the screenshot `screenshots/footer-link-new-window.jpg` of this varia
 | Conversation Canvas Page (`conversationCanvas`) | aem-content | No | No | Empty | Canvas above the bar | Pick a `references/` page with a Conversation Canvas block | None in the model; ignored if the page doesn't load | `/content/tcs-corp/us/en/references/footer-conversation-canvas` |
 | Copyright Text (`copyright`) | richtext | No (Recommended) | No | Empty | Legal copyright | Use `{year}` for the current year | None | `©TATA Consultancy Services {year}` |
 | Link List (`links`) | container (composite multifield) | No | Yes | No items | Footer links | 3–6 policy links | None | Privacy & Terms; Cookie Policy |
+| Logo (`logo`) with Logo Alt Text (`logoAlt`) | reference + text (collapsed) | No | No | Empty | Brand above the link columns, linked to the locale's Home page | An SVG or PNG logo; the alt text names the Home link | None; without alt text the link is named by the `footerLogoHome` placeholder | `/content/dam/tcs-corp/logos/tcs.svg`, `TCS home` |
+
+**Footer Column item (model `footer-column`, child items of the Footer block)**
+
+| Field Name | Field Type | Mandatory | Multi Value | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
+|:----------------|:-------------|:-----------------------|:-------|:----------|:--------------|:---------------------|:--------------------------|:----------------------|
+| Column Title (`title`) | text | No (Recommended) | No | Empty | The column's heading (`<h2>`) | Short, e.g. What we do | None | `What we do` |
+| Link List (`links`) | container (composite multifield) | No | Yes | No items | The column's links | Link Title, Link Path, Link Type as in the bar | Items without a link are skipped | Services; Industries |
+| Show As (`placement`) | select | No | No | Link column (`""`) | A link column, or the row of regional links above the bar | Regional links for the countries / sites of a region | Options: Link column (`""`); Regional links (`regional`) | `regional` |
 
 **Link List item (fields of the `links` container)**
 
@@ -8602,6 +8620,24 @@ All other fields keep their default values.
 - The footer page, Social Links and placeholders load in parallel in the lazy phase
 - The footer value is inherited through getInheritedMetadata and cached per session
 - The canvas loses its own surface inside the footer; the search dispatches conversation-canvas:search with no service connected
+
+### 6.2.18 EMEA Footer (Inherited Footer and Optional Fields)
+
+**Inheritance.** The EMEA site gets its own footer by setting the **Footer** page property once, on the EMEA Home page; every EMEA page inherits it unless it sets its own:
+
+| Page | Footer page property | Footer shown |
+|:--------------------------------|:-----------------------------------------------------|:-------------------|
+| `/content/tcs-corp/emea/en` (Home) | `/content/tcs-corp/emea/en/references/footer-emea` | footer-emea |
+| `/content/tcs-corp/emea/en/about` | (empty) | footer-emea (inherited) |
+| `/content/tcs-corp/emea/en/careers` | `/content/tcs-corp/emea/en/references/footer-careers` | footer-careers (override) |
+| `/content/tcs-corp/emea/en/careers/jobs` | (empty) | footer-careers (nearest parent) |
+| any EMEA page, nothing set in the chain | | `/en-emea/references/footer` (locale default) |
+
+The lookup (`utils/inherited-metadata.js` `getInheritedMetadata('footer')`) loads the parent pages' heads in parallel, once per page load and URL (shared with the Navigation lookup), and caches their values for the browser session; the footer page is loaded as `{footerPath}.plain.html`. Tests: `test/inherited-metadata/footer-inheritance.test.mjs` (integration), `test/site/site.test.mjs`.
+
+**Optional fields.** A Footer block with only Conversation Canvas Page, Copyright Text and Link List renders the Figma layout unchanged. The EMEA footer page can add a **Logo** (linked to the locale's Home page; the locale's Social Links go next to it) and **Footer Column** items: link columns (`<nav aria-label="Footer navigation">`, each column title an `<h2>`; 4 columns from 900px, 2 below) and, with Show As **Regional links**, a row of regional links (e.g. "TCS in Europe": United Kingdom, Germany, France, Netherlands, Nordics, Spain & Portugal) above the bar. Desktop (1200px+): Logo and social links left of the columns; tablet: a row above them; mobile: stacked, columns in pairs.
+
+**Setting up the EMEA site.** (1) Create `/content/tcs-corp/emea/en` with the locale's Home page, `references/nav`, `references/footer`, `references/footer-emea`, `error-pages/404`, the sheets (placeholders, metadata, redirects, taxonomy, `data/*`, incl. `data/social-links`) and a block library. (2) Apply `paths.json` to the site configuration's `public.json` → `paths`. (3) Add `/en-emea/metadata.json` to `metadata.source`. (4) Set Footer on the EMEA Home page. Details: `blocks/footer/README.md`.
 
 ## 6.3 Fragment Block
 
@@ -122991,6 +123027,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-58 | Testimonial | The help texts of Author and Designation & Location (`_testimonial.json`) both suggest typing the name; the block shows Author and Designation separately | The name appears twice when authors follow the help text | Correct the help texts (Author = name only; Designation & Location = role, organisation, city) | P3 | Development | 6.13 |
 | F-59 | Universal Editor | Two components are titled "Tab" (`tab`, `tabs-item`) and five "Row" (`table-row`, `table-col-2` … `table-col-5`) | Authors pick the wrong component in the picker | Give each a distinct title (e.g. "Tab (section)", "Tab item", "Row (2 columns)") | P3 | Development | 5.4, 6.21, 6.22, 6.25 |
 | F-60 | Captions | Version 2.0 found captions of version 1.4 that did not match their screenshots (values, layouts, widths); the screen descriptions of 2.0 replace them | Readers compared screenshots with wrong descriptions | Keep generating captions from the specs; review captions when a spec changes | Closed (2.0) | Delivery team | 15.9 |
+| F-61 | EMEA site | The EMEA locale (`/content/tcs-corp/emea/en`, published at `/en-emea`) is in the code and `paths.json` (2.1), but its pages and sheets aren't created in AEM, the site configuration's `public.json` paths and `metadata.source` don't list it yet, and the EMEA footer's Figma has no logo, link column, regional or social design (the optional fields use the design system tokens) | EMEA pages aren't published at `/en-emea` until the paths are applied; the footer extras may need design review | Create the EMEA content (6.2.18), apply `paths.json` and add `/en-emea/metadata.json` to `metadata.source`; confirm the extras' design with the design team | P2 | Site Administrator; Design | 3.2, 6.2.18 |
 
 ## 16.3 Open Items (To Be Confirmed)
 

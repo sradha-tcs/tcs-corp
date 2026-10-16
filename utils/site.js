@@ -22,7 +22,8 @@
 
 /**
  * The locale sites: AEM country and language folders, the published path segment and the
- * language tag (<html lang>).
+ * language tag (<html lang>). The AEM language folder is the published code unless the locale
+ * names its own (folder), e.g. the EMEA site in /content/tcs-corp/emea/en, published at /en-emea.
  */
 export const LOCALES = [
   { country: 'us', code: 'en', lang: 'en-US' },
@@ -38,6 +39,10 @@ export const LOCALES = [
   { country: 'cn', code: 'zh-cn', lang: 'zh-CN' },
   { country: 'jp', code: 'ja-jp', lang: 'ja-JP' },
   { country: 'kr', code: 'ko-kr', lang: 'ko-KR' },
+  // a regional site: AEM /content/tcs-corp/emea/en, published at /en-emea (/en is US English)
+  {
+    country: 'emea', folder: 'en', code: 'en-emea', lang: 'en-GB',
+  },
 ];
 
 export const [DEFAULT_LOCALE] = LOCALES;
@@ -45,8 +50,11 @@ export const [DEFAULT_LOCALE] = LOCALES;
 // the site prefix of AEM author paths (/content/<site>), not present on the published site
 const CONTENT_ROOT = /^\/content\/(?!dam\/)[^/]+(?=\/|$)/;
 
-/** the AEM folder path of a locale (below the site root), e.g. /de/de-de */
-const aemRootOf = (locale) => `/${locale.country}/${locale.code}`;
+/**
+ * The AEM folder path of a locale (below the site root), e.g. /de/de-de or /emea/en.
+ * @param {{ country: string, code: string, folder?: string }} locale
+ */
+export const aemRootOf = (locale) => `/${locale.country}/${locale.folder || locale.code}`;
 
 /** the published root of a locale, e.g. /de-de */
 const rootOf = (locale) => `/${locale.code}`;
@@ -69,7 +77,7 @@ const localeOfAemPath = (path) => LOCALES
  * }} Locale
  * code: the published path segment (e.g. de-de); lang: the language tag (de-DE); language: the
  * ISO 639-1 language (de); root: the published root (/de-de); aemRoot: the AEM folders below the
- * site root (/de/de-de); contentRoot: the AEM site root (/content/tcs-corp) when editing,
+ * site root (/de/de-de, /emea/en); contentRoot: the AEM site root (/content/tcs-corp) when editing,
  * otherwise ''
  */
 

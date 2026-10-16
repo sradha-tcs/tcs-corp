@@ -6445,6 +6445,88 @@
             ]
           }
         ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo",
+        "multi": false,
+        "description": "Optional: shown above the link columns with the locale's Social Links next to it, linked to the locale's Home page"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logoAlt",
+        "label": "Logo Alt Text",
+        "description": "Names the Home link, e.g. TCS home; empty: the footerLogoHome placeholder"
+      }
+    ]
+  },
+  {
+    "id": "footer-column",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Column Title",
+        "description": "The heading of the column's links, e.g. What we do"
+      },
+      {
+        "component": "container",
+        "name": "links",
+        "label": "Link List",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "linkText",
+            "label": "Link Title"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "link",
+            "label": "Link Path"
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "linkTarget",
+            "label": "Link Type",
+            "value": "",
+            "options": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Open in new window",
+                "value": "new-window"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "placement",
+        "label": "Show As",
+        "value": "",
+        "description": "Regional links: shown as a row of links (e.g. the EMEA countries) above the copyright instead of a column",
+        "options": [
+          {
+            "name": "Link column",
+            "value": ""
+          },
+          {
+            "name": "Regional links",
+            "value": "regional"
+          }
+        ]
       }
     ]
   },

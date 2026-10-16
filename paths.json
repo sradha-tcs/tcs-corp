@@ -13,6 +13,7 @@
     "/content/tcs-corp/cn/zh-cn/:/zh-cn/",
     "/content/tcs-corp/jp/ja-jp/:/ja-jp/",
     "/content/tcs-corp/kr/ko-kr/:/ko-kr/",
+    "/content/tcs-corp/emea/en/:/en-emea/",
     "/content/tcs-corp/us/en:/en/",
     "/content/tcs-corp/de/de-de:/de-de/",
     "/content/tcs-corp/fr/fr-fr:/fr-fr/",
@@ -26,6 +27,7 @@
     "/content/tcs-corp/cn/zh-cn:/zh-cn/",
     "/content/tcs-corp/jp/ja-jp:/ja-jp/",
     "/content/tcs-corp/kr/ko-kr:/ko-kr/",
+    "/content/tcs-corp/emea/en:/en-emea/",
     "/content/tcs-corp/us/en/placeholders:/en/placeholders",
     "/content/tcs-corp/us/en/metadata:/en/metadata",
     "/content/tcs-corp/us/en/redirects:/en/redirects",
@@ -142,7 +144,16 @@
     "/content/tcs-corp/kr/ko-kr/data/partners:/ko-kr/data/partners",
     "/content/tcs-corp/kr/ko-kr/data/social-links:/ko-kr/data/social-links",
     "/content/tcs-corp/kr/ko-kr/data/media-contacts:/ko-kr/data/media-contacts",
-    "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json"
+    "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json",
+    "/content/tcs-corp/emea/en/placeholders:/en-emea/placeholders",
+    "/content/tcs-corp/emea/en/metadata:/en-emea/metadata",
+    "/content/tcs-corp/emea/en/redirects:/en-emea/redirects",
+    "/content/tcs-corp/emea/en/data/authors:/en-emea/data/authors",
+    "/content/tcs-corp/emea/en/data/locations:/en-emea/data/locations",
+    "/content/tcs-corp/emea/en/data/partners:/en-emea/data/partners",
+    "/content/tcs-corp/emea/en/data/social-links:/en-emea/data/social-links",
+    "/content/tcs-corp/emea/en/data/media-contacts:/en-emea/data/media-contacts",
+    "/content/tcs-corp/emea/en/taxonomy:/en-emea/taxonomy.json"
   ],
   "includes": [
     "/content/tcs-corp/us/en",
@@ -158,6 +169,7 @@
     "/content/tcs-corp/cn/zh-cn",
     "/content/tcs-corp/jp/ja-jp",
     "/content/tcs-corp/kr/ko-kr",
+    "/content/tcs-corp/emea/en",
     "/content/dam/tcs-corp/"
   ],
   "excludes": [
@@ -187,6 +199,8 @@
     "/content/tcs-corp/jp/ja-jp/block-library/**",
     "/content/tcs-corp/kr/ko-kr/block-library",
     "/content/tcs-corp/kr/ko-kr/block-library/**",
+    "/content/tcs-corp/emea/en/block-library",
+    "/content/tcs-corp/emea/en/block-library/**",
     "/content/tcs-corp/site-global-templates",
     "/content/tcs-corp/site-global-templates/**"
   ]

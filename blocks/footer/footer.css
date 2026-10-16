@@ -1,8 +1,10 @@
 /*
- * Footer (Figma "Footer - Desktop / Tablet / Mobile": 229-37226, 4347-44552, 4347-44593; 1440 × 802,
- * 1024 × 956, 399 × 800). The page footer holds the sections of
- * the footer page (e.g. a conversation canvas, then the Footer bar) on a white background with
- * soft brand and warning glows at the bottom.
+ * Footer (Figma "Footer - Desktop / Tablet / Mobile": 2496-91965, 4347-44552, 4347-44593;
+ * 1440 × 910, 1024 × 956, 399 × 800). The page footer holds the sections of the footer page
+ * (e.g. a conversation canvas, then the Footer bar) on a white background with soft brand and
+ * warning glows at the bottom. Footers with a Logo or Footer Columns (e.g. the EMEA footer) add
+ * the logo with the social links, the link columns and the regional links above the bar, in the
+ * same type and spacing tokens.
  */
 footer {
   /* component tokens (Figma: TB Padding, LR Padding, Large-Spacing, Body/Inter-16) */
@@ -16,6 +18,19 @@ footer {
   --footer-text-color: var(--color-text-default);
   --footer-row-gap: var(--space-400);
   --footer-column-gap: var(--space-600);
+
+  /* optional Logo, Footer Columns and regional links: stacked, the columns in pairs on mobile */
+  --footer-nav-gap: var(--space-1000);
+  --footer-main-columns: minmax(0, 1fr);
+  --footer-brand-direction: column;
+  --footer-brand-align: flex-start;
+  --footer-columns: 2;
+  --footer-columns-gap: var(--space-800) var(--space-600);
+  --footer-column-title-size: var(--heading-font-size-xs);
+  --footer-column-title-line-height: 1.25rem;
+  --footer-column-link-gap: var(--space-300);
+  --footer-logo-height: 2rem;
+  --footer-divider: var(--border-width-100) solid var(--color-border-default);
 
   /* with a conversation canvas: the Figma frame height, the bar at the bottom */
   --footer-canvas-min-height: 50rem;
@@ -105,7 +120,9 @@ footer .footer-wrapper > .footer:has(.footer-canvas) {
   flex-direction: column;
 }
 
-footer .footer-wrapper > .footer:has(.footer-canvas) {
+footer .footer-wrapper > .footer:has(.footer-canvas, .footer-nav) {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   gap: var(--footer-section-gap);
 }
@@ -247,6 +264,103 @@ footer .footer .footer-social img {
   height: 1.5rem;
 }
 
+/* optional: the Logo with the social links, the link columns, then the regional links */
+footer .footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-nav-gap);
+  font-size: var(--footer-text-size);
+  font-weight: var(--footer-text-weight);
+  line-height: var(--footer-text-line-height);
+}
+
+/* below a canvas, the link columns stay together with the bar at the bottom */
+footer .footer-canvas ~ .footer-nav {
+  margin-block-start: auto;
+}
+
+footer .footer-main {
+  display: grid;
+  grid-template-columns: var(--footer-main-columns);
+  gap: var(--footer-nav-gap);
+}
+
+footer .footer-brand {
+  display: flex;
+  flex-flow: var(--footer-brand-direction) wrap;
+  align-items: var(--footer-brand-align);
+  justify-content: space-between;
+  gap: var(--space-600);
+}
+
+footer .footer-logo {
+  display: inline-flex;
+}
+
+footer .footer .footer-logo img {
+  display: block;
+  width: auto;
+  height: var(--footer-logo-height);
+}
+
+footer .footer-columns {
+  display: grid;
+  grid-template-columns: repeat(var(--footer-columns), minmax(0, 1fr));
+  gap: var(--footer-columns-gap);
+}
+
+footer .footer .footer-column-title,
+footer .footer .footer-regions-title {
+  margin: 0 0 var(--space-400);
+  color: var(--color-text-default);
+  font-size: var(--footer-column-title-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--footer-column-title-line-height);
+  letter-spacing: 0;
+}
+
+footer .footer-column ul,
+footer .footer-regions ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-column-link-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the regional links: a row below a divider, wrapping on small screens */
+footer .footer-regions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-400) var(--footer-column-gap);
+  border-block-start: var(--footer-divider);
+  padding-block-start: var(--space-600);
+}
+
+footer .footer .footer-regions-title {
+  margin: 0;
+}
+
+footer .footer-regions ul {
+  flex-flow: row wrap;
+  gap: var(--space-300) var(--footer-column-gap);
+}
+
+footer .footer-column a:any-link,
+footer .footer-regions a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer .footer-column a:hover,
+footer .footer-column a:focus-visible,
+footer .footer-regions a:hover,
+footer .footer-regions a:focus-visible {
+  text-decoration: underline;
+}
+
 /* tablet (Figma 1024): 120 / 20 / 40 padding, 96 / 115 title, 16 / 22 text, the menu button */
 @media (width >= 600px) {
   footer {
@@ -266,16 +380,32 @@ footer .footer .footer-social img {
     --footer-button-text-size: 1rem;
     --footer-search-padding-start: var(--space-600);
     --footer-menu-display: grid;
+    --footer-brand-direction: row;
+    --footer-brand-align: center;
+    --footer-column-title-size: var(--heading-font-size-s);
+    --footer-column-title-line-height: 1.375rem;
+    --footer-logo-height: 2.5rem;
   }
 }
 
-/* desktop (Figma 1440): 802px tall, 120px top, 80px sides, 40px bottom; the title on two lines */
+/* small desktop: four link columns below the Logo and social links */
+@media (width >= 900px) {
+  footer {
+    --footer-columns: 4;
+  }
+}
+
+/* desktop (Figma 1440): 910px tall, 120px top, 80px sides, 40px bottom; the title on two lines */
 @media (width >= 1200px) {
   footer {
     --footer-padding-block-start: var(--space-3000);
     --footer-padding-inline: var(--space-2000);
     --footer-padding-block-end: var(--space-1000);
-    --footer-canvas-min-height: 50.125rem;
+    --footer-canvas-min-height: 56.875rem;
     --footer-canvas-title-max-width: 61.5rem;
+    --footer-main-columns: minmax(12rem, 1fr) minmax(0, 3fr);
+    --footer-brand-direction: column;
+    --footer-brand-align: flex-start;
+    --footer-nav-gap: var(--space-1200);
   }
 }

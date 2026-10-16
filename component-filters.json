@@ -73,6 +73,12 @@
     ]
   },
   {
+    "id": "footer",
+    "components": [
+      "footer-column"
+    ]
+  },
+  {
     "id": "form-variations",
     "components": [
       "field-text",
