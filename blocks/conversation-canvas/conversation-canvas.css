@@ -178,6 +178,11 @@
   background-color: var(--color-bg-default);
 }
 
+/* the open menu of a search row: the menu button becomes the close button */
+.conversation-canvas .conversation-canvas-search-slot .conversation-canvas-menu-toggle[aria-expanded="true"]::before {
+  mask-image: url('../../icons/close.svg');
+}
+
 .conversation-canvas .conversation-canvas-search-form {
   display: flex;
   flex: 1;
@@ -253,59 +258,51 @@
   mask: url('../../icons/mic.svg') center / contain no-repeat;
 }
 
-/* menu panel, opening above the search row */
+/*
+ * menu of a search row, opening above it and centred on it: the site navigation one level at a
+ * time (Figma Full menu 1124:26209, see Navigation pills below), the L3 panel above the level
+ */
 .conversation-canvas .conversation-canvas-menu {
   position: absolute;
   bottom: calc(100% + var(--space-300));
-  left: 0;
+  left: 50%;
   z-index: 101;
   box-sizing: border-box;
-  min-width: 15rem;
-  max-width: min(22.5rem, calc(100vw - 2 * var(--space-600)));
-  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-300);
+  width: max-content;
+  max-width: min(56.25rem, calc(100vw - 2 * var(--space-600)));
+  max-height: min(70vh, calc(var(--conversation-canvas-menu-room, 70vh) - var(--nav-height) - var(--space-600)));
   overflow: auto;
   border-radius: var(--radius-l);
-  padding: var(--space-300);
+  padding: var(--space-400);
   background-color: var(--color-bg-default);
   box-shadow: var(--shadow-300);
   text-align: start;
+  translate: -50% 0;
 }
 
-.conversation-canvas .conversation-canvas-menu[hidden] {
+/* below the row when there's more room there (conversation-canvas.js) */
+.conversation-canvas .conversation-canvas-menu.conversation-canvas-menu-below {
+  top: calc(100% + var(--space-300));
+  bottom: auto;
+  max-height: min(70vh, calc(var(--conversation-canvas-menu-room, 70vh) - var(--space-600)));
+}
+
+.conversation-canvas .conversation-canvas-menu[hidden],
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-nav[hidden],
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-nav-panel[hidden] {
   display: none;
 }
 
-.conversation-canvas .conversation-canvas-menu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.conversation-canvas .conversation-canvas-menu ul ul {
-  padding-inline-start: var(--space-400);
-}
-
-.conversation-canvas .conversation-canvas-menu li + li {
-  border-top: var(--border-width-100) solid var(--color-border-default);
-}
-
-.conversation-canvas .conversation-canvas-menu a,
 .conversation-canvas .conversation-canvas-menu-empty {
-  display: block;
+  margin: 0;
   padding: var(--space-200) var(--space-100);
-  color: var(--color-text-default);
+  color: var(--color-text-secondary);
   font-size: var(--button-font-size);
   line-height: 1.625rem;
-  text-decoration: none;
-}
-
-.conversation-canvas .conversation-canvas-menu a:hover,
-.conversation-canvas .conversation-canvas-menu a:focus-visible {
-  color: var(--color-text-brand);
-}
-
-.conversation-canvas .conversation-canvas-menu-empty {
-  color: var(--color-text-secondary);
 }
 
 /*
@@ -723,6 +720,17 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   width: var(--icon-size-s);
   height: var(--icon-size-s);
   mask-image: url('../../icons/menu.svg');
+}
+
+/* the menu: a level's own page (its title) and a panel's own page, ahead of their sub-pages */
+.conversation-canvas .conversation-canvas-nav-item.conversation-canvas-nav-heading {
+  border-color: transparent;
+  background-color: transparent;
+  font-weight: var(--font-weight-semibold);
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link.conversation-canvas-nav-panel-overview {
+  font-weight: var(--font-weight-semibold);
 }
 
 /* panel with a pill's sub-pages, in place of the search row */
