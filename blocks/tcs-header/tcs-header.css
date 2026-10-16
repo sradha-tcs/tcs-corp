@@ -5,6 +5,23 @@
   gap: var(--space-600);
 }
 
+/* a Full Width section has no gutter: the logo bar keeps the header's (Figma: 16 / 24 / 80px) */
+.section:not(.fixed-width) .tcs-header .tcs-header-bar {
+  padding-inline: var(--space-400);
+}
+
+@media (width >= 600px) {
+  .section:not(.fixed-width) .tcs-header .tcs-header-bar {
+    padding-inline: var(--space-600);
+  }
+}
+
+@media (width >= 1200px) {
+  .section:not(.fixed-width) .tcs-header .tcs-header-bar {
+    padding-inline: var(--space-2000);
+  }
+}
+
 .tcs-header :is(.tcs-header-brand, .tcs-header-group) {
   display: block;
   color: var(--color-text-default);

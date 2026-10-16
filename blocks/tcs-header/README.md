@@ -18,6 +18,8 @@ A key-value block with the TCS and TATA logos and their links (Figma *New Screen
 - **Anywhere else:** the logo bar, logos together on mobile and tablet, TCS left and TATA right
   from 1200px.
 - A logo without an image shows its alt text; without a link it isn't a link.
+- In a Full Width section (no section gutter since the Width Type change) the bar keeps the
+  header's gutters (16 / 24 / 80px); in a Fixed Width section the section gutter applies.
 
 Output: `.tcs-header-bar` with `a.tcs-header-brand` and `a.tcs-header-group` (each holding the
 picture); `blocks/header` relies on these two classes.
