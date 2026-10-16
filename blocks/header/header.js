@@ -6,24 +6,46 @@ import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 /*
- * Header: the Navigation page (the page's Navigation property, inherited from its parent pages,
- * else the locale's references/nav) as brand, sections and tools. Mobile: a menu button opens the
- * sections; desktop: each section with a sub-list opens it as a dropdown. The controls are
- * buttons with aria-expanded / aria-controls; the open state is data-expanded for the CSS.
+ * Header (TCS Header, Figma "New Screens from New DS"): the Navigation page (the page's
+ * Navigation property, inherited from its parent pages, else the locale's references/nav) as
+ * brand (TCS logo), sections and tools (TATA logo).
+ * - Desktop (>= 1200px): the logo bar, TCS logo left and TATA logo right; the site navigation is
+ *   in the Conversation Canvas.
+ * - Tablet and mobile: the logos and a menu button that opens the sections full screen, one level
+ *   at a time: a section with a sub-list opens it in place of the list, with a Back button and its
+ *   label as the title.
+ * The controls are buttons with aria-expanded / aria-controls; the open state is data-expanded
+ * for the CSS.
  */
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+// media query match of the logo bar (the menu is used below it)
+const isDesktop = window.matchMedia('(min-width: 1200px)');
 
 const dropsOf = (navSections) => [...(navSections?.querySelectorAll('.nav-drop') || [])];
+const labels = new WeakMap();
+
+/** the menu level: the deepest open section (Back button, its label as the title), else Menu */
+function updateLevel(navSections) {
+  const level = navSections?.querySelector(':scope > .nav-level');
+  if (!level) return;
+  const open = dropsOf(navSections).filter((drop) => drop.dataset.expanded === 'true').pop();
+  level.querySelector('.nav-level-title').textContent = open ? labels.get(open) : t('menu', 'Menu');
+  level.querySelector('.nav-level-back').hidden = !open;
+  navSections.classList.toggle('nav-sections-level', !!open);
+}
 
 /** opens or closes a dropdown (its toggle button and the item's data-expanded) */
 function setDrop(drop, expanded) {
   drop.dataset.expanded = String(expanded);
   drop.querySelector(':scope > .nav-drop-toggle')?.setAttribute('aria-expanded', String(expanded));
+}
+
+/** closes a section and the sections below it */
+function closeDrop(drop) {
+  [drop, ...dropsOf(drop)].forEach((d) => setDrop(d, false));
 }
 
 /**
@@ -33,6 +55,7 @@ function setDrop(drop, expanded) {
  */
 function toggleAllNavSections(sections, expanded = false) {
   dropsOf(sections).forEach((drop) => setDrop(drop, expanded));
+  updateLevel(sections);
 }
 
 /**
@@ -46,41 +69,34 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.dataset.expanded = expanded ? 'false' : 'true';
-  // mobile: the sections are open in the menu; desktop: dropdowns start closed
-  toggleAllNavSections(navSections, !expanded && !isDesktop.matches);
+  // the menu opens at its first level
+  toggleAllNavSections(navSections, false);
   button.setAttribute('aria-expanded', String(!expanded && !isDesktop.matches));
   button.setAttribute('aria-label', expanded ? t('openNavigation', 'Open navigation') : t('closeNavigation', 'Close navigation'));
 }
 
-/** Escape closes an open dropdown (desktop) or the menu (mobile), focus back on its button */
+/** Escape closes the menu (mobile), focus back on its button */
 function closeOnEscape(e) {
-  if (e.key !== 'Escape') return;
+  if (e.key !== 'Escape' || isDesktop.matches) return;
   const nav = document.getElementById('nav');
-  const navSections = nav?.querySelector('.nav-sections');
-  if (!nav) return;
-  if (isDesktop.matches) {
-    const open = dropsOf(navSections).find((drop) => drop.dataset.expanded === 'true');
-    if (!open) return;
-    toggleAllNavSections(navSections);
-    open.querySelector(':scope > .nav-drop-toggle')?.focus();
-  } else if (nav.dataset.expanded === 'true') {
-    toggleMenu(nav, navSections, false);
-    nav.querySelector('.nav-hamburger button')?.focus();
-  }
-}
-
-/** focus leaving the nav closes the dropdowns (desktop) or the menu (mobile) */
-function closeOnFocusLost(e) {
-  const nav = e.currentTarget;
-  if (nav.contains(e.relatedTarget)) return;
-  const navSections = nav.querySelector('.nav-sections');
-  if (isDesktop.matches) toggleAllNavSections(navSections, false);
-  else if (nav.dataset.expanded === 'true') toggleMenu(nav, navSections, false);
+  if (nav?.dataset.expanded !== 'true') return;
+  toggleMenu(nav, nav.querySelector('.nav-sections'), false);
+  nav.querySelector('.nav-hamburger button')?.focus();
 }
 
 /**
- * A section with a sub-list: its label becomes the dropdown's toggle button (a linked label
- * keeps its link and gets a toggle button next to it).
+ * focus moving out of the nav (e.g. tabbing past its last link) closes the menu (mobile); a tap
+ * on the menu's background moves focus nowhere (no relatedTarget) and keeps it open
+ */
+function closeOnFocusLost(e) {
+  const nav = e.currentTarget;
+  if (!e.relatedTarget || nav.contains(e.relatedTarget) || isDesktop.matches) return;
+  if (nav.dataset.expanded === 'true') toggleMenu(nav, nav.querySelector('.nav-sections'), false);
+}
+
+/**
+ * A section with a sub-list: its label becomes the button that opens the sub-list as the next
+ * menu level (a linked label keeps its link and gets the button next to it).
  */
 function decorateDrop(drop, nextId) {
   drop.classList.add('nav-drop');
@@ -88,13 +104,15 @@ function decorateDrop(drop, nextId) {
   const label = [...drop.childNodes].find((node) => node !== submenu
     && (node.nodeType === Node.ELEMENT_NODE || node.textContent.trim()));
   const text = label?.textContent.trim() || '';
+  labels.set(drop, text);
   submenu.id = submenu.id || nextId(text);
   const toggle = document.createElement('button');
   toggle.type = 'button';
   toggle.className = 'nav-drop-toggle';
   toggle.setAttribute('aria-controls', submenu.id);
   toggle.setAttribute('aria-expanded', 'false');
-  if (label?.nodeType === Node.ELEMENT_NODE && label.querySelector('a[href]')) {
+  // the label is a link, or holds one (e.g. in a paragraph)
+  if (label?.nodeType === Node.ELEMENT_NODE && (label.matches('a[href]') || label.querySelector('a[href]'))) {
     toggle.setAttribute('aria-label', t('showSubmenu', 'Show {label} menu', { label: text }));
     label.after(toggle);
   } else {
@@ -104,10 +122,43 @@ function decorateDrop(drop, nextId) {
   }
   drop.dataset.expanded = 'false';
   toggle.addEventListener('click', () => {
-    const expanded = drop.dataset.expanded === 'true';
-    if (isDesktop.matches) toggleAllNavSections(drop.closest('.nav-sections'));
-    setDrop(drop, !expanded);
+    const navSections = drop.closest('.nav-sections');
+    if (drop.dataset.expanded === 'true') {
+      closeDrop(drop);
+      updateLevel(navSections);
+      return;
+    }
+    // one open section per level
+    [...drop.parentElement.children].filter((item) => item.matches('.nav-drop') && item !== drop)
+      .forEach(closeDrop);
+    setDrop(drop, true);
+    updateLevel(navSections);
+    navSections.querySelector('.nav-level-back')?.focus();
   });
+}
+
+/** the level row of the menu: Back button (closes the open level) and the level's title */
+function buildLevel(navSections) {
+  const level = document.createElement('div');
+  level.className = 'nav-level';
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.className = 'nav-level-back';
+  back.setAttribute('aria-label', t('back', 'Back'));
+  back.hidden = true;
+  back.addEventListener('click', () => {
+    const open = dropsOf(navSections).filter((drop) => drop.dataset.expanded === 'true').pop();
+    if (!open) return;
+    closeDrop(open);
+    updateLevel(navSections);
+    // focus back on the button of the section that was open, shown again on the level above
+    open.querySelector(':scope > .nav-drop-toggle')?.focus();
+  });
+  const title = document.createElement('h2');
+  title.className = 'nav-level-title';
+  title.textContent = t('menu', 'Menu');
+  level.append(back, title);
+  return level;
 }
 
 /** the menu button (mobile), drawn by the CSS (an animated icon) */
@@ -162,12 +213,19 @@ export default async function decorate(block) {
   if (navSections) {
     navSections.id = 'nav-sections';
     const nextId = createIdFactory('nav-submenu');
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+    navSections.querySelectorAll(':scope .default-content-wrapper li').forEach((navSection) => {
       if (navSection.querySelector(':scope > ul')) decorateDrop(navSection, nextId);
     });
+    navSections.prepend(buildLevel(navSections));
   }
 
-  nav.prepend(buildHamburger(nav, navSections));
+  // reading and focus order as on screen: logos, menu button, then the menu
+  const hamburger = buildHamburger(nav, navSections);
+  if (navSections) navSections.before(hamburger);
+  else nav.append(hamburger);
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) hamburger.before(navTools);
+
   nav.dataset.expanded = 'false';
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
