@@ -24,6 +24,21 @@ Instead of the brand and tools sections, the nav page may start with a **TCS Hea
 (`blocks/tcs-header`: TCS / TATA logo fields with alt texts and links); the header then takes the
 brand and tools from it and the first other section is the menu.
 
+## Logo assets
+
+The logos are authored, not in the code: the TCS Header block's TCS Logo and TATA Logo fields
+(asset references, with alt text and link) on the Navigation page, so every page inherits them
+through the Navigation property and a page can override them with its own Navigation page.
+
+| Asset | DAM path (one file per logo, all breakpoints) | Height mobile / tablet / desktop |
+|---|---|---|
+| TCS logo | `/content/dam/tcs-corp/header/tcs-logo.svg` | 19.4 / 30.7 / 34.8px (Figma TCS Logo, 4.195:1) |
+| TATA logo | `/content/dam/tcs-corp/header/tata-logo.svg` | 24 / 38 / 44px (Figma Tata Logo) |
+
+Figma uses the same artwork at every breakpoint (the same vector nodes), so there is one asset per
+logo; the CSS sets the height and the width follows the aspect ratio. The header has no search
+control (Figma); the project's search icon is the shared `icons/search.svg`.
+
 ## Behaviour
 
 | Breakpoint | Layout |
