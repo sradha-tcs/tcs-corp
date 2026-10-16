@@ -88,6 +88,28 @@
         {
           "component": "select",
           "valueType": "string",
+          "name": "classes_actions",
+          "label": "Quick actions",
+          "description": "How the button items look. Auto: pills in page sections, buttons in the footer (Figma). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type).",
+          "value": "",
+          "options": [
+            {
+              "name": "Auto",
+              "value": ""
+            },
+            {
+              "name": "Pills",
+              "value": "action-pills"
+            },
+            {
+              "name": "Buttons",
+              "value": "action-buttons"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
           "name": "bgStyle",
           "label": "BG Style",
           "value": "default",
