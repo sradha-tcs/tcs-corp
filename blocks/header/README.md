@@ -20,6 +20,10 @@ menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile 
 A section label may be text (the row opens the level) or a link (the link stays; an arrow button
 next to it opens the level).
 
+Instead of the brand and tools sections, the nav page may start with a **TCS Header** block
+(`blocks/tcs-header`: TCS / TATA logo fields with alt texts and links); the header then takes the
+brand and tools from it and the first other section is the menu.
+
 ## Behaviour
 
 | Breakpoint | Layout |
