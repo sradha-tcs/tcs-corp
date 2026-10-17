@@ -18,3 +18,18 @@ This branch holds files only (no site code).
 ## Who Are We page (language master)
 
 - `who-are-we/tcs-corp-who-are-we-content-1.0.1.zip`: AEM content package (Package Manager, Upload Package, Install): /content/tcs-corp/language-master/en/who-are-we, 8 supporting pages under language-master/en/dummy-pages (our-story, our-people, careers, learning-and-growth, inclusion-and-belonging, research-and-innovation, formula-e-sponsorship, marathon-sponsorship), 13 DAM assets under /content/dam/tcs-corp/who-are-we and 5 topic tags (tcs-corp:topic/people-culture, learning, inclusion, research-innovation, heritage; merged). Built from the Figma who are we designs and the temp-design-pages/who-are-we template. The "Explore what we do" hero button links to the What We Do page: install its package too. Needs the code of PRs #87 and #89 (merged). 1.0.1: the Values list pages are in the new Pages list (a Page per item, PR #89); 1.0.0 is the previous version.
+
+## Curated design pages (language master) — current
+
+Replaces the What We Do and Who We Are packages above (install only this one).
+
+- `curated-design-pages/tcs-corp-curated-design-pages-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Contents:
+  - The 11 pages under `/content/tcs-corp/language-master/en/curated-design-pages`, plus a root page listing them.
+  - 119 supporting pages under `language-master/en/dummy-pages`. Each page's content is replaced; other pages are kept.
+  - 58 new DAM assets under `/content/dam/tcs-corp/curated-design-pages`, and 47 reused assets (merged).
+  - 77 `tcs-corp` tags, 29 of them new (merged).
+- `curated-design-pages/REPORT.md`: implementation report (per page, and consolidated).
+- `curated-design-pages/metadata-language-master.csv`, `metadata-en-rollout.csv`: bulk metadata sheet rows.
+- `curated-design-pages/taxonomy.csv`, `tags.csv`: taxonomy page rows and the tag register.
+- `curated-design-pages/placeholders.csv`: the placeholders sheet (every UI text key).
+- `curated-design-pages/data-*.csv`: data sheets (Authors, Locations, Partners, Social Links, Media Contacts).
