@@ -380,23 +380,13 @@ async function loadTemplate(main) {
 }
 
 /**
- * Starts loading the data the page's blocks share (each loads once and is cached), so the blocks
- * don't each wait for it in turn: the placeholders for every block (and the taxonomy and authors
- * for a Page Header in the first section); the query index, taxonomy and redirects for lists,
- * Filter Lists and Conversation Canvas menus.
+ * Starts loading the data the page's blocks share (each loads once and is cached) when the lazy
+ * phase begins, so the blocks below the first section don't each wait for it in turn: the query
+ * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. (Not in
+ * the eager phase: it would compete with the LCP image.)
  * @param {Element} main
- * @param {boolean} [lists] also the lists' data (after the first section, not to compete with LCP)
  */
-function prefetchData(main, lists = false) {
-  if (!lists) {
-    import('../utils/placeholders.js').then(({ loadPlaceholders }) => loadPlaceholders());
-    // a Page Header (the LCP of article pages) waits for the page's tags and author
-    if (main?.querySelector('.section:first-of-type .page-header')) {
-      import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
-      import('../utils/data.js').then(({ getAuthors }) => getAuthors().catch(() => []));
-    }
-    return;
-  }
+function prefetchData(main) {
   if (!main?.querySelector('.list, .filter-list, .conversation-canvas')) return;
   import('../utils/query-index.js').then(({ getPages }) => getPages());
   import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
@@ -419,7 +409,6 @@ async function loadEager(doc) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
-    prefetchData(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -457,16 +446,16 @@ function autolinkModals(doc) {
 async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
-  prefetchData(main, true);
+  prefetchData(main);
   loadHeader(doc.querySelector('header'));
   // the footer loads alongside the sections, not after them; it shows once they have loaded, so
-  // it doesn't move while visible (no layout shift)
+  // it never appears above content still loading and moves (no layout shift)
   const footer = doc.querySelector('footer');
-  if (footer) footer.style.visibility = 'hidden';
+  if (footer) footer.style.display = 'none';
   loadFooter(footer);
 
   await loadSections(main);
-  if (footer) footer.style.visibility = '';
+  if (footer) footer.style.display = '';
   trackBlocks(main);
   addErrorBackButton(main);
 
