@@ -100,14 +100,24 @@ export function getLocale(pathname = window.location.pathname) {
 export const REVIEW_ROOTS = ['/language-master/en'];
 
 /**
+ * The sheets published below the review roots (paths mapped in the site configuration), read
+ * there by their pages; the others (placeholders, redirects) come from the locale.
+ */
+export const REVIEW_SHEETS = ['taxonomy', 'data/authors', 'data/locations', 'data/partners',
+  'data/social-links', 'data/media-contacts'];
+
+/** the review root of a published page path, or '' */
+const reviewRootOf = (pathname) => REVIEW_ROOTS
+  .find((root) => startsWithFolder(pathname.toLowerCase(), root)) || '';
+
+/**
  * The published root whose pages a page's lists show (the query index rows below it): a review
  * root for the pages below it, else the page's locale root (e.g. /de-de).
  * @param {string} [pathname] defaults to the current page
  * @returns {string}
  */
 export function indexRoot(pathname = window.location.pathname) {
-  const review = REVIEW_ROOTS.find((root) => startsWithFolder(pathname.toLowerCase(), root));
-  return review || getLocale(pathname).root;
+  return reviewRootOf(pathname) || getLocale(pathname).root;
 }
 
 /**
@@ -205,11 +215,15 @@ export function resolvePagePath(value, fallback) {
 }
 
 /**
- * The URL of a spreadsheet of the current locale, e.g. placeholders: /de-de/placeholders.json
+ * The URL of a spreadsheet of the current locale, e.g. placeholders: /de-de/placeholders.json;
+ * for a page under review, its review root's copy of a REVIEW_SHEETS sheet
  * @param {string} name the sheet path relative to the locale root, without .json
+ * @param {string} [pathname] defaults to the current page
  */
-export function localeSheetPath(name) {
-  return `${getLocale().root}/${name.replace(/^\//, '')}.json`;
+export function localeSheetPath(name, pathname = window.location.pathname) {
+  const sheet = name.replace(/^\//, '');
+  const review = REVIEW_SHEETS.includes(sheet) ? reviewRootOf(pathname) : '';
+  return `${review || getLocale(pathname).root}/${sheet}.json`;
 }
 
 /**
