@@ -72,7 +72,10 @@ function pinWhenScrolled(block) {
   const update = () => {
     frame = 0;
     const top = headerHeight();
-    const pinned = !isEditing() && slot.getBoundingClientRect().top <= top;
+    // not while the list isn't shown (its section is hidden until it has loaded): it would read
+    // as scrolled to the top, pin and jump back once shown (a layout shift)
+    const shown = slot.getClientRects().length > 0;
+    const pinned = shown && !isEditing() && slot.getBoundingClientRect().top <= top;
     slot.style.minHeight = pinned ? `${block.offsetHeight}px` : '';
     block.style.top = pinned ? `${top}px` : '';
     block.classList.toggle('anchor-list-pinned', pinned);

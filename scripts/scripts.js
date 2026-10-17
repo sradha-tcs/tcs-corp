@@ -380,6 +380,32 @@ async function loadTemplate(main) {
 }
 
 /**
+ * Starts loading the data the page's blocks share (each loads once and is cached), so the blocks
+ * don't each wait for it in turn: the placeholders for every block (and the taxonomy and authors
+ * for a Page Header in the first section); the query index, taxonomy and redirects for lists,
+ * Filter Lists and Conversation Canvas menus.
+ * @param {Element} main
+ * @param {boolean} [lists] also the lists' data (after the first section, not to compete with LCP)
+ */
+function prefetchData(main, lists = false) {
+  if (!lists) {
+    import('../utils/placeholders.js').then(({ loadPlaceholders }) => loadPlaceholders());
+    // a Page Header (the LCP of article pages) waits for the page's tags and author
+    if (main?.querySelector('.section:first-of-type .page-header')) {
+      import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
+      import('../utils/data.js').then(({ getAuthors }) => getAuthors().catch(() => []));
+    }
+    return;
+  }
+  if (!main?.querySelector('.list, .filter-list, .conversation-canvas')) return;
+  import('../utils/query-index.js').then(({ getPages }) => getPages());
+  import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
+  if (main.querySelector('.list')) {
+    import('../utils/redirects.js').then(({ loadRedirects }) => loadRedirects());
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -393,6 +419,7 @@ async function loadEager(doc) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
+    prefetchData(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -429,18 +456,23 @@ function autolinkModals(doc) {
 
 async function loadLazy(doc) {
   autolinkModals(doc);
-  loadHeader(doc.querySelector('header'));
-
   const main = doc.querySelector('main');
+  prefetchData(main, true);
+  loadHeader(doc.querySelector('header'));
+  // the footer loads alongside the sections, not after them; it shows once they have loaded, so
+  // it doesn't move while visible (no layout shift)
+  const footer = doc.querySelector('footer');
+  if (footer) footer.style.visibility = 'hidden';
+  loadFooter(footer);
+
   await loadSections(main);
+  if (footer) footer.style.visibility = '';
   trackBlocks(main);
   addErrorBackButton(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-
-  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
