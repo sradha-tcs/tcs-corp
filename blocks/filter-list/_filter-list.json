@@ -144,12 +144,11 @@
           }
         },
         {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "pages",
+          "component": "container",
+          "name": "pageItems",
           "label": "Pages",
-          "description": "The pages to list, in this order; their cards come from their metadata.",
           "multi": true,
+          "description": "The pages to list, in this order; their cards come from their metadata. Add a page per item (Add); drag the items to change the order.",
           "condition": {
             "===": [
               {
@@ -157,7 +156,15 @@
               },
               "manual"
             ]
-          }
+          },
+          "fields": [
+            {
+              "component": "aem-content",
+              "valueType": "string",
+              "name": "page",
+              "label": "Page"
+            }
+          ]
         },
         {
           "component": "multiselect",
@@ -415,11 +422,11 @@
           }
         },
         {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "featuredPages",
+          "component": "container",
+          "name": "featuredItems",
           "label": "Featured pages",
           "multi": true,
+          "description": "Add a page per item (Add); drag the items to change the order.",
           "condition": {
             "and": [
               {
@@ -439,7 +446,15 @@
                 ]
               }
             ]
-          }
+          },
+          "fields": [
+            {
+              "component": "aem-content",
+              "valueType": "string",
+              "name": "featuredPage",
+              "label": "Featured page"
+            }
+          ]
         },
         {
           "component": "number",

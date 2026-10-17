@@ -29,7 +29,7 @@ Files:
 ## For authors
 
 Add a **List** to a section and choose the **List source** (Content tab). For a **Fixed list**, pick
-the pages in **Pages** (under List source, in their order); add **List Items** to the block (**Add**
+the pages in **Pages** (under List source: **Add** a Page per item, drag to reorder); add **List Items** to the block (**Add**
 on the selected List, or the content tree) to change a page's card (title, image, …) or to add
 links outside the site. Fields that don't apply to the chosen source or option are hidden.
 
@@ -72,7 +72,7 @@ validated again in code; invalid values fall back to the default.
 | `listLabel` | Accessible list label | text | all | no | — | — | Names the list region when it has no title | always |
 | `componentId` | Component ID | text | all | no | generated | `^[A-Za-z][A-Za-z0-9_-]*$`; duplicates get a suffix | Block id, analytics id, card ids | always |
 | `source` | List source | select | all | yes | fixed | parent, fixed, tags | Chooses the discovery | always |
-| `pages` | Pages | aem-content, multi | fixed | no | — | AEM or published page paths | The pages of the list in order; stored as the multi-value `pages` property of the List node | source = fixed |
+| `pageItems` | Pages | container, multi (Page `page`: aem-content) | fixed | no | — | AEM or published page paths | The pages of the list in order; stored as `pageItems/item0`, `item1`, … with a `page` property (composite multifield: Universal Editor doesn't save multi-value aem-content fields). Lists made before: the multi-value `pages` property is still read, after these | source = fixed |
 | `parentPath` | Parent page | aem-content | parent | no | — | an AEM or published path | Published path of the parent | source = parent |
 | `parentUseCurrentPage` | Use the current page when empty | boolean | parent | no | on | — | The page with the list is the parent | source = parent |
 | `directChildrenOnly` | Direct children only | boolean | parent | no | on | — | On: depth 1 | source = parent |

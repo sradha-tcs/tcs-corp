@@ -96,12 +96,11 @@
           "description": "Child pages of a page, a fixed list of pages (Pages; add List Items to change a card or to link outside the site), or pages with tags."
         },
         {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "pages",
+          "component": "container",
+          "name": "pageItems",
           "label": "Pages",
           "multi": true,
-          "description": "The pages of the list, in this order; their cards come from the page metadata. A List Item for one of the pages changes its card (title, image, …); other List Items follow the pages.",
+          "description": "The pages of the list, in this order; their cards come from the page metadata. A List Item for one of the pages changes its card (title, image, …); other List Items follow the pages. Add a page per item (Add); drag the items to change the order.",
           "condition": {
             "===": [
               {
@@ -109,7 +108,15 @@
               },
               "fixed"
             ]
-          }
+          },
+          "fields": [
+            {
+              "component": "aem-content",
+              "valueType": "string",
+              "name": "page",
+              "label": "Page"
+            }
+          ]
         },
         {
           "component": "aem-content",

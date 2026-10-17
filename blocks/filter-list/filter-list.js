@@ -97,7 +97,8 @@ function readConfig(block) {
     moreCount: count(props.loadmorecount, 6),
     manual: toClassName(textOf(props.source)) === 'manual',
     rootPath: pathsOf(props.rootpath)[0] || '',
-    pages: pathsOf(props.pages),
+    // a page per item (composite multifields); lists made before: the multi-value fields
+    pages: [...pathsOf(props.pageitems), ...pathsOf(props.pages)],
     pageTypes: readTagValues(props.pagetypes).map(toClassName),
     contentTypes: readTagValues(props.contenttypes).map(toClassName),
     sortBy: pick(props.sortby, SORTS, 'latest'),
@@ -111,7 +112,7 @@ function readConfig(block) {
     style: pick(props.cardstyle, STYLES, 'mixed'),
     featured: flag(props.enablefeatured, true),
     featuredRule: pick(props.featuredrule, FEATURED_RULES, 'featured'),
-    featuredPages: pathsOf(props.featuredpages),
+    featuredPages: [...pathsOf(props.featureditems), ...pathsOf(props.featuredpages)],
     featuredCount: count(props.featuredcount, 2),
     hero: flag(props.enablehero, false),
     heroRule: pick(props.herorule, HERO_RULES, 'featured'),
