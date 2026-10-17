@@ -1,7 +1,9 @@
 // The root of the query index rows a page's lists show (utils/site.js indexRoot): node --test
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { indexRoot, localePagePath, localeSheetPath } from '../../utils/site.js';
+import {
+  indexRoot, localePagePath, localeSheetPath, pageLink,
+} from '../../utils/site.js';
 
 describe('indexRoot', () => {
   it('is the locale root of a locale page', () => {
@@ -45,5 +47,35 @@ describe('localePagePath', () => {
   it('is the locale page for other pages', () => {
     assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/en/error-pages/404');
     assert.equal(localePagePath('', '/language-master/en/x'), '/en/');
+  });
+});
+
+describe('on AEM author', () => {
+  const page = '/content/tcs-corp/language-master/en/curated-design-pages/home.html';
+  it('a language master page lists and reads the language master', () => {
+    assert.equal(indexRoot(page), '/language-master/en');
+    assert.equal(localeSheetPath('placeholders', page), '/language-master/en/placeholders.json');
+    assert.equal(localePagePath('references/nav', page), '/content/tcs-corp/language-master/en/references/nav');
+  });
+  it('a locale page stays on its locale', () => {
+    const en = '/content/tcs-corp/us/en/home.html';
+    assert.equal(indexRoot(en), '/en');
+    assert.equal(localeSheetPath('placeholders', en), '/en/placeholders.json');
+    assert.equal(localePagePath('references/nav', en), '/content/tcs-corp/us/en/references/nav');
+  });
+});
+
+describe('pageLink', () => {
+  const author = '/content/tcs-corp/language-master/en/curated-design-pages/home.html';
+  it('is the AEM page of a published page on author', () => {
+    assert.equal(pageLink('/language-master/en/dummy-pages/careers', author), '/content/tcs-corp/language-master/en/dummy-pages/careers.html');
+    assert.equal(pageLink('/en/dummy-pages/insights?x=1#top', author), '/content/tcs-corp/us/en/dummy-pages/insights.html?x=1#top');
+    assert.equal(pageLink('/en/', author), '/content/tcs-corp/us/en.html');
+  });
+  it('keeps other links, and every link on the site', () => {
+    assert.equal(pageLink('https://www.tata.com/', author), 'https://www.tata.com/');
+    assert.equal(pageLink('/content/dam/tcs-corp/report.pdf', author), '/content/dam/tcs-corp/report.pdf');
+    assert.equal(pageLink('/language-master/en/report.pdf', author), '/language-master/en/report.pdf');
+    assert.equal(pageLink('/language-master/en/dummy-pages/careers', '/language-master/en/x'), '/language-master/en/dummy-pages/careers');
   });
 });

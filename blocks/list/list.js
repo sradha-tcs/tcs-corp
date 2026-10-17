@@ -11,7 +11,7 @@ import { linkPathsOf } from '../../utils/links.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { getPages, getPagesAt } from '../../utils/query-index.js';
 import { loadRedirects, resolveRedirect } from '../../utils/redirects.js';
-import { getLocale, toPublishedPath } from '../../utils/site.js';
+import { getLocale, pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
@@ -196,7 +196,8 @@ export default async function decorate(block) {
     pages,
     items: read.items,
     currentPath: normalizePath(toPublishedPath(window.location.pathname)),
-    resolveUrl: (path) => withPageExtension(resolveRedirect(redirects, path)),
+    // on AEM author, links to the AEM pages
+    resolveUrl: (path) => withPageExtension(pageLink(resolveRedirect(redirects, path))),
     origin: window.location.origin,
     lang: document.documentElement.lang,
   };

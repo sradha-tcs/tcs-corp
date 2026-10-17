@@ -113,9 +113,15 @@ export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/aut
  */
 export const REVIEW_PAGES = ['references/'];
 
-/** the review root of a published page path, or '' */
-const reviewRootOf = (pathname) => REVIEW_ROOTS
-  .find((root) => startsWithFolder(pathname.toLowerCase(), root)) || '';
+/**
+ * The review root of a page, or '': from its published path, or from its AEM path on author
+ * (/content/tcs-corp/language-master/en/... is published at /language-master/en/...)
+ */
+const reviewRootOf = (pathname) => {
+  const siteRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
+  const path = (siteRoot ? pathname.slice(siteRoot.length) : pathname).toLowerCase();
+  return REVIEW_ROOTS.find((root) => startsWithFolder(path, root)) || '';
+};
 
 /**
  * The published root whose pages a page's lists show (the query index rows below it): a review
@@ -185,6 +191,25 @@ export function toAemPath(pathname, contentRoot) {
 }
 
 /**
+ * A page link to follow here: on AEM author a published page path becomes its AEM page
+ * (/language-master/en/x becomes /content/tcs-corp/language-master/en/x.html); on the site, and
+ * for other links, the link as it is.
+ * @param {string} href
+ * @param {string} [pathname] defaults to the current page
+ * @returns {string}
+ */
+export function pageLink(href, pathname = window.location.pathname) {
+  const contentRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
+  if (!contentRoot || !href.startsWith('/') || href.startsWith('//') || CONTENT_ROOT.test(href)) {
+    return href;
+  }
+  const [, path, rest] = href.match(/^([^?#]*)(.*)$/);
+  if (/\.[a-z0-9]+$/i.test(path)) return href;
+  const page = path.replace(/\/(index)?$/, '') || '/';
+  return `${toAemPath(page, contentRoot)}.html${rest}`;
+}
+
+/**
  * The path of a page in the current locale, e.g. references/nav: /de-de/references/nav
  * (/content/tcs-corp/de/de-de/references/nav when editing in AEM).
  * @param {string} path relative to the locale root
@@ -193,9 +218,9 @@ export function toAemPath(pathname, contentRoot) {
 export function localePagePath(path, pathname = window.location.pathname) {
   const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
-  if (contentRoot) return `${contentRoot}${aemRoot}/${relative}`;
-  // a page under review uses its review root's references
+  // a page under review uses its review root's references (its AEM path on author)
   const review = REVIEW_PAGES.some((folder) => relative.startsWith(folder)) ? reviewRootOf(pathname) : '';
+  if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
   return `${review || root}/${relative}`;
 }
 
