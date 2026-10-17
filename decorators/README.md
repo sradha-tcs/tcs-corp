@@ -13,6 +13,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `link-decorator.js` | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | button decorator, teaser, list, page-header |
 | `heading-decorator.js` | `buildHeading` (Title + Title Type), `HEADINGS` | teaser, quote, testimonial, filter-list, form-variations |
 | `content-decorator.js` | `fromCell` (property content into an element, keeping editor instrumentation) | teaser, quote, testimonial, page-header, form-variations |
+| `editor-item-decorator.js` | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded only in the editor) | hero, page-header, teaser, testimonial, anchor-list, filter-list, footer, stats decorator |
 | `image-decorator.js` | `pictureOf` (image with its alt text field) | teaser, quote, testimonial, page-header |
 | `scroller-decorator.js` | `createScroller` (previous / next, scroll indicator, mouse drag, keyboard, loop and initial item for a CSS horizontal scroller; active only while it scrolls) | card list decorator |
 | `card-list-decorator.js` | `buildCardListHeader`, `renderCardList`, `renderCard`, `renderRow`, `renderFeature`, `applyCardListLayout`, `renderCardListEmpty`, `cardListId`, `cardHeadingLevel`, `trackCardList` (the TCS DS Figma List cards: image, panel, report, statistic, feature, rows; grid / scroll per breakpoint; data layer state; styles in `styles/card-list.css`) | list, cards |
@@ -23,7 +24,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
 | `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport; a pause / play button as `element.animationToggle`, WCAG 2.2.2; paused for reduced motion) | hero, teaser |
 | `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser, filter-list |
-| `stats-decorator.js` | `buildStats` (Stats composite multifield as a description list) | testimonial, teaser |
+| `stats-decorator.js` | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | testimonial, teaser |
 | `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article, blog, press-release templates |

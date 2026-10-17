@@ -34,7 +34,53 @@
               "descriptionSource": "description",
               "tagSource": "tags",
               "urlSource": "path",
-              "authorSource": "author"
+              "authorSource": "author",
+              "filter": "filter-list"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Filter Tag",
+      "id": "filter-list-tag",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Filter Tag",
+              "model": "filter-list-tag"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Filter Category",
+      "id": "filter-list-category",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Filter Category",
+              "model": "filter-list-category"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Filter Page",
+      "id": "filter-list-page",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Filter Page",
+              "model": "filter-list-page"
             }
           }
         }
@@ -148,7 +194,7 @@
           "name": "pageItems",
           "label": "Pages",
           "multi": true,
-          "description": "The pages to list, in this order; their cards come from their metadata. Add a page per item (Add); drag the items to change the order.",
+          "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page) instead.",
           "condition": {
             "===": [
               {
@@ -280,7 +326,7 @@
           "component": "container",
           "name": "primaryTags",
           "label": "Primary filter tags",
-          "description": "The filters shown, in this order (labels from the taxonomy).",
+          "description": "Tags authored before Filter Tag items. Add tags with Add (Filter Tag) instead.",
           "multi": true,
           "fields": [
             {
@@ -334,7 +380,8 @@
               "label": "Taxonomy root",
               "description": "e.g. tcs:industry; its tags used by the pages are the options."
             }
-          ]
+          ],
+          "description": "Categories authored before Filter Category items. Add categories with Add (Filter Category) instead."
         },
         {
           "component": "select",
@@ -426,7 +473,7 @@
           "name": "featuredItems",
           "label": "Featured pages",
           "multi": true,
-          "description": "Add a page per item (Add); drag the items to change the order.",
+          "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page, Featured) instead.",
           "condition": {
             "and": [
               {
@@ -1173,7 +1220,89 @@
           ]
         }
       ]
+    },
+    {
+      "id": "filter-list-tag",
+      "fields": [
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "tagId",
+          "label": "Tag",
+          "description": "A primary filter, in the order of the items (label from the taxonomy).",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "filter-list-category",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "categoryTab",
+          "label": "Category"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "categoryLabel",
+          "label": "Category label",
+          "description": "e.g. Industry"
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "taxonomyRoot",
+          "label": "Taxonomy root",
+          "description": "e.g. tcs:industry; its tags used by the pages are the options of the advanced filter.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "filter-list-page",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "pageTab",
+          "label": "Page"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "page",
+          "label": "Page",
+          "required": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "pageRole",
+          "label": "Use",
+          "value": "listed",
+          "description": "Listed: a page of the Manual List (Datasource). Featured: a featured page (Featured rule Manual).",
+          "options": [
+            {
+              "name": "Listed (Manual List)",
+              "value": "listed"
+            },
+            {
+              "name": "Featured",
+              "value": "featured"
+            }
+          ]
+        }
+      ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "filter-list",
+      "components": [
+        "filter-list-tag",
+        "filter-list-category",
+        "filter-list-page"
+      ]
+    }
+  ]
 }

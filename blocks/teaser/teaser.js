@@ -7,12 +7,16 @@ import {
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
-import { NEW_WINDOW, linkOf, readLinkItems } from '../../utils/links.js';
+import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
+import {
+  NEW_WINDOW, linkOf, readLinkItems, readLinkRows,
+} from '../../utils/links.js';
 import { isAnimation } from '../../utils/media.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import {
@@ -32,9 +36,10 @@ import { resolveTags } from '../../utils/taxonomy.js';
  *   date, reading time and listen / download / share actions (Figma "L3 Header")
  * - Background image: the image behind centered text, under an overlay
  * - Card: a rounded card with the image behind its text, links at the bottom
- * The Image type Lotto plays a Lottie animation (.json) instead of a picture. The Style options
- * (alignment, title and description size, eyebrow style, image ratio and corners, list arrow,
- * top spacing) become block classes.
+ * Links are Link items (teaser-link) and stats Stat items (teaser-stat), added with Add; the Links
+ * and Stats multifields hold the ones authored before them. The Image type Lotto plays a Lottie
+ * animation (.json) instead of a picture. The Style options (alignment, title and description
+ * size, eyebrow style, image ratio and corners, list arrow, top spacing) become block classes.
  */
 
 const LAYOUTS = ['no-image', 'background', 'card'];
@@ -149,20 +154,28 @@ function renderLinks(container, entries) {
   container.classList.add(styles.length === 1 ? `teaser-links-${styles[0]}` : 'teaser-links-mixed');
 }
 
-function buildLinks(props) {
+function buildLinks(props, rows, hint) {
   const links = document.createElement('div');
   links.className = 'teaser-links';
   let entries;
+  const pending = [];
 
-  if (isOn(props.multilinks)) {
+  if (isOn(props.multilinks) || rows.length) {
     // Multiple links: the Links multifield, each in its CTA Link Style (links authored before
-    // the style was per link use the former Multi Link Style)
+    // the style was per link use the former Multi Link Style), then the Link items
     const fallback = linkStyleOf(props.multilinkstyle);
-    entries = readLinkItems(props.links).map((item) => ({
+    const items = readLinkRows(rows);
+    entries = [
+      ...readLinkItems(props.links).map((item) => ({ ...item, fallback })),
+      ...items.map((item) => ({ ...item, fallback: '' })),
+    ].map((item) => ({
       ...item,
-      style: item.values.find((value) => LINK_STYLES.includes(value)) || fallback,
+      style: item.values.find((value) => LINK_STYLES.includes(value)) || item.fallback,
     }));
+    entries.forEach(({ link, row }) => { if (row) moveInstrumentation(row, link); });
     if (props.links) moveInstrumentation(props.links, links);
+    const rendered = new Set(items.map(({ row }) => row));
+    pending.push(...buildEditorItems(rows.filter((row) => !rendered.has(row)), hint));
   } else {
     // Primary and Secondary CTA, each in its own Link Style
     entries = [
@@ -179,8 +192,9 @@ function buildLinks(props) {
     }).filter(Boolean);
   }
 
-  if (!entries.length) return null;
-  renderLinks(links, entries);
+  if (!entries.length && !pending.length) return null;
+  if (entries.length) renderLinks(links, entries);
+  links.append(...pending);
   return links;
 }
 
@@ -217,7 +231,13 @@ function buildMedia(block, props, layout) {
  */
 export default async function decorate(block) {
   const props = readProperties(block);
-  const t = await getPlaceholders();
+  // Link and Stat items: a Link item has a link
+  const hasLink = (row) => !!row.querySelector('a[href]');
+  const linkRows = itemRows(block, ['teaser-link'], (row) => KEY_VALUE_ITEM(row) && hasLink(row));
+  const statRows = itemRows(block, ['teaser-stat'], (row) => KEY_VALUE_ITEM(row) && !hasLink(row));
+  const [t, hint] = await Promise.all([
+    getPlaceholders(), editorItemHint([...linkRows, ...statRows]),
+  ]);
   const layout = option(block, props.classes, LAYOUTS);
   const bgColor = option(block, props.bgcolor, BG_COLORS);
   const imageRight = toClassName(textOf(props.imageposition)) === 'right'
@@ -270,9 +290,9 @@ export default async function decorate(block) {
   }
   const media = buildMedia(block, props, layout);
   if (media && layout === 'no-image') body.append(media);
-  const stats = buildStats(props.stats, 'teaser');
+  const stats = buildStats(props.stats, 'teaser', statRows, hint);
   if (stats) body.append(stats);
-  const links = buildLinks(props);
+  const links = buildLinks(props, linkRows, hint);
   if (links) body.append(links);
   if (textOf(props.shortdescription)) {
     body.append(fromCell(props.shortdescription, 'div', 'teaser-short-description'));

@@ -52,3 +52,20 @@ export function readLinkItems(cell) {
     return { link, newWindow, values };
   }).filter(({ link }) => link);
 }
+
+/**
+ * Reads link item rows (e.g. the Hero's CTA items): the row's link (the link field, its text
+ * collapsed into it) and the values of its other cells (Link Type, style, arrow, ...).
+ * @param {Element[]} rows
+ * @returns {{ link: HTMLAnchorElement, newWindow: boolean, values: string[], row: Element }[]}
+ */
+export function readLinkRows(rows) {
+  return rows.map((row) => {
+    const link = row.querySelector('a[href]');
+    const values = [...row.children].filter((cell) => !link || !cell.contains(link))
+      .map((cell) => cell.textContent.trim()).filter(Boolean);
+    return {
+      link, newWindow: values.includes(NEW_WINDOW), values, row,
+    };
+  }).filter(({ link }) => link);
+}

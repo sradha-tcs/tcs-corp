@@ -1,1 +1,21 @@
 /* add global styles that can be loaded post LCP here */
+
+/*
+ * Universal Editor: an item a block doesn't render yet (decorators/editor-item-decorator.js),
+ * e.g. a CTA just added, before it has a link.
+ */
+.block .editor-item {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: var(--space-200) var(--space-300);
+  border: var(--border-width-200) dashed var(--color-border-brand);
+  border-radius: var(--radius-m);
+  background: var(--color-bg-secondary);
+  list-style: none;
+}
+
+.block .editor-item-hint {
+  color: var(--color-text-neutral-secondary);
+  font-size: var(--body-font-size-s);
+}

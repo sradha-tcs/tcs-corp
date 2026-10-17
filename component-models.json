@@ -961,7 +961,8 @@
             "label": "Anchor Name",
             "description": "The Anchor name of the target section (Section properties), e.g. overview. Heading ids work too."
           }
-        ]
+        ],
+        "description": "Links authored before Anchor Link items. Add links to the list with Add (Anchor Link) instead."
       },
       {
         "component": "boolean",
@@ -1546,6 +1547,31 @@
             "value": "mb-3000"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "anchor-list-item",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "linkTab",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Link Title",
+        "description": "e.g. CH 1: Overview",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "anchorName",
+        "label": "Anchor Name",
+        "description": "The Anchor name of the target section (Section properties), e.g. overview. Heading ids work too."
       }
     ]
   },
@@ -5417,7 +5443,7 @@
         "name": "pageItems",
         "label": "Pages",
         "multi": true,
-        "description": "The pages to list, in this order; their cards come from their metadata. Add a page per item (Add); drag the items to change the order.",
+        "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page) instead.",
         "condition": {
           "===": [
             {
@@ -5549,7 +5575,7 @@
         "component": "container",
         "name": "primaryTags",
         "label": "Primary filter tags",
-        "description": "The filters shown, in this order (labels from the taxonomy).",
+        "description": "Tags authored before Filter Tag items. Add tags with Add (Filter Tag) instead.",
         "multi": true,
         "fields": [
           {
@@ -5603,7 +5629,8 @@
             "label": "Taxonomy root",
             "description": "e.g. tcs:industry; its tags used by the pages are the options."
           }
-        ]
+        ],
+        "description": "Categories authored before Filter Category items. Add categories with Add (Filter Category) instead."
       },
       {
         "component": "select",
@@ -5695,7 +5722,7 @@
         "name": "featuredItems",
         "label": "Featured pages",
         "multi": true,
-        "description": "Add a page per item (Add); drag the items to change the order.",
+        "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page, Featured) instead.",
         "condition": {
           "and": [
             {
@@ -6444,6 +6471,79 @@
     ]
   },
   {
+    "id": "filter-list-tag",
+    "fields": [
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "tagId",
+        "label": "Tag",
+        "description": "A primary filter, in the order of the items (label from the taxonomy).",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "filter-list-category",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "categoryTab",
+        "label": "Category"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "categoryLabel",
+        "label": "Category label",
+        "description": "e.g. Industry"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "taxonomyRoot",
+        "label": "Taxonomy root",
+        "description": "e.g. tcs:industry; its tags used by the pages are the options of the advanced filter.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "filter-list-page",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "pageTab",
+        "label": "Page"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "page",
+        "label": "Page",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageRole",
+        "label": "Use",
+        "value": "listed",
+        "description": "Listed: a page of the Manual List (Datasource). Featured: a featured page (Featured rule Manual).",
+        "options": [
+          {
+            "name": "Listed (Manual List)",
+            "value": "listed"
+          },
+          {
+            "name": "Featured",
+            "value": "featured"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "footer",
     "fields": [
       {
@@ -6494,6 +6594,42 @@
                 "value": "new-window"
               }
             ]
+          }
+        ],
+        "description": "Links authored before Footer Link items. Add links with Add (Footer Link) instead."
+      }
+    ]
+  },
+  {
+    "id": "footer-link",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link Path",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Link Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkTarget",
+        "label": "Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in new window",
+            "value": "new-window"
           }
         ]
       }
@@ -8805,7 +8941,8 @@
               }
             ]
           }
-        ]
+        ],
+        "description": "CTAs authored before CTA items. Add CTAs to the hero with Add (CTA) instead."
       },
       {
         "component": "select",
@@ -9507,6 +9644,80 @@
           {
             "name": "7.5rem (space-3000)",
             "value": "mb-3000"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hero-cta",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "CTA Link",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "CTA Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkTarget",
+        "label": "CTA Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkStyle",
+        "label": "CTA view",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkArrow",
+        "label": "CTA Arrow",
+        "description": "Direction of the arrow next to the CTA text.",
+        "value": "right",
+        "options": [
+          {
+            "name": "Right",
+            "value": "right"
+          },
+          {
+            "name": "Down",
+            "value": "down"
           }
         ]
       }
@@ -12793,7 +13004,8 @@
               }
             ]
           }
-        ]
+        ],
+        "description": "CTAs authored before CTA items. Add CTAs to the page header with Add (CTA) instead."
       },
       {
         "component": "tab",
@@ -13368,6 +13580,62 @@
           {
             "name": "7.5rem (space-3000)",
             "value": "mb-3000"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "page-header-cta",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "CTA Link",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "CTA Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkTarget",
+        "label": "CTA Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkStyle",
+        "label": "CTA Link Style",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Text link",
+            "value": ""
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "secondary"
           }
         ]
       }
@@ -20633,7 +20901,8 @@
               }
             ]
           }
-        ]
+        ],
+        "description": "Links authored before Link items. Add links to the teaser with Add (Link) instead."
       },
       {
         "component": "select",
@@ -20822,7 +21091,8 @@
             "description": "A single line, e.g. 40%.",
             "value": ""
           }
-        ]
+        ],
+        "description": "Stats authored before Stat items. Add stats to the teaser with Add (Stat) instead."
       },
       {
         "component": "tab",
@@ -21624,6 +21894,91 @@
     ]
   },
   {
+    "id": "teaser-link",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "CTA Link",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "CTA Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkTarget",
+        "label": "CTA Link Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkStyle",
+        "label": "CTA Link Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Text link",
+            "value": ""
+          },
+          {
+            "name": "List",
+            "value": "list"
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "teaser-stat",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "statTab",
+        "label": "Stat"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "statLabel",
+        "label": "Stats Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "statValue",
+        "label": "Stats Value",
+        "description": "A single line, e.g. 40%.",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "testimonial",
     "fields": [
       {
@@ -21734,7 +22089,8 @@
             "description": "A single line, e.g. 40%.",
             "value": ""
           }
-        ]
+        ],
+        "description": "Stats authored before Stat items. Add stats to the testimonial with Add (Stat) instead."
       },
       {
         "component": "tab",
@@ -22376,6 +22732,31 @@
             "value": "mb-3000"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "testimonial-stat",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "statTab",
+        "label": "Stat"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "statLabel",
+        "label": "Stats Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "statValue",
+        "label": "Stats Value",
+        "description": "A single line, e.g. 40%.",
+        "value": ""
       }
     ]
   },

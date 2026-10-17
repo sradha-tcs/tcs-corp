@@ -552,6 +552,14 @@
   }
 }
 
+/* Universal Editor: the Filter Tag, Filter Category and Filter Page items */
+.filter-list .filter-list-editor-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-200);
+  margin-top: var(--space-800);
+}
+
 @media (width >= 600px) {
   .filter-list:not(.layout-list) {
     --filter-list-columns: 2;

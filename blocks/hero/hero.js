@@ -1,9 +1,11 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { createAnimation } from '../../decorators/animation-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { readButtonOptions } from '../../utils/buttons.js';
+import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
-import { NEW_WINDOW, readLinkItems } from '../../utils/links.js';
+import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
 import { onVisible } from '../../utils/viewport.js';
 import { isAnimation } from '../../utils/media.js';
 
@@ -11,10 +13,11 @@ import { isAnimation } from '../../utils/media.js';
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
  * - content: icon, eyebrow, title (heading) and description (element group "content_")
  * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
- * - CTA List: a composite multifield, one link per item, each with an optional
- *   "new-window" Link Type value and a CTA Arrow (right | down; without one, links to the
- *   page's own sections point down); the CTA view is the link's bold (primary) / italic
- *   (secondary) formatting
+ * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
+ *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
+ *   down; without one, links to the page's own sections point down). CTAs authored before, in
+ *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
+ *   / italic (secondary) formatting
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type),
  * align-top | align-middle | align-bottom (Vertical Alignment),
@@ -27,6 +30,7 @@ const MOTIONS = ['motion-fade', 'motion-slide', 'motion-zoom'];
 // CTA Arrow values, and every value a CTA List item holds besides its link
 const ARROWS = ['right', 'down'];
 const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
+const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
@@ -64,10 +68,10 @@ function isMediaCell(cell) {
     && cell.textContent.trim() === links[0].textContent.trim();
 }
 
-/** sorts the authored rows into content, media and CTA List cells */
-function readCells(block) {
+/** sorts the hero's own rows (one cell each) into content, media and CTA List cells */
+function readCells(rows) {
   const cells = { content: null, media: null, ctas: null };
-  [...block.children].forEach((row) => {
+  rows.forEach((row) => {
     const cell = row.firstElementChild;
     if (!cell) return;
     // media first: an animation link alone would also pass as a CTA List
@@ -147,24 +151,32 @@ function buildContent(cell) {
   return content;
 }
 
-function buildCtas(cell) {
-  if (!cell) return null;
+/** the CTAs: the CTA List multifield's, then the CTA items (with their instrumentation) */
+function buildCtas(cell, rows, hint) {
   const ctas = document.createElement('div');
   ctas.className = 'hero-ctas';
-  readLinkItems(cell).forEach(({ link: a, newWindow, values }) => {
+  const items = readLinkRows(rows);
+  [...readLinkItems(cell), ...items].forEach(({
+    link: a, newWindow, values, row,
+  }) => {
     // CTA view: Primary / Secondary buttons; Default is a text link with an arrow
-    const { type } = readButtonOptions(a);
+    const type = row ? values.find((value) => CTA_STYLES.includes(value))
+      : readButtonOptions(a).type;
     decorateButton(a, {
       view: 'button',
-      type: ['primary', 'secondary'].includes(type) ? type : 'tertiary',
+      type: CTA_STYLES.includes(type) ? type : 'tertiary',
       newWindow,
     });
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
       a.classList.add('hero-cta-down');
     }
+    if (row) moveInstrumentation(row, a);
     ctas.append(a);
   });
+  // in the editor, CTA items without a link yet
+  const rendered = new Set(items.map(({ row }) => row));
+  ctas.append(...buildEditorItems(rows.filter((row) => !rendered.has(row)), hint));
   return ctas.children.length ? ctas : null;
 }
 
@@ -172,16 +184,19 @@ function buildCtas(cell) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
-  const cells = readCells(block);
+export default async function decorate(block) {
+  const ctaRows = itemRows(block, ['hero-cta'], FIELD_ROW_ITEM);
+  const cells = readCells([...block.children].filter((row) => !ctaRows.includes(row)));
+  // the editor's placeholder text; on the page the hero doesn't wait for anything
+  const hint = await editorItemHint(ctaRows);
   const media = buildMedia(block, cells.media);
   const content = buildContent(cells.content);
-  const ctas = buildCtas(cells.ctas);
+  const ctas = buildCtas(cells.ctas, ctaRows, hint);
   if (ctas) content.append(ctas);
   // keep Universal Editor instrumentation of the authored cells
   if (media) moveInstrumentation(cells.media, media);
   if (cells.content) moveInstrumentation(cells.content, content);
-  if (ctas) moveInstrumentation(cells.ctas, ctas);
+  if (ctas && cells.ctas) moveInstrumentation(cells.ctas, ctas);
 
   block.classList.toggle('hero-has-media', !!media);
   block.replaceChildren(...[media, content].filter(Boolean));

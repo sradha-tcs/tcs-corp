@@ -1,8 +1,10 @@
 import { hideVisually } from '../../decorators/a11y-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
+import { editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
+import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import {
   isOn, optionOf, readProperties, textOf,
 } from '../../utils/properties.js';
@@ -10,7 +12,8 @@ import {
 /*
  * Testimonial (blocks/testimonial/_testimonial.json): a key-value block. A section title,
  * then a centered eyebrow, the testimonial quote (Description), the author (Author text, image
- * and Designation & Location) and stats (Figma "Testimonial Block", 404-29822).
+ * and Designation & Location) and stats (Stat items, testimonial-stat; the Stats multifield before
+ * them) (Figma "Testimonial Block", 404-29822).
  */
 
 const BG_COLORS = ['grey'];
@@ -41,8 +44,9 @@ function buildAuthor(props) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   const props = readProperties(block);
+  const statRows = itemRows(block, ['testimonial-stat'], KEY_VALUE_ITEM);
   const bgColor = optionOf(block, props.bgcolor, BG_COLORS);
 
   const title = buildHeading(props.title, props.titletype, 'testimonial-title');
@@ -65,7 +69,7 @@ export default function decorate(block) {
     figure.append(caption);
   }
 
-  const stats = buildStats(props.stats, 'testimonial');
+  const stats = buildStats(props.stats, 'testimonial', statRows, await editorItemHint(statRows));
 
   block.classList.remove(...BG_COLORS.map((color) => `bg-${color}`));
   if (bgColor) block.classList.add(`bg-${bgColor}`);

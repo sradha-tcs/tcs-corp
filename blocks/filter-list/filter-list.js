@@ -1,10 +1,12 @@
 import { buildAuthorLockup } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildTime } from '../../decorators/date-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { layoutMasonry } from '../../decorators/masonry-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { toClassName } from '../../scripts/aem.js';
+import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isEditing } from '../../utils/environment.js';
 import { uniqueId } from '../../utils/ids.js';
@@ -28,7 +30,9 @@ import { loadTaxonomy, resolveTags } from '../../utils/taxonomy.js';
  *   list) and Card style (default, compact, featured, mixed: report and image-less dark cards),
  *   a featured spotlight card after each page of cards (Featured rule, count)
  * - Load more adds the next cards; filtering re-renders from the index loaded once
- * Every label comes from the placeholders.
+ * Primary filter tags, Advanced filter categories and the manual and featured pages are items
+ * added with Add (Filter Tag, Filter Category, Filter Page), after the ones of the multifields
+ * authored before them. Every label comes from the placeholders.
  */
 
 const LAYOUTS = ['masonry', 'grid', 'list'];
@@ -37,6 +41,10 @@ const SORTS = ['latest', 'featured', 'priority', 'alphabetical'];
 const FEATURED_RULES = ['featured', 'priority', 'manual'];
 const HERO_RULES = ['latest', 'featured', 'manual'];
 const FEATURED_PRIORITY = 3;
+const ITEM_MODELS = ['filter-list-tag', 'filter-list-category', 'filter-list-page'];
+// the cells of a Filter Category and a Filter Page item: a dialog tab, then their fields
+const CATEGORY_LAYOUT = [null, 'categoryLabel', 'taxonomyRoot'];
+const PAGE_LAYOUT = [null, 'page', 'pageRole'];
 const MAX_CARD_TAGS = 2;
 const CARD_IMAGE = [{ media: '(min-width: 900px)', width: '600' }, { width: '750' }];
 const SPOTLIGHT_IMAGE = [{ media: '(min-width: 900px)', width: '1600' }, { width: '750' }];
@@ -87,9 +95,45 @@ function readCategories(cell) {
   }).filter(({ root }) => root);
 }
 
+/**
+ * The item rows: a Filter Tag (one cell, a tag), a Filter Category (a label and a taxonomy root)
+ * or a Filter Page (a page, listed or featured); in the editor they carry their model.
+ */
+function readItems(block) {
+  const rows = itemRows(block, ITEM_MODELS, KEY_VALUE_ITEM);
+  const items = {
+    rows, tags: [], categories: [], pages: [], featuredPages: [], summaries: new Map(),
+  };
+  rows.forEach((row) => {
+    const model = row.dataset.aueModel || '';
+    const isPage = model ? model === 'filter-list-page' : !!row.querySelector('a[href]');
+    if (isPage) {
+      const [page, role] = withoutTabCells([...row.children], PAGE_LAYOUT).slice(-2);
+      const [path] = pathsOf(page);
+      if (!path) return;
+      (textOf(role) === 'featured' ? items.featuredPages : items.pages).push(path);
+      items.summaries.set(row, path);
+    } else if (model ? model === 'filter-list-tag' : row.children.length === 1) {
+      const id = readTagValues(row.lastElementChild).find(isTagId);
+      if (!id) return;
+      items.tags.push({ id, label: '', tags: [id] });
+      items.summaries.set(row, id);
+    } else {
+      const [label, root] = withoutTabCells([...row.children], CATEGORY_LAYOUT).slice(-2)
+        .map(textOf);
+      if (!isTagId(root || '')) return;
+      items.categories.push({ root, label });
+      items.summaries.set(row, [label, root].filter(Boolean).join(': '));
+    }
+  });
+  return items;
+}
+
 function readConfig(block) {
   const props = readProperties(block);
+  const items = readItems(block);
   return {
+    items,
     props,
     showCount: flag(props.showresultcount, false),
     layout: pick(props.layout, LAYOUTS, 'masonry'),
@@ -98,21 +142,23 @@ function readConfig(block) {
     manual: toClassName(textOf(props.source)) === 'manual',
     rootPath: pathsOf(props.rootpath)[0] || '',
     // a page per item (composite multifields); lists made before: the multi-value fields
-    pages: [...pathsOf(props.pageitems), ...pathsOf(props.pages)],
+    pages: [...pathsOf(props.pageitems), ...pathsOf(props.pages), ...items.pages],
     pageTypes: readTagValues(props.pagetypes).map(toClassName),
     contentTypes: readTagValues(props.contenttypes).map(toClassName),
     sortBy: pick(props.sortby, SORTS, 'latest'),
     category: textOf(props.primarycategory),
-    primary: readPrimaryTags(props),
+    primary: [...readPrimaryTags(props), ...items.tags],
     showAll: flag(props.showall, true),
     multiSelect: flag(props.multiselect, false),
     advanced: flag(props.advancedfilter, true),
-    categories: readCategories(props.advancedcategories),
+    categories: [...readCategories(props.advancedcategories), ...items.categories],
     logic: pick(props.filterlogic, ['and', 'or'], 'and'),
     style: pick(props.cardstyle, STYLES, 'mixed'),
     featured: flag(props.enablefeatured, true),
     featuredRule: pick(props.featuredrule, FEATURED_RULES, 'featured'),
-    featuredPages: [...pathsOf(props.featureditems), ...pathsOf(props.featuredpages)],
+    featuredPages: [
+      ...pathsOf(props.featureditems), ...pathsOf(props.featuredpages), ...items.featuredPages,
+    ],
     featuredCount: count(props.featuredcount, 2),
     hero: flag(props.enablehero, false),
     heroRule: pick(props.herorule, HERO_RULES, 'featured'),
@@ -592,5 +638,16 @@ export default async function decorate(block) {
 
   block.classList.add(`card-${config.style}`, `layout-${config.layout}`);
   block.replaceChildren(header, results, moreWrapper);
+  // in the editor, the items (selectable, in their order), or a hint for the ones not set yet
+  const hint = await editorItemHint(config.items.rows);
+  const editorItems = config.items.rows.flatMap((row) => buildEditorItems(
+    [row],
+    config.items.summaries.get(row) || hint,
+  ));
+  if (editorItems.length) {
+    const list = element('div', 'filter-list-editor-items');
+    list.append(...editorItems);
+    block.append(list);
+  }
   render();
 }

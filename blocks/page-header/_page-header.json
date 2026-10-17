@@ -10,7 +10,23 @@
             "template": {
               "name": "Page Header",
               "model": "page-header",
-              "key-value": true
+              "key-value": true,
+              "filter": "page-header"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "CTA",
+      "id": "page-header-cta",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "CTA",
+              "model": "page-header-cta"
             }
           }
         }
@@ -117,7 +133,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "description": "CTAs authored before CTA items. Add CTAs to the page header with Add (CTA) instead."
         },
         {
           "component": "tab",
@@ -696,7 +713,70 @@
           ]
         }
       ]
+    },
+    {
+      "id": "page-header-cta",
+      "fields": [
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "CTA Link",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "CTA Title"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "linkTarget",
+          "label": "CTA Link Type",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "linkStyle",
+          "label": "CTA Link Style",
+          "value": "primary",
+          "options": [
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary Button",
+              "value": "secondary"
+            }
+          ]
+        }
+      ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "page-header",
+      "components": [
+        "page-header-cta"
+      ]
+    }
+  ]
 }
