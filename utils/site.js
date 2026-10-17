@@ -108,10 +108,10 @@ export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/aut
 
 /**
  * The page folders published below the review roots: their pages use the review root's
- * references (nav, footer and the pages they load); other pages (Home, error pages) stay the
- * locale's.
+ * references (nav, footer and the pages they load) and error pages (the 404 page when no 404 Page
+ * is inherited); the Home page stays the locale's.
  */
-export const REVIEW_PAGES = ['references/'];
+export const REVIEW_PAGES = ['references/', 'error-pages/'];
 
 /**
  * The review root of a page, or '': from its published path, or from its AEM path on author

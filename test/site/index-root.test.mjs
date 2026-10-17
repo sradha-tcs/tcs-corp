@@ -44,9 +44,12 @@ describe('localePagePath', () => {
     assert.equal(localePagePath('references/nav', '/language-master/en/x'), '/language-master/en/references/nav');
     assert.equal(localePagePath('references/footer', '/language-master/en/x'), '/language-master/en/references/footer');
   });
+  it('is the language master error page for its pages under review', () => {
+    assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/language-master/en/error-pages/404');
+  });
   it('is the locale page for other pages', () => {
-    assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/en/error-pages/404');
     assert.equal(localePagePath('', '/language-master/en/x'), '/en/');
+    assert.equal(localePagePath('error-pages/404', '/de-de/x'), '/de-de/error-pages/404');
   });
 });
 
