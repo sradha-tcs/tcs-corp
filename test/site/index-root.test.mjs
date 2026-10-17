@@ -1,7 +1,7 @@
 // The root of the query index rows a page's lists show (utils/site.js indexRoot): node --test
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { indexRoot, localeSheetPath } from '../../utils/site.js';
+import { indexRoot, localePagePath, localeSheetPath } from '../../utils/site.js';
 
 describe('indexRoot', () => {
   it('is the locale root of a locale page', () => {
@@ -31,5 +31,19 @@ describe('localeSheetPath', () => {
   });
   it('is the locale sheet for sheets the language master does not publish', () => {
     assert.equal(localeSheetPath('metadata', '/language-master/en/x'), '/en/metadata.json');
+  });
+});
+
+describe('localePagePath', () => {
+  it('is the locale page on locale pages', () => {
+    assert.equal(localePagePath('references/nav', '/de-de/insights'), '/de-de/references/nav');
+  });
+  it('is the language master references for its pages under review', () => {
+    assert.equal(localePagePath('references/nav', '/language-master/en/x'), '/language-master/en/references/nav');
+    assert.equal(localePagePath('references/footer', '/language-master/en/x'), '/language-master/en/references/footer');
+  });
+  it('is the locale page for other pages', () => {
+    assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/en/error-pages/404');
+    assert.equal(localePagePath('', '/language-master/en/x'), '/en/');
   });
 });
