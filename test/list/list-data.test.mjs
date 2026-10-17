@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -176,6 +176,29 @@ describe('fixed list', () => {
     const items = [{ href: '/en/insights/cloud-scale' }, { href: '/en/insights/agentic-bank' }, { href: '/en/insights/ai-report' }];
     const cards = buildCards(config({ source: 'fixed' }), { pages: PAGES, items, origin });
     assert.deepEqual(paths(cards), ['/en/insights/cloud-scale', '/en/insights/agentic-bank', '/en/insights/ai-report']);
+  });
+});
+
+describe('fixed list: Pages and List Items', () => {
+  const hrefs = (items) => items.map((item) => item.href);
+  it('lists the Pages in their order, then the List Items', () => {
+    const items = mergeFixedItems(['/en/a', '/en/b'], [{ href: 'https://example.com/x', title: 'X' }]);
+    assert.deepEqual(hrefs(items), ['/en/a', '/en/b', 'https://example.com/x']);
+  });
+  it('puts a List Item for one of the Pages in its place (it changes the card)', () => {
+    const override = { href: '/en/b.html', title: 'B, edited' };
+    const items = mergeFixedItems(['/en/a', '/en/b', '/en/c'], [{ href: '/en/z' }, override]);
+    assert.deepEqual(hrefs(items), ['/en/a', '/en/b.html', '/en/c', '/en/z']);
+    assert.equal(items[1], override);
+  });
+  it('matches AEM and published paths with the given key', () => {
+    const keyOf = (path) => path.replace('/content/tcs-corp/us/en', '/en').replace(/\.html$/, '');
+    const items = mergeFixedItems(['/content/tcs-corp/us/en/a.html'], [{ href: '/en/a', title: 'A' }], keyOf);
+    assert.equal(items.length, 1);
+    assert.equal(items[0].title, 'A');
+  });
+  it('keeps lists made with List Items only', () => {
+    assert.deepEqual(hrefs(mergeFixedItems([], [{ href: '/en/a' }, { href: '/en/b' }])), ['/en/a', '/en/b']);
   });
 });
 

@@ -10,6 +10,27 @@ export const NEW_WINDOW = 'new-window';
 export const linkOf = (cell) => cell?.querySelector('a[href]') || null;
 
 /**
+ * The paths of a page property (aem-content, one or many): its links, else its values as text
+ * (a list, or comma-separated). A link to this site is read as its path (and query).
+ * @param {Element} cell
+ * @returns {string[]} the paths as authored (AEM or published paths), or external URLs
+ */
+export function linkPathsOf(cell) {
+  if (!cell) return [];
+  const links = [...cell.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'));
+  const items = [...cell.querySelectorAll('li')].map((li) => li.textContent);
+  let values = links;
+  if (!values.length) values = items.length ? items : [cell.textContent];
+  // paths have no commas: a comma-separated value is several paths
+  return values.flatMap((value) => value.split(',')).map((value) => value.trim()).filter(Boolean)
+    .map((value) => {
+      if (!/^https?:/i.test(value)) return value;
+      const url = new URL(value);
+      return url.origin === window.location.origin ? `${url.pathname}${url.search}` : value;
+    });
+}
+
+/**
  * Reads a CTA List composite multifield cell: one link per item, each with an optional
  * "new-window" Link Type value and the item's other select values (e.g. an arrow direction).
  * @param {Element} cell

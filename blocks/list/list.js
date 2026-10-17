@@ -7,14 +7,16 @@ import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
+import { linkPathsOf } from '../../utils/links.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { getPages, getPagesAt } from '../../utils/query-index.js';
 import { loadRedirects, resolveRedirect } from '../../utils/redirects.js';
-import { toPublishedPath } from '../../utils/site.js';
+import { getLocale, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_FIELDS, ITEM_LAYOUT, buildCards, normalizeConfig, normalizePath, validateConfig,
+  HEADINGS, ITEM_FIELDS, ITEM_LAYOUT, buildCards, mergeFixedItems, normalizeConfig, normalizePath,
+  validateConfig,
 } from './list-data.js';
 
 /*
@@ -40,7 +42,7 @@ const ITEM_MATCHERS = {
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
 
 /** the block's property names (normalized), to tell property rows from item rows */
-const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'parentpath',
+const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pages', 'parentpath',
   'parentusecurrentpage', 'directchildrenonly', 'childdepth', 'rootpath', 'tagsusecurrentpage',
   'tags', 'tagmatch', 'includedescendants', 'maxdepth', 'orderby', 'sortorder', 'maxitems']);
 const PATH_PROPERTIES = ['parentpath', 'rootpath'];
@@ -80,7 +82,8 @@ function pathOf(cell) {
 
 /**
  * Reads the block: property rows (key | value), List Item rows and, for lists made before the
- * key-value model, the title and CTA rows.
+ * key-value model, the title and CTA rows. The fixed list's items are its Pages, merged with the
+ * List Items (mergeFixedItems).
  * @param {Element} block
  */
 export function readBlockConfig(block) {
@@ -97,11 +100,12 @@ export function readBlockConfig(block) {
   const legacy = !Object.keys(props).length && rows.every((row) => row.children.length <= 1);
   const raw = {};
   Object.entries(props).forEach(([key, cell]) => {
+    if (key === 'pages') return;
     if (PATH_PROPERTIES.includes(key)) raw[key] = pathOf(cell);
     else if (LIST_PROPERTIES.includes(key)) raw[key] = readTagValues(cell).join(',');
     else raw[key] = textOf(cell);
   });
-  const items = legacy ? [] : itemRows.map((row) => {
+  const listItems = legacy ? [] : itemRows.map((row) => {
     const fieldCells = withoutTabCells([...row.children], ITEM_LAYOUT);
     const cells = matchCells(fieldCells, ITEM_FIELDS, ITEM_MATCHERS);
     const a = cells.link?.querySelector('a[href]');
@@ -128,6 +132,15 @@ export function readBlockConfig(block) {
       ref: row,
     };
   }).filter((item) => item.href);
+  // a page of Pages and a List Item for it are the same card, whether authored as AEM or
+  // published paths
+  const keyOf = (path) => normalizePath(toPublishedPath(sitePath(path)));
+  // Pages as AEM paths (a value delivered as text isn't rewritten) are published paths on the
+  // site; in the editor they stay AEM paths
+  const { contentRoot } = getLocale();
+  const pages = linkPathsOf(props.pages)
+    .map((path) => (contentRoot ? path : toPublishedPath(path)));
+  const items = legacy ? [] : mergeFixedItems(pages, listItems, keyOf);
   return {
     legacy,
     raw,
@@ -174,7 +187,8 @@ export default async function decorate(block) {
   // read from the pages themselves
   const known = new Set(indexed.map((page) => normalizePath(page.path)));
   const missing = read.items.map((item) => sitePath(item.href))
-    .filter((path) => path.startsWith('/') && !known.has(normalizePath(path)));
+    .filter((path) => path.startsWith('/') && !known.has(normalizePath(path)))
+    .map(withPageExtension);
   const pages = missing.length ? [...indexed, ...await getPagesAt(missing)] : indexed;
   const data = {
     pages,
