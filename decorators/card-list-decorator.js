@@ -300,7 +300,8 @@ export function applyCardListLayout(block, config) {
   Object.entries(flags).forEach(([name, on]) => block.classList.toggle(name, !!on));
   block.classList.add(
     `snap-${config.snapAlign}`,
-    config.displayAsTeaser ? 'teaser' : 'links',
+    // not `teaser`: the Teaser block's styles select that class on any block of the page
+    config.displayAsTeaser ? 'display-teaser' : 'links',
     `style-${config.cardStyle}`,
     `ratio-${config.imageRatio}`,
     `panel-${config.panelHeight}`,
