@@ -14,7 +14,7 @@ import { readMultifieldItems } from '../../utils/multifield.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { isOn, readProperties, textOf } from '../../utils/properties.js';
 import { columnOf, getPages, listOf } from '../../utils/query-index.js';
-import { toPublishedPath } from '../../utils/site.js';
+import { pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { loadTaxonomy, resolveTags } from '../../utils/taxonomy.js';
 
@@ -290,7 +290,8 @@ export default async function decorate(block) {
   /* cards */
 
   const text = (page, source) => String(columnOf(page, source) || '').trim();
-  const urlOf = (page) => text(page, map.url) || page.path;
+  // on AEM author, links to the AEM pages
+  const urlOf = (page) => pageLink(text(page, map.url) || page.path);
   const titleOf = (page) => text(page, map.title) || page.title || page.path;
   const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage);
   const tagsOf = (page) => listOf(columnOf(page, map.tags)).slice(0, MAX_CARD_TAGS).map(labelOf);
