@@ -26,9 +26,9 @@ describe('localeSheetPath', () => {
   it('is the language master copy of its sheets for its pages under review', () => {
     assert.equal(localeSheetPath('taxonomy', '/language-master/en/x'), '/language-master/en/taxonomy.json');
     assert.equal(localeSheetPath('data/authors', '/language-master/en/x'), '/language-master/en/data/authors.json');
+    assert.equal(localeSheetPath('placeholders', '/language-master/en/x'), '/language-master/en/placeholders.json');
   });
   it('is the locale sheet for sheets the language master does not publish', () => {
-    assert.equal(localeSheetPath('placeholders', '/language-master/en/x'), '/en/placeholders.json');
     assert.equal(localeSheetPath('redirects', '/language-master/en/x'), '/en/redirects.json');
   });
 });
