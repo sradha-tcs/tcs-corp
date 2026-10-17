@@ -259,14 +259,29 @@
   --nav-height: 4rem;
 }
 
-/* fallback fonts */
+/*
+ * fallback fonts: Arial sized to the width of Inter until it loads (no reflow, no layout shift);
+ * the bold weights fall back to Arial Bold, which is wider, so they get their own size. The
+ * ascent and descent are Inter's (0.969 and 0.241 em) divided by the size-adjust.
+ */
 @font-face {
   font-family: inter-fallback;
-  size-adjust: 107.06%;
-  ascent-override: 90.49%;
-  descent-override: 22.56%;
+  font-weight: 300 500;
+  size-adjust: 100.6%;
+  ascent-override: 96.3%;
+  descent-override: 24%;
   line-gap-override: 0%;
   src: local('Arial');
+}
+
+@font-face {
+  font-family: inter-fallback;
+  font-weight: 600 700;
+  size-adjust: 90.4%;
+  ascent-override: 107.2%;
+  descent-override: 26.7%;
+  line-gap-override: 0%;
+  src: local('Arial Bold'), local('Arial');
 }
 
 @media (width >= 600px) {
