@@ -27,7 +27,7 @@
         {
           "component": "tab",
           "name": "imageSection",
-          "label": "Image"
+          "label": "Content"
         },
         {
           "component": "reference",
@@ -95,11 +95,6 @@
           "description": "Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content."
         },
         {
-          "component": "tab",
-          "name": "contentSection",
-          "label": "Content"
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "content_eyebrow",
@@ -135,11 +130,6 @@
           "name": "content_description",
           "label": "Description",
           "value": ""
-        },
-        {
-          "component": "tab",
-          "name": "linkSection",
-          "label": "Links"
         },
         {
           "component": "container",

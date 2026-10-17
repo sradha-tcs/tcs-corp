@@ -1653,7 +1653,7 @@
       {
         "component": "tab",
         "name": "cardsTab",
-        "label": "Cards"
+        "label": "Display"
       },
       {
         "component": "boolean",
@@ -1948,11 +1948,6 @@
             "value": "eager"
           }
         ]
-      },
-      {
-        "component": "tab",
-        "name": "layoutTab",
-        "label": "Layout"
       },
       {
         "component": "select",
@@ -2303,11 +2298,6 @@
         "value": true
       },
       {
-        "component": "tab",
-        "name": "scrollTab",
-        "label": "Scroll"
-      },
-      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "scrollSnap",
@@ -2427,11 +2417,6 @@
         "label": "Reduced motion support",
         "value": true,
         "description": "No smooth scrolling for visitors who prefer reduced motion."
-      },
-      {
-        "component": "tab",
-        "name": "advancedTab",
-        "label": "Advanced"
       },
       {
         "component": "select",
@@ -5396,11 +5381,6 @@
         "max": 48
       },
       {
-        "component": "tab",
-        "name": "sourceTab",
-        "label": "Source"
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "source",
@@ -5552,11 +5532,6 @@
         ]
       },
       {
-        "component": "tab",
-        "name": "filtersTab",
-        "label": "Filters"
-      },
-      {
         "component": "aem-tag",
         "valueType": "string",
         "name": "primaryCategory",
@@ -5600,11 +5575,6 @@
         "label": "Enable advanced filter",
         "description": "The filter button opens the Advanced filter categories.",
         "value": true
-      },
-      {
-        "component": "tab",
-        "name": "advancedTab",
-        "label": "Advanced"
       },
       {
         "component": "container",
@@ -5819,11 +5789,6 @@
             }
           ]
         }
-      },
-      {
-        "component": "tab",
-        "name": "mappingTab",
-        "label": "Mapping"
       },
       {
         "component": "text",
@@ -8647,7 +8612,7 @@
       {
         "component": "tab",
         "name": "imageSection",
-        "label": "Image"
+        "label": "Content"
       },
       {
         "component": "reference",
@@ -8715,11 +8680,6 @@
         "description": "Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content."
       },
       {
-        "component": "tab",
-        "name": "contentSection",
-        "label": "Content"
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "content_eyebrow",
@@ -8755,11 +8715,6 @@
         "name": "content_description",
         "label": "Description",
         "value": ""
-      },
-      {
-        "component": "tab",
-        "name": "linkSection",
-        "label": "Links"
       },
       {
         "component": "container",
@@ -10225,11 +10180,6 @@
         }
       },
       {
-        "component": "tab",
-        "name": "sourceTab",
-        "label": "Source"
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "source",
@@ -10517,7 +10467,7 @@
       {
         "component": "tab",
         "name": "cardsTab",
-        "label": "Cards"
+        "label": "Display"
       },
       {
         "component": "boolean",
@@ -10812,11 +10762,6 @@
             "value": "eager"
           }
         ]
-      },
-      {
-        "component": "tab",
-        "name": "layoutTab",
-        "label": "Layout"
       },
       {
         "component": "select",
@@ -11167,11 +11112,6 @@
         "value": true
       },
       {
-        "component": "tab",
-        "name": "scrollTab",
-        "label": "Scroll"
-      },
-      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "scrollSnap",
@@ -11291,11 +11231,6 @@
         "label": "Reduced motion support",
         "value": true,
         "description": "No smooth scrolling for visitors who prefer reduced motion."
-      },
-      {
-        "component": "tab",
-        "name": "advancedTab",
-        "label": "Advanced"
       },
       {
         "component": "select",
@@ -14272,7 +14207,7 @@
       {
         "component": "tab",
         "name": "appearanceTab",
-        "label": "Appearance"
+        "label": "Style"
       },
       {
         "component": "select",
@@ -14593,11 +14528,6 @@
         "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
       },
       {
-        "component": "tab",
-        "name": "responsiveTab",
-        "label": "Responsive"
-      },
-      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "showDesktop",
@@ -14895,11 +14825,6 @@
         ]
       },
       {
-        "component": "tab",
-        "name": "spacingTab",
-        "label": "Spacing"
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "desktopTopSpacing",
@@ -15176,11 +15101,6 @@
         "label": "Use section padding",
         "value": false,
         "description": "On: no spacing of its own (the section's spacing only), so there's no double spacing."
-      },
-      {
-        "component": "tab",
-        "name": "advancedTab",
-        "label": "Advanced"
       },
       {
         "component": "boolean",
@@ -16545,11 +16465,6 @@
           "numberMax": 10,
           "customErrorMsg": "Maximum items must be between 1 and 10."
         }
-      },
-      {
-        "component": "tab",
-        "name": "ctaTab",
-        "label": "Call to action"
       },
       {
         "component": "text",
@@ -18146,7 +18061,7 @@
       {
         "component": "tab",
         "name": "propertiesTab",
-        "label": "Properties"
+        "label": "Content"
       },
       {
         "component": "select",
@@ -18184,11 +18099,6 @@
             "value": "fixed-width"
           }
         ]
-      },
-      {
-        "component": "tab",
-        "name": "accessibilityTab",
-        "label": "Accessibility"
       },
       {
         "component": "text",
@@ -18846,7 +18756,7 @@
       {
         "component": "tab",
         "name": "propertiesTab",
-        "label": "Properties"
+        "label": "Content"
       },
       {
         "component": "text",
@@ -18854,11 +18764,6 @@
         "name": "tabsId",
         "label": "ID",
         "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
-      },
-      {
-        "component": "tab",
-        "name": "accessibilityTab",
-        "label": "Accessibility"
       },
       {
         "component": "text",
@@ -20435,11 +20340,6 @@
         "description": "Leave empty if the image is decorative."
       },
       {
-        "component": "tab",
-        "name": "imageTab",
-        "label": "Image"
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "imageFormat",
@@ -20634,232 +20534,6 @@
             }
           ]
         }
-      },
-      {
-        "component": "tab",
-        "name": "styleTab",
-        "label": "Style"
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Layout",
-        "value": "",
-        "options": [
-          {
-            "name": "Image & Text",
-            "value": ""
-          },
-          {
-            "name": "Text split (title left, text right)",
-            "value": "no-image"
-          },
-          {
-            "name": "Background image",
-            "value": "background"
-          },
-          {
-            "name": "Card",
-            "value": "card"
-          }
-        ],
-        "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "bgColor",
-        "label": "BG Color",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "Grey",
-            "value": "grey"
-          },
-          {
-            "name": "Dark",
-            "value": "dark"
-          },
-          {
-            "name": "Dark green",
-            "value": "dark-green"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "textAlignment",
-        "label": "Text alignment",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Left",
-            "value": "text-left"
-          },
-          {
-            "name": "Center",
-            "value": "text-center"
-          },
-          {
-            "name": "Right",
-            "value": "text-right"
-          }
-        ],
-        "description": "Layout default: left, centered for Background image and when Image & Text has no image."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "verticalAlignment",
-        "label": "Vertical alignment",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Top",
-            "value": "valign-top"
-          },
-          {
-            "name": "Center",
-            "value": "valign-middle"
-          },
-          {
-            "name": "Bottom",
-            "value": "valign-bottom"
-          }
-        ],
-        "description": "How the text and the image (or the two text columns) line up. Layout default: center, top for Text split."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "titleSize",
-        "label": "Title size",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Medium (40px)",
-            "value": "title-m"
-          },
-          {
-            "name": "Large (48px)",
-            "value": "title-l"
-          },
-          {
-            "name": "Extra large (64px)",
-            "value": "title-xl"
-          },
-          {
-            "name": "Display (96px)",
-            "value": "title-display"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "titleWeight",
-        "label": "Title weight",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Regular",
-            "value": "title-regular"
-          },
-          {
-            "name": "Semibold",
-            "value": "title-semibold"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSize",
-        "label": "Description size",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Regular (18px)",
-            "value": "text-regular"
-          },
-          {
-            "name": "Large (24px)",
-            "value": "text-large"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "eyebrowStyle",
-        "label": "Eyebrow style",
-        "value": "",
-        "options": [
-          {
-            "name": "Brand",
-            "value": ""
-          },
-          {
-            "name": "Label (uppercase, grey)",
-            "value": "eyebrow-label"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "topSpacing",
-        "label": "Top spacing",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "Page header (extra space above)",
-            "value": "spacing-header"
-          }
-        ],
-        "description": "Page header: the larger space above a teaser that opens a page."
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "personalization",
-        "label": "Personalization",
-        "value": false
-      },
-      {
-        "component": "tab",
-        "name": "linksTab",
-        "label": "Links"
       },
       {
         "component": "boolean",
@@ -21106,11 +20780,6 @@
         ]
       },
       {
-        "component": "tab",
-        "name": "statsTab",
-        "label": "Stats"
-      },
-      {
         "component": "container",
         "name": "stats",
         "label": "Stats",
@@ -21132,6 +20801,227 @@
             "value": ""
           }
         ]
+      },
+      {
+        "component": "tab",
+        "name": "styleTab",
+        "label": "Style"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "options": [
+          {
+            "name": "Image & Text",
+            "value": ""
+          },
+          {
+            "name": "Text split (title left, text right)",
+            "value": "no-image"
+          },
+          {
+            "name": "Background image",
+            "value": "background"
+          },
+          {
+            "name": "Card",
+            "value": "card"
+          }
+        ],
+        "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "bgColor",
+        "label": "BG Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey",
+            "value": "grey"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Dark green",
+            "value": "dark-green"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textAlignment",
+        "label": "Text alignment",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Left",
+            "value": "text-left"
+          },
+          {
+            "name": "Center",
+            "value": "text-center"
+          },
+          {
+            "name": "Right",
+            "value": "text-right"
+          }
+        ],
+        "description": "Layout default: left, centered for Background image and when Image & Text has no image."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "verticalAlignment",
+        "label": "Vertical alignment",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Top",
+            "value": "valign-top"
+          },
+          {
+            "name": "Center",
+            "value": "valign-middle"
+          },
+          {
+            "name": "Bottom",
+            "value": "valign-bottom"
+          }
+        ],
+        "description": "How the text and the image (or the two text columns) line up. Layout default: center, top for Text split."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleSize",
+        "label": "Title size",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Medium (40px)",
+            "value": "title-m"
+          },
+          {
+            "name": "Large (48px)",
+            "value": "title-l"
+          },
+          {
+            "name": "Extra large (64px)",
+            "value": "title-xl"
+          },
+          {
+            "name": "Display (96px)",
+            "value": "title-display"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeight",
+        "label": "Title weight",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Regular",
+            "value": "title-regular"
+          },
+          {
+            "name": "Semibold",
+            "value": "title-semibold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSize",
+        "label": "Description size",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          },
+          {
+            "name": "Large (24px)",
+            "value": "text-large"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowStyle",
+        "label": "Eyebrow style",
+        "value": "",
+        "options": [
+          {
+            "name": "Brand",
+            "value": ""
+          },
+          {
+            "name": "Label (uppercase, grey)",
+            "value": "eyebrow-label"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "topSpacing",
+        "label": "Top spacing",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Page header (extra space above)",
+            "value": "spacing-header"
+          }
+        ],
+        "description": "Page header: the larger space above a teaser that opens a page."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "personalization",
+        "label": "Personalization",
+        "value": false
       },
       {
         "component": "tab",
@@ -21773,11 +21663,6 @@
         "value": ""
       },
       {
-        "component": "tab",
-        "name": "authorTab",
-        "label": "Author"
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "authorName",
@@ -21805,6 +21690,29 @@
         "label": "Designation & Location",
         "description": "e.g. name, designation, organisation.",
         "value": ""
+      },
+      {
+        "component": "container",
+        "name": "stats",
+        "label": "Stats",
+        "multi": true,
+        "fields": [
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "statLabel",
+            "label": "Stats Title",
+            "value": ""
+          },
+          {
+            "component": "richtext",
+            "valueType": "string",
+            "name": "statValue",
+            "label": "Stats Value",
+            "description": "A single line, e.g. 40%.",
+            "value": ""
+          }
+        ]
       },
       {
         "component": "tab",
@@ -21842,11 +21750,6 @@
         ]
       },
       {
-        "component": "tab",
-        "name": "showHideTab",
-        "label": "Show / Hide"
-      },
-      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "hideEyebrow",
@@ -21875,34 +21778,6 @@
         "label": "Hide Author Details",
         "description": "Hides the author, author image and designation & location",
         "value": false
-      },
-      {
-        "component": "tab",
-        "name": "statsTab",
-        "label": "Stats"
-      },
-      {
-        "component": "container",
-        "name": "stats",
-        "label": "Stats",
-        "multi": true,
-        "fields": [
-          {
-            "component": "richtext",
-            "valueType": "string",
-            "name": "statLabel",
-            "label": "Stats Title",
-            "value": ""
-          },
-          {
-            "component": "richtext",
-            "valueType": "string",
-            "name": "statValue",
-            "label": "Stats Value",
-            "description": "A single line, e.g. 40%.",
-            "value": ""
-          }
-        ]
       },
       {
         "component": "tab",
@@ -22535,6 +22410,35 @@
         "label": "Poster Image Alt Text"
       },
       {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "captions",
+        "label": "Captions File (WebVTT)",
+        "description": "Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "captionsLanguage",
+        "label": "Captions Language",
+        "description": "Language code, e.g. en, de, ja (default: the page language)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "captionsLabel",
+        "label": "Captions Name",
+        "description": "Shown in the player's captions menu, e.g. English"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "privacyMode",
+        "label": "Privacy-enhanced Mode",
+        "description": "YouTube: no cookies until the video plays (youtube-nocookie.com); Vimeo: do not track",
+        "value": true
+      },
+      {
         "component": "tab",
         "name": "playbackTab",
         "label": "Playback"
@@ -22612,37 +22516,6 @@
         "label": "Pause When Out of View",
         "description": "Autoplay and background video files pause when scrolled away and resume when back",
         "value": true
-      },
-      {
-        "component": "tab",
-        "name": "captionsTab",
-        "label": "Captions"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "captions",
-        "label": "Captions File (WebVTT)",
-        "description": "Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "captionsLanguage",
-        "label": "Captions Language",
-        "description": "Language code, e.g. en, de, ja (default: the page language)"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "captionsLabel",
-        "label": "Captions Name",
-        "description": "Shown in the player's captions menu, e.g. English"
-      },
-      {
-        "component": "tab",
-        "name": "displayTab",
-        "label": "Display"
       },
       {
         "component": "select",
@@ -22725,19 +22598,6 @@
         "valueType": "boolean",
         "name": "rounded",
         "label": "Rounded Corners",
-        "value": true
-      },
-      {
-        "component": "tab",
-        "name": "privacyTab",
-        "label": "Privacy"
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "privacyMode",
-        "label": "Privacy-enhanced Mode",
-        "description": "YouTube: no cookies until the video plays (youtube-nocookie.com); Vimeo: do not track",
         "value": true
       },
       {

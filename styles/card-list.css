@@ -727,6 +727,28 @@
   text-align: center;
 }
 
+/* editor only: an item without a card yet (renderEditorItems), selectable on the page */
+.card-list .list-editor-items {
+  margin: var(--space-600) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list .list-editor-item {
+  display: flex;
+  align-items: center;
+  min-height: 6rem;
+  padding: var(--space-600);
+  border: 0.125rem dashed var(--color-border-brand);
+  border-radius: var(--radius-l);
+  background: var(--color-bg-secondary);
+}
+
+.card-list .list-editor-hint {
+  margin: 0;
+  color: var(--color-text-neutral-secondary);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card-list .list-row-arrow {
     transition: none;

@@ -129,6 +129,16 @@ describe('fixed list', () => {
     assert.equal(card.title, 'The agentic bank');
     assert.equal(card.external, false);
   });
+  it('a page of the site without data is listed, titled from its path', () => {
+    const [card] = resolveFixedItems([{ href: '/content/tcs-corp/us/en/our-story' }], byPath, config(), { origin });
+    assert.equal(card.title, 'our story');
+    assert.equal(card.url, '/content/tcs-corp/us/en/our-story');
+    const [own] = resolveFixedItems([{ href: '/en/our-story', title: 'Our story' }], byPath, config(), { origin });
+    assert.equal(own.title, 'Our story');
+  });
+  it('an external URL without a title is left out', () => {
+    assert.deepEqual(resolveFixedItems([{ href: 'https://example.com/report' }], byPath, config(), { origin }), []);
+  });
   it('an external URL keeps its link text, and is marked external', () => {
     const [card] = resolveFixedItems([{ href: 'https://example.com/report', linkText: 'Partner report' }], byPath, config(), { origin });
     assert.equal(card.title, 'Partner report');

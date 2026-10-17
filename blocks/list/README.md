@@ -28,10 +28,20 @@ Files:
 
 ## For authors
 
-Add a **List** to a section and choose the **List source**. For a **Fixed list**, pick the pages in
-**Pages** (Source tab, in their order); add **List Items** to the block (content tree) to change a
-page's card (title, image, …) or to add links outside the site. Fields that don't apply to the
-chosen source or option are hidden.
+Add a **List** to a section and choose the **List source** (Content tab). For a **Fixed list**, pick
+the pages in **Pages** (under List source, in their order); add **List Items** to the block (**Add**
+on the selected List, or the content tree) to change a page's card (title, image, …) or to add
+links outside the site. Fields that don't apply to the chosen source or option are hidden.
+
+The dialog has three tabs: **Content** (title, CTA, list label, Component ID, then List source and
+its fields), **Display** (cards, layout per breakpoint, scrolling, empty state, analytics, style
+options) and **Additional**. Universal Editor shows tabs only while they fit on one line (else it
+collapses all of them into a dropdown), so blocks keep to three short tabs.
+
+In the editor, a List Item without a card (one just added with **Add**, before it has a link, or a
+List Item of a Child or Tagged pages list) is shown as a dashed placeholder after the cards, so it
+can be selected and edited on the page. A page of **Pages** whose data can't be read (not in the
+query index, or not readable in the editor) is still listed, titled from its path.
 
 | Source | What it lists |
 |---|---|
@@ -347,7 +357,9 @@ are exposed.
 `listPrevious` (Previous items), `listNext` (Next items), `opensInNewTab` ((opens in a new tab)),
 `explore` (Explore), `download` (Download), `listEmpty` (There are no items to show.),
 `listEditorHint` (Set up the list in its properties: {problems}.), `listEditorPages` (The pages
-show on the published page (from the query index).), `minutesShort` ({n}m), `list` (List).
+show on the published page (from the query index).), `listItemEditorHint` (This List Item isn’t
+shown yet: choose a page or a link in its Link tab.), `listItemSourceHint` (List Items are shown when
+the List source is Fixed list.), `minutesShort` ({n}m), `list` (List).
 
 ## Backward compatibility
 

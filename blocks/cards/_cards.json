@@ -71,31 +71,16 @@
         {
           "component": "tab",
           "name": "cardsTab",
-          "label": "Cards"
+          "label": "Display"
         },
         {
           "...": "../../models/_card-list.json#/fields/cards"
         },
         {
-          "component": "tab",
-          "name": "layoutTab",
-          "label": "Layout"
-        },
-        {
           "...": "../../models/_card-list.json#/fields/layout"
         },
         {
-          "component": "tab",
-          "name": "scrollTab",
-          "label": "Scroll"
-        },
-        {
           "...": "../../models/_card-list.json#/fields/scroll"
-        },
-        {
-          "component": "tab",
-          "name": "advancedTab",
-          "label": "Advanced"
         },
         {
           "component": "select",

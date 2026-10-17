@@ -79,6 +79,35 @@
           "label": "Poster Image Alt Text"
         },
         {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "captions",
+          "label": "Captions File (WebVTT)",
+          "description": "Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "captionsLanguage",
+          "label": "Captions Language",
+          "description": "Language code, e.g. en, de, ja (default: the page language)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "captionsLabel",
+          "label": "Captions Name",
+          "description": "Shown in the player's captions menu, e.g. English"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "privacyMode",
+          "label": "Privacy-enhanced Mode",
+          "description": "YouTube: no cookies until the video plays (youtube-nocookie.com); Vimeo: do not track",
+          "value": true
+        },
+        {
           "component": "tab",
           "name": "playbackTab",
           "label": "Playback"
@@ -156,37 +185,6 @@
           "label": "Pause When Out of View",
           "description": "Autoplay and background video files pause when scrolled away and resume when back",
           "value": true
-        },
-        {
-          "component": "tab",
-          "name": "captionsTab",
-          "label": "Captions"
-        },
-        {
-          "component": "aem-content",
-          "valueType": "string",
-          "name": "captions",
-          "label": "Captions File (WebVTT)",
-          "description": "Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "captionsLanguage",
-          "label": "Captions Language",
-          "description": "Language code, e.g. en, de, ja (default: the page language)"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "captionsLabel",
-          "label": "Captions Name",
-          "description": "Shown in the player's captions menu, e.g. English"
-        },
-        {
-          "component": "tab",
-          "name": "displayTab",
-          "label": "Display"
         },
         {
           "component": "select",
@@ -269,19 +267,6 @@
           "valueType": "boolean",
           "name": "rounded",
           "label": "Rounded Corners",
-          "value": true
-        },
-        {
-          "component": "tab",
-          "name": "privacyTab",
-          "label": "Privacy"
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "privacyMode",
-          "label": "Privacy-enhanced Mode",
-          "description": "YouTube: no cookies until the video plays (youtube-nocookie.com); Vimeo: do not track",
           "value": true
         },
         {

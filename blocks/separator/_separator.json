@@ -160,7 +160,7 @@
         {
           "component": "tab",
           "name": "appearanceTab",
-          "label": "Appearance"
+          "label": "Style"
         },
         {
           "component": "select",
@@ -481,11 +481,6 @@
           "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
         },
         {
-          "component": "tab",
-          "name": "responsiveTab",
-          "label": "Responsive"
-        },
-        {
           "component": "boolean",
           "valueType": "boolean",
           "name": "showDesktop",
@@ -783,11 +778,6 @@
           ]
         },
         {
-          "component": "tab",
-          "name": "spacingTab",
-          "label": "Spacing"
-        },
-        {
           "component": "select",
           "valueType": "string",
           "name": "desktopTopSpacing",
@@ -1064,11 +1054,6 @@
           "label": "Use section padding",
           "value": false,
           "description": "On: no spacing of its own (the section's spacing only), so there's no double spacing."
-        },
-        {
-          "component": "tab",
-          "name": "advancedTab",
-          "label": "Advanced"
         },
         {
           "component": "boolean",

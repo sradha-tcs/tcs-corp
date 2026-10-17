@@ -171,6 +171,9 @@ export function resolveTagPages(pages, {
 
 /* normalization */
 
+/** a title from a page path, for pages without one: its last segment (our-story: our story) */
+const titleOfPath = (path) => path.split('/').pop().replace(/-/g, ' ');
+
 const firstColumn = (page, columns) => columns.map((column) => text(columnOf(page, column)))
   .find(Boolean) || '';
 
@@ -193,7 +196,7 @@ export function normalizePageToCard(page, config, context = {}) {
     sourceType,
     sourcePath: path,
     url: resolveUrl(path),
-    title: firstColumn(page, PAGE_MAPPING.title) || path.split('/').pop().replace(/-/g, ' '),
+    title: firstColumn(page, PAGE_MAPPING.title) || titleOfPath(path),
     description: firstColumn(page, PAGE_MAPPING.description),
     image,
     imageAlt: firstColumn(page, PAGE_MAPPING.imageAlt),
@@ -305,6 +308,9 @@ export function resolveFixedItems(items, pagesByPath, config, context = {}) {
     else {
       base = linkCard(internal ? resolveUrl(local) : href, config, origin);
       base.sourcePath = internal ? normalizePath(local) : '';
+      // a page of the site without data (not indexed, or not readable in the editor) is still
+      // listed, titled from its path as index pages without a title are
+      if (internal) base.title = titleOfPath(base.sourcePath);
     }
     const card = applyOverrides(base, item);
     card.external = isExternal(card.url, origin);
