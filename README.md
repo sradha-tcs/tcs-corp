@@ -1,29 +1,40 @@
-# Home page content package
+# Content packages
+
+> **17 October 2026: install the new versions.** The packages before them stored repeating content as composite multifields, which AEM didn't render on the published pages. That content is now item children, as authors add it with Add (PR #90, merged). It covers Hero and Page Header CTAs, Teaser links and stats, Testimonial stats, Anchor List links, Filter List tags, categories and pages, Footer links, and List pages. Current versions:
+>
+> - `block-library/tcs-corp-block-library-content-1.0.1.zip`: block library and curated design pages (replaces 1.0.0)
+> - `curated-design-pages/tcs-corp-curated-design-pages-content-1.0.1.zip`: curated design pages only (not needed if you install the block library package)
+> - `home-content/tcs-corp-home-content-1.0.3.zip`: Home page (replaces 1.0.2)
+> - `what-we-do/tcs-corp-what-we-do-content-1.0.1.zip` and `who-are-we/tcs-corp-who-are-we-content-1.0.2.zip`: the earlier single pages (superseded by the curated design pages)
+>
+> After installing, preview and publish the pages again. The older zips below are the previous versions.
+
+## Home page
 
 Downloads for the TCS Home page implementation (sample content):
 
-- `home-content/tcs-corp-home-content-1.0.2.zip`: AEM content package (Package Manager, Upload Package, Install). 1.0.2 re-authors the "Ideas shaping impact" (Insight & Opinion) section of the Home page after the Figma design, with images on its List Items, and adds two pages: Multimodal AI for evidence-based engineering assurance, and Audience growth in a stagnant streaming market
+- `home-content/tcs-corp-home-content-1.0.3.zip`: AEM content package (Package Manager, Upload Package, Install). 1.0.3 stores the CTAs as Hero CTA items and the filters as Filter List items (PR #90). 1.0.2 re-authored the "Ideas shaping impact" (Insight & Opinion) section of the Home page after the Figma design, with images on its List Items, and adds two pages: Multimodal AI for evidence-based engineering assurance, and Audience growth in a stagnant streaming market
 - `home-content/metadata.csv`: the Metadata sheet (/content/tcs-corp/us/en/metadata), 43 rows in its 33 columns (1.0.2: the two new pages, and the Agentic AI in HR publish date 2026-10-12)
 - `home-content/authors.csv`: the Authors sheet (/content/tcs-corp/us/en/data/authors)
 - `home-content/HOME-IMPLEMENTATION-REPORT.pdf`: implementation report and go-live steps
-- `home-content/tcs-corp-home-content-1.0.1.zip`: the previous package
+- `home-content/tcs-corp-home-content-1.0.2.zip`, `1.0.1.zip`: the previous packages
 
 This branch holds files only (no site code).
 - `home-content/metadata-new-rows.tsv`: the two new rows of the Metadata sheet (1.0.2), tab-separated, to paste into the sheet in AEM (select the first empty row, paste); also change the publish-date of the Agentic AI in HR row to 2026-10-12
 
 ## What We Do page (language master)
 
-- `what-we-do/tcs-corp-what-we-do-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install): /content/tcs-corp/language-master/en/what-we-do, 8 supporting pages under language-master/en/dummy-pages, 19 DAM assets under /content/dam/tcs-corp/what-we-do and 13 capability tags (tcs-corp:capability/..., merged). Built from the Figma L1 what we do designs and the temp-design-pages/what-we-do template.
+- `what-we-do/tcs-corp-what-we-do-content-1.0.1.zip` (1.0.1: item children; 1.0.0 the previous version): AEM content package (Package Manager, Upload Package, Install): /content/tcs-corp/language-master/en/what-we-do, 8 supporting pages under language-master/en/dummy-pages, 19 DAM assets under /content/dam/tcs-corp/what-we-do and 13 capability tags (tcs-corp:capability/..., merged). Built from the Figma L1 what we do designs and the temp-design-pages/what-we-do template.
 
 ## Who Are We page (language master)
 
-- `who-are-we/tcs-corp-who-are-we-content-1.0.1.zip`: AEM content package (Package Manager, Upload Package, Install): /content/tcs-corp/language-master/en/who-are-we, 8 supporting pages under language-master/en/dummy-pages (our-story, our-people, careers, learning-and-growth, inclusion-and-belonging, research-and-innovation, formula-e-sponsorship, marathon-sponsorship), 13 DAM assets under /content/dam/tcs-corp/who-are-we and 5 topic tags (tcs-corp:topic/people-culture, learning, inclusion, research-innovation, heritage; merged). Built from the Figma who are we designs and the temp-design-pages/who-are-we template. The "Explore what we do" hero button links to the What We Do page: install its package too. Needs the code of PRs #87 and #89 (merged). 1.0.1: the Values list pages are in the new Pages list (a Page per item, PR #89); 1.0.0 is the previous version.
+- `who-are-we/tcs-corp-who-are-we-content-1.0.2.zip` (1.0.2: item children, PR #90): AEM content package (Package Manager, Upload Package, Install): /content/tcs-corp/language-master/en/who-are-we, 8 supporting pages under language-master/en/dummy-pages (our-story, our-people, careers, learning-and-growth, inclusion-and-belonging, research-and-innovation, formula-e-sponsorship, marathon-sponsorship), 13 DAM assets under /content/dam/tcs-corp/who-are-we and 5 topic tags (tcs-corp:topic/people-culture, learning, inclusion, research-innovation, heritage; merged). Built from the Figma who are we designs and the temp-design-pages/who-are-we template. The "Explore what we do" hero button links to the What We Do page: install its package too. Needs the code of PRs #87 and #89 (merged). 1.0.1: the Values list pages are in the new Pages list (a Page per item, PR #89); 1.0.0 is the previous version.
 
 ## Curated design pages (language master) — current
 
 Replaces the What We Do and Who We Are packages above (install only this one).
 
-- `curated-design-pages/tcs-corp-curated-design-pages-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Contents:
+- `curated-design-pages/tcs-corp-curated-design-pages-content-1.0.1.zip` (1.0.0: the previous version): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The 11 pages under `/content/tcs-corp/language-master/en/curated-design-pages`, plus a root page listing them.
   - 119 supporting pages under `language-master/en/dummy-pages`. Each page's content is replaced; other pages are kept.
   - 58 new DAM assets under `/content/dam/tcs-corp/curated-design-pages`, and 47 reused assets (merged).
@@ -38,7 +49,7 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Contents:
+- `block-library/tcs-corp-block-library-content-1.0.1.zip` (1.0.0: the previous version): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The block library under `/content/tcs-corp/language-master/en/block-library`: 159 pages covering every block and its variations, 502 labelled examples.
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.

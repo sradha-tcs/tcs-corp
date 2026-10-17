@@ -1,6 +1,6 @@
 # TCS.com block library, curated design pages and delivery package — report
 
-Package `tcs-corp-block-library-content-1.0.0.zip` · 17 October 2026
+Package `tcs-corp-block-library-content-1.0.1.zip` · 17 October 2026
 
 **Overall status: COMPLETE WITH LIMITATIONS.** Everything is built, authored and validated in a local preview at 1440, 1024 and 402px:
 
@@ -13,6 +13,13 @@ What remains:
 
 - **Not executed:** installing in AEM author (no author access), and a sample video file (no video encoder available).
 - **Retrieval dependency:** the dynamic lists only return pages once language-master content is rolled out to a locale and published (as for the curated pages).
+
+---
+
+## Version history
+
+- **1.0.1** (17 October 2026). Repeating content is now stored as item children, the way authors add it with Add in Universal Editor (PR #90). These are: Hero and Page Header CTAs, Teaser links and stats, Testimonial stats, Anchor List links, Filter List tags, categories and listed / featured pages, Footer links, and the List pages (as List Items). In 1.0.0 these were composite multifield nodes, which AEM didn't render on the published pages: the lists were empty, and a Page Header with CTAs was missing. Install tcs-corp-block-library-content-1.0.1.zip over 1.0.0; each page is replaced. The placeholders sheet has one new key, `itemEditorHint` (the editor's placeholder for an item that has no content yet). It needs the code of PR #90 (merged).
+- **1.0.0** (17 October 2026). First version.
 
 ---
 

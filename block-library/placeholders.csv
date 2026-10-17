@@ -27,6 +27,7 @@ Key,Text,Description,Category
 "footerLinks","Footer links","Used by footer","footer"
 "formSuccess","Thank you, your details were sent.","Used by form-variations","form-variations"
 "goBack","Go back","Used by scripts: scripts","scripts"
+"itemEditorHint","Not shown yet: fill in this item’s properties.","Used by decorators: editor-item-decorator","decorators"
 "itemLinkLabel","{text}: {title}","Used by table-list; keep {text}, {title}","table-list"
 "linkCopied","Link copied to clipboard","Used by decorators: article-meta-decorator","decorators"
 "list","List","Used by decorators: card-list-decorator","decorators"

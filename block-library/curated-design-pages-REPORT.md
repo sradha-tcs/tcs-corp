@@ -1,6 +1,6 @@
 # TCS.com curated design pages — implementation report
 
-Package `tcs-corp-curated-design-pages-content-1.0.0.zip` · 17 October 2026
+Package `tcs-corp-curated-design-pages-content-1.0.1.zip` · 17 October 2026
 
 **Overall status: COMPLETE WITH LIMITATIONS**
 
@@ -43,6 +43,13 @@ The List, Filter List and query-index code only lists pages of the **current loc
 They work once the content is **rolled out to a locale** (for example us/en, published at `/en`) and published, so the pages are in that locale's query index. Fixed lists read the pages' own data in the editor (from AEM author).
 
 Validation was done on a local copy that simulates rollout to `/en`, with a matching query index, taxonomy and Authors sheet. Every dynamic section returned the intended pages.
+
+---
+
+## Version history
+
+- **1.0.1** (17 October 2026). Repeating content is now stored as item children, the way authors add it with Add in Universal Editor (PR #90). These are: Hero and Page Header CTAs, Teaser links and stats, Testimonial stats, Anchor List links, Filter List tags, categories and listed / featured pages, Footer links, and the List pages (as List Items). In 1.0.0 these were composite multifield nodes, which AEM didn't render on the published pages: the lists were empty, and a Page Header with CTAs was missing. Install tcs-corp-curated-design-pages-content-1.0.1.zip over 1.0.0; each page is replaced. The placeholders sheet has one new key, `itemEditorHint` (the editor's placeholder for an item that has no content yet). It needs the code of PR #90 (merged).
+- **1.0.0** (17 October 2026). First version.
 
 ---
 
