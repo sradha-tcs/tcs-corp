@@ -33,3 +33,17 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 - `curated-design-pages/taxonomy.csv`, `tags.csv`: taxonomy page rows and the tag register.
 - `curated-design-pages/placeholders.csv`: the placeholders sheet (every UI text key).
 - `curated-design-pages/data-*.csv`: data sheets (Authors, Locations, Partners, Social Links, Media Contacts).
+
+## Block library + curated design pages (language master) — current, install this one
+
+Contains the curated design pages package above, so install only this one.
+
+- `block-library/tcs-corp-block-library-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Contents:
+  - The block library under `/content/tcs-corp/language-master/en/block-library`: 159 pages covering every block and its variations, 502 labelled examples.
+  - The 11 curated design pages.
+  - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
+  - 118 DAM assets (71 new, 47 reused, merged).
+  - 81 `tcs-corp` tags (33 new, merged).
+- `block-library/REPORT.md`: block library report. `block-library/curated-design-pages-REPORT.md`: the curated pages report.
+- `block-library/block-library-pages.csv`, `block-library-variations.csv`: inventory of the library pages and of every labelled example.
+- `block-library/metadata-language-master.csv`, `metadata-en-rollout.csv`, `taxonomy.csv`, `tags.csv`, `placeholders.csv`, `data-*.csv`: the sheets.
