@@ -42,7 +42,7 @@ const ITEM_MATCHERS = {
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
 
 /** the block's property names (normalized), to tell property rows from item rows */
-const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pages', 'parentpath',
+const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
   'parentusecurrentpage', 'directchildrenonly', 'childdepth', 'rootpath', 'tagsusecurrentpage',
   'tags', 'tagmatch', 'includedescendants', 'maxdepth', 'orderby', 'sortorder', 'maxitems']);
 const PATH_PROPERTIES = ['parentpath', 'rootpath'];
@@ -100,7 +100,7 @@ export function readBlockConfig(block) {
   const legacy = !Object.keys(props).length && rows.every((row) => row.children.length <= 1);
   const raw = {};
   Object.entries(props).forEach(([key, cell]) => {
-    if (key === 'pages') return;
+    if (key === 'pageitems' || key === 'pages') return;
     if (PATH_PROPERTIES.includes(key)) raw[key] = pathOf(cell);
     else if (LIST_PROPERTIES.includes(key)) raw[key] = readTagValues(cell).join(',');
     else raw[key] = textOf(cell);
@@ -138,7 +138,8 @@ export function readBlockConfig(block) {
   // Pages as AEM paths (a value delivered as text isn't rewritten) are published paths on the
   // site; in the editor they stay AEM paths
   const { contentRoot } = getLocale();
-  const pages = linkPathsOf(props.pages)
+  // Pages: a page per item (composite multifield); lists made before: the multi-value pages
+  const pages = [...linkPathsOf(props.pageitems), ...linkPathsOf(props.pages)]
     .map((path) => (contentRoot ? path : toPublishedPath(path)));
   const items = legacy ? [] : mergeFixedItems(pages, listItems, keyOf);
   return {
