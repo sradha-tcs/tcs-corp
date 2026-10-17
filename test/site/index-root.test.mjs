@@ -79,3 +79,19 @@ describe('pageLink', () => {
     assert.equal(pageLink('/language-master/en/dummy-pages/careers', '/language-master/en/x'), '/language-master/en/dummy-pages/careers');
   });
 });
+
+describe('the language master root page', () => {
+  it('is under review on author and on the site', () => {
+    ['/content/tcs-corp/language-master/en.html', '/content/tcs-corp/language-master/en',
+      '/language-master/en', '/language-master/en/', '/language-master/en/index',
+      '/language-master/en.plain.html'].forEach((page) => {
+      assert.equal(indexRoot(page), '/language-master/en', page);
+      assert.equal(localeSheetPath('taxonomy', page), '/language-master/en/taxonomy.json', page);
+    });
+    assert.equal(localePagePath('references/nav', '/content/tcs-corp/language-master/en.html'), '/content/tcs-corp/language-master/en/references/nav');
+  });
+  it('a path that only starts like it is not', () => {
+    assert.equal(indexRoot('/content/tcs-corp/language-master/en-gb.html'), '/en');
+    assert.equal(indexRoot('/language-master/english'), '/en');
+  });
+});

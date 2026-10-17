@@ -119,7 +119,9 @@ export const REVIEW_PAGES = ['references/'];
  */
 const reviewRootOf = (pathname) => {
   const siteRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
-  const path = (siteRoot ? pathname.slice(siteRoot.length) : pathname).toLowerCase();
+  // the review root's own page too (/content/tcs-corp/language-master/en.html on author)
+  const path = (siteRoot ? pathname.slice(siteRoot.length) : pathname).toLowerCase()
+    .replace(/(\.plain)?\.html$/, '').replace(/\/index$/, '');
   return REVIEW_ROOTS.find((root) => startsWithFolder(path, root)) || '';
 };
 
