@@ -212,15 +212,20 @@ function buildHamburger(nav, navSections) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  t = await getPlaceholders();
   // load nav as fragment: the Navigation page property of the page or, inherited, of its nearest
-  // parent page up to Home (or the metadata sheet's nav column), else the locale's references/nav
-  const navPath = resolvePagePath(await getInheritedMetadata('nav'), 'references/nav');
-  // a configured Navigation page that can't be loaded (unpublished, moved) falls back to the
-  // locale's references/nav, so the page keeps a header
+  // parent page up to Home (or the metadata sheet's nav column), else the locale's references/nav.
+  // A configured Navigation page that can't be loaded (unpublished, moved) falls back to the
+  // locale's references/nav, so the page keeps a header. The default nav starts loading right
+  // away (most pages use it) while the parent pages are read, in parallel with the placeholders.
   const defaultPath = resolvePagePath('', 'references/nav');
-  const fragment = await loadFragment(navPath)
-    || (navPath !== defaultPath ? await loadFragment(defaultPath) : null);
+  const defaultFragment = loadFragment(defaultPath);
+  const navFragment = getInheritedMetadata('nav').then(async (value) => {
+    const navPath = resolvePagePath(value, 'references/nav');
+    if (navPath === defaultPath) return defaultFragment;
+    return await loadFragment(navPath) || defaultFragment;
+  });
+  const [placeholders, fragment] = await Promise.all([getPlaceholders(), navFragment]);
+  t = placeholders;
 
   // decorate nav DOM
   block.textContent = '';

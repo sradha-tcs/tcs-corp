@@ -380,6 +380,22 @@ async function loadTemplate(main) {
 }
 
 /**
+ * Starts loading the data the page's blocks share (each loads once and is cached) when the lazy
+ * phase begins, so the blocks below the first section don't each wait for it in turn: the query
+ * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. (Not in
+ * the eager phase: it would compete with the LCP image.)
+ * @param {Element} main
+ */
+function prefetchData(main) {
+  if (!main?.querySelector('.list, .filter-list, .conversation-canvas')) return;
+  import('../utils/query-index.js').then(({ getPages }) => getPages());
+  import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
+  if (main.querySelector('.list')) {
+    import('../utils/redirects.js').then(({ loadRedirects }) => loadRedirects());
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -429,18 +445,23 @@ function autolinkModals(doc) {
 
 async function loadLazy(doc) {
   autolinkModals(doc);
-  loadHeader(doc.querySelector('header'));
-
   const main = doc.querySelector('main');
+  prefetchData(main);
+  loadHeader(doc.querySelector('header'));
+  // the footer loads alongside the sections, not after them; it shows once they have loaded, so
+  // it never appears above content still loading and moves (no layout shift)
+  const footer = doc.querySelector('footer');
+  if (footer) footer.style.display = 'none';
+  loadFooter(footer);
+
   await loadSections(main);
+  if (footer) footer.style.display = '';
   trackBlocks(main);
   addErrorBackButton(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-
-  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
