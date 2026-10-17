@@ -47,6 +47,12 @@
     ]
   },
   {
+    "id": "anchor-list",
+    "components": [
+      "anchor-list-item"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
@@ -74,6 +80,20 @@
     ]
   },
   {
+    "id": "filter-list",
+    "components": [
+      "filter-list-tag",
+      "filter-list-category",
+      "filter-list-page"
+    ]
+  },
+  {
+    "id": "footer",
+    "components": [
+      "footer-link"
+    ]
+  },
+  {
     "id": "form-variations",
     "components": [
       "field-text",
@@ -92,9 +112,21 @@
     ]
   },
   {
+    "id": "hero",
+    "components": [
+      "hero-cta"
+    ]
+  },
+  {
     "id": "list",
     "components": [
       "list-item"
+    ]
+  },
+  {
+    "id": "page-header",
+    "components": [
+      "page-header-cta"
     ]
   },
   {
@@ -148,6 +180,19 @@
     "id": "tabs-block",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "teaser",
+    "components": [
+      "teaser-link",
+      "teaser-stat"
+    ]
+  },
+  {
+    "id": "testimonial",
+    "components": [
+      "testimonial-stat"
     ]
   },
   {

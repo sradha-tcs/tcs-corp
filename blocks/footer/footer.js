@@ -2,11 +2,13 @@ import { loadFragment } from '../fragment/fragment.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildSocialLinks } from '../../decorators/social-links-decorator.js';
+import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { getSocialLinks } from '../../utils/data.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
-import { readLinkItems } from '../../utils/links.js';
+import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { resolvePagePath } from '../../utils/site.js';
 
@@ -17,7 +19,9 @@ import { resolvePagePath } from '../../utils/site.js';
  * - The authored Footer block on that footer page (blocks/footer/_footer.json): the
  *   Conversation Canvas Page (a page with the conversation-canvas block, loaded as a fragment)
  *   above the bottom bar with the Copyright Text (rich text; {year} becomes the current year)
- *   and the Link List (Link Title, Link Path, Link Type: Default / Open in new window).
+ *   and the links: Footer Link items (footer-link, added with Add: Link Title, Link Path, Link
+ *   Type Default / Open in new window), after the ones of the Link List multifield authored
+ *   before them.
  * Figma "Footer - Desktop / Tablet / Mobile" (2496-91965, 2496-94560, 2496-94602).
  */
 
@@ -30,21 +34,27 @@ function fillYear(el) {
   }
 }
 
-function buildLinkList(cell, label) {
-  const items = readLinkItems(cell);
-  if (!items.length) return null;
+function buildLinkList(cell, rows, label, hint) {
+  const rowItems = readLinkRows(rows);
+  const items = [...readLinkItems(cell), ...rowItems];
+  const rendered = new Set(rowItems.map(({ row }) => row));
+  // in the editor, Footer Link items without a link yet
+  const pending = buildEditorItems(rows.filter((row) => !rendered.has(row)), hint, 'li');
+  if (!items.length && !pending.length) return null;
   const nav = document.createElement('nav');
   nav.className = 'footer-links';
   nav.setAttribute('aria-label', label);
   const list = document.createElement('ul');
-  items.forEach(({ link, newWindow }) => {
+  items.forEach(({ link, newWindow, row }) => {
     // footer links are plain links, not the buttons standalone content links become
     removeButtonDecoration(link);
     setLinkTarget(link, newWindow);
     const li = document.createElement('li');
+    if (row) moveInstrumentation(row, li);
     li.append(link);
     list.append(li);
   });
+  list.append(...pending);
   nav.append(list);
   return nav;
 }
@@ -63,13 +73,16 @@ async function buildCanvas(cell) {
 }
 
 /**
- * The authored Footer block: rows Conversation Canvas Page, Copyright Text and Link List.
+ * The authored Footer block: rows Conversation Canvas Page, Copyright Text and Link List, then
+ * the Footer Link items.
  * @param {Element} block
  */
 async function decorateFooterBar(block) {
-  const [canvasRow, copyrightRow, linksRow] = [...block.children];
-  const [t, canvas] = await Promise.all([
-    getPlaceholders(), buildCanvas(canvasRow?.firstElementChild),
+  const linkRows = itemRows(block, ['footer-link'], FIELD_ROW_ITEM);
+  const [canvasRow, copyrightRow, linksRow] = [...block.children]
+    .filter((row) => !linkRows.includes(row));
+  const [t, canvas, hint] = await Promise.all([
+    getPlaceholders(), buildCanvas(canvasRow?.firstElementChild), editorItemHint(linkRows),
   ]);
   const bar = document.createElement('div');
   bar.className = 'footer-bar';
@@ -80,7 +93,7 @@ async function decorateFooterBar(block) {
     fillYear(copyright);
     bar.append(copyright);
   }
-  const links = buildLinkList(linksRow?.firstElementChild, t('footerLinks', 'Footer links'));
+  const links = buildLinkList(linksRow?.firstElementChild, linkRows, t('footerLinks', 'Footer links'), hint);
   if (links) bar.append(links);
 
   block.replaceChildren(...[canvas, bar].filter(Boolean));

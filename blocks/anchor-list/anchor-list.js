@@ -1,5 +1,7 @@
 import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
+import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
 import { isEditing, scrollBehavior } from '../../utils/environment.js';
 import { readMultifieldItems } from '../../utils/multifield.js';
 import { isOn, readProperties } from '../../utils/properties.js';
@@ -10,7 +12,15 @@ import { getPlaceholders } from '../../utils/placeholders.js';
  * the section whose Anchor name (Section properties) matches, or to an element with that id.
  * The link of the section in view is marked current (Figma "Chapter Nav"). With Sticky, the
  * list is pinned to the top of the screen once it scrolls up to it, for the rest of the page.
+ * The links are Anchor Link items (anchor-list-item, added with Add), after the ones of the Links
+ * multifield authored before them.
  */
+
+// the cells of an Anchor Link item: its dialog tab, Link Title and Anchor Name
+const ITEM_LAYOUT = [null, 'label', 'anchorName'];
+
+/** an anchor name may be typed with or without "#"; it falls back to the title */
+const anchorOf = (label, anchor) => toClassName((anchor || label || '').replace(/^#/, ''));
 
 /**
  * Reads the Links composite multifield: items are runs of elements between <hr>s (or list
@@ -21,9 +31,17 @@ function readAnchors(cell) {
   return readMultifieldItems(cell).map((item) => {
     const texts = item.map((el) => el.textContent.trim()).filter(Boolean);
     const [label, anchor] = texts;
-    // an anchor name may be typed with or without "#"; fall back to the title
-    return { label, anchor: toClassName((anchor || label || '').replace(/^#/, '')) };
+    return { label, anchor: anchorOf(label, anchor) };
   }).filter(({ label, anchor }) => label && anchor);
+}
+
+/** reads Anchor Link item rows */
+function readAnchorRows(rows) {
+  return rows.map((row) => {
+    const [label, anchor] = withoutTabCells([...row.children], ITEM_LAYOUT)
+      .slice(-2).map((cell) => cell.textContent.trim());
+    return { label, anchor: anchorOf(label, anchor), row };
+  });
 }
 
 const targetOf = (anchor) => document.getElementById(anchor);
@@ -78,7 +96,13 @@ function pinWhenScrolled(block) {
 export default async function decorate(block) {
   const t = await getPlaceholders();
   const props = readProperties(block);
-  const anchors = readAnchors(props.anchors);
+  const rows = itemRows(block, ['anchor-list-item'], KEY_VALUE_ITEM);
+  const items = readAnchorRows(rows);
+  const complete = ({ label, anchor }) => !!(label && anchor);
+  const anchors = [...readAnchors(props.anchors), ...items.filter(complete)];
+  // in the editor, Anchor Link items without a title yet
+  const incomplete = items.filter((item) => !complete(item)).map(({ row }) => row);
+  const pending = buildEditorItems(incomplete, await editorItemHint(rows), 'li');
   block.classList.toggle('sticky', isOn(props.sticky));
 
   const nav = document.createElement('nav');
@@ -103,8 +127,9 @@ export default async function decorate(block) {
     list.scrollTo({ left, behavior: scrollBehavior() });
   };
 
-  const links = anchors.map(({ label, anchor }) => {
+  const links = anchors.map(({ label, anchor, row }) => {
     const li = document.createElement('li');
+    if (row) moveInstrumentation(row, li);
     const a = document.createElement('a');
     a.className = 'anchor-list-link';
     a.href = `#${anchor}`;
@@ -128,6 +153,7 @@ export default async function decorate(block) {
     list.append(li);
     return a;
   });
+  list.append(...pending);
   nav.append(list);
   block.replaceChildren(nav);
   if (!links.length) return;

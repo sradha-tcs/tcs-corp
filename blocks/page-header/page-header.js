@@ -1,12 +1,15 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
 import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
+import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import { getAuthor } from '../../utils/data.js';
-import { readLinkItems } from '../../utils/links.js';
+import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { optionOf, readProperties } from '../../utils/properties.js';
@@ -18,7 +21,8 @@ import { resolveTags } from '../../utils/taxonomy.js';
  * Description, Tags (labels from the locale's taxonomy), content-type, publish-date,
  * reading-time, author-id (name, image, designation and LinkedIn from the locale's Authors
  * data sheet, or the Author metadata), featured-image and listen-link. Share and download come
- * from code; only the Layout and the CTA List are authored. Layouts (TCS DS Figma
+ * from code; only the Layout and the CTAs (CTA items, page-header-cta; the CTA List multifield
+ * before them) are authored. Layouts (TCS DS Figma
  * "Secondary Page Header" / "L3 Header"):
  * - landing: content type eyebrow, large title, description and CTAs; the featured image
  * - secondary: content type eyebrow above both columns; title | description and CTAs
@@ -55,15 +59,24 @@ function buildDescription(text) {
   return el;
 }
 
-/** the CTA List: each CTA in its CTA Link Style (Text link, Primary or Secondary Button) */
-function buildCtas(cell) {
+/**
+ * The CTAs (the CTA List multifield's, then the CTA items), each in its CTA Link Style (Text
+ * link, Primary or Secondary Button)
+ */
+function buildCtas(cell, rows, hint) {
   const ctas = document.createElement('div');
   ctas.className = 'page-header-ctas';
-  readLinkItems(cell).forEach(({ link, newWindow, values }) => {
+  const items = readLinkRows(rows);
+  [...readLinkItems(cell), ...items].forEach(({
+    link, newWindow, values, row,
+  }) => {
     const type = values.find((value) => CTA_STYLES.includes(value)) || 'tertiary';
     decorateButton(link, { view: 'button', type, newWindow });
+    if (row) moveInstrumentation(row, link);
     ctas.append(link);
   });
+  const rendered = new Set(items.map(({ row }) => row));
+  ctas.append(...buildEditorItems(rows.filter((row) => !rendered.has(row)), hint));
   return ctas.children.length ? ctas : null;
 }
 
@@ -148,9 +161,11 @@ function buildMedia(metadata) {
  */
 export default async function decorate(block) {
   const props = readProperties(block);
+  const ctaRows = itemRows(block, ['page-header-cta'], KEY_VALUE_ITEM);
   const metadata = getPageMetadata();
-  const [t, pageTags, author] = await Promise.all([
+  const [t, pageTags, author, hint] = await Promise.all([
     getPlaceholders(), resolveTags(metadata.tags), getAuthor(metadata.authorId),
+    editorItemHint(ctaRows),
   ]);
   const layout = layoutOf(block, props, metadata.pageType);
 
@@ -160,7 +175,7 @@ export default async function decorate(block) {
   const eyebrow = layout === 'display' ? tags
     : textElement('p', 'page-header-eyebrow', metadata.contentType) || tags;
   const description = buildDescription(metadata.description);
-  const ctas = buildCtas(props.ctas);
+  const ctas = buildCtas(props.ctas, ctaRows, hint);
 
   // intro: the title side; summary: the description side
   const intro = document.createElement('div');

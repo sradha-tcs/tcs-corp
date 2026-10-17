@@ -17,7 +17,38 @@
               "showDescription": true,
               "dateFormat": "dd-mm-yyyy",
               "primaryCtaStyle": "primary",
-              "secondaryCtaStyle": "secondary"
+              "secondaryCtaStyle": "secondary",
+              "filter": "teaser"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Link",
+      "id": "teaser-link",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Link",
+              "model": "teaser-link"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Stat",
+      "id": "teaser-stat",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Stat",
+              "model": "teaser-stat"
             }
           }
         }
@@ -547,7 +578,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "description": "Links authored before Link items. Add links to the teaser with Add (Link) instead."
         },
         {
           "component": "select",
@@ -736,7 +768,8 @@
               "description": "A single line, e.g. 40%.",
               "value": ""
             }
-          ]
+          ],
+          "description": "Stats authored before Stat items. Add stats to the teaser with Add (Stat) instead."
         },
         {
           "component": "tab",
@@ -1536,7 +1569,100 @@
           ]
         }
       ]
+    },
+    {
+      "id": "teaser-link",
+      "fields": [
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "CTA Link",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "CTA Title"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "linkTarget",
+          "label": "CTA Link Type",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "linkStyle",
+          "label": "CTA Link Style",
+          "value": "",
+          "options": [
+            {
+              "name": "Text link",
+              "value": ""
+            },
+            {
+              "name": "List",
+              "value": "list"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary Button",
+              "value": "secondary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teaser-stat",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "statTab",
+          "label": "Stat"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "statLabel",
+          "label": "Stats Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "statValue",
+          "label": "Stats Value",
+          "description": "A single line, e.g. 40%.",
+          "value": ""
+        }
+      ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "teaser",
+      "components": [
+        "teaser-link",
+        "teaser-stat"
+      ]
+    }
+  ]
 }
