@@ -9,6 +9,15 @@
 >
 > After installing, preview and publish the pages again. The older zips below are the previous versions.
 
+## /en metadata sheet after the language-master rollout
+
+- `home-content/metadata-en-after-rollout.csv`: the /en Metadata sheet (/content/tcs-corp/us/en/metadata) to use after language-master/en is rolled out to us/en. It has 136 rows in 36 columns:
+  - The 43 rows of today's sheet, with their values unchanged.
+  - Three new columns, eyebrow, card-title and card-description, filled in from the language-master rows.
+  - 93 new rows: the rolled-out curated design pages (12) and supporting pages (81).
+
+  The block library has no rows, because /en doesn't publish it. Import the file in place of the current sheet after the rollout.
+
 ## Home page
 
 Downloads for the TCS Home page implementation (sample content):
