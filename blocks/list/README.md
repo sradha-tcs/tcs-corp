@@ -28,14 +28,15 @@ Files:
 
 ## For authors
 
-Add a **List** to a section, choose the **List source**, and for a **Fixed list** add **List Items**
-to the block (add, duplicate, delete and drag to reorder them in the content tree). Fields that
-don't apply to the chosen source or option are hidden.
+Add a **List** to a section and choose the **List source**. For a **Fixed list**, pick the pages in
+**Pages** (Source tab, in their order); add **List Items** to the block (content tree) to change a
+page's card (title, image, …) or to add links outside the site. Fields that don't apply to the
+chosen source or option are hidden.
 
 | Source | What it lists |
 |---|---|
 | Child pages | The pages below the **Parent page** (or the current page), its children or down to the **Child depth** |
-| Fixed list | The List Items: pages of the site (their metadata, with the item's overrides), paths or external URLs |
+| Fixed list | The **Pages** in their order (their metadata), a List Item for one of them in its place (its overrides), then the other List Items (pages, paths or external URLs) |
 | Tagged pages | The pages below the **Search root** (or the current page) with **any** or **all** of the **Tags** |
 
 The search source of the Core List isn't available. Lists of pages show what is in the published
@@ -61,6 +62,7 @@ validated again in code; invalid values fall back to the default.
 | `listLabel` | Accessible list label | text | all | no | — | — | Names the list region when it has no title | always |
 | `componentId` | Component ID | text | all | no | generated | `^[A-Za-z][A-Za-z0-9_-]*$`; duplicates get a suffix | Block id, analytics id, card ids | always |
 | `source` | List source | select | all | yes | fixed | parent, fixed, tags | Chooses the discovery | always |
+| `pages` | Pages | aem-content, multi | fixed | no | — | AEM or published page paths | The pages of the list in order; stored as the multi-value `pages` property of the List node | source = fixed |
 | `parentPath` | Parent page | aem-content | parent | no | — | an AEM or published path | Published path of the parent | source = parent |
 | `parentUseCurrentPage` | Use the current page when empty | boolean | parent | no | on | — | The page with the list is the parent | source = parent |
 | `directChildrenOnly` | Direct children only | boolean | parent | no | on | — | On: depth 1 | source = parent |
@@ -141,7 +143,8 @@ decorate(block)
   buildCards():
     parent  resolveParentPages()     -> normalizePageToCard()
     tags    resolveTagPages()        -> applyTagMatching() -> normalizePageToCard()   (never the current page)
-    fixed   resolveFixedItems()      -> normalizePageToCard() / link card -> applyOverrides()
+    fixed   mergeFixedItems()        Pages, then List Items (a List Item for a page in its place)
+            resolveFixedItems()      -> normalizePageToCard() / link card -> applyOverrides()
     -> deduplicateCards() -> sortCards() -> limitCards() -> withIds()
   resolveTags()           tag labels (taxonomy)
   renderCardList()        header, feature card, <ul> of cards or rows, previous / next,

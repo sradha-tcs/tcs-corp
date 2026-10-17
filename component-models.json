@@ -10250,7 +10250,23 @@
           }
         ],
         "required": true,
-        "description": "Child pages of a page, a fixed list of pages and links (add List Items to the block), or pages with tags."
+        "description": "Child pages of a page, a fixed list of pages (Pages; add List Items to change a card or to link outside the site), or pages with tags."
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "pages",
+        "label": "Pages",
+        "multi": true,
+        "description": "The pages of the list, in this order; their cards come from the page metadata. A List Item for one of the pages changes its card (title, image, …); other List Items follow the pages.",
+        "condition": {
+          "===": [
+            {
+              "var": "source"
+            },
+            "fixed"
+          ]
+        }
       },
       {
         "component": "aem-content",

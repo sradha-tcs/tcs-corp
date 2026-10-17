@@ -357,6 +357,29 @@ export const withIds = (cards, componentId) => cards.map((card) => ({
 }));
 
 /**
+ * The items of a fixed list: the Pages property in its order, a List Item for one of the pages
+ * in that page's place (it changes the card), then the other List Items in their order.
+ * @param {string[]} pages page paths (Pages)
+ * @param {Object[]} items List Items ({ href, ... })
+ * @param {(path: string) => string} [keyOf] the comparable form of a path
+ * @returns {Object[]}
+ */
+export function mergeFixedItems(pages, items, keyOf = normalizePath) {
+  const byKey = new Map();
+  items.forEach((item) => {
+    const key = keyOf(item.href || '');
+    if (key && !byKey.has(key)) byKey.set(key, item);
+  });
+  const used = new Set();
+  const fromPages = pages.map((href) => {
+    const item = byKey.get(keyOf(href));
+    if (item) used.add(item);
+    return item || { href };
+  });
+  return [...fromPages, ...items.filter((item) => !used.has(item))];
+}
+
+/**
  * The whole pipeline for a source.
  * @param {Object} config
  * @param {Object} data { pages, items, currentPath, resolveUrl, origin, lang }
