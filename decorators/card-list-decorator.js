@@ -323,7 +323,9 @@ export function renderCardList(block, {
   const parts = [header];
   let listed = cards;
   if (config.displayAsTeaser && config.featureFirst && cards.length) {
-    parts.push(renderFeature(cards[0], config, { t, level, authors }));
+    const feature = renderFeature(cards[0], config, { t, level, authors });
+    if (cards[0].ref) moveInstrumentation(cards[0].ref, feature);
+    parts.push(feature);
     listed = cards.slice(1);
   }
 
@@ -383,6 +385,30 @@ export function renderCardList(block, {
 /** the empty state: the header and a message */
 export function renderCardListEmpty(block, header, message) {
   block.replaceChildren(...[header, element('p', 'list-empty', message)].filter(Boolean));
+}
+
+/**
+ * In the editor, the item rows (List Items, Cards) that aren't shown as cards, e.g. one just added
+ * without a link or a title, as placeholder items after the cards: authors can select and edit
+ * them on the page (their instrumentation moves to the placeholder).
+ * @param {Element} block the rendered block
+ * @param {Element[]} rows the block's item rows, as authored
+ * @param {string} hint what the author has to do to show the item
+ */
+export function renderEditorItems(block, rows, hint) {
+  const pending = rows.filter((row) => row.hasAttribute('data-aue-resource'));
+  if (!pending.length) return;
+  let list = block.querySelector('.list-items');
+  if (!list) {
+    list = element('ul', 'list-items list-editor-items');
+    block.append(list);
+  }
+  pending.forEach((row) => {
+    const li = element('li', 'list-item list-editor-item');
+    li.append(element('p', 'list-editor-hint', hint));
+    moveInstrumentation(row, li);
+    list.append(li);
+  });
 }
 
 /**

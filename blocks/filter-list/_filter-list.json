@@ -112,11 +112,6 @@
           "max": 48
         },
         {
-          "component": "tab",
-          "name": "sourceTab",
-          "label": "Source"
-        },
-        {
           "component": "select",
           "valueType": "string",
           "name": "source",
@@ -268,11 +263,6 @@
           ]
         },
         {
-          "component": "tab",
-          "name": "filtersTab",
-          "label": "Filters"
-        },
-        {
           "component": "aem-tag",
           "valueType": "string",
           "name": "primaryCategory",
@@ -316,11 +306,6 @@
           "label": "Enable advanced filter",
           "description": "The filter button opens the Advanced filter categories.",
           "value": true
-        },
-        {
-          "component": "tab",
-          "name": "advancedTab",
-          "label": "Advanced"
         },
         {
           "component": "container",
@@ -535,11 +520,6 @@
               }
             ]
           }
-        },
-        {
-          "component": "tab",
-          "name": "mappingTab",
-          "label": "Mapping"
         },
         {
           "component": "text",

@@ -37,15 +37,18 @@ metadata.
 ## For authors
 
 Add **Cards** to a section, set the block in its properties and add **Card** items (add,
-duplicate, delete and drag to reorder them in the content tree). The block tabs are the List's:
+duplicate, delete and drag to reorder them in the content tree). The block tabs are the List's
+(**Content**, **Display**, **Additional**; Universal Editor collapses tabs that don't fit on one line
+into a dropdown). In the editor, a Card without a title, a description or an image (e.g. one just
+added with **Add**) is shown as a dashed placeholder (`cardEditorHint`) so it can be selected.
 
 | Tab | Fields |
 |---|---|
 | Content | Title, Heading type, Description, CTA link, CTA text, CTA style, Accessible list label, Component ID |
-| Cards | Display as teaser (cards; off: rows of links), Card style (image, panel, report, statistic, mixed), Card colour, Image ratio, Panel height, First card as feature, Link items, Open links in a new tab, Show image / eyebrow / tags / description / date / call to action, Date format, Image loading |
-| Layout | Desktop, tablet and mobile: grid (columns) or horizontal scroll (items visible or card width, previous / next buttons, scroll indicator), gap; Equal card height, Stretch cards to row height |
-| Scroll | Scroll snap and alignment, hide scrollbar, mouse drag, touch swipe, keyboard, scroll step, loop, initial item, edge, reduced motion |
-| Advanced | When there are no cards (hide the block, or show the Empty message), Analytics, Style options (compact statistic title, dividers between rows, header centred) |
+| Display: cards | Display as teaser (cards; off: rows of links), Card style (image, panel, report, statistic, mixed), Card colour, Image ratio, Panel height, First card as feature, Link items, Open links in a new tab, Show image / eyebrow / tags / description / date / call to action, Date format, Image loading |
+| Display: layout | Desktop, tablet and mobile: grid (columns) or horizontal scroll (items visible or card width, previous / next buttons, scroll indicator), gap; Equal card height, Stretch cards to row height |
+| Display: scrolling | Scroll snap and alignment, hide scrollbar, mouse drag, touch swipe, keyboard, scroll step, loop, initial item, edge, reduced motion |
+| Display: advanced | When there are no cards (hide the block, or show the Empty message), Analytics, Style options (compact statistic title, dividers between rows, header centred) |
 | Additional | Anchor ID, Hide block, padding and margin (every block) |
 
 The field descriptions, defaults and validation are in the List's
@@ -136,7 +139,7 @@ order. A card without a title is named by the start of its description. Analytic
 
 ## Placeholders
 
-`cards` (Cards), `cardsEditorHint`, and the List's: `listPrevious`, `listNext`, `opensInNewTab`,
+`cards` (Cards), `cardsEditorHint`, `cardEditorHint`, and the List's: `listPrevious`, `listNext`, `opensInNewTab`,
 `explore`, `download`, `listEmpty`, `minutesShort`.
 
 ## Backward compatibility

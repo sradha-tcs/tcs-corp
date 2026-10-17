@@ -64,7 +64,7 @@
         {
           "component": "tab",
           "name": "propertiesTab",
-          "label": "Properties"
+          "label": "Content"
         },
         {
           "component": "select",
@@ -102,11 +102,6 @@
               "value": "fixed-width"
             }
           ]
-        },
-        {
-          "component": "tab",
-          "name": "accessibilityTab",
-          "label": "Accessibility"
         },
         {
           "component": "text",
@@ -764,7 +759,7 @@
         {
           "component": "tab",
           "name": "propertiesTab",
-          "label": "Properties"
+          "label": "Content"
         },
         {
           "component": "text",
@@ -772,11 +767,6 @@
           "name": "tabsId",
           "label": "ID",
           "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
-        },
-        {
-          "component": "tab",
-          "name": "accessibilityTab",
-          "label": "Accessibility"
         },
         {
           "component": "text",

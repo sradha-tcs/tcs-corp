@@ -82,11 +82,6 @@
           "value": ""
         },
         {
-          "component": "tab",
-          "name": "authorTab",
-          "label": "Author"
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "authorName",
@@ -114,6 +109,29 @@
           "label": "Designation & Location",
           "description": "e.g. name, designation, organisation.",
           "value": ""
+        },
+        {
+          "component": "container",
+          "name": "stats",
+          "label": "Stats",
+          "multi": true,
+          "fields": [
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "statLabel",
+              "label": "Stats Title",
+              "value": ""
+            },
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "statValue",
+              "label": "Stats Value",
+              "description": "A single line, e.g. 40%.",
+              "value": ""
+            }
+          ]
         },
         {
           "component": "tab",
@@ -151,11 +169,6 @@
           ]
         },
         {
-          "component": "tab",
-          "name": "showHideTab",
-          "label": "Show / Hide"
-        },
-        {
           "component": "boolean",
           "valueType": "boolean",
           "name": "hideEyebrow",
@@ -184,34 +197,6 @@
           "label": "Hide Author Details",
           "description": "Hides the author, author image and designation & location",
           "value": false
-        },
-        {
-          "component": "tab",
-          "name": "statsTab",
-          "label": "Stats"
-        },
-        {
-          "component": "container",
-          "name": "stats",
-          "label": "Stats",
-          "multi": true,
-          "fields": [
-            {
-              "component": "richtext",
-              "valueType": "string",
-              "name": "statLabel",
-              "label": "Stats Title",
-              "value": ""
-            },
-            {
-              "component": "richtext",
-              "valueType": "string",
-              "name": "statValue",
-              "label": "Stats Value",
-              "description": "A single line, e.g. 40%.",
-              "value": ""
-            }
-          ]
         },
         {
           "component": "tab",

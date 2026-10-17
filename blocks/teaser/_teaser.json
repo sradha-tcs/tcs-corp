@@ -276,11 +276,6 @@
           "description": "Leave empty if the image is decorative."
         },
         {
-          "component": "tab",
-          "name": "imageTab",
-          "label": "Image"
-        },
-        {
           "component": "select",
           "valueType": "string",
           "name": "imageFormat",
@@ -475,232 +470,6 @@
               }
             ]
           }
-        },
-        {
-          "component": "tab",
-          "name": "styleTab",
-          "label": "Style"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "classes",
-          "label": "Layout",
-          "value": "",
-          "options": [
-            {
-              "name": "Image & Text",
-              "value": ""
-            },
-            {
-              "name": "Text split (title left, text right)",
-              "value": "no-image"
-            },
-            {
-              "name": "Background image",
-              "value": "background"
-            },
-            {
-              "name": "Card",
-              "value": "card"
-            }
-          ],
-          "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "bgColor",
-          "label": "BG Color",
-          "value": "",
-          "options": [
-            {
-              "name": "Default",
-              "value": ""
-            },
-            {
-              "name": "Grey",
-              "value": "grey"
-            },
-            {
-              "name": "Dark",
-              "value": "dark"
-            },
-            {
-              "name": "Dark green",
-              "value": "dark-green"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "textAlignment",
-          "label": "Text alignment",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout default",
-              "value": ""
-            },
-            {
-              "name": "Left",
-              "value": "text-left"
-            },
-            {
-              "name": "Center",
-              "value": "text-center"
-            },
-            {
-              "name": "Right",
-              "value": "text-right"
-            }
-          ],
-          "description": "Layout default: left, centered for Background image and when Image & Text has no image."
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "verticalAlignment",
-          "label": "Vertical alignment",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout default",
-              "value": ""
-            },
-            {
-              "name": "Top",
-              "value": "valign-top"
-            },
-            {
-              "name": "Center",
-              "value": "valign-middle"
-            },
-            {
-              "name": "Bottom",
-              "value": "valign-bottom"
-            }
-          ],
-          "description": "How the text and the image (or the two text columns) line up. Layout default: center, top for Text split."
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "titleSize",
-          "label": "Title size",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout default",
-              "value": ""
-            },
-            {
-              "name": "Medium (40px)",
-              "value": "title-m"
-            },
-            {
-              "name": "Large (48px)",
-              "value": "title-l"
-            },
-            {
-              "name": "Extra large (64px)",
-              "value": "title-xl"
-            },
-            {
-              "name": "Display (96px)",
-              "value": "title-display"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "titleWeight",
-          "label": "Title weight",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout default",
-              "value": ""
-            },
-            {
-              "name": "Regular",
-              "value": "title-regular"
-            },
-            {
-              "name": "Semibold",
-              "value": "title-semibold"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "descriptionSize",
-          "label": "Description size",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout default",
-              "value": ""
-            },
-            {
-              "name": "Regular (18px)",
-              "value": "text-regular"
-            },
-            {
-              "name": "Large (24px)",
-              "value": "text-large"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "eyebrowStyle",
-          "label": "Eyebrow style",
-          "value": "",
-          "options": [
-            {
-              "name": "Brand",
-              "value": ""
-            },
-            {
-              "name": "Label (uppercase, grey)",
-              "value": "eyebrow-label"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "topSpacing",
-          "label": "Top spacing",
-          "value": "",
-          "options": [
-            {
-              "name": "Default",
-              "value": ""
-            },
-            {
-              "name": "Page header (extra space above)",
-              "value": "spacing-header"
-            }
-          ],
-          "description": "Page header: the larger space above a teaser that opens a page."
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "personalization",
-          "label": "Personalization",
-          "value": false
-        },
-        {
-          "component": "tab",
-          "name": "linksTab",
-          "label": "Links"
         },
         {
           "component": "boolean",
@@ -947,11 +716,6 @@
           ]
         },
         {
-          "component": "tab",
-          "name": "statsTab",
-          "label": "Stats"
-        },
-        {
           "component": "container",
           "name": "stats",
           "label": "Stats",
@@ -973,6 +737,227 @@
               "value": ""
             }
           ]
+        },
+        {
+          "component": "tab",
+          "name": "styleTab",
+          "label": "Style"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Layout",
+          "value": "",
+          "options": [
+            {
+              "name": "Image & Text",
+              "value": ""
+            },
+            {
+              "name": "Text split (title left, text right)",
+              "value": "no-image"
+            },
+            {
+              "name": "Background image",
+              "value": "background"
+            },
+            {
+              "name": "Card",
+              "value": "card"
+            }
+          ],
+          "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "bgColor",
+          "label": "BG Color",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Grey",
+              "value": "grey"
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Dark green",
+              "value": "dark-green"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "textAlignment",
+          "label": "Text alignment",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Left",
+              "value": "text-left"
+            },
+            {
+              "name": "Center",
+              "value": "text-center"
+            },
+            {
+              "name": "Right",
+              "value": "text-right"
+            }
+          ],
+          "description": "Layout default: left, centered for Background image and when Image & Text has no image."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "verticalAlignment",
+          "label": "Vertical alignment",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Top",
+              "value": "valign-top"
+            },
+            {
+              "name": "Center",
+              "value": "valign-middle"
+            },
+            {
+              "name": "Bottom",
+              "value": "valign-bottom"
+            }
+          ],
+          "description": "How the text and the image (or the two text columns) line up. Layout default: center, top for Text split."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleSize",
+          "label": "Title size",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Medium (40px)",
+              "value": "title-m"
+            },
+            {
+              "name": "Large (48px)",
+              "value": "title-l"
+            },
+            {
+              "name": "Extra large (64px)",
+              "value": "title-xl"
+            },
+            {
+              "name": "Display (96px)",
+              "value": "title-display"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleWeight",
+          "label": "Title weight",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Regular",
+              "value": "title-regular"
+            },
+            {
+              "name": "Semibold",
+              "value": "title-semibold"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionSize",
+          "label": "Description size",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout default",
+              "value": ""
+            },
+            {
+              "name": "Regular (18px)",
+              "value": "text-regular"
+            },
+            {
+              "name": "Large (24px)",
+              "value": "text-large"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "eyebrowStyle",
+          "label": "Eyebrow style",
+          "value": "",
+          "options": [
+            {
+              "name": "Brand",
+              "value": ""
+            },
+            {
+              "name": "Label (uppercase, grey)",
+              "value": "eyebrow-label"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "topSpacing",
+          "label": "Top spacing",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Page header (extra space above)",
+              "value": "spacing-header"
+            }
+          ],
+          "description": "Page header: the larger space above a teaser that opens a page."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "personalization",
+          "label": "Personalization",
+          "value": false
         },
         {
           "component": "tab",

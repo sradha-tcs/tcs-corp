@@ -1,5 +1,6 @@
 import {
   applyCardListLayout, buildCardListHeader, cardListId, renderCardList, renderCardListEmpty,
+  renderEditorItems,
   trackCardList,
 } from '../../decorators/card-list-decorator.js';
 import {
@@ -145,6 +146,8 @@ export default async function decorate(block) {
   config.componentId = id;
 
   const cards = buildManualCards(items, config, { id, origin: window.location.origin });
+  // a Card just added (Add in Universal Editor) has no values yet: a placeholder until it has
+  const editorHint = t('cardEditorHint', 'This card isn’t shown yet: give it a title, a description or an image.');
   const tagIds = [...new Set(cards.flatMap((card) => card.tagIds))];
   const labels = tagIds.length
     ? new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label])) : new Map();
@@ -166,12 +169,14 @@ export default async function decorate(block) {
       ? t('cardsEditorHint', 'Add a Card to the block and give it a title, a description or an image.')
       : config.emptyMessage || t('listEmpty', 'There are no items to show.');
     renderCardListEmpty(block, header, message);
+    if (editing) renderEditorItems(block, items.map((item) => item.ref), editorHint);
     return;
   }
 
   renderCardList(block, {
     config, cards, header, heading, id, t, regionLabel: t('cards', 'Cards'),
   });
+  if (isEditing()) renderEditorItems(block, items.map((item) => item.ref), editorHint);
   if (config.analytics) {
     trackCardList(block, {
       id,

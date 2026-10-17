@@ -1,6 +1,6 @@
 import {
   applyCardListLayout, buildCardListHeader, cardListId, renderCardList, renderCardListEmpty,
-  trackCardList,
+  renderEditorItems, trackCardList,
 } from '../../decorators/card-list-decorator.js';
 import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
@@ -146,6 +146,7 @@ export function readBlockConfig(block) {
     raw,
     props,
     items,
+    itemRows: legacy ? [] : itemRows,
     heading: legacy ? block.querySelector(HEADINGS.join(',')) : null,
     legacyLink: legacy ? block.querySelector('a[href]') : null,
   };
@@ -213,6 +214,16 @@ export default async function decorate(block) {
   applyCardListLayout(block, config);
   block.classList.add(`source-${config.source}`);
 
+  // in the editor, List Items without a card (e.g. one just added with Add, before it has a
+  // link) are placeholders the author can select
+  const editorItems = () => {
+    if (!isEditing()) return;
+    const hint = config.source === 'fixed'
+      ? t('listItemEditorHint', 'This List Item isn’t shown yet: choose a page or a link in its Link tab.')
+      : t('listItemSourceHint', 'List Items are shown when the List source is Fixed list.');
+    renderEditorItems(block, read.itemRows, hint);
+  };
+
   if (!cards.length) {
     const editing = isEditing();
     if (config.emptyBehavior === 'hide' && !editing) {
@@ -228,6 +239,7 @@ export default async function decorate(block) {
       message = t('listEditorPages', 'The pages show on the published page (from the query index).');
     }
     renderCardListEmpty(block, header, message);
+    editorItems();
     return;
   }
 
@@ -235,6 +247,7 @@ export default async function decorate(block) {
   renderCardList(block, {
     config, cards, header, heading, id, t, authors,
   });
+  editorItems();
   if (config.analytics) {
     trackCardList(block, {
       id,

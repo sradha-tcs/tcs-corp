@@ -131,11 +131,6 @@
           }
         },
         {
-          "component": "tab",
-          "name": "ctaTab",
-          "label": "Call to action"
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "viewAllLabel",
