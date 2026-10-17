@@ -125,7 +125,7 @@ I then compared every select option of every model with the examples. Options wi
 |---|---|
 | `tags.csv` | 81 tags: 33 new (the 29 of the curated package plus `region`, `region/europe`, `region/americas`, `region/asia-pacific`) and 48 existing. Includes the number of pages using each |
 | `taxonomy.csv` | Tag and title rows for the taxonomy page |
-| `metadata-language-master.csv`, `metadata-en-rollout.csv` | 294 rows (block library, curated and supporting pages), 39 columns. Library pages are `noindex, nofollow` |
+| `metadata-language-master.csv`, `metadata-en-rollout.csv` | 294 rows (block library, curated and supporting pages) in the format of the AEM Metadata sheet: its 33 columns in its order, CRLF line ends. Library pages are `noindex, nofollow`. Listen links are in `audio-file-path`; `featured-priority` repeats `priority`. The sheet has no `eyebrow`, `card-title` or `card-description` column, so those values (133, 5 and 89 pages) aren't in the file; the cards fall back to the page title, description and content type |
 | `placeholders.csv` | All 95 UI text keys in the code, with the English text, where each is used and its variables |
 | `data-authors.csv` | Priya Sethi and the three sample authors |
 | `data-locations.csv`, `data-partners.csv`, `data-social-links.csv`, `data-media-contacts.csv` | The columns the code reads. Empty: the live sheets are empty too, and there's no verified content to add |
