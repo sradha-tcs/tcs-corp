@@ -84,6 +84,7 @@ function measure() {
       primary: false,
       floats: e.floats,
       role: roles[i],
+      inHeader: !!e.block.closest('header'),
       top: rect.top + scrollY,
       bottom: rect.bottom + scrollY,
       rowHeight: e.row.offsetHeight,
