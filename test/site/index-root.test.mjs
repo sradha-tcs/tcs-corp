@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  indexRoot, localePagePath, localeSheetPath, pageLink,
+  getParentPages, indexRoot, localePagePath, localeSheetPath, pageLink,
 } from '../../utils/site.js';
 
 describe('indexRoot', () => {
@@ -44,9 +44,15 @@ describe('localePagePath', () => {
     assert.equal(localePagePath('references/nav', '/language-master/en/x'), '/language-master/en/references/nav');
     assert.equal(localePagePath('references/footer', '/language-master/en/x'), '/language-master/en/references/footer');
   });
+  it('is the language master error page for its pages under review', () => {
+    assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/language-master/en/error-pages/404');
+  });
+  it('is the language master root page as its Home', () => {
+    assert.equal(localePagePath('', '/language-master/en/x'), '/language-master/en/');
+  });
   it('is the locale page for other pages', () => {
-    assert.equal(localePagePath('error-pages/404', '/language-master/en/x'), '/en/error-pages/404');
-    assert.equal(localePagePath('', '/language-master/en/x'), '/en/');
+    assert.equal(localePagePath('', '/de-de/x'), '/de-de/');
+    assert.equal(localePagePath('error-pages/404', '/de-de/x'), '/de-de/error-pages/404');
   });
 });
 
@@ -93,5 +99,26 @@ describe('the language master root page', () => {
   it('a path that only starts like it is not', () => {
     assert.equal(indexRoot('/content/tcs-corp/language-master/en-gb.html'), '/en');
     assert.equal(indexRoot('/language-master/english'), '/en');
+  });
+});
+
+describe('getParentPages (inherited Navigation, Footer, 404 Page)', () => {
+  it('walks up to the language master root page on the site', () => {
+    assert.deepEqual(getParentPages('/language-master/en/dummy-pages/insights/x'), [
+      '/language-master/en/dummy-pages/insights', '/language-master/en/dummy-pages', '/language-master/en/',
+    ]);
+    assert.deepEqual(getParentPages('/language-master/en/curated-design-pages'), ['/language-master/en/']);
+  });
+  it('walks up to the language master root page on author', () => {
+    assert.deepEqual(getParentPages('/content/tcs-corp/language-master/en/dummy-pages/careers.html'), [
+      '/content/tcs-corp/language-master/en/dummy-pages.html', '/content/tcs-corp/language-master/en.html',
+    ]);
+  });
+  it('has none for the root page itself', () => {
+    assert.deepEqual(getParentPages('/language-master/en/'), []);
+    assert.deepEqual(getParentPages('/content/tcs-corp/language-master/en.html'), []);
+  });
+  it('is unchanged for locale pages', () => {
+    assert.deepEqual(getParentPages('/de-de/insights/blogs/x'), ['/de-de/insights/blogs', '/de-de/insights', '/de-de/']);
   });
 });

@@ -13,7 +13,7 @@
  *
  * TEMPORARY: the language master (/content/tcs-corp/language-master/en, published at
  * /language-master/en) while it is reviewed before its rollout to /en (REVIEW_ROOTS in
- * utils/site.js): its folder, its sheets and taxonomy page, and the trees under review. Remove
+ * utils/site.js): its folder and root page, and its sheets and taxonomy page. Remove
  * REVIEW (and REVIEW_ROOTS) after the rollout and run `npm run build:paths` again.
  */
 import { readFile, writeFile } from 'node:fs/promises';
@@ -34,7 +34,6 @@ const SHEETS = [
 const REVIEW = {
   aem: `${SITE}/language-master/en`,
   published: '/language-master/en',
-  trees: ['curated-design-pages', 'dummy-pages', 'block-library', 'references'],
 };
 
 const root = new URL('../../', import.meta.url);
@@ -54,8 +53,10 @@ const paths = {
       ...SHEETS.map((sheet) => `${aemRoot(locale)}/${sheet}:/${locale.code}/${sheet}`),
       `${aemRoot(locale)}/taxonomy:/${locale.code}/taxonomy.json`,
     ]),
-    // the language master under review: its folder, then its sheets and taxonomy page
+    // the language master under review: its folder, its root page (the parent page its pages
+    // inherit Navigation, Footer and 404 Page from), then its sheets and taxonomy page
     `${REVIEW.aem}/:${REVIEW.published}/`,
+    `${REVIEW.aem}:${REVIEW.published}/`,
     ...SHEETS.map((sheet) => `${REVIEW.aem}/${sheet}:${REVIEW.published}/${sheet}`),
     `${REVIEW.aem}/taxonomy:${REVIEW.published}/taxonomy.json`,
   ],
@@ -64,8 +65,8 @@ const paths = {
   includes: [
     ...LOCALES.map((locale) => aemRoot(locale)),
     ASSETS,
-    // the language master under review: its trees, sheets and taxonomy page (not its root page)
-    ...[...REVIEW.trees, ...SHEETS, 'taxonomy'].map((path) => `${REVIEW.aem}/${path}`),
+    // the language master under review: its root page and everything below it
+    REVIEW.aem,
   ],
   excludes: [
     ...LOCALES.flatMap((locale) => [

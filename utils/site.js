@@ -108,10 +108,10 @@ export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/aut
 
 /**
  * The page folders published below the review roots: their pages use the review root's
- * references (nav, footer and the pages they load); other pages (Home, error pages) stay the
- * locale's.
+ * references (nav, footer and the pages they load), error pages (the 404 page when no 404 Page
+ * is inherited) and root page (Home, e.g. the 404 page's Go home).
  */
-export const REVIEW_PAGES = ['references/'];
+export const REVIEW_PAGES = ['references/', 'error-pages/'];
 
 /**
  * The review root of a page, or '': from its published path, or from its AEM path on author
@@ -148,9 +148,14 @@ export function getParentPages(pathname = window.location.pathname) {
   const path = pathname.slice(contentRoot.length)
     .replace(/(\.plain)?\.html$/, '')
     .replace(/\/(index)?$/, '');
-  const locale = contentRoot ? localeOfAemPath(path) : localeOfSitePath(path);
-  if (!locale) return [];
-  const root = contentRoot ? aemRootOf(locale) : rootOf(locale);
+  // a page under review inherits up to its review root's page (e.g. /language-master/en), whose
+  // AEM path is its published path below the site root
+  const review = reviewRootOf(pathname);
+  const localeOf = contentRoot ? localeOfAemPath : localeOfSitePath;
+  const locale = review ? null : localeOf(path);
+  if (!locale && !review) return [];
+  const localeRoot = contentRoot ? aemRootOf : rootOf;
+  const root = review || localeRoot(locale);
   const segments = path.slice(root.length).split('/').filter(Boolean);
   if (!segments.length) return [];
   const parents = [];
@@ -221,7 +226,8 @@ export function localePagePath(path, pathname = window.location.pathname) {
   const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
   // a page under review uses its review root's references (its AEM path on author)
-  const review = REVIEW_PAGES.some((folder) => relative.startsWith(folder)) ? reviewRootOf(pathname) : '';
+  const own = !relative || REVIEW_PAGES.some((folder) => relative.startsWith(folder));
+  const review = own ? reviewRootOf(pathname) : '';
   if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
   return `${review || root}/${relative}`;
 }

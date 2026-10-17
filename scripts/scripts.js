@@ -269,7 +269,13 @@ async function loadPageContent(main, path) {
   try {
     const resp = await fetch(`${path}.plain.html`);
     if (!resp.ok) return false;
-    main.innerHTML = await resp.text();
+    const html = await resp.text();
+    // a page without content (e.g. an error page not authored yet) doesn't replace the built-in
+    // content: the next page is tried
+    const content = document.createElement('div');
+    content.innerHTML = html;
+    if (!content.textContent.trim() && !content.querySelector('img, picture, video, iframe')) return false;
+    main.innerHTML = html;
     // media of the page is relative to it
     main.querySelectorAll('img[src^="./media_"], source[srcset^="./media_"]').forEach((el) => {
       const attr = el.tagName === 'IMG' ? 'src' : 'srcset';
@@ -287,7 +293,7 @@ async function loadPageContent(main, path) {
  *    property, or the metadata sheet's error-page column), like an inherited page property
  * 2. the locale's error-pages/404 (e.g. /de-de/error-pages/404 for /de-de/...)
  * 3. the default locale's /en/error-pages/404
- * Content from another locale is marked as its language.
+ * A page without content is skipped. Content from another locale is marked as its language.
  * else the built-in content stays. 403 and 500 are served by the CDN, not by code.
  * @param {Element} main The main element
  */
