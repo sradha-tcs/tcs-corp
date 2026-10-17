@@ -106,6 +106,13 @@ export const REVIEW_ROOTS = ['/language-master/en'];
 export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/authors',
   'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts'];
 
+/**
+ * The page folders published below the review roots: their pages use the review root's
+ * references (nav, footer and the pages they load); other pages (Home, error pages) stay the
+ * locale's.
+ */
+export const REVIEW_PAGES = ['references/'];
+
 /** the review root of a published page path, or '' */
 const reviewRootOf = (pathname) => REVIEW_ROOTS
   .find((root) => startsWithFolder(pathname.toLowerCase(), root)) || '';
@@ -186,7 +193,10 @@ export function toAemPath(pathname, contentRoot) {
 export function localePagePath(path, pathname = window.location.pathname) {
   const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
-  return contentRoot ? `${contentRoot}${aemRoot}/${relative}` : `${root}/${relative}`;
+  if (contentRoot) return `${contentRoot}${aemRoot}/${relative}`;
+  // a page under review uses its review root's references
+  const review = REVIEW_PAGES.some((folder) => relative.startsWith(folder)) ? reviewRootOf(pathname) : '';
+  return `${review || root}/${relative}`;
 }
 
 /**
