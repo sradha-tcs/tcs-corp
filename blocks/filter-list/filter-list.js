@@ -8,7 +8,7 @@ import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { toClassName } from '../../scripts/aem.js';
 import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
-import { isEditing } from '../../utils/environment.js';
+import { isAuthor, isEditing } from '../../utils/environment.js';
 import { uniqueId } from '../../utils/ids.js';
 import { readMultifieldItems } from '../../utils/multifield.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -474,7 +474,8 @@ export default async function decorate(block) {
     status.textContent = resultText(total);
     if (!total) {
       const empty = element('div', 'filter-list-empty');
-      const editorHint = isEditing() && !pages.length;
+      // on AEM author there is no query index: say where the results show
+      const editorHint = (isEditing() || isAuthor()) && !pages.length;
       empty.append(element('p', 'filter-list-empty-title', editorHint
         ? t('filterListEditor', 'The results show on the published page, from the pages\' metadata.')
         : t('noResources', 'No resources found.')));

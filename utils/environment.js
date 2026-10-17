@@ -9,6 +9,12 @@ export const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-mo
 /** scroll behavior that respects reduced motion, for scrollTo / scrollIntoView */
 export const scrollBehavior = () => (prefersReducedMotion() ? 'auto' : 'smooth');
 
+/**
+ * The page is rendered by AEM author (its AEM path, /content/...; in Universal Editor or opened on
+ * its own), where there is no query index
+ */
+export const isAuthor = () => window.location.pathname.startsWith('/content/');
+
 /** Universal Editor is in edit mode (not preview) */
 export const isEditing = () => document.documentElement.classList.contains('adobe-ue-edit');
 
