@@ -91,6 +91,25 @@ export function getLocale(pathname = window.location.pathname) {
   };
 }
 
+/*
+ * TEMPORARY, for the review of the language master before its rollout to /en: pages published
+ * below these roots (the paths.json mapping /content/tcs-corp/language-master/en/ ->
+ * /language-master/en/) list the pages of their own tree from the query index, as a locale site
+ * does. Remove with the mapping once the language master is rolled out and unpublished.
+ */
+export const REVIEW_ROOTS = ['/language-master/en'];
+
+/**
+ * The published root whose pages a page's lists show (the query index rows below it): a review
+ * root for the pages below it, else the page's locale root (e.g. /de-de).
+ * @param {string} [pathname] defaults to the current page
+ * @returns {string}
+ */
+export function indexRoot(pathname = window.location.pathname) {
+  const review = REVIEW_ROOTS.find((root) => startsWithFolder(pathname.toLowerCase(), root));
+  return review || getLocale(pathname).root;
+}
+
 /**
  * The parent pages of a page up to its locale's Home page (the locale page itself), nearest
  * first, as the URLs to load: published paths (/de-de/insights/blogs, /de-de/insights,

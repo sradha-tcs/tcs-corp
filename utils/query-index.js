@@ -2,7 +2,7 @@
  * Query index utils: the published pages and their metadata (helix-query.yaml, /query-index.json),
  * loaded once per page and read the same way in every block. Rows of the current locale site.
  */
-import { getLocale } from './site.js';
+import { indexRoot } from './site.js';
 
 const INDEX = '/query-index.json';
 const PAGE_SIZE = 500;
@@ -169,13 +169,13 @@ export async function getPagesAt(paths) {
 }
 
 /**
- * The pages of the current locale site (its published path, e.g. /de-de/...), loaded once and
- * cached in memory.
+ * The pages of the current locale site (its published path, e.g. /de-de/...; for the language
+ * master under review, its own tree, see REVIEW_ROOTS), loaded once and cached in memory.
  * @returns {Promise<IndexedPage[]>} empty when the index isn't available (e.g. in the editor)
  */
 export async function getPages() {
   pages = pages || fetchAll().catch(() => []);
-  const { root } = getLocale();
+  const root = indexRoot();
   return (await pages)
     .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
     .map(toPage);
