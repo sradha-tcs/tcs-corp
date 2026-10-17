@@ -27,8 +27,9 @@ describe('localeSheetPath', () => {
     assert.equal(localeSheetPath('taxonomy', '/language-master/en/x'), '/language-master/en/taxonomy.json');
     assert.equal(localeSheetPath('data/authors', '/language-master/en/x'), '/language-master/en/data/authors.json');
     assert.equal(localeSheetPath('placeholders', '/language-master/en/x'), '/language-master/en/placeholders.json');
+    assert.equal(localeSheetPath('redirects', '/language-master/en/x'), '/language-master/en/redirects.json');
   });
   it('is the locale sheet for sheets the language master does not publish', () => {
-    assert.equal(localeSheetPath('redirects', '/language-master/en/x'), '/en/redirects.json');
+    assert.equal(localeSheetPath('metadata', '/language-master/en/x'), '/en/metadata.json');
   });
 });
