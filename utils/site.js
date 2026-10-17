@@ -101,10 +101,10 @@ export const REVIEW_ROOTS = ['/language-master/en'];
 
 /**
  * The sheets published below the review roots (paths mapped in the site configuration), read
- * there by their pages; the others (placeholders, redirects) come from the locale.
+ * there by their pages; the others (redirects) come from the locale.
  */
-export const REVIEW_SHEETS = ['taxonomy', 'data/authors', 'data/locations', 'data/partners',
-  'data/social-links', 'data/media-contacts'];
+export const REVIEW_SHEETS = ['placeholders', 'taxonomy', 'data/authors', 'data/locations',
+  'data/partners', 'data/social-links', 'data/media-contacts'];
 
 /** the review root of a published page path, or '' */
 const reviewRootOf = (pathname) => REVIEW_ROOTS
