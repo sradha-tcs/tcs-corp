@@ -5,7 +5,7 @@ import {
 import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
-import { isEditing } from '../../utils/environment.js';
+import { isAuthor, isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { linkPathsOf } from '../../utils/links.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
@@ -227,7 +227,9 @@ export default async function decorate(block) {
 
   if (!cards.length) {
     const editing = isEditing();
-    if (config.emptyBehavior === 'hide' && !editing) {
+    // on AEM author (no query index) the list says where its pages show, even when set to hide
+    const author = isAuthor();
+    if (config.emptyBehavior === 'hide' && !editing && !author) {
       block.replaceChildren();
       block.hidden = true;
       block.parentElement?.setAttribute('hidden', '');
@@ -236,7 +238,7 @@ export default async function decorate(block) {
     let message = config.emptyMessage || t('listEmpty', 'There are no items to show.');
     if (editing && warnings.length) {
       message = t('listEditorHint', 'Set up the list in its properties: {problems}.', { problems: warnings.join(', ') });
-    } else if (editing && config.source !== 'fixed' && !pages.length) {
+    } else if ((editing || author) && config.source !== 'fixed' && !pages.length) {
       message = t('listEditorPages', 'The pages show on the published page (from the query index).');
     }
     renderCardListEmpty(block, header, message);
