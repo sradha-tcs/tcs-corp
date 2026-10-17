@@ -148,9 +148,14 @@ export function getParentPages(pathname = window.location.pathname) {
   const path = pathname.slice(contentRoot.length)
     .replace(/(\.plain)?\.html$/, '')
     .replace(/\/(index)?$/, '');
-  const locale = contentRoot ? localeOfAemPath(path) : localeOfSitePath(path);
-  if (!locale) return [];
-  const root = contentRoot ? aemRootOf(locale) : rootOf(locale);
+  // a page under review inherits up to its review root's page (e.g. /language-master/en), whose
+  // AEM path is its published path below the site root
+  const review = reviewRootOf(pathname);
+  const localeOf = contentRoot ? localeOfAemPath : localeOfSitePath;
+  const locale = review ? null : localeOf(path);
+  if (!locale && !review) return [];
+  const localeRoot = contentRoot ? aemRootOf : rootOf;
+  const root = review || localeRoot(locale);
   const segments = path.slice(root.length).split('/').filter(Boolean);
   if (!segments.length) return [];
   const parents = [];

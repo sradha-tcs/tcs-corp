@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  indexRoot, localePagePath, localeSheetPath, pageLink,
+  getParentPages, indexRoot, localePagePath, localeSheetPath, pageLink,
 } from '../../utils/site.js';
 
 describe('indexRoot', () => {
@@ -93,5 +93,26 @@ describe('the language master root page', () => {
   it('a path that only starts like it is not', () => {
     assert.equal(indexRoot('/content/tcs-corp/language-master/en-gb.html'), '/en');
     assert.equal(indexRoot('/language-master/english'), '/en');
+  });
+});
+
+describe('getParentPages (inherited Navigation, Footer, 404 Page)', () => {
+  it('walks up to the language master root page on the site', () => {
+    assert.deepEqual(getParentPages('/language-master/en/dummy-pages/insights/x'), [
+      '/language-master/en/dummy-pages/insights', '/language-master/en/dummy-pages', '/language-master/en/',
+    ]);
+    assert.deepEqual(getParentPages('/language-master/en/curated-design-pages'), ['/language-master/en/']);
+  });
+  it('walks up to the language master root page on author', () => {
+    assert.deepEqual(getParentPages('/content/tcs-corp/language-master/en/dummy-pages/careers.html'), [
+      '/content/tcs-corp/language-master/en/dummy-pages.html', '/content/tcs-corp/language-master/en.html',
+    ]);
+  });
+  it('has none for the root page itself', () => {
+    assert.deepEqual(getParentPages('/language-master/en/'), []);
+    assert.deepEqual(getParentPages('/content/tcs-corp/language-master/en.html'), []);
+  });
+  it('is unchanged for locale pages', () => {
+    assert.deepEqual(getParentPages('/de-de/insights/blogs/x'), ['/de-de/insights/blogs', '/de-de/insights', '/de-de/']);
   });
 });
