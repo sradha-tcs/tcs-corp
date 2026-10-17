@@ -57,9 +57,18 @@ Over a light hero (desktop): when the page's first section has a hero that isn't
 `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos
 667:52520, Hero 4082:120388): its header Canvas loses its background and rounded corners. The
 header is out of the flow, so the hero never moves when it loads; the hero grows by the header's
-height (`--header-height`, set by the header while it has a Canvas; else `--nav-height`). Below
-1200px the header keeps its bar above the hero. A header Canvas loads with the header (lazy
-phase) and so shifts the page below 1200px (F-82).
+height (`--header-height`, else `--nav-height`). Below 1200px the header keeps its bar above the
+hero.
+
+**Header Canvas** (a nav page section with a Conversation Canvas): it belongs to the bottom of
+the first screen, on the hero (Figma home-desktop 229:15426, home-tablet 671:52732, mobile Ask TCS
+1124:27368). Its host (`.nav-canvas`) is out of the flow at every width, so the header keeps the
+bar's height and the page isn't pushed down; it is as high as the first section, at most the
+window (`--conversation-canvas-first-section-bottom` from the Canvas controller, `100dvh`). The
+row sits the floating offset above the host's bottom (52px desktop, 62px tablet, 20px + safe area
+mobile), which is exactly where it floats once the page scrolls, so it stays at the bottom of the
+window without moving (canvas-journey.js). Search row 463px on tablet, 607px on desktop. A TCS
+Header block in the same nav page section stays the logo bar (only the Canvas goes to the host).
 
 ### Accessibility
 

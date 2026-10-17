@@ -145,7 +145,24 @@ on focus; navigation is in the site header); Default / Secondary rows float full
 Authors never set offsets, coordinates, z-index or thresholds; roles (header / section / footer)
 come from where the Canvas is placed. For the footer final stop, the Footer block's
 Conversation Canvas Page must reference a page with a Canvas (`references/footer-conversation-canvas`).
-For a header Canvas, add a section with a Canvas to the nav page (it is placed below the nav).
+For a header Canvas, add a section with a Canvas to the nav page: it sits at the bottom of the
+first screen, on the hero, and floats at the bottom of the window as soon as the page scrolls
+(see Bottom of the window below; a TCS Header block in the same section stays the logo bar).
+
+## Bottom of the window
+
+- The floating row is `position: fixed`, centred, `--conversation-canvas-float-offset` above the
+  bottom of the window: 52px desktop, 62px tablet, 20px mobile, plus the safe area (Figma: the
+  row 52 / 62px above the bottom of a hero that fills the first screen; mobile Ask TCS 54px with
+  the home indicator). The Primary dock keeps its 24px.
+- The header Canvas is docked only while its row is at the dock line (the top of the page, where
+  the header places it); as soon as scrolling would carry it up it floats, at the same place. A
+  hero shorter than the window: it floats from the start, at the bottom of the window. Section
+  and footer Canvases dock as before (in place while on screen).
+- The opening hero is at most the first screen high (blocks/hero), so its content stays above
+  the row on short screens.
+- Figma Play (the www.tcs.com Figma Site) can't be opened through the API: the threshold, offsets
+  and motion of the prototype are not verifiable; the values above come from the design file.
 
 ## Figma gaps and decisions
 
