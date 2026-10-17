@@ -108,8 +108,8 @@ export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/aut
 
 /**
  * The page folders published below the review roots: their pages use the review root's
- * references (nav, footer and the pages they load) and error pages (the 404 page when no 404 Page
- * is inherited); the Home page stays the locale's.
+ * references (nav, footer and the pages they load), error pages (the 404 page when no 404 Page
+ * is inherited) and root page (Home, e.g. the 404 page's Go home).
  */
 export const REVIEW_PAGES = ['references/', 'error-pages/'];
 
@@ -226,7 +226,8 @@ export function localePagePath(path, pathname = window.location.pathname) {
   const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
   // a page under review uses its review root's references (its AEM path on author)
-  const review = REVIEW_PAGES.some((folder) => relative.startsWith(folder)) ? reviewRootOf(pathname) : '';
+  const own = !relative || REVIEW_PAGES.some((folder) => relative.startsWith(folder));
+  const review = own ? reviewRootOf(pathname) : '';
   if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
   return `${review || root}/${relative}`;
 }
