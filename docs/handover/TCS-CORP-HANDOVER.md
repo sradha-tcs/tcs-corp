@@ -12,14 +12,14 @@ date: "October 18, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.17 |
+| Version | 2.18 |
 | Date | 18 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104 (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -49,6 +49,7 @@ date: "October 18, 2026"
 | 2.15 | 18 October 2026 | Delivery team | Header layout shift: until the header has loaded it keeps the space of the TCS Header with its Canvas (`--header-reserved`: 17.5 / 20.875 / 27.5rem), or the height remembered from the last page (`utils/header-space.js`, per breakpoint); the page no longer moves when the header and its Canvas arrive (layout shift 0.14–0.25 on every page with the TCS Header, now below 0.01 on mobile, tablet and desktop) |
 | 2.16 | 18 October 2026 | Delivery team | List cards: pages can set their own Card style and Card colour with the new bulk metadata columns `card-style` (image, panel, report, stat) and `card-theme` (the Card colour values), indexed as `cardStyle` / `cardTheme`. Precedence (`kindOf`, `themeOf`): a List Item's own value, else the List's (Card style other than Mixed (by page), Card colour other than Default for the style), else the page's metadata, else automatic; source cards (child pages, tags) have no item level. Unsupported values are ignored. List Items keep their field-by-field content from the linked page (authored values win). Field names, options and stored values are unchanged; lists made before render as before |
 | 2.17 | 18 October 2026 | Delivery team | Document body brought up to date with 2.10–2.16 (code on `main` after PR #104): page loading and layout shift (1.7.1, 2.3.2, 2.11.2), paths and the temporary language master review (2.10.2, 2.10.7, 2.10.8, 3.1, 3.9), inheritance up to the language master root (2.11.3, 3.5.1, 3.5.2, 4.6.1), empty error pages skipped (3.7), item children in the field specifications of Footer, Page Header, Hero, Teaser, Testimonial, Filter List and Anchor List, the List card display precedence and the author message (6.16.11), metadata columns `card-style` and `card-theme` (8.2.49, 8.2.50, 8.3, 8.4), findings F-88 to F-93; F-82 closed |
+| 2.18 | 18 October 2026 | Delivery team | Block animation and skeleton loading (`docs/animation/README.md`): the Additional tab's **Content animation** (19 blocks: Fade in / up / down / left / right, Slide up / down / left / right, Scale in; repeated items staggered) and **Background animation** (Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas: Fade in, Reveal from the centre, Wipe left to right / right to left / bottom to top, Scale reveal), independent, run once when the block comes into view, never in the editor or for reduced motion (`utils/motion.js`, `decorators/motion-decorator.js`, `styles/motion.css`); the background animates from the block's own colour, media and overlay (the Canvas blue / yellow glows). List and Filter List show a skeleton when the query index takes longer than 150ms, so their section and the ones below aren't held back; the Canvas navigation and menu too (`decorators/skeleton-decorator.js`). Hero and Table List Motion Type stay, replaced by the new fields when set. 5.6 (5.6.6), findings F-94 to F-96 |
 
 ## Review and Approval
 
@@ -4132,7 +4133,7 @@ Recommended length: up to about 125 characters (not enforced by the models).
 
 ## 5.6 The Additional tab
 
-Every block dialog has an **Additional** tab as its last tab, with the same ten fields. The tab is present in the models of: Accordion, Anchor List, Cards, Columns, Conversation Canvas, Embed, Filter List, Form Variations, Fragment, Gen Carousel, Hero, Interactive Dashboard, List, Modal, Page Header, Quote, Separator, Tab, Table, Table List, Tabs (block), Tabs Container, Teaser, Testimonial and Video (25 models).
+Every block dialog has an **Additional** tab as its last tab, with the same ten fields; from 2.18, 19 blocks also have **Content animation** and 6 of them **Background animation** after Hide block (5.6.6). The tab is present in the models of: Accordion, Anchor List, Cards, Columns, Conversation Canvas, Embed, Filter List, Form Variations, Fragment, Gen Carousel, Hero, Interactive Dashboard, List, Modal, Page Header, Quote, Separator, Tab, Table, Table List, Tabs (block), Tabs Container, Teaser, Testimonial and Video (25 models).
 
 It is **not** present on: the header and footer, block items (Accordion Item, Card, List Item, Tab items, Table rows, Table List items, form fields), the section, and default content (Text, Title, Image, Button).
 
@@ -4217,6 +4218,43 @@ The rules are written as `main .section .block.pl-600 { padding-left: var(--spac
 - Use **Padding** when a block with a coloured background needs more inner space.
 - Avoid large left / right values on mobile: the same value applies at every breakpoint and narrows the content.
 - Margins of neighbouring blocks are added to the default layout; check the page at all three device sizes.
+
+### 5.6.6 Content animation and Background animation (2.18)
+
+| Field Name | Field Type | Mandatory | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
+|:--------------------------|:---------|:-----------|:------------|:--------------------------------|:------------------------------|:---------------------|:---------------------|
+| Content animation (`classes_animation`) | Select | No | None | How the block's content appears when it comes into view | Use one or two effects per page; Fade up for most blocks; repeated items (cards, list items, accordion items, columns) appear one after another | Enforced: one of the options; other values are ignored | `motion-fade-up` |
+| Background animation (`classes_bganimation`) | Select | No | None | How the block's background (its BG Color, image or overlay as set; the Canvas brand glows) appears; independent of Content animation | Below the fold; not on the first hero of a page (it delays the image, the LCP) | Enforced: one of the options; other values are ignored | `bg-motion-wipe-right` |
+
+Blocks with Content animation: Accordion, Cards, Columns, Conversation Canvas, Embed, Filter
+List, Form Variations, Gen Carousel, Hero, Interactive Dashboard, List, Page Header, Quote, Table,
+Table List, Tabs, Teaser, Testimonial, Video. With Background animation: Conversation Canvas, Form
+Variations, Hero, Quote, Teaser, Testimonial. Not on Anchor List (sticky), Separator (its own
+Animate on view), Fragment, Modal, Tab, header and footer.
+
+- Options: Content animation None, Fade in, Fade up, Fade down, Fade left, Fade right (fade with
+  a short move), Slide up, Slide down, Slide left, Slide right (a longer move without fading),
+  Scale in. Background animation None, Fade in, Reveal from the centre, Wipe left to right, Wipe
+  right to left, Wipe bottom to top, Scale reveal.
+- Each block animates once per page view, when it comes into view; content 0.6 s, background
+  0.9 s, items 0.08 s apart (at most 5 steps). Afterwards the block is exactly as without
+  animation.
+- Not in Universal Editor edit mode (the stable block is shown; Preview plays it), and not for
+  visitors who prefer reduced motion.
+- Hero **Motion Type** and Table List **Motion Type** still work; when Content animation is set
+  it replaces them (and Background animation replaces the Hero's Zoom).
+- Lists and Filter Lists show a skeleton (placeholders shaped like their cards) when the query
+  index takes longer than 150ms; it isn't authorable.
+
+**Steps — Animate a Teaser:**
+
+| Step | Where | Field / control | Value / action |
+|:--|:----------|:----------|:--------------------|
+| 1 | Universal Editor › Content tree | Teaser | Select the Teaser |
+| 2 | Teaser › Properties | Tabs | Open the Additional tab |
+| 3 | Teaser › Additional | Content animation | Fade up |
+| 4 | Teaser › Additional | Background animation | Wipe left to right (with a BG Color set) |
+| 5 | Universal Editor | Preview | Check the effect in Preview mode or on the preview site |
 
 ## 5.7 Preview, publish, validation and rollback
 
@@ -123269,6 +123307,9 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-91 | Header, Footer, 404 (language master) | Pages of the language master didn't inherit the Navigation, Footer and 404 Page of its root page (`/content/tcs-corp/language-master/en`): parent pages were looked up only up to a locale Home page, so they showed no header or footer | No header or footer on language master pages | Fixed in 2.14: `getParentPages` goes up to the review root, and the root page is published | Closed (2.14) | Development | 2.11.3, 3.9 |
 | F-92 | Error pages (content) | The root page of the language master has no 404 Page value and both `error-pages/404` pages (/en and the language master) have no content; empty error pages are skipped (3.7), so the built-in "Page Not Found" shows | English built-in 404 instead of the authored page | Author the 404 pages and set the root page's 404 Page | P2 | Content authors | 3.7, Part 10 |
 | F-93 | Header | Layout shift when the header and its Canvas arrived in the lazy phase (CLS 0.14–0.25 on every page with the TCS Header; PageSpeed failed) | PageSpeed CLS above 0.1 | Fixed in 2.15: `<header>` keeps `--header-reserved` or the height remembered for the breakpoint until it loads (CLS below 0.01) | Closed (2.15) | Development | 3.5.1, 6.1 |
+| F-94 | Hero, Teaser (animation) | Background animation clips or fades the block's image while it runs: on the first hero of a page it delays the paint of the LCP image | Slower Largest Contentful Paint if used above the fold | Use Background animation below the fold (5.6.6); Content animation of the first section is lighter (text only) but also delays the text paint | P3 | Content authors | 5.6, 6.10 |
+| F-95 | List, Filter List (skeleton) | A skeleton approximates its block; when the real content is taller (long titles, more rows) the page grows below it (Filter List desktop 851 → 1893 px in the test) | Small layout shift below the block, mostly below the fold | Accepted; the skeleton count follows the breakpoint (List: its columns or Items visible) | P3 | Development | 6.16, 6.17 |
+| F-96 | Block animation (verification) | Content and Background animation were checked on the local preview (desktop and mobile, reduced motion, slow and failing index) but not in Universal Editor on AEM author (no author access); nothing is prepared in edit mode by design | Editor behaviour to confirm | Check an animated Teaser and a List in Universal Editor edit and preview mode (docs/animation/README.md, K) | P2 | QA, Content authors | 5.6 |
 
 ## 16.3 Open Items (To Be Confirmed)
 

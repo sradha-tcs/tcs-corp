@@ -1,7 +1,8 @@
 import {
-  applyCardListLayout, buildCardListHeader, cardListId, renderCardList, renderCardListEmpty,
-  renderEditorItems, trackCardList,
+  applyCardListLayout, buildCardListHeader, buildCardListSkeleton, cardListId, renderCardList,
+  renderCardListEmpty, renderEditorItems, trackCardList,
 } from '../../decorators/card-list-decorator.js';
+import { renderWhenLoaded } from '../../decorators/skeleton-decorator.js';
 import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
@@ -180,90 +181,101 @@ export default async function decorate(block) {
   const warnings = validateConfig(config, { fixedCount: read.items.length });
   debug('config', config, warnings);
   const needsIndex = config.source !== 'fixed' || read.items.some((item) => item.href.startsWith('/'));
-  const [indexed, redirects, authorRows] = await Promise.all([
+  const loaded = Promise.all([
     needsIndex ? getPages() : [],
     loadRedirects(),
     config.featureFirst ? getAuthors().catch(() => []) : [],
   ]);
-  // List Item pages the index doesn't have (in the editor, AEM author has no query index) are
-  // read from the pages themselves
-  const known = new Set(indexed.map((page) => normalizePath(page.path)));
-  const missing = read.items.map((item) => sitePath(item.href))
-    .filter((path) => path.startsWith('/') && !known.has(normalizePath(path)))
-    .map(withPageExtension);
-  const pages = missing.length ? [...indexed, ...await getPagesAt(missing)] : indexed;
-  const data = {
-    pages,
-    items: read.items,
-    currentPath: normalizePath(toPublishedPath(window.location.pathname)),
-    // on AEM author, links to the AEM pages
-    resolveUrl: (path) => withPageExtension(pageLink(resolveRedirect(redirects, path))),
-    origin: window.location.origin,
-    lang: document.documentElement.lang,
-  };
-  let cards = buildCards(config, data);
-  if (!cards.length && config.emptyBehavior === 'fallback' && config.source !== 'fixed') {
-    cards = buildCards({ ...config, source: 'fixed' }, data);
-  }
-  const tagIds = [...new Set(cards.flatMap((card) => card.tagIds))];
-  const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
-  cards.forEach((card) => {
-    card.tags = card.tagIds.map((tag) => labels.get(tag) || tag);
-    card.contentTypeLabel = contentTypeLabel(card.contentType, card.tagIds, labels);
-  });
-  debug('cards', cards);
-
+  // laid out before the pages arrive, so the skeleton takes the list's grid / scroll layout
   applyCardListLayout(block, config);
   block.classList.add(`source-${config.source}`);
 
-  // in the editor, List Items without a card (e.g. one just added with Add, before it has a
-  // link) are placeholders the author can select
-  const editorItems = () => {
-    if (!isEditing()) return;
-    const hint = config.source === 'fixed'
-      ? t('listItemEditorHint', 'This List Item isn’t shown yet: choose a page or a link in its Link tab.')
-      : t('listItemSourceHint', 'List Items are shown when the List source is Fixed list.');
-    renderEditorItems(block, read.itemRows, hint);
-  };
+  // pages from the query index: a skeleton while it loads (decorators/skeleton-decorator.js)
+  await renderWhenLoaded(block, {
+    data: loaded,
+    skeleton: () => buildCardListSkeleton(config, {
+      title: !!heading,
+      count: config.source === 'fixed' ? read.items.length : Infinity,
+    }),
+    render: async ([indexed, redirects, authorRows]) => {
+      // List Item pages the index doesn't have (in the editor, AEM author has no query index) are
+      // read from the pages themselves
+      const known = new Set(indexed.map((page) => normalizePath(page.path)));
+      const missing = read.items.map((item) => sitePath(item.href))
+        .filter((path) => path.startsWith('/') && !known.has(normalizePath(path)))
+        .map(withPageExtension);
+      const pages = missing.length ? [...indexed, ...await getPagesAt(missing)] : indexed;
+      const data = {
+        pages,
+        items: read.items,
+        currentPath: normalizePath(toPublishedPath(window.location.pathname)),
+        // on AEM author, links to the AEM pages
+        resolveUrl: (path) => withPageExtension(pageLink(resolveRedirect(redirects, path))),
+        origin: window.location.origin,
+        lang: document.documentElement.lang,
+      };
+      let cards = buildCards(config, data);
+      if (!cards.length && config.emptyBehavior === 'fallback' && config.source !== 'fixed') {
+        cards = buildCards({ ...config, source: 'fixed' }, data);
+      }
+      const tagIds = [...new Set(cards.flatMap((card) => card.tagIds))];
+      const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
+      cards.forEach((card) => {
+        card.tags = card.tagIds.map((tag) => labels.get(tag) || tag);
+        card.contentTypeLabel = contentTypeLabel(card.contentType, card.tagIds, labels);
+      });
+      debug('cards', cards);
 
-  if (!cards.length) {
-    const editing = isEditing();
-    // on AEM author (no query index) the list says where its pages show, even when set to hide
-    const author = isAuthor();
-    if (config.emptyBehavior === 'hide' && !editing && !author) {
-      block.replaceChildren();
-      block.hidden = true;
-      block.parentElement?.setAttribute('hidden', '');
-      return;
-    }
-    let message = config.emptyMessage || t('listEmpty', 'There are no items to show.');
-    if (editing && warnings.length) {
-      message = t('listEditorHint', 'Set up the list in its properties: {problems}.', { problems: warnings.join(', ') });
-    } else if ((editing || author) && config.source !== 'fixed' && !pages.length) {
-      message = t('listEditorPages', 'The pages show on the published page (from the query index).');
-    }
-    renderCardListEmpty(block, header, message);
-    editorItems();
-    return;
-  }
+      // in the editor, List Items without a card (e.g. one just added with Add, before it has a
+      // link) are placeholders the author can select
+      const editorItems = () => {
+        if (!isEditing()) return;
+        const hint = config.source === 'fixed'
+          ? t('listItemEditorHint', 'This List Item isn’t shown yet: choose a page or a link in its Link tab.')
+          : t('listItemSourceHint', 'List Items are shown when the List source is Fixed list.');
+        renderEditorItems(block, read.itemRows, hint);
+      };
 
-  const authors = new Map(authorRows.map((author) => [author.id, author]));
-  renderCardList(block, {
-    config, cards, header, heading, id, t, authors,
+      if (!cards.length) {
+        const editing = isEditing();
+        // on AEM author (no query index) the list says where its pages show, even when set to hide
+        const author = isAuthor();
+        if (config.emptyBehavior === 'hide' && !editing && !author) {
+          block.replaceChildren();
+          block.hidden = true;
+          block.parentElement?.setAttribute('hidden', '');
+          return;
+        }
+        let message = config.emptyMessage || t('listEmpty', 'There are no items to show.');
+        if (editing && warnings.length) {
+          message = t('listEditorHint', 'Set up the list in its properties: {problems}.', { problems: warnings.join(', ') });
+        } else if ((editing || author) && config.source !== 'fixed' && !pages.length) {
+          message = t('listEditorPages', 'The pages show on the published page (from the query index).');
+        }
+        renderCardListEmpty(block, header, message);
+        editorItems();
+        return;
+      }
+
+      const authors = new Map(authorRows.map((author) => [author.id, author]));
+      renderCardList(block, {
+        config, cards, header, heading, id, t, authors,
+      });
+      editorItems();
+      if (config.analytics) {
+        trackCardList(block, {
+          id,
+          type: 'tcs-corp/components/list',
+          title: heading?.textContent.trim() || config.listLabel,
+          cards,
+          state: {
+            'xdm:listSource': config.source,
+            'xdm:variant': config.displayAsTeaser ? config.cardStyle : 'links',
+          },
+        });
+      } else {
+        block.dataset.analytics = 'off';
+      }
+    },
   });
-  editorItems();
-  if (config.analytics) {
-    trackCardList(block, {
-      id,
-      type: 'tcs-corp/components/list',
-      title: heading?.textContent.trim() || config.listLabel,
-      cards,
-      state: {
-        'xdm:listSource': config.source,
-        'xdm:variant': config.displayAsTeaser ? config.cardStyle : 'links',
-      },
-    });
-  } else {
-    block.dataset.analytics = 'off';
-  }
 }

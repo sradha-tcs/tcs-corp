@@ -1,4 +1,5 @@
 import { loadFragment } from '../fragment/fragment.js';
+import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { createIdFactory } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
@@ -290,6 +291,8 @@ export default async function decorate(block) {
     navCanvas.className = 'nav-canvas';
     navCanvas.append(...canvasSections);
     block.append(navCanvas);
+    // the block animations of the header Canvas, once it is in the page
+    await prepareMotion(navCanvas);
   }
 
   // the header's height (with its Canvas): --header-height lets an opening light hero lie under

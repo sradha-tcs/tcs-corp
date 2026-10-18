@@ -7,6 +7,7 @@ import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
 import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
 import { onVisible } from '../../utils/viewport.js';
+import { backgroundMotionOf, contentMotionOf } from '../../utils/motion.js';
 import { isAnimation } from '../../utils/media.js';
 
 /*
@@ -36,9 +37,12 @@ const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
 /**
  * Motion Type: the animation plays when the hero comes into view. Without it (none, reduced
- * motion, Universal Editor) the hero shows as is.
+ * motion, Universal Editor) the hero shows as is. The Additional tab's Content animation replaces
+ * its Fade in / Slide up, its Background animation the Zoom (decorators/motion-decorator.js).
  */
 function observeMotion(block) {
+  if (contentMotionOf(block.classList)) block.classList.remove('motion-fade', 'motion-slide');
+  if (backgroundMotionOf(block.classList)) block.classList.remove('motion-zoom');
   if (!MOTIONS.some((motion) => block.classList.contains(motion))) return;
   if (isEditing() || prefersReducedMotion()) return;
   block.classList.add('motion-ready');

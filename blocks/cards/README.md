@@ -137,6 +137,10 @@ order. A card without a title is named by the start of its description. Analytic
 | A card without a title | Shown without a heading, not linked unless it has a call to action |
 | Missing image, tags, date | That part isn't rendered |
 
+## Animation
+
+The Additional tab's **Content animation** moves the header, the feature card and each card in, one after another (at most 5 steps), when the block comes into view (`decorators/motion-decorator.js`, `docs/animation/README.md`). Cards are authored, so they render at once: no skeleton.
+
 ## Placeholders
 
 `cards` (Cards), `cardsEditorHint`, `cardEditorHint`, and the List's: `listPrevious`, `listNext`, `opensInNewTab`,

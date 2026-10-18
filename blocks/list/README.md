@@ -384,6 +384,11 @@ are exposed.
 | Invalid maximum items or responsive values | Defaults |
 | Duplicate Component ID | Suffixed (`fixed-1`) |
 | Debugging | `?debug=list` logs the configuration and cards (`console.debug`) |
+| The index (or redirects, authors) still loading after 150ms | A skeleton in the list's layout (title, cards or rows as configured) so the section is shown; replaced by the list when the data is there, also when it fails (`decorators/skeleton-decorator.js`) |
+
+## Animation
+
+The Additional tab's **Content animation** moves the header, the feature card and each card or row in, one after another (at most 5 steps), when the list comes into view, after its skeleton if it had one (`decorators/motion-decorator.js`, `docs/animation/README.md`). There is no Background animation: card colours are per card.
 
 ## Placeholders
 
