@@ -46,6 +46,11 @@ background, a Background animation); without an animation they have no effect.
   `cubic-bezier(0.4, 0, 0.2, 1)` (was a fast-out ease that finished most of the move in the first
   frames), stagger 120ms (was 80ms), and On Scroll starts when the block is visibly in view rather
   than at its first pixel.
+- **Universal Editor**: blocks are prepared in edit mode too, but nothing plays or is used up there
+  (the CSS shows them as is); when the editor switches to Preview (the `adobe-ue-edit` class of
+  `<html>` goes), the blocks that haven't played yet play: On Page Load at once, On Scroll when in
+  view (also those in view then). Before this fix, a page opened in edit mode had no animations
+  in Preview, and On Scroll blocks scrolled past in edit mode were used up.
 - **Reduced motion** wins over Motion Speed and Animation Trigger: nothing is prepared, the CSS isn't
   loaded and all content shows at once (no movement, scale, stagger or background effect).
 
