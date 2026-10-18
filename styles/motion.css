@@ -1,18 +1,46 @@
 /*
- * Block animations: Content animation and Background animation (Additional tab), run by
- * decorators/motion-decorator.js when a block comes into view. Loaded only on pages with an
- * animated block. A target waits on the first frame of its animation (paused) until it runs;
+ * Block animations: Animation Type (content) and Background animation (Additional tab), run by
+ * decorators/motion-decorator.js when a block comes into view or, with Animation Trigger On Page
+ * Load, when its content is ready. Motion Speed sets the durations below (one keyframe per effect,
+ * whatever the speed). Loaded only on pages with an animated block. A target waits on the first frame of its animation (paused) until it runs;
  * every class is removed when the animation has ended. The first frames apply only on screen,
  * without a reduced motion preference and outside Universal Editor, so content is never left
  * hidden.
  */
 :root {
+  /* Motion Speed: Medium (the default) */
   --motion-duration: 600ms;
   --motion-duration-background: 900ms;
-  --motion-stagger: 80ms;
-  --motion-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
-  --motion-distance: var(--space-600);
-  --motion-distance-slide: var(--space-1600);
+  --motion-stagger: 120ms;
+
+  /* an even ease (accelerate, then settle) keeps the movement visible to its end */
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-distance: var(--space-1000);
+  --motion-distance-slide: var(--space-2000);
+  --motion-scale: 0.9;
+}
+
+/*
+ * Motion Speed per block: Fast 300ms, Medium 600ms, Slow 900ms for the content; the background
+ * takes 1.5 times as long and repeated items start a fifth of the duration apart. Set on every
+ * block, so a nested block doesn't take the speed of the block around it.
+ */
+.block {
+  --motion-duration: 600ms;
+  --motion-duration-background: 900ms;
+  --motion-stagger: 120ms;
+}
+
+.block.motion-fast {
+  --motion-duration: 300ms;
+  --motion-duration-background: 450ms;
+  --motion-stagger: 60ms;
+}
+
+.block.motion-slow {
+  --motion-duration: 900ms;
+  --motion-duration-background: 1350ms;
+  --motion-stagger: 180ms;
 }
 
 /* the effect of each Content animation */
@@ -130,7 +158,7 @@
 @keyframes motion-scale-in {
   from {
     opacity: 0;
-    transform: scale(0.94);
+    transform: scale(var(--motion-scale));
   }
 }
 
@@ -161,6 +189,6 @@
 @keyframes bg-motion-scale {
   from {
     opacity: 0;
-    transform: scale(0.94);
+    transform: scale(var(--motion-scale));
   }
 }

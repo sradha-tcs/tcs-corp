@@ -14,6 +14,51 @@ Code: `utils/motion.js`, `decorators/motion-decorator.js`, `styles/motion.css`,
 `decorators/skeleton-decorator.js`, skeleton styles in `styles/styles.css`. Tests:
 `test/motion/motion.test.mjs`.
 
+## Motion Speed and Animation Trigger (update)
+
+Two more Additional tab fields, after **Animation Type** (the label of the Content animation field,
+`classes_animation`; stored values unchanged), on the same 19 blocks:
+
+| Field | Property | Options (value) | Default | Applies to |
+|:--|:--|:--|:--|:--|
+| Motion Speed | `classes_animationspeed` | Medium (empty), Fast `motion-fast`, Slow `motion-slow` | Medium | Animation Type and Background animation |
+| Animation Trigger | `classes_animationtrigger` | On Scroll / Viewport Entry (empty), On Page Load `motion-on-load` | On Scroll | Animation Type and Background animation |
+
+The two fields are shown only once the block has an Animation Type (or, on blocks with a
+background, a Background animation); without an animation they have no effect.
+
+- **Speed** (`styles/motion.css`): the block's `--motion-duration` is 300 / 600 / 900ms; the
+  background takes 1.5 times as long (450 / 900 / 1350ms) and repeated items start a fifth of the
+  duration apart (60 / 120 / 180ms). One keyframe per effect; the speed is only CSS variables, set
+  on every `.block` so nested blocks keep their own speed. No timers set the duration (one 4 s
+  safety timer only cleans up classes if an `animationend` never comes).
+- **On Scroll** (default): the page's one IntersectionObserver (thresholds 0 to 0.25) starts a
+  block once a fifth of it, or a quarter of the viewport height for taller blocks, is in view
+  (`isSeen`). A block already in view when the page opens starts at once, without scrolling.
+- **On Page Load**: the block starts as soon as it is prepared, after its section's blocks are
+  decorated and before the section is shown, wherever it is on the page (a block far below has
+  finished before it is reached).
+- **Skeleton**: a block that shows a skeleton starts its Animation Type when its real content is
+  there (`releaseMotion`): at once with On Page Load, when in view with On Scroll; its Background
+  animation follows the trigger meanwhile. Each animation runs once.
+- **More visible motion**: Fade distance 2.5rem (`--space-1000`, was 1.5rem), Slide distance 5rem
+  (`--space-2000`, was 4rem), Scale in and Scale reveal from 90% (was 94%), an even ease
+  `cubic-bezier(0.4, 0, 0.2, 1)` (was a fast-out ease that finished most of the move in the first
+  frames), stagger 120ms (was 80ms), and On Scroll starts when the block is visibly in view rather
+  than at its first pixel.
+- **Reduced motion** wins over Motion Speed and Animation Trigger: nothing is prepared, the CSS isn't
+  loaded and all content shows at once (no movement, scale, stagger or background effect).
+
+Tested (local preview, 1440 × 900, 1440 × 2200, 390 × 844; index slowed to 1.5 s): Hero Fade up +
+Slow + On Page Load + Reveal started at 0.38 s at 0.9 s (background 1.35 s); a Quote Fade in + Fast
++ On Page Load far below the fold ran at 0.53 s at 0.3 s; a List (On Page Load) behind its skeleton
+started at 1.73 s, after the skeleton was removed; Cards Slow, Teaser Fast + Wipe, Canvas Medium,
+Filter List Slow started only when scrolled to, with their durations; Cards On Scroll in view at
+load started at 0.38 s without scrolling; a Hero with Fast + On Page Load and no Animation Type
+didn't animate; no state left after the animations; reduced motion: nothing prepared, no overflow.
+`test/motion/motion.test.mjs`: values, field order and options, conditions, CSS durations equal to
+`MOTION_SPEEDS`, one keyframe per effect, `isSeen`.
+
 ## A. Repository analysis
 
 What existed before this change (27 block folders):

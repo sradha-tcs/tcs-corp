@@ -12,14 +12,14 @@ date: "October 18, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.18 |
+| Version | 2.19 |
 | Date | 18 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -50,6 +50,7 @@ date: "October 18, 2026"
 | 2.16 | 18 October 2026 | Delivery team | List cards: pages can set their own Card style and Card colour with the new bulk metadata columns `card-style` (image, panel, report, stat) and `card-theme` (the Card colour values), indexed as `cardStyle` / `cardTheme`. Precedence (`kindOf`, `themeOf`): a List Item's own value, else the List's (Card style other than Mixed (by page), Card colour other than Default for the style), else the page's metadata, else automatic; source cards (child pages, tags) have no item level. Unsupported values are ignored. List Items keep their field-by-field content from the linked page (authored values win). Field names, options and stored values are unchanged; lists made before render as before |
 | 2.17 | 18 October 2026 | Delivery team | Document body brought up to date with 2.10–2.16 (code on `main` after PR #104): page loading and layout shift (1.7.1, 2.3.2, 2.11.2), paths and the temporary language master review (2.10.2, 2.10.7, 2.10.8, 3.1, 3.9), inheritance up to the language master root (2.11.3, 3.5.1, 3.5.2, 4.6.1), empty error pages skipped (3.7), item children in the field specifications of Footer, Page Header, Hero, Teaser, Testimonial, Filter List and Anchor List, the List card display precedence and the author message (6.16.11), metadata columns `card-style` and `card-theme` (8.2.49, 8.2.50, 8.3, 8.4), findings F-88 to F-93; F-82 closed |
 | 2.18 | 18 October 2026 | Delivery team | Block animation and skeleton loading (`docs/animation/README.md`): the Additional tab's **Content animation** (19 blocks: Fade in / up / down / left / right, Slide up / down / left / right, Scale in; repeated items staggered) and **Background animation** (Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas: Fade in, Reveal from the centre, Wipe left to right / right to left / bottom to top, Scale reveal), independent, run once when the block comes into view, never in the editor or for reduced motion (`utils/motion.js`, `decorators/motion-decorator.js`, `styles/motion.css`); the background animates from the block's own colour, media and overlay (the Canvas blue / yellow glows). List and Filter List show a skeleton when the query index takes longer than 150ms, so their section and the ones below aren't held back; the Canvas navigation and menu too (`decorators/skeleton-decorator.js`). Hero and Table List Motion Type stay, replaced by the new fields when set. 5.6 (5.6.6), findings F-94 to F-96 |
+| 2.19 | 18 October 2026 | Delivery team | Motion Speed (Medium 0.6 s, Fast 0.3 s, Slow 0.9 s; background 1.5 times as long) and Animation Trigger (On Scroll / Viewport Entry, On Page Load) after **Animation Type** (the label of the Content animation field), shown once an animation is chosen; speed through CSS variables, one keyframe per effect; On Scroll starts when a fifth of the block (or a quarter of the viewport) is in view, also when in view from the start; On Page Load as soon as the block's content is ready, after its skeleton if it had one. More visible motion: 2.5rem fade and 5rem slide distances, 90% scale, an even ease, 120ms stagger. 5.6.6 |
 
 ## Review and Approval
 
@@ -4223,7 +4224,9 @@ The rules are written as `main .section .block.pl-600 { padding-left: var(--spac
 
 | Field Name | Field Type | Mandatory | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
 |:--------------------------|:---------|:-----------|:------------|:--------------------------------|:------------------------------|:---------------------|:---------------------|
-| Content animation (`classes_animation`) | Select | No | None | How the block's content appears when it comes into view | Use one or two effects per page; Fade up for most blocks; repeated items (cards, list items, accordion items, columns) appear one after another | Enforced: one of the options; other values are ignored | `motion-fade-up` |
+| Animation Type (`classes_animation`, the content animation) | Select | No | None | How the block's content appears | Use one or two effects per page; Fade up for most blocks; repeated items (cards, list items, accordion items, columns) appear one after another | Enforced: one of the options; other values are ignored | `motion-fade-up` |
+| Motion Speed (`classes_animationspeed`) | Select | No | Medium | How fast the block's animations run: Fast 0.3 s, Medium 0.6 s, Slow 0.9 s (the background 1.5 times as long) | Slow for large heroes and canvases, Fast for small repeated items | Enforced: one of the options; shown once an animation is chosen | `motion-slow` |
+| Animation Trigger (`classes_animationtrigger`) | Select | No | On Scroll / Viewport Entry | When the block's animations run: when it comes into view (at once if in view when the page opens), or On Page Load as soon as it is ready | On Page Load for the opening hero; On Scroll below the fold (On Page Load there finishes before the visitor arrives) | Enforced: one of the options; shown once an animation is chosen | `motion-on-load` |
 | Background animation (`classes_bganimation`) | Select | No | None | How the block's background (its BG Color, image or overlay as set; the Canvas brand glows) appears; independent of Content animation | Below the fold; not on the first hero of a page (it delays the image, the LCP) | Enforced: one of the options; other values are ignored | `bg-motion-wipe-right` |
 
 Blocks with Content animation: Accordion, Cards, Columns, Conversation Canvas, Embed, Filter
@@ -4236,9 +4239,10 @@ Animate on view), Fragment, Modal, Tab, header and footer.
   a short move), Slide up, Slide down, Slide left, Slide right (a longer move without fading),
   Scale in. Background animation None, Fade in, Reveal from the centre, Wipe left to right, Wipe
   right to left, Wipe bottom to top, Scale reveal.
-- Each block animates once per page view, when it comes into view; content 0.6 s, background
-  0.9 s, items 0.08 s apart (at most 5 steps). Afterwards the block is exactly as without
-  animation.
+- Each block animates once per page view: with Animation Trigger On Scroll when a fifth of it (or
+  a quarter of the screen) is in view, with On Page Load as soon as it is ready. Motion Speed Medium:
+  content 0.6 s, background 0.9 s, items 0.12 s apart (Fast 0.3 / 0.45 / 0.06 s, Slow 0.9 / 1.35 /
+  0.18 s; at most 5 steps). Afterwards the block is exactly as without animation.
 - Not in Universal Editor edit mode (the stable block is shown; Preview plays it), and not for
   visitors who prefer reduced motion.
 - Hero **Motion Type** and Table List **Motion Type** still work; when Content animation is set
