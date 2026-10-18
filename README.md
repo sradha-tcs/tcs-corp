@@ -11,7 +11,7 @@
 
 ## Project handover
 
-- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.19 (18 October 2026, 3,417 pages; with block animation, Motion Speed, Animation Trigger and skeleton loading): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
+- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.20 (18 October 2026, 3,417 pages; with block animation, Motion Speed, Animation Trigger, skeleton loading and animations in Universal Editor Preview): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
 
 ## /en metadata sheet after the language-master rollout
 
