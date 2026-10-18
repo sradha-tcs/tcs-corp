@@ -1,6 +1,6 @@
 # TCS.com curated design pages — implementation report
 
-Package `tcs-corp-curated-design-pages-content-1.0.1.zip` · 17 October 2026
+Package `tcs-corp-curated-design-pages-content-1.0.2.zip` · 17 October 2026
 
 **Overall status: COMPLETE WITH LIMITATIONS**
 
@@ -48,6 +48,7 @@ Validation was done on a local copy that simulates rollout to `/en`, with a matc
 
 ## Version history
 
+- **1.0.2** (18 October 2026). The curated design pages are unchanged. The metadata sheet CSVs have two new columns at the end, `card-style` and `card-theme`: a page's own Card style and Card colour on List cards (code PR #104), used when neither the List Item nor the List sets one. Install tcs-corp-curated-design-pages-content-1.0.2.zip over 1.0.1; each page in the package is replaced. Then import the metadata sheet CSV again. The previous versions are on the downloads branch, tagged `home-content-package_18-Oct-2026_0529`.
 - **1.0.1** (17 October 2026). Repeating content is now stored as item children, the way authors add it with Add in Universal Editor (PR #90). These are: Hero and Page Header CTAs, Teaser links and stats, Testimonial stats, Anchor List links, Filter List tags, categories and listed / featured pages, Footer links, and the List pages (as List Items). In 1.0.0 these were composite multifield nodes, which AEM didn't render on the published pages: the lists were empty, and a Page Header with CTAs was missing. Install tcs-corp-curated-design-pages-content-1.0.1.zip over 1.0.0; each page is replaced. The placeholders sheet has one new key, `itemEditorHint` (the editor's placeholder for an item that has no content yet). It needs the code of PR #90 (merged).
 - **1.0.0** (17 October 2026). First version.
 
