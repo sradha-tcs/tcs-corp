@@ -258,8 +258,11 @@
   /* nav height */
   --nav-height: 4rem;
 
-  /* the space the header keeps until it loads: the TCS Header with its Canvas (see header) */
-  --header-reserved: 17.5rem;
+  /*
+   * the space the header keeps until it loads: the logo bar (the header Canvas lies on the hero,
+   * out of the flow, so it takes no header space; see blocks/header)
+   */
+  --header-reserved: var(--nav-height);
 }
 
 /* fallback fonts */
@@ -275,7 +278,6 @@
 @media (width >= 600px) {
   :root {
     --section-padding-inline: var(--spacing-m);
-    --header-reserved: 20.875rem;
   }
 }
 
@@ -312,7 +314,6 @@
 
     /* the desktop header is the TCS logo bar (Figma: 124px) */
     --nav-height: 7.75rem;
-    --header-reserved: 27.5rem;
   }
 }
 
@@ -338,8 +339,8 @@ header {
 
 /*
  * Until the header has loaded, it keeps the space it will take: the height remembered from the
- * last page (utils/header-space.js), else the TCS Header with its Canvas (--header-reserved), so
- * the page doesn't move when the header arrives (no layout shift).
+ * last page (utils/header-space.js), else the logo bar (--header-reserved), so the page doesn't
+ * move when the header arrives (no layout shift).
  */
 header:not(:has(.nav-wrapper)) {
   height: var(--header-reserved);
@@ -348,8 +349,8 @@ header:not(:has(.nav-wrapper)) {
 /*
  * Desktop: on a page that opens with a light hero, the logo bar lies over the hero (Figma
  * Logos 667:52520 / Hero 4082:120388). The header is out of the flow, so the hero never moves
- * when it loads; the hero adds the header's height on top (blocks/hero). With a header Canvas
- * the header is taller: blocks/header sets --header-height.
+ * when it loads; the hero adds the header's height on top (blocks/hero, --header-height set by
+ * blocks/header).
  */
 @media (width >= 1200px) {
   body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {

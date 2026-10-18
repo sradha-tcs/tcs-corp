@@ -1,13 +1,13 @@
 /**
- * Header space utils: the height the header takes once loaded (the logo bar, with the header
- * Canvas when the nav page has one), remembered per breakpoint, so the next pages reserve exactly
- * that space before the header loads and nothing moves when it arrives (no layout shift). Without
- * a remembered height, styles/styles.css reserves the TCS Header with its Canvas
- * (--header-reserved).
+ * Header space utils: the height the header takes once loaded (the logo bar; a header Canvas lies
+ * on the hero and takes no header space), remembered per breakpoint, so the next pages reserve
+ * exactly that space before the header loads and nothing moves when it arrives (no layout shift).
+ * Without a remembered height, styles/styles.css reserves the logo bar (--header-reserved).
  */
 import { currentBreakpoint } from './viewport.js';
 
-const key = () => `header-height-${currentBreakpoint()}`;
+// v2: heights remembered before the header Canvas left the header's flow included the Canvas
+const key = () => `header-height-v2-${currentBreakpoint()}`;
 
 /** reserves the remembered header height (on <html>, --header-reserved), if there is one */
 export function reserveHeaderSpace() {

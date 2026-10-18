@@ -26,7 +26,7 @@ URLs, ids and checks of the browsing context. Elements are created by the
 | `urls.js` | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | table-list, conversation-canvas |
 | `ids.js` | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | tabs, gen-carousel, page-header, filter-list, form-variations, conversation-canvas, header, block options decorator |
 | `environment.js` | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | gen-carousel, tabs, hero, table-list, anchor-list, video, form-variations, list, filter-list |
-| `header-space.js` | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, remembered per breakpoint and reserved on the next pages before the header loads: no layout shift) | header, `scripts.js` |
+| `header-space.js` | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift) | header, `scripts.js` |
 | `viewport.js` | `onVisible` (once), `watchVisibility` (on / off screen), `currentBreakpoint` (mobile / tablet / desktop) | gen-carousel, hero, table-list, embed, video, data layer decorator |
 | `media.js` | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | media decorator, embed, video, hero, teaser |
 | `lottie.js` | `loadLottie` (the vendored Lottie player, loaded once per page) | animation decorator |
