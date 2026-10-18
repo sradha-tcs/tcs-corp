@@ -1118,7 +1118,8 @@
               "name": "Statistic",
               "value": "stat"
             }
-          ]
+          ],
+          "description": "As the list: the list's Card style; with Mixed (by page), the linked page's card-style metadata, else automatic. A style here wins over both."
         },
         {
           "component": "select",
@@ -1163,7 +1164,8 @@
               "name": "Image background",
               "value": "image"
             }
-          ]
+          ],
+          "description": "As the list: the list's Card colour; with Default for the style, the linked page's card-theme metadata. A colour here wins over both."
         },
         {
           "component": "text",
