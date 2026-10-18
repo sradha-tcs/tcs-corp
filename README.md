@@ -1,21 +1,17 @@
 # Content packages
 
-> **18 October 2026: install the new versions.** The previous state of this branch is tagged `home-content-package_18-Oct-2026_0529`.
+> **18 October 2026, 12:30: install the new block library package.** The previous state of this branch is tagged `home-content-package_18-Oct-2026_1229`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.2.zip`: block library and curated design pages (replaces 1.0.1). It adds the List page "card style and colour from pages" and its five example pages.
-> - `curated-design-pages/tcs-corp-curated-design-pages-content-1.0.2.zip`: curated design pages only (not needed if you install the block library package).
-> - Metadata sheets: two new columns, `card-style` and `card-theme` (a page's own Card style and Card colour on List cards). Values: card-style `image`, `panel`, `report` or `stat`; card-theme `dark`, `navy`, `brand`, `brand-light`, `grey`, `mid-grey`, `gradient` or `image`.
->   - `block-library/metadata-language-master.csv` (300 rows, 38 columns) for `/content/tcs-corp/language-master/en/metadata`
->   - `block-library/metadata-en-rollout.csv` (the same rows at /en paths)
->   - `home-content/metadata.csv` (today's /en sheet, 43 rows, with the two columns added empty)
->   - `home-content/metadata-en-after-rollout.csv` (136 rows, 38 columns)
-> - `placeholders.csv`, `taxonomy.csv`, `tags.csv` and the `data-*.csv` sheets are regenerated from the code and the pages.
+> - `block-library/tcs-corp-block-library-content-1.0.3.zip`: block library and curated design pages (replaces 1.0.2). It adds the **Animation** folder: five pages with the Additional tab's Content animation and Background animation on every block that has them, and skeleton loading.
+> - `block-library/metadata-language-master.csv` (306 rows, 38 columns) for `/content/tcs-corp/language-master/en/metadata`, and `block-library/metadata-en-rollout.csv` (the same rows at /en paths): 6 new rows for the Animation pages.
+> - `block-library/placeholders.csv`, `taxonomy.csv`, `tags.csv` and the `data-*.csv` sheets are regenerated from the code and the pages.
+> - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
-> Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the packages are kept, such as the language-master root page with its Navigation and Footer, `references/tcs-header` and `references/tcs-footer`. The older zips below are the previous versions.
+> Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
 
 ## Project handover
 
-- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.17 (18 October 2026, 3,415 pages): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
+- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.18 (18 October 2026, 3,416 pages; with block animation and skeleton loading): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
 
 ## /en metadata sheet after the language-master rollout
 
@@ -66,8 +62,8 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.2.zip` (1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
-  - The block library under `/content/tcs-corp/language-master/en/block-library`: 165 pages covering every block and its variations, 505 labelled examples.
+- `block-library/tcs-corp-block-library-content-1.0.3.zip` (1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+  - The block library under `/content/tcs-corp/language-master/en/block-library`: 171 pages covering every block and its variations (with the Animation folder), 547 labelled examples.
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
   - 118 DAM assets (71 new, 47 reused, merged).

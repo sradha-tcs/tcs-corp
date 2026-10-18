@@ -1,6 +1,7 @@
 path,title,folder,kind,source,blocks,examples
 "/content/tcs-corp/language-master/en/block-library","Block library","","root","root","list","0"
 "/content/tcs-corp/language-master/en/block-library/foundations","Foundations","foundations","folder","folder","list","0"
+"/content/tcs-corp/language-master/en/block-library/animation","Animation","animation","folder","folder","list","0"
 "/content/tcs-corp/language-master/en/block-library/templates","Templates","templates","folder","folder","list","0"
 "/content/tcs-corp/language-master/en/block-library/header","Header","header","folder","folder","list","0"
 "/content/tcs-corp/language-master/en/block-library/footer","Footer","footer","folder","folder","list","0"
@@ -164,3 +165,8 @@ path,title,folder,kind,source,blocks,examples
 "/content/tcs-corp/language-master/en/block-library/list/card-style-from-pages/automatic","No style set: automatic","list","source page","block library","","0"
 "/content/tcs-corp/language-master/en/block-library/filter-list/content-types","Filter List: content types","filter-list","demonstration","block library","filter-list","2"
 "/content/tcs-corp/language-master/en/block-library/form-variations/field-types","Form Variations: field types","form-variations","demonstration","block library","form-variations","2"
+"/content/tcs-corp/language-master/en/block-library/animation/content-animation","Content animation: every option","animation","demonstration","block library","teaser, hero","13"
+"/content/tcs-corp/language-master/en/block-library/animation/repeated-items","Content animation: repeated items","animation","demonstration","block library","cards, list, accordion, columns, table-list, filter-list","7"
+"/content/tcs-corp/language-master/en/block-library/animation/background-animation","Background animation: every option","animation","demonstration","block library","hero","6"
+"/content/tcs-corp/language-master/en/block-library/animation/background-by-block","Background animation on each block","animation","demonstration","block library","hero, conversation-canvas, teaser, quote, testimonial, form-variations","12"
+"/content/tcs-corp/language-master/en/block-library/animation/skeleton-loading","Skeleton loading","animation","demonstration","block library","list, filter-list, conversation-canvas","4"
