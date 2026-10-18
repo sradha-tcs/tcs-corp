@@ -2,6 +2,7 @@ import { loadFragment } from '../fragment/fragment.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { createIdFactory } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+import { rememberHeaderSpace } from '../../utils/header-space.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
 
@@ -289,14 +290,17 @@ export default async function decorate(block) {
     navCanvas.className = 'nav-canvas';
     navCanvas.append(...canvasSections);
     block.append(navCanvas);
-
-    // the header grows by its Canvas: --header-height lets an opening light hero lie under all
-    // of it on desktop (styles/styles.css, blocks/hero)
-    const header = block.closest('header') || block;
-    const setHeight = () => {
-      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
-    };
-    setHeight();
-    new ResizeObserver(setHeight).observe(header);
   }
+
+  // the header's height (with its Canvas): --header-height lets an opening light hero lie under
+  // all of it on desktop (styles/styles.css, blocks/hero). Its height as loaded is remembered, so
+  // the next pages reserve this space before the header loads (no layout shift); later changes
+  // (e.g. the Canvas floating away while scrolling) aren't
+  const header = block.closest('header') || block;
+  const setHeight = () => {
+    document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
+  };
+  setHeight();
+  rememberHeaderSpace(header);
+  new ResizeObserver(setHeight).observe(header);
 }

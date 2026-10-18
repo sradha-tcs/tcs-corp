@@ -257,6 +257,9 @@
 
   /* nav height */
   --nav-height: 4rem;
+
+  /* the space the header keeps until it loads: the TCS Header with its Canvas (see header) */
+  --header-reserved: 17.5rem;
 }
 
 /* fallback fonts */
@@ -272,6 +275,7 @@
 @media (width >= 600px) {
   :root {
     --section-padding-inline: var(--spacing-m);
+    --header-reserved: 20.875rem;
   }
 }
 
@@ -308,6 +312,7 @@
 
     /* the desktop header is the TCS logo bar (Figma: 124px) */
     --nav-height: 7.75rem;
+    --header-reserved: 27.5rem;
   }
 }
 
@@ -329,6 +334,15 @@ body.appear {
 
 header {
   height: var(--nav-height);
+}
+
+/*
+ * Until the header has loaded, it keeps the space it will take: the height remembered from the
+ * last page (utils/header-space.js), else the TCS Header with its Canvas (--header-reserved), so
+ * the page doesn't move when the header arrives (no layout shift).
+ */
+header:not(:has(.nav-wrapper)) {
+  height: var(--header-reserved);
 }
 
 /*
