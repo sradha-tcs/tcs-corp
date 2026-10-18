@@ -12,14 +12,14 @@ date: "October 18, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.19 |
+| Version | 2.20 |
 | Date | 18 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -51,6 +51,7 @@ date: "October 18, 2026"
 | 2.17 | 18 October 2026 | Delivery team | Document body brought up to date with 2.10–2.16 (code on `main` after PR #104): page loading and layout shift (1.7.1, 2.3.2, 2.11.2), paths and the temporary language master review (2.10.2, 2.10.7, 2.10.8, 3.1, 3.9), inheritance up to the language master root (2.11.3, 3.5.1, 3.5.2, 4.6.1), empty error pages skipped (3.7), item children in the field specifications of Footer, Page Header, Hero, Teaser, Testimonial, Filter List and Anchor List, the List card display precedence and the author message (6.16.11), metadata columns `card-style` and `card-theme` (8.2.49, 8.2.50, 8.3, 8.4), findings F-88 to F-93; F-82 closed |
 | 2.18 | 18 October 2026 | Delivery team | Block animation and skeleton loading (`docs/animation/README.md`): the Additional tab's **Content animation** (19 blocks: Fade in / up / down / left / right, Slide up / down / left / right, Scale in; repeated items staggered) and **Background animation** (Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas: Fade in, Reveal from the centre, Wipe left to right / right to left / bottom to top, Scale reveal), independent, run once when the block comes into view, never in the editor or for reduced motion (`utils/motion.js`, `decorators/motion-decorator.js`, `styles/motion.css`); the background animates from the block's own colour, media and overlay (the Canvas blue / yellow glows). List and Filter List show a skeleton when the query index takes longer than 150ms, so their section and the ones below aren't held back; the Canvas navigation and menu too (`decorators/skeleton-decorator.js`). Hero and Table List Motion Type stay, replaced by the new fields when set. 5.6 (5.6.6), findings F-94 to F-96 |
 | 2.19 | 18 October 2026 | Delivery team | Motion Speed (Medium 0.6 s, Fast 0.3 s, Slow 0.9 s; background 1.5 times as long) and Animation Trigger (On Scroll / Viewport Entry, On Page Load) after **Animation Type** (the label of the Content animation field), shown once an animation is chosen; speed through CSS variables, one keyframe per effect; On Scroll starts when a fifth of the block (or a quarter of the viewport) is in view, also when in view from the start; On Page Load as soon as the block's content is ready, after its skeleton if it had one. More visible motion: 2.5rem fade and 5rem slide distances, 90% scale, an even ease, 120ms stagger. 5.6.6 |
+| 2.20 | 18 October 2026 | Delivery team | Universal Editor Preview (PR #108): a page opened in edit mode had no animations in Preview, and On Scroll blocks scrolled past in edit mode were used up; now blocks are prepared in edit mode, nothing plays or is used up there, and switching to Preview plays the blocks not played yet (On Page Load at once, On Scroll when in view). Block library **Animation** folder (packages 1.0.3 and 1.0.4, published with the language master review): Animation Type: every option, Animation Type: repeated items, Background animation: every option, Background animation on each block, Motion Speed and Animation Trigger, Skeleton loading. The language master's block library is published for the review (noindex, not in the query index). 5.6.6, 2.10.2, 3.9, findings F-96, F-97 |
 
 ## Review and Approval
 
@@ -1404,8 +1405,9 @@ sheet and asset appears.
   page, 3.9).
 - Publish only the 15 includes (the 13 locale pages and everything below them,
   `/content/dam/tcs-corp/` and, temporarily, `/content/tcs-corp/language-master/en`) and never the
-  28 excludes (26 block-library entries, `site-global-templates` and its children; the language
-  master's block library is left out of the published pages by not publishing it, 3.9).
+  28 excludes (26 block-library entries, `site-global-templates` and its children). The language
+  master's block library is published with it for the review (its pages are `noindex` and not in
+  the query index, 3.9).
 - Rewrite links and references to published paths.
 
 **Dependencies:** AEM author availability; the component models (field names and order drive the
@@ -2742,7 +2744,7 @@ language master is unpublished; then the code and configuration below are remove
 
 | Area | Temporary behaviour | Where |
 |:--------------------|:----------------------------------------------------------------|:------------------------|
-| Paths | 11 mappings (folder, root page, 8 sheets, taxonomy page) and one include (`/content/tcs-corp/language-master/en`, the root page and everything below it); the block library isn't published | `paths.json` (`REVIEW` in `tools/paths/generate-paths.mjs`), site configuration `public.json` |
+| Paths | 11 mappings (folder, root page, 8 sheets, taxonomy page) and one include (`/content/tcs-corp/language-master/en`, the root page and everything below it); its block library is published too for the review (pages `noindex`, excluded from the query index) | `paths.json` (`REVIEW` in `tools/paths/generate-paths.mjs`), site configuration `public.json` |
 | Lists | List, Filter List and the Conversation Canvas menu list the language master's own pages from the query index (rows below `/language-master/en/`) | `REVIEW_ROOTS`, `reviewRootOf`, `indexRoot` in `utils/site.js`; `utils/query-index.js` |
 | Sheets | Placeholders, redirects, taxonomy and the data sheets are read from `/language-master/en/…`; its metadata sheet applies once listed in `metadata.source` | `REVIEW_SHEETS`, `localeSheetPath(name, pathname)` |
 | References and error pages | Its own `references/` (nav, footer, header / footer Canvas pages) and `error-pages/`, and its root page as Home | `REVIEW_PAGES`, `localePagePath` |
@@ -4072,7 +4074,7 @@ The filters are defined in `models/_component-filters.json` (page level), `model
 4. For blocks with items (Cards, List, Accordion, Tabs, Table, Form Variations, ...) select the block and use **Add (+)** to add items.
 5. Check the block at the three device sizes and in Preview mode.
 
-> **Tip:** Each locale has a `block-library/` folder with pages showing every block variation in that language. Open them on author to see what each option looks like before using it.
+> **Tip:** Each locale has a `block-library/` folder with pages showing every block variation in that language. Open them on author to see what each option looks like before using it. The `animation` folder shows the Additional tab's Animation Type, Motion Speed, Animation Trigger and Background animation (play them in Preview mode).
 
 ## 5.5 Images and assets
 
@@ -4243,8 +4245,15 @@ Animate on view), Fragment, Modal, Tab, header and footer.
   a quarter of the screen) is in view, with On Page Load as soon as it is ready. Motion Speed Medium:
   content 0.6 s, background 0.9 s, items 0.12 s apart (Fast 0.3 / 0.45 / 0.06 s, Slow 0.9 / 1.35 /
   0.18 s; at most 5 steps). Afterwards the block is exactly as without animation.
-- Not in Universal Editor edit mode (the stable block is shown; Preview plays it), and not for
-  visitors who prefer reduced motion.
+- Not in Universal Editor edit mode: the block is shown as is and nothing is used up; when the
+  editor switches to Preview, the blocks that haven't played yet play (On Page Load at once, On
+  Scroll as they come into view). Each block plays once per page load: reload the page to see it
+  again. Not for visitors who prefer reduced motion (operating system setting: Windows Animation
+  effects off, macOS Reduce motion on).
+- Examples: the block library's **Animation** folder (`block-library/animation`): Animation Type:
+  every option, Animation Type: repeated items, Background animation: every option, Background
+  animation on each block, Motion Speed and Animation Trigger (each speed, On Page Load and On
+  Scroll side by side) and Skeleton loading.
 - Hero **Motion Type** and Table List **Motion Type** still work; when Content animation is set
   it replaces them (and Background animation replaces the Hero's Zoom).
 - Lists and Filter Lists show a skeleton (placeholders shaped like their cards) when the query
@@ -123313,7 +123322,8 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-93 | Header | Layout shift when the header and its Canvas arrived in the lazy phase (CLS 0.14–0.25 on every page with the TCS Header; PageSpeed failed) | PageSpeed CLS above 0.1 | Fixed in 2.15: `<header>` keeps `--header-reserved` or the height remembered for the breakpoint until it loads (CLS below 0.01) | Closed (2.15) | Development | 3.5.1, 6.1 |
 | F-94 | Hero, Teaser (animation) | Background animation clips or fades the block's image while it runs: on the first hero of a page it delays the paint of the LCP image | Slower Largest Contentful Paint if used above the fold | Use Background animation below the fold (5.6.6); Content animation of the first section is lighter (text only) but also delays the text paint | P3 | Content authors | 5.6, 6.10 |
 | F-95 | List, Filter List (skeleton) | A skeleton approximates its block; when the real content is taller (long titles, more rows) the page grows below it (Filter List desktop 851 → 1893 px in the test) | Small layout shift below the block, mostly below the fold | Accepted; the skeleton count follows the breakpoint (List: its columns or Items visible) | P3 | Development | 6.16, 6.17 |
-| F-96 | Block animation (verification) | Content and Background animation were checked on the local preview (desktop and mobile, reduced motion, slow and failing index) but not in Universal Editor on AEM author (no author access); nothing is prepared in edit mode by design | Editor behaviour to confirm | Check an animated Teaser and a List in Universal Editor edit and preview mode (docs/animation/README.md, K) | P2 | QA, Content authors | 5.6 |
+| F-96 | Block animation (verification) | Content and Background animation were checked on the local preview (desktop and mobile, reduced motion, slow and failing index) but not in Universal Editor on AEM author (no author access); nothing is prepared in edit mode by design | Editor behaviour to confirm | Check an animated Teaser and a List in Universal Editor edit and preview mode (docs/animation/README.md, K); from 2.20, Preview plays the animations (F-97) | P2 | QA, Content authors | 5.6 |
+| F-97 | Block animation (Universal Editor) | On Scroll animations didn't play in Universal Editor Preview: a page opened in edit mode prepared no animations, and On Scroll blocks scrolled past in edit mode played invisibly and were used up. The published site wasn't affected (checked with wheel scrolling on aem.live) | Authors saw no On Scroll animation when reviewing in Preview | Fixed in 2.20 (PR #108): blocks are prepared in edit mode, nothing plays or is used up there, switching to Preview plays the blocks not played yet | Closed (2.20) | Development | 5.6 |
 
 ## 16.3 Open Items (To Be Confirmed)
 
