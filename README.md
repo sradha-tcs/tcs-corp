@@ -13,6 +13,10 @@
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the packages are kept, such as the language-master root page with its Navigation and Footer, `references/tcs-header` and `references/tcs-footer`. The older zips below are the previous versions.
 
+## Project handover
+
+- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.17 (18 October 2026, 3,415 pages): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
+
 ## /en metadata sheet after the language-master rollout
 
 - `home-content/metadata-en-after-rollout.csv`: the /en Metadata sheet (/content/tcs-corp/us/en/metadata) to use after language-master/en is rolled out to us/en. It has 136 rows in 38 columns:
