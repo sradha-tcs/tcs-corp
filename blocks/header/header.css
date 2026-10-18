@@ -389,6 +389,16 @@ header .nav-canvas {
   pointer-events: none;
 }
 
+/*
+ * Home: the opening hero fills the first screen with its content clear of the row
+ * (templates/home), so the host is the hero's height. When the content is taller than the screen
+ * (e.g. a phone in landscape), the row stays below it, at the hero's bottom, instead of covering
+ * it; it docks as it scrolls up to the bottom of the window and floats from there.
+ */
+body.home header .nav-canvas {
+  height: var(--conversation-canvas-first-section-bottom, 100dvh);
+}
+
 html:not([data-canvas-journey-state]) header .nav-canvas {
   visibility: hidden;
 }
