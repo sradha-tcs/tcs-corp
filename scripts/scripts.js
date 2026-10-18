@@ -19,6 +19,7 @@ import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
+import { reserveHeaderSpace } from '../utils/header-space.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -415,6 +416,8 @@ async function loadEager(doc) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
+    // the header's space is kept before it loads (no layout shift)
+    reserveHeaderSpace();
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
