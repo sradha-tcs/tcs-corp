@@ -7,8 +7,8 @@
  * Pages come from the query index (helix-query.yaml); redirects from the redirects sheets.
  */
 import {
-  flag, hash, integer, isExternal, isSafeUrl, isYes, normalizePath, normalizePresentation,
-  pickValue as pick, text, toISODate,
+  CARD_KINDS, CARD_THEMES, flag, hash, integer, isExternal, isSafeUrl, isYes, normalizePath,
+  normalizePresentation, pickValue as pick, text, toISODate,
 } from '../../utils/card-list-config.js';
 import { formatDate } from '../../utils/dates.js';
 import { columnOf, listOf } from '../../utils/query-index.js';
@@ -17,7 +17,7 @@ import { columnOf, listOf } from '../../utils/query-index.js';
 export {
   BREAKPOINTS, CARD_KINDS, CARD_STYLES, CARD_THEMES, DATE_FORMATS, DISPLAY_MODES, HEADINGS,
   IMAGE_RATIOS, PANEL_HEIGHTS, RESPONSIVE_DEFAULTS, YES, hash, isExternal, isSafeUrl, kindOf,
-  normalizePath, toISODate, toSafeId,
+  normalizePath, themeOf, toISODate, toSafeId,
 } from '../../utils/card-list-config.js';
 
 /**
@@ -50,6 +50,10 @@ export const PAGE_MAPPING = {
   readingTime: ['reading-time'],
   authorId: ['author-id'],
   hidden: ['hide-in-nav'],
+  // the page's own Card style and Card colour (used when neither the List Item nor the List sets
+  // one: kindOf, themeOf in utils/card-list-config.js)
+  kind: ['card-style'],
+  theme: ['card-theme'],
 };
 
 /** the site's default social image is no card image */
@@ -213,6 +217,9 @@ export function normalizePageToCard(page, config, context = {}) {
     subtitle: '',
     kind: '',
     theme: '',
+    // the page's Card style and Card colour metadata (unsupported values are left out)
+    pageKind: pick(firstColumn(page, PAGE_MAPPING.kind), CARD_KINDS, ''),
+    pageTheme: pick(firstColumn(page, PAGE_MAPPING.theme), CARD_THEMES, ''),
     ctaLabel: '',
     openInNewTab: config.openInNewTab,
     external: false,
@@ -243,6 +250,8 @@ function linkCard(href, config, origin) {
     subtitle: '',
     kind: '',
     theme: '',
+    pageKind: '',
+    pageTheme: '',
     ctaLabel: '',
     openInNewTab: config.openInNewTab,
     external: isExternal(href, origin),
@@ -252,7 +261,10 @@ function linkCard(href, config, origin) {
 }
 
 /**
- * Applies a Fixed item's overrides over its card (an authored value wins).
+ * Applies a Fixed item's overrides over its card: field by field, an authored value wins and an
+ * empty one keeps the linked page's value (the card made from the page's metadata). The item's
+ * Card style and Card colour are kept apart from the page's (kind / pageKind, theme / pageTheme),
+ * so the list's setting can come between them (kindOf, themeOf).
  * @param {Object} card
  * @param {Object} item the authored item values
  */

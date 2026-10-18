@@ -122,14 +122,37 @@ export function toISODate(value) {
 }
 
 /**
- * The card kind: an item's own kind, the list's style, or (mixed) report for Report pages,
- * panel for pages without an image, image otherwise.
+ * The card kind (Card style), the first that applies:
+ * 1. the item's own Card style (List Item, Card; source-generated cards have none)
+ * 2. the list's Card style, unless Mixed (by page): a style forces every card
+ * 3. the page's card-style metadata (card.pageKind: the linked or listed page's)
+ * 4. automatic: report for Report pages, panel for pages without an image, image otherwise
+ * Unknown values are skipped, so a card always gets a supported kind.
+ * @param {Object} card { kind, pageKind, contentType, image }
+ * @param {string} cardStyle the list's Card style
+ * @returns {string} one of CARD_KINDS
  */
 export function kindOf(card, cardStyle) {
   if (CARD_KINDS.includes(card.kind)) return card.kind;
-  if (cardStyle !== 'mixed') return cardStyle;
+  if (CARD_KINDS.includes(cardStyle)) return cardStyle;
+  if (CARD_KINDS.includes(card.pageKind)) return card.pageKind;
   if (/report/i.test(card.contentType)) return 'report';
   return card.image ? 'image' : 'panel';
+}
+
+/**
+ * The card colour (Card colour), the first that applies:
+ * 1. the item's own Card colour (List Item, Card)
+ * 2. the list's Card colour
+ * 3. the page's card-theme metadata (card.pageTheme)
+ * 4. '': the default colour of the card's style
+ * Unknown values are skipped (no class is made from them).
+ * @param {Object} card { theme, pageTheme }
+ * @param {string} cardTheme the list's Card colour
+ * @returns {string} one of CARD_THEMES, or ''
+ */
+export function themeOf(card, cardTheme) {
+  return [card.theme, cardTheme, card.pageTheme].find((theme) => CARD_THEMES.includes(theme)) || '';
 }
 
 /**
