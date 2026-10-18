@@ -16,6 +16,7 @@ import { toSitePath } from '../../utils/urls.js';
 import { uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import registerCanvas from './canvas-controller.js';
+import { bone, skeletonElement, skeletonWhile } from '../../decorators/skeleton-decorator.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
@@ -175,6 +176,20 @@ async function buildMenuList(root, depth) {
   return list;
 }
 
+/** the skeleton of the site menu while the query index loads: rows of links */
+function menuSkeleton() {
+  const rows = skeletonElement('skeleton-stack');
+  ['', 'short', '', 'short'].forEach((width) => rows.append(bone('line', width)));
+  return rows;
+}
+
+/** the skeleton of the Primary navigation while the query index loads: pills */
+function navSkeleton() {
+  const pills = skeletonElement('skeleton-row');
+  for (let i = 0; i < 4; i += 1) pills.append(bone('pill'));
+  return pills;
+}
+
 /**
  * Builds the menu toggle button (round, with the menu icon).
  */
@@ -300,7 +315,9 @@ function buildSearch(config, id, block) {
     menuToggle.setAttribute('aria-expanded', open);
     if (open && !menuLoaded) {
       menuLoaded = true;
-      menu.append(await buildMenuList(root, depth));
+      const list = buildMenuList(root, depth);
+      skeletonWhile(menu, list, menuSkeleton);
+      menu.append(await list);
     }
   });
   row.addEventListener('keydown', (e) => {
@@ -540,12 +557,16 @@ function buildDock(config, id, block) {
   const { root, depth } = menuSettings(config);
   // suggestions: the page's tags (Tags metadata), labelled from the taxonomy
   const tagLabels = resolveTags(getPageTags()).then((tags) => tags.map((tag) => tag.label));
-  Promise.all([loadMenuTree(root, depth), tagLabels]).then(([tree, labels]) => {
+  const loaded = Promise.all([loadMenuTree(root, depth), tagLabels]).then(([tree, labels]) => {
     if (!state.suggestions.length) state.suggestions = labels;
     state.tree = tree;
     state.current = findNode(tree, normalizePath(window.location.pathname));
     setView(defaultView());
   });
+  // pills while the site tree loads; a failure leaves the navigation empty, as before
+  skeletonWhile(nav, loaded, navSkeleton);
+  // eslint-disable-next-line no-console
+  loaded.catch((e) => console.error('conversation canvas navigation', e));
 
   docks.set(block, {
     setSuggestions(suggestions) {

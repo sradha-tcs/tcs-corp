@@ -1,4 +1,5 @@
 import { loadFragment } from '../fragment/fragment.js';
+import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
@@ -124,6 +125,8 @@ async function decoratePageFooter(block) {
   if (social) footer.append(social);
 
   block.append(footer);
+  // the block animations of the footer page (e.g. its Canvas), once it is in the page
+  await prepareMotion(block);
 }
 
 /**

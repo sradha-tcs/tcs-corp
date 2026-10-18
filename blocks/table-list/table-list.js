@@ -7,6 +7,7 @@ import { normalizeKey, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { onVisible } from '../../utils/viewport.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+import { contentMotionOf } from '../../utils/motion.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
@@ -296,10 +297,12 @@ function decorateItem(row, index, config) {
 
 /**
  * Reveals the items with the chosen motion as they scroll into view. Skipped in the
- * Universal Editor and for reduced motion, where the items are always shown.
+ * Universal Editor and for reduced motion, where the items are always shown, and when the
+ * Additional tab's Content animation is set (it animates the block instead).
  */
 function observeMotion(block, motion) {
   const items = [...block.querySelectorAll('.table-list-item')];
+  if (contentMotionOf(block.classList)) return;
   if (motion === 'none' || !items.length || !('IntersectionObserver' in window)) return;
   if (isEditing() || prefersReducedMotion()) return;
   block.classList.add('motion-ready');

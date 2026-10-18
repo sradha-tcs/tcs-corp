@@ -4,6 +4,7 @@ import { buildTime } from '../../decorators/date-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { layoutMasonry } from '../../decorators/masonry-decorator.js';
+import { bone, renderWhenLoaded, skeletonElement } from '../../decorators/skeleton-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { toClassName } from '../../scripts/aem.js';
 import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
@@ -17,6 +18,7 @@ import { columnOf, getPages, listOf } from '../../utils/query-index.js';
 import { pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { loadTaxonomy, resolveTags } from '../../utils/taxonomy.js';
+import { currentBreakpoint } from '../../utils/viewport.js';
 
 /*
  * Filter List (blocks/filter-list/_filter-list.json; TCS DS Figma "Explore the Agentic bank" /
@@ -248,408 +250,447 @@ function arrange(matches, config) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
+/**
+ * The skeleton while the pages load (decorators/skeleton-decorator.js): the title, the filter
+ * pills and a grid of cards, in the block's own layout classes.
+ */
+function buildSkeleton(config) {
+  const root = skeletonElement();
+  if (textOf(config.props.title)) {
+    const header = skeletonElement('filter-list-header');
+    header.append(bone('title'));
+    root.append(header);
+  }
+  const pills = Math.min(config.primary.length || (config.category ? 4 : 0), 5);
+  if (pills) {
+    const toolbar = skeletonElement('filter-list-toolbar');
+    for (let i = 0; i < pills; i += 1) toolbar.append(bone('pill'));
+    root.append(toolbar);
+  }
+  const results = skeletonElement('filter-list-results');
+  const grid = skeletonElement('filter-list-grid');
+  const cards = { mobile: 2, tablet: 4, desktop: 6 }[currentBreakpoint()];
+  for (let i = 0; i < cards; i += 1) {
+    const card = skeletonElement('filter-list-card');
+    card.append(bone('media', 'filter-list-card-media'), bone('line', 'short'), bone('title'), bone('line'));
+    grid.append(card);
+  }
+  results.append(grid);
+  root.append(results);
+  return root;
+}
+
 export default async function decorate(block) {
   const config = readConfig(block);
   const { props, map } = config;
   const id = uniqueId('filter-list');
-  const [t, pages, taxonomy, authorRows] = await Promise.all([
+  const loaded = Promise.all([
     getPlaceholders(), getPages(), loadTaxonomy(), getAuthors().catch(() => []),
   ]);
-  const authors = new Map(authorRows.map((author) => [author.id, author]));
-  const candidates = candidatesOf(pages, config);
+  // pages from the query index: a skeleton while it loads
+  await renderWhenLoaded(block, {
+    data: loaded,
+    skeleton: () => buildSkeleton(config),
+    render: async ([t, pages, taxonomy, authorRows]) => {
+      const authors = new Map(authorRows.map((author) => [author.id, author]));
+      const candidates = candidatesOf(pages, config);
 
-  // tag labels from the taxonomy (never the IDs)
-  const tagIds = [...new Set([
-    ...candidates.flatMap((page) => listOf(columnOf(page, map.tags))),
-    ...config.primary.flatMap((filter) => filter.tags),
-  ])];
-  const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
-  const labelOf = (tag) => labels.get(tag) || taxonomy.get(tag) || tag;
+      // tag labels from the taxonomy (never the IDs)
+      const tagIds = [...new Set([
+        ...candidates.flatMap((page) => listOf(columnOf(page, map.tags))),
+        ...config.primary.flatMap((filter) => filter.tags),
+      ])];
+      const labels = new Map((await resolveTags(tagIds)).map((tag) => [tag.id, tag.label]));
+      const labelOf = (tag) => labels.get(tag) || taxonomy.get(tag) || tag;
 
-  // the pills: the Primary filter tags, else the category's tags used by the pages
-  const used = (root) => [...new Set(candidates.flatMap((page) => page.tags)
-    .filter((tag) => tag.startsWith(`${root}/`)))].sort((a, b) => labelOf(a).localeCompare(labelOf(b)));
-  const primary = config.primary.length ? config.primary
-    : (config.category ? used(config.category) : []).map((tag) => ({ id: tag, tags: [tag] }));
-  primary.forEach((filter) => {
-    if (!filter.label) filter.label = labelOf(filter.id);
-  });
-  const categories = config.advanced ? config.categories.map((category) => ({
-    ...category,
-    label: category.label || labelOf(category.root),
-    options: used(category.root),
-  })).filter((category) => category.options.length) : [];
+      // the pills: the Primary filter tags, else the category's tags used by the pages
+      const used = (root) => [...new Set(candidates.flatMap((page) => page.tags)
+        .filter((tag) => tag.startsWith(`${root}/`)))].sort((a, b) => labelOf(a).localeCompare(labelOf(b)));
+      const primary = config.primary.length ? config.primary
+        : (config.category ? used(config.category) : []).map((tag) => ({ id: tag, tags: [tag] }));
+      primary.forEach((filter) => {
+        if (!filter.label) filter.label = labelOf(filter.id);
+      });
+      const categories = config.advanced ? config.categories.map((category) => ({
+        ...category,
+        label: category.label || labelOf(category.root),
+        options: used(category.root),
+      })).filter((category) => category.options.length) : [];
 
-  const element = (tagName, className, text) => {
-    const el = document.createElement(tagName);
-    if (className) el.className = className;
-    if (text) el.textContent = text;
-    return el;
-  };
+      const element = (tagName, className, text) => {
+        const el = document.createElement(tagName);
+        if (className) el.className = className;
+        if (text) el.textContent = text;
+        return el;
+      };
 
-  /* cards */
+      /* cards */
 
-  const text = (page, source) => String(columnOf(page, source) || '').trim();
-  // on AEM author, links to the AEM pages
-  const urlOf = (page) => pageLink(text(page, map.url) || page.path);
-  const titleOf = (page) => text(page, map.title) || page.title || page.path;
-  const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage);
-  const tagsOf = (page) => listOf(columnOf(page, map.tags)).slice(0, MAX_CARD_TAGS).map(labelOf);
-  const readingOf = (page) => (/^\d+$/.test(page.readingTime)
-    ? t('minutesShort', '{n}m', { n: page.readingTime }) : page.readingTime);
-  const authorOf = (page) => {
-    const value = text(page, map.author);
-    const author = authors.get(value) || authors.get(page.authorId);
-    if (author) return author;
-    return value ? { name: value } : null;
-  };
+      const text = (page, source) => String(columnOf(page, source) || '').trim();
+      // on AEM author, links to the AEM pages
+      const urlOf = (page) => pageLink(text(page, map.url) || page.path);
+      const titleOf = (page) => text(page, map.title) || page.title || page.path;
+      const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage);
+      const tagsOf = (page) => listOf(columnOf(page, map.tags)).slice(0, MAX_CARD_TAGS)
+        .map(labelOf);
+      const readingOf = (page) => (/^\d+$/.test(page.readingTime)
+        ? t('minutesShort', '{n}m', { n: page.readingTime }) : page.readingTime);
+      const authorOf = (page) => {
+        const value = text(page, map.author);
+        const author = authors.get(value) || authors.get(page.authorId);
+        if (author) return author;
+        return value ? { name: value } : null;
+      };
 
-  const labelRow = (className, values) => {
-    const items = values.filter(Boolean);
-    if (!items.length) return null;
-    const row = element('p', className);
-    items.forEach((value) => row.append(typeof value === 'string' ? element('span', '', value) : value));
-    return row;
-  };
-  const media = (page, breakpoints) => {
-    const picture = buildImage(imageOf(page) ? { src: imageOf(page), alt: '' } : null, breakpoints);
-    if (!picture) return null;
-    const wrapper = element('div', 'filter-list-card-media');
-    wrapper.append(picture);
-    return wrapper;
-  };
-  // the card's one link covers the card: the title, or the call to action
-  const titleLink = (page) => {
-    const heading = element('h3', 'filter-list-card-title');
-    const a = element('a', 'filter-list-card-link', titleOf(page));
-    a.href = urlOf(page);
-    heading.append(a);
-    return heading;
-  };
-  const action = (page, label, type) => {
-    const a = element('a', 'filter-list-card-link', label);
-    a.href = urlOf(page);
-    a.setAttribute('aria-label', `${label}: ${titleOf(page)}`);
-    decorateButton(a, { view: 'button', type });
-    const wrapper = element('p', 'filter-list-card-action');
-    wrapper.append(a);
-    return wrapper;
-  };
-  const description = (page) => {
-    const value = text(page, map.description);
-    return value ? element('p', 'filter-list-card-description', value) : null;
-  };
-  const meta = (page) => labelRow('filter-list-card-meta', [
-    text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy'),
-  ]);
-  const tagRow = (page) => labelRow('filter-list-card-tags', [...tagsOf(page), readingOf(page)]);
-
-  const card = (kind, parts) => {
-    const article = element('article', `filter-list-card filter-list-card-${kind}`);
-    article.append(...parts.filter(Boolean));
-    return article;
-  };
-  const isReport = (page) => /report/i.test(text(page, map.eyebrow));
-
-  function standardCard(page) {
-    const { style } = config;
-    if (style === 'mixed' && isReport(page)) {
-      return card('report', [
-        labelRow('filter-list-card-tags', [text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy')]),
-        element('h3', 'filter-list-card-title', titleOf(page)),
-        description(page),
-        action(page, t('download', 'Download'), 'secondary'),
+      const labelRow = (className, values) => {
+        const items = values.filter(Boolean);
+        if (!items.length) return null;
+        const row = element('p', className);
+        items.forEach((value) => row.append(typeof value === 'string' ? element('span', '', value) : value));
+        return row;
+      };
+      const media = (page, breakpoints) => {
+        const picture = buildImage(imageOf(page) ? { src: imageOf(page), alt: '' } : null, breakpoints);
+        if (!picture) return null;
+        const wrapper = element('div', 'filter-list-card-media');
+        wrapper.append(picture);
+        return wrapper;
+      };
+      // the card's one link covers the card: the title, or the call to action
+      const titleLink = (page) => {
+        const heading = element('h3', 'filter-list-card-title');
+        const a = element('a', 'filter-list-card-link', titleOf(page));
+        a.href = urlOf(page);
+        heading.append(a);
+        return heading;
+      };
+      const action = (page, label, type) => {
+        const a = element('a', 'filter-list-card-link', label);
+        a.href = urlOf(page);
+        a.setAttribute('aria-label', `${label}: ${titleOf(page)}`);
+        decorateButton(a, { view: 'button', type });
+        const wrapper = element('p', 'filter-list-card-action');
+        wrapper.append(a);
+        return wrapper;
+      };
+      const description = (page) => {
+        const value = text(page, map.description);
+        return value ? element('p', 'filter-list-card-description', value) : null;
+      };
+      const meta = (page) => labelRow('filter-list-card-meta', [
+        text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy'),
       ]);
-    }
-    if (style === 'mixed' && !imageOf(page)) {
-      return card('dark', [
-        labelRow('filter-list-card-tags', tagsOf(page).slice(0, 1)),
-        element('h3', 'filter-list-card-title', titleOf(page)),
-        description(page),
-        action(page, t('explore', 'Explore'), 'tertiary'),
-      ]);
-    }
-    if (style === 'compact') {
-      return card('compact', [tagRow(page), titleLink(page), meta(page)]);
-    }
-    if (style === 'featured') {
-      return card('large', [
-        media(page, CARD_IMAGE), tagRow(page), element('h3', 'filter-list-card-title', titleOf(page)),
-        description(page), meta(page), action(page, t('readMore', 'Read more'), 'tertiary'),
-      ]);
-    }
-    return card('standard', [
-      media(page, CARD_IMAGE), tagRow(page), titleLink(page),
-      style === 'default' ? description(page) : null, meta(page),
-    ]);
-  }
+      const tagRow = (page) => labelRow('filter-list-card-tags', [...tagsOf(page), readingOf(page)]);
 
-  /** hero and featured cards: the image behind tags, title and author */
-  function spotlightCard(page, kind) {
-    const author = authorOf(page);
-    const content = element('div', 'filter-list-card-content');
-    content.append(...[
-      tagRow(page),
-      titleLink(page),
-      kind === 'hero' ? description(page) : null,
-      author ? buildAuthorLockup({
-        picture: buildImage(author.image ? { src: author.image, alt: '' } : null),
-        name: element('p', 'filter-list-author-name', author.name),
-        designation: author.designation ? element('p', 'filter-list-author-designation', author.designation) : null,
-        prefix: 'filter-list',
-      }) : null,
-    ].filter(Boolean));
-    const spotlight = card(`spotlight filter-list-card-${kind}`, [media(page, SPOTLIGHT_IMAGE), content]);
-    if (kind === 'hero') spotlight.querySelector('img')?.setAttribute('loading', 'eager');
-    return spotlight;
-  }
+      const card = (kind, parts) => {
+        const article = element('article', `filter-list-card filter-list-card-${kind}`);
+        article.append(...parts.filter(Boolean));
+        return article;
+      };
+      const isReport = (page) => /report/i.test(text(page, map.eyebrow));
 
-  /* the block */
-
-  const header = element('div', 'filter-list-header');
-  const title = textOf(props.title);
-  if (title) header.append(element('h2', 'filter-list-title', title));
-  if (props.description?.textContent.trim()) {
-    const intro = element('div', 'filter-list-description');
-    intro.append(...props.description.childNodes);
-    header.append(intro);
-  }
-
-  const status = element('p', `filter-list-count${config.showCount ? '' : ' visually-hidden'}`);
-  status.setAttribute('role', 'status');
-  const results = element('div', 'filter-list-results');
-  results.id = `${id}-results`;
-  const grid = element('div', `filter-list-grid layout-${config.layout}`);
-  if (config.layout === 'masonry') layoutMasonry(grid);
-  const more = element('button', '', t('loadMore', 'Load more'));
-  more.dataset.cmpInteraction = 'load-more';
-  more.type = 'button';
-  decorateButton(more, { view: 'button', type: 'secondary' });
-  const moreWrapper = element('p', 'filter-list-more');
-  moreWrapper.append(more);
-  moreWrapper.hidden = true;
-
-  // the filter state
-  const selected = new Set();
-  const options = new Set();
-  let shown = 0;
-  let arranged = { hero: null, featured: [], cards: [] };
-  let nextFeatured = 0;
-
-  const matches = () => candidates.filter((page) => {
-    const chosen = primary.filter((filter) => selected.has(filter.id));
-    const inFilter = (filter) => filter.tags.some((tag) => hasTag(page, tag));
-    if (chosen.length && !chosen.every(inFilter)) return false;
-    if (!options.size) return true;
-    const has = (tag) => hasTag(page, tag);
-    return config.logic === 'or' ? [...options].some(has) : [...options].every(has);
-  });
-
-  /** the next page of cards, then the next featured card (the rest of them after the last) */
-  const appendCards = (size) => {
-    const added = arranged.cards.slice(shown, shown + size).map(standardCard);
-    shown += added.length;
-    const { featured } = arranged;
-    const spotlights = featured.slice(nextFeatured, shown >= arranged.cards.length
-      ? featured.length : nextFeatured + 1);
-    nextFeatured += spotlights.length;
-    added.push(...spotlights.map((page) => spotlightCard(page, 'featured')));
-    grid.append(...added);
-    moreWrapper.hidden = shown >= arranged.cards.length && nextFeatured >= arranged.featured.length;
-    return added;
-  };
-
-  const resultText = (n) => (n === 1 ? t('resultCountOne', '1 result') : t('resultCount', '{n} results', { n }));
-
-  const reset = element('button', '', t('resetFilters', 'Reset filters'));
-  reset.type = 'button';
-  decorateButton(reset, { view: 'button', type: 'secondary' });
-
-  function render() {
-    arranged = arrange(matches(), config);
-    const total = (arranged.hero ? 1 : 0) + arranged.featured.length + arranged.cards.length;
-    shown = 0;
-    nextFeatured = 0;
-    grid.replaceChildren();
-    results.replaceChildren();
-    status.textContent = resultText(total);
-    if (!total) {
-      const empty = element('div', 'filter-list-empty');
-      // on AEM author there is no query index: say where the results show
-      const editorHint = (isEditing() || isAuthor()) && !pages.length;
-      empty.append(element('p', 'filter-list-empty-title', editorHint
-        ? t('filterListEditor', 'The results show on the published page, from the pages\' metadata.')
-        : t('noResources', 'No resources found.')));
-      if (!editorHint) {
-        empty.append(element('p', 'filter-list-empty-hint', t('noResourcesHint', 'Try selecting another filter.')));
-        if (selected.size || options.size) empty.append(reset);
+      function standardCard(page) {
+        const { style } = config;
+        if (style === 'mixed' && isReport(page)) {
+          return card('report', [
+            labelRow('filter-list-card-tags', [text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy')]),
+            element('h3', 'filter-list-card-title', titleOf(page)),
+            description(page),
+            action(page, t('download', 'Download'), 'secondary'),
+          ]);
+        }
+        if (style === 'mixed' && !imageOf(page)) {
+          return card('dark', [
+            labelRow('filter-list-card-tags', tagsOf(page).slice(0, 1)),
+            element('h3', 'filter-list-card-title', titleOf(page)),
+            description(page),
+            action(page, t('explore', 'Explore'), 'tertiary'),
+          ]);
+        }
+        if (style === 'compact') {
+          return card('compact', [tagRow(page), titleLink(page), meta(page)]);
+        }
+        if (style === 'featured') {
+          return card('large', [
+            media(page, CARD_IMAGE), tagRow(page), element('h3', 'filter-list-card-title', titleOf(page)),
+            description(page), meta(page), action(page, t('readMore', 'Read more'), 'tertiary'),
+          ]);
+        }
+        return card('standard', [
+          media(page, CARD_IMAGE), tagRow(page), titleLink(page),
+          style === 'default' ? description(page) : null, meta(page),
+        ]);
       }
-      results.append(empty);
+
+      /** hero and featured cards: the image behind tags, title and author */
+      function spotlightCard(page, kind) {
+        const author = authorOf(page);
+        const content = element('div', 'filter-list-card-content');
+        content.append(...[
+          tagRow(page),
+          titleLink(page),
+          kind === 'hero' ? description(page) : null,
+          author ? buildAuthorLockup({
+            picture: buildImage(author.image ? { src: author.image, alt: '' } : null),
+            name: element('p', 'filter-list-author-name', author.name),
+            designation: author.designation ? element('p', 'filter-list-author-designation', author.designation) : null,
+            prefix: 'filter-list',
+          }) : null,
+        ].filter(Boolean));
+        const spotlight = card(`spotlight filter-list-card-${kind}`, [media(page, SPOTLIGHT_IMAGE), content]);
+        if (kind === 'hero') spotlight.querySelector('img')?.setAttribute('loading', 'eager');
+        return spotlight;
+      }
+
+      /* the block */
+
+      const header = element('div', 'filter-list-header');
+      const title = textOf(props.title);
+      if (title) header.append(element('h2', 'filter-list-title', title));
+      if (props.description?.textContent.trim()) {
+        const intro = element('div', 'filter-list-description');
+        intro.append(...props.description.childNodes);
+        header.append(intro);
+      }
+
+      const status = element('p', `filter-list-count${config.showCount ? '' : ' visually-hidden'}`);
+      status.setAttribute('role', 'status');
+      const results = element('div', 'filter-list-results');
+      results.id = `${id}-results`;
+      const grid = element('div', `filter-list-grid layout-${config.layout}`);
+      if (config.layout === 'masonry') layoutMasonry(grid);
+      const more = element('button', '', t('loadMore', 'Load more'));
+      more.dataset.cmpInteraction = 'load-more';
+      more.type = 'button';
+      decorateButton(more, { view: 'button', type: 'secondary' });
+      const moreWrapper = element('p', 'filter-list-more');
+      moreWrapper.append(more);
       moreWrapper.hidden = true;
-      return;
-    }
-    if (arranged.hero) results.append(spotlightCard(arranged.hero, 'hero'));
-    results.append(grid);
-    appendCards(config.perPage);
-  }
 
-  // the pills: All and the Primary filter tags
-  const pills = element('div', 'filter-list-filters');
-  pills.setAttribute('role', 'group');
-  pills.setAttribute('aria-label', t('filters', 'Filters'));
-  const pillList = [
-    ...(config.showAll ? [{ id: '', label: t('all', 'All') }] : []),
-    ...primary,
-  ];
-  const pillButtons = pillList.map((filter) => {
-    const button = element('button', 'filter-list-filter', filter.label);
-    button.dataset.cmpInteraction = 'filter';
-    button.dataset.cmpValue = filter.id || 'all';
-    button.type = 'button';
-    button.dataset.filter = filter.id;
-    button.setAttribute('aria-controls', results.id);
-    return button;
-  });
-  const syncPills = () => pillButtons.forEach((button) => {
-    const value = button.dataset.filter;
-    button.setAttribute('aria-pressed', String(value ? selected.has(value) : !selected.size));
-  });
-  pillButtons.forEach((button) => button.addEventListener('click', () => {
-    const value = button.dataset.filter;
-    if (!value) selected.clear();
-    else if (selected.has(value)) selected.delete(value);
-    else {
-      if (!config.multiSelect) selected.clear();
-      selected.add(value);
-    }
-    syncPills();
-    render();
-  }));
-  pills.append(...pillButtons);
-  syncPills();
+      // the filter state
+      const selected = new Set();
+      const options = new Set();
+      let shown = 0;
+      let arranged = { hero: null, featured: [], cards: [] };
+      let nextFeatured = 0;
 
-  // the advanced filter: a panel of the categories' options
-  const toolbar = element('div', 'filter-list-toolbar');
-  if (pillButtons.length) toolbar.append(element('p', 'filter-list-label', textOf(props.filterslabel) || t('filters', 'Filters')), pills);
-  let panel = null;
-  if (categories.length) {
-    panel = element('div', 'filter-list-panel');
-    panel.id = `${id}-panel`;
-    panel.hidden = true;
-    panel.setAttribute('role', 'region');
-    const panelLabel = t('advancedFilters', 'Advanced filters');
-    panel.setAttribute('aria-label', panelLabel);
-    const panelHeader = element('div', 'filter-list-panel-header');
-    const clear = element('button', '', t('clearAll', 'Clear all'));
-    clear.type = 'button';
-    decorateButton(clear, { view: 'button', type: 'tertiary' });
-    panelHeader.append(element('p', 'filter-list-panel-title', panelLabel), clear);
-    panel.append(panelHeader);
-
-    const boxes = [];
-    categories.forEach((category, c) => {
-      const fieldset = element('fieldset', 'filter-list-category');
-      fieldset.append(element('legend', '', category.label));
-      const list = element('ul', 'filter-list-options');
-      category.options.forEach((tag, o) => {
-        const item = element('li');
-        const box = element('input');
-        box.type = 'checkbox';
-        box.dataset.cmpInteraction = 'filter-option';
-        box.id = `${id}-option-${c}-${o}`;
-        box.value = tag;
-        const label = element('label', '', labelOf(tag));
-        label.htmlFor = box.id;
-        item.append(box, label);
-        list.append(item);
-        boxes.push(box);
+      const matches = () => candidates.filter((page) => {
+        const chosen = primary.filter((filter) => selected.has(filter.id));
+        const inFilter = (filter) => filter.tags.some((tag) => hasTag(page, tag));
+        if (chosen.length && !chosen.every(inFilter)) return false;
+        if (!options.size) return true;
+        const has = (tag) => hasTag(page, tag);
+        return config.logic === 'or' ? [...options].some(has) : [...options].every(has);
       });
-      fieldset.append(list);
-      panel.append(fieldset);
-    });
 
-    const toggle = createIconButton({
-      label: panelLabel,
-      icon: 'filter',
-      className: 'filter-list-toggle',
-      onClick: () => {
-        panel.hidden = !panel.hidden;
-        toggle.setAttribute('aria-expanded', String(!panel.hidden));
-        if (!panel.hidden) boxes[0]?.focus();
-      },
-    });
-    toggle.setAttribute('aria-controls', panel.id);
-    toggle.setAttribute('aria-expanded', 'false');
-    const badge = element('span', 'filter-list-toggle-count');
-    badge.setAttribute('aria-hidden', 'true');
-    toggle.append(badge);
-    const syncOptions = () => {
-      boxes.forEach((box) => {
-        box.checked = options.has(box.value);
+      /** the next page of cards, then the next featured card (the rest of them after the last) */
+      const appendCards = (size) => {
+        const added = arranged.cards.slice(shown, shown + size).map(standardCard);
+        shown += added.length;
+        const { featured } = arranged;
+        const spotlights = featured.slice(nextFeatured, shown >= arranged.cards.length
+          ? featured.length : nextFeatured + 1);
+        nextFeatured += spotlights.length;
+        added.push(...spotlights.map((page) => spotlightCard(page, 'featured')));
+        grid.append(...added);
+        moreWrapper.hidden = shown >= arranged.cards.length
+          && nextFeatured >= arranged.featured.length;
+        return added;
+      };
+
+      const resultText = (n) => (n === 1 ? t('resultCountOne', '1 result') : t('resultCount', '{n} results', { n }));
+
+      const reset = element('button', '', t('resetFilters', 'Reset filters'));
+      reset.type = 'button';
+      decorateButton(reset, { view: 'button', type: 'secondary' });
+
+      function render() {
+        arranged = arrange(matches(), config);
+        const total = (arranged.hero ? 1 : 0) + arranged.featured.length + arranged.cards.length;
+        shown = 0;
+        nextFeatured = 0;
+        grid.replaceChildren();
+        results.replaceChildren();
+        status.textContent = resultText(total);
+        if (!total) {
+          const empty = element('div', 'filter-list-empty');
+          // on AEM author there is no query index: say where the results show
+          const editorHint = (isEditing() || isAuthor()) && !pages.length;
+          empty.append(element('p', 'filter-list-empty-title', editorHint
+            ? t('filterListEditor', 'The results show on the published page, from the pages\' metadata.')
+            : t('noResources', 'No resources found.')));
+          if (!editorHint) {
+            empty.append(element('p', 'filter-list-empty-hint', t('noResourcesHint', 'Try selecting another filter.')));
+            if (selected.size || options.size) empty.append(reset);
+          }
+          results.append(empty);
+          moreWrapper.hidden = true;
+          return;
+        }
+        if (arranged.hero) results.append(spotlightCard(arranged.hero, 'hero'));
+        results.append(grid);
+        appendCards(config.perPage);
+      }
+
+      // the pills: All and the Primary filter tags
+      const pills = element('div', 'filter-list-filters');
+      pills.setAttribute('role', 'group');
+      pills.setAttribute('aria-label', t('filters', 'Filters'));
+      const pillList = [
+        ...(config.showAll ? [{ id: '', label: t('all', 'All') }] : []),
+        ...primary,
+      ];
+      const pillButtons = pillList.map((filter) => {
+        const button = element('button', 'filter-list-filter', filter.label);
+        button.dataset.cmpInteraction = 'filter';
+        button.dataset.cmpValue = filter.id || 'all';
+        button.type = 'button';
+        button.dataset.filter = filter.id;
+        button.setAttribute('aria-controls', results.id);
+        return button;
       });
-      badge.textContent = options.size ? String(options.size) : '';
-      toggle.setAttribute('aria-label', options.size
-        ? `${panelLabel}, ${t('selectedCount', '{n} selected', { n: options.size })}` : panelLabel);
-      clear.hidden = !options.size;
-    };
-    boxes.forEach((box) => box.addEventListener('change', () => {
-      if (box.checked) options.add(box.value);
-      else options.delete(box.value);
-      syncOptions();
-      render();
-    }));
-    clear.addEventListener('click', () => {
-      options.clear();
-      syncOptions();
-      render();
-      boxes[0]?.focus();
-    });
-    panel.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      panel.hidden = true;
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.focus();
-    });
-    reset.addEventListener('click', () => {
-      options.clear();
-      syncOptions();
-    });
-    syncOptions();
-    toolbar.append(toggle);
-  }
-  reset.addEventListener('click', () => {
-    selected.clear();
-    syncPills();
-    render();
-    // the reset button is gone with the empty message: focus back on the filters
-    (pillButtons[0] || toolbar.querySelector('button'))?.focus();
-  });
-  if (toolbar.children.length) header.append(toolbar);
-  if (panel) header.append(panel);
-  header.append(status);
+      const syncPills = () => pillButtons.forEach((button) => {
+        const value = button.dataset.filter;
+        button.setAttribute('aria-pressed', String(value ? selected.has(value) : !selected.size));
+      });
+      pillButtons.forEach((button) => button.addEventListener('click', () => {
+        const value = button.dataset.filter;
+        if (!value) selected.clear();
+        else if (selected.has(value)) selected.delete(value);
+        else {
+          if (!config.multiSelect) selected.clear();
+          selected.add(value);
+        }
+        syncPills();
+        render();
+      }));
+      pills.append(...pillButtons);
+      syncPills();
 
-  // Load more: the next cards, focus on the first of them, how many are shown announced
-  more.addEventListener('click', () => {
-    const added = appendCards(config.moreCount);
-    added[0]?.querySelector('a')?.focus();
-    const total = (arranged.hero ? 1 : 0) + arranged.featured.length + arranged.cards.length;
-    const n = (arranged.hero ? 1 : 0) + nextFeatured + shown;
-    status.textContent = n < total ? t('showingCount', 'Showing {n} of {total}', { n, total })
-      : resultText(total);
-  });
+      // the advanced filter: a panel of the categories' options
+      const toolbar = element('div', 'filter-list-toolbar');
+      if (pillButtons.length) toolbar.append(element('p', 'filter-list-label', textOf(props.filterslabel) || t('filters', 'Filters')), pills);
+      let panel = null;
+      if (categories.length) {
+        panel = element('div', 'filter-list-panel');
+        panel.id = `${id}-panel`;
+        panel.hidden = true;
+        panel.setAttribute('role', 'region');
+        const panelLabel = t('advancedFilters', 'Advanced filters');
+        panel.setAttribute('aria-label', panelLabel);
+        const panelHeader = element('div', 'filter-list-panel-header');
+        const clear = element('button', '', t('clearAll', 'Clear all'));
+        clear.type = 'button';
+        decorateButton(clear, { view: 'button', type: 'tertiary' });
+        panelHeader.append(element('p', 'filter-list-panel-title', panelLabel), clear);
+        panel.append(panelHeader);
 
-  block.classList.add(`card-${config.style}`, `layout-${config.layout}`);
-  block.replaceChildren(header, results, moreWrapper);
-  // in the editor, the items (selectable, in their order), or a hint for the ones not set yet
-  const hint = await editorItemHint(config.items.rows);
-  const editorItems = config.items.rows.flatMap((row) => buildEditorItems(
-    [row],
-    config.items.summaries.get(row) || hint,
-  ));
-  if (editorItems.length) {
-    const list = element('div', 'filter-list-editor-items');
-    list.append(...editorItems);
-    block.append(list);
-  }
-  render();
+        const boxes = [];
+        categories.forEach((category, c) => {
+          const fieldset = element('fieldset', 'filter-list-category');
+          fieldset.append(element('legend', '', category.label));
+          const list = element('ul', 'filter-list-options');
+          category.options.forEach((tag, o) => {
+            const item = element('li');
+            const box = element('input');
+            box.type = 'checkbox';
+            box.dataset.cmpInteraction = 'filter-option';
+            box.id = `${id}-option-${c}-${o}`;
+            box.value = tag;
+            const label = element('label', '', labelOf(tag));
+            label.htmlFor = box.id;
+            item.append(box, label);
+            list.append(item);
+            boxes.push(box);
+          });
+          fieldset.append(list);
+          panel.append(fieldset);
+        });
+
+        const toggle = createIconButton({
+          label: panelLabel,
+          icon: 'filter',
+          className: 'filter-list-toggle',
+          onClick: () => {
+            panel.hidden = !panel.hidden;
+            toggle.setAttribute('aria-expanded', String(!panel.hidden));
+            if (!panel.hidden) boxes[0]?.focus();
+          },
+        });
+        toggle.setAttribute('aria-controls', panel.id);
+        toggle.setAttribute('aria-expanded', 'false');
+        const badge = element('span', 'filter-list-toggle-count');
+        badge.setAttribute('aria-hidden', 'true');
+        toggle.append(badge);
+        const syncOptions = () => {
+          boxes.forEach((box) => {
+            box.checked = options.has(box.value);
+          });
+          badge.textContent = options.size ? String(options.size) : '';
+          toggle.setAttribute('aria-label', options.size
+            ? `${panelLabel}, ${t('selectedCount', '{n} selected', { n: options.size })}` : panelLabel);
+          clear.hidden = !options.size;
+        };
+        boxes.forEach((box) => box.addEventListener('change', () => {
+          if (box.checked) options.add(box.value);
+          else options.delete(box.value);
+          syncOptions();
+          render();
+        }));
+        clear.addEventListener('click', () => {
+          options.clear();
+          syncOptions();
+          render();
+          boxes[0]?.focus();
+        });
+        panel.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape') return;
+          panel.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.focus();
+        });
+        reset.addEventListener('click', () => {
+          options.clear();
+          syncOptions();
+        });
+        syncOptions();
+        toolbar.append(toggle);
+      }
+      reset.addEventListener('click', () => {
+        selected.clear();
+        syncPills();
+        render();
+        // the reset button is gone with the empty message: focus back on the filters
+        (pillButtons[0] || toolbar.querySelector('button'))?.focus();
+      });
+      if (toolbar.children.length) header.append(toolbar);
+      if (panel) header.append(panel);
+      header.append(status);
+
+      // Load more: the next cards, focus on the first of them, how many are shown announced
+      more.addEventListener('click', () => {
+        const added = appendCards(config.moreCount);
+        added[0]?.querySelector('a')?.focus();
+        const total = (arranged.hero ? 1 : 0) + arranged.featured.length + arranged.cards.length;
+        const n = (arranged.hero ? 1 : 0) + nextFeatured + shown;
+        status.textContent = n < total ? t('showingCount', 'Showing {n} of {total}', { n, total })
+          : resultText(total);
+      });
+
+      block.classList.add(`card-${config.style}`, `layout-${config.layout}`);
+      block.replaceChildren(header, results, moreWrapper);
+      // in the editor, the items (selectable, in their order), or a hint for the ones not set yet
+      const hint = await editorItemHint(config.items.rows);
+      const editorItems = config.items.rows.flatMap((row) => buildEditorItems(
+        [row],
+        config.items.summaries.get(row) || hint,
+      ));
+      if (editorItems.length) {
+        const list = element('div', 'filter-list-editor-items');
+        list.append(...editorItems);
+        block.append(list);
+      }
+      render();
+    },
+  });
 }

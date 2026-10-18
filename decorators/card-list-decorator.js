@@ -18,6 +18,7 @@ import { createIconButton } from './icon-button-decorator.js';
 import { announceNewTab, setLinkTarget } from './link-decorator.js';
 import { buildImage } from './responsive-image-decorator.js';
 import { createScroller } from './scroller-decorator.js';
+import { bone, skeletonElement } from './skeleton-decorator.js';
 import { moveInstrumentation } from '../scripts/scripts.js';
 import { pushComponents } from '../utils/analytics.js';
 import { readButtonOptions } from '../utils/buttons.js';
@@ -26,6 +27,7 @@ import {
 } from '../utils/card-list-config.js';
 import { uniqueId } from '../utils/ids.js';
 import { textOf } from '../utils/properties.js';
+import { currentBreakpoint } from '../utils/viewport.js';
 
 const MAX_CARD_TAGS = 3;
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 600px)', width: '750' }, { width: '600' }];
@@ -382,6 +384,60 @@ export function renderCardList(block, {
   });
   previous.dataset.cmpInteraction = 'previous';
   next.dataset.cmpInteraction = 'next';
+}
+
+/**
+ * The skeleton of a list whose pages are loading (decorators/skeleton-decorator.js): the title,
+ * then cards (image, eyebrow, title, description, call to action as configured) or rows, as many
+ * as the current breakpoint shows, in the list's own grid / scroll layout (applyCardListLayout).
+ * @param {Object} config the list's configuration
+ * @param {{ title: boolean, count?: number }} options count: at most this many cards
+ * @returns {Element}
+ */
+export function buildCardListSkeleton(config, { title, count = Infinity }) {
+  const root = skeletonElement();
+  if (title) {
+    const header = skeletonElement('list-header');
+    header.append(bone('title'));
+    root.append(header);
+  }
+  const r = config.responsive[currentBreakpoint()];
+  const rows = r.columns === 1 ? 2 : 1;
+  const shown = r.mode === 'horizontal-scroll' ? Math.ceil(r.visible) : r.columns * rows;
+  const total = Math.max(1, Math.min(shown, count, config.maxItems ?? Infinity));
+  const shape = () => {
+    const stack = skeletonElement('skeleton-stack');
+    if (!config.displayAsTeaser) {
+      stack.append(bone('line'), bone('line', 'short'));
+      return stack;
+    }
+    if (['panel', 'report', 'stat'].includes(config.cardStyle)) {
+      const panel = bone('media');
+      panel.style.setProperty('--skeleton-ratio', config.panelHeight === 'compact' ? '4 / 3' : '3 / 4');
+      stack.append(panel);
+      return stack;
+    }
+    if (config.showImage) {
+      const media = bone('media');
+      media.style.setProperty('--skeleton-ratio', config.imageRatio.replace('-', ' / '));
+      stack.append(media);
+    }
+    if (config.showEyebrow) stack.append(bone('line', 'short'));
+    stack.append(bone('title'));
+    if (config.showDescription) stack.append(bone('line'), bone('line', 'short'));
+    if (config.showCta) stack.append(bone('line', 'short'));
+    return stack;
+  };
+  const scroller = skeletonElement('list-scroller');
+  const list = skeletonElement('list-items', 'ul');
+  for (let i = 0; i < total; i += 1) {
+    const li = skeletonElement('list-item', 'li');
+    li.append(shape());
+    list.append(li);
+  }
+  scroller.append(list);
+  root.append(scroller);
+  return root;
 }
 
 /** the empty state: the header and a message */
