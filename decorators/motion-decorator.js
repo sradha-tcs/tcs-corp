@@ -13,9 +13,11 @@
  *    block is exactly as without animation
  * A block whose content is still loading (a skeleton, decorators/skeleton-decorator.js) runs its
  * background animation; its content animation waits for releaseMotion(block).
- * Nothing is prepared in Universal Editor, for reduced motion or without IntersectionObserver,
- * and styles/motion.css only applies the first frame in those conditions too, so content is
- * never left hidden.
+ * In Universal Editor edit mode nothing plays (styles/motion.css applies no first frame there, so
+ * content shows as is) and nothing is used up: when the editor switches to Preview, the blocks
+ * that haven't played yet play (On Scroll as they come into view, On Page Load at once).
+ * Nothing is prepared for reduced motion or without IntersectionObserver, and the CSS doesn't
+ * apply the first frame then either, so content is never left hidden.
  */
 import { loadCSS } from '../scripts/aem.js';
 import {
@@ -61,10 +63,13 @@ const NOT_CONTENT = '.bg-motion-target, .animation-toggle';
 const SAFETY_MS = 4000;
 
 const states = new WeakMap();
+/** blocks prepared whose animations haven't all played yet */
+const armed = new Set();
 let observer;
 let css;
+let modes;
 
-const canAnimate = () => 'IntersectionObserver' in window && !prefersReducedMotion() && !isEditing();
+const canAnimate = () => 'IntersectionObserver' in window && !prefersReducedMotion();
 const nameOf = (block) => block.dataset.blockName || block.classList[0];
 const nextFrame = (callback) => requestAnimationFrame(() => requestAnimationFrame(callback));
 
@@ -179,16 +184,24 @@ function runBackground(state) {
   whenEnded(state.block, 'bg-motion-', state.backgroundCount, own, () => finishBackground(state));
 }
 
+/** every animation of the block has started */
+const played = (state) => (!state.content || state.contentRun)
+  && (!state.background || state.backgroundRun);
+
 function run(state) {
   nextFrame(() => {
+    // in Universal Editor edit mode the block stays armed for Preview mode
+    if (isEditing()) return;
     try {
       if (state.background) runBackground(state);
       if (state.content && state.contentReady) runContent(state);
+      if (played(state)) armed.delete(state);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error('motion', e);
       if (state.targets) finishContent(state);
       if (state.background) finishBackground(state);
+      armed.delete(state);
     }
   });
 }
@@ -199,6 +212,8 @@ function getObserver() {
       entries.forEach((entry) => {
         // enough of the block in view to see the animation (not just its first pixels)
         if (!entry.isIntersecting || !isSeen(entry, window.innerHeight)) return;
+        // edit mode: keep observing, so the block plays in Preview mode
+        if (isEditing()) return;
         observer.unobserve(entry.target);
         const state = states.get(entry.target);
         if (!state) return;
@@ -208,6 +223,39 @@ function getObserver() {
     }, { threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25] });
   }
   return observer;
+}
+
+/**
+ * Universal Editor switched from edit to Preview mode: the armed blocks play, On Page Load ones
+ * (and those already seen) now, On Scroll ones when in view (observing again reports the blocks
+ * in view at once).
+ */
+function playArmed() {
+  armed.forEach((state) => {
+    // blocks the editor re-rendered since are gone
+    if (!state.block.isConnected) {
+      armed.delete(state);
+      return;
+    }
+    if (state.visible) {
+      run(state);
+    } else {
+      getObserver().unobserve(state.block);
+      getObserver().observe(state.block);
+    }
+  });
+}
+
+/** follows the Universal Editor mode (the adobe-ue-edit class of <html>) */
+function watchEditorMode() {
+  if (modes) return;
+  let editing = isEditing();
+  modes = new MutationObserver(() => {
+    const now = isEditing();
+    if (editing && !now) playArmed();
+    editing = now;
+  });
+  modes.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
 function prepareBlock(block) {
@@ -223,6 +271,8 @@ function prepareBlock(block) {
     if (background && prepareBackground(state)) state.background = background;
     if (content && state.contentReady) prepareContent(state);
     if (!state.background && !state.content) return;
+    armed.add(state);
+    watchEditorMode();
     if (triggerOf(block.classList) === 'load') {
       // On Page Load: now (the content animation of a loading block when its content is there)
       state.visible = true;
@@ -235,6 +285,7 @@ function prepareBlock(block) {
     console.error('motion', e);
     if (state.targets) finishContent(state);
     if (state.layers) finishBackground(state);
+    armed.delete(state);
   }
 }
 
