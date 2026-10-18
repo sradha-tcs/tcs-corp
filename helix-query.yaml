@@ -119,6 +119,13 @@ indices:
       cardImageAlt:
         select: head > meta[name="card-image-alt"]
         value: attribute(el, "content")
+      # the page's Card style and Card colour on List cards (values of the List's options)
+      cardStyle:
+        select: head > meta[name="card-style"]
+        value: attribute(el, "content")
+      cardTheme:
+        select: head > meta[name="card-theme"]
+        value: attribute(el, "content")
       imageAlt:
         select: head > meta[name="image-alt"]
         value: attribute(el, "content")

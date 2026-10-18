@@ -1717,7 +1717,7 @@
             "value": "mixed"
           }
         ],
-        "description": "Mixed: items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each page's card-style metadata, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
         "condition": {
           "===": [
             {
@@ -1778,7 +1778,8 @@
             },
             true
           ]
-        }
+        },
+        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each page's card-theme metadata, else the colour of the card's style."
       },
       {
         "component": "select",
@@ -10738,7 +10739,7 @@
             "value": "mixed"
           }
         ],
-        "description": "Mixed: items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each page's card-style metadata, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
         "condition": {
           "===": [
             {
@@ -10799,7 +10800,8 @@
             },
             true
           ]
-        }
+        },
+        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each page's card-theme metadata, else the colour of the card's style."
       },
       {
         "component": "select",
@@ -12244,7 +12246,8 @@
             "name": "Statistic",
             "value": "stat"
           }
-        ]
+        ],
+        "description": "As the list: the list's Card style; with Mixed (by page), the linked page's card-style metadata, else automatic. A style here wins over both."
       },
       {
         "component": "select",
@@ -12289,7 +12292,8 @@
             "name": "Image background",
             "value": "image"
           }
-        ]
+        ],
+        "description": "As the list: the list's Card colour; with Default for the style, the linked page's card-theme metadata. A colour here wins over both."
       },
       {
         "component": "text",

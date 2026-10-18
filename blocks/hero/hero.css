@@ -349,7 +349,7 @@ main > .section:first-child .hero {
  */
 @media (width >= 1200px) {
   main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--nav-height))), 100dvh);
-    padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--nav-height)));
+    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+    padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
   }
 }

@@ -142,7 +142,18 @@
     "/content/tcs-corp/kr/ko-kr/data/partners:/ko-kr/data/partners",
     "/content/tcs-corp/kr/ko-kr/data/social-links:/ko-kr/data/social-links",
     "/content/tcs-corp/kr/ko-kr/data/media-contacts:/ko-kr/data/media-contacts",
-    "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json"
+    "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json",
+    "/content/tcs-corp/language-master/en/:/language-master/en/",
+    "/content/tcs-corp/language-master/en:/language-master/en/",
+    "/content/tcs-corp/language-master/en/placeholders:/language-master/en/placeholders",
+    "/content/tcs-corp/language-master/en/metadata:/language-master/en/metadata",
+    "/content/tcs-corp/language-master/en/redirects:/language-master/en/redirects",
+    "/content/tcs-corp/language-master/en/data/authors:/language-master/en/data/authors",
+    "/content/tcs-corp/language-master/en/data/locations:/language-master/en/data/locations",
+    "/content/tcs-corp/language-master/en/data/partners:/language-master/en/data/partners",
+    "/content/tcs-corp/language-master/en/data/social-links:/language-master/en/data/social-links",
+    "/content/tcs-corp/language-master/en/data/media-contacts:/language-master/en/data/media-contacts",
+    "/content/tcs-corp/language-master/en/taxonomy:/language-master/en/taxonomy.json"
   ],
   "includes": [
     "/content/tcs-corp/us/en",
@@ -158,7 +169,8 @@
     "/content/tcs-corp/cn/zh-cn",
     "/content/tcs-corp/jp/ja-jp",
     "/content/tcs-corp/kr/ko-kr",
-    "/content/dam/tcs-corp/"
+    "/content/dam/tcs-corp/",
+    "/content/tcs-corp/language-master/en"
   ],
   "excludes": [
     "/content/tcs-corp/us/en/block-library",

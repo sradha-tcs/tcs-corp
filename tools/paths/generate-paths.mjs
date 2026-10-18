@@ -9,7 +9,12 @@
  * - its spreadsheets (the system appends .json): …/data/authors:/de-de/data/authors
  * - its taxonomy page (not a spreadsheet): …/taxonomy:/de-de/taxonomy.json
  * - includes: the locale page and folder; excludes: its block library (author only)
- * Plus the AEM Assets folder, so assets used on the pages are published with them
+ * Plus the AEM Assets folder, so assets used on the pages are published with them.
+ *
+ * TEMPORARY: the language master (/content/tcs-corp/language-master/en, published at
+ * /language-master/en) while it is reviewed before its rollout to /en (REVIEW_ROOTS in
+ * utils/site.js): its folder and root page, and its sheets and taxonomy page. Remove
+ * REVIEW (and REVIEW_ROOTS) after the rollout and run `npm run build:paths` again.
  */
 import { readFile, writeFile } from 'node:fs/promises';
 
@@ -25,6 +30,11 @@ const SHEETS = [
   'data/social-links',
   'data/media-contacts',
 ];
+
+const REVIEW = {
+  aem: `${SITE}/language-master/en`,
+  published: '/language-master/en',
+};
 
 const root = new URL('../../', import.meta.url);
 // utils/site.js is a browser module; load it as one to read LOCALES
@@ -43,10 +53,21 @@ const paths = {
       ...SHEETS.map((sheet) => `${aemRoot(locale)}/${sheet}:/${locale.code}/${sheet}`),
       `${aemRoot(locale)}/taxonomy:/${locale.code}/taxonomy.json`,
     ]),
+    // the language master under review: its folder, its root page (the parent page its pages
+    // inherit Navigation, Footer and 404 Page from), then its sheets and taxonomy page
+    `${REVIEW.aem}/:${REVIEW.published}/`,
+    `${REVIEW.aem}:${REVIEW.published}/`,
+    ...SHEETS.map((sheet) => `${REVIEW.aem}/${sheet}:${REVIEW.published}/${sheet}`),
+    `${REVIEW.aem}/taxonomy:${REVIEW.published}/taxonomy.json`,
   ],
   // the locale page (Home) and everything below it; AEM Assets used on the pages (videos,
   // PDFs) are published with them at their own path, e.g. /content/dam/tcs-corp/intro.mp4
-  includes: [...LOCALES.map((locale) => aemRoot(locale)), ASSETS],
+  includes: [
+    ...LOCALES.map((locale) => aemRoot(locale)),
+    ASSETS,
+    // the language master under review: its root page and everything below it
+    REVIEW.aem,
+  ],
   excludes: [
     ...LOCALES.flatMap((locale) => [
       `${aemRoot(locale)}/block-library`,

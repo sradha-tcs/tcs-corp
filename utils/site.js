@@ -91,6 +91,50 @@ export function getLocale(pathname = window.location.pathname) {
   };
 }
 
+/*
+ * TEMPORARY, for the review of the language master before its rollout to /en: pages published
+ * below these roots (the paths.json mapping /content/tcs-corp/language-master/en/ ->
+ * /language-master/en/) list the pages of their own tree from the query index, as a locale site
+ * does. Remove with the mapping once the language master is rolled out and unpublished.
+ */
+export const REVIEW_ROOTS = ['/language-master/en'];
+
+/**
+ * The sheets published below the review roots (paths mapped in the site configuration), read
+ * there by their pages; any other sheet comes from the locale.
+ */
+export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/authors',
+  'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts'];
+
+/**
+ * The page folders published below the review roots: their pages use the review root's
+ * references (nav, footer and the pages they load), error pages (the 404 page when no 404 Page
+ * is inherited) and root page (Home, e.g. the 404 page's Go home).
+ */
+export const REVIEW_PAGES = ['references/', 'error-pages/'];
+
+/**
+ * The review root of a page, or '': from its published path, or from its AEM path on author
+ * (/content/tcs-corp/language-master/en/... is published at /language-master/en/...)
+ */
+const reviewRootOf = (pathname) => {
+  const siteRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
+  // the review root's own page too (/content/tcs-corp/language-master/en.html on author)
+  const path = (siteRoot ? pathname.slice(siteRoot.length) : pathname).toLowerCase()
+    .replace(/(\.plain)?\.html$/, '').replace(/\/index$/, '');
+  return REVIEW_ROOTS.find((root) => startsWithFolder(path, root)) || '';
+};
+
+/**
+ * The published root whose pages a page's lists show (the query index rows below it): a review
+ * root for the pages below it, else the page's locale root (e.g. /de-de).
+ * @param {string} [pathname] defaults to the current page
+ * @returns {string}
+ */
+export function indexRoot(pathname = window.location.pathname) {
+  return reviewRootOf(pathname) || getLocale(pathname).root;
+}
+
 /**
  * The parent pages of a page up to its locale's Home page (the locale page itself), nearest
  * first, as the URLs to load: published paths (/de-de/insights/blogs, /de-de/insights,
@@ -104,9 +148,14 @@ export function getParentPages(pathname = window.location.pathname) {
   const path = pathname.slice(contentRoot.length)
     .replace(/(\.plain)?\.html$/, '')
     .replace(/\/(index)?$/, '');
-  const locale = contentRoot ? localeOfAemPath(path) : localeOfSitePath(path);
-  if (!locale) return [];
-  const root = contentRoot ? aemRootOf(locale) : rootOf(locale);
+  // a page under review inherits up to its review root's page (e.g. /language-master/en), whose
+  // AEM path is its published path below the site root
+  const review = reviewRootOf(pathname);
+  const localeOf = contentRoot ? localeOfAemPath : localeOfSitePath;
+  const locale = review ? null : localeOf(path);
+  if (!locale && !review) return [];
+  const localeRoot = contentRoot ? aemRootOf : rootOf;
+  const root = review || localeRoot(locale);
   const segments = path.slice(root.length).split('/').filter(Boolean);
   if (!segments.length) return [];
   const parents = [];
@@ -149,6 +198,25 @@ export function toAemPath(pathname, contentRoot) {
 }
 
 /**
+ * A page link to follow here: on AEM author a published page path becomes its AEM page
+ * (/language-master/en/x becomes /content/tcs-corp/language-master/en/x.html); on the site, and
+ * for other links, the link as it is.
+ * @param {string} href
+ * @param {string} [pathname] defaults to the current page
+ * @returns {string}
+ */
+export function pageLink(href, pathname = window.location.pathname) {
+  const contentRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
+  if (!contentRoot || !href.startsWith('/') || href.startsWith('//') || CONTENT_ROOT.test(href)) {
+    return href;
+  }
+  const [, path, rest] = href.match(/^([^?#]*)(.*)$/);
+  if (/\.[a-z0-9]+$/i.test(path)) return href;
+  const page = path.replace(/\/(index)?$/, '') || '/';
+  return `${toAemPath(page, contentRoot)}.html${rest}`;
+}
+
+/**
  * The path of a page in the current locale, e.g. references/nav: /de-de/references/nav
  * (/content/tcs-corp/de/de-de/references/nav when editing in AEM).
  * @param {string} path relative to the locale root
@@ -157,7 +225,11 @@ export function toAemPath(pathname, contentRoot) {
 export function localePagePath(path, pathname = window.location.pathname) {
   const { root, aemRoot, contentRoot } = getLocale(pathname);
   const relative = path.replace(/^\//, '');
-  return contentRoot ? `${contentRoot}${aemRoot}/${relative}` : `${root}/${relative}`;
+  // a page under review uses its review root's references (its AEM path on author)
+  const own = !relative || REVIEW_PAGES.some((folder) => relative.startsWith(folder));
+  const review = own ? reviewRootOf(pathname) : '';
+  if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
+  return `${review || root}/${relative}`;
 }
 
 /**
@@ -186,11 +258,15 @@ export function resolvePagePath(value, fallback) {
 }
 
 /**
- * The URL of a spreadsheet of the current locale, e.g. placeholders: /de-de/placeholders.json
+ * The URL of a spreadsheet of the current locale, e.g. placeholders: /de-de/placeholders.json;
+ * for a page under review, its review root's copy of a REVIEW_SHEETS sheet
  * @param {string} name the sheet path relative to the locale root, without .json
+ * @param {string} [pathname] defaults to the current page
  */
-export function localeSheetPath(name) {
-  return `${getLocale().root}/${name.replace(/^\//, '')}.json`;
+export function localeSheetPath(name, pathname = window.location.pathname) {
+  const sheet = name.replace(/^\//, '');
+  const review = REVIEW_SHEETS.includes(sheet) ? reviewRootOf(pathname) : '';
+  return `${review || getLocale(pathname).root}/${sheet}.json`;
 }
 
 /**

@@ -21,7 +21,9 @@ import { createScroller } from './scroller-decorator.js';
 import { moveInstrumentation } from '../scripts/scripts.js';
 import { pushComponents } from '../utils/analytics.js';
 import { readButtonOptions } from '../utils/buttons.js';
-import { BREAKPOINTS, HEADINGS, kindOf } from '../utils/card-list-config.js';
+import {
+  BREAKPOINTS, HEADINGS, kindOf, themeOf,
+} from '../utils/card-list-config.js';
 import { uniqueId } from '../utils/ids.js';
 import { textOf } from '../utils/properties.js';
 
@@ -155,7 +157,7 @@ function mediaOf(card, config, breakpoints) {
  */
 export function renderCard(card, config, { t, level, kind }) {
   const article = element('article', `list-card list-card-${kind}`);
-  const theme = card.theme || config.cardTheme;
+  const theme = themeOf(card, config.cardTheme);
   if (theme) article.classList.add(`theme-${theme}`);
   const readingTime = readingTimeOf(card, t);
   const tags = config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];

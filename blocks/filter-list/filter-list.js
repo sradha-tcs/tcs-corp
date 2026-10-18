@@ -8,13 +8,13 @@ import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { toClassName } from '../../scripts/aem.js';
 import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
-import { isEditing } from '../../utils/environment.js';
+import { isAuthor, isEditing } from '../../utils/environment.js';
 import { uniqueId } from '../../utils/ids.js';
 import { readMultifieldItems } from '../../utils/multifield.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { isOn, readProperties, textOf } from '../../utils/properties.js';
 import { columnOf, getPages, listOf } from '../../utils/query-index.js';
-import { toPublishedPath } from '../../utils/site.js';
+import { pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { loadTaxonomy, resolveTags } from '../../utils/taxonomy.js';
 
@@ -290,7 +290,8 @@ export default async function decorate(block) {
   /* cards */
 
   const text = (page, source) => String(columnOf(page, source) || '').trim();
-  const urlOf = (page) => text(page, map.url) || page.path;
+  // on AEM author, links to the AEM pages
+  const urlOf = (page) => pageLink(text(page, map.url) || page.path);
   const titleOf = (page) => text(page, map.title) || page.title || page.path;
   const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage);
   const tagsOf = (page) => listOf(columnOf(page, map.tags)).slice(0, MAX_CARD_TAGS).map(labelOf);
@@ -474,7 +475,8 @@ export default async function decorate(block) {
     status.textContent = resultText(total);
     if (!total) {
       const empty = element('div', 'filter-list-empty');
-      const editorHint = isEditing() && !pages.length;
+      // on AEM author there is no query index: say where the results show
+      const editorHint = (isEditing() || isAuthor()) && !pages.length;
       empty.append(element('p', 'filter-list-empty-title', editorHint
         ? t('filterListEditor', 'The results show on the published page, from the pages\' metadata.')
         : t('noResources', 'No resources found.')));

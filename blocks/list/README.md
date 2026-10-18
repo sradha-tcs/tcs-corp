@@ -181,7 +181,8 @@ and the empty state applies.
   date, dateISO,      // formatted, YYYY-MM-DD
   lastModified,       // seconds: modified-date, else when last published (sorting)
   contentType, readingTime, authorId, subtitle,
-  kind, theme,        // item display overrides
+  kind, theme,        // the List Item's Card style and Card colour ('' = as the list)
+  pageKind, pageTheme, // the page's card-style and card-theme metadata ('' = none or unsupported)
   ctaLabel, openInNewTab, external,
   analyticsLabel, accessibilityLabel,
 }
@@ -206,14 +207,46 @@ the page (page metadata) or in the locale's bulk metadata sheet.
 | Date | `modified-date`, else `publish-date`, else when last published |
 | Content type, reading time, author | `content-type`, `reading-time`, `author-id` (Authors sheet) |
 | Hidden | `hide-in-nav` = yes: not listed |
+| Card style | `card-style`: image, panel, report or stat (the List's option values); see below |
+| Card colour | `card-theme`: dark, navy, brand, brand-light, grey, mid-grey, gradient or image; see below |
 | Link | the page path, or its redirect target from `/{locale}/redirects.json` |
+
+### Content of List Items: field by field
+
+A List Item's card is made from its linked page (its query index row; a page the index doesn't
+have is read from the page itself, once, with `getPagesAt`), then each field the author filled in
+replaces the page's value (`applyOverrides`): Title (else the page's, else the Link text),
+Description, Image (with its alt text; an authored image keeps its own alt, also empty =
+decorative), Image alt, Eyebrow, Tags, Subtitle, CTA label, Open in a new tab, analytics and
+accessibility labels. An empty field keeps the page's value, so an item can mix authored and page
+values; page metadata never replaces an authored value. A link that can't be resolved keeps the
+authored values (titled from its path when there's no title); one item never breaks the list.
+
+### Card style and Card colour: precedence
+
+`kindOf()` and `themeOf()` (`utils/card-list-config.js`, shared with Cards) take the first that
+applies; unsupported values are skipped, so no class is made from them:
+
+| | List Item (manual) | Child pages, tagged pages (source) |
+|---|---|---|
+| 1 | the List Item's Card style / Card colour | the List's Card style (unless Mixed (by page)) / Card colour |
+| 2 | the List's Card style (unless Mixed (by page)) / Card colour | the page's `card-style` / `card-theme` |
+| 3 | the linked page's `card-style` / `card-theme` | automatic: report for Report pages, panel without an image, else image / the style's colour |
+| 4 | automatic / the style's colour | |
+
+A List Card style other than Mixed (by page), or a Card colour, forces every card that doesn't
+set its own. With Mixed (by page) and Default for the style (the "not forced" settings), each
+page decides, so one list can show different card styles. Lists made before keep their Card style
+(Image card by default), so nothing changes until an author chooses Mixed (by page).
 
 ## Query index contract
 
 `helix-query.yaml` indexes (besides `path`, `title`, `description`, `image`, `tags`,
 `lastModified`): `contentType`, `publishDate`, `modifiedDate`, `readingTime`, `thumbnailImage`,
 `featuredImage`, `authorId`, and for the List `cardTitle`, `cardDescription`, `cardImage`,
-`cardImageAlt`, `imageAlt`, `eyebrow`, `category`, `hideInNav`. A row:
+`cardImageAlt`, `imageAlt`, `eyebrow`, `category`, `hideInNav`, `cardStyle`, `cardTheme`. Source
+lists read every card part, the Card style and colour included, from these rows: no page is
+requested. A row:
 
 ```json
 {

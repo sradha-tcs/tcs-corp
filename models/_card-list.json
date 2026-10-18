@@ -132,7 +132,7 @@
             "value": "mixed"
           }
         ],
-        "description": "Mixed: items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each page's card-style metadata, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
         "condition": {
           "===": [
             {
@@ -193,7 +193,8 @@
             },
             true
           ]
-        }
+        },
+        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each page's card-theme metadata, else the colour of the card's style."
       },
       {
         "component": "select",

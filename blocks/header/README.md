@@ -57,8 +57,9 @@ Over a light hero (desktop): when the page's first section has a hero that isn't
 `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos
 667:52520, Hero 4082:120388): its header Canvas loses its background and rounded corners. The
 header is out of the flow, so the hero never moves when it loads; the hero grows by the header's
-height (`--header-height`, else `--nav-height`). Below 1200px the header keeps its bar above the
-hero.
+height (`--header-height`, set by the header once loaded; before that the reserved
+`--header-reserved`, the bar's height, see below). Below 1200px the header keeps its bar above
+the hero.
 
 **Header Canvas** (a nav page section with a Conversation Canvas): it belongs to the bottom of
 the first screen, on the hero (Figma home-desktop 229:15426, home-tablet 671:52732, mobile Ask TCS
@@ -91,6 +92,7 @@ Header block in the same nav page section stays the logo bar (only the Canvas go
 | `header .nav-wrapper`, fixed below the logo bar breakpoint | `blocks/anchor-list` (offset below a fixed header) |
 | `--nav-height` (header height; 4rem, 7.75rem from 1200px) | `styles/styles.css` (header height reserved before load), `blocks/tabs` (scroll margin), `404.html` |
 | `--header-height` (the header's height with its Canvas, on `<html>`) | `styles/styles.css`, `blocks/hero` (desktop header over a light hero) |
+| `--header-reserved` (the space the header keeps until it loads: the TCS Header with its Canvas, 17.5 / 20.875 / 27.5rem, or the height remembered from the last page by `utils/header-space.js`) | `styles/styles.css`, `blocks/hero` |
 | `#nav`, `#nav-sections`, `.nav-hamburger button`, `nav[data-expanded]` | Conversation Canvas (PR #71: floating row hidden while the menu is open) |
 | `nav-brand`, `nav-sections`, `nav-tools` | The nav page authoring contract |
 

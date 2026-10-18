@@ -19,6 +19,7 @@ import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
+import { reserveHeaderSpace } from '../utils/header-space.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -269,7 +270,13 @@ async function loadPageContent(main, path) {
   try {
     const resp = await fetch(`${path}.plain.html`);
     if (!resp.ok) return false;
-    main.innerHTML = await resp.text();
+    const html = await resp.text();
+    // a page without content (e.g. an error page not authored yet) doesn't replace the built-in
+    // content: the next page is tried
+    const content = document.createElement('div');
+    content.innerHTML = html;
+    if (!content.textContent.trim() && !content.querySelector('img, picture, video, iframe')) return false;
+    main.innerHTML = html;
     // media of the page is relative to it
     main.querySelectorAll('img[src^="./media_"], source[srcset^="./media_"]').forEach((el) => {
       const attr = el.tagName === 'IMG' ? 'src' : 'srcset';
@@ -287,7 +294,7 @@ async function loadPageContent(main, path) {
  *    property, or the metadata sheet's error-page column), like an inherited page property
  * 2. the locale's error-pages/404 (e.g. /de-de/error-pages/404 for /de-de/...)
  * 3. the default locale's /en/error-pages/404
- * Content from another locale is marked as its language.
+ * A page without content is skipped. Content from another locale is marked as its language.
  * else the built-in content stays. 403 and 500 are served by the CDN, not by code.
  * @param {Element} main The main element
  */
@@ -380,6 +387,22 @@ async function loadTemplate(main) {
 }
 
 /**
+ * Starts loading the data the page's blocks share (each loads once and is cached) when the lazy
+ * phase begins, so the blocks below the first section don't each wait for it in turn: the query
+ * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. (Not in
+ * the eager phase: it would compete with the LCP image.)
+ * @param {Element} main
+ */
+function prefetchData(main) {
+  if (!main?.querySelector('.list, .filter-list, .conversation-canvas')) return;
+  import('../utils/query-index.js').then(({ getPages }) => getPages());
+  import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
+  if (main.querySelector('.list')) {
+    import('../utils/redirects.js').then(({ loadRedirects }) => loadRedirects());
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -393,6 +416,8 @@ async function loadEager(doc) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
+    // the header's space is kept before it loads (no layout shift)
+    reserveHeaderSpace();
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -429,18 +454,23 @@ function autolinkModals(doc) {
 
 async function loadLazy(doc) {
   autolinkModals(doc);
-  loadHeader(doc.querySelector('header'));
-
   const main = doc.querySelector('main');
+  prefetchData(main);
+  loadHeader(doc.querySelector('header'));
+  // the footer loads alongside the sections, not after them; it shows once they have loaded, so
+  // it never appears above content still loading and moves (no layout shift)
+  const footer = doc.querySelector('footer');
+  if (footer) footer.style.display = 'none';
+  loadFooter(footer);
+
   await loadSections(main);
+  if (footer) footer.style.display = '';
   trackBlocks(main);
   addErrorBackButton(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-
-  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

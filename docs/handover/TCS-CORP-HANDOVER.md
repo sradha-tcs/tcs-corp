@@ -1,7 +1,7 @@
 ---
 title: "TCS Corporate Website — Project Handover"
 subtitle: "Adobe Experience Manager Edge Delivery Services with Universal Editor: architecture, authoring, components, operations and support"
-date: "October 14, 2026"
+date: "October 18, 2026"
 ---
 
 # Document Control
@@ -12,14 +12,14 @@ date: "October 14, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.0 |
-| Date | 14 October 2026 |
+| Version | 2.17 |
+| Date | 18 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104 (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -42,7 +42,14 @@ date: "October 14, 2026"
 | 2.8 | 17 October 2026 | Delivery team | Universal Editor dialogs: at most three short tabs per block (Universal Editor collapses all tabs into a dropdown when they don't fit on one line): List and Cards Content / Display / Additional, Filter List Content / Cards / Additional, Hero and Teaser Content / Style / Additional, Testimonial Content / Style / Additional, Video Video / Playback / Additional, Separator General / Style / Additional, Table List Content / Items / Additional, Tabs Content / Styles / Additional (fields and stored values unchanged; the tab names of the component chapters refer to the tabs before 2.8, see F-84). List and Cards: an item without a card is a placeholder in the editor (Add), fixed pages without data are listed (F-85); placeholders `listItemEditorHint`, `listItemSourceHint`, `cardEditorHint` |
 | 2.9 | 17 October 2026 | Delivery team | List Pages and Filter List Pages / Featured pages are composite multifields (`pageItems`, `featuredItems`: a Page per item), as Universal Editor didn't save the multi-value aem-content fields (`pages`, `featuredPages`, still read for lists made before); finding F-86 |
 | 2.10 | 17 October 2026 | Delivery team | Item children instead of composite multifields: Hero and Page Header CTAs (CTA items), Teaser Links and Stats (Link, Stat), Testimonial Stats (Stat), Anchor List links (Anchor Link), Filter List primary filter tags, advanced filter categories and listed / featured pages (Filter Tag, Filter Category, Filter Page) and Footer links (Footer Link) are added to the block with Add, like List Items; the multifields authored before are still read. In the editor an item without content yet is a dashed placeholder (placeholder `itemEditorHint`); finding F-87 |
-| 2.11 | 17 October 2026 | Delivery team | Conversation Canvas at the bottom of the window: the header Canvas sits at the bottom of the first screen (on the hero) and becomes fixed there as soon as the page scrolls, 52px desktop / 62px tablet / 20px + safe area mobile above the window bottom (Figma design file; Play not verifiable); its host is out of the flow at every width (the header no longer pushes the page down); the TCS Header in the Canvas section stays the logo bar; the opening hero is at most the first screen high; findings F-82 closed, F-88 |
+| 2.11 | 17 October 2026 | Delivery team | Temporary, for the review of the language master before its rollout to /en: pages published below `/language-master/en` list the language master's own pages from the query index in List and Filter List sources and Conversation Canvas menus (`REVIEW_ROOTS`, `indexRoot` in `utils/site.js`), and read its own references (nav, footer: `REVIEW_PAGES`, `localePagePath`; published at `/language-master/en/references/`) and its own placeholders, redirects, taxonomy and data sheets (`REVIEW_SHEETS`, `localeSheetPath`; published at `/language-master/en/placeholders.json`, `/language-master/en/redirects.json`, `/language-master/en/taxonomy.json` and `/language-master/en/data/*.json`, with its metadata sheet). On AEM author the language master's pages are recognised by their AEM paths (`/content/tcs-corp/language-master/en/…`) too, and List and Filter List cards link to the AEM pages there (`pageLink`). `paths.json` lists the language master's mappings and includes (`REVIEW` in `tools/paths/generate-paths.mjs`, 153 mappings), applied to the site configuration. Remove it with the `/language-master/en/` path mapping once the language master is rolled out and unpublished |
+| 2.12 | 17 October 2026 | Delivery team | On AEM author (which has no query index) a List with a child pages or tags source, and a Filter List from the query index, say that their pages show on the published page (placeholders `listEditorPages`, `filterListEditor`) in page view as in the editor, instead of “There are no items to show”; a List set to hide when empty stays visible there (`isAuthor` in `utils/environment.js`) |
+| 2.13 | 17 October 2026 | Delivery team | Page loading: the footer loads alongside the main sections (hidden until they have loaded, so it doesn't move) instead of after them; the header loads the nav and the placeholders in parallel and starts the default nav right away; the query index, taxonomy and redirects start loading when the lazy phase begins on pages with Lists, Filter Lists or Conversation Canvases. On a throttled phone profile the footer is ready 1.2–2.8 s earlier and the page index up to 1 s earlier; first and largest paint unchanged. The sticky Anchor List no longer pins while its section is hidden (layout shift 0.35 on article pages with a chapter list, now 0.006) |
+| 2.14 | 17 October 2026 | Delivery team | Language master (temporary review): its pages inherit Navigation, Footer and 404 Page from their parent pages up to the language master's root page (`/content/tcs-corp/language-master/en`), as locale pages do up to their Home page (`getParentPages`); the root page is published at `/language-master/en/` (paths.json: its mapping and one include for the root page and everything below it) |
+| 2.15 | 18 October 2026 | Delivery team | Header layout shift: until the header has loaded it keeps the space of the TCS Header with its Canvas (`--header-reserved`: 17.5 / 20.875 / 27.5rem), or the height remembered from the last page (`utils/header-space.js`, per breakpoint); the page no longer moves when the header and its Canvas arrive (layout shift 0.14–0.25 on every page with the TCS Header, now below 0.01 on mobile, tablet and desktop) |
+| 2.16 | 18 October 2026 | Delivery team | List cards: pages can set their own Card style and Card colour with the new bulk metadata columns `card-style` (image, panel, report, stat) and `card-theme` (the Card colour values), indexed as `cardStyle` / `cardTheme`. Precedence (`kindOf`, `themeOf`): a List Item's own value, else the List's (Card style other than Mixed (by page), Card colour other than Default for the style), else the page's metadata, else automatic; source cards (child pages, tags) have no item level. Unsupported values are ignored. List Items keep their field-by-field content from the linked page (authored values win). Field names, options and stored values are unchanged; lists made before render as before |
+| 2.17 | 18 October 2026 | Delivery team | Document body brought up to date with 2.10–2.16 (code on `main` after PR #104): page loading and layout shift (1.7.1, 2.3.2, 2.11.2), paths and the temporary language master review (2.10.2, 2.10.7, 2.10.8, 3.1, 3.9), inheritance up to the language master root (2.11.3, 3.5.1, 3.5.2, 4.6.1), empty error pages skipped (3.7), item children in the field specifications of Footer, Page Header, Hero, Teaser, Testimonial, Filter List and Anchor List, the List card display precedence and the author message (6.16.11), metadata columns `card-style` and `card-theme` (8.2.49, 8.2.50, 8.3, 8.4), findings F-88 to F-93; F-82 closed |
+| 2.18 | 18 October 2026 | Delivery team | Conversation Canvas at the bottom of the window: the header Canvas sits at the bottom of the first screen (on the hero) and becomes fixed there as soon as the page scrolls, 52px desktop / 62px tablet / 20px + safe area mobile above the window bottom (Figma design file; Play not verifiable); its host is out of the flow at every width (the header no longer pushes the page down); the TCS Header in the Canvas section stays the logo bar; the opening hero is at most the first screen high; `--header-reserved` is the logo bar (the Canvas no longer takes header space); finding F-94 |
 
 ## Review and Approval
 
@@ -302,12 +309,13 @@ The objectives below are derived from the delivered implementation. Business KPI
 |:------------------------------------|:------------------------------------------------------------|:-----------------------|
 | Lighthouse / PageSpeed Insights score of 100 (mobile and desktop) on feature preview URLs before merge | Project publishing process (developer guidelines in the repository), step "PageSpeed Insights check" | Recommended (process); not enforced by CI (CI runs lint only) |
 | Largest Contentful Paint from the first section | `loadEager` decorates `main` and loads only the first section (`loadSection(main.querySelector('.section'), waitForFirstImage)`); the first image is set to `loading="eager"` | Enforced by code |
-| Three-phase loading | Eager (head decoration, template, first section), Lazy (header, remaining sections, footer, `lazy-styles.css`, fonts), Delayed (after 3 seconds: late block tracking and `scripts/delayed.js`) | Enforced by code |
+| Three-phase loading | Eager (head decoration, template, first section), Lazy (the shared data of Lists, Filter Lists and Conversation Canvases, the header, the footer alongside the remaining sections, `lazy-styles.css`, fonts), Delayed (after 3 seconds: late block tracking and `scripts/delayed.js`) | Enforced by code |
+| No layout shift from late content (2.13, 2.15) | Until the header has loaded, `<header>` keeps the space of the TCS Header with its Canvas (`--header-reserved`: 17.5rem mobile, 20.875rem tablet, 27.5rem desktop) or the height remembered from the last page for the breakpoint (`utils/header-space.js`, `localStorage`); the footer is hidden until the main sections have loaded; the sticky Anchor List doesn't pin while its section is hidden. Measured: CLS below 0.01 on mobile, tablet and desktop (before: 0.14–0.25 with the TCS Header, 0.35 on article pages with a chapter list) | Enforced by code |
 | Fonts don't block LCP | `fonts.css` (self-hosted Inter variable font, `font-display: swap`) loads in the eager phase only on viewports ≥ 900px or when already cached in the session (`sessionStorage` flag `fonts-loaded`), otherwise in the lazy phase; an `inter-fallback` font face reduces layout shift | Enforced by code |
 | Per-block code splitting | Each block's JS and CSS are loaded only when the block is on the page (`loadBlock` in `scripts/aem.js`) | Enforced by code |
 | Image optimisation | Authored images are delivered as optimised `/media_…` resources with responsive `<picture>` sources (`createOptimizedPicture`, `decorators/responsive-image-decorator.js`); section backgrounds use 2000px (≥ 600px) and 750px widths | Enforced by code |
 | No third-party scripts on load | No external script in `head.html`; X (Twitter) widgets script loads only when an X embed is rendered; Lottie player is vendored (`scripts/lib/lottie`) and loaded when an animation is near the viewport | Enforced by code |
-| Shared data loaded once | Query index, placeholders, taxonomy, redirects, data sheets are fetched once per page view (in-memory promise cache); inherited metadata cached per browser session | Enforced by code |
+| Shared data loaded once and early | Query index, placeholders, taxonomy, redirects, data sheets are fetched once per page view (in-memory promise cache); inherited metadata cached per browser session. On pages with a List, Filter List or Conversation Canvas the query index and taxonomy (and, with a List, the redirects) start loading when the lazy phase begins (`prefetchData` in `scripts.js`); the header loads the nav page and the placeholders in parallel and starts loading the default nav page before its own value is known | Enforced by code |
 | Real-user monitoring | `sampleRUM` (Edge Delivery Operational Telemetry) in `scripts/aem.js`; `404.html` sends a `404` checkpoint with the referrer | Enforced by code |
 
 ### 1.7.2 Accessibility
@@ -614,14 +622,14 @@ Layering rules (from `decorators/README.md` and `utils/README.md`): blocks and t
  loadEager                         loadLazy                         loadDelayed (+3 s)
  ---------                         --------                         ------------------
  decorateHead (SEO, <html lang>)   autolinkModals (/modals/ links)  trackBlocks(document)
- trackInteractions (data layer)    loadHeader (nav fragment)        import('./delayed.js')
- decorateTemplateAndTheme          loadSections (all sections)        (empty today: place
- decoratePageType (body class)     trackBlocks(main)                   for Adobe Tags)
- 404: loadErrorPage(main)          404: addErrorBackButton (Go back)
-                                   scroll to #hash element
-   else: loadTemplate(main)        loadFooter (footer fragment)
- decorateMain(main)                lazy-styles.css
- body.appear                       loadFonts()
+ trackInteractions (data layer)    prefetchData (index, taxonomy,   import('./delayed.js')
+ decorateTemplateAndTheme            redirects; if lists on page)     (empty today: place
+ decoratePageType (body class)     loadHeader (nav fragment)           for Adobe Tags)
+ 404: loadErrorPage(main)          loadFooter (hidden) | loadSections
+   else: loadTemplate(main)        footer shown, trackBlocks(main)
+ decorateMain(main)                404: addErrorBackButton (Go back)
+ reserveHeaderSpace                scroll to #hash element
+ body.appear                       lazy-styles.css, loadFonts()
  loadSection(first, waitForFirstImage)
  fonts.css if >= 900px or cached
 ```
@@ -633,19 +641,20 @@ Layering rules (from `decorators/README.md` and `utils/README.md`): blocks and t
 3. `decorateTemplateAndTheme()` (aem.js) adds the `template` / `theme` metadata as body classes; `decoratePageType()` adds the Page Type (`page-type` metadata) as a body class.
 4. On the 404 page (`window.isErrorPage`), `loadErrorPage(main)` replaces the built-in content with the authored 404 page (Part 10). Otherwise `loadTemplate(main)` loads `templates/{name}/{name}.js` and `.css` when the Page Type is one of `home`, `article`, `blog`, `press-release` (`TEMPLATES`), and calls its default export with `main` before decoration. A template failure is logged (`failed to load template {name}`) and the page continues.
 5. `decorateMain(main)`: `decorateIcons` → `buildAutoBlocks` (empty placeholder) → `decorateSectionsWithOptions` (sections plus the section options Style, Width Type, Rounded edge, Background Image, Image alt text, Anchor name; then Gen Carousel and Tabs Container sections are wrapped in synthetic `gen-carousel` / `tabs` blocks) → `decorateBlocks` → `applyBlockOptions` (Additional tab: `anchor-…` class becomes a unique id) → `decorateButtons` (authored links become buttons).
-6. `body.appear` is added; the first section is loaded and the first image is awaited (`waitForFirstImage` sets it to `loading="eager"`) — this is the LCP.
+6. `reserveHeaderSpace()` (`utils/header-space.js`) gives `<header>` the height remembered from the last page for the current breakpoint (else the CSS reserve `--header-reserved`), so the page doesn't move when the header arrives (2.15). `body.appear` is added; the first section is loaded and the first image is awaited (`waitForFirstImage` sets it to `loading="eager"`) — this is the LCP.
 7. Fonts: `fonts.css` is loaded now only if the viewport is ≥ 900px or the session already loaded it.
 
 **Lazy phase (`loadLazy`)**
 
 1. `autolinkModals(doc)`: a document click listener opens links whose path contains `/modals/` with the Modal block (`openModal`), unless another handler already prevented the default.
-2. `loadHeader()`: builds and loads the `header` block (Navigation page as a fragment, see 3.5).
-3. `loadSections(main)`: loads all remaining sections in order (each block's JS and CSS); after the first section, RUM enhancement runs.
-4. `trackBlocks(main)`: pushes the component state of every loaded block to the data layer.
-5. On 404 pages, `addErrorBackButton(main)`: adds "Go back" (placeholder `goBack`) when the visitor came from a page of the site (10.2.4).
-6. Scrolls to the element of the URL hash, if any.
-7. `loadFooter()`: builds and loads the `footer` block.
-8. Loads `styles/lazy-styles.css` and `fonts.css`.
+2. `prefetchData(main)`: on pages with a List, Filter List or Conversation Canvas, starts loading the query index and the taxonomy (and, with a List, the redirects sheet) so they are ready when those blocks are decorated (not awaited; the same cached promises are used by the blocks).
+3. `loadHeader()`: builds and loads the `header` block (Navigation page as a fragment, see 3.5); not awaited. The header loads the nav page and the placeholders in parallel and remembers its height for the next page (`rememberHeaderSpace`).
+4. `loadFooter()`: builds and loads the `footer` block alongside the sections (not after them); `<footer>` stays hidden (`display: none`) until the sections have loaded, so it never shows above content still loading.
+5. `loadSections(main)`: loads all remaining sections in order (each block's JS and CSS); after the first section, RUM enhancement runs. Then the footer is shown.
+6. `trackBlocks(main)`: pushes the component state of every loaded block to the data layer.
+7. On 404 pages, `addErrorBackButton(main)`: adds "Go back" (placeholder `goBack`) when the visitor came from a page of the site (10.2.4).
+8. Scrolls to the element of the URL hash, if any.
+9. Loads `styles/lazy-styles.css` and `fonts.css`.
 
 **Delayed phase (`loadDelayed`)**
 
@@ -1383,15 +1392,19 @@ sheet and asset appears.
 - Render sections, blocks, block items and default content as `div` tables; block fields as rows or
   key-value rows; `classes_*` fields (Additional tab) as block classes; section properties as `data-*`
   attributes; page properties as `<meta>` tags.
-- Map paths with the 143 mappings generated by `npm run build:paths`
+- Map paths with the 154 mappings generated by `npm run build:paths`
   (`tools/paths/generate-paths.mjs` from `utils/site.js` `LOCALES`): 13 locale folders
   (`/content/tcs-corp/de/de-de/:/de-de/`), then 13 locale Home pages
   (`/content/tcs-corp/de/de-de:/de-de/`, published as `/de-de/index`), then 13 × 8 sheets
   (`…/data/authors:/de-de/data/authors`, `.json` appended) and 13 taxonomy pages
-  (`…/taxonomy:/de-de/taxonomy.json`).
-- Publish only the 14 includes (the 13 locale pages and everything below them, and
-  `/content/dam/tcs-corp/`) and never the 28 excludes (26 block-library entries,
-  `site-global-templates` and its children).
+  (`…/taxonomy:/de-de/taxonomy.json`): 143; then, temporarily, the 11 mappings of the language
+  master under review (`REVIEW` in the generator: its folder and root page
+  `/content/tcs-corp/language-master/en(/):/language-master/en/`, its 8 sheets and its taxonomy
+  page, 3.9).
+- Publish only the 15 includes (the 13 locale pages and everything below them,
+  `/content/dam/tcs-corp/` and, temporarily, `/content/tcs-corp/language-master/en`) and never the
+  28 excludes (26 block-library entries, `site-global-templates` and its children; the language
+  master's block library is left out of the published pages by not publishing it, 3.9).
 - Rewrite links and references to published paths.
 
 **Dependencies:** AEM author availability; the component models (field names and order drive the
@@ -1419,7 +1432,8 @@ paths leave AEM. `paths.json` is generated, never edited by hand, and must be ap
 elsewhere would publish another environment's content.
 
 **Scalability Considerations:** A new locale adds 11 mappings (folder, Home page, 8 sheets,
-taxonomy), one include and two excludes; a new data sheet type means a change to `SHEETS` in
+taxonomy), one include and two excludes (the language master review adds the same 11 mappings
+and one include until it is removed after the rollout); a new data sheet type means a change to `SHEETS` in
 `tools/paths/generate-paths.mjs` and 13 new mappings. Publishing a locale with all children
 (Manage Publication) is processed asynchronously; allow several minutes before concluding that a
 page is missing (12.1.4).
@@ -1641,12 +1655,14 @@ all 13 locales; it is the data source of every automatic page list. `helix-sitem
 - Index `/**` except `/**.json`, `/*/references/**`, `/*/error-pages/**`, `/*/data/**`, `/*/nav`,
   `/*/footer`, `/*/block-library(/**)`, `/site-global-templates/**`, `/**/fragments/**` and
   `/**/modals/**`.
-- Extract 34 properties from the server-delivered head: `lastModified`, `robots`, `title`
-  (`og:title`), `description`, `image` (`og:image` path), `tags` (`article:tag`, multi-value) and 28
-  metadata columns (`metaTitle` … `hideInNav`, 8.1.8).
+- Extract 37 properties from the server-delivered head: `lastModified`, `robots`, `title`
+  (`og:title`), `description`, `image` (`og:image` path), `tags` (`article:tag`, multi-value),
+  `cqTags` (`cq-tags`) and 30 metadata columns (`metaTitle` … `hideInNav`, 8.1.8; `cardStyle` and
+  `cardTheme` added in 2.16).
 - Serve List (child pages, tagged pages), Filter List and the Conversation Canvas menu through
   `utils/query-index.js` `getPages()`: pages of 500 rows (`?offset=…&limit=500`), loaded once per
-  page view and filtered to the current locale root.
+  page view and filtered to the current locale root (`indexRoot()` in `utils/site.js`; for a page
+  of the language master under review, the language master root `/language-master/en`, 3.9).
 - Build the sitemap (`default`: origin `https://main--tcs-corp--sradha-tcs.aem.live`, `lastmod:
   YYYY-MM-DD`); pages with `robots` `noindex` are left out.
 
@@ -1693,13 +1709,19 @@ are authorable and translatable without code.
 | Sheet (below `/content/tcs-corp/{country}/{language}/`) | Published at (example) | Read by | Fallback when missing |
 |:----------------------------|:------------------------------|:----------------------------------------|:--------------------------------|
 | `placeholders` (Key, Text, Description, Category) | `/de-de/placeholders.json` | `utils/placeholders.js` (92 keys) | English text passed in code |
-| `metadata` (`url` + 39 columns) | `/de-de/metadata.json` | Edge Delivery, only when listed in `metadata.source` | No bulk metadata |
+| `metadata` (`url` + 41 columns, with `card-style` and `card-theme` from 2.16) | `/de-de/metadata.json` | Edge Delivery, only when listed in `metadata.source` | No bulk metadata |
 | `taxonomy` (tag, title; a sheet per language) | `/de-de/taxonomy.json` | `utils/taxonomy.js` `resolveTags` | Label derived from the tag ID |
 | `redirects` (Source, Destination) | `/de-de/redirects.json` | `utils/redirects.js` (List card links only) | Links not rewritten |
 | `data/authors` | `/de-de/data/authors.json` | `utils/data.js` (Page Header, article template, List, Filter List) | No author lockup |
 | `data/locations`, `data/partners` | `/de-de/data/locations.json`, `…/partners.json` | Loaders only, no block (F-40) | — |
 | `data/social-links` | `/de-de/data/social-links.json` | Footer | No social icons |
 | `data/media-contacts` | `/de-de/data/media-contacts.json` | Press-release template | No Media contacts |
+
+Temporarily, the language master under review has the same sheets below
+`/content/tcs-corp/language-master/en/`, published at `/language-master/en/placeholders.json`,
+`…/metadata.json`, `…/taxonomy.json`, `…/redirects.json` and `…/data/*.json`. Its pages read these
+sheets (`localeSheetPath(name, pathname)` with `REVIEW_SHEETS` in `utils/site.js`), not the /en
+sheets; its metadata sheet applies once it is listed in `metadata.source` (3.9).
 
 **Dependencies:** The `paths.json` sheet and taxonomy mappings; publication of each sheet; the site
 configuration `metadata.source` (bulk metadata); the AEM tag namespace (`tcs-corp:`) for taxonomy
@@ -2066,10 +2088,11 @@ production origin until a production domain is configured); admin calls go to
 | 6 | Eager | Data of first-section blocks: `/{locale}/placeholders.json`, `/{locale}/taxonomy.json`, `/{locale}/data/authors.json`, `/query-index.json?offset=0&limit=500` (…) | utils | Each at most once per page view |
 | 7 | Eager | First image `/media_<hash>.<ext>?width=…&format=webply…` | `waitForFirstImage` (set to eager) | The LCP element |
 | 8 | Eager | `/styles/fonts.css` and the font files | `loadFonts` | Only at ≥ 900 px or when `fonts-loaded` is set in `sessionStorage` |
-| 9 | Lazy | `/blocks/header/header.js` and `.css`; parent pages' HTML (only without an own `nav`); `/{locale}/references/nav.plain.html` (or the configured Navigation page) | `loadHeader` (not awaited) | 2.11.3 |
+| 8a | Lazy | `/query-index.json`, `/{locale}/taxonomy.json`, `/{locale}/redirects.json` | `prefetchData` (not awaited) | Only on pages with a List, Filter List or Conversation Canvas (redirects: with a List); the blocks reuse the same requests |
+| 9 | Lazy | `/blocks/header/header.js` and `.css`; parent pages' HTML (only without an own `nav`); `/{locale}/references/nav.plain.html` (or the configured Navigation page) and `/{locale}/placeholders.json` in parallel | `loadHeader` (not awaited) | The default nav page is requested before the inherited value is known; the space of the header is kept until it loads (2.15); 2.11.3 |
 | 10 | Lazy | Blocks, fragments (`{path}.plain.html`), sheets and lazy images of the remaining sections | `loadSections(main)` | Sections are shown when their blocks are loaded |
 | 11 | Lazy | Template data appended without blocking: Authors (article / blog), Media Contacts (press release) | `appendLoadedSection` | `/{locale}/data/authors.json`, `/{locale}/data/media-contacts.json` |
-| 12 | Lazy | `/blocks/footer/footer.js` and `.css`; `/{locale}/references/footer.plain.html` (or the configured Footer page); `/{locale}/data/social-links.json`; footer canvas fragment | `loadFooter` | Inherited values come from the cache filled by the header |
+| 12 | Lazy | `/blocks/footer/footer.js` and `.css`; `/{locale}/references/footer.plain.html` (or the configured Footer page); `/{locale}/data/social-links.json`; footer canvas fragment | `loadFooter` (alongside row 10) | Inherited values come from the cache filled by the header; `<footer>` is shown once the sections have loaded |
 | 13 | Lazy | `/styles/lazy-styles.css`, `/styles/fonts.css` | `loadLazy` | |
 | 14 | Delayed | `/scripts/delayed.js` | `loadDelayed` after 3 s | Empty today; the Tags embed belongs here (11.7.2) |
 | 15 | Any | `https://ot.aem.live/…` beacons, RUM enhancer (third party, Adobe) | `sampleRUM` | About 1 in 100 views (2.10.14) |
@@ -2084,9 +2107,10 @@ production origin until a production domain is configured); admin calls go to
    `decorateMain(main)` (icons, sections and section options, Gen Carousel / Tabs containers,
    blocks, Additional tab options, buttons); `body.appear`; the first section is loaded and its first
    image awaited (LCP).
-2. Lazy: modal auto-linking; the header (not awaited); all remaining sections in order;
-   `trackBlocks(main)`; on 404 pages the Go back button; scroll to the URL hash; the footer; lazy
-   styles and fonts.
+2. Lazy: modal auto-linking; the shared data of lists (not awaited); the header (not awaited); the
+   footer (hidden) alongside all remaining sections in order; the footer shown;
+   `trackBlocks(main)`; on 404 pages the Go back button; scroll to the URL hash; lazy styles and
+   fonts.
 3. Delayed: after 3 seconds `trackBlocks(document)` (header, footer, modals) and `delayed.js`.
 
 | Step | Failure point | Symptom | Detection | Recovery |
@@ -2133,8 +2157,9 @@ production origin until a production domain is configured); admin calls go to
    `loadErrorPage` calls `getInheritedMetadata('error-page')`.
 2. If the page has its own value (page property or the metadata sheet's `nav` / `footer` /
    `error-page` column), it is used.
-3. Otherwise `utils/site.js` `getParentPages()` lists the parent pages up to the locale Home page
-   (for a missing page, starting at its nearest parent). Their published HTML is fetched in parallel,
+3. Otherwise `utils/site.js` `getParentPages()` lists the parent pages up to the locale Home page,
+   or for a page of the language master under review up to its root page
+   `/content/tcs-corp/language-master/en` (3.9) (for a missing page, starting at its nearest parent). Their published HTML is fetched in parallel,
    once per page view and URL, and the three metas are cached for the browser session.
 4. `resolvePagePath(value, fallback)` turns the value (AEM path, published path or a path relative to
    the locale root such as `references/nav-careers`) into the path to fetch: the published path on
@@ -2396,6 +2421,8 @@ The AEM content tree `/content/tcs-corp` holds 13 locale sites and the Site Glob
 ├── de/de-de/  fr/fr-fr/  ca/fr-ca/  es/es-es/  pt/pt-pt/  nl/nl-nl/
 ├── se/sv-se/  dk/da-dk/  no/no-no/  cn/zh-cn/  jp/ja-jp/  kr/ko-kr/
 │                                       12 more locale sites, same layout
+├── language-master/en/                 the language master (rollout source of /en); temporarily
+│                                       published at /language-master/en/ for review (3.9)
 └── site-global-templates/              template pages authors copy (not published):
                                         home, press release, blog, article, ...
 
@@ -2590,12 +2617,14 @@ The header is not authored on each page; `scripts/aem.js` `loadHeader` creates a
 ```text
  page's own Navigation (page property `nav`, or the metadata sheet's `nav` column)
    └─ else the nearest parent page's Navigation, up to the locale Home page
+      (language master under review: up to its root page, 3.9)
         └─ else the locale's references/nav  (e.g. /de-de/references/nav)
 ```
 
 - `getInheritedMetadata('nav')` (`utils/inherited-metadata.js`) loads the published HTML of all parent pages in parallel (`getParentPages`), reads `<meta name="nav">`, and takes the nearest non-empty value. Values are cached per URL in `sessionStorage` (`tcs-inherited-metadata`) for the browser session — a changed parent property shows in a new session.
 - `resolvePagePath(value, 'references/nav')` accepts AEM paths, published paths or paths relative to the locale root (e.g. `references/nav-careers`).
-- The page is loaded as a fragment (`loadFragment` → `{path}.plain.html`, decorated like a page).
+- The page is loaded as a fragment (`loadFragment` → `{path}.plain.html`, decorated like a page). The nav page and the placeholders are loaded in parallel, and the default `references/nav` is requested right away, before the inherited value is known.
+- **Reserved space (2.15).** Until the header has loaded, `<header>` keeps the height remembered from the last page for the current breakpoint (`utils/header-space.js`, `localStorage`), else the space of the TCS Header with its Canvas (`--header-reserved` in `styles/styles.css`: 17.5rem mobile, 20.875rem tablet, 27.5rem desktop), so the page doesn't move when the header arrives; the Hero falls back to the same value for `--header-height`.
 
 **Navigation page structure** (authored in `references/nav`): three sections, in order:
 
@@ -2613,7 +2642,7 @@ The header is not authored on each page; `scripts/aem.js` `loadHeader` creates a
 
 **Accessibility name.** `<nav id="nav" aria-label="Main navigation">` (placeholder `mainNavigation`).
 
-**Failure.** No Navigation page published (e.g. a new locale): the header stays empty.
+**Failure.** A configured Navigation page that can't be loaded falls back to the locale's `references/nav` (6.1.11 rule 5); if that isn't published either (e.g. a new locale), the header stays empty.
 
 ### 3.5.2 Footer
 
@@ -2622,11 +2651,14 @@ The header is not authored on each page; `scripts/aem.js` `loadHeader` creates a
 ```text
  page's own Footer (page property `footer`, or the metadata sheet's `footer` column)
    └─ else the nearest parent page's Footer, up to the locale Home page
+      (language master under review: up to its root page, 3.9)
         └─ else the locale's references/footer
 ```
 
+The footer loads alongside the main sections and is shown once they have loaded (2.3.2).
+
 - The footer page is loaded as a fragment together with the locale's Social Links sheet (`/{locale}/data/social-links.json`, in `sort-order`), rendered as an icon list (`footer-social`, labels "Follow us on {platform}", placeholder `followUsOn`).
-- On the footer page, the authored **Footer** block (model `_footer.json`) renders: the Conversation Canvas Page (a page with the Conversation Canvas block, loaded as a fragment), the Copyright Text (rich text; `{year}` becomes the current year) and the Link List (Link Title, Link Path, Link Type Default / Open in new window) as `<nav class="footer-links" aria-label="Footer links">`.
+- On the footer page, the authored **Footer** block (model `_footer.json`) renders: the Conversation Canvas Page (a page with the Conversation Canvas block, loaded as a fragment), the Copyright Text (rich text; `{year}` becomes the current year) and the footer links as `<nav class="footer-links" aria-label="Footer links">`: the **Footer Link** items added to the block with Add (Link Path, Link Title, Link Type Default / Open in new window; 2.10), after the links of the Link List multifield of footers made before.
 - Missing footer page: only the Social Links (if any) are shown.
 
 ### 3.5.3 In-Page Navigation
@@ -2667,6 +2699,11 @@ Summary (details in Part 10):
 | 500 Server Error | Not served by Edge Delivery | Authored `error-pages/500` for a CDN to serve |
 | Maintenance | Not implemented | Recommended: CDN rule (Part 10.5) |
 
+An error page without content (no text, image or media, e.g. `error-pages/404` created but not
+authored yet) doesn't replace the built-in content: the next candidate is tried (`loadPageContent`
+in `scripts.js`). Pages of the language master under review use its own
+`/language-master/en/error-pages/404` and its root page's 404 Page (3.9, F-92).
+
 ## 3.8 Redirect Strategy
 
 ### 3.8.1 Current State
@@ -2693,6 +2730,28 @@ Summary (details in Part 10):
 3. Keep the sheets as the single source authors maintain; define a sync process (manual export or automation) [To be confirmed: redirect sync mechanism — owner: CDN Owner].
 4. Avoid chains: point sources to final destinations (the List block follows at most 5 hops).
 5. Test redirects on preview with the List block and at the CDN after each change.
+
+## 3.9 Language Master Review (temporary)
+
+Before the language master `/content/tcs-corp/language-master/en` is rolled out to `/en`, its
+pages are published at `/language-master/en/…` so they can be reviewed as a site of their own.
+This is temporary: after the review, the language master is rolled out to `/en` in AEM, the /en
+metadata sheet is imported (`metadata-en-after-rollout.csv` on the downloads branch), and the
+language master is unpublished; then the code and configuration below are removed.
+
+| Area | Temporary behaviour | Where |
+|:--------------------|:----------------------------------------------------------------|:------------------------|
+| Paths | 11 mappings (folder, root page, 8 sheets, taxonomy page) and one include (`/content/tcs-corp/language-master/en`, the root page and everything below it); the block library isn't published | `paths.json` (`REVIEW` in `tools/paths/generate-paths.mjs`), site configuration `public.json` |
+| Lists | List, Filter List and the Conversation Canvas menu list the language master's own pages from the query index (rows below `/language-master/en/`) | `REVIEW_ROOTS`, `reviewRootOf`, `indexRoot` in `utils/site.js`; `utils/query-index.js` |
+| Sheets | Placeholders, redirects, taxonomy and the data sheets are read from `/language-master/en/…`; its metadata sheet applies once listed in `metadata.source` | `REVIEW_SHEETS`, `localeSheetPath(name, pathname)` |
+| References and error pages | Its own `references/` (nav, footer, header / footer Canvas pages) and `error-pages/`, and its root page as Home | `REVIEW_PAGES`, `localePagePath` |
+| Inheritance | Navigation, Footer and 404 Page are inherited up to the language master's root page (the root page's values apply to all its pages) | `getParentPages` |
+| AEM author | Pages are recognised by their AEM paths (`/content/tcs-corp/language-master/en/…`); List links go to the AEM pages (`pageLink`); a List from child pages or tags and a Filter List say where their pages show (no query index on author, 6.16.11 rule 24) | `reviewRootOf`, `pageLink`, `isAuthor` |
+
+Tests: `test/site/index-root.test.mjs`. Removal: PRs #91, #93, #94, #96, #97, #98, #99, #101 and the
+review parts of #102 (the `REVIEW_*` constants and their uses in `utils/site.js`, the `REVIEW` block
+of the paths generator, then `npm run build:paths` and the site configuration `public.json` and
+`metadata.source` entries); open item in 16.2 (F-88).
 
 # Part 4 — Content Architecture
 
@@ -3520,6 +3579,8 @@ no page: header left empty                       no page: footer shows only the 
 | AEM path | `/content/tcs-corp/de/de-de/references/nav-jobs` | `/de-de/references/nav-jobs` |
 | Published path | `/de-de/references/nav-jobs` | `/de-de/references/nav-jobs` |
 | Relative to the locale root | `references/nav-jobs` | `/{current locale}/references/nav-jobs` |
+
+For a page of the language master under review, "up to Home" means up to its root page `/content/tcs-corp/language-master/en`, and the fallbacks are its own `references/` pages (3.9).
 
 The 404 page uses the same mechanism with `error-page` and the fallback `error-pages/404`, then `/en/error-pages/404`, then the built-in content (`loadErrorPage` in `scripts.js`); content from another locale is marked with its `lang`.
 
@@ -8210,6 +8271,13 @@ Reproduces the screenshot `screenshots/footer-link-new-window.jpg` of this varia
 
 ### 6.2.6 Authorable Field Specification
 
+> **Update 2.10 — item children.** The repeating content of the Footer is authored as items
+> added to the block with **Add** in the content tree, like List Items: **Footer Link** (`footer-link`: Link Path, Link Title, Link Type). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the links of the Link List multifield of footers made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
+
 **Footer block (model `footer`, `blocks/footer/_footer.json`; no tabs)**
 
 | Field Name | Field Type | Mandatory | Multi Value | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
@@ -12285,6 +12353,13 @@ Reproduces the screenshot `screenshots/page-header-listen-action.jpg` of this va
 **Expected Result:** The page matches the screenshot; nothing in the Troubleshooting case above applies.
 
 ### 6.4.6 Authorable Field Specification
+
+> **Update 2.10 — item children.** The repeating content of the Page Header is authored as items
+> added to the block with **Add** in the content tree, like List Items: **CTA** (`page-header-cta`: CTA Link, CTA Title, CTA Link Type, CTA Link Style). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the CTAs of the CTA List multifield of blocks made before; a Page Header with CTA items is no longer left out. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
 
 **Page Header block (model `page-header`, key-value)**
 
@@ -25177,6 +25252,13 @@ Reproduces the screenshot `screenshots/hero-title-h2.jpg` of this variation. The
 
 ### 6.10.6 Authorable Field Specification
 
+> **Update 2.10 — item children.** The repeating content of the Hero is authored as items
+> added to the block with **Add** in the content tree, like List Items: **CTA** (`hero-cta`: CTA Link, CTA Title, CTA Link Type, CTA view, CTA Arrow). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the CTAs of the CTA List multifield of blocks made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
+
 The Hero model `hero` has 31 fields (excluding the five tab separators): 26 block fields and 5
 fields per CTA List item. No field is marked required in the model, so every "Mandatory" value
 below is "No (not enforced)" unless stated otherwise; "Recommended" marks editorial guidance.
@@ -35513,6 +35595,13 @@ Reproduces the screenshot `screenshots/teaser-title-type.jpg` of this variation.
 
 ### 6.11.6 Authorable Field Specification
 
+> **Update 2.10 — item children.** The repeating content of the Teaser is authored as items
+> added to the block with **Add** in the content tree, like List Items: **Link** (`teaser-link`: CTA Link, CTA Title, CTA Link Type, CTA Link Style) and **Stat** (`teaser-stat`: Stats Title, Stats Value). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the links and stats of the multifields of blocks made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
+
 The Teaser model `teaser` has 70 fields (excluding the six tab separators): 64 block fields, 4
 fields per Links item and 2 per Stats item. The block definition sets `key-value: true`. Only the
 Anchor ID has an enforced validation; no field is marked required. Visibility conditions are
@@ -40339,6 +40428,13 @@ Reproduces the screenshot `screenshots/testimonial-hide-author.jpg` of this vari
 **Expected Result:** The page matches the screenshot; nothing in the Troubleshooting case above applies.
 
 ### 6.13.6 Authorable Field Specification
+
+> **Update 2.10 — item children.** The repeating content of the Testimonial is authored as items
+> added to the block with **Add** in the content tree, like List Items: **Stat** (`testimonial-stat`: Stats Title, Stats Value). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the stats of the Stats multifield of blocks made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
 
 **Model `testimonial` — Content, Author, Style, Show / Hide and Stats tabs**
 
@@ -68222,8 +68318,9 @@ browser, crawlers that don't run JavaScript don't see the card links.
 7. The query index is loaded only when needed: for Child / Tagged pages, and for a Fixed list
    with at least one item linking a path (an item written as an absolute URL of the site alone
    doesn't trigger it, so such items get no page metadata unless another item links a path).
-   It is read in pages of 500 rows, once per page view,
-   cached, and filtered to the current locale (rows below the locale root). A missing or failing
+   It is read in pages of 500 rows, once per page view (started early by `prefetchData`),
+   cached, and filtered to the current locale (rows below the locale root; for a page of the
+   language master under review, rows below `/language-master/en/`, 3.9). A missing or failing
    index gives no pages (no error), and the empty behaviour applies.
 8. The redirects sheet is loaded for every List; the Authors sheet only with First card as
    feature (a failure gives no author).
@@ -68262,7 +68359,8 @@ browser, crawlers that don't run JavaScript don't see the card links.
 22. Feature card: the first card after sorting and limiting; the author from the Authors sheet
     where `id` equals the page's `author-id` (exact match), with photo (decorative), name and
     designation.
-23. Presentation rules 12–32 of Cards (6.15.11) apply unchanged (card kind, colours, tags limits,
+23. Presentation rules 12–32 of Cards (6.15.11) apply unchanged, except the card kind and colour,
+    which add the page level (rule 28) (card kind, colours, tags limits,
     reading time, dates, linking, call to action defaults and types, new tab, images, feature,
     rows, heading levels, region name, scrolling, buttons, keys, drag, reduced motion). The
     region's fallback name is "List" (placeholder `list`).
@@ -68270,13 +68368,31 @@ browser, crawlers that don't run JavaScript don't see the card links.
     message shows the Empty message, else `listEmpty`. In edit mode: the warnings (rule 6) as
     "Set up the list in its properties: {problems}." (`listEditorHint`); for Child / Tagged pages
     without index data "The pages show on the published page (from the query index)."
-    (`listEditorPages`); else the message.
+    (`listEditorPages`); else the message. On AEM author, which has no query index, a List with
+    a Child or Tagged pages source shows `listEditorPages` in page view too, and a List set to
+    hide when empty stays visible (`isAuthor` in `utils/environment.js`, 2.12); its card links go
+    to the AEM pages (`pageLink`).
 25. Duplicate Component IDs are suffixed; `?debug=list` logs the duplicate, the configuration,
     warnings and the cards with `console.debug`.
 26. Analytics on: state with `xdm:listSource` and `xdm:variant`; off: `data-analytics="off"`.
     Analytics errors never break rendering.
 27. All texts are set with `textContent` (no HTML injection from metadata); one invalid item never
     breaks the others.
+28. Card display precedence (2.16, `kindOf` and `themeOf` in `utils/card-list-config.js`), the
+    first that applies:
+
+    | Level | Card style (kind) | Card colour (theme) |
+    |:------|:-------------------|:--------------------|
+    | 1. List Item | Its Card style | Its Card colour |
+    | 2. List | Card style, unless Mixed (by page) | Card colour, unless Default for the style |
+    | 3. Page metadata | `card-style` (index `cardStyle`): image, panel, report, stat | `card-theme` (index `cardTheme`): dark, navy, brand, brand-light, grey, mid-grey, gradient, image |
+    | 4. Automatic | Content type containing "report": report; an image: image; else panel | The style's default (panel dark, report gradient, statistic grey) |
+
+    Source cards (Child pages, Tagged pages) have no item level. Values outside the lists are
+    ignored (the next level applies). The page level needs the List's Card style on Mixed (by
+    page): the List's default Card style is Image card. List Items keep their field-by-field
+    content from the linked page (an authored value wins over the page's). The Cards block has no
+    page level (its rules are unchanged). Tested in `test/list/display-precedence.test.mjs`.
 
 ### 6.16.12 Author Best Practices
 
@@ -72624,6 +72740,13 @@ Reproduces the screenshot `screenshots/filter-list-sort-alphabetical.jpg` of thi
 **Expected Result:** The page matches the screenshot; nothing in the Troubleshooting case above applies.
 
 ### 6.17.6 Authorable Field Specification
+
+> **Update 2.10 — item children.** The repeating content of the Filter List is authored as items
+> added to the block with **Add** in the content tree, like List Items: **Filter Tag** (`filter-list-tag`: Tag; a primary filter pill), **Filter Category** (`filter-list-category`: Category label, Taxonomy root; an advanced filter category) and **Filter Page** (`filter-list-page`: Page, Use Listed (Manual List) / Featured). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are added to the values of the multifields and multi-value fields of blocks made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
 
 **Filter List block model (`filter-list`)**
 
@@ -78402,6 +78525,13 @@ Reproduces the screenshot `screenshots/anchor-list-sticky.jpg` of this variation
 **Expected Result:** The page matches the screenshot; nothing in the Troubleshooting case above applies.
 
 ### 6.19.6 Authorable Field Specification
+
+> **Update 2.10 — item children.** The repeating content of the Anchor List is authored as items
+> added to the block with **Add** in the content tree, like List Items: **Anchor Link** (`anchor-list-item`: Link Title, Anchor Name). The composite
+> multifield of the dialog described below is kept and still read, but content packages and new
+> content should use the items, because AEM renders packaged multifield nodes as empty rows
+> (F-87). They are rendered after the links of the multifield of blocks made before. In the editor an item without content yet is a dashed placeholder (placeholder
+> `itemEditorHint`). Field names and values are the same as in the multifield.
 
 **Anchor List block model (`anchor-list`)**
 
@@ -117419,6 +117549,35 @@ legacy names read as fallbacks.
 - **Used By Analytics:** None.
 - **Example Values:** `2`.
 
+### 8.2.49 card-style — Card Style
+
+- **Field Name:** Bulk column `card-style` (2.16).
+- **Purpose:** The page's own card kind when it is listed by a List.
+- **Mandatory:** No.
+- **Allowed Values:** `image`, `panel`, `report`, `stat`; other values are ignored.
+- **Business Rules:** Used when neither the List Item nor the List sets a Card style (the List on
+  Mixed (by page)); else the List's automatic rule applies (content type, image). 6.16.11 rule 28.
+- **Used By Components:** List (`kindOf`). Not the Cards block or the Filter List.
+- **Used By Search:** Query index `cardStyle`.
+- **Used By Personalization:** None.
+- **Used By Analytics:** None.
+- **Example Values:** `report`.
+
+### 8.2.50 card-theme — Card Colour
+
+- **Field Name:** Bulk column `card-theme` (2.16).
+- **Purpose:** The page's own card colour when it is listed by a List.
+- **Mandatory:** No.
+- **Allowed Values:** `dark`, `navy`, `brand`, `brand-light`, `grey`, `mid-grey`, `gradient`,
+  `image`; other values are ignored.
+- **Business Rules:** Used when neither the List Item nor the List sets a Card colour; else the
+  style's default colour. 6.16.11 rule 28.
+- **Used By Components:** List (`themeOf`). Not the Cards block or the Filter List.
+- **Used By Search:** Query index `cardTheme`.
+- **Used By Personalization:** None.
+- **Used By Analytics:** None.
+- **Example Values:** `navy`.
+
 ## 8.3 Metadata Cheat Sheet
 
 | Field | Where to set | Used by | Example |
@@ -117465,6 +117624,8 @@ legacy names read as fallbacks.
 | `card-description` | Sheet | List card description | `How the cloud scales.` |
 | `card-image` | Sheet | List card image | `/en/media/card.jpg` |
 | `card-image-alt` | Sheet | List card image alt | `A data centre` |
+| `card-style` | Sheet | List card kind (List on Mixed (by page), no item value) | `report` |
+| `card-theme` | Sheet | List card colour (no item or List value) | `navy` |
 | `image-alt` | Sheet | List image alt fallback | `Bank employees` |
 | `eyebrow` | Sheet | List eyebrow; Filter List (if mapped) | `Perspective` |
 | `category` | Sheet | List eyebrow fallback | `Banking` |
@@ -117480,7 +117641,7 @@ legacy names read as fallbacks.
 ## 8.4 Metadata Field Usage Matrix
 
 This matrix puts every metadata field of the site on one row: the page properties (8.2.1–8.2.8),
-the bulk metadata columns of AGENTS.md (8.2.9–8.2.46), the legacy names read as fallbacks
+the bulk metadata columns of AGENTS.md (8.2.9–8.2.46, 8.2.49–8.2.50), the legacy names read as fallbacks
 (8.2.47–8.2.48) and the two standard names the code reads as fallbacks (`template`,
 `publication-date`, 8.1.2). The detail of each field (who reads it, exact fallbacks) is in 8.2; the
 short form for authors is 8.3.
@@ -117559,6 +117720,8 @@ How to read the columns:
 | `card-description` | Shorter description for List cards | No | List first choice, then Description | Plain text | Index `cardDescription` (F-10) | None | Not implemented; no candidate use | `How the cloud scales.` |
 | `card-image` | Dedicated List card image | No | List first choice, then page image, `thumbnail-image`, `featured-image` | Image path or URL | Index `cardImage` (F-10) | None | Not implemented; candidate: image of a Target Recommendations entity | `/en/media/cloud-card.jpg` |
 | `card-image-alt` | Alternative text of the List card image | Recommended when the image conveys information | First choice, then `image-alt`; empty: decorative (`alt=""`) | Plain text | Index `cardImageAlt` (F-10) | None | Not applicable | `A data centre` |
+| `card-style` | The page's own card kind on List cards | No | Third level of the precedence: List Item, List (unless Mixed (by page)), page, automatic (6.16.11 rule 28); unknown values ignored | `image`, `panel`, `report`, `stat` | Index `cardStyle` | None | Not implemented; no candidate use | `report` |
+| `card-theme` | The page's own card colour on List cards | No | Third level: List Item, List (unless Default), page, the style's default; unknown values ignored | `dark`, `navy`, `brand`, `brand-light`, `grey`, `mid-grey`, `gradient`, `image` | Index `cardTheme` | None | Not implemented; no candidate use | `navy` |
 | `image-alt` | Alternative text of the page image on cards | No | List fallback after `card-image-alt` | Plain text | Index `imageAlt` (F-10) | None | Not applicable | `Bank employees reviewing an AI dashboard` |
 | `eyebrow` | Small label above the List card title | No | List first choice, then `category`; shown with Show eyebrow on; Filter List only if its Eyebrow source is `eyebrow` | Plain text | Index `eyebrow` (F-10) | None | Not implemented; no candidate use | `Perspective` |
 | `category` | Category label, fallback eyebrow of List cards | No | Used only when `eyebrow` is empty; not the Filter List "Primary filter category" | Plain text | Index `category` (F-10) | None | Not implemented; candidate: category of a Target Recommendations entity | `Banking` |
@@ -117577,7 +117740,7 @@ How to read the columns:
 
 | Usage | Fields |
 |:----------------------------|:--------------------------------------------------------------------------|
-| In the query index (`helix-query.yaml`) | `title`, `description`, `tags`, `robots`, `page-type`, `meta-title`, `meta-description`, `author`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `thumbnail-image`, `featured-image`, `region`, `country`, `language`, `persona`, `campaign-id`, `featured`, `priority`, `feature-card`, `featured-priority`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav` (plus `lastModified` and the page `image`) |
+| In the query index (`helix-query.yaml`) | `title`, `description`, `tags`, `robots`, `page-type`, `meta-title`, `meta-description`, `author`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `thumbnail-image`, `featured-image`, `region`, `country`, `language`, `persona`, `campaign-id`, `featured`, `priority`, `feature-card`, `featured-priority`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `card-style`, `card-theme`, `image-alt`, `eyebrow`, `category`, `hide-in-nav` (plus `lastModified` and the page `image`) |
 | Indexed but read by no code | `meta-title`, `meta-description`, `region` (read from the page head by the press-release template, not from the index), `country`, `language`, `persona`, `campaign-id` |
 | SEO head tags set on the server | `title`, `description`, `keywords`, `tags` (`article:tag`), `robots`, `author` and the page image (`og:image`, `twitter:image`) |
 | SEO head tags set in the browser only | `meta-title`, `meta-description`, `meta-keywords`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `language` (`<html lang>`) |
@@ -123095,13 +123258,19 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-79 | Header, Conversation Canvas | The working EDS reference (demo-blocks preview) has defects not reproduced here: the floating nav covers the hero call to action on load, stays docked in the hero's sticky slot for the whole page depending on scroll history (it moves the DOM), never reaches a footer state in some paths, floats over content without a backdrop, and overflows horizontally on mobile (406px nav on a 390px screen). The Figma Site (www.tcs.com) can't be read through the Figma API | Reference used for behaviour only; Figma design file frames are the visual authority | Design review of the destination journey on the feature preview | P3 | Design | 6.1, 6.30 |
 | F-80 | Header | `/en/home` named the Navigation page `/en/references/tcs-header`, which wasn't published (404 on preview and live); the header was left empty there, while Universal Editor (author content) showed it | No header or header Canvas on preview and live | Page published; the header falls back to the locale's `references/nav` when the configured Navigation page can't be loaded (6.1.11 rule 5) | Closed (2.6) | Development, Authors | 6.1 |
 | F-81 | Header, Conversation Canvas, Hero | Home content differs from Figma: the TCS logo on the Navigation page is a JPG with a white background (Figma: transparent SVG, F-77); the search sits in the header Canvas above the hero heading (Figma Hero 4082:120388: below it); the footer Canvas title needs Title Type Bigger for 96px; the default `references/nav` is still the boilerplate page | Visual differences on Home | Authors: upload the SVG logo, move or keep the hero search, set the footer title type, author `references/nav` | P2 | Authors, Design | 6.1, 6.30 |
-| F-82 | Header, Conversation Canvas | A header Canvas (a Navigation page section with a Conversation Canvas, e.g. `/en/references/tcs-header`) is loaded with the header in the lazy phase, after the hero is painted, and pushes the page down by its height (measured on `/en/home` with `main`: CLS 0.248 at 412px, 0.289 at 1024px, 0.207 at 1350px). From 2.6 the desktop header lies over a light hero out of the flow, which lowers desktop CLS to about 0.11; below 1200px it is unchanged | PageSpeed CLS above 0.1, the `aem-psi-check` fails on Home | Put the Home search in the hero section as a page Canvas (Figma Hero 4082:120388) and keep the Navigation page without a Canvas, or reserve the header Canvas height before the header loads | Closed (2.11): the header Canvas host is out of the flow at every width | Product Owner, Development | 6.1, 6.30 |
+| F-82 | Header, Conversation Canvas | A header Canvas (a Navigation page section with a Conversation Canvas, e.g. `/en/references/tcs-header`) is loaded with the header in the lazy phase, after the hero is painted, and pushes the page down by its height (measured on `/en/home` with `main`: CLS 0.248 at 412px, 0.289 at 1024px, 0.207 at 1350px). From 2.6 the desktop header lies over a light hero out of the flow, which lowers desktop CLS to about 0.11; below 1200px it is unchanged | PageSpeed CLS above 0.1, the `aem-psi-check` fails on Home | Put the Home search in the hero section as a page Canvas (Figma Hero 4082:120388) and keep the Navigation page without a Canvas, or reserve the header Canvas height before the header loads | Closed (2.15): the header space is reserved (F-93); from 2.18 the header Canvas is out of the flow and the reserve is the logo bar (F-94) | Product Owner, Development | 6.1, 6.30 |
 | F-83 | List, Cards, Teaser | With Display as teaser on, List and Cards added the block class `teaser`; on a page that also has a Teaser block, the Teaser styles (`.teaser`: grid, centred items) applied to them and their cards collapsed to zero width (found on the Who Are We page: statistics and values not shown). Fixed in 2.7: the class is `display-teaser` | List and Cards invisible on pages with a Teaser | Fixed; block classes of options shouldn't be block names | P1 | Development | 6.11, 6.15, 6.16 |
 | F-84 | Universal Editor dialogs | Universal Editor (React Spectrum Tabs) collapses all the tabs of a dialog into a dropdown when they don't fit on one line; List (7 tabs), Filter List (7), Separator (6), Video (6), Testimonial (6), Cards (6), Teaser (6), Tabs (4), Hero (5) and Table List (4) showed a dropdown. Fixed in 2.8: at most three short tabs (old tab → new tab: List / Cards Source, Content → Content; Cards, Layout, Scroll, Advanced → Display. Filter List Content, Source, Filters, Advanced → Content; Cards, Mapping → Cards. Hero Image, Content, Links → Content. Teaser Content, Image, Links, Stats → Content. Testimonial Content, Author, Stats → Content; Style, Show / Hide → Style. Video Video, Captions, Privacy → Video; Playback, Display → Playback. Separator Appearance, Responsive, Spacing, Advanced → Style. Table List Content, Call to action → Content. Tabs Properties, Accessibility → Content) | Dialogs hard to use | Fixed; keep new dialogs to three short tabs; the tab names in the component chapters (Part 6) are the tabs before 2.8 (to update with the next PDF) | P2 | Development, Documentation | 5, 6 |
 | F-85 | List, Cards | A List Item or Card just added with Add has no link or title yet; the block left it out, so nothing appeared on the page and Add seemed not to work (the item was only in the content tree). A page of a Fixed list's Pages without data (not indexed, or not readable in the editor) was left out too. Fixed in 2.8: in the editor such items are dashed placeholders that can be selected; such pages are listed, titled from their path | Fixed lists looked broken in the editor | Fixed | P1 | Development | 6.15, 6.16 |
 | F-86 | List, Filter List | The List Pages and Filter List Pages / Featured pages fields were aem-content fields with multi: true; Universal Editor didn't save their values. Fixed in 2.9: composite multifields (container, multi) with one Page field per item, stored as child nodes (`pageItems/item0/page`, `featuredItems/item0/featuredPage`); the multi-value properties of lists made before are still read | Fixed lists couldn't be authored in the dialog | Fixed; don't use multi: true on aem-content fields | P1 | Development | 6.16, 6.17 |
 | F-87 | Hero, Page Header, Teaser, Testimonial, Anchor List, Filter List, Footer, List | Composite multifields (container, multi: true) written by the content packages as child nodes (`ctas/item0`, ...) weren't rendered on the published pages: the CTA lists, stats, anchor links, filter tags and categories, listed / featured pages and footer links were empty, and a Page Header with CTAs was left out. AEM rendered the multifield's node as an empty item row instead. Fixed in 2.10: these are item children added with Add (`hero-cta`, `page-header-cta`, `teaser-link`, `teaser-stat`, `testimonial-stat`, `anchor-list-item`, `filter-list-tag`, `filter-list-category`, `filter-list-page`, `footer-link`), like List Items; the List's Pages are List Items in the packages. The multifields stay in the dialogs and are still read | Packaged pages showed no CTAs, stats, anchors, filters or footer links | Fixed; use item children for repeating content | P1 | Development | 6.2, 6.4, 6.10, 6.11, 6.13, 6.16, 6.17, 6.19 |
-| F-88 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and only floated at the bottom of the window once its row had scrolled off the top (250-400px of scrolling with nothing at the bottom); on Home the Navigation page's Canvas section and Home's Navigation property were removed on 17 October 2026 (09:07 / 10:20 UTC), so Home shows the boilerplate navigation and no Hero Canvas | Canvas not at the bottom of the Hero / window as in Figma; Home without TCS logos and Canvas | 2.11 code (bottom of the first screen, fixed as soon as the page scrolls); authors restore the Canvas section on `/en/references/tcs-header` and Home's Navigation property. Short screens (1280x720, 320x640) with the current hero content: the row touches or overlaps the hero's last line by up to 14px | P1 | Authors, Development | 6.1, 6.30 |
+| F-88 | Language master review | For the review before the rollout, the language master is published at `/language-master/en/` with its own lists, sheets, references, error pages and inheritance (2.11, 2.14; 3.9). This is temporary code and configuration | Must be removed after the rollout, or /language-master pages stay public and the code keeps a second site root | After the rollout to /en and the /en metadata import: unpublish the language master, remove the `REVIEW_*` code and the `REVIEW` paths block, regenerate `paths.json`, re-apply `public.json` and `metadata.source` (3.9) | P1 | Development, Authors | 2.10.2, 3.9 |
+| F-89 | List, Filter List (AEM author) | AEM author has no query index: a List from child pages or tags and a Filter List showed "There are no items to show." on author (e.g. the curated Home page), which looked like missing content. Fixed in 2.12: they say "The pages show on the published page (from the query index)." (`listEditorPages`, `filterListEditor`) in page view and in the editor; a List set to hide when empty stays visible on author | Authors thought the lists were broken | Fixed; check lists on the preview or live site | P2 | Development | 6.16, 6.17 |
+| F-90 | Page loading | The footer was loaded after all sections, and appeared late; on article pages the sticky Anchor List pinned while its section was still hidden (CLS 0.35) | Footer late on throttled phones; layout shift | Fixed in 2.13: the footer loads alongside the sections (hidden until they load), the header loads nav and placeholders in parallel, the shared data of lists starts at the lazy phase; the Anchor List doesn't pin while hidden (CLS 0.006) | Closed (2.13) | Development | 2.3.2, 6.19 |
+| F-91 | Header, Footer, 404 (language master) | Pages of the language master didn't inherit the Navigation, Footer and 404 Page of its root page (`/content/tcs-corp/language-master/en`): parent pages were looked up only up to a locale Home page, so they showed no header or footer | No header or footer on language master pages | Fixed in 2.14: `getParentPages` goes up to the review root, and the root page is published | Closed (2.14) | Development | 2.11.3, 3.9 |
+| F-92 | Error pages (content) | The root page of the language master has no 404 Page value and both `error-pages/404` pages (/en and the language master) have no content; empty error pages are skipped (3.7), so the built-in "Page Not Found" shows | English built-in 404 instead of the authored page | Author the 404 pages and set the root page's 404 Page | P2 | Content authors | 3.7, Part 10 |
+| F-93 | Header | Layout shift when the header and its Canvas arrived in the lazy phase (CLS 0.14–0.25 on every page with the TCS Header; PageSpeed failed) | PageSpeed CLS above 0.1 | Fixed in 2.15: `<header>` keeps `--header-reserved` or the height remembered for the breakpoint until it loads (CLS below 0.01) | Closed (2.15) | Development | 3.5.1, 6.1 |
+| F-94 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and only floated at the bottom of the window once its row had scrolled off the top (250-400px of scrolling with nothing at the bottom); on Home the Navigation page's Canvas section and Home's Navigation property were removed on 17 October 2026 (09:07 / 10:20 UTC), so Home shows the boilerplate navigation and no Hero Canvas | Canvas not at the bottom of the Hero / window as in Figma; Home without TCS logos and Canvas | 2.18 code (bottom of the first screen, fixed as soon as the page scrolls); authors restore the Canvas section on `/en/references/tcs-header` and Home's Navigation property. Short screens (1280x720, 320x640) with the current hero content: the row touches or overlaps the hero's last line by up to 14px | P1 | Authors, Development | 6.1, 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)
 
