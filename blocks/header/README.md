@@ -71,7 +71,8 @@ mobile), which is exactly where it floats once the page scrolls, so it stays at 
 window without moving (canvas-journey.js). Search row 463px on tablet, 607px on desktop. A TCS
 Header block in the same nav page section stays the logo bar (only the Canvas goes to the host).
 On Home the opening hero fills the first screen and keeps its content clear of the row
-(`templates/home`), so the row lies on the hero's bottom, which is the bottom of the window.
+(`templates/home`; on screens under 640px high with a smaller title and tighter gaps), so the row
+lies on the hero's bottom, which is the bottom of the window.
 
 Two zones: the **logo bar** (TCS and TATA logos) is the header's only box in the flow, at the
 top of the page (over a light hero on desktop, a fixed bar above the hero below 1200px); the

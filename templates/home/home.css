@@ -21,11 +21,12 @@ body.home main > .section:first-of-type .hero {
    * 72px tablet, 52px and 72px desktop)
    */
   --home-hero-canvas-space: calc(5.25rem + env(safe-area-inset-bottom, 0rem));
+  --home-hero-gap: var(--space-600);
 
   /* the content is centred between the logo bar and the Canvas row, so it never runs under it */
   min-height: calc(100svh - var(--nav-height));
-  padding-top: var(--space-600);
-  padding-bottom: calc(var(--home-hero-canvas-space) + var(--space-600));
+  padding-top: var(--home-hero-gap);
+  padding-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
 }
 
 @media (width >= 600px) {
@@ -45,6 +46,21 @@ body.home main > .section:first-of-type .hero {
    */
   body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
     min-height: 100svh;
-    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--space-600));
+    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+  }
+}
+
+/*
+ * Short screens (e.g. 320x568, 1280x600): the title one display size smaller (its letter-spacing
+ * follows) and tighter gaps, so the content fits above the Canvas row on the first screen
+ */
+@media (height < 640px) {
+  body.home main > .section:first-of-type .hero {
+    --display-font-size-2: var(--display-font-size-3);
+    --home-hero-gap: var(--space-400);
+    --hero-gap-icon: var(--space-200);
+    --hero-gap-eyebrow: var(--space-400);
+    --hero-gap-content: var(--space-400);
+    --hero-gap-ctas: var(--space-600);
   }
 }
