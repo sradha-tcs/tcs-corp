@@ -5,7 +5,10 @@
  * Life of an animated block:
  * 1. prepareMotion(section), once its blocks are decorated and before it is shown: the block's
  *    targets get their first frame (styles/motion.css: a paused CSS animation), so nothing flashes
- * 2. the block comes into view: the animations run (content and background independently)
+ * 2. Animation Trigger On Scroll (default): when enough of the block is in view (also when it is
+ *    in view from the start), the animations run (content and background independently);
+ *    On Page Load: they run as soon as the block's content is ready. Motion Speed sets their
+ *    duration through CSS variables (styles/motion.css), never through timers
  * 3. when they have ended, every class and inline style the animation added is removed: the
  *    block is exactly as without animation
  * A block whose content is still loading (a skeleton, decorators/skeleton-decorator.js) runs its
@@ -16,7 +19,8 @@
  */
 import { loadCSS } from '../scripts/aem.js';
 import {
-  backgroundMotionOf, contentMotionOf, isHorizontal, isVisibleColor, staggerIndex,
+  backgroundMotionOf, contentMotionOf, isHorizontal, isSeen, isVisibleColor, staggerIndex,
+  triggerOf,
 } from '../utils/motion.js';
 import { isEditing, prefersReducedMotion } from '../utils/environment.js';
 
@@ -193,14 +197,15 @@ function getObserver() {
   if (!observer) {
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+        // enough of the block in view to see the animation (not just its first pixels)
+        if (!entry.isIntersecting || !isSeen(entry, window.innerHeight)) return;
         observer.unobserve(entry.target);
         const state = states.get(entry.target);
         if (!state) return;
         state.visible = true;
         run(state);
       });
-    }, { rootMargin: '0px 0px -10% 0px' });
+    }, { threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25] });
   }
   return observer;
 }
@@ -218,7 +223,13 @@ function prepareBlock(block) {
     if (background && prepareBackground(state)) state.background = background;
     if (content && state.contentReady) prepareContent(state);
     if (!state.background && !state.content) return;
-    getObserver().observe(block);
+    if (triggerOf(block.classList) === 'load') {
+      // On Page Load: now (the content animation of a loading block when its content is there)
+      state.visible = true;
+      run(state);
+    } else {
+      getObserver().observe(block);
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('motion', e);

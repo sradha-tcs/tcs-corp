@@ -383,9 +383,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -432,6 +432,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -2587,9 +2657,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -2636,6 +2706,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -3463,9 +3603,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -3512,6 +3652,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -4344,9 +4554,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -4397,10 +4607,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -5042,9 +5360,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -5091,6 +5409,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -6229,9 +6617,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -6278,6 +6666,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -7064,9 +7522,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -7117,10 +7575,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -8662,9 +9228,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -8711,6 +9277,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -9608,9 +10244,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -9661,10 +10297,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -10355,9 +11099,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -10404,6 +11148,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -12213,9 +13027,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -12262,6 +13076,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -13747,9 +14631,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -13796,6 +14680,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -14583,9 +15537,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -14636,10 +15590,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -17803,9 +18865,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -17852,6 +18914,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -18592,9 +19724,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -18641,6 +19773,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -19456,9 +20658,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -19505,6 +20707,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -22363,9 +23635,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -22416,10 +23688,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -23297,9 +24677,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -23350,10 +24730,118 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "classes_bganimation",
         "label": "Background animation",
         "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears when it comes into view. It doesn't animate the content: see Content animation. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -24235,9 +25723,9 @@
         "component": "select",
         "valueType": "string",
         "name": "classes_animation",
-        "label": "Content animation",
+        "label": "Animation Type",
         "value": "",
-        "description": "How the block's content appears when it comes into view; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
         "options": [
           {
             "name": "None",
@@ -24284,6 +25772,76 @@
             "value": "motion-scale-in"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",

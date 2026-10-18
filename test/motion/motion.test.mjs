@@ -1,13 +1,14 @@
 /*
- * Block animations: the Content animation / Background animation values of the Additional tab
- * (utils/motion.js) and their authoring fields in the block models: node --test
+ * Block animations: the Animation Type (content animation), Background animation, Motion Speed and
+ * Animation Trigger values of the Additional tab (utils/motion.js), their authoring fields in the
+ * block models and the speed durations of styles/motion.css: node --test
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import {
-  BACKGROUND_MOTIONS, CONTENT_MOTIONS, STAGGER_MAX, backgroundMotionOf, contentMotionOf,
-  isHorizontal, isVisibleColor, staggerIndex,
+  BACKGROUND_MOTIONS, CONTENT_MOTIONS, MOTION_SPEEDS, STAGGER_MAX, backgroundMotionOf,
+  contentMotionOf, isHorizontal, isSeen, isVisibleColor, speedOf, staggerIndex, triggerOf,
 } from '../../utils/motion.js';
 
 const classes = (...names) => ({ contains: (name) => names.includes(name) });
@@ -52,6 +53,33 @@ describe('background animation', () => {
   });
 });
 
+describe('motion speed and trigger', () => {
+  it('reads Motion Speed (Medium without a class) and Animation Trigger (On Scroll without one)', () => {
+    assert.equal(speedOf(classes('block')), 'medium');
+    assert.equal(speedOf(classes('motion-fast')), 'fast');
+    assert.equal(speedOf(classes('motion-slow')), 'slow');
+    assert.equal(triggerOf(classes('block')), 'scroll');
+    assert.equal(triggerOf(classes('motion-on-load')), 'load');
+  });
+  it('are not animation types (no effect of their own)', () => {
+    assert.equal(contentMotionOf(classes('motion-fast', 'motion-slow', 'motion-on-load')), '');
+  });
+  it('uses one keyframe per effect, the speed only as durations', () => {
+    const css = readFileSync(new URL('../../styles/motion.css', import.meta.url), 'utf8');
+    const duration = (selector) => Number(css.match(new RegExp(`${selector} \\{[^}]*--motion-duration: (\\d+)ms`))?.[1]);
+    assert.equal(duration('\\.block'), MOTION_SPEEDS.medium);
+    assert.equal(duration('\\.block\\.motion-fast'), MOTION_SPEEDS.fast);
+    assert.equal(duration('\\.block\\.motion-slow'), MOTION_SPEEDS.slow);
+    assert.equal((css.match(/@keyframes /g) || []).length, CONTENT_MOTIONS.length + BACKGROUND_MOTIONS.length);
+  });
+  it('starts on scroll once enough of the block is in view', () => {
+    assert.equal(isSeen({ intersectionRatio: 0.05, intersectionRect: { height: 40 } }, 800), false);
+    assert.equal(isSeen({ intersectionRatio: 0.2, intersectionRect: { height: 100 } }, 800), true);
+    // a block taller than the viewport: a quarter of the viewport is enough
+    assert.equal(isSeen({ intersectionRatio: 0.1, intersectionRect: { height: 200 } }, 800), true);
+  });
+});
+
 describe('stagger', () => {
   it('starts repeated items one after another, up to a limit', () => {
     assert.deepEqual([0, 1, 2, 5, 6, 40].map(staggerIndex), [0, 1, 2, STAGGER_MAX, STAGGER_MAX, STAGGER_MAX]);
@@ -81,7 +109,19 @@ describe('authoring fields', () => {
       assert.ok(at > 0, `${name} has Content animation`);
       assert.equal(fields[at - 1].name, 'classes_hideblock', `${name}: after Hide block`);
       const field = fields[at];
-      assert.equal(field.label, 'Content animation');
+      assert.equal(field.label, 'Animation Type');
+      const [speed, trigger] = [fields[at + 1], fields[at + 2]];
+      assert.equal(speed.name, 'classes_animationspeed', `${name}: Motion Speed after Animation Type`);
+      assert.equal(speed.label, 'Motion Speed');
+      assert.deepEqual(speed.options.map((o) => [o.name, o.value]), [['Medium', ''], ['Fast', 'motion-fast'], ['Slow', 'motion-slow']]);
+      assert.equal(speed.value, '');
+      assert.equal(trigger.name, 'classes_animationtrigger', `${name}: Animation Trigger after Motion Speed`);
+      assert.equal(trigger.label, 'Animation Trigger');
+      assert.deepEqual(trigger.options.map((o) => o.value), ['', 'motion-on-load']);
+      assert.equal(trigger.value, '');
+      // shown only once the block has an animation
+      assert.deepEqual(speed.condition, trigger.condition);
+      assert.ok(JSON.stringify(speed.condition).includes('classes_animation'), name);
       assert.equal(field.value, '', `${name}: None by default`);
       assert.deepEqual(field.options.map((o) => o.value), ['', ...CONTENT_MOTIONS.map((m) => `motion-${m}`)]);
     });
