@@ -9,6 +9,14 @@
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
 
+## Columns Container only (new pages)
+
+Only the new Columns Container pages of the block library, without the rest of the block library:
+
+- `columns-container/tcs-corp-columns-container-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Widths and columns per row; Alignment, gap and breakpoints. Its filter covers only that folder, so nothing else in AEM changes. The images are those of the block library package already installed.
+- `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 new rows of the language-master Metadata sheet. Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
+- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.5.zip`, which updates the start page too.
+
 ## Project handover
 
 - `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.24 (19 October 2026, 3,420 pages; with the Columns Container): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
