@@ -33,24 +33,23 @@
           "label": "Content"
         },
         {
-          "component": "select",
-          "valueType": "string",
+          "component": "multiselect",
           "name": "style",
-          "label": "Component",
-          "value": "columns-container-section",
+          "label": "Style",
+          "value": [
+            "columns-container-section"
+          ],
           "options": [
             {
               "name": "Columns Container",
               "value": "columns-container-section"
+            },
+            {
+              "name": "Highlight",
+              "value": "highlight"
             }
-          ]
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "anchorName",
-          "label": "ID",
-          "description": "Unique id of the section, e.g. our-offices (lowercase, no spaces), to link to it with #our-offices. Leave empty for none."
+          ],
+          "description": "Keep Columns Container selected: it makes the section a Columns Container. Add Highlight for the highlight background, as on sections."
         },
         {
           "component": "select",
@@ -68,6 +67,27 @@
               "value": "fixed-width"
             }
           ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "backgroundImage",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "backgroundImageAlt",
+          "label": "Image alt text",
+          "description": "Describe the image for screen readers. Leave empty if the image is decorative."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "anchorName",
+          "label": "Anchor name",
+          "description": "Lets Anchor List links and #links jump to this section, e.g. our-offices (lowercase, no spaces)."
         },
         {
           "component": "tab",
