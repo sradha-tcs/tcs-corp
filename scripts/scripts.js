@@ -193,7 +193,7 @@ const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hidebloc
 function buildColumnsSections(container) {
   // a section with the container's Layout values is one, also when its Style no longer lists
   // Columns Container (Style is a multiselect, as on sections)
-  container.querySelectorAll(':scope > .section:is([data-columnslayout], [data-columnsperrow])')
+  container.querySelectorAll(':scope > .section:is([data-columnsperrow], [data-columnsgap], [data-columnsalign], [data-columnsfrom])')
     .forEach((section) => section.classList.add('columns-container-section'));
   container.querySelectorAll(':scope > .section.columns-container-section').forEach((section) => {
     if (section.querySelector(':scope > .columns-container-wrapper')) return;
@@ -202,11 +202,10 @@ function buildColumnsSections(container) {
     const columns = document.createElement('div');
     columns.className = 'columns-container';
     const {
-      columnsperrow, columnslayout, columnsgap, columnsalign, columnsfrom,
+      columnsperrow, columnsgap, columnsalign, columnsfrom,
     } = section.dataset;
     [
-      ['per-row', columnsperrow], ['layout', columnslayout], ['gap', columnsgap],
-      ['align', columnsalign], ['from', columnsfrom],
+      ['per-row', columnsperrow], ['gap', columnsgap], ['align', columnsalign], ['from', columnsfrom],
     ].filter(([, value]) => value?.trim()).forEach(([name, value]) => columns.classList.add(`${name}-${toClassName(value)}`));
     // the Additional tab of the section: anchor, hide, animation, spacing, as on blocks; AEM
     // delivers them as classes_* section properties or as section style classes

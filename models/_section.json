@@ -89,7 +89,7 @@
       "components": [
         "text",
         "image",
-        "button",
+        "button-block",
         "title",
         "page-header",
         "hero",

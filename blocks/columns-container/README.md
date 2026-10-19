@@ -1,7 +1,7 @@
 # Columns Container
 
 A section whose content is laid out in columns. Each column holds default content (Text,
-Title, Image, Button) and any block, as a section does. Edge Delivery has no blocks inside
+Title, Image, Button (block)) and any block, as a section does. Edge Delivery has no blocks inside
 blocks (the Columns block's columns hold default content only), so columns of blocks are a
 section container, like Tabs Container and Gen Carousel.
 
@@ -20,8 +20,7 @@ section container, like Tabs Container and Gen Carousel.
 | Content | Background Image | An image behind the whole container (as on sections) | — |
 | Content | Image alt text | The background image's alternative text; empty: decorative | — |
 | Content | Anchor name | Section id, e.g. `our-offices` (link with `#our-offices`, Anchor List) | — |
-| Layout | Columns per row | Automatic (as many as there are Columns, at most 4), 1, 2, 3, 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3) | Automatic |
-| Layout | Column widths | Equal; One third, two thirds; Two thirds, one third; One quarter, three quarters; Three quarters, one quarter (rows of two columns; three or four per row are equal) | Equal |
+| Layout | Columns per row | Automatic (as many as there are Column Breaks, at most 4), 1, 2, 3, 4; more Column Breaks start a new row (6 at 3 per row: 2 rows of 3); the columns are of equal width | Automatic |
 | Layout | Gap | Small, Medium, Large | Medium |
 | Layout | Vertical alignment | Top, Middle, Bottom, Stretch (equal heights) | Top |
 | Layout | Side by side from | Tablet (600px), Desktop (900px), Large desktop (1200px); stacked below | Desktop |
@@ -40,10 +39,12 @@ selected; an empty column says what to add.
 - The Content tab fields are the Section's (same names: `style`, `sectionWidth`, `backgroundImage`,
   `backgroundImageAlt`, `anchorName`), applied by `decorateSectionsWithOptions` as on any section.
 - `scripts.js` `buildColumnsSections`: a section with Style `columns-container-section` (or, if
-  an author removed that Style, with the container's Layout values) is
+  an author removed that Style, with the container's Layout values: Columns per row, Gap,
+  Vertical alignment, Side by side from) is
   wrapped in a synthetic `columns-container` block (`wrapSectionContent`, as Tabs); its Layout
-  properties become classes (`per-row-3`, `layout-1-2`, `gap-small`, `align-middle`,
-  `from-tablet`) and its
+  properties become classes (`per-row-3`, `gap-small`, `align-middle`,
+  `from-tablet`; columns are always of equal width: the former Column widths option, which only
+  applied to rows of two columns, is gone and `columnsLayout` values authored before are ignored) and its
   `classes_*` properties (Additional tab) block classes.
 - `columns-container.js`: each Column Break (`blocks/column-break`; template name "Column Break",
   so AEM renders it with the class `column-break`) starts a plain column element

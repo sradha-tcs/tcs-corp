@@ -7,7 +7,7 @@ import { readColumn } from '../column-break/column-break.js';
  * Column Break item (blocks/column-break) starts a column and the components after it, up to the
  * next Column Break, are the column's content: default content and any block, as in a section
  * (Edge Delivery has no blocks in blocks). Content before the first Column Break is a column of
- * its own. Layout: Columns per row (more Columns start new rows), Column widths, Gap, Vertical
+ * its own. Layout: Columns per row (more Columns start new rows, all of equal width), Gap, Vertical
  * alignment and Side by side from (block classes).
  *
  * A column is a plain element (not a block): the Column Break stays in it as its first child (the

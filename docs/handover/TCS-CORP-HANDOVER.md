@@ -12,14 +12,14 @@ date: "October 19, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.25 |
+| Version | 2.26 |
 | Date | 19 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields, 2.26 the Button block and equal-width columns (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -57,6 +57,7 @@ date: "October 19, 2026"
 | 2.23 | 19 October 2026 | Delivery team | Columns Container: **Columns per row** (Layout tab: Automatic, 1, 2, 3, 4): rows follow from the number of Column items (6 Columns at 3 per row: 2 rows of 3; Automatic: up to 4 per row). Column widths apply to rows of two columns. 6.32 |
 | 2.24 | 19 October 2026 | Delivery team | Columns Container fix: the Column item is **Column Break** (its template name is its block class in AEM; it was "Column", rendered as `column`, so columns weren't built); columns are plain wrappers with the Column Break as their label, so editor updates of the components in a column work in place; content authored with "Column" still works. 6.32, finding F-99 |
 | 2.25 | 19 October 2026 | Delivery team | Columns Container: the Section's **Style** (multiselect: Columns Container, Highlight), **Background Image**, **Image alt text** and **Anchor name** in its Content tab, applied as on sections; a section with the container's Layout values stays a Columns Container if Columns Container is removed from its Style. 6.32 |
+| 2.26 | 19 October 2026 | Delivery team | **Button** block (Button Block, `blocks/button-block`): AEM's built-in Button delivers only its link and Primary / Secondary, so its Views, Icon, Alignment and Tertiary never reached the page and changing them in the dialog changed nothing (F-100); the Button authors add is now a block whose every option is delivered and updates in Universal Editor; the built-in Button is "Button (basic)", no longer offered. Columns Container: **Column widths** removed (it only applied to rows of two columns); columns are of equal width. 6.9, 6.32, F-100 |
 
 ## Review and Approval
 
@@ -20222,7 +20223,19 @@ Reproduces the screenshot `screenshots/button-align-right.jpg` of this variation
 - **Icon** — Purpose: icon. Allowed Values: `arrow-right`, `chevron-right`, `chevron-down`, `search`. Character Limits: not applicable. Business Rules: drawn from `/icons/{name}.svg`; without an icon the Icon view falls back to a normal button. Dependency Rules: Views = Icon. Visibility Rules: shown only when Views is `icon` (model `condition`). Sample Content: Search.
 - **Alignment** — Purpose: position. Allowed Values: `left`, `center`, `right`. Character Limits: not applicable. Business Rules: adds `button-align-{value}` to the paragraph. Dependency Rules: none. Visibility Rules: always visible. Sample Content: Center.
 
-> **Note:** How AEM delivers the Views, Icon and Alignment values in the page markup (classes or data attributes of the link or its paragraph) could not be verified from the repository; `utils/buttons.js` reads both forms (type classes, `view-{view}` and `align-{alignment}` classes, and view / type / icon / alignment data values). [To be confirmed: delivered markup of the Button component's Views, Icon and Alignment — owner: development team]
+> **Note (2.26):** Verified on the published block library (`/language-master/en/block-library/foundations/button-icons-and-alignment`): AEM's built-in Button delivers only the link, its Text and Title, and Type Primary as bold or Secondary as italic. Views, Icon, Alignment and Tertiary are not in the page markup, so they had no effect (F-100). The Button authors add is now the **Button** block (Button Block, `blocks/button-block`, see its README): the same Link, Text and Title (Content tab) and View, Type, Icon and Alignment (Style tab), plus the Additional tab; every field of a block is delivered, so each option works and updates in Universal Editor as it is changed. The built-in Button is "Button (basic)": no longer in the filters, the Buttons authored before keep Primary or Secondary.
+
+**Button block (`button-block`, 2.26)**
+
+| Tab | Field | Values | Default | Notes |
+|:--|:--|:--|:--|:--|
+| Content | Link (`link`) | AEM page, asset or URL | — | Without a link nothing is shown (the editor says what to add, placeholder `buttonBlockEmpty`) |
+| Content | Text (`linkText`), Title (`linkTitle`) | Text | — | Collapsed into the link; Text is the accessible name of an icon button |
+| Style | View (`buttonView`) | Button, Icon, Link | Button | |
+| Style | Type (`buttonVariant`) | Primary, Secondary, Tertiary | Primary | Button and Icon views; not `buttonType`: a field ending in Type is collapsed into the link |
+| Style | Icon (`buttonIcon`) | Arrow right, Chevron right, Chevron down, Search | Arrow right | Icon view |
+| Style | Alignment (`buttonAlignment`) | Left, Center, Right | Left | `button-align-{value}` on the paragraph |
+| Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks (5.6) | — | |
 
 ### 6.9.7 Field Annotation Mapping
 
@@ -115775,8 +115788,7 @@ Code: `blocks/columns-container`, `blocks/column-break` (the Column Break item),
 | Content | Background Image (`backgroundImage`) | An image | — | Behind the whole container, as on sections |
 | Content | Image alt text (`backgroundImageAlt`) | Text | — | Empty: decorative |
 | Content | Anchor name (`anchorName`) | Section id, e.g. `our-offices` | — | Link with `#our-offices`; Anchor List |
-| Layout | Columns per row (`columnsPerRow`) | Automatic, 1, 2, 3, 4 | Automatic | Automatic: as many as there are Columns, at most 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3) |
-| Layout | Column widths (`columnsLayout`) | Equal; One third, two thirds; Two thirds, one third; One quarter, three quarters; Three quarters, one quarter | Equal | Unequal widths apply to rows of two columns; three or four per row are equal |
+| Layout | Columns per row (`columnsPerRow`) | Automatic, 1, 2, 3, 4 | Automatic | Automatic: as many as there are Columns, at most 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3); the columns are of equal width (Column widths was removed in 2.26: it only applied to rows of two columns) |
 | Layout | Gap (`columnsGap`) | Small, Medium, Large | Medium | Between columns, and between them when stacked |
 | Layout | Vertical alignment (`columnsAlign`) | Top, Middle, Bottom, Stretch (equal heights) | Top | Side by side only |
 | Layout | Side by side from (`columnsFrom`) | Tablet (600px), Desktop (900px), Large desktop (1200px) | Desktop | Stacked below the width |
@@ -123390,6 +123402,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-96 | Block animation (verification) | Content and Background animation were checked on the local preview (desktop and mobile, reduced motion, slow and failing index) but not in Universal Editor on AEM author (no author access); nothing is prepared in edit mode by design | Editor behaviour to confirm | Check an animated Teaser and a List in Universal Editor edit and preview mode (docs/animation/README.md, K); from 2.20, Preview plays the animations (F-97) | P2 | QA, Content authors | 5.6 |
 | F-97 | Block animation (Universal Editor) | On Scroll animations didn't play in Universal Editor Preview: a page opened in edit mode prepared no animations, and On Scroll blocks scrolled past in edit mode played invisibly and were used up. The published site wasn't affected (checked with wheel scrolling on aem.live) | Authors saw no On Scroll animation when reviewing in Preview | Fixed in 2.20 (PR #108): blocks are prepared in edit mode, nothing plays or is used up there, switching to Preview plays the blocks not played yet | Closed (2.20) | Development | 5.6 |
 | F-99 | Columns Container | The Column item's template name was "Column": AEM renders a block with the class of its template name, so it came out as `column` (loading a non-existent `blocks/column`) instead of `column-break`, and the columns weren't built. The Column also held its column's content, so editor updates of a component in a column found the Column instead of the component and reloaded the page | The container couldn't be validated in Universal Editor | Fixed in 2.24: template name "Column Break"; columns are plain wrappers with the Column Break as label; `column` blocks authored before are read as Column Breaks. Verified with editor update events (a block, a paragraph and a Column Break edited, a block added: updated in place) | Closed (2.24) | Development | 6.32 |
+| F-100 | Button | AEM's built-in Button component delivers only its link (Text, Title) and Primary / Secondary as bold / italic: Views, Icon, Alignment and Tertiary of its dialog never reached the page, so changing them changed nothing (the local preview hid it: an older draft wrote them as classes) | Authors couldn't get icon buttons, text links, alignment or Tertiary from the Button | Fixed in 2.26: the Button authors add is the Button block (Button Block), whose every field is delivered; verified on the page and with Universal Editor update events (View, Type, Icon and Alignment changed: updated in place). The Buttons authored before keep Primary / Secondary; replace them to use the other options | Closed (2.26) | Development | 6.9 |
 | F-98 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and floated at the bottom of the window only after 250–400px of scrolling; the reserved header space (F-93) left a blank area above the hero until the header loaded | Canvas not at the bottom of the Hero / window as in Figma; gap and layout shift above the hero | Fixed in 2.21 (PR #92): the row lies on the bottom of the Home hero (the first screen) and is fixed there as soon as the page scrolls; the header reserves only the logo bar; on screens under 640px high the hero title is smaller, and when the hero content is taller than the screen (phones in landscape) the row stays below it; only the row takes pointer events | Closed (2.21) | Development | 6.1, 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)
