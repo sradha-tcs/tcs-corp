@@ -193,10 +193,11 @@ function buildColumnsSections(container) {
     const columns = document.createElement('div');
     columns.className = 'columns-container';
     const {
-      columnslayout, columnsgap, columnsalign, columnsfrom,
+      columnsperrow, columnslayout, columnsgap, columnsalign, columnsfrom,
     } = section.dataset;
     [
-      ['layout', columnslayout], ['gap', columnsgap], ['align', columnsalign], ['from', columnsfrom],
+      ['per-row', columnsperrow], ['layout', columnslayout], ['gap', columnsgap],
+      ['align', columnsalign], ['from', columnsfrom],
     ].filter(([, value]) => value?.trim()).forEach(([name, value]) => columns.classList.add(`${name}-${toClassName(value)}`));
     // the Additional tab of the section: anchor, hide, animation, spacing (classes, as on blocks)
     Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))

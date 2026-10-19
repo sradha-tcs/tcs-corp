@@ -4199,6 +4199,36 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "columnsPerRow",
+        "label": "Columns per row",
+        "value": "auto",
+        "description": "How many columns sit side by side in a row; more Columns start a new row (e.g. 6 Columns at 3 per row: 2 rows of 3). Automatic: as many as there are Columns, at most 4.",
+        "options": [
+          {
+            "name": "Automatic",
+            "value": "auto"
+          },
+          {
+            "name": "1",
+            "value": "1"
+          },
+          {
+            "name": "2",
+            "value": "2"
+          },
+          {
+            "name": "3",
+            "value": "3"
+          },
+          {
+            "name": "4",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "columnsLayout",
         "label": "Column widths",
         "value": "equal",
@@ -4224,7 +4254,7 @@
             "value": "3-1"
           }
         ],
-        "description": "How wide the columns are side by side. The unequal widths apply to two columns; three or four columns are always equal. Add a Column, then the components of the column after it."
+        "description": "How wide the columns are side by side. The unequal widths apply to rows of two columns; three or four per row are always equal. Add a Column, then the components of the column after it."
       },
       {
         "component": "select",

@@ -233,7 +233,8 @@
                   "columnsLayout": "equal",
                   "columnsGap": "medium",
                   "columnsAlign": "top",
-                  "columnsFrom": "desktop"
+                  "columnsFrom": "desktop",
+                  "columnsPerRow": "auto"
                 }
               }
             }
