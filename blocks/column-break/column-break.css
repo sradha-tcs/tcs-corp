@@ -1,0 +1,14 @@
+/*
+ * Column (an item of a Columns Container, blocks/columns-container): inside a container it is
+ * the column (styles in columns-container.css); a Column elsewhere shows only its name, in the
+ * editor.
+ */
+.column-break:not(.columns-container-column) {
+  display: none;
+}
+
+html.adobe-ue-edit .column-break:not(.columns-container-column) {
+  display: block;
+  outline: var(--border-width-100) dashed var(--color-border-secondary);
+  color: var(--color-text-secondary);
+}

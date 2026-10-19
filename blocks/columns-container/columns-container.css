@@ -1,0 +1,96 @@
+/*
+ * Columns Container: the columns of a Columns Container section, stacked on small screens and
+ * side by side from Side by side from (Tablet 600px, Desktop 900px, Large desktop 1200px).
+ * Each column holds default content and blocks as a section does.
+ */
+.columns-container {
+  --columns-container-gap: var(--space-800);
+  --columns-container-template: repeat(var(--columns-container-count, 2), minmax(0, 1fr));
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--columns-container-gap);
+  align-items: start;
+}
+
+.columns-container.columns-container-1 { --columns-container-count: 1; }
+.columns-container.columns-container-2 { --columns-container-count: 2; }
+.columns-container.columns-container-3 { --columns-container-count: 3; }
+.columns-container.columns-container-4 { --columns-container-count: 4; }
+
+/* Column widths: two columns only (three or four are always equal) */
+.columns-container.columns-container-2.layout-1-2 {
+  --columns-container-template: minmax(0, 1fr) minmax(0, 2fr);
+}
+
+.columns-container.columns-container-2.layout-2-1 {
+  --columns-container-template: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.columns-container.columns-container-2.layout-1-3 {
+  --columns-container-template: minmax(0, 1fr) minmax(0, 3fr);
+}
+
+.columns-container.columns-container-2.layout-3-1 {
+  --columns-container-template: minmax(0, 3fr) minmax(0, 1fr);
+}
+
+/* Gap */
+.columns-container.gap-small { --columns-container-gap: var(--space-400); }
+.columns-container.gap-large { --columns-container-gap: var(--space-1600); }
+
+/* Vertical alignment (side by side) */
+.columns-container.align-middle { align-items: center; }
+.columns-container.align-bottom { align-items: end; }
+.columns-container.align-stretch { align-items: stretch; }
+
+/* a column: its content one under the other, as in a section */
+.columns-container .columns-container-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* the blocks of a column fill its width, not the section's */
+.columns-container .columns-container-column > div {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* the editor labels and hints: only in Universal Editor edit mode */
+.columns-container .columns-container-label,
+.columns-container .columns-container-hint {
+  display: none;
+}
+
+html.adobe-ue-edit .columns-container .columns-container-column {
+  outline: var(--border-width-100) dashed var(--color-border-secondary);
+  outline-offset: var(--space-100);
+  min-height: 3rem;
+}
+
+html.adobe-ue-edit .columns-container :is(.columns-container-label, .columns-container-hint) {
+  display: block;
+  margin: 0 0 var(--space-200);
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
+}
+
+@media (width >= 600px) {
+  .columns-container.from-tablet {
+    grid-template-columns: var(--columns-container-template);
+  }
+}
+
+@media (width >= 900px) {
+  .columns-container:not(.from-tablet, .from-large) {
+    grid-template-columns: var(--columns-container-template);
+  }
+}
+
+@media (width >= 1200px) {
+  .columns-container.from-large {
+    grid-template-columns: var(--columns-container-template);
+  }
+}

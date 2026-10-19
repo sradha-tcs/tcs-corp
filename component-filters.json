@@ -4,7 +4,8 @@
     "components": [
       "section",
       "gen-carousel",
-      "tabs"
+      "tabs",
+      "columns-container"
     ]
   },
   {
@@ -56,6 +57,37 @@
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "columns-container",
+    "components": [
+      "column-break",
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "teaser",
+      "quote",
+      "testimonial",
+      "anchor-list",
+      "accordion",
+      "tabs-block",
+      "table",
+      "table-list",
+      "list",
+      "separator",
+      "embed",
+      "video",
+      "modal",
+      "form-variations",
+      "filter-list",
+      "interactive-dashboard",
+      "conversation-canvas",
+      "cards",
+      "columns",
+      "fragment"
     ]
   },
   {

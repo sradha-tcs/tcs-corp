@@ -1,7 +1,7 @@
 ---
 title: "TCS Corporate Website — Project Handover"
 subtitle: "Adobe Experience Manager Edge Delivery Services with Universal Editor: architecture, authoring, components, operations and support"
-date: "October 18, 2026"
+date: "October 19, 2026"
 ---
 
 # Document Control
@@ -12,14 +12,14 @@ date: "October 18, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.21 |
+| Version | 2.22 |
 | Date | 19 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92) (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -53,6 +53,7 @@ date: "October 18, 2026"
 | 2.19 | 18 October 2026 | Delivery team | Motion Speed (Medium 0.6 s, Fast 0.3 s, Slow 0.9 s; background 1.5 times as long) and Animation Trigger (On Scroll / Viewport Entry, On Page Load) after **Animation Type** (the label of the Content animation field), shown once an animation is chosen; speed through CSS variables, one keyframe per effect; On Scroll starts when a fifth of the block (or a quarter of the viewport) is in view, also when in view from the start; On Page Load as soon as the block's content is ready, after its skeleton if it had one. More visible motion: 2.5rem fade and 5rem slide distances, 90% scale, an even ease, 120ms stagger. 5.6.6 |
 | 2.20 | 18 October 2026 | Delivery team | Universal Editor Preview (PR #108): a page opened in edit mode had no animations in Preview, and On Scroll blocks scrolled past in edit mode were used up; now blocks are prepared in edit mode, nothing plays or is used up there, and switching to Preview plays the blocks not played yet (On Page Load at once, On Scroll when in view). Block library **Animation** folder (packages 1.0.3 and 1.0.4, published with the language master review): Animation Type: every option, Animation Type: repeated items, Background animation: every option, Background animation on each block, Motion Speed and Animation Trigger, Skeleton loading. The language master's block library is published for the review (noindex, not in the query index). 5.6.6, 2.10.2, 3.9, findings F-96, F-97 |
 | 2.21 | 19 October 2026 | Delivery team | Header and Conversation Canvas as two zones (PR #92): the logo bar at the top with no gap before the hero (`--header-reserved` is the logo bar); the header Canvas row on the bottom of the Home hero (the first screen), fixed at the bottom of the window as soon as the page scrolls (52 / 62 / 20px); short and landscape screens keep the hero content clear of the row; finding F-98 |
+| 2.22 | 19 October 2026 | Delivery team | **Columns Container** (new section container, like Tabs Container and Gen Carousel): columns that hold default content and any block (except Page Header, Footer and TCS Header), each started by a **Column** item; Layout: Column widths, Gap, Vertical alignment, Side by side from; Additional tab on the container and on each Column. Edge Delivery has no blocks inside blocks, so the Columns block keeps default content only in its columns. 6.14, 6.32 |
 
 ## Review and Approval
 
@@ -41280,6 +41281,10 @@ All other fields keep their default values.
 - The block is in the data layer as tcs-corp/components/testimonial with dc:title 'What our clients say'.
 
 ## 6.14 Columns Block
+
+> **Columns of blocks (2.22):** a column of the Columns block holds default content only (Text,
+> Title, Image, Button): Edge Delivery has no blocks inside blocks. For columns that hold blocks
+> (Cards, Teaser, List, Form, ...), use the **Columns Container** section (6.32).
 
 The Columns block (`blocks/columns`) places content side by side: a grid of rows and columns
 whose cells hold default content (Text, Image, Button, Title). It is the boilerplate Columns
@@ -115742,6 +115747,55 @@ All other fields keep their default values.
 - decorate() empties the block and sets data-placeholder to Interactive Dashboard
 - .interactive-dashboard:empty is display: none; only .adobe-ue-edit shows the 10rem dashed box
 - The wrapper and section remain, so a section with only this block becomes empty space
+
+## 6.32 Columns Container
+
+**Purpose:** A section whose content is laid out in two to four columns, each holding default
+content and any block, as a section does. It is the supported way to put blocks side by side:
+Edge Delivery allows a single level of nesting (blocks and default content in sections), so
+columns of blocks are a section container, like Tabs Container (6.21) and Gen Carousel (6.24).
+Code: `blocks/columns-container`, `blocks/column-break` (the Column item), `scripts.js`
+`buildColumnsSections`; see the block's README.
+
+**Authoring:**
+
+1. Add a **Columns Container** to the page, where sections are added.
+2. Inside it, add a **Column**, then the components of the column after it; then the next
+   **Column** and its components (up to four columns side by side).
+3. Set the layout in the Columns Container's properties.
+
+| Tab | Field | Values | Default | Notes |
+|:--|:--|:--|:--|:--|
+| Content | Component (`style`) | Columns Container (`columns-container-section`) | Columns Container | Identifies the container |
+| Content | ID (`anchorName`) | Section id, e.g. `our-offices` | — | Link with `#our-offices` |
+| Content | Width Type (`sectionWidth`) | Full Width, Fixed Width | Full Width | As on sections |
+| Layout | Column widths (`columnsLayout`) | Equal; One third, two thirds; Two thirds, one third; One quarter, three quarters; Three quarters, one quarter | Equal | Unequal widths apply to two columns; three or four are equal |
+| Layout | Gap (`columnsGap`) | Small, Medium, Large | Medium | Between columns, and between them when stacked |
+| Layout | Vertical alignment (`columnsAlign`) | Top, Middle, Bottom, Stretch (equal heights) | Top | Side by side only |
+| Layout | Side by side from (`columnsFrom`) | Tablet (600px), Desktop (900px), Large desktop (1200px) | Desktop | Stacked below the width |
+| Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks (5.6) | — | Animation Type moves the columns in one after another |
+
+**Column** (item): *Column name* (shown in the editor only, to tell the columns apart) and the
+Additional tab, whose Anchor ID, Hide block and Padding / Margin apply to the column.
+
+**Allowed in a column:** Text, Title, Image, Button and every block except Page Header, Footer
+and TCS Header (page-level and site chrome).
+
+**Business rules:**
+
+1. Each Column starts a column; the components after it, up to the next Column, are its content;
+   content before the first Column is a column of its own.
+2. Below Side by side from the columns are stacked in order; above it they sit side by side in a
+   grid; blocks fill their column's width.
+3. In Universal Editor edit mode each column is outlined and labelled with its Column name (else
+   "Column n", placeholder `columnLabel`) so it can be selected; an empty column says what to add
+   (`columnEmpty`, `columnsContainerEmpty`). On the page, labels and hints aren't shown.
+4. Blocks in the columns are decorated and loaded like blocks in a section (their own options,
+   animation, skeleton and data layer).
+
+**Common mistakes:** adding blocks to the Columns block (6.14) instead (its columns take default
+content only); putting the components before a Column (they form their own first column);
+choosing an unequal Column width with three columns (ignored).
 
 # Part 7 — Taxonomy Documentation
 

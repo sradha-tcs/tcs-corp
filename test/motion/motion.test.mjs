@@ -100,7 +100,7 @@ describe('background colour', () => {
 describe('authoring fields', () => {
   const blocks = readdirSync(blocksDir).filter((name) => existsSync(new URL(`${name}/_${name}.json`, blocksDir)));
   const BACKGROUND_BLOCKS = ['conversation-canvas', 'form-variations', 'hero', 'quote', 'teaser', 'testimonial'];
-  const NO_ANIMATION = ['anchor-list', 'footer', 'fragment', 'modal', 'separator', 'tab', 'tcs-header'];
+  const NO_ANIMATION = ['anchor-list', 'column-break', 'footer', 'fragment', 'modal', 'separator', 'tab', 'tcs-header'];
 
   it('offers Content animation after Hide block, with the values of utils/motion.js', () => {
     blocks.filter((name) => modelOf(name) && !NO_ANIMATION.includes(name)).forEach((name) => {
