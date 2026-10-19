@@ -342,7 +342,10 @@ export default async function decorate(block) {
       // no poster: the player shows its own first frame and play button; its controls are the
       // only way to start (and pause) it, so they stay even with Show Player Controls off
       onVisible(media, () => {
-        const player = buildPlayer({ ...config, controls: true }, { autoplay: false, background: false });
+        const player = buildPlayer(
+          { ...config, controls: true },
+          { autoplay: false, background: false },
+        );
         whenLoaded(block, player);
         media.append(player);
       });
