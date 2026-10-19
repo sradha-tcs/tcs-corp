@@ -3,6 +3,7 @@ Key,Text,Description,Category
 "advancedFilters","Advanced filters","Used by filter-list","filter-list"
 "all","All","Used by filter-list","filter-list"
 "back","Back","Used by conversation-canvas, header","Shared"
+"buttonBlockEmpty","Button: add a Link and a Text.","Used by button-block","button-block"
 "cardEditorHint","This card isn’t shown yet: give it a title, a description or an image.","Used by cards","cards"
 "cards","Cards","Used by cards","cards"
 "cardsEditorHint","Add a Card to the block and give it a title, a description or an image.","Used by cards","cards"

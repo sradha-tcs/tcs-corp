@@ -1,10 +1,13 @@
 # Content packages
 
-> **19 October 2026, 14:56: install the new block library package.** The previous state of this branch is tagged `home-content-package_19-Oct-2026_1456`.
+> **19 October 2026: install the new block library package.** The previous state of this branch is tagged `home-content-package_19-Oct-2026_1629`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.5.zip`: block library and curated design pages (replaces 1.0.4). It adds the **Columns Container** folder: columns of blocks; widths and columns per row; alignment, gap and breakpoints.
-> - `block-library/metadata-language-master.csv` (311 rows, 38 columns) for `/content/tcs-corp/language-master/en/metadata`, and `block-library/metadata-en-rollout.csv` (the same rows at /en paths): 4 new rows.
-> - `block-library/placeholders.csv`, `taxonomy.csv`, `tags.csv` and the `data-*.csv` sheets are regenerated from the code and the pages.
+> - `block-library/tcs-corp-block-library-content-1.0.6.zip`: block library and curated design pages (replaces 1.0.5).
+>   - `foundations/button-icons-and-alignment` now uses the new **Button** block (Button Block), whose View, Type, Icon and Alignment all work. The built-in Button doesn't deliver them.
+>   - The Columns Container folder no longer has Column widths. `widths-and-columns-per-row` is now `columns-per-row`; installing removes the old page.
+> - `block-library/metadata-language-master.csv` (311 rows) and `metadata-en-rollout.csv`: the Columns per row row has its new URL. Import the language-master sheet again.
+> - `block-library/placeholders.csv`: adds `buttonBlockEmpty`. Taxonomy, tags and data sheets are regenerated.
+> - Only the Columns Container pages: `columns-container/tcs-corp-columns-container-content-1.0.2.zip` (see below).
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
@@ -13,9 +16,9 @@
 
 Only the new Columns Container pages of the block library, without the rest of the block library:
 
-- `columns-container/tcs-corp-columns-container-content-1.0.1.zip`: AEM content package (1.0.1: adds the example with the section fields, Style Highlight, a Background Image and an Anchor name, to Columns of blocks) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Widths and columns per row; Alignment, gap and breakpoints. Its filter covers only that folder, so nothing else in AEM changes. The images are those of the block library package already installed.
-- `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 new rows of the language-master Metadata sheet. Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
-- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.5.zip`, which updates the start page too.
+- `columns-container/tcs-corp-columns-container-content-1.0.2.zip`: AEM content package (1.0.2: Column widths removed, the columns are of equal width; Widths and columns per row is now Columns per row, `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
+- `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 rows of the language-master Metadata sheet (the Columns per row row has its new URL: replace the `widths-and-columns-per-row` row). Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
+- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.6.zip`, which updates the start page too.
 
 ## Project handover
 
@@ -70,7 +73,7 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.5.zip` (1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+- `block-library/tcs-corp-block-library-content-1.0.6.zip` (1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The block library under `/content/tcs-corp/language-master/en/block-library`: 176 pages covering every block and its variations (with the Animation and Columns Container folders).
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
