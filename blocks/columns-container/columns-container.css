@@ -58,10 +58,18 @@
   padding-inline: 0;
 }
 
-/* the editor labels and hints: only in Universal Editor edit mode */
-.columns-container .columns-container-label,
+/* the editor hints: only in Universal Editor edit mode */
 .columns-container .columns-container-hint {
   display: none;
+}
+
+/* a hidden column (its Column Break's Hide block) */
+html:not(.adobe-ue-edit) .columns-container .columns-container-column.hideblock {
+  display: none;
+}
+
+html.adobe-ue-edit .columns-container .columns-container-column.hideblock {
+  opacity: 0.45;
 }
 
 html.adobe-ue-edit .columns-container .columns-container-column {
@@ -70,7 +78,7 @@ html.adobe-ue-edit .columns-container .columns-container-column {
   min-height: 3rem;
 }
 
-html.adobe-ue-edit .columns-container :is(.columns-container-label, .columns-container-hint) {
+html.adobe-ue-edit .columns-container .columns-container-hint {
   display: block;
   margin: 0 0 var(--space-200);
   color: var(--color-text-secondary);
