@@ -15,6 +15,7 @@
 import { pushComponentEvent, pushComponents, pushToDataLayer } from '../utils/analytics.js';
 import { getPageLanguage, getPageMetadata, getPageTags } from '../utils/metadata.js';
 import { currentBreakpoint } from '../utils/viewport.js';
+import { redactSearchTerm } from '../utils/privacy.js';
 
 const TYPE = 'tcs-corp/components';
 const FILE = /\.(pdf|docx?|xlsx?|pptx?|zip|csv|txt|mp3|mp4)(\?|#|$)/i;
@@ -101,16 +102,6 @@ const linkType = (a) => {
 
 /** a search form: its submit is measured as one cmp:search, not also as a click */
 const isSearchForm = (form) => !!form && (form.matches('[role="search"]') || !!form.querySelector('input[type="search"]'));
-
-/**
- * A search term without personal data: e-mail addresses and phone numbers are replaced, the
- * term is trimmed and cut at 100 characters (data minimisation).
- * @param {string} value
- */
-export const redactSearchTerm = (value) => String(value || '').trim()
-  .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, '[email]')
-  .replace(/\+?\d[\d\s().-]{5,}\d/g, '[number]')
-  .slice(0, 100);
 
 /** the position of a clicked element: its own, else its item's (a card), within its block */
 function positionOf(el) {
