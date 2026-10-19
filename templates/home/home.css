@@ -24,9 +24,17 @@ body.home main > .section:first-of-type .hero {
   --home-hero-gap: var(--space-600);
 
   /* the content is centred between the logo bar and the Canvas row, so it never runs under it */
-  min-height: calc(100svh - var(--nav-height));
   padding-top: var(--home-hero-gap);
   padding-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
+}
+
+/*
+ * Not in Universal Editor (author markup, edit and preview mode: [data-aue-resource]): its frame
+ * can be as high as the page, so a hero as high as the screen would grow with the frame on every
+ * resize and its content drift down the page. There the hero keeps its own height (blocks/hero).
+ */
+body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
+  min-height: calc(100svh - var(--nav-height));
 }
 
 @media (width >= 600px) {
@@ -45,8 +53,11 @@ body.home main > .section:first-of-type .hero {
    * content starts below the logos (Figma: the text centred in the screen)
    */
   body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    min-height: 100svh;
     padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+  }
+
+  body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+    min-height: 100svh;
   }
 }
 
