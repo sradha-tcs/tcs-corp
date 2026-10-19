@@ -18,23 +18,6 @@
 .columns-container.columns-container-3 { --columns-container-count: 3; }
 .columns-container.columns-container-4 { --columns-container-count: 4; }
 
-/* Column widths: rows of two columns only (three or four per row are always equal) */
-.columns-container.columns-container-2.layout-1-2 {
-  --columns-container-template: minmax(0, 1fr) minmax(0, 2fr);
-}
-
-.columns-container.columns-container-2.layout-2-1 {
-  --columns-container-template: minmax(0, 2fr) minmax(0, 1fr);
-}
-
-.columns-container.columns-container-2.layout-1-3 {
-  --columns-container-template: minmax(0, 1fr) minmax(0, 3fr);
-}
-
-.columns-container.columns-container-2.layout-3-1 {
-  --columns-container-template: minmax(0, 3fr) minmax(0, 1fr);
-}
-
 /* Gap */
 .columns-container.gap-small { --columns-container-gap: var(--space-400); }
 .columns-container.gap-large { --columns-container-gap: var(--space-1600); }

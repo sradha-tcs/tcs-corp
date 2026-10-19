@@ -1,0 +1,16 @@
+/*
+ * Button Block: the button and its paragraph are styled by styles/styles.css (a.button,
+ * a.link-button, .icon-button, p.button-wrapper, .button-align-*), as the other buttons.
+ */
+.button-block p.button-wrapper:only-child {
+  margin: 0;
+}
+
+/* Universal Editor: a Button without a link yet */
+.button-block .button-block-empty {
+  margin: 0;
+  padding: var(--space-300) var(--space-400);
+  border: var(--border-width-100) dashed var(--color-border-default);
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-s);
+}

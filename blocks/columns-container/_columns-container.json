@@ -12,7 +12,6 @@
               "model": "columns-container",
               "filter": "columns-container",
               "style": "columns-container-section",
-              "columnsLayout": "equal",
               "columnsGap": "medium",
               "columnsAlign": "top",
               "columnsFrom": "desktop",
@@ -100,7 +99,7 @@
           "name": "columnsPerRow",
           "label": "Columns per row",
           "value": "auto",
-          "description": "How many columns sit side by side in a row; more Columns start a new row (e.g. 6 Columns at 3 per row: 2 rows of 3). Automatic: as many as there are Columns, at most 4.",
+          "description": "How many columns sit side by side in a row, all of equal width; more Column Breaks start a new row (e.g. 6 Column Breaks at 3 per row: 2 rows of 3). Automatic: as many as there are Column Breaks, at most 4. Add a Column Break, then the components of the column after it.",
           "options": [
             {
               "name": "Automatic",
@@ -123,36 +122,6 @@
               "value": "4"
             }
           ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "columnsLayout",
-          "label": "Column widths",
-          "value": "equal",
-          "options": [
-            {
-              "name": "Equal",
-              "value": "equal"
-            },
-            {
-              "name": "One third, two thirds",
-              "value": "1-2"
-            },
-            {
-              "name": "Two thirds, one third",
-              "value": "2-1"
-            },
-            {
-              "name": "One quarter, three quarters",
-              "value": "1-3"
-            },
-            {
-              "name": "Three quarters, one quarter",
-              "value": "3-1"
-            }
-          ],
-          "description": "How wide the columns are side by side. The unequal widths apply to rows of two columns; three or four per row are always equal. Add a Column, then the components of the column after it."
         },
         {
           "component": "select",
@@ -934,7 +903,7 @@
         "column-break",
         "text",
         "image",
-        "button",
+        "button-block",
         "title",
         "hero",
         "teaser",
