@@ -334,12 +334,22 @@
 }
 
 /*
+ * The opening hero is at most the first screen high (below the header bar): the header's
+ * Conversation Canvas sits at the bottom of the first screen (blocks/header), so on a short
+ * screen the hero's content stays above it (Figma home-desktop 229:15426: the hero fills the
+ * first screen). Taller content still grows the hero.
+ */
+main > .section:first-child .hero {
+  min-height: min(var(--hero-min-height), calc(100dvh - var(--nav-height)));
+}
+
+/*
  * Desktop: the opening light hero lies under the header (styles/styles.css): it grows by the
- * header height and keeps its content below the logos.
+ * header height (at most to the first screen) and keeps its content below the logos.
  */
 @media (width >= 1200px) {
   main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    min-height: calc(var(--hero-min-height) + var(--header-height, var(--header-reserved)));
+    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
     padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
   }
 }

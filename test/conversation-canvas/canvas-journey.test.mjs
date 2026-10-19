@@ -243,3 +243,67 @@ describe('page variations', () => {
     assert.equal(short(2450 - VH).state, STATES.FOOTER_DOCKED);
   });
 });
+
+describe('the header Canvas at the bottom of the window', () => {
+  /*
+   * The header Canvas row sits at the dock line at the top of the page (52px offset: the line is
+   * at 1000 - 52 - 72 = 876px) and floats as soon as scrolling would carry it up; a section Canvas
+   * at 3000 and the footer Canvas at 6000 as on the home page.
+   */
+  const OFFSET = 52;
+  const LINE = VH - OFFSET - ROW;
+  const header = (top) => slot(top, { inHeader: true });
+  const bottomOf = (canvases, extra = {}) => page(canvases, ['header', 'section', 'footer'], { offset: OFFSET, ...extra });
+  const site = bottomOf([header(LINE), slot(3000), slot(6000)]);
+
+  it('INITIAL at the top of the page: in place at the dock line (the bottom of the first screen)', () => {
+    const r = site(0);
+    assert.equal(r.state, STATES.INITIAL);
+    assert.equal(r.docked, 0);
+    assert.equal(r.owner, -1);
+  });
+
+  it('FLOATING as soon as it would move up: the same row, fixed at the same bottom offset', () => {
+    assert.equal(site(1).state, STATES.INITIAL, 'within the rounding tolerance');
+    const r = site(10);
+    assert.equal(r.state, STATES.FLOATING);
+    assert.equal(r.owner, 0);
+    assert.equal(r.docked, -1);
+    assert.equal(site(400).state, STATES.FLOATING, 'still floating while its place is on screen');
+  });
+
+  it('back to INITIAL when scrolled back to the top', () => {
+    assert.equal(site(500).state, STATES.FLOATING);
+    assert.equal(site(0).state, STATES.INITIAL);
+  });
+
+  it('a hero shorter than the window: the row is above the dock line and floats from the start', () => {
+    const short = bottomOf([header(LINE - 26), slot(3000), slot(6000)]);
+    assert.equal(short(0).state, STATES.FLOATING);
+    assert.equal(short(0).owner, 0);
+  });
+
+  it('then section docking, floating after it and the footer stop as before, both directions', () => {
+    const at = (top) => top - LINE;
+    assert.equal(site(at(3000)).state, STATES.SECTION_DOCKED);
+    assert.equal(site(3100).state, STATES.FLOATING_AFTER_SECTION);
+    assert.equal(site(at(6000)).state, STATES.FOOTER_DOCKED);
+    const { states, bad } = walk(site);
+    assert.deepEqual(bad, []);
+    assert.equal(states[0], STATES.INITIAL);
+    assert.equal(states.at(-1), STATES.INITIAL);
+  });
+
+  it('at most one Canvas floats, never while one is docked', () => {
+    for (let y = 0; y <= MAX; y += 25) {
+      const r = site(y);
+      assert.ok(r.owner === -1 || r.docked === -1, `owner and docked at ${y}`);
+    }
+  });
+
+  it('a Canvas in the hero section (not the header) keeps its place until it leaves the screen', () => {
+    const hero = page([slot(LINE - 26), slot(3000), slot(6000)], ['hero', 'section', 'footer'], { offset: OFFSET });
+    assert.equal(hero(0).state, STATES.INITIAL);
+    assert.equal(hero(400).state, STATES.INITIAL);
+  });
+});

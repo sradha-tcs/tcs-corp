@@ -57,9 +57,31 @@ Over a light hero (desktop): when the page's first section has a hero that isn't
 `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos
 667:52520, Hero 4082:120388): its header Canvas loses its background and rounded corners. The
 header is out of the flow, so the hero never moves when it loads; the hero grows by the header's
-height (`--header-height`, set by the header once loaded, with or without a Canvas; before that the reserved `--header-reserved`). Below
-1200px the header keeps its bar above the hero. A header Canvas loads with the header (lazy
-phase) and so shifts the page below 1200px (F-82).
+height (`--header-height`, set by the header once loaded; before that the reserved
+`--header-reserved`, the bar's height, see below). Below 1200px the header keeps its bar above
+the hero.
+
+**Header Canvas** (a nav page section with a Conversation Canvas): it belongs to the bottom of
+the first screen, on the hero (Figma home-desktop 229:15426, home-tablet 671:52732, mobile Ask TCS
+1124:27368). Its host (`.nav-canvas`) is out of the flow at every width, so the header keeps the
+bar's height and the page isn't pushed down; it is as high as the first section, at most the
+window (`--conversation-canvas-first-section-bottom` from the Canvas controller, `100dvh`). The
+row sits the floating offset above the host's bottom (52px desktop, 62px tablet, 20px + safe area
+mobile), which is exactly where it floats once the page scrolls, so it stays at the bottom of the
+window without moving (canvas-journey.js). Search row 463px on tablet, 607px on desktop. A TCS
+Header block in the same nav page section stays the logo bar (only the Canvas goes to the host).
+On Home the opening hero fills the first screen and keeps its content clear of the row
+(`templates/home`; on screens under 640px high with a smaller title and tighter gaps), so the row
+lies on the hero's bottom, which is the bottom of the window. On Home the host is the hero's
+height: when the hero content is taller than the screen (e.g. a phone in landscape), the row stays
+below it, at the hero's bottom, docks as it scrolls up to the bottom of the window and floats from
+there, so it never covers the content.
+
+Two zones: the **logo bar** (TCS and TATA logos) is the header's only box in the flow, at the
+top of the page (over a light hero on desktop, a fixed bar above the hero below 1200px); the
+**interaction row** (the Canvas menu button and search, Figma Floating menu 4308:42483: 59px
+button, 17px gap, input) is the header Canvas, out of the flow at the bottom of the first screen.
+The bar never takes the Canvas's height and never moves with it.
 
 ### Accessibility
 
@@ -82,7 +104,7 @@ phase) and so shifts the page below 1200px (F-82).
 | `header .nav-wrapper`, fixed below the logo bar breakpoint | `blocks/anchor-list` (offset below a fixed header) |
 | `--nav-height` (header height; 4rem, 7.75rem from 1200px) | `styles/styles.css` (header height reserved before load), `blocks/tabs` (scroll margin), `404.html` |
 | `--header-height` (the header's height with its Canvas, on `<html>`) | `styles/styles.css`, `blocks/hero` (desktop header over a light hero) |
-| `--header-reserved` (the space the header keeps until it loads: the TCS Header with its Canvas, 17.5 / 20.875 / 27.5rem, or the height remembered from the last page by `utils/header-space.js`) | `styles/styles.css`, `blocks/hero` |
+| `--header-reserved` (the space the header keeps until it loads: the logo bar, `--nav-height`, or the height remembered from the last page by `utils/header-space.js`) | `styles/styles.css`, `blocks/hero` |
 | `#nav`, `#nav-sections`, `.nav-hamburger button`, `nav[data-expanded]` | Conversation Canvas (PR #71: floating row hidden while the menu is open) |
 | `nav-brand`, `nav-sections`, `nav-tools` | The nav page authoring contract |
 

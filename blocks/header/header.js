@@ -242,7 +242,17 @@ export default async function decorate(block) {
   // brand, sections or tools); the canvas block itself takes part in the floating journey
   const canvasSections = [...nav.children]
     .filter((section) => section.querySelector('.conversation-canvas'));
-  canvasSections.forEach((section) => section.remove());
+  canvasSections.forEach((section) => {
+    // a TCS Header block authored in the same section stays in the nav: it's the logo bar
+    const bar = section.querySelector('.tcs-header');
+    if (bar) {
+      const own = document.createElement('div');
+      own.className = 'section';
+      own.append(bar.closest('.tcs-header-wrapper') || bar);
+      section.before(own);
+    }
+    section.remove();
+  });
 
   // the logos from a TCS Header block, else the sections in order: brand, sections, tools
   if (!applyLogoBar(nav)) {

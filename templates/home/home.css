@@ -6,3 +6,61 @@ body.home main > .section:first-of-type {
 body.home main > .section:first-of-type > div {
   padding-block-start: 0;
 }
+
+/*
+ * The opening hero fills the first screen (Figma home-desktop 229:15426: the 1000px hero is the
+ * screen; home-tablet 671:52732: 850px; home-page-mobile 1124:27368: beyond the screen), so the
+ * header Conversation Canvas lies on the hero's bottom, which is the bottom of the window, at
+ * every width (blocks/header). svh: the screen with the browser bars shown, so the hero doesn't
+ * resize when they hide while scrolling. Taller content still grows the hero.
+ */
+body.home main > .section:first-of-type .hero {
+  /*
+   * the space the Canvas row takes at the bottom of the hero: its offset from the bottom of the
+   * window and its height (blocks/conversation-canvas: 20px + safe area and 64px mobile, 62px and
+   * 72px tablet, 52px and 72px desktop)
+   */
+  --home-hero-canvas-space: calc(5.25rem + env(safe-area-inset-bottom, 0rem));
+  --home-hero-gap: var(--space-600);
+
+  /* the content is centred between the logo bar and the Canvas row, so it never runs under it */
+  min-height: calc(100svh - var(--nav-height));
+  padding-top: var(--home-hero-gap);
+  padding-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
+}
+
+@media (width >= 600px) {
+  body.home main > .section:first-of-type .hero {
+    --home-hero-canvas-space: calc(8.375rem + env(safe-area-inset-bottom, 0rem));
+  }
+}
+
+@media (width >= 1200px) {
+  body.home main > .section:first-of-type .hero {
+    --home-hero-canvas-space: calc(7.75rem + env(safe-area-inset-bottom, 0rem));
+  }
+
+  /*
+   * the logo bar lies over a light hero (styles/styles.css): the hero is the whole screen and its
+   * content starts below the logos (Figma: the text centred in the screen)
+   */
+  body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+    min-height: 100svh;
+    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+  }
+}
+
+/*
+ * Short screens (e.g. 320x568, 1280x600): the title one display size smaller (its letter-spacing
+ * follows) and tighter gaps, so the content fits above the Canvas row on the first screen
+ */
+@media (height < 640px) {
+  body.home main > .section:first-of-type .hero {
+    --display-font-size-2: var(--display-font-size-3);
+    --home-hero-gap: var(--space-400);
+    --hero-gap-icon: var(--space-200);
+    --hero-gap-eyebrow: var(--space-400);
+    --hero-gap-content: var(--space-400);
+    --hero-gap-ctas: var(--space-600);
+  }
+}

@@ -7,6 +7,9 @@
  *
  * - Every Canvas with a search row in place (Default, Secondary) is a docking target. It is docked
  *   while its row is on screen at or above the floating position (the dock line); nothing floats.
+ * - The header Canvas (hosted by the site header, inHeader) belongs to the bottom of the first
+ *   screen: its row sits at the dock line at the top of the page and is docked only there; as soon
+ *   as scrolling carries it above the line it floats, so it stays at the bottom of the window.
  * - Otherwise one Canvas floats (the owner): the Primary (sticky) Canvas if there is one, else the
  *   last target (DOM order) scrolled past the dock line that may float. After each section Canvas
  *   the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it
@@ -39,6 +42,9 @@ export const ROLES = Object.freeze({
 const {
   INITIAL, FLOATING, SECTION_DOCKED, FLOATING_AFTER_SECTION, FOOTER_DOCKED, HIDDEN,
 } = STATES;
+
+// px of rounding between the header Canvas row in place and the dock line
+const AT_LINE = 2;
 
 /**
  * The transitions continuous scrolling can produce (both directions). Besides the journey itself:
@@ -88,8 +94,9 @@ export function assignRoles(canvases) {
  * @param {number|null} input.footerTop Document top of the footer, null without one
  * @param {boolean} [input.suppressed] The floating Canvas is suppressed (e.g. the menu is open)
  * @param {Array<{ primary: boolean, floats: boolean, role: string|null, top: number|null,
- *   bottom: number|null, rowHeight: number }>} input.canvases In DOM order; top / bottom are the
- *   document coordinates of the search row's place (null for Primary)
+ *   bottom: number|null, rowHeight: number, inHeader?: boolean }>} input.canvases In DOM order;
+ *   top / bottom are the document coordinates of the search row's place (null for Primary);
+ *   inHeader: the header Canvas (docked only at the dock line, see above)
  * @returns {{ state: string, owner: number, docked: number, approaching: number, lift: number }}
  *   owner: the floating Canvas, docked: the Canvas in place, approaching: the next target coming
  *   up below the floating row (indexes into canvases, -1 for none); lift: px the floating row
@@ -114,17 +121,21 @@ export function resolveJourney({
   const arrived = (c) => c.top <= dockLine(c)
     || (atBottom && c.role === ROLES.FOOTER && c.top < vh);
 
+  // a row that has arrived stays in place while it's on screen; the header Canvas's only while it
+  // is at the dock line (it floats as soon as it would move up)
+  const inPlace = (c) => (c.inHeader ? c.top >= dockLine(c) - AT_LINE : c.bottom > 0);
+
   // the journey ends at the footer Canvas: nothing floats below it
   const footer = targets.find((c) => c.role === ROLES.FOOTER);
-  // docked: a search row on screen at or above the dock line (the one nearest to it wins)
+  // docked: a search row in place at or above the dock line (the one nearest to it wins)
   const docked = footer && arrived(footer)
-    ? footer : targets.findLast((c) => arrived(c) && c.bottom > 0);
+    ? footer : targets.findLast((c) => arrived(c) && inPlace(c));
   if (docked) {
     result.docked = docked.index;
     if (suppressed) return { ...result, state: HIDDEN };
     if (docked === footer) return { ...result, state: FOOTER_DOCKED };
     // still in the header context while the header Canvas is in place on screen
-    const atHeader = targets.some((c) => c.role === ROLES.HEADER && arrived(c) && c.bottom > 0);
+    const atHeader = targets.some((c) => c.role === ROLES.HEADER && arrived(c) && inPlace(c));
     return { ...result, state: atHeader ? INITIAL : SECTION_DOCKED };
   }
 

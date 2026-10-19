@@ -363,38 +363,86 @@ header nav .nav-sections .nav-drop[data-expanded='true'] > ul {
   display: block;
 }
 
-/* header Canvas (a nav page section with a Conversation Canvas), below the logos */
+/*
+ * Header Canvas (a nav page section with a Conversation Canvas): it belongs to the bottom of the
+ * first screen, on the hero (Figma home-desktop 229:15426, home-tablet 671:52732, mobile Ask TCS
+ * 1124:27368). Its host is out of the flow (the header keeps the bar's height, so the page isn't
+ * pushed down) and as high as the first section, at most the window
+ * (--conversation-canvas-first-section-bottom, canvas-controller.js). The row sits the floating
+ * offset above its bottom, which is where the row floats (fixed) once the page scrolls
+ * (canvas-journey.js), so it stays at the bottom of the window. It shows once the journey state
+ * is set.
+ */
 header:has(.nav-canvas) {
-  height: auto;
+  height: var(--nav-height);
 }
 
 header .nav-canvas {
-  /* the bar is fixed below 1200px, so the Canvas starts below it */
-  padding-top: var(--nav-height);
-}
-
-@media (width >= 1200px) {
-  header .nav-canvas {
-    padding-top: 0;
-  }
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  height: min(var(--conversation-canvas-first-section-bottom, 100dvh), 100dvh);
+  padding-inline: var(--space-600);
+  pointer-events: none;
 }
 
 /*
- * desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos
- * and the header Canvas (Figma Hero 4082:120388: the search on the hero)
+ * Home: the opening hero fills the first screen with its content clear of the row
+ * (templates/home), so the host is the hero's height. When the content is taller than the screen
+ * (e.g. a phone in landscape), the row stays below it, at the hero's bottom, instead of covering
+ * it; it docks as it scrolls up to the bottom of the window and floats from there.
  */
+body.home header .nav-canvas {
+  height: var(--conversation-canvas-first-section-bottom, 100dvh);
+}
+
+html:not([data-canvas-journey-state]) header .nav-canvas {
+  visibility: hidden;
+}
+
+header .nav-canvas .conversation-canvas {
+  border-radius: 0;
+  padding: 0 0 var(--conversation-canvas-float-offset);
+  background-color: transparent;
+}
+
+/*
+ * only the row takes pointer events: the block's box stays on the hero while its row floats, and
+ * (above the header bar while it floats) it would take the clicks meant for the bar's menu button
+ */
+header .nav-canvas .conversation-canvas-search {
+  pointer-events: auto;
+}
+
+/* above the hero (positioned, later in the page); the floating owner keeps its own z-index */
+header .nav-canvas .conversation-canvas:not(.conversation-canvas-owner) {
+  z-index: 2;
+}
+
+header .nav-canvas .conversation-canvas::before {
+  display: none;
+}
+
+/* Figma: 463px on tablet, 607px on desktop (the floating row's widths) */
+@media (width >= 600px) {
+  header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 28.9375rem);
+  }
+}
+
+@media (width >= 1200px) {
+  header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 37.9375rem);
+  }
+}
+
+/* desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos */
 @media (width >= 1200px) {
   body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
     background-color: transparent;
-  }
-
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas {
-    border-radius: 0;
-    background-color: transparent;
-  }
-
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-canvas .conversation-canvas::before {
-    display: none;
   }
 }
 

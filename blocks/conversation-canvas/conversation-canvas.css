@@ -19,6 +19,29 @@
   text-align: center;
 }
 
+/*
+ * The floating row's offset from the bottom of the window (Figma: the search row 52px desktop /
+ * 62px tablet above the hero's bottom in home-desktop 229:15426 / home-tablet 671:52732, the hero
+ * filling the first screen; mobile Ask TCS 1124:27368: 54px including the home indicator), plus
+ * the device safe area. The header Canvas sits the same offset above the bottom of the first
+ * screen, so it doesn't move when it floats. The Primary dock keeps its own offset.
+ */
+.conversation-canvas:not(.primary) {
+  --conversation-canvas-float-offset: calc(1.25rem + env(safe-area-inset-bottom, 0rem));
+}
+
+@media (width >= 600px) {
+  .conversation-canvas:not(.primary) {
+    --conversation-canvas-float-offset: calc(3.875rem + env(safe-area-inset-bottom, 0rem));
+  }
+}
+
+@media (width >= 1200px) {
+  .conversation-canvas:not(.primary) {
+    --conversation-canvas-float-offset: calc(3.25rem + env(safe-area-inset-bottom, 0rem));
+  }
+}
+
 /* soft brand blobs behind the content (BG Style: Default); the block itself doesn't clip,
    so the menu can open outside it */
 .conversation-canvas::before {
