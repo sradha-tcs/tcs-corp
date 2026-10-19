@@ -34,6 +34,7 @@ const CONTENT_TARGETS = {
   cards: { targets: ':scope > :is(.list-header, .list-feature, .list-empty), .list-item', stagger: true },
   accordion: { targets: ':scope > .accordion-item', stagger: true },
   columns: { targets: ':scope > div > div', stagger: true },
+  'columns-container': { targets: ':scope > .columns-container-column', stagger: true },
   // blocks with a background animation: their children, the background layers left out
   teaser: { targets: ':scope > *' },
   quote: { targets: ':scope > *' },

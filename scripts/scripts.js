@@ -181,6 +181,33 @@ function buildTabsSections(container) {
 }
 
 /**
+ * Columns Container sections (blocks/columns-container/_columns-container.json): the section's
+ * Column items and the components after them are wrapped in a synthetic columns-container block
+ * that lays them out as columns; the Layout options and the Additional tab (classes_* section
+ * properties) become block classes.
+ * @param {Element} container The main element, or the parent of re-rendered sections
+ */
+function buildColumnsSections(container) {
+  container.querySelectorAll(':scope > .section.columns-container-section').forEach((section) => {
+    if (section.querySelector(':scope > .columns-container-wrapper')) return;
+    const columns = document.createElement('div');
+    columns.className = 'columns-container';
+    const {
+      columnslayout, columnsgap, columnsalign, columnsfrom,
+    } = section.dataset;
+    [
+      ['layout', columnslayout], ['gap', columnsgap], ['align', columnsalign], ['from', columnsfrom],
+    ].filter(([, value]) => value?.trim()).forEach(([name, value]) => columns.classList.add(`${name}-${toClassName(value)}`));
+    // the Additional tab of the section: anchor, hide, animation, spacing (classes, as on blocks)
+    Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))
+      .flatMap(([, value]) => value.split(/[\s,]+/)).map((value) => toClassName(value))
+      .filter(Boolean)
+      .forEach((name) => columns.classList.add(name));
+    wrapSectionContent(section, columns);
+  });
+}
+
+/**
  * Reads the section options of a section before it is decorated. AEM authoring delivers the
  * section properties as data attributes of the section (data-anchorname, data-style, ...);
  * documents use a section-metadata block. decorateSections() keeps only the URL of a metadata
@@ -245,6 +272,7 @@ export function decorateSectionsWithOptions(container) {
 
   buildCarouselSections(container);
   buildTabsSections(container);
+  buildColumnsSections(container);
 }
 
 /**
