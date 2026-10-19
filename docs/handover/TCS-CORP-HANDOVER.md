@@ -12,14 +12,14 @@ date: "October 19, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.24 |
+| Version | 2.25 |
 | Date | 19 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -56,6 +56,7 @@ date: "October 19, 2026"
 | 2.22 | 19 October 2026 | Delivery team | **Columns Container** (new section container, like Tabs Container and Gen Carousel): columns that hold default content and any block (except Page Header, Footer and TCS Header), each started by a **Column** item; Layout: Column widths, Gap, Vertical alignment, Side by side from; Additional tab on the container and on each Column. Edge Delivery has no blocks inside blocks, so the Columns block keeps default content only in its columns. 6.14, 6.32 |
 | 2.23 | 19 October 2026 | Delivery team | Columns Container: **Columns per row** (Layout tab: Automatic, 1, 2, 3, 4): rows follow from the number of Column items (6 Columns at 3 per row: 2 rows of 3; Automatic: up to 4 per row). Column widths apply to rows of two columns. 6.32 |
 | 2.24 | 19 October 2026 | Delivery team | Columns Container fix: the Column item is **Column Break** (its template name is its block class in AEM; it was "Column", rendered as `column`, so columns weren't built); columns are plain wrappers with the Column Break as their label, so editor updates of the components in a column work in place; content authored with "Column" still works. 6.32, finding F-99 |
+| 2.25 | 19 October 2026 | Delivery team | Columns Container: the Section's **Style** (multiselect: Columns Container, Highlight), **Background Image**, **Image alt text** and **Anchor name** in its Content tab, applied as on sections; a section with the container's Layout values stays a Columns Container if Columns Container is removed from its Style. 6.32 |
 
 ## Review and Approval
 
@@ -115769,9 +115770,11 @@ Code: `blocks/columns-container`, `blocks/column-break` (the Column Break item),
 
 | Tab | Field | Values | Default | Notes |
 |:--|:--|:--|:--|:--|
-| Content | Component (`style`) | Columns Container (`columns-container-section`) | Columns Container | Identifies the container |
-| Content | ID (`anchorName`) | Section id, e.g. `our-offices` | — | Link with `#our-offices` |
+| Content | Style (`style`, multiselect) | Columns Container (`columns-container-section`), Highlight (`highlight`) | Columns Container | Keep Columns Container selected (it identifies the container; a section with the Layout values stays one); Highlight as on sections |
 | Content | Width Type (`sectionWidth`) | Full Width, Fixed Width | Full Width | As on sections |
+| Content | Background Image (`backgroundImage`) | An image | — | Behind the whole container, as on sections |
+| Content | Image alt text (`backgroundImageAlt`) | Text | — | Empty: decorative |
+| Content | Anchor name (`anchorName`) | Section id, e.g. `our-offices` | — | Link with `#our-offices`; Anchor List |
 | Layout | Columns per row (`columnsPerRow`) | Automatic, 1, 2, 3, 4 | Automatic | Automatic: as many as there are Columns, at most 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3) |
 | Layout | Column widths (`columnsLayout`) | Equal; One third, two thirds; Two thirds, one third; One quarter, three quarters; Three quarters, one quarter | Equal | Unequal widths apply to rows of two columns; three or four per row are equal |
 | Layout | Gap (`columnsGap`) | Small, Medium, Large | Medium | Between columns, and between them when stacked |

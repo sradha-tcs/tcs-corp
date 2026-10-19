@@ -15,9 +15,11 @@ section container, like Tabs Container and Gen Carousel.
 
 | Tab | Field | Values | Default |
 |---|---|---|---|
-| Content | Component | Columns Container | Columns Container |
-| Content | ID | Section id, e.g. `our-offices` (link with `#our-offices`) | — |
+| Content | Style | Columns Container (keep it selected: it makes the section a Columns Container), Highlight (multiselect, as on sections) | Columns Container |
 | Content | Width Type | Full Width, Fixed Width | Full Width |
+| Content | Background Image | An image behind the whole container (as on sections) | — |
+| Content | Image alt text | The background image's alternative text; empty: decorative | — |
+| Content | Anchor name | Section id, e.g. `our-offices` (link with `#our-offices`, Anchor List) | — |
 | Layout | Columns per row | Automatic (as many as there are Columns, at most 4), 1, 2, 3, 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3) | Automatic |
 | Layout | Column widths | Equal; One third, two thirds; Two thirds, one third; One quarter, three quarters; Three quarters, one quarter (rows of two columns; three or four per row are equal) | Equal |
 | Layout | Gap | Small, Medium, Large | Medium |
@@ -35,7 +37,10 @@ selected; an empty column says what to add.
 
 ## How it works
 
-- `scripts.js` `buildColumnsSections`: a section with Style `columns-container-section` is
+- The Content tab fields are the Section's (same names: `style`, `sectionWidth`, `backgroundImage`,
+  `backgroundImageAlt`, `anchorName`), applied by `decorateSectionsWithOptions` as on any section.
+- `scripts.js` `buildColumnsSections`: a section with Style `columns-container-section` (or, if
+  an author removed that Style, with the container's Layout values) is
   wrapped in a synthetic `columns-container` block (`wrapSectionContent`, as Tabs); its Layout
   properties become classes (`per-row-3`, `layout-1-2`, `gap-small`, `align-middle`,
   `from-tablet`) and its

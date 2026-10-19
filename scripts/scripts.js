@@ -191,6 +191,10 @@ function buildTabsSections(container) {
 const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hideblock|(p|m)[lrtb]-\d+)$/;
 
 function buildColumnsSections(container) {
+  // a section with the container's Layout values is one, also when its Style no longer lists
+  // Columns Container (Style is a multiselect, as on sections)
+  container.querySelectorAll(':scope > .section:is([data-columnslayout], [data-columnsperrow])')
+    .forEach((section) => section.classList.add('columns-container-section'));
   container.querySelectorAll(':scope > .section.columns-container-section').forEach((section) => {
     if (section.querySelector(':scope > .columns-container-wrapper')) return;
     // Column Breaks authored when the item was named "Column" are rendered as class "column"
