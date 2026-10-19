@@ -3,6 +3,7 @@ import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
+import { linkOf } from '../../utils/links.js';
 import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
@@ -12,17 +13,29 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 /*
  * Form Variations (blocks/form-variations/_form-variations.json): a form built from child
- * field items. The first rows are the block properties (Form Title, Form Description); every
- * item row starts with its type cell (the read-only "classes" field), followed by its fields
- * in model order. Fields, buttons and contact cards with "Show only if dropdown value equals"
- * appear when any dropdown of the form has that value.
+ * field items. The first rows are the block properties (Form Title, Form Description, Submit
+ * action; AEM adds an empty row for each dialog tab). AEM delivers an item row's node name and its
+ * read-only "classes" field (the item type) in its first cell, "email, field-text": the field
+ * items store their field key in "name", which is the node name, so the key comes from that cell
+ * too. Older markup has the type alone in the first cell, then the key cell. Fields, buttons
+ * and contact cards with "Show only if dropdown value equals" appear when any dropdown of the
+ * form has that value.
  *
- * There is no submit endpoint yet: a valid submit dispatches a bubbling
- * "form-variations:submit" event on the block with { detail: { data } }.
+ * Submit: a valid submit dispatches a bubbling, cancelable "form-variations:submit" event on the
+ * block ({ detail: { data } }); an integration that handles it calls preventDefault(). Otherwise
+ * the data is POSTed as JSON ({ data }) to the Submit action; without either, the visitor is
+ * told the form isn't connected and keeps the values (nothing is claimed as sent).
  */
 
 const ITEM_TYPES = [
   'field-text', 'field-select', 'field-textarea', 'field-checkbox', 'contact-card', 'field-submit',
+];
+/** the item types whose first field is the field key ("name", the item's node name) */
+const KEYED_TYPES = ['field-text', 'field-select', 'field-textarea', 'field-checkbox'];
+/** node names AEM gives items without a field key: their template names in class-name form */
+const TEMPLATE_NAMES = [
+  'text-input-field', 'dropdown-select-field', 'textarea-field', 'consent-checkbox-field',
+  'contact-card-output', 'submit-button',
 ];
 const INPUT_KINDS = ['text', 'email', 'tel'];
 const DEFAULT_MAX_LENGTH = 1500;
@@ -31,18 +44,51 @@ const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
 const splitList = (value) => value.split(',').map((item) => item.trim()).filter(Boolean);
 
+/** a cell holding a text, as a stand-in for a field cell AEM doesn't deliver */
+function textCell(text) {
+  const cell = document.createElement('div');
+  cell.textContent = text;
+  return cell;
+}
+
 /**
- * The item type of a row: the text of its first cell (published markup), or its
- * Universal Editor model.
- * @returns {{ type: string, cells: Element[] }} the type and the field cells after the type cell
+ * The item type of a row and its field cells in model order:
+ * - AEM: first cell "<node name>, <type>" (the node name is the field key of keyed items)
+ * - older markup: first cell "<type>", then the field cells
+ * - Universal Editor model without a type cell
+ * @returns {{ type: string, cells: Element[] }}
  */
-function readItem(row) {
+export function readItem(row) {
   const cells = [...row.children];
-  const first = textOf(cells[0]);
-  if (ITEM_TYPES.includes(first)) return { type: first, cells: cells.slice(1) };
+  const tokens = textOf(cells[0]).split(',').map((v) => v.trim()).filter(Boolean);
+  const type = tokens.find((v) => ITEM_TYPES.includes(v));
+  if (type) {
+    const fields = cells.slice(1);
+    if (tokens.length === 1 || !KEYED_TYPES.includes(type)) return { type, cells: fields };
+    // the field key: the other token, unless it is only the item's template name (no key)
+    const key = tokens.find((v) => v !== type);
+    return { type, cells: [textCell(TEMPLATE_NAMES.includes(key) ? '' : key), ...fields] };
+  }
   const model = row.dataset.aueModel || '';
   if (ITEM_TYPES.includes(model)) return { type: model, cells };
   return { type: '', cells };
+}
+
+/**
+ * The block's own property cells (Form Title, Form Description, Submit action), without the
+ * empty rows AEM adds for the dialog tabs (Content first, Additional last).
+ * @param {Element[]} cells the first cells of the rows before the items
+ */
+export function readProperties(cells) {
+  const byProp = (name) => cells.find((cell) => cell?.dataset.aueProp === name
+    || cell?.querySelector(`[data-aue-prop="${name}"]`));
+  if (byProp('formHeading') || byProp('formDescription')) {
+    return { titleCell: byProp('formHeading'), descriptionCell: byProp('formDescription'), actionCell: byProp('formAction') };
+  }
+  const empty = (cell) => !cell || (!textOf(cell) && !cell.querySelector('img, a'));
+  const list = cells.length > 2 && empty(cells[0]) ? cells.slice(1) : cells;
+  const [titleCell, descriptionCell, actionCell] = list;
+  return { titleCell, descriptionCell, actionCell };
 }
 
 /** moves the editor instrumentation of a cell (and its only child) onto an element */
@@ -223,7 +269,16 @@ function buildTextareaField(cells, nextId) {
   const counter = document.createElement('span');
   counter.className = 'form-variations-counter';
   counter.id = `${id}-counter`;
-  const update = () => { counter.textContent = `${textarea.value.length}/${limit}`; };
+  const update = () => {
+    const count = textarea.value.length;
+    const visible = document.createElement('span');
+    visible.setAttribute('aria-hidden', 'true');
+    visible.textContent = `${count}/${limit}`;
+    const spoken = document.createElement('span');
+    spoken.className = 'visually-hidden';
+    spoken.textContent = t('charactersCount', '{count} of {max} characters', { count, max: limit });
+    counter.replaceChildren(visible, spoken);
+  };
   textarea.setAttribute('aria-describedby', counter.id);
   textarea.addEventListener('input', update);
   update();
@@ -390,7 +445,9 @@ export default async function decorate(block) {
     form.append(el);
   });
 
-  const [titleCell, descriptionCell] = properties;
+  const { titleCell, descriptionCell, actionCell } = readProperties(properties);
+  const actionLink = linkOf(actionCell);
+  const action = actionLink?.getAttribute('href') || textOf(actionCell);
   const header = document.createElement('div');
   header.className = 'form-variations-header';
   const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', 'h2') : null;
@@ -409,7 +466,11 @@ export default async function decorate(block) {
   status.tabIndex = -1;
 
   form.addEventListener('change', (e) => {
-    if (e.target.matches('select')) updateVisibility(form, editing);
+    if (!e.target.matches('select')) return;
+    const shown = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden);
+    updateVisibility(form, editing);
+    const added = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden && !shown.includes(el));
+    if (!editing && added.length) status.textContent = t('fieldsUpdated', 'More fields are shown below.');
   });
   // the required marker explained once (it's hidden from screen readers, the fields are required)
   if (form.querySelector('[required]')) {
@@ -423,19 +484,47 @@ export default async function decorate(block) {
     status.textContent = '';
     if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) clearError(e.target);
   });
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    status.textContent = '';
-    if (!validate(form)) return;
-    const data = collectData(form);
-    block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, detail: { data } }));
+  const succeed = () => {
     form.reset();
     form.querySelectorAll('textarea').forEach((textarea) => textarea.dispatchEvent(new Event('input')));
     updateVisibility(form, editing);
     status.textContent = t('formSuccess', 'Thank you, your details were sent.');
+  };
+  const fail = (key, fallback) => { status.textContent = t(key, fallback); };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    if (!validate(form)) return;
+    const data = collectData(form);
+    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, cancelable: true, detail: { data } }));
+    const button = form.querySelector('button[type="submit"]');
+    if (handled) {
+      succeed();
+    } else if (!action) {
+      fail('formNotConnected', 'This form isn’t connected yet: your details weren’t sent.');
+    } else {
+      button?.setAttribute('aria-disabled', 'true');
+      form.setAttribute('aria-busy', 'true');
+      try {
+        const response = await fetch(action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data }) });
+        if (response.ok) succeed();
+        else fail('formError', 'Your details couldn’t be sent. Please try again.');
+      } catch {
+        fail('formError', 'Your details couldn’t be sent. Please try again.');
+      } finally {
+        button?.removeAttribute('aria-disabled');
+        form.removeAttribute('aria-busy');
+      }
+    }
     // focus stays on the page (the submit button may be hidden by the reset)
     status.focus();
   });
+  if (editing && !action) {
+    const note = document.createElement('p');
+    note.className = 'form-variations-condition';
+    note.textContent = t('formNoAction', 'No Submit action set: submissions aren’t sent anywhere.');
+    form.prepend(note);
+  }
 
   block.replaceChildren(...(header.children.length ? [header] : []), form, status);
   updateVisibility(form, editing);

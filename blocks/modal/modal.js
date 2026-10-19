@@ -9,13 +9,14 @@
  */
 import { loadFragment } from '../fragment/fragment.js';
 import {
-  buildBlock, decorateBlock, loadBlock, loadCSS,
+  buildBlock, decorateBlock, loadBlock, loadCSS, toClassName,
 } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import { componentIdOf } from '../../decorators/data-layer-decorator.js';
 import { pushComponentEvent } from '../../utils/analytics.js';
+import { isEditing } from '../../utils/environment.js';
 import { uniqueId } from '../../utils/ids.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
@@ -59,7 +60,12 @@ function trackVisibleArea(dialog) {
   };
 }
 
-export async function createModal(contentNodes) {
+/**
+ * A modal dialog with the content nodes.
+ * @param {Node[]} contentNodes
+ * @param {{ id?: string }} [options] id: the dialog's stable data-layer id
+ */
+export async function createModal(contentNodes, { id } = {}) {
   const t = await getPlaceholders();
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
   const dialog = document.createElement('dialog');
@@ -86,6 +92,7 @@ export async function createModal(contentNodes) {
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');
+  if (id) block.dataset.cmpId = id;
   document.querySelector('main').append(block);
   decorateBlock(block);
   await loadBlock(block);
@@ -115,8 +122,9 @@ export async function createModal(contentNodes) {
 
   return {
     block,
-    showModal: () => {
-      opener = document.activeElement;
+    showModal: (from) => {
+      // the element that opened it (Safari doesn't focus a clicked button)
+      opener = from || document.activeElement;
       stopTracking = trackVisibleArea(dialog);
       dialog.showModal();
       pushComponentEvent('cmp:show', componentIdOf(block), { interaction: 'dialog' });
@@ -127,15 +135,29 @@ export async function createModal(contentNodes) {
   };
 }
 
-export async function openModal(fragmentUrl) {
+// the fragments being opened: a double click opens one dialog
+const opening = new Set();
+
+/**
+ * Opens a fragment page in a modal.
+ * @param {string} fragmentUrl
+ * @param {{ opener?: Element, id?: string }} [options] opener: focus returns to it on close;
+ *   id: the dialog's data-layer id (else one from the path)
+ */
+export async function openModal(fragmentUrl, { opener, id } = {}) {
   const path = fragmentUrl.startsWith('http')
     ? new URL(fragmentUrl, window.location).pathname
     : fragmentUrl;
-
-  const fragment = await loadFragment(path);
-  if (!fragment) return;
-  const { showModal } = await createModal(fragment.childNodes);
-  showModal();
+  if (opening.has(path)) return;
+  opening.add(path);
+  try {
+    const fragment = await loadFragment(path);
+    if (!fragment) return;
+    const { showModal } = await createModal(fragment.childNodes, { id: id || `modal-${toClassName(path)}` });
+    showModal(opener);
+  } finally {
+    opening.delete(path);
+  }
 }
 
 /**
@@ -145,8 +167,17 @@ export async function openModal(fragmentUrl) {
  */
 export default async function decorate(block) {
   const link = block.querySelector('a[href]');
-  if (!link) return;
   const t = await getPlaceholders();
+  if (!link) {
+    block.replaceChildren();
+    if (isEditing()) {
+      const hint = document.createElement('p');
+      hint.className = 'modal-empty';
+      hint.textContent = t('modalEmpty', 'Modal: choose the page it opens, and its button text.');
+      block.append(hint);
+    }
+    return;
+  }
   const href = link.getAttribute('href');
   const text = link.textContent.trim();
   const button = document.createElement('button');
@@ -157,6 +188,6 @@ export default async function decorate(block) {
   button.setAttribute('aria-haspopup', 'dialog');
   moveInstrumentation(link, button);
   decorateButton(button, { view: 'button', type: 'primary' });
-  button.addEventListener('click', () => openModal(href));
+  button.addEventListener('click', () => openModal(href, { opener: button, id: `${componentIdOf(block)}-dialog` }));
   block.replaceChildren(button);
 }

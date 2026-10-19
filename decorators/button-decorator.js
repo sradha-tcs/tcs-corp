@@ -14,7 +14,7 @@
 import {
   BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, pick,
 } from '../utils/buttons.js';
-import { setLinkTarget } from './link-decorator.js';
+import { announceNewTab, setLinkTarget } from './link-decorator.js';
 
 const BUTTON_CLASSES = ['button', 'icon-button', 'link-button', ...BUTTON_TYPES];
 const ALIGNMENT_CLASSES = BUTTON_ALIGNMENTS.map((alignment) => `button-align-${alignment}`);
@@ -110,6 +110,8 @@ function applyIcon(button, iconName) {
  * @param {string} [options.icon] icon name for the icon view, e.g. "search"
  * @param {string} [options.title] tooltip / title
  * @param {boolean} [options.newWindow] open the link in a new tab
+ * @param {string} [options.newTabHint] the text telling screen reader users it opens a new tab
+ *   (placeholder opensInNewTab), added when newWindow
  * @param {boolean} [options.disabled] render the disabled state
  * @returns {HTMLAnchorElement|HTMLButtonElement} the same element
  */
@@ -127,7 +129,10 @@ export function decorateButton(button, options = {}) {
   }
 
   if (options.title) button.title = options.title;
-  if (options.newWindow) setLinkTarget(button);
+  if (options.newWindow) {
+    setLinkTarget(button);
+    announceNewTab(button, options.newTabHint);
+  }
   if (options.disabled !== undefined) setButtonDisabled(button, options.disabled);
   return button;
 }

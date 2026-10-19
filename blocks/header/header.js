@@ -74,6 +74,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   // the menu opens at its first level
   toggleAllNavSections(navSections, false);
   const open = !expanded && !isDesktop.matches;
+  // the full-screen menu covers the page: the page behind it is out of reach (screen readers too)
+  document.querySelectorAll('main, footer').forEach((el) => { el.inert = open; });
   button.setAttribute('aria-expanded', String(open));
   button.setAttribute('aria-label', expanded ? t('openNavigation', 'Open navigation') : t('closeNavigation', 'Close navigation'));
   // the menu covers the page: e.g. the floating Canvas is hidden while it's open

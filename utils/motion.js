@@ -80,6 +80,23 @@ export function backgroundMotionOf(classList) {
 }
 
 /** the motion moves sideways (the block's wrapper clips it, so the page doesn't scroll sideways) */
+/**
+ * Maps a motion value authored before Animation Type existed onto the canonical classes, unless
+ * the block has an Animation Type (content) / Background animation of its own; without a Motion
+ * Speed it plays slow (the former motions took about 800ms).
+ * @param {DOMTokenList} classList the block's classes
+ * @param {string} motion the canonical class, e.g. motion-fade-in or bg-motion-scale
+ * @returns {boolean} whether it was added
+ */
+export function addLegacyMotion(classList, motion) {
+  const background = motion.startsWith('bg-');
+  const own = background ? backgroundMotionOf(classList) : contentMotionOf(classList);
+  if (!motion || own) return false;
+  classList.add(motion);
+  if (!classList.contains('motion-fast') && !classList.contains('motion-slow')) classList.add('motion-slow');
+  return true;
+}
+
 export const isHorizontal = (motion) => /-(left|right)$/.test(motion);
 
 /**

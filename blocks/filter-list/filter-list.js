@@ -16,6 +16,7 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { isOn, readProperties, textOf } from '../../utils/properties.js';
 import { columnOf, getPages, listOf } from '../../utils/query-index.js';
 import { pageLink, toPublishedPath } from '../../utils/site.js';
+import { contentTypeLabel } from '../../utils/card-list-config.js';
 import { readTagValues } from '../../utils/tags.js';
 import { loadTaxonomy, resolveTags } from '../../utils/taxonomy.js';
 import { currentBreakpoint } from '../../utils/viewport.js';
@@ -377,8 +378,12 @@ export default async function decorate(block) {
         const value = text(page, map.description);
         return value ? element('p', 'filter-list-card-description', value) : null;
       };
+      // the eyebrow: a content type is shown with its taxonomy label (Case study), not its value
+      const eyebrowOf = (page) => (map.eyebrow === 'content-type'
+        ? contentTypeLabel(text(page, map.eyebrow), listOf(columnOf(page, map.tags)), labels)
+        : text(page, map.eyebrow));
       const meta = (page) => labelRow('filter-list-card-meta', [
-        text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy'),
+        eyebrowOf(page), buildTime(page.publishDate, 'dd-mmm-yy'),
       ]);
       const tagRow = (page) => labelRow('filter-list-card-tags', [...tagsOf(page), readingOf(page)]);
 
@@ -393,7 +398,7 @@ export default async function decorate(block) {
         const { style } = config;
         if (style === 'mixed' && isReport(page)) {
           return card('report', [
-            labelRow('filter-list-card-tags', [text(page, map.eyebrow), buildTime(page.publishDate, 'dd-mmm-yy')]),
+            labelRow('filter-list-card-tags', [eyebrowOf(page), buildTime(page.publishDate, 'dd-mmm-yy')]),
             element('h3', 'filter-list-card-title', titleOf(page)),
             description(page),
             action(page, t('download', 'Download'), 'secondary'),
@@ -454,7 +459,8 @@ export default async function decorate(block) {
       }
 
       const status = element('p', `filter-list-count${config.showCount ? '' : ' visually-hidden'}`);
-      status.setAttribute('role', 'status');
+      // a live region announces changes: role status is set after the first count (D-A-25)
+      let announce = false;
       const results = element('div', 'filter-list-results');
       results.id = `${id}-results`;
       const grid = element('div', `filter-list-grid layout-${config.layout}`);
@@ -512,6 +518,10 @@ export default async function decorate(block) {
         grid.replaceChildren();
         results.replaceChildren();
         status.textContent = resultText(total);
+        if (!announce) {
+          announce = true;
+          requestAnimationFrame(() => status.setAttribute('role', 'status'));
+        }
         if (!total) {
           const empty = element('div', 'filter-list-empty');
           // on AEM author there is no query index: say where the results show

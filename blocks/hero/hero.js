@@ -4,11 +4,13 @@ import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { readButtonOptions } from '../../utils/buttons.js';
 import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
-import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
 import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
-import { onVisible } from '../../utils/viewport.js';
-import { backgroundMotionOf, contentMotionOf } from '../../utils/motion.js';
+import { addLegacyMotion } from '../../utils/motion.js';
 import { isAnimation } from '../../utils/media.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
+
+// the new-tab hint of the links (placeholder opensInNewTab), set per decoration
+let newTabHint = '';
 
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
@@ -20,14 +22,18 @@ import { isAnimation } from '../../utils/media.js';
  *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
  *   / italic (secondary) formatting
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
- * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type),
+ * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
+ * before the Additional tab's animations, mapped to them),
  * align-top | align-middle | align-bottom (Vertical Alignment),
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
  * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color).
  */
 
-const MOTIONS = ['motion-fade', 'motion-slide', 'motion-zoom'];
+// Motion Type, authored before the Additional tab's animations: its values as those animations
+const LEGACY_MOTIONS = {
+  'motion-fade': 'motion-fade-in', 'motion-slide': 'motion-fade-up', 'motion-zoom': 'bg-motion-scale',
+};
 // CTA Arrow values, and every value a CTA List item holds besides its link
 const ARROWS = ['right', 'down'];
 const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
@@ -36,17 +42,15 @@ const CTA_STYLES = ['primary', 'secondary'];
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 
 /**
- * Motion Type: the animation plays when the hero comes into view. Without it (none, reduced
- * motion, Universal Editor) the hero shows as is. The Additional tab's Content animation replaces
- * its Fade in / Slide up, its Background animation the Zoom (decorators/motion-decorator.js).
+ * Motion Type authored before: played as the Additional tab's animations (Fade in -> Fade in,
+ * Slide up -> Fade up, Zoom -> Background Scale reveal) by decorators/motion-decorator.js
  */
-function observeMotion(block) {
-  if (contentMotionOf(block.classList)) block.classList.remove('motion-fade', 'motion-slide');
-  if (backgroundMotionOf(block.classList)) block.classList.remove('motion-zoom');
-  if (!MOTIONS.some((motion) => block.classList.contains(motion))) return;
-  if (isEditing() || prefersReducedMotion()) return;
-  block.classList.add('motion-ready');
-  onVisible(block, () => block.classList.add('is-visible'), { threshold: 0.1 });
+function mapLegacyMotion(block) {
+  Object.entries(LEGACY_MOTIONS).forEach(([legacy, motion]) => {
+    if (!block.classList.contains(legacy)) return;
+    block.classList.remove(legacy);
+    addLegacyMotion(block.classList, motion);
+  });
 }
 
 /** a cell holding only links (and Link Type values): the CTA List */
@@ -98,8 +102,9 @@ function buildMedia(block, cell) {
     const label = link.title && link.title !== link.textContent ? link.title : '';
     const animation = createAnimation(link.href, { label, className: 'hero-animation' });
     media.append(animation);
-    // the pause / play button above the overlay and the content, in the block's corner
-    block.append(animation.animationToggle);
+    // the pause / play button above the overlay and the content, in the block's corner (appended
+    // to the block after its content)
+    media.animationToggle = animation.animationToggle;
   } else if (picture) {
     // the hero image is the LCP candidate when the hero opens the page
     const img = picture.querySelector('img');
@@ -170,6 +175,7 @@ function buildCtas(cell, rows, hint) {
       view: 'button',
       type: CTA_STYLES.includes(type) ? type : 'tertiary',
       newWindow,
+      newTabHint,
     });
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
@@ -188,11 +194,18 @@ function buildCtas(cell, rows, hint) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
+
 export default async function decorate(block) {
   const ctaRows = itemRows(block, ['hero-cta'], FIELD_ROW_ITEM);
   const cells = readCells([...block.children].filter((row) => !ctaRows.includes(row)));
   // the editor's placeholder text; on the page the hero doesn't wait for anything
   const hint = await editorItemHint(ctaRows);
+  // placeholders only when a CTA opens a new tab (the hero is often the LCP)
+  newTabHint = '';
+  if ([...block.querySelectorAll('div')].some((cell) => !cell.children.length && cell.textContent.trim() === 'new-window')) {
+    const t = await getPlaceholders();
+    newTabHint = t('opensInNewTab', '(opens in a new tab)');
+  }
   const media = buildMedia(block, cells.media);
   const content = buildContent(cells.content);
   const ctas = buildCtas(cells.ctas, ctaRows, hint);
@@ -203,6 +216,6 @@ export default async function decorate(block) {
   if (ctas && cells.ctas) moveInstrumentation(cells.ctas, ctas);
 
   block.classList.toggle('hero-has-media', !!media);
-  block.replaceChildren(...[media, content].filter(Boolean));
-  observeMotion(block);
+  block.replaceChildren(...[media, content, media?.animationToggle].filter(Boolean));
+  mapLegacyMotion(block);
 }

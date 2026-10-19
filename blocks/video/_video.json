@@ -66,15 +66,15 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "placeholder_image",
+          "name": "poster",
           "label": "Poster Image",
-          "description": "Shown before the video plays, with a play button",
+          "description": "Shown before the video plays, with a play button Shown before the video plays (Click playback).",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "placeholder_imageAlt",
+          "name": "posterAlt",
           "value": "",
           "label": "Poster Image Alt Text"
         },
@@ -176,7 +176,15 @@
           "name": "openInModal",
           "label": "Play in a Pop-up",
           "description": "The play button opens the video in a dialog over the page",
-          "value": false
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "playback"
+              },
+              "click"
+            ]
+          }
         },
         {
           "component": "boolean",
@@ -972,10 +980,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "video",
-      "components": []
-    }
-  ]
+  "filters": []
 }

@@ -507,13 +507,13 @@
           "valueType": "boolean",
           "name": "multiLinks",
           "label": "Multiple links",
-          "description": "On: a list of links. Off: a primary and a secondary button.",
+          "description": "On: the Links list (authored before Link items). Off: the Primary and Secondary CTA. Link items are shown after them either way.",
           "value": false
         },
         {
           "component": "container",
           "name": "links",
-          "label": "Links",
+          "label": "Links (authored before Link items)",
           "multi": true,
           "condition": {
             "===": [
@@ -579,7 +579,7 @@
               ]
             }
           ],
-          "description": "Links authored before Link items. Add links to the teaser with Add (Link) instead."
+          "description": "Kept for teasers authored before; add items with Add instead."
         },
         {
           "component": "select",
@@ -750,7 +750,7 @@
         {
           "component": "container",
           "name": "stats",
-          "label": "Stats",
+          "label": "Stats (authored before Stat items)",
           "multi": true,
           "fields": [
             {
@@ -769,7 +769,7 @@
               "value": ""
             }
           ],
-          "description": "Stats authored before Stat items. Add stats to the teaser with Add (Stat) instead."
+          "description": "Kept for teasers authored before; add items with Add instead."
         },
         {
           "component": "tab",
@@ -984,13 +984,6 @@
             }
           ],
           "description": "Page header: the larger space above a teaser that opens a page."
-        },
-        {
-          "component": "boolean",
-          "valueType": "boolean",
-          "name": "personalization",
-          "label": "Personalization",
-          "value": false
         },
         {
           "component": "tab",

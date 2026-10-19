@@ -102,7 +102,7 @@
           "valueType": "string",
           "name": "authorName",
           "label": "Author",
-          "description": "e.g. Ranil Boteju, Chief Data & Analytics Officer, Lloyds Banking Group"
+          "description": "The person’s name, e.g. Ranil Boteju."
         },
         {
           "component": "reference",
@@ -123,7 +123,7 @@
           "valueType": "string",
           "name": "designationLocation",
           "label": "Designation & Location",
-          "description": "e.g. name, designation, organisation.",
+          "description": "e.g. Chief Data & Analytics Officer, Lloyds Banking Group, London.",
           "value": ""
         },
         {
@@ -154,19 +154,6 @@
           "component": "tab",
           "name": "styleTab",
           "label": "Style"
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "classes",
-          "label": "Style",
-          "value": "",
-          "options": [
-            {
-              "name": "Default",
-              "value": ""
-            }
-          ]
         },
         {
           "component": "select",

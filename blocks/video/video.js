@@ -48,10 +48,11 @@ const seconds = (cell) => Math.max(0, parseFloat(textOf(cell)) || 0);
 /** the URL of a link or path property */
 const urlOf = (cell) => linkOf(cell)?.href || textOf(cell);
 
-// the model fields in dialog order (the poster fields placeholder_image / placeholder_imageAlt
-// are an element group, delivered as one "placeholder" cell, the alt text in the image)
+// the model fields in dialog order; poster / posterAlt (the alt text collapses into the image)
+// were placeholder_image / placeholder_imageAlt, an element group AEM doesn't deliver in
+// key-value blocks
 const FIELDS = [
-  'uri', 'label', 'caption', 'transcript', 'placeholder', 'playback', 'muted', 'loop',
+  'uri', 'label', 'caption', 'transcript', 'poster', 'playback', 'muted', 'loop',
   'controls', 'starttime', 'endtime', 'openinmodal', 'pauseoffscreen', 'captions',
   'captionslanguage', 'captionslabel', 'aspectratio', 'size', 'alignment', 'rounded',
   'privacymode',
@@ -87,8 +88,11 @@ function readConfig(block) {
   const legacy = !props.uri;
   const poster = legacy
     ? block.querySelector('picture')
-    // the grouped cell; separately keyed poster rows are read too
-    : pictureOf(props.placeholder || props.placeholderimage, props.placeholderimagealt);
+    // the poster row; rows of the former placeholder_image group are read too
+    : pictureOf(
+      props.poster || props.placeholder || props.placeholderimage,
+      props.posteralt || props.placeholderimagealt,
+    );
   const link = legacy ? block.querySelector('a[href]')?.href : urlOf(props.uri);
   const captions = urlOf(props.captions);
   const language = textOf(props.captionslanguage) || getLocale().language;
@@ -335,9 +339,10 @@ export default async function decorate(block) {
       });
       media.append(poster);
     } else {
-      // no poster: the player shows its own first frame and play button
+      // no poster: the player shows its own first frame and play button; its controls are the
+      // only way to start (and pause) it, so they stay even with Show Player Controls off
       onVisible(media, () => {
-        const player = buildPlayer(config, { autoplay: false, background: false });
+        const player = buildPlayer({ ...config, controls: true }, { autoplay: false, background: false });
         whenLoaded(block, player);
         media.append(player);
       });

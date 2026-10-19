@@ -27,6 +27,9 @@ export const textOf = (cell) => cell?.textContent.trim() || '';
 /** a toggle: only an authored "true" turns it on, so a missing row means off */
 export const isOn = (cell) => textOf(cell).toLowerCase() === 'true';
 
+/** a toggle that defaults to on in its model: a missing row means on */
+export const isOnByDefault = (cell) => !cell || isOn(cell);
+
 /**
  * A select value from its property row, or from the block classes (block options).
  * @param {Element} block

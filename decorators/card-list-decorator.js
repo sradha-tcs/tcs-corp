@@ -70,7 +70,8 @@ export function buildCardListHeader(read, ids) {
   if (link) {
     const label = textOf(props.linktext);
     if (label) link.textContent = label;
-    const type = legacy ? readButtonOptions(link).type : textOf(props.linktype).toLowerCase();
+    // Link Type collapses into the link as bold / italic (AEM); a linktype row (older markup) too
+    const type = (!legacy && textOf(props.linktype).toLowerCase()) || readButtonOptions(link).type;
     decorateButton(link, { view: 'button', type: ['primary', 'secondary'].includes(type) ? type : 'tertiary' });
     link.dataset.cmpInteraction = 'cta';
     const ctaSlot = element('div', 'list-cta-slot');
@@ -146,7 +147,6 @@ function mediaOf(card, config, breakpoints) {
   if (img) {
     img.alt = card.imageAlt || '';
     img.loading = config.imageLoading;
-    if (config.imageLoading === 'eager') img.fetchPriority = 'high';
   }
   const media = element('div', 'list-card-media');
   media.append(picture);
@@ -159,7 +159,8 @@ function mediaOf(card, config, breakpoints) {
  */
 export function renderCard(card, config, { t, level, kind }) {
   const article = element('article', `list-card list-card-${kind}`);
-  const theme = themeOf(card, config.cardTheme);
+  // Card colour paints panel, report and statistic cards; an image card has its image
+  const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
   if (theme) article.classList.add(`theme-${theme}`);
   const readingTime = readingTimeOf(card, t);
   const tags = config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];
@@ -326,11 +327,16 @@ export function renderCardList(block, {
   const level = cardHeadingLevel(heading);
   const parts = [header];
   let listed = cards;
+  let offset = 0;
   if (config.displayAsTeaser && config.featureFirst && cards.length) {
     const feature = renderFeature(cards[0], config, { t, level, authors });
     if (cards[0].ref) moveInstrumentation(cards[0].ref, feature);
+    // the feature is the first card for the data layer, as in the list's state
+    feature.dataset.cmpId = cards[0].id;
+    feature.dataset.cmpPosition = '1';
     parts.push(feature);
     listed = cards.slice(1);
+    offset = 1;
   }
 
   const viewport = element('div', 'list-scroller');
@@ -345,7 +351,7 @@ export function renderCardList(block, {
     const li = element('li', 'list-item');
     li.dataset.cardId = card.id;
     li.dataset.cmpId = card.id;
-    li.dataset.cmpPosition = String(index + 1);
+    li.dataset.cmpPosition = String(index + 1 + offset);
     li.append(config.displayAsTeaser
       ? renderCard(card, config, { t, level, kind: kindOf(card, config.cardStyle) })
       : renderRow(card, config, { t, level }));
@@ -354,6 +360,11 @@ export function renderCardList(block, {
   });
   list.append(fragment);
   viewport.append(list);
+  // eager images: only the first one gets a high fetch priority
+  if (config.imageLoading === 'eager') {
+    const first = parts.find((part) => part?.querySelector?.('img'))?.querySelector('img') || list.querySelector('img');
+    if (first) first.fetchPriority = 'high';
+  }
   if (listed.length) parts.push(viewport);
 
   // previous / next and the scroll indicator, shown where the breakpoint scrolls
@@ -379,7 +390,6 @@ export function renderCardList(block, {
     loop: config.loop,
     drag: config.drag,
     keyboard: config.keyboard,
-    reducedMotion: config.reducedMotion,
     initialIndex: config.initialIndex,
   });
   previous.dataset.cmpInteraction = 'previous';

@@ -21,6 +21,7 @@ import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
+import { availableId } from '../utils/ids.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -140,6 +141,24 @@ function wrapSectionContent(section, block) {
   });
 }
 
+/** the Additional tab classes a container section passes to its synthetic block */
+const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hideblock|(p|m)[lrtb]-\d+)$/;
+
+/**
+ * The Additional tab of a container section (anchor, hide, animation, spacing) on its synthetic
+ * block, as on blocks: AEM delivers it as classes_* section properties or as section classes.
+ * @param {Element} section
+ * @param {Element} block
+ */
+function applySectionBlockOptions(section, block) {
+  Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))
+    .flatMap(([, value]) => value.split(/[\s,]+/)).map((value) => toClassName(value))
+    .filter(Boolean)
+    .forEach((name) => block.classList.add(name));
+  [...section.classList].filter((name) => SECTION_BLOCK_OPTIONS.test(name))
+    .forEach((name) => block.classList.add(name));
+}
+
 /**
  * Gen Carousel sections (blocks/gen-carousel/_gen-carousel.json): the section's content is
  * wrapped in a synthetic gen-carousel block that turns each piece of content into a slide;
@@ -151,9 +170,13 @@ function buildCarouselSections(container) {
     if (section.querySelector(':scope > .gen-carousel-wrapper')) return;
     const carousel = document.createElement('div');
     carousel.className = 'gen-carousel';
-    const { carouselnavigation: navigation, carouselinterval: interval } = section.dataset;
+    const {
+      carouselnavigation: navigation, carouselinterval: interval, carouselarialabel: label,
+    } = section.dataset;
     if (navigation) carousel.classList.add(toClassName(navigation));
     if (interval) carousel.dataset.interval = interval;
+    if (label?.trim()) carousel.setAttribute('aria-label', label.trim());
+    applySectionBlockOptions(section, carousel);
     wrapSectionContent(section, carousel);
   });
 }
@@ -176,6 +199,7 @@ function buildTabsSections(container) {
     [tabsstyle, tabsalignment, tabsorientation].map((value) => toClassName(value || ''))
       .filter(Boolean).forEach((name) => tabs.classList.add(name));
     if (tabsarialabel?.trim()) tabs.dataset.label = tabsarialabel.trim();
+    applySectionBlockOptions(section, tabs);
     wrapSectionContent(section, tabs);
   });
 }
@@ -187,9 +211,6 @@ function buildTabsSections(container) {
  * properties) become block classes.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
-/** the Additional tab classes a container section passes to its synthetic block */
-const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hideblock|(p|m)[lrtb]-\d+)$/;
-
 function buildColumnsSections(container) {
   // a section with the container's Layout values is one, also when its Style no longer lists
   // Columns Container (Style is a multiselect, as on sections)
@@ -207,14 +228,7 @@ function buildColumnsSections(container) {
     [
       ['per-row', columnsperrow], ['gap', columnsgap], ['align', columnsalign], ['from', columnsfrom],
     ].filter(([, value]) => value?.trim()).forEach(([name, value]) => columns.classList.add(`${name}-${toClassName(value)}`));
-    // the Additional tab of the section: anchor, hide, animation, spacing, as on blocks; AEM
-    // delivers them as classes_* section properties or as section style classes
-    Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))
-      .flatMap(([, value]) => value.split(/[\s,]+/)).map((value) => toClassName(value))
-      .filter(Boolean)
-      .forEach((name) => columns.classList.add(name));
-    [...section.classList].filter((name) => SECTION_BLOCK_OPTIONS.test(name))
-      .forEach((name) => columns.classList.add(name));
+    applySectionBlockOptions(section, columns);
     wrapSectionContent(section, columns);
   });
 }
@@ -270,7 +284,8 @@ export function decorateSectionsWithOptions(container) {
     }
     // Anchor name: the id Anchor List links jump to
     const anchor = toClassName(rows.anchorname?.text.replace(/^#/, '') || '');
-    if (anchor && !document.getElementById(anchor)) section.id = anchor;
+    // a taken id gets a suffix (-2, -3, ...), as block Anchor IDs do
+    if (anchor) section.id = availableId(anchor, section);
     const background = rows.backgroundimage
       && buildSectionBackground(rows.backgroundimage, rows.backgroundimagealt?.text);
     if (background) {
@@ -505,7 +520,7 @@ function autolinkModals(doc) {
     if (!e.defaultPrevented && origin?.href && new URL(origin.href).pathname.includes('/modals/')) {
       e.preventDefault();
       const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
-      openModal(origin.href);
+      openModal(origin.href, { opener: origin });
     }
   });
 }

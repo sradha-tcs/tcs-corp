@@ -37,6 +37,8 @@ export function readTab(block) {
  */
 export default function decorate(block) {
   const tab = readTab(block);
+  // a marker (hidden on the page): not a component of the data layer
+  block.dataset.analytics = 'off';
   const label = document.createElement('p');
   label.className = 'tab-title';
   label.textContent = tab.title;

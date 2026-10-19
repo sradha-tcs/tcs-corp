@@ -24,6 +24,7 @@ module.exports = {
       '*': 4,
       section: 6,
       tabs: 8,
+      'gen-carousel': 6,
       'columns-container': 12,
       'table-list': 10,
       'table-list-card': 6,

@@ -124,10 +124,6 @@
             {
               "name": "Branded",
               "value": "branded"
-            },
-            {
-              "name": "Custom (only the Appearance settings)",
-              "value": "custom-design"
             }
           ],
           "description": "A preset of line style, thickness, colour and width; the Appearance settings override it."
@@ -301,10 +297,6 @@
             {
               "name": "As the variant",
               "value": ""
-            },
-            {
-              "name": "Auto (as the variant)",
-              "value": "auto"
             },
             {
               "name": "25%",
@@ -513,10 +505,6 @@
               "value": "inherit"
             },
             {
-              "name": "Auto (as the variant)",
-              "value": "auto"
-            },
-            {
               "name": "25%",
               "value": "25-percent"
             },
@@ -605,10 +593,6 @@
               "value": "inherit"
             },
             {
-              "name": "Auto (as the variant)",
-              "value": "auto"
-            },
-            {
               "name": "25%",
               "value": "25-percent"
             },
@@ -695,10 +679,6 @@
             {
               "name": "As Appearance",
               "value": "inherit"
-            },
-            {
-              "name": "Auto (as the variant)",
-              "value": "auto"
             },
             {
               "name": "25%",

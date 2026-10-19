@@ -99,9 +99,33 @@ const linkType = (a) => {
   return new URL(a.href, window.location.href).origin === window.location.origin ? 'other' : 'exit';
 };
 
+/** a search form: its submit is measured as one cmp:search, not also as a click */
+const isSearchForm = (form) => !!form && (form.matches('[role="search"]') || !!form.querySelector('input[type="search"]'));
+
+/**
+ * A search term without personal data: e-mail addresses and phone numbers are replaced, the
+ * term is trimmed and cut at 100 characters (data minimisation).
+ * @param {string} value
+ */
+export const redactSearchTerm = (value) => String(value || '').trim()
+  .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, '[email]')
+  .replace(/\+?\d[\d\s().-]{5,}\d/g, '[number]')
+  .slice(0, 100);
+
+/** the position of a clicked element: its own, else its item's (a card), within its block */
+function positionOf(el) {
+  const block = blockOf(el);
+  const item = el.closest('[data-cmp-position]');
+  const value = item && (!block || block.contains(item)) ? item.dataset.cmpPosition : '';
+  return value ? Number(value) : undefined;
+}
+
 function onClick(e) {
   const el = e.target.closest('a[href], button, summary, [role="tab"], [role="button"]');
   if (!el || !tracked(el) || el.matches('summary')) return;
+  if (el.matches('button[type="submit"], button:not([type])') && isSearchForm(el.form)) return;
+  // a drag of a horizontal scroller ends with a click the scroller cancels
+  if (el.closest('[data-dragged="true"]')) return;
   const a = el.closest('a[href]');
   // outside the blocks, the links of the page's text (as the page's clicks)
   if (!blockOf(el) && !(a && a.closest('main'))) return;
@@ -111,7 +135,7 @@ function onClick(e) {
     'xdm:linkURL': a?.href || undefined,
     'xdm:linkType': linkType(a),
     value: el.dataset.cmpValue || undefined,
-    position: el.dataset.cmpPosition ? Number(el.dataset.cmpPosition) : undefined,
+    position: positionOf(el),
     breakpoint: currentBreakpoint(),
   });
 }
@@ -145,12 +169,14 @@ function onMedia(e) {
 function onSubmit(e) {
   const form = e.target;
   if (!(form instanceof HTMLFormElement) || !blockOf(form) || !tracked(form)) return;
-  const search = form.matches('[role="search"]') || !!form.querySelector('input[type="search"]');
-  if (search) {
+  if (isSearchForm(form)) {
     const input = form.querySelector('input[type="search"], input[name="q"], input[type="text"]');
-    pushComponentEvent('cmp:search', componentOf(form), { 'xdm:searchTerm': (input?.value || '').trim().slice(0, 100) });
+    const term = redactSearchTerm(input?.value);
+    if (term) pushComponentEvent('cmp:search', componentOf(form), { 'xdm:searchTerm': term });
     return;
   }
+  // forms that validate themselves (novalidate): only valid submissions
+  if (form.noValidate && !form.checkValidity()) return;
   // field names only: no values (personal data)
   const fields = [...new Set([...form.elements].map((field) => field.name).filter(Boolean))];
   pushComponentEvent('cmp:submit', componentOf(form), {

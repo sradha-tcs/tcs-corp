@@ -26,7 +26,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "CTA",
-              "model": "page-header-cta"
+              "model": "page-header-cta",
+              "linkStyle": "primary"
             }
           }
         }
@@ -880,7 +881,7 @@
           "options": [
             {
               "name": "Text link",
-              "value": ""
+              "value": "tertiary"
             },
             {
               "name": "Primary Button",

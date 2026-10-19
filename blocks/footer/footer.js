@@ -4,7 +4,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
-import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildSocialLinks } from '../../decorators/social-links-decorator.js';
 import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { getSocialLinks } from '../../utils/data.js';
@@ -35,7 +35,7 @@ function fillYear(el) {
   }
 }
 
-function buildLinkList(cell, rows, label, hint) {
+function buildLinkList(cell, rows, label, hint, newTabHint) {
   const rowItems = readLinkRows(rows);
   const items = [...readLinkItems(cell), ...rowItems];
   const rendered = new Set(rowItems.map(({ row }) => row));
@@ -50,6 +50,7 @@ function buildLinkList(cell, rows, label, hint) {
     // footer links are plain links, not the buttons standalone content links become
     removeButtonDecoration(link);
     setLinkTarget(link, newWindow);
+    if (newWindow) announceNewTab(link, newTabHint);
     const li = document.createElement('li');
     if (row) moveInstrumentation(row, li);
     li.append(link);
@@ -94,7 +95,7 @@ async function decorateFooterBar(block) {
     fillYear(copyright);
     bar.append(copyright);
   }
-  const links = buildLinkList(linksRow?.firstElementChild, linkRows, t('footerLinks', 'Footer links'), hint);
+  const links = buildLinkList(linksRow?.firstElementChild, linkRows, t('footerLinks', 'Footer links'), hint, t('opensInNewTab', '(opens in a new tab)'));
   if (links) bar.append(links);
 
   block.replaceChildren(...[canvas, bar].filter(Boolean));
@@ -121,6 +122,7 @@ async function decoratePageFooter(block) {
     socialLinks,
     'footer-social',
     (platform) => t('followUsOn', 'Follow us on {platform}', { platform }),
+    t('opensInNewTab', '(opens in a new tab)'),
   );
   if (social) footer.append(social);
 

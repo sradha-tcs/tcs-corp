@@ -225,32 +225,6 @@
           "description": "CTAs authored before CTA items. Add CTAs to the hero with Add (CTA) instead."
         },
         {
-          "component": "select",
-          "valueType": "string",
-          "name": "classes_motion",
-          "label": "Motion Type",
-          "description": "Animates the hero when it comes into view (not when reduced motion is preferred). Content animation and Background animation (Additional tab) replace it when set: Fade in and Slide up by Content animation, Zoom by Background animation.",
-          "value": "",
-          "options": [
-            {
-              "name": "None",
-              "value": ""
-            },
-            {
-              "name": "Fade in",
-              "value": "motion-fade"
-            },
-            {
-              "name": "Slide up",
-              "value": "motion-slide"
-            },
-            {
-              "name": "Zoom (image)",
-              "value": "motion-zoom"
-            }
-          ]
-        },
-        {
           "component": "tab",
           "name": "styleSection",
           "label": "Style"
@@ -1189,8 +1163,12 @@
           "name": "linkArrow",
           "label": "CTA Arrow",
           "description": "Direction of the arrow next to the CTA text.",
-          "value": "right",
+          "value": "",
           "options": [
+            {
+              "name": "Auto (down for links to sections of this page)",
+              "value": ""
+            },
             {
               "name": "Right",
               "value": "right"

@@ -76,7 +76,8 @@
             "template": {
               "name": "Consent Checkbox Field",
               "model": "field-checkbox",
-              "classes": "field-checkbox"
+              "classes": "field-checkbox",
+              "required": true
             }
           }
         }
@@ -137,6 +138,12 @@
           "name": "formDescription",
           "label": "Form Description",
           "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "formAction",
+          "label": "Submit action",
+          "description": "Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so."
         },
         {
           "component": "select",
@@ -1128,7 +1135,7 @@
           "valueType": "boolean",
           "name": "required",
           "label": "Mandatory Field (*)",
-          "value": false
+          "value": true
         },
         {
           "component": "text",

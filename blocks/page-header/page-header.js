@@ -34,7 +34,8 @@ import { resolveTags } from '../../utils/taxonomy.js';
 
 const LAYOUTS = ['landing', 'secondary', 'article', 'display'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
-const CTA_STYLES = ['primary', 'secondary'];
+// Text link is stored as tertiary (and as '' before): both render as a text link
+const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
 
 /** the layout: the block's Layout, or from the Page Type */
@@ -63,7 +64,7 @@ function buildDescription(text) {
  * The CTAs (the CTA List multifield's, then the CTA items), each in its CTA Link Style (Text
  * link, Primary or Secondary Button)
  */
-function buildCtas(cell, rows, hint) {
+function buildCtas(cell, rows, hint, newTabHint) {
   const ctas = document.createElement('div');
   ctas.className = 'page-header-ctas';
   const items = readLinkRows(rows);
@@ -71,7 +72,9 @@ function buildCtas(cell, rows, hint) {
     link, newWindow, values, row,
   }) => {
     const type = values.find((value) => CTA_STYLES.includes(value)) || 'tertiary';
-    decorateButton(link, { view: 'button', type, newWindow });
+    decorateButton(link, {
+      view: 'button', type, newWindow, newTabHint,
+    });
     if (row) moveInstrumentation(row, link);
     ctas.append(link);
   });
@@ -140,7 +143,7 @@ function buildMetaRow(metadata, tags, t) {
 /** landing: the featured image, the page's LCP candidate */
 function buildMedia(metadata) {
   const picture = buildImage(
-    metadata.featuredImage ? { src: metadata.featuredImage, alt: '' } : null,
+    metadata.featuredImage ? { src: metadata.featuredImage, alt: metadata.imageAlt || '' } : null,
     IMAGE_BREAKPOINTS,
   );
   if (!picture) return null;
@@ -175,7 +178,7 @@ export default async function decorate(block) {
   const eyebrow = layout === 'display' ? tags
     : textElement('p', 'page-header-eyebrow', metadata.contentType) || tags;
   const description = buildDescription(metadata.description);
-  const ctas = buildCtas(props.ctas, ctaRows, hint);
+  const ctas = buildCtas(props.ctas, ctaRows, hint, t('opensInNewTab', '(opens in a new tab)'));
 
   // intro: the title side; summary: the description side
   const intro = document.createElement('div');

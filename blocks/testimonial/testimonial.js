@@ -6,7 +6,7 @@ import { pictureOf } from '../../decorators/image-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
 import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import {
-  isOn, optionOf, readProperties, textOf,
+  isOn, isOnByDefault, optionOf, readProperties, textOf,
 } from '../../utils/properties.js';
 
 /*
@@ -58,7 +58,7 @@ export default async function decorate(block) {
   if (!isOn(props.hideeyebrow) && textOf(props.eyebrow)) {
     figure.append(fromCell(props.eyebrow, 'p', 'testimonial-eyebrow'));
   }
-  if (isOn(props.showdescription) && textOf(props.description)) {
+  if (isOnByDefault(props.showdescription) && textOf(props.description)) {
     figure.append(fromCell(props.description, 'blockquote', 'testimonial-description'));
   }
   // Hide Author Details: the author, its image and designation are not shown

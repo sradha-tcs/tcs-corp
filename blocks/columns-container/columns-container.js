@@ -42,7 +42,12 @@ function createColumn(marker) {
   [...marker.classList].filter((name) => COLUMN_OPTIONS.test(name))
     .forEach((name) => column.classList.add(name));
   const anchor = [...marker.classList].find((name) => name.startsWith('anchor-'));
-  if (anchor) column.id = anchor;
+  if (anchor) {
+    // the column has the id, not the hidden marker (block options gave it the id first)
+    const id = marker.id || anchor;
+    marker.removeAttribute('id');
+    column.id = id;
+  }
   return column;
 }
 

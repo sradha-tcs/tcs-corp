@@ -393,6 +393,11 @@
   outline-offset: var(--space-100);
 }
 
+/* cards that clip their content (overflow: hidden): the ring inside their edge */
+.card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-link:focus-visible::before {
+  outline-offset: calc(-2 * var(--border-width-200));
+}
+
 /* panel, report and statistic cards: a coloured panel, the action at the bottom */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) {
   --list-card-bg: var(--list-dark);

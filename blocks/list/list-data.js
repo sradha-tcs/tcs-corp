@@ -75,7 +75,7 @@ export function normalizeConfig(raw = {}) {
     // parent
     parentPath: normalizePath(get('parentpath')),
     parentUseCurrentPage: flag(get('parentusecurrentpage'), true),
-    childDepth: directOnly ? 1 : integer(get('childdepth'), 1, { min: 1, max: 10 }),
+    childDepth: directOnly ? 1 : integer(get('childdepth'), 2, { min: 1, max: 10 }),
     // tags
     rootPath: normalizePath(get('rootpath')),
     tagsUseCurrentPage: flag(get('tagsusecurrentpage'), true),

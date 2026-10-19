@@ -30,9 +30,10 @@ export default function decorate(block) {
   const title = buildHeading(props.title, props.titletype, 'quote-title');
   if (title) header.append(title);
 
-  const card = document.createElement('figure');
+  // the quote and its author in a figure (figcaption belongs to a figure)
+  const card = document.createElement('div');
   card.className = 'quote-card';
-  const text = document.createElement('div');
+  const text = document.createElement('figure');
   text.className = 'quote-card-text';
   if (textOf(props.quote)) text.append(fromCell(props.quote, 'blockquote', 'quote-text'));
   if (textOf(props.author)) text.append(fromCell(props.author, 'figcaption', 'quote-author'));

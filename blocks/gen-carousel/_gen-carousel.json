@@ -65,6 +65,13 @@
           ]
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "carouselAriaLabel",
+          "label": "Accessible name",
+          "description": "Names the carousel for screen reader users, e.g. Customer stories (default: Carousel)."
+        },
+        {
           "component": "number",
           "valueType": "number",
           "name": "carouselInterval",
