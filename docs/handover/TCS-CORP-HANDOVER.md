@@ -12,14 +12,14 @@ date: "October 19, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.23 |
+| Version | 2.24 |
 | Date | 19 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -55,6 +55,7 @@ date: "October 19, 2026"
 | 2.21 | 19 October 2026 | Delivery team | Header and Conversation Canvas as two zones (PR #92): the logo bar at the top with no gap before the hero (`--header-reserved` is the logo bar); the header Canvas row on the bottom of the Home hero (the first screen), fixed at the bottom of the window as soon as the page scrolls (52 / 62 / 20px); short and landscape screens keep the hero content clear of the row; finding F-98 |
 | 2.22 | 19 October 2026 | Delivery team | **Columns Container** (new section container, like Tabs Container and Gen Carousel): columns that hold default content and any block (except Page Header, Footer and TCS Header), each started by a **Column** item; Layout: Column widths, Gap, Vertical alignment, Side by side from; Additional tab on the container and on each Column. Edge Delivery has no blocks inside blocks, so the Columns block keeps default content only in its columns. 6.14, 6.32 |
 | 2.23 | 19 October 2026 | Delivery team | Columns Container: **Columns per row** (Layout tab: Automatic, 1, 2, 3, 4): rows follow from the number of Column items (6 Columns at 3 per row: 2 rows of 3; Automatic: up to 4 per row). Column widths apply to rows of two columns. 6.32 |
+| 2.24 | 19 October 2026 | Delivery team | Columns Container fix: the Column item is **Column Break** (its template name is its block class in AEM; it was "Column", rendered as `column`, so columns weren't built); columns are plain wrappers with the Column Break as their label, so editor updates of the components in a column work in place; content authored with "Column" still works. 6.32, finding F-99 |
 
 ## Review and Approval
 
@@ -115755,14 +115756,14 @@ All other fields keep their default values.
 content and any block, as a section does. It is the supported way to put blocks side by side:
 Edge Delivery allows a single level of nesting (blocks and default content in sections), so
 columns of blocks are a section container, like Tabs Container (6.21) and Gen Carousel (6.24).
-Code: `blocks/columns-container`, `blocks/column-break` (the Column item), `scripts.js`
+Code: `blocks/columns-container`, `blocks/column-break` (the Column Break item), `scripts.js`
 `buildColumnsSections`; see the block's README.
 
 **Authoring:**
 
 1. Add a **Columns Container** to the page, where sections are added.
-2. Inside it, add a **Column**, then the components of the column after it; then the next
-   **Column** and its components. Columns sit side by side in rows of Columns per row
+2. Inside it, add a **Column Break**, then the components of the column after it; then the next
+   **Column Break** and its components. Columns sit side by side in rows of Columns per row
    (Automatic: up to four); more Columns start a new row.
 3. Set the layout in the Columns Container's properties.
 
@@ -115778,16 +115779,18 @@ Code: `blocks/columns-container`, `blocks/column-break` (the Column item), `scri
 | Layout | Side by side from (`columnsFrom`) | Tablet (600px), Desktop (900px), Large desktop (1200px) | Desktop | Stacked below the width |
 | Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks (5.6) | — | Animation Type moves the columns in one after another |
 
-**Column** (item): *Column name* (shown in the editor only, to tell the columns apart) and the
-Additional tab, whose Anchor ID, Hide block and Padding / Margin apply to the column.
+**Column Break** (item): *Column name* (shown in the editor only, to tell the columns apart) and the
+Additional tab, whose Anchor ID, Hide block and Padding / Margin apply to its column. In edit mode
+the Column Break is the label at the top of its column: select it there.
 
 **Allowed in a column:** Text, Title, Image, Button and every block except Page Header, Footer
 and TCS Header (page-level and site chrome).
 
 **Business rules:**
 
-1. Each Column starts a column; the components after it, up to the next Column, are its content;
-   content before the first Column is a column of its own.
+1. Each Column Break starts a column; the components after it, up to the next Column Break, are
+   its content; content before the first Column Break is a column of its own. A column is a plain
+   wrapper (not a block), so editing a component in it updates only that component.
 2. Below Side by side from the columns are stacked in order; above it they sit side by side in a
    grid of Columns per row, further columns in new rows (the number of Column items sets the
    rows, unlike the Columns block's Columns and Rows numbers); blocks fill their column's width.
@@ -123383,6 +123386,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-95 | List, Filter List (skeleton) | A skeleton approximates its block; when the real content is taller (long titles, more rows) the page grows below it (Filter List desktop 851 → 1893 px in the test) | Small layout shift below the block, mostly below the fold | Accepted; the skeleton count follows the breakpoint (List: its columns or Items visible) | P3 | Development | 6.16, 6.17 |
 | F-96 | Block animation (verification) | Content and Background animation were checked on the local preview (desktop and mobile, reduced motion, slow and failing index) but not in Universal Editor on AEM author (no author access); nothing is prepared in edit mode by design | Editor behaviour to confirm | Check an animated Teaser and a List in Universal Editor edit and preview mode (docs/animation/README.md, K); from 2.20, Preview plays the animations (F-97) | P2 | QA, Content authors | 5.6 |
 | F-97 | Block animation (Universal Editor) | On Scroll animations didn't play in Universal Editor Preview: a page opened in edit mode prepared no animations, and On Scroll blocks scrolled past in edit mode played invisibly and were used up. The published site wasn't affected (checked with wheel scrolling on aem.live) | Authors saw no On Scroll animation when reviewing in Preview | Fixed in 2.20 (PR #108): blocks are prepared in edit mode, nothing plays or is used up there, switching to Preview plays the blocks not played yet | Closed (2.20) | Development | 5.6 |
+| F-99 | Columns Container | The Column item's template name was "Column": AEM renders a block with the class of its template name, so it came out as `column` (loading a non-existent `blocks/column`) instead of `column-break`, and the columns weren't built. The Column also held its column's content, so editor updates of a component in a column found the Column instead of the component and reloaded the page | The container couldn't be validated in Universal Editor | Fixed in 2.24: template name "Column Break"; columns are plain wrappers with the Column Break as label; `column` blocks authored before are read as Column Breaks. Verified with editor update events (a block, a paragraph and a Column Break edited, a block added: updated in place) | Closed (2.24) | Development | 6.32 |
 | F-98 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and floated at the bottom of the window only after 250–400px of scrolling; the reserved header space (F-93) left a blank area above the hero until the header loaded | Canvas not at the bottom of the Hero / window as in Figma; gap and layout shift above the hero | Fixed in 2.21 (PR #92): the row lies on the bottom of the Home hero (the first screen) and is fixed there as soon as the page scrolls; the header reserves only the logo bar; on screens under 640px high the hero title is smaller, and when the hero content is taller than the screen (phones in landscape) the row stays below it; only the row takes pointer events | Closed (2.21) | Development | 6.1, 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)

@@ -1,16 +1,17 @@
+import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties, textOf } from '../../utils/properties.js';
 
 /*
- * Column: an item of a Columns Container section (blocks/columns-container). It marks where a
- * column starts and holds its Column name (shown in the editor only); the components after it,
- * up to the next Column, are the column's content. The Columns Container turns it into the
- * column element, so on the page it shows only that content.
+ * Column Break: an item of a Columns Container section (blocks/columns-container). It marks where
+ * a column starts and holds its Column name; the components after it, up to the next Column
+ * Break, are the column's content. It stays in its column as the column's label, shown in
+ * Universal Editor edit mode only (to select it and edit its properties), hidden on the page.
  */
 
 /**
- * Reads the properties of a Column (key-value rows, or one row per field). Kept on the element,
- * so they can be read again after its rows are gone.
- * @param {Element} block The Column block
+ * Reads the properties of a Column Break (key-value rows, or one row per field). Kept on the
+ * element, so they can be read again after its rows are gone.
+ * @param {Element} block The Column Break block
  * @returns {{ title: string }}
  */
 export function readColumn(block) {
@@ -26,13 +27,13 @@ export function readColumn(block) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
-  // the Columns Container made it a column (its content is the column's); nothing to do
-  if (block.classList.contains('columns-container-column')) return;
-  // a Column outside a Columns Container: only its name, in the editor
+export default async function decorate(block) {
   const { title } = readColumn(block);
+  const t = await getPlaceholders();
   const label = document.createElement('p');
-  label.className = 'columns-container-label';
-  label.textContent = title;
+  label.className = 'column-break-label';
+  const column = block.closest('.columns-container-column');
+  const index = column ? [...column.parentElement.children].indexOf(column) + 1 : 0;
+  label.textContent = title || t('columnLabel', 'Column {n}', { n: index || 1 });
   block.replaceChildren(label);
 }

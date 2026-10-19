@@ -8,8 +8,8 @@ section container, like Tabs Container and Gen Carousel.
 ## For authors
 
 1. Add a **Columns Container** to the page (where sections are added).
-2. Inside it, add a **Column**, then the components of that column after it; add the next
-   **Column**, then its components, and so on: columns sit side by side in rows of Columns per
+2. Inside it, add a **Column Break**, then the components of that column after it; add the next
+   **Column Break**, then its components, and so on: columns sit side by side in rows of Columns per
    row (Automatic: up to 4), more Columns start a new row.
 3. Set the layout in the Columns Container's properties.
 
@@ -25,8 +25,8 @@ section container, like Tabs Container and Gen Carousel.
 | Layout | Side by side from | Tablet (600px), Desktop (900px), Large desktop (1200px); stacked below | Desktop |
 | Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks; Animation Type moves the columns in one after another | — |
 
-**Column** (an item): *Column name* (shown in the editor only) and the Additional tab, whose
-Anchor ID, Hide block and Padding / Margin apply to the column. Content before the first Column
+**Column Break** (an item): *Column name* (shown in the editor only) and the Additional tab, whose
+Anchor ID, Hide block and Padding / Margin apply to its column. Content before the first Column
 is a column of its own. Allowed in a column: default content and every block except Page
 Header, Footer and TCS Header.
 
@@ -40,9 +40,12 @@ selected; an empty column says what to add.
   properties become classes (`per-row-3`, `layout-1-2`, `gap-small`, `align-middle`,
   `from-tablet`) and its
   `classes_*` properties (Additional tab) block classes.
-- `columns-container.js`: each Column (`blocks/column-break`) becomes its column element
-  (`columns-container-column`, so the Column's block options apply to it) and receives the
-  components after it; class `columns-container-{1-4}`: the columns per row (Columns per row,
+- `columns-container.js`: each Column Break (`blocks/column-break`; template name "Column Break",
+  so AEM renders it with the class `column-break`) starts a plain column element
+  (`columns-container-column`, not a block, so Universal Editor updates of the components in it
+  find their own block); the Column Break stays in it as its label (edit mode only) and its
+  Hide block, Anchor ID and spacing classes are copied to the column. Content authored when the
+  item was named "Column" (class `column`) is read as Column Breaks; class `columns-container-{1-4}`: the columns per row (Columns per row,
   else the number of Columns, at most 4); the grid places further columns in new rows.
 - `columns-container.css`: a grid, one column below the breakpoint; blocks in a column fill the
   column's width.

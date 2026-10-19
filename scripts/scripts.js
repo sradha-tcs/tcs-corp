@@ -190,6 +190,8 @@ function buildTabsSections(container) {
 function buildColumnsSections(container) {
   container.querySelectorAll(':scope > .section.columns-container-section').forEach((section) => {
     if (section.querySelector(':scope > .columns-container-wrapper')) return;
+    // Column Breaks authored when the item was named "Column" are rendered as class "column"
+    section.querySelectorAll(':scope > div > .column').forEach((el) => el.classList.replace('column', 'column-break'));
     const columns = document.createElement('div');
     columns.className = 'columns-container';
     const {

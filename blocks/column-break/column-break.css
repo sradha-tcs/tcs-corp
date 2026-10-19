@@ -1,14 +1,19 @@
 /*
- * Column (an item of a Columns Container, blocks/columns-container): inside a container it is
- * the column (styles in columns-container.css); a Column elsewhere shows only its name, in the
- * editor.
+ * Column Break (an item of a Columns Container, blocks/columns-container): the label of its
+ * column, shown in Universal Editor edit mode only, so the column can be selected.
  */
-.column-break:not(.columns-container-column) {
+.column-break,
+.column-break-wrapper {
   display: none;
 }
 
-html.adobe-ue-edit .column-break:not(.columns-container-column) {
+html.adobe-ue-edit .column-break-wrapper,
+html.adobe-ue-edit .column-break {
   display: block;
-  outline: var(--border-width-100) dashed var(--color-border-secondary);
+}
+
+html.adobe-ue-edit .column-break .column-break-label {
+  margin: 0 0 var(--space-200);
   color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
 }
