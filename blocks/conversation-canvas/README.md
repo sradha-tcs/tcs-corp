@@ -191,3 +191,10 @@ first screen, on the hero, and floats at the bottom of the window as soon as the
   and the full journey), `canvas-journey-primary`, `-primary-text`, `-primary-dark`,
   `canvas-journey-fallback` (footer without a Canvas), `canvas-journey-header` (Canvas in the nav
   page).
+
+## Block audit (19 October 2026)
+
+- **Search page** (`searchPage`): a search opens it with `?q=`, unless an integration handles the cancelable `conversation-canvas:search` event; without either, a status says search isn't available.
+- The search term in the data layer is redacted (utils/privacy.js).
+- Button items have their own model (`conversation-canvas-button`, Type as `buttonVariant`).
+- The Primary dock's sub-page panel follows its toggles in the DOM (keyboard order).

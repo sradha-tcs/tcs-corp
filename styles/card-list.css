@@ -589,7 +589,7 @@
 .card-list .list-card.theme-brand {
   --list-card-bg: var(--color-bg-brand);
   --list-card-fg: var(--white-1000);
-  --list-card-muted: var(--white-600);
+  --list-card-muted: var(--white-900); /* 80% white gave 4.0:1 on the brand fill */
   --list-card-strong: var(--slate-100);
 }
 

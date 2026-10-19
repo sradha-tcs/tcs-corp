@@ -433,3 +433,7 @@ order; tags any / all / none / depth / current page), page metadata and fallback
 deduplication, sorting (title and last modified, both orders, manual), maximum items (set, empty,
 invalid), ids, card kinds and the eight responsive combinations. Rendering, scrolling,
 accessibility and analytics are checked in the browser (see the pull request).
+
+## Block audit (19 October 2026)
+
+- The header CTA style (Primary, Secondary) is applied; Card colour applies to panel, report and statistic cards; Previous / Next keep the focus; Component ID and Reduced motion support are gone from the dialog (reduced motion is always honoured).

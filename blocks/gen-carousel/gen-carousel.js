@@ -46,6 +46,8 @@ export default async function decorate(block) {
   const track = document.createElement('div');
   track.className = 'gen-carousel-slides';
   track.id = `${id}-slides`;
+  // a scrolling region keyboard users can focus (arrow keys scroll it)
+  track.tabIndex = 0;
   track.setAttribute('aria-live', 'polite');
 
   const contents = [...block.children];
