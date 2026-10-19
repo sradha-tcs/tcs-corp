@@ -187,6 +187,9 @@ function buildTabsSections(container) {
  * properties) become block classes.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
+/** the Additional tab classes a container section passes to its synthetic block */
+const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hideblock|(p|m)[lrtb]-\d+)$/;
+
 function buildColumnsSections(container) {
   container.querySelectorAll(':scope > .section.columns-container-section').forEach((section) => {
     if (section.querySelector(':scope > .columns-container-wrapper')) return;
@@ -201,10 +204,13 @@ function buildColumnsSections(container) {
       ['per-row', columnsperrow], ['layout', columnslayout], ['gap', columnsgap],
       ['align', columnsalign], ['from', columnsfrom],
     ].filter(([, value]) => value?.trim()).forEach(([name, value]) => columns.classList.add(`${name}-${toClassName(value)}`));
-    // the Additional tab of the section: anchor, hide, animation, spacing (classes, as on blocks)
+    // the Additional tab of the section: anchor, hide, animation, spacing, as on blocks; AEM
+    // delivers them as classes_* section properties or as section style classes
     Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))
       .flatMap(([, value]) => value.split(/[\s,]+/)).map((value) => toClassName(value))
       .filter(Boolean)
+      .forEach((name) => columns.classList.add(name));
+    [...section.classList].filter((name) => SECTION_BLOCK_OPTIONS.test(name))
       .forEach((name) => columns.classList.add(name));
     wrapSectionContent(section, columns);
   });
