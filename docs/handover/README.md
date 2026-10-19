@@ -7,7 +7,7 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 
 | File | Description |
 |---|---|
-| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.20, 18 October 2026 (3,417 pages; one table of contents with 1,232 linked entries, one page numbering, PDF bookmarks down to the variations). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (596) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (31) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
+| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.21, 19 October 2026 (3,417 pages; one table of contents with 1,232 linked entries, one page numbering, PDF bookmarks down to the variations). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (596) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (31) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
 | [TCS-CORP-HANDOVER.md](TCS-CORP-HANDOVER.md) | The editable source of the PDF (Markdown) |
 | [screenshots/](screenshots/README.md) | The 628 figures of the document (596 screenshots, 32 dialog references) |
 | [../proposals/](../proposals/README.md) | Design proposals that follow up on the handover (e.g. the Cards and Card refactoring) |
@@ -91,6 +91,13 @@ In 2.17 each volume needed at most 2.5 GB with `-j 1`. The memory watchdog (`com
 frees on demand. If a volume grows past the limit, split it at a chapter heading (`VOLUMES` in
 `build-volumes.mjs`). The scripts are in the git-ignored `.handover-work/` folder
 (`build-volumes.mjs`, `build-index.mjs`, `compile-pdf.sh`, `typst-watch.sh`).
+
+A change confined to a few chapters can be applied without rebuilding the document: render only
+the changed chapters (from their level-1 heading to the next) with the volume template and their
+original `first-page` and `total-pages`, check that each fits its original page count and that
+its headings stay on their pages (the table of contents and bookmarks point to them), and replace
+the content of the changed pages in the existing PDF, keeping the page objects. 2.21 was applied
+this way (pages 21, 24 and 3366–3370; every other page unchanged).
 
 Update the revision history (Document Control) and Part 16 when the code, the content model or
 an open item changes. When a screenshot's example changes, update its Field Entry Table, its
