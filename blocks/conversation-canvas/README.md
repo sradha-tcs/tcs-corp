@@ -175,6 +175,12 @@ first screen, on the hero, and floats at the bottom of the window as soon as the
 - Hover states of the Text links and Dark navigation aren't in Figma; they reuse the pill's blue
   outline.
 
+## Animation and loading
+
+- **Content animation** (Additional tab) moves `.conversation-canvas-content` (intro, search row, buttons) in when the Canvas comes into view.
+- **Background animation** (Additional tab) reveals the Canvas background: its base colour (white, or Dark), the brand glows of `::before` (blue and yellow: Default blue left / yellow right, Secondary the reverse) or the BG Background Image. The values are read from the block, never redefined (`decorators/motion-decorator.js`, `docs/animation/README.md`).
+- **Skeletons**: the Primary navigation shows four pills, and the menu of Default / Secondary four rows, while the query index loads for longer than 150ms (`skeletonWhile`); a failure leaves them empty, as before, and is logged.
+
 ## Validation
 
 - Unit tests: `npm test` (`test/conversation-canvas/canvas-journey.test.mjs`: roles from

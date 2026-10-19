@@ -12,6 +12,7 @@ import {
 import {
   loadSections,
 } from '../../scripts/aem.js';
+import { prepareMotion } from '../../decorators/motion-decorator.js';
 
 /**
  * Loads a fragment.
@@ -48,5 +49,9 @@ export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
   const fragment = await loadFragment(path);
-  if (fragment) block.replaceChildren(...fragment.childNodes);
+  if (fragment) {
+    block.replaceChildren(...fragment.childNodes);
+    // the block animations of the fragment, once it is in the page (decorators/motion-decorator.js)
+    await prepareMotion(block);
+  }
 }

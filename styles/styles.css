@@ -1058,6 +1058,71 @@ main .section.rounded {
   overflow: hidden;
 }
 
+/*
+ * Skeleton loading (decorators/skeleton-decorator.js): placeholders shaped like a block while
+ * its data loads, in the block's own layout classes; the authored rows are hidden meanwhile. The
+ * shapes take the text colour, so they suit light and dark blocks; they pulse gently, and stay
+ * still for reduced motion.
+ */
+.skeleton-loading:has(> .skeleton) > :not(.skeleton) {
+  display: none;
+}
+
+.skeleton .skeleton-bone {
+  display: block;
+  border-radius: var(--radius-s);
+  background-color: color-mix(in srgb, currentcolor 10%, transparent);
+}
+
+.skeleton .skeleton-line {
+  height: 1rem;
+}
+
+.skeleton .skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton .skeleton-title {
+  width: 80%;
+  height: 1.75rem;
+}
+
+.skeleton .skeleton-media {
+  border-radius: var(--radius-l);
+  aspect-ratio: var(--skeleton-ratio, 16 / 9);
+}
+
+.skeleton .skeleton-pill {
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+}
+
+.skeleton .skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+}
+
+.skeleton.skeleton-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-200);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton .skeleton-bone {
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
 /* block options (the Additional tab of every block dialog) */
 
 /*

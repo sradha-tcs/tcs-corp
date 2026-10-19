@@ -8,12 +8,13 @@ import {
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
-  loadSections,
   loadCSS,
+  sampleRUM,
   toClassName,
   getMetadata,
 } from './aem.js';
 import { applyBlockOptions } from '../decorators/block-options-decorator.js';
+import { prepareMotion } from '../decorators/motion-decorator.js';
 import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorator.js';
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
@@ -403,6 +404,20 @@ function prefetchData(main) {
 }
 
 /**
+ * Loads the sections in order, as loadSections (aem.js) does; each section's block animations
+ * are prepared once its blocks are decorated, before it is shown (decorators/motion-decorator.js).
+ * @param {Element} main
+ */
+async function loadMainSections(main) {
+  const sections = [...main.querySelectorAll('div.section')];
+  for (let i = 0; i < sections.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await loadSection(sections[i], prepareMotion);
+    if (i === 0 && sampleRUM.enhance) sampleRUM.enhance();
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -419,7 +434,10 @@ async function loadEager(doc) {
     // the header's space is kept before it loads (no layout shift)
     reserveHeaderSpace();
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await loadSection(main.querySelector('.section'), async (section) => {
+      await prepareMotion(section);
+      await waitForFirstImage(section);
+    });
   }
 
   try {
@@ -463,7 +481,7 @@ async function loadLazy(doc) {
   if (footer) footer.style.display = 'none';
   loadFooter(footer);
 
-  await loadSections(main);
+  await loadMainSections(main);
   if (footer) footer.style.display = '';
   trackBlocks(main);
   addErrorBackButton(main);

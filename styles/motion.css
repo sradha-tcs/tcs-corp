@@ -1,0 +1,194 @@
+/*
+ * Block animations: Animation Type (content) and Background animation (Additional tab), run by
+ * decorators/motion-decorator.js when a block comes into view or, with Animation Trigger On Page
+ * Load, when its content is ready. Motion Speed sets the durations below (one keyframe per effect,
+ * whatever the speed). Loaded only on pages with an animated block. A target waits on the first frame of its animation (paused) until it runs;
+ * every class is removed when the animation has ended. The first frames apply only on screen,
+ * without a reduced motion preference and outside Universal Editor, so content is never left
+ * hidden.
+ */
+:root {
+  /* Motion Speed: Medium (the default) */
+  --motion-duration: 600ms;
+  --motion-duration-background: 900ms;
+  --motion-stagger: 120ms;
+
+  /* an even ease (accelerate, then settle) keeps the movement visible to its end */
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-distance: var(--space-1000);
+  --motion-distance-slide: var(--space-2000);
+  --motion-scale: 0.9;
+}
+
+/*
+ * Motion Speed per block: Fast 300ms, Medium 600ms, Slow 900ms for the content; the background
+ * takes 1.5 times as long and repeated items start a fifth of the duration apart. Set on every
+ * block, so a nested block doesn't take the speed of the block around it.
+ */
+.block {
+  --motion-duration: 600ms;
+  --motion-duration-background: 900ms;
+  --motion-stagger: 120ms;
+}
+
+.block.motion-fast {
+  --motion-duration: 300ms;
+  --motion-duration-background: 450ms;
+  --motion-stagger: 60ms;
+}
+
+.block.motion-slow {
+  --motion-duration: 900ms;
+  --motion-duration-background: 1350ms;
+  --motion-stagger: 180ms;
+}
+
+/* the effect of each Content animation */
+.motion-fade-in { --motion-name: motion-fade-in; }
+.motion-fade-up { --motion-name: motion-fade-up; }
+.motion-fade-down { --motion-name: motion-fade-down; }
+.motion-fade-left { --motion-name: motion-fade-left; }
+.motion-fade-right { --motion-name: motion-fade-right; }
+.motion-slide-up { --motion-name: motion-slide-up; }
+.motion-slide-down { --motion-name: motion-slide-down; }
+.motion-slide-left { --motion-name: motion-slide-left; }
+.motion-slide-right { --motion-name: motion-slide-right; }
+.motion-scale-in { --motion-name: motion-scale-in; }
+
+/* the effect of each Background animation */
+.bg-motion-fade-in { --bg-motion-name: bg-motion-fade-in; }
+.bg-motion-reveal { --bg-motion-name: bg-motion-reveal; }
+.bg-motion-wipe-right { --bg-motion-name: bg-motion-wipe-right; }
+.bg-motion-wipe-left { --bg-motion-name: bg-motion-wipe-left; }
+.bg-motion-wipe-up { --bg-motion-name: bg-motion-wipe-up; }
+.bg-motion-scale { --bg-motion-name: bg-motion-scale; }
+
+/* items of a staggered block start one after another (--motion-index set on each) */
+.motion-target {
+  --motion-index: 0;
+}
+
+/* sideways motion: the block's wrapper clips it, so the page doesn't scroll sideways */
+.motion-clip {
+  overflow-x: clip;
+}
+
+/* the authored background colour, painted under the block's layers while it animates */
+.bg-motion-color::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  border-radius: inherit;
+  background-color: var(--bg-motion-color);
+  pointer-events: none;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  :root:not(.adobe-ue-edit) .motion-target {
+    animation: var(--motion-name) var(--motion-duration) var(--motion-ease) both paused;
+    animation-delay: calc(var(--motion-index) * var(--motion-stagger));
+  }
+
+  :root:not(.adobe-ue-edit) .motion-target.motion-running {
+    animation-play-state: running;
+  }
+
+  :root:not(.adobe-ue-edit) .bg-motion-color::after,
+  :root:not(.adobe-ue-edit) .bg-motion-overlay::before,
+  :root:not(.adobe-ue-edit) .bg-motion-target {
+    animation: var(--bg-motion-name) var(--motion-duration-background) var(--motion-ease) both paused;
+  }
+
+  :root:not(.adobe-ue-edit) .bg-motion-run.bg-motion-color::after,
+  :root:not(.adobe-ue-edit) .bg-motion-run.bg-motion-overlay::before,
+  :root:not(.adobe-ue-edit) .bg-motion-target.bg-motion-running {
+    animation-play-state: running;
+  }
+}
+
+@keyframes motion-fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes motion-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-distance));
+  }
+}
+
+@keyframes motion-fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--motion-distance)));
+  }
+}
+
+@keyframes motion-fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(var(--motion-distance));
+  }
+}
+
+@keyframes motion-fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--motion-distance)));
+  }
+}
+
+@keyframes motion-slide-up {
+  from { transform: translateY(var(--motion-distance-slide)); }
+}
+
+@keyframes motion-slide-down {
+  from { transform: translateY(calc(-1 * var(--motion-distance-slide))); }
+}
+
+@keyframes motion-slide-left {
+  from { transform: translateX(var(--motion-distance-slide)); }
+}
+
+@keyframes motion-slide-right {
+  from { transform: translateX(calc(-1 * var(--motion-distance-slide))); }
+}
+
+@keyframes motion-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(var(--motion-scale));
+  }
+}
+
+@keyframes bg-motion-fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes bg-motion-reveal {
+  from { clip-path: inset(50% 50%); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes bg-motion-wipe-right {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes bg-motion-wipe-left {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes bg-motion-wipe-up {
+  from { clip-path: inset(100% 0 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes bg-motion-scale {
+  from {
+    opacity: 0;
+    transform: scale(var(--motion-scale));
+  }
+}
