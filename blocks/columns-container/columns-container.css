@@ -18,7 +18,7 @@
 .columns-container.columns-container-3 { --columns-container-count: 3; }
 .columns-container.columns-container-4 { --columns-container-count: 4; }
 
-/* Column widths: two columns only (three or four are always equal) */
+/* Column widths: rows of two columns only (three or four per row are always equal) */
 .columns-container.columns-container-2.layout-1-2 {
   --columns-container-template: minmax(0, 1fr) minmax(0, 2fr);
 }

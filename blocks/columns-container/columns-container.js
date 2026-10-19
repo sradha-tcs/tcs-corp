@@ -8,10 +8,23 @@ import { readColumn } from '../column-break/column-break.js';
  * Column, are the column's content: default content and any block, as in a section (Edge
  * Delivery has no blocks in blocks). The Column element becomes the column, so its Additional tab
  * (spacing, Hide block, Anchor ID) applies to it. Content before the first Column is a column of
- * its own. Layout: Column widths, Gap, Vertical alignment and Side by side from (block classes).
+ * its own. Layout: Columns per row (more Columns start new rows), Column widths, Gap, Vertical
+ * alignment and Side by side from (block classes).
  */
 
 const MAX_COLUMNS = 4;
+
+/**
+ * The columns per row: Columns per row (per-row-1 to per-row-4), else Automatic: as many as
+ * there are Columns, at most MAX_COLUMNS. More Columns start new rows.
+ * @param {Element} block
+ * @param {number} count the number of columns
+ * @returns {number}
+ */
+function perRow(block, count) {
+  const chosen = Number([...block.classList].find((name) => /^per-row-[1-4]$/.test(name))?.slice(8));
+  return chosen || Math.min(count, MAX_COLUMNS) || 1;
+}
 
 /**
  * loads and decorates the block
@@ -54,7 +67,7 @@ export default async function decorate(block) {
     }
   });
 
-  block.classList.add(`columns-container-${Math.min(columns.length, MAX_COLUMNS) || 1}`);
+  block.classList.add(`columns-container-${perRow(block, columns.length)}`);
   block.replaceChildren(...columns);
   if (!columns.length) {
     const hint = document.createElement('p');
