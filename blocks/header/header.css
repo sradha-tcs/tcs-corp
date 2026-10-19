@@ -407,6 +407,13 @@ header .nav-canvas .conversation-canvas {
   border-radius: 0;
   padding: 0 0 var(--conversation-canvas-float-offset);
   background-color: transparent;
+}
+
+/*
+ * only the row takes pointer events: the block's box stays on the hero while its row floats, and
+ * (above the header bar while it floats) it would take the clicks meant for the bar's menu button
+ */
+header .nav-canvas .conversation-canvas-search {
   pointer-events: auto;
 }
 
