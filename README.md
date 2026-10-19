@@ -1,9 +1,9 @@
 # Content packages
 
-> **18 October 2026, 13:35: install the new block library package.** The previous state of this branch is tagged `home-content-package_18-Oct-2026_1335`.
+> **19 October 2026, 14:56: install the new block library package.** The previous state of this branch is tagged `home-content-package_19-Oct-2026_1456`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.4.zip`: block library and curated design pages (replaces 1.0.3). It adds the page **Motion Speed and Animation Trigger** to the Animation folder: Fast, Medium and Slow, On Scroll and On Page Load, with and without background animation and skeleton.
-> - `block-library/metadata-language-master.csv` (307 rows, 38 columns) for `/content/tcs-corp/language-master/en/metadata`, and `block-library/metadata-en-rollout.csv` (the same rows at /en paths): 1 new row.
+> - `block-library/tcs-corp-block-library-content-1.0.5.zip`: block library and curated design pages (replaces 1.0.4). It adds the **Columns Container** folder: columns of blocks; widths and columns per row; alignment, gap and breakpoints.
+> - `block-library/metadata-language-master.csv` (311 rows, 38 columns) for `/content/tcs-corp/language-master/en/metadata`, and `block-library/metadata-en-rollout.csv` (the same rows at /en paths): 4 new rows.
 > - `block-library/placeholders.csv`, `taxonomy.csv`, `tags.csv` and the `data-*.csv` sheets are regenerated from the code and the pages.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
@@ -11,7 +11,7 @@
 
 ## Project handover
 
-- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.20 (18 October 2026, 3,417 pages; with block animation, Motion Speed, Animation Trigger, skeleton loading and animations in Universal Editor Preview): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
+- `handover/TCS-CORP-HANDOVER.pdf`: the project handover, version 2.24 (19 October 2026, 3,420 pages; with the Columns Container): architecture, site structure, every component with its fields and variations, metadata, sheets, operations, troubleshooting and the findings register. The same file as `docs/handover/TCS-CORP-HANDOVER.pdf` on main.
 
 ## /en metadata sheet after the language-master rollout
 
@@ -62,8 +62,8 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.4.zip` (1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
-  - The block library under `/content/tcs-corp/language-master/en/block-library`: 172 pages covering every block and its variations (with the Animation folder), 558 labelled examples.
+- `block-library/tcs-corp-block-library-content-1.0.5.zip` (1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+  - The block library under `/content/tcs-corp/language-master/en/block-library`: 176 pages covering every block and its variations (with the Animation and Columns Container folders).
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
   - 118 DAM assets (71 new, 47 reused, merged).
