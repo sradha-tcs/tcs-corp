@@ -13,7 +13,7 @@
 
 Only the new Columns Container pages of the block library, without the rest of the block library:
 
-- `columns-container/tcs-corp-columns-container-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Widths and columns per row; Alignment, gap and breakpoints. Its filter covers only that folder, so nothing else in AEM changes. The images are those of the block library package already installed.
+- `columns-container/tcs-corp-columns-container-content-1.0.1.zip`: AEM content package (1.0.1: adds the example with the section fields, Style Highlight, a Background Image and an Anchor name, to Columns of blocks) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Widths and columns per row; Alignment, gap and breakpoints. Its filter covers only that folder, so nothing else in AEM changes. The images are those of the block library package already installed.
 - `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 new rows of the language-master Metadata sheet. Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
 - The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.5.zip`, which updates the start page too.
 
