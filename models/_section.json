@@ -26,15 +26,30 @@
           "description": "The label shown for this section in the Content Tree"
         },
         {
-          "component": "multiselect",
+          "component": "select",
+          "valueType": "string",
           "name": "style",
           "label": "Style",
+          "value": "",
           "options": [
             {
-              "name": "Highlight",
-              "value": "highlight"
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Grey",
+              "value": "bg-grey"
+            },
+            {
+              "name": "Dark",
+              "value": "bg-dark"
+            },
+            {
+              "name": "Dark Green",
+              "value": "bg-dark-green"
             }
-          ]
+          ],
+          "description": "The background colour of the section, as the Teaser's BG Color: only the colour (the section keeps its own spacing, inside the colour); text, links and buttons turn light on Dark and Dark Green."
         },
         {
           "component": "select",

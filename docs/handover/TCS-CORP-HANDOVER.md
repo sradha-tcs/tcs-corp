@@ -12,14 +12,14 @@ date: "October 19, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.32 |
+| Version | 2.33 |
 | Date | 20 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields, 2.26 the Button block and equal-width columns, 2.27 the block ecosystem audit (docs/audit/), 2.28 the built-in Columns and Button hidden, 2.29 the re-audit, 2.30 the container sections' Additional tab, 2.31 the publication of package 1.0.10, 2.32 the Teaser and Columns Container options (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields, 2.26 the Button block and equal-width columns, 2.27 the block ecosystem audit (docs/audit/), 2.28 the built-in Columns and Button hidden, 2.29 the re-audit, 2.30 the container sections' Additional tab, 2.31 the publication of package 1.0.10, 2.32 the Teaser and Columns Container options, 2.33 the Section Style colours (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -64,6 +64,7 @@ date: "October 19, 2026"
 | 2.30 | 20 October 2026 | Delivery team | Found on aem.live after publishing package 1.0.9: AEM doesn't deliver a section's `classes_*` fields, so the Additional tab of the Tabs Container, Columns Container and Gen Carousel had no effect; their fields are now `container*` (delivered as data attributes) and applied to the container (R-L-1). Filter List cards fall back to the page's own image (R-L-2). Package 1.0.10. 6.32, F-102 |
 | 2.31 | 20 October 2026 | Delivery team | **Package 1.0.10 published and reindexed**: the 312 pages of the block library, the curated design pages and their supporting pages previewed and published (312 / 312) and reindexed (312 / 312, Admin API `preview`, `live`, `index` per page), after the language-master Placeholders (109 texts) and Metadata (311 rows) sheets of 1.0.9. Verified on aem.live: the query index lists 307 language-master pages (306 with an image); the container sections' Additional tab is delivered (`data-containeranimation`, `data-containeranimationspeed`) and applied (the animated Columns Container plays Fade up, Slow); Filter List cards show the pages' images (10 per block on the library and Insights pages); the re-audit fixes checked on the live pages (form field keys, Table header rows, Accordion items, Video posters, Column Breaks in tabs, Button blocks, Hero new-tab hint, TATA logo link, Table List items without sample text). Open: publishing the non-image DAM assets (Lottie JSON, videos, captions), design sign-off. F-102 |
 | 2.32 | 20 October 2026 | Delivery team | **Teaser and Columns Container options**: Teaser **Title Type** sets the heading level and the size (H1 64px, H2 48px, H3 40px, H4 28px, H5 24px, H6 20px on desktop); **Title size** removed (it is merged into Title Type; values authored before are no longer delivered and the title follows its level). **Image position** adds Top and Bottom (above / below the text at every width, a 16:9 image by default); Left and Right sit beside the text from 600px (was 900px, so Right also shows in the editor's narrower canvas). **BG Color** is only the background colour: the panel padding it added (2.5rem / 1.5rem, 7.5rem / 5rem from 900px) is gone; space comes from the Additional tab's Padding. New **Buttons side by side** toggle (CTAs and links in a row, wrapping; off: one below the other). **List arrow** Down right turns the arrows of buttons and Text links too, not only List links. Columns Container: **BG Color** (`containerBgColor`: Default, Grey, Dark, Dark green, as the Teaser's; only the colour; light text, links and buttons on the dark ones) and **Gap None**. Library: Title size examples become Title Type H1–H6 examples, BG Color teasers get Padding fields (4rem / 2.5rem), new pages and examples (Teaser image positions, buttons side by side, arrows on buttons; Columns Container BG Color and Gap None). Verified on the local preview at 1440 / 700 / 390px and with the full browser run. F-103 |
+| 2.33 | 20 October 2026 | Delivery team | **Section Style colours**: the Section's **Style** is a single choice of Default, Grey, Dark and Dark Green (classes `bg-grey`, `bg-dark`, `bg-dark-green`), as the Teaser's BG Color: only the background colour; the section's own spacing moves inside the colour (no space added); on Dark and Dark Green text, links and buttons turn light (Primary buttons white). **Highlight** is no longer offered (sections authored with it keep their grey band). Shared token `--color-bg-dark-green` (#003b39) for Section, Teaser and Columns Container; Primary buttons also white on the Columns Container's dark BG Colors. Library: Highlight sections migrated to Grey; Dark and Dark Green examples on "Sections: variations". F-104 |
 
 ## Review and Approval
 
@@ -253,7 +254,7 @@ The objectives below are derived from the delivered implementation. Business KPI
 | Component | Kind | Purpose | Status |
 |:--------------|:---------|:-------------------------------------------------------|:----------------|
 | Text, Title, Image, Button | Default content | Rich text, headings with Title Type, images with alt text, links styled as buttons (Views, Type, Icon, Alignment) | Implemented |
-| Section | Section | Container with Style (Highlight), Width Type (Full / Fixed), Rounded edge, Background Image, Image alt text, Anchor name | Implemented |
+| Section | Section | Container with Style (Default, Grey, Dark, Dark Green), Width Type (Full / Fixed), Rounded edge, Background Image, Image alt text, Anchor name | Implemented |
 | Gen Carousel | Section type | A section whose content (Hero, Teaser) becomes carousel slides; Navigation and Autoplay interval | Implemented |
 | Tabs Container | Section type | A section whose Tab items and following components become tabs | Implemented |
 | Accordion (+ Accordion Item) | Block | Collapsible items built on `<details>` | Implemented |
@@ -2542,7 +2543,7 @@ All other page-level values (SEO, social, card, author, dates, region, featured,
 | Field | Name | Type | Effect |
 |:------------|:--------------------|:----------------|:-------------------------------------------------|
 | Section Name | `name` | text | Label in the Content Tree only |
-| Style | `style` | multiselect: Highlight | Section class `highlight` |
+| Style | `style` | select: Default, Grey, Dark, Dark Green (2.33; Highlight before) | Section class `bg-grey`, `bg-dark`, `bg-dark-green` (`highlight` for sections authored before) |
 | Width Type | `sectionWidth` | select: Full Width (default), Fixed Width | `fixed-width` class for Fixed Width |
 | Rounded edge | `roundedEdge` | boolean | `rounded` class |
 | Background Image | `backgroundImage` | reference | `.section-background` wrapper with an optimised image (2000px ≥ 600px, 750px below), `has-background` class |
@@ -2909,7 +2910,7 @@ loadEager()
 | AB | Title (Card 3 › Content) | Cyber defence and resilience | No | Card heading; statistic number | Up to 60 characters (Recommended); stat: the number | None |
 | AC | Description (Card 3 › Content) | Protect identities, data and operations. | No | Card text | 1–3 sentences; lists and links allowed | None |
 | AD | Link (Card 3 › Link) | Select the page or enter /en/services/cybersecurity | No | Card destination | A page or `https://…` | Unsafe schemes (`javascript:`, `data:`) drop the card |
-| (AE) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (AE) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | AF | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
 | (AG) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
@@ -4037,7 +4038,7 @@ To add a section: select **Main** in the content tree, select **Add (+)** and ch
 | Field | Type | Options / default | Effect |
 |:------------|:--------------|:--------------|:------------------------------------------------------------|
 | Section Name | Text | (empty) | Label of the section in the content tree only; not shown on the site |
-| Style | Multi-select | Highlight | Adds the class `highlight`: light grey background (`--color-bg-secondary`), no outer margin, vertical padding of one section spacing |
+| Style | Select | Default, Grey, Dark, Dark Green (2.33) | Grey `bg-grey` (`--color-bg-secondary`), Dark `bg-dark` (`--color-bg-neutral`), Dark Green `bg-dark-green` (`--color-bg-dark-green`): only the background colour, the section spacing moves inside it (no outer margin, vertical padding of one section spacing); Dark and Dark Green turn text, links and buttons light (Primary white). Highlight (`highlight`, the same grey) is no longer offered; sections authored with it keep it |
 | Width Type | Select | Full Width (default), Fixed Width | Full Width: the blocks and content fill the screen edge to edge (no side gutter, no maximum width); Fixed Width limits the section box (and its background) to the content width (90rem), centres it and keeps the side gutter (1.5rem, 2.5rem from 600 px, 5rem from 1200 px) |
 | Rounded edge | Boolean | off | Adds `rounded`: corners with radius 1rem (`--radius-l`), content clipped |
 | Background Image | AEM Assets reference | (empty) | An image behind the section content, scaled to cover the section |
@@ -4475,7 +4476,7 @@ Container). **Item**: a component that can only be added inside its parent (6.0.
 | 2 | Footer | Footer | Block (auto page footer) and block (authored footer bar on the footer page) | 6.2 | 7 | Conversation Canvas Page; Copyright Text (`{year}`); Link List (Link Title, Link Path, Link Type) | Footer page (inherited `footer`, else `/{locale}/references/footer`); `/{locale}/data/social-links.json`; Conversation Canvas page; placeholders | Implemented (no Additional tab) |
 | 3 | Fragment | Fragment | Block | 6.3 | 5 | Reference | The referenced page (`{path}.plain.html`) | Implemented |
 | 4 | Page Header | Page Header | Block | 6.4 | 13 | Layout (Default, Landing, Secondary, Article, Display); CTA List (CTA Title, CTA Link, CTA Link Type, CTA Link Style) | Page metadata (Title, Description, tags, `page-type`, `content-type`, `publish-date`, `reading-time`, `author-id`, `author`, `featured-image`, `listen-link`); `/{locale}/data/authors.json`; taxonomy; placeholders | Implemented |
-| 5 | Section | Section | Section | 6.5 | 6 | Section Name; Style (Highlight); Width Type; Rounded edge; Background Image; Image alt text; Anchor name | AEM Assets (background image) | Implemented |
+| 5 | Section | Section | Section | 6.5 | 6 | Section Name; Style (Default, Grey, Dark, Dark Green); Width Type; Rounded edge; Background Image; Image alt text; Anchor name | AEM Assets (background image) | Implemented |
 | 6 | Text | Text | Default content | 6.6 | 7 | Rich text | None | Implemented |
 | 7 | Title | Title | Default content | 6.7 | 6 | Title; Title Type (h1 to h6) | None | Implemented |
 | 8 | Image | Image | Default content | 6.8 | 2 | Image; Alt Text | AEM Assets | Implemented |
@@ -12920,6 +12921,14 @@ All other fields keep their default values.
 
 ## 6.5 Section Block
 
+> **Changed in 2.33.** The Section's **Style** is one of **Default**, **Grey**, **Dark** and **Dark
+> Green**, as the Teaser's BG Color: only the background colour of the band (classes `bg-grey`,
+> `bg-dark`, `bg-dark-green`); the section's own spacing moves inside the colour, nothing is added.
+> On Dark and Dark Green the text, links and buttons turn light and Primary buttons are white.
+> **Highlight** is no longer offered: where the variations below (screenshots of 2.32) show
+> Highlight, choose Grey, which looks the same. Sections authored with Highlight keep their grey
+> band.
+
 ### 6.5.1 Component Purpose
 
 **Business Objective:** Give every page a consistent rhythm of horizontal bands, with the design system's spacing, content widths and a small set of authorable backgrounds, so that authors can structure pages without custom code.
@@ -12927,7 +12936,7 @@ All other fields keep their default values.
 **Business Use Cases:**
 
 - Splitting a page into topics (introduction, services, case studies, contact).
-- Highlighting a band of content with a light grey background.
+- Colouring a band of content: Grey, Dark or Dark Green (Style, 2.33).
 - Placing content over a full-cover background image (campaign bands, banners built from default content).
 - Constraining a band to the narrower content width, optionally with rounded corners (a "card-like" band).
 - Making a band the target of an Anchor List or a `#link` (chapter navigation).
@@ -12986,7 +12995,7 @@ None: the section has no tag field and reads no page tags, taxonomy or metadata 
 | (B) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | C | Text (Text) | We help enterprises reimagine their business with consulting, technology and engineering services that create **measurable value** across the value chain. | No | Card text | 1–3 sentences; lists and links allowed | None |
-| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | E | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
 | (F) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
@@ -13062,7 +13071,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | (B) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | C | Text (Text) | We help enterprises reimagine their business with consulting, technology and engineering services that create **measurable value** across the value chain. | No | Card text | 1–3 sentences; lists and links allowed | None |
-| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | E | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
 | (F) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
@@ -13136,7 +13145,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | (B) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | C | Text (Text) | We help enterprises reimagine their business with consulting, technology and engineering services that create **measurable value** across the value chain. | No | Card text | 1–3 sentences; lists and links allowed | None |
-| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (D) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | E | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
 | (F) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
@@ -13297,7 +13306,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Callout | Field Name | Example Value | Mandatory | Business Purpose | What Author Should Enter | Validation Rules |
 |:--|:----------|:----------|:------|:----------|:----------|:----------|
-| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | B | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
 | (C) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
@@ -13375,7 +13384,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Callout | Field Name | Example Value | Mandatory | Business Purpose | What Author Should Enter | Validation Rules |
 |:--|:----------|:----------|:------|:----------|:----------|:----------|
-| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | (B) | Width Type (Section properties) | Fixed Width | No | Width of the band | Fixed Width for a 90rem band on wide screens | Enforced: Full Width or Fixed Width |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | C | Title (Title) | Industries we serve | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
@@ -13453,7 +13462,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Callout | Field Name | Example Value | Mandatory | Business Purpose | What Author Should Enter | Validation Rules |
 |:--|:----------|:----------|:------|:----------|:----------|:----------|
-| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | (B) | Width Type (Section properties) | Fixed Width | No | Width of the band | Fixed Width for a 90rem band on wide screens | Enforced: Full Width or Fixed Width |
 | (C) | Rounded edge (Section properties) | On | No | Rounded corners | Combine with Highlight / background and Fixed Width | None |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
@@ -13631,7 +13640,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | (O) | Title Type (Title) | h2 | Recommended | Heading level h1–h6 | Follow the page outline | Enforced: h1, h2, h3, h4, h5, h6 |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | P | Text (Text) | We help enterprises reimagine their business with consulting, technology and engineering services that create **measurable value** across the value chain. | No | Card text | 1–3 sentences; lists and links allowed | None |
-| (Q) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (Q) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | (R) | Anchor name (Section properties) | services | No | Section id for Anchor List and `#links` | Lower case, no spaces, unique on the page | None in the model; normalised by code |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
 | S | Title (Title) | Services | Recommended (an empty Title renders an empty heading or nothing) | The heading text | Short, descriptive, sentence case | None in the model |
@@ -14442,7 +14451,7 @@ Reproduces the screenshot `screenshots/section-anchored.jpg` of this variation. 
 | Field Name | Field Type | Mandatory | Multi Value | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
 |:----------------------|:--------------|:-----------|:-------|:--------------|:----------------------|:--------------------------------|:------------------|:----------------------|
 | Section Name (`name`) | Text | No | No | (empty) | Label in the content tree | Short, descriptive name of the band's topic | None | Services overview |
-| Style (`style`) | Multi-select | No | Yes | (empty) | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) | highlight |
+| Style (`style`) | Multi-select | No | Yes | (empty) | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) | highlight |
 | Width Type (`sectionWidth`) | Select | No | No | Full Width (`full-width`) | Width of the band | Fixed Width for a 90rem band on wide screens | Enforced: Full Width or Fixed Width | fixed-width |
 | Rounded edge (`roundedEdge`) | Boolean | No | No | false | Rounded corners | Combine with Highlight / background and Fixed Width | None | true |
 | Background Image (`backgroundImage`) | Reference (AEM Assets) | No | No | (empty) | Image behind the section | Wide, high-resolution image; important subject in the centre | None | /content/dam/tcs-corp/campaigns/ai-band.jpg |
@@ -95581,7 +95590,7 @@ for meaningful lines).
 | — | Component (Section › Add (+)) | Separator | Yes | Adds the Separator to the page | Select the section in the content tree, choose Add (+) and pick Separator | Only components the section allows (section filter) |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | B | Text (Text) | Cloud migration and operations services move, modernise and run workloads on any cloud, with security and cost control built in from day one. | No | Card text | 1–3 sentences; lists and links allowed | None |
-| (C) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (C) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | D | Text (Text) | In banking, we modernise core platforms so institutions can launch new products faster and serve customers across every channel. | No | Card text | 1–3 sentences; lists and links allowed | None |
 | — | Component (Section › Add (+)) | Separator | Yes | Adds the Separator to the page | Select the section in the content tree, choose Add (+) and pick Separator | Only components the section allows (section filter) |
@@ -95891,7 +95900,7 @@ brand 600 (#011627), primary brand 500, secondary brand 400, inverse white.
 
 | Callout | Field Name | Example Value | Mandatory | Business Purpose | What Author Should Enter | Validation Rules |
 |:--|:----------|:----------|:------|:----------|:----------|:----------|
-| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Text | Yes | Adds the Text to the page | Select the section in the content tree, choose Add (+) and pick Text | Only components the section allows (section filter) |
 | B | Text (Text) | Our consulting teams help enterprises define a clear technology strategy, align it with business goals and turn it into a roadmap that delivers measurable value. | No | Card text | 1–3 sentences; lists and links allowed | None |
 | — | Component (Section › Add (+)) | Separator | Yes | Adds the Separator to the page | Select the section in the content tree, choose Add (+) and pick Separator | Only components the section allows (section filter) |
@@ -97467,7 +97476,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Callout | Field Name | Example Value | Mandatory | Business Purpose | What Author Should Enter | Validation Rules |
 |:--|:----------|:----------|:------|:----------|:----------|:----------|
-| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Highlight for a grey band | Enforced: options list (Highlight) |
+| (A) | Style (Section properties) | Highlight | No | Background style of the band | Choose Grey for a grey band (Highlight before 2.33) | Enforced: options list (Default, Grey, Dark, Dark Green) |
 | — | Component (Section › Add (+)) | Separator | Yes | Adds the Separator to the page | Select the section in the content tree, choose Add (+) and pick Separator | Only components the section allows (section filter) |
 | (B) | Use section padding (Separator › Spacing) | On | No | No own spacing | On at the edges of padded sections | — |
 | — | Component (Section › Add (+)) | Title | Yes | Adds the Title to the page | Select the section in the content tree, choose Add (+) and pick Title | Only components the section allows (section filter) |
@@ -123435,6 +123444,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-101 | All blocks | Block ecosystem audit: the code and the local preview assumed delivery rules AEM doesn't follow (tab rows in blocks that aren't key-value, "name, classes" first cells of items, no grouped fields in key-value blocks, no classes_* on the built-in Columns, template values stored on new components); forms were empty, tables and accordions had empty rows, videos had no poster on the published site; contrast tokens failed WCAG 1.4.3 site-wide | Broken forms and media on the published site; accessibility failures | Corrected in 2.27 (register in docs/audit/BLOCK-ECOSYSTEM-AUDIT.md section 10; the rules are in AGENTS.md "AEM delivery rules"; the library preview reproduces them). Deferred minors and blocked dependencies (Analytics, consent, Target, author access) listed there | Closed (2.27), deferred items open | Development | docs/audit |
 | F-102 | All blocks | Re-audit: the first audit's fixes held, except D-A-10, D-A-19 (List), D-B-4 (Hero), D-B-16 (dark Hero), D-C-13, D-C-17 (regressed), D-D-25 (live); 46 new defects (9 major), several only visible on the published site (Lottie alt as link text, lower-cased form keys, DAM JSON / video 404) or with PR #119's new combinations (blocks and Tabs inside tabs) | Inaccessible or broken Heroes, Teasers, Tabs, Forms and Videos in specific cases | Corrected in 2.29 (register docs/audit/REAUDIT-2026-10-20.md); operations: publish non-image DAM assets; content migrations listed there | Closed (2.29), verified on aem.live after publishing package 1.0.10 (2.31); operations and deferred items open | Development, Operations | docs/audit |
 | F-103 | Teaser, Columns Container | Teaser options didn't do what authors expected: Title Type changed only the heading level (the size came from the layout or Title size), Image position Right applied only from 900px (the editor canvas is often narrower), BG Color also added padding, List arrow changed only List links, and buttons were always stacked; the Columns Container had no background colour or zero gap | Authors couldn't get the layouts they set in the dialog | Corrected in 2.32: one Title Type (level and size), Image position Left / Right / Top / Bottom (side by side from 600px), BG Color only the colour, List arrow on every link, Buttons side by side; Columns Container BG Color and Gap None | Closed (2.32); content action: Teasers that relied on Title size or on the BG Color padding (set Title Type, or Padding in the Additional tab) | Development, Content | blocks/teaser, blocks/columns-container |
+| F-104 | Section | The Section offered only Highlight (grey); dark or dark-green bands needed a block with its own colour option, and Primary buttons would disappear on a dark band | Authors couldn't colour a whole band of content | Corrected in 2.33: Style Default / Grey / Dark / Dark Green (only the colour, light text and white Primary buttons on the dark ones); Highlight no longer offered | Closed (2.33); content action: none (Highlight sections keep their grey band; switch them to Grey when edited) | Development, Content | models/_section.json, styles/styles.css |
 | F-98 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and floated at the bottom of the window only after 250–400px of scrolling; the reserved header space (F-93) left a blank area above the hero until the header loaded | Canvas not at the bottom of the Hero / window as in Figma; gap and layout shift above the hero | Fixed in 2.21 (PR #92): the row lies on the bottom of the Home hero (the first screen) and is fixed there as soon as the page scrolls; the header reserves only the logo bar; on screens under 640px high the hero title is smaller, and when the hero content is taller than the screen (phones in landscape) the row stays below it; only the row takes pointer events | Closed (2.21) | Development | 6.1, 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)
