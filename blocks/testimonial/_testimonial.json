@@ -424,7 +424,15 @@
               "name": "Scale reveal",
               "value": "bg-motion-scale"
             }
-          ]
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "bgColor"
+              },
+              "grey"
+            ]
+          }
         },
         {
           "component": "select",

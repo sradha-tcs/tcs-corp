@@ -57,5 +57,18 @@ export function vimeoEmbedUrl(url, params = {}, { start = 0 } = {}) {
   return src.href;
 }
 
+/**
+ * The text alternative of an animation link: AEM delivers the Alt text of a non-image reference
+ * as the link text (without one, the text is the file path); a title from older markup is kept.
+ * @param {HTMLAnchorElement} link
+ * @returns {string} '' for a decorative animation
+ */
+export function animationLabel(link) {
+  const text = link.textContent.trim();
+  const title = (link.title || '').trim();
+  if (title && title !== text) return title;
+  return text && !isAnimation(text) && !/^(\/|https?:)/i.test(text) ? text : '';
+}
+
 /** the MIME type of a video file URL, e.g. video/mp4 */
 export const videoType = (source) => `video/${source.split('?')[0].split('.').pop()}`;

@@ -24721,7 +24721,32 @@
             "value": "mobile-image-bottom"
           }
         ],
-        "description": "Image above or below the text on mobile (narrower than 900px). Default: above, or in the text order for Text split."
+        "description": "Image above or below the text on mobile (narrower than 900px). Default: above, or in the text order for Text split.",
+        "condition": {
+          "or": [
+            {
+              "!": {
+                "var": "classes"
+              }
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                ""
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "no-image"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -24731,7 +24756,7 @@
         "value": "",
         "options": [
           {
-            "name": "Default (10:9)",
+            "name": "Default (10:9; original in Text split)",
             "value": ""
           },
           {
@@ -24801,23 +24826,11 @@
               }
             },
             {
-              "or": [
+              "===": [
                 {
-                  "===": [
-                    {
-                      "var": "classes"
-                    },
-                    ""
-                  ]
+                  "var": "classes"
                 },
-                {
-                  "===": [
-                    {
-                      "var": "classes"
-                    },
-                    "no-image"
-                  ]
-                }
+                ""
               ]
             }
           ]
@@ -24978,7 +24991,7 @@
         "options": [
           {
             "name": "Text link",
-            "value": ""
+            "value": "tertiary"
           },
           {
             "name": "List",
@@ -25052,7 +25065,7 @@
         "options": [
           {
             "name": "Text link",
-            "value": ""
+            "value": "tertiary"
           },
           {
             "name": "List",
@@ -25528,7 +25541,32 @@
             "name": "Scale reveal",
             "value": "bg-motion-scale"
           }
-        ]
+        ],
+        "condition": {
+          "or": [
+            {
+              "!!": {
+                "var": "bgColor"
+              }
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "background"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "card"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -26557,7 +26595,15 @@
             "name": "Scale reveal",
             "value": "bg-motion-scale"
           }
-        ]
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "bgColor"
+            },
+            "grey"
+          ]
+        }
       },
       {
         "component": "select",

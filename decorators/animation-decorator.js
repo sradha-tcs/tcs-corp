@@ -31,6 +31,10 @@ export function playAnimation(container, path, fit = 'xMidYMid meet', state = { 
       rendererSettings: { preserveAspectRatio: fit },
     });
     state.instance = animation;
+    // the file didn't load (e.g. a DAM asset not published): the block shows its background
+    animation.addEventListener('data_failed', () => {
+      container.dispatchEvent(new CustomEvent('animation:failed', { bubbles: true }));
+    });
     if (state.paused) animation.addEventListener('DOMLoaded', () => animation.goToAndStop(0, true));
     watchVisibility(container, (visible) => {
       if (visible && !state.paused) animation.play();
@@ -43,6 +47,7 @@ export function playAnimation(container, path, fit = 'xMidYMid meet', state = { 
     idle(() => start().catch((error) => {
       // eslint-disable-next-line no-console
       console.error('failed to play the Lottie animation', error);
+      container.dispatchEvent(new CustomEvent('animation:failed', { bubbles: true }));
     }));
   }, { rootMargin: '200px' });
 }
@@ -98,5 +103,9 @@ export function createAnimation(path, {
   const state = { paused: prefersReducedMotion() };
   playAnimation(animation, path, fit, state);
   if (controls) animation.animationToggle = createToggle(state);
+  animation.addEventListener('animation:failed', () => {
+    animation.hidden = true;
+    animation.animationToggle?.remove();
+  });
   return animation;
 }

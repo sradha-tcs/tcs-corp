@@ -17,10 +17,10 @@ import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import {
   NEW_WINDOW, linkOf, readLinkItems, readLinkRows,
 } from '../../utils/links.js';
-import { isAnimation } from '../../utils/media.js';
+import { animationLabel, isAnimation } from '../../utils/media.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import {
-  isOn, optionOf as option, readProperties, textOf,
+  isOn, isOnByDefault, optionOf as option, readProperties, textOf,
 } from '../../utils/properties.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
@@ -47,7 +47,8 @@ let newTabHint = '';
 
 const LAYOUTS = ['no-image', 'background', 'card'];
 const BG_COLORS = ['grey', 'dark', 'dark-green'];
-const LINK_STYLES = ['list', 'primary', 'secondary'];
+// Text link is stored as tertiary (an empty value isn't delivered: the default style would apply)
+const LINK_STYLES = ['list', 'primary', 'secondary', 'tertiary'];
 // Style and Image options: property (normalized name) and its values, also block classes
 const OPTIONS = {
   textalignment: ['text-left', 'text-center', 'text-right'],
@@ -66,7 +67,6 @@ const OPTIONS = {
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
 
 /** a Show toggle that defaults to on: only an authored "false" turns it off */
-const isShown = (cell) => !cell || isOn(cell);
 
 /** tags (labels from the taxonomy) */
 async function buildMeta(props) {
@@ -210,10 +210,9 @@ function buildMedia(block, props, layout) {
   const link = props.image.querySelector('a[href]');
   if (option(block, props.imageformat, ['lottie']) && link && isAnimation(link.href)) {
     const behind = layout === 'background' || layout === 'card';
-    // the Image alt text collapses into the animation link's title (as in the Hero)
-    const title = link.title && link.title !== link.textContent ? link.title.trim() : '';
+    // the Image alt text: delivered as the animation link's text (utils/media.js)
     const animation = createAnimation(link.href, {
-      label: textOf(props.imagealt) || title,
+      label: textOf(props.imagealt) || animationLabel(link),
       className: 'teaser-animation',
       fit: behind ? 'xMidYMid slice' : 'xMidYMid meet',
     });
@@ -253,7 +252,7 @@ export default async function decorate(block) {
   header.className = 'teaser-header';
   const kicker = document.createElement('div');
   kicker.className = 'teaser-kicker';
-  if (isShown(props.showeyebrow) && textOf(props.eyebrow)) {
+  if (isOnByDefault(props.showeyebrow) && textOf(props.eyebrow)) {
     kicker.append(fromCell(props.eyebrow, 'p', 'teaser-eyebrow'));
   }
   const meta = await buildMeta(props);
@@ -288,7 +287,7 @@ export default async function decorate(block) {
   // body: description, image (Text split), stats, links, short description
   const body = document.createElement('div');
   body.className = 'teaser-body';
-  if (isShown(props.showdescription) && textOf(props.description)) {
+  if (isOnByDefault(props.showdescription) && textOf(props.description)) {
     body.append(fromCell(props.description, 'div', 'teaser-description'));
   }
   const media = buildMedia(block, props, layout);
