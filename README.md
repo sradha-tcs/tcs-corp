@@ -1,14 +1,16 @@
 # Content packages
 
-> **20 October 2026: install the new block library package (Section Style colours).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_1049`.
+> **20 October 2026: install the new block library package (List Item display options).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_1229`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.12.zip`: block library and curated design pages (replaces 1.0.11).
->   - Section Style is Default, Grey, Dark or Dark Green (only the background colour): the Highlight sections are now Grey; "Sections: variations" shows Dark and Dark Green.
->   - Everything from 1.0.11 is included (Teaser Title Type, image positions, buttons side by side; Columns Container BG Color and Gap None).
+> - `block-library/tcs-corp-block-library-content-1.0.13.zip`: block library and curated design pages (replaces 1.0.12).
+>   - New page "List: List Item display options" (Hide Title, Show Description / Image / Eyebrow / Label / Action Label per List Item).
+>   - New page "Sections: colours with blocks" (each Section colour with text, links, buttons, Teasers, Cards, a List and an Accordion; a dark Columns Container with Grey and default Teasers).
+>   - Teaser: image positions with BG Colors and both button layouts; List arrow None in "Teaser: CTA styles".
+>   - Everything from 1.0.12 is included (Section Style colours, Teaser and Columns Container options).
 > - `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: unchanged.
 > - Sheets regenerated: nothing new to import if 1.0.9's are in.
-> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.33.
-> - **Content in AEM authored before:** sections with Highlight keep their grey band (choose Grey when you edit them); Teasers with a Title size take the size of their Title Type; Teasers with a BG Color have no padding until Padding is set in their Additional tab.
+> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.34; `audit/DIALOG-OPTIONS-2026-10-20.md`: the validation report.
+> - **Content in AEM authored before:** List Items show everything (the new toggles default to on); sections with Highlight keep their grey band; Teasers with a Title size take the size of their Title Type; Teasers with a BG Color have no padding until Padding is set in their Additional tab.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
@@ -19,7 +21,7 @@ Only the new Columns Container pages of the block library, without the rest of t
 
 - `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: AEM content package (1.0.7: BG Color and Gap None; 1.0.6: the container Additional tab; 1.0.5: the re-audit; 1.0.4: Button blocks instead of built-in Buttons; 1.0.3: the content of the block audit; 1.0.2: Column widths removed, Columns per row is `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
 - `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 rows of the language-master Metadata sheet (the Columns per row row has its new URL: replace the `widths-and-columns-per-row` row). Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
-- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.12.zip`, which updates the start page too.
+- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.13.zip`, which updates the start page too.
 
 ## Project handover
 
@@ -74,7 +76,7 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.12.zip` (1.0.11, 1.0.10, 1.0.9, 1.0.8, 1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+- `block-library/tcs-corp-block-library-content-1.0.13.zip` (1.0.12, 1.0.11, 1.0.10, 1.0.9, 1.0.8, 1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The block library under `/content/tcs-corp/language-master/en/block-library`: 176 pages covering every block and its variations (with the Animation and Columns Container folders).
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
