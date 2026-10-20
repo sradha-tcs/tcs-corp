@@ -86,7 +86,8 @@
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "Alt Text"
+        "label": "Alt Text",
+        "description": "Describe the image; leave empty only for decorative images."
       }
     ]
   },
@@ -127,7 +128,9 @@
             "name": "h6",
             "value": "h6"
           }
-        ]
+        ],
+        "value": "h2",
+        "description": "One H1 per page (usually the Page Header); keep the levels in order."
       }
     ]
   },
@@ -1770,7 +1773,7 @@
         "name": "linkTitle",
         "label": "Title",
         "valueType": "string",
-        "description": "Tooltip; when empty the Text is used."
+        "description": "Optional tooltip (most buttons need none)."
       },
       {
         "component": "tab",
@@ -6187,12 +6190,6 @@
     "id": "conversation-canvas",
     "fields": [
       {
-        "component": "aem-content",
-        "name": "searchPage",
-        "label": "Search page",
-        "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
-      },
-      {
         "component": "tab",
         "name": "contentTab",
         "label": "Content"
@@ -6435,6 +6432,12 @@
             "name": "searchButtonLabel",
             "label": "Search bar button icon type hover text",
             "placeholder": "Submit"
+          },
+          {
+            "component": "aem-content",
+            "name": "searchPage",
+            "label": "Search page",
+            "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
           }
         ]
       },
@@ -9454,21 +9457,21 @@
         "component": "text",
         "valueType": "string",
         "name": "linkText",
-        "label": "Link Title"
+        "label": "Link text"
       },
       {
         "component": "select",
         "valueType": "string",
         "name": "linkTarget",
-        "label": "Link Type",
+        "label": "Open in",
         "value": "",
         "options": [
           {
-            "name": "Default",
+            "name": "Same tab",
             "value": ""
           },
           {
-            "name": "Open in new window",
+            "name": "New tab",
             "value": "new-window"
           }
         ]
@@ -10311,9 +10314,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop.",
+        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10375,9 +10378,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Dropdown Name / ID",
-        "description": "Submitted as the field key, e.g. sector or region.",
+        "description": "Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10425,9 +10428,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. feedback.",
+        "description": "Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10475,9 +10478,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Checkbox Name / ID",
-        "description": "Submitted as the field key, e.g. consent.",
+        "description": "Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -18528,10 +18531,15 @@
         "valueType": "string",
         "name": "componentId",
         "label": "Component ID",
-        "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order).",
+        "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order). Kept for separators authored before; see the other settings.",
         "validation": {
           "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
           "customErrorMsg": "Start with a letter; use letters, digits, - and _."
+        },
+        "condition": {
+          "!!": {
+            "var": "componentId"
+          }
         }
       },
       {
@@ -18955,7 +18963,15 @@
             "value": "high"
           }
         ],
-        "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
+        "description": "High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings.",
+        "condition": {
+          "===": [
+            {
+              "var": "contrastMode"
+            },
+            "high"
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -19526,7 +19542,15 @@
         "name": "stretchToContainer",
         "label": "Stretch to container width",
         "value": false,
-        "description": "The line fills its container on every breakpoint."
+        "description": "The line fills its container on every breakpoint. Kept for separators authored before; see the other settings.",
+        "condition": {
+          "===": [
+            {
+              "var": "stretchToContainer"
+            },
+            true
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -22035,7 +22059,7 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       }
     ]
   },
@@ -22046,13 +22070,13 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       }
     ]
   },
@@ -22063,19 +22087,19 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       }
     ]
   },
@@ -22086,25 +22110,25 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column4text",
-        "label": "Column4"
+        "label": "Column 4"
       }
     ]
   },
@@ -22115,31 +22139,31 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column4text",
-        "label": "Column4"
+        "label": "Column 4"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column5text",
-        "label": "Column5"
+        "label": "Column 5"
       }
     ]
   },
@@ -27158,7 +27182,7 @@
         "valueType": "string",
         "name": "poster",
         "label": "Poster Image",
-        "description": "Shown before the video plays, with a play button Shown before the video plays (Click playback).",
+        "description": "Shown before the video plays, with a play button (Click playback).",
         "multi": false
       },
       {

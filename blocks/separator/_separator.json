@@ -43,10 +43,15 @@
           "valueType": "string",
           "name": "componentId",
           "label": "Component ID",
-          "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order).",
+          "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order). Kept for separators authored before; see the other settings.",
           "validation": {
             "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
             "customErrorMsg": "Start with a letter; use letters, digits, - and _."
+          },
+          "condition": {
+            "!!": {
+              "var": "componentId"
+            }
           }
         },
         {
@@ -470,7 +475,15 @@
               "value": "high"
             }
           ],
-          "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
+          "description": "High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings.",
+          "condition": {
+            "===": [
+              {
+                "var": "contrastMode"
+              },
+              "high"
+            ]
+          }
         },
         {
           "component": "boolean",
@@ -1041,7 +1054,15 @@
           "name": "stretchToContainer",
           "label": "Stretch to container width",
           "value": false,
-          "description": "The line fills its container on every breakpoint."
+          "description": "The line fills its container on every breakpoint. Kept for separators authored before; see the other settings.",
+          "condition": {
+            "===": [
+              {
+                "var": "stretchToContainer"
+              },
+              true
+            ]
+          }
         },
         {
           "component": "boolean",

@@ -53,7 +53,9 @@
               "name": "h6",
               "value": "h6"
             }
-          ]
+          ],
+          "value": "h2",
+          "description": "One H1 per page (usually the Page Header); keep the levels in order."
         }
       ]
     }

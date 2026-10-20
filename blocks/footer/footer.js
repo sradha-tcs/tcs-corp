@@ -124,7 +124,10 @@ async function decoratePageFooter(block) {
     (platform) => t('followUsOn', 'Follow us on {platform}', { platform }),
     t('opensInNewTab', '(opens in a new tab)'),
   );
-  if (social) footer.append(social);
+  if (social) {
+    social.setAttribute('aria-label', t('followUs', 'Follow us'));
+    footer.append(social);
+  }
 
   block.append(footer);
   // the block animations of the footer page (e.g. its Canvas), once it is in the page

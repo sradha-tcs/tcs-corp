@@ -36,5 +36,6 @@ export const pushComponents = (components) => pushToDataLayer({ component: compo
  */
 export const pushComponentEvent = (event, id, info = {}) => pushToDataLayer({
   event,
-  eventInfo: { path: `component.${id}`, ...info },
+  // the page entry is page.{id} (ids page-…); components are component.{id}
+  eventInfo: { path: id.startsWith('page-') ? `page.${id}` : `component.${id}`, ...info },
 });

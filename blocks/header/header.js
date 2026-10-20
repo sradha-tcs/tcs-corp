@@ -73,11 +73,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   nav.dataset.expanded = expanded ? 'false' : 'true';
   // the menu opens at its first level
   toggleAllNavSections(navSections, false);
-  const open = !expanded && !isDesktop.matches;
+  const open = !!navSections && !expanded && !isDesktop.matches;
   // the full-screen menu covers the page: the page behind it is out of reach (screen readers too)
   document.querySelectorAll('main, footer').forEach((el) => { el.inert = open; });
-  button.setAttribute('aria-expanded', String(open));
-  button.setAttribute('aria-label', expanded ? t('openNavigation', 'Open navigation') : t('closeNavigation', 'Close navigation'));
+  button?.setAttribute('aria-expanded', String(open));
+  button?.setAttribute('aria-label', expanded ? t('openNavigation', 'Open navigation') : t('closeNavigation', 'Close navigation'));
   // the menu covers the page: e.g. the floating Canvas is hidden while it's open
   document.dispatchEvent(new CustomEvent('header:menu', { detail: { open } }));
 }
@@ -280,11 +280,11 @@ export default async function decorate(block) {
   }
 
   // reading and focus order as on screen: logos, menu button, then the menu
-  const hamburger = buildHamburger(nav, navSections);
-  if (navSections) navSections.before(hamburger);
-  else nav.append(hamburger);
+  // a menu button only with a menu (a nav page may have the logos and a Canvas only)
+  const hamburger = navSections ? buildHamburger(nav, navSections) : null;
+  if (hamburger) navSections.before(hamburger);
   const navTools = nav.querySelector('.nav-tools');
-  if (navTools) hamburger.before(navTools);
+  if (navTools && hamburger) hamburger.before(navTools);
 
   nav.dataset.expanded = 'false';
   // prevent mobile nav behavior on window resize

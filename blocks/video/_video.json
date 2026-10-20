@@ -68,7 +68,7 @@
           "valueType": "string",
           "name": "poster",
           "label": "Poster Image",
-          "description": "Shown before the video plays, with a play button Shown before the video plays (Click playback).",
+          "description": "Shown before the video plays, with a play button (Click playback).",
           "multi": false
         },
         {
