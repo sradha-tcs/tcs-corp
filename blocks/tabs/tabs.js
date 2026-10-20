@@ -1,5 +1,5 @@
 import { pushComponentEvent } from '../../utils/analytics.js';
-import { toClassName } from '../../scripts/aem.js';
+import { decorateBlock, loadBlock, toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { pick } from '../../utils/buttons.js';
 import { withoutTabCells } from '../../utils/cells.js';
@@ -81,11 +81,38 @@ function groupContainerTabs(block) {
     if (tab || !groups.length) {
       // Hide block on a Tab hides the tab and its content (shown dimmed in the editor)
       const hidden = !!tab?.classList.contains('hideblock') && !isEditing();
-      groups.push({ ...(tab ? readTab(tab) : {}), hidden, content: [] });
+      const perRow = [...(tab?.classList || [])].find((name) => /^per-row-\d$/.test(name));
+      groups.push({
+        ...(tab ? readTab(tab) : {}), hidden, perRow, content: [],
+      });
     }
     groups[groups.length - 1].content.push(wrapper);
   });
   return groups.filter((group) => !group.hidden);
+}
+
+/**
+ * A tab's content with Column Breaks: laid out in columns by a Columns Container block in the
+ * panel (blocks/columns-container), Columns per row from the Tab.
+ * @param {TabGroup} group
+ * @returns {Promise<Element[]>} the panel content
+ */
+async function columnsOf(group) {
+  if (!group.content.some((wrapper) => wrapper.querySelector(':scope > .column-break'))) return group.content;
+  const columns = document.createElement('div');
+  columns.className = 'columns-container';
+  if (group.perRow) columns.classList.add(group.perRow);
+  const wrapper = document.createElement('div');
+  wrapper.append(columns);
+  // decorated while empty: decorateBlock() would treat the content as cells (and move the
+  // markers' classes)
+  decorateBlock(columns);
+  // the Tab marker and the content before the first Column Break (e.g. a heading over the
+  // columns) stay above the columns
+  const start = group.content.findIndex((el) => el.querySelector(':scope > .column-break'));
+  columns.append(...group.content.slice(start));
+  await loadBlock(columns);
+  return [...group.content.slice(0, start), wrapper];
 }
 
 /**
@@ -157,6 +184,8 @@ export default async function decorate(block) {
   let key;
   if (container) {
     groups = groupContainerTabs(block);
+    // Column Breaks in a tab lay its content out in columns
+    await Promise.all(groups.map(async (group) => { group.content = await columnsOf(group); }));
     baseId = section?.id;
     key = section?.dataset.aueResource;
   } else {

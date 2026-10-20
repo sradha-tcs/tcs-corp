@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Date | 19 October 2026 |
-| Scope | Every block, item, section container and default component of the AEM Edge Delivery Services / XWalk project (63 components before, 62 after; 959 dialog fields before, 925 after), the block library (177 pages) and the 11 curated design pages |
+| Scope | Every block, item, section container and default component of the AEM Edge Delivery Services / XWalk project (63 components before, 62 after; 959 dialog fields before, 926 after), the block library (177 pages) and the 11 curated design pages |
 | Method | Generated inventories of definitions, models, filters, fields, options and usage; code review of every block (four reviews, file:line evidence); a browser run of every library and curated page at 5 widths (940 loads before, 940 after: console errors, block status, overflow, duplicate ids, broken images, axe, data layer, click events); a comparison of the published site (aem.page, real AEM delivery) with the local preview |
 | Result | 107 defects (23 major, 81 minor, 1 suspected, 1 critical, 1 n/a): 88 corrected, 15 deferred, 1 blocked, 1 not reproduced, 1 content action, 1 not a defect |
 
@@ -46,11 +46,11 @@ The 138 loads with failed requests before were a test artefact (L-6: axe fetches
 ## 3. Inventories (deliverables 1-5)
 
 - [data/block-inventory.csv](data/block-inventory.csv): every component: display name, kind, block class, implementation, model, filter, delivery (key-value or rows), parents and children, field counts before / after, usage, status.
-- [data/dialog-fields.csv](data/dialog-fields.csv): every dialog field (965): label, property, type, default, allowed values, required, conditional, functional mapping, uses, final action (873 retain, 40 remove, 46 correct, 6 add).
+- [data/dialog-fields.csv](data/dialog-fields.csv): every dialog field (966): label, property, type, default, allowed values, required, conditional, functional mapping, uses, final action (873 retain, 40 remove, 46 correct, 7 add).
 - [BLOCK-SECTIONS.md](BLOCK-SECTIONS.md): one section per component in the format of the brief (overview, problems, dialog, variations, accessibility, data layer, personalization, decision, implementation, tests, evidence).
 - [blocks/](blocks/): the four code reviews (every field checked against the code, with file:line).
 
-Container and item relationships (filters): Accordion > accordion-item; Anchor List > anchor-list-item; Cards > card; Columns Container > column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, tabs-block, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, columns, fragment; Conversation Canvas > conversation-canvas-button; Filter List > filter-list-tag, filter-list-category, filter-list-page; Footer > footer-link; Form Variations > field-text, field-select, field-textarea, field-checkbox, contact-card, field-submit; Gen Carousel > hero, teaser; Hero > hero-cta; List > list-item; Page Header > page-header-cta; Table List > table-list-card; Table > table-row; Tabs Container > tab, columns, title, text, image, button-block; Tabs > tabs-item; Teaser > teaser-link, teaser-stat; Testimonial > testimonial-stat. Implicit filters of core components (Columns > column, Table rows) are valid; the empty `video` filter was removed.
+Container and item relationships (filters): Accordion > accordion-item; Anchor List > anchor-list-item; Cards > card; Columns Container > column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, tabs-block, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, fragment; Conversation Canvas > conversation-canvas-button; Filter List > filter-list-tag, filter-list-category, filter-list-page; Footer > footer-link; Form Variations > field-text, field-select, field-textarea, field-checkbox, contact-card, field-submit; Gen Carousel > hero, teaser; Hero > hero-cta; List > list-item; Page Header > page-header-cta; Table List > table-list-card; Table > table-row; Tabs Container > tab, column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, fragment, tabs-block; Tabs > tabs-item; Teaser > teaser-link, teaser-stat; Testimonial > testimonial-stat. Implicit filters of core components (Columns > column, Table rows) are valid; the empty `video` filter was removed.
 
 ## 4. Duplicate options and redundant blocks (deliverables 8-10, 32)
 
@@ -69,7 +69,7 @@ Container and item relationships (filters): Accordion > accordion-item; Anchor L
 | Button (basic) | View, Icon, Alignment, Tertiary | not delivered | Button block | library buttons migrated | button-basic model |
 | Canvas Button | Type (linkType), Alignment | not deliverable / not applied | buttonVariant | library migrated | own model |
 
-Redundant-block assessments (each review): Cards vs List vs Table List: retain (shared card-list code; List lists pages, Cards holds authored cards, Table List is rows); Hero vs Teaser vs Page Header: retain; Quote vs Testimonial: retain (separate Figma components); Tabs Container vs Tabs block: retain both (the block shows fragments); Columns vs Columns Container: retain (Columns is the only columns inside a Tabs Container cell); Gen Carousel: retain; Embed vs Video: retain; Table vs Table List: not redundant; TCS Header vs header: not redundant; Button (basic) vs Button block: Button block for new content, basic kept for content authored before; Interactive Dashboard: deprecated (not offered, renders nothing); Table List Header: removed (orphan).
+Redundant-block assessments (each review): Cards vs List vs Table List: retain (shared card-list code; List lists pages, Cards holds authored cards, Table List is rows); Hero vs Teaser vs Page Header: retain; Quote vs Testimonial: retain (separate Figma components); Tabs Container vs Tabs block: retain both (the block shows fragments); Columns vs Columns Container: the built-in Columns is hidden (follow-up decision): Columns Containers in sections, Column Breaks in a Tab of a Tabs Container (37 library Columns migrated: 10 to Columns Containers, 27 to Column Breaks); Gen Carousel: retain; Embed vs Video: retain; Table vs Table List: not redundant; TCS Header vs header: not redundant; Button (basic) vs Button block: the built-in Button is hidden (follow-up decision; 51 library buttons migrated to Button blocks), kept for content authored before; Interactive Dashboard: deprecated (not offered, renders nothing); Table List Header: removed (orphan).
 
 ## 5. Accessibility (deliverables 13-16)
 
@@ -237,7 +237,7 @@ The library migration is code (.home-work/bl/bl-migrate.mjs) applied when the pa
 
 ## 12. Reconstructed Block Library and Curated Design pages (deliverables 37, 38)
 
-Rebuilt from the corrected models with the migration: 177 library pages and the 11 curated design pages, 311 pages in the content package `tcs-corp-block-library-content-1.0.7.zip`, 0 model warnings (every example uses only current fields and options). The Button page shows the Button block's views, types, icons and alignments; the Columns Container pages have no Column widths.
+Rebuilt from the corrected models with the migration: 177 library pages and the 11 curated design pages, 311 pages in the content package `tcs-corp-block-library-content-1.0.8.zip`, 0 model warnings (every example uses only current fields and options). The Button page shows the Button block's views, types, icons and alignments; the Columns Container pages have no Column widths.
 
 ## 13. Known limitations and recommendations (deliverables 42, 44)
 
