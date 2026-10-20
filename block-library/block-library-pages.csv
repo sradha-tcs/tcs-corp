@@ -72,7 +72,7 @@ path,title,folder,kind,source,blocks,examples
 "/content/tcs-corp/language-master/en/block-library/foundations/text","Text","foundations","demonstration","g02a-text","","0"
 "/content/tcs-corp/language-master/en/block-library/foundations/title","Title","foundations","demonstration","g02a-title","","0"
 "/content/tcs-corp/language-master/en/block-library/foundations/image","Image","foundations","demonstration","g02a-image","","0"
-"/content/tcs-corp/language-master/en/block-library/foundations/button","Button","foundations","demonstration","g02a-button","","0"
+"/content/tcs-corp/language-master/en/block-library/foundations/button","Button","foundations","demonstration","g02a-button","button-block","0"
 "/content/tcs-corp/language-master/en/block-library/quote/quote-variations","Quote variations","quote","demonstration","g02b-quote","quote","7"
 "/content/tcs-corp/language-master/en/block-library/testimonial/testimonial-variations","Testimonial variations","testimonial","demonstration","g02b-testimonial","testimonial","11"
 "/content/tcs-corp/language-master/en/block-library/columns/columns-variations","Columns variations","columns","demonstration","g02b-columns","columns","6"
