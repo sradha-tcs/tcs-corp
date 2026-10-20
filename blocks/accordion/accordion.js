@@ -24,6 +24,7 @@ export default async function decorate(block) {
     const [label, body] = row.children;
     const summary = document.createElement('summary');
     summary.className = 'accordion-item-label';
+    moveInstrumentation(label, summary);
     summary.append(...label.childNodes);
     const panel = body || document.createElement('div');
     panel.className = 'accordion-item-body';

@@ -149,11 +149,12 @@ export default async function decorate(block) {
     });
     // announce slide changes only when they are made by the user
     track.setAttribute('aria-live', playing() ? 'off' : 'polite');
+    // the data layer reads the action a click takes (before the click handler runs)
+    toggle.dataset.cmpInteraction = playing() ? 'pause' : 'play';
   };
 
   if (nav.auto) {
     toggle = createIconButton({ className: 'gen-carousel-toggle', label: t('pauseSlides', 'Pause slides'), icon: 'pause' });
-    toggle.dataset.cmpInteraction = 'pause';
     toggle.setAttribute('aria-controls', track.id);
     toggle.addEventListener('click', () => {
       userPaused = !userPaused;

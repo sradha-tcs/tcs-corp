@@ -30,6 +30,8 @@ export function youtubeEmbedUrl(url, params = {}, { privacy = false } = {}) {
   const host = privacy ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
   const src = new URL(vid ? `${host}/embed/${encodeURIComponent(vid)}` : `${host}${url.pathname}`);
   src.searchParams.set('rel', '0');
+  // the player takes pause commands (e.g. when its tab is hidden, blocks/tabs)
+  src.searchParams.set('enablejsapi', '1');
   Object.entries(params).forEach(([key, value]) => src.searchParams.set(key, value));
   return src.href;
 }
@@ -42,8 +44,14 @@ export function youtubeEmbedUrl(url, params = {}, { privacy = false } = {}) {
  * @returns {string}
  */
 export function vimeoEmbedUrl(url, params = {}, { start = 0 } = {}) {
-  const [, video] = url.pathname.split('/');
+  // the id is the numeric path segment (vimeo.com/123, player.vimeo.com/video/123,
+  // vimeo.com/channels/name/123); an unlisted video's hash follows it (vimeo.com/123/abc) or is ?h=
+  const parts = url.pathname.split('/').filter(Boolean);
+  const at = parts.findIndex((part) => /^\d+$/.test(part));
+  const video = at >= 0 ? parts[at] : parts[0] || '';
   const src = new URL(`https://player.vimeo.com/video/${encodeURIComponent(video)}`);
+  const hash = url.searchParams.get('h') || (at >= 0 && /^[\da-f]+$/i.test(parts[at + 1] || '') ? parts[at + 1] : '');
+  if (hash) src.searchParams.set('h', hash);
   Object.entries(params).forEach(([key, value]) => src.searchParams.set(key, value));
   if (start > 0) src.hash = `t=${Math.floor(start)}s`;
   return src.href;

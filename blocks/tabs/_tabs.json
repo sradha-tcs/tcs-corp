@@ -49,8 +49,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Tab",
-              "model": "tabs-item",
-              "title": "Tab"
+              "model": "tabs-item"
             }
           }
         }
@@ -83,8 +82,8 @@
           "component": "text",
           "valueType": "string",
           "name": "anchorName",
-          "label": "ID",
-          "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id.",
+          "label": "Anchor name",
+          "description": "The section id: #links and Anchor List links jump to it; also the prefix of tab ids without their own ID.",
           "validation": {
             "regExp": "^#?[a-z0-9][a-z0-9-]*$",
             "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
@@ -189,7 +188,7 @@
           "valueType": "string",
           "name": "classes_anchor",
           "label": "Anchor ID",
-          "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
+          "description": "The id of the tabs block itself (start with anchor-). Use Anchor name for links to the section.",
           "validation": {
             "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
             "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
@@ -893,8 +892,8 @@
           "component": "text",
           "valueType": "string",
           "name": "tabsId",
-          "label": "ID",
-          "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+          "label": "Tab ID prefix",
+          "description": "Prefix of the tab ids (e.g. our-offerings-item-1); not an anchor: use Anchor ID for links."
         },
         {
           "component": "text",
@@ -1567,7 +1566,11 @@
           "valueType": "string",
           "name": "tabId",
           "label": "ID",
-          "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+          "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID.",
+          "validation": {
+            "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+            "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. overview."
+          }
         },
         {
           "component": "boolean",
@@ -1616,7 +1619,6 @@
         "modal",
         "form-variations",
         "filter-list",
-        "conversation-canvas",
         "cards",
         "fragment",
         "tabs-block"
