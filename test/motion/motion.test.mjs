@@ -103,26 +103,43 @@ describe('authoring fields', () => {
   // columns: AEM doesn't deliver classes_* on the built-in Columns component (no Additional tab)
   const NO_ANIMATION = ['anchor-list', 'column-break', 'columns', 'footer', 'fragment', 'modal', 'separator', 'tab', 'tcs-header'];
 
+  // container sections: AEM doesn't deliver a section's classes_* fields, so their Additional tab
+  // fields are container* (data attributes, scripts.js applySectionBlockOptions)
+  const SECTIONS = ['tabs', 'columns-container', 'gen-carousel'];
+  const nameIn = (block, name) => (SECTIONS.includes(block) ? {
+    classes_animation: 'containerAnimation',
+    classes_hideblock: 'containerHide',
+    classes_animationspeed: 'containerAnimationSpeed',
+    classes_animationtrigger: 'containerAnimationTrigger',
+  }[name] : name);
+
+  it('gives the container sections fields AEM delivers (no classes_* on sections)', () => {
+    SECTIONS.forEach((name) => {
+      const fields = modelOf(name).fields.map((f) => f.name);
+      assert.deepEqual(fields.filter((f) => f.startsWith('classes')), [], name);
+    });
+  });
+
   it('offers Content animation after Hide block, with the values of utils/motion.js', () => {
     blocks.filter((name) => modelOf(name) && !NO_ANIMATION.includes(name)).forEach((name) => {
       const { fields } = modelOf(name);
-      const at = fields.findIndex((f) => f.name === 'classes_animation');
+      const at = fields.findIndex((f) => f.name === nameIn(name, 'classes_animation'));
       assert.ok(at > 0, `${name} has Content animation`);
-      assert.equal(fields[at - 1].name, 'classes_hideblock', `${name}: after Hide block`);
+      assert.equal(fields[at - 1].name, nameIn(name, 'classes_hideblock'), `${name}: after Hide block`);
       const field = fields[at];
       assert.equal(field.label, 'Animation Type');
       const [speed, trigger] = [fields[at + 1], fields[at + 2]];
-      assert.equal(speed.name, 'classes_animationspeed', `${name}: Motion Speed after Animation Type`);
+      assert.equal(speed.name, nameIn(name, 'classes_animationspeed'), `${name}: Motion Speed after Animation Type`);
       assert.equal(speed.label, 'Motion Speed');
       assert.deepEqual(speed.options.map((o) => [o.name, o.value]), [['Medium', ''], ['Fast', 'motion-fast'], ['Slow', 'motion-slow']]);
       assert.equal(speed.value, '');
-      assert.equal(trigger.name, 'classes_animationtrigger', `${name}: Animation Trigger after Motion Speed`);
+      assert.equal(trigger.name, nameIn(name, 'classes_animationtrigger'), `${name}: Animation Trigger after Motion Speed`);
       assert.equal(trigger.label, 'Animation Trigger');
       assert.deepEqual(trigger.options.map((o) => o.value), ['', 'motion-on-load']);
       assert.equal(trigger.value, '');
       // shown only once the block has an animation
       assert.deepEqual(speed.condition, trigger.condition);
-      assert.ok(JSON.stringify(speed.condition).includes('classes_animation'), name);
+      assert.ok(JSON.stringify(speed.condition).includes(nameIn(name, 'classes_animation')), name);
       assert.equal(field.value, '', `${name}: None by default`);
       assert.deepEqual(field.options.map((o) => o.value), ['', ...CONTENT_MOTIONS.map((m) => `motion-${m}`)]);
     });

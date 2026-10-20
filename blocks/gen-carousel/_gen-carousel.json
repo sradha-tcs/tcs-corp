@@ -97,7 +97,7 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "classes_anchor",
+          "name": "containerAnchor",
           "label": "Anchor ID",
           "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
           "validation": {
@@ -108,7 +108,7 @@
         {
           "component": "boolean",
           "valueType": "boolean",
-          "name": "classes_hideblock",
+          "name": "containerHide",
           "label": "Hide block",
           "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
           "value": false
@@ -116,7 +116,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_animation",
+          "name": "containerAnimation",
           "label": "Animation Type",
           "value": "",
           "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
@@ -170,7 +170,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_animationspeed",
+          "name": "containerAnimationSpeed",
           "label": "Motion Speed",
           "value": "",
           "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
@@ -191,12 +191,12 @@
           "condition": {
             "and": [
               {
-                "var": "classes_animation"
+                "var": "containerAnimation"
               },
               {
                 "!==": [
                   {
-                    "var": "classes_animation"
+                    "var": "containerAnimation"
                   },
                   ""
                 ]
@@ -207,7 +207,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_animationtrigger",
+          "name": "containerAnimationTrigger",
           "label": "Animation Trigger",
           "value": "",
           "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
@@ -224,12 +224,12 @@
           "condition": {
             "and": [
               {
-                "var": "classes_animation"
+                "var": "containerAnimation"
               },
               {
                 "!==": [
                   {
-                    "var": "classes_animation"
+                    "var": "containerAnimation"
                   },
                   ""
                 ]
@@ -240,7 +240,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_paddingleft",
+          "name": "containerPaddingLeft",
           "label": "Padding left",
           "value": "",
           "options": [
@@ -309,7 +309,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_paddingright",
+          "name": "containerPaddingRight",
           "label": "Padding right",
           "value": "",
           "options": [
@@ -378,7 +378,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_paddingtop",
+          "name": "containerPaddingTop",
           "label": "Padding top",
           "value": "",
           "options": [
@@ -447,7 +447,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_paddingbottom",
+          "name": "containerPaddingBottom",
           "label": "Padding bottom",
           "value": "",
           "options": [
@@ -516,7 +516,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_marginleft",
+          "name": "containerMarginLeft",
           "label": "Margin left",
           "value": "",
           "options": [
@@ -585,7 +585,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_marginright",
+          "name": "containerMarginRight",
           "label": "Margin right",
           "value": "",
           "options": [
@@ -654,7 +654,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_margintop",
+          "name": "containerMarginTop",
           "label": "Margin top",
           "value": "",
           "options": [
@@ -723,7 +723,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes_marginbottom",
+          "name": "containerMarginBottom",
           "label": "Margin bottom",
           "value": "",
           "options": [

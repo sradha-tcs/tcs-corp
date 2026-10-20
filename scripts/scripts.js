@@ -151,9 +151,15 @@ const SECTION_BLOCK_OPTIONS = /^((bg-)?motion-[a-z-]+|anchor-[a-z0-9-]+|hidebloc
  * @param {Element} block
  */
 function applySectionBlockOptions(section, block) {
-  Object.entries(section.dataset).filter(([key]) => key.startsWith('classes'))
-    .flatMap(([, value]) => value.split(/[\s,]+/)).map((value) => toClassName(value))
-    .filter(Boolean)
+  // AEM delivers the container fields (containerAnchor, containerHide, ...) as data attributes;
+  // classes_* section fields aren't delivered (read for markup made otherwise)
+  Object.entries(section.dataset).filter(([key]) => key.startsWith('container') || key.startsWith('classes'))
+    .flatMap(([key, value]) => {
+      if (key === 'containerhide') return value === 'true' ? ['hideblock'] : [];
+      return value.split(/[\s,]+/);
+    })
+    .map((value) => toClassName(value))
+    .filter((name) => name && name !== 'false' && name !== 'true')
     .forEach((name) => block.classList.add(name));
   [...section.classList].filter((name) => SECTION_BLOCK_OPTIONS.test(name))
     .forEach((name) => block.classList.add(name));
