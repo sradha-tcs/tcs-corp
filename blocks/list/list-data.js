@@ -26,8 +26,34 @@ export {
  * dialog tab (null); test/list checks the layout against _list.json
  */
 export const ITEM_LAYOUT = [null, 'link', 'newTab', null, 'headline', 'summary', 'image', 'eyebrow',
-  'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel'];
+  'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
+  'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel'];
 export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
+/** the Display toggles of a List Item (appended to the model: older rows have fewer cells) */
+export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel',
+  'showActionLabel'];
+
+/**
+ * The layout of a List Item row of `count` cells: the model's, or for a row rendered before the
+ * Display toggles were added (ariaLabel its last cell), the layout up to that cell.
+ * @param {number} count
+ */
+export function itemLayoutFor(count) {
+  const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
+  return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
+}
+
+/**
+ * A List Item's Display toggles: the Show options are on unless authored off ("false"), Hide
+ * Title is off unless authored on; an item without them (authored before) shows everything.
+ * @param {Object} item the authored values (titleHidden, showDescription, ...)
+ * @returns {{ titleHidden: boolean, showDescription: boolean, showImage: boolean,
+ *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean }}
+ */
+export function itemDisplay(item = {}) {
+  return Object.fromEntries(ITEM_DISPLAY.map((name) => [name,
+    name === 'titleHidden' ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
+}
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
 export const ORDER_BY = ['manual', 'title', 'lastmodified'];
@@ -291,6 +317,8 @@ export function applyOverrides(card, item) {
   set('theme', item.theme);
   if (item.tags?.length) out.tagIds = item.tags;
   if (text(item.newTab) !== '') out.openInNewTab = isYes(item.newTab);
+  // the item's Display toggles: what the card leaves out (renderCard applies them)
+  out.display = itemDisplay(item);
   // opaque references the renderer uses: the authored image element and the item's row
   if (item.picture) out.picture = item.picture;
   if (item.ref) out.ref = item.ref;

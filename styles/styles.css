@@ -1028,44 +1028,6 @@ main .section.bg-dark-green {
   background-color: var(--color-bg-dark-green);
 }
 
-main .section:is(.bg-dark, .bg-dark-green) {
-  --color-text-default: var(--color-text-on-neutral);
-  --color-text-secondary: rgb(255 255 255 / 70%);
-  --color-text-brand: var(--brand-300);
-
-  color: var(--color-text-on-neutral);
-}
-
-main .section:is(.bg-dark, .bg-dark-green) a:any-link:not(.button) {
-  color: var(--brand-300);
-}
-
-main .section:is(.bg-dark, .bg-dark-green) a:hover:not(.button) {
-  color: var(--color-text-on-neutral);
-}
-
-main .section:is(.bg-dark, .bg-dark-green) a.button.secondary:not(:hover, :focus-visible) {
-  border-color: var(--color-border-neutral-tertiary);
-  color: var(--color-text-on-neutral);
-}
-
-main .section:is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible) {
-  color: var(--color-text-on-neutral);
-}
-
-/* Primary on Dark / Dark Green: inverted (white), the black fill would disappear on the dark colour */
-main .section:is(.bg-dark, .bg-dark-green) a.button.primary {
-  border-color: var(--white-1000);
-  background-color: var(--white-1000);
-  color: var(--black-1000);
-}
-
-main .section:is(.bg-dark, .bg-dark-green) a.button.primary:is(:hover, :focus-visible) {
-  border-color: var(--grey-300);
-  background-color: var(--grey-300);
-  color: var(--black-1000);
-}
-
 main .section.brand {
   background-color: var(--color-bg-brand-secondary-hover);
   margin: 0;
@@ -1078,6 +1040,62 @@ main .section.dark a:any-link:not(.button) {
 
 main .section.dark a:hover:not(.button) {
   color: var(--color-text-on-neutral);
+}
+
+/*
+ * Theme contract of the dark backgrounds (Section Style and Columns Container BG Color Dark /
+ * Dark Green): the text, link and focus tokens turn light for everything inside, so blocks that
+ * use the tokens follow; a block with its own light background inside (Teaser or Columns
+ * Container BG Color Grey) sets them back. Blocks with their own dark theme (Teaser Dark, cards
+ * with a Card colour) keep their own colours.
+ */
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) {
+  --color-text-default: var(--color-text-on-neutral);
+  --color-text-secondary: rgb(255 255 255 / 70%);
+  --color-text-brand: var(--brand-300);
+  --color-border-brand: var(--brand-300); /* the focus ring */
+  --link-color: var(--brand-300);
+  --link-hover-color: var(--color-text-on-neutral);
+
+  color: var(--color-text-on-neutral);
+}
+
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) :is(.teaser, .block.columns-container).bg-grey {
+  --color-text-default: var(--black-1000);
+  --color-text-secondary: var(--slate-700);
+  --color-text-brand: var(--brand-400);
+  --color-border-brand: var(--brand-500);
+  --link-color: var(--brand-400);
+  --link-hover-color: var(--brand-600);
+
+  color: var(--color-text-default);
+}
+
+/* links in running text: underlined on the dark colours (not told apart by colour alone) */
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) p a:any-link:not(.button) {
+  text-decoration: underline;
+}
+
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.secondary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
+  border-color: var(--color-border-neutral-tertiary);
+  color: var(--color-text-on-neutral);
+}
+
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
+  color: var(--color-text-on-neutral);
+}
+
+/* Primary: inverted (white), the black fill would disappear on the dark colour */
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.primary:not(:is(.teaser, .block.columns-container).bg-grey *) {
+  border-color: var(--white-1000);
+  background-color: var(--white-1000);
+  color: var(--black-1000);
+}
+
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.primary:is(:hover, :focus-visible):not(:is(.teaser, .block.columns-container).bg-grey *) {
+  border-color: var(--grey-300);
+  background-color: var(--grey-300);
+  color: var(--black-1000);
 }
 
 /* section options: width type, background image and rounded edge */

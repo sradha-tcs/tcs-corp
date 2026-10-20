@@ -1303,6 +1303,54 @@
           "name": "ariaLabel",
           "label": "Accessibility label",
           "description": "The link name for screen readers, e.g. Read the TwinX case study."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "titleHidden",
+          "label": "Hide Title",
+          "value": false,
+          "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showDescription",
+          "label": "Show Description",
+          "value": true,
+          "description": "Off: no description on this card (neither this item's nor its page's)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showImage",
+          "label": "Show Image",
+          "value": true,
+          "description": "Off: no image on this card (neither this item's nor its page's)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showEyebrow",
+          "label": "Show Eyebrow",
+          "value": true,
+          "description": "Off: no eyebrow on this card (the tags or content type take its place, as without an eyebrow)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showLabel",
+          "label": "Show Label",
+          "value": true,
+          "description": "Off: no Label on this card (statistic cards show the Label above the description)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showActionLabel",
+          "label": "Show Action Label",
+          "value": true,
+          "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
         }
       ]
     }
