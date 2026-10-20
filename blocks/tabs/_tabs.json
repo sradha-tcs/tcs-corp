@@ -1596,11 +1596,30 @@
       "id": "tabs",
       "components": [
         "tab",
-        "columns",
-        "title",
+        "column-break",
         "text",
         "image",
-        "button-block"
+        "button-block",
+        "title",
+        "hero",
+        "teaser",
+        "quote",
+        "testimonial",
+        "anchor-list",
+        "accordion",
+        "table",
+        "table-list",
+        "list",
+        "separator",
+        "embed",
+        "video",
+        "modal",
+        "form-variations",
+        "filter-list",
+        "conversation-canvas",
+        "cards",
+        "fragment",
+        "tabs-block"
       ]
     },
     {

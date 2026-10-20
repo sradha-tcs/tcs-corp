@@ -20303,6 +20303,36 @@
         "description": "Shows this tab when the page loads (the first tab if no tab is active)."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_perrow",
+        "label": "Columns per row",
+        "value": "",
+        "description": "When the tab's content has Column Breaks: how many columns sit side by side (Automatic: as many as there are Column Breaks, at most 4).",
+        "options": [
+          {
+            "name": "Automatic",
+            "value": ""
+          },
+          {
+            "name": "1",
+            "value": "per-row-1"
+          },
+          {
+            "name": "2",
+            "value": "per-row-2"
+          },
+          {
+            "name": "3",
+            "value": "per-row-3"
+          },
+          {
+            "name": "4",
+            "value": "per-row-4"
+          }
+        ]
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"

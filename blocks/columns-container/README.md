@@ -34,6 +34,18 @@ Header, Footer and TCS Header.
 In Universal Editor edit mode each column is outlined and labelled with its name, so it can be
 selected; an empty column says what to add.
 
+## Columns in a Tabs Container
+
+A section can't hold a section, so inside a Tabs Container the tab's own **Column Breaks** make the
+columns: add a Column Break after the Tab, then that column's components, then the next Column
+Break. The Tab's **Columns per row** (Automatic, 1-4) sets the columns per row; content before the
+first Column Break (e.g. a heading) stays above the columns. `blocks/tabs/tabs.js` (`columnsOf`)
+builds a Columns Container block in the tab's panel, so the layout, CSS and editor labels are the
+same.
+
+The built-in Columns block is no longer offered: its columns take default content only and AEM
+doesn't deliver its Additional tab. Columns authored before still render and stay editable.
+
 ## How it works
 
 - The Content tab fields are the Section's (same names: `style`, `sectionWidth`, `backgroundImage`,

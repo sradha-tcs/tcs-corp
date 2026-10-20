@@ -94,7 +94,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Button (basic) (`button`)
 
-**A. Overview.** default-content; model `button-basic`; allowed in column; 39 instance(s) on 17 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** default-content; model `button-basic`; 0 instance(s) on 0 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-27 (major, Corrected): Undeliverable View / Icon / Alignment / Tertiary
 
@@ -120,7 +120,7 @@ No visual variations beyond the dialog fields above.
 
 **G. Personalization.** Not personalizable: no personalization runtime in the project (no Target, no audience source); default content only.
 
-**H. Refactoring decision.** Deprecate for new content (Button block); kept for content authored before.
+**H. Refactoring decision.** Deprecate (hidden: not offered anywhere; the Button block replaces it; kept for content authored before).
 
 **I. Final implementation.** D-D-27: button-basic model; library buttons migrated to Button blocks
 
@@ -130,7 +130,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Section (`section`, class `section`)
 
-**A. Overview.** section; model `section`; allowed in main; 1191 instance(s) on 307 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** section; model `section`; allowed in main; 1191 instance(s) on 306 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** None found.
 
@@ -150,7 +150,7 @@ No visual variations beyond the dialog fields above.
 
 | Variation | Value | Result | Action |
 | --- | --- | --- | --- |
-| Style: Highlight | highlight | 11 example(s) render | Retain |
+| Style: Highlight | highlight | 12 example(s) render | Retain |
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 0 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
 
@@ -168,7 +168,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Accordion (`accordion`, class `accordion`)
 
-**A. Overview.** block, blocks/accordion; model `accordion`, filter `accordion` (accordion-item); allowed in section, columns-container; 5 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/accordion; model `accordion`, filter `accordion` (accordion-item); allowed in section, columns-container, tabs; 5 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-20 (minor, Corrected): Item without summary has no name (and the tab row became one live); L-3 (major, Corrected): Every live accordion starts with an empty, unnamed item (dialog tab row)
 
@@ -241,7 +241,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Anchor List (`anchor-list`, class `anchor-list`)
 
-**A. Overview.** block, blocks/anchor-list; model `anchor-list`, filter `anchor-list` (anchor-list-item); allowed in section, columns-container; 5 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/anchor-list; model `anchor-list`, filter `anchor-list` (anchor-list-item); allowed in section, columns-container, tabs; 5 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-A-1 (major, Corrected): Header CTA style (Primary, Secondary) ignored, always tertiary; D-A-2 (major, Corrected): No visible focus ring on Panel, Report, Statistic cards (clipped); D-A-3 (major, Corrected): Card colour on Image cards: no effect, near-white CTA on white, collapsed card; D-A-4 (major, Corrected): Previous / Next disabled while focused: focus falls to the page; D-A-8 (minor, Corrected): Scroll settings shown when no breakpoint scrolls; D-A-9 (minor, Deferred): Edge bleed identical to none in full-width sections; D-A-10 (minor, Deferred): Touch swipe off and no controls: cards unreachable on touch; D-A-11 (minor, Corrected): Reduced-motion support could be switched off; D-A-12 (minor, Corrected): Component ID overrides the Anchor ID; D-A-17 (minor, Corrected): Legacy composite multifields in the dialogs; D-A-20 (minor, Corrected): fetchpriority high on every eager card image; D-A-22 (minor, Corrected): Child depth default 2 (model) vs 1 (code); D-A-26 (minor (suspected), Blocked): Card date may shift a day; D-C-19 (minor, Deferred): Listeners leak on editor re-renders
 
@@ -315,7 +315,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Button (`button-block`, class `button-block`)
 
-**A. Overview.** block, blocks/button-block; model `button-block`; allowed in section, columns-container, tabs; 25 instance(s) on 2 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/button-block; model `button-block`; allowed in section, columns-container, tabs; 64 instance(s) on 18 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-27 (major, Corrected): Undeliverable View / Icon / Alignment / Tertiary
 
@@ -348,16 +348,16 @@ No visual variations beyond the dialog fields above.
 
 | Variation | Value | Result | Action |
 | --- | --- | --- | --- |
-| View: Button | button | 12 example(s) render | Retain |
+| View: Button | button | 45 example(s) render | Retain |
 | View: Icon | icon | 9 example(s) render | Retain |
-| View: Link | link | 4 example(s) render | Retain |
-| Type: Primary | primary | 10 example(s) render | Retain |
-| Type: Secondary | secondary | 7 example(s) render | Retain |
+| View: Link | link | 10 example(s) render | Retain |
+| Type: Primary | primary | 36 example(s) render | Retain |
+| Type: Secondary | secondary | 20 example(s) render | Retain |
 | Type: Tertiary | tertiary | 8 example(s) render | Retain |
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 0 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
 
-**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/button-block`); clicks measured once per interaction (11 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
+**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/button-block`); clicks measured once per interaction (48 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
 
 **G. Personalization.** Not personalizable: no personalization runtime in the project (no Target, no audience source); default content only.
 
@@ -365,13 +365,13 @@ No visual variations beyond the dialog fields above.
 
 **I. Final implementation.** D-D-27: button-basic model; library buttons migrated to Button blocks
 
-**J. Test results.** 25 instance(s) at 1440 px, 0 not loaded, no console errors on their pages at 5 widths (1440, 1024, 768, 600, 390); axe after: 0.
+**J. Test results.** 85 instance(s) at 1440 px, 0 not loaded, no console errors on their pages at 5 widths (1440, 1024, 768, 600, 390); axe after: 0.
 
 **K. Evidence.** [Screenshot Placeholder: Universal Editor authoring view] [Screenshot Placeholder: Dialog fields] [Screenshot Placeholder: Desktop / Tablet / Mobile rendering] [Screenshot Placeholder: Keyboard focus state] [Screenshot Placeholder: Data-layer output]
 
 ### Block: Cards (`cards`, class `cards`)
 
-**A. Overview.** block, blocks/cards; model `cards`, filter `cards` (card); allowed in section, columns-container; 67 instance(s) on 17 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
+**A. Overview.** block, blocks/cards; model `cards`, filter `cards` (card); allowed in section, columns-container, tabs; 67 instance(s) on 17 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
 
 **B. Current problems.** D-A-1 (major, Corrected): Header CTA style (Primary, Secondary) ignored, always tertiary; D-A-2 (major, Corrected): No visible focus ring on Panel, Report, Statistic cards (clipped); D-A-3 (major, Corrected): Card colour on Image cards: no effect, near-white CTA on white, collapsed card; D-A-4 (major, Corrected): Previous / Next disabled while focused: focus falls to the page; D-A-8 (minor, Corrected): Scroll settings shown when no breakpoint scrolls; D-A-9 (minor, Deferred): Edge bleed identical to none in full-width sections; D-A-10 (minor, Deferred): Touch swipe off and no controls: cards unreachable on touch; D-A-11 (minor, Corrected): Reduced-motion support could be switched off; D-A-12 (minor, Corrected): Component ID overrides the Anchor ID; D-A-19 (minor, Corrected): Descriptions refer to page metadata; D-A-20 (minor, Corrected): fetchpriority high on every eager card image; D-A-23 (minor, Deferred): Card ids change when cards are reordered; D-A-26 (minor (suspected), Blocked): Card date may shift a day
 
@@ -531,7 +531,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Column Break (`column-break`, class `column-break`)
 
-**A. Overview.** block, blocks/column-break; model `column-break`; allowed in columns-container; 65 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/column-break; model `column-break`; allowed in columns-container, tabs; 147 instance(s) on 12 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** None found.
 
@@ -565,13 +565,13 @@ No visual variations beyond the dialog fields above.
 
 **I. Final implementation.** Unchanged.
 
-**J. Test results.** 91 instance(s) at 1440 px, 0 not loaded, no console errors on their pages at 5 widths (1440, 1024, 768, 600, 390); axe after: 0.
+**J. Test results.** 194 instance(s) at 1440 px, 0 not loaded, no console errors on their pages at 5 widths (1440, 1024, 768, 600, 390); axe after: 0.
 
 **K. Evidence.** [Screenshot Placeholder: Universal Editor authoring view] [Screenshot Placeholder: Dialog fields] [Screenshot Placeholder: Desktop / Tablet / Mobile rendering] [Screenshot Placeholder: Keyboard focus state] [Screenshot Placeholder: Data-layer output]
 
 ### Block: Columns Container (`columns-container`, class `columns-container-section`)
 
-**A. Overview.** section, blocks/columns-container; model `columns-container`, filter `columns-container` (column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, tabs-block, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, columns, fragment); allowed in main; 22 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** section, blocks/columns-container; model `columns-container`, filter `columns-container` (column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, tabs-block, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, fragment); allowed in main; 32 instance(s) on 8 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-1 (major, Corrected): Its CSS turned every section with a Columns block into a grid; D-C-4 (minor, Corrected): Duplicate id with a Column Break Anchor ID; D-C-22 (suspected, Corrected (verified live: not delivered)): classes_* on the built-in Columns component; D-C-23 (minor, Corrected): columns.js throws without rows
 
@@ -606,7 +606,7 @@ No visual variations beyond the dialog fields above.
 
 | Variation | Value | Result | Action |
 | --- | --- | --- | --- |
-| Style: Columns Container | columns-container-section | 22 example(s) render | Retain |
+| Style: Columns Container | columns-container-section | 32 example(s) render | Retain |
 | Style: Highlight | highlight | 1 example(s) render | Retain |
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 0 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
@@ -625,7 +625,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Columns (`columns`, class `columns`)
 
-**A. Overview.** block, blocks/columns; model `columns`; allowed in section, columns-container, tabs; 0 instance(s) on 0 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/columns; model `columns`; 0 instance(s) on 0 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-22 (suspected, Corrected (verified live: not delivered)): classes_* on the built-in Columns component; D-C-23 (minor, Corrected): columns.js throws without rows
 
@@ -634,7 +634,7 @@ No visual variations beyond the dialog fields above.
 | Field | Current values | Functional mapping | Issue | Final decision |
 | --- | --- | --- | --- | --- |
 | Columns (columns) | text | read by the block |  | Retain |
-| Rows (rows) | text | read by the block |  | Retain |
+| Rows (rows) | text | see review |  | Retain |
 | Anchor ID (classes_anchor) | text | block class | see register | Remove |
 | Hide block (classes_hideblock) | boolean, default false | block class | see register | Remove |
 | Animation Type (classes_animation) | None (''); Fade in (motion-fade-in); Fade up (motion-fade-up); Fade down (motion-fade-down); Fade left (motion-fade-left); Fade right (motion-fade-right); Slide up (motion-slide-up); Slide down (motion-slide-down); Slide left (motion-slide-left); Slide right (motion-slide-right); Scale in (motion-scale-in) | block class | see register | Remove |
@@ -655,21 +655,21 @@ No visual variations beyond the dialog fields above.
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 0 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
 
-**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/columns`); clicks measured once per interaction (11 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
+**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/columns`); clicks measured once per interaction (0 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
 
 **G. Personalization.** Not personalizable: no personalization runtime in the project (no Target, no audience source); default content only.
 
-**H. Refactoring decision.** Modify.
+**H. Refactoring decision.** Deprecate (hidden: not offered anywhere; Columns Container, and Column Breaks in a Tabs Container, replace it; kept for content authored before).
 
 **I. Final implementation.** D-C-22: Additional tab removed from Columns; D-C-23: corrected
 
-**J. Test results.** 44 instance(s) at 1440 px, 0 not loaded, no console errors on their pages at 5 widths (1440, 1024, 768, 600, 390); axe after: 0.
+**J. Test results.** Not on a library page as a block (decorated by its parent or core component); axe after: 0.
 
 **K. Evidence.** [Screenshot Placeholder: Universal Editor authoring view] [Screenshot Placeholder: Dialog fields] [Screenshot Placeholder: Desktop / Tablet / Mobile rendering] [Screenshot Placeholder: Keyboard focus state] [Screenshot Placeholder: Data-layer output]
 
 ### Block: Conversation Canvas (`conversation-canvas`, class `conversation-canvas`)
 
-**A. Overview.** block, blocks/conversation-canvas; model `conversation-canvas`, filter `conversation-canvas` (conversation-canvas-button); allowed in section, columns-container; 33 instance(s) on 11 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/conversation-canvas; model `conversation-canvas`, filter `conversation-canvas` (conversation-canvas-button); allowed in section, columns-container, tabs; 33 instance(s) on 11 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-19 (major, Corrected): Search does nothing; D-D-20 (major, Corrected): Dock panel unreachable with Tab; D-D-21 (minor, Deferred): Style-dependent fields without conditions; D-D-23 (minor, Corrected): Empty Suggestions list
 
@@ -782,7 +782,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Embed (`embed`, class `embed`)
 
-**A. Overview.** block, blocks/embed; model `embed`; allowed in section, columns-container; 6 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/embed; model `embed`; allowed in section, columns-container, tabs; 6 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-8 (minor, Corrected (Play)): Generic Play button name; D-D-9 (minor (suspected), Corrected): Bare URL empties the block; D-D-10 (minor, Corrected): No privacy-enhanced players
 
@@ -827,7 +827,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Filter List (`filter-list`, class `filter-list`)
 
-**A. Overview.** block, blocks/filter-list; model `filter-list`, filter `filter-list` (filter-list-tag, filter-list-category, filter-list-page); allowed in section, columns-container; 32 instance(s) on 11 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
+**A. Overview.** block, blocks/filter-list; model `filter-list`, filter `filter-list` (filter-list-tag, filter-list-category, filter-list-page); allowed in section, columns-container, tabs; 32 instance(s) on 11 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
 
 **B. Current problems.** D-A-1 (major, Corrected): Header CTA style (Primary, Secondary) ignored, always tertiary; D-A-2 (major, Corrected): No visible focus ring on Panel, Report, Statistic cards (clipped); D-A-3 (major, Corrected): Card colour on Image cards: no effect, near-white CTA on white, collapsed card; D-A-4 (major, Corrected): Previous / Next disabled while focused: focus falls to the page; D-A-6 (major, Corrected): Page type / Content type options do not match the site; D-A-7 (minor, Corrected): Raw content-type slugs shown; D-A-8 (minor, Corrected): Scroll settings shown when no breakpoint scrolls; D-A-9 (minor, Deferred): Edge bleed identical to none in full-width sections; D-A-10 (minor, Deferred): Touch swipe off and no controls: cards unreachable on touch; D-A-11 (minor, Corrected): Reduced-motion support could be switched off; D-A-12 (minor, Corrected): Component ID overrides the Anchor ID; D-A-17 (minor, Corrected): Legacy composite multifields in the dialogs; D-A-18 (minor, Corrected): Technical option labels; D-A-20 (minor, Corrected): fetchpriority high on every eager card image; D-A-22 (minor, Corrected): Child depth default 2 (model) vs 1 (code); D-A-25 (minor, Corrected): Result count announced on page load; D-A-26 (minor (suspected), Blocked): Card date may shift a day; D-A-29 (minor (suspected), Deferred): Ignores hide-in-nav and redirects, unlike List
 
@@ -1076,7 +1076,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Form Variations (`form-variations`, class `form-variations`)
 
-**A. Overview.** block, blocks/form-variations; model `form-variations`, filter `form-variations` (field-text, field-select, field-textarea, field-checkbox, contact-card, field-submit); allowed in section, columns-container; 19 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/form-variations; model `form-variations`, filter `form-variations` (field-text, field-select, field-textarea, field-checkbox, contact-card, field-submit); allowed in section, columns-container, tabs; 19 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-1 (critical, Corrected (verified on live markup)): Forms empty on the published site; D-D-3 (major, Corrected): Success announced although nothing is sent; D-D-5 (minor, Corrected): Consent checkbox not mandatory by default; D-D-6 (minor, Corrected): Conditional fields appear unannounced; D-D-7 (minor, Corrected): Counter read literally
 
@@ -1331,7 +1331,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Fragment (`fragment`, class `fragment`)
 
-**A. Overview.** block, blocks/fragment; model `fragment`; allowed in section, columns-container; 1 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/fragment; model `fragment`; allowed in section, columns-container, tabs; 1 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-17 (minor, Corrected): No recursion guard; D-C-21 (minor, Corrected): Nothing shown in the editor without a reference
 
@@ -1357,7 +1357,7 @@ No visual variations beyond the dialog fields above.
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 0 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
 
-**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/fragment`); clicks measured once per interaction (1 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
+**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/fragment`); clicks measured once per interaction (0 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
 
 **G. Personalization.** Not personalizable: no personalization runtime in the project (no Target, no audience source); default content only.
 
@@ -1419,7 +1419,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Hero (`hero`, class `hero`)
 
-**A. Overview.** block, blocks/hero; model `hero`, filter `hero` (hero-cta); allowed in section, columns-container, gen-carousel; 182 instance(s) on 141 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
+**A. Overview.** block, blocks/hero; model `hero`, filter `hero` (hero-cta); allowed in section, columns-container, gen-carousel, tabs; 182 instance(s) on 141 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
 
 **B. Current problems.** D-B-1 (major, Corrected): Lottie pause / play button never rendered (WCAG 2.2.2); D-B-4 (major, Corrected): Links opening a new tab not announced; D-B-8 (minor, Corrected): CTA Arrow default Right vs Auto at runtime; D-B-13 (minor, Corrected): Motion Type duplicates the Additional tab animations; D-B-14 (minor, Corrected (Teaser), Deferred (others)): Legacy composite multifields in dialogs; D-B-20 (minor (suspected), Deferred): Cell classification can misread unusual content
 
@@ -1562,7 +1562,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: List (`list`, class `list`)
 
-**A. Overview.** block, blocks/list; model `list`, filter `list` (list-item); allowed in section, columns-container; 229 instance(s) on 139 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
+**A. Overview.** block, blocks/list; model `list`, filter `list` (list-item); allowed in section, columns-container, tabs; 229 instance(s) on 139 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
 
 **B. Current problems.** D-A-1 (major, Corrected): Header CTA style (Primary, Secondary) ignored, always tertiary; D-A-2 (major, Corrected): No visible focus ring on Panel, Report, Statistic cards (clipped); D-A-3 (major, Corrected): Card colour on Image cards: no effect, near-white CTA on white, collapsed card; D-A-4 (major, Corrected): Previous / Next disabled while focused: focus falls to the page; D-A-8 (minor, Corrected): Scroll settings shown when no breakpoint scrolls; D-A-9 (minor, Deferred): Edge bleed identical to none in full-width sections; D-A-10 (minor, Deferred): Touch swipe off and no controls: cards unreachable on touch; D-A-11 (minor, Corrected): Reduced-motion support could be switched off; D-A-12 (minor, Corrected): Component ID overrides the Anchor ID; D-A-17 (minor, Corrected): Legacy composite multifields in the dialogs; D-A-20 (minor, Corrected): fetchpriority high on every eager card image; D-A-22 (minor, Corrected): Child depth default 2 (model) vs 1 (code); D-A-26 (minor (suspected), Blocked): Card date may shift a day
 
@@ -1735,7 +1735,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Modal (`modal`, class `modal`)
 
-**A. Overview.** block, blocks/modal; model `modal`; allowed in section, columns-container; 3 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/modal; model `modal`; allowed in section, columns-container, tabs; 3 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-9 (minor, Corrected): Double click opens two dialogs; D-C-10 (minor, Corrected): Transient data-layer id; D-C-11 (minor (suspected), Corrected): Focus return in Safari; D-C-21 (minor, Corrected): Nothing shown in the editor without a reference
 
@@ -1863,7 +1863,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Quote (`quote`, class `quote`)
 
-**A. Overview.** block, blocks/quote; model `quote`; allowed in section, columns-container; 12 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
+**A. Overview.** block, blocks/quote; model `quote`; allowed in section, columns-container, tabs; 12 instance(s) on 5 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
 
 **B. Current problems.** D-B-6 (minor, Corrected): figcaption outside a figure; D-B-9 (minor, Corrected): Style select with one option, no effect
 
@@ -1917,7 +1917,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Separator (`separator`, class `separator`)
 
-**A. Overview.** block, blocks/separator; model `separator`; allowed in section, columns-container; 118 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/separator; model `separator`; allowed in section, columns-container, tabs; 118 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-D-15 (minor, Corrected): Width Auto = 100%; D-D-16 (minor, Corrected): Variant Custom = Default; D-D-17 (minor, Deferred): Duplicate controls
 
@@ -2029,6 +2029,7 @@ No visual variations beyond the dialog fields above.
 | Margin right (classes_marginright) | Default (''); 0 (none) (mr-0); 0.25rem (space-100) (mr-100); 0.5rem (space-200) (mr-200); 0.75rem (space-300) (mr-300); 1rem (space-400) (mr-400); 1.25rem (space-500) (mr-500); 1.5rem (space-600) (mr-600); 2rem (space-800) (mr-800); 2.5rem (space-1000) (mr-1000); 3rem (space-1200) (mr-1200); 4rem (space-1600) (mr-1600); 5rem (space-2000) (mr-2000); 6rem (space-2400) (mr-2400); 7.5rem (space-3000) (mr-3000) | block class | see register | Remove |
 | Margin top (classes_margintop) | Default (''); 0 (none) (mt-0); 0.25rem (space-100) (mt-100); 0.5rem (space-200) (mt-200); 0.75rem (space-300) (mt-300); 1rem (space-400) (mt-400); 1.25rem (space-500) (mt-500); 1.5rem (space-600) (mt-600); 2rem (space-800) (mt-800); 2.5rem (space-1000) (mt-1000); 3rem (space-1200) (mt-1200); 4rem (space-1600) (mt-1600); 5rem (space-2000) (mt-2000); 6rem (space-2400) (mt-2400); 7.5rem (space-3000) (mt-3000) | block class | see register | Remove |
 | Margin bottom (classes_marginbottom) | Default (''); 0 (none) (mb-0); 0.25rem (space-100) (mb-100); 0.5rem (space-200) (mb-200); 0.75rem (space-300) (mb-300); 1rem (space-400) (mb-400); 1.25rem (space-500) (mb-500); 1.5rem (space-600) (mb-600); 2rem (space-800) (mb-800); 2.5rem (space-1000) (mb-1000); 3rem (space-1200) (mb-1200); 4rem (space-1600) (mb-1600); 5rem (space-2000) (mb-2000); 6rem (space-2400) (mb-2400); 7.5rem (space-3000) (mb-3000) | block class | see register | Remove |
+| Columns per row (classes_perrow) | Automatic (''); 1 (per-row-1); 2 (per-row-2); 3 (per-row-3); 4 (per-row-4) | block class | see register | Add |
 
 **D. Variation validation**
 
@@ -2050,7 +2051,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Table List (`table-list`, class `table-list`)
 
-**A. Overview.** block, blocks/table-list; model `table-list`, filter `table-list` (table-list-card); allowed in section, columns-container; 23 instance(s) on 12 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
+**A. Overview.** block, blocks/table-list; model `table-list`, filter `table-list` (table-list-card); allowed in section, columns-container, tabs; 23 instance(s) on 12 page(s) of the content package. Detailed review: [blocks/group-a-card-lists.md](blocks/group-a-card-lists.md).
 
 **B. Current problems.** D-A-1 (major, Corrected): Header CTA style (Primary, Secondary) ignored, always tertiary; D-A-2 (major, Corrected): No visible focus ring on Panel, Report, Statistic cards (clipped); D-A-3 (major, Corrected): Card colour on Image cards: no effect, near-white CTA on white, collapsed card; D-A-4 (major, Corrected): Previous / Next disabled while focused: focus falls to the page; D-A-8 (minor, Corrected): Scroll settings shown when no breakpoint scrolls; D-A-9 (minor, Deferred): Edge bleed identical to none in full-width sections; D-A-10 (minor, Deferred): Touch swipe off and no controls: cards unreachable on touch; D-A-11 (minor, Corrected): Reduced-motion support could be switched off; D-A-12 (minor, Corrected): Component ID overrides the Anchor ID; D-A-13 (minor, Corrected): Motion Type duplicates Animation Type; D-A-14 (minor, Deferred): Items above the maximum vanish in Universal Editor; D-A-15 (minor, Corrected): New items prefilled with sample content (TwinX), visible on the live page; D-A-16 (minor, Corrected): Orphan Table List Header definition; D-A-17 (minor, Corrected): Legacy composite multifields in the dialogs; D-A-20 (minor, Corrected): fetchpriority high on every eager card image; D-A-22 (minor, Corrected): Child depth default 2 (model) vs 1 (code); D-A-26 (minor (suspected), Blocked): Card date may shift a day; D-A-28 (minor, Corrected): Empty heading for an item without title; D-C-7 (minor, Corrected): Additional tab without effect; D-D-14 (minor, Corrected): Ragged rows after a Columns change; L-1 (major, Corrected): Live tables have two empty rows (dialog tabs); the first is the header
 
@@ -2138,7 +2139,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Table (`table`, class `table`)
 
-**A. Overview.** block, blocks/table; model `table`, filter `table` (table-row); allowed in section, columns-container; 12 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/table; model `table`, filter `table` (table-row); allowed in section, columns-container, tabs; 12 instance(s) on 1 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-C-7 (minor, Corrected): Additional tab without effect; D-D-14 (minor, Corrected): Ragged rows after a Columns change; L-1 (major, Corrected): Live tables have two empty rows (dialog tabs); the first is the header
 
@@ -2345,7 +2346,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Tabs Container (`tabs`, class `tabs-section`)
 
-**A. Overview.** section, blocks/tabs; model `tabs`, filter `tabs` (tab, columns, title, text, image, button-block); allowed in main; 17 instance(s) on 4 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** section, blocks/tabs; model `tabs`, filter `tabs` (tab, column-break, text, image, button-block, title, hero, teaser, quote, testimonial, anchor-list, accordion, table, table-list, list, separator, embed, video, modal, form-variations, filter-list, conversation-canvas, cards, fragment, tabs-block); allowed in main; 17 instance(s) on 4 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-2 (major, Corrected): Additional tab ignored; D-C-3 (major, Corrected): Duplicate panel ids, wrong aria-controls, wrong deep links; D-C-7 (minor, Corrected): Additional tab without effect; D-C-8 (minor, Corrected): Two Tabs with the same ID share state
 
@@ -2399,7 +2400,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Tabs (`tabs-block`, class `tabs`)
 
-**A. Overview.** block, blocks/tabs; model `tabs-block`, filter `tabs-block` (tabs-item); allowed in section, columns-container; 7 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
+**A. Overview.** block, blocks/tabs; model `tabs-block`, filter `tabs-block` (tabs-item); allowed in section, columns-container, tabs; 7 instance(s) on 3 page(s) of the content package. Detailed review: [blocks/group-c-containers.md](blocks/group-c-containers.md).
 
 **B. Current problems.** D-C-3 (major, Corrected): Duplicate panel ids, wrong aria-controls, wrong deep links; D-C-7 (minor, Corrected): Additional tab without effect; D-C-8 (minor, Corrected): Two Tabs with the same ID share state
 
@@ -2433,7 +2434,7 @@ No visual variations beyond the dialog fields above.
 
 **E. Accessibility.** axe (WCAG 2.0 / 2.1 / 2.2 A and AA, 1440 and 390 px) on this block: 50 violation node(s) before, 0 after. Keyboard and semantics: see the review's section E.
 
-**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/tabs`); clicks measured once per interaction (1 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
+**F. Data layer and Analytics.** Registered by decorators/data-layer-decorator.js (`tcs-corp/components/tabs`); clicks measured once per interaction (0 test clicks after, 0 duplicates). Analytics mapping: blocked (no Tags / Web SDK in the project).
 
 **G. Personalization.** Not personalizable: no personalization runtime in the project (no Target, no audience source); default content only.
 
@@ -2525,7 +2526,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Teaser (`teaser`, class `teaser`)
 
-**A. Overview.** block, blocks/teaser; model `teaser`, filter `teaser` (teaser-link, teaser-stat); allowed in section, columns-container, gen-carousel; 147 instance(s) on 27 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
+**A. Overview.** block, blocks/teaser; model `teaser`, filter `teaser` (teaser-link, teaser-stat); allowed in section, columns-container, gen-carousel, tabs; 147 instance(s) on 27 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
 
 **B. Current problems.** D-B-2 (major, Corrected): Primary / Secondary CTA dropped when a Link item exists; D-B-3 (major, Corrected): Personalization option without runtime; D-B-4 (major, Corrected): Links opening a new tab not announced; D-B-10 (minor, Deferred): Image corners / ratio identical in Text split; D-B-11 (minor, Deferred): Mobile image position Top = Default; D-B-14 (minor, Corrected (Teaser), Deferred (others)): Legacy composite multifields in dialogs; D-B-15 (minor, Deferred): Background animation offered where it cannot animate; D-B-19 (minor, Corrected): Dead teaser-links-* classes; D-B-21 (minor (suspected), Corrected): A Stat item with a link read as a Link item
 
@@ -2697,7 +2698,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Testimonial (`testimonial`, class `testimonial`)
 
-**A. Overview.** block, blocks/testimonial; model `testimonial`, filter `testimonial` (testimonial-stat); allowed in section, columns-container; 17 instance(s) on 7 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
+**A. Overview.** block, blocks/testimonial; model `testimonial`, filter `testimonial` (testimonial-stat); allowed in section, columns-container, tabs; 17 instance(s) on 7 page(s) of the content package. Detailed review: [blocks/group-b-heroes-teasers.md](blocks/group-b-heroes-teasers.md).
 
 **B. Current problems.** D-B-5 (minor, Corrected): Quote hidden when the Show Description row is missing; D-B-9 (minor, Corrected): Style select with one option, no effect; D-B-14 (minor, Corrected (Teaser), Deferred (others)): Legacy composite multifields in dialogs; D-B-15 (minor, Deferred): Background animation offered where it cannot animate; D-B-18 (minor, Corrected): Wrong field descriptions
 
@@ -2788,7 +2789,7 @@ No visual variations beyond the dialog fields above.
 
 ### Block: Video (`video`, class `video`)
 
-**A. Overview.** block, blocks/video; model `video`; allowed in section, columns-container; 27 instance(s) on 2 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
+**A. Overview.** block, blocks/video; model `video`; allowed in section, columns-container, tabs; 27 instance(s) on 2 page(s) of the content package. Detailed review: [blocks/group-d-forms-media-chrome.md](blocks/group-d-forms-media-chrome.md).
 
 **B. Current problems.** D-C-18 (minor, Corrected): Empty unreferenced filter; D-D-11 (minor, Corrected): Play in a Pop-up without condition; D-D-12 (minor, Corrected): Click playback without poster or controls cannot start / pause; L-2 (major, Corrected): Poster image never delivered (grouped field in a key-value block)
 
