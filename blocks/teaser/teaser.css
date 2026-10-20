@@ -4,9 +4,8 @@
  * split (.no-image), Background image (.background), Card (.card); Style options as classes.
  */
 .teaser {
-  /* Figma values with no site token: list dividers and the dark green background */
+  /* Figma value with no site token: list dividers */
   --teaser-divider: #b2b2b2;
-  --teaser-green: #003b39;
   --teaser-title-color: var(--color-text-default);
   --teaser-text-color: var(--color-text-secondary);
   --teaser-meta-color: var(--color-text-secondary);
@@ -47,7 +46,7 @@
 .teaser.bg-dark-green {
   --teaser-overlay: rgb(0 59 57 / 80%);
 
-  background-color: var(--teaser-green);
+  background-color: var(--color-bg-dark-green);
 }
 
 /* Top spacing: Page header, the larger space above a teaser that opens a page */

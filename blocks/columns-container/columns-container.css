@@ -28,8 +28,7 @@
 }
 
 .block.columns-container.bg-dark-green {
-  /* Figma value with no site token, as the Teaser's */
-  background-color: #003b39;
+  background-color: var(--color-bg-dark-green);
 }
 
 .block.columns-container:is(.bg-dark, .bg-dark-green) {
@@ -51,6 +50,19 @@
 
 .block.columns-container:is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
+}
+
+/* Primary on Dark / Dark Green: inverted (white), the black fill would disappear on the dark colour */
+.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.primary {
+  border-color: var(--white-1000);
+  background-color: var(--white-1000);
+  color: var(--black-1000);
+}
+
+.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.primary:is(:hover, :focus-visible) {
+  border-color: var(--grey-300);
+  background-color: var(--grey-300);
+  color: var(--black-1000);
 }
 
 /* Gap */
