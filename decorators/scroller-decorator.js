@@ -10,6 +10,26 @@ import { prefersReducedMotion } from '../utils/environment.js';
 
 const EDGE = 2;
 
+/*
+ * Updates of all scrollers run in one animation frame, reads first, then writes: measuring right
+ * after the content was built forced a layout of the page for every scroller (a long task on
+ * pages with several Lists), and a write between two reads forces another one. The frame runs
+ * before the next paint, so the buttons are in their state when the scroller first shows.
+ */
+const pending = new Set();
+let batch = 0;
+function runBatch() {
+  batch = 0;
+  const jobs = [...pending];
+  pending.clear();
+  const states = jobs.map((job) => job.measure());
+  jobs.forEach((job, i) => job.apply(states[i]));
+}
+function queue(job) {
+  pending.add(job);
+  batch = batch || requestAnimationFrame(runBatch);
+}
+
 /**
  * @param {HTMLElement} viewport the scrolling element (overflow-x: auto in its scroll modes)
  * @param {Object} options
@@ -42,15 +62,26 @@ export function createScroller(viewport, options = {}) {
   // the scroll position that brings an item to the start (the first item is at 0)
   const startOf = (item) => item.offsetLeft - (list.firstElementChild?.offsetLeft || 0);
 
-  let frame = 0;
-  function update() {
-    frame = 0;
+  // reads only (layout)
+  function measure() {
     const active = scrolls();
+    const max = maxScroll();
+    const left = viewport.scrollLeft;
+    return {
+      active,
+      atStart: left <= EDGE,
+      atEnd: left >= max - EDGE,
+      size: active ? viewport.clientWidth / viewport.scrollWidth : 1,
+      offset: active && max ? left / max : 0,
+    };
+  }
+  // writes only
+  function apply({
+    active, atStart, atEnd, size, offset,
+  }) {
     viewport.dataset.overflow = String(active);
     if (active) viewport.tabIndex = 0;
     else viewport.removeAttribute('tabindex');
-    const atStart = viewport.scrollLeft <= EDGE;
-    const atEnd = viewport.scrollLeft >= maxScroll() - EDGE;
     // aria-disabled, not disabled: a focused button that becomes disabled would drop the focus
     const setDisabled = (button, disabled) => {
       if (!button) return;
@@ -61,15 +92,12 @@ export function createScroller(viewport, options = {}) {
     setDisabled(previous, !active || (!loop && atStart));
     setDisabled(next, !active || (!loop && atEnd));
     if (indicator) {
-      const size = active ? viewport.clientWidth / viewport.scrollWidth : 1;
-      const offset = active && maxScroll() ? viewport.scrollLeft / maxScroll() : 0;
       indicator.style.setProperty('--scroller-thumb-size', size.toFixed(4));
       indicator.style.setProperty('--scroller-thumb-offset', offset.toFixed(4));
     }
   }
-  const schedule = () => {
-    frame = frame || requestAnimationFrame(update);
-  };
+  const job = { measure, apply };
+  const schedule = () => queue(job);
 
   function scrollToItem(index, instant = false) {
     const all = items();
@@ -177,13 +205,14 @@ export function createScroller(viewport, options = {}) {
   resized.observe(viewport);
   resized.observe(list);
   cleanups.push(() => resized.disconnect());
-  update();
+  // the first state in the next frame, with the other scrollers (no forced layout now)
+  schedule();
 
   return {
     update: schedule,
     scrollToItem,
     destroy: () => {
-      cancelAnimationFrame(frame);
+      pending.delete(job);
       cleanups.forEach((cleanup) => cleanup());
     },
   };

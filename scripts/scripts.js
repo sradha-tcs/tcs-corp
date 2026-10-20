@@ -22,6 +22,7 @@ import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
 import { availableId } from '../utils/ids.js';
+import blockModules, { blockStylesheet } from './module-graph.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
 } from '../utils/site.js';
@@ -448,6 +449,41 @@ async function loadTemplate(main) {
   }
 }
 
+const preloadedModules = new Set();
+// the header and footer and the blocks of their fragments, on every page
+const CHROME_BLOCKS = ['header', 'footer', 'fragment', 'tcs-header', 'conversation-canvas'];
+
+/**
+ * A preload link for a code file, once per page. Stylesheet preloads go in the body: loadCSS
+ * (aem.js) skips a stylesheet whose href is already linked in the head, whatever the rel.
+ */
+function preload(path, rel, as) {
+  if (!path || preloadedModules.has(path)) return;
+  preloadedModules.add(path);
+  const link = document.createElement('link');
+  link.rel = rel;
+  if (as) link.as = as;
+  link.href = `${window.hlx.codeBasePath}/${path}`;
+  (as === 'style' ? document.body : document.head).append(link);
+}
+
+/**
+ * Preloads the code of blocks: their JavaScript and everything it imports beyond scripts.js
+ * (scripts/module-graph.js), and their stylesheet. Without a build step a module's imports are
+ * only found once it has loaded, one network round trip per import level, and the stylesheet of
+ * a block in a fragment (the header's) only once the fragment is decorated; preloaded, they load
+ * in parallel.
+ * @param {Element|string[]} source an element (the blocks in it) or block names
+ */
+export function preloadBlockModules(source) {
+  const names = Array.isArray(source) ? source
+    : [...source.querySelectorAll('[data-block-name]')].map((block) => block.dataset.blockName);
+  new Set(names).forEach((name) => {
+    blockModules(name).forEach((path) => preload(path, 'modulepreload'));
+    preload(blockStylesheet(name), 'preload', 'style');
+  });
+}
+
 /**
  * Starts loading the data the page's blocks share (each loads once and is cached) when the lazy
  * phase begins, so the blocks below the first section don't each wait for it in turn: the query
@@ -495,7 +531,10 @@ async function loadEager(doc) {
     // the header's space is kept before it loads (no layout shift)
     reserveHeaderSpace();
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), async (section) => {
+    // the LCP section's blocks: all their modules at once
+    const first = main.querySelector('.section');
+    if (first) preloadBlockModules(first);
+    await loadSection(first, async (section) => {
       await prepareMotion(section);
       await waitForFirstImage(section);
     });
@@ -534,6 +573,9 @@ function autolinkModals(doc) {
 async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
+  // the modules of the other blocks, the header and footer and the blocks of their fragments
+  if (main) preloadBlockModules(main);
+  preloadBlockModules(CHROME_BLOCKS);
   prefetchData(main);
   loadHeader(doc.querySelector('header'));
   // the footer loads alongside the sections, not after them; it shows once they have loaded, so

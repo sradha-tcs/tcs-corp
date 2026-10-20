@@ -12,6 +12,9 @@ import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
  * - the journey state is <html data-canvas-journey-state> (STATES); the header announces its
  *   menu with a header:menu event ({ open }): the floating Canvas is HIDDEN while it's open
  * - a failure here only stops the floating (nothing floats): page, header and footer still work
+ * - writes on <html> (custom properties, the journey state) restyle the whole page: they are
+ *   made only when the value changes, and resizes while the page loads are measured once they
+ *   settle (RESIZE_SETTLE), not on every frame
  */
 
 const FLOATING = 'conversation-canvas-floating';
@@ -28,6 +31,18 @@ let dirty = true;
 let listening = false;
 let suppressed = false;
 let firstSectionBottom = null;
+// the page loads in steps (sections, images, header, footer): measure once a step has settled
+const RESIZE_SETTLE = 100;
+let settleTimer = 0;
+const rootValues = new Map();
+
+/** a custom property (or the journey state) on <html>, written only when it changes */
+function setRoot(name, value) {
+  if (rootValues.get(name) === value) return;
+  rootValues.set(name, value);
+  if (name === 'state') document.documentElement.dataset.canvasJourneyState = value;
+  else document.documentElement.style.setProperty(name, value);
+}
 
 // canvas blocks never contain each other, so b either follows or precedes a
 const byDomOrder = (a, b) => (
@@ -71,7 +86,7 @@ function measure() {
     ? Math.round(firstSection.getBoundingClientRect().bottom + scrollY) : 0;
   if (bottom !== firstSectionBottom) {
     firstSectionBottom = bottom;
-    document.documentElement.style.setProperty('--conversation-canvas-first-section-bottom', `${bottom}px`);
+    setRoot('--conversation-canvas-first-section-bottom', `${bottom}px`);
   }
   const canvases = live.map((e, i) => {
     if (e.primary) {
@@ -133,8 +148,8 @@ function apply(result) {
   // focused elements scroll clear of the floating row (scroll-padding-bottom in the CSS)
   const owner = canvases[result.owner];
   const obscured = owner && !owner.primary ? owner.rowHeight + offset : 0;
-  document.documentElement.style.setProperty('--conversation-canvas-obscured', `${obscured}px`);
-  document.documentElement.dataset.canvasJourneyState = result.state;
+  setRoot('--conversation-canvas-obscured', `${obscured}px`);
+  setRoot('state', result.state);
 }
 
 function update() {
@@ -149,7 +164,7 @@ function update() {
   } catch {
     // isolate the failure: nothing floats, every row stays in its place
     entries.forEach(release);
-    document.documentElement.dataset.canvasJourneyState = STATES.HIDDEN;
+    setRoot('state', STATES.HIDDEN);
   }
 }
 
@@ -161,6 +176,12 @@ function remeasure() {
   dirty = true;
   previous = {};
   schedule();
+}
+
+/** a resize of the page: measured once it has settled */
+function remeasureSettled() {
+  clearTimeout(settleTimer);
+  settleTimer = setTimeout(remeasure, RESIZE_SETTLE);
 }
 
 /**
@@ -187,7 +208,7 @@ export default function registerCanvas(entry) {
       schedule();
     });
     // sections, images, fonts, header and footer load later and move the page
-    new ResizeObserver(remeasure).observe(document.body);
+    new ResizeObserver(remeasureSettled).observe(document.body);
   }
   remeasure();
 }
