@@ -147,6 +147,8 @@ Property names follow the AEM delivery rules (AGENTS.md): `hideTitle` (the reque
 | SE-02 | Section | each colour × text, links, buttons, Teasers, Cards, List, Accordion | combinations | readable, 0 axe | 43 → 0 violations | Corrected and passed | section-colours-with-blocks |
 | SE-03 | Section | legacy Highlight | existing content | grey | grey band kept | Passed | `main .section.highlight` |
 | ALL-01 | All | full run (every page × 5 widths) | regression | 0 errors, 0 axe, 0 overflow | 955 loads: 0 errors, 0 failed requests, 0 axe, 0 overflow, 0 duplicate ids | Passed | docs/audit runtime |
+| ALL-04 | All | packages 1.0.12 and 1.0.13 | preview, publish, reindex | every page | 313 / 313 and 315 / 315 pages each | Passed | section 21 |
+| ALL-05 | All | aem.live | published output | as on the preview | the options and combinations as on the preview, axe 0 on the combination page | Passed | section 21 |
 | ALL-02 | All | Analytics (Web SDK) | event delivery | — | — | Blocked | Adobe Tags property and measurement plan |
 | ALL-03 | All | Universal Editor dialog | persisted values, live update | — | — | Blocked | AEM author access for the agent (to be checked by an author) |
 
@@ -209,7 +211,7 @@ The 12 curated design pages:
 
 ## 20. Final validation summary
 
-Every option in the request is implemented and tested on the local preview, and the options already delivered (PR #123, #124) are verified on aem.live after their packages were published.
+Every option in the request is implemented, tested on the local preview and verified on aem.live after its package was published (1.0.12 for the Teaser, Columns Container and Section options, 1.0.13 for the List Item options and the dark-background theme; section 21).
 
 - **Defects found and corrected:**
   - three dark-background contrast issues: Grey Teaser inside a dark band, underlines on inline links, List image cards;
@@ -217,3 +219,14 @@ Every option in the request is implemented and tested on the local preview, and 
   - the `hideTitle` delivery conflict (renamed `titleHidden`).
 - **Open critical or high-severity defects:** none.
 - **Blocked:** Analytics delivery and author-side dialog checks.
+
+## 21. Publication and live verification (20 October 2026)
+
+| Step | Result |
+|---|---|
+| Package 1.0.12 installed (Section Style colours, with 1.0.11's Teaser and Columns Container options) | 313 / 313 pages previewed and published (one page, Separator option reference, timed out on its first preview and went through on retry); 313 / 313 reindexed |
+| Live checks of 1.0.12 | Teaser: Title Type H1–H6 at 64 / 48 / 40 / 28 / 24 / 20px; Image position Left, Right, Top and Bottom; Buttons side by side (row); List arrow Down right on buttons; BG Color teasers with only their Padding fields' space. Columns Container: Grey, Dark and Dark green; Gap None (0). Section: Grey, Dark and Dark Green with the section spacing inside the colour, white text and white Primary buttons on the dark ones |
+| Package 1.0.13 installed (List Item display options, the dark-background theme) | 315 / 315 pages previewed, published and reindexed |
+| Live checks of 1.0.13 | "List: List Item display options": every example as on the preview (hidden parts left out without wrappers; hidden titles name the card's link, e.g. "Read more: The agentic bank"; no card without a visible link). "Sections: colours with blocks": a Grey Teaser in a Dark section with dark text, light-blue underlined links in running text, white Primary buttons; axe (WCAG 2.0–2.2 A / AA) 0 violations at 1440 and 390px. "Teaser: CTA styles": List arrow None without arrows |
+| Query index | Block library pages are excluded (by design), so the new library pages aren't listed |
+| Still blocked | Universal Editor dialog checks (author access) and Analytics (measurement plan) |
