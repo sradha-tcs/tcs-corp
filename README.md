@@ -9,7 +9,7 @@
 >   - Everything from 1.0.12 is included (Section Style colours, Teaser and Columns Container options).
 > - `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: unchanged.
 > - Sheets regenerated: nothing new to import if 1.0.9's are in.
-> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.35 (the publication of 1.0.12 and 1.0.13 verified on aem.live); `audit/DIALOG-OPTIONS-2026-10-20.md`: the validation report.
+> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.36 (the publication of 1.0.12 and 1.0.13 verified on aem.live; the load time: module preloading, fallback fonts); `audit/DIALOG-OPTIONS-2026-10-20.md`: the validation report.
 > - **Content in AEM authored before:** List Items show everything (the new toggles default to on); sections with Highlight keep their grey band; Teasers with a Title size take the size of their Title Type; Teasers with a BG Color have no padding until Padding is set in their Additional tab.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
