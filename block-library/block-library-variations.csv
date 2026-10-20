@@ -146,7 +146,6 @@ folder,block,example,page,fields,items
 "teaser","teaser","Description hidden","/content/tcs-corp/language-master/en/block-library/teaser/article-meta","eyebrow title description primaryCtaText primaryCta secondaryCtaText secondaryCta showDescription","0"
 "teaser","teaser","Title type h2","/content/tcs-corp/language-master/en/block-library/teaser/article-meta","eyebrow title description primaryCtaText primaryCta secondaryCtaText secondaryCta","0"
 "teaser","teaser","Title type h3","/content/tcs-corp/language-master/en/block-library/teaser/article-meta","eyebrow title description primaryCtaText primaryCta secondaryCtaText secondaryCta titleType","0"
-"teaser","teaser","Personalization","/content/tcs-corp/language-master/en/block-library/teaser/article-meta","eyebrow title description image imageAlt primaryCtaText primaryCta secondaryCtaText secondaryCta","0"
 "cards","cards","Overview","/content/tcs-corp/language-master/en/block-library/cards/card-styles","title titleType description link linkText","4"
 "cards","cards","Image card","/content/tcs-corp/language-master/en/block-library/cards/card-styles","cardStyle","4"
 "cards","cards","Panel card","/content/tcs-corp/language-master/en/block-library/cards/card-styles","cardStyle desktopColumns","3"

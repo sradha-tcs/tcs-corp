@@ -1,14 +1,15 @@
 # Content packages
 
-> **20 October 2026: install the new block library package (built-in Columns and Button no longer offered).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_0135`.
+> **20 October 2026: install the new block library package (re-audit).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_0334`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.8.zip`: block library and curated design pages (replaces 1.0.7). Everything from the block audit, plus:
->   - **No built-in Columns**: the 10 Columns in sections are Columns Containers; the 27 Columns inside Tabs Containers are **Column Breaks** in their tab, with the Tab's new Columns per row.
->   - **No built-in Buttons**: the 51 buttons are Button blocks.
->   - The Columns library folder now shows Columns Containers.
-> - `block-library/metadata-language-master.csv` (311 rows), `metadata-en-rollout.csv`, `placeholders.csv` and the other sheets: regenerated (nothing new to import if 1.0.7's sheets are in).
-> - `columns-container/tcs-corp-columns-container-content-1.0.4.zip`: only the Columns Container pages (see below).
-> - `audit/BLOCK-ECOSYSTEM-AUDIT.md`: the block audit report, updated (also in the repository, docs/audit/).
+> - `block-library/tcs-corp-block-library-content-1.0.9.zip`: block library and curated design pages (replaces 1.0.8), with the re-audit fixes:
+>   - Form fields keep their key in the new **Field name** (`fieldName`) field.
+>   - The Teaser Personalization example is gone.
+>   - Everything from 1.0.8 is included: Columns Containers, Column Breaks in tabs, Button blocks.
+> - `block-library/placeholders.csv`: adds new UI texts (form errors, Follow us, Explore). Import the placeholders sheet again. The other sheets are regenerated, unchanged.
+> - `columns-container/tcs-corp-columns-container-content-1.0.5.zip`: only the Columns Container pages (see below).
+> - `audit/REAUDIT-2026-10-20.md`: the re-audit report; `audit/BLOCK-ECOSYSTEM-AUDIT.md`: the first audit.
+> - **Operations:** publish the non-image DAM assets the pages use (Lottie JSON, videos, captions). They return 404 on aem.page until published.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
@@ -17,9 +18,9 @@
 
 Only the new Columns Container pages of the block library, without the rest of the block library:
 
-- `columns-container/tcs-corp-columns-container-content-1.0.4.zip`: AEM content package (1.0.4: Button blocks instead of built-in Buttons; 1.0.3: the content of the block audit; 1.0.2: Column widths removed, Columns per row is `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
+- `columns-container/tcs-corp-columns-container-content-1.0.5.zip`: AEM content package (1.0.5: the re-audit; 1.0.4: Button blocks instead of built-in Buttons; 1.0.3: the content of the block audit; 1.0.2: Column widths removed, Columns per row is `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
 - `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 rows of the language-master Metadata sheet (the Columns per row row has its new URL: replace the `widths-and-columns-per-row` row). Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
-- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.8.zip`, which updates the start page too.
+- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.9.zip`, which updates the start page too.
 
 ## Project handover
 
@@ -74,7 +75,7 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.8.zip` (1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+- `block-library/tcs-corp-block-library-content-1.0.9.zip` (1.0.8, 1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The block library under `/content/tcs-corp/language-master/en/block-library`: 176 pages covering every block and its variations (with the Animation and Columns Container folders).
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
