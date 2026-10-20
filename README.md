@@ -1,14 +1,15 @@
 # Content packages
 
-> **20 October 2026: install the new block library package (container section options).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_0502`.
+> **20 October 2026: install the new block library package (Teaser and Columns Container options).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_1016`.
 >
-> - `block-library/tcs-corp-block-library-content-1.0.10.zip`: block library and curated design pages (replaces 1.0.9).
->   - The Additional tab of Tabs Containers, Columns Containers and Gen Carousels now uses fields AEM delivers (AEM doesn't deliver a section's `classes_*` fields), so their anchor, hide, animation and spacing settings work.
->   - Everything from 1.0.9 is included.
-> - `columns-container/tcs-corp-columns-container-content-1.0.6.zip`: only the Columns Container pages (see below).
+> - `block-library/tcs-corp-block-library-content-1.0.11.zip`: block library and curated design pages (replaces 1.0.10).
+>   - Teaser: Title Type sets the level and the size (the Title size examples are now Title Type H1–H6); BG Color teasers get Padding fields (BG Color is only the colour); new page "Teaser: image positions" (Left, Right, Top, Bottom); buttons side by side and arrows on buttons in "Teaser: CTA styles".
+>   - Columns Container: BG Color (Grey, Dark, Dark green) and Gap None examples in "alignment, gap and breakpoints".
+>   - Everything from 1.0.10 is included.
+> - `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: only the Columns Container pages (see below).
 > - Sheets regenerated: nothing new to import if 1.0.9's are in.
-> - `audit/REAUDIT-2026-10-20.md`: the re-audit report, with R-L-1 and R-L-2 added.
-> - **Operations:** publish the non-image DAM assets the pages use (Lottie JSON, videos, captions).
+> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.32.
+> - **Content in AEM authored before:** Teasers with a Title size now take the size of their Title Type; Teasers with a BG Color have no padding until Padding is set in their Additional tab.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
@@ -17,9 +18,9 @@
 
 Only the new Columns Container pages of the block library, without the rest of the block library:
 
-- `columns-container/tcs-corp-columns-container-content-1.0.6.zip`: AEM content package (1.0.6: the container Additional tab; 1.0.5: the re-audit; 1.0.4: Button blocks instead of built-in Buttons; 1.0.3: the content of the block audit; 1.0.2: Column widths removed, Columns per row is `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
+- `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: AEM content package (1.0.7: BG Color and Gap None; 1.0.6: the container Additional tab; 1.0.5: the re-audit; 1.0.4: Button blocks instead of built-in Buttons; 1.0.3: the content of the block audit; 1.0.2: Column widths removed, Columns per row is `columns-per-row`) (Package Manager, Upload Package, Install) of 4 pages under `/content/tcs-corp/language-master/en/block-library/columns-container`: the folder page and Columns of blocks; Columns per row; Alignment, gap and breakpoints. Its filter covers only that folder (installing removes the old `widths-and-columns-per-row` page), so nothing else in AEM changes. The images are those of the block library package already installed.
 - `columns-container/metadata-columns-container-rows.csv` (and `.tsv`, tab-separated, to paste): the 4 rows of the language-master Metadata sheet (the Columns per row row has its new URL: replace the `widths-and-columns-per-row` row). Add them to the sheet (don't import them as the whole sheet, which would replace its other rows).
-- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.10.zip`, which updates the start page too.
+- The block library start page doesn't link the new folder unless it is updated: open `block-library/columns-container` directly, or install `block-library/tcs-corp-block-library-content-1.0.11.zip`, which updates the start page too.
 
 ## Project handover
 
@@ -74,7 +75,7 @@ Replaces the What We Do and Who We Are packages above (install only this one).
 
 Contains the curated design pages package above, so install only this one.
 
-- `block-library/tcs-corp-block-library-content-1.0.10.zip` (1.0.9, 1.0.8, 1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
+- `block-library/tcs-corp-block-library-content-1.0.11.zip` (1.0.10, 1.0.9, 1.0.8, 1.0.7, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0: the previous versions): AEM content package (Package Manager, Upload Package, Install). Contents:
   - The block library under `/content/tcs-corp/language-master/en/block-library`: 176 pages covering every block and its variations (with the Animation and Columns Container folders).
   - The 11 curated design pages.
   - 123 supporting pages under `dummy-pages`. Each page's content is replaced; other pages are kept.
