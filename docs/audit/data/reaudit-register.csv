@@ -45,3 +45,5 @@
 "R-D-15","minor","TCS Header","Logo link without https:// becomes a relative 404","Corrected","scheme added"
 "R-D-16","low","Button block, Title, Image","Outdated dialog guidance","Corrected",""
 "R-D-17","minor","Data layer","Page clicks pushed under component.page-…","Corrected","page.page-…"
+"R-L-1","major","Tabs Container, Columns Container, Gen Carousel","Found on aem.live after publishing 1.0.9: AEM doesn't deliver a section's classes_* fields, so the containers' Additional tab (anchor, hide, animation, spacing) had no effect; the preview renderer emitted them","Corrected","container* fields (data attributes) applied by applySectionBlockOptions; renderer and library migrated (package 1.0.10)"
+"R-L-2","minor","Filter List","Found on aem.live: cards without images (the metadata sheet has no image columns; the preview index filled them)","Corrected","falls back to the page's own image (index image column); preview index as live"

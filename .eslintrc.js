@@ -23,9 +23,10 @@ module.exports = {
     'xwalk/max-cells': ['error', {
       '*': 4,
       section: 6,
-      tabs: 8,
-      'gen-carousel': 6,
-      'columns-container': 12,
+      // container sections: their Additional tab is container* section fields (data attributes)
+      tabs: 21,
+      'gen-carousel': 18,
+      'columns-container': 22,
       'table-list': 10,
       'table-list-card': 6,
       'list-item': 13,

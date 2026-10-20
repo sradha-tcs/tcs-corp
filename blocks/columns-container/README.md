@@ -57,7 +57,7 @@ doesn't deliver its Additional tab. Columns authored before still render and sta
   properties become classes (`per-row-3`, `gap-small`, `align-middle`,
   `from-tablet`; columns are always of equal width: the former Column widths option, which only
   applied to rows of two columns, is gone and `columnsLayout` values authored before are ignored) and its
-  `classes_*` properties (Additional tab) block classes.
+  `container*` properties (Additional tab: AEM doesn't deliver `classes_*` on sections) block classes.
 - `columns-container.js`: each Column Break (`blocks/column-break`; template name "Column Break",
   so AEM renders it with the class `column-break`) starts a plain column element
   (`columns-container-column`, not a block, so Universal Editor updates of the components in it

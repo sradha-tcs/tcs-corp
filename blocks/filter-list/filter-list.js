@@ -331,7 +331,9 @@ export default async function decorate(block) {
       // on AEM author, links to the AEM pages
       const urlOf = (page) => pageLink(text(page, map.url) || page.path);
       const titleOf = (page) => text(page, map.title) || page.title || page.path;
-      const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage);
+      // the mapped columns, else the page's own image (always in the index)
+      const imageOf = (page) => text(page, map.image) || text(page, map.fallbackImage)
+        || text(page, 'image');
       const tagsOf = (page) => listOf(columnOf(page, map.tags)).slice(0, MAX_CARD_TAGS)
         .map(labelOf);
       const readingOf = (page) => (/^\d+$/.test(page.readingTime)
