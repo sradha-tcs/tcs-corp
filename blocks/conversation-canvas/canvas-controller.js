@@ -36,12 +36,15 @@ const RESIZE_SETTLE = 100;
 let settleTimer = 0;
 const rootValues = new Map();
 
-/** a custom property (or the journey state) on <html>, written only when it changes */
-function setRoot(name, value) {
+/**
+ * A custom property (or the journey state) on <html>, or on another element that holds every use
+ * of it (a smaller restyle), written only when it changes.
+ */
+function setRoot(name, value, target = document.documentElement) {
   if (rootValues.get(name) === value) return;
   rootValues.set(name, value);
-  if (name === 'state') document.documentElement.dataset.canvasJourneyState = value;
-  else document.documentElement.style.setProperty(name, value);
+  if (name === 'state') target.dataset.canvasJourneyState = value;
+  else target.style.setProperty(name, value);
 }
 
 // canvas blocks never contain each other, so b either follows or precedes a
@@ -86,7 +89,8 @@ function measure() {
     ? Math.round(firstSection.getBoundingClientRect().bottom + scrollY) : 0;
   if (bottom !== firstSectionBottom) {
     firstSectionBottom = bottom;
-    setRoot('--conversation-canvas-first-section-bottom', `${bottom}px`);
+    // used only by the header Canvas (blocks/header/header.css): set on the header
+    setRoot('--conversation-canvas-first-section-bottom', `${bottom}px`, document.querySelector('header') || document.documentElement);
   }
   const canvases = live.map((e, i) => {
     if (e.primary) {

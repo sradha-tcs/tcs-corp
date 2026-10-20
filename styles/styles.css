@@ -149,7 +149,7 @@
   /* ---------- typography ---------- */
 
   /* families */
-  --body-font-family: inter, inter-fallback, sans-serif;
+  --body-font-family: inter, inter-fallback, inter-fallback-roboto, inter-fallback-dejavu, sans-serif;
   --heading-font-family: var(--body-font-family);
   --code-font-family: 'Roboto Mono', ui-monospace, menlo, consolas, monospace;
 
@@ -266,14 +266,38 @@
   --header-reserved: var(--nav-height);
 }
 
-/* fallback fonts */
+/*
+ * fallback fonts: a system font scaled to Inter's width and line metrics, so text doesn't reflow
+ * (and move the page) when Inter arrives (fonts.css loads after LCP on small screens). One face
+ * per system font, measured against Inter at weight 400; a face whose font isn't installed is
+ * skipped for the next: Arial (Windows, macOS, iOS; Liberation Sans has its metrics), Roboto
+ * (Android, which has no Arial), DejaVu Sans (Linux).
+ */
 @font-face {
   font-family: inter-fallback;
   size-adjust: 107.06%;
   ascent-override: 90.49%;
   descent-override: 22.56%;
   line-gap-override: 0%;
-  src: local('Arial');
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans');
+}
+
+@font-face {
+  font-family: inter-fallback-roboto;
+  size-adjust: 107.21%;
+  ascent-override: 90.36%;
+  descent-override: 22.53%;
+  line-gap-override: 0%;
+  src: local('Roboto'), local('Roboto-Regular');
+}
+
+@font-face {
+  font-family: inter-fallback-dejavu;
+  size-adjust: 93.97%;
+  ascent-override: 103.09%;
+  descent-override: 25.70%;
+  line-gap-override: 0%;
+  src: local('DejaVu Sans'), local('DejaVuSans');
 }
 
 @media (width >= 600px) {
