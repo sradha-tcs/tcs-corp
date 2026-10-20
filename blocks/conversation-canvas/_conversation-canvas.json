@@ -38,12 +38,6 @@
       "id": "conversation-canvas",
       "fields": [
         {
-          "component": "aem-content",
-          "name": "searchPage",
-          "label": "Search page",
-          "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
-        },
-        {
           "component": "tab",
           "name": "contentTab",
           "label": "Content"
@@ -286,6 +280,12 @@
               "name": "searchButtonLabel",
               "label": "Search bar button icon type hover text",
               "placeholder": "Submit"
+            },
+            {
+              "component": "aem-content",
+              "name": "searchPage",
+              "label": "Search page",
+              "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
             }
           ]
         },

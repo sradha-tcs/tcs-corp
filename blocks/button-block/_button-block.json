@@ -47,7 +47,7 @@
           "name": "linkTitle",
           "label": "Title",
           "valueType": "string",
-          "description": "Tooltip; when empty the Text is used."
+          "description": "Optional tooltip (most buttons need none)."
         },
         {
           "component": "tab",

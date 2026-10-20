@@ -145,6 +145,8 @@ export default async function decorate(block) {
       const target = targetOf(anchor);
       // no target on this page (e.g. the block library): only the link is marked current
       if (!target) return;
+      // a target in a tab that isn't shown: its tab opens first (blocks/tabs)
+      target.dispatchEvent(new CustomEvent('tabs:reveal', { bubbles: true }));
       target.style.scrollMarginTop = `${scrollOffset(block)}px`;
       target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
       window.history.replaceState(null, '', `#${anchor}`);

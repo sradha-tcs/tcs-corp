@@ -117,6 +117,8 @@ function onClick(e) {
   if (el.matches('button[type="submit"], button:not([type])') && isSearchForm(el.form)) return;
   // a drag of a horizontal scroller ends with a click the scroller cancels
   if (el.closest('[data-dragged="true"]')) return;
+  // a disabled control (aria-disabled stays focusable) does nothing: no click
+  if (el.closest('[aria-disabled="true"]')) return;
   const a = el.closest('a[href]');
   // outside the blocks, the links of the page's text (as the page's clicks)
   if (!blockOf(el) && !(a && a.closest('main'))) return;
@@ -150,6 +152,11 @@ function onMedia(e) {
   if (!(media instanceof HTMLMediaElement) || !blockOf(media) || !tracked(media)) return;
   // background videos (muted, looping, no controls) aren't interactions
   if (!media.controls && media.loop && media.muted) return;
+  // a play / pause the page made (e.g. paused off screen) isn't the visitor's
+  if (media.dataset.cmpAuto) {
+    delete media.dataset.cmpAuto;
+    return;
+  }
   pushComponentEvent('cmp:media', componentOf(media), {
     interaction: e.type,
     'xdm:mediaURL': media.currentSrc || undefined,
@@ -171,7 +178,9 @@ function onSubmit(e) {
   // field names only: no values (personal data)
   const fields = [...new Set([...form.elements].map((field) => field.name).filter(Boolean))];
   pushComponentEvent('cmp:submit', componentOf(form), {
-    'dc:title': form.getAttribute('aria-label') || form.id || nameOf(blockOf(form)),
+    'dc:title': form.getAttribute('aria-label')
+      || document.getElementById(form.getAttribute('aria-labelledby') || '')?.textContent.trim()
+      || form.id || nameOf(blockOf(form)),
     fields,
   });
 }

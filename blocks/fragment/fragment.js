@@ -16,14 +16,16 @@ import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
-// the fragments being loaded: a fragment that includes itself (or the page) isn't loaded again
-const loading = new Set();
+/** the fragment pages an element is inside (the chain of fragments that include it) */
+const chainOf = (el) => (el?.closest?.('main[data-fragment-chain]')?.dataset.fragmentChain || '')
+  .split(' ').filter(Boolean);
 
 /** fetches and decorates a fragment page (path without .html) */
-async function fetchFragment(path) {
+async function fetchFragment(path, chain) {
   const resp = await fetch(`${path}.plain.html`);
   if (!resp.ok) return null;
   const main = document.createElement('main');
+  main.dataset.fragmentChain = chain.join(' ');
   main.innerHTML = await resp.text();
 
   // reset base path for media to fragment base
@@ -43,21 +45,19 @@ async function fetchFragment(path) {
 /**
  * Loads a fragment.
  * @param {string} path The path to the fragment
+ * @param {Element} [from] the element that includes it: a fragment that includes itself (through
+ *   the fragments around it) or the page it is on isn't loaded again; the same fragment twice
+ *   side by side is fine
  * @returns {HTMLElement} The root element of the fragment
  */
-export async function loadFragment(path) {
+export async function loadFragment(path, from = null) {
   if (path && path.startsWith('/') && !path.startsWith('//')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    // a fragment that includes itself (or the page it is on) would load forever
     const page = window.location.pathname.replace(/\.html$/, '');
-    if (loading.has(path) || path === page) return null;
-    loading.add(path);
-    try {
-      return await fetchFragment(path);
-    } finally {
-      loading.delete(path);
-    }
+    const chain = chainOf(from);
+    if (path === page || chain.includes(path)) return null;
+    return fetchFragment(path, [...chain, path]);
   }
   return null;
 }
@@ -65,7 +65,7 @@ export async function loadFragment(path) {
 export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
-  const fragment = await loadFragment(path);
+  const fragment = await loadFragment(path, block);
   if (fragment) {
     block.replaceChildren(...fragment.childNodes);
     // the block animations of the fragment, once it is in the page (decorators/motion-decorator.js)

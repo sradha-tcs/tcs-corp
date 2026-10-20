@@ -117,11 +117,11 @@
             "value": "stat"
           },
           {
-            "name": "Mixed (by page)",
+            "name": "Mixed",
             "value": "mixed"
           }
         ],
-        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each card's own value, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed: each card's own style, else (List) the page's card-style metadata, else Report content as report cards, cards without an image as panels, the others as image cards.",
         "condition": {
           "===": [
             {
@@ -183,7 +183,7 @@
             true
           ]
         },
-        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each card's own value, else the colour of the card's style."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
       },
       {
         "component": "select",
@@ -897,41 +897,6 @@
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "touchSwipe",
-        "label": "Allow touch swipe",
-        "value": true,
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "desktopMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "tabletMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "mobileMode"
-                },
-                "horizontal-scroll"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
         "name": "keyboardScrolling",
         "label": "Keyboard scrolling",
         "value": true,
@@ -1127,7 +1092,8 @@
               ]
             }
           ]
-        }
+        },
+        "description": "Fixed-width sections only: the cards run into the section gutter. In full-width sections both look the same."
       }
     ],
     "advanced": [

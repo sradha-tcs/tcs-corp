@@ -1,4 +1,5 @@
-import { pushComponentEvent } from '../../utils/analytics.js';
+import { componentIdOf } from '../../decorators/data-layer-decorator.js';
+import { pushComponentEvent, pushComponents } from '../../utils/analytics.js';
 import { decorateBlock, loadBlock, toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { pick } from '../../utils/buttons.js';
@@ -34,22 +35,39 @@ const ORIENTATIONS = ['horizontal', 'vertical'];
 const shownTabs = new Map();
 let listeningToHash = false;
 
-/** the panel the page address names (#ID): a tab's authored ID first, then any panel id */
-function panelOfHash() {
-  const id = toClassName(decodeURIComponent(window.location.hash.slice(1)));
+/**
+ * The element the page address names (#ID) when it is a tab panel (a tab's authored ID first) or
+ * inside one (a block's Anchor ID, a heading)
+ */
+function targetOfHash() {
+  const raw = decodeURIComponent(window.location.hash.slice(1));
+  const id = toClassName(raw);
   if (!id) return null;
   const tagged = document.querySelector(`.tabs .tabs-panel[data-tab-id="${CSS.escape(id)}"]`);
   if (tagged) return tagged;
-  const panel = document.getElementById(id);
-  return panel?.matches('.tabs .tabs-panel') ? panel : null;
+  const target = document.getElementById(raw) || document.getElementById(id);
+  return target?.closest('.tabs .tabs-panel') ? target : null;
 }
 
-/** deep links: a link to a tab's ID (or back / forward to one) opens the tab and scrolls to it */
+/**
+ * Deep links: a link to a tab's ID, or to something in a tab (or back / forward to one), opens
+ * its tab(s) (tabs:reveal, nested tabs from the inside out) and scrolls to it
+ */
 function openPanelOfHash() {
-  const panel = panelOfHash();
-  if (!panel) return;
-  document.getElementById(panel.getAttribute('aria-labelledby'))?.click();
-  panel.closest('.tabs').scrollIntoView();
+  const target = targetOfHash();
+  if (!target) return;
+  target.dispatchEvent(new CustomEvent('tabs:reveal', { bubbles: true }));
+  (target.matches('.tabs-panel') ? target.closest('.tabs') : target).scrollIntoView();
+}
+
+/** pauses the media of a panel that is no longer shown (WCAG 1.4.2): videos, YouTube, Vimeo */
+function pauseMedia(panel) {
+  panel.querySelectorAll('video').forEach((video) => video.pause());
+  panel.querySelectorAll('iframe').forEach((frame) => {
+    const message = /vimeo/.test(frame.src) ? '{"method":"pause"}'
+      : '{"event":"command","func":"pauseVideo","args":""}';
+    frame.contentWindow?.postMessage(message, '*');
+  });
 }
 
 function listenToHash() {
@@ -154,7 +172,7 @@ async function readItem(row) {
   const [title, id, active] = cells;
   const fragmentCell = cells.length > 3 ? cells[cells.length - 1] : null;
   const path = fragmentCell?.querySelector('a')?.getAttribute('href') || textOf(fragmentCell);
-  const fragment = path ? await loadFragment(path) : null;
+  const fragment = path ? await loadFragment(path, row) : null;
   const content = [];
   if (fragment) {
     const wrapper = document.createElement('div');
@@ -254,6 +272,17 @@ export default async function decorate(block) {
     return { button, panel, active };
   });
   block.replaceChildren(list, ...tabs.map(({ panel }) => panel));
+  // the panels are components of the data layer (their cmp:show events point to them); the
+  // columns built in a panel get a stable id from it
+  pushComponents(Object.fromEntries(tabs.map(({ panel, button }) => [panel.id, {
+    '@type': 'tcs-corp/components/tabs/item',
+    parentId: componentIdOf(block),
+    'dc:title': button.textContent.trim(),
+  }])));
+  tabs.forEach(({ panel }) => {
+    const columns = panel.querySelector(':scope > div > .columns-container');
+    if (columns) columns.dataset.cmpId = `${panel.id}-columns`;
+  });
 
   let currentIndex = -1;
   const select = (index, { focus = false, notify = true } = {}) => {
@@ -261,6 +290,7 @@ export default async function decorate(block) {
       const selected = i === index;
       button.setAttribute('aria-selected', selected);
       button.tabIndex = selected ? 0 : -1;
+      if (!selected && !panel.hidden) pauseMedia(panel);
       panel.hidden = !selected;
     });
     if (focus) tabs[index].button.focus();
@@ -297,9 +327,15 @@ export default async function decorate(block) {
 
   // Universal Editor: show the tab of the component selected in the editor
   block.addEventListener('aue:ui-select', (e) => {
-    const panel = e.detail?.selected && e.target.closest('.tabs-panel');
-    const index = tabs.findIndex((tab) => tab.panel === panel);
+    if (!e.detail?.selected) return;
+    // the panel of this Tabs holding the selection (also inside a nested Tabs)
+    const index = tabs.findIndex(({ panel }) => panel.contains(e.target));
     if (index >= 0) select(index);
+  });
+  // something inside a panel is linked to (deep link, Anchor List): its tab opens
+  block.addEventListener('tabs:reveal', (e) => {
+    const index = tabs.findIndex(({ panel }) => panel.contains(e.target));
+    if (index >= 0 && index !== currentIndex) select(index);
   });
   // a Tab edited in Universal Editor: update its tab
   block.addEventListener('tabs:tab-update', (e) => {
@@ -307,17 +343,17 @@ export default async function decorate(block) {
     if (tab && e.detail.title) tab.button.textContent = e.detail.title;
   });
 
-  const linked = panelOfHash();
+  const linked = targetOfHash();
   const shown = [
     (key && shownTabs.get(key)) ?? -1,
-    tabs.findIndex(({ panel }) => panel === linked),
+    tabs.findIndex(({ panel }) => linked && panel.contains(linked)),
     tabs.findIndex(({ active }) => active),
   ].find((index) => index >= 0 && index < tabs.length);
   select(shown ?? 0, { notify: false });
 
   listenToHash();
   // a page opened at a tab's ID: scroll to it once the page has its layout
-  if (linked && tabs.some(({ panel }) => panel === linked)) {
+  if (linked && tabs.some(({ panel }) => panel.contains(linked))) {
     if (document.readyState === 'complete') requestAnimationFrame(openPanelOfHash);
     else window.addEventListener('load', openPanelOfHash, { once: true });
   }

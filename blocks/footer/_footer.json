@@ -104,21 +104,21 @@
           "component": "text",
           "valueType": "string",
           "name": "linkText",
-          "label": "Link Title"
+          "label": "Link text"
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "linkTarget",
-          "label": "Link Type",
+          "label": "Open in",
           "value": "",
           "options": [
             {
-              "name": "Default",
+              "name": "Same tab",
               "value": ""
             },
             {
-              "name": "Open in new window",
+              "name": "New tab",
               "value": "new-window"
             }
           ]

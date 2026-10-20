@@ -954,9 +954,9 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "name",
+          "name": "fieldName",
           "label": "Field Name / ID",
-          "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop.",
+          "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written).",
           "required": true
         },
         {
@@ -1018,9 +1018,9 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "name",
+          "name": "fieldName",
           "label": "Dropdown Name / ID",
-          "description": "Submitted as the field key, e.g. sector or region.",
+          "description": "Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written).",
           "required": true
         },
         {
@@ -1068,9 +1068,9 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "name",
+          "name": "fieldName",
           "label": "Field Name / ID",
-          "description": "Submitted as the field key, e.g. feedback.",
+          "description": "Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written).",
           "required": true
         },
         {
@@ -1118,9 +1118,9 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "name",
+          "name": "fieldName",
           "label": "Checkbox Name / ID",
-          "description": "Submitted as the field key, e.g. consent.",
+          "description": "Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written).",
           "required": true
         },
         {

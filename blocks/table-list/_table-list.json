@@ -17,8 +17,7 @@
               "maxCards": 4,
               "ctaStyle": "",
               "numbers": "",
-              "itemAction": "",
-              "itemButtonLabel": "Explore"
+              "itemAction": ""
             }
           }
         }
@@ -215,8 +214,7 @@
           "valueType": "string",
           "name": "itemButtonLabel",
           "label": "Button text",
-          "description": "Text of the item buttons; an item can have its own.",
-          "value": "Explore",
+          "description": "Default: Explore (in the page language).",
           "condition": {
             "or": [
               {

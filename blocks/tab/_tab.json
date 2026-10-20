@@ -10,8 +10,7 @@
             "template": {
               "name": "Tab",
               "model": "tab",
-              "key-value": true,
-              "title": "Tab"
+              "key-value": true
             }
           }
         }
@@ -40,7 +39,11 @@
           "valueType": "string",
           "name": "tabId",
           "label": "ID",
-          "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+          "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID.",
+          "validation": {
+            "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+            "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. overview."
+          }
         },
         {
           "component": "boolean",

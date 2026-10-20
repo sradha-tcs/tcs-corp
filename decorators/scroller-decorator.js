@@ -147,8 +147,12 @@ export function createScroller(viewport, options = {}) {
       if (!start) return;
       start = null;
       viewport.classList.remove('is-dragging');
-      // the click that ends a drag comes right after pointerup
-      setTimeout(() => { delete viewport.dataset.dragged; }, 0);
+      // the click that ends a drag comes right after pointerup; a drag released outside the
+      // viewport has no click, so the next activation isn't cancelled
+      setTimeout(() => {
+        dragged = false;
+        delete viewport.dataset.dragged;
+      }, 0);
     });
     listen(viewport, 'click', (e) => {
       if (!dragged) return;

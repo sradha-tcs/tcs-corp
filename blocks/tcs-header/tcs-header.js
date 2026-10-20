@@ -20,7 +20,12 @@ function buildLogo(imageCell, altCell, linkCell, className, fallback) {
   // the alt text collapses into the image (AEM): without an image, the link gets a name
   const alt = textOf(altCell) || (textOf(linkCell) || linkOf(linkCell) ? fallback : '');
   if (!picture && !alt) return null;
-  const href = linkOf(linkCell)?.getAttribute('href') || textOf(linkCell);
+  const raw = linkOf(linkCell)?.getAttribute('href') || textOf(linkCell);
+  // a domain typed without https:// (www.tata.com) would be a relative link
+  const href = /^(www\.|[a-z0-9-]+\.[a-z]{2,}(\/|$))/i.test(raw) ? `https://${raw}` : raw;
+  // a linked logo needs a name: an empty alt gets the logo's name
+  const img = picture?.querySelector('img');
+  if (img && href && !img.getAttribute('alt')?.trim()) img.alt = fallback;
   const logo = document.createElement(href ? 'a' : 'span');
   logo.className = className;
   if (href) logo.href = href;

@@ -107,6 +107,10 @@
 .hero.bg-dark-subtle {
   --hero-overlay: rgb(1 18 31 / 60%);
 
+  /* over the lighter overlay: white text (WCAG 1.4.3; brand-300 reaches only 4:1 here) */
+  --hero-eyebrow-color: var(--color-text-on-neutral);
+  --hero-description-color: rgb(255 255 255 / 85%);
+
   background-color: var(--hero-navy);
 }
 
@@ -251,6 +255,12 @@
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);
   color: var(--color-text-on-neutral);
+}
+
+/* the eyebrow on dark backgrounds (the brand text colour is too dark there, WCAG 1.4.3) */
+.hero.bg-dark,
+.hero.bg-black {
+  --hero-eyebrow-color: var(--brand-300);
 }
 
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:not(:hover, :focus-visible) {

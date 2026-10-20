@@ -249,24 +249,42 @@ function pauseOffscreen(video) {
   let pausedByScroll = false;
   watchVisibility(video, (visible) => {
     if (!visible && !video.paused) {
+      // an automatic pause, not a visitor's (decorators/data-layer-decorator.js)
+      video.dataset.cmpAuto = 'true';
       pausedByScroll = true;
       video.pause();
     } else if (visible && pausedByScroll) {
       pausedByScroll = false;
+      video.dataset.cmpAuto = 'true';
       video.play().catch(() => {});
     }
   });
 }
 
 /** plays the video in a dialog over the page */
-async function playInModal(config) {
-  const { createModal } = await import('../modal/modal.js');
-  const wrapper = document.createElement('div');
-  wrapper.className = 'video-modal-player';
-  wrapper.style.setProperty('--video-aspect-ratio', config.aspectRatio);
-  wrapper.append(buildPlayer(config, { autoplay: true, background: false, started: true }));
-  const { showModal } = await createModal([wrapper]);
-  showModal();
+async function playInModal(config, opener) {
+  // a double click opens one dialog
+  if (opener?.dataset.opening) return;
+  if (opener) opener.dataset.opening = 'true';
+  try {
+    const { createModal } = await import('../modal/modal.js');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'video-modal-player';
+    wrapper.style.setProperty('--video-aspect-ratio', config.aspectRatio);
+    // the dialog's name: the video title (a heading screen reader users hear, hidden on screen)
+    const heading = document.createElement('h2');
+    heading.className = 'visually-hidden';
+    heading.textContent = config.title;
+    wrapper.append(
+      heading,
+      buildPlayer(config, { autoplay: true, background: false, started: true }),
+    );
+    const { showModal } = await createModal([wrapper]);
+    // focus returns to the poster's play button (Safari doesn't focus clicked buttons)
+    showModal(opener);
+  } finally {
+    if (opener) delete opener.dataset.opening;
+  }
 }
 
 /** the poster with a play button */
@@ -327,9 +345,9 @@ export default async function decorate(block) {
   if (playback === 'click') {
     if (config.poster || config.modal) {
       block.classList.add('placeholder');
-      const poster = buildPoster(config, playLabel, () => {
+      const poster = buildPoster(config, playLabel, (e) => {
         if (config.modal) {
-          playInModal(config);
+          playInModal(config, e?.currentTarget);
           return;
         }
         const player = buildPlayer(config, { autoplay: true, background: false, started: true });

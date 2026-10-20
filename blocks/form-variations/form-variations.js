@@ -30,8 +30,12 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 const ITEM_TYPES = [
   'field-text', 'field-select', 'field-textarea', 'field-checkbox', 'contact-card', 'field-submit',
 ];
-/** the item types whose first field is the field key ("name", the item's node name) */
+/** the item types whose first field is the field key */
 const KEYED_TYPES = ['field-text', 'field-select', 'field-textarea', 'field-checkbox'];
+/** the cells after the type cell of a keyed item with its fieldName field (current model) */
+const FIELD_COUNT = {
+  'field-text': 5, 'field-select': 5, 'field-textarea': 5, 'field-checkbox': 4,
+};
 /** node names AEM gives items without a field key: their template names in class-name form */
 const TEMPLATE_NAMES = [
   'text-input-field', 'dropdown-select-field', 'textarea-field', 'consent-checkbox-field',
@@ -65,7 +69,10 @@ export function readItem(row) {
   if (type) {
     const fields = cells.slice(1);
     if (tokens.length === 1 || !KEYED_TYPES.includes(type)) return { type, cells: fields };
-    // the field key: the other token, unless it is only the item's template name (no key)
+    // current model: the key is its own fieldName cell (as authored, e.g. firstName)
+    if (fields.length >= FIELD_COUNT[type]) return { type, cells: fields };
+    // items authored before: the key was the item's node name, delivered in class-name form
+    // (firstname), unless it is only the item's template name (no key)
     const key = tokens.find((v) => v !== type);
     return { type, cells: [textCell(TEMPLATE_NAMES.includes(key) ? '' : key), ...fields] };
   }
@@ -493,13 +500,24 @@ export default async function decorate(block) {
   const fail = (key, fallback) => { status.textContent = t(key, fallback); };
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    // a submission is being sent: a second click or Enter doesn't send it again
+    if (form.getAttribute('aria-busy') === 'true') return;
     status.textContent = '';
     if (!validate(form)) return;
     const data = collectData(form);
-    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, cancelable: true, detail: { data } }));
+    // an integration that handles the submit (preventDefault) can report its outcome with
+    // detail.respondWith(promise): rejected, the visitor is told it failed
+    let pending = null;
+    const detail = { data, respondWith: (promise) => { pending = promise; } };
+    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, cancelable: true, detail }));
     const button = form.querySelector('button[type="submit"]');
     if (handled) {
-      succeed();
+      try {
+        await pending;
+        succeed();
+      } catch {
+        fail('formError', 'Your details couldn’t be sent. Please try again.');
+      }
     } else if (!action) {
       fail('formNotConnected', 'This form isn’t connected yet: your details weren’t sent.');
     } else {

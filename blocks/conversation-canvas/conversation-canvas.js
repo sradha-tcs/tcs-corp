@@ -211,6 +211,8 @@ function buildMenuToggle(controls, label = t('menu', 'Menu')) {
 function buildSearchForm(config, id, block) {
   const form = document.createElement('form');
   form.className = 'conversation-canvas-search-form';
+  // a search landmark, named by its placeholder when there are several on the page
+  form.setAttribute('role', 'search');
   const placeholder = textOf(config.searchplaceholder) || t('searchPlaceholder', 'Ask us a question');
   const input = document.createElement('input');
   input.type = 'search';

@@ -12,6 +12,11 @@ import { decorateButtons, decorateMain, decorateSectionsWithOptions } from './sc
 
 let promiseChanges$ = Promise.resolve();
 
+/** removes the ids of an element that is about to be replaced (its replacement takes them) */
+function dropIds(el) {
+  [el, ...el.querySelectorAll('[id]')].forEach((node) => node.removeAttribute('id'));
+}
+
 async function applyChanges(event) {
   await promiseChanges$;
 
@@ -56,6 +61,8 @@ async function applyChanges(event) {
       const newBlock = parsedUpdate.querySelector(`[data-aue-resource="${blockResource}"]`);
       if (newBlock) {
         newBlock.style.display = 'none';
+        // the block is replaced: its ids go first, so the new one gets them (not "-2")
+        dropIds(block);
         block.insertAdjacentElement('afterend', newBlock);
         decorateButtons(newBlock);
         decorateIcons(newBlock);
@@ -75,6 +82,7 @@ async function applyChanges(event) {
         if (element.matches('.section')) {
           const [newSection] = newElements;
           newSection.style.display = 'none';
+          dropIds(element);
           element.insertAdjacentElement('afterend', newSection);
           decorateButtons(newSection);
           decorateIcons(newSection);

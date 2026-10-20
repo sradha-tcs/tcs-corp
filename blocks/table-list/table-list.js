@@ -230,7 +230,7 @@ function buildAction(linkCell, title, config) {
     const text = linkTextOf(linkCell) || config.buttonText || t('explore', 'Explore');
     const button = buildButton(href, text, 'secondary');
     if (!button) return null;
-    if (href) button.setAttribute('aria-label', t('itemLinkLabel', '{text}: {title}', { text, title }));
+    if (href && title) button.setAttribute('aria-label', t('itemLinkLabel', '{text}: {title}', { text, title }));
     action.append(button);
     return action;
   }
@@ -238,7 +238,7 @@ function buildAction(linkCell, title, config) {
   arrow.className = `table-list-arrow ${config.itemAction}`;
   if (href) {
     arrow.href = href;
-    arrow.setAttribute('aria-label', t('exploreItem', 'Explore {title}', { title }));
+    arrow.setAttribute('aria-label', title ? t('exploreItem', 'Explore {title}', { title }) : t('explore', 'Explore'));
   } else {
     arrow.setAttribute('aria-hidden', 'true');
   }
@@ -286,7 +286,9 @@ function decorateItem(row, index, config) {
 
   const parts = [main];
   if (descriptionCell) parts.push(buildDescription(descriptionCell));
-  const action = buildAction(linkCell, textOf(titleCell), config);
+  // the link's name: the title, else the description or the link text
+  const name = textOf(titleCell) || textOf(descriptionCell) || linkTextOf(linkCell);
+  const action = buildAction(linkCell, name, config);
   if (action) parts.push(action);
 
   // the row is kept, so its Universal Editor instrumentation stays in place
@@ -316,9 +318,14 @@ export default async function decorate(block) {
   const list = document.createElement('div');
   list.className = 'table-list-items';
   list.setAttribute('role', 'list');
-  config.items.slice(0, config.maxItems).forEach((row, i) => {
+  // items above Maximum items aren't shown; in the editor they stay selectable (dimmed)
+  const editing = isEditing();
+  config.items.forEach((row, i) => {
+    const extra = i >= config.maxItems;
+    if (extra && !editing) return;
     const item = decorateItem(row, i, config);
     item.setAttribute('role', 'listitem');
+    if (extra) item.classList.add('table-list-item-hidden');
     list.append(item);
   });
 

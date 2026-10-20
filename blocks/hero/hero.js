@@ -6,7 +6,7 @@ import { readButtonOptions } from '../../utils/buttons.js';
 import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
 import { addLegacyMotion } from '../../utils/motion.js';
-import { isAnimation } from '../../utils/media.js';
+import { animationLabel, isAnimation } from '../../utils/media.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
 // the new-tab hint of the links (placeholder opensInNewTab), set per decoration
@@ -99,8 +99,7 @@ function buildMedia(block, cell) {
   const link = cell.querySelector('a[href]');
 
   if (block.classList.contains('lottie') && link && isAnimation(link.href)) {
-    const label = link.title && link.title !== link.textContent ? link.title : '';
-    const animation = createAnimation(link.href, { label, className: 'hero-animation' });
+    const animation = createAnimation(link.href, { label: animationLabel(link), className: 'hero-animation' });
     media.append(animation);
     // the pause / play button above the overlay and the content, in the block's corner (appended
     // to the block after its content)
@@ -200,12 +199,11 @@ export default async function decorate(block) {
   const cells = readCells([...block.children].filter((row) => !ctaRows.includes(row)));
   // the editor's placeholder text; on the page the hero doesn't wait for anything
   const hint = await editorItemHint(ctaRows);
-  // placeholders only when a CTA opens a new tab (the hero is often the LCP)
-  newTabHint = '';
-  if ([...block.querySelectorAll('div')].some((cell) => !cell.children.length && cell.textContent.trim() === 'new-window')) {
-    const t = await getPlaceholders();
-    newTabHint = t('opensInNewTab', '(opens in a new tab)');
-  }
+  // placeholders only when a CTA opens a new tab (the hero is often the LCP); read from the
+  // parsed CTAs (decorateBlock has wrapped the cell text in paragraphs)
+  const opensNewTab = [...readLinkItems(cells.ctas), ...readLinkRows(ctaRows)]
+    .some(({ newWindow }) => newWindow);
+  newTabHint = opensNewTab ? (await getPlaceholders())('opensInNewTab', '(opens in a new tab)') : '';
   const media = buildMedia(block, cells.media);
   const content = buildContent(cells.content);
   const ctas = buildCtas(cells.ctas, ctaRows, hint);

@@ -98,9 +98,9 @@
         {
           "component": "container",
           "name": "pageItems",
-          "label": "Pages",
+          "label": "Pages (authored before List Items)",
           "multi": true,
-          "description": "The pages of the list, in this order; their cards come from the page metadata. A List Item for one of the pages changes its card (title, image, …); other List Items follow the pages. Add a page per item (Add); drag the items to change the order.",
+          "description": "Lists made before List Items. Add List Items instead (Add on the List).",
           "condition": {
             "===": [
               {
@@ -1289,7 +1289,7 @@
               "value": "image"
             }
           ],
-          "description": "As the list: the list's Card colour; with Default for the style, the linked page's card-theme metadata. A colour here wins over both."
+          "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata."
         },
         {
           "component": "text",

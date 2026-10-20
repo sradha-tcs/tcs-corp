@@ -86,7 +86,8 @@
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "Alt Text"
+        "label": "Alt Text",
+        "description": "Describe the image; leave empty only for decorative images."
       }
     ]
   },
@@ -127,7 +128,9 @@
             "name": "h6",
             "value": "h6"
           }
-        ]
+        ],
+        "value": "h2",
+        "description": "One H1 per page (usually the Page Header); keep the levels in order."
       }
     ]
   },
@@ -1770,7 +1773,7 @@
         "name": "linkTitle",
         "label": "Title",
         "valueType": "string",
-        "description": "Tooltip; when empty the Text is used."
+        "description": "Optional tooltip (most buttons need none)."
       },
       {
         "component": "tab",
@@ -2731,11 +2734,11 @@
             "value": "stat"
           },
           {
-            "name": "Mixed (by page)",
+            "name": "Mixed",
             "value": "mixed"
           }
         ],
-        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each card's own value, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed: each card's own style, else (List) the page's card-style metadata, else Report content as report cards, cards without an image as panels, the others as image cards.",
         "condition": {
           "===": [
             {
@@ -2797,7 +2800,7 @@
             true
           ]
         },
-        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each card's own value, else the colour of the card's style."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
       },
       {
         "component": "select",
@@ -3507,41 +3510,6 @@
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "touchSwipe",
-        "label": "Allow touch swipe",
-        "value": true,
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "desktopMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "tabletMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "mobileMode"
-                },
-                "horizontal-scroll"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
         "name": "keyboardScrolling",
         "label": "Keyboard scrolling",
         "value": true,
@@ -3737,7 +3705,8 @@
               ]
             }
           ]
-        }
+        },
+        "description": "Fixed-width sections only: the cards run into the section gutter. In full-width sections both look the same."
       },
       {
         "component": "select",
@@ -4703,7 +4672,8 @@
             "value": "image"
           }
         ],
-        "value": ""
+        "value": "",
+        "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
       },
       {
         "component": "text",
@@ -6220,12 +6190,6 @@
     "id": "conversation-canvas",
     "fields": [
       {
-        "component": "aem-content",
-        "name": "searchPage",
-        "label": "Search page",
-        "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
-      },
-      {
         "component": "tab",
         "name": "contentTab",
         "label": "Content"
@@ -6468,6 +6432,12 @@
             "name": "searchButtonLabel",
             "label": "Search bar button icon type hover text",
             "placeholder": "Submit"
+          },
+          {
+            "component": "aem-content",
+            "name": "searchPage",
+            "label": "Search page",
+            "description": "The page that shows search results (opened with ?q=the query). Without it, and without a search integration, visitors are told search isn’t available."
           }
         ]
       },
@@ -8202,7 +8172,7 @@
       {
         "component": "container",
         "name": "pageItems",
-        "label": "Pages (authored before Pages items)",
+        "label": "Pages (authored before Page items)",
         "multi": true,
         "description": "Kept for lists authored before; add items with Add instead.",
         "condition": {
@@ -9487,21 +9457,21 @@
         "component": "text",
         "valueType": "string",
         "name": "linkText",
-        "label": "Link Title"
+        "label": "Link text"
       },
       {
         "component": "select",
         "valueType": "string",
         "name": "linkTarget",
-        "label": "Link Type",
+        "label": "Open in",
         "value": "",
         "options": [
           {
-            "name": "Default",
+            "name": "Same tab",
             "value": ""
           },
           {
-            "name": "Open in new window",
+            "name": "New tab",
             "value": "new-window"
           }
         ]
@@ -10344,9 +10314,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop.",
+        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10408,9 +10378,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Dropdown Name / ID",
-        "description": "Submitted as the field key, e.g. sector or region.",
+        "description": "Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10458,9 +10428,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. feedback.",
+        "description": "Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10508,9 +10478,9 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "name",
+        "name": "fieldName",
         "label": "Checkbox Name / ID",
-        "description": "Submitted as the field key, e.g. consent.",
+        "description": "Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -13932,9 +13902,9 @@
       {
         "component": "container",
         "name": "pageItems",
-        "label": "Pages",
+        "label": "Pages (authored before List Items)",
         "multi": true,
-        "description": "The pages of the list, in this order; their cards come from the page metadata. A List Item for one of the pages changes its card (title, image, …); other List Items follow the pages. Add a page per item (Add); drag the items to change the order.",
+        "description": "Lists made before List Items. Add List Items instead (Add on the List).",
         "condition": {
           "===": [
             {
@@ -14235,11 +14205,11 @@
             "value": "stat"
           },
           {
-            "name": "Mixed (by page)",
+            "name": "Mixed",
             "value": "mixed"
           }
         ],
-        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each card's own value, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed: each card's own style, else (List) the page's card-style metadata, else Report content as report cards, cards without an image as panels, the others as image cards.",
         "condition": {
           "===": [
             {
@@ -14301,7 +14271,7 @@
             true
           ]
         },
-        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each card's own value, else the colour of the card's style."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
       },
       {
         "component": "select",
@@ -15011,41 +14981,6 @@
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "touchSwipe",
-        "label": "Allow touch swipe",
-        "value": true,
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "desktopMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "tabletMode"
-                },
-                "horizontal-scroll"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "mobileMode"
-                },
-                "horizontal-scroll"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
         "name": "keyboardScrolling",
         "label": "Keyboard scrolling",
         "value": true,
@@ -15241,7 +15176,8 @@
               ]
             }
           ]
-        }
+        },
+        "description": "Fixed-width sections only: the cards run into the section gutter. In full-width sections both look the same."
       },
       {
         "component": "select",
@@ -16193,7 +16129,7 @@
             "value": "image"
           }
         ],
-        "description": "As the list: the list's Card colour; with Default for the style, the linked page's card-theme metadata. A colour here wins over both."
+        "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata."
       },
       {
         "component": "text",
@@ -18595,10 +18531,15 @@
         "valueType": "string",
         "name": "componentId",
         "label": "Component ID",
-        "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order).",
+        "description": "Unique on the page (letters, digits, - and _). Used by CSS, analytics, tests and links to #id, so changing it changes those. Empty: generated (separator-1, separator-2, ... in page order). Kept for separators authored before; see the other settings.",
         "validation": {
           "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
           "customErrorMsg": "Start with a letter; use letters, digits, - and _."
+        },
+        "condition": {
+          "!!": {
+            "var": "componentId"
+          }
         }
       },
       {
@@ -19022,7 +18963,15 @@
             "value": "high"
           }
         ],
-        "description": "High: a stronger colour, e.g. on busy or tinted backgrounds."
+        "description": "High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings.",
+        "condition": {
+          "===": [
+            {
+              "var": "contrastMode"
+            },
+            "high"
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -19593,7 +19542,15 @@
         "name": "stretchToContainer",
         "label": "Stretch to container width",
         "value": false,
-        "description": "The line fills its container on every breakpoint."
+        "description": "The line fills its container on every breakpoint. Kept for separators authored before; see the other settings.",
+        "condition": {
+          "===": [
+            {
+              "var": "stretchToContainer"
+            },
+            true
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -20293,7 +20250,11 @@
         "valueType": "string",
         "name": "tabId",
         "label": "ID",
-        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID.",
+        "validation": {
+          "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+          "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. overview."
+        }
       },
       {
         "component": "boolean",
@@ -20521,8 +20482,7 @@
         "valueType": "string",
         "name": "itemButtonLabel",
         "label": "Button text",
-        "description": "Text of the item buttons; an item can have its own.",
-        "value": "Explore",
+        "description": "Default: Explore (in the page language).",
         "condition": {
           "or": [
             {
@@ -22099,7 +22059,7 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       }
     ]
   },
@@ -22110,13 +22070,13 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       }
     ]
   },
@@ -22127,19 +22087,19 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       }
     ]
   },
@@ -22150,25 +22110,25 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column4text",
-        "label": "Column4"
+        "label": "Column 4"
       }
     ]
   },
@@ -22179,31 +22139,31 @@
         "component": "richtext",
         "valueType": "string",
         "name": "column1text",
-        "label": "Column1"
+        "label": "Column 1"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column2text",
-        "label": "Column2"
+        "label": "Column 2"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column3text",
-        "label": "Column3"
+        "label": "Column 3"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column4text",
-        "label": "Column4"
+        "label": "Column 4"
       },
       {
         "component": "richtext",
         "valueType": "string",
         "name": "column5text",
-        "label": "Column5"
+        "label": "Column 5"
       }
     ]
   },
@@ -22232,8 +22192,8 @@
         "component": "text",
         "valueType": "string",
         "name": "anchorName",
-        "label": "ID",
-        "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id.",
+        "label": "Anchor name",
+        "description": "The section id: #links and Anchor List links jump to it; also the prefix of tab ids without their own ID.",
         "validation": {
           "regExp": "^#?[a-z0-9][a-z0-9-]*$",
           "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
@@ -22338,7 +22298,7 @@
         "valueType": "string",
         "name": "classes_anchor",
         "label": "Anchor ID",
-        "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
+        "description": "The id of the tabs block itself (start with anchor-). Use Anchor name for links to the section.",
         "validation": {
           "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
           "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
@@ -23042,8 +23002,8 @@
         "component": "text",
         "valueType": "string",
         "name": "tabsId",
-        "label": "ID",
-        "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+        "label": "Tab ID prefix",
+        "description": "Prefix of the tab ids (e.g. our-offerings-item-1); not an anchor: use Anchor ID for links."
       },
       {
         "component": "text",
@@ -23716,7 +23676,11 @@
         "valueType": "string",
         "name": "tabId",
         "label": "ID",
-        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID."
+        "description": "Links to #ID open this tab (deep link), e.g. overview (lowercase, no spaces). Leave empty for an id from the Tabs ID.",
+        "validation": {
+          "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+          "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. overview."
+        }
       },
       {
         "component": "boolean",
@@ -24713,7 +24677,32 @@
             "value": "mobile-image-bottom"
           }
         ],
-        "description": "Image above or below the text on mobile (narrower than 900px). Default: above, or in the text order for Text split."
+        "description": "Image above or below the text on mobile (narrower than 900px). Default: above, or in the text order for Text split.",
+        "condition": {
+          "or": [
+            {
+              "!": {
+                "var": "classes"
+              }
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                ""
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "no-image"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -24723,7 +24712,7 @@
         "value": "",
         "options": [
           {
-            "name": "Default (10:9)",
+            "name": "Default (10:9; original in Text split)",
             "value": ""
           },
           {
@@ -24793,23 +24782,11 @@
               }
             },
             {
-              "or": [
+              "===": [
                 {
-                  "===": [
-                    {
-                      "var": "classes"
-                    },
-                    ""
-                  ]
+                  "var": "classes"
                 },
-                {
-                  "===": [
-                    {
-                      "var": "classes"
-                    },
-                    "no-image"
-                  ]
-                }
+                ""
               ]
             }
           ]
@@ -24970,7 +24947,7 @@
         "options": [
           {
             "name": "Text link",
-            "value": ""
+            "value": "tertiary"
           },
           {
             "name": "List",
@@ -25044,7 +25021,7 @@
         "options": [
           {
             "name": "Text link",
-            "value": ""
+            "value": "tertiary"
           },
           {
             "name": "List",
@@ -25520,7 +25497,32 @@
             "name": "Scale reveal",
             "value": "bg-motion-scale"
           }
-        ]
+        ],
+        "condition": {
+          "or": [
+            {
+              "!!": {
+                "var": "bgColor"
+              }
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "background"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "classes"
+                },
+                "card"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -26549,7 +26551,15 @@
             "name": "Scale reveal",
             "value": "bg-motion-scale"
           }
-        ]
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "bgColor"
+            },
+            "grey"
+          ]
+        }
       },
       {
         "component": "select",
@@ -27172,7 +27182,7 @@
         "valueType": "string",
         "name": "poster",
         "label": "Poster Image",
-        "description": "Shown before the video plays, with a play button Shown before the video plays (Click playback).",
+        "description": "Shown before the video plays, with a play button (Click playback).",
         "multi": false
       },
       {

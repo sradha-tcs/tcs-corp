@@ -192,7 +192,7 @@
         {
           "component": "container",
           "name": "pageItems",
-          "label": "Pages (authored before Pages items)",
+          "label": "Pages (authored before Page items)",
           "multi": true,
           "description": "Kept for lists authored before; add items with Add instead.",
           "condition": {
