@@ -16,12 +16,13 @@ section container, like Tabs Container and Gen Carousel.
 | Tab | Field | Values | Default |
 |---|---|---|---|
 | Content | Style | Columns Container (keep it selected: it makes the section a Columns Container), Highlight (multiselect, as on sections) | Columns Container |
+| Content | BG Color | Default, Grey, Dark, Dark green (as the Teaser's): only the background colour of the columns (`bg-grey`, `bg-dark`, `bg-dark-green` on the block); text, links and buttons turn light on Dark and Dark green. Space around the columns: Padding in the Additional tab | Default |
 | Content | Width Type | Full Width, Fixed Width | Full Width |
 | Content | Background Image | An image behind the whole container (as on sections) | — |
 | Content | Image alt text | The background image's alternative text; empty: decorative | — |
 | Content | Anchor name | Section id, e.g. `our-offices` (link with `#our-offices`, Anchor List) | — |
 | Layout | Columns per row | Automatic (as many as there are Column Breaks, at most 4), 1, 2, 3, 4; more Column Breaks start a new row (6 at 3 per row: 2 rows of 3); the columns are of equal width | Automatic |
-| Layout | Gap | Small, Medium, Large | Medium |
+| Layout | Gap | None, Small, Medium, Large | Medium |
 | Layout | Vertical alignment | Top, Middle, Bottom, Stretch (equal heights) | Top |
 | Layout | Side by side from | Tablet (600px), Desktop (900px), Large desktop (1200px); stacked below | Desktop |
 | Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks; Animation Type moves the columns in one after another | — |
@@ -54,10 +55,11 @@ doesn't deliver its Additional tab. Columns authored before still render and sta
   an author removed that Style, with the container's Layout values: Columns per row, Gap,
   Vertical alignment, Side by side from) is
   wrapped in a synthetic `columns-container` block (`wrapSectionContent`, as Tabs); its Layout
-  properties become classes (`per-row-3`, `gap-small`, `align-middle`,
+  properties become classes (`per-row-3`, `gap-small` / `gap-none`, `align-middle`,
   `from-tablet`; columns are always of equal width: the former Column widths option, which only
   applied to rows of two columns, is gone and `columnsLayout` values authored before are ignored) and its
-  `container*` properties (Additional tab: AEM doesn't deliver `classes_*` on sections) block classes.
+  `container*` properties (Additional tab: AEM doesn't deliver `classes_*` on sections; and BG Color,
+  `containerBgColor`) block classes.
 - `columns-container.js`: each Column Break (`blocks/column-break`; template name "Column Break",
   so AEM renders it with the class `column-break`) starts a plain column element
   (`columns-container-column`, not a block, so Universal Editor updates of the components in it

@@ -5316,6 +5316,32 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "containerBgColor",
+        "label": "BG Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey",
+            "value": "bg-grey"
+          },
+          {
+            "name": "Dark",
+            "value": "bg-dark"
+          },
+          {
+            "name": "Dark green",
+            "value": "bg-dark-green"
+          }
+        ],
+        "description": "The background colour of the columns, only the colour (text and buttons turn light on Dark and Dark green); set the space around them with the Padding fields of the Additional tab."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "sectionWidth",
         "label": "Width Type",
         "value": "full-width",
@@ -5397,6 +5423,10 @@
         "label": "Gap",
         "value": "medium",
         "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
           {
             "name": "Small",
             "value": "small"
@@ -24368,30 +24398,31 @@
         "value": "h2",
         "options": [
           {
-            "name": "H1",
+            "name": "H1 (64px)",
             "value": "h1"
           },
           {
-            "name": "H2",
+            "name": "H2 (48px)",
             "value": "h2"
           },
           {
-            "name": "H3",
+            "name": "H3 (40px)",
             "value": "h3"
           },
           {
-            "name": "H4",
+            "name": "H4 (28px)",
             "value": "h4"
           },
           {
-            "name": "H5",
+            "name": "H5 (24px)",
             "value": "h5"
           },
           {
-            "name": "H6",
+            "name": "H6 (20px)",
             "value": "h6"
           }
-        ]
+        ],
+        "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
       },
       {
         "component": "boolean",
@@ -24654,8 +24685,17 @@
           {
             "name": "Right",
             "value": "right"
+          },
+          {
+            "name": "Top",
+            "value": "top"
+          },
+          {
+            "name": "Bottom",
+            "value": "bottom"
           }
-        ]
+        ],
+        "description": "Image & Text: the image left or right of the text (from 600px wide; above it on smaller screens), or above or below the text on every screen."
       },
       {
         "component": "select",
@@ -24677,7 +24717,7 @@
             "value": "mobile-image-bottom"
           }
         ],
-        "description": "Image above or below the text on mobile (narrower than 900px). Default: above, or in the text order for Text split.",
+        "description": "Image above or below the text on mobile (narrower than 600px for Image & Text, 900px for Text split). Default: as the Image position (Left and Right: above), or in the text order for Text split.",
         "condition": {
           "or": [
             {
@@ -24712,7 +24752,7 @@
         "value": "",
         "options": [
           {
-            "name": "Default (10:9; original in Text split)",
+            "name": "Default (10:9; 16:9 above or below the text; original in Text split)",
             "value": ""
           },
           {
@@ -24887,7 +24927,7 @@
             "value": "arrow-down-right"
           }
         ],
-        "description": "Arrow of the List link style."
+        "description": "Direction of the arrow of the links: List links, Text links and buttons (links opening a new tab keep their own arrow)."
       },
       {
         "component": "text",
@@ -25038,6 +25078,14 @@
         ]
       },
       {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "buttonsSideBySide",
+        "label": "Buttons side by side",
+        "value": false,
+        "description": "On: the CTAs and links in a row (wrapping when there is no room). Off: one below the other. List links always fill the width."
+      },
+      {
         "component": "container",
         "name": "stats",
         "label": "Stats (authored before Stat items)",
@@ -25115,7 +25163,8 @@
             "name": "Dark green",
             "value": "dark-green"
           }
-        ]
+        ],
+        "description": "Only the background colour; set the space around the content with the Padding fields of the Additional tab."
       },
       {
         "component": "select",
@@ -25168,35 +25217,6 @@
           }
         ],
         "description": "How the text and the image (or the two text columns) line up. Layout default: center, top for Text split."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "titleSize",
-        "label": "Title size",
-        "value": "",
-        "options": [
-          {
-            "name": "Layout default",
-            "value": ""
-          },
-          {
-            "name": "Medium (40px)",
-            "value": "title-m"
-          },
-          {
-            "name": "Large (48px)",
-            "value": "title-l"
-          },
-          {
-            "name": "Extra large (64px)",
-            "value": "title-xl"
-          },
-          {
-            "name": "Display (96px)",
-            "value": "title-display"
-          }
-        ]
       },
       {
         "component": "select",

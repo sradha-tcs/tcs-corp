@@ -41,12 +41,15 @@ let newTabHint = '';
  * - Card: a rounded card with the image behind its text, links at the bottom
  * Links are Link items (teaser-link) and stats Stat items (teaser-stat), added with Add; the Links
  * and Stats multifields hold the ones authored before them. The Image type Lotto plays a Lottie
- * animation (.json) instead of a picture. The Style options (alignment, title and description
- * size, eyebrow style, image ratio and corners, list arrow, top spacing) become block classes.
+ * animation (.json) instead of a picture. Title Type sets the title's heading level and its size
+ * (teaser.css). The Style options (alignment, title weight, description size, eyebrow style, image
+ * ratio and corners, link arrow, top spacing, buttons side by side) become block classes.
  */
 
 const LAYOUTS = ['no-image', 'background', 'card'];
 const BG_COLORS = ['grey', 'dark', 'dark-green'];
+// Image position (Image & Text): beside the text (left, right) or above / below it
+const IMAGE_POSITIONS = ['left', 'right', 'top', 'bottom'];
 // Text link is stored as tertiary (an empty value isn't delivered: the default style would apply)
 const LINK_STYLES = ['list', 'primary', 'secondary', 'tertiary'];
 // Style and Image options: property (normalized name) and its values, also block classes
@@ -54,7 +57,6 @@ const OPTIONS = {
   textalignment: ['text-left', 'text-center', 'text-right'],
   verticalalignment: ['valign-top', 'valign-middle', 'valign-bottom'],
   imagepositionmobile: ['mobile-image-top', 'mobile-image-bottom'],
-  titlesize: ['title-m', 'title-l', 'title-xl', 'title-display'],
   titleweight: ['title-regular', 'title-semibold'],
   descriptionsize: ['text-regular', 'text-large'],
   eyebrowstyle: ['eyebrow-label'],
@@ -242,8 +244,9 @@ export default async function decorate(block) {
   newTabHint = t('opensInNewTab', '(opens in a new tab)');
   const layout = option(block, props.classes, LAYOUTS);
   const bgColor = option(block, props.bgcolor, BG_COLORS);
-  const imageRight = toClassName(textOf(props.imageposition)) === 'right'
-    || block.classList.contains('image-right');
+  const authored = toClassName(textOf(props.imageposition));
+  const position = IMAGE_POSITIONS.includes(authored) ? authored
+    : (IMAGE_POSITIONS.find((name) => block.classList.contains(`image-${name}`)) || 'left');
   const styles = Object.entries(OPTIONS).map(([name, values]) => option(block, props[name], values))
     .filter(Boolean);
 
@@ -308,10 +311,12 @@ export default async function decorate(block) {
   if (layout) block.classList.add(layout);
   if (bgColor) block.classList.add(`bg-${bgColor}`);
   block.classList.add(...styles);
-  // the image beside the text (Image & Text) or behind it (Background image, Card)
+  block.classList.toggle('buttons-inline', isOn(props.buttonssidebyside));
+  // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media && layout !== 'no-image';
-  block.classList.toggle('image-right', !!beside && !layout && imageRight);
-  block.classList.toggle('teaser-has-media', !!beside && !layout);
+  const imageText = !!beside && !layout;
+  IMAGE_POSITIONS.forEach((name) => block.classList.toggle(`image-${name}`, imageText && position === name && name !== 'left'));
+  block.classList.toggle('teaser-has-media', imageText);
 
   block.replaceChildren(...[beside ? media : null, content].filter(Boolean));
 }

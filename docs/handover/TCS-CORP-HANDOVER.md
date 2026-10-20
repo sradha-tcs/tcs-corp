@@ -12,14 +12,14 @@ date: "October 19, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.31 |
-| Date | 19 October 2026 |
+| Version | 2.32 |
+| Date | 20 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
 | AEM program / environment | p220207 / e2271469 (author `author-p220207-e2271469.adobeaemcloud.com`) |
 | Edge Delivery site | org `sradha-tcs`, site `tcs-corp` |
-| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields, 2.26 the Button block and equal-width columns, 2.27 the block ecosystem audit (docs/audit/), 2.28 the built-in Columns and Button hidden, 2.29 the re-audit, 2.30 the container sections' Additional tab, 2.31 the publication of package 1.0.10 (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
+| Source of truth | The code on `main` as of 13 October 2026 (after pull request #62) and the published preview on that date; version 1.1 adds the Cards and Card analysis of 14 October 2026 (pull request #64, no code change); version 2.0 (14 October 2026) reflects the code on `main` after pull request #68 and the screenshots generated on that date; version 2.17 (18 October 2026) reflects the code on `main` after pull request #104; version 2.18 adds block animation and skeleton loading, 2.19 Motion Speed and Animation Trigger, 2.20 animations in Universal Editor Preview (after pull request #108) and the block library Animation folder, 2.21 the two-zone header (pull request #92), 2.22 the Columns Container, 2.23 its Columns per row, 2.24 the Columns Container fix, 2.25 its section fields, 2.26 the Button block and equal-width columns, 2.27 the block ecosystem audit (docs/audit/), 2.28 the built-in Columns and Button hidden, 2.29 the re-audit, 2.30 the container sections' Additional tab, 2.31 the publication of package 1.0.10, 2.32 the Teaser and Columns Container options (the screenshots, walkthroughs and dialog tab names of Part 6 are those of 2.0, F-84) |
 | Classification | Internal — project and support teams [To be confirmed: classification — owner: Information Security] |
 
 ## Revision History
@@ -63,6 +63,7 @@ date: "October 19, 2026"
 | 2.29 | 20 October 2026 | Delivery team | **Block ecosystem re-audit** (docs/audit/REAUDIT-2026-10-20.md): a second, fresh audit (new reviews of every block, before / after runs, the published site with content authored before). 46 new defects (9 major), 40 corrected: Hero new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast; nested Tabs styling, Canvas in tabs, fragments loaded twice (regression of the recursion guard), deep links into hidden tabs, media paused in hidden tabs, panels in the data layer; form field keys in their own fieldName field (AEM lower-cases item names), double submits, integration outcomes; Vimeo URLs, the Video pop-up, the header menu button without a menu, logo links without https://; sample content removed from templates. The first audit's deferred items mostly closed. Operations: publish non-image DAM assets (Lottie, video, captions). Package 1.0.9. F-102 |
 | 2.30 | 20 October 2026 | Delivery team | Found on aem.live after publishing package 1.0.9: AEM doesn't deliver a section's `classes_*` fields, so the Additional tab of the Tabs Container, Columns Container and Gen Carousel had no effect; their fields are now `container*` (delivered as data attributes) and applied to the container (R-L-1). Filter List cards fall back to the page's own image (R-L-2). Package 1.0.10. 6.32, F-102 |
 | 2.31 | 20 October 2026 | Delivery team | **Package 1.0.10 published and reindexed**: the 312 pages of the block library, the curated design pages and their supporting pages previewed and published (312 / 312) and reindexed (312 / 312, Admin API `preview`, `live`, `index` per page), after the language-master Placeholders (109 texts) and Metadata (311 rows) sheets of 1.0.9. Verified on aem.live: the query index lists 307 language-master pages (306 with an image); the container sections' Additional tab is delivered (`data-containeranimation`, `data-containeranimationspeed`) and applied (the animated Columns Container plays Fade up, Slow); Filter List cards show the pages' images (10 per block on the library and Insights pages); the re-audit fixes checked on the live pages (form field keys, Table header rows, Accordion items, Video posters, Column Breaks in tabs, Button blocks, Hero new-tab hint, TATA logo link, Table List items without sample text). Open: publishing the non-image DAM assets (Lottie JSON, videos, captions), design sign-off. F-102 |
+| 2.32 | 20 October 2026 | Delivery team | **Teaser and Columns Container options**: Teaser **Title Type** sets the heading level and the size (H1 64px, H2 48px, H3 40px, H4 28px, H5 24px, H6 20px on desktop); **Title size** removed (it is merged into Title Type; values authored before are no longer delivered and the title follows its level). **Image position** adds Top and Bottom (above / below the text at every width, a 16:9 image by default); Left and Right sit beside the text from 600px (was 900px, so Right also shows in the editor's narrower canvas). **BG Color** is only the background colour: the panel padding it added (2.5rem / 1.5rem, 7.5rem / 5rem from 900px) is gone; space comes from the Additional tab's Padding. New **Buttons side by side** toggle (CTAs and links in a row, wrapping; off: one below the other). **List arrow** Down right turns the arrows of buttons and Text links too, not only List links. Columns Container: **BG Color** (`containerBgColor`: Default, Grey, Dark, Dark green, as the Teaser's; only the colour; light text, links and buttons on the dark ones) and **Gap None**. Library: Title size examples become Title Type H1–H6 examples, BG Color teasers get Padding fields (4rem / 2.5rem), new pages and examples (Teaser image positions, buttons side by side, arrows on buttons; Columns Container BG Color and Gap None). Verified on the local preview at 1440 / 700 / 390px and with the full browser run. F-103 |
 
 ## Review and Approval
 
@@ -26175,6 +26176,16 @@ All other fields keep their default values.
 
 ## 6.11 Teaser Block
 
+> **Changed in 2.32.** **Title Type** (Content tab) sets both the heading level and the size of the
+> title: H1 64px, H2 48px, H3 40px, H4 28px, H5 24px, H6 20px on desktop (mobile: 40, 32, 28, 24,
+> 18, 16px); the former **Title size** (Style tab) is merged into it and removed. **Image position**
+> is Left, Right, Top or Bottom; Left and Right sit beside the text from 600px, Top and Bottom
+> above or below it at every width (16:9 by default). **BG Color** adds only the background colour
+> (set the space with the Additional tab's Padding). **Buttons side by side** (Content tab) puts the
+> CTAs and links in a row. **List arrow** Down right also turns the arrows of buttons and Text
+> links. Where the variations below (screenshots of 2.31) say otherwise, this note wins: Variations
+> 30–34 describe the former Title size, Variations 18–21 the former panel padding.
+
 The Teaser is the site's most versatile content block: a title with optional eyebrow, tags,
 date, reading time, page actions, author, description, image or Lottie animation, statistics,
 links and a short description, presented in one of four layouts — Image & Text, Text split,
@@ -26238,7 +26249,7 @@ component instead of maintaining several near-identical blocks.
 | Decorator | `decorators/date-decorator.js` (through article meta) and `utils/dates.js` | `<time>` element and date formats |
 | Decorator | `decorators/button-decorator.js`, `decorators/icon-button-decorator.js` | Buttons, text links, icon buttons |
 | Decorator | `decorators/content-decorator.js` `fromCell` | Moving eyebrow, description, author texts into the output |
-| Decorator | `decorators/heading-decorator.js` `buildHeading` | Title with Title Type (H1–H6) |
+| Decorator | `decorators/heading-decorator.js` `buildHeading` | Title with Title Type (H1–H6; the level also sets the size) |
 | Decorator | `decorators/image-decorator.js` `pictureOf` | Image and author image with alt text |
 | Decorator | `decorators/link-decorator.js` `setLinkTarget` | New-window links in List style |
 | Decorator | `decorators/stats-decorator.js` `buildStats` | Stats as a description list |
@@ -26340,7 +26351,7 @@ All other fields keep their default values. Each callout letter marks the field'
 |:----------|:----------|:----------|
 | "Talk to an expert" is missing on the page | The CTA title was entered but its link field left empty; a CTA without a link is skipped | Select the page or enter /en/contact in the matching CTA Link field |
 | The teaser shows centred text without the picture | Image left empty, Hide Image on, or the asset not selected from AEM Assets | Select photo-1.svg in Image and keep Hide Image off |
-| The page ends up with two H1 headings | Title Type set to H1 on a teaser below a Hero or Page Header | Keep Title Type H2 for teasers in the page flow and use Title size to make the title bigger |
+| The page ends up with two H1 headings | Title Type set to H1 on a teaser below a Hero or Page Header | Keep Title Type H2 for teasers in the page flow (48px); one H1 per page |
 
 **Troubleshooting**
 
@@ -26360,9 +26371,9 @@ All other fields keep their default values. Each callout letter marks the field'
   37.5rem wide) in white over the image and a 60 % dark overlay.
 - Card: at least 35.625rem tall, 2.5rem padding, 1rem radius, header at the top and links at the
   bottom, white text over the image and a 70 % black overlay.
-- With a BG Color (Grey, Dark, Dark green) the teaser becomes a panel with 7.5rem / 5rem
-  padding.
-- Type: title 2.5rem (Image & Text with image) or 3rem (other layouts); description 1.125rem
+- With a BG Color (Grey, Dark, Dark green) the teaser gets only the background colour; its space
+  comes from the Additional tab's Padding (2.32: no panel padding).
+- Type: title by Title Type (H2 3rem, H1 4rem, H3 2.5rem, H4 1.75rem, H5 1.5rem, H6 1.25rem); description 1.125rem
   (1.5rem in Text split); eyebrow 1rem; stat values 6rem.
 
 ![Tablet rendering — The same cloud services teaser at 768 px in one column: the rounded 10:9 image photo-1 full width on top, then the eyebrow Cloud services, the title Modernise your core on any cloud, the description and the stacked buttons Talk to an expert and Explore cloud services. (Sample content on the preview; callout letters as in the Field Entry Table; file screenshots/teaser-tablet-view.jpg)](screenshots/teaser-tablet-view.jpg){width=58%}
@@ -26398,13 +26409,13 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** At 768 px the photo-1 image spans the full content width at 10:9 with rounded corners; below it the eyebrow "Cloud services", the title, the grey description and the two stacked buttons, all left aligned.
-- **Rendering behaviour:** Between 600 px and 899 px the teaser uses the mobile layout (one column, 2.5rem gap, title 1.75rem, description 1rem) with the tablet section padding; from 900 px it switches to two columns.
+- **Rendering behaviour:** Since 2.32 the image and text sit side by side from 600 px (Image position Left or Right); Top and Bottom stack them at every width. Type stays at mobile sizes up to 899 px (H2 title 2rem, description 1rem).
 - **Publishing behaviour:** Nothing extra is published for tablet: the same page and photo-1.svg serve every width. Publish to Preview, check the aem.page page in responsive mode at 768 px, then Publish to Live.
 
 **Business Rules**
 
-- Below 900 px the image is always above the text for Image & Text unless Image position (mobile) is Bottom.
-- Image position Right would have no effect at 768 px; it applies only from 900 px.
+- Below 600 px the image is above the text for Image & Text (Left, Right) unless Image position (mobile) is Bottom.
+- Image position Right applies from 600 px (2.32; was 900 px).
 - The 10:9 crop is the same at every width, so the image becomes taller as the column widens.
 - From 900 px to 1199 px the desktop two-column layout already applies.
 
@@ -26412,7 +26423,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The author expects the image beside the text on a tablet | The two-column layout starts at 900 px, not at 600 px | Accept the stacked layout below 900 px or check the design at 1024 px |
+| The author expects the image above the text on a tablet | Since 2.32 Left and Right sit beside the text from 600 px | Choose Image position Top for an image above the text at every width |
 | The image is below the text on the tablet | Image position (mobile) set to Bottom | Set Image position (mobile) back to Default |
 
 **Troubleshooting**
@@ -26488,13 +26499,13 @@ All other fields keep their default values. Each callout letter marks the field'
 **Mobile (below 600 px)**
 
 - One column with a 2.5rem gap; Image & Text shows the image above the text (Image position
-  (mobile) Bottom moves it below); Image position Right has no effect below 900 px.
+  (mobile) Bottom moves it below; Image position Bottom too); Left and Right apply from 600 px.
 - Text split: everything in one column in the order kicker, title, author, description, image,
   stats, links, short description (Image position (mobile) Top moves the image to the top of
   the text part, Bottom to the end).
 - Background image: at least 35rem tall, 5rem / 1.5rem padding. Card: at least 25rem tall,
   1.5rem padding.
-- BG Color panels: 2.5rem / 1.5rem padding.
+- BG Color: only the colour (2.32; no panel padding).
 - Type: title 1.75rem (Image & Text with image) or 2rem; description 1rem; stat values 2.75rem.
 
 ### 6.11.3 Component Variations
@@ -26616,7 +26627,7 @@ and mobile: one column, image above the text, 2.5rem gap.
 | C | Description (Teaser › Content) | We help enterprises move, modernise and run their critical workloads on the cloud, with security and cost control built in from day one. | No | Main text | Up to 300 characters (Recommended) | None |
 | D | Image (Teaser › Image) | Select the asset photo-3.svg (/en/media/photo-3.svg) | No | Image or animation | See Layout for placement | None |
 | E | Image alt text (Teaser › Image) | A security operations centre | No | Alt text / animation label | Empty if decorative | None |
-| (F) | Image position (Teaser › Image) | Right | No | Image side (desktop) | Alternate in sequences | Options: Left, Right; shown only for Layout Image & Text |
+| (F) | Image position (Teaser › Image) | Right | No | Image side (from 600 px) | Alternate in sequences | Options: Left, Right, Top, Bottom (2.32); shown only for Layout Image & Text |
 | G | Primary CTA Title (Teaser › Links) | Talk to an expert | No | Primary CTA text | Verb first | Shown only with Multiple links off |
 | H | Primary CTA Link (Teaser › Links) | Select the page or enter /en/contact | No | Primary CTA target | Page or URL | Shown only with Multiple links off |
 | I | Secondary CTA Title (Teaser › Links) | Explore cloud services | No | Secondary CTA text | Verb first | Shown only with Multiple links off |
@@ -26633,7 +26644,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Business Rules**
 
 - Image position is shown only for Layout Image & Text and applies only when an image is rendered.
-- Right affects desktop widths (900 px and wider) only; on phones the image is still on top unless Image position (mobile) is Bottom.
+- Right applies from 600 px (2.32; was 900 px); on phones the image is still on top unless Image position (mobile) is Bottom.
 - Screen readers still meet the image before the text, as the change is visual only.
 - Alt text "A security operations centre" describes the photograph.
 
@@ -26642,7 +26653,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
 | The Image position field cannot be found | Layout is Text split, Background image or Card, which hide the field | Set Layout to Image & Text in the Style tab |
-| The image is still on the left on a tablet | The tablet is narrower than 900 px, where Right has no effect | Check at 900 px or wider; this is expected below 900 px |
+| The image is still on top on a phone | Below 600 px the image is above the text whatever Left / Right | Expected; use Image position (mobile) Bottom to move it below |
 
 **Troubleshooting**
 
@@ -26659,10 +26670,10 @@ shown only for the Image & Text layout).
 **Business Rules:** Applied only for Image & Text with media; ignored for other layouts. An
 existing `image-right` block class is also honoured.
 
-**Rendering Rules:** From 900 px `.teaser-has-media.image-right .teaser-media { order: 2 }`.
+**Rendering Rules:** From 600 px (2.32) `.teaser-has-media:is(.image-right, .image-bottom) .teaser-media { order: 2 }`; Top / Bottom (`image-top`, `image-bottom`) stack the image and text at every width.
 
-**Responsive Behaviour:** Desktop: image right. Tablet below 900 px / mobile: the image stays
-above the text (unless Image position (mobile) Bottom).
+**Responsive Behaviour:** From 600 px: image right. Below 600 px: the image stays above the text
+(unless Image position (mobile) Bottom).
 
 **SEO Impact:** None beyond Variation 1.
 
@@ -27918,7 +27929,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 **Business Rules**
 
-- Default adds no panel padding; Grey, Dark and Dark green add 2.5rem / 1.5rem (7.5rem / 5rem from 900 px).
+- No BG Color adds panel padding (2.32); Grey, Dark and Dark green add only their colour: set Padding in the Additional tab.
 - Background image and Card keep their own overlay and padding whatever BG Color says.
 - Use a section background instead when several blocks share the same colour.
 
@@ -27990,20 +28001,20 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** A light grey panel with generous padding: the eyebrow "Insights" above, the regular-weight title "Turning enterprise data into decisions" on the left, the 1.5rem description and the text link "Read the report" with an arrow on the right.
-- **Rendering behaviour:** bg-grey sets background var(--color-bg-secondary) and padding 2.5rem / 1.5rem, 7.5rem / 5rem from 900 px; text stays dark.
+- **Rendering behaviour:** bg-grey sets background var(--color-bg-secondary) only (2.32; the padding of the screenshot comes from the Additional tab); text stays dark.
 - **Publishing behaviour:** Only the page is published (no asset). Publish to Preview, check /en/insights opens from the link, then Publish to Live.
 
 **Business Rules**
 
 - The Links item has no CTA Link Style, so "Read the report" is a Text link.
 - Grey keeps dark text and dark buttons; no colour override is applied.
-- Additional tab Padding values override the panel padding at every breakpoint.
+- The space inside the panel is the Additional tab Padding (2.32: BG Color adds none).
 
 **Common Authoring Mistakes**
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The grey panel is too tight or too loose | Padding top / bottom from the Additional tab overrides the panel padding | Reset Padding to Default |
+| The grey panel is too tight or too loose | The space inside it is the Additional tab Padding (BG Color adds none, 2.32) | Set Padding top / bottom / left / right |
 | "Read the report" shows as a button | CTA Link Style set to Primary or Secondary Button | Set CTA Link Style to Text link |
 
 **Troubleshooting**
@@ -28017,10 +28028,9 @@ All other fields keep their default values. Each callout letter marks the field'
 
 **Authoring Guidelines:** BG Color = Grey.
 
-**Business Rules:** Adds panel padding; text stays dark.
+**Business Rules:** Only the colour (2.32); text stays dark.
 
-**Rendering Rules:** `background-color: var(--color-bg-secondary)`; padding 2.5rem / 1.5rem
-(7.5rem / 5rem from 900 px).
+**Rendering Rules:** `background-color: var(--color-bg-secondary)` (2.32: no padding).
 
 **Responsive Behaviour:** Padding grows at 900 px.
 
@@ -28074,7 +28084,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** A near-black panel: the eyebrow "Results" and the white title "Cloud modernisation in numbers" on the left; on the right the 70 % white description, the stats Lower operating cost 40%, Faster releases 3x and Applications migrated 1,200 with light-blue values, then "Talk to an expert" and the white outline "Read the case studies".
-- **Rendering behaviour:** bg-dark sets #0c0c0d with panel padding (7.5rem / 5rem from 900 px); text white, body 70 % white, stat values --brand-300 at 6rem from 900 px (2.75rem below), wrapping one per row on phones.
+- **Rendering behaviour:** bg-dark sets #0c0c0d (2.32: no panel padding; Padding from the Additional tab); text white, body 70 % white, stat values --brand-300 at 6rem from 900 px (2.75rem below), wrapping one per row on phones.
 - **Publishing behaviour:** Only the page is published. Publish to Preview, check both CTA targets and the stats at 375 px, then Publish to Live.
 
 **Business Rules**
@@ -28106,7 +28116,7 @@ All other fields keep their default values. Each callout letter marks the field'
 (`--brand-300`), list dividers `#767676`; Secondary buttons white outline; with Background
 image the overlay is 80 %.
 
-**Rendering Rules:** `background-color: var(--color-bg-neutral)` (`#0c0c0d`), panel padding.
+**Rendering Rules:** `background-color: var(--color-bg-neutral)` (`#0c0c0d`); no padding (2.32).
 
 **Responsive Behaviour:** As Grey.
 
@@ -28153,7 +28163,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** A dark green (#003b39) panel with centred content: the brand-blue eyebrow "Sustainability", the white title "Engineering a net-zero future", the 70 % white description and "Our commitments" above the white outline "Read the report".
-- **Rendering behaviour:** bg-dark-green sets #003b39 with panel padding; with no image the content is centred in a 37.5rem column and the title uses 3rem from 900 px (2rem below).
+- **Rendering behaviour:** bg-dark-green sets #003b39 (2.32: no panel padding); with no image the content is centred in a 37.5rem column and the title uses 3rem from 900 px (2rem below).
 - **Publishing behaviour:** Only the page is published. Publish to Preview, check /en/about and /en/insights, then Publish to Live.
 
 **Business Rules**
@@ -28183,7 +28193,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 **Business Rules:** As Dark; with Background image the overlay is green `rgb(0 59 57 / 80%)`.
 
-**Rendering Rules:** `background-color: #003b39`, panel padding.
+**Rendering Rules:** `background-color: #003b39`; no padding (2.32).
 
 **Responsive Behaviour:** As Grey.
 
@@ -28338,7 +28348,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
 | The text block is not at the left edge of the banner | Text alignment aligns the lines, while the Background image layout centres the block | Accept the centred block or use Layout Card, which is left aligned at the edge |
-| The title becomes a very long single line | Text alignment Left lifts the 37.5rem limit | Shorten the title or set Title size Medium (40px) |
+| The title becomes a very long single line | Text alignment Left lifts the 37.5rem limit | Shorten the title or use Title Type H3 (40px) where the outline allows |
 
 **Troubleshooting**
 
@@ -28852,6 +28862,12 @@ grid `align-items: end` from 900 px.
 
 #### Variation 30 — Title size "Layout default"
 
+> **Former option (2.31).** Title size (Variations 30–34) was merged into **Title Type** in 2.32:
+> the heading level sets the size (H1 64px, H2 48px, H3 40px, H4 28px, H5 24px, H6 20px on
+> desktop; see Variation 65), and the Title size field is gone. Teasers authored with a Title size
+> show the size of their level: set the Title Type that gives the wanted size (keeping one H1 per
+> page). The library page "Teaser title types and weights" shows H1–H6.
+
 **Variation Name:** Title size "Layout default" (no class).
 
 **Business Purpose:** The layout's designed title size.
@@ -29138,7 +29154,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The page ends up with two H1 headings | Title Type set to H1 on a teaser below a Hero or Page Header | Keep Title Type H2 for teasers in the page flow and use Title size to make the title bigger |
+| The page ends up with two H1 headings | Title Type set to H1 on a teaser below a Hero or Page Header | Keep Title Type H2 for teasers in the page flow (48px); one H1 per page |
 | The title wraps over five lines on phones | A long title with Extra large | Shorten the title or use Large (48px) |
 
 **Troubleshooting**
@@ -29366,7 +29382,7 @@ All other fields keep their default values. Each callout letter marks the field'
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| The title looks too similar to the text | Regular weight at the default size beside a long description | Keep Layout default or use a larger Title size |
+| The title looks too similar to the text | Regular weight at the default size beside a long description | Keep Layout default or a higher Title Type (larger) where the outline allows |
 | The teaser shows centred text without the picture | Image left empty, Hide Image on, or the asset not selected from AEM Assets | Select photo-2.svg in Image and keep Hide Image off |
 
 **Troubleshooting**
@@ -30040,7 +30056,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** The eyebrow "Insights" above; the title "Two calls to action" on the left; on the right the description, the black "Talk to an expert" button and below it the outline "Explore our services" button.
-- **Rendering behaviour:** div.teaser-links is a column with items at the start and a 0.75rem gap; the CTAs are a.button.primary and a.button.secondary, stacked at every width.
+- **Rendering behaviour:** div.teaser-links is a column with items at the start and a 0.75rem gap; the CTAs are a.button.primary and a.button.secondary, stacked at every width (Buttons side by side, 2.32, puts them in a row: `buttons-inline`).
 - **Publishing behaviour:** Only the page is published. Publish to Preview, open /en/contact and /en/services from the buttons, then Publish to Live.
 
 **Business Rules**
@@ -30703,15 +30719,15 @@ All other fields keep their default values. Each callout letter marks the field'
 
 **Business Rules**
 
-- Down right applies to same-window List links only.
-- The List arrow field is always visible but has no effect on buttons or Text links.
+- Down right applies to the same-window links: List links and, since 2.32, buttons and Text links.
+- New-window links keep their own arrow.
 - Use one arrow style per page for consistency.
 
 **Common Authoring Mistakes**
 
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
-| Buttons do not change | List arrow only affects List rows | Expected; buttons keep their own arrow |
+| Buttons point down-right too | Since 2.32 List arrow turns every link arrow of the teaser | Expected; keep Right for buttons pointing right |
 | A new-window row still points up-right | New-window rows always use the up-right arrow | Expected behaviour |
 
 **Troubleshooting**
@@ -30723,10 +30739,10 @@ All other fields keep their default values. Each callout letter marks the field'
 
 **Use Cases:** Design-specific link lists.
 
-**Authoring Guidelines:** List arrow = Down right (the field is always visible; it only affects
-List links).
+**Authoring Guidelines:** List arrow = Down right (the field is always visible; it turns the arrows of
+List links, buttons and Text links).
 
-**Business Rules:** Applies to same-window List links only.
+**Business Rules:** Applies to same-window links (List, buttons, Text links; 2.32).
 
 **Rendering Rules:** `arrow-up-right.svg` rotated 90 degrees.
 
@@ -31642,7 +31658,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Expected Page Output**
 
 - **Visual output:** Two centred careers teasers that look the same: eyebrow, title "Build the future with us", description and two buttons; only the accessibility tree shows H2 and H3.
-- **Rendering behaviour:** buildHeading creates h2 or h3 with the class teaser-title; the size comes from the layout and Title size, not from the level.
+- **Rendering behaviour:** buildHeading creates h2 or h3 with the class teaser-title; since 2.32 the level also sets the size (H2 3rem, H3 2.5rem from 900 px), so the two titles differ in size.
 - **Publishing behaviour:** Only the page is published. Publish to Preview, check the heading outline, then Publish to Live.
 
 **Business Rules**
@@ -31656,7 +31672,7 @@ All other fields keep their default values. Each callout letter marks the field'
 | Error | Root Cause | Resolution |
 |:----------|:----------|:----------|
 | A heading level is skipped | H4 under an H2 | Use H3 |
-| H1 used for size | Level confused with size | Use Title size |
+| H1 used for size | The level sets the size (2.32) | Keep one H1 per page; H2 is 48px |
 
 **Troubleshooting**
 
@@ -31670,7 +31686,7 @@ with its own H2.
 
 **Authoring Guidelines:** Content tab: Title Type.
 
-**Business Rules:** The look does not depend on the level (Title size controls it).
+**Business Rules:** Since 2.32 the level also sets the size (H1 64px … H6 20px on desktop); Title size is gone.
 
 **Rendering Rules:** `buildHeading()` creates the chosen element with class `teaser-title`.
 
@@ -31834,7 +31850,7 @@ The Lottie animation plays in the editor. Personalization has no visible effect.
   (only for Layout Image & Text), Image position (mobile), Image ratio and Image corners (only
   for Layouts Image & Text and Text split).
 - **Style** — Layout (Image & Text, Text split, Background image, Card), BG Color (Default,
-  Grey, Dark, Dark green), Text alignment, Vertical alignment, Title size, Title weight,
+  Grey, Dark, Dark green; only the colour), Text alignment, Vertical alignment, Title weight,
   Description size, Eyebrow style, Top spacing, Personalization.
 - **Links** — Multiple links; Links multifield (only with Multiple links on: CTA Title, CTA
   Link, CTA Link Type, CTA Link Style); List arrow; Primary CTA Title / Link / Link Type / Link
@@ -31986,17 +32002,17 @@ split) or behind the text (Background image, Card).
 **Step 9 — Set the Style options**
 
 **Action:** In the **Style** tab choose **BG Color**, **Text alignment**, **Vertical
-alignment**, **Title size**, **Title weight**, **Description size**, **Eyebrow style** and **Top
+alignment**, **Title weight**, **Description size**, **Eyebrow style** and **Top
 spacing**; leave **Personalization** off unless requested by the personalization team.
 
 **Expected Result:** The canvas updates with the chosen colours, alignment and type sizes.
 
-**Steps — Style options:** The Style tab with BG Color Dark and Title size Large, and the dark teaser on the canvas.
+**Steps — Style options:** The Style tab with BG Color Dark (screenshot of 2.31, with the former Title size Large; since 2.32 the size follows Title Type in the Content tab), and the dark teaser on the canvas.
 
 | Step | Where | Field / control | Value / action |
 |:--|:----------|:----------|:--------------------|
 | 1 | Teaser › Style | BG Color | Dark |
-| 2 | Teaser › Style | Title size | Large (48px) |
+| 2 | Teaser › Content | Title Type | H2 (48px) |
 | 3 | Teaser › Style | Text alignment / Vertical alignment | Layout default |
 | 4 | Teaser › Style | Personalization | Off (default) |
 
@@ -33741,6 +33757,9 @@ Reproduces the screenshot `screenshots/teaser-valign-bottom.jpg` of this variati
 **Expected Result:** The page matches the screenshot; nothing in the Troubleshooting case above applies.
 
 #### Walkthrough — Variation 30 — Title size "Layout default"
+
+> **Former option (2.31).** The walkthroughs of Variations 30–34 use Title size, merged into Title
+> Type in 2.32: set the size with Title Type (Content tab) instead.
 
 Reproduces the screenshot `screenshots/teaser-title-default.jpg` of this variation. The Field Entry Table under the screenshot lists every value with its rules.
 
@@ -35687,7 +35706,7 @@ listed in the Field details.
 | Eyebrow (`eyebrow`) | text | No | No | Empty | Kicker above the title | Up to 40 characters (Recommended) | None | Insights |
 | Show Eyebrow (`showEyebrow`) | boolean | No | No | true | Show / hide the eyebrow | Keep on | None | true |
 | Title (`title`) | text | No (Recommended) | No | Empty | Heading of the teaser | Up to 70 characters (Recommended) | None | Banking on AI |
-| Title Type (`titleType`) | select | No | No | H2 | Heading level | H2 in the page flow; H1 only for a page-opening teaser | Options: H1, H2, H3, H4, H5, H6 | h2 |
+| Title Type (`titleType`) | select | No | No | H2 | Heading level and size | H2 in the page flow; H1 only for a page-opening teaser | Options: H1 (64px), H2 (48px), H3 (40px), H4 (28px), H5 (24px), H6 (20px) | h2 |
 | Hide Title (`titleHidden`) | boolean | No | No | false | Visually hide the title | Use rarely | None | false |
 | Description (`description`) | richtext | No | No | Empty | Main text | Up to 300 characters (Recommended) | None | How banks scale AI responsibly. |
 | Show Description (`showDescription`) | boolean | No | No | true | Show / hide the description | Keep on | None | true |
@@ -35717,8 +35736,8 @@ listed in the Field details.
 | Image (`image`) | reference (asset) | No | No | Empty | Image or animation | See Layout for placement | None | `/content/dam/tcs/teaser/cloud.jpg` |
 | Image alt text (`imageAlt`) | text | No | No | Empty | Alt text / animation label | Empty if decorative | None | Cloud migration dashboard |
 | Hide Image (`hideImage`) | boolean | No | No | false | Hide the image | Keeps the asset reference | None | false |
-| Image position (`imagePosition`) | select | No | No | Left | Image side (desktop) | Alternate in sequences | Options: Left, Right; shown only for Layout Image & Text | right |
-| Image position (mobile) (`imagePositionMobile`) | select | No | No | Default ("") | Image order below 900 px | Bottom to lead with text | Options: Default, Top, Bottom | mobile-image-bottom |
+| Image position (`imagePosition`) | select | No | No | Left | Image beside (from 600 px), above or below the text | Alternate in sequences | Options: Left, Right, Top, Bottom; shown only for Layout Image & Text | right |
+| Image position (mobile) (`imagePositionMobile`) | select | No | No | Default ("") | Image order below 600 px (Text split: 900 px) | Bottom to lead with text | Options: Default, Top, Bottom | mobile-image-bottom |
 | Image ratio (`imageRatio`) | select | No | No | Default (10:9) | Image proportion | Portrait for people | Options: Default (10:9), Portrait (8:9), Square (1:1), Original; shown for Image & Text and Text split | ratio-8-9 |
 | Image corners (`imageCorners`) | select | No | No | Rounded ("") | Corner style | Square for diagrams | Options: Rounded, Square; shown for Image & Text and Text split | square |
 
@@ -35727,10 +35746,9 @@ listed in the Field details.
 | Field Name | Field Type | Mandatory | Multi Value | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
 |:-----------------------|:---------|:-----------|:-------|:--------------|:-----------------|:-------------------|:---------------------------------------|:----------------|
 | Layout (`classes`) | select | No | No | Image & Text ("") | Overall layout | Choose first | Options: Image & Text, Text split, Background image, Card | no-image |
-| BG Color (`bgColor`) | select | No | No | Default ("") | Panel colour | Dark for contrast sections | Options: Default, Grey, Dark, Dark green | dark |
+| BG Color (`bgColor`) | select | No | No | Default ("") | Background colour only | Dark for contrast sections | Options: Default, Grey, Dark, Dark green | dark |
 | Text alignment (`textAlignment`) | select | No | No | Layout default ("") | Text alignment | Layout default in most cases | Options: Layout default, Left, Center, Right | text-left |
 | Vertical alignment (`verticalAlignment`) | select | No | No | Layout default ("") | Vertical alignment of columns | Top for long text | Options: Layout default, Top, Center, Bottom | valign-top |
-| Title size (`titleSize`) | select | No | No | Layout default ("") | Title size | Display only for 1–3 words | Options: Layout default, Medium (40px), Large (48px), Extra large (64px), Display (96px) | title-l |
 | Title weight (`titleWeight`) | select | No | No | Layout default ("") | Title weight | As designed | Options: Layout default, Regular, Semibold | title-regular |
 | Description size (`descriptionSize`) | select | No | No | Layout default ("") | Text size | Large for short copy | Options: Layout default, Regular (18px), Large (24px) | text-large |
 | Eyebrow style (`eyebrowStyle`) | select | No | No | Brand ("") | Eyebrow look | Label for content types | Options: Brand, Label (uppercase, grey) | eyebrow-label |
@@ -35743,7 +35761,7 @@ listed in the Field details.
 |:---------------------------|:-------------|:-----------|:-------|:-----------|:------------------|:---------------|:-----------------------------------------|:----------------------|
 | Multiple links (`multiLinks`) | boolean | No | No | false | List of links instead of two CTAs | On for 3+ links | None | true |
 | Links (`links`) | container (composite multifield) | No | Yes | No items | The links list | See the Links item table | Shown only with Multiple links on | 3 items |
-| List arrow (`linkArrow`) | select | No | No | Right ("") | Arrow of List-style links | Down right per design | Options: Right, Down right | arrow-down-right |
+| List arrow (`linkArrow`) | select | No | No | Right ("") | Arrow of the links (List, buttons, Text links) | Down right per design | Options: Right, Down right | arrow-down-right |
 | Primary CTA Title (`primaryCtaText`) | text | No | No | Empty | Primary CTA text | Verb first | Shown only with Multiple links off | Contact us |
 | Primary CTA Link (`primaryCta`) | aem-content | No | No | Empty | Primary CTA target | Page or URL | Shown only with Multiple links off | `/content/tcs-corp/us/en/contact-us` |
 | Primary CTA Link Type (`primaryCtaTarget`) | select | No | No | Default ("") | Same / new window | New window for external | Options: Default, Open in New Window; shown only with Multiple links off | new-window |
@@ -35752,6 +35770,7 @@ listed in the Field details.
 | Secondary CTA Link (`secondaryCta`) | aem-content | No | No | Empty | Secondary CTA target | Page or URL | Shown only with Multiple links off | `/content/tcs-corp/us/en/services` |
 | Secondary CTA Link Type (`secondaryCtaTarget`) | select | No | No | Default ("") | Same / new window | As above | Options: Default, Open in New Window; shown only with Multiple links off | (Default) |
 | Secondary CTA Link Style (`secondaryCtaStyle`) | select | No | No | Secondary Button | Secondary CTA style | Secondary or Text link | Options: Text link, List, Primary Button, Secondary Button; shown only with Multiple links off | secondary |
+| Buttons side by side (`buttonsSideBySide`) | boolean | No | No | Off | CTAs and links in a row (wrapping) or one below the other | On for two short CTAs | None (2.32) | true |
 
 #### Block model `teaser` — Stats tab
 
@@ -35767,7 +35786,7 @@ listed in the Field details.
 | Hide block (`classes_hideblock`) | boolean | No | No | false | Temporarily hide | Off before go-live | None | false |
 | Padding left (`classes_paddingleft`) | select | No | No | Default ("") | Left padding | Only when the design needs it | Options: Default, 0, space-100 … space-3000 | pl-600 |
 | Padding right (`classes_paddingright`) | select | No | No | Default ("") | Right padding | As above | Options: Default, 0, space-100 … space-3000 | pr-600 |
-| Padding top (`classes_paddingtop`) | select | No | No | Default ("") | Top padding (overrides Top spacing and panel padding) | As above | Options: Default, 0, space-100 … space-3000 | pt-1000 |
+| Padding top (`classes_paddingtop`) | select | No | No | Default ("") | Top padding (overrides Top spacing; with a BG Color the space inside the panel) | As above | Options: Default, 0, space-100 … space-3000 | pt-1000 |
 | Padding bottom (`classes_paddingbottom`) | select | No | No | Default ("") | Bottom padding | As above | Options: Default, 0, space-100 … space-3000 | pb-1000 |
 | Margin left (`classes_marginleft`) | select | No | No | Default ("") | Left margin | As above | Options: Default, 0, space-100 … space-3000 | ml-0 |
 | Margin right (`classes_marginright`) | select | No | No | Default ("") | Right margin | As above | Options: Default, 0, space-100 … space-3000 | mr-0 |
@@ -35806,9 +35825,10 @@ Content tab:
 - **Title (`title`)** — Purpose: the teaser heading. Allowed Values: plain text. Character
   Limits: Recommended up to 70 characters (up to 25 for Display size). Business Rules: no title,
   no heading; it is also the share title and the data layer `dc:title`. Dependency Rules: Title
-  Type, Hide Title, Title size, Title weight. Visibility Rules: always visible. Sample Content:
+  Type, Hide Title, Title weight. Visibility Rules: always visible. Sample Content:
   Banking on AI.
-- **Title Type (`titleType`)** — Purpose: heading level. Allowed Values: `h1`–`h6`. Business
+- **Title Type (`titleType`)** — Purpose: heading level and size (2.32: H1 64px, H2 48px, H3 40px,
+  H4 28px, H5 24px, H6 20px on desktop; Title size merged into it). Allowed Values: `h1`–`h6`. Business
   Rules: default H2 (model and template); an invalid value falls back to the authored heading
   level, else H2. Dependency Rules: Title. Visibility Rules: always visible. Sample Content: h3.
 - **Hide Title (`titleHidden`)** — Purpose: hide the title visually. Allowed Values: on / off.
@@ -35907,13 +35927,14 @@ Image tab:
 - **Hide Image (`hideImage`)** — Purpose: hide the media. Allowed Values: on / off. Business
   Rules: Image & Text without media centres the content (Variation 3). Dependency Rules: Image.
   Visibility Rules: always visible. Sample Content: off.
-- **Image position (`imagePosition`)** — Purpose: image side on desktop. Allowed Values: `left`,
-  `right`. Business Rules: default Left; applied only to Image & Text with media, from 900 px.
+- **Image position (`imagePosition`)** — Purpose: image beside, above or below the text. Allowed Values: `left`,
+  `right`, `top`, `bottom` (2.32). Business Rules: default Left; applied only to Image & Text with media; Left and
+  Right from 600 px (above the text below it), Top and Bottom at every width (16:9 by default).
   Dependency Rules: Layout. Visibility Rules: shown only when Layout is Image & Text (`classes`
   empty or unset). Sample Content: right.
-- **Image position (mobile) (`imagePositionMobile`)** — Purpose: image order below 900 px.
+- **Image position (mobile) (`imagePositionMobile`)** — Purpose: image order on mobile.
   Allowed Values: Default (""), `mobile-image-top`, `mobile-image-bottom`. Business Rules: no
-  effect from 900 px or for Background image / Card. Dependency Rules: Image. Visibility Rules:
+  effect from 600 px (Image & Text) / 900 px (Text split) or for Background image / Card. Dependency Rules: Image. Visibility Rules:
   always visible. Sample Content: mobile-image-bottom.
 - **Image ratio (`imageRatio`)** — Purpose: image proportion. Allowed Values: Default (""),
   `ratio-8-9`, `ratio-1-1`, `ratio-original`. Business Rules: default 10:9 (original proportion
@@ -35930,9 +35951,9 @@ Style tab:
   `no-image` (Text split), `background`, `card`. Business Rules: stored as a block class (also
   read from a `classes` row); controls the visibility of Image position, Image ratio and Image
   corners. Dependency Rules: none. Visibility Rules: always visible. Sample Content: no-image.
-- **BG Color (`bgColor`)** — Purpose: panel colour. Allowed Values: Default (""), `grey`,
+- **BG Color (`bgColor`)** — Purpose: background colour. Allowed Values: Default (""), `grey`,
   `dark`, `dark-green` (rendered as `bg-grey`, `bg-dark`, `bg-dark-green`). Business Rules:
-  adds panel padding; dark options switch text to white. Visibility Rules: always visible.
+  only the colour (2.32: no panel padding; use the Additional tab Padding); dark options switch text to white. Visibility Rules: always visible.
   Sample Content: dark.
 - **Text alignment (`textAlignment`)** — Purpose: text alignment. Allowed Values: Layout default
   (""), `text-left`, `text-center`, `text-right`. Business Rules: Center has no effect in Text
@@ -35941,10 +35962,8 @@ Style tab:
   Layout default (""), `valign-top`, `valign-middle`, `valign-bottom`. Business Rules: affects
   the two-column layouts from 900 px and Background image at all widths. Visibility Rules:
   always visible. Sample Content: valign-top.
-- **Title size (`titleSize`)** — Purpose: title size. Allowed Values: Layout default (""),
-  `title-m`, `title-l`, `title-xl`, `title-display`. Business Rules: the pixel sizes in the
-  labels are desktop sizes; mobile sizes are smaller. Visibility Rules: always visible. Sample
-  Content: title-xl.
+- **Title size (`titleSize`)** — Removed in 2.32 (merged into Title Type, which sets the size); values
+  authored before are no longer delivered.
 - **Title weight (`titleWeight`)** — Purpose: title weight. Allowed Values: Layout default (""),
   `title-regular`, `title-semibold`. Visibility Rules: always visible. Sample Content:
   title-regular.
@@ -35971,8 +35990,8 @@ Links tab:
   Rules: items rendered in order in their own style; items without a link dropped; consecutive
   List items share one list. Visibility Rules: shown only when Multiple links is on. Sample
   Content: 4 List-style items.
-- **List arrow (`linkArrow`)** — Purpose: arrow of List links. Allowed Values: Right (""),
-  `arrow-down-right`. Business Rules: affects same-window List links only. Visibility Rules:
+- **List arrow (`linkArrow`)** — Purpose: arrow of the links. Allowed Values: Right (""),
+  `arrow-down-right`. Business Rules: affects same-window List links, buttons and Text links (2.32). Visibility Rules:
   always visible. Sample Content: arrow-down-right.
 - **Primary CTA Title (`primaryCtaText`)** — Purpose: first CTA text. Allowed Values: plain
   text. Character Limits: Recommended up to 25 characters (buttons do not wrap). Visibility
@@ -35993,6 +36012,10 @@ Links tab:
 - **Secondary CTA Link Type (`secondaryCtaTarget`)** — As Primary CTA Link Type.
 - **Secondary CTA Link Style (`secondaryCtaStyle`)** — As Primary CTA Link Style, default
   Secondary Button (fallback Secondary Button when missing). Sample Content: secondary.
+- **Buttons side by side (`buttonsSideBySide`)** — Purpose: CTAs and links in a row (wrapping when
+  there is no room) instead of one below the other. Allowed Values: on / off. Business Rules: List
+  links keep their full-width rows; the row follows the text alignment (class `buttons-inline`).
+  Visibility Rules: always visible. Sample Content: true.
 - **CTA Title (`ctaText`, Links item)** — Purpose: link text. Character Limits: Recommended up
   to 60 characters for List rows, 25 for buttons. Visibility Rules: always visible in the item.
   Sample Content: Cloud migration services.
@@ -36595,7 +36618,7 @@ The mistakes seen most often with this component (each screenshot above also lis
 | A chart is cut off | Image ratio Portrait or Square, or Layout Background image / Card, which always crop | Use Text split with Image ratio Default, or Original in Image & Text |
 | A stat label appears as the large value | Stats Value empty or several lines; the last element of the item is the value | Enter a single short line in every Stats Value |
 | No date appears | Show Date off or no Date picked | Turn Show Date on and pick the date with the date picker |
-| The page has two H1 headings | Title Type H1 used to make a teaser title bigger | Keep the right level and use Title size |
+| The page has two H1 headings | Title Type H1 used to make a teaser title bigger | Keep one H1 per page; H2 is 48px |
 | The Lotto image column is empty | Image type Default with a .json, or an invalid or unpublished Lottie file | Set Image type Lotto and publish a valid .json |
 | The Primary Button is nearly invisible on a dark panel | Primary Button keeps its black fill on Dark and Dark green | Use Secondary Button or Text link on dark panels |
 
@@ -36633,9 +36656,9 @@ The mistakes seen most often with this component (each screenshot above also lis
 - Image type (Default or Lotto) and Hide Image
 - Image position, Image position (mobile), Image ratio, Image corners
 - BG Color, Text alignment, Vertical alignment
-- Title size, Title weight, Description size, Eyebrow style, Top spacing
+- Title weight, Description size, Eyebrow style, Top spacing
 - Personalization — marker only, on request
-- Multiple links, Links, List arrow, CTA Link Type and CTA Link Style
+- Multiple links, Links, List arrow, CTA Link Type and CTA Link Style, Buttons side by side
 - Stats (Stats Title, Stats Value)
 - Additional tab: Anchor ID, Hide block, Padding and Margin
 
@@ -36647,7 +36670,7 @@ The mistakes seen most often with this component (each screenshot above also lis
 4. On BG Color Dark / Dark green, Background image and Card use Secondary Button or Text link; the Primary Button keeps its black fill
 5. Use Image type Lotto only with a Lottie .json file and give it Image alt text
 6. Use Text split with Image ratio Default for charts so they show whole
-7. Change the look with Title size, not with Title Type
+7. Title Type sets the level and the size: keep one H1 per page and the outline in order
 8. Turn Show Date and Display Tags on before looking for Date and Tags
 9. Use Top spacing Page header only for a teaser that opens a page
 
@@ -115789,12 +115812,13 @@ Code: `blocks/columns-container`, `blocks/column-break` (the Column Break item),
 | Tab | Field | Values | Default | Notes |
 |:--|:--|:--|:--|:--|
 | Content | Style (`style`, multiselect) | Columns Container (`columns-container-section`), Highlight (`highlight`) | Columns Container | Keep Columns Container selected (it identifies the container; a section with the Layout values stays one); Highlight as on sections |
+| Content | BG Color (`containerBgColor`) | Default, Grey, Dark, Dark green | Default | As the Teaser's (2.32): only the background colour of the columns (`bg-grey`, `bg-dark`, `bg-dark-green` on the block); text, links and buttons turn light on Dark and Dark green; space: the Additional tab's Padding |
 | Content | Width Type (`sectionWidth`) | Full Width, Fixed Width | Full Width | As on sections |
 | Content | Background Image (`backgroundImage`) | An image | — | Behind the whole container, as on sections |
 | Content | Image alt text (`backgroundImageAlt`) | Text | — | Empty: decorative |
 | Content | Anchor name (`anchorName`) | Section id, e.g. `our-offices` | — | Link with `#our-offices`; Anchor List |
 | Layout | Columns per row (`columnsPerRow`) | Automatic, 1, 2, 3, 4 | Automatic | Automatic: as many as there are Columns, at most 4; more Columns start a new row (6 Columns at 3 per row: 2 rows of 3); the columns are of equal width (Column widths was removed in 2.26: it only applied to rows of two columns) |
-| Layout | Gap (`columnsGap`) | Small, Medium, Large | Medium | Between columns, and between them when stacked |
+| Layout | Gap (`columnsGap`) | None (2.32), Small, Medium, Large | Medium | Between columns, and between them when stacked; None: no space |
 | Layout | Vertical alignment (`columnsAlign`) | Top, Middle, Bottom, Stretch (equal heights) | Top | Side by side only |
 | Layout | Side by side from (`columnsFrom`) | Tablet (600px), Desktop (900px), Large desktop (1200px) | Desktop | Stacked below the width |
 | Additional | Anchor ID, Hide block, Animation Type, Motion Speed, Animation Trigger, Padding / Margin | As on blocks (5.6) | — | Animation Type moves the columns in one after another |
@@ -123410,6 +123434,7 @@ after go-live; **P3** improvement. Owners are roles until names are confirmed.
 | F-100 | Button | AEM's built-in Button component delivers only its link (Text, Title) and Primary / Secondary as bold / italic: Views, Icon, Alignment and Tertiary of its dialog never reached the page, so changing them changed nothing (the local preview hid it: an older draft wrote them as classes) | Authors couldn't get icon buttons, text links, alignment or Tertiary from the Button | Fixed in 2.26: the Button authors add is the Button block (Button Block), whose every field is delivered; verified on the page and with Universal Editor update events (View, Type, Icon and Alignment changed: updated in place). The Buttons authored before keep Primary / Secondary; replace them to use the other options | Closed (2.26) | Development | 6.9 |
 | F-101 | All blocks | Block ecosystem audit: the code and the local preview assumed delivery rules AEM doesn't follow (tab rows in blocks that aren't key-value, "name, classes" first cells of items, no grouped fields in key-value blocks, no classes_* on the built-in Columns, template values stored on new components); forms were empty, tables and accordions had empty rows, videos had no poster on the published site; contrast tokens failed WCAG 1.4.3 site-wide | Broken forms and media on the published site; accessibility failures | Corrected in 2.27 (register in docs/audit/BLOCK-ECOSYSTEM-AUDIT.md section 10; the rules are in AGENTS.md "AEM delivery rules"; the library preview reproduces them). Deferred minors and blocked dependencies (Analytics, consent, Target, author access) listed there | Closed (2.27), deferred items open | Development | docs/audit |
 | F-102 | All blocks | Re-audit: the first audit's fixes held, except D-A-10, D-A-19 (List), D-B-4 (Hero), D-B-16 (dark Hero), D-C-13, D-C-17 (regressed), D-D-25 (live); 46 new defects (9 major), several only visible on the published site (Lottie alt as link text, lower-cased form keys, DAM JSON / video 404) or with PR #119's new combinations (blocks and Tabs inside tabs) | Inaccessible or broken Heroes, Teasers, Tabs, Forms and Videos in specific cases | Corrected in 2.29 (register docs/audit/REAUDIT-2026-10-20.md); operations: publish non-image DAM assets; content migrations listed there | Closed (2.29), verified on aem.live after publishing package 1.0.10 (2.31); operations and deferred items open | Development, Operations | docs/audit |
+| F-103 | Teaser, Columns Container | Teaser options didn't do what authors expected: Title Type changed only the heading level (the size came from the layout or Title size), Image position Right applied only from 900px (the editor canvas is often narrower), BG Color also added padding, List arrow changed only List links, and buttons were always stacked; the Columns Container had no background colour or zero gap | Authors couldn't get the layouts they set in the dialog | Corrected in 2.32: one Title Type (level and size), Image position Left / Right / Top / Bottom (side by side from 600px), BG Color only the colour, List arrow on every link, Buttons side by side; Columns Container BG Color and Gap None | Closed (2.32); content action: Teasers that relied on Title size or on the BG Color padding (set Title Type, or Padding in the Additional tab) | Development, Content | blocks/teaser, blocks/columns-container |
 | F-98 | Header, Conversation Canvas | The header Canvas was drawn below the logo bar and floated at the bottom of the window only after 250–400px of scrolling; the reserved header space (F-93) left a blank area above the hero until the header loaded | Canvas not at the bottom of the Hero / window as in Figma; gap and layout shift above the hero | Fixed in 2.21 (PR #92): the row lies on the bottom of the Home hero (the first screen) and is fixed there as soon as the page scrolls; the header reserves only the logo bar; on screens under 640px high the hero title is smaller, and when the hero content is taller than the screen (phones in landscape) the row stays below it; only the row takes pointer events | Closed (2.21) | Development | 6.1, 6.30 |
 
 ## 16.3 Open Items (To Be Confirmed)
