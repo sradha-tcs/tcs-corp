@@ -18,7 +18,7 @@
 .block.columns-container.columns-container-3 { --columns-container-count: 3; }
 .block.columns-container.columns-container-4 { --columns-container-count: 4; }
 
-/* BG Color (as the Teaser's): only the background colour, light text and buttons on the dark ones */
+/* BG Color (as the Teaser's): only the background colour */
 .block.columns-container.bg-grey {
   background-color: var(--color-bg-secondary);
 }
@@ -31,39 +31,7 @@
   background-color: var(--color-bg-dark-green);
 }
 
-.block.columns-container:is(.bg-dark, .bg-dark-green) {
-  --color-text-default: var(--color-text-on-neutral);
-  --color-text-secondary: rgb(255 255 255 / 70%);
-  --color-text-brand: var(--brand-300);
-
-  color: var(--color-text-on-neutral);
-}
-
-.block.columns-container:is(.bg-dark, .bg-dark-green) a:any-link:not(.button) {
-  color: var(--brand-300);
-}
-
-.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.secondary:not(:hover, :focus-visible) {
-  border-color: var(--color-border-neutral-tertiary);
-  color: var(--color-text-on-neutral);
-}
-
-.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible) {
-  color: var(--color-text-on-neutral);
-}
-
-/* Primary on Dark / Dark Green: inverted (white), the black fill would disappear on the dark colour */
-.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.primary {
-  border-color: var(--white-1000);
-  background-color: var(--white-1000);
-  color: var(--black-1000);
-}
-
-.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.primary:is(:hover, :focus-visible) {
-  border-color: var(--grey-300);
-  background-color: var(--grey-300);
-  color: var(--black-1000);
-}
+/* on Dark and Dark Green: the theme contract of styles/styles.css (light text, links, buttons) */
 
 /* Gap */
 .block.columns-container.gap-none { --columns-container-gap: 0; }

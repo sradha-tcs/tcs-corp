@@ -139,6 +139,19 @@ validated again in code; invalid values fall back to the default.
 | `theme` | Card colour | select | no | As the list / a colour |
 | `analyticsLabel` | Analytics label | text | no | `data-analytics-label`, data layer `dc:title` |
 | `ariaLabel` | Accessibility label | text | no | The link's accessible name |
+| `titleHidden` | Hide Title (Display) | boolean | no | Default off. Hides the title on the card; it stays for screen readers and in the heading outline and names the card's link (`Read more: <title>`). A linked card keeps one visible link: with Show Action Label off too, the action label stays; without an action label, the title stays visible |
+| `showDescription` | Show Description (Display) | boolean | no | Default on. Off: no description (neither the item's nor its page's), on every card style |
+| `showImage` | Show Image (Display) | boolean | no | Default on. Off: no image and no image wrapper (also the feature card's) |
+| `showEyebrow` | Show Eyebrow (Display) | boolean | no | Default on. Off: no eyebrow; image cards show the tags in its place, as without an eyebrow |
+| `showLabel` | Show Label (Display) | boolean | no | Default on. Off: no Label (`subtitle`, statistic cards) |
+| `showActionLabel` | Show Action Label (Display) | boolean | no | Default on. Off: no visible call to action; the title is the card's link |
+
+The Display toggles apply to that item's card only, on top of the List's own Show options (a
+List with Show image off shows no images, whatever its items say); an item without them (authored
+before) shows everything. They are the last six cells of the item row (`ITEM_LAYOUT`, appended so
+rows rendered before still read: `itemLayoutFor`), `itemDisplay` (`list-data.js`) reads them into
+`card.display` and the card list decorator's `displayOf` applies them. Examples:
+block-library/list/list-item-display.
 
 Precedence: Fixed: item override → the page's metadata → defaults. Child pages and tagged pages:
 the page's metadata → defaults.

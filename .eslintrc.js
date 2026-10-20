@@ -29,7 +29,7 @@ module.exports = {
       'columns-container': 22,
       'table-list': 10,
       'table-list-card': 6,
-      'list-item': 13,
+      'list-item': 19,
       card: 16,
       'table-col-5': 5,
       'field-text': 6,

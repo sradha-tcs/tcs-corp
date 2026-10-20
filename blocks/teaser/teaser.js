@@ -63,7 +63,7 @@ const OPTIONS = {
   topspacing: ['spacing-header'],
   imageratio: ['ratio-8-9', 'ratio-1-1', 'ratio-original'],
   imagecorners: ['square'],
-  linkarrow: ['arrow-down-right'],
+  linkarrow: ['arrow-down-right', 'arrow-none'],
 };
 
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');

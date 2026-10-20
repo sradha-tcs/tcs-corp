@@ -987,3 +987,16 @@
 .card-list .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
   display: none;
 }
+
+/*
+ * On the dark backgrounds of the theme contract (Section Style and Columns Container BG Color
+ * Dark / Dark Green, styles/styles.css): image cards, which have no Card colour of their own,
+ * turn light; panel, report and statistic cards keep their Card colour.
+ */
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image {
+  color: var(--color-text-on-neutral);
+}
+
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-description, .list-card-meta) {
+  color: rgb(255 255 255 / 70%);
+}

@@ -16,8 +16,8 @@ import { getLocale, pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_FIELDS, ITEM_LAYOUT, buildCards, mergeFixedItems, normalizeConfig, normalizePath,
-  validateConfig,
+  HEADINGS, ITEM_DISPLAY, buildCards, itemLayoutFor, mergeFixedItems, normalizeConfig,
+  normalizePath, validateConfig,
 } from './list-data.js';
 
 /*
@@ -41,6 +41,8 @@ const ITEM_MATCHERS = {
 };
 ['headline', 'summary', 'eyebrow', 'tags', 'subtitle', 'ctaLabel', 'analyticsLabel', 'ariaLabel']
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
+// the Display toggles: true / false
+ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; });
 
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
@@ -107,8 +109,10 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const listItems = legacy ? [] : itemRows.map((row) => {
-    const fieldCells = withoutTabCells([...row.children], ITEM_LAYOUT);
-    const cells = matchCells(fieldCells, ITEM_FIELDS, ITEM_MATCHERS);
+    // rows rendered before the Display toggles were added have fewer cells
+    const layout = itemLayoutFor(row.children.length);
+    const fieldCells = withoutTabCells([...row.children], layout);
+    const cells = matchCells(fieldCells, layout.filter(Boolean), ITEM_MATCHERS);
     const a = cells.link?.querySelector('a[href]');
     const href = a?.getAttribute('href') || '';
     const img = cells.image?.querySelector('img');
@@ -130,6 +134,7 @@ export function readBlockConfig(block) {
       accessibilityLabel: get('ariaLabel'),
       kind: get('kind').toLowerCase(),
       theme: get('theme').toLowerCase(),
+      ...Object.fromEntries(ITEM_DISPLAY.map((field) => [field, get(field)])),
       ref: row,
     };
   }).filter((item) => item.href);

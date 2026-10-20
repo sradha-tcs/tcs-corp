@@ -618,9 +618,13 @@
             {
               "name": "Down right",
               "value": "arrow-down-right"
+            },
+            {
+              "name": "None",
+              "value": "arrow-none"
             }
           ],
-          "description": "Direction of the arrow of the links: List links, Text links and buttons (links opening a new tab keep their own arrow)."
+          "description": "Right: the default arrows. Down right: the arrow of every link (List links, buttons, Text links) points down and right. None: List links without an arrow (buttons and Text links keep theirs). Links opening a new tab keep their own arrow."
         },
         {
           "component": "text",

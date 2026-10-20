@@ -440,6 +440,11 @@
   transform: rotate(90deg);
 }
 
+/* List arrow: None, List links without an arrow (decorative: the link text names them) */
+.teaser.arrow-none .teaser-link-list-item::after {
+  display: none;
+}
+
 /* buttons on dark backgrounds and images */
 .teaser:is(.bg-dark, .bg-dark-green, .background, .card) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);

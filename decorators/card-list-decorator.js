@@ -10,6 +10,7 @@
  * The settings are utils/card-list-config.js (normalizePresentation); a card is the card
  * model of blocks/list/README.md (title, description or body, image, eyebrow, tags, date, ...).
  */
+import { hideVisually } from './a11y-decorator.js';
 import { buildAuthorLockup } from './article-meta-decorator.js';
 import { decorateButton } from './button-decorator.js';
 import { trackPage } from './data-layer-decorator.js';
@@ -154,10 +155,38 @@ function mediaOf(card, config, breakpoints) {
 }
 
 /**
+ * The presentation of one card: the list's (or Cards') Show options with the card's own Display
+ * toggles (List Item: Hide Title, Show Description / Image / Eyebrow / Label / Action Label).
+ * A linked card keeps one visible link: with its title hidden, its action label stays.
+ */
+function displayOf(card, config) {
+  const own = card.display || {};
+  const titleHidden = !!own.titleHidden && !!card.title;
+  return {
+    ...config,
+    showImage: config.showImage && own.showImage !== false,
+    showEyebrow: config.showEyebrow && own.showEyebrow !== false,
+    showDescription: config.showDescription && own.showDescription !== false,
+    // a card's own Show Description off hides it on text cards too
+    ownDescription: own.showDescription !== false,
+    showCta: config.showCta && (own.showActionLabel !== false || titleHidden),
+    showLabel: own.showLabel !== false,
+    titleHidden,
+  };
+}
+
+/** a title kept for screen readers and the heading outline, not shown (Hide Title) */
+function hiddenTitle(title, display) {
+  if (title && display.titleHidden) hideVisually(title);
+  return title;
+}
+
+/**
  * A card of a kind (image, panel, report, stat). Its one link covers the card: the call to
  * action when shown, else the title; a card without a destination isn't linked.
  */
-export function renderCard(card, config, { t, level, kind }) {
+export function renderCard(card, listConfig, { t, level, kind }) {
+  const config = displayOf(card, listConfig);
   const article = element('article', `list-card list-card-${kind}`);
   // Card colour paints panel, report and statistic cards; an image card has its image
   const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
@@ -171,7 +200,10 @@ export function renderCard(card, config, { t, level, kind }) {
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
   const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
+  // a hidden title can't be the card's link (an invisible focus): the call to action stays,
+  // or, without an action label, the title stays visible
   const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
+  if (linked && !cta) config.titleHidden = false;
   if (cta) {
     if (!card.accessibilityLabel && card.title) cta.setAttribute('aria-label', `${ctaLabel}: ${card.title}`);
     decorateButton(cta, { view: 'button', type: ctaType });
@@ -180,8 +212,10 @@ export function renderCard(card, config, { t, level, kind }) {
   const title = card.title ? element(level, 'list-card-title') : null;
   if (title && linked && !cta) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
-  // Show description hides it on image cards; text cards (panel, report, stat) always show it
-  const description = config.showDescription || kind !== 'image'
+  hiddenTitle(title, config);
+  // Show description hides it on image cards; text cards (panel, report, stat) show it unless
+  // the card's own Show Description is off
+  const description = (config.showDescription || kind !== 'image') && config.ownDescription
     ? descriptionOf(card, 'list-card-description') : null;
   const date = config.showDate ? timeOf(card) : null;
   const contentType = card.contentTypeLabel || card.contentType;
@@ -208,7 +242,7 @@ export function renderCard(card, config, { t, level, kind }) {
     const top = element('div', 'list-card-top');
     top.append(...[labelRow('list-card-kicker', [eyebrow]), title].filter(Boolean));
     const bottom = element('div', 'list-card-bottom');
-    bottom.append(...[card.subtitle ? element('p', 'list-card-subtitle', card.subtitle) : null,
+    bottom.append(...[card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null,
       description].filter(Boolean));
     parts = [top, bottom.children.length ? bottom : null];
   } else {
@@ -230,12 +264,15 @@ export function renderCard(card, config, { t, level, kind }) {
 }
 
 /** a row of the list of links (Display as teaser off) */
-export function renderRow(card, config, { t, level }) {
+export function renderRow(card, listConfig, { t, level }) {
+  const config = displayOf(card, listConfig);
   const article = element('article', 'list-row');
   const linked = config.linkItems && !!card.url;
   const title = card.title ? element(level, 'list-row-title') : null;
   if (title && linked) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
+  // a row's title is its link: it stays visible when linked
+  if (!linked) hiddenTitle(title, config);
   article.append(...[
     labelRow('list-card-kicker', [config.showEyebrow
       ? card.eyebrow || card.contentTypeLabel || card.contentType : '',
@@ -253,7 +290,8 @@ export function renderRow(card, config, { t, level }) {
 }
 
 /** the feature card (First card as feature): the image behind tags, title and author */
-export function renderFeature(card, config, { t, level, authors = new Map() }) {
+export function renderFeature(card, listConfig, { t, level, authors = new Map() }) {
+  const config = displayOf(card, listConfig);
   const article = element('article', 'list-feature');
   const content = element('div', 'list-feature-content');
   const author = authors.get(card.authorId);
@@ -272,7 +310,11 @@ export function renderFeature(card, config, { t, level, authors = new Map() }) {
       prefix: 'list',
     }) : null,
   ].filter(Boolean));
-  article.append(...[mediaOf(card, { ...config, showImage: true }, FEATURE_BREAKPOINTS), content]
+  // the feature card always shows its image, unless the card's own Show Image is off
+  const image = card.display?.showImage === false ? null
+    : mediaOf(card, { ...config, showImage: true }, FEATURE_BREAKPOINTS);
+  if (!(config.linkItems && card.url)) hiddenTitle(title, config);
+  article.append(...[image, content]
     .filter(Boolean));
   return article;
 }

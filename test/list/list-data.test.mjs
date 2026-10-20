@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -312,7 +312,9 @@ describe('list item cells', () => {
   const fields = () => [cell('/en/insights/agentic-bank', { link: '/en/insights/agentic-bank' }),
     cell('true'), cell('The agentic bank'), cell('Banking is entering a new era.'),
     cell('', { image: true }), cell('Perspective'), cell('tcs:topic/ai'), cell('Revenue'),
-    cell('Read more'), cell('panel'), cell('navy'), cell('agentic-bank'), cell('Read the agentic bank')];
+    cell('Read more'), cell('panel'), cell('navy'), cell('agentic-bank'), cell('Read the agentic bank'),
+    // Display: Hide Title, Show Description / Image / Eyebrow / Label / Action Label
+    cell('true'), cell('false'), cell(''), cell('true'), cell('false'), cell('')];
   const assertRead = (cells) => {
     const text = (field) => cells[field]?.textContent;
     assert.equal(cells.link.querySelector('a[href]').getAttribute('href'), '/en/insights/agentic-bank');
@@ -323,6 +325,9 @@ describe('list item cells', () => {
     assert.equal(text('kind'), 'panel');
     assert.equal(text('theme'), 'navy');
     assert.equal(text('ariaLabel'), 'Read the agentic bank');
+    assert.equal(text('titleHidden'), 'true');
+    assert.equal(text('showDescription'), 'false');
+    assert.equal(text('showLabel'), 'false');
   };
 
   it('are read in the order of the list-item model, with its dialog tabs', () => {
@@ -338,8 +343,45 @@ describe('list item cells', () => {
     assert.equal(row.length, ITEM_LAYOUT.length);
     assertRead(matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {}));
   });
+  it('reads a row rendered before the Display toggles (16 cells)', () => {
+    const [link, newTab, ...content] = fields().slice(0, -ITEM_DISPLAY.length);
+    const row = [cell(), link, newTab, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
+    assert.equal(row.length, 16);
+    const layout = itemLayoutFor(row.length);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assert.equal(cells.ariaLabel.textContent, 'Read the agentic bank');
+    assert.equal(cells.headline.textContent, 'The agentic bank');
+    assert.equal(cells.titleHidden, undefined);
+    assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
+  });
   it('keeps a row whose tab cells have values', () => {
     const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
     assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
+  });
+});
+
+describe('list item display', () => {
+  it('shows everything for an item authored before the Display toggles', () => {
+    assert.deepEqual(itemDisplay({}), {
+      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
+    });
+  });
+  it('turns a Show option off only for an authored "false", Hide Title on only for "true"', () => {
+    const display = itemDisplay({
+      titleHidden: 'true', showDescription: 'false', showImage: 'FALSE', showEyebrow: '', showLabel: 'true',
+    });
+    assert.equal(display.titleHidden, true);
+    assert.equal(display.showDescription, false);
+    assert.equal(display.showImage, false);
+    assert.equal(display.showEyebrow, true);
+    assert.equal(display.showLabel, true);
+    assert.equal(display.showActionLabel, true);
+  });
+  it('travels with the card of a List Item', () => {
+    const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });
+    assert.equal(card.title, 'Page title');
+    assert.equal(card.display.showImage, false);
+    assert.equal(card.display.titleHidden, true);
+    assert.equal(card.display.showDescription, true);
   });
 });
