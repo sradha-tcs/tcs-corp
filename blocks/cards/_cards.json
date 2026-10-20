@@ -1007,7 +1007,8 @@
               "value": "image"
             }
           ],
-          "value": ""
+          "value": "",
+          "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
         },
         {
           "component": "text",

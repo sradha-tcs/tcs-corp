@@ -52,6 +52,10 @@
   gap: var(--table-list-item-gap);
 }
 
+html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
+  opacity: 0.45;
+}
+
 .table-list .table-list-item {
   position: relative;
   display: grid;

@@ -117,6 +117,8 @@ function onClick(e) {
   if (el.matches('button[type="submit"], button:not([type])') && isSearchForm(el.form)) return;
   // a drag of a horizontal scroller ends with a click the scroller cancels
   if (el.closest('[data-dragged="true"]')) return;
+  // a disabled control (aria-disabled stays focusable) does nothing: no click
+  if (el.closest('[aria-disabled="true"]')) return;
   const a = el.closest('a[href]');
   // outside the blocks, the links of the page's text (as the page's clicks)
   if (!blockOf(el) && !(a && a.closest('main'))) return;

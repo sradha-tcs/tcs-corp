@@ -617,7 +617,11 @@
   --list-card-muted: var(--black-500);
 }
 
+/* the image behind the content in its own layer (isolation): the card link's overlay still
+   covers the whole card (its content isn't positioned) */
 .card-list .list-card.theme-image {
+  isolation: isolate;
+
   --list-card-bg: var(--color-bg-secondary);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--color-text-secondary);
@@ -626,14 +630,10 @@
 .card-list .list-card.theme-image > .list-card-media {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   margin: 0;
   border-radius: 0;
   aspect-ratio: auto;
-}
-
-.card-list .list-card.theme-image > :not(.list-card-media) {
-  position: relative;
 }
 
 /* buttons on dark cards */
