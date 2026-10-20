@@ -18,23 +18,7 @@
               "ctaStyle": "",
               "numbers": "",
               "itemAction": "",
-              "itemButtonLabel": "Explore",
-              "motion": "none"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Table List Header",
-      "id": "table-list-header",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Table List Header",
-              "model": "table-list-header"
+              "itemButtonLabel": "Explore"
             }
           }
         }
@@ -49,9 +33,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Table List Item",
-              "model": "table-list-card",
-              "title": "TwinX",
-              "description": "<p>Risk free business experimentation and decision intelligence</p>"
+              "model": "table-list-card"
             }
           }
         }
@@ -264,32 +246,6 @@
               }
             ]
           }
-        },
-        {
-          "component": "select",
-          "valueType": "string",
-          "name": "motion",
-          "label": "Motion Type",
-          "description": "Animates the items as they scroll into view (not when reduced motion is preferred). Content animation (Additional tab) replaces it when set: then the whole block animates.",
-          "value": "none",
-          "options": [
-            {
-              "name": "None",
-              "value": "none"
-            },
-            {
-              "name": "Fade",
-              "value": "fade"
-            },
-            {
-              "name": "Slide",
-              "value": "slide"
-            },
-            {
-              "name": "Reveal",
-              "value": "reveal"
-            }
-          ]
         },
         {
           "component": "tab",
@@ -994,26 +950,6 @@
       ]
     },
     {
-      "id": "table-list-header",
-      "fields": [
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "heading",
-          "label": "Heading",
-          "value": "Our transformation solutions"
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "exploreLink",
-          "label": "Explore All Link",
-          "description": "Legacy header link. The parent View All settings take precedence when configured.",
-          "value": ""
-        }
-      ]
-    },
-    {
       "id": "table-list-card",
       "fields": [
         {
@@ -1028,8 +964,7 @@
           "component": "text",
           "valueType": "string",
           "name": "title",
-          "label": "Title",
-          "value": "TwinX"
+          "label": "Title"
         },
         {
           "component": "select",
@@ -1057,8 +992,7 @@
           "component": "richtext",
           "valueType": "string",
           "name": "description",
-          "label": "Description",
-          "value": "<p>Risk free business experimentation and decision intelligence</p>"
+          "label": "Description"
         },
         {
           "component": "aem-content",

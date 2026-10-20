@@ -261,45 +261,6 @@
   color: var(--brand-300);
 }
 
-/* Motion Type: played when the hero comes into view (hero.js adds motion-ready and is-visible;
-   never in Universal Editor or with reduced motion) */
-@media (prefers-reduced-motion: no-preference) {
-  :root:not(.adobe-ue-edit) .hero.motion-fade.is-visible .hero-content {
-    animation: hero-fade 800ms ease both;
-  }
-
-  :root:not(.adobe-ue-edit) .hero.motion-slide.is-visible .hero-content {
-    animation: hero-slide 800ms ease both;
-  }
-
-  :root:not(.adobe-ue-edit) .hero.motion-zoom.is-visible .hero-media {
-    animation: hero-zoom 1600ms ease-out both;
-  }
-
-  :root:not(.adobe-ue-edit) .hero.motion-ready:is(.motion-fade, .motion-slide):not(.is-visible) .hero-content {
-    opacity: 0;
-  }
-}
-
-@keyframes hero-fade {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes hero-slide {
-  from {
-    opacity: 0;
-    transform: translateY(var(--space-800));
-  }
-}
-
-@keyframes hero-zoom {
-  from {
-    transform: scale(1.08);
-  }
-}
-
 @media (width >= 600px) {
   .hero {
     --hero-min-height: 40rem;

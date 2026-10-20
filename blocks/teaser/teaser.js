@@ -10,7 +10,7 @@ import { fromCell } from '../../decorators/content-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
-import { setLinkTarget } from '../../decorators/link-decorator.js';
+import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
@@ -24,6 +24,9 @@ import {
 } from '../../utils/properties.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
+
+// the new-tab hint of the links (placeholder opensInNewTab), set per decoration
+let newTabHint = '';
 
 /*
  * Teaser (blocks/teaser/_teaser.json): a key-value block, one row per property
@@ -142,55 +145,53 @@ function renderLinks(container, entries) {
       const li = document.createElement('li');
       link.className = 'teaser-link-list-item';
       setLinkTarget(link, newWindow);
+      if (newWindow) announceNewTab(link, newTabHint);
       li.append(link);
       list.append(li);
       return;
     }
     list = null;
-    decorateButton(link, { view: 'button', type: style || 'tertiary', newWindow });
+    decorateButton(link, {
+      view: 'button', type: style || 'tertiary', newWindow, newTabHint,
+    });
     container.append(link);
   });
-  const styles = [...new Set(entries.map(({ style }) => style || 'default'))];
-  container.classList.add(styles.length === 1 ? `teaser-links-${styles[0]}` : 'teaser-links-mixed');
 }
 
 function buildLinks(props, rows, hint) {
   const links = document.createElement('div');
   links.className = 'teaser-links';
-  let entries;
   const pending = [];
 
-  if (isOn(props.multilinks) || rows.length) {
-    // Multiple links: the Links multifield, each in its CTA Link Style (links authored before
-    // the style was per link use the former Multi Link Style), then the Link items
-    const fallback = linkStyleOf(props.multilinkstyle);
-    const items = readLinkRows(rows);
-    entries = [
-      ...readLinkItems(props.links).map((item) => ({ ...item, fallback })),
-      ...items.map((item) => ({ ...item, fallback: '' })),
-    ].map((item) => ({
-      ...item,
-      style: item.values.find((value) => LINK_STYLES.includes(value)) || item.fallback,
-    }));
-    entries.forEach(({ link, row }) => { if (row) moveInstrumentation(row, link); });
-    if (props.links) moveInstrumentation(props.links, links);
-    const rendered = new Set(items.map(({ row }) => row));
-    pending.push(...buildEditorItems(rows.filter((row) => !rendered.has(row)), hint));
-  } else {
-    // Primary and Secondary CTA, each in its own Link Style
-    entries = [
-      [props.primarycta, props.primaryctatarget, props.primaryctastyle, 'primary'],
-      [props.secondarycta, props.secondaryctatarget, props.secondaryctastyle, 'secondary'],
-    ].map(([cell, target, style, fallback]) => {
-      const link = linkOf(cell);
-      if (link) moveInstrumentation(cell, link);
-      return link && {
-        link,
-        newWindow: textOf(target) === NEW_WINDOW,
-        style: linkStyleOf(style, fallback),
-      };
-    }).filter(Boolean);
-  }
+  const multi = isOn(props.multilinks);
+  // Multiple links off: the Primary and Secondary CTA, each in its own Link Style
+  const ctas = multi ? [] : [
+    [props.primarycta, props.primaryctatarget, props.primaryctastyle, 'primary'],
+    [props.secondarycta, props.secondaryctatarget, props.secondaryctastyle, 'secondary'],
+  ].map(([cell, target, style, fallback]) => {
+    const link = linkOf(cell);
+    if (link) moveInstrumentation(cell, link);
+    return link && {
+      link,
+      newWindow: textOf(target) === NEW_WINDOW,
+      style: linkStyleOf(style, fallback),
+    };
+  }).filter(Boolean);
+  // Multiple links on: the Links multifield (authored before Link items), in its CTA Link Style
+  // (links authored before the style was per link use the former Multi Link Style)
+  const fallback = linkStyleOf(props.multilinkstyle);
+  const listed = multi ? readLinkItems(props.links).map((item) => ({ ...item, fallback })) : [];
+  if (multi && props.links) moveInstrumentation(props.links, links);
+  // the Link items, always, after the CTAs or the Links list
+  const items = readLinkRows(rows);
+  const more = [...listed, ...items.map((item) => ({ ...item, fallback: '' }))].map((item) => ({
+    ...item,
+    style: item.values.find((value) => LINK_STYLES.includes(value)) || item.fallback,
+  }));
+  more.forEach(({ link, row }) => { if (row) moveInstrumentation(row, link); });
+  const entries = [...ctas, ...more];
+  const rendered = new Set(items.map(({ row }) => row));
+  pending.push(...buildEditorItems(rows.filter((row) => !rendered.has(row)), hint));
 
   if (!entries.length && !pending.length) return null;
   if (entries.length) renderLinks(links, entries);
@@ -232,12 +233,14 @@ function buildMedia(block, props, layout) {
 export default async function decorate(block) {
   const props = readProperties(block);
   // Link and Stat items: a Link item has a link
-  const hasLink = (row) => !!row.querySelector('a[href]');
+  // (in its first cell: a Stat item starts with an empty tab cell, its label may hold a link)
+  const hasLink = (row) => !!row.firstElementChild?.querySelector('a[href]');
   const linkRows = itemRows(block, ['teaser-link'], (row) => KEY_VALUE_ITEM(row) && hasLink(row));
   const statRows = itemRows(block, ['teaser-stat'], (row) => KEY_VALUE_ITEM(row) && !hasLink(row));
   const [t, hint] = await Promise.all([
     getPlaceholders(), editorItemHint([...linkRows, ...statRows]),
   ]);
+  newTabHint = t('opensInNewTab', '(opens in a new tab)');
   const layout = option(block, props.classes, LAYOUTS);
   const bgColor = option(block, props.bgcolor, BG_COLORS);
   const imageRight = toClassName(textOf(props.imageposition)) === 'right'
@@ -310,11 +313,6 @@ export default async function decorate(block) {
   const beside = media && layout !== 'no-image';
   block.classList.toggle('image-right', !!beside && !layout && imageRight);
   block.classList.toggle('teaser-has-media', !!beside && !layout);
-  if (isOn(props.personalization)) {
-    // marker for a personalization script (e.g. Adobe Target); no visible change
-    block.classList.add('personalization');
-    block.dataset.personalization = 'true';
-  }
 
   block.replaceChildren(...[beside ? media : null, content].filter(Boolean));
 }

@@ -31,10 +31,11 @@ const EDGE = 2;
 export function createScroller(viewport, options = {}) {
   const {
     list = viewport, previous, next, indicator, step = 'one-card', loop = false, drag = true,
-    keyboard = true, reducedMotion = true, initialIndex = 0, onNavigate,
+    keyboard = true, initialIndex = 0, onNavigate,
   } = options;
   const items = () => [...list.children].filter((item) => item.offsetParent !== null);
-  const behavior = () => (reducedMotion && prefersReducedMotion() ? 'auto' : 'smooth');
+  // reduced motion is always honoured (the reducedMotion option, authored before, is ignored)
+  const behavior = () => (prefersReducedMotion() ? 'auto' : 'smooth');
   const scrolls = () => /(auto|scroll)/.test(getComputedStyle(viewport).overflowX)
     && viewport.scrollWidth > viewport.clientWidth + EDGE;
   const maxScroll = () => viewport.scrollWidth - viewport.clientWidth;
@@ -50,8 +51,15 @@ export function createScroller(viewport, options = {}) {
     else viewport.removeAttribute('tabindex');
     const atStart = viewport.scrollLeft <= EDGE;
     const atEnd = viewport.scrollLeft >= maxScroll() - EDGE;
-    if (previous) previous.disabled = !active || (!loop && atStart);
-    if (next) next.disabled = !active || (!loop && atEnd);
+    // aria-disabled, not disabled: a focused button that becomes disabled would drop the focus
+    const setDisabled = (button, disabled) => {
+      if (!button) return;
+      button.disabled = false;
+      if (disabled) button.setAttribute('aria-disabled', 'true');
+      else button.removeAttribute('aria-disabled');
+    };
+    setDisabled(previous, !active || (!loop && atStart));
+    setDisabled(next, !active || (!loop && atEnd));
     if (indicator) {
       const size = active ? viewport.clientWidth / viewport.scrollWidth : 1;
       const offset = active && maxScroll() ? viewport.scrollLeft / maxScroll() : 0;
@@ -72,6 +80,7 @@ export function createScroller(viewport, options = {}) {
 
   function go(direction) {
     if (!scrolls()) return;
+    if ((direction === 'next' ? next : previous)?.getAttribute('aria-disabled') === 'true') return;
     const forward = direction === 'next';
     const left = viewport.scrollLeft;
     if (loop && forward && left >= maxScroll() - EDGE) {
@@ -130,6 +139,7 @@ export function createScroller(viewport, options = {}) {
       if (!dragged) {
         dragged = true;
         viewport.classList.add('is-dragging');
+        viewport.dataset.dragged = 'true';
       }
       viewport.scrollLeft = start.left - distance;
     });
@@ -137,6 +147,8 @@ export function createScroller(viewport, options = {}) {
       if (!start) return;
       start = null;
       viewport.classList.remove('is-dragging');
+      // the click that ends a drag comes right after pointerup
+      setTimeout(() => { delete viewport.dataset.dragged; }, 0);
     });
     listen(viewport, 'click', (e) => {
       if (!dragged) return;

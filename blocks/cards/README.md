@@ -183,3 +183,7 @@ Carousel. The Product Owner decisions are listed in section 21 of the proposal.
   edited in place.
 - No carousel autoplay or dots, masonry, filtering, sorting or search yet (planned; use Filter List
   for filterable listings today).
+
+## Block audit (19 October 2026)
+
+- The header CTA style is applied; Card colour applies to panel, report and statistic cards; Previous / Next keep the focus; Component ID and Reduced motion support are gone from the dialog.

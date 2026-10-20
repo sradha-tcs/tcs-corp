@@ -35,19 +35,21 @@ const EMBEDS = [
   {
     name: 'youtube',
     match: (url) => isYoutube(url.href),
+    // the privacy-enhanced player (youtube-nocookie.com), as the Video block's default
     embed: (url, autoplay, title) => createYoutubeFrame(
       url,
       paramsOf(autoplay),
       FRAME_CLASS,
-      { title },
+      { title, privacy: true },
     ),
   },
   {
     name: 'vimeo',
     match: (url) => isVimeo(url.href),
+    // dnt: Vimeo doesn't track the session
     embed: (url, autoplay, title) => createVimeoFrame(
       url,
-      paramsOf(autoplay),
+      { ...paramsOf(autoplay), dnt: '1' },
       FRAME_CLASS,
       { title },
     ),
@@ -80,7 +82,9 @@ function loadEmbed(block, link, { autoplay = false, focus = false, t }) {
  */
 export default async function decorate(block) {
   const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a')?.href;
+  // the URL: the link, else a URL authored as text
+  const link = block.querySelector('a')?.href
+    || (block.textContent.match(/https?:\/\/\S+/) || [])[0];
   block.textContent = '';
   if (!link) return;
   const t = await getPlaceholders();
@@ -88,8 +92,10 @@ export default async function decorate(block) {
   if (placeholder) {
     const wrapper = document.createElement('div');
     wrapper.className = 'embed-placeholder';
+    // the Play button named after the content when the placeholder image describes it
+    const name = placeholder.querySelector('img')?.alt.trim();
     const play = createIconButton({
-      label: t('play', 'Play'),
+      label: name ? t('playVideoTitle', 'Play video: {title}', { title: name }) : t('play', 'Play'),
       icon: 'play',
       type: 'primary',
       className: 'embed-placeholder-play',

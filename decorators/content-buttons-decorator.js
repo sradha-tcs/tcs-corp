@@ -16,7 +16,6 @@ import { decorateButton, setButtonAlignment } from './button-decorator.js';
 // eslint-disable-next-line import/prefer-default-export
 export function decorateButtons(container) {
   container.querySelectorAll('p a[href]').forEach((a) => {
-    a.title = a.title || a.textContent;
     const p = a.closest('p');
     const text = a.textContent.trim();
     const options = readButtonOptions(a);

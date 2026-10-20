@@ -759,6 +759,11 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   backdrop-filter: blur(1.25rem);
 }
 
+/* the sub-page panel follows its toggles in the DOM (keyboard order) and shows above them */
+.conversation-canvas .conversation-canvas-dock > .conversation-canvas-nav-panel {
+  order: -1;
+}
+
 .conversation-canvas .conversation-canvas-nav-panel.conversation-canvas-nav-panel-wide {
   width: min(100%, 51rem);
 }

@@ -84,7 +84,7 @@
   --color-bg-tertiary-hover: var(--grey-400);
   --color-bg-opacity: var(--white-400);
   --color-bg-disabled: var(--grey-200);
-  --color-bg-brand: var(--brand-500);
+  --color-bg-brand: var(--brand-400); /* white text 5.4:1 (WCAG 1.4.3; --brand-500: 4.43:1) */
   --color-bg-brand-hover: var(--brand-600);
   --color-bg-brand-secondary: var(--brand-300);
   --color-bg-brand-secondary-hover: var(--brand-200);
@@ -100,10 +100,10 @@
 
   /* text */
   --color-text-default: var(--black-1000);
-  --color-text-secondary: var(--grey-400);
+  --color-text-secondary: var(--slate-700); /* 6.9:1 on white (WCAG 1.4.3; --grey-400: 2.84:1) */
   --color-text-tertiary: var(--grey-300);
   --color-text-disabled: var(--slate-400);
-  --color-text-brand: var(--brand-500);
+  --color-text-brand: var(--brand-400); /* 5.4:1 on white (WCAG 1.4.3; --brand-500: 4.43:1) */
   --color-text-brand-secondary: var(--brand-600);
   --color-text-on-brand: var(--white-1000);
   --color-text-neutral: var(--slate-900);
@@ -541,6 +541,7 @@ button.button::after {
 }
 
 a.button[aria-disabled="true"],
+button.button[aria-disabled="true"],
 button.button:disabled {
   cursor: not-allowed;
   pointer-events: none;
@@ -1132,7 +1133,8 @@ main .section.rounded {
  */
 
 html:not(.adobe-ue-edit) main .block.hideblock,
-html:not(.adobe-ue-edit) main .section > div:has(> .block.hideblock) {
+html:not(.adobe-ue-edit) main .section > div:has(> .block.hideblock),
+html:not(.adobe-ue-edit) main .section:has(> div > .block.hideblock:is(.columns-container, .tabs[data-source='section'], .gen-carousel)) {
   display: none;
 }
 

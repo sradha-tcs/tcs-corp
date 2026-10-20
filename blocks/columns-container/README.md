@@ -56,3 +56,7 @@ selected; an empty column says what to add.
 - `columns-container.css`: a grid, one column below the breakpoint; blocks in a column fill the
   column's width.
 - Placeholders: `columnLabel` (Column {n}), `columnEmpty`, `columnsContainerEmpty` (editor only).
+
+## Block audit (19 October 2026)
+
+- The block's CSS is scoped to `.block.columns-container`: AEM also marks the section of every Columns block "columns-container", which turned those sections into grids.

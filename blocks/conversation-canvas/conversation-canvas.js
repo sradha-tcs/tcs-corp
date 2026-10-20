@@ -11,6 +11,7 @@ import { createIconButton } from '../../decorators/icon-button-decorator.js';
 import {
   BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, readButtonOptions,
 } from '../../utils/buttons.js';
+import { linkOf } from '../../utils/links.js';
 import { normalizeKey as normalize, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { uniqueId } from '../../utils/ids.js';
@@ -26,7 +27,7 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 const FIELDS = [
   'classes', 'bgstyle', 'backgroundimage', 'icon', 'iconalt', 'eyebrow', 'title', 'titlesize',
   'text', 'menurootpath', 'menudepth', 'searchplaceholder', 'searchaudioicon',
-  'searchaudioiconalt', 'searchbuttonstyle', 'searchbuttonlabel',
+  'searchaudioiconalt', 'searchbuttonstyle', 'searchbuttonlabel', 'searchpage',
 ];
 const COLLAPSED = ['classes', 'iconalt', 'searchaudioiconalt'];
 const STYLES = ['primary', 'secondary'];
@@ -276,15 +277,33 @@ function buildSearchForm(config, id, block) {
     buttonType: 'submit',
   });
 
+  // a polite status when the search can't run (no integration, no Search page)
+  const status = document.createElement('p');
+  status.className = 'conversation-canvas-search-status visually-hidden';
+  status.setAttribute('role', 'status');
+  const searchPage = linkOf(config.searchpage)?.getAttribute('href') || textOf(config.searchpage);
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    status.textContent = '';
     const query = input.value.trim();
     if (!query) return;
-    // hand the query to whichever search experience is wired up on the page
-    block.dispatchEvent(new CustomEvent('conversation-canvas:search', { bubbles: true, detail: { query } }));
+    // hand the query to whichever search experience is wired up on the page: an integration
+    // that handles it calls preventDefault(); else the Search page opens with the query
+    const handled = !block.dispatchEvent(new CustomEvent('conversation-canvas:search', {
+      bubbles: true, cancelable: true, detail: { query },
+    }));
+    if (handled) return;
+    if (searchPage) {
+      const url = new URL(searchPage, window.location.href);
+      url.searchParams.set('q', query);
+      window.location.assign(url.href);
+      return;
+    }
+    status.textContent = t('searchUnavailable', 'Search isn’t available yet.');
   });
 
-  form.append(label, input, audio, submit);
+  form.append(label, input, audio, submit, status);
   return form;
 }
 
@@ -393,7 +412,8 @@ function buildDock(config, id, block) {
   nav.id = `${id}-nav`;
   nav.setAttribute('aria-label', t('siteNavigation', 'Site'));
 
-  dock.append(panel, row, nav);
+  // the panel after its toggles (the nav), so Tab reaches it once open; CSS shows it above them
+  dock.append(row, nav, panel);
 
   const state = {
     tree: null, current: null, view: null, suggestions: [], collapsed: false,
@@ -596,6 +616,7 @@ export function setConversationCanvasSuggestions(block, suggestions = []) {
 export function setConversationCanvasFilters(block, tags = []) {
   const list = block.querySelector('.conversation-canvas-filters');
   if (!list) return;
+  list.hidden = !tags.length;
   list.replaceChildren(...tags.map(({ label, href, active }) => {
     const li = document.createElement('li');
     const tag = document.createElement(href ? 'a' : 'button');
@@ -703,6 +724,8 @@ export default async function decorate(block) {
     const filters = document.createElement('ul');
     filters.className = 'conversation-canvas-filters';
     filters.setAttribute('aria-label', t('suggestions', 'Suggestions'));
+    // no empty list for screen readers: shown once setConversationCanvasFilters() adds tags
+    filters.hidden = true;
     content.append(filters);
   }
 

@@ -11,7 +11,6 @@
   --table-list-item-padding: var(--space-1000);
   --table-list-divider: var(--border-width-100) solid var(--slate-400);
   --table-list-arrow-size: 3rem;
-  --table-list-motion-duration: 500ms;
 
   color: var(--color-text-default);
 }
@@ -217,7 +216,7 @@
 }
 
 .table-list.products .table-list-number {
-  color: var(--slate-300);
+  color: var(--slate-500); /* large text (1.5rem): 3:1, --slate-300 gave 1.6:1 */
   font-size: 1.5rem;
   letter-spacing: -0.0375rem;
 }
@@ -245,45 +244,6 @@
   border-bottom: 0;
 }
 
-/* motion: items are hidden until they scroll into view (JS adds motion-ready and is-visible;
-   never in the Universal Editor or with reduced motion) */
-@media (prefers-reduced-motion: no-preference) {
-  :root:not(.adobe-ue-edit) .table-list.motion-ready .table-list-item:not(.is-visible) {
-    opacity: 0;
-  }
-
-  :root:not(.adobe-ue-edit) .table-list.motion-fade .table-list-item.is-visible {
-    animation: table-list-fade var(--table-list-motion-duration) ease backwards;
-  }
-
-  :root:not(.adobe-ue-edit) .table-list.motion-slide .table-list-item.is-visible {
-    animation: table-list-slide var(--table-list-motion-duration) ease backwards;
-  }
-
-  :root:not(.adobe-ue-edit) .table-list.motion-reveal .table-list-item.is-visible {
-    animation: table-list-reveal var(--table-list-motion-duration) ease backwards;
-  }
-}
-
-@keyframes table-list-fade {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes table-list-slide {
-  from {
-    opacity: 0;
-    transform: translateY(var(--space-500));
-  }
-}
-
-@keyframes table-list-reveal {
-  from {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .table-list .table-list-arrow {

@@ -50,7 +50,7 @@
               "page": {
                 "resourceType": "core/franklin/components/button/v1/button",
                 "template": {
-                  "model": "button"
+                  "model": "button-basic"
                 }
               }
             }
@@ -300,7 +300,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Conversation Canvas Button",
-                  "model": "button"
+                  "model": "conversation-canvas-button"
                 }
               }
             }
@@ -514,7 +514,8 @@
                 "template": {
                   "name": "Consent Checkbox Field",
                   "model": "field-checkbox",
-                  "classes": "field-checkbox"
+                  "classes": "field-checkbox",
+                  "required": true
                 }
               }
             }
@@ -737,7 +738,8 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "CTA",
-                  "model": "page-header-cta"
+                  "model": "page-header-cta",
+                  "linkStyle": "primary"
                 }
               }
             }
@@ -825,23 +827,7 @@
                   "ctaStyle": "",
                   "numbers": "",
                   "itemAction": "",
-                  "itemButtonLabel": "Explore",
-                  "motion": "none"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Table List Header",
-          "id": "table-list-header",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Table List Header",
-                  "model": "table-list-header"
+                  "itemButtonLabel": "Explore"
                 }
               }
             }
@@ -856,9 +842,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Table List Item",
-                  "model": "table-list-card",
-                  "title": "TwinX",
-                  "description": "<p>Risk free business experimentation and decision intelligence</p>"
+                  "model": "table-list-card"
                 }
               }
             }

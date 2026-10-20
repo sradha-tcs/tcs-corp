@@ -8,7 +8,7 @@
           "page": {
             "resourceType": "core/franklin/components/button/v1/button",
             "template": {
-              "model": "button"
+              "model": "button-basic"
             }
           }
         }
@@ -149,6 +149,47 @@
               "value": "right"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "button-basic",
+      "fields": [
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link"
+        },
+        {
+          "component": "text",
+          "name": "linkText",
+          "label": "Text"
+        },
+        {
+          "component": "text",
+          "name": "linkTitle",
+          "label": "Title"
+        },
+        {
+          "component": "select",
+          "name": "linkType",
+          "label": "Type",
+          "value": "primary",
+          "options": [
+            {
+              "name": "Primary",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary",
+              "value": "secondary"
+            },
+            {
+              "name": "Text link",
+              "value": ""
+            }
+          ],
+          "description": "Primary and Secondary buttons, or a text link. For icon buttons, a tertiary style or alignment, use the Button block."
         }
       ]
     }

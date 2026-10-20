@@ -192,9 +192,9 @@
         {
           "component": "container",
           "name": "pageItems",
-          "label": "Pages",
+          "label": "Pages (authored before Pages items)",
           "multi": true,
-          "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page) instead.",
+          "description": "Kept for lists authored before; add items with Add instead.",
           "condition": {
             "===": [
               {
@@ -228,20 +228,8 @@
               "value": "blog"
             },
             {
-              "name": "Report",
-              "value": "report"
-            },
-            {
-              "name": "Case Study",
-              "value": "case-study"
-            },
-            {
-              "name": "News",
-              "value": "news"
-            },
-            {
-              "name": "Event",
-              "value": "event"
+              "name": "Press release",
+              "value": "press-release"
             }
           ]
         },
@@ -261,12 +249,20 @@
               "value": "blog"
             },
             {
-              "name": "Report",
-              "value": "report"
+              "name": "Insights",
+              "value": "insights"
             },
             {
-              "name": "Case Study",
+              "name": "Case study",
               "value": "case-study"
+            },
+            {
+              "name": "Whitepaper",
+              "value": "whitepaper"
+            },
+            {
+              "name": "Report",
+              "value": "report"
             },
             {
               "name": "News",
@@ -277,16 +273,8 @@
               "value": "event"
             },
             {
-              "name": "Whitepaper",
-              "value": "whitepaper"
-            },
-            {
-              "name": "Podcast",
-              "value": "podcast"
-            },
-            {
-              "name": "Video",
-              "value": "video"
+              "name": "Press release",
+              "value": "press-release"
             }
           ]
         },
@@ -325,8 +313,8 @@
         {
           "component": "container",
           "name": "primaryTags",
-          "label": "Primary filter tags",
-          "description": "Tags authored before Filter Tag items. Add tags with Add (Filter Tag) instead.",
+          "label": "Primary filter tags (authored before Tag items)",
+          "description": "Kept for lists authored before; add items with Add instead.",
           "multi": true,
           "fields": [
             {
@@ -363,7 +351,7 @@
         {
           "component": "container",
           "name": "advancedCategories",
-          "label": "Advanced filter categories",
+          "label": "Advanced filter categories (authored before Category items)",
           "multi": true,
           "fields": [
             {
@@ -381,7 +369,7 @@
               "description": "e.g. tcs:industry; its tags used by the pages are the options."
             }
           ],
-          "description": "Categories authored before Filter Category items. Add categories with Add (Filter Category) instead."
+          "description": "Kept for lists authored before; add items with Add instead."
         },
         {
           "component": "select",
@@ -447,11 +435,11 @@
           "value": "featured",
           "options": [
             {
-              "name": "featured=true",
+              "name": "Marked as featured (featured metadata)",
               "value": "featured"
             },
             {
-              "name": "priority<=3",
+              "name": "Priority 1 to 3 (priority metadata)",
               "value": "priority"
             },
             {
@@ -471,9 +459,9 @@
         {
           "component": "container",
           "name": "featuredItems",
-          "label": "Featured pages",
+          "label": "Featured pages (authored before Page items)",
           "multi": true,
-          "description": "Pages authored before Filter Page items. Add pages with Add (Filter Page, Featured) instead.",
+          "description": "Kept for lists authored before; add items with Add instead.",
           "condition": {
             "and": [
               {

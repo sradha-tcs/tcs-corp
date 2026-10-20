@@ -393,6 +393,11 @@
   outline-offset: var(--space-100);
 }
 
+/* cards that clip their content (overflow: hidden): the ring inside their edge */
+.card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-link:focus-visible::before {
+  outline-offset: calc(-2 * var(--border-width-200));
+}
+
 /* panel, report and statistic cards: a coloured panel, the action at the bottom */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) {
   --list-card-bg: var(--list-dark);
@@ -584,7 +589,7 @@
 .card-list .list-card.theme-brand {
   --list-card-bg: var(--color-bg-brand);
   --list-card-fg: var(--white-1000);
-  --list-card-muted: var(--white-600);
+  --list-card-muted: var(--white-900); /* 80% white gave 4.0:1 on the brand fill */
   --list-card-strong: var(--slate-100);
 }
 

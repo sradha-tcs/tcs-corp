@@ -34,10 +34,13 @@ const ORIENTATIONS = ['horizontal', 'vertical'];
 const shownTabs = new Map();
 let listeningToHash = false;
 
-/** the panel the page address names (#ID), if it's a tab panel */
+/** the panel the page address names (#ID): a tab's authored ID first, then any panel id */
 function panelOfHash() {
   const id = toClassName(decodeURIComponent(window.location.hash.slice(1)));
-  const panel = id ? document.getElementById(id) : null;
+  if (!id) return null;
+  const tagged = document.querySelector(`.tabs .tabs-panel[data-tab-id="${CSS.escape(id)}"]`);
+  if (tagged) return tagged;
+  const panel = document.getElementById(id);
   return panel?.matches('.tabs .tabs-panel') ? panel : null;
 }
 
@@ -75,10 +78,14 @@ function groupContainerTabs(block) {
   const groups = [];
   [...block.children].forEach((wrapper) => {
     const tab = wrapper.querySelector(':scope > .tab');
-    if (tab || !groups.length) groups.push({ ...(tab ? readTab(tab) : {}), content: [] });
+    if (tab || !groups.length) {
+      // Hide block on a Tab hides the tab and its content (shown dimmed in the editor)
+      const hidden = !!tab?.classList.contains('hideblock') && !isEditing();
+      groups.push({ ...(tab ? readTab(tab) : {}), hidden, content: [] });
+    }
     groups[groups.length - 1].content.push(wrapper);
   });
-  return groups;
+  return groups.filter((group) => !group.hidden);
 }
 
 /**
@@ -159,7 +166,8 @@ export default async function decorate(block) {
     key = block.dataset.aueResource;
   }
   baseId = baseId || uniqueId('tabs');
-  key = key || baseId;
+  // the tab shown is kept across Universal Editor re-renders only (a resource identifies the
+  // Tabs); two Tabs with the same ID don't share it
   const vertical = block.classList.contains('vertical');
 
   if (!groups.length) {
@@ -181,13 +189,26 @@ export default async function decorate(block) {
   if (vertical) list.setAttribute('aria-orientation', 'vertical');
   list.setAttribute('aria-label', block.dataset.label || t('tabs', 'Tabs'));
 
+  // the panel ids, unique on the page and among these tabs (their content isn't on the page while
+  // the panels are built, so the ids are reserved first)
+  const used = new Set();
+  const idFor = (want) => {
+    let id = availableId(want);
+    for (let n = 2; used.has(id); n += 1) id = availableId(`${want}-${n}`);
+    used.add(id);
+    return id;
+  };
+  const panelIds = groups.map(({ id }, i) => idFor(id || `${baseId}-item-${i + 1}`));
+
   const tabs = groups.map(({
     title, id, active, content, source,
   }, i) => {
     const panel = document.createElement('div');
     if (source) moveInstrumentation(source, panel);
     panel.className = 'tabs-panel';
-    panel.id = availableId(id || `${baseId}-item-${i + 1}`);
+    panel.id = panelIds[i];
+    if (id) panel.dataset.tabId = id;
+    panel.dataset.cmpId = panel.id;
     panel.setAttribute('role', 'tabpanel');
     panel.tabIndex = 0;
     panel.append(...content);
@@ -195,7 +216,7 @@ export default async function decorate(block) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'tabs-tab';
-    button.id = `${panel.id}-tab`;
+    button.id = availableId(`${panel.id}-tab`);
     button.setAttribute('role', 'tab');
     button.setAttribute('aria-controls', panel.id);
     button.textContent = title || t('tabNumber', 'Tab {n}', { n: i + 1 });
@@ -205,6 +226,7 @@ export default async function decorate(block) {
   });
   block.replaceChildren(list, ...tabs.map(({ panel }) => panel));
 
+  let currentIndex = -1;
   const select = (index, { focus = false, notify = true } = {}) => {
     tabs.forEach(({ button, panel }, i) => {
       const selected = i === index;
@@ -213,8 +235,9 @@ export default async function decorate(block) {
       panel.hidden = !selected;
     });
     if (focus) tabs[index].button.focus();
-    const changed = shownTabs.get(key) !== index;
-    shownTabs.set(key, index);
+    const changed = currentIndex !== index;
+    currentIndex = index;
+    if (key) shownTabs.set(key, index);
     if (!notify || !changed) return;
     const { panel, button } = tabs[index];
     const detail = { index, id: panel.id, title: button.textContent };
@@ -257,7 +280,7 @@ export default async function decorate(block) {
 
   const linked = panelOfHash();
   const shown = [
-    shownTabs.get(key) ?? -1,
+    (key && shownTabs.get(key)) ?? -1,
     tabs.findIndex(({ panel }) => panel === linked),
     tabs.findIndex(({ active }) => active),
   ].find((index) => index >= 0 && index < tabs.length);

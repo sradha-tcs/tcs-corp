@@ -1,6 +1,7 @@
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { linkOf } from '../../utils/links.js';
 import { readProperties, textOf } from '../../utils/properties.js';
+import { getPlaceholders } from '../../utils/placeholders.js';
 
 /*
  * TCS Header (blocks/tcs-header/_tcs-header.json): a key-value block with the TCS and TATA logos
@@ -14,9 +15,10 @@ import { readProperties, textOf } from '../../utils/properties.js';
  * alone when there's no image.
  * @returns {HTMLAnchorElement | HTMLSpanElement | null}
  */
-function buildLogo(imageCell, altCell, linkCell, className) {
+function buildLogo(imageCell, altCell, linkCell, className, fallback) {
   const picture = pictureOf(imageCell, altCell);
-  const alt = textOf(altCell);
+  // the alt text collapses into the image (AEM): without an image, the link gets a name
+  const alt = textOf(altCell) || (textOf(linkCell) || linkOf(linkCell) ? fallback : '');
   if (!picture && !alt) return null;
   const href = linkOf(linkCell)?.getAttribute('href') || textOf(linkCell);
   const logo = document.createElement(href ? 'a' : 'span');
@@ -30,13 +32,14 @@ function buildLogo(imageCell, altCell, linkCell, className) {
  * loads and decorates the block
  * @param {Element} block The block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   const props = readProperties(block);
+  const t = await getPlaceholders();
   const bar = document.createElement('div');
   bar.className = 'tcs-header-bar';
   bar.append(...[
-    buildLogo(props.tcslogo, props.tcslogoalt, props.tcslogolink, 'tcs-header-brand'),
-    buildLogo(props.tatalogo, props.tatalogoalt, props.tatalogolink, 'tcs-header-group'),
+    buildLogo(props.tcslogo, props.tcslogoalt, props.tcslogolink, 'tcs-header-brand', t('tcsLogo', 'Tata Consultancy Services')),
+    buildLogo(props.tatalogo, props.tatalogoalt, props.tatalogolink, 'tcs-header-group', t('tataLogo', 'TATA Group')),
   ].filter(Boolean));
   block.replaceChildren(bar);
 }

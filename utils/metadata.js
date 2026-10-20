@@ -60,6 +60,7 @@ export function getPageLanguage() {
  *   title: string, description: string, image: string, pageType: string, contentType: string,
  *   category: string, tags: string[], authorId: string, author: string, publishDate: string,
  *   modifiedDate: string, readingTime: string, thumbnailImage: string, featuredImage: string,
+ *   imageAlt: string,
  *   listenLink: string,
  *   region: string, country: string, language: string, persona: string, campaignId: string,
  *   featured: boolean, priority: number | null
@@ -86,6 +87,7 @@ export function getPageMetadata() {
     listenLink: getMetadata('listen-link'),
     thumbnailImage: getMetadata('thumbnail-image'),
     featuredImage: getMetadata('featured-image'),
+    imageAlt: getMetadata('image-alt'),
     region: getMetadata('region'),
     country: getMetadata('country') || getLocale().country,
     language: getPageLanguage(),

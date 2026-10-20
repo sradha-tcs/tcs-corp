@@ -29,6 +29,8 @@ export function readColumn(block) {
  */
 export default async function decorate(block) {
   const { title } = readColumn(block);
+  // a marker (hidden on the page): not a component of the data layer
+  block.dataset.analytics = 'off';
   const t = await getPlaceholders();
   const label = document.createElement('p');
   label.className = 'column-break-label';

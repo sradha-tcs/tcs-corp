@@ -82,17 +82,6 @@
         "name": "listLabel",
         "label": "Accessible list label",
         "description": "Names the cards for screen readers when there is no title."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "componentId",
-        "label": "Component ID",
-        "description": "Unique on the page (letters, digits, - and _); used for deep links and analytics, so changing it changes those. Empty: generated.",
-        "validation": {
-          "regExp": "^[A-Za-z][A-Za-z0-9_-]*$",
-          "customErrorMsg": "Start with a letter; use letters, digits, - and _."
-        }
       }
     ],
     "cards": [
@@ -132,7 +121,7 @@
             "value": "mixed"
           }
         ],
-        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each page's card-style metadata, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
+        "description": "A style here applies to every card (an item's own Card style still wins). Mixed (by page): each card's own value, else items of the content type Report as report cards, items without an image as panels, others as image cards.",
         "condition": {
           "===": [
             {
@@ -194,7 +183,7 @@
             true
           ]
         },
-        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each page's card-theme metadata, else the colour of the card's style."
+        "description": "A colour here applies to every card (an item's own Card colour still wins). Default for the style: each card's own value, else the colour of the card's style."
       },
       {
         "component": "select",
@@ -748,7 +737,35 @@
         "valueType": "boolean",
         "name": "scrollSnap",
         "label": "Scroll snap",
-        "value": true
+        "value": true,
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -767,11 +784,43 @@
           }
         ],
         "condition": {
-          "===": [
+          "and": [
             {
-              "var": "scrollSnap"
+              "===": [
+                {
+                  "var": "scrollSnap"
+                },
+                true
+              ]
             },
-            true
+            {
+              "or": [
+                {
+                  "===": [
+                    {
+                      "var": "desktopMode"
+                    },
+                    "horizontal-scroll"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "tabletMode"
+                    },
+                    "horizontal-scroll"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "mobileMode"
+                    },
+                    "horizontal-scroll"
+                  ]
+                }
+              ]
+            }
           ]
         }
       },
@@ -780,21 +829,105 @@
         "valueType": "boolean",
         "name": "hideScrollbar",
         "label": "Hide native scrollbar",
-        "value": true
+        "value": true,
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "boolean",
         "valueType": "boolean",
         "name": "mouseDrag",
         "label": "Allow mouse drag",
-        "value": true
+        "value": true,
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "boolean",
         "valueType": "boolean",
         "name": "touchSwipe",
         "label": "Allow touch swipe",
-        "value": true
+        "value": true,
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -802,7 +935,35 @@
         "name": "keyboardScrolling",
         "label": "Keyboard scrolling",
         "value": true,
-        "description": "Arrow keys, Home and End when the list has focus."
+        "description": "Arrow keys, Home and End when the list has focus.",
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -819,7 +980,35 @@
             "name": "Viewport",
             "value": "viewport"
           }
-        ]
+        ],
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "boolean",
@@ -827,7 +1016,35 @@
         "name": "loop",
         "label": "Loop",
         "value": false,
-        "description": "Next at the end goes back to the start."
+        "description": "Next at the end goes back to the start.",
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "number",
@@ -837,7 +1054,35 @@
         "value": 0,
         "min": 0,
         "max": 200,
-        "description": "The card shown first (0: the first)."
+        "description": "The card shown first (0: the first).",
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -854,15 +1099,35 @@
             "name": "Inside the content width",
             "value": "none"
           }
-        ]
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "reducedMotion",
-        "label": "Reduced motion support",
-        "value": true,
-        "description": "No smooth scrolling for visitors who prefer reduced motion."
+        ],
+        "condition": {
+          "or": [
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "horizontal-scroll"
+              ]
+            }
+          ]
+        }
       }
     ],
     "advanced": [

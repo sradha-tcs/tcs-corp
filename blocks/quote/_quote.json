@@ -142,19 +142,6 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "classes",
-          "label": "Style",
-          "value": "",
-          "options": [
-            {
-              "name": "Default",
-              "value": ""
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "valueType": "string",
           "name": "bgColor",
           "label": "BG Color",
           "value": "",

@@ -30,10 +30,12 @@ function iconOf({ platform, icon }) {
  * @param {string} className
  * @param {(platform: string) => string} [labelOf] the accessible name of a link,
  *   e.g. "TCS on LinkedIn"; defaults to the platform
+ * @param {string} [newTabHint] added to the name of links opening a new tab (placeholder
+ *   opensInNewTab)
  * @returns {HTMLUListElement | null}
  */
 // eslint-disable-next-line import/prefer-default-export
-export function buildSocialLinks(links, className, labelOf = (platform) => platform) {
+export function buildSocialLinks(links, className, labelOf = (platform) => platform, newTabHint = '') {
   if (!links?.length) return null;
   const list = document.createElement('ul');
   list.className = className;
@@ -41,7 +43,8 @@ export function buildSocialLinks(links, className, labelOf = (platform) => platf
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = link.url;
-    setLinkTarget(a, new URL(link.url, window.location.href).origin !== window.location.origin);
+    const external = new URL(link.url, window.location.href).origin !== window.location.origin;
+    setLinkTarget(a, external);
     const label = document.createElement('span');
     label.textContent = labelOf(link.platform || link.url);
     const icon = iconOf(link);
@@ -49,6 +52,8 @@ export function buildSocialLinks(links, className, labelOf = (platform) => platf
       a.append(icon);
       hideVisually(label);
     }
+    // a link opening a new tab says so (in the label, which is hidden behind an icon)
+    if (external && newTabHint) label.textContent += ` ${newTabHint}`;
     a.append(label);
     li.append(a);
     list.append(li);

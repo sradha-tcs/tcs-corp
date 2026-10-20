@@ -86,7 +86,11 @@
           "valueType": "string",
           "name": "anchorName",
           "label": "Anchor name",
-          "description": "Lets Anchor List links and #links jump to this section, e.g. our-offices (lowercase, no spaces)."
+          "description": "Lets Anchor List links and #links jump to this section, e.g. our-offices (lowercase, no spaces).",
+          "validation": {
+            "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+            "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
+          }
         },
         {
           "component": "tab",
@@ -921,7 +925,6 @@
         "modal",
         "form-variations",
         "filter-list",
-        "interactive-dashboard",
         "conversation-canvas",
         "cards",
         "columns",

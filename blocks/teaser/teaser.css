@@ -37,6 +37,7 @@
   --teaser-meta-color: rgb(255 255 255 / 70%);
   --teaser-link-color: var(--color-text-on-neutral);
   --teaser-stat-color: var(--brand-300);
+  --teaser-eyebrow-color: var(--brand-300); /* the brand text colour is too dark on dark (2.3:1) */
 
   color: var(--color-text-on-neutral);
 }
@@ -219,7 +220,7 @@
 .teaser .teaser-eyebrow {
   flex: 1 0 100%;
   margin: 0;
-  color: var(--color-text-brand);
+  color: var(--teaser-eyebrow-color, var(--color-text-brand));
   font-size: var(--body-font-size-l);
   font-weight: var(--font-weight-semibold);
   line-height: 1.625;

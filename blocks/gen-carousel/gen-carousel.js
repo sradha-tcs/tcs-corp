@@ -46,6 +46,8 @@ export default async function decorate(block) {
   const track = document.createElement('div');
   track.className = 'gen-carousel-slides';
   track.id = `${id}-slides`;
+  // a scrolling region keyboard users can focus (arrow keys scroll it)
+  track.tabIndex = 0;
   track.setAttribute('aria-live', 'polite');
 
   const contents = [...block.children];
@@ -102,8 +104,14 @@ export default async function decorate(block) {
     dotButtons.forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
   };
 
+  // while a navigation scrolls to a slide, the slides passed on the way aren't "shown"
+  let target = null;
+  let targetTimer;
   const goTo = (index) => {
     const i = (index + slides.length) % slides.length;
+    target = i;
+    clearTimeout(targetTimer);
+    targetTimer = setTimeout(() => { target = null; }, 1000);
     track.scrollTo({ left: slides[i].offsetLeft, behavior: scrollBehavior() });
     setCurrent(i);
   };
@@ -187,7 +195,11 @@ export default async function decorate(block) {
   // follow swipes and scrolling: the slide that is mostly in view is the current one
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) setCurrent(slides.indexOf(entry.target));
+      if (!entry.isIntersecting) return;
+      const i = slides.indexOf(entry.target);
+      if (target !== null && i !== target) return;
+      if (i === target) target = null;
+      setCurrent(i);
     });
   }, { root: track, threshold: 0.6 });
   slides.forEach((slide) => slideObserver.observe(slide));

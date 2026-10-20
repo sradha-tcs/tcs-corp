@@ -32,6 +32,7 @@ const CONTENT_TARGETS = {
   'conversation-canvas': { targets: ':scope > .conversation-canvas-content' },
   list: { targets: ':scope > :is(.list-header, .list-feature, .list-empty), .list-item', stagger: true },
   cards: { targets: ':scope > :is(.list-header, .list-feature, .list-empty), .list-item', stagger: true },
+  'table-list': { targets: '.table-list-item', stagger: true },
   accordion: { targets: ':scope > .accordion-item', stagger: true },
   columns: { targets: ':scope > div > div', stagger: true },
   'columns-container': { targets: ':scope > .columns-container-column', stagger: true },

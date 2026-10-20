@@ -1,13 +1,12 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { pick } from '../../utils/buttons.js';
-import { isEditing, prefersReducedMotion } from '../../utils/environment.js';
+import { isEditing } from '../../utils/environment.js';
 import { matchCells } from '../../utils/cells.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
-import { onVisible } from '../../utils/viewport.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
-import { contentMotionOf } from '../../utils/motion.js';
+import { addLegacyMotion } from '../../utils/motion.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
@@ -282,7 +281,8 @@ function decorateItem(row, index, config) {
     sup.textContent = trademark;
     title.append(sup);
   }
-  main.append(title);
+  // no empty heading for an item without a title (the editor keeps it, to be filled in)
+  if (title.textContent.trim() || isEditing()) main.append(title);
 
   const parts = [main];
   if (descriptionCell) parts.push(buildDescription(descriptionCell));
@@ -295,19 +295,9 @@ function decorateItem(row, index, config) {
   return row;
 }
 
-/**
- * Reveals the items with the chosen motion as they scroll into view. Skipped in the
- * Universal Editor and for reduced motion, where the items are always shown, and when the
- * Additional tab's Content animation is set (it animates the block instead).
- */
-function observeMotion(block, motion) {
-  const items = [...block.querySelectorAll('.table-list-item')];
-  if (contentMotionOf(block.classList)) return;
-  if (motion === 'none' || !items.length || !('IntersectionObserver' in window)) return;
-  if (isEditing() || prefersReducedMotion()) return;
-  block.classList.add('motion-ready');
-  items.forEach((item) => onVisible(item, () => item.classList.add('is-visible'), { threshold: 0.15 }));
-}
+// Motion Type, authored before the Additional tab's Animation Type: its values as that animation
+// (decorators/motion-decorator.js plays it on the items, one after another)
+const LEGACY_MOTIONS = { fade: 'motion-fade-in', slide: 'motion-slide-up', reveal: 'motion-fade-up' };
 
 /**
  * loads and decorates the block
@@ -317,7 +307,8 @@ export default async function decorate(block) {
   t = await getPlaceholders();
   const config = readBlock(block);
 
-  block.classList.add(config.variation, `numbers-${config.numbers}`, `motion-${config.motion}`);
+  block.classList.add(config.variation, `numbers-${config.numbers}`);
+  addLegacyMotion(block.classList, LEGACY_MOTIONS[config.motion] || '');
   // the item titles are a level below the list heading (h2 without one)
   const level = Number(config.headingType.slice(1));
   config.itemHeadingType = config.heading || config.header ? `h${level + 1}` : 'h2';
@@ -332,5 +323,4 @@ export default async function decorate(block) {
   });
 
   block.replaceChildren(...[buildHeader(config), list].filter(Boolean));
-  observeMotion(block, config.motion);
 }

@@ -84,7 +84,11 @@
           "valueType": "string",
           "name": "anchorName",
           "label": "ID",
-          "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id."
+          "description": "Unique id of the Tabs, e.g. our-services (lowercase, no spaces). Tabs without an ID of their own get ids from it: our-services-item-1, ... Leave empty for a generated id.",
+          "validation": {
+            "regExp": "^#?[a-z0-9][a-z0-9-]*$",
+            "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
+          }
         },
         {
           "component": "select",

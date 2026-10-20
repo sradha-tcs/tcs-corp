@@ -29,7 +29,12 @@ export default async function decorate(block) {
   const header = !block.classList.contains('no-header');
   const rowHeader = block.classList.contains('row-header');
 
-  [...block.children].forEach((row, i) => {
+  // AEM delivers an empty row for each of the block's dialog tabs before the Row items
+  const isTabRow = (row) => row.children.length <= 1 && !row.textContent.trim()
+    && !row.querySelector('img, picture, a');
+  const firstRow = [...block.children].findIndex((row) => !isTabRow(row));
+  const rows = firstRow < 0 ? [] : [...block.children].slice(firstRow);
+  rows.forEach((row, i) => {
     const tr = document.createElement('tr');
     moveInstrumentation(row, tr);
     const inHead = i === 0 && header;
@@ -45,6 +50,11 @@ export default async function decorate(block) {
     else tbody.append(tr);
   });
   table.append(...(thead.children.length ? [thead] : []), tbody);
+  // rows of a different Columns setting (changed after rows were added): every row as wide
+  const width = Math.max(0, ...[...table.rows].map((tr) => tr.cells.length));
+  [...table.rows].forEach((tr) => {
+    while (tr.cells.length < width) tr.append(document.createElement(tr.parentElement === thead ? 'th' : 'td'));
+  });
 
   // the table's name: the heading before it
   const heading = headingBefore(block);
