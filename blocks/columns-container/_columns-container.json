@@ -53,6 +53,32 @@
         {
           "component": "select",
           "valueType": "string",
+          "name": "containerBgColor",
+          "label": "BG Color",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Grey",
+              "value": "bg-grey"
+            },
+            {
+              "name": "Dark",
+              "value": "bg-dark"
+            },
+            {
+              "name": "Dark green",
+              "value": "bg-dark-green"
+            }
+          ],
+          "description": "The background colour of the columns, only the colour (text and buttons turn light on Dark and Dark green); set the space around them with the Padding fields of the Additional tab."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
           "name": "sectionWidth",
           "label": "Width Type",
           "value": "full-width",
@@ -134,6 +160,10 @@
           "label": "Gap",
           "value": "medium",
           "options": [
+            {
+              "name": "None",
+              "value": "none"
+            },
             {
               "name": "Small",
               "value": "small"

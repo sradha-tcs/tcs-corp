@@ -18,7 +18,43 @@
 .block.columns-container.columns-container-3 { --columns-container-count: 3; }
 .block.columns-container.columns-container-4 { --columns-container-count: 4; }
 
+/* BG Color (as the Teaser's): only the background colour, light text and buttons on the dark ones */
+.block.columns-container.bg-grey {
+  background-color: var(--color-bg-secondary);
+}
+
+.block.columns-container.bg-dark {
+  background-color: var(--color-bg-neutral);
+}
+
+.block.columns-container.bg-dark-green {
+  /* Figma value with no site token, as the Teaser's */
+  background-color: #003b39;
+}
+
+.block.columns-container:is(.bg-dark, .bg-dark-green) {
+  --color-text-default: var(--color-text-on-neutral);
+  --color-text-secondary: rgb(255 255 255 / 70%);
+  --color-text-brand: var(--brand-300);
+
+  color: var(--color-text-on-neutral);
+}
+
+.block.columns-container:is(.bg-dark, .bg-dark-green) a:any-link:not(.button) {
+  color: var(--brand-300);
+}
+
+.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--color-border-neutral-tertiary);
+  color: var(--color-text-on-neutral);
+}
+
+.block.columns-container:is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible) {
+  color: var(--color-text-on-neutral);
+}
+
 /* Gap */
+.block.columns-container.gap-none { --columns-container-gap: 0; }
 .block.columns-container.gap-small { --columns-container-gap: var(--space-400); }
 .block.columns-container.gap-large { --columns-container-gap: var(--space-1600); }
 
