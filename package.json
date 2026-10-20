@@ -14,7 +14,8 @@
     "build:json:definitions": "merge-json-cli -i \"models/_component-definition.json\" -o \"component-definition.json\"",
     "build:json:filters": "merge-json-cli -i \"models/_component-filters.json\" -o \"component-filters.json\"",
     "prepare": "husky",
-    "test": "node --test 'test/**/*.test.mjs'"
+    "test": "node --test 'test/**/*.test.mjs'",
+    "build:modules": "node tools/modules/generate-module-graph.mjs"
   },
   "repository": {
     "type": "git",

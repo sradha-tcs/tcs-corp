@@ -23,6 +23,7 @@ The repository provides the basic structure, blocks, and configuration needed to
   - The dev server runs at `http://localhost:3000` with auto-reload. Open it in playwright, puppeteer, or a browser. If none are available, ask the human to open it and give feedback.
 - Run linting before committing: `npm run lint`
 - Run the unit tests: `npm test` (Node's test runner, `test/**/*.test.mjs`; pure modules such as `blocks/list/list-data.js`)
+- After adding, removing or changing an `import` in the site's JavaScript (scripts, blocks, decorators, utils): `npm run build:modules` (`tools/modules/generate-module-graph.mjs`) regenerates the preload lists (`head.html` modulepreload links and `scripts/module-graph.js`); `npm test` fails when they are out of date
 - Auto-Fix linting issues: `npm run lint:fix`
 
 ## Project Structure
@@ -235,6 +236,8 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 * Eager - load only what is required to get to LCP. This generally includes decorating the overall page content to create sections, blocks, buttons, etc. and loading the first section of the page.
 * Lazy - load all other page content, including the header and footer.
 * Delayed - load things that can be safely loaded later here and incur a performance penalty when loaded earlier
+
+**Module preloading.** There is no build step, so a module's imports are only discovered once it has loaded (one network round trip per import level: up to 7 for a block). `head.html` preloads every module `scripts.js` imports, and `preloadBlockModules` (`scripts.js`) preloads the modules and stylesheet of the blocks on the page (the first section's before it loads, the rest, the header, the footer and the blocks of their fragments when the lazy phase starts) from the generated `scripts/module-graph.js` (stylesheet preloads go in the body: `loadCSS` in aem.js skips any stylesheet whose href is already linked in the head, whatever its rel). Keep layout reads out of decoration: measure in a shared animation frame, reads before writes (`decorators/scroller-decorator.js`), and write `<html>` custom properties only when they change (`canvas-controller.js`).
 
 ## Testing & Quality Assurance
 
