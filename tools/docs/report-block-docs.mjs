@@ -53,7 +53,7 @@ const add = (title, body) => sections.push(`## ${title}\n\n${body}`);
 
 /* 1 inventory */
 add('1. Block Documentation Inventory', table(
-  ['Block', 'Display name', 'Type', 'Status', 'README', 'Lines', 'Handover screenshots linked', 'Placeholders', 'Validation'],
+  ['Block', 'Display name', 'Type', 'Status', 'README', 'Lines', 'Handover screenshots embedded', 'Placeholders', 'Validation'],
   blocks.map((b) => {
     const r = byBlock.get(b);
     return [b, meta(b).name || b, meta(b).type || '—', meta(b).status || '—', `[README](../../blocks/${b}/README.md)`, r?.lines || 0, r?.screenshots || 0, r?.placeholders || 0, statusOf(r)];
@@ -91,8 +91,8 @@ add('5. Broken Link Report', [
 
 /* 6 placeholders */
 add('6. Screenshot Placeholder Inventory', [
-  'Existing screenshots are linked from the handover (`docs/handover/screenshots/`, rendering at the time of the handover revision that added them); placeholders mark what has no screenshot yet (all Universal Editor dialogs, and states the handover didn\'t capture). Each placeholder states its file name, purpose and annotations.',
-  table(['Block', 'Screenshots linked', 'Placeholders', 'Placeholder files'], blocks.map((b) => {
+  'Existing screenshots of the handover are embedded as images (`docs/handover/screenshots/`, rendering at the time of the handover revision that added them); placeholders mark what has no screenshot yet (all Universal Editor dialogs, and states the handover didn\'t capture). Each placeholder states its file name, purpose and annotations.',
+  table(['Block', 'Screenshots embedded', 'Placeholders', 'Placeholder files'], blocks.map((b) => {
     const files = placeholdersOf(b);
     return [b, byBlock.get(b)?.screenshots || 0, files.length, files.join(', ')];
   })),
@@ -176,7 +176,7 @@ const discrepancies = blocks.reduce((s, b) => s + ((notes(b).Discrepancies || ''
 add('16. Final Documentation Summary', [
   `- ${blocks.length} block READMEs and \`blocks/README.md\`: ${missingBefore.length} created, ${blocks.length - missingBefore.length} restructured from the existing ones${rootBefore ? '' : '; the root README created'}.`,
   `- ${results.filter((r) => !r.problems.length).length} of ${results.length} READMEs pass validation; ${linkTotal} links checked, ${broken.length} broken.`,
-  `- ${fieldRows.length} components' dialogs documented from the models (${fieldRows.reduce((s, r) => s + r[4], 0)} fields), ${results.reduce((s, r) => s + r.screenshots, 0)} handover screenshots linked, ${results.reduce((s, r) => s + r.placeholders, 0)} placeholders.`,
+  `- ${fieldRows.length} components' dialogs documented from the models (${fieldRows.reduce((s, r) => s + r[4], 0)} fields), ${results.reduce((s, r) => s + r.screenshots, 0)} handover screenshots embedded, ${results.reduce((s, r) => s + r.placeholders, 0)} placeholders.`,
   `- ${discrepancies} documentation-to-implementation discrepancies recorded (section 4), mostly handover chapters written before later changes: the handover needs a pass to align them (the READMEs follow the code).`,
   '- Blocked: the author review in Universal Editor (dialog screenshots and walkthroughs on AEM author) and the analytics delivery (Adobe Tags and Web SDK not configured).',
   '- Kept current by `npm run build:docs` (generated sections) and `npm test` (test/docs: generated sections, links, structure).',

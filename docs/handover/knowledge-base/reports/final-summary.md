@@ -6,7 +6,7 @@ What the knowledge base contains, how it was validated and what remains open.
 | --- | --- |
 | Audience | Project leads, documentation owners, reviewers, AI agents |
 | Source of truth | The validation (`validate-knowledge-base.mjs`) and the review notes in [notes/](./notes/) |
-| Last reviewed | Generated from main at commit 966ea00 |
+| Last reviewed | Generated from main at commit efa26c5 |
 | Status | Current (regenerate with `node docs/handover/knowledge-base/validate-knowledge-base.mjs --report`) |
 
 - **Pages:** 24 topic pages, the agent and Copilot instruction pages, README.md (the entry point) and 6 reports plus the [repository inventory](./repository-inventory.md): 34 pages, 6595 lines, 16 Mermaid diagrams, all under `docs/handover/knowledge-base/`.
