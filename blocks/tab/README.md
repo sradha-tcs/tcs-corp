@@ -33,16 +33,37 @@ The Tab is the item that starts a tab in a [Tabs Container](../tabs/README.md): 
 
 Screenshots of the handover (6.22 Tab Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/tab-desktop-view.jpg) | A Tabs Container at 1200 px on the page: the Tab markers' Titles appear only as the tab buttons Consulting (selected), Cloud and Cybersecurity; no marker is visible in the panel, which shows the Columns with photo-1.svg on the left and the H3 Business and technology consulting with its text on the right. |
-| [Tablet rendering](../../docs/handover/screenshots/tab-tablet-view.jpg) | The same Tabs Container at 768 px in Universal Editor edit mode: the tab list Consulting (selected), Cloud and Cybersecurity, the dashed brand chip Consulting at the top of the panel, and below it the stacked Columns with photo-1.svg, the H3 Business and technology consulting and its text. |
-| [Mobile rendering](../../docs/handover/screenshots/tab-mobile-view.jpg) | The Tabs Container at 375 px on the page: the tab list shows Consulting (selected), Cloud and a cut-off Cybersecu..., no marker in the panel; the Consulting panel is stacked: photo-1.svg, the H3 Business and technology consulting on two lines and its text. |
-| [Standard Tab variation](../../docs/handover/screenshots/tab-standard.jpg) | Edit mode at 1440 px after selecting the Cloud tab button: Cloud is selected in the tab list Consulting, Cloud, Cybersecurity; the dashed chip Cloud sits at the top of the panel, followed by the H3 Cloud migration and operations and its text. |
-| [Active Tab variation](../../docs/handover/screenshots/tab-active.jpg) | A Tabs Container at 1440 px loaded with its third tab, Cybersecurity, selected because that Tab has Active tab on; the panel shows the Columns with photo-3.svg on the left and the H3 Cyber defence and resilience with its text on the right. |
-| [Tab with ID variation](../../docs/handover/screenshots/tab-deep-link.jpg) | The services page at 1440 px after #cloud is added to the address: the page has scrolled past the H1 and image so the Tabs sit just below the header area, with Cloud selected and its Columns (photo-2.svg, the H3 Cloud migration and operations and its text) shown; the footer's floating Ask us a question bar is at the bottom. The address bar itself is not in the screenshot. |
-| [Universal Editor canvas](../../docs/handover/screenshots/tab-authoring-view.jpg) | Edit mode preview at 1440 px with letters: A on the dashed Tab chip Consulting at the top of the panel, B on the selected tab button Consulting (Cloud next to it), C on the Columns with photo-1.svg and the H3; the Text Explore consulting: talk to our consulting team about your transformation agenda follows outside C. No content tree is shown. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/tab-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/tab-properties-panel.jpg) | The properties panel of a Tab with the Content tab (Title, ID, Active tab) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tab-properties-panel.jpg) |
+**Desktop rendering** — A Tabs Container at 1200 px on the page: the Tab markers' Titles appear only as the tab buttons Consulting (selected), Cloud and Cybersecurity; no marker is visible in the panel, which shows the Columns with photo-1.svg on the left and the H3 Business and technology consulting with its text on the right.
+
+![Desktop rendering: A Tabs Container at 1200 px on the page: the Tab markers' Titles appear only as the tab buttons Consulting selected, Cloud and Cybersecurity; no marker is visible in the panel, which shows the Columns with photo-1.svg on the left a](../../docs/handover/screenshots/tab-desktop-view.jpg)
+
+**Tablet rendering** — The same Tabs Container at 768 px in Universal Editor edit mode: the tab list Consulting (selected), Cloud and Cybersecurity, the dashed brand chip Consulting at the top of the panel, and below it the stacked Columns with photo-1.svg, the H3 Business and technology consulting and its text.
+
+![Tablet rendering: The same Tabs Container at 768 px in Universal Editor edit mode: the tab list Consulting selected, Cloud and Cybersecurity, the dashed brand chip Consulting at the top of the panel, and below it the stacked Columns with photo-1.svg,](../../docs/handover/screenshots/tab-tablet-view.jpg)
+
+**Mobile rendering** — The Tabs Container at 375 px on the page: the tab list shows Consulting (selected), Cloud and a cut-off Cybersecu..., no marker in the panel; the Consulting panel is stacked: photo-1.svg, the H3 Business and technology consulting on two lines and its text.
+
+![Mobile rendering: The Tabs Container at 375 px on the page: the tab list shows Consulting selected, Cloud and a cut-off Cybersecu..., no marker in the panel; the Consulting panel is stacked: photo-1.svg, the H3 Business and technology consulting on t](../../docs/handover/screenshots/tab-mobile-view.jpg)
+
+**Standard Tab variation** — Edit mode at 1440 px after selecting the Cloud tab button: Cloud is selected in the tab list Consulting, Cloud, Cybersecurity; the dashed chip Cloud sits at the top of the panel, followed by the H3 Cloud migration and operations and its text.
+
+![Standard Tab variation: Edit mode at 1440 px after selecting the Cloud tab button: Cloud is selected in the tab list Consulting, Cloud, Cybersecurity; the dashed chip Cloud sits at the top of the panel, followed by the H3 Cloud migration and operatio](../../docs/handover/screenshots/tab-standard.jpg)
+
+**Active Tab variation** — A Tabs Container at 1440 px loaded with its third tab, Cybersecurity, selected because that Tab has Active tab on; the panel shows the Columns with photo-3.svg on the left and the H3 Cyber defence and resilience with its text on the right.
+
+![Active Tab variation: A Tabs Container at 1440 px loaded with its third tab, Cybersecurity, selected because that Tab has Active tab on; the panel shows the Columns with photo-3.svg on the left and the H3 Cyber defence and resilience with its text on](../../docs/handover/screenshots/tab-active.jpg)
+
+**Tab with ID variation** — The services page at 1440 px after #cloud is added to the address: the page has scrolled past the H1 and image so the Tabs sit just below the header area, with Cloud selected and its Columns (photo-2.svg, the H3 Cloud migration and operations and its text) shown; the footer's floating Ask us a question bar is at the bottom. The address bar itself is not in the screenshot.
+
+![Tab with ID variation: The services page at 1440 px after #cloud is added to the address: the page has scrolled past the H1 and image so the Tabs sit just below the header area, with Cloud selected and its Columns photo-2.svg, the H3 Cloud migration ](../../docs/handover/screenshots/tab-deep-link.jpg)
+
+**Universal Editor canvas** — Edit mode preview at 1440 px with letters: A on the dashed Tab chip Consulting at the top of the panel, B on the selected tab button Consulting (Cloud next to it), C on the Columns with photo-1.svg and the H3; the Text Explore consulting: talk to our consulting team about your transformation agenda follows outside C. No content tree is shown. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/tab-authoring-view.jpg)
+
+![Universal Editor canvas: Edit mode preview at 1440 px with letters: A on the dashed Tab chip Consulting at the top of the panel, B on the selected tab button Consulting Cloud next to it, C on the Columns with photo-1.svg and the H3; the Text Explore ](../../docs/handover/screenshots/tab-authoring-view.jpg)
+
+**Properties panel** — The properties panel of a Tab with the Content tab (Title, ID, Active tab) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tab-properties-panel.jpg)
+
+![Properties panel: The properties panel of a Tab with the Content tab Title, ID, Active tab and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tab-properties-panel.jpg](../../docs/handover/screenshots/tab-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

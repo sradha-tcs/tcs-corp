@@ -28,14 +28,29 @@ The Accordion shows a list of collapsible items, each with an always-visible sum
 
 Screenshots of the handover (6.20 Accordion Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/accordion-desktop-view.jpg) | The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1px dividers, chevrons on the right; the second item open with its chevron turned up and its answer about the online assessment and interviews below. |
-| [Tablet rendering](../../docs/handover/screenshots/accordion-tablet-view.jpg) | The Accordion at 768 px with the same layout as on desktop but smaller type (summary 1.125rem, body 1rem): the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?'; the second, two-line question open with its answer below. |
-| [Mobile rendering](../../docs/handover/screenshots/accordion-mobile-view.jpg) | The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets (create a candidate profile, upload your CV, track the status of your application); the three closed summaries below wrap at 1.125rem with chevrons on the right. |
-| [Default Accordion variation](../../docs/handover/screenshots/accordion-default.jpg) | The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under the pointer, in brand blue. |
-| [Universal Editor canvas](../../docs/handover/screenshots/accordion-authoring-view.jpg) | The Accordion at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot) with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and D on its open text with the bulleted list. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/accordion-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/accordion-properties-panel.jpg) | The Universal Editor properties panel for the Accordion block (Additional tab with Anchor ID, Hide block and the eight spacing selects) and, side by side, for an Accordion Item (Summary and Text). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/accordion-properties-panel.jpg) |
+**Desktop rendering** — The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1px dividers, chevrons on the right; the second item open with its chevron turned up and its answer about the online assessment and interviews below.
+
+![Desktop rendering: The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1p](../../docs/handover/screenshots/accordion-desktop-view.jpg)
+
+**Tablet rendering** — The Accordion at 768 px with the same layout as on desktop but smaller type (summary 1.125rem, body 1rem): the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?'; the second, two-line question open with its answer below.
+
+![Tablet rendering: The Accordion at 768 px with the same layout as on desktop but smaller type summary 1.125rem, body 1rem: the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at ](../../docs/handover/screenshots/accordion-tablet-view.jpg)
+
+**Mobile rendering** — The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets (create a candidate profile, upload your CV, track the status of your application); the three closed summaries below wrap at 1.125rem with chevrons on the right.
+
+![Mobile rendering: The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets create a candidate profile, upload your CV, track the status of your application; the three closed summaries ](../../docs/handover/screenshots/accordion-mobile-view.jpg)
+
+**Default Accordion variation** — The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under the pointer, in brand blue.
+
+![Default Accordion variation: The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under t](../../docs/handover/screenshots/accordion-default.jpg)
+
+**Universal Editor canvas** — The Accordion at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot) with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and D on its open text with the bulleted list. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/accordion-authoring-view.jpg)
+
+![Universal Editor canvas: The Accordion at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and ](../../docs/handover/screenshots/accordion-authoring-view.jpg)
+
+**Properties panel** — The Universal Editor properties panel for the Accordion block (Additional tab with Anchor ID, Hide block and the eight spacing selects) and, side by side, for an Accordion Item (Summary and Text). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/accordion-properties-panel.jpg)
+
+![Properties panel: The Universal Editor properties panel for the Accordion block Additional tab with Anchor ID, Hide block and the eight spacing selects and, side by side, for an Accordion Item Summary and Text. Dialog reference generated from the com](../../docs/handover/screenshots/accordion-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

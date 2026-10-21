@@ -58,34 +58,109 @@ conveys (autoplay is switched off for reduced motion).
 
 Screenshots of the handover (6.28 Video Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/video-desktop-view.jpg) | The Video block at 1440 px: a Large (900 px) 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partners use technology to help enterprises grow and transform. and the link Read the transcript. |
-| [Tablet rendering](../../docs/handover/screenshots/video-tablet-view.jpg) | Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the round pause button in the bottom-right corner. |
-| [Mobile rendering](../../docs/handover/screenshots/video-mobile-view.jpg) | Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds (poster tall.svg, Size Small) filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Play button and the grey caption. |
-| [Variation example](../../docs/handover/screenshots/video-play-button-poster.jpg) | The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg (data centre corridor) and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place after Play, is not captured. |
-| [Variation example](../../docs/handover/screenshots/video-popup.jpg) | The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close (x) button at the top right and the native player showing the poster photo-3.svg and its controls; the player is clipped at the dialog's right edge. |
-| [Variation example](../../docs/handover/screenshots/video-autoplay-no-controls.jpg) | The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg (wind turbines) without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not the playing video. |
-| [Variation example](../../docs/handover/screenshots/video-background.jpg) | The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width (1280 px) showing the poster photo-6.svg (Sample image 6) with only the round pause button in the bottom-right corner. |
-| [Variation example](../../docs/handover/screenshots/video-caption-transcript.jpg) | The Video block at 1440 px in Size Medium (640 px): the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link Read the transcript. |
-| [Variation example](../../docs/handover/screenshots/video-ratio-16-9.jpg) | The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide (Size Large), rounded, with the poster photo-1.svg and the centred Play button. |
-| [Variation example](../../docs/handover/screenshots/video-ratio-4-3.jpg) | The Video block at 1440 px: a 4:3 media area, 900 px wide (Size Large), rounded, with the poster photo-2.svg cropped to fill it and the centred Play button. |
-| [Variation example](../../docs/handover/screenshots/video-ratio-1-1.jpg) | The Video block at 1440 px: a square 1:1 media area, Size Medium (640 px), centred in the section, rounded, with the poster square-1.svg and the centred Play button. |
-| [Variation example](../../docs/handover/screenshots/video-ratio-21-9.jpg) | The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner. |
-| [Variation example](../../docs/handover/screenshots/video-ratio-9-16.jpg) | The Video block at 1440 px: a vertical 9:16 media area, Size Small (420 px), centred in the section, rounded, with the poster tall.svg and the centred Play button. |
-| [Variation example](../../docs/handover/screenshots/video-size-full.jpg) | The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width (1280 px), showing the poster wide.svg with the centred Play button. |
-| [Variation example](../../docs/handover/screenshots/video-size-large.jpg) | The Video block at 1440 px with the default Size Large (900 px): a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides. |
-| [Variation example](../../docs/handover/screenshots/video-size-medium.jpg) | The Video block at 1440 px in Size Medium (640 px): a rounded 16:9 poster photo-8.svg (red tones) with the centred Play button, centred in the section. |
-| [Variation example](../../docs/handover/screenshots/video-size-small.jpg) | The Video block at 1440 px in Size Small (420 px), Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content. |
-| [Variation example](../../docs/handover/screenshots/video-align-center.jpg) | A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium (640 px) 16:9 Video with the poster photo-2.svg and Play button, centred in the section. |
-| [Variation example](../../docs/handover/screenshots/video-align-left.jpg) | A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text. |
-| [Variation example](../../docs/handover/screenshots/video-align-right.jpg) | A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-5.svg (green) and Play button aligned to the right edge of the section's content. |
-| [Variation example](../../docs/handover/screenshots/video-rounded.jpg) | The Video block at 1440 px: a Large 16:9 poster photo-4.svg (purple) with the centred Play button and the default 1rem rounded corners. |
-| [Variation example](../../docs/handover/screenshots/video-square-corners.jpg) | The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner. |
-| [Variation example](../../docs/handover/screenshots/video-reduced-motion.jpg) | The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video. |
-| [Variation example](../../docs/handover/screenshots/video-legacy.jpg) | A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg (red tones) with the centred Play button, rendered like the current Play button playback. |
-| [Universal Editor canvas](../../docs/handover/screenshots/video-authoring-view.jpg) | The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button (C), the media area (D), the caption (E) and the Read the transcript link (F), outlined with red dashed boxes; markers A, B and G are not drawn. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/video-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/video-properties-panel.jpg) | The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg) |
+**Desktop rendering** — The Video block at 1440 px: a Large (900 px) 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partners use technology to help enterprises grow and transform. and the link Read the transcript.
+
+![Desktop rendering: The Video block at 1440 px: a Large 900 px 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partner](../../docs/handover/screenshots/video-desktop-view.jpg)
+
+**Tablet rendering** — Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the round pause button in the bottom-right corner.
+
+![Tablet rendering: Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the ro](../../docs/handover/screenshots/video-tablet-view.jpg)
+
+**Mobile rendering** — Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds (poster tall.svg, Size Small) filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Play button and the grey caption.
+
+![Mobile rendering: Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds poster tall.svg, Size Small filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Pl](../../docs/handover/screenshots/video-mobile-view.jpg)
+
+**Variation example** — The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg (data centre corridor) and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place after Play, is not captured.
+
+![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg data centre corridor and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place ](../../docs/handover/screenshots/video-play-button-poster.jpg)
+
+**Variation example** — The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close (x) button at the top right and the native player showing the poster photo-3.svg and its controls; the player is clipped at the dialog's right edge.
+
+![Variation example: The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close x button at the top right and the native player showing the poster photo-3.svg and its controls; the ](../../docs/handover/screenshots/video-popup.jpg)
+
+**Variation example** — The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg (wind turbines) without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not the playing video.
+
+![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg wind turbines without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not th](../../docs/handover/screenshots/video-autoplay-no-controls.jpg)
+
+**Variation example** — The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width (1280 px) showing the poster photo-6.svg (Sample image 6) with only the round pause button in the bottom-right corner.
+
+![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width 1280 px showing the poster photo-6.svg Sample image 6 with only the round pause button in the bottom-right corner.](../../docs/handover/screenshots/video-background.jpg)
+
+**Variation example** — The Video block at 1440 px in Size Medium (640 px): the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link Read the transcript.
+
+![Variation example: The Video block at 1440 px in Size Medium 640 px: the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link ](../../docs/handover/screenshots/video-caption-transcript.jpg)
+
+**Variation example** — The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide (Size Large), rounded, with the poster photo-1.svg and the centred Play button.
+
+![Variation example: The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide Size Large, rounded, with the poster photo-1.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-16-9.jpg)
+
+**Variation example** — The Video block at 1440 px: a 4:3 media area, 900 px wide (Size Large), rounded, with the poster photo-2.svg cropped to fill it and the centred Play button.
+
+![Variation example: The Video block at 1440 px: a 4:3 media area, 900 px wide Size Large, rounded, with the poster photo-2.svg cropped to fill it and the centred Play button.](../../docs/handover/screenshots/video-ratio-4-3.jpg)
+
+**Variation example** — The Video block at 1440 px: a square 1:1 media area, Size Medium (640 px), centred in the section, rounded, with the poster square-1.svg and the centred Play button.
+
+![Variation example: The Video block at 1440 px: a square 1:1 media area, Size Medium 640 px, centred in the section, rounded, with the poster square-1.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-1-1.jpg)
+
+**Variation example** — The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner.
+
+![Variation example: The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner.](../../docs/handover/screenshots/video-ratio-21-9.jpg)
+
+**Variation example** — The Video block at 1440 px: a vertical 9:16 media area, Size Small (420 px), centred in the section, rounded, with the poster tall.svg and the centred Play button.
+
+![Variation example: The Video block at 1440 px: a vertical 9:16 media area, Size Small 420 px, centred in the section, rounded, with the poster tall.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-9-16.jpg)
+
+**Variation example** — The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width (1280 px), showing the poster wide.svg with the centred Play button.
+
+![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width 1280 px, showing the poster wide.svg with the centred Play button.](../../docs/handover/screenshots/video-size-full.jpg)
+
+**Variation example** — The Video block at 1440 px with the default Size Large (900 px): a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides.
+
+![Variation example: The Video block at 1440 px with the default Size Large 900 px: a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides.](../../docs/handover/screenshots/video-size-large.jpg)
+
+**Variation example** — The Video block at 1440 px in Size Medium (640 px): a rounded 16:9 poster photo-8.svg (red tones) with the centred Play button, centred in the section.
+
+![Variation example: The Video block at 1440 px in Size Medium 640 px: a rounded 16:9 poster photo-8.svg red tones with the centred Play button, centred in the section.](../../docs/handover/screenshots/video-size-medium.jpg)
+
+**Variation example** — The Video block at 1440 px in Size Small (420 px), Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content.
+
+![Variation example: The Video block at 1440 px in Size Small 420 px, Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content.](../../docs/handover/screenshots/video-size-small.jpg)
+
+**Variation example** — A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium (640 px) 16:9 Video with the poster photo-2.svg and Play button, centred in the section.
+
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium 640 px 16:9 Video with the poster photo-2.svg and Play button, centred in the section.](../../docs/handover/screenshots/video-align-center.jpg)
+
+**Variation example** — A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text.
+
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text.](../../docs/handover/screenshots/video-align-left.jpg)
+
+**Variation example** — A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-5.svg (green) and Play button aligned to the right edge of the section's content.
+
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-5.svg green and Play button aligned to the right edge of the section's content.](../../docs/handover/screenshots/video-align-right.jpg)
+
+**Variation example** — The Video block at 1440 px: a Large 16:9 poster photo-4.svg (purple) with the centred Play button and the default 1rem rounded corners.
+
+![Variation example: The Video block at 1440 px: a Large 16:9 poster photo-4.svg purple with the centred Play button and the default 1rem rounded corners.](../../docs/handover/screenshots/video-rounded.jpg)
+
+**Variation example** — The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner.
+
+![Variation example: The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner.](../../docs/handover/screenshots/video-square-corners.jpg)
+
+**Variation example** — The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video.
+
+![Variation example: The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video.](../../docs/handover/screenshots/video-reduced-motion.jpg)
+
+**Variation example** — A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg (red tones) with the centred Play button, rendered like the current Play button playback.
+
+![Variation example: A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg red tones with the centred Play button, rendered like the current Play button playback.](../../docs/handover/screenshots/video-legacy.jpg)
+
+**Universal Editor canvas** — The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button (C), the media area (D), the caption (E) and the Read the transcript link (F), outlined with red dashed boxes; markers A, B and G are not drawn. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/video-authoring-view.jpg)
+
+![Universal Editor canvas: The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button C, the media area D, the caption E and the Read the transcript link F, outlined with red dashed boxes; mark](../../docs/handover/screenshots/video-authoring-view.jpg)
+
+**Properties panel** — The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg)
+
+![Properties panel: The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg](../../docs/handover/screenshots/video-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

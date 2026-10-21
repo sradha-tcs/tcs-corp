@@ -42,26 +42,77 @@ Form Variations builds an accessible, client-side validated web form from child 
 
 Screenshots of the handover (6.29 Form Variations Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/form-variations-desktop-view.jpg) | The Form Variations block at 1280 px, Default theme, 45rem wide: the H2 Contact us and its grey description, the note * Required fields, the Region dropdown on Select an option, First name and Last name side by side, Email, the How can we help you? textarea with the counter 0/1500, the consent checkbox with the underlined Privacy Notice link and the black Send button with an arrow. |
-| [Tablet rendering](../../docs/handover/screenshots/form-variations-tablet-view.jpg) | The same Contact us form at 768 px: title, description, * Required fields, Region, then First name, Last name and Email each on their own full-width row, the textarea with 0/1500 below it, the consent checkbox and the left-aligned Send button. |
-| [Mobile rendering](../../docs/handover/screenshots/form-variations-mobile-view.jpg) | The Contact us form at 375 px after a successful Send: single column, every field empty again (reset), the consent text wrapped beside the checkbox, the Send button and below it the blue message Thank you, your details were sent.; the sticky header covers the description in the capture. |
-| [Default theme](../../docs/handover/screenshots/form-variations-default-theme.jpg) | A Default theme form at 1280 px: the H2 Request a call back, the description Leave your details and a specialist will call you., First name and Last name side by side, Email, the black Send button and, after Send, the blue message Thank you, your details were sent. |
-| [Dark theme](../../docs/handover/screenshots/form-variations-dark-theme.jpg) | A Dark theme form at 1280 px: a black panel with 1rem rounded corners across the section, the content centred at 45rem: the white H2 Talk to our experts, the description, Region set to India, First name and Last name side by side, Email, a divider, the India media relations card in light blue with two email addresses and +91 00 0000 0000, and the white Send button. |
-| [Half-width name fields](../../docs/handover/screenshots/form-variations-half-width.jpg) | A Default theme form at 1280 px: the H2 Subscribe to our insights, First name and Last name side by side in two columns, a full-width Email input below them and the black Subscribe button with an arrow. |
-| [Single-column form](../../docs/handover/screenshots/form-variations-full-width.jpg) | A Default theme form at 1280 px: the H2 Share your feedback and four full-width fields one below the other, Full name, Email, Phone and the Message textarea with the counter 0/1500, then the black Send button. |
-| [Text input](../../docs/handover/screenshots/form-variations-input-text.jpg) | A form at 1280 px with a single mandatory Text input: the note * Required fields, the label Company with a red asterisk and an empty full-width single-line input. |
-| [Email input with error](../../docs/handover/screenshots/form-variations-input-email.jpg) | A form at 1280 px after Send with an invalid address: * Required fields, the label Business email with an asterisk, the input with anita.rao.example.com and a red border, the red error Enter a valid email address. below it and the black Send button. |
-| [Phone input](../../docs/handover/screenshots/form-variations-input-tel.jpg) | A form at 375 px with a mandatory Tel input: * Required fields, the label Phone number with a red asterisk and the full-width input focused with the 2 px brand-blue outline; the telephone keypad that opens on the phone is not part of the capture. |
-| [Dropdown field](../../docs/handover/screenshots/form-variations-dropdown.jpg) | A form at 1280 px with the Region dropdown open: the native list shows the greyed prompt Select an option and the options Asia Pacific, Europe, India and North America; the label has no asterisk because the field is optional. |
-| [Textarea with counter](../../docs/handover/screenshots/form-variations-textarea.jpg) | A form at 1280 px with the textarea How can we help you? focused (brand outline), holding the typed text We are planning to move our customer analytics platform to the cloud and would like to discuss options, timelines and costs. and the counter 124/1500 right-aligned below it. |
-| [Consent checkbox](../../docs/handover/screenshots/form-variations-consent-checkbox.jpg) | A form at 1280 px with a mandatory consent checkbox: * Required fields, then a 1.25rem checkbox followed by the small text I agree to the processing of my personal data as described in the Privacy Notice, with Privacy Notice underlined as a link, and a red asterisk. |
-| [Conditional field shown](../../docs/handover/screenshots/form-variations-conditional-fields.jpg) | A form at 1280 px after choosing Other: * Required fields, the mandatory Sector dropdown set to Other and, below it, the newly shown mandatory text input Please specify your sector. |
-| [Contact card shown for a region](../../docs/handover/screenshots/form-variations-contact-card.jpg) | A form at 1280 px with Region set to India: below the dropdown, after a thin divider, the contact name India media relations in brand blue and the links media.india@example.com, press.india@example.com and +91 00 0000 0000 listed vertically; the Europe card stays hidden. |
-| [Submit button and success message](../../docs/handover/screenshots/form-variations-submit-button.jpg) | A form at 1280 px after a valid Send: the label Email above an empty input (reset), the black primary Send button with a trailing arrow, and below the form the brand-blue message Thank you, your details were sent. |
-| [Universal Editor canvas](../../docs/handover/screenshots/form-variations-authoring-view.jpg) | The Contact us form in Universal Editor edit mode at 1280 px with sample content and red dashed markers A to J: title, description, required note (one column wide), First name, Region, the textarea, the consent row, the India contact card with its italic condition note in a dashed box, and the Send button. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/form-variations-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/form-variations-properties-panel.jpg) | The properties panel of the Form Variations block with the Content and (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/form-variations-properties-panel.jpg) |
+**Desktop rendering** — The Form Variations block at 1280 px, Default theme, 45rem wide: the H2 Contact us and its grey description, the note * Required fields, the Region dropdown on Select an option, First name and Last name side by side, Email, the How can we help you? textarea with the counter 0/1500, the consent checkbox with the underlined Privacy Notice link and the black Send button with an arrow.
+
+![Desktop rendering: The Form Variations block at 1280 px, Default theme, 45rem wide: the H2 Contact us and its grey description, the note * Required fields, the Region dropdown on Select an option, First name and Last name side by side, Email, the How](../../docs/handover/screenshots/form-variations-desktop-view.jpg)
+
+**Tablet rendering** — The same Contact us form at 768 px: title, description, * Required fields, Region, then First name, Last name and Email each on their own full-width row, the textarea with 0/1500 below it, the consent checkbox and the left-aligned Send button.
+
+![Tablet rendering: The same Contact us form at 768 px: title, description, * Required fields, Region, then First name, Last name and Email each on their own full-width row, the textarea with 0/1500 below it, the consent checkbox and the left-aligned S](../../docs/handover/screenshots/form-variations-tablet-view.jpg)
+
+**Mobile rendering** — The Contact us form at 375 px after a successful Send: single column, every field empty again (reset), the consent text wrapped beside the checkbox, the Send button and below it the blue message Thank you, your details were sent.; the sticky header covers the description in the capture.
+
+![Mobile rendering: The Contact us form at 375 px after a successful Send: single column, every field empty again reset, the consent text wrapped beside the checkbox, the Send button and below it the blue message Thank you, your details were sent.; the](../../docs/handover/screenshots/form-variations-mobile-view.jpg)
+
+**Default theme** — A Default theme form at 1280 px: the H2 Request a call back, the description Leave your details and a specialist will call you., First name and Last name side by side, Email, the black Send button and, after Send, the blue message Thank you, your details were sent.
+
+![Default theme: A Default theme form at 1280 px: the H2 Request a call back, the description Leave your details and a specialist will call you., First name and Last name side by side, Email, the black Send button and, after Send, the blue message Than](../../docs/handover/screenshots/form-variations-default-theme.jpg)
+
+**Dark theme** — A Dark theme form at 1280 px: a black panel with 1rem rounded corners across the section, the content centred at 45rem: the white H2 Talk to our experts, the description, Region set to India, First name and Last name side by side, Email, a divider, the India media relations card in light blue with two email addresses and +91 00 0000 0000, and the white Send button.
+
+![Dark theme: A Dark theme form at 1280 px: a black panel with 1rem rounded corners across the section, the content centred at 45rem: the white H2 Talk to our experts, the description, Region set to India, First name and Last name side by side, Email, ](../../docs/handover/screenshots/form-variations-dark-theme.jpg)
+
+**Half-width name fields** — A Default theme form at 1280 px: the H2 Subscribe to our insights, First name and Last name side by side in two columns, a full-width Email input below them and the black Subscribe button with an arrow.
+
+![Half-width name fields: A Default theme form at 1280 px: the H2 Subscribe to our insights, First name and Last name side by side in two columns, a full-width Email input below them and the black Subscribe button with an arrow.](../../docs/handover/screenshots/form-variations-half-width.jpg)
+
+**Single-column form** — A Default theme form at 1280 px: the H2 Share your feedback and four full-width fields one below the other, Full name, Email, Phone and the Message textarea with the counter 0/1500, then the black Send button.
+
+![Single-column form: A Default theme form at 1280 px: the H2 Share your feedback and four full-width fields one below the other, Full name, Email, Phone and the Message textarea with the counter 0/1500, then the black Send button.](../../docs/handover/screenshots/form-variations-full-width.jpg)
+
+**Text input** — A form at 1280 px with a single mandatory Text input: the note * Required fields, the label Company with a red asterisk and an empty full-width single-line input.
+
+![Text input: A form at 1280 px with a single mandatory Text input: the note * Required fields, the label Company with a red asterisk and an empty full-width single-line input.](../../docs/handover/screenshots/form-variations-input-text.jpg)
+
+**Email input with error** — A form at 1280 px after Send with an invalid address: * Required fields, the label Business email with an asterisk, the input with anita.rao.example.com and a red border, the red error Enter a valid email address. below it and the black Send button.
+
+![Email input with error: A form at 1280 px after Send with an invalid address: * Required fields, the label Business email with an asterisk, the input with anita.rao.example.com and a red border, the red error Enter a valid email address. below it and](../../docs/handover/screenshots/form-variations-input-email.jpg)
+
+**Phone input** — A form at 375 px with a mandatory Tel input: * Required fields, the label Phone number with a red asterisk and the full-width input focused with the 2 px brand-blue outline; the telephone keypad that opens on the phone is not part of the capture.
+
+![Phone input: A form at 375 px with a mandatory Tel input: * Required fields, the label Phone number with a red asterisk and the full-width input focused with the 2 px brand-blue outline; the telephone keypad that opens on the phone is not part of the](../../docs/handover/screenshots/form-variations-input-tel.jpg)
+
+**Dropdown field** — A form at 1280 px with the Region dropdown open: the native list shows the greyed prompt Select an option and the options Asia Pacific, Europe, India and North America; the label has no asterisk because the field is optional.
+
+![Dropdown field: A form at 1280 px with the Region dropdown open: the native list shows the greyed prompt Select an option and the options Asia Pacific, Europe, India and North America; the label has no asterisk because the field is optional.](../../docs/handover/screenshots/form-variations-dropdown.jpg)
+
+**Textarea with counter** — A form at 1280 px with the textarea How can we help you? focused (brand outline), holding the typed text We are planning to move our customer analytics platform to the cloud and would like to discuss options, timelines and costs. and the counter 124/1500 right-aligned below it.
+
+![Textarea with counter: A form at 1280 px with the textarea How can we help you? focused brand outline, holding the typed text We are planning to move our customer analytics platform to the cloud and would like to discuss options, timelines and costs.](../../docs/handover/screenshots/form-variations-textarea.jpg)
+
+**Consent checkbox** — A form at 1280 px with a mandatory consent checkbox: * Required fields, then a 1.25rem checkbox followed by the small text I agree to the processing of my personal data as described in the Privacy Notice, with Privacy Notice underlined as a link, and a red asterisk.
+
+![Consent checkbox: A form at 1280 px with a mandatory consent checkbox: * Required fields, then a 1.25rem checkbox followed by the small text I agree to the processing of my personal data as described in the Privacy Notice, with Privacy Notice underli](../../docs/handover/screenshots/form-variations-consent-checkbox.jpg)
+
+**Conditional field shown** — A form at 1280 px after choosing Other: * Required fields, the mandatory Sector dropdown set to Other and, below it, the newly shown mandatory text input Please specify your sector.
+
+![Conditional field shown: A form at 1280 px after choosing Other: * Required fields, the mandatory Sector dropdown set to Other and, below it, the newly shown mandatory text input Please specify your sector.](../../docs/handover/screenshots/form-variations-conditional-fields.jpg)
+
+**Contact card shown for a region** — A form at 1280 px with Region set to India: below the dropdown, after a thin divider, the contact name India media relations in brand blue and the links media.india@example.com, press.india@example.com and +91 00 0000 0000 listed vertically; the Europe card stays hidden.
+
+![Contact card shown for a region: A form at 1280 px with Region set to India: below the dropdown, after a thin divider, the contact name India media relations in brand blue and the links media.india@example.com, press.india@example.com and +91 00 0000](../../docs/handover/screenshots/form-variations-contact-card.jpg)
+
+**Submit button and success message** — A form at 1280 px after a valid Send: the label Email above an empty input (reset), the black primary Send button with a trailing arrow, and below the form the brand-blue message Thank you, your details were sent.
+
+![Submit button and success message: A form at 1280 px after a valid Send: the label Email above an empty input reset, the black primary Send button with a trailing arrow, and below the form the brand-blue message Thank you, your details were sent.](../../docs/handover/screenshots/form-variations-submit-button.jpg)
+
+**Universal Editor canvas** — The Contact us form in Universal Editor edit mode at 1280 px with sample content and red dashed markers A to J: title, description, required note (one column wide), First name, Region, the textarea, the consent row, the India contact card with its italic condition note in a dashed box, and the Send button. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/form-variations-authoring-view.jpg)
+
+![Universal Editor canvas: The Contact us form in Universal Editor edit mode at 1280 px with sample content and red dashed markers A to J: title, description, required note one column wide, First name, Region, the textarea, the consent row, the India c](../../docs/handover/screenshots/form-variations-authoring-view.jpg)
+
+**Properties panel** — The properties panel of the Form Variations block with the Content and (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/form-variations-properties-panel.jpg)
+
+![Properties panel: The properties panel of the Form Variations block with the Content and Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/form-variations-properties-panel.jpg](../../docs/handover/screenshots/form-variations-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

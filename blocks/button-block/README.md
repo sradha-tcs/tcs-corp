@@ -55,20 +55,53 @@ CTA fields; navigation menus (the navigation page).
 
 Screenshots of the handover (6.9 Button Component), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/button-desktop-view.jpg) | Six buttons at 1440 px, stacked left aligned in their own paragraphs (not a row): primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insights' with a chevron and a primary pill with the long download label. |
-| [Tablet rendering](../../docs/handover/screenshots/button-tablet-view.jpg) | The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line. |
-| [Mobile rendering](../../docs/handover/screenshots/button-mobile-view.jpg) | The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge. |
-| [Primary button](../../docs/handover/screenshots/button-primary.jpg) | At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400. |
-| [Secondary button](../../docs/handover/screenshots/button-secondary.jpg) | At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label. |
-| [Tertiary button](../../docs/handover/screenshots/button-tertiary.jpg) | At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer. |
-| [Icon button](../../docs/handover/screenshots/button-icon.jpg) | At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only. |
-| [Link view](../../docs/handover/screenshots/button-link.jpg) | At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue. |
-| [Centre-aligned button](../../docs/handover/screenshots/button-align-center.jpg) | At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area. |
-| [Right-aligned button](../../docs/handover/screenshots/button-align-right.jpg) | At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area. |
-| [Button on the Universal Editor canvas](../../docs/handover/screenshots/button-authoring-view.jpg) | The centred primary pill 'Contact us' in editor mode at 1440 px (an annotated preview, not a Universal Editor screenshot); A marks the button label and C its paragraph (Alignment). B (Views, Type) is not marked. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/button-authoring-view.jpg) |
-| [Button properties panel](../../docs/handover/screenshots/button-properties-panel.jpg) | The Properties panel with Link, Text, Title, Views, Type, Icon (visible because Views is Icon) and Alignment. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-properties-panel.jpg) |
+**Desktop rendering** — Six buttons at 1440 px, stacked left aligned in their own paragraphs (not a row): primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insights' with a chevron and a primary pill with the long download label.
+
+![Desktop rendering: Six buttons at 1440 px, stacked left aligned in their own paragraphs not a row: primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insigh](../../docs/handover/screenshots/button-desktop-view.jpg)
+
+**Tablet rendering** — The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line.
+
+![Tablet rendering: The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line.](../../docs/handover/screenshots/button-tablet-view.jpg)
+
+**Mobile rendering** — The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge.
+
+![Mobile rendering: The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge.](../../docs/handover/screenshots/button-mobile-view.jpg)
+
+**Primary button** — At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400.
+
+![Primary button: At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400.](../../docs/handover/screenshots/button-primary.jpg)
+
+**Secondary button** — At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label.
+
+![Secondary button: At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label.](../../docs/handover/screenshots/button-secondary.jpg)
+
+**Tertiary button** — At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer.
+
+![Tertiary button: At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer.](../../docs/handover/screenshots/button-tertiary.jpg)
+
+**Icon button** — At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only.
+
+![Icon button: At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only.](../../docs/handover/screenshots/button-icon.jpg)
+
+**Link view** — At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue.
+
+![Link view: At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue.](../../docs/handover/screenshots/button-link.jpg)
+
+**Centre-aligned button** — At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area.
+
+![Centre-aligned button: At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area.](../../docs/handover/screenshots/button-align-center.jpg)
+
+**Right-aligned button** — At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area.
+
+![Right-aligned button: At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area.](../../docs/handover/screenshots/button-align-right.jpg)
+
+**Button on the Universal Editor canvas** — The centred primary pill 'Contact us' in editor mode at 1440 px (an annotated preview, not a Universal Editor screenshot); A marks the button label and C its paragraph (Alignment). B (Views, Type) is not marked. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/button-authoring-view.jpg)
+
+![Button on the Universal Editor canvas: The centred primary pill 'Contact us' in editor mode at 1440 px an annotated preview, not a Universal Editor screenshot; A marks the button label and C its paragraph Alignment. B Views, Type is not marked. Annot](../../docs/handover/screenshots/button-authoring-view.jpg)
+
+**Button properties panel** — The Properties panel with Link, Text, Title, Views, Type, Icon (visible because Views is Icon) and Alignment. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-properties-panel.jpg)
+
+![Button properties panel: The Properties panel with Link, Text, Title, Views, Type, Icon visible because Views is Icon and Alignment. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-prope](../../docs/handover/screenshots/button-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

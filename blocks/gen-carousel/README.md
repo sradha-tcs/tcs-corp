@@ -39,19 +39,49 @@ The Gen Carousel shows a sequence of slides one at a time, with previous / next 
 
 Screenshots of the handover (6.24 Gen Carousel Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/gen-carousel-desktop-view.jpg) | At 1200 px: slide 1 of a three-Hero carousel at full content width (navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred), and 2rem below it the pause button, previous arrow, three dots (the first a wide brand pill) and next arrow. |
-| [Tablet rendering](../../docs/handover/screenshots/gen-carousel-tablet-view.jpg) | At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow, three dots and next arrow. |
-| [Mobile rendering](../../docs/handover/screenshots/gen-carousel-mobile-view.jpg) | At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout (35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred), and below it the previous arrow, three dots and next arrow on one line. |
-| [Manual navigation](../../docs/handover/screenshots/gen-carousel-manual.jpg) | At 1440 px: slide 1 of the three-Hero carousel (navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services) and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button. |
-| [Auto navigation](../../docs/handover/screenshots/gen-carousel-auto.jpg) | At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and below it only the pause button and three dots, without previous or next arrows. |
-| [Manual and Auto navigation](../../docs/handover/screenshots/gen-carousel-manual-auto.jpg) | At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and centred below it the pause button, previous arrow, three dots and next arrow. |
-| [Single slide](../../docs/handover/screenshots/gen-carousel-single-slide.jpg) | At 1440 px: a Gen Carousel with a single Hero (navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred) and no controls below it. |
-| [Hero slides](../../docs/handover/screenshots/gen-carousel-hero-slides.jpg) | At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three dots and next. |
-| [Teaser slides](../../docs/handover/screenshots/gen-carousel-teaser-slides.jpg) | At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous, three dots and next below. |
-| [Universal Editor canvas](../../docs/handover/screenshots/gen-carousel-authoring-view.jpg) | Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A (carousel), B (current slide), C (next button), D (dots) and E (pause button). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/gen-carousel-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/gen-carousel-properties-panel.jpg) | The Gen Carousel properties panel with the Content tab (Style, Navigation, Autoplay interval) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carousel-properties-panel.jpg) |
+**Desktop rendering** — At 1200 px: slide 1 of a three-Hero carousel at full content width (navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred), and 2rem below it the pause button, previous arrow, three dots (the first a wide brand pill) and next arrow.
+
+![Desktop rendering: At 1200 px: slide 1 of a three-Hero carousel at full content width navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred, and 2rem below it the pause button,](../../docs/handover/screenshots/gen-carousel-desktop-view.jpg)
+
+**Tablet rendering** — At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow, three dots and next arrow.
+
+![Tablet rendering: At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow,](../../docs/handover/screenshots/gen-carousel-tablet-view.jpg)
+
+**Mobile rendering** — At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout (35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred), and below it the previous arrow, three dots and next arrow on one line.
+
+![Mobile rendering: At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout 35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred, and below it the previous arrow, ](../../docs/handover/screenshots/gen-carousel-mobile-view.jpg)
+
+**Manual navigation** — At 1440 px: slide 1 of the three-Hero carousel (navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services) and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button.
+
+![Manual navigation: At 1440 px: slide 1 of the three-Hero carousel navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button.](../../docs/handover/screenshots/gen-carousel-manual.jpg)
+
+**Auto navigation** — At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and below it only the pause button and three dots, without previous or next arrows.
+
+![Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and below it only the pause button and three dots, without previous or next arrows.](../../docs/handover/screenshots/gen-carousel-auto.jpg)
+
+**Manual and Auto navigation** — At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and centred below it the pause button, previous arrow, three dots and next arrow.
+
+![Manual and Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and centred below it the pause button, previous arrow, three dots and next arrow.](../../docs/handover/screenshots/gen-carousel-manual-auto.jpg)
+
+**Single slide** — At 1440 px: a Gen Carousel with a single Hero (navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred) and no controls below it.
+
+![Single slide: At 1440 px: a Gen Carousel with a single Hero navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred and no controls below it.](../../docs/handover/screenshots/gen-carousel-single-slide.jpg)
+
+**Hero slides** — At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three dots and next.
+
+![Hero slides: At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three ](../../docs/handover/screenshots/gen-carousel-hero-slides.jpg)
+
+**Teaser slides** — At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous, three dots and next below.
+
+![Teaser slides: At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous,](../../docs/handover/screenshots/gen-carousel-teaser-slides.jpg)
+
+**Universal Editor canvas** — Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A (carousel), B (current slide), C (next button), D (dots) and E (pause button). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/gen-carousel-authoring-view.jpg)
+
+![Universal Editor canvas: Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A carousel, B current slide, C next button, D dots an](../../docs/handover/screenshots/gen-carousel-authoring-view.jpg)
+
+**Properties panel** — The Gen Carousel properties panel with the Content tab (Style, Navigation, Autoplay interval) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carousel-properties-panel.jpg)
+
+![Properties panel: The Gen Carousel properties panel with the Content tab Style, Navigation, Autoplay interval and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carouse](../../docs/handover/screenshots/gen-carousel-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

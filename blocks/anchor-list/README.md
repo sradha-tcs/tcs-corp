@@ -28,15 +28,33 @@ The Anchor List is an in-page chapter navigation (TCS DS Figma "Chapter Nav"): a
 
 Screenshots of the handover (6.19 Anchor List Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/anchor-list-desktop-view.jpg) | The Anchor List at 1440 px below the page title 'Global technology outlook 2026' and its intro: a centred row of four grey links 'CH 1: Overview', 'CH 2: Findings', 'CH 3: Outlook', 'CH 4: Next steps'; 'CH 2: Findings' (page at #findings) dark, semibold, with a 3px brand-blue underline. |
-| [Tablet rendering](../../docs/handover/screenshots/anchor-list-tablet-view.jpg) | The viewport at 768 px scrolled into chapter 2 (Key findings): the sticky Anchor List pinned directly below the fixed site header, the four links with 'CH 2: Findings' underlined, the Key findings text below it. |
-| [Mobile rendering](../../docs/handover/screenshots/anchor-list-mobile-view.jpg) | The Anchor List at 375 px with the page at #outlook: the four chapter links in one line wider than the screen, scrolled sideways without a visible scrollbar so that 'CH 3: Outlook', underlined in brand blue, is in view. |
-| [Default Anchor List](../../docs/handover/screenshots/anchor-list-default.jpg) | The first section at 1440 px: the H1 'Global technology outlook 2026', the intro 'How business and technology leaders plan to grow, modernise and compete in the years ahead.' and below them the in-flow row of four chapter links, 'CH 1: Overview' underlined as current (Sticky off). |
-| [Sticky Anchor List](../../docs/handover/screenshots/anchor-list-sticky.jpg) | The viewport at 1440 px scrolled into chapter 3 (Outlook): the sticky Anchor List pinned at the top of the screen across the full width on a white background, 'CH 3: Outlook' underlined, the Outlook text below it. |
-| [Universal Editor canvas](../../docs/handover/screenshots/anchor-list-authoring-view.jpg) | The page at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot): the H1, the intro and the four-link Anchor List, with A on 'CH 4: Next steps', B on the current link, C on 'CH 2: Findings', D on the block and E on the Overview section below. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/anchor-list-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/anchor-list-properties-panel.jpg) | The Anchor List properties panel: the Content tab with the Links multifield (two items with Link Title and Anchor Name) and the Sticky toggle, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/anchor-list-properties-panel.jpg) |
+**Desktop rendering** — The Anchor List at 1440 px below the page title 'Global technology outlook 2026' and its intro: a centred row of four grey links 'CH 1: Overview', 'CH 2: Findings', 'CH 3: Outlook', 'CH 4: Next steps'; 'CH 2: Findings' (page at #findings) dark, semibold, with a 3px brand-blue underline.
+
+![Desktop rendering: The Anchor List at 1440 px below the page title 'Global technology outlook 2026' and its intro: a centred row of four grey links 'CH 1: Overview', 'CH 2: Findings', 'CH 3: Outlook', 'CH 4: Next steps'; 'CH 2: Findings' page at #fin](../../docs/handover/screenshots/anchor-list-desktop-view.jpg)
+
+**Tablet rendering** — The viewport at 768 px scrolled into chapter 2 (Key findings): the sticky Anchor List pinned directly below the fixed site header, the four links with 'CH 2: Findings' underlined, the Key findings text below it.
+
+![Tablet rendering: The viewport at 768 px scrolled into chapter 2 Key findings: the sticky Anchor List pinned directly below the fixed site header, the four links with 'CH 2: Findings' underlined, the Key findings text below it.](../../docs/handover/screenshots/anchor-list-tablet-view.jpg)
+
+**Mobile rendering** — The Anchor List at 375 px with the page at #outlook: the four chapter links in one line wider than the screen, scrolled sideways without a visible scrollbar so that 'CH 3: Outlook', underlined in brand blue, is in view.
+
+![Mobile rendering: The Anchor List at 375 px with the page at #outlook: the four chapter links in one line wider than the screen, scrolled sideways without a visible scrollbar so that 'CH 3: Outlook', underlined in brand blue, is in view.](../../docs/handover/screenshots/anchor-list-mobile-view.jpg)
+
+**Default Anchor List** — The first section at 1440 px: the H1 'Global technology outlook 2026', the intro 'How business and technology leaders plan to grow, modernise and compete in the years ahead.' and below them the in-flow row of four chapter links, 'CH 1: Overview' underlined as current (Sticky off).
+
+![Default Anchor List: The first section at 1440 px: the H1 'Global technology outlook 2026', the intro 'How business and technology leaders plan to grow, modernise and compete in the years ahead.' and below them the in-flow row of four chapter links, ](../../docs/handover/screenshots/anchor-list-default.jpg)
+
+**Sticky Anchor List** — The viewport at 1440 px scrolled into chapter 3 (Outlook): the sticky Anchor List pinned at the top of the screen across the full width on a white background, 'CH 3: Outlook' underlined, the Outlook text below it.
+
+![Sticky Anchor List: The viewport at 1440 px scrolled into chapter 3 Outlook: the sticky Anchor List pinned at the top of the screen across the full width on a white background, 'CH 3: Outlook' underlined, the Outlook text below it.](../../docs/handover/screenshots/anchor-list-sticky.jpg)
+
+**Universal Editor canvas** — The page at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot): the H1, the intro and the four-link Anchor List, with A on 'CH 4: Next steps', B on the current link, C on 'CH 2: Findings', D on the block and E on the Overview section below. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/anchor-list-authoring-view.jpg)
+
+![Universal Editor canvas: The page at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot: the H1, the intro and the four-link Anchor List, with A on 'CH 4: Next steps', B on the current link, C on 'CH 2: Finding](../../docs/handover/screenshots/anchor-list-authoring-view.jpg)
+
+**Properties panel** — The Anchor List properties panel: the Content tab with the Links multifield (two items with Link Title and Anchor Name) and the Sticky toggle, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/anchor-list-properties-panel.jpg)
+
+![Properties panel: The Anchor List properties panel: the Content tab with the Links multifield two items with Link Title and Anchor Name and the Sticky toggle, and the Additional tab. Dialog reference generated from the component model, not a Universa](../../docs/handover/screenshots/anchor-list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

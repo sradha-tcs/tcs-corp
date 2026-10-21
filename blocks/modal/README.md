@@ -35,15 +35,33 @@ Shows the content of a fragment page in a native `<dialog>` over the page (the B
 
 Screenshots of the handover (6.23 Modal Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/modal-desktop-view.jpg) | At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close (X) button at the top right, the H2 Awards and recognition, the introduction, four bulleted awards and the link More about us, with 2rem padding. |
-| [Tablet rendering](../../docs/handover/screenshots/modal-tablet-view.jpg) | At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms (Heading 3 sections with their paragraphs), with the close (X) button still at the top right. |
-| [Mobile rendering](../../docs/handover/screenshots/modal-mobile-view.jpg) | At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close (X) button at the top right, the H2 Programme terms, the introduction and the first Heading 3 sections; the rest scrolls inside. |
-| [Modal block variation](../../docs/handover/screenshots/modal-block-button.jpg) | At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog (56.25rem wide, the H2 Awards and recognition, four bulleted awards and More about us) open over it rather than next to it. |
-| [Auto-linked modal variation](../../docs/handover/screenshots/modal-auto-link.jpg) | At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragraphs. |
-| [Universal Editor canvas](../../docs/handover/screenshots/modal-authoring-view.jpg) | Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/modal-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/modal-properties-panel.jpg) | The Modal properties panel with the Content tab (Modal Content picker and Button Text) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-panel.jpg) |
+**Desktop rendering** — At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close (X) button at the top right, the H2 Awards and recognition, the introduction, four bulleted awards and the link More about us, with 2rem padding.
+
+![Desktop rendering: At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close X button at the top right, the H2 Awards and recog](../../docs/handover/screenshots/modal-desktop-view.jpg)
+
+**Tablet rendering** — At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms (Heading 3 sections with their paragraphs), with the close (X) button still at the top right.
+
+![Tablet rendering: At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms Heading 3 sections with their paragra](../../docs/handover/screenshots/modal-tablet-view.jpg)
+
+**Mobile rendering** — At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close (X) button at the top right, the H2 Programme terms, the introduction and the first Heading 3 sections; the rest scrolls inside.
+
+![Mobile rendering: At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close X button at the top right, the H2 Programme terms, the introduction and the first H](../../docs/handover/screenshots/modal-mobile-view.jpg)
+
+**Modal block variation** — At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog (56.25rem wide, the H2 Awards and recognition, four bulleted awards and More about us) open over it rather than next to it.
+
+![Modal block variation: At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog 56.25rem wide, the H2 Awards and recognition, four bulle](../../docs/handover/screenshots/modal-block-button.jpg)
+
+**Auto-linked modal variation** — At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragraphs.
+
+![Auto-linked modal variation: At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragr](../../docs/handover/screenshots/modal-auto-link.jpg)
+
+**Universal Editor canvas** — Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/modal-authoring-view.jpg)
+
+![Universal Editor canvas: Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. Annota](../../docs/handover/screenshots/modal-authoring-view.jpg)
+
+**Properties panel** — The Modal properties panel with the Content tab (Modal Content picker and Button Text) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-panel.jpg)
+
+![Properties panel: The Modal properties panel with the Content tab Modal Content picker and Button Text and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-p](../../docs/handover/screenshots/modal-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
