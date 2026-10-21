@@ -610,6 +610,8 @@ Evidence to collect (no secrets): page URL, browser and viewport, a screenshot, 
 Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 8 instance(s) in total:
 - Block library: `block-library/accordion/accordion`, `block-library/animation/repeated-items`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

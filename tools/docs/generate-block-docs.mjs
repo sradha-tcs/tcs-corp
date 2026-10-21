@@ -304,13 +304,14 @@ export function filesSection(inputs, block) {
 
 export function usageSection(inputs, block) {
   const usage = inputs.snapshot.usage?.[block];
-  if (!usage) return 'No block library or curated design page using this block was recorded in the library snapshot.';
+  const kb = 'Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).';
+  if (!usage) return `No block library or curated design page using this block was recorded in the library snapshot.\n\n${kb}`;
   const link = (p) => `\`${p}\``;
   const lines = [`Pages of the block library package ${inputs.snapshot.package || ''} (language master, \`/content/tcs-corp/language-master/en\`) that contain the block, ${usage.instances} instance(s) in total:`];
   if (usage.library.length) lines.push(`- Block library: ${usage.library.map(link).join(', ')}`);
   if (usage.curated.length) lines.push(`- Curated design pages: ${usage.curated.map(link).join(', ')}`);
   if (usage.other.length) lines.push(`- Other pages: ${usage.other.map(link).join(', ')}`);
-  return lines.join('\n');
+  return [...lines, '', kb].join('\n');
 }
 
 /* ------------------------------------------------------------------ root inventory */

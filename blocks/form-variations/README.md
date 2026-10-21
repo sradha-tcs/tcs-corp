@@ -947,6 +947,8 @@ Evidence to collect (without secrets): page URL on aem.page, the item rows of `{
 Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 19 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/form-variations/field-types`, `block-library/form-variations/form-variations`, `block-library/modal/fragments/contact-form`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

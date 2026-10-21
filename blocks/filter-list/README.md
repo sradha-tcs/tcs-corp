@@ -1215,6 +1215,8 @@ Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/l
 - Curated design pages: `curated-design-pages/collection`, `curated-design-pages/insights`
 - Other pages: `dummy-pages/explore-insights`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

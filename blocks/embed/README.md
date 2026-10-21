@@ -726,6 +726,8 @@ errors (CSP, framing), Network entries of the provider requests, the block's dat
 Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 6 instance(s) in total:
 - Block library: `block-library/embed/embed`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

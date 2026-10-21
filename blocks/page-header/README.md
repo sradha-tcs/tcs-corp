@@ -788,6 +788,8 @@ Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/l
 - Block library: `block-library/page-header/article`, `block-library/page-header/article-default`, `block-library/page-header/cta-primary`, `block-library/page-header/cta-secondary`, `block-library/page-header/cta-text-link`, `block-library/page-header/default-by-page-type`, `block-library/page-header/display`, `block-library/page-header/guest-author`, `block-library/page-header/landing`, `block-library/page-header/landing-default`, `block-library/page-header/landing-featured-image`, `block-library/page-header/landing-text-only`, `block-library/page-header/secondary`, `block-library/page-header/tablet-widths`, `block-library/page-header/tags-and-content-type`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/story`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

@@ -10,6 +10,8 @@ The blocks of the TCS Corporate Website (AEM Sites with Edge Delivery Services a
 
 **Loading model.** Pages load in three phases (`scripts/scripts.js`): eager (the first section, up to the LCP image), lazy (the other sections, the header and footer, the shared data of Lists, Filter Lists and Canvases) and delayed (3 seconds later: `scripts/delayed.js`). A block's JavaScript and CSS load only when the block is on the page (`loadBlock` in `scripts/aem.js`); `head.html` and `preloadBlockModules` preload the modules they import (`npm run build:modules`). Section containers (Columns Container, Tabs Container, Gen Carousel) are sections that `scripts.js` wraps in a synthetic block.
 
+The project-wide rules, architecture and standards are in the [project knowledge base](../docs/handover/knowledge-base/README.md) (block governance: [blocks.md](../docs/handover/knowledge-base/blocks.md)).
+
 **Using this documentation.** Start with the inventory below, then the block's README. The sections marked as generated in each README (dialog fields, screenshots, files and dependencies, block library usage) are rewritten from the repository by `npm run build:docs` (`tools/docs/generate-block-docs.mjs`); `npm test` fails when they are out of date or a link is broken. Status, type and purpose of each block are kept in `tools/docs/blocks.json`. The project handover ([docs/handover/TCS-CORP-HANDOVER.md](../docs/handover/TCS-CORP-HANDOVER.md), Part 6 Component Library) has the long-form chapter of each component; where it and a README differ, the README follows the code (the differences are listed in [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../docs/blocks/BLOCK-DOCUMENTATION-REPORT.md)).
 
 ## Block Inventory

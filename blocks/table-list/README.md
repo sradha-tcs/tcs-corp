@@ -810,6 +810,8 @@ Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/l
 - Block library: `block-library/animation/repeated-items`, `block-library/table-list/item-actions`, `block-library/table-list/motion`, `block-library/table-list/numbers`, `block-library/table-list/numbers-on-mobile`, `block-library/table-list/table-list`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/what-we-do`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History
