@@ -18,15 +18,15 @@ The site header of every page (the TCS Header of Figma *New Screens from New DS*
 **User experience.**
 
 - Desktop (>= 1200px): the Figma logo bar only, TCS logo left and TATA logo right, 124px high. There is no navigation in the header (strict Figma, product decision of 16 October 2026, handover F-72): the site navigation is in the Conversation Canvas.
-- Tablet and mobile (< 1200px): a fixed 64px bar with the two logos and a menu button; the menu opens full screen and shows one level at a time (title "Menu", then the open section's label, a Back button from the second level). The menu is the nav page's own menu list, else the pages the header Canvas's menu lists (its Menu root path and Menu depth, from the query index); without pages there is no menu button, never an empty menu.
-- Header over the opening hero: the Hero's **Placement** chooses. Automatic (default): on desktop, when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). Page start: the same at every width (Figma L1 Header - Mobile 4082:120430); below 1200px the transparent bar scrolls away with the hero and the open menu covers the window. Below header: never.
-- Header background: White (default) or Grey (`bg-grey`, `--color-bg-secondary`), chosen in the nav page's TCS Header block; transparent over the hero.
+- Tablet and mobile (< 1200px): a fixed 64px bar with the two logos and a menu button; the menu opens full screen and shows one level at a time (title "Menu", then the open section's label, a Back button from the second level). The menu is the nav page's own menu list, else a menu an extension supplies (the TCS Header block: the pages the header Canvas's menu lists); without a menu there is no menu button, never an empty menu.
+- Header over the opening hero: the hero states it (`data-header-over`, set by `blocks/hero` from its **Placement**, `utils/header-overlay.js`): `desktop` (Automatic: a light hero in the first section, as before), `all` (Page start, Figma L1 Header - Mobile 4082:120430); the header then has no band (Figma Logos 667:52520, Hero 4082:120388). The tablet / mobile overlay styles, the Header background and the Solid option are the TCS Header block's ([tcs-header](../tcs-header/README.md)).
+- Ownership: this block is the header's own behaviour (the nav page and its inheritance, sections, menu, levels, keyboard and focus, breakpoint reset, header Canvas host, `header:menu`); the TCS business logic and Figma options are the nav page's TCS Header block, through the `header:nav` extension event.
 
 Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25825; mobile menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile (229:15426, 671:52732, 4082:120430).
 
 **Templates / page types.** All pages and templates, including the 404 page (`404.html` uses `--nav-height`).
 
-**Data source.** The Navigation page (the menu: its own menu list, else the header Canvas's pages from the query index, `utils/query-index.js` `getPageTree`, the source of the Canvas menus): the page's own **Navigation** page property (or the metadata sheet's `nav` column), else the nearest parent page's up to the locale's Home page (`utils/inherited-metadata.js`), else the locale's `references/nav` (`utils/site.js` `resolvePagePath`). A configured Navigation page that can't be loaded (not published, moved) falls back to `references/nav`, so the page keeps a header. UI text comes from the locale's placeholders.
+**Data source.** The Navigation page (the menu: its own menu list, else an extension's menu): the page's own **Navigation** page property (or the metadata sheet's `nav` column), else the nearest parent page's up to the locale's Home page (`utils/inherited-metadata.js`), else the locale's `references/nav` (`utils/site.js` `resolvePagePath`). A configured Navigation page that can't be loaded (not published, moved) falls back to `references/nav`, so the page keeps a header. UI text comes from the locale's placeholders.
 
 **Related blocks.** [TCS Header](../tcs-header/README.md) (the logos on the nav page), [Conversation Canvas](../conversation-canvas/README.md) (the header Canvas and the floating journey), [Fragment](../fragment/README.md) (`loadFragment`), [Footer](../footer/README.md) (same loading and inheritance).
 
@@ -429,11 +429,11 @@ B = TATA logo
 ### Tablet and mobile menu (< 1200px)
 
 - **Purpose:** the site navigation below 1200px: a full-screen menu, one level at a time.
-- **Fields:** the menu list on the nav page; without one, the header Canvas's **Menu root path** and **Menu depth** (the same pages as the Canvas menu: `buildSiteMenu` reads the Canvas block's `data-menu-root` / `data-menu-depth` and builds the same list markup from `getPageTree`, after the query index has loaded, without holding the header back; each page with child pages is a linked section with an arrow button).
+- **Fields:** the menu list on the nav page; without one, the menu an extension supplies on `header:nav` (`detail.menu`, a promise of a menu section: the TCS Header block lists the header Canvas's pages), set up once it resolves, without holding the header back.
 - **Rendering:** a fixed bar (`header .nav-wrapper`, `position: fixed`) with a grid of brand, tools and menu button; opening the menu sets `nav[data-expanded="true"]` (`min-height: 100dvh`, scrolling inside), locks page scrolling (`body` `overflow-y: hidden`), makes `main` and `footer` inert and dispatches `header:menu` (`detail.open`). Gutters 1rem (mobile), 1.5rem (from 600px).
 - **Accessibility:** menu button with `aria-controls="nav-sections"`, `aria-expanded`, name Open / Close navigation; Back and level title; Escape closes.
 - **Data layer:** menu, section, Back and link clicks are `cmp:click` on the header component.
-- **Personalization / fallback:** without a menu section and without pages below the header Canvas's Menu root path (or without a header Canvas) no menu button is built, and the console says why (`header: no menu, …`): never an empty menu.
+- **Personalization / fallback:** without a menu section and without an extension's menu no menu button is built: never an empty menu (the TCS Header block says why in the console, `tcs-header: no menu, …`).
 
 ```text
 [Screenshot Placeholder]
@@ -473,7 +473,7 @@ B = Arrow button
 ### Logos from a TCS Header block, or positional sections
 
 - **Purpose:** the TCS Header block gives authors logo, alt and link fields; the positional nav page (brand, sections, tools) is the contract authored before.
-- **Rendering:** with a TCS Header block (`applyLogoBar`), its section is replaced by `nav-brand` (`a.tcs-header-brand`) and `nav-tools` (`a.tcs-header-group`), the first other section becomes `nav-sections`, tools are placed after it. Without, sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
+- **Rendering:** with a TCS Header block (its `header:nav` handler, `blocks/tcs-header`), its section is replaced by `nav-brand` (`a.tcs-header-brand`) and `nav-tools` (`a.tcs-header-group`), the first other section becomes `nav-sections`, tools are placed after it. Without, sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
 - **Fallback:** a nav page without a TCS Header block keeps working.
 
 ```text
@@ -513,9 +513,9 @@ B = Canvas row
 ### Header over the opening hero (Hero Placement)
 
 - **Purpose:** Figma Logos 667:52520 / Hero 4082:120388 / L1 Header - Mobile 4082:120430: the logos over the hero image, the hero starting at the top of the page.
-- **Fields:** the opening Hero's **Placement** (Style tab): Automatic (`''`), Page start (`page-start`), Below header (`below-header`).
-- **Rendering:** `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) when `main > .section:first-child .hero` isn't `bg-dark`, `bg-dark-subtle` or `bg-black` and is Page start (every width) or Automatic (from 1200px; Below header never); `header.css` makes `.nav-wrapper` transparent (below 1200px also `position: absolute`, so the bar scrolls away with the hero instead of staying fixed without a background; the open menu is `position: fixed` with the bar's background); `blocks/hero` (and `templates/home`) add `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads. The class is in the delivered markup, so the layout is right before the header loads (no layout shift).
-- **Combinations:** Page start + a light hero in the first section: header over the hero. Page start on a dark hero or below the first section: the header stays above the page and the Hero logs a warning (`hero: Placement Page start has no effect …`). Below header, Automatic on tablet / mobile, and pages without an opening hero: the header above the page.
+- **Fields:** the opening Hero's **Placement** (Style tab): Automatic (`''`), Page start (`page-start`), Below header (`below-header`); the nav page's TCS Header **Header over hero** (Over an opening hero, Solid).
+- **Rendering:** the hero sets `data-header-over` (`all` / `desktop`) when it is decorated, in the eager phase before it is shown; `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) for `body:has(.hero[data-header-over='all'])` at every width and `[data-header-over]` from 1200px; `header.css` makes `.nav-wrapper` transparent from 1200px; `blocks/tcs-header` does the tablet / mobile part (the bar scrolls away with the hero, the open menu fixed with the bar's background); `blocks/hero` adds `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads (no layout shift). No positional or template selectors: any page or template.
+- **Combinations:** see [Hero › Placement](../hero/README.md) and `utils/header-overlay.js` `headerOverMode` (unit tested): Page start on a dark hero, or on a hero that isn't the first content of the page, or with a Solid TCS Header: the header stays above the hero and the console says why.
 
 ```text
 [Screenshot Placeholder]
@@ -530,11 +530,9 @@ Annotations:
 A = Logos over the hero
 ```
 
-### Header background: White, Grey
+### Header background, Header over hero (TCS Header block)
 
-- **Purpose:** a solid header band in the page's colour (Default / Grey, the labels and token of the Section Style and Teaser BG Color).
-- **Fields:** the nav page's TCS Header block, **Header background** (`classes`: `''`, `bg-grey`).
-- **Rendering:** `.nav-wrapper.bg-grey` sets `--nav-background` to `--color-bg-secondary` (the bar and the open menu); over a hero the bar is transparent. No dark option: the logos are dark artwork.
+The TCS Header block's options of the site header: see [TCS Header › In the site header](../tcs-header/README.md#in-the-site-header-figma-styles-and-options).
 
 ### Area-specific Navigation page
 
@@ -645,7 +643,7 @@ This block does not currently expose verified personalization behavior. There is
 | Mobile (< 600px) | Fixed bar 4rem (64px), 1rem gutters: TCS logo, TATA logo, menu button | TCS logo 1.2104rem, TATA logo 1.5rem high | Menu button opens the full-screen menu, one level at a time |
 | Tablet (600–1199px) | As mobile with 1.5rem (24px) gutters; header Canvas search row 28.9375rem | TCS 1.9165rem, TATA 2.375rem | As mobile |
 | Desktop (>= 1200px) | Logo bar 7.75rem (124px), 5rem (80px) gutters, not fixed; no menu; over a light hero without a band (Placement Automatic or Page start); header Canvas search row 37.9375rem | TCS 2.175rem, TATA 2.75rem | No menu; crossing 1200px resets the menu state (`matchMedia` change) |
-| Tablet / mobile, Hero Placement Page start | The bar over the hero, transparent, scrolling away with it; the open menu fixed, full screen, with the bar's background | As above | As mobile |
+| Tablet / mobile, Hero Placement Page start | The header out of the flow over the hero; with a TCS Header the bar is transparent and scrolls away with it (blocks/tcs-header) | As above | As mobile |
 
 ## For Developers
 
@@ -667,7 +665,6 @@ blocks/header/
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { fillPlaceholder, getPlaceholders } |
 | [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift) | `header.js`: { rememberHeaderSpace } |
 | [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `header.js`: { getInheritedMetadata } |
-| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `header.js`: { getPageTree } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `header.js`: { resolvePagePath } |
 
 <!-- END GENERATED: files -->
@@ -680,10 +677,10 @@ blocks/header/
 
 1. Starts `loadFragment(resolvePagePath('', 'references/nav'))` at once, in parallel with `getInheritedMetadata('nav')` and `getPlaceholders()`; a configured nav page that returns nothing falls back to the default.
 2. No fragment: the block stays empty (`--header-reserved` keeps the space).
-3. Moves the sections into `nav#nav[aria-label]`; sections with a `.conversation-canvas` are taken out (a TCS Header in the same section is kept in its own section).
-4. `applyLogoBar`: a `.tcs-header` block supplies `nav-brand` / `nav-tools`; else sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
+3. Moves the sections into `nav#nav[aria-label]`.
+4. `header:nav` (bubbling from the header block, `detail: { block, nav, menu }`): extensions adapt the nav; the TCS Header block supplies `nav-brand` / `nav-tools`, the menu section or a later menu (`detail.menu`). Then the Canvas sections go to the header Canvas, and without a `nav-brand` sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
 5. `removeButtonDecoration` on the brand link; every `li` with a child `ul` in `.nav-sections .default-content-wrapper` becomes `.nav-drop` (`decorateDrop`, ids from `createIdFactory('nav-submenu')`); `buildLevel` prepends `.nav-level` (Back, `h2.nav-level-title`).
-6. `buildHamburger` only when there is a menu; tools are moved before it (DOM order = screen order).
+6. `setupMenu`: `buildHamburger` only when there is a menu (the nav page's, or `detail.menu` once it resolves); tools are moved before it (DOM order = screen order).
 7. `toggleMenu(nav, navSections, isDesktop.matches)`, a `matchMedia('(min-width: 1200px)')` change listener, `keydown` (Escape) on `window`, `focusout` on the nav.
 8. Appends `div.nav-wrapper > nav`, then `div.nav-canvas` with the Canvas sections and runs `prepareMotion(navCanvas)`.
 9. Sets `--header-height` (rem) on `<html>`, `rememberHeaderSpace(header)` (localStorage `header-height-v2-{breakpoint}`, read by `reserveHeaderSpace` in the eager phase of the next page) and a `ResizeObserver` updating `--header-height`.
@@ -721,7 +718,7 @@ On desktop `nav[data-expanded]` is `"true"` (the boilerplate's desktop state) wh
 | `#nav`, `nav[data-expanded]`, `.nav-hamburger button[aria-expanded]`, `header:menu` | `header.js` itself (Escape), the Conversation Canvas controller |
 | `.nav-canvas` | Conversation Canvas (`inHeader`), `--conversation-canvas-first-section-bottom` set on `<header>` |
 | `nav-brand`, `nav-sections`, `nav-tools` | The nav page authoring contract |
-| `.tcs-header-brand`, `.tcs-header-group` | `blocks/tcs-header` output read by `applyLogoBar` |
+| `.tcs-header-brand`, `.tcs-header-group` | `blocks/tcs-header` output, placed by its `header:nav` handler |
 
 Don't add Canvas logic to `header.js` (AGENTS.md "Floating Canvas"): header and Canvas don't import each other.
 
@@ -860,8 +857,6 @@ Evidence to collect: page URL, viewport width, the `nav` meta value of the page 
 | Nav pages hold boilerplate content (F-74) and the logos aren't in DAM yet (F-77) | Placeholder header content | Author the nav pages; upload the SVG logos | Not recorded (content tasks) |
 | Figma deviations for accessibility (F-75): darker arrows, inset rows | Visual difference from Figma | — | Design review |
 | On desktop the nav landmark "Main navigation" holds only the two logo links (audit, docs/audit/blocks/group-d-forms-media-chrome.md) | Landmark name slightly inaccurate | — | Not planned |
-| The menu from the query index needs pages below the header Canvas's Menu root path (F-109: `/en/references/tcs-header` names `/en/home`, which has none) and lists what the Canvas menu lists (hide-in-nav isn't applied, F-33; a page whose parent page isn't indexed is left out) | No menu button until the Menu root path names a page with child pages | Set the Menu root path (e.g. the area's top page) and publish the nav page | Content task |
-| Over a Page start hero, the tablet / mobile bar scrolls away with the hero (no sticky transparent bar: no scroll behaviour exists or is designed) | The menu button is reached by scrolling up; the floating Canvas row keeps its menu | — | Design decision |
 | No hover-to-open and no outside-click handler; closing relies on focus leaving the nav | A tap on the menu background keeps it open (by design, F-71) | Escape or the close button | Not planned |
 
 ## Related Documentation
@@ -899,4 +894,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: the page behind the full-screen menu made inert (D-D-26) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: no menu button without a menu (R-D-14) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Header blocks' modules and stylesheets preloaded (load time, F-106) | docs/handover revision history | 20 October 2026 |
-| Handover 2.41 | Tablet / mobile menu from the header Canvas's pages when the nav page has no menu (never an empty menu, F-109); header over the hero at every width with the Hero's Placement Page start (Below header: never); Header background White / Grey; linked-section arrows aligned with the other rows | docs/handover revision history | 21 October 2026 |
+| Handover 2.41 | The header's own behaviour here, the TCS business logic in the TCS Header block (`header:nav` extension event; the logo bar moved there); a menu an extension supplies later; the header over the hero from the hero's `data-header-over` (Placement), no positional selectors (F-109) | docs/handover revision history | 21 October 2026 |

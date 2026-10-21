@@ -5,7 +5,6 @@ import { createIdFactory } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import { rememberHeaderSpace } from '../../utils/header-space.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
-import { getPageTree } from '../../utils/query-index.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 /*
@@ -16,11 +15,10 @@ import { resolvePagePath } from '../../utils/site.js';
  *   in the Conversation Canvas.
  * - Tablet and mobile: the logos and a menu button that opens the sections full screen, one level
  *   at a time: a section with a sub-list opens it in place of the list, with a Back button and its
- *   label as the title. A Navigation page without a menu of its own (e.g. the TCS Header and a
- *   Canvas only) gets the pages the header Canvas's menu lists (its Menu root path and Menu
- *   depth, from the query index); without pages there's no menu button (never an empty menu).
- * - Header background (the TCS Header block): White (default) or Grey (bg-grey). Over an opening
- *   hero (blocks/hero Placement, styles/styles.css) the bar is transparent.
+ *   label as the title. Without a menu there's no menu button (never an empty menu).
+ * Extensions on the nav page adapt the nav before it is decorated (the header:nav event below):
+ * the TCS Header block (blocks/tcs-header) supplies the logos, its Header background and options,
+ * and the menu of a nav page without one (the header Canvas's pages).
  * The controls are buttons with aria-expanded / aria-controls; the open state is data-expanded
  * for the CSS.
  */
@@ -173,35 +171,6 @@ function buildLevel(navSections) {
   return level;
 }
 
-// Header background options of the TCS Header block (blocks/tcs-header), as nav-wrapper classes
-const BACKGROUNDS = ['bg-grey'];
-
-/**
- * A TCS Header block on the nav page (blocks/tcs-header) supplies the brand (its TCS logo) and the
- * tools (its TATA logo) in place of its section; the first other section is the menu.
- * @returns {{ background: string } | null} its Header background, null without one
- */
-function applyLogoBar(nav) {
-  const bar = nav.querySelector(':scope > .section .tcs-header');
-  if (!bar) return null;
-  const background = BACKGROUNDS.find((name) => bar.classList.contains(name)) || '';
-  const asSection = (logo, role) => {
-    const section = document.createElement('div');
-    section.className = `section nav-${role}`;
-    const p = document.createElement('p');
-    if (logo) p.append(logo);
-    section.append(p);
-    return section;
-  };
-  const brand = asSection(bar.querySelector('.tcs-header-brand'), 'brand');
-  const tools = asSection(bar.querySelector('.tcs-header-group'), 'tools');
-  bar.closest('.section').replaceWith(brand);
-  const menu = [...nav.children].find((section) => section !== brand);
-  menu?.classList.add('nav-sections');
-  (menu || brand).after(tools);
-  return { background };
-}
-
 /** the menu button (mobile), drawn by the CSS (an animated icon) */
 function buildHamburger(nav, navSections) {
   const hamburger = document.createElement('div');
@@ -218,40 +187,6 @@ function buildHamburger(nav, navSections) {
   button.addEventListener('click', () => toggleMenu(nav, navSections));
   hamburger.append(button);
   return hamburger;
-}
-
-/**
- * The menu of a Navigation page without one of its own: the pages the header Canvas's menu lists
- * (the same source: its Menu root path and Menu depth, utils/query-index.js), as a section with a
- * list, the way an authored menu is delivered.
- * @param {Element} canvas The header Canvas block (decorated: data-menu-root, data-menu-depth)
- * @returns {Promise<Element | null>} the menu section, null when the tree has no pages
- */
-async function buildSiteMenu(canvas) {
-  const { menuRoot, menuDepth } = canvas.dataset;
-  if (!menuRoot) return null;
-  const tree = await getPageTree(menuRoot, Math.max(1, parseInt(menuDepth, 10) || 1));
-  if (!tree.children.length) return null;
-  const toList = (nodes) => {
-    const list = document.createElement('ul');
-    nodes.forEach((node) => {
-      const li = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = node.path;
-      link.textContent = node.title;
-      li.append(link);
-      if (node.children.length) li.append(toList(node.children));
-      list.append(li);
-    });
-    return list;
-  };
-  const section = document.createElement('div');
-  section.className = 'section nav-sections';
-  const wrapper = document.createElement('div');
-  wrapper.className = 'default-content-wrapper';
-  wrapper.append(toList(tree.children));
-  section.append(wrapper);
-  return section;
 }
 
 /**
@@ -302,25 +237,20 @@ export default async function decorate(block) {
   nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // extensions of the nav page (e.g. the TCS Header block, blocks/tcs-header) adapt the nav before
+  // it is decorated: they may mark its sections (nav-brand, nav-sections, nav-tools) and supply
+  // the menu later (detail.menu: a promise of a menu section, or of null)
+  const extension = { block, nav, menu: null };
+  block.dispatchEvent(new CustomEvent('header:nav', { bubbles: true, detail: extension }));
+
   // sections with a Conversation Canvas are the header Canvas, below the nav (they aren't
   // brand, sections or tools); the canvas block itself takes part in the floating journey
   const canvasSections = [...nav.children]
     .filter((section) => section.querySelector('.conversation-canvas'));
-  canvasSections.forEach((section) => {
-    // a TCS Header block authored in the same section stays in the nav: it's the logo bar
-    const bar = section.querySelector('.tcs-header');
-    if (bar) {
-      const own = document.createElement('div');
-      own.className = 'section';
-      own.append(bar.closest('.tcs-header-wrapper') || bar);
-      section.before(own);
-    }
-    section.remove();
-  });
+  canvasSections.forEach((section) => section.remove());
 
-  // the logos from a TCS Header block, else the sections in order: brand, sections, tools
-  const logoBar = applyLogoBar(nav);
-  if (!logoBar) {
+  // the sections in order, unless an extension marked them: brand, sections, tools
+  if (!nav.querySelector(':scope > .nav-brand')) {
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
@@ -334,19 +264,13 @@ export default async function decorate(block) {
 
   nav.dataset.expanded = 'false';
   const navSections = nav.querySelector('.nav-sections');
-  // a menu button only with a menu: the nav page's own, else the header Canvas's pages (once the
-  // query index has loaded, without holding the header back), else none
+  // a menu button only with a menu: the nav page's own, else one an extension supplies later
+  // (without holding the header back), else none
   if (navSections) setupMenu(nav, navSections);
   else toggleMenu(nav, null, isDesktop.matches);
-  const headerCanvas = canvasSections
-    .map((section) => section.querySelector('.conversation-canvas')).find(Boolean);
-  if (!navSections && headerCanvas) {
-    buildSiteMenu(headerCanvas).then((menu) => {
-      if (!menu) {
-        // eslint-disable-next-line no-console
-        console.warn('header: no menu, the header Canvas\'s Menu root path has no pages', headerCanvas.dataset.menuRoot);
-        return;
-      }
+  if (!navSections && extension.menu) {
+    Promise.resolve(extension.menu).then((menu) => {
+      if (!menu) return;
       nav.append(menu);
       setupMenu(nav, menu);
     });
@@ -358,7 +282,6 @@ export default async function decorate(block) {
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
-  if (logoBar?.background) navWrapper.classList.add(logoBar.background);
   navWrapper.append(nav);
   block.append(navWrapper);
 

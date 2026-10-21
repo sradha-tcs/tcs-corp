@@ -106,6 +106,7 @@ D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
 G = Header background
+H = Header over hero
 ```
 
 ```text
@@ -234,7 +235,8 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
-| Header background | `classes` | select | No | "" | White (""), Grey (`bg-grey`) | The site header's background on the Navigation page. Over a hero with Placement Page start (or Automatic on desktop) the header is transparent. | — |
+| Header background | `classes` | select | No | "" | White (""), Grey (`bg-grey`) | The site header's background on the Navigation page. Over an opening hero the header is transparent. | — |
+| Header over hero | `classes_overlay` | select | No | `overlay-hero` | Over an opening hero (Hero Placement) (`overlay-hero`), Solid (never over a hero) (`solid`) | Over an opening hero: the header lies over the hero that opens the page when the Hero's Placement is Page start (every width) or Automatic (desktop, light hero). Solid: the header always stays above the page. Delivered as a block class. | — |
 
 #### Additional tab — TCS Header
 
@@ -377,11 +379,10 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Purpose:** the site header's brand and tools.
 - **When to use / not:** always on nav pages; not needed on positional nav pages authored before (brand, sections, tools), which still work.
 - **Fields:** the six Content fields.
-- **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
+- **Rendering:** on the header's `header:nav` event, `tcs-header.js` (`adaptHeader`) replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
 - **Data layer:** clicks report the header component (`header-1`).
-- **Header background:** the **Header background** field (`classes`: White `''`, Grey `bg-grey`) colours the site header's bar and its open menu (`header .nav-wrapper.bg-grey`, `--color-bg-secondary`); over an opening hero (Hero Placement) the bar is transparent. Only used on the Navigation page.
 - **Personalization / fallback:** none; an area nav page can use other logos.
 
 ```text
@@ -397,6 +398,16 @@ Annotations:
 A = TCS logo
 B = TATA logo
 ```
+
+### In the site header: Figma styles and options
+
+The TCS business logic and Figma styles of the site header are this block's; [`blocks/header`](../header/README.md) keeps the header's own behaviour (the nav page, sections, menu and levels, keyboard and focus, breakpoint reset, header Canvas host). `tcs-header.js` listens to the header's `header:nav` event (fired with the nav before it is decorated) and, when its nav page holds this block:
+
+- **Logo bar:** its section becomes `div.section.nav-brand` (TCS logo) and `div.section.nav-tools` (TATA logo); the first other section that isn't a Conversation Canvas is the menu (`nav-sections`). Authored in the same section as a Canvas, the block stays in the nav (only the Canvas goes to the header Canvas).
+- **Menu of a nav page without one:** the pages the header Canvas's menu lists (its **Menu root path** and **Menu depth**, read from the Canvas block's `data-menu-root` / `data-menu-depth`; `utils/query-index.js` `getPageTree`, the source of the Canvas menus), as the list markup of an authored menu, supplied as `detail.menu` (the header sets it up once the query index has loaded). No pages (e.g. a Menu root path on a page without child pages, F-109): no menu, and the console says `tcs-header: no menu, …`.
+- **Header background** (`classes`): White (`''`) or Grey (`bg-grey`): the header block gets `tcs-header-bg-grey`, `--tcs-header-background` is `--color-bg-secondary` for the bar and the open menu. No dark option: the logos are dark artwork.
+- **Header over hero** (`classes_overlay`): Over an opening hero (`overlay-hero`, default; content authored before has no value and behaves the same) or Solid (`solid`): `utils/header-overlay.js` `setHeaderSolid` marks `<header data-header-mode="solid">` and drops the heroes' `data-header-over`, so the header stays above every hero (console: `tcs-header: Header over hero is Solid, …`). With Solid, set the opening Hero's Placement to Below header: a Page start or Automatic hero is laid out under the header before the header loads, and moves down when it does (layout shift 0.07–0.09 measured).
+- **Styles** (`tcs-header.css`, scoped to `header .header.tcs-header-site`): the bar's background, a transparent menu button, linked-section arrows on the right like the other rows, and over a hero with Placement Page start below 1200px: a transparent bar that scrolls away with the hero (no sticky transparent bar: no scroll behaviour is designed) and an open menu fixed over the window with the bar's background.
 
 ### Standalone logo bar
 
@@ -520,6 +531,8 @@ blocks/tcs-header/
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `tcs-header.js`: { getPageTree } |
+| [`utils/header-overlay.js`](../../utils/header-overlay.js) | `headerOverMode` (whether the header lies over a hero: Placement, BG Color, opening position, Solid header; unit tested), `isHeaderSolid`, `setHeaderSolid`, `HEADER_OVER` (`data-header-over`: `all` / `desktop`), `HEADER_ | `tcs-header.js`: { setHeaderSolid, SOLID } |
 
 <!-- END GENERATED: files -->
 
@@ -587,7 +600,7 @@ graph LR
   TH --> LNK[utils/links.js]
   TH --> PROP[utils/properties.js]
   TH --> PH[utils/placeholders.js]
-  TH -- .tcs-header-brand / .tcs-header-group --> H[blocks/header applyLogoBar]
+  TH -- .tcs-header-brand / .tcs-header-group --> H[tcs-header.js adaptHeader on header:nav]
   TH -. clicks .-> DL[data-layer-decorator.js]
 ```
 
@@ -665,4 +678,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: no-image fallback and unnamed TATA logo link corrected with placeholder names (D-D-25) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
-| Handover 2.41 | Header background (White / Grey) for the site header | docs/handover revision history | 21 October 2026 |
+| Handover 2.41 | The site header's TCS business logic and Figma styles moved here from `blocks/header` (`header:nav`): logo bar, menu from the header Canvas's pages (F-109), Header background (White / Grey), Header over hero (Over an opening hero / Solid) | docs/handover revision history | 21 October 2026 |

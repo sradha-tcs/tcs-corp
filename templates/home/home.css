@@ -1,18 +1,12 @@
-/* Home template: the first section (usually the hero or a gen carousel) meets the header */
-body.home main > .section:first-of-type {
-  margin-block-start: 0;
-}
-
-body.home main > .section:first-of-type > div {
-  padding-block-start: 0;
-}
-
 /*
- * The opening hero fills the first screen (Figma home-desktop 229:15426: the 1000px hero is the
- * screen; home-tablet 671:52732: 850px; home-page-mobile 1124:27368: beyond the screen), so the
- * header Conversation Canvas lies on the hero's bottom, which is the bottom of the window, at
- * every width (blocks/header). svh: the screen with the browser bars shown, so the hero doesn't
- * resize when they hide while scrolling. Taller content still grows the hero.
+ * Home template: page composition only. The opening hero fills the first screen (Figma
+ * home-desktop 229:15426: the 1000px hero is the screen; home-tablet 671:52732: 850px;
+ * home-page-mobile 1124:27368: beyond the screen), so the header Conversation Canvas lies on the
+ * hero's bottom, which is the bottom of the window, at every width (blocks/header). svh: the screen
+ * with the browser bars shown, so the hero doesn't resize when they hide while scrolling. Taller
+ * content still grows the hero. Whether the header lies over the hero is the Hero's (its Placement,
+ * blocks/hero); this file reads its interface: --hero-header-overlap (the header height over the
+ * hero, else 0) and --hero-header-space (the header height above it, else --nav-height).
  */
 body.home main > .section:first-of-type .hero {
   /*
@@ -23,8 +17,11 @@ body.home main > .section:first-of-type .hero {
   --home-hero-canvas-space: calc(5.25rem + env(safe-area-inset-bottom, 0rem));
   --home-hero-gap: var(--space-600);
 
-  /* the content is centred between the logo bar and the Canvas row, so it never runs under it */
-  padding-top: var(--home-hero-gap);
+  /*
+   * the content is centred between the logo bar and the Canvas row, so it never runs under either
+   * (under the logos too when the header lies over the hero)
+   */
+  padding-top: calc(var(--hero-header-overlap, 0rem) + var(--home-hero-gap));
   padding-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
 }
 
@@ -34,7 +31,7 @@ body.home main > .section:first-of-type .hero {
  * resize and its content drift down the page. There the hero keeps its own height (blocks/hero).
  */
 body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
-  min-height: calc(100svh - var(--nav-height));
+  min-height: calc(100svh - var(--hero-header-space, var(--nav-height)));
 }
 
 @media (width >= 600px) {
@@ -43,31 +40,9 @@ body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
   }
 }
 
-/*
- * the logo bar lies over the hero (styles/styles.css; Hero Placement Page start at every width):
- * the hero is the whole screen and its content starts below the logos (Figma: the text centred in
- * the screen)
- */
-body.home main > .section:first-of-type .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
-}
-
-body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-  min-height: 100svh;
-}
-
 @media (width >= 1200px) {
   body.home main > .section:first-of-type .hero {
     --home-hero-canvas-space: calc(7.75rem + env(safe-area-inset-bottom, 0rem));
-  }
-
-  /* Automatic: over a light hero on desktop */
-  body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
-    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
-  }
-
-  body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
-    min-height: 100svh;
   }
 }
 

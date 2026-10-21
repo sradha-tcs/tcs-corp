@@ -345,7 +345,7 @@
               "value": "below-header"
             }
           ],
-          "description": "For the hero that opens the page. Automatic: the header lies over a light hero on desktop and above it on tablet and mobile. Page start: the hero starts at the top of the page with the header over it at every width (light BG Colors only; a dark hero keeps the header above it). Below header: the header is always above the hero."
+          "description": "For the hero that opens the page. Automatic: the header lies over a light hero on desktop and above it on tablet and mobile. Page start: the hero starts at the top of the page with the header over it at every width (a light BG Color, the first content of the page). Below header: the header is always above the hero. The Navigation page's TCS Header (Header over hero: Solid) can keep the header above every hero."
         },
         {
           "component": "tab",

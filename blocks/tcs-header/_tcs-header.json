@@ -86,7 +86,25 @@
               "value": "bg-grey"
             }
           ],
-          "description": "The site header's background on the Navigation page. Over a hero with Placement Page start (or Automatic on desktop) the header is transparent."
+          "description": "The site header's background on the Navigation page. Over an opening hero the header is transparent."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_overlay",
+          "label": "Header over hero",
+          "value": "overlay-hero",
+          "options": [
+            {
+              "name": "Over an opening hero (Hero Placement)",
+              "value": "overlay-hero"
+            },
+            {
+              "name": "Solid (never over a hero)",
+              "value": "solid"
+            }
+          ],
+          "description": "Over an opening hero: the header lies over the hero that opens the page when the Hero's Placement is Page start (every width) or Automatic (desktop, light hero). Solid: the header always stays above the page."
         },
         {
           "component": "tab",

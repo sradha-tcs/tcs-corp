@@ -7,6 +7,9 @@ import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
 import { addLegacyMotion } from '../../utils/motion.js';
 import { animationLabel, isAnimation } from '../../utils/media.js';
+import {
+  BELOW_HEADER, DARK_BACKGROUNDS, HEADER_OVER, PAGE_START, headerOverMode, isHeaderSolid,
+} from '../../utils/header-overlay.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
 // the new-tab hint of the links (placeholder opensInNewTab), set per decoration
@@ -29,7 +32,8 @@ let newTabHint = '';
  * text-left | text-center | text-right (Text Alignment, inside the content),
  * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
  * page-start | below-header (Placement: the header over the opening hero at every width, or never;
- * none: Automatic, over a light hero on desktop; the layout is CSS, styles/styles.css).
+ * none: Automatic, over a light hero on desktop). The hero states it as data-header-over="all" |
+ * "desktop" (utils/header-overlay.js), which the header's and the hero's CSS read.
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -42,20 +46,28 @@ const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
-// BG Colors the header never lies over (its logos are dark artwork)
-const DARK_BACKGROUNDS = ['bg-dark', 'bg-dark-subtle', 'bg-black'];
 
 /**
- * Placement Page start applies to the hero that opens the page with a light BG Color; elsewhere
- * the header stays above the page (the CSS doesn't match) and the author is told why.
+ * Placement: whether the header lies over this hero (data-header-over, utils/header-overlay.js).
+ * Opening: in the page's first section; for Page start, the first content of the page (nothing
+ * above it for the header to cover). Where Page start can't apply, the header stays above the
+ * hero and the author is told why.
  */
-function checkPlacement(block) {
-  if (!block.classList.contains('page-start')) return;
-  const dark = DARK_BACKGROUNDS.find((name) => block.classList.contains(name));
-  const opening = block.closest('main > .section:first-child');
-  if (opening && !dark) return;
+function applyPlacement(block) {
+  const placement = [PAGE_START, BELOW_HEADER].find((name) => block.classList.contains(name)) || '';
+  const section = block.closest('main > .section');
+  const opening = !!section && section === section.parentElement.querySelector(':scope > .section');
+  const first = section && [...section.children].find((el) => !el.matches('.section-background'));
+  const { mode, reason } = headerOverMode({
+    placement,
+    dark: DARK_BACKGROUNDS.some((name) => block.classList.contains(name)),
+    opening,
+    strictOpening: opening && first === block.parentElement,
+  }, isHeaderSolid());
+  if (mode) block.setAttribute(HEADER_OVER, mode);
+  else block.removeAttribute(HEADER_OVER);
   // eslint-disable-next-line no-console
-  console.warn(`hero: Placement Page start has no effect ${dark ? `with BG Color ${dark}` : 'below the first section'}; the header stays above the page`);
+  if (reason) console.warn(`hero: Placement Page start has no effect ${reason}; the header stays above the hero`);
 }
 
 /**
@@ -233,5 +245,5 @@ export default async function decorate(block) {
   block.classList.toggle('hero-has-media', !!media);
   block.replaceChildren(...[media, content, media?.animationToggle].filter(Boolean));
   mapLegacyMotion(block);
-  checkPlacement(block);
+  applyPlacement(block);
 }

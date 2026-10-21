@@ -311,22 +311,29 @@
  * first screen). Taller content still grows the hero.
  */
 main > .section:first-child .hero {
-  min-height: min(var(--hero-min-height), calc(100dvh - var(--nav-height)));
+  min-height: min(calc(var(--hero-min-height) + var(--hero-header-overlap, 0rem)), calc(100dvh - var(--hero-header-space, var(--nav-height))));
 }
 
 /*
- * The opening hero under the header (styles/styles.css; Placement Page start at every width,
- * Automatic on desktop over a light hero): it grows by the header height (at most to the first
- * screen) and keeps its content below the logos.
+ * The hero under the header (data-header-over, set by hero.js: "all" for Placement Page start,
+ * "desktop" for Automatic; styles/styles.css takes the header out of the flow): it grows by the
+ * header height (at most to the first screen) and keeps its content below the logos. The two
+ * custom properties are the hero's interface for page compositions (e.g. templates/home):
+ * --hero-header-overlap, the header height lying over the hero (0 otherwise), and
+ * --hero-header-space, the header height above it (--nav-height otherwise).
  */
-main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
-  padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
+.hero[data-header-over='all'] {
+  --hero-header-overlap: var(--header-height, var(--header-reserved));
+  --hero-header-space: 0rem;
+
+  padding-top: calc(var(--hero-padding-block) + var(--hero-header-overlap));
 }
 
 @media (width >= 1200px) {
-  main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
-    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
-    padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
+  .hero[data-header-over] {
+    --hero-header-overlap: var(--header-height, var(--header-reserved));
+    --hero-header-space: 0rem;
+
+    padding-top: calc(var(--hero-padding-block) + var(--hero-header-overlap));
   }
 }

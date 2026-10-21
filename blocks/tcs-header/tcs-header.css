@@ -68,3 +68,56 @@
     height: 2.75rem;
   }
 }
+
+/*
+ * In the site header (blocks/header with this block on its nav page: the header block's
+ * tcs-header-site class, set by tcs-header.js): the TCS Figma styles and options. The header's own
+ * layout stays in blocks/header/header.css.
+ */
+header .header.tcs-header-site {
+  /* Header background: White (default), Grey */
+  --tcs-header-background: var(--background-color);
+}
+
+header .header.tcs-header-bg-grey {
+  --tcs-header-background: var(--color-bg-secondary);
+}
+
+header .header.tcs-header-site .nav-wrapper {
+  background-color: var(--tcs-header-background);
+}
+
+/* the bar's own background shows behind the menu button (White, Grey, or the hero under it) */
+header .header.tcs-header-site nav .nav-hamburger button {
+  background-color: transparent;
+}
+
+/* a linked section's arrow button: the arrow on the right, as on the other rows (Figma menu) */
+header .header.tcs-header-site nav .nav-sections .nav-drop-toggle[aria-label] {
+  justify-content: flex-end;
+}
+
+/*
+ * Over the opening hero (its data-header-over, blocks/hero; styles/styles.css takes the header out
+ * of the flow): no header band, the hero shows behind the logos. At every width with the Hero's
+ * Placement Page start (Figma L1 Header - Mobile 4082:120430): below 1200px the bar is part of the
+ * hero and scrolls away with it (a transparent bar fixed over the page would lose its contrast) and
+ * the open menu covers the window with the bar's background. On desktop with Automatic too.
+ */
+body:has(.hero[data-header-over='all']) header .header.tcs-header-site .nav-wrapper {
+  position: absolute;
+  background-color: transparent;
+}
+
+body:has(.hero[data-header-over='all']) header .header.tcs-header-site .nav-wrapper:has(> nav[data-expanded='true']) {
+  position: fixed;
+  background-color: var(--tcs-header-background);
+}
+
+@media (width >= 1200px) {
+  body:has(.hero[data-header-over]) header .header.tcs-header-site .nav-wrapper,
+  body:has(.hero[data-header-over='all']) header .header.tcs-header-site .nav-wrapper:has(> nav[data-expanded='true']) {
+    position: relative;
+    background-color: transparent;
+  }
+}
