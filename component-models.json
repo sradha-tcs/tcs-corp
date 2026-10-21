@@ -20540,7 +20540,7 @@
         "valueType": "boolean",
         "name": "hideButton",
         "label": "Hide button",
-        "description": "Hides the call-to-action button next to the heading. The Table List items remain visible.",
+        "description": "Hides the heading call to action and all item buttons and arrows. The heading and item content remain visible.",
         "value": false
       },
       {

@@ -234,6 +234,7 @@ function fromCell(cell, tagName, className) {
  * @returns {Element|null}
  */
 function buildAction(linkCell, title, config) {
+  if (config.hideButton) return null;
   const href = linkOf(linkCell);
   const action = document.createElement('div');
   action.className = 'table-list-action';
