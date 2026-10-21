@@ -6,14 +6,14 @@ Every difference found while writing the knowledge base between the implementati
 | --- | --- |
 | Audience | Project leads, documentation owners, reviewers, AI agents |
 | Source of truth | The validation (`validate-knowledge-base.mjs`) and the review notes in [notes/](./notes/) |
-| Last reviewed | Generated from main at commit 2d06316 |
+| Last reviewed | Generated from main at commit 966ea00 |
 | Status | Current (regenerate with `node docs/handover/knowledge-base/validate-knowledge-base.mjs --report`) |
 
 ## Open items found during the knowledge base work
 
 | Item | Evidence | Impact | Correction |
 | --- | --- | --- | --- |
-| The language master's block library pages are in the live query index | 166 of the 354 rows of `/query-index.json` on aem.live are under `/language-master/en/block-library` (21 October 2026); `helix-query.yaml` excludes `/*/block-library` and `/*/block-library/**`, which match one folder level only | Lists and Filter Lists rooted at `/language-master/en` can list block library pages; the handover and the KB writers' sources say they are excluded | Code: add an exclude for the language master's block library (e.g. `/language-master/*/block-library/**`) and reindex; then correct the handover |
+| The language master's block library, reference and 404 pages were in the live query index (corrected) | 166 + 6 + 1 of the 354 rows of `/query-index.json` on aem.live (21 October 2026): `helix-query.yaml` excluded `/*/block-library` and the others, one folder level only | Lists and Filter Lists rooted at the language master could list them | Corrected and passed: excludes for `/language-master/*/…` (#131), the 173 rows removed (Admin API index DELETE); index 354 → 181 rows (F-108 closed) |
 | CI runs lint only | `.github/workflows/main.yaml` runs `npm run lint`; `npm test` (311 tests) isn't run on pull requests | Unit-test regressions (including the generated-docs checks) are only caught locally | Workflow: add `npm test`; AGENTS.md "use gh pr checks" wording |
 
 ## By knowledge base page

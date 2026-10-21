@@ -6,7 +6,7 @@ What the knowledge base couldn't document from verified sources, and the inputs 
 | --- | --- |
 | Audience | Project leads, documentation owners, reviewers, AI agents |
 | Source of truth | The validation (`validate-knowledge-base.mjs`) and the review notes in [notes/](./notes/) |
-| Last reviewed | Generated from main at commit 2d06316 |
+| Last reviewed | Generated from main at commit 966ea00 |
 | Status | Current (regenerate with `node docs/handover/knowledge-base/validate-knowledge-base.mjs --report`) |
 
 ## Required knowledge base pages

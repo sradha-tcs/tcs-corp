@@ -6,7 +6,7 @@ The status of each knowledge base page. Implementation Verified: written from th
 | --- | --- |
 | Audience | Project leads, documentation owners, reviewers, AI agents |
 | Source of truth | The validation (`validate-knowledge-base.mjs`) and the review notes in [notes/](./notes/) |
-| Last reviewed | Generated from main at commit 2d06316 |
+| Last reviewed | Generated from main at commit 966ea00 |
 | Status | Current (regenerate with `node docs/handover/knowledge-base/validate-knowledge-base.mjs --report`) |
 
 | File/Area | Created or Updated | Implementation Verified | Links Validated | Review Status | Gaps |

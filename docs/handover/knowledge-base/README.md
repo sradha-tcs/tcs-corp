@@ -78,7 +78,7 @@ Verified at commit 2d06316 (21 October 2026); details and evidence in the linked
 | Technologies | Edge Delivery Services (aem.page / aem.live), Universal Editor with xwalk models, vanilla JavaScript and CSS without a build step, the Adobe Client Data Layer, RUM (`sampleRUM`) — [architecture](./architecture.md) |
 | Not configured / not implemented | Adobe Tags (Data Collection), the AEP Web SDK, Analytics and CJA reporting (blocked: measurement plan); Adobe Target and AJO; a consent mechanism; per-locale redirects (sheets exist, not applied by the platform) — [data-layer-and-analytics](./data-layer-and-analytics.md), [personalization](./personalization.md) |
 | Quality evidence | 311 unit tests passing; lint clean; the latest full browser regression (191 pages × 5 widths) clean, with 0 axe violations; Lighthouse 99–100 on the measured pages after the load-time work — [testing-and-quality](./testing-and-quality.md), [performance](./performance.md) |
-| Known open items | The block library pages of the language master are in the live query index (166 rows: the `helix-query.yaml` exclude doesn't match `/language-master/en/block-library`); CI runs lint only (not `npm test`); the handover's Part 6 chapters differ from the code in 170 places (F-107); the Universal Editor author review is blocked (no author access) — [reports/discrepancy-report](./reports/discrepancy-report.md) |
+| Known open items | CI runs lint only (not `npm test`); the handover's Part 6 chapters differ from the code in 170 places (F-107); the Universal Editor author review is blocked (no author access) — [reports/discrepancy-report](./reports/discrepancy-report.md) |
 
 ## Golden Rules
 
