@@ -279,13 +279,34 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 .table-list:is(.background-black, .background-dark-green) .table-list-title {
   color: var(--slate-300);
 }
- 
+
 .table-list:is(.background-black, .background-dark-green) .table-list-item {
   border-bottom-color: var(--slate-600);
 }
 
 .table-list:is(.background-black, .background-dark-green) .table-list-arrow {
   color: var(--color-text-on-neutral);
+}
+
+.table-list:is(.background-black, .background-dark-green) .button:is(.secondary, .tertiary) {
+  border-color: var(--color-text-on-neutral);
+  background-color: transparent;
+  color: var(--color-text-on-neutral);
+}
+
+.table-list:is(.background-black, .background-dark-green) .button:is(.secondary, .tertiary):is(:hover, :focus-visible) {
+  background-color: var(--white-100);
+}
+
+.table-list:is(.background-black, .background-dark-green) .button.primary {
+  border-color: var(--color-text-on-neutral);
+  background-color: var(--color-text-on-neutral);
+  color: var(--black-1000);
+}
+
+.table-list:is(.background-black, .background-dark-green) .button.primary:is(:hover, :focus-visible) {
+  border-color: var(--grey-300);
+  background-color: var(--grey-300);
 }
 
 .table-list.gray-descriptions .table-list-description {
