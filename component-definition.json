@@ -819,11 +819,14 @@
                   "filter": "table-list",
                   "key-value": true,
                   "variations": "industries",
+                  "backgroundColor": "",
                   "listHeadingType": "h2",
                   "maxCards": 4,
                   "ctaStyle": "",
+                  "hideButton": false,
                   "numbers": "",
-                  "itemAction": ""
+                  "itemAction": "",
+                  "grayDescriptions": false
                 }
               }
             }

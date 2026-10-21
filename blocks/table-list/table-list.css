@@ -242,6 +242,48 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   color: var(--grey-900);
 }
 
+.table-list.background-white {
+  --color-text-default: var(--black-1000);
+  --color-text-secondary: var(--slate-700);
+  --color-text-brand: var(--brand-400);
+  --color-border-brand: var(--brand-500);
+  --link-color: var(--brand-400);
+  --link-hover-color: var(--brand-600);
+
+  background-color: var(--color-bg-default);
+}
+
+.table-list.background-black {
+  background-color: var(--color-bg-neutral);
+}
+
+.table-list.background-dark-green {
+  background-color: var(--color-bg-dark-green);
+}
+
+.table-list:is(.background-black, .background-dark-green) {
+  --color-text-default: var(--color-text-on-neutral);
+  --color-text-secondary: rgb(255 255 255 / 70%);
+  --color-text-brand: var(--brand-300);
+  --color-border-brand: var(--brand-300);
+  --link-color: var(--brand-300);
+  --link-hover-color: var(--color-text-on-neutral);
+
+  color: var(--color-text-on-neutral);
+}
+
+.table-list:is(.background-black, .background-dark-green) .table-list-description {
+  color: var(--color-text-default);
+}
+
+.table-list:is(.background-black, .background-dark-green) .table-list-arrow {
+  color: var(--color-text-on-neutral);
+}
+
+.table-list.gray-descriptions .table-list-description {
+  color: var(--color-text-secondary);
+}
+
 /* Variation 1: no divider below the last item */
 .table-list.industries .table-list-item:last-child {
   padding-bottom: 0;
@@ -337,6 +379,8 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 @media (width >= 1200px) {
   .table-list {
     --table-list-item-gap: var(--space-600);
+
+    padding-inline: var(--space-1000);
   }
 
   .table-list .table-list-heading {
@@ -351,19 +395,11 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 
   .table-list .table-list-item {
     column-gap: var(--space-600);
+    align-items: center;
   }
 
   .table-list .table-list-action {
     margin-inline-start: var(--space-400);
-  }
-
-  /* Variation 1: inset from the section edges, title emphasized */
-  .table-list.industries {
-    padding-inline: var(--space-2000);
-  }
-
-  .table-list.industries .table-list-item {
-    align-items: center;
   }
 
   .table-list.industries .table-list-main {

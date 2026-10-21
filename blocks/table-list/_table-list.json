@@ -13,11 +13,14 @@
               "filter": "table-list",
               "key-value": true,
               "variations": "industries",
+              "backgroundColor": "",
               "listHeadingType": "h2",
               "maxCards": 4,
               "ctaStyle": "",
+              "hideButton": false,
               "numbers": "",
-              "itemAction": ""
+              "itemAction": "",
+              "grayDescriptions": false
             }
           }
         }
@@ -67,6 +70,28 @@
             {
               "name": "Variation 3 - Description, number, large title, arrow",
               "value": "products"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "backgroundColor",
+          "label": "Background color",
+          "description": "Choose the background color for the Table List.",
+          "value": "",
+          "options": [
+            {
+              "name": "Default / transparent",
+              "value": ""
+            },
+            {
+              "name": "Black",
+              "value": "black"
+            },
+            {
+              "name": "Dark Green",
+              "value": "dark-green"
             }
           ]
         },
@@ -151,6 +176,14 @@
               "value": "tertiary"
             }
           ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "hideButton",
+          "label": "Hide button",
+          "description": "Hides the call-to-action button next to the heading. The Table List items remain visible.",
+          "value": false
         },
         {
           "component": "tab",
@@ -242,6 +275,22 @@
                   }
                 ]
               }
+            ]
+          }
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "grayDescriptions",
+          "label": "Gray descriptions",
+          "description": "Use secondary gray text for item descriptions instead of the default text color.",
+          "value": false,
+          "condition": {
+            "===": [
+              {
+                "var": "backgroundColor"
+              },
+              "white"
             ]
           }
         },
