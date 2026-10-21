@@ -201,6 +201,19 @@
   background-color: var(--color-bg-default);
 }
 
+/*
+ * Below 1200px the site header's menu is the site navigation when it has one (the nav page's TCS
+ * Header block sets html[data-site-menu="header"]): the Canvas's own site menu button and its
+ * pop-over (data-canvas-control="site-menu") are hidden there, so the search row is the search
+ * pill only (Figma Mobile Ask TCS 1124:27452). Search, voice, submit, the Primary dock's menu and
+ * the floating journey are unchanged; on desktop, and without a header menu, the button shows.
+ */
+@media (width < 1200px) {
+  html[data-site-menu='header'] .conversation-canvas [data-canvas-control='site-menu'] {
+    display: none;
+  }
+}
+
 .conversation-canvas .conversation-canvas-search-form {
   display: flex;
   flex: 1;

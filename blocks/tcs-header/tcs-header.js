@@ -19,7 +19,11 @@ import { setHeaderSolid, SOLID } from '../../utils/header-overlay.js';
  *   Menu root path and Menu depth, utils/query-index.js getPageTree), never an empty menu;
  * - marks the header block: tcs-header-site (the Figma styles of tcs-header.css), Header
  *   background tcs-header-bg-grey, Header over hero Solid (utils/header-overlay.js: no hero puts
- *   the header over itself).
+ *   the header over itself);
+ * - once the header has a menu, announces it as html[data-site-menu="header"]: below 1200px the
+ *   Conversation Canvases hide their own site menu button (blocks/conversation-canvas), so the
+ *   header's menu button is the one site navigation there;
+ * - closes the open menu when the device is turned (orientation change).
  */
 
 // Header background options (classes) and their header block classes
@@ -95,6 +99,12 @@ async function buildSiteMenu(canvas) {
   return section;
 }
 
+/** the site header has the menu: the Canvases' site menu buttons give way below 1200px */
+function announceSiteMenu(menu) {
+  if (menu) document.documentElement.dataset.siteMenu = 'header';
+  return menu;
+}
+
 /**
  * The site header's nav (header:nav, blocks/header) with this block on its nav page: the logo bar,
  * the menu and the header options.
@@ -131,14 +141,27 @@ function adaptHeader({ detail }) {
     // eslint-disable-next-line no-console
     console.warn('tcs-header: Header over hero is Solid, the header stays above the opening hero');
   }
-  if (!menu) {
+  if (menu) {
+    announceSiteMenu(menu);
+  } else {
     const canvas = nav.querySelector('.conversation-canvas[data-menu-root]');
-    if (canvas) detail.menu = buildSiteMenu(canvas);
+    if (canvas) detail.menu = buildSiteMenu(canvas).then(announceSiteMenu);
   }
+}
+
+/**
+ * A change of orientation (a phone or tablet turned) closes the open menu, as crossing the desktop
+ * breakpoint does in blocks/header: through the header's own menu button, so its state, ARIA,
+ * inert page and scroll lock stay the header's.
+ */
+function closeOnRotate() {
+  const button = document.querySelector('header .tcs-header-site nav[data-expanded="true"] .nav-hamburger button');
+  if (button?.offsetParent) button.click();
 }
 
 // once per page: the site header announces its nav (blocks/header)
 document.addEventListener('header:nav', adaptHeader);
+window.matchMedia('(orientation: portrait)').addEventListener('change', closeOnRotate);
 
 /**
  * loads and decorates the block

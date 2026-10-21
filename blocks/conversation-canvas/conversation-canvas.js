@@ -289,6 +289,10 @@ function buildSearch(config, id, block) {
   menuToggle.setAttribute('aria-expanded', 'false');
   const menu = document.createElement('nav');
   menu.className = 'conversation-canvas-menu';
+  // the site navigation of the Canvas (not its search and actions): hidden below 1200px when the
+  // site header has the menu there (html[data-site-menu="header"], conversation-canvas.css)
+  menuToggle.dataset.canvasControl = 'site-menu';
+  menu.dataset.canvasControl = 'site-menu';
   menu.id = `${id}-menu`;
   menu.setAttribute('aria-label', t('menu', 'Menu'));
   menu.hidden = true;

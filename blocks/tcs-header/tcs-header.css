@@ -90,6 +90,27 @@ header .header.tcs-header-site .nav-wrapper {
 /* the bar's own background shows behind the menu button (White, Grey, or the hero under it) */
 header .header.tcs-header-site nav .nav-hamburger button {
   background-color: transparent;
+
+  /* the menu icon's colour (Figma: --color-icon-default) */
+  color: var(--color-icon-default);
+}
+
+/*
+ * the menu icon (Figma Mobile Nav 1124:27405 / 1124:25497, Menu 32px): three 2px lines, 26px
+ * wide, 8px apart, --color-icon-default; the close icon (open menu) stays the header's
+ */
+header .header.tcs-header-site nav[data-expanded='false'] .nav-hamburger-icon,
+header .header.tcs-header-site nav[data-expanded='false'] .nav-hamburger-icon::before,
+header .header.tcs-header-site nav[data-expanded='false'] .nav-hamburger-icon::after {
+  width: 1.625rem;
+}
+
+header .header.tcs-header-site nav[data-expanded='false'] .nav-hamburger-icon::before {
+  top: -0.5rem;
+}
+
+header .header.tcs-header-site nav[data-expanded='false'] .nav-hamburger-icon::after {
+  top: 0.5rem;
 }
 
 /* a linked section's arrow button: the arrow on the right, as on the other rows (Figma menu) */
