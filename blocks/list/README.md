@@ -35,82 +35,301 @@ The List is the AEM Core Components **List** for Edge Delivery Services (xwalk /
 
 Screenshots of the handover (6.16 List Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/list-desktop-view.jpg) | The List at 1440 px: the title Insights and its description on the left, the View all text link on the right, and four image cards in one row (The agentic bank, Cloud at scale, The energy transition, The future of work) with thumbnail images, kickers, titles, descriptions, content types and dates, the first four child pages in path order. |
-| [Tablet rendering](../../docs/handover/screenshots/list-tablet-view.jpg) | The same Insights List at 1024 px: a 2rem title with the description and View all on the right, and the four image cards (The agentic bank, Cloud at scale, The energy transition, The future of work) in one row of four narrower columns with 1.25rem titles. |
-| [Mobile rendering](../../docs/handover/screenshots/list-mobile-view.jpg) | The Insights List at 402 px: the title, the description and the View all link stacked, then the four image cards (The agentic bank, Cloud at scale, The energy transition, The future of work) in one column with a 1rem gap. |
-| [Child pages source](../../docs/handover/screenshots/list-source-child-pages.jpg) | At 1440 px the title Our industries with the description Deep domain knowledge for the industries we serve, above three image cards in one row (Banking, Manufacturing, Retail), the child pages of /en/industries in path order, each with its image, industry tag, title, description and date. |
-| [Child pages with depth](../../docs/handover/screenshots/list-source-child-depth.jpg) | At 1440 px the title Services and offerings above five image cards of the child and grandchild pages of /en/services, sorted by title: AI and data, Cloud, Cloud migration (no image area, eyebrow Offering), Consulting and Cybersecurity, four in the first row and one in the second. |
-| [Fixed list source](../../docs/handover/screenshots/list-source-fixed.jpg) | At 1440 px the title Editor's picks above four image cards in authored order: The agentic bank, Cloud services for the enterprise (title override on the Cloud page), Supply chain resilience, and the external Joint solutions with our partners with photo-6, the eyebrow Partner and its description. |
-| [Tagged pages source (any)](../../docs/handover/screenshots/list-source-tagged-any.jpg) | At 1440 px the title Related to Agentic AI above a rail of Mixed cards bleeding to the right edge, the AI-tagged pages below /en in path order: image cards The future of work, Touchless insurance claims, Personalisation in retail, the gradient report card State of AI 2026 with Download, and AI and data. |
-| [Tagged pages source (all)](../../docs/handover/screenshots/list-source-tagged-all.jpg) | At 1440 px the title AI in industry with its description above two image cards, Touchless insurance claims and Personalisation in retail, the only insights tagged with AI and an industry; the other two columns of the 4-column grid stay empty. |
-| [Order by title](../../docs/handover/screenshots/list-order-title.jpg) | At 1440 px the title Insights A to Z above four image cards, the Insights child pages sorted by title: Cloud at scale, Personalisation in retail, Quantum readiness (no image area) and State of AI 2026. |
-| [Order by last modified](../../docs/handover/screenshots/list-order-last-modified.jpg) | At 1440 px the title Latest news above five rows of links, newest first: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail, each with eyebrow or content type and a tag, a large title, the description, the date and an arrow. |
-| [Maximum items](../../docs/handover/screenshots/list-max-items.jpg) | At 1440 px the title Latest insights above four image cards, the four most recently modified of the nine insights with a content type tag: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience. |
-| [Fallback items](../../docs/handover/screenshots/list-fallback-items.jpg) | At 1440 px the title Insights for Europe above two image cards, The agentic bank and State of AI 2026: no page has the Europe tag, so the two fallback List Items show, built from the pages' metadata, in the first two columns. |
-| [Image card style](../../docs/handover/screenshots/list-image-card.jpg) | At 1440 px the title Latest insights above four image cards, newest first: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience, each with a 16:9 image, an uppercase kicker of eyebrow, tags and reading time, the title, the description and content type with date. |
-| [Panel card style](../../docs/handover/screenshots/list-panel-card.jpg) | At 1440 px the title What we do above four tall dark #20293c panels, the Services child pages in path order: AI and data, Cloud, Consulting and Cybersecurity, each with the eyebrow Service, a large light title, the description and Explore. |
-| [Report card style](../../docs/handover/screenshots/list-report-card.jpg) | At 1440 px the title Research and case studies above four gradient report cards in path order: The energy transition, Touchless insurance claims, Quantum readiness and State of AI 2026, each with content type and date, a large title, the description and an outlined Download button. |
-| [Statistic card style](../../docs/handover/screenshots/list-statistic-card.jpg) | At 1440 px the title At a glance above four light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power, each with the large number at the top and the label and description at the bottom. |
-| [Mixed card style](../../docs/handover/screenshots/list-mixed.jpg) | At 1440 px the title Explore our thinking above a rail of six Mixed cards in authored order: image card The agentic bank, report card State of AI 2026, dark panel Cloud migration with Explore, image card Cloud at scale, report card Quantum readiness and image card The future of work. |
-| [Feature card](../../docs/handover/screenshots/list-feature-card.jpg) | At 1440 px the title Insight and opinion, a full-width feature for The agentic bank with its image, the tags Banking and Article, reading time 8m, the title and Anita Rao, Head of Banking Research, then three image cards: Cloud at scale, State of AI 2026 and Supply chain resilience. |
-| [Rows of links](../../docs/handover/screenshots/list-rows-of-links.jpg) | At 1440 px the title AI in the news above four rows of links, newest first: State of AI 2026, Personalisation in retail, The future of work and Touchless insurance claims, each with eyebrow or content type and a tag, a large title, description, date and an arrow, without lines. |
-| [Dark card colour](../../docs/handover/screenshots/list-colour-dark.jpg) | At 1440 px the title Industries and facts above four #20293c cards with light text: the Banking and Retail panels with their tag, description and Explore, then the statistic cards 150,000+ Colleagues and 46 Countries. |
-| [Navy card colour](../../docs/handover/screenshots/list-colour-navy.jpg) | At 1440 px the title Research and case studies above four #011627 navy report cards (The energy transition, Touchless insurance claims, Quantum readiness, State of AI 2026) with light text, content type and date, and light outlined Download buttons. |
-| [Brand blue card colour](../../docs/handover/screenshots/list-colour-brand.jpg) | At 1440 px the title At a glance above four statistic cards: 150,000+, 1,200+ and 100% on light grey, and 46 Countries on brand blue #4673db with white text. |
-| [Light blue card colour](../../docs/handover/screenshots/list-colour-brand-light.jpg) | At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 100% on light grey, and 1,200+ Clients on light blue #a7c8f1 with black text. |
-| [Light grey card colour](../../docs/handover/screenshots/list-colour-grey.jpg) | At 1440 px the title Industries above three tall light grey #d9d9d9 panels in one row (Banking, Manufacturing, Retail) with black titles, the industry tag as kicker, the description and Explore. |
-| [Mid grey card colour](../../docs/handover/screenshots/list-colour-mid-grey.jpg) | At 1440 px the title At a glance above four statistic cards: 150,000+ Colleagues on mid grey #999 with black text, then 46, 1,200+ and 100% on light grey. |
-| [Grey gradient card colour](../../docs/handover/screenshots/list-colour-gradient.jpg) | At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 1,200+ on light grey, and 100% Renewable power on the diagonal grey gradient. |
-| [Image background card colour](../../docs/handover/screenshots/list-colour-image.jpg) | At 1440 px the title Industries above three tall panels in one row: Banking filled with its photograph behind the tag, title, description and Explore, then Retail and Manufacturing as dark #20293c panels. |
-| [Square image ratio](../../docs/handover/screenshots/list-ratio-1-1.jpg) | At 1440 px the title Latest insights above four image cards with square images: The agentic bank, Cloud at scale, The energy transition and The future of work. |
-| [4:3 image ratio](../../docs/handover/screenshots/list-ratio-4-3.jpg) | At 1440 px the title Latest insights above four image cards with 4:3 images: The agentic bank, Cloud at scale, The energy transition and The future of work. |
-| [3:2 image ratio](../../docs/handover/screenshots/list-ratio-3-2.jpg) | At 1440 px the title Latest insights above four image cards with 3:2 images: The agentic bank, Cloud at scale, The energy transition and The future of work. |
-| [Compact panel height](../../docs/handover/screenshots/list-panel-compact.jpg) | At 1440 px the title At a glance above four nearly square (9:10) light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power. |
-| [Content panel height](../../docs/handover/screenshots/list-panel-content.jpg) | At 1440 px the title What we do above four dark panels (AI and data, Cloud, Consulting, Cybersecurity) only as tall as their eyebrow, title, description and Explore, equal within the row. |
-| [Compact statistic title](../../docs/handover/screenshots/list-stat-compact.jpg) | At 1440 px the title What we stand for above three grey statistic cards with medium statement titles (AI that works for the whole enterprise, Cloud that scales with the business, Security built into every layer), the kicker Service, labels, descriptions and outlined Learn more buttons. |
-| [Dividers between rows](../../docs/handover/screenshots/list-dividers.jpg) | At 1440 px the title Latest news above four rows (The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience) separated by thin grey lines, each with eyebrow and tag, a large title, description, date and an arrow. |
-| [Centred header](../../docs/handover/screenshots/list-header-centred.jpg) | At 1440 px the centred title What we do and the description Services that help enterprises grow, transform and compete, above four image cards: AI and data, Cloud, Consulting and Cybersecurity. |
-| [Header call to action](../../docs/handover/screenshots/list-header-cta.jpg) | At 1440 px the title News with the primary button View all news on the right, above four image cards of the newest insights: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience. |
-| [Grid on every breakpoint](../../docs/handover/screenshots/list-grid-all.jpg) | At 1440 px only: the title Latest insights above the eight newest insights in a 4-column grid of two rows, from The agentic bank to The future of work. The mobile one-column layout isn't part of this screenshot. |
-| [Horizontal scroll on every breakpoint](../../docs/handover/screenshots/list-scroll-all.jpg) | At 1440 px only: the title Latest insights above a rail of about 4.2 image cards of the eight newest insights, cut at the right screen edge, with the scroll indicator and the Previous (disabled) and Next buttons below. |
-| [Desktop-only scroll](../../docs/handover/screenshots/list-scroll-desktop-only.jpg) | At 1440 px only: the title Latest insights above a rail of about 4.2 image cards cut at the right screen edge, without buttons or indicator. The tablet and mobile grids aren't part of this screenshot. |
-| [Tablet-only scroll](../../docs/handover/screenshots/list-scroll-tablet-only.jpg) | At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge, without buttons or indicator. The desktop and mobile grids aren't part of this screenshot. |
-| [Mobile-only scroll](../../docs/handover/screenshots/list-scroll-mobile-only.jpg) | At 402 px only: the title Latest insights above a mobile rail with one full card and part of the next, and the scroll indicator below. The desktop and tablet grids aren't part of this screenshot. |
-| [Desktop and tablet scroll](../../docs/handover/screenshots/list-scroll-desktop-tablet.jpg) | At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge. The desktop rail and the mobile column aren't part of this screenshot. |
-| [Desktop and mobile scroll](../../docs/handover/screenshots/list-scroll-desktop-mobile.jpg) | At 1024 px only: the title Latest insights above the eight newest insights in a 2-column grid of four rows (Tablet columns 2). The desktop and mobile rails aren't part of this screenshot. |
-| [Tablet and mobile scroll](../../docs/handover/screenshots/list-scroll-tablet-mobile.jpg) | At 402 px only: the title Latest insights above a mobile rail of 1.2 image cards with the scroll indicator below. The tablet rail and the 4-column desktop grid aren't part of this screenshot. |
-| [Previous and next buttons](../../docs/handover/screenshots/list-previous-next.jpg) | At 1440 px the title Latest insights above a desktop rail of about 4.2 cards at its start, with two round chevron buttons below on the right: Previous disabled, Next enabled. |
-| [Scroll indicator](../../docs/handover/screenshots/list-scroll-indicator.jpg) | At 402 px the title Latest insights above a mobile rail with one full card and part of the next, and below it the thin grey indicator track with a darker thumb at the left. |
-| [Fixed card width](../../docs/handover/screenshots/list-fixed-card-width.jpg) | At 1440 px the title Latest insights above a desktop rail of 20rem (320 px) wide image cards running to the right screen edge, more cards visible than with the default 4.2. |
-| [Scroller inside the content width](../../docs/handover/screenshots/list-edge-none.jpg) | At 1440 px the title Latest insights above a desktop rail of about 4.2 image cards whose last visible card is cut at the section padding, not at the screen edge. |
-| [Centre snap alignment](../../docs/handover/screenshots/list-snap-center.jpg) | At 402 px the mobile rail after a short swipe: the second card, Cloud at scale, snapped to the centre with slivers of The agentic bank and State of AI 2026 on both sides, and the indicator below. |
-| [Viewport scroll step](../../docs/handover/screenshots/list-step-viewport.jpg) | At 1440 px the desktop rail after one click on Next: scrolled by a screenful to its end, showing the last cards up to The future of work, with Previous now enabled. |
-| [Loop](../../docs/handover/screenshots/list-loop.jpg) | At 1440 px the desktop rail after four clicks on Next: scrolled to its end with The future of work as the last card, and Next still enabled because Loop is on (the next click would return to the first card). |
-| [Initial item](../../docs/handover/screenshots/list-initial-item.jpg) | At 1440 px the title Latest insights above a desktop rail opened at its third card, State of AI 2026, as the first visible card, with Previous and Next enabled below. |
-| [Equal card height](../../docs/handover/screenshots/list-equal-height.jpg) | At 1440 px the title Latest insights above the eight newest insights in a 4-column grid of two rows of exactly the same height. |
-| [Cards not stretched](../../docs/handover/screenshots/list-no-stretch.jpg) | At 1440 px the title Explore above four image cards of different heights aligned to the top: Consulting with its image, Cloud migration and About us without image areas, and The agentic bank with image and meta. |
-| [Unlinked cards](../../docs/handover/screenshots/list-unlinked.jpg) | At 1440 px the title At a glance above four light grey statistic cards (150,000+ Colleagues, 46 Countries, 1,200+ Clients, 100% Renewable power) without links or buttons. |
-| [New-tab links](../../docs/handover/screenshots/list-new-tab.jpg) | At 1440 px the title Partners and insights above three image cards: The agentic bank, Cloud at scale and Joint solutions with our partners with photo-6 and eyebrow Partner, whose title is underlined under the mouse pointer. |
-| [Legacy list](../../docs/handover/screenshots/list-legacy.jpg) | At 1440 px a List made before this version: the large heading Our latest thinking and below it the primary button Explore all insights, without any cards. |
-| [Empty state](../../docs/handover/screenshots/list-empty-state.jpg) | The page at 1440 px with two Lists: below Insights for Europe a grey rounded box with There are no items to show., and below Related insights, rendered as in Universal Editor, the hint The pages show on the published page (from the query index). |
-| [Figma variation 1](../../docs/handover/screenshots/list-figma-01-themes.jpg) | At 1440 px the title Themes above three tall panels in one row: Agentic AI on dark #20293c, The future of work on brand blue and Sustainability with the energy transition image behind it, each with the eyebrow Theme, the page description and Explore. |
-| [Figma variation 2](../../docs/handover/screenshots/list-figma-02-insight-opinion.jpg) | At 1440 px the title Insight and opinion with View all on the right, a feature for The agentic bank with Anita Rao, then Supply chain resilience, a dark Cloud migration panel, The future of work and Personalisation in retail with square images. |
-| [Figma variation 3](../../docs/handover/screenshots/list-figma-03-related.jpg) | At 1440 px the title Related above a rail of Mixed cards bleeding to the right edge: image cards Cloud at scale, The future of work, Touchless insurance claims and Personalisation in retail, and the gradient report card State of AI 2026. |
-| [Figma variation 4](../../docs/handover/screenshots/list-figma-04-intelligence-in-action.jpg) | At 1440 px the title Intelligence in action above three service pages as image cards in one row (Consulting, AI and data, Cloud) with square images, the eyebrow Service and tag, titles and descriptions. |
-| [Figma variation 5](../../docs/handover/screenshots/list-figma-05-news.jpg) | At 1440 px the title News with the primary button All news on the right, above five rows separated by grey lines: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail. |
-| [Figma variation 6](../../docs/handover/screenshots/list-figma-06-at-a-glance.jpg) | At 1440 px the title At a glance above four light grey statistic cards in one row: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power. The mobile rail isn't part of this screenshot. |
-| [Figma variation 7](../../docs/handover/screenshots/list-figma-07-statements.jpg) | At 1440 px the title What we stand for above three grey statistic cards with medium statement titles, the kicker Service, the labels AI and data, Cloud and Cybersecurity, descriptions and outlined Learn more buttons. |
-| [Figma variation 8](../../docs/handover/screenshots/list-figma-08-media-coverage.jpg) | At 1440 px the title Media coverage above a rail: image cards The agentic bank, Cloud at scale and The future of work, navy report cards Quantum readiness and State of AI 2026, and Supply chain resilience at the right edge. |
-| [Figma variation 9](../../docs/handover/screenshots/list-figma-09-investor-relations.jpg) | At 1440 px the title Investor relations above a rail of the six newest Insights child pages: image cards The agentic bank and Cloud at scale, the navy report card State of AI 2026, then image cards Supply chain resilience, Personalisation in retail and The energy transition. |
-| [Figma variation 10](../../docs/handover/screenshots/list-figma-10-banking-today.jpg) | At 1440 px the title Banking today above four brand blue statistic cards with white text: 8 of 10 Core banking, 2bn Payments, 40% Risk and compliance and 24/7 Customer experience. The mobile rail isn't part of this screenshot. |
-| [Figma variation 11](../../docs/handover/screenshots/list-figma-11-2-up.jpg) | At 1440 px the title Featured services above two large image cards side by side, Consulting and AI and data, with square images, kicker, title and description. |
-| [Figma variation 12](../../docs/handover/screenshots/list-figma-12-statements.jpg) | At 1440 px the title Industries we transform above three grey statistic cards with the statements Banking that runs on intelligence, Retail that knows every customer and Factories that learn and adapt, their labels, descriptions and Learn more buttons. |
-| [Figma variation 13](../../docs/handover/screenshots/list-figma-13-4-up-colours.jpg) | At 1440 px the title At a glance above four statistic cards: 150,000+ on brand blue, 46 on the grey gradient, 1,200+ on mid grey and 100% on light blue, each with label and description. |
-| [Figma variation 14](../../docs/handover/screenshots/list-figma-14-statistics.jpg) | At 1440 px the title Our impact in numbers above four light grey statistic cards within the content width: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power. |
-| [Universal Editor canvas](../../docs/handover/screenshots/list-authoring-view.jpg) | At 1440 px the List Latest insights with description and View all, a desktop rail of 3.3 cards (The agentic bank, Running the multi-cloud enterprise, Supply chain resilience with Read the story, The future of work) and indicator and buttons, lettered A to K. The content tree (L) isn't in this capture. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/list-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/list-properties-panel.jpg) | The properties panel of a selected List with the tabs Content, Source, Cards, Layout, Scroll, Advanced and Additional; the Source tab open with List source = Tagged pages and the Search root, Use the current page when empty, Tags, Match, Include descendant pages and Maximum search depth fields, followed by Order by, Sort order and Maximum items. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/list-properties-panel.jpg) |
+**Desktop rendering** — The List at 1440 px: the title Insights and its description on the left, the View all text link on the right, and four image cards in one row (The agentic bank, Cloud at scale, The energy transition, The future of work) with thumbnail images, kickers, titles, descriptions, content types and dates, the first four child pages in path order.
+
+![Desktop rendering: The List at 1440 px: the title Insights and its description on the left, the View all text link on the right, and four image cards in one row The agentic bank, Cloud at scale, The energy transition, The future of work with thumbnai](../../docs/handover/screenshots/list-desktop-view.jpg)
+
+**Tablet rendering** — The same Insights List at 1024 px: a 2rem title with the description and View all on the right, and the four image cards (The agentic bank, Cloud at scale, The energy transition, The future of work) in one row of four narrower columns with 1.25rem titles.
+
+![Tablet rendering: The same Insights List at 1024 px: a 2rem title with the description and View all on the right, and the four image cards The agentic bank, Cloud at scale, The energy transition, The future of work in one row of four narrower columns](../../docs/handover/screenshots/list-tablet-view.jpg)
+
+**Mobile rendering** — The Insights List at 402 px: the title, the description and the View all link stacked, then the four image cards (The agentic bank, Cloud at scale, The energy transition, The future of work) in one column with a 1rem gap.
+
+![Mobile rendering: The Insights List at 402 px: the title, the description and the View all link stacked, then the four image cards The agentic bank, Cloud at scale, The energy transition, The future of work in one column with a 1rem gap.](../../docs/handover/screenshots/list-mobile-view.jpg)
+
+**Child pages source** — At 1440 px the title Our industries with the description Deep domain knowledge for the industries we serve, above three image cards in one row (Banking, Manufacturing, Retail), the child pages of /en/industries in path order, each with its image, industry tag, title, description and date.
+
+![Child pages source: At 1440 px the title Our industries with the description Deep domain knowledge for the industries we serve, above three image cards in one row Banking, Manufacturing, Retail, the child pages of /en/industries in path order, each w](../../docs/handover/screenshots/list-source-child-pages.jpg)
+
+**Child pages with depth** — At 1440 px the title Services and offerings above five image cards of the child and grandchild pages of /en/services, sorted by title: AI and data, Cloud, Cloud migration (no image area, eyebrow Offering), Consulting and Cybersecurity, four in the first row and one in the second.
+
+![Child pages with depth: At 1440 px the title Services and offerings above five image cards of the child and grandchild pages of /en/services, sorted by title: AI and data, Cloud, Cloud migration no image area, eyebrow Offering, Consulting and Cyberse](../../docs/handover/screenshots/list-source-child-depth.jpg)
+
+**Fixed list source** — At 1440 px the title Editor's picks above four image cards in authored order: The agentic bank, Cloud services for the enterprise (title override on the Cloud page), Supply chain resilience, and the external Joint solutions with our partners with photo-6, the eyebrow Partner and its description.
+
+![Fixed list source: At 1440 px the title Editor's picks above four image cards in authored order: The agentic bank, Cloud services for the enterprise title override on the Cloud page, Supply chain resilience, and the external Joint solutions with our ](../../docs/handover/screenshots/list-source-fixed.jpg)
+
+**Tagged pages source (any)** — At 1440 px the title Related to Agentic AI above a rail of Mixed cards bleeding to the right edge, the AI-tagged pages below /en in path order: image cards The future of work, Touchless insurance claims, Personalisation in retail, the gradient report card State of AI 2026 with Download, and AI and data.
+
+![Tagged pages source any: At 1440 px the title Related to Agentic AI above a rail of Mixed cards bleeding to the right edge, the AI-tagged pages below /en in path order: image cards The future of work, Touchless insurance claims, Personalisation in re](../../docs/handover/screenshots/list-source-tagged-any.jpg)
+
+**Tagged pages source (all)** — At 1440 px the title AI in industry with its description above two image cards, Touchless insurance claims and Personalisation in retail, the only insights tagged with AI and an industry; the other two columns of the 4-column grid stay empty.
+
+![Tagged pages source all: At 1440 px the title AI in industry with its description above two image cards, Touchless insurance claims and Personalisation in retail, the only insights tagged with AI and an industry; the other two columns of the 4-column](../../docs/handover/screenshots/list-source-tagged-all.jpg)
+
+**Order by title** — At 1440 px the title Insights A to Z above four image cards, the Insights child pages sorted by title: Cloud at scale, Personalisation in retail, Quantum readiness (no image area) and State of AI 2026.
+
+![Order by title: At 1440 px the title Insights A to Z above four image cards, the Insights child pages sorted by title: Cloud at scale, Personalisation in retail, Quantum readiness no image area and State of AI 2026.](../../docs/handover/screenshots/list-order-title.jpg)
+
+**Order by last modified** — At 1440 px the title Latest news above five rows of links, newest first: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail, each with eyebrow or content type and a tag, a large title, the description, the date and an arrow.
+
+![Order by last modified: At 1440 px the title Latest news above five rows of links, newest first: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail, each with eyebrow or content type and a tag, a](../../docs/handover/screenshots/list-order-last-modified.jpg)
+
+**Maximum items** — At 1440 px the title Latest insights above four image cards, the four most recently modified of the nine insights with a content type tag: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience.
+
+![Maximum items: At 1440 px the title Latest insights above four image cards, the four most recently modified of the nine insights with a content type tag: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience.](../../docs/handover/screenshots/list-max-items.jpg)
+
+**Fallback items** — At 1440 px the title Insights for Europe above two image cards, The agentic bank and State of AI 2026: no page has the Europe tag, so the two fallback List Items show, built from the pages' metadata, in the first two columns.
+
+![Fallback items: At 1440 px the title Insights for Europe above two image cards, The agentic bank and State of AI 2026: no page has the Europe tag, so the two fallback List Items show, built from the pages' metadata, in the first two columns.](../../docs/handover/screenshots/list-fallback-items.jpg)
+
+**Image card style** — At 1440 px the title Latest insights above four image cards, newest first: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience, each with a 16:9 image, an uppercase kicker of eyebrow, tags and reading time, the title, the description and content type with date.
+
+![Image card style: At 1440 px the title Latest insights above four image cards, newest first: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience, each with a 16:9 image, an uppercase kicker of eyebrow, tags and reading time](../../docs/handover/screenshots/list-image-card.jpg)
+
+**Panel card style** — At 1440 px the title What we do above four tall dark #20293c panels, the Services child pages in path order: AI and data, Cloud, Consulting and Cybersecurity, each with the eyebrow Service, a large light title, the description and Explore.
+
+![Panel card style: At 1440 px the title What we do above four tall dark #20293c panels, the Services child pages in path order: AI and data, Cloud, Consulting and Cybersecurity, each with the eyebrow Service, a large light title, the description and E](../../docs/handover/screenshots/list-panel-card.jpg)
+
+**Report card style** — At 1440 px the title Research and case studies above four gradient report cards in path order: The energy transition, Touchless insurance claims, Quantum readiness and State of AI 2026, each with content type and date, a large title, the description and an outlined Download button.
+
+![Report card style: At 1440 px the title Research and case studies above four gradient report cards in path order: The energy transition, Touchless insurance claims, Quantum readiness and State of AI 2026, each with content type and date, a large titl](../../docs/handover/screenshots/list-report-card.jpg)
+
+**Statistic card style** — At 1440 px the title At a glance above four light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power, each with the large number at the top and the label and description at the bottom.
+
+![Statistic card style: At 1440 px the title At a glance above four light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power, each with the large number at the top and the label and description at the botto](../../docs/handover/screenshots/list-statistic-card.jpg)
+
+**Mixed card style** — At 1440 px the title Explore our thinking above a rail of six Mixed cards in authored order: image card The agentic bank, report card State of AI 2026, dark panel Cloud migration with Explore, image card Cloud at scale, report card Quantum readiness and image card The future of work.
+
+![Mixed card style: At 1440 px the title Explore our thinking above a rail of six Mixed cards in authored order: image card The agentic bank, report card State of AI 2026, dark panel Cloud migration with Explore, image card Cloud at scale, report card ](../../docs/handover/screenshots/list-mixed.jpg)
+
+**Feature card** — At 1440 px the title Insight and opinion, a full-width feature for The agentic bank with its image, the tags Banking and Article, reading time 8m, the title and Anita Rao, Head of Banking Research, then three image cards: Cloud at scale, State of AI 2026 and Supply chain resilience.
+
+![Feature card: At 1440 px the title Insight and opinion, a full-width feature for The agentic bank with its image, the tags Banking and Article, reading time 8m, the title and Anita Rao, Head of Banking Research, then three image cards: Cloud at scale](../../docs/handover/screenshots/list-feature-card.jpg)
+
+**Rows of links** — At 1440 px the title AI in the news above four rows of links, newest first: State of AI 2026, Personalisation in retail, The future of work and Touchless insurance claims, each with eyebrow or content type and a tag, a large title, description, date and an arrow, without lines.
+
+![Rows of links: At 1440 px the title AI in the news above four rows of links, newest first: State of AI 2026, Personalisation in retail, The future of work and Touchless insurance claims, each with eyebrow or content type and a tag, a large title, des](../../docs/handover/screenshots/list-rows-of-links.jpg)
+
+**Dark card colour** — At 1440 px the title Industries and facts above four #20293c cards with light text: the Banking and Retail panels with their tag, description and Explore, then the statistic cards 150,000+ Colleagues and 46 Countries.
+
+![Dark card colour: At 1440 px the title Industries and facts above four #20293c cards with light text: the Banking and Retail panels with their tag, description and Explore, then the statistic cards 150,000+ Colleagues and 46 Countries.](../../docs/handover/screenshots/list-colour-dark.jpg)
+
+**Navy card colour** — At 1440 px the title Research and case studies above four #011627 navy report cards (The energy transition, Touchless insurance claims, Quantum readiness, State of AI 2026) with light text, content type and date, and light outlined Download buttons.
+
+![Navy card colour: At 1440 px the title Research and case studies above four #011627 navy report cards The energy transition, Touchless insurance claims, Quantum readiness, State of AI 2026 with light text, content type and date, and light outlined Do](../../docs/handover/screenshots/list-colour-navy.jpg)
+
+**Brand blue card colour** — At 1440 px the title At a glance above four statistic cards: 150,000+, 1,200+ and 100% on light grey, and 46 Countries on brand blue #4673db with white text.
+
+![Brand blue card colour: At 1440 px the title At a glance above four statistic cards: 150,000+, 1,200+ and 100% on light grey, and 46 Countries on brand blue #4673db with white text.](../../docs/handover/screenshots/list-colour-brand.jpg)
+
+**Light blue card colour** — At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 100% on light grey, and 1,200+ Clients on light blue #a7c8f1 with black text.
+
+![Light blue card colour: At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 100% on light grey, and 1,200+ Clients on light blue #a7c8f1 with black text.](../../docs/handover/screenshots/list-colour-brand-light.jpg)
+
+**Light grey card colour** — At 1440 px the title Industries above three tall light grey #d9d9d9 panels in one row (Banking, Manufacturing, Retail) with black titles, the industry tag as kicker, the description and Explore.
+
+![Light grey card colour: At 1440 px the title Industries above three tall light grey #d9d9d9 panels in one row Banking, Manufacturing, Retail with black titles, the industry tag as kicker, the description and Explore.](../../docs/handover/screenshots/list-colour-grey.jpg)
+
+**Mid grey card colour** — At 1440 px the title At a glance above four statistic cards: 150,000+ Colleagues on mid grey #999 with black text, then 46, 1,200+ and 100% on light grey.
+
+![Mid grey card colour: At 1440 px the title At a glance above four statistic cards: 150,000+ Colleagues on mid grey #999 with black text, then 46, 1,200+ and 100% on light grey.](../../docs/handover/screenshots/list-colour-mid-grey.jpg)
+
+**Grey gradient card colour** — At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 1,200+ on light grey, and 100% Renewable power on the diagonal grey gradient.
+
+![Grey gradient card colour: At 1440 px the title At a glance above four statistic cards: 150,000+, 46 and 1,200+ on light grey, and 100% Renewable power on the diagonal grey gradient.](../../docs/handover/screenshots/list-colour-gradient.jpg)
+
+**Image background card colour** — At 1440 px the title Industries above three tall panels in one row: Banking filled with its photograph behind the tag, title, description and Explore, then Retail and Manufacturing as dark #20293c panels.
+
+![Image background card colour: At 1440 px the title Industries above three tall panels in one row: Banking filled with its photograph behind the tag, title, description and Explore, then Retail and Manufacturing as dark #20293c panels.](../../docs/handover/screenshots/list-colour-image.jpg)
+
+**Square image ratio** — At 1440 px the title Latest insights above four image cards with square images: The agentic bank, Cloud at scale, The energy transition and The future of work.
+
+![Square image ratio: At 1440 px the title Latest insights above four image cards with square images: The agentic bank, Cloud at scale, The energy transition and The future of work.](../../docs/handover/screenshots/list-ratio-1-1.jpg)
+
+**4:3 image ratio** — At 1440 px the title Latest insights above four image cards with 4:3 images: The agentic bank, Cloud at scale, The energy transition and The future of work.
+
+![4:3 image ratio: At 1440 px the title Latest insights above four image cards with 4:3 images: The agentic bank, Cloud at scale, The energy transition and The future of work.](../../docs/handover/screenshots/list-ratio-4-3.jpg)
+
+**3:2 image ratio** — At 1440 px the title Latest insights above four image cards with 3:2 images: The agentic bank, Cloud at scale, The energy transition and The future of work.
+
+![3:2 image ratio: At 1440 px the title Latest insights above four image cards with 3:2 images: The agentic bank, Cloud at scale, The energy transition and The future of work.](../../docs/handover/screenshots/list-ratio-3-2.jpg)
+
+**Compact panel height** — At 1440 px the title At a glance above four nearly square (9:10) light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power.
+
+![Compact panel height: At 1440 px the title At a glance above four nearly square 9:10 light grey statistic cards: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power.](../../docs/handover/screenshots/list-panel-compact.jpg)
+
+**Content panel height** — At 1440 px the title What we do above four dark panels (AI and data, Cloud, Consulting, Cybersecurity) only as tall as their eyebrow, title, description and Explore, equal within the row.
+
+![Content panel height: At 1440 px the title What we do above four dark panels AI and data, Cloud, Consulting, Cybersecurity only as tall as their eyebrow, title, description and Explore, equal within the row.](../../docs/handover/screenshots/list-panel-content.jpg)
+
+**Compact statistic title** — At 1440 px the title What we stand for above three grey statistic cards with medium statement titles (AI that works for the whole enterprise, Cloud that scales with the business, Security built into every layer), the kicker Service, labels, descriptions and outlined Learn more buttons.
+
+![Compact statistic title: At 1440 px the title What we stand for above three grey statistic cards with medium statement titles AI that works for the whole enterprise, Cloud that scales with the business, Security built into every layer, the kicker Ser](../../docs/handover/screenshots/list-stat-compact.jpg)
+
+**Dividers between rows** — At 1440 px the title Latest news above four rows (The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience) separated by thin grey lines, each with eyebrow and tag, a large title, description, date and an arrow.
+
+![Dividers between rows: At 1440 px the title Latest news above four rows The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience separated by thin grey lines, each with eyebrow and tag, a large title, description, date and an arrow](../../docs/handover/screenshots/list-dividers.jpg)
+
+**Centred header** — At 1440 px the centred title What we do and the description Services that help enterprises grow, transform and compete, above four image cards: AI and data, Cloud, Consulting and Cybersecurity.
+
+![Centred header: At 1440 px the centred title What we do and the description Services that help enterprises grow, transform and compete, above four image cards: AI and data, Cloud, Consulting and Cybersecurity.](../../docs/handover/screenshots/list-header-centred.jpg)
+
+**Header call to action** — At 1440 px the title News with the primary button View all news on the right, above four image cards of the newest insights: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience.
+
+![Header call to action: At 1440 px the title News with the primary button View all news on the right, above four image cards of the newest insights: The agentic bank, Cloud at scale, State of AI 2026 and Supply chain resilience.](../../docs/handover/screenshots/list-header-cta.jpg)
+
+**Grid on every breakpoint** — At 1440 px only: the title Latest insights above the eight newest insights in a 4-column grid of two rows, from The agentic bank to The future of work. The mobile one-column layout isn't part of this screenshot.
+
+![Grid on every breakpoint: At 1440 px only: the title Latest insights above the eight newest insights in a 4-column grid of two rows, from The agentic bank to The future of work. The mobile one-column layout isn't part of this screenshot.](../../docs/handover/screenshots/list-grid-all.jpg)
+
+**Horizontal scroll on every breakpoint** — At 1440 px only: the title Latest insights above a rail of about 4.2 image cards of the eight newest insights, cut at the right screen edge, with the scroll indicator and the Previous (disabled) and Next buttons below.
+
+![Horizontal scroll on every breakpoint: At 1440 px only: the title Latest insights above a rail of about 4.2 image cards of the eight newest insights, cut at the right screen edge, with the scroll indicator and the Previous disabled and Next buttons b](../../docs/handover/screenshots/list-scroll-all.jpg)
+
+**Desktop-only scroll** — At 1440 px only: the title Latest insights above a rail of about 4.2 image cards cut at the right screen edge, without buttons or indicator. The tablet and mobile grids aren't part of this screenshot.
+
+![Desktop-only scroll: At 1440 px only: the title Latest insights above a rail of about 4.2 image cards cut at the right screen edge, without buttons or indicator. The tablet and mobile grids aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-desktop-only.jpg)
+
+**Tablet-only scroll** — At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge, without buttons or indicator. The desktop and mobile grids aren't part of this screenshot.
+
+![Tablet-only scroll: At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge, without buttons or indicator. The desktop and mobile grids aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-tablet-only.jpg)
+
+**Mobile-only scroll** — At 402 px only: the title Latest insights above a mobile rail with one full card and part of the next, and the scroll indicator below. The desktop and tablet grids aren't part of this screenshot.
+
+![Mobile-only scroll: At 402 px only: the title Latest insights above a mobile rail with one full card and part of the next, and the scroll indicator below. The desktop and tablet grids aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-mobile-only.jpg)
+
+**Desktop and tablet scroll** — At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge. The desktop rail and the mobile column aren't part of this screenshot.
+
+![Desktop and tablet scroll: At 1024 px only: the title Latest insights above a tablet rail of about 3.3 image cards cut at the right edge. The desktop rail and the mobile column aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-desktop-tablet.jpg)
+
+**Desktop and mobile scroll** — At 1024 px only: the title Latest insights above the eight newest insights in a 2-column grid of four rows (Tablet columns 2). The desktop and mobile rails aren't part of this screenshot.
+
+![Desktop and mobile scroll: At 1024 px only: the title Latest insights above the eight newest insights in a 2-column grid of four rows Tablet columns 2. The desktop and mobile rails aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-desktop-mobile.jpg)
+
+**Tablet and mobile scroll** — At 402 px only: the title Latest insights above a mobile rail of 1.2 image cards with the scroll indicator below. The tablet rail and the 4-column desktop grid aren't part of this screenshot.
+
+![Tablet and mobile scroll: At 402 px only: the title Latest insights above a mobile rail of 1.2 image cards with the scroll indicator below. The tablet rail and the 4-column desktop grid aren't part of this screenshot.](../../docs/handover/screenshots/list-scroll-tablet-mobile.jpg)
+
+**Previous and next buttons** — At 1440 px the title Latest insights above a desktop rail of about 4.2 cards at its start, with two round chevron buttons below on the right: Previous disabled, Next enabled.
+
+![Previous and next buttons: At 1440 px the title Latest insights above a desktop rail of about 4.2 cards at its start, with two round chevron buttons below on the right: Previous disabled, Next enabled.](../../docs/handover/screenshots/list-previous-next.jpg)
+
+**Scroll indicator** — At 402 px the title Latest insights above a mobile rail with one full card and part of the next, and below it the thin grey indicator track with a darker thumb at the left.
+
+![Scroll indicator: At 402 px the title Latest insights above a mobile rail with one full card and part of the next, and below it the thin grey indicator track with a darker thumb at the left.](../../docs/handover/screenshots/list-scroll-indicator.jpg)
+
+**Fixed card width** — At 1440 px the title Latest insights above a desktop rail of 20rem (320 px) wide image cards running to the right screen edge, more cards visible than with the default 4.2.
+
+![Fixed card width: At 1440 px the title Latest insights above a desktop rail of 20rem 320 px wide image cards running to the right screen edge, more cards visible than with the default 4.2.](../../docs/handover/screenshots/list-fixed-card-width.jpg)
+
+**Scroller inside the content width** — At 1440 px the title Latest insights above a desktop rail of about 4.2 image cards whose last visible card is cut at the section padding, not at the screen edge.
+
+![Scroller inside the content width: At 1440 px the title Latest insights above a desktop rail of about 4.2 image cards whose last visible card is cut at the section padding, not at the screen edge.](../../docs/handover/screenshots/list-edge-none.jpg)
+
+**Centre snap alignment** — At 402 px the mobile rail after a short swipe: the second card, Cloud at scale, snapped to the centre with slivers of The agentic bank and State of AI 2026 on both sides, and the indicator below.
+
+![Centre snap alignment: At 402 px the mobile rail after a short swipe: the second card, Cloud at scale, snapped to the centre with slivers of The agentic bank and State of AI 2026 on both sides, and the indicator below.](../../docs/handover/screenshots/list-snap-center.jpg)
+
+**Viewport scroll step** — At 1440 px the desktop rail after one click on Next: scrolled by a screenful to its end, showing the last cards up to The future of work, with Previous now enabled.
+
+![Viewport scroll step: At 1440 px the desktop rail after one click on Next: scrolled by a screenful to its end, showing the last cards up to The future of work, with Previous now enabled.](../../docs/handover/screenshots/list-step-viewport.jpg)
+
+**Loop** — At 1440 px the desktop rail after four clicks on Next: scrolled to its end with The future of work as the last card, and Next still enabled because Loop is on (the next click would return to the first card).
+
+![Loop: At 1440 px the desktop rail after four clicks on Next: scrolled to its end with The future of work as the last card, and Next still enabled because Loop is on the next click would return to the first card.](../../docs/handover/screenshots/list-loop.jpg)
+
+**Initial item** — At 1440 px the title Latest insights above a desktop rail opened at its third card, State of AI 2026, as the first visible card, with Previous and Next enabled below.
+
+![Initial item: At 1440 px the title Latest insights above a desktop rail opened at its third card, State of AI 2026, as the first visible card, with Previous and Next enabled below.](../../docs/handover/screenshots/list-initial-item.jpg)
+
+**Equal card height** — At 1440 px the title Latest insights above the eight newest insights in a 4-column grid of two rows of exactly the same height.
+
+![Equal card height: At 1440 px the title Latest insights above the eight newest insights in a 4-column grid of two rows of exactly the same height.](../../docs/handover/screenshots/list-equal-height.jpg)
+
+**Cards not stretched** — At 1440 px the title Explore above four image cards of different heights aligned to the top: Consulting with its image, Cloud migration and About us without image areas, and The agentic bank with image and meta.
+
+![Cards not stretched: At 1440 px the title Explore above four image cards of different heights aligned to the top: Consulting with its image, Cloud migration and About us without image areas, and The agentic bank with image and meta.](../../docs/handover/screenshots/list-no-stretch.jpg)
+
+**Unlinked cards** — At 1440 px the title At a glance above four light grey statistic cards (150,000+ Colleagues, 46 Countries, 1,200+ Clients, 100% Renewable power) without links or buttons.
+
+![Unlinked cards: At 1440 px the title At a glance above four light grey statistic cards 150,000+ Colleagues, 46 Countries, 1,200+ Clients, 100% Renewable power without links or buttons.](../../docs/handover/screenshots/list-unlinked.jpg)
+
+**New-tab links** — At 1440 px the title Partners and insights above three image cards: The agentic bank, Cloud at scale and Joint solutions with our partners with photo-6 and eyebrow Partner, whose title is underlined under the mouse pointer.
+
+![New-tab links: At 1440 px the title Partners and insights above three image cards: The agentic bank, Cloud at scale and Joint solutions with our partners with photo-6 and eyebrow Partner, whose title is underlined under the mouse pointer.](../../docs/handover/screenshots/list-new-tab.jpg)
+
+**Legacy list** — At 1440 px a List made before this version: the large heading Our latest thinking and below it the primary button Explore all insights, without any cards.
+
+![Legacy list: At 1440 px a List made before this version: the large heading Our latest thinking and below it the primary button Explore all insights, without any cards.](../../docs/handover/screenshots/list-legacy.jpg)
+
+**Empty state** — The page at 1440 px with two Lists: below Insights for Europe a grey rounded box with There are no items to show., and below Related insights, rendered as in Universal Editor, the hint The pages show on the published page (from the query index).
+
+![Empty state: The page at 1440 px with two Lists: below Insights for Europe a grey rounded box with There are no items to show., and below Related insights, rendered as in Universal Editor, the hint The pages show on the published page from the query ](../../docs/handover/screenshots/list-empty-state.jpg)
+
+**Figma variation 1** — At 1440 px the title Themes above three tall panels in one row: Agentic AI on dark #20293c, The future of work on brand blue and Sustainability with the energy transition image behind it, each with the eyebrow Theme, the page description and Explore.
+
+![Figma variation 1: At 1440 px the title Themes above three tall panels in one row: Agentic AI on dark #20293c, The future of work on brand blue and Sustainability with the energy transition image behind it, each with the eyebrow Theme, the page descr](../../docs/handover/screenshots/list-figma-01-themes.jpg)
+
+**Figma variation 2** — At 1440 px the title Insight and opinion with View all on the right, a feature for The agentic bank with Anita Rao, then Supply chain resilience, a dark Cloud migration panel, The future of work and Personalisation in retail with square images.
+
+![Figma variation 2: At 1440 px the title Insight and opinion with View all on the right, a feature for The agentic bank with Anita Rao, then Supply chain resilience, a dark Cloud migration panel, The future of work and Personalisation in retail with s](../../docs/handover/screenshots/list-figma-02-insight-opinion.jpg)
+
+**Figma variation 3** — At 1440 px the title Related above a rail of Mixed cards bleeding to the right edge: image cards Cloud at scale, The future of work, Touchless insurance claims and Personalisation in retail, and the gradient report card State of AI 2026.
+
+![Figma variation 3: At 1440 px the title Related above a rail of Mixed cards bleeding to the right edge: image cards Cloud at scale, The future of work, Touchless insurance claims and Personalisation in retail, and the gradient report card State of AI](../../docs/handover/screenshots/list-figma-03-related.jpg)
+
+**Figma variation 4** — At 1440 px the title Intelligence in action above three service pages as image cards in one row (Consulting, AI and data, Cloud) with square images, the eyebrow Service and tag, titles and descriptions.
+
+![Figma variation 4: At 1440 px the title Intelligence in action above three service pages as image cards in one row Consulting, AI and data, Cloud with square images, the eyebrow Service and tag, titles and descriptions.](../../docs/handover/screenshots/list-figma-04-intelligence-in-action.jpg)
+
+**Figma variation 5** — At 1440 px the title News with the primary button All news on the right, above five rows separated by grey lines: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail.
+
+![Figma variation 5: At 1440 px the title News with the primary button All news on the right, above five rows separated by grey lines: The agentic bank, Cloud at scale, State of AI 2026, Supply chain resilience and Personalisation in retail.](../../docs/handover/screenshots/list-figma-05-news.jpg)
+
+**Figma variation 6** — At 1440 px the title At a glance above four light grey statistic cards in one row: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power. The mobile rail isn't part of this screenshot.
+
+![Figma variation 6: At 1440 px the title At a glance above four light grey statistic cards in one row: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power. The mobile rail isn't part of this screenshot.](../../docs/handover/screenshots/list-figma-06-at-a-glance.jpg)
+
+**Figma variation 7** — At 1440 px the title What we stand for above three grey statistic cards with medium statement titles, the kicker Service, the labels AI and data, Cloud and Cybersecurity, descriptions and outlined Learn more buttons.
+
+![Figma variation 7: At 1440 px the title What we stand for above three grey statistic cards with medium statement titles, the kicker Service, the labels AI and data, Cloud and Cybersecurity, descriptions and outlined Learn more buttons.](../../docs/handover/screenshots/list-figma-07-statements.jpg)
+
+**Figma variation 8** — At 1440 px the title Media coverage above a rail: image cards The agentic bank, Cloud at scale and The future of work, navy report cards Quantum readiness and State of AI 2026, and Supply chain resilience at the right edge.
+
+![Figma variation 8: At 1440 px the title Media coverage above a rail: image cards The agentic bank, Cloud at scale and The future of work, navy report cards Quantum readiness and State of AI 2026, and Supply chain resilience at the right edge.](../../docs/handover/screenshots/list-figma-08-media-coverage.jpg)
+
+**Figma variation 9** — At 1440 px the title Investor relations above a rail of the six newest Insights child pages: image cards The agentic bank and Cloud at scale, the navy report card State of AI 2026, then image cards Supply chain resilience, Personalisation in retail and The energy transition.
+
+![Figma variation 9: At 1440 px the title Investor relations above a rail of the six newest Insights child pages: image cards The agentic bank and Cloud at scale, the navy report card State of AI 2026, then image cards Supply chain resilience, Personal](../../docs/handover/screenshots/list-figma-09-investor-relations.jpg)
+
+**Figma variation 10** — At 1440 px the title Banking today above four brand blue statistic cards with white text: 8 of 10 Core banking, 2bn Payments, 40% Risk and compliance and 24/7 Customer experience. The mobile rail isn't part of this screenshot.
+
+![Figma variation 10: At 1440 px the title Banking today above four brand blue statistic cards with white text: 8 of 10 Core banking, 2bn Payments, 40% Risk and compliance and 24/7 Customer experience. The mobile rail isn't part of this screenshot.](../../docs/handover/screenshots/list-figma-10-banking-today.jpg)
+
+**Figma variation 11** — At 1440 px the title Featured services above two large image cards side by side, Consulting and AI and data, with square images, kicker, title and description.
+
+![Figma variation 11: At 1440 px the title Featured services above two large image cards side by side, Consulting and AI and data, with square images, kicker, title and description.](../../docs/handover/screenshots/list-figma-11-2-up.jpg)
+
+**Figma variation 12** — At 1440 px the title Industries we transform above three grey statistic cards with the statements Banking that runs on intelligence, Retail that knows every customer and Factories that learn and adapt, their labels, descriptions and Learn more buttons.
+
+![Figma variation 12: At 1440 px the title Industries we transform above three grey statistic cards with the statements Banking that runs on intelligence, Retail that knows every customer and Factories that learn and adapt, their labels, descriptions a](../../docs/handover/screenshots/list-figma-12-statements.jpg)
+
+**Figma variation 13** — At 1440 px the title At a glance above four statistic cards: 150,000+ on brand blue, 46 on the grey gradient, 1,200+ on mid grey and 100% on light blue, each with label and description.
+
+![Figma variation 13: At 1440 px the title At a glance above four statistic cards: 150,000+ on brand blue, 46 on the grey gradient, 1,200+ on mid grey and 100% on light blue, each with label and description.](../../docs/handover/screenshots/list-figma-13-4-up-colours.jpg)
+
+**Figma variation 14** — At 1440 px the title Our impact in numbers above four light grey statistic cards within the content width: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power.
+
+![Figma variation 14: At 1440 px the title Our impact in numbers above four light grey statistic cards within the content width: 150,000+ Colleagues, 46 Countries, 1,200+ Clients and 100% Renewable power.](../../docs/handover/screenshots/list-figma-14-statistics.jpg)
+
+**Universal Editor canvas** — At 1440 px the List Latest insights with description and View all, a desktop rail of 3.3 cards (The agentic bank, Running the multi-cloud enterprise, Supply chain resilience with Read the story, The future of work) and indicator and buttons, lettered A to K. The content tree (L) isn't in this capture. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/list-authoring-view.jpg)
+
+![Universal Editor canvas: At 1440 px the List Latest insights with description and View all, a desktop rail of 3.3 cards The agentic bank, Running the multi-cloud enterprise, Supply chain resilience with Read the story, The future of work and indicato](../../docs/handover/screenshots/list-authoring-view.jpg)
+
+**Properties panel** — The properties panel of a selected List with the tabs Content, Source, Cards, Layout, Scroll, Advanced and Additional; the Source tab open with List source = Tagged pages and the Search root, Use the current page when empty, Tags, Match, Include descendant pages and Maximum search depth fields, followed by Order by, Sort order and Maximum items. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/list-properties-panel.jpg)
+
+![Properties panel: The properties panel of a selected List with the tabs Content, Source, Cards, Layout, Scroll, Advanced and Additional; the Source tab open with List source = Tagged pages and the Search root, Use the current page when empty, Tags, M](../../docs/handover/screenshots/list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

@@ -45,55 +45,193 @@ The AEM Core Components **Separator** for Edge Delivery Services (xwalk / Univer
 
 Screenshots of the handover (6.26 Separator Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/separator-desktop-view.jpg) | The section at 1440 px: a paragraph, a Default separator (solid 1px slate 400 line across the 1280 px content width), a second paragraph, the H3 Our approach, a Branded separator (2px brand 500 line, 25% wide, at the start edge) below the heading, and the last paragraph. |
-| [Tablet rendering](../../docs/handover/screenshots/separator-tablet-view.jpg) | The section at 1024 px: four paragraphs; a full-width thin grey separator after the first, a separator at 50% of the content width, centred, after the second, and no separator between the third and fourth paragraphs because Show on tablet is off. |
-| [Mobile rendering](../../docs/handover/screenshots/separator-mobile-view.jpg) | The section at 390 px: a thin grey separator directly under the first paragraph (Mobile top spacing None), the second paragraph, then a thin grey full-bleed separator touching both screen edges, and the banking paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-decorative.jpg) | The section at 1440 px: the consulting paragraph, a Default Decorative separator (solid 1px slate 400 line across the content width with 1.5rem above and below) and the cloud migration paragraph. The image shows only the page; no accessibility tree is visible. |
-| [Variation example](../../docs/handover/screenshots/separator-semantic.jpg) | The section at 1440 px: the case study about a European bank, a Default separator in Semantic mode (a thin slate 400 line, visually identical to a decorative one), and the case study about a global retailer. The accessible name End of the story is in the markup, not visible. |
-| [Variation example](../../docs/handover/screenshots/separator-spacing-only.jpg) | The section at 1440 px: the consulting paragraph, a gap of 4rem (Desktop top spacing XL, bottom None) with no line, and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-default.jpg) | The section at 1440 px: the consulting paragraph, a Default separator (solid 1px slate 400 #b2b2b2 line, 100% of the content width, centred) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-subtle.jpg) | The section at 1440 px: the H2 Industries we serve, the introduction paragraph, a Subtle separator (solid 1px very light grey 200 #e6e6e6 line across the content width) and the banking paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-strong.jpg) | The section at 1440 px: the H3 Banking and its paragraph, a Strong separator (solid 2px slate 900 #303030 line across the content width), then the H3 Retail and its paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-inset.jpg) | The section at 1440 px: the consulting paragraph, an Inset separator (solid 1px slate 400 line that stops 2.5rem short of the left and right content edges) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-full-width.jpg) | The section at 1440 px: the consulting paragraph, a Full width separator (solid 1px slate 400 line that extends over the 5rem section padding on both sides to the full 1440 px) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-dotted.jpg) | The section at 1440 px: the consulting paragraph, a Dotted separator (a 2px dotted slate 400 line across the content width) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-dashed.jpg) | The section at 1440 px: the consulting paragraph, a Dashed separator (a 1px dashed slate 400 line across the content width) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-gradient.jpg) | The section at 1440 px: the consulting paragraph, a Gradient separator (a 2px brand 500 blue line across the content width that fades to transparent at both ends) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-branded.jpg) | The section at 1440 px: the H2 Our approach, directly below it a Branded separator (solid 2px brand 500 #4673db line, 25% of the content width, at the start edge) and the industries paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-variant-custom.jpg) | The section at 1440 px: the consulting paragraph, a Custom separator (a 3px dashed accent-yellow #e8b931 line, 75% of the content width, aligned to the end) and the cloud migration paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-theme-auto.jpg) | The page at 1440 px: a white section with two paragraphs and a Default separator between them, followed by a Highlight section (light grey background) with the same Default separator between two paragraphs; both lines are the same slate 400 grey. |
-| [Variation example](../../docs/handover/screenshots/separator-theme-light.jpg) | The section at 1440 px on the light.svg background image: two paragraphs with a separator between them using Theme Light background, a thin slate 400 line across the content width. |
-| [Variation example](../../docs/handover/screenshots/separator-theme-dark.jpg) | The section at 1440 px on the dark photo-1.svg background image: a Strong separator with Theme Dark background, a 2px light grey (slate 200 #e3e3e3) line across the content width with 4rem above and below. |
-| [Variation example](../../docs/handover/screenshots/separator-theme-brand.jpg) | The section at 1440 px on the light.svg background image: two paragraphs with a Default separator in Theme Brand background between them, a thin brand 500 blue line across the content width. |
-| [Variation example](../../docs/handover/screenshots/separator-contrast-high.jpg) | A Highlight section (light grey background) at 1440 px: two paragraphs with a separator in Background contrast High between them, a thin slate 900 #303030 line instead of the default slate 400. |
-| [Variation example](../../docs/handover/screenshots/separator-opacity.jpg) | The section at 1440 px: four paragraphs, each followed by a Strong separator (2px slate 900 line across the content width) at Line opacity 100%, 75%, 50% and 25%, getting lighter from top to bottom. |
-| [Variation example](../../docs/handover/screenshots/separator-partial-width.jpg) | The section at 1440 px: three paragraphs, each followed by a thin slate 400 separator, centred, at 25%, 50% and 75% of the content width (about 320, 640 and 960 px). |
-| [Variation example](../../docs/handover/screenshots/separator-content-width.jpg) | A full-width section at 2560 px: two paragraphs with a separator in Separator width Content width between them; the thin slate 400 line is capped at 90rem (1440 px) and centred, narrower than the section's 110rem content area. |
-| [Variation example](../../docs/handover/screenshots/separator-full-bleed.jpg) | The section at 390 px: two paragraphs with a Branded separator between them in Separator width Full bleed and Respect content maximum width off; the 2px brand 500 line runs across the full 390 px, over the 1.5rem section padding on both sides. |
-| [Variation example](../../docs/handover/screenshots/separator-max-width.jpg) | The section at 1440 px: two paragraphs with a separator at Separator width 100% and Maximum width Medium (640px) between them; the thin slate 400 line is 40rem long and centred. |
-| [Variation example](../../docs/handover/screenshots/separator-stretch.jpg) | The section at 1440 px: two paragraphs with a separator between them whose Separator width is 25% but Stretch to container width is on, so the thin slate 400 line fills the full content width. |
-| [Variation example](../../docs/handover/screenshots/separator-decoration-dot.jpg) | The section at 1440 px: two paragraphs with a Default separator between them carrying a Center decoration Dot, a 0.5625rem slate 400 circle centred on the thin line. |
-| [Variation example](../../docs/handover/screenshots/separator-decoration-square.jpg) | The section at 1440 px: two paragraphs with a Default separator between them carrying Start decoration Square and End decoration Square, small slate 400 squares at both ends of the thin line. |
-| [Variation example](../../docs/handover/screenshots/separator-decoration-diamond.jpg) | The section at 1440 px: two paragraphs with a separator between them at Line thickness Medium (2px), Separator width 50% (640 px, centred) and Center decoration Diamond, a 0.75rem rotated square at the middle of the line. |
-| [Variation example](../../docs/handover/screenshots/separator-hidden-desktop.jpg) | The section at 1440 px: the two paragraphs follow each other with no separator and no extra space between them, because the separator's Show on desktop is off. The screenshot shows only the desktop width. |
-| [Variation example](../../docs/handover/screenshots/separator-hidden-tablet.jpg) | The section at 1024 px: the two paragraphs follow each other without a separator, because Show on tablet is off. The screenshot shows only the tablet width. |
-| [Variation example](../../docs/handover/screenshots/separator-hidden-mobile.jpg) | The section at 390 px: the two paragraphs follow each other without a separator, because Show on mobile is off. The screenshot shows only the mobile width. |
-| [Variation example](../../docs/handover/screenshots/separator-hidden-all.jpg) | Universal Editor edit mode at 1440 px: between the two paragraphs a dashed outline box containing the thin line and the small grey note Separator hidden on all devices. Preview and the published page show nothing there. |
-| [Variation example](../../docs/handover/screenshots/separator-desktop-overrides.jpg) | The section at 1440 px: two paragraphs with a separator between them using Desktop width 50%, Desktop thickness Medium (2px) and Desktop alignment Start; the slate 400 line is 640 px long at the start edge. |
-| [Variation example](../../docs/handover/screenshots/separator-tablet-overrides.jpg) | The section at 1024 px: two paragraphs with a separator between them using Tablet width 75% and Tablet alignment Center; the thin slate 400 line is about 708 px long and centred. Desktop width 50% applies only from 1200 px. |
-| [Variation example](../../docs/handover/screenshots/separator-mobile-overrides.jpg) | The section at 390 px: two paragraphs with a separator between them that is a 1px accent-yellow line at 100% of the content width, from Mobile width 100% and Mobile thickness Thin overriding the Appearance values 25% and Medium. |
-| [Variation example](../../docs/handover/screenshots/separator-desktop-spacing.jpg) | The section at 1440 px: the H2 Our approach, directly below it a thin slate 400 full-width separator with Desktop top spacing None, then 2.5rem (Large) of space and the paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-tablet-spacing.jpg) | The section at 1024 px: two paragraphs with a thin slate 400 full-width separator between them and Tablet top and bottom spacing Small, 1rem above and below the line. |
-| [Variation example](../../docs/handover/screenshots/separator-mobile-spacing.jpg) | The section at 390 px: two paragraphs with a thin slate 400 full-width separator between them and Mobile top and bottom spacing XS, 0.5rem above and below the line. |
-| [Variation example](../../docs/handover/screenshots/separator-section-padding.jpg) | A Highlight section (light grey background) at 1440 px: a thin slate 400 full-width separator as the first element with Use section padding on, so the line sits directly at the top of the section content, followed by the H2 Industries we serve and the paragraph. |
-| [Variation example](../../docs/handover/screenshots/separator-animate-fade.jpg) | The section at 1440 px: two paragraphs with a separator with Animate on view Fade between them, captured half-way through the fade, the thin slate 400 line at reduced opacity. A single frame is shown. |
-| [Variation example](../../docs/handover/screenshots/separator-animate-draw-start.jpg) | The section at 1440 px: two paragraphs with a separator with Animate on view Draw from start between them, captured half-way: the thin slate 400 line has grown from the left edge to about 45% of its length. A single frame is shown. |
-| [Variation example](../../docs/handover/screenshots/separator-animate-draw-center.jpg) | The section at 1440 px: two paragraphs with a separator with Animate on view Draw from center between them, captured half-way: the thin slate 400 line has grown from its centre to about 45% of its length. A single frame is shown. |
-| [Variation example](../../docs/handover/screenshots/separator-analytics.jpg) | The section at 1440 px: two paragraphs with a semantic default separator between them, and below a dark console panel showing the data layer entry for separator-chapter-break: @type tcs-corp/components/separator, dc:title Chapter break, xdm:variant default, xdm:accessibilityMode semantic, xdm:theme auto, xdm:lineStyle solid, xdm:visibility desktop,tablet,mobile. |
-| [Universal Editor canvas](../../docs/handover/screenshots/separator-authoring-view.jpg) | An annotated edit-mode view at 1440 px (not a Universal Editor screenshot): a 50% separator with a centre diamond (A block, B rule, C decoration) between two paragraphs, and below it a separator hidden on all devices shown as a dashed box with the note Separator hidden on all devices (D). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/separator-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/separator-properties-panel.jpg) | The properties panel of a selected Separator with its tabs General, Appearance, Responsive, Spacing, Advanced and Additional; the General tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/separator-properties-panel.jpg) |
+**Desktop rendering** — The section at 1440 px: a paragraph, a Default separator (solid 1px slate 400 line across the 1280 px content width), a second paragraph, the H3 Our approach, a Branded separator (2px brand 500 line, 25% wide, at the start edge) below the heading, and the last paragraph.
+
+![Desktop rendering: The section at 1440 px: a paragraph, a Default separator solid 1px slate 400 line across the 1280 px content width, a second paragraph, the H3 Our approach, a Branded separator 2px brand 500 line, 25% wide, at the start edge below ](../../docs/handover/screenshots/separator-desktop-view.jpg)
+
+**Tablet rendering** — The section at 1024 px: four paragraphs; a full-width thin grey separator after the first, a separator at 50% of the content width, centred, after the second, and no separator between the third and fourth paragraphs because Show on tablet is off.
+
+![Tablet rendering: The section at 1024 px: four paragraphs; a full-width thin grey separator after the first, a separator at 50% of the content width, centred, after the second, and no separator between the third and fourth paragraphs because Show on ](../../docs/handover/screenshots/separator-tablet-view.jpg)
+
+**Mobile rendering** — The section at 390 px: a thin grey separator directly under the first paragraph (Mobile top spacing None), the second paragraph, then a thin grey full-bleed separator touching both screen edges, and the banking paragraph.
+
+![Mobile rendering: The section at 390 px: a thin grey separator directly under the first paragraph Mobile top spacing None, the second paragraph, then a thin grey full-bleed separator touching both screen edges, and the banking paragraph.](../../docs/handover/screenshots/separator-mobile-view.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Default Decorative separator (solid 1px slate 400 line across the content width with 1.5rem above and below) and the cloud migration paragraph. The image shows only the page; no accessibility tree is visible.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Default Decorative separator solid 1px slate 400 line across the content width with 1.5rem above and below and the cloud migration paragraph. The image shows only the page; no acc](../../docs/handover/screenshots/separator-decorative.jpg)
+
+**Variation example** — The section at 1440 px: the case study about a European bank, a Default separator in Semantic mode (a thin slate 400 line, visually identical to a decorative one), and the case study about a global retailer. The accessible name End of the story is in the markup, not visible.
+
+![Variation example: The section at 1440 px: the case study about a European bank, a Default separator in Semantic mode a thin slate 400 line, visually identical to a decorative one, and the case study about a global retailer. The accessible name End o](../../docs/handover/screenshots/separator-semantic.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a gap of 4rem (Desktop top spacing XL, bottom None) with no line, and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a gap of 4rem Desktop top spacing XL, bottom None with no line, and the cloud migration paragraph.](../../docs/handover/screenshots/separator-spacing-only.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Default separator (solid 1px slate 400 #b2b2b2 line, 100% of the content width, centred) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Default separator solid 1px slate 400 #b2b2b2 line, 100% of the content width, centred and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-default.jpg)
+
+**Variation example** — The section at 1440 px: the H2 Industries we serve, the introduction paragraph, a Subtle separator (solid 1px very light grey 200 #e6e6e6 line across the content width) and the banking paragraph.
+
+![Variation example: The section at 1440 px: the H2 Industries we serve, the introduction paragraph, a Subtle separator solid 1px very light grey 200 #e6e6e6 line across the content width and the banking paragraph.](../../docs/handover/screenshots/separator-variant-subtle.jpg)
+
+**Variation example** — The section at 1440 px: the H3 Banking and its paragraph, a Strong separator (solid 2px slate 900 #303030 line across the content width), then the H3 Retail and its paragraph.
+
+![Variation example: The section at 1440 px: the H3 Banking and its paragraph, a Strong separator solid 2px slate 900 #303030 line across the content width, then the H3 Retail and its paragraph.](../../docs/handover/screenshots/separator-variant-strong.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, an Inset separator (solid 1px slate 400 line that stops 2.5rem short of the left and right content edges) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, an Inset separator solid 1px slate 400 line that stops 2.5rem short of the left and right content edges and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-inset.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Full width separator (solid 1px slate 400 line that extends over the 5rem section padding on both sides to the full 1440 px) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Full width separator solid 1px slate 400 line that extends over the 5rem section padding on both sides to the full 1440 px and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-full-width.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Dotted separator (a 2px dotted slate 400 line across the content width) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Dotted separator a 2px dotted slate 400 line across the content width and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-dotted.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Dashed separator (a 1px dashed slate 400 line across the content width) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Dashed separator a 1px dashed slate 400 line across the content width and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-dashed.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Gradient separator (a 2px brand 500 blue line across the content width that fades to transparent at both ends) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Gradient separator a 2px brand 500 blue line across the content width that fades to transparent at both ends and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-gradient.jpg)
+
+**Variation example** — The section at 1440 px: the H2 Our approach, directly below it a Branded separator (solid 2px brand 500 #4673db line, 25% of the content width, at the start edge) and the industries paragraph.
+
+![Variation example: The section at 1440 px: the H2 Our approach, directly below it a Branded separator solid 2px brand 500 #4673db line, 25% of the content width, at the start edge and the industries paragraph.](../../docs/handover/screenshots/separator-variant-branded.jpg)
+
+**Variation example** — The section at 1440 px: the consulting paragraph, a Custom separator (a 3px dashed accent-yellow #e8b931 line, 75% of the content width, aligned to the end) and the cloud migration paragraph.
+
+![Variation example: The section at 1440 px: the consulting paragraph, a Custom separator a 3px dashed accent-yellow #e8b931 line, 75% of the content width, aligned to the end and the cloud migration paragraph.](../../docs/handover/screenshots/separator-variant-custom.jpg)
+
+**Variation example** — The page at 1440 px: a white section with two paragraphs and a Default separator between them, followed by a Highlight section (light grey background) with the same Default separator between two paragraphs; both lines are the same slate 400 grey.
+
+![Variation example: The page at 1440 px: a white section with two paragraphs and a Default separator between them, followed by a Highlight section light grey background with the same Default separator between two paragraphs; both lines are the same sl](../../docs/handover/screenshots/separator-theme-auto.jpg)
+
+**Variation example** — The section at 1440 px on the light.svg background image: two paragraphs with a separator between them using Theme Light background, a thin slate 400 line across the content width.
+
+![Variation example: The section at 1440 px on the light.svg background image: two paragraphs with a separator between them using Theme Light background, a thin slate 400 line across the content width.](../../docs/handover/screenshots/separator-theme-light.jpg)
+
+**Variation example** — The section at 1440 px on the dark photo-1.svg background image: a Strong separator with Theme Dark background, a 2px light grey (slate 200 #e3e3e3) line across the content width with 4rem above and below.
+
+![Variation example: The section at 1440 px on the dark photo-1.svg background image: a Strong separator with Theme Dark background, a 2px light grey slate 200 #e3e3e3 line across the content width with 4rem above and below.](../../docs/handover/screenshots/separator-theme-dark.jpg)
+
+**Variation example** — The section at 1440 px on the light.svg background image: two paragraphs with a Default separator in Theme Brand background between them, a thin brand 500 blue line across the content width.
+
+![Variation example: The section at 1440 px on the light.svg background image: two paragraphs with a Default separator in Theme Brand background between them, a thin brand 500 blue line across the content width.](../../docs/handover/screenshots/separator-theme-brand.jpg)
+
+**Variation example** — A Highlight section (light grey background) at 1440 px: two paragraphs with a separator in Background contrast High between them, a thin slate 900 #303030 line instead of the default slate 400.
+
+![Variation example: A Highlight section light grey background at 1440 px: two paragraphs with a separator in Background contrast High between them, a thin slate 900 #303030 line instead of the default slate 400.](../../docs/handover/screenshots/separator-contrast-high.jpg)
+
+**Variation example** — The section at 1440 px: four paragraphs, each followed by a Strong separator (2px slate 900 line across the content width) at Line opacity 100%, 75%, 50% and 25%, getting lighter from top to bottom.
+
+![Variation example: The section at 1440 px: four paragraphs, each followed by a Strong separator 2px slate 900 line across the content width at Line opacity 100%, 75%, 50% and 25%, getting lighter from top to bottom.](../../docs/handover/screenshots/separator-opacity.jpg)
+
+**Variation example** — The section at 1440 px: three paragraphs, each followed by a thin slate 400 separator, centred, at 25%, 50% and 75% of the content width (about 320, 640 and 960 px).
+
+![Variation example: The section at 1440 px: three paragraphs, each followed by a thin slate 400 separator, centred, at 25%, 50% and 75% of the content width about 320, 640 and 960 px.](../../docs/handover/screenshots/separator-partial-width.jpg)
+
+**Variation example** — A full-width section at 2560 px: two paragraphs with a separator in Separator width Content width between them; the thin slate 400 line is capped at 90rem (1440 px) and centred, narrower than the section's 110rem content area.
+
+![Variation example: A full-width section at 2560 px: two paragraphs with a separator in Separator width Content width between them; the thin slate 400 line is capped at 90rem 1440 px and centred, narrower than the section's 110rem content area.](../../docs/handover/screenshots/separator-content-width.jpg)
+
+**Variation example** — The section at 390 px: two paragraphs with a Branded separator between them in Separator width Full bleed and Respect content maximum width off; the 2px brand 500 line runs across the full 390 px, over the 1.5rem section padding on both sides.
+
+![Variation example: The section at 390 px: two paragraphs with a Branded separator between them in Separator width Full bleed and Respect content maximum width off; the 2px brand 500 line runs across the full 390 px, over the 1.5rem section padding on](../../docs/handover/screenshots/separator-full-bleed.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator at Separator width 100% and Maximum width Medium (640px) between them; the thin slate 400 line is 40rem long and centred.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator at Separator width 100% and Maximum width Medium 640px between them; the thin slate 400 line is 40rem long and centred.](../../docs/handover/screenshots/separator-max-width.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator between them whose Separator width is 25% but Stretch to container width is on, so the thin slate 400 line fills the full content width.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator between them whose Separator width is 25% but Stretch to container width is on, so the thin slate 400 line fills the full content width.](../../docs/handover/screenshots/separator-stretch.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a Default separator between them carrying a Center decoration Dot, a 0.5625rem slate 400 circle centred on the thin line.
+
+![Variation example: The section at 1440 px: two paragraphs with a Default separator between them carrying a Center decoration Dot, a 0.5625rem slate 400 circle centred on the thin line.](../../docs/handover/screenshots/separator-decoration-dot.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a Default separator between them carrying Start decoration Square and End decoration Square, small slate 400 squares at both ends of the thin line.
+
+![Variation example: The section at 1440 px: two paragraphs with a Default separator between them carrying Start decoration Square and End decoration Square, small slate 400 squares at both ends of the thin line.](../../docs/handover/screenshots/separator-decoration-square.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator between them at Line thickness Medium (2px), Separator width 50% (640 px, centred) and Center decoration Diamond, a 0.75rem rotated square at the middle of the line.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator between them at Line thickness Medium 2px, Separator width 50% 640 px, centred and Center decoration Diamond, a 0.75rem rotated square at the middle of the line.](../../docs/handover/screenshots/separator-decoration-diamond.jpg)
+
+**Variation example** — The section at 1440 px: the two paragraphs follow each other with no separator and no extra space between them, because the separator's Show on desktop is off. The screenshot shows only the desktop width.
+
+![Variation example: The section at 1440 px: the two paragraphs follow each other with no separator and no extra space between them, because the separator's Show on desktop is off. The screenshot shows only the desktop width.](../../docs/handover/screenshots/separator-hidden-desktop.jpg)
+
+**Variation example** — The section at 1024 px: the two paragraphs follow each other without a separator, because Show on tablet is off. The screenshot shows only the tablet width.
+
+![Variation example: The section at 1024 px: the two paragraphs follow each other without a separator, because Show on tablet is off. The screenshot shows only the tablet width.](../../docs/handover/screenshots/separator-hidden-tablet.jpg)
+
+**Variation example** — The section at 390 px: the two paragraphs follow each other without a separator, because Show on mobile is off. The screenshot shows only the mobile width.
+
+![Variation example: The section at 390 px: the two paragraphs follow each other without a separator, because Show on mobile is off. The screenshot shows only the mobile width.](../../docs/handover/screenshots/separator-hidden-mobile.jpg)
+
+**Variation example** — Universal Editor edit mode at 1440 px: between the two paragraphs a dashed outline box containing the thin line and the small grey note Separator hidden on all devices. Preview and the published page show nothing there.
+
+![Variation example: Universal Editor edit mode at 1440 px: between the two paragraphs a dashed outline box containing the thin line and the small grey note Separator hidden on all devices. Preview and the published page show nothing there.](../../docs/handover/screenshots/separator-hidden-all.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator between them using Desktop width 50%, Desktop thickness Medium (2px) and Desktop alignment Start; the slate 400 line is 640 px long at the start edge.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator between them using Desktop width 50%, Desktop thickness Medium 2px and Desktop alignment Start; the slate 400 line is 640 px long at the start edge.](../../docs/handover/screenshots/separator-desktop-overrides.jpg)
+
+**Variation example** — The section at 1024 px: two paragraphs with a separator between them using Tablet width 75% and Tablet alignment Center; the thin slate 400 line is about 708 px long and centred. Desktop width 50% applies only from 1200 px.
+
+![Variation example: The section at 1024 px: two paragraphs with a separator between them using Tablet width 75% and Tablet alignment Center; the thin slate 400 line is about 708 px long and centred. Desktop width 50% applies only from 1200 px.](../../docs/handover/screenshots/separator-tablet-overrides.jpg)
+
+**Variation example** — The section at 390 px: two paragraphs with a separator between them that is a 1px accent-yellow line at 100% of the content width, from Mobile width 100% and Mobile thickness Thin overriding the Appearance values 25% and Medium.
+
+![Variation example: The section at 390 px: two paragraphs with a separator between them that is a 1px accent-yellow line at 100% of the content width, from Mobile width 100% and Mobile thickness Thin overriding the Appearance values 25% and Medium.](../../docs/handover/screenshots/separator-mobile-overrides.jpg)
+
+**Variation example** — The section at 1440 px: the H2 Our approach, directly below it a thin slate 400 full-width separator with Desktop top spacing None, then 2.5rem (Large) of space and the paragraph.
+
+![Variation example: The section at 1440 px: the H2 Our approach, directly below it a thin slate 400 full-width separator with Desktop top spacing None, then 2.5rem Large of space and the paragraph.](../../docs/handover/screenshots/separator-desktop-spacing.jpg)
+
+**Variation example** — The section at 1024 px: two paragraphs with a thin slate 400 full-width separator between them and Tablet top and bottom spacing Small, 1rem above and below the line.
+
+![Variation example: The section at 1024 px: two paragraphs with a thin slate 400 full-width separator between them and Tablet top and bottom spacing Small, 1rem above and below the line.](../../docs/handover/screenshots/separator-tablet-spacing.jpg)
+
+**Variation example** — The section at 390 px: two paragraphs with a thin slate 400 full-width separator between them and Mobile top and bottom spacing XS, 0.5rem above and below the line.
+
+![Variation example: The section at 390 px: two paragraphs with a thin slate 400 full-width separator between them and Mobile top and bottom spacing XS, 0.5rem above and below the line.](../../docs/handover/screenshots/separator-mobile-spacing.jpg)
+
+**Variation example** — A Highlight section (light grey background) at 1440 px: a thin slate 400 full-width separator as the first element with Use section padding on, so the line sits directly at the top of the section content, followed by the H2 Industries we serve and the paragraph.
+
+![Variation example: A Highlight section light grey background at 1440 px: a thin slate 400 full-width separator as the first element with Use section padding on, so the line sits directly at the top of the section content, followed by the H2 Industrie](../../docs/handover/screenshots/separator-section-padding.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator with Animate on view Fade between them, captured half-way through the fade, the thin slate 400 line at reduced opacity. A single frame is shown.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator with Animate on view Fade between them, captured half-way through the fade, the thin slate 400 line at reduced opacity. A single frame is shown.](../../docs/handover/screenshots/separator-animate-fade.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator with Animate on view Draw from start between them, captured half-way: the thin slate 400 line has grown from the left edge to about 45% of its length. A single frame is shown.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator with Animate on view Draw from start between them, captured half-way: the thin slate 400 line has grown from the left edge to about 45% of its length. A single frame is shown.](../../docs/handover/screenshots/separator-animate-draw-start.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a separator with Animate on view Draw from center between them, captured half-way: the thin slate 400 line has grown from its centre to about 45% of its length. A single frame is shown.
+
+![Variation example: The section at 1440 px: two paragraphs with a separator with Animate on view Draw from center between them, captured half-way: the thin slate 400 line has grown from its centre to about 45% of its length. A single frame is shown.](../../docs/handover/screenshots/separator-animate-draw-center.jpg)
+
+**Variation example** — The section at 1440 px: two paragraphs with a semantic default separator between them, and below a dark console panel showing the data layer entry for separator-chapter-break: @type tcs-corp/components/separator, dc:title Chapter break, xdm:variant default, xdm:accessibilityMode semantic, xdm:theme auto, xdm:lineStyle solid, xdm:visibility desktop,tablet,mobile.
+
+![Variation example: The section at 1440 px: two paragraphs with a semantic default separator between them, and below a dark console panel showing the data layer entry for separator-chapter-break: @type tcs-corp/components/separator, dc:title Chapter b](../../docs/handover/screenshots/separator-analytics.jpg)
+
+**Universal Editor canvas** — An annotated edit-mode view at 1440 px (not a Universal Editor screenshot): a 50% separator with a centre diamond (A block, B rule, C decoration) between two paragraphs, and below it a separator hidden on all devices shown as a dashed box with the note Separator hidden on all devices (D). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/separator-authoring-view.jpg)
+
+![Universal Editor canvas: An annotated edit-mode view at 1440 px not a Universal Editor screenshot: a 50% separator with a centre diamond A block, B rule, C decoration between two paragraphs, and below it a separator hidden on all devices shown as a d](../../docs/handover/screenshots/separator-authoring-view.jpg)
+
+**Properties panel** — The properties panel of a selected Separator with its tabs General, Appearance, Responsive, Spacing, Advanced and Additional; the General tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/separator-properties-panel.jpg)
+
+![Properties panel: The properties panel of a selected Separator with its tabs General, Appearance, Responsive, Spacing, Advanced and Additional; the General tab open. Dialog reference generated from the component model, not a Universal Editor screensh](../../docs/handover/screenshots/separator-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

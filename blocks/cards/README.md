@@ -37,59 +37,209 @@ Cards shows **manually authored cards**: authors type each card's image, eyebrow
 
 Screenshots of the handover (6.15 Cards Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/cards-desktop-view.jpg) | The Cards block at 1440 px with default settings: the header with the H2 "Latest insights" and its description on the left and the "View all insights" text link on the right, above four image cards in one row (photo-1.svg to photo-4.svg in 16:9 frames, kickers such as "Insight", the tag label and "6m", titles from "The agentic bank" to "Personalisation in retail", descriptions and meta rows "Article" with dates from "04 Sep 26"). |
-| [Tablet rendering](../../docs/handover/screenshots/cards-tablet-view.jpg) | The same Latest insights block at 1024 px: the 2rem title with "View all insights" still on the right, and the four image cards in one row (Tablet columns 4 by default) with 1.25rem card titles and 0.875rem kickers and meta rows. |
-| [Mobile rendering](../../docs/handover/screenshots/cards-mobile-view.jpg) | The Latest insights block at 402 px: the header stacked (title, description, then "View all insights" below), and the four image cards one per row in a single column with a 16 px gap, 1.125rem titles and 0.75rem kickers and meta rows. |
-| [Image card style](../../docs/handover/screenshots/cards-image-card.jpg) | Four image cards in a row at 1440 px (default Card style Image card, 4 columns): 16:9 rounded images, uppercase grey kickers (e.g. "Insight", the tag label, "6m"), the titles "The agentic bank", "Cloud at scale", "Supply chain resilience" and "Personalisation in retail", two-line descriptions and the meta row "Article" with the date (e.g. "04 Sep 26"). |
-| [Panel card style](../../docs/handover/screenshots/cards-panel-card.jpg) | Three tall 2:3 dark navy-grey (#20293c) panels in a 3-column row at 1440 px, each with the light kicker "Theme", a large light title ("Responsible AI", "Sustainable operations", "Resilient enterprises"), a muted description and the "Explore" text link at the bottom. |
-| [Report card style](../../docs/handover/screenshots/cards-report-card.jpg) | Three tall 2:3 report cards in a 3-column row at 1440 px on the light blue-grey to warm grey gradient: kickers "Report" with the dates "04 Sep 26", "15 Jul 26" and "28 May 26", the dark titles "State of AI 2026", "Cloud value index" and "Supply chain outlook", descriptions and an outlined "Download" button at the bottom. |
-| [Statistic card style](../../docs/handover/screenshots/cards-statistic-card.jpg) | Four light grey (#d9d9d9) 2:3 statistic cards in a row at 1440 px, each with "At a glance" at the top, a very large number ("4bn", "600,000+", "150", "98%") and at the bottom a bold label ("Revenue", "Colleagues", "Delivery centres", "Client retention") with a short description; no links or buttons. |
-| [Mixed card style](../../docs/handover/screenshots/cards-mixed.jpg) | A 3-column row at 1440 px with Card style Mixed: the image card "The agentic bank" (photo-1.svg), the dark #20293c panel "Responsible AI" (no image) with "Explore", and the gradient report card "State of AI 2026" (Content type Report) with the kicker "Report", "04 Sep 26" and a Download button. |
-| [Feature card](../../docs/handover/screenshots/cards-feature-card.jpg) | At 1440 px a full-width feature card (about 35.6rem high) with wide.svg filling it under a white gradient from the left, the two tag labels and "12m" and the large title "Building the agentic enterprise" (no description); below it three image cards ("Cloud at scale", "Supply chain resilience", "Personalisation in retail") in a 3-column row. |
-| [Rows of links](../../docs/handover/screenshots/cards-rows-of-links.jpg) | Four full-width rows of links at 1440 px, each with the uppercase eyebrow and first tag, a large title ("The agentic bank", "Cloud at scale", ...), a description, the date and a grey arrow on the right, separated by thin grey lines (Dividers between rows); the pointer is on the second row, whose arrow is blue and moved. |
-| [Dark card colour](../../docs/handover/screenshots/cards-colour-dark.jpg) | At 1024 px two cards side by side (Tablet columns 2) on dark #20293c with light text: the statistic "4bn" with "At a glance", "Revenue" and its description, and the report card "State of AI 2026" with the kicker "Report", "04 Sep 26", the description and a light outlined Download button. |
-| [Navy card colour](../../docs/handover/screenshots/cards-colour-navy.jpg) | Three 2:3 report cards in a 3-column row at 1440 px on near-black navy (#011627) with light text: the kicker "Report" with the date, the titles "State of AI 2026", "Cloud value index" and "Supply chain outlook", muted descriptions and a light outlined Download button at the bottom. |
-| [Brand blue card colour](../../docs/handover/screenshots/cards-colour-brand.jpg) | At 402 px a single brand blue (#4673db) statistic card filling the column: "At a glance" at the top, the white number "600,000+", and at the bottom the label "Colleagues" with the description in 60 % white. |
-| [Light blue card colour](../../docs/handover/screenshots/cards-colour-brand-light.jpg) | At 402 px a single light blue statistic card filling the column: "At a glance" at the top, the black number "150", and at the bottom the label "Delivery centres" with a dark description. |
-| [Light grey card colour](../../docs/handover/screenshots/cards-colour-grey.jpg) | Three 2:3 panels in a 3-column row at 1440 px on light grey (#d9d9d9) with black text instead of the dark panel default: the kicker "Theme", the titles "Responsible AI", "Sustainable operations" and "Resilient enterprises", the descriptions and a black "Explore" link. |
-| [Mid grey card colour](../../docs/handover/screenshots/cards-colour-mid-grey.jpg) | At 402 px a single mid grey (#999) statistic card filling the column: "At a glance" at the top, the black number "98%", and at the bottom the label "Client retention" with a dark grey description. |
-| [Grey gradient card colour](../../docs/handover/screenshots/cards-colour-gradient.jpg) | At 402 px a single statistic card on the diagonal light blue-grey to warm grey gradient: "At a glance" at the top, the dark number "4bn", and at the bottom the label "Revenue" with its description. |
-| [Image background card colour](../../docs/handover/screenshots/cards-colour-image.jpg) | At 402 px a single tall 2:3 panel whose image light.svg covers the whole card, with the kicker "Theme", the title "Future-ready cities", the description and the "Explore" link in dark text on top of the image (no overlay). |
-| [Square image ratio](../../docs/handover/screenshots/cards-ratio-1-1.jpg) | Three image cards in a 3-column row at 1440 px with square images (square-1.svg to square-3.svg), the kickers "Consulting", "Cloud" and "Security", the titles "Business and technology consulting", "Cloud migration and operations" and "Cyber defence and resilience" and their descriptions; no meta row (no content type or date). |
-| [4:3 image ratio](../../docs/handover/screenshots/cards-ratio-4-3.jpg) | Three image cards in a 3-column row at 1440 px with 4:3 images (photo-4.svg to photo-6.svg), kickers with eyebrow, tag label and reading time, the titles "Personalisation in retail", "The energy transition" and "Quantum readiness", descriptions and the meta rows "Article" with "30 Jul 26", "16 Jul 26" and "02 Jul 26". |
-| [3:2 image ratio](../../docs/handover/screenshots/cards-ratio-3-2.jpg) | Three image cards in a 3-column row at 1440 px with 3:2 images (photo-6.svg to photo-8.svg), the titles "Quantum readiness", "The future of work" and "Touchless insurance claims", descriptions and the meta rows "Article" with "02 Jul 26", "Article" with "18 Jun 26" and "Case study" with "04 Jun 26". |
-| [Compact panel height](../../docs/handover/screenshots/cards-panel-compact.jpg) | Four nearly square (9:10) light grey statistic cards in a row at 1440 px instead of tall 2:3 ones, each with "At a glance", the number ("4bn", "600,000+", "150", "98%"), the label and the description. |
-| [Content panel height](../../docs/handover/screenshots/cards-panel-content.jpg) | Three dark #20293c panels in a 3-column row at 1440 px whose height fits their text instead of the 2:3 shape; with Stretch cards to row height on they share the tallest height, each with the kicker "Theme", the title, the description and "Explore" at the bottom. |
-| [Compact statistic title](../../docs/handover/screenshots/cards-stat-compact.jpg) | Three light grey statistic cards in a 3-column row at 1440 px with medium-size titles ("Net zero by 2030", "1 million learners", "50% women leaders") instead of huge numbers, the kicker "Our commitment", the labels "Climate", "Skills" and "Inclusion", descriptions and an outlined "Read more" button each. |
-| [Dividers between rows](../../docs/handover/screenshots/cards-dividers.jpg) | Three rows of links at 1440 px separated by thin grey (#b2b2b2) lines, each with the eyebrow ("Perspective", "Research", "Insight"), the large title ("The energy transition", "Quantum readiness", "The future of work"), the description, the date and a grey arrow on the right. |
-| [Centred header](../../docs/handover/screenshots/cards-header-centred.jpg) | At 1440 px the title "Our company at a glance", its description and the "About us" text link centred above a row of four compact (9:10) light grey statistic cards ("4bn", "600,000+", "150", "98%"). |
-| [Header call to action](../../docs/handover/screenshots/cards-header-cta.jpg) | One section at 1440 px with two Cards blocks in a single capture: "Latest insights" with a "View all" text link on the right above four insight image cards, then "Our services" with a filled primary "Explore services" button above four service image cards. |
-| [Grid on every breakpoint](../../docs/handover/screenshots/cards-grid-all.jpg) | At 1440 px eight image cards in two rows of four (default Grid, 4 columns), from "The agentic bank" to "Touchless insurance claims"; only the desktop layout is captured (below 600 px the cards would stack in one column). |
-| [Horizontal scroll on every breakpoint](../../docs/handover/screenshots/cards-scroll-all.jpg) | At 1440 px a scrolling row with 4.2 image cards visible, the fifth cut off at the right screen edge (bleed), with the scroll indicator and the round previous / next buttons below (Previous disabled at the start); only the desktop layout is captured. |
-| [Desktop-only scroll](../../docs/handover/screenshots/cards-scroll-desktop-only.jpg) | At 1440 px a scrolling row of the six image cards with 4.2 visible, the fifth cut off at the screen edge, and the previous / next buttons at the bottom right; only the desktop layout is captured (tablet would be a 2-column grid, mobile one column). |
-| [Tablet-only scroll](../../docs/handover/screenshots/cards-scroll-tablet-only.jpg) | At 1024 px a scrolling row with 2.5 image cards visible ("The agentic bank", "Cloud at scale" and half of "Supply chain resilience"), cut off at the right edge, without buttons or indicator (tablet defaults off). |
-| [Mobile-only scroll](../../docs/handover/screenshots/cards-scroll-mobile-only.jpg) | At 402 px a rail of light grey statistic cards with 1.2 visible: "4bn" and part of "600,000+" peeking at the right edge, with the grey scroll indicator below. |
-| [Desktop and tablet scroll](../../docs/handover/screenshots/cards-scroll-desktop-tablet.jpg) | At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and the previous / next buttons at the bottom right (Previous disabled at the start). |
-| [Desktop and mobile scroll](../../docs/handover/screenshots/cards-scroll-desktop-mobile.jpg) | At 402 px a rail of image cards with 1.2 visible, "The agentic bank" and part of "Cloud at scale" at the right edge, with the grey scroll indicator below (mobile buttons off by default). |
-| [Tablet and mobile scroll](../../docs/handover/screenshots/cards-scroll-tablet-mobile.jpg) | At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and a thin grey scroll indicator below; no previous / next buttons. |
-| [Previous and next buttons](../../docs/handover/screenshots/cards-previous-next.jpg) | At 1440 px a scrolling row of six image cards with 4.2 visible and two round chevron icon buttons at the bottom right under the row; the Previous button is disabled at the start and Next is enabled. |
-| [Scroll indicator](../../docs/handover/screenshots/cards-scroll-indicator.jpg) | At 1440 px a scrolling row of six image cards with 4.2 visible and below it a 4-pixel light grey track with a darker grey thumb at the start whose width shows the visible share; no buttons. |
-| [Fixed card width](../../docs/handover/screenshots/cards-fixed-card-width.jpg) | At 1440 px a scrolling row of fixed 320 px (20rem) image cards, about four visible with the last cut off at the screen edge, and the previous / next buttons below. |
-| [Scroller inside the content width](../../docs/handover/screenshots/cards-edge-none.jpg) | One section at 1440 px with two desktop rails of five image cards in a single capture: in the first (bleed) the last visible card is cut by the screen edge; in the second (Inside the content width) it is cut at the section's right padding. Both have previous / next buttons. |
-| [Centre snap alignment](../../docs/handover/screenshots/cards-snap-center.jpg) | At 402 px a rail of service image cards opened at the second card (Initial item index 1): "Cloud migration and operations" centred, with parts of the first and third cards visible on both sides, and the scroll indicator below. |
-| [Viewport scroll step](../../docs/handover/screenshots/cards-step-viewport.jpg) | At 1440 px the rail of eight image cards after one click on Next (a single capture, not before and after): the next set of cards fills the view and the Previous button is enabled. |
-| [Loop](../../docs/handover/screenshots/cards-loop.jpg) | At 1440 px the rail of six image cards scrolled to its end ("Quantum readiness" visible at the right) with the Next button still enabled because Loop is on; the capture shows the end state, not the return to the first card. |
-| [Initial item](../../docs/handover/screenshots/cards-initial-item.jpg) | At 1440 px a rail of six image cards that opens scrolled to its third card, "Supply chain resilience", at the left edge (Initial item index 2), with the Previous button enabled. |
-| [Equal card height](../../docs/handover/screenshots/cards-equal-height.jpg) | At 1440 px six dark #20293c panels (Panel height Content) in two rows of three with the same height, although the second row ("Banking", "Retail", "Manufacturing", with one-line descriptions) has much shorter texts than the first. |
-| [Cards not stretched](../../docs/handover/screenshots/cards-no-stretch.jpg) | At 1440 px three image cards in a 3-column row ("Business and technology consulting", "Cloud migration and operations", "Cyber defence and resilience") of different heights, aligned to the top of the row. |
-| [Unlinked cards](../../docs/handover/screenshots/cards-unlinked.jpg) | At 1440 px four compact (9:10) light grey statistic cards ("4bn", "600,000+", "150", "98%") without any link or button; the pointer rests on the second card and shows no hand cursor or link styling. |
-| [New-tab links](../../docs/handover/screenshots/cards-new-tab.jpg) | At 1440 px three image cards in a 3-column row; the pointer is on the third card's title "Partner summit 2026" (Event, "20 Oct 26"), which links to https://www.example.com/partner-summit in a new tab; the browser status bar isn't part of the page capture. |
-| [Legacy cards in the new design](../../docs/handover/screenshots/cards-legacy.jpg) | At 1440 px an older Cards block (image and rich text cells, no block settings) rendered in the new design as four image cards in a row: each heading ("Business and technology consulting", ...) as the title, the sentence as description and "Learn more" as the call to action text link. |
-| [Empty state](../../docs/handover/screenshots/cards-empty-state.jpg) | In Universal Editor edit mode at 1440 px: the header "Our services" with its description, and below it a grey box with "Add a Card to the block and give it a title, a description or an image." |
-| [Universal Editor canvas](../../docs/handover/screenshots/cards-authoring-view.jpg) | An annotated preview in editor mode at 1440 px (not a Universal Editor screenshot): the header "Our services" with description and "View all services" (A to C) and a rail of four service image cards with 3.2 visible (D to J), with buttons and indicator (K). The content tree with its four Card items (L) isn't part of the capture. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/cards-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/cards-properties-panel.jpg) | The Universal Editor properties panel of a selected Cards block showing the tabs Content, Cards, Layout, Scroll, Advanced and Additional, with the Cards tab open (Display as teaser, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format, Image loading). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/cards-properties-panel.jpg) |
+**Desktop rendering** — The Cards block at 1440 px with default settings: the header with the H2 "Latest insights" and its description on the left and the "View all insights" text link on the right, above four image cards in one row (photo-1.svg to photo-4.svg in 16:9 frames, kickers such as "Insight", the tag label and "6m", titles from "The agentic bank" to "Personalisation in retail", descriptions and meta rows "Article" with dates from "04 Sep 26").
+
+![Desktop rendering: The Cards block at 1440 px with default settings: the header with the H2 "Latest insights" and its description on the left and the "View all insights" text link on the right, above four image cards in one row photo-1.svg to photo-4](../../docs/handover/screenshots/cards-desktop-view.jpg)
+
+**Tablet rendering** — The same Latest insights block at 1024 px: the 2rem title with "View all insights" still on the right, and the four image cards in one row (Tablet columns 4 by default) with 1.25rem card titles and 0.875rem kickers and meta rows.
+
+![Tablet rendering: The same Latest insights block at 1024 px: the 2rem title with "View all insights" still on the right, and the four image cards in one row Tablet columns 4 by default with 1.25rem card titles and 0.875rem kickers and meta rows.](../../docs/handover/screenshots/cards-tablet-view.jpg)
+
+**Mobile rendering** — The Latest insights block at 402 px: the header stacked (title, description, then "View all insights" below), and the four image cards one per row in a single column with a 16 px gap, 1.125rem titles and 0.75rem kickers and meta rows.
+
+![Mobile rendering: The Latest insights block at 402 px: the header stacked title, description, then "View all insights" below, and the four image cards one per row in a single column with a 16 px gap, 1.125rem titles and 0.75rem kickers and meta rows.](../../docs/handover/screenshots/cards-mobile-view.jpg)
+
+**Image card style** — Four image cards in a row at 1440 px (default Card style Image card, 4 columns): 16:9 rounded images, uppercase grey kickers (e.g. "Insight", the tag label, "6m"), the titles "The agentic bank", "Cloud at scale", "Supply chain resilience" and "Personalisation in retail", two-line descriptions and the meta row "Article" with the date (e.g. "04 Sep 26").
+
+![Image card style: Four image cards in a row at 1440 px default Card style Image card, 4 columns: 16:9 rounded images, uppercase grey kickers e.g. "Insight", the tag label, "6m", the titles "The agentic bank", "Cloud at scale", "Supply chain resilienc](../../docs/handover/screenshots/cards-image-card.jpg)
+
+**Panel card style** — Three tall 2:3 dark navy-grey (#20293c) panels in a 3-column row at 1440 px, each with the light kicker "Theme", a large light title ("Responsible AI", "Sustainable operations", "Resilient enterprises"), a muted description and the "Explore" text link at the bottom.
+
+![Panel card style: Three tall 2:3 dark navy-grey #20293c panels in a 3-column row at 1440 px, each with the light kicker "Theme", a large light title "Responsible AI", "Sustainable operations", "Resilient enterprises", a muted description and the "Exp](../../docs/handover/screenshots/cards-panel-card.jpg)
+
+**Report card style** — Three tall 2:3 report cards in a 3-column row at 1440 px on the light blue-grey to warm grey gradient: kickers "Report" with the dates "04 Sep 26", "15 Jul 26" and "28 May 26", the dark titles "State of AI 2026", "Cloud value index" and "Supply chain outlook", descriptions and an outlined "Download" button at the bottom.
+
+![Report card style: Three tall 2:3 report cards in a 3-column row at 1440 px on the light blue-grey to warm grey gradient: kickers "Report" with the dates "04 Sep 26", "15 Jul 26" and "28 May 26", the dark titles "State of AI 2026", "Cloud value index](../../docs/handover/screenshots/cards-report-card.jpg)
+
+**Statistic card style** — Four light grey (#d9d9d9) 2:3 statistic cards in a row at 1440 px, each with "At a glance" at the top, a very large number ("4bn", "600,000+", "150", "98%") and at the bottom a bold label ("Revenue", "Colleagues", "Delivery centres", "Client retention") with a short description; no links or buttons.
+
+![Statistic card style: Four light grey #d9d9d9 2:3 statistic cards in a row at 1440 px, each with "At a glance" at the top, a very large number "4bn", "600,000+", "150", "98%" and at the bottom a bold label "Revenue", "Colleagues", "Delivery centres",](../../docs/handover/screenshots/cards-statistic-card.jpg)
+
+**Mixed card style** — A 3-column row at 1440 px with Card style Mixed: the image card "The agentic bank" (photo-1.svg), the dark #20293c panel "Responsible AI" (no image) with "Explore", and the gradient report card "State of AI 2026" (Content type Report) with the kicker "Report", "04 Sep 26" and a Download button.
+
+![Mixed card style: A 3-column row at 1440 px with Card style Mixed: the image card "The agentic bank" photo-1.svg, the dark #20293c panel "Responsible AI" no image with "Explore", and the gradient report card "State of AI 2026" Content type Report wit](../../docs/handover/screenshots/cards-mixed.jpg)
+
+**Feature card** — At 1440 px a full-width feature card (about 35.6rem high) with wide.svg filling it under a white gradient from the left, the two tag labels and "12m" and the large title "Building the agentic enterprise" (no description); below it three image cards ("Cloud at scale", "Supply chain resilience", "Personalisation in retail") in a 3-column row.
+
+![Feature card: At 1440 px a full-width feature card about 35.6rem high with wide.svg filling it under a white gradient from the left, the two tag labels and "12m" and the large title "Building the agentic enterprise" no description; below it three ima](../../docs/handover/screenshots/cards-feature-card.jpg)
+
+**Rows of links** — Four full-width rows of links at 1440 px, each with the uppercase eyebrow and first tag, a large title ("The agentic bank", "Cloud at scale", ...), a description, the date and a grey arrow on the right, separated by thin grey lines (Dividers between rows); the pointer is on the second row, whose arrow is blue and moved.
+
+![Rows of links: Four full-width rows of links at 1440 px, each with the uppercase eyebrow and first tag, a large title "The agentic bank", "Cloud at scale", ..., a description, the date and a grey arrow on the right, separated by thin grey lines Divid](../../docs/handover/screenshots/cards-rows-of-links.jpg)
+
+**Dark card colour** — At 1024 px two cards side by side (Tablet columns 2) on dark #20293c with light text: the statistic "4bn" with "At a glance", "Revenue" and its description, and the report card "State of AI 2026" with the kicker "Report", "04 Sep 26", the description and a light outlined Download button.
+
+![Dark card colour: At 1024 px two cards side by side Tablet columns 2 on dark #20293c with light text: the statistic "4bn" with "At a glance", "Revenue" and its description, and the report card "State of AI 2026" with the kicker "Report", "04 Sep 26",](../../docs/handover/screenshots/cards-colour-dark.jpg)
+
+**Navy card colour** — Three 2:3 report cards in a 3-column row at 1440 px on near-black navy (#011627) with light text: the kicker "Report" with the date, the titles "State of AI 2026", "Cloud value index" and "Supply chain outlook", muted descriptions and a light outlined Download button at the bottom.
+
+![Navy card colour: Three 2:3 report cards in a 3-column row at 1440 px on near-black navy #011627 with light text: the kicker "Report" with the date, the titles "State of AI 2026", "Cloud value index" and "Supply chain outlook", muted descriptions and](../../docs/handover/screenshots/cards-colour-navy.jpg)
+
+**Brand blue card colour** — At 402 px a single brand blue (#4673db) statistic card filling the column: "At a glance" at the top, the white number "600,000+", and at the bottom the label "Colleagues" with the description in 60 % white.
+
+![Brand blue card colour: At 402 px a single brand blue #4673db statistic card filling the column: "At a glance" at the top, the white number "600,000+", and at the bottom the label "Colleagues" with the description in 60 % white.](../../docs/handover/screenshots/cards-colour-brand.jpg)
+
+**Light blue card colour** — At 402 px a single light blue statistic card filling the column: "At a glance" at the top, the black number "150", and at the bottom the label "Delivery centres" with a dark description.
+
+![Light blue card colour: At 402 px a single light blue statistic card filling the column: "At a glance" at the top, the black number "150", and at the bottom the label "Delivery centres" with a dark description.](../../docs/handover/screenshots/cards-colour-brand-light.jpg)
+
+**Light grey card colour** — Three 2:3 panels in a 3-column row at 1440 px on light grey (#d9d9d9) with black text instead of the dark panel default: the kicker "Theme", the titles "Responsible AI", "Sustainable operations" and "Resilient enterprises", the descriptions and a black "Explore" link.
+
+![Light grey card colour: Three 2:3 panels in a 3-column row at 1440 px on light grey #d9d9d9 with black text instead of the dark panel default: the kicker "Theme", the titles "Responsible AI", "Sustainable operations" and "Resilient enterprises", the ](../../docs/handover/screenshots/cards-colour-grey.jpg)
+
+**Mid grey card colour** — At 402 px a single mid grey (#999) statistic card filling the column: "At a glance" at the top, the black number "98%", and at the bottom the label "Client retention" with a dark grey description.
+
+![Mid grey card colour: At 402 px a single mid grey #999 statistic card filling the column: "At a glance" at the top, the black number "98%", and at the bottom the label "Client retention" with a dark grey description.](../../docs/handover/screenshots/cards-colour-mid-grey.jpg)
+
+**Grey gradient card colour** — At 402 px a single statistic card on the diagonal light blue-grey to warm grey gradient: "At a glance" at the top, the dark number "4bn", and at the bottom the label "Revenue" with its description.
+
+![Grey gradient card colour: At 402 px a single statistic card on the diagonal light blue-grey to warm grey gradient: "At a glance" at the top, the dark number "4bn", and at the bottom the label "Revenue" with its description.](../../docs/handover/screenshots/cards-colour-gradient.jpg)
+
+**Image background card colour** — At 402 px a single tall 2:3 panel whose image light.svg covers the whole card, with the kicker "Theme", the title "Future-ready cities", the description and the "Explore" link in dark text on top of the image (no overlay).
+
+![Image background card colour: At 402 px a single tall 2:3 panel whose image light.svg covers the whole card, with the kicker "Theme", the title "Future-ready cities", the description and the "Explore" link in dark text on top of the image no overlay.](../../docs/handover/screenshots/cards-colour-image.jpg)
+
+**Square image ratio** — Three image cards in a 3-column row at 1440 px with square images (square-1.svg to square-3.svg), the kickers "Consulting", "Cloud" and "Security", the titles "Business and technology consulting", "Cloud migration and operations" and "Cyber defence and resilience" and their descriptions; no meta row (no content type or date).
+
+![Square image ratio: Three image cards in a 3-column row at 1440 px with square images square-1.svg to square-3.svg, the kickers "Consulting", "Cloud" and "Security", the titles "Business and technology consulting", "Cloud migration and operations" an](../../docs/handover/screenshots/cards-ratio-1-1.jpg)
+
+**4:3 image ratio** — Three image cards in a 3-column row at 1440 px with 4:3 images (photo-4.svg to photo-6.svg), kickers with eyebrow, tag label and reading time, the titles "Personalisation in retail", "The energy transition" and "Quantum readiness", descriptions and the meta rows "Article" with "30 Jul 26", "16 Jul 26" and "02 Jul 26".
+
+![4:3 image ratio: Three image cards in a 3-column row at 1440 px with 4:3 images photo-4.svg to photo-6.svg, kickers with eyebrow, tag label and reading time, the titles "Personalisation in retail", "The energy transition" and "Quantum readiness", des](../../docs/handover/screenshots/cards-ratio-4-3.jpg)
+
+**3:2 image ratio** — Three image cards in a 3-column row at 1440 px with 3:2 images (photo-6.svg to photo-8.svg), the titles "Quantum readiness", "The future of work" and "Touchless insurance claims", descriptions and the meta rows "Article" with "02 Jul 26", "Article" with "18 Jun 26" and "Case study" with "04 Jun 26".
+
+![3:2 image ratio: Three image cards in a 3-column row at 1440 px with 3:2 images photo-6.svg to photo-8.svg, the titles "Quantum readiness", "The future of work" and "Touchless insurance claims", descriptions and the meta rows "Article" with "02 Jul 2](../../docs/handover/screenshots/cards-ratio-3-2.jpg)
+
+**Compact panel height** — Four nearly square (9:10) light grey statistic cards in a row at 1440 px instead of tall 2:3 ones, each with "At a glance", the number ("4bn", "600,000+", "150", "98%"), the label and the description.
+
+![Compact panel height: Four nearly square 9:10 light grey statistic cards in a row at 1440 px instead of tall 2:3 ones, each with "At a glance", the number "4bn", "600,000+", "150", "98%", the label and the description.](../../docs/handover/screenshots/cards-panel-compact.jpg)
+
+**Content panel height** — Three dark #20293c panels in a 3-column row at 1440 px whose height fits their text instead of the 2:3 shape; with Stretch cards to row height on they share the tallest height, each with the kicker "Theme", the title, the description and "Explore" at the bottom.
+
+![Content panel height: Three dark #20293c panels in a 3-column row at 1440 px whose height fits their text instead of the 2:3 shape; with Stretch cards to row height on they share the tallest height, each with the kicker "Theme", the title, the descri](../../docs/handover/screenshots/cards-panel-content.jpg)
+
+**Compact statistic title** — Three light grey statistic cards in a 3-column row at 1440 px with medium-size titles ("Net zero by 2030", "1 million learners", "50% women leaders") instead of huge numbers, the kicker "Our commitment", the labels "Climate", "Skills" and "Inclusion", descriptions and an outlined "Read more" button each.
+
+![Compact statistic title: Three light grey statistic cards in a 3-column row at 1440 px with medium-size titles "Net zero by 2030", "1 million learners", "50% women leaders" instead of huge numbers, the kicker "Our commitment", the labels "Climate", "](../../docs/handover/screenshots/cards-stat-compact.jpg)
+
+**Dividers between rows** — Three rows of links at 1440 px separated by thin grey (#b2b2b2) lines, each with the eyebrow ("Perspective", "Research", "Insight"), the large title ("The energy transition", "Quantum readiness", "The future of work"), the description, the date and a grey arrow on the right.
+
+![Dividers between rows: Three rows of links at 1440 px separated by thin grey #b2b2b2 lines, each with the eyebrow "Perspective", "Research", "Insight", the large title "The energy transition", "Quantum readiness", "The future of work", the descriptio](../../docs/handover/screenshots/cards-dividers.jpg)
+
+**Centred header** — At 1440 px the title "Our company at a glance", its description and the "About us" text link centred above a row of four compact (9:10) light grey statistic cards ("4bn", "600,000+", "150", "98%").
+
+![Centred header: At 1440 px the title "Our company at a glance", its description and the "About us" text link centred above a row of four compact 9:10 light grey statistic cards "4bn", "600,000+", "150", "98%".](../../docs/handover/screenshots/cards-header-centred.jpg)
+
+**Header call to action** — One section at 1440 px with two Cards blocks in a single capture: "Latest insights" with a "View all" text link on the right above four insight image cards, then "Our services" with a filled primary "Explore services" button above four service image cards.
+
+![Header call to action: One section at 1440 px with two Cards blocks in a single capture: "Latest insights" with a "View all" text link on the right above four insight image cards, then "Our services" with a filled primary "Explore services" button ab](../../docs/handover/screenshots/cards-header-cta.jpg)
+
+**Grid on every breakpoint** — At 1440 px eight image cards in two rows of four (default Grid, 4 columns), from "The agentic bank" to "Touchless insurance claims"; only the desktop layout is captured (below 600 px the cards would stack in one column).
+
+![Grid on every breakpoint: At 1440 px eight image cards in two rows of four default Grid, 4 columns, from "The agentic bank" to "Touchless insurance claims"; only the desktop layout is captured below 600 px the cards would stack in one column.](../../docs/handover/screenshots/cards-grid-all.jpg)
+
+**Horizontal scroll on every breakpoint** — At 1440 px a scrolling row with 4.2 image cards visible, the fifth cut off at the right screen edge (bleed), with the scroll indicator and the round previous / next buttons below (Previous disabled at the start); only the desktop layout is captured.
+
+![Horizontal scroll on every breakpoint: At 1440 px a scrolling row with 4.2 image cards visible, the fifth cut off at the right screen edge bleed, with the scroll indicator and the round previous / next buttons below Previous disabled at the start; on](../../docs/handover/screenshots/cards-scroll-all.jpg)
+
+**Desktop-only scroll** — At 1440 px a scrolling row of the six image cards with 4.2 visible, the fifth cut off at the screen edge, and the previous / next buttons at the bottom right; only the desktop layout is captured (tablet would be a 2-column grid, mobile one column).
+
+![Desktop-only scroll: At 1440 px a scrolling row of the six image cards with 4.2 visible, the fifth cut off at the screen edge, and the previous / next buttons at the bottom right; only the desktop layout is captured tablet would be a 2-column grid, m](../../docs/handover/screenshots/cards-scroll-desktop-only.jpg)
+
+**Tablet-only scroll** — At 1024 px a scrolling row with 2.5 image cards visible ("The agentic bank", "Cloud at scale" and half of "Supply chain resilience"), cut off at the right edge, without buttons or indicator (tablet defaults off).
+
+![Tablet-only scroll: At 1024 px a scrolling row with 2.5 image cards visible "The agentic bank", "Cloud at scale" and half of "Supply chain resilience", cut off at the right edge, without buttons or indicator tablet defaults off.](../../docs/handover/screenshots/cards-scroll-tablet-only.jpg)
+
+**Mobile-only scroll** — At 402 px a rail of light grey statistic cards with 1.2 visible: "4bn" and part of "600,000+" peeking at the right edge, with the grey scroll indicator below.
+
+![Mobile-only scroll: At 402 px a rail of light grey statistic cards with 1.2 visible: "4bn" and part of "600,000+" peeking at the right edge, with the grey scroll indicator below.](../../docs/handover/screenshots/cards-scroll-mobile-only.jpg)
+
+**Desktop and tablet scroll** — At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and the previous / next buttons at the bottom right (Previous disabled at the start).
+
+![Desktop and tablet scroll: At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and the previous / next buttons at the bottom right Previous disabled at the start.](../../docs/handover/screenshots/cards-scroll-desktop-tablet.jpg)
+
+**Desktop and mobile scroll** — At 402 px a rail of image cards with 1.2 visible, "The agentic bank" and part of "Cloud at scale" at the right edge, with the grey scroll indicator below (mobile buttons off by default).
+
+![Desktop and mobile scroll: At 402 px a rail of image cards with 1.2 visible, "The agentic bank" and part of "Cloud at scale" at the right edge, with the grey scroll indicator below mobile buttons off by default.](../../docs/handover/screenshots/cards-scroll-desktop-mobile.jpg)
+
+**Tablet and mobile scroll** — At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and a thin grey scroll indicator below; no previous / next buttons.
+
+![Tablet and mobile scroll: At 1024 px a scrolling row with 3.3 image cards visible, the fourth cut off at the right edge, and a thin grey scroll indicator below; no previous / next buttons.](../../docs/handover/screenshots/cards-scroll-tablet-mobile.jpg)
+
+**Previous and next buttons** — At 1440 px a scrolling row of six image cards with 4.2 visible and two round chevron icon buttons at the bottom right under the row; the Previous button is disabled at the start and Next is enabled.
+
+![Previous and next buttons: At 1440 px a scrolling row of six image cards with 4.2 visible and two round chevron icon buttons at the bottom right under the row; the Previous button is disabled at the start and Next is enabled.](../../docs/handover/screenshots/cards-previous-next.jpg)
+
+**Scroll indicator** — At 1440 px a scrolling row of six image cards with 4.2 visible and below it a 4-pixel light grey track with a darker grey thumb at the start whose width shows the visible share; no buttons.
+
+![Scroll indicator: At 1440 px a scrolling row of six image cards with 4.2 visible and below it a 4-pixel light grey track with a darker grey thumb at the start whose width shows the visible share; no buttons.](../../docs/handover/screenshots/cards-scroll-indicator.jpg)
+
+**Fixed card width** — At 1440 px a scrolling row of fixed 320 px (20rem) image cards, about four visible with the last cut off at the screen edge, and the previous / next buttons below.
+
+![Fixed card width: At 1440 px a scrolling row of fixed 320 px 20rem image cards, about four visible with the last cut off at the screen edge, and the previous / next buttons below.](../../docs/handover/screenshots/cards-fixed-card-width.jpg)
+
+**Scroller inside the content width** — One section at 1440 px with two desktop rails of five image cards in a single capture: in the first (bleed) the last visible card is cut by the screen edge; in the second (Inside the content width) it is cut at the section's right padding. Both have previous / next buttons.
+
+![Scroller inside the content width: One section at 1440 px with two desktop rails of five image cards in a single capture: in the first bleed the last visible card is cut by the screen edge; in the second Inside the content width it is cut at the sect](../../docs/handover/screenshots/cards-edge-none.jpg)
+
+**Centre snap alignment** — At 402 px a rail of service image cards opened at the second card (Initial item index 1): "Cloud migration and operations" centred, with parts of the first and third cards visible on both sides, and the scroll indicator below.
+
+![Centre snap alignment: At 402 px a rail of service image cards opened at the second card Initial item index 1: "Cloud migration and operations" centred, with parts of the first and third cards visible on both sides, and the scroll indicator below.](../../docs/handover/screenshots/cards-snap-center.jpg)
+
+**Viewport scroll step** — At 1440 px the rail of eight image cards after one click on Next (a single capture, not before and after): the next set of cards fills the view and the Previous button is enabled.
+
+![Viewport scroll step: At 1440 px the rail of eight image cards after one click on Next a single capture, not before and after: the next set of cards fills the view and the Previous button is enabled.](../../docs/handover/screenshots/cards-step-viewport.jpg)
+
+**Loop** — At 1440 px the rail of six image cards scrolled to its end ("Quantum readiness" visible at the right) with the Next button still enabled because Loop is on; the capture shows the end state, not the return to the first card.
+
+![Loop: At 1440 px the rail of six image cards scrolled to its end "Quantum readiness" visible at the right with the Next button still enabled because Loop is on; the capture shows the end state, not the return to the first card.](../../docs/handover/screenshots/cards-loop.jpg)
+
+**Initial item** — At 1440 px a rail of six image cards that opens scrolled to its third card, "Supply chain resilience", at the left edge (Initial item index 2), with the Previous button enabled.
+
+![Initial item: At 1440 px a rail of six image cards that opens scrolled to its third card, "Supply chain resilience", at the left edge Initial item index 2, with the Previous button enabled.](../../docs/handover/screenshots/cards-initial-item.jpg)
+
+**Equal card height** — At 1440 px six dark #20293c panels (Panel height Content) in two rows of three with the same height, although the second row ("Banking", "Retail", "Manufacturing", with one-line descriptions) has much shorter texts than the first.
+
+![Equal card height: At 1440 px six dark #20293c panels Panel height Content in two rows of three with the same height, although the second row "Banking", "Retail", "Manufacturing", with one-line descriptions has much shorter texts than the first.](../../docs/handover/screenshots/cards-equal-height.jpg)
+
+**Cards not stretched** — At 1440 px three image cards in a 3-column row ("Business and technology consulting", "Cloud migration and operations", "Cyber defence and resilience") of different heights, aligned to the top of the row.
+
+![Cards not stretched: At 1440 px three image cards in a 3-column row "Business and technology consulting", "Cloud migration and operations", "Cyber defence and resilience" of different heights, aligned to the top of the row.](../../docs/handover/screenshots/cards-no-stretch.jpg)
+
+**Unlinked cards** — At 1440 px four compact (9:10) light grey statistic cards ("4bn", "600,000+", "150", "98%") without any link or button; the pointer rests on the second card and shows no hand cursor or link styling.
+
+![Unlinked cards: At 1440 px four compact 9:10 light grey statistic cards "4bn", "600,000+", "150", "98%" without any link or button; the pointer rests on the second card and shows no hand cursor or link styling.](../../docs/handover/screenshots/cards-unlinked.jpg)
+
+**New-tab links** — At 1440 px three image cards in a 3-column row; the pointer is on the third card's title "Partner summit 2026" (Event, "20 Oct 26"), which links to https://www.example.com/partner-summit in a new tab; the browser status bar isn't part of the page capture.
+
+![New-tab links: At 1440 px three image cards in a 3-column row; the pointer is on the third card's title "Partner summit 2026" Event, "20 Oct 26", which links to https://www.example.com/partner-summit in a new tab; the browser status bar isn't part of](../../docs/handover/screenshots/cards-new-tab.jpg)
+
+**Legacy cards in the new design** — At 1440 px an older Cards block (image and rich text cells, no block settings) rendered in the new design as four image cards in a row: each heading ("Business and technology consulting", ...) as the title, the sentence as description and "Learn more" as the call to action text link.
+
+![Legacy cards in the new design: At 1440 px an older Cards block image and rich text cells, no block settings rendered in the new design as four image cards in a row: each heading "Business and technology consulting", ... as the title, the sentence as](../../docs/handover/screenshots/cards-legacy.jpg)
+
+**Empty state** — In Universal Editor edit mode at 1440 px: the header "Our services" with its description, and below it a grey box with "Add a Card to the block and give it a title, a description or an image."
+
+![Empty state: In Universal Editor edit mode at 1440 px: the header "Our services" with its description, and below it a grey box with "Add a Card to the block and give it a title, a description or an image."](../../docs/handover/screenshots/cards-empty-state.jpg)
+
+**Universal Editor canvas** — An annotated preview in editor mode at 1440 px (not a Universal Editor screenshot): the header "Our services" with description and "View all services" (A to C) and a rail of four service image cards with 3.2 visible (D to J), with buttons and indicator (K). The content tree with its four Card items (L) isn't part of the capture. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/cards-authoring-view.jpg)
+
+![Universal Editor canvas: An annotated preview in editor mode at 1440 px not a Universal Editor screenshot: the header "Our services" with description and "View all services" A to C and a rail of four service image cards with 3.2 visible D to J, with ](../../docs/handover/screenshots/cards-authoring-view.jpg)
+
+**Properties panel** — The Universal Editor properties panel of a selected Cards block showing the tabs Content, Cards, Layout, Scroll, Advanced and Additional, with the Cards tab open (Display as teaser, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format, Image loading). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/cards-properties-panel.jpg)
+
+![Properties panel: The Universal Editor properties panel of a selected Cards block showing the tabs Content, Cards, Layout, Scroll, Advanced and Additional, with the Cards tab open Display as teaser, Card style, Card colour, Image ratio, Panel height,](../../docs/handover/screenshots/cards-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

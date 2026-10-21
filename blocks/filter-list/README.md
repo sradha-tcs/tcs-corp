@@ -28,38 +28,125 @@ The Filter List is the site's content discovery block (TCS DS Figma "Explore the
 
 Screenshots of the handover (6.17 Filter List Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/filter-list-desktop-view.jpg) | The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao's lockup; four masonry columns of six Mixed cards including the Quantum readiness report card and the dark Cloud migration card; a State of AI 2026 spotlight and Load more. |
-| [Tablet rendering](../../docs/handover/screenshots/filter-list-tablet-view.jpg) | The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity) side by side, The agentic bank hero and a two-column card grid. |
-| [Mobile rendering](../../docs/handover/screenshots/filter-list-mobile-view.jpg) | The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards (The agentic bank and State of AI 2026 are spotlights, so the cards start with Cloud at scale), The agentic bank featured spotlight and the centred Load more button. |
-| [Masonry layout](../../docs/handover/screenshots/filter-list-layout-masonry.jpg) | Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a full-width spotlight for The agentic bank below all columns; no Load more. |
-| [Grid layout](../../docs/handover/screenshots/filter-list-layout-grid.jpg) | Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards (image, tag line, title, three-line description, meta line), from The agentic bank to The future of work, with space below shorter cards, and a Load more button for the ninth page. |
-| [List layout](../../docs/handover/screenshots/filter-list-layout-list.jpg) | Perspectives and case studies at 1440 px in the List layout: four cards one per row (The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail), each with the 4:3 image in the left third and the tags, title and meta line in the right two thirds, a divider below each, then Load more. |
-| [Default card style](../../docs/handover/screenshots/filter-list-card-default.jpg) | Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail banking. and the meta line Article and 04 Sep 26. |
-| [Compact card style](../../docs/handover/screenshots/filter-list-card-compact.jpg) | All insights at 1440 px with Card style Compact: two rows of four outlined text cards (tag line with reading time, medium title link, eyebrow and date), no images and no descriptions, from The agentic bank to The future of work, and a Load more button. |
-| [Featured card style](../../docs/handover/screenshots/filter-list-card-featured.jpg) | Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, then Load more. |
-| [Mixed card style](../../docs/handover/screenshots/filter-list-card-mixed.jpg) | Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark blue panel with Explore; no spotlight and no Load more. |
-| [Report card in the Mixed style](../../docs/handover/screenshots/filter-list-card-report.jpg) | Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the quantum era. and a secondary Download button. |
-| [Dark card in the Mixed style](../../docs/handover/screenshots/filter-list-card-dark.jpg) | Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line (the page has no tags), the white semibold title Cloud migration, the light description Move workloads with confidence. and a white Explore text button. |
-| [Hero spotlight (Featured rule)](../../docs/handover/screenshots/filter-list-hero-featured.jpg) | Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's photo, name and Head of Banking Research. |
-| [Hero spotlight (Latest rule)](../../docs/handover/screenshots/filter-list-hero-latest.jpg) | Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail (Retail, Artificial intelligence, 5m, Anita Rao) above two standard Mixed cards, The energy transition and Touchless insurance claims; no featured spotlight. |
-| [Hero spotlight (Manual rule)](../../docs/handover/screenshots/filter-list-hero-manual.jpg) | Close-up of the hero spotlight at 1440 px (the card only, not the dialog): Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup of Sara Lee, Supply Chain Lead, over the page image. |
-| [Featured spotlight (featured=true)](../../docs/handover/screenshots/filter-list-featured-flag.jpg) | The results at 1440 px after one Load more: four cards (Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition), The agentic bank spotlight, three more cards (Quantum readiness as a report panel, The future of work, Touchless insurance claims) and the State of AI 2026 spotlight; Load more is gone. |
-| [Featured spotlight (priority<=3)](../../docs/handover/screenshots/filter-list-featured-priority.jpg) | Insights at 1440 px: four Mixed cards (Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail), then a full-width spotlight for The agentic bank (priority 1) and the Load more button. |
-| [Featured spotlight (Manual)](../../docs/handover/screenshots/filter-list-featured-manual.jpg) | The results at 1440 px (not the dialog): six cards (The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims) followed by spotlights for The future of work, The energy transition and Cloud at scale in the authored order. |
-| [Query Index source settings](../../docs/handover/screenshots/filter-list-source-query-index.jpg) | The rendered block at 1440 px (not the Source tab): Articles and reports with one masonry row of four Mixed cards (Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work) followed by spotlights for The agentic bank and State of AI 2026. |
-| [Manual List source settings](../../docs/handover/screenshots/filter-list-source-manual.jpg) | The rendered block at 1440 px (not the Source tab): Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless insurance claims; no spotlight and no Load more. |
-| [Single select pills](../../docs/handover/screenshots/filter-list-pills-single.jpg) | Insights at 1440 px after selecting Banking: the pills All (outlined), Banking (filled dark, pressed), Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank. |
-| [Multi select pills](../../docs/handover/screenshots/filter-list-pills-multi.jpg) | Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both. |
-| [Advanced filter panel (AND)](../../docs/handover/screenshots/filter-list-advanced-and.jpg) | Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity), Retail and Artificial intelligence checked; 1 result, Personalisation in retail. |
-| [Advanced filter panel (OR)](../../docs/handover/screenshots/filter-list-advanced-or.jpg) | Insights at 1440 px: the open Advanced filters panel with Banking and Energy (Industry) and Cloud (Topic) checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition. |
-| [Latest First order](../../docs/handover/screenshots/filter-list-sort-latest.jpg) | All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank (04 Sep 26), Cloud at scale (21 Aug 26) and State of AI 2026 (30 Jul 26) to Touchless insurance claims (18 Apr 26). |
-| [Featured First order](../../docs/handover/screenshots/filter-list-sort-featured.jpg) | All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Priority example. |
-| [Priority order](../../docs/handover/screenshots/filter-list-sort-priority.jpg) | All insights at 1440 px: nine compact cards starting with The agentic bank (priority 1) and State of AI 2026 (priority 2), then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no priority 3. |
-| [Alphabetical order](../../docs/handover/screenshots/filter-list-sort-alphabetical.jpg) | All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Touchless insurance claims. |
-| [Universal Editor canvas](../../docs/handover/screenshots/filter-list-authoring-view.jpg) | The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result count 0 results and F the grey hint The results show on the published page, from the pages' metadata. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/filter-list-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/filter-list-properties-panel.jpg) | The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/filter-list-properties-panel.jpg) |
+**Desktop rendering** — The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao's lockup; four masonry columns of six Mixed cards including the Quantum readiness report card and the dark Cloud migration card; a State of AI 2026 spotlight and Load more.
+
+![Desktop rendering: The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao](../../docs/handover/screenshots/filter-list-desktop-view.jpg)
+
+**Tablet rendering** — The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity) side by side, The agentic bank hero and a two-column card grid.
+
+![Tablet rendering: The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry Banking, Energy, Insurance, Manufacturing, Retail and Topi](../../docs/handover/screenshots/filter-list-tablet-view.jpg)
+
+**Mobile rendering** — The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards (The agentic bank and State of AI 2026 are spotlights, so the cards start with Cloud at scale), The agentic bank featured spotlight and the centred Load more button.
+
+![Mobile rendering: The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards The agentic bank and State of AI 2026 are spotlights, so the cards sta](../../docs/handover/screenshots/filter-list-mobile-view.jpg)
+
+**Masonry layout** — Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a full-width spotlight for The agentic bank below all columns; no Load more.
+
+![Masonry layout: Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a fu](../../docs/handover/screenshots/filter-list-layout-masonry.jpg)
+
+**Grid layout** — Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards (image, tag line, title, three-line description, meta line), from The agentic bank to The future of work, with space below shorter cards, and a Load more button for the ninth page.
+
+![Grid layout: Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards image, tag line, title, three-line description, meta line, from The agentic bank to The future of work, with space below shorter cards, and a Load more](../../docs/handover/screenshots/filter-list-layout-grid.jpg)
+
+**List layout** — Perspectives and case studies at 1440 px in the List layout: four cards one per row (The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail), each with the 4:3 image in the left third and the tags, title and meta line in the right two thirds, a divider below each, then Load more.
+
+![List layout: Perspectives and case studies at 1440 px in the List layout: four cards one per row The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail, each with the 4:3 image in the left third and the tags, title and m](../../docs/handover/screenshots/filter-list-layout-list.jpg)
+
+**Default card style** — Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail banking. and the meta line Article and 04 Sep 26.
+
+![Default card style: Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail ban](../../docs/handover/screenshots/filter-list-card-default.jpg)
+
+**Compact card style** — All insights at 1440 px with Card style Compact: two rows of four outlined text cards (tag line with reading time, medium title link, eyebrow and date), no images and no descriptions, from The agentic bank to The future of work, and a Load more button.
+
+![Compact card style: All insights at 1440 px with Card style Compact: two rows of four outlined text cards tag line with reading time, medium title link, eyebrow and date, no images and no descriptions, from The agentic bank to The future of work, and](../../docs/handover/screenshots/filter-list-card-compact.jpg)
+
+**Featured card style** — Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, then Load more.
+
+![Featured card style: Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, th](../../docs/handover/screenshots/filter-list-card-featured.jpg)
+
+**Mixed card style** — Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark blue panel with Explore; no spotlight and no Load more.
+
+![Mixed card style: Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark](../../docs/handover/screenshots/filter-list-card-mixed.jpg)
+
+**Report card in the Mixed style** — Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the quantum era. and a secondary Download button.
+
+![Report card in the Mixed style: Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the q](../../docs/handover/screenshots/filter-list-card-report.jpg)
+
+**Dark card in the Mixed style** — Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line (the page has no tags), the white semibold title Cloud migration, the light description Move workloads with confidence. and a white Explore text button.
+
+![Dark card in the Mixed style: Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line the page has no tags, the white semibold title Cloud migration, the light description Move workloads with confidence. and a](../../docs/handover/screenshots/filter-list-card-dark.jpg)
+
+**Hero spotlight (Featured rule)** — Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's photo, name and Head of Banking Research.
+
+![Hero spotlight Featured rule: Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's](../../docs/handover/screenshots/filter-list-hero-featured.jpg)
+
+**Hero spotlight (Latest rule)** — Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail (Retail, Artificial intelligence, 5m, Anita Rao) above two standard Mixed cards, The energy transition and Touchless insurance claims; no featured spotlight.
+
+![Hero spotlight Latest rule: Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail Retail, Artificial intelligence, 5m, Anita Rao above two standard Mixed cards, The energy transition and Touchless insuranc](../../docs/handover/screenshots/filter-list-hero-latest.jpg)
+
+**Hero spotlight (Manual rule)** — Close-up of the hero spotlight at 1440 px (the card only, not the dialog): Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup of Sara Lee, Supply Chain Lead, over the page image.
+
+![Hero spotlight Manual rule: Close-up of the hero spotlight at 1440 px the card only, not the dialog: Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup o](../../docs/handover/screenshots/filter-list-hero-manual.jpg)
+
+**Featured spotlight (featured=true)** — The results at 1440 px after one Load more: four cards (Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition), The agentic bank spotlight, three more cards (Quantum readiness as a report panel, The future of work, Touchless insurance claims) and the State of AI 2026 spotlight; Load more is gone.
+
+![Featured spotlight featured=true: The results at 1440 px after one Load more: four cards Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition, The agentic bank spotlight, three more cards Quantum readiness as a re](../../docs/handover/screenshots/filter-list-featured-flag.jpg)
+
+**Featured spotlight (priority<=3)** — Insights at 1440 px: four Mixed cards (Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail), then a full-width spotlight for The agentic bank (priority 1) and the Load more button.
+
+![Featured spotlight priority<=3: Insights at 1440 px: four Mixed cards Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail, then a full-width spotlight for The agentic bank priority 1 and the Load mor](../../docs/handover/screenshots/filter-list-featured-priority.jpg)
+
+**Featured spotlight (Manual)** — The results at 1440 px (not the dialog): six cards (The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims) followed by spotlights for The future of work, The energy transition and Cloud at scale in the authored order.
+
+![Featured spotlight Manual: The results at 1440 px not the dialog: six cards The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims followed by sp](../../docs/handover/screenshots/filter-list-featured-manual.jpg)
+
+**Query Index source settings** — The rendered block at 1440 px (not the Source tab): Articles and reports with one masonry row of four Mixed cards (Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work) followed by spotlights for The agentic bank and State of AI 2026.
+
+![Query Index source settings: The rendered block at 1440 px not the Source tab: Articles and reports with one masonry row of four Mixed cards Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work followed by spotl](../../docs/handover/screenshots/filter-list-source-query-index.jpg)
+
+**Manual List source settings** — The rendered block at 1440 px (not the Source tab): Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless insurance claims; no spotlight and no Load more.
+
+![Manual List source settings: The rendered block at 1440 px not the Source tab: Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless i](../../docs/handover/screenshots/filter-list-source-manual.jpg)
+
+**Single select pills** — Insights at 1440 px after selecting Banking: the pills All (outlined), Banking (filled dark, pressed), Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank.
+
+![Single select pills: Insights at 1440 px after selecting Banking: the pills All outlined, Banking filled dark, pressed, Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank.](../../docs/handover/screenshots/filter-list-pills-single.jpg)
+
+**Multi select pills** — Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both.
+
+![Multi select pills: Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both.](../../docs/handover/screenshots/filter-list-pills-multi.jpg)
+
+**Advanced filter panel (AND)** — Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity), Retail and Artificial intelligence checked; 1 result, Personalisation in retail.
+
+![Advanced filter panel AND: Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry Banking, Energy, Insurance, Manufacturing, Retail and Topic Artificial intell](../../docs/handover/screenshots/filter-list-advanced-and.jpg)
+
+**Advanced filter panel (OR)** — Insights at 1440 px: the open Advanced filters panel with Banking and Energy (Industry) and Cloud (Topic) checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition.
+
+![Advanced filter panel OR: Insights at 1440 px: the open Advanced filters panel with Banking and Energy Industry and Cloud Topic checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition.](../../docs/handover/screenshots/filter-list-advanced-or.jpg)
+
+**Latest First order** — All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank (04 Sep 26), Cloud at scale (21 Aug 26) and State of AI 2026 (30 Jul 26) to Touchless insurance claims (18 Apr 26).
+
+![Latest First order: All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank 04 Sep 26, Cloud at scale 21 Aug 26 and State of AI 2026 30 Jul 26 to Touchless insurance claims 18 Apr 26.](../../docs/handover/screenshots/filter-list-sort-latest.jpg)
+
+**Featured First order** — All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Priority example.
+
+![Featured First order: All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Prior](../../docs/handover/screenshots/filter-list-sort-featured.jpg)
+
+**Priority order** — All insights at 1440 px: nine compact cards starting with The agentic bank (priority 1) and State of AI 2026 (priority 2), then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no priority 3.
+
+![Priority order: All insights at 1440 px: nine compact cards starting with The agentic bank priority 1 and State of AI 2026 priority 2, then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no ](../../docs/handover/screenshots/filter-list-sort-priority.jpg)
+
+**Alphabetical order** — All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Touchless insurance claims.
+
+![Alphabetical order: All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Tou](../../docs/handover/screenshots/filter-list-sort-alphabetical.jpg)
+
+**Universal Editor canvas** — The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result count 0 results and F the grey hint The results show on the published page, from the pages' metadata. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/filter-list-authoring-view.jpg)
+
+![Universal Editor canvas: The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result co](../../docs/handover/screenshots/filter-list-authoring-view.jpg)
+
+**Properties panel** — The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/filter-list-properties-panel.jpg)
+
+![Properties panel: The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. Dialog reference generated from the component model, not a Univers](../../docs/handover/screenshots/filter-list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

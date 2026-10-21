@@ -28,30 +28,93 @@ The Table List is a divided, text-led list of items (industries, solutions, prod
 
 Screenshots of the handover (6.18 Table List Block), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):
 
-| Screenshot | Shows |
-| ---------- | ----- |
-| [Desktop rendering](../../docs/handover/screenshots/table-list-desktop-view.jpg) | The Table List (Variation 1) at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle column and a grey arrow, thin dividers between rows, no numbers. |
-| [Tablet rendering](../../docs/handover/screenshots/table-list-tablet-view.jpg) | The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns (title, description, arrow) and no numbers. |
-| [Mobile rendering](../../docs/handover/screenshots/table-list-mobile-view.jpg) | The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right. |
-| [Variation 1 (industries)](../../docs/handover/screenshots/table-list-industries.jpg) | Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the last row. |
-| [Variation 2 (solutions)](../../docs/handover/screenshots/table-list-solutions.jpg) | The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows (Cognitive operations, Enterprise cloud, Cybersecurity, AI and data) with the description at the left, the 4rem title right-aligned and an outline Explore button; no numbers. |
-| [Variation 3 (products)](../../docs/handover/screenshots/table-list-products.jpg) | The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name (01 TwinX™, 02 ignio®, 03 TCS BaNCS®, 04 Quartz™) and a diagonal arrow, with 2px light grey dividers. |
-| [Filled button call to action](../../docs/handover/screenshots/table-list-cta-filled.jpg) | Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right. |
-| [Outline button call to action](../../docs/handover/screenshots/table-list-cta-outline.jpg) | Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right. |
-| [Text link call to action](../../docs/handover/screenshots/table-list-cta-text-link.jpg) | Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right. |
-| [Numbers shown](../../docs/handover/screenshots/table-list-numbers-show.jpg) | The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows. |
-| [Numbers on mobile only](../../docs/handover/screenshots/table-list-numbers-mobile.jpg) | Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers. |
-| [Numbers hidden](../../docs/handover/screenshots/table-list-numbers-hide.jpg) | The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers. |
-| [Arrow item link](../../docs/handover/screenshots/table-list-item-arrow.jpg) | The Variation 1 Table List at 1440 px with only the heading Industries we serve (no call to action) and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right. |
-| [Diagonal arrow item link](../../docs/handover/screenshots/table-list-item-diagonal-arrow.jpg) | Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right. |
-| [Button item link](../../docs/handover/screenshots/table-list-item-button.jpg) | Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right. |
-| [No motion](../../docs/handover/screenshots/table-list-motion-none.jpg) | The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible. |
-| [Fade motion](../../docs/handover/screenshots/table-list-motion-fade.jpg) | The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button. |
-| [Slide motion](../../docs/handover/screenshots/table-list-motion-slide.jpg) | The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising. |
-| [Reveal motion](../../docs/handover/screenshots/table-list-motion-reveal.jpg) | The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped. |
-| [Trademark sign](../../docs/handover/screenshots/table-list-trademark.jpg) | Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows. |
-| [Universal Editor canvas](../../docs/handover/screenshots/table-list-authoring-view.jpg) | The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagonal arrow, with three rows (TwinX, ignio, TCS BaNCS) and G the content tree with three Table List Item children. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/table-list-authoring-view.jpg) |
-| [Properties panel](../../docs/handover/screenshots/table-list-properties-panel.jpg) | The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/table-list-properties-panel.jpg) |
+**Desktop rendering** — The Table List (Variation 1) at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle column and a grey arrow, thin dividers between rows, no numbers.
+
+![Desktop rendering: The Table List Variation 1 at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle colu](../../docs/handover/screenshots/table-list-desktop-view.jpg)
+
+**Tablet rendering** — The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns (title, description, arrow) and no numbers.
+
+![Tablet rendering: The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns title, description, arrow and no numbers.](../../docs/handover/screenshots/table-list-tablet-view.jpg)
+
+**Mobile rendering** — The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right.
+
+![Mobile rendering: The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right.](../../docs/handover/screenshots/table-list-mobile-view.jpg)
+
+**Variation 1 (industries)** — Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the last row.
+
+![Variation 1 industries: Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the la](../../docs/handover/screenshots/table-list-industries.jpg)
+
+**Variation 2 (solutions)** — The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows (Cognitive operations, Enterprise cloud, Cybersecurity, AI and data) with the description at the left, the 4rem title right-aligned and an outline Explore button; no numbers.
+
+![Variation 2 solutions: The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows Cognitive operations, Enterprise cloud, Cybersecurity, AI and data with the description at the](../../docs/handover/screenshots/table-list-solutions.jpg)
+
+**Variation 3 (products)** — The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name (01 TwinX™, 02 ignio®, 03 TCS BaNCS®, 04 Quartz™) and a diagonal arrow, with 2px light grey dividers.
+
+![Variation 3 products: The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name 01 TwinX™, 02 igni](../../docs/handover/screenshots/table-list-products.jpg)
+
+**Filled button call to action** — Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right.
+
+![Filled button call to action: Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right.](../../docs/handover/screenshots/table-list-cta-filled.jpg)
+
+**Outline button call to action** — Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right.
+
+![Outline button call to action: Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right.](../../docs/handover/screenshots/table-list-cta-outline.jpg)
+
+**Text link call to action** — Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right.
+
+![Text link call to action: Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right.](../../docs/handover/screenshots/table-list-cta-text-link.jpg)
+
+**Numbers shown** — The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows.
+
+![Numbers shown: The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows.](../../docs/handover/screenshots/table-list-numbers-show.jpg)
+
+**Numbers on mobile only** — Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers.
+
+![Numbers on mobile only: Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers.](../../docs/handover/screenshots/table-list-numbers-mobile.jpg)
+
+**Numbers hidden** — The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers.
+
+![Numbers hidden: The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers.](../../docs/handover/screenshots/table-list-numbers-hide.jpg)
+
+**Arrow item link** — The Variation 1 Table List at 1440 px with only the heading Industries we serve (no call to action) and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right.
+
+![Arrow item link: The Variation 1 Table List at 1440 px with only the heading Industries we serve no call to action and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right.](../../docs/handover/screenshots/table-list-item-arrow.jpg)
+
+**Diagonal arrow item link** — Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right.
+
+![Diagonal arrow item link: Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right.](../../docs/handover/screenshots/table-list-item-diagonal-arrow.jpg)
+
+**Button item link** — Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right.
+
+![Button item link: Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right.](../../docs/handover/screenshots/table-list-item-button.jpg)
+
+**No motion** — The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible.
+
+![No motion: The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible.](../../docs/handover/screenshots/table-list-motion-none.jpg)
+
+**Fade motion** — The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button.
+
+![Fade motion: The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button.](../../docs/handover/screenshots/table-list-motion-fade.jpg)
+
+**Slide motion** — The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising.
+
+![Slide motion: The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising.](../../docs/handover/screenshots/table-list-motion-slide.jpg)
+
+**Reveal motion** — The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped.
+
+![Reveal motion: The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped.](../../docs/handover/screenshots/table-list-motion-reveal.jpg)
+
+**Trademark sign** — Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows.
+
+![Trademark sign: Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows.](../../docs/handover/screenshots/table-list-trademark.jpg)
+
+**Universal Editor canvas** — The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagonal arrow, with three rows (TwinX, ignio, TCS BaNCS) and G the content tree with three Table List Item children. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/table-list-authoring-view.jpg)
+
+![Universal Editor canvas: The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagon](../../docs/handover/screenshots/table-list-authoring-view.jpg)
+
+**Properties panel** — The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/table-list-properties-panel.jpg)
+
+![Properties panel: The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. Dialog referen](../../docs/handover/screenshots/table-list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 

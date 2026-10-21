@@ -235,12 +235,14 @@ export function screenshotsSection(inputs, block) {
   const parts = [];
   if (shots.length) {
     parts.push(`Screenshots of the handover (${meta.handover}), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):`);
-    parts.push(['| Screenshot | Shows |', '| ---------- | ----- |',
-      ...shots.map((s) => {
-        const [title, ...rest] = s.alt.split(' — ');
-        const shows = rest.join(' — ').replace(/\s*\(Sample content[^)]*\)\s*$/, '');
-        return `| [${esc(title)}](../../docs/handover/screenshots/${s.file}) | ${esc(shows || title)} |`;
-      })].join('\n'));
+    // each screenshot embedded (shown in the Markdown preview), with its caption and description
+    parts.push(shots.map((s) => {
+      const [title, ...rest] = s.alt.split(' — ');
+      const shows = rest.join(' — ').replace(/\s*\(Sample content[^)]*\)\s*$/, '').trim();
+      const alt = `${title}${shows ? `: ${shows}` : ''}`.replace(/[[\]()]/g, '').replace(/\s+/g, ' ').slice(0, 250);
+      return [`**${esc(title)}**${shows ? ` — ${esc(shows)}` : ''}`, '',
+        `![${alt}](../../docs/handover/screenshots/${s.file})`].join('\n');
+    }).join('\n\n'));
   } else {
     parts.push('No handover screenshot of this block was identified.');
   }
