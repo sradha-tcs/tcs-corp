@@ -183,8 +183,10 @@ export async function getPages() {
 
 /**
  * The site tree of pages below a root path, up to a depth (the Conversation Canvas menus and the
- * header menu): each node is { path, title, parent, children }, children in path order; a page
- * whose parent page isn't indexed is left out. Pure: rows are index rows (path, title).
+ * header menu): each node is { path, title, parent, children }, children in path order. A page
+ * whose parent page isn't indexed (e.g. an unpublished folder page such as /en/dummy-pages) is
+ * placed under its nearest indexed ancestor, else the root, so it isn't lost. Pure: rows are index
+ * rows (path, title).
  * @param {{ path: string, title?: string }[]} rows
  * @param {string} root Site path of the tree's root (e.g. /en, or / for the whole site)
  * @param {number} depth Levels below the root
@@ -201,8 +203,11 @@ export function pageTree(rows, root, depth) {
     .filter(({ path }) => path?.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
     .sort((x, y) => levelOf(x.path) - levelOf(y.path) || x.path.localeCompare(y.path))
     .forEach(({ path, title }) => {
-      const parent = nodes.get(path.slice(0, path.lastIndexOf('/')) || '/');
-      if (!parent) return;
+      // the nearest indexed ancestor (rows are sorted by level, so ancestors come first)
+      let parent;
+      for (let up = path.slice(0, path.lastIndexOf('/')); !parent; up = up.slice(0, up.lastIndexOf('/'))) {
+        parent = nodes.get(up || '/') || (up.length <= base.length ? tree : null);
+      }
       const node = {
         path, title: title || path.split('/').pop().replace(/-/g, ' '), parent, children: [],
       };

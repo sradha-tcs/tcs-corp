@@ -39,9 +39,26 @@ describe('pageTree', () => {
     assert.equal(pageTree(rows, '/en/dummy-pages', 1).children[0].title, 'careers');
   });
 
-  it('leaves out pages whose parent page is not indexed', () => {
-    // /en/dummy-pages itself isn't a row: its pages aren't in the /en tree
-    assert.deepEqual(titles(pageTree(rows, '/en', 3).children), ['Home']);
+  it('places a page whose parent page is not indexed under its nearest indexed ancestor', () => {
+    // /en/dummy-pages itself isn't a row (an unpublished folder page): its pages hang off /en
+    const tree = pageTree(rows, '/en', 3);
+    assert.deepEqual(titles(tree.children), ['Home', 'careers', 'Insights', 'What we do']);
+    const careers = tree.children[1];
+    assert.equal(careers.parent, tree);
+    assert.deepEqual(titles(careers.children), ['Graduates']);
+    // the depth still counts path levels below the root: /en/dummy-pages/careers/graduates/india
+    // (4 levels) is left out
+    assert.deepEqual(careers.children[0].children, []);
+    assert.deepEqual(titles(tree.children[2].children), ['AI']);
+  });
+
+  it('keeps the tree as it was when every parent page is indexed', () => {
+    const indexed = [...rows, { path: '/en/dummy-pages', title: 'Pages' }];
+    const tree = pageTree(indexed, '/en', 2);
+    // path order: /en/dummy-pages before /en/home
+    assert.deepEqual(titles(tree.children), ['Pages', 'Home']);
+    assert.deepEqual(titles(tree.children[0].children), ['careers', 'Insights', 'What we do']);
+    assert.equal(tree.children[0].children[0].parent, tree.children[0]);
   });
 
   it('is empty for a root without pages below it (e.g. a Menu root path on a leaf page)', () => {
