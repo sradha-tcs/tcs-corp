@@ -32,7 +32,6 @@
 .quote .quote-title {
   margin: 0;
   color: var(--color-text-brand);
-  font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-medium);
   line-height: 1.2;
   letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
@@ -115,7 +114,6 @@
 .quote .quote-text {
   margin: 0;
   color: var(--color-text-default);
-  font-size: var(--heading-font-size-l);
   line-height: 1.39;
   letter-spacing: calc(-0.02 * var(--heading-font-size-l));
 }
