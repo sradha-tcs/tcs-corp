@@ -276,6 +276,14 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   color: var(--color-text-default);
 }
 
+.table-list:is(.background-black, .background-dark-green) .table-list-title {
+  color: var(--slate-300);
+}
+ 
+.table-list:is(.background-black, .background-dark-green) .table-list-item {
+  border-bottom-color: var(--slate-600);
+}
+
 .table-list:is(.background-black, .background-dark-green) .table-list-arrow {
   color: var(--color-text-on-neutral);
 }
