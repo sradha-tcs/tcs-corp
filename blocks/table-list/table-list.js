@@ -3,7 +3,7 @@ import { decorateButton } from '../../decorators/button-decorator.js';
 import { pick } from '../../utils/buttons.js';
 import { isEditing } from '../../utils/environment.js';
 import { matchCells } from '../../utils/cells.js';
-import { normalizeKey, textOf } from '../../utils/properties.js';
+import { isOn, normalizeKey, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import { addLegacyMotion } from '../../utils/motion.js';
@@ -26,10 +26,12 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
 // block properties (_table-list.json), in model order
 const FIELDS = [
-  'variations', 'listheading', 'maxcards', 'viewalllabel', 'viewalllink', 'ctastyle', 'numbers',
-  'itemaction', 'itembuttonlabel', 'motion',
+  'variations', 'backgroundcolor', 'listheading', 'maxcards', 'viewalllabel', 'viewalllink',
+  'ctastyle', 'hidebutton',
+  'numbers', 'itemaction', 'itembuttonlabel', 'graydescriptions', 'motion',
 ];
 const VARIATIONS = ['industries', 'solutions', 'products'];
+const BACKGROUND_COLORS = ['white', 'black', 'dark-green'];
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
 const NUMBERS = ['show', 'mobile', 'hide'];
 const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'button'];
@@ -81,18 +83,23 @@ const isLink = (cell) => {
   return a ? textOf(cell) === textOf(a) : /^(\/|https?:\/\/|#)\S*$/i.test(textOf(cell));
 };
 const isOneOf = (values) => (cell) => values.includes(textOf(cell).toLowerCase());
-const OPTION_VALUES = [...VARIATIONS, ...CTA_STYLES, ...NUMBERS, ...ITEM_ACTIONS, ...MOTIONS];
+const OPTION_VALUES = [
+  ...VARIATIONS, ...BACKGROUND_COLORS, ...CTA_STYLES, ...NUMBERS, ...ITEM_ACTIONS, ...MOTIONS,
+];
 const isText = (cell) => !isNumber(cell) && !isLink(cell) && !hasHeading(cell)
   && !OPTION_VALUES.includes(textOf(cell).toLowerCase());
 
 // what the value of each field looks like
 const PROPERTY_MATCHERS = {
   variations: isOneOf(VARIATIONS),
+  backgroundcolor: isOneOf(BACKGROUND_COLORS),
   listheading: (cell) => hasHeading(cell) || isText(cell),
   maxcards: isNumber,
   viewalllabel: isText,
   viewalllink: isLink,
   ctastyle: isOneOf(CTA_STYLES),
+  hidebutton: (cell) => ['true', 'false'].includes(textOf(cell).toLowerCase()),
+  graydescriptions: (cell) => ['true', 'false'].includes(textOf(cell).toLowerCase()),
   numbers: isOneOf(NUMBERS),
   itemaction: isOneOf(ITEM_ACTIONS),
   itembuttonlabel: isText,
@@ -148,15 +155,19 @@ function readBlock(block) {
   const headingCell = cells.listheading;
   return {
     variation,
+    backgroundColor: pick(textOf(cells.backgroundcolor), BACKGROUND_COLORS, ''),
     heading: textOf(headingCell),
     headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h2'),
     maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
     ctaText: textOf(cells.viewalllabel),
     ctaLink: linkOf(cells.viewalllink),
     ctaStyle: pick(textOf(cells.ctastyle), CTA_STYLES, defaults.ctaStyle),
+    hideButton: isOn(cells.hidebutton),
     numbers: pick(textOf(cells.numbers), NUMBERS, defaults.numbers),
     itemAction: pick(textOf(cells.itemaction), ITEM_ACTIONS, defaults.itemAction),
     buttonText: textOf(cells.itembuttonlabel),
+    grayDescriptions: textOf(cells.backgroundcolor).toLowerCase() === 'white'
+      && isOn(cells.graydescriptions),
     motion: pick(textOf(cells.motion), MOTIONS, 'none'),
     items,
     header,
@@ -198,7 +209,7 @@ function buildHeader(config) {
 
   const href = config.ctaLink || linkOf(legacyLink);
   const ctaText = config.ctaText || linkTextOf(legacyLink);
-  const link = (href || ctaText)
+  const link = !config.hideButton && (href || ctaText)
     && buildButton(href, ctaText || t('viewAll', 'View all'), config.ctaStyle);
   if (link) {
     const cta = document.createElement('p');
@@ -223,6 +234,7 @@ function fromCell(cell, tagName, className) {
  * @returns {Element|null}
  */
 function buildAction(linkCell, title, config) {
+  if (config.hideButton) return null;
   const href = linkOf(linkCell);
   const action = document.createElement('div');
   action.className = 'table-list-action';
@@ -310,6 +322,9 @@ export default async function decorate(block) {
   const config = readBlock(block);
 
   block.classList.add(config.variation, `numbers-${config.numbers}`);
+  block.classList.remove('background-white', 'background-black', 'background-dark-green');
+  if (config.backgroundColor) block.classList.add(`background-${config.backgroundColor}`);
+  block.classList.toggle('gray-descriptions', config.grayDescriptions);
   addLegacyMotion(block.classList, LEGACY_MOTIONS[config.motion] || '');
   // the item titles are a level below the list heading (h2 without one)
   const level = Number(config.headingType.slice(1));
