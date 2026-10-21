@@ -17,6 +17,16 @@ indices:
       - '/*/block-library'
       - '/*/block-library/**'
       - '/site-global-templates/**'
+      # the language master under review (/language-master/en, REVIEW in utils/site.js) is a
+      # level deeper: the same exclusions for its references, error pages, data, nav / footer
+      # and block library (handover F-108); remove with the REVIEW settings after the rollout
+      - '/language-master/*/references/**'
+      - '/language-master/*/error-pages/**'
+      - '/language-master/*/data/**'
+      - '/language-master/*/nav'
+      - '/language-master/*/footer'
+      - '/language-master/*/block-library'
+      - '/language-master/*/block-library/**'
       - '/**/fragments/**'
       - '/**/modals/**'
     target: /query-index.json
