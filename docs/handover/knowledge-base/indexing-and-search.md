@@ -7,7 +7,7 @@ This file is the knowledge base summary of the query index and everything built 
 | Audience | Developers, site administrators, AMS / support, content leads, AI agents |
 | Source of truth | [`helix-query.yaml`](../../../helix-query.yaml), [`helix-sitemap.yaml`](../../../helix-sitemap.yaml), [`utils/query-index.js`](../../../utils/query-index.js), [`utils/site.js`](../../../utils/site.js) (`indexRoot`), [`scripts/scripts.js`](../../../scripts/scripts.js) (`prefetchData`), [List](../../../blocks/list/README.md), [Filter List](../../../blocks/filter-list/README.md), [Conversation Canvas](../../../blocks/conversation-canvas/README.md) and [Cards](../../../blocks/cards/README.md) READMEs, handover Parts 2.10.7, 12.1.7, 12.1.9 ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
-| Status | Current; live index state (finding F-10), sitemap `noindex` handling and the language master block library exclusion: Requires validation |
+| Status | Current; live index state (finding F-10) and sitemap `noindex` handling: Requires validation |
 
 ## Query index definition
 
@@ -26,9 +26,10 @@ This file is the knowledge base summary of the query index and everything built 
 | `/*/nav`, `/*/footer` | Nav and footer pages at the locale root |
 | `/*/block-library`, `/*/block-library/**` | Block libraries (also excluded from publishing in `paths.json`; safeguard) |
 | `/site-global-templates/**` | Template pages (not published; safeguard) |
+| `/language-master/*/references/**`, `/language-master/*/error-pages/**`, `/language-master/*/data/**`, `/language-master/*/nav`, `/language-master/*/footer`, `/language-master/*/block-library`, `/language-master/*/block-library/**` | The same for the language master under review, a folder level deeper (#131, F-108; to remove with the REVIEW settings after the rollout) |
 | `/**/fragments/**`, `/**/modals/**` | Fragment and modal folders anywhere |
 
-The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`). The language master's block library (`/language-master/en/block-library/…`) is published for the review; handover revision 2.35 records that block library pages stay out of the query index by design, but the pattern that covers that deeper path isn't visible in `helix-query.yaml` (Requires validation).
+The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`); the language master (`/language-master/en/…`) is a level deeper and has its own patterns. Until 21 October 2026 it had none: 166 block library pages, 6 reference pages and the 404 page of the language master were in the live index (F-108). After the fix (#131) a reindex reports "requested path does not match index configuration" for these pages but doesn't remove their rows: they were removed with the Admin API index DELETE (173 / 173; the pages stay published). The index went from 354 to 181 rows (137 language-master content pages, 44 `/en` pages), and the Lists and Filter Lists of the library and the curated Insights page still filled.
 
 **Columns** (37 properties, all read from the server-delivered `<head>`):
 

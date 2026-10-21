@@ -173,7 +173,7 @@ function writeReports(state) {
 
 | Item | Evidence | Impact | Correction |
 | --- | --- | --- | --- |
-| The language master's block library pages are in the live query index | 166 of the 354 rows of \`/query-index.json\` on aem.live are under \`/language-master/en/block-library\` (21 October 2026); \`helix-query.yaml\` excludes \`/*/block-library\` and \`/*/block-library/**\`, which match one folder level only | Lists and Filter Lists rooted at \`/language-master/en\` can list block library pages; the handover and the KB writers' sources say they are excluded | Code: add an exclude for the language master's block library (e.g. \`/language-master/*/block-library/**\`) and reindex; then correct the handover |
+| The language master's block library, reference and 404 pages were in the live query index (corrected) | 166 + 6 + 1 of the 354 rows of \`/query-index.json\` on aem.live (21 October 2026): \`helix-query.yaml\` excluded \`/*/block-library\` and the others, one folder level only | Lists and Filter Lists rooted at the language master could list them | Corrected and passed: excludes for \`/language-master/*/…\` (#131), the 173 rows removed (Admin API index DELETE); index 354 → 181 rows (F-108 closed) |
 | CI runs lint only | \`.github/workflows/main.yaml\` runs \`npm run lint\`; \`npm test\` (311 tests) isn't run on pull requests | Unit-test regressions (including the generated-docs checks) are only caught locally | Workflow: add \`npm test\`; AGENTS.md "use gh pr checks" wording |
 
 ## By knowledge base page
@@ -238,7 +238,7 @@ Structure checks (one H1, attribute table, Related section, fences, raw HTML, se
 - **Sources:** the repository at the commit above (code, configuration, models, tests), AGENTS.md, the block READMEs, the decorator / utility / template READMEs, the audit reports and the handover (version 2.37); each page's sources are listed in [notes/](./notes/).
 - **Validation:** ${total} links checked, ${broken.length} broken; ${results.filter((r) => !r.problems.length).length} of ${results.length} pages pass the structure, link and sensitive-value checks.
 - **Decisions:** ${decisions} entries in the [decision log](../decision-log.md) (verified decisions and open proposals).
-- **Discrepancies:** ${rows.length} documentation-to-implementation differences ([discrepancy report](./discrepancy-report.md)), plus the 170 block-level ones of the block documentation report; open items: the block library pages in the live query index, CI without unit tests.
+- **Discrepancies:** ${rows.length} documentation-to-implementation differences ([discrepancy report](./discrepancy-report.md)), plus the 170 block-level ones of the block documentation report; open item: CI without unit tests (the query index finding F-108 is corrected).
 - **Blocked:** the measurement plan, consent model, personalization requirements, Figma files, AEM author access (Universal Editor checks, permissions), owners; the project team's review of each page.
 - **Entry points for agents:** [AGENTS.md](../../../../AGENTS.md) points to [the knowledge base](../README.md) and [agent-guidelines](../agent-guidelines.md); the content for \`.github/copilot-instructions.md\` is in [copilot-instructions](../copilot-instructions.md).`);
 
