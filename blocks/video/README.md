@@ -1078,6 +1078,8 @@ player requests, and the block's `window.adobeDataLayer` entries.
 Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 27 instance(s) in total:
 - Block library: `block-library/video/video`, `block-library/video/video-pop-up`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

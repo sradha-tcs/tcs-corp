@@ -830,6 +830,8 @@ Evidence to collect: page URL, viewport width, the `nav` meta value of the page 
 
 No block library or curated design page using this block was recorded in the library snapshot.
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History

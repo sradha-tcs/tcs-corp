@@ -768,6 +768,8 @@ Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/l
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/testimonial/testimonial-variations`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`
 
+Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
+
 <!-- END GENERATED: usage -->
 
 ## Change History
