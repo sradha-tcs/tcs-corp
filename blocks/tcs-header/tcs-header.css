@@ -1,11 +1,11 @@
-/* TCS Header: the TCS and TATA logos (Figma "Nav Bar-NEW"); in the site header, see blocks/header */
+/* TCS Header: Logos + Hamburger Menu Bar */
 .tcs-header .tcs-header-bar {
   display: flex;
   align-items: center;
   gap: 1.7391rem;
+  width: 100%;
 }
 
-/* a Full Width section has no gutter: the logo bar keeps the header's (Figma: 16 / 24 / 80px) */
 .section:not(.fixed-width) .tcs-header .tcs-header-bar {
   padding-inline: var(--space-400);
 }
@@ -19,6 +19,7 @@
 @media (width >= 1200px) {
   .section:not(.fixed-width) .tcs-header .tcs-header-bar {
     padding-inline: var(--space-2000);
+    justify-content: space-between;
   }
 }
 
@@ -43,7 +44,6 @@
   height: var(--icon-size-s);
 }
 
-/* tablet (Figma Mobile Nav at 1024px): larger logos than mobile */
 @media (width >= 600px) {
   .tcs-header .tcs-header-brand img {
     height: 1.9165rem;
@@ -54,17 +54,103 @@
   }
 }
 
-/* desktop: TCS logo left, TATA logo right */
 @media (width >= 1200px) {
-  .tcs-header .tcs-header-bar {
-    justify-content: space-between;
-  }
-
   .tcs-header .tcs-header-brand img {
     height: 2.175rem;
   }
 
   .tcs-header .tcs-header-group img {
     height: 2.75rem;
+  }
+}
+
+/* ==========================================================================
+   Hamburger Button & Animated CSS Icon
+   ========================================================================== */
+.tcs-header-hamburger,
+.nav-hamburger {
+  grid-area: hamburger;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  z-index: 10;
+}
+
+.tcs-header-hamburger button,
+.nav-hamburger button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-text-default, #000000);
+  cursor: pointer;
+  outline: none;
+}
+
+.nav-hamburger-icon {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 1.5rem;
+  height: 0.125rem;
+  background-color: currentcolor;
+  border-radius: 0.125rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav-hamburger-icon::before,
+.nav-hamburger-icon::after {
+  content: '';
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 1.5rem;
+  height: 0.125rem;
+  background-color: currentcolor;
+  border-radius: 0.125rem;
+  transition: transform 0.25s ease-in-out, top 0.25s ease-in-out;
+}
+
+/* CLOSED STATE (3 Horizontal Parallel Bars) */
+.nav-hamburger-icon::before {
+  top: -0.4375rem;
+}
+
+.nav-hamburger-icon::after {
+  top: 0.4375rem;
+}
+
+/* OPEN STATE (Transforms into an 'X' Cross) */
+nav[data-expanded='true'] .nav-hamburger-icon,
+[aria-expanded='true'] .nav-hamburger-icon {
+  background-color: transparent !important;
+}
+
+nav[data-expanded='true'] .nav-hamburger-icon::before,
+[aria-expanded='true'] .nav-hamburger-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+nav[data-expanded='true'] .nav-hamburger-icon::after,
+[aria-expanded='true'] .nav-hamburger-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Hide Hamburger on Desktop (>= 1200px) */
+@media (width >= 1200px) {
+  .tcs-header-hamburger,
+  .nav-hamburger {
+    display: none !important;
+    visibility: hidden !important;
   }
 }
