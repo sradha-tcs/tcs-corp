@@ -43,20 +43,30 @@ body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
   }
 }
 
+/*
+ * the logo bar lies over the hero (styles/styles.css; Hero Placement Page start at every width):
+ * the hero is the whole screen and its content starts below the logos (Figma: the text centred in
+ * the screen)
+ */
+body.home main > .section:first-of-type .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+}
+
+body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  min-height: 100svh;
+}
+
 @media (width >= 1200px) {
   body.home main > .section:first-of-type .hero {
     --home-hero-canvas-space: calc(7.75rem + env(safe-area-inset-bottom, 0rem));
   }
 
-  /*
-   * the logo bar lies over a light hero (styles/styles.css): the hero is the whole screen and its
-   * content starts below the logos (Figma: the text centred in the screen)
-   */
-  body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  /* Automatic: over a light hero on desktop */
+  body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
     padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
   }
 
-  body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
     min-height: 100svh;
   }
 }

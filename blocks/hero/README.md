@@ -216,6 +216,7 @@ A = Vertical Alignment
 B = Horizontal Alignment
 C = Text Alignment
 D = BG Color
+E = Placement
 ```
 
 ```text
@@ -413,6 +414,7 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Horizontal Alignment | `classes_horizontal` | select | No | `align-center` | Left (`align-left`), Center (`align-center`), Right (`align-right`) | Position of the content block: left, center or right of the hero (on desktop). Delivered as a block class. | align-left |
 | Text Alignment | `classes_textAlignment` | select | No | `text-center` | Left align (`text-left`), Center align (`text-center`), Right align (`text-right`) | Alignment of the icon, text and CTAs inside the content block. Delivered as a block class. | text-left |
 | BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay. Delivered as a block class. | bg-dark |
+| Placement | `classes_placement` | select | No | "" | Automatic (""), Page start (header over the hero) (`page-start`), Below header (`below-header`) | For the hero that opens the page. Automatic: the header lies over a light hero on desktop and above it on tablet and mobile. Page start: the hero starts at the top of the page with the header over it at every width (light BG Colors only; a dark hero keeps the header above it). Below header: the header is always above the hero. Delivered as a block class. | — |
 
 #### Additional tab — Hero
 
@@ -692,6 +694,10 @@ B = Description at 85 % white
 C = White Secondary CTA
 ```
 
+### Placement: Automatic, Page start (`page-start`), Below header (`below-header`)
+
+Purpose: where the hero that opens the page sits relative to the site header. **Automatic** (default, the behaviour before the option): on desktop a light hero starts at the top of the page under the transparent logo bar; on tablet and mobile it starts below the header bar. **Page start**: the hero starts at the top of the page with the header over it at every width (Figma L1 Header - Mobile 4082:120430); its height and top padding grow by the header height (`--header-height`), so its content stays below the logos; below 1200px the header bar scrolls away with the hero and the open menu covers the window. **Below header**: the header bar is always above the hero (also on desktop). Valid combinations: Page start with a light BG Color (Default, Light no overlay) on the hero in the first section; on a dark BG Color or a hero lower on the page Page start has no effect (the header stays above; the console warns `hero: Placement Page start has no effect …`). Implementation: the class is in the delivered markup; `styles/styles.css`, `blocks/header/header.css`, `blocks/hero/hero.css` and `templates/home/home.css` select `main > .section:first-child .hero.page-start` / `:not(.below-header)`.
+
 ### Vertical Alignment: Top, Middle, Bottom (`align-top`, `align-middle`, `align-bottom`)
 
 Positions the content block in the banner's height (`justify-content`). Middle is the template default.
@@ -817,7 +823,8 @@ This block does not currently expose verified personalization behavior. There is
 | < 600px | Min height 35rem; padding `--space-1600` block, `--space-600` inline; content full width | Cover crop around the centre; Contained image padded `--space-600` | CTAs wrap; toggle bottom right |
 | >= 600px | Min height 40rem; inline padding `--space-1000` | As above | As above |
 | >= 900px | Min height 53.125rem; padding `--space-3000` block, 2.75rem inline; larger gaps; eyebrow `--body-font-size-s`; Left / Right content limited to 47.5rem | Icon 3rem | As above |
-| >= 1200px | In the first section, a light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen) | As above | As above |
+| >= 1200px | In the first section, a light Hero (not Dark blue, subtle or Black) lies under the header unless its Placement is Below header: its min height and top padding grow by the header height (at most the screen) | As above | As above |
+| All widths, Placement Page start | In the first section, a light Hero lies under the header at every width (as on desktop) | As above | The header bar scrolls away with the hero below 1200px |
 | First section (all widths) | Min height at most the screen below the header bar (`100dvh - --nav-height`); taller content grows the hero | Eager, high-priority image | — |
 
 ## For Developers
@@ -1005,6 +1012,7 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 | Motion Type authored before can't be changed in the dialog (R-B-6) | Legacy animation stays | Migrate to Animation Type | Content migration |
 | Default overlay eyebrow contrast (R-B-4) | Brand eyebrow over the white overlay | — | Design sign-off pending |
 | Background animation delays LCP on the first Hero (F-94) | Slower LCP | Use it below the fold | Not planned |
+| Placement Page start needs a light BG Color and the first section | No header overlay on a dark hero or lower on the page (the logos are dark artwork) | Use Default or Light, no overlay | Not planned (by design; console warning) |
 | Legacy CTA List items keep their stored CTA Arrow "right" (F-55) | No automatic down arrow for `#` links in those items | Choose Down, or re-create as CTA items (Auto) | Not planned |
 
 ## Related Documentation
@@ -1037,3 +1045,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.18 | Additional tab Content animation and Background animation | docs/handover revision history | 18 October 2026 |
 | Handover 2.27 | Motion Type removed from the dialog (block ecosystem audit) | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast | docs/handover revision history | 20 October 2026 |
+| Handover 2.41 | Placement (Style tab): Automatic, Page start (header over the hero at every width), Below header | docs/handover revision history | 21 October 2026 |

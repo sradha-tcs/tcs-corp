@@ -5,6 +5,7 @@ import { createIdFactory } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import { rememberHeaderSpace } from '../../utils/header-space.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
+import { getPageTree } from '../../utils/query-index.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 /*
@@ -15,7 +16,11 @@ import { resolvePagePath } from '../../utils/site.js';
  *   in the Conversation Canvas.
  * - Tablet and mobile: the logos and a menu button that opens the sections full screen, one level
  *   at a time: a section with a sub-list opens it in place of the list, with a Back button and its
- *   label as the title.
+ *   label as the title. A Navigation page without a menu of its own (e.g. the TCS Header and a
+ *   Canvas only) gets the pages the header Canvas's menu lists (its Menu root path and Menu
+ *   depth, from the query index); without pages there's no menu button (never an empty menu).
+ * - Header background (the TCS Header block): White (default) or Grey (bg-grey). Over an opening
+ *   hero (blocks/hero Placement, styles/styles.css) the bar is transparent.
  * The controls are buttons with aria-expanded / aria-controls; the open state is data-expanded
  * for the CSS.
  */
@@ -168,14 +173,18 @@ function buildLevel(navSections) {
   return level;
 }
 
+// Header background options of the TCS Header block (blocks/tcs-header), as nav-wrapper classes
+const BACKGROUNDS = ['bg-grey'];
+
 /**
  * A TCS Header block on the nav page (blocks/tcs-header) supplies the brand (its TCS logo) and the
  * tools (its TATA logo) in place of its section; the first other section is the menu.
- * @returns {boolean} whether the nav page has one
+ * @returns {{ background: string } | null} its Header background, null without one
  */
 function applyLogoBar(nav) {
   const bar = nav.querySelector(':scope > .section .tcs-header');
-  if (!bar) return false;
+  if (!bar) return null;
+  const background = BACKGROUNDS.find((name) => bar.classList.contains(name)) || '';
   const asSection = (logo, role) => {
     const section = document.createElement('div');
     section.className = `section nav-${role}`;
@@ -190,7 +199,7 @@ function applyLogoBar(nav) {
   const menu = [...nav.children].find((section) => section !== brand);
   menu?.classList.add('nav-sections');
   (menu || brand).after(tools);
-  return true;
+  return { background };
 }
 
 /** the menu button (mobile), drawn by the CSS (an animated icon) */
@@ -209,6 +218,59 @@ function buildHamburger(nav, navSections) {
   button.addEventListener('click', () => toggleMenu(nav, navSections));
   hamburger.append(button);
   return hamburger;
+}
+
+/**
+ * The menu of a Navigation page without one of its own: the pages the header Canvas's menu lists
+ * (the same source: its Menu root path and Menu depth, utils/query-index.js), as a section with a
+ * list, the way an authored menu is delivered.
+ * @param {Element} canvas The header Canvas block (decorated: data-menu-root, data-menu-depth)
+ * @returns {Promise<Element | null>} the menu section, null when the tree has no pages
+ */
+async function buildSiteMenu(canvas) {
+  const { menuRoot, menuDepth } = canvas.dataset;
+  if (!menuRoot) return null;
+  const tree = await getPageTree(menuRoot, Math.max(1, parseInt(menuDepth, 10) || 1));
+  if (!tree.children.length) return null;
+  const toList = (nodes) => {
+    const list = document.createElement('ul');
+    nodes.forEach((node) => {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = node.path;
+      link.textContent = node.title;
+      li.append(link);
+      if (node.children.length) li.append(toList(node.children));
+      list.append(li);
+    });
+    return list;
+  };
+  const section = document.createElement('div');
+  section.className = 'section nav-sections';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'default-content-wrapper';
+  wrapper.append(toList(tree.children));
+  section.append(wrapper);
+  return section;
+}
+
+/**
+ * Makes the menu section the tablet / mobile menu: its sub-lists open as levels, the level row
+ * (Back, title) and the menu button after the logos (reading and focus order as on screen: logos,
+ * menu button, then the menu).
+ */
+function setupMenu(nav, navSections) {
+  navSections.id = 'nav-sections';
+  const nextId = createIdFactory('nav-submenu');
+  navSections.querySelectorAll(':scope .default-content-wrapper li').forEach((navSection) => {
+    if (navSection.querySelector(':scope > ul')) decorateDrop(navSection, nextId);
+  });
+  navSections.prepend(buildLevel(navSections));
+  const hamburger = buildHamburger(nav, navSections);
+  navSections.before(hamburger);
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) hamburger.before(navTools);
+  toggleMenu(nav, navSections, isDesktop.matches);
 }
 
 /**
@@ -257,7 +319,8 @@ export default async function decorate(block) {
   });
 
   // the logos from a TCS Header block, else the sections in order: brand, sections, tools
-  if (!applyLogoBar(nav)) {
+  const logoBar = applyLogoBar(nav);
+  if (!logoBar) {
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
@@ -269,32 +332,33 @@ export default async function decorate(block) {
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) removeButtonDecoration(navBrand.querySelector('.button, .link-button'));
 
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.id = 'nav-sections';
-    const nextId = createIdFactory('nav-submenu');
-    navSections.querySelectorAll(':scope .default-content-wrapper li').forEach((navSection) => {
-      if (navSection.querySelector(':scope > ul')) decorateDrop(navSection, nextId);
-    });
-    navSections.prepend(buildLevel(navSections));
-  }
-
-  // reading and focus order as on screen: logos, menu button, then the menu
-  // a menu button only with a menu (a nav page may have the logos and a Canvas only)
-  const hamburger = navSections ? buildHamburger(nav, navSections) : null;
-  if (hamburger) navSections.before(hamburger);
-  const navTools = nav.querySelector('.nav-tools');
-  if (navTools && hamburger) hamburger.before(navTools);
-
   nav.dataset.expanded = 'false';
+  const navSections = nav.querySelector('.nav-sections');
+  // a menu button only with a menu: the nav page's own, else the header Canvas's pages (once the
+  // query index has loaded, without holding the header back), else none
+  if (navSections) setupMenu(nav, navSections);
+  else toggleMenu(nav, null, isDesktop.matches);
+  const headerCanvas = canvasSections
+    .map((section) => section.querySelector('.conversation-canvas')).find(Boolean);
+  if (!navSections && headerCanvas) {
+    buildSiteMenu(headerCanvas).then((menu) => {
+      if (!menu) {
+        // eslint-disable-next-line no-console
+        console.warn('header: no menu, the header Canvas\'s Menu root path has no pages', headerCanvas.dataset.menuRoot);
+        return;
+      }
+      nav.append(menu);
+      setupMenu(nav, menu);
+    });
+  }
   // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  isDesktop.addEventListener('change', () => toggleMenu(nav, nav.querySelector('.nav-sections'), isDesktop.matches));
   window.addEventListener('keydown', closeOnEscape);
   nav.addEventListener('focusout', closeOnFocusLost);
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+  if (logoBar?.background) navWrapper.classList.add(logoBar.background);
   navWrapper.append(nav);
   block.append(navWrapper);
 

@@ -105,6 +105,7 @@ C = TCS Logo Link
 D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
+G = Header background
 ```
 
 ```text
@@ -233,6 +234,7 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
+| Header background | `classes` | select | No | "" | White (""), Grey (`bg-grey`) | The site header's background on the Navigation page. Over a hero with Placement Page start (or Automatic on desktop) the header is transparent. | — |
 
 #### Additional tab — TCS Header
 
@@ -379,6 +381,7 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
 - **Data layer:** clicks report the header component (`header-1`).
+- **Header background:** the **Header background** field (`classes`: White `''`, Grey `bg-grey`) colours the site header's bar and its open menu (`header .nav-wrapper.bg-grey`, `--color-bg-secondary`); over an opening hero (Hero Placement) the bar is transparent. Only used on the Navigation page.
 - **Personalization / fallback:** none; an area nav page can use other logos.
 
 ```text
@@ -662,3 +665,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: no-image fallback and unnamed TATA logo link corrected with placeholder names (D-D-25) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
+| Handover 2.41 | Header background (White / Grey) for the site header | docs/handover revision history | 21 October 2026 |

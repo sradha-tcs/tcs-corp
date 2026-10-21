@@ -27,7 +27,9 @@ let newTabHint = '';
  * align-top | align-middle | align-bottom (Vertical Alignment),
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
- * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color).
+ * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
+ * page-start | below-header (Placement: the header over the opening hero at every width, or never;
+ * none: Automatic, over a light hero on desktop; the layout is CSS, styles/styles.css).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -40,6 +42,21 @@ const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
+// BG Colors the header never lies over (its logos are dark artwork)
+const DARK_BACKGROUNDS = ['bg-dark', 'bg-dark-subtle', 'bg-black'];
+
+/**
+ * Placement Page start applies to the hero that opens the page with a light BG Color; elsewhere
+ * the header stays above the page (the CSS doesn't match) and the author is told why.
+ */
+function checkPlacement(block) {
+  if (!block.classList.contains('page-start')) return;
+  const dark = DARK_BACKGROUNDS.find((name) => block.classList.contains(name));
+  const opening = block.closest('main > .section:first-child');
+  if (opening && !dark) return;
+  // eslint-disable-next-line no-console
+  console.warn(`hero: Placement Page start has no effect ${dark ? `with BG Color ${dark}` : 'below the first section'}; the header stays above the page`);
+}
 
 /**
  * Motion Type authored before: played as the Additional tab's animations (Fade in -> Fade in,
@@ -216,4 +233,5 @@ export default async function decorate(block) {
   block.classList.toggle('hero-has-media', !!media);
   block.replaceChildren(...[media, content, media?.animationToggle].filter(Boolean));
   mapLegacyMotion(block);
+  checkPlacement(block);
 }

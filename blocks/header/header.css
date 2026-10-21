@@ -4,9 +4,11 @@
  * full screen, one level at a time. Desktop (>= 1200px): the logo bar.
  */
 
-/* header and nav layout */
+/* header and nav layout; Header background (TCS Header block): White, or Grey (bg-grey) */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  --nav-background: var(--background-color);
+
+  background-color: var(--nav-background);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -32,6 +34,10 @@ header nav {
 header nav[data-expanded='true'] {
   overflow-y: auto;
   min-height: 100dvh;
+}
+
+header .nav-wrapper.bg-grey {
+  --nav-background: var(--color-bg-secondary);
 }
 
 @media (width >= 600px) {
@@ -131,7 +137,9 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
+
+  /* the bar's own background shows (White, Grey, or the hero under a transparent bar) */
+  background-color: transparent;
   color: inherit;
   overflow: initial;
   text-overflow: initial;
@@ -309,10 +317,10 @@ header nav .nav-sections .nav-drop-toggle {
   cursor: pointer;
 }
 
-/* a linked section: its link, and a button with the arrow only */
+/* a linked section: its link, and a button with the arrow only (on the right, as on the other rows) */
 header nav .nav-sections .nav-drop-toggle[aria-label] {
   flex: none;
-  justify-content: center;
+  justify-content: flex-end;
   width: var(--icon-size-l);
   height: var(--icon-size-l);
 }
@@ -439,9 +447,27 @@ header .nav-canvas .conversation-canvas::before {
   }
 }
 
-/* desktop over a light hero (styles/styles.css): no header band, the hero shows behind the logos */
+/*
+ * Over the opening hero (styles/styles.css): no header band, the hero shows behind the logos.
+ * Hero Placement Page start: at every width (Figma L1 Header - Mobile 4082:120430: the hero starts
+ * at the top of the page). The bar is part of the hero and scrolls away with it (as on desktop; a
+ * transparent bar fixed over the page would lose its contrast); the open menu covers the window
+ * with the bar's background. Automatic (no Placement): on desktop over a light hero, as before.
+ */
+body:has(main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
+  position: absolute;
+  background-color: transparent;
+}
+
+body:has(main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper:has(> nav[data-expanded='true']) {
+  position: fixed;
+  background-color: var(--nav-background);
+}
+
 @media (width >= 1200px) {
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header)) header .nav-wrapper,
+  body:has(main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper:has(> nav[data-expanded='true']) {
+    position: relative;
     background-color: transparent;
   }
 }

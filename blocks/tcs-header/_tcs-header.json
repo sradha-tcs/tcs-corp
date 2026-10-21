@@ -71,6 +71,24 @@
           "description": "Usually https://www.tata.com/."
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Header background",
+          "value": "",
+          "options": [
+            {
+              "name": "White",
+              "value": ""
+            },
+            {
+              "name": "Grey",
+              "value": "bg-grey"
+            }
+          ],
+          "description": "The site header's background on the Navigation page. Over a hero with Placement Page start (or Automatic on desktop) the header is transparent."
+        },
+        {
           "component": "tab",
           "name": "additionalTab",
           "label": "Additional"

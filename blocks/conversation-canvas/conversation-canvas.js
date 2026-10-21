@@ -2,7 +2,7 @@ import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { getPageTags } from '../../utils/metadata.js';
-import { getPages } from '../../utils/query-index.js';
+import { getPageTree } from '../../utils/query-index.js';
 import { getLocale } from '../../utils/site.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
@@ -117,38 +117,6 @@ function menuSettings(config) {
 }
 
 /**
- * Loads the site tree from the query index: pages under the root path, up to the depth.
- * Each node is { path, title, parent, children }; the returned node is the root.
- * @param {string} root Site path of the menu root
- * @param {number} depth Levels below the root
- * @returns {Promise<Object>}
- */
-async function loadMenuTree(root, depth) {
-  const base = root === '/' ? '' : root.replace(/\/$/, '');
-  const tree = {
-    path: base || '/', title: '', parent: null, children: [],
-  };
-  try {
-    const data = await getPages();
-    const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
-    const nodes = new Map([[tree.path, tree]]);
-    data
-      .filter(({ path }) => path.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
-      .sort((x, y) => levelOf(x.path) - levelOf(y.path) || x.path.localeCompare(y.path))
-      .forEach(({ path, title }) => {
-        const parent = nodes.get(path.slice(0, path.lastIndexOf('/')) || '/');
-        if (!parent) return;
-        const node = {
-          path, title: title || path.split('/').pop().replace(/-/g, ' '), parent, children: [],
-        };
-        parent.children.push(node);
-        nodes.set(path, node);
-      });
-  } catch { /* an empty tree is returned */ }
-  return tree;
-}
-
-/**
  * Builds the popover menu list (Default and Secondary styles) from the site tree.
  * @returns {Promise<Element>}
  */
@@ -166,7 +134,7 @@ async function buildMenuList(root, depth) {
     });
     return list;
   };
-  const tree = await loadMenuTree(root, depth);
+  const tree = await getPageTree(root, depth);
   const list = toList(tree.children);
   if (!list.children.length) {
     const li = document.createElement('li');
@@ -579,7 +547,7 @@ function buildDock(config, id, block) {
   const { root, depth } = menuSettings(config);
   // suggestions: the page's tags (Tags metadata), labelled from the taxonomy
   const tagLabels = resolveTags(getPageTags()).then((tags) => tags.map((tag) => tag.label));
-  const loaded = Promise.all([loadMenuTree(root, depth), tagLabels]).then(([tree, labels]) => {
+  const loaded = Promise.all([getPageTree(root, depth), tagLabels]).then(([tree, labels]) => {
     if (!state.suggestions.length) state.suggestions = labels;
     state.tree = tree;
     state.current = findNode(tree, normalizePath(window.location.pathname));
@@ -646,6 +614,11 @@ export default async function decorate(block) {
   t = await getPlaceholders();
   const id = uniqueId('conversation-canvas');
   const { config, buttonRows } = readBlock(block);
+  // the site menu's root and depth, for the header's tablet / mobile menu (blocks/header), which
+  // lists the same pages without importing this block
+  const menu = menuSettings(config);
+  block.dataset.menuRoot = menu.root;
+  block.dataset.menuDepth = String(menu.depth);
 
   // style options
   const style = normalize(textOf(config.classes));

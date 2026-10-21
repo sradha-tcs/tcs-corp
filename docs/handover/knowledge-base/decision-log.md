@@ -88,6 +88,10 @@ The verified architecture, content model, authoring and process decisions of the
 
 ## Proposed Decisions
 
+| Decision ID | Date | Area | Context | Decision | Alternatives | Impact | References | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| KB-D-052 | 21 October 2026 | Header, Hero (extends KB-D-023, KB-D-024, KB-D-039) | The tablet / mobile menu was empty or missing on nav pages with only the TCS Header and a Canvas; the header lay over the hero only on desktop, detected from the DOM, with no author control | Proposed: the header's tablet / mobile menu is the nav page's own list, else the header Canvas's pages (`getPageTree`, one source with the Canvas menus; no menu button without pages); the opening Hero's **Placement** (Automatic, the behaviour before; Page start, header over the hero at every width, the bar scrolling away with it below 1200px; Below header) and the TCS Header's **Header background** (White, Grey) | A second, hard-coded mobile menu (reference implementation); a header option for the overlay (the nav page is shared by many pages, the overlay is per page); a sticky transparent bar (no designed scroll behaviour) | Existing pages render as before (Automatic, White); the menu needs a Menu root path with child pages (F-109) | rev 2.41; F-109 | Proposed |
+
 The Cards and Card refactoring proposal (14 October 2026, "For review — decisions D-1 to D-6 open") lists six product owner decisions; the proposal's recommendation is quoted, nothing is implemented.
 
 | Decision ID | Date | Area | Context | Decision | Alternatives | Impact | References | Status |

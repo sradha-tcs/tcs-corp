@@ -372,13 +372,21 @@ header:not(:has(.nav-wrapper)) {
 }
 
 /*
- * Desktop: on a page that opens with a light hero, the logo bar lies over the hero (Figma
- * Logos 667:52520 / Hero 4082:120388). The header is out of the flow, so the hero never moves
- * when it loads; the hero adds the header's height on top (blocks/hero, --header-height set by
- * blocks/header).
+ * Header over the opening hero (Figma Logos 667:52520 / Hero 4082:120388 / L1 Header - Mobile
+ * 4082:120430): the header is out of the flow, so the hero starts at the top of the page and never
+ * moves when the header loads; the hero adds the header's height on top (blocks/hero,
+ * --header-height set by blocks/header). The Hero's Placement chooses: Page start at every width,
+ * Below header never, Automatic (no Placement) on desktop over a light hero. A dark hero never has
+ * the header over it (the logos are dark artwork).
  */
+body:has(main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+}
+
 @media (width >= 1200px) {
-  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
+  body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header)) header {
     position: absolute;
     inset: 0 0 auto;
     z-index: 2;

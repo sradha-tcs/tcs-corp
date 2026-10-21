@@ -315,11 +315,17 @@ main > .section:first-child .hero {
 }
 
 /*
- * Desktop: the opening light hero lies under the header (styles/styles.css): it grows by the
- * header height (at most to the first screen) and keeps its content below the logos.
+ * The opening hero under the header (styles/styles.css; Placement Page start at every width,
+ * Automatic on desktop over a light hero): it grows by the header height (at most to the first
+ * screen) and keeps its content below the logos.
  */
+main > .section:first-child .hero.page-start:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+  padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
+}
+
 @media (width >= 1200px) {
-  main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .below-header) {
     min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
     padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
   }

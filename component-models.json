@@ -12271,6 +12271,28 @@
         "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_placement",
+        "label": "Placement",
+        "value": "",
+        "options": [
+          {
+            "name": "Automatic",
+            "value": ""
+          },
+          {
+            "name": "Page start (header over the hero)",
+            "value": "page-start"
+          },
+          {
+            "name": "Below header",
+            "value": "below-header"
+          }
+        ],
+        "description": "For the hero that opens the page. Automatic: the header lies over a light hero on desktop and above it on tablet and mobile. Page start: the hero starts at the top of the page with the header over it at every width (light BG Colors only; a dark hero keeps the header above it). Below header: the header is always above the hero."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
@@ -23847,6 +23869,24 @@
         "name": "tataLogoLink",
         "label": "TATA Logo Link",
         "description": "Usually https://www.tata.com/."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Header background",
+        "value": "",
+        "options": [
+          {
+            "name": "White",
+            "value": ""
+          },
+          {
+            "name": "Grey",
+            "value": "bg-grey"
+          }
+        ],
+        "description": "The site header's background on the Navigation page. Over a hero with Placement Page start (or Automatic on desktop) the header is transparent."
       },
       {
         "component": "tab",
