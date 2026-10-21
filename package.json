@@ -15,7 +15,8 @@
     "build:json:filters": "merge-json-cli -i \"models/_component-filters.json\" -o \"component-filters.json\"",
     "prepare": "husky",
     "test": "node --test 'test/**/*.test.mjs'",
-    "build:modules": "node tools/modules/generate-module-graph.mjs"
+    "build:modules": "node tools/modules/generate-module-graph.mjs",
+    "build:docs": "node tools/docs/generate-block-docs.mjs"
   },
   "repository": {
     "type": "git",

@@ -24,6 +24,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 - Run linting before committing: `npm run lint`
 - Run the unit tests: `npm test` (Node's test runner, `test/**/*.test.mjs`; pure modules such as `blocks/list/list-data.js`)
 - After adding, removing or changing an `import` in the site's JavaScript (scripts, blocks, decorators, utils): `npm run build:modules` (`tools/modules/generate-module-graph.mjs`) regenerates the preload lists (`head.html` modulepreload links and `scripts/module-graph.js`); `npm test` fails when they are out of date
+- After changing a block's model (`npm run build:json`) or adding a block: `npm run build:docs` (`tools/docs/generate-block-docs.mjs`) rewrites the generated sections of `blocks/README.md` and the block READMEs (dialog fields per tab, screenshots, files and dependencies, block library usage); `npm test` (test/docs) fails when they are out of date, a README is missing or a link is broken
 - Auto-Fix linting issues: `npm run lint:fix`
 
 ## Project Structure
@@ -47,7 +48,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── utils/                      # Shared helpers that build no UI (properties, metadata, placeholders, taxonomy, ...), see utils/README.md
 ├── templates/                  # Code of the Site Global Templates, loaded by Page Type (home, article, blog, press-release), see templates/README.md
 ├── models/                     # Folder containing component definitions, models and filters for default content, pages, sections etc.
-├── docs/                       # Not served (.hlxignore): handover/ (the project handover PDF and its Markdown source), proposals/ (design proposals), animation/ (block animation and skeleton loading report), audit/ (block ecosystem audit: report, inventories, register, tools)
+├── docs/                       # Not served (.hlxignore): handover/ (the project handover PDF and its Markdown source), proposals/ (design proposals), animation/ (block animation and skeleton loading report), audit/ (block ecosystem audit: report, inventories, register, tools), blocks/ (block documentation report and per-block review notes)
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
 ├── head.html                   # Global HTML head content
@@ -301,7 +302,7 @@ With this information, you can construct URLs for the preview environment (same 
 - Follow the existing code style and patterns
 - Test changes locally before committing
 - Follow the Publishing Process documented above
-- Update documentation for significant changes: the block's README, `decorators/README.md` / `utils/README.md`, this file, and the project handover (`docs/handover/TCS-CORP-HANDOVER.md`: the component chapter, Part 16 findings, the revision history; then regenerate the PDF, see `docs/handover/README.md`)
+- Update documentation for significant changes: the block's README (`blocks/<block>/README.md`, the structure of [blocks/README.md](blocks/README.md); its written sections by hand, the generated ones with `npm run build:docs`; status, type and purpose in `tools/docs/blocks.json`), `decorators/README.md` / `utils/README.md`, this file, and the project handover (`docs/handover/TCS-CORP-HANDOVER.md`: the component chapter, Part 16 findings, the revision history; then regenerate the PDF, see `docs/handover/README.md`)
 - Design proposals go to `docs/proposals/` (listed in its README); the Cards and Card refactoring proposal (`docs/proposals/cards-card-refactoring.md`) is open for decisions
 
 ## If all else fails
