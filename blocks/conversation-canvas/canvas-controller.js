@@ -11,6 +11,13 @@ import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
  *   (reading order, focus, listeners, editor instrumentation) never moves and is never cloned
  * - the journey state is <html data-canvas-journey-state> (STATES); the header announces its
  *   menu with a header:menu event ({ open }): the floating Canvas is HIDDEN while it's open
+ * - a Canvas row in use (focus in it) stays docked while it's on screen (focused in
+ *   canvas-journey.js): the floating row doesn't come back over it while the user types
+ * - one row in use at a time while a row floats: the other Canvas rows are inert placeholders;
+ *   with no row floating (the header Canvas docked on the first screen, a section or the footer
+ *   Canvas docked) every Canvas row is in use
+ * - only active Canvases take part: one with Hide block or not shown (a hidden tab or section)
+ *   never floats and nothing docks on it, wherever it is (header, page, footer, Primary)
  * - a failure here only stops the floating (nothing floats): page, header and footer still work
  * - writes on <html> (custom properties, the journey state) restyle the whole page: they are
  *   made only when the value changes, and resizes while the page loads are measured once they
@@ -30,6 +37,8 @@ let frame = 0;
 let dirty = true;
 let listening = false;
 let suppressed = false;
+// the entry whose row in place holds focus (see focusin below)
+let focusedEntry = null;
 let firstSectionBottom = null;
 // the page loads in steps (sections, images, header, footer): measure once a step has settled
 const RESIZE_SETTLE = 100;
@@ -55,12 +64,17 @@ const byDomOrder = (a, b) => (
 function release(entry) {
   entry.row.classList.remove(FLOATING, HANDOFF);
   entry.block.classList.remove(OWNER);
-  if (entry.primary) entry.row.inert = true;
+  // a Primary dock in place is hidden; a Canvas row in place is usable
+  entry.row.inert = !!entry.primary;
   if (entry.slot) {
     entry.slot.style.minHeight = '';
     entry.slot.classList.remove(APPROACHING);
   }
 }
+
+/** whether a Canvas takes part in the journey: not hidden (Hide block) and shown */
+const isActive = (entry) => !entry.block.classList.contains('hideblock')
+  && (entry.primary ? entry.block : entry.slot).getClientRects().length > 0;
 
 /** reads the page geometry (layout reads only, the writes follow in apply) */
 function measure() {
@@ -74,7 +88,14 @@ function measure() {
       entries.splice(i, 1);
     }
   }
-  const live = entries.filter((e) => e.block.isConnected).sort(byDomOrder);
+  // only active Canvases take part: not one with Hide block (in the header and footer too, and
+  // in the editor, where it shows faded) or one not shown (a hidden tab or section: no boxes);
+  // one that was active lets go of the journey (no floating row, role or reserved space left)
+  const live = entries.filter((e) => e.block.isConnected && isActive(e)).sort(byDomOrder);
+  entries.filter((e) => e.block.isConnected && !live.includes(e)).forEach((e) => {
+    release(e);
+    delete e.block.dataset.canvasRole;
+  });
   const firstSection = document.querySelector('main > .section');
   const roles = assignRoles(live.map((e) => ({
     primary: e.primary,
@@ -127,6 +148,12 @@ function measure() {
 /** applies a journey result: classes, the reserved space of a floating row, the footer lift */
 function apply(result) {
   const { live, canvases, offset } = geometry;
+  // while a row floats it is the only one in use: the other Canvas rows are placeholders (inert:
+  // not clicked, focused or read out, e.g. a row hidden while the floating row comes up to it);
+  // with none floating (a row docked) every row is in use. Not in the editor, where authors
+  // select them
+  const floating = result.owner >= 0;
+  const editing = document.documentElement.classList.contains('adobe-ue-edit');
   live.forEach((entry, i) => {
     const floats = i === result.owner;
     const { block, row, slot } = entry;
@@ -136,6 +163,7 @@ function apply(result) {
       // a hidden dock can't be reached by keyboard or screen readers
       row.inert = !floats;
     } else {
+      row.inert = floating && !floats && !editing;
       // keep the place of the row while it floats, so the page doesn't move
       slot.style.minHeight = floats ? `${canvases[i].rowHeight}px` : '';
       // the floating row lands on the next Canvas: its own row shows once it has arrived
@@ -161,7 +189,10 @@ function update() {
   try {
     if (dirty) measure();
     if (!geometry?.live.length) return;
-    const result = resolveJourney({ ...geometry, scrollY: window.scrollY, suppressed });
+    const focused = focusedEntry ? geometry.live.indexOf(focusedEntry) : -1;
+    const result = resolveJourney({
+      ...geometry, scrollY: window.scrollY, suppressed, focused,
+    });
     const changed = Object.keys(result).some((key) => result[key] !== previous[key]);
     if (changed) apply(result);
     previous = result;
@@ -210,6 +241,23 @@ export default function registerCanvas(entry) {
     document.addEventListener('header:menu', (e) => {
       suppressed = !!e.detail?.open;
       schedule();
+    });
+    // a row in use (focus in it, e.g. typing in a docked row) stays docked while it's on screen,
+    // so it doesn't turn into a placeholder under the user's hands (focused in canvas-journey.js)
+    document.addEventListener('focusin', (e) => {
+      const held = entries.find((x) => !x.primary && x.row.contains(e.target));
+      const next = held && !held.row.classList.contains(FLOATING) ? held : null;
+      if (next === focusedEntry) return;
+      focusedEntry = next;
+      // at once, in this frame
+      cancelAnimationFrame(frame);
+      update();
+    });
+    document.addEventListener('focusout', (e) => {
+      if (focusedEntry && !focusedEntry.row.contains(e.relatedTarget)) {
+        focusedEntry = null;
+        schedule();
+      }
     });
     // sections, images, fonts, header and footer load later and move the page
     new ResizeObserver(remeasureSettled).observe(document.body);

@@ -18,6 +18,7 @@ import { uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import registerCanvas from './canvas-controller.js';
 import { bone, skeletonElement, skeletonWhile } from '../../decorators/skeleton-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 
 // UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
@@ -50,7 +51,9 @@ function readBlock(block) {
   [...block.children].forEach((row) => {
     const cells = [...row.children];
     const key = cells.length === 2 ? normalize(cells[0].textContent) : '';
-    if (FIELDS.includes(key)) [, config[key]] = cells;
+    // a Button item: in Universal Editor by its model (also before it has a link), else its link
+    if (row.dataset.aueModel === 'conversation-canvas-button') buttonRows.push(row);
+    else if (FIELDS.includes(key)) [, config[key]] = cells;
     else if (row.querySelector('a[href]')) buttonRows.push(row);
     else if (cells.length === 1) unkeyed.push(cells[0]);
   });
@@ -491,8 +494,16 @@ function buildSearch(config, id, block) {
   // the menu's row is below the search row: the search row moves up while the menu is open, so
   // the menu stays in the window (e.g. the header Canvas or a floating row at its bottom)
   let placeFrame = 0;
+  // the row floated (or was in place) when the menu opened: it closes when that changes, so it
+  // never hangs on a row that has landed elsewhere (canvas-controller.js)
+  let floatedAtOpen = false;
+  let closeMenu;
   const placeMenu = () => {
     placeFrame = 0;
+    if (!menu.hidden && row.classList.contains('conversation-canvas-floating') !== floatedAtOpen) {
+      closeMenu();
+      return;
+    }
     const lift = parseFloat(row.style.getPropertyValue('--conversation-canvas-menu-lift')) || 0;
     const rect = menu.getBoundingClientRect();
     const room = window.innerHeight - MENU_WINDOW_MARGIN;
@@ -504,7 +515,7 @@ function buildSearch(config, id, block) {
   const schedulePlace = () => {
     if (!placeFrame) placeFrame = requestAnimationFrame(placeMenu);
   };
-  const closeMenu = () => {
+  closeMenu = () => {
     menu.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
     window.removeEventListener('scroll', schedulePlace);
@@ -518,6 +529,7 @@ function buildSearch(config, id, block) {
     }
     menu.hidden = false;
     menuToggle.setAttribute('aria-expanded', 'true');
+    floatedAtOpen = row.classList.contains('conversation-canvas-floating');
     window.addEventListener('scroll', schedulePlace, { passive: true });
     window.addEventListener('resize', schedulePlace);
     schedulePlace();
@@ -829,20 +841,19 @@ export default async function decorate(block) {
   block.classList.add(`conversation-canvas-bg-${toClassName(textOf(config.bgstyle)) || 'default'}`);
   const titleSize = normalize(textOf(config.titlesize));
   if (TITLE_SIZES.includes(titleSize)) block.classList.add(`conversation-canvas-title-${titleSize}`);
-  // Floating journey: Docks only (nofloat): a stop of the journey whose own row doesn't float;
-  // Decorative: a Canvas in place that isn't part of the journey (the Primary dock always is)
-  const floats = !block.classList.contains('nofloat');
-  const inJourney = primary || !block.classList.contains('decorative');
+  // Floating journey: Floats and docks, or Stays in place (nofloat): a stop of the journey whose
+  // own row doesn't float, so the floating row lands on it instead of floating over it. Decorative
+  // (no longer offered) stays in place the same way. Canvases not shown aren't stops
+  // (canvas-controller.js)
+  const floats = !block.classList.contains('nofloat') && !block.classList.contains('decorative');
 
   // primary (sticky): only the floating dock (search row and site navigation)
   if (primary) {
     const dock = buildDock(config, id, block);
     block.replaceChildren(dock);
-    if (inJourney) {
-      registerCanvas({
-        block, row: dock, slot: null, primary, floats,
-      });
-    }
+    registerCanvas({
+      block, row: dock, slot: null, primary, floats: true,
+    });
     return;
   }
 
@@ -906,8 +917,11 @@ export default async function decorate(block) {
     content.append(filters);
   }
 
-  // button list
-  const buttons = buttonRows.map(buildListButton).filter(Boolean);
+  // button list; in Universal Editor a Button without a link yet is a placeholder to select
+  const built = buttonRows.map((buttonRow) => [buttonRow, buildListButton(buttonRow)]);
+  const buttons = built.map(([, li]) => li).filter(Boolean);
+  const pending = built.filter(([, li]) => !li).map(([buttonRow]) => buttonRow);
+  if (pending.length) buttons.push(...buildEditorItems(pending, await editorItemHint(pending), 'li'));
   if (buttons.length) {
     const list = document.createElement('ul');
     list.className = 'conversation-canvas-buttons';
@@ -916,9 +930,7 @@ export default async function decorate(block) {
   }
 
   block.replaceChildren(...block.querySelectorAll(':scope > .conversation-canvas-background'), content);
-  if (inJourney) {
-    registerCanvas({
-      block, row, slot, primary, floats,
-    });
-  }
+  registerCanvas({
+    block, row, slot, primary, floats,
+  });
 }

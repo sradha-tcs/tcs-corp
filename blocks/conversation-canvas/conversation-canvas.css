@@ -1188,6 +1188,15 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   color: var(--color-text-on-brand);
 }
 
+/*
+ * Hide block also in the site header (nav page) and footer (the footer's Canvas page), where
+ * styles/styles.css doesn't hide blocks (main only); a hidden Canvas isn't part of the journey
+ * (canvas-controller.js). In Universal Editor edit mode it stays visible (faded, styles.css).
+ */
+html:not(.adobe-ue-edit) :is(header, footer) .conversation-canvas.hideblock {
+  display: none;
+}
+
 /* the next canvas's row is hidden while it comes up to the floating row (one row on screen) */
 .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
   opacity: 0;

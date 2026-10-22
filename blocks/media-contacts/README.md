@@ -15,7 +15,7 @@ The Media Contacts block lists the media relations contacts of the locale's **Me
 
 - **Business purpose:** journalists find the right press contact for their region at the end of every press release, from one list maintained in one place (the sheet).
 - **User experience:** the title (e.g. "TCS media contacts"), then the groups: the brand-blue group heading and, below it, each e-mail address and phone number as an underlined link with its icon. Two columns from 900px (filled top to bottom), one column below.
-- **Templates / page types:** press releases (Page Type `press-release`). The Press Release template no longer adds the contacts by itself: authors add this block (KB-D-053 in the knowledge base decision log).
+- **Templates / page types:** press releases (Page Type `press-release`). The Press Release template no longer adds the contacts by itself: authors add this block (KB-D-054 in the knowledge base decision log).
 - **Data source:** the Media Contacts sheet of the page's locale (`utils/data.js` `getMediaContacts`): the rows whose `region` is the page's `region` metadata, else all rows. Placeholders `mediaContacts`, `email`, `phone`, `mediaContactsEditorHint`.
 - **Related blocks:** Page Header (the press release's header), Teaser and List (the other press release sections).
 - **When to use:** on press releases and media pages that should show the press contacts.

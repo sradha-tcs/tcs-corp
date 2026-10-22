@@ -102,7 +102,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 | `home` | Layout styles only | — |
 | `article` | A Page Header from the page metadata (unless authored), "About the author" | Authors sheet (`author-id`) |
 | `blog` | The article structure and styles | Authors sheet |
-| `press-release` | A Page Header (unless authored) | Page metadata (the media contacts are the Media Contacts block, KB-D-053) |
+| `press-release` | A Page Header (unless authored) | Page metadata (the media contacts are the Media Contacts block, KB-D-054) |
 
 Source: [templates/README.md](../../../templates/README.md) (including how to add a template).
 

@@ -13,7 +13,7 @@ This guide is the governance view of the blocks of the TCS Corporate Website (AE
 
 | Fact | Value | Source |
 | --- | --- | --- |
-| Block folders | 31 (each with a README; Media Contacts added on 22 October 2026, KB-D-053) | `blocks/` |
+| Block folders | 31 (each with a README; Media Contacts added on 22 October 2026, KB-D-054) | `blocks/` |
 | Components in the editor | 62: Default Content 4 (Text, Title, Image, Button (basic)), Sections 1, Blocks 57 (blocks, items and section containers) | `component-definition.json` |
 | Models / filters | 63 models, 26 filters | `component-models.json`, `component-filters.json` |
 | Statuses | 28 Active, 1 Compatibility-only (Columns), 1 Experimental (Interactive Dashboard) | `tools/docs/blocks.json` |
@@ -73,7 +73,7 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Hero](../../../blocks/hero/README.md) (`hero`) | Container | Active | Full-width banner with image or Lottie, title, description and CTAs |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) (`interactive-dashboard`) | Independent | Experimental | Placeholder reserved for a future dashboard; renders nothing; in no filter |
 | [List](../../../blocks/list/README.md) (`list`) | Container | Active | Child pages, a fixed list or tagged pages from the query index, as cards or links |
-| [Media Contacts](../../../blocks/media-contacts/README.md) (`media-contacts`) | Independent | Active | The Media Contacts sheet's contacts, grouped by designation and region; replaces the press-release template's Media contacts (KB-D-053) |
+| [Media Contacts](../../../blocks/media-contacts/README.md) (`media-contacts`) | Independent | Active | The Media Contacts sheet's contacts, grouped by designation and region; replaces the press-release template's Media contacts (KB-D-054) |
 | [Modal](../../../blocks/modal/README.md) (`modal`) | Independent | Active | Opens a page's content in a dialog (button or auto-linked `/modals/` links) |
 | [Page Header](../../../blocks/page-header/README.md) (`page-header`) | Container | Active | The title area of a page from its metadata |
 | [Quote](../../../blocks/quote/README.md) (`quote`) | Independent | Active | A quotation with author, optional image and title |

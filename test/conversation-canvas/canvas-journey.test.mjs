@@ -307,3 +307,33 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(hero(400).state, STATES.INITIAL);
   });
 });
+
+describe('a row in place that holds focus (focused)', () => {
+  // the section row (3000) on screen below the dock line: the hero row floats, the section row
+  // comes up to it (approaching)
+  const y = arrival(3000) - 60;
+
+  it('without focus: the hero row floats and the section row is approaching', () => {
+    const r = home(y);
+    assert.equal(r.state, STATES.FLOATING);
+    assert.equal(r.owner, 0);
+    assert.equal(r.approaching, 1);
+  });
+
+  it('focus on the section row: it docks at once, nothing floats (one row on screen)', () => {
+    const r = home(y, { focused: 1 });
+    assert.equal(r.state, STATES.SECTION_DOCKED);
+    assert.equal(r.owner, -1);
+    assert.equal(r.docked, 1);
+  });
+
+  it('focus on the footer row coming up: the footer docks, nothing floats', () => {
+    const r = home(arrival(6000) - 60, { focused: 2 });
+    assert.equal(r.state, STATES.FOOTER_DOCKED);
+    assert.equal(r.owner, -1);
+  });
+
+  it('a focused row off screen changes nothing', () => {
+    assert.deepEqual(home(arrival(3000) - 400, { focused: 2 }), home(arrival(3000) - 400));
+  });
+});
