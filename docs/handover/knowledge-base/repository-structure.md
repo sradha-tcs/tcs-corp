@@ -151,7 +151,7 @@ No ownership is recorded in the repository: there is no `CODEOWNERS` file, and t
 | Belongs | `templates/{name}/{name}.js` (default export gets `main` before decoration) and `{name}.css` |
 | Must not | LCP content built by code (keep it authored); blocking sheet loads (use `appendLoadedSection`) |
 | Consumers | `loadTemplate` in [scripts/scripts.js](../../../scripts/scripts.js) (names in `TEMPLATES`) |
-| Dependencies | `decorators/template-decorator.js`, `author-bio-decorator.js`, `contact-list-decorator.js`; the Authors and Media Contacts sheets |
+| Dependencies | `decorators/template-decorator.js`, `author-bio-decorator.js`; the Authors sheet (the media contacts are the Media Contacts block, KB-D-054) |
 | Lifecycle | A new template needs its AEM template page, the code, a `TEMPLATES` entry and a Page Type option in `models/_page.json` |
 | Testing and documentation | `npm run lint:js` (CSS here is not in the Stylelint globs); [templates/README.md](../../../templates/README.md) |
 

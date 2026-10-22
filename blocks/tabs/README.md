@@ -338,7 +338,7 @@ C = Inner panel
 
 ### Tabs Container (`tabs`)
 
-Model `tabs`; template name "Tabs" (the block class AEM renders); children: `tab`, `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `quote`, `testimonial`, `anchor-list`, `accordion`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `cards`, `fragment`, `tabs-block`.
+Model `tabs`; template name "Tabs" (the block class AEM renders); children: `tab`, `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `quote`, `media-contacts`, `testimonial`, `anchor-list`, `accordion`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `cards`, `fragment`, `tabs-block`.
 
 Stored on a new component (definition template): `style` = `"tabs-section"`, `tabsStyle` = `"underline"`, `tabsAlignment` = `"left"`, `tabsOrientation` = `"horizontal"`.
 
@@ -997,7 +997,7 @@ Evidence to collect (no secrets): page URL, viewport width, the section's classe
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 24 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 24 instance(s) in total:
 - Block library: `block-library/tabs/tab`, `block-library/tabs/tab-deep-link`, `block-library/tabs/tabs-block`, `block-library/tabs/tabs-block-styles`, `block-library/tabs/tabs-block-with-fragments`, `block-library/tabs/tabs-fixed-width`, `block-library/tabs/tabs-section`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

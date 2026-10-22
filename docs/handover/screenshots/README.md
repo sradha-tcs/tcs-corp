@@ -8,6 +8,7 @@ The figures of the project handover (`../TCS-CORP-HANDOVER.md`, version 2.0), re
 | Renderings | 565 (`<component>-desktop-view.jpg`, `-tablet-view.jpg`, `-mobile-view.jpg`, one per variation) | One authoring spec per screenshot (component, dialog values, items, section and page properties), rendered into a test page by the xwalk rules and captured from the local preview at the width of its description; red callout letters mark the rendered output of each entered field |
 | Annotated previews | 31 (`<component>-authoring-view.jpg`) | The same, in editor mode, with letter markers matching each chapter's annotation list — not Universal Editor screenshots |
 | Dialog references | 32 (`<component>-properties-panel.jpg`, `ue-page-properties-panel.jpg`) | Drawn from `component-models.json` — not Universal Editor screenshots |
+| Media Contacts (2.41) | 5 (`media-contacts-desktop-view.jpg`, `-mobile-view.jpg`, `-region.jpg`, `-default-title.jpg`, `template-press-release-media-contacts.jpg`) | Captured from the local preview of the block library package 1.0.14 (the tcs.com media contacts in the Media Contacts sheet), with red callout letters drawn on the elements of the chapter's Field Entry Table (6.33) |
 
 In the document every rendering and annotated preview is followed by its authoring block:
 Screenshot Details; the **Field Entry Table** of the same spec (Callout, Field Name, Example

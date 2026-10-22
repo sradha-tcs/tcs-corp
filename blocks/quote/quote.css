@@ -84,14 +84,16 @@
   margin: 0 var(--space-400) calc(-1 * var(--space-1200));
 }
 
-/* opening and closing quote marks (Figma: 120px brand blue, closing mark at the bottom);
-   SVG icons on a 46 : 92 canvas with the mark at its top, where the former glyphs were */
+/* opening and closing quote marks (Figma: brand blue SVG icons, closing mark at the bottom);
+   the icons sit in the middle of their box, the margins move them to the card's text */
 .quote .quote-card::before {
   content: '';
   width: var(--quote-mark-width);
   height: var(--quote-mark-height);
   background: url('/icons/quote-open.svg') no-repeat center;
   background-size: contain;
+  align-self: start;
+  margin-top: -2.125rem;
 }
 
 .quote .quote-card::after {
@@ -101,6 +103,7 @@
   background: url('/icons/quote-close.svg') no-repeat center;
   background-size: contain;
   align-self: end;
+  margin-bottom: 2.1875rem;
 }
 
 .quote .quote-card-text {
@@ -130,7 +133,7 @@
 }
 
 .quote :is(.quote-text, .quote-author) > * + * {
-  margin-top: var(--space-200);
+  margin-top: 0;
 }
 
 @media (width >= 900px) {

@@ -696,6 +696,23 @@
           }
         },
         {
+          "title": "Media Contacts",
+          "id": "media-contacts",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Media Contacts",
+                  "model": "media-contacts",
+                  "key-value": true,
+                  "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Modal",
           "id": "modal",
           "plugins": {

@@ -1316,7 +1316,7 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 70 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 70 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/animation/speed-and-trigger`, `block-library/cards/card-colours`, `block-library/cards/card-styles`, `block-library/cards/grid-and-horizontal-scroll`, `block-library/cards/heights-links-legacy`, `block-library/cards/images-panels-style-options`, `block-library/cards/per-card-styles-and-colours`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`, `block-library/tabs/fragments/cloud-overview`, `block-library/tabs/fragments/consulting-overview`, `block-library/tabs/fragments/security-overview`, `block-library/templates/home-template`
 - Curated design pages: `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/who-we-are`
 

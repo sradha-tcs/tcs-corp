@@ -883,7 +883,7 @@ width, the block's classes and the accessibility tree of the table.
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 12 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 12 instance(s) in total:
 - Block library: `block-library/table/table`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

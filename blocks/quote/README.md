@@ -738,7 +738,7 @@ Evidence to collect: the page URL (preview or live), viewport width, browser, a 
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 12 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 12 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/quote/quote-variations`
 - Curated design pages: `curated-design-pages/insights`, `curated-design-pages/who-we-are`
 

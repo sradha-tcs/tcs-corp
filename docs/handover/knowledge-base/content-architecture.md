@@ -102,7 +102,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 | `home` | Layout styles only | — |
 | `article` | A Page Header from the page metadata (unless authored), "About the author" | Authors sheet (`author-id`) |
 | `blog` | The article structure and styles | Authors sheet |
-| `press-release` | A Page Header (unless authored), "Media contacts" | Media Contacts sheet, filtered by the page's `region`, else all |
+| `press-release` | A Page Header (unless authored) | Page metadata (the media contacts are the Media Contacts block, KB-D-054) |
 
 Source: [templates/README.md](../../../templates/README.md) (including how to add a template).
 
@@ -217,7 +217,7 @@ Values may be AEM paths, published paths or paths relative to the locale root (`
 | --- | --- | --- |
 | `authors` | `author-id`, `name`, `designation`, `bio`, `image`, `linkedin`, `region` | Page Header (`getAuthor`, case-insensitive id), article / blog templates, List feature card and Filter List spotlights (`getAuthors`) |
 | `social-links` | `platform`, `url`, `icon`, `sort-order` | Footer (in `sort-order`, rows without one last) |
-| `media-contacts` | `id`, `name`, `designation`, `email`, `phone`, `region` | Press release template (`inRegion` by the page's `region`, else all) |
+| `media-contacts` | `id`, `name`, `designation`, `email`, `phone`, `region` | Media Contacts block (`blocks/media-contacts`: `inRegion` by the page's `region`, else all; grouped by designation and region) |
 | `locations` | `location-id`, `location-name`, `country`, `region`, `latitude`, `longitude` | `getLocations()` only; no component reads it (handover F-40) |
 | `partners` | `partner-id`, `partner-name`, `logo`, `website`, `tier`, `description` | `getPartners()` only; no component reads it (handover F-40) |
 

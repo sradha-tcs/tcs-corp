@@ -1,0 +1,110 @@
+/* Media Contacts: the Media Contacts sheet's groups (designation & region), their e-mail
+   addresses and phone numbers one below the other, each with its icon (tcs.com press releases) */
+.media-contacts .media-contacts-title {
+  margin: 0 0 var(--space-800);
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
+}
+
+.media-contacts .contact-list-groups,
+.media-contacts .contact-list-entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* spacing below each group (not above: a column's first group starts at its top) */
+.media-contacts .contact-list-group {
+  padding-bottom: var(--space-1000);
+}
+
+.media-contacts .contact-list-group:last-child {
+  padding-bottom: 0;
+}
+
+.media-contacts .contact-list-heading {
+  margin: 0 0 var(--space-500);
+  color: var(--color-text-brand);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+  letter-spacing: calc(-0.02 * var(--heading-font-size-l));
+}
+
+.media-contacts .contact-list-entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-500);
+}
+
+.media-contacts .contact-list-name {
+  font-weight: var(--font-weight-semibold);
+}
+
+.media-contacts .contact-list-link {
+  display: inline-flex;
+  gap: var(--space-400);
+  align-items: center;
+  max-width: 100%;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+/* the icon (decorative: the link's text says what it is) */
+.media-contacts .contact-list-link::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--color-text-brand);
+  mask: url('../../icons/mail.svg') center / contain no-repeat;
+}
+
+.media-contacts .contact-list-phone .contact-list-link::before {
+  mask-image: url('../../icons/phone.svg');
+}
+
+/* the address or number underlined (not the icon) */
+.media-contacts .contact-list-text {
+  text-decoration: underline;
+  text-decoration-thickness: 0.0625rem;
+  text-underline-offset: 0.3125rem;
+}
+
+.media-contacts .contact-list-link:hover {
+  color: var(--color-text-brand);
+}
+
+.media-contacts .contact-list-link:focus-visible {
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: 0.25rem;
+}
+
+.media-contacts .media-contacts-empty {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* the skeleton while the sheet loads */
+.media-contacts .skeleton .contact-list-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-400);
+}
+
+/* two columns, filled top to bottom (the reading order), a group never split */
+@media (width >= 900px) {
+  .media-contacts .contact-list-groups {
+    columns: 2;
+    column-gap: var(--space-1600);
+  }
+
+  .media-contacts .contact-list-group {
+    break-inside: avoid;
+  }
+}

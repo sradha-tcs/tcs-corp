@@ -3,7 +3,7 @@
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { redactSearchTerm } from '../../utils/privacy.js';
+import { contactLinkKind, redactSearchTerm } from '../../utils/privacy.js';
 
 describe('redactSearchTerm', () => {
   it('keeps an ordinary search term, trimmed', () => {
@@ -21,5 +21,19 @@ describe('redactSearchTerm', () => {
   });
   it('cuts long terms at 100 characters', () => {
     assert.equal(redactSearchTerm('a'.repeat(150)).length, 100);
+  });
+});
+
+describe('contactLinkKind', () => {
+  it('names mail and phone links, whose address the data layer leaves out', () => {
+    assert.equal(contactLinkKind('mailto:jane.doe@example.com'), 'email');
+    assert.equal(contactLinkKind(' MAILTO:press@example.com?subject=Hi'), 'email');
+    assert.equal(contactLinkKind('tel:+6592704560'), 'phone');
+  });
+  it('is empty for other links', () => {
+    assert.equal(contactLinkKind('https://www.tcs.com/'), '');
+    assert.equal(contactLinkKind('/en/contact'), '');
+    assert.equal(contactLinkKind('#anchor'), '');
+    assert.equal(contactLinkKind(undefined), '');
   });
 });
