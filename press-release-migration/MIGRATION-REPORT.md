@@ -6,8 +6,8 @@
 | Destination | `/content/tcs-corp/language-master/en/curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` |
 | Published path | `/language-master/en/curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` |
 | Template | Press Release (`page-type` = `press-release`, `templates/press-release`) |
-| Blocks used | Page Header, default Image / Title / Text, List (+ 4 List Items), Teaser. No new block, no code change |
-| Package | `tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip` (47 entries, 166,891 bytes) |
+| Blocks used | Page Header, default Image / Title / Text, Media Contacts, List (+ 4 List Items), Teaser. Media Contacts is a new block, added on your request (1.0.1; code PR: the Media Contacts block) |
+| Package | `tcs-corp-press-release-tcs-bancs-treasury-content-1.0.1.zip` (47 entries, 166,941 bytes; 1.0.0 without the Media Contacts block) |
 | Sheet rows | `metadata-language-master-row.csv` (bulk metadata), `data-media-contacts.csv` (optional, see O-2) |
 | Date | 22 October 2026 |
 
@@ -55,12 +55,12 @@ Header and footer are excluded as requested. The page inherits Navigation and Fo
 | 5 | "PRESS RELEASE" label | Page Header content type | Migrated | Shown by the Page Header, not repeated in the body |
 | 6 | Dateline and body: 7 paragraphs, including 2 leadership quotes (bold speaker, italic quote) | **Text** (default content, rich text) | Migrated verbatim | Quotes kept inline as on the source, not as a Quote block (D-4). Source wording kept ("decision-marking"; "marks a new milestone platform-led transformation", O-3) |
 | 7 | "ABOUT TATA CONSULTANCY SERVICES (TCS)" boilerplate, www.tcs.com link, Follow TCS on LinkedIn / Instagram / YouTube / X | **Title** (H2) + **Text** | Migrated verbatim | None. All 6 links kept |
-| 8 | "TCS media contacts": 9 regions, 12 e-mail addresses, 8 phone numbers | Press-release template **Media contacts** (Media Contacts data sheet) | Migrated to the sheet (applied when the sheet is imported) | Rows in `data-media-contacts.csv` for the language master's Media Contacts sheet. Not authored on the page. The template shows them after the content, not before "In the News" (D-5, O-2) |
+| 8 | "TCS media contacts": 9 regions, 12 e-mail addresses, 8 phone numbers | **Media Contacts** block (Title "TCS media contacts", H2), after the About section; contacts from the Media Contacts sheet (`data-media-contacts.csv`) | Migrated | Grouped by designation and region as on the source: Corporate Communications & India with its 3 e-mail addresses one below the other, then one group per region; two columns from 900px. The source's "Opens in new tab" on one mailto: link isn't kept (O-2) |
 | 9 | "In the News": carousel of 4 press releases | **List**: Fixed list, 4 List Items to the matching language-master supporting pages; image cards without images (content type, date, title); grid of 4 on desktop, horizontal scroll on tablet and mobile | Migrated | The cards link to the supporting pages, not to tcs.com. Their dates and the Q2 card's content type ("News") come from those pages (D-6) |
 | 10 | "With you for the long run" + "Connect with us" | **Teaser** (no image, grey, centred, Primary CTA) to the language master's contact page (`dummy-pages/contact`) | Migrated | The CTA opens the contact page, not a form overlay |
 | 11 | Header, footer, cookie banner | Not migrated | Excluded | As requested |
 
-Content order is the source's (sections 2 to 10), apart from the media contacts (D-5).
+Content order is the source's (sections 2 to 10).
 
 ## 4. Assets
 
@@ -76,7 +76,7 @@ The source OG image (`indian-focused-articles-banks-card.jpg` on tcs.com) return
 - **D-2:** The source shows the image next to the title. The Article Page Header has no image, and the Landing layout's featured image would need a DAM path in the sheet, which isn't delivered. So the image opens the body.
 - **D-3:** The source alt text ("TCS to Modernize Enento Group’s IT Infrastructure, Digital Workplace") belongs to another release. It was replaced with a description of the image.
 - **D-4:** The quotes stay in the body text, formatted as on the source. A Quote block would pull them out of the release's flow. Authors can switch to a Quote block if wanted.
-- **D-5:** The template appends the media contacts at the end of the page, after the CTA teaser. On the source they come before "In the News".
+- **D-5:** Resolved in 1.0.1: the media contacts are the Media Contacts block, in the source's position (before "In the News"). The press-release template no longer appends them.
 - **D-6:** "In the News" links to the language master's supporting pages for the same releases. Their dates are the supporting pages' (15 Oct, 15 Oct, 9 Oct, 15 Oct), not the source's (15, 14, 8, 1 Oct). The Q2 results page is typed "News". Fix the dates and type on those pages, or point the List Items to the real pages once they're migrated.
 - **D-7:** The page model has no Navigation title field. `navTitle` is stored on the page (it shows in the AEM Sites page properties) but isn't editable in Universal Editor.
 - **D-8:** The Page Header shows "Press Release" twice: as the content-type tag and as the content type. This is how press-release pages already render. Remove the `content-type/press-release` tag only if the page shouldn't appear in press-release tag lists.
@@ -100,7 +100,7 @@ Checked on the local preview (language master mapped to /en, the AEM delivery ru
 | Check | Result |
 |---|---|
 | H1 | 1 (the title) |
-| Heading order in main | H1, H2 About, H2 In the News, H3 × 4 cards, H2 With you for the long run, H2 Media contacts. No skipped levels |
+| Heading order in main | H1, H2 About, H2 TCS media contacts, H3 × 10 contact groups, H2 In the News, H3 × 4 cards, H2 With you for the long run. No skipped levels (1.0.1) |
 | Images without alt | 0 |
 | Links / buttons without an accessible name | 0 / 0 (15 links in main) |
 | Text contrast (sampled) | 5.36:1 (links in body text) to 19.55:1 |
@@ -126,7 +126,7 @@ Checked on the local preview (language master mapped to /en, the AEM delivery ru
 | Check | Result |
 |---|---|
 | Page entry | `xdm:template` press-release, `xdm:language` en, the 4 tags, `dc:title` |
-| Components | page-header-1, list-1 with 4 list items (`xdm:listSource` fixed), teaser-1 |
+| Components | page-header-1, media-contacts-1, list-1 with 4 list items (`xdm:listSource` fixed), teaser-1. Contact clicks: `cmp:click` with `interaction` email / phone and the group as `value`, without the address (1.0.1) |
 | Personal data | None in the data layer |
 | Not configured | Adobe Tags, Web SDK, Analytics, Target. The data layer is ready for them (project status, unchanged) |
 
@@ -142,14 +142,14 @@ Checked on the local preview (language master mapped to /en, the AEM delivery ru
 ## 7. Open issues
 
 - **O-1:** The press-release (and article / blog) template inserts its Page Header and Media contacts in a full-width section with no side gutter. Recommendation: give the inserted sections the fixed-width class in `decorators/template-decorator.js`. That's a code change and needs its own PR.
-- **O-2:** Approved on 22 October 2026: the source's 12 media contacts go into the language master's Media Contacts sheet. `data-media-contacts.csv` has them (designation / region / e-mail / phone, no names; public business contacts). The sheet is empty today, so the file can be imported as the whole sheet. Every press-release page in the language master will then list them (the page's region is Global, so all are shown). The addresses are published in `/language-master/en/data/media-contacts.json`. They appear after the CTA teaser (D-5).
+- **O-2:** Approved on 22 October 2026: the source's 12 media contacts go into the language master's Media Contacts sheet, which the Media Contacts block reads. `data-media-contacts.csv` has them (designation / region / e-mail / phone, no names; public business contacts). The sheet is empty today, so the file can be imported as the whole sheet. Every page with a Media Contacts block in the language master lists them (this page's region is Global, so all are shown). The addresses are published in `/language-master/en/data/media-contacts.json`; the data layer records clicks on them as email / phone without the address.
 - **O-3:** The source copy has errors ("decision-marking"; "marks a new milestone platform-led transformation"). They were kept verbatim. Correct them only with Corporate Communications' approval.
 - **O-4:** On the source, the "Tata Consultancy Services" link in the dateline goes to an unrelated 2023 AWS press release. It was kept as on the source. Recommendation: link to the TCS home page or remove the link.
 - **O-5:** Canonical, rendering and the metadata row are checked only in the local preview. After installing: check on aem.page, add the metadata row to the language master's metadata sheet, then publish and reindex.
 
 ## 8. Installation steps (once approved)
 
-1. Install `tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip` in AEM (Package Manager). It changes only the new page, its image and (merged) 4 existing tags. It creates the `forms` parent page only if it doesn't exist.
+1. Deploy the Media Contacts block code (merge its PR) so the block is offered and renders. Then install `tcs-corp-press-release-tcs-bancs-treasury-content-1.0.1.zip` in AEM (Package Manager). It changes only the new page, its image and (merged) 4 existing tags. It creates the `forms` parent page only if it doesn't exist.
 2. Add the row of `metadata-language-master-row.csv` to the language master's metadata sheet.
 3. Import `data-media-contacts.csv` into the language master's Media Contacts sheet (`/content/tcs-corp/language-master/en/data/media-contacts`; empty today, O-2).
 4. Publish the page (and the sheets) and reindex. Check on aem.page.

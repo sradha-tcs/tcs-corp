@@ -1,8 +1,22 @@
 # Content packages
 
+> **22 October 2026 (2): the Media Contacts block, block library package 1.0.14 and handover 2.41.** The previous state of this branch is tagged `home-content-package_22-Oct-2026_1318`. The code is on main (pull request #148): install after it is deployed.
+>
+> - `block-library/tcs-corp-block-library-content-1.0.14.zip`: block library and curated design pages (replaces 1.0.13).
+>   - New: Media Contacts folder with the pages "Media Contacts variations" and "Media Contacts: one region" (region Europe).
+>   - The Press release template page ends with a Media Contacts block. The Press Release template no longer appends the contacts.
+>   - The migrated press release `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` and its "Forms" parent page and image are included. This package replaces the whole curated-design-pages tree, so without them installing it would remove the migrated page; **don't install 1.0.13 or older any more**.
+>   - Conversation Canvas examples use "Stays in place" instead of the removed "Decorative" journey (pull request #147).
+> - `block-library/metadata-1.0.14-new-rows.csv` (and `.tsv`, to paste): the 6 rows to add to or change in the language master's Metadata sheet: the 3 Media Contacts pages, the Forms page, the migrated press release, and "Page Header: press release", whose region is now Europe as its spec says (it was Global). `metadata-language-master.csv` is the whole sheet.
+> - `block-library/data-media-contacts.csv`: the 12 tcs.com media contacts (as already imported into the language master's Media Contacts sheet).
+> - `block-library/placeholders.csv`: new keys `email`, `phone`, `mediaContactsEditorHint`; `mediaContacts` is now used by the Media Contacts block.
+> - `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.1.zip`: the migrated page with the Media Contacts block after "About TCS" (replaces 1.0.0). It isn't needed when 1.0.14 is installed, which contains the same page. `MIGRATION-REPORT.md` is updated.
+> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.41, 3,442 pages: chapter 6.33 Media Contacts Block with 5 screenshots, the Press Release template (4.1.4), the Media Contacts sheet (9.9), `mailto:` / `tel:` clicks without the address (F-05 closed), F-109 (releases need the block), F-110 (the template Page Header has no side gutter).
+> - After installing: publish the pages and the sheets, then reindex. Add the Media Contacts block to the Site Global Templates press-release page and to press releases authored before (F-109).
+
 > **22 October 2026: the migrated press release "TCS BaNCS for Treasury marks its entry into Sri Lanka with Indian Bank".** The previous state of this branch is tagged `home-content-package_22-Oct-2026_1057`.
 >
-> - `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip`: the page `/content/tcs-corp/language-master/en/curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` (press-release template), its image and 4 existing tags (merged). It creates the `forms` parent page only if it doesn't exist. Nothing else in AEM changes.
+> - `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip` (now 1.0.1, see above): the page `/content/tcs-corp/language-master/en/curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` (press-release template), its image and 4 existing tags (merged). It creates the `forms` parent page only if it doesn't exist. Nothing else in AEM changes.
 > - `press-release-migration/metadata-language-master-row.csv` (and `.tsv`): its row of the language master's Metadata sheet. Add it to the sheet; don't import it as the whole sheet.
 > - `press-release-migration/data-media-contacts.csv` (and `.tsv`): the 12 TCS media contacts of the source for the language master's Media Contacts sheet (`/content/tcs-corp/language-master/en/data/media-contacts`, empty today). Every press-release page of the language master lists them.
 > - `press-release-migration/MIGRATION-REPORT.md`: the section-to-block mapping, the deviations, the validation report and the open issues.
@@ -26,7 +40,7 @@
 
 ## Press release migration (language master)
 
-- `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Migrated from https://www.tcs.com/who-we-are/newsroom/press-release/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank with the existing blocks: Page Header, Image, Text, Title, List (In the News, 4 List Items) and Teaser.
+- `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.1.zip` (1.0.1: the Media Contacts block; 1.0.0 the previous version): AEM content package (Package Manager, Upload Package, Install). Migrated from https://www.tcs.com/who-we-are/newsroom/press-release/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank with the existing blocks: Page Header, Image, Text, Title, List (In the News, 4 List Items) and Teaser.
 - `press-release-migration/metadata-language-master-row.csv`, `data-media-contacts.csv` (and `.tsv`, tab-separated, to paste): the sheet rows.
 - `press-release-migration/MIGRATION-REPORT.md`: the mapping document and the validation report.
 
