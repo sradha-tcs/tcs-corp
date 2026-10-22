@@ -407,6 +407,62 @@
 }
 
 /*
+ * a level of more than six pages: two columns filled top to bottom (Figma List Container
+ * 1124:26250: 819px, 20px padding, 40px between the columns, rows of 14 / 20px text with a divider
+ * below and the arrow on the right of every row, 49px apart)
+ */
+.conversation-canvas .conversation-canvas-menu:has(.conversation-canvas-menu-columns) {
+  width: min(51.1875rem, calc(100vw - 2 * var(--space-600)));
+  padding: var(--space-500);
+}
+
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-menu-columns {
+  display: grid;
+  grid-template-rows: repeat(var(--conversation-canvas-menu-rows, 4), auto);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: column;
+  gap: var(--space-400) var(--space-1000);
+}
+
+.conversation-canvas .conversation-canvas-menu-level:has(+ .conversation-canvas-menu-columns) {
+  margin-bottom: var(--space-400);
+}
+
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-menu-columns > li {
+  border-top: 0;
+  border-bottom: var(--border-width-100) solid var(--color-border-default);
+  padding-bottom: var(--space-300);
+}
+
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-menu-columns > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-200);
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: calc(-0.005 * 0.875rem);
+}
+
+/* the arrow of every row, at its right edge: a page's own (decorative) or its sub-level button */
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-menu-columns > li > a:only-child::after {
+  content: '';
+  flex: none;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  margin-block: -0.125rem;
+  background-color: var(--color-icon-default);
+  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+}
+
+.conversation-canvas .conversation-canvas-menu .conversation-canvas-menu-columns .conversation-canvas-menu-next {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  margin-block: -0.125rem;
+}
+
+/*
  * The site menu button and its pop-over show on desktop only (from 1200px): on tablet and mobile
  * the site navigation is the header's menu button (blocks/tcs-header); search, voice, submit, the
  * Primary dock and the floating journey are unchanged
@@ -447,7 +503,16 @@ html:has(.conversation-canvas-owner) {
   scroll-padding-bottom: var(--conversation-canvas-obscured, 0);
 }
 
-/* while the header menu is open the journey is HIDDEN (canvas-controller.js): nothing floats */
+/*
+ * while the header menu is open the journey is HIDDEN (canvas-controller.js): nothing floats, and
+ * the menu covers the page with its Canvases (main and footer are inert). The header Canvas isn't
+ * in the page but above it: it's hidden too (out of reach for keyboard and screen readers), so the
+ * menu is a page of its own; it shows again, in its place, when the menu closes. Keyed on the menu
+ * button (open on tablet and mobile only), not the journey state, which a failure also sets.
+ */
+header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
+  visibility: hidden;
+}
 
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-menu-toggle,
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form {
