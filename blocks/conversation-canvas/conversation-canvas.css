@@ -386,17 +386,6 @@
   text-decoration: none;
 }
 
-/* the arrow of a page without child pages (decorative; the others' is their button) */
-.conversation-canvas .conversation-canvas-menu-panel a:only-child::after {
-  content: '';
-  flex: none;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  margin-block: -0.125rem;
-  background-color: currentcolor;
-  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
-}
-
 .conversation-canvas .conversation-canvas-menu-panel a:hover,
 .conversation-canvas .conversation-canvas-menu-panel a:focus-visible,
 .conversation-canvas .conversation-canvas-menu-panel a[aria-current] {
@@ -432,11 +421,16 @@
 }
 
 /*
- * open (Figma 1124:26210): the menu button a blue close button, the page faded behind the search
- * row and the menu; the row moves up by the lift the menu needs to stay in the window
+ * open (Figma 1124:26210): the menu button a blue close button, the page behind the search row
+ * and the menu in a grey fade; the row moves up by the lift the menu needs to stay in the window
  * (buildSearch)
  */
 @media (width >= 1200px) {
+  /* the menu button: a blue menu icon (Figma 1124:27046) */
+  .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle {
+    color: var(--conversation-canvas-active);
+  }
+
   .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true'] {
     border-color: var(--conversation-canvas-active);
     background-color: var(--conversation-canvas-active);
@@ -457,12 +451,20 @@
     visibility: hidden;
   }
 
+  /*
+   * the page behind the open menu: a grey fade the size of the window (Figma 1124:26244 / your
+   * screenshot: 40% black at the top, light grey from 55% down), placed on it by buildSearch
+   * (--conversation-canvas-menu-x / -y: the row's place in the window)
+   */
   .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden]))::before {
     content: '';
     position: absolute;
-    inset: -100vmax;
+    top: var(--conversation-canvas-menu-y, 0);
+    left: var(--conversation-canvas-menu-x, 0);
     z-index: -1;
-    background-color: var(--white-500);
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0deg, var(--color-bg-secondary) 55%, var(--color-bg-neutral-tertiary-hover) 100%);
     pointer-events: none;
   }
 }
@@ -1023,6 +1025,93 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   }
 }
 
+/* site menu items (Default and Secondary, see Site menu above) */
+
+.conversation-canvas .conversation-canvas-nav-group {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  border-radius: var(--radius-full);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/*
+ * Figma 1124:27046 (Nav-Items): the first level as Filter tag pills (1px #767676
+ * --color-border-neutral-secondary, 12px 32px, medium --color-text-neutral), the levels below as
+ * white pills (1px #e6e6e6 --color-border-default, 8px 24px); a page with child pages is one pill
+ * with its link and its chevron, the only items with an arrow; the open one is filled blue
+ */
+.conversation-canvas .conversation-canvas-menu-levels {
+  --conversation-canvas-pill-border: var(--color-border-neutral-secondary);
+  --conversation-canvas-pill-padding: var(--space-800);
+  --conversation-canvas-pill-text: var(--color-text-neutral);
+}
+
+.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] {
+  --conversation-canvas-pill-border: var(--color-border-default);
+  --conversation-canvas-pill-padding: var(--space-600);
+  --conversation-canvas-pill-text: var(--color-text-default);
+}
+
+/* a page without child pages: its link is the pill; with child pages: the link and chevron */
+.conversation-canvas .conversation-canvas-menu-levels .conversation-canvas-nav-item,
+.conversation-canvas .conversation-canvas-menu-levels .conversation-canvas-nav-group {
+  border: var(--border-width-100) solid var(--conversation-canvas-pill-border);
+  background-color: var(--color-bg-default);
+  color: var(--conversation-canvas-pill-text);
+}
+
+.conversation-canvas .conversation-canvas-menu-levels :is(li:not(.conversation-canvas-nav-group) > .conversation-canvas-nav-item, .conversation-canvas-nav-group):is(:hover, :focus-within),
+.conversation-canvas .conversation-canvas-menu-levels .conversation-canvas-nav-open {
+  border-color: var(--conversation-canvas-active);
+}
+
+/* in a pill with child pages the link has no pill of its own */
+.conversation-canvas .conversation-canvas-menu-levels :where(.conversation-canvas-nav-group) > .conversation-canvas-nav-item {
+  min-height: 0;
+  border: 0;
+  padding-inline-end: var(--space-200);
+  background-color: transparent;
+}
+
+.conversation-canvas .conversation-canvas-nav-chevron {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  margin: 0 var(--conversation-canvas-pill-padding, var(--space-600)) 0 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  padding: 0;
+  background: none;
+  color: var(--color-icon-default);
+  cursor: pointer;
+}
+
+.conversation-canvas .conversation-canvas-nav-chevron::before {
+  content: '';
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  background-color: currentcolor;
+  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
+  transition: transform 0.2s;
+}
+
+.conversation-canvas .conversation-canvas-nav-open > .conversation-canvas-nav-chevron::before {
+  transform: rotate(180deg);
+}
+
+/* the levels below: the open item is a filled pill (Figma 1124:27046 "Industries") */
+.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open {
+  background-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open > :is(.conversation-canvas-nav-item, .conversation-canvas-nav-chevron) {
+  color: var(--color-text-on-brand);
+}
+
 /*
  * Navigation style Text links ("Full menu - No Pill", Figma 1734:31279): the navigation items
  * are text; the current one and an open toggle are filled pills.
@@ -1113,79 +1202,6 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
     background-color: transparent;
     color: var(--conversation-canvas-active);
   }
-}
-
-/* site menu items (Default and Secondary, see Site menu above) */
-
-/* a page with child pages: its link and its chevron button (shows them in the panel) */
-.conversation-canvas .conversation-canvas-nav-group {
-  display: flex;
-  align-items: center;
-  border-radius: var(--radius-full);
-  transition: background-color 0.2s;
-}
-
-.conversation-canvas .conversation-canvas-nav-chevron {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  margin: 0 var(--space-600) 0 calc(-1 * var(--space-400));
-  border: 0;
-  border-radius: var(--radius-full);
-  padding: 0;
-  background: none;
-  color: var(--color-icon-default);
-  cursor: pointer;
-}
-
-.conversation-canvas .conversation-canvas-nav-chevron::before {
-  content: '';
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  background-color: currentcolor;
-  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
-  transition: transform 0.2s;
-}
-
-.conversation-canvas .conversation-canvas-nav-open > .conversation-canvas-nav-chevron::before {
-  transform: rotate(180deg);
-}
-
-/* the first level: pills without a chevron (Figma), shown for the keyboard and touch screens */
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron {
-  margin: 0 var(--space-200) 0 calc(-1 * (var(--icon-size-s) + var(--space-200)));
-  opacity: 0;
-  pointer-events: none;
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron:focus-visible {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-open > .conversation-canvas-nav-item {
-  border-color: var(--conversation-canvas-active);
-}
-
-/* the levels below: the open item is a filled pill (Figma 1124:26244 "Services") */
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-group > .conversation-canvas-nav-item {
-  padding-inline-end: var(--space-500);
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open {
-  background-color: var(--conversation-canvas-active);
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open > :is(.conversation-canvas-nav-item, .conversation-canvas-nav-chevron) {
-  color: var(--color-text-on-brand);
 }
 
 /*
