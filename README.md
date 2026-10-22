@@ -1,5 +1,14 @@
 # Content packages
 
+> **22 October 2026: the migrated press release "TCS BaNCS for Treasury marks its entry into Sri Lanka with Indian Bank".** The previous state of this branch is tagged `home-content-package_22-Oct-2026_1057`.
+>
+> - `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip`: the page `/content/tcs-corp/language-master/en/curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank` (press-release template), its image and 4 existing tags (merged). It creates the `forms` parent page only if it doesn't exist. Nothing else in AEM changes.
+> - `press-release-migration/metadata-language-master-row.csv` (and `.tsv`): its row of the language master's Metadata sheet. Add it to the sheet; don't import it as the whole sheet.
+> - `press-release-migration/data-media-contacts.csv` (and `.tsv`): the 12 TCS media contacts of the source for the language master's Media Contacts sheet (`/content/tcs-corp/language-master/en/data/media-contacts`, empty today). Every press-release page of the language master lists them.
+> - `press-release-migration/MIGRATION-REPORT.md`: the section-to-block mapping, the deviations, the validation report and the open issues.
+> - Then publish the page and the two sheets, and reindex.
+> - Unchanged: everything below.
+
 > **20 October 2026: install the new block library package (List Item display options).** The previous state of this branch is tagged `home-content-package_20-Oct-2026_1229`.
 >
 > - `block-library/tcs-corp-block-library-content-1.0.13.zip`: block library and curated design pages (replaces 1.0.12).
@@ -9,11 +18,17 @@
 >   - Everything from 1.0.12 is included (Section Style colours, Teaser and Columns Container options).
 > - `columns-container/tcs-corp-columns-container-content-1.0.7.zip`: unchanged.
 > - Sheets regenerated: nothing new to import if 1.0.9's are in.
-> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.40 (the screenshots shown in the block READMEs; the publication of 1.0.12 and 1.0.13 verified on aem.live; the load time; the block READMEs; the project knowledge base, in the repository at `docs/handover/knowledge-base/README.md`; the language master's query index corrected, F-108); `blocks/BLOCK-DOCUMENTATION-REPORT.md`: the block documentation report (the READMEs themselves are in the repository, `blocks/<block>/README.md`); `blocks/BLOCK-DOCUMENTATION-REPORT.md`: the block documentation report (the READMEs themselves are in the repository, `blocks/<block>/README.md`); `audit/DIALOG-OPTIONS-2026-10-20.md`: the validation report.
+> - `handover/TCS-CORP-HANDOVER.pdf`: handover 2.40 (the screenshots shown in the block READMEs; the publication of 1.0.12 and 1.0.13 verified on aem.live; the load time; the block READMEs; the project knowledge base, in the repository at `docs/handover/knowledge-base/README.md`; the language master's query index corrected, F-108); `blocks/BLOCK-DOCUMENTATION-REPORT.md`: the block documentation report (the READMEs themselves are in the repository, `blocks/<block>/README.md`); `audit/DIALOG-OPTIONS-2026-10-20.md`: the validation report.
 > - **Content in AEM authored before:** List Items show everything (the new toggles default to on); sections with Highlight keep their grey band; Teasers with a Title size take the size of their Title Type; Teasers with a BG Color have no padding until Padding is set in their Additional tab.
 > - Unchanged: the curated design pages package (1.0.2), the Home package (1.0.3) and the /en metadata sheets.
 >
 > Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten. Pages outside the package are kept. The older zips below are the previous versions.
+
+## Press release migration (language master)
+
+- `press-release-migration/tcs-corp-press-release-tcs-bancs-treasury-content-1.0.0.zip`: AEM content package (Package Manager, Upload Package, Install). Migrated from https://www.tcs.com/who-we-are/newsroom/press-release/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank with the existing blocks: Page Header, Image, Text, Title, List (In the News, 4 List Items) and Teaser.
+- `press-release-migration/metadata-language-master-row.csv`, `data-media-contacts.csv` (and `.tsv`, tab-separated, to paste): the sheet rows.
+- `press-release-migration/MIGRATION-REPORT.md`: the mapping document and the validation report.
 
 ## Columns Container only (new pages)
 
