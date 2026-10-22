@@ -17,14 +17,14 @@
   --hero-padding-block: var(--space-1600);
   --hero-padding-inline: var(--space-600);
   --hero-title-color: var(--color-text-default);
-  --hero-eyebrow-color: var(--color-text-brand);
+  --hero-eyebrow-color: var(--brand-400); /* #216AC3, the same on every BG Color */
   --hero-description-color: var(--color-text-secondary);
-  --hero-title-max-width: 72.5rem;
+  --hero-title-max-width: 62.5rem;
   --hero-description-max-width: 53.125rem;
   --hero-position: center;
   --hero-text-align: center;
   --hero-align: center;
-  --hero-content-max-width: 84.5rem;
+  --hero-content-max-width: 62.5rem;
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -106,9 +106,6 @@
 
 .hero.bg-dark-subtle {
   --hero-overlay: rgb(1 18 31 / 60%);
-
-  /* over the lighter overlay: white text (WCAG 1.4.3; brand-300 reaches only 4:1 here) */
-  --hero-eyebrow-color: var(--color-text-on-neutral);
   --hero-description-color: rgb(255 255 255 / 85%);
 
   background-color: var(--hero-navy);
@@ -179,6 +176,47 @@
   width: var(--icon-size-l);
   height: var(--icon-size-l);
   object-fit: contain;
+}
+
+/* Icon color: the SVG icon as a mask over a coloured box (set by hero.js, only with an Icon color) */
+.hero.icon-black {
+  --hero-icon-color: var(--black-1000);
+}
+
+.hero.icon-white {
+  --hero-icon-color: var(--white-1000);
+}
+
+.hero.icon-blue {
+  --hero-icon-color: var(--brand-500);
+}
+
+.hero .hero-icon-tinted picture {
+  position: relative;
+  display: block;
+}
+
+.hero .hero-icon-tinted img {
+  opacity: 0;
+}
+
+.hero .hero-icon-tinted picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--hero-icon-color);
+  mask: var(--hero-icon-src) center / contain no-repeat;
+}
+
+/* forced colours override background colours: show the icon as authored */
+@media (forced-colors: active) {
+  .hero .hero-icon-tinted img {
+    opacity: 1;
+  }
+
+  .hero .hero-icon-tinted picture::after {
+    display: none;
+  }
 }
 
 /* Hero View: Contained image, the whole image (e.g. an illustration) centered behind the content */
@@ -257,12 +295,6 @@
   color: var(--color-text-on-neutral);
 }
 
-/* the eyebrow on dark backgrounds (the brand text colour is too dark there, WCAG 1.4.3) */
-.hero.bg-dark,
-.hero.bg-black {
-  --hero-eyebrow-color: var(--brand-300);
-}
-
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
 }
@@ -280,7 +312,7 @@
 
 @media (width >= 900px) {
   .hero {
-    --hero-min-height: 53.125rem;
+    --hero-min-height: 62.5rem;
     --hero-padding-block: var(--space-3000);
     --hero-padding-inline: 2.75rem;
     --hero-gap-icon: var(--space-200);

@@ -12300,6 +12300,32 @@
         "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_iconcolor",
+        "label": "Icon color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (as authored)",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "icon-black"
+          },
+          {
+            "name": "White",
+            "value": "icon-white"
+          },
+          {
+            "name": "Blue",
+            "value": "icon-blue"
+          }
+        ],
+        "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"

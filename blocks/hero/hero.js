@@ -27,7 +27,8 @@ let newTabHint = '';
  * align-top | align-middle | align-bottom (Vertical Alignment),
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
- * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color).
+ * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
+ * icon-black | icon-white | icon-blue (Icon color: recolours the SVG icon, see tintIcon).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -40,6 +41,8 @@ const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
+// Icon color values (the colours are in hero.css)
+const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue'];
 
 /**
  * Motion Type authored before: played as the Additional tab's animations (Fade in -> Fade in,
@@ -159,6 +162,20 @@ function buildContent(cell) {
   return content;
 }
 
+/**
+ * Icon color: an SVG shown as an img can't take a CSS colour, so the icon is drawn as a mask
+ * over a coloured box (the img stays, invisible, for its size and alternative text). Without
+ * an Icon color, or an icon, nothing changes.
+ */
+function tintIcon(block, content) {
+  const icon = content.querySelector('.hero-icon');
+  const img = icon?.querySelector('img');
+  const src = img?.getAttribute('src');
+  if (!src || !ICON_COLORS.some((color) => block.classList.contains(color))) return;
+  icon.style.setProperty('--hero-icon-src', `url("${img.src.replace(/["\\]/g, '\\$&')}")`);
+  icon.classList.add('hero-icon-tinted');
+}
+
 /** the CTAs: the CTA List multifield's, then the CTA items (with their instrumentation) */
 function buildCtas(cell, rows, hint) {
   const ctas = document.createElement('div');
@@ -208,6 +225,7 @@ export default async function decorate(block) {
   const content = buildContent(cells.content);
   const ctas = buildCtas(cells.ctas, ctaRows, hint);
   if (ctas) content.append(ctas);
+  tintIcon(block, content);
   // keep Universal Editor instrumentation of the authored cells
   if (media) moveInstrumentation(cells.media, media);
   if (cells.content) moveInstrumentation(cells.content, content);
