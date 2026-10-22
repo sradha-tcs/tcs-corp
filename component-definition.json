@@ -819,7 +819,7 @@
                   "filter": "table-list",
                   "key-value": true,
                   "variations": "industries",
-                  "backgroundColor": "",
+                  "backgroundColor": "white",
                   "listHeadingType": "h2",
                   "maxCards": 4,
                   "ctaStyle": "",

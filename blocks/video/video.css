@@ -125,7 +125,7 @@
 /* Play in a Pop-up: the player in the modal dialog */
 .modal .video-modal-player {
   position: relative;
-  width: min(90vw, 75rem, calc(80vh * (var(--video-aspect-ratio))));
+  width: min(100%, 75rem, calc(80vh * (var(--video-aspect-ratio))));
   aspect-ratio: var(--video-aspect-ratio);
 }
 
