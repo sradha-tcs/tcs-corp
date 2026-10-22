@@ -1,5 +1,13 @@
 # Content packages
 
+> **22 October 2026 (3): tcs.com migration program, analysis and Wave 1 (150 press releases).** The previous state of this branch is tagged `home-content-package_22-Oct-2026_1535`.
+>
+> - `migration-program/SCOPE-ANALYSIS.md`: the analysis of the 3,191-row list (IA validation of the target paths, taxonomy, DAM, batches, classification, risks); `MIGRATION-ANALYSIS.md`: the sitewide reports (10,529 sitemap URLs).
+> - `migration-program/batches.tsv`: every row of the list with its batch, normalised destination and flags; `scope-inventory.tsv`, `url-inventory.tsv`: the inventories.
+> - `migration-program/wave-1/tcs-corp-migration-w1-press-releases-1.0.0.zip`: 150 press releases below `/content/tcs-corp/language-master/en/who-we-are/newsroom/press-release`, the Press releases hub, 95 images and 8 tags (merged); each page has its own filter, nothing else changes. Needs the Media Contacts block (main, pull request #148).
+> - `migration-program/wave-1/WAVE-1-REPORT.md`: dashboard, mapping, validation, issue register, readiness; `metadata-w1-rows.tsv` (and `.csv`): the 151 rows to add to the language master's Metadata sheet; `issues-w1.csv`, `pages-w1.csv`.
+> - Install: the package, then the metadata rows (paste, don't import as the whole sheet), then publish and reindex.
+
 > **22 October 2026 (2): the Media Contacts block, block library package 1.0.14 and handover 2.41.** The previous state of this branch is tagged `home-content-package_22-Oct-2026_1318`. The code is on main (pull request #148): install after it is deployed.
 >
 > - `block-library/tcs-corp-block-library-content-1.0.14.zip`: block library and curated design pages (replaces 1.0.13).
