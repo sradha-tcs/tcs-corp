@@ -3,19 +3,12 @@
  * https://www.aem.live/developer/block-collection/table
  * Adapted: the first row is the column headers (unless No Header), the first column the row
  * headers (First Column Header); the heading just before the table names it; a table wider than
- * its container scrolls in a labelled region keyboard users can focus.
+ * its container scrolls in a labelled region keyboard users can focus
+ * (decorators/table-scroll-decorator.js, shared with the tables of rich text).
  */
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { uniqueId } from '../../utils/ids.js';
+import { nameTable, observeScrollRegion } from '../../decorators/table-scroll-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-
-/** the heading right before the block in its section, if any */
-function headingBefore(block) {
-  const wrapper = block.parentElement;
-  let previous = wrapper?.previousElementSibling;
-  if (previous?.classList.contains('default-content-wrapper')) previous = previous.lastElementChild;
-  return previous?.matches('h1, h2, h3, h4, h5, h6') ? previous : null;
-}
 
 /**
  * loads and decorates the block
@@ -57,25 +50,9 @@ export default async function decorate(block) {
   });
 
   // the table's name: the heading before it
-  const heading = headingBefore(block);
-  if (heading) {
-    heading.id = heading.id || uniqueId('table-title');
-    table.setAttribute('aria-labelledby', heading.id);
-  }
+  const heading = nameTable(table, block);
   block.replaceChildren(table);
 
   // wider than its container: a region keyboard users can focus to scroll it
-  const label = heading?.textContent.trim() || t('table', 'Table');
-  new ResizeObserver(() => {
-    const scrolls = block.scrollWidth > block.clientWidth + 1;
-    if (scrolls) {
-      block.tabIndex = 0;
-      block.setAttribute('role', 'region');
-      block.setAttribute('aria-label', label);
-    } else {
-      block.removeAttribute('tabindex');
-      block.removeAttribute('role');
-      block.removeAttribute('aria-label');
-    }
-  }).observe(block);
+  observeScrollRegion(block, heading?.textContent.trim() || t('table', 'Table'));
 }
