@@ -23911,6 +23911,28 @@
         "description": "Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "headerOverlay",
+        "label": "Header over the first block",
+        "value": "",
+        "description": "Desktop (from 1200px): whether the logo bar lies transparent over the page's first block, which then starts at the top of the page. Auto: over an opening light Hero (as on Home). Tablet and mobile keep the header bar.",
+        "options": [
+          {
+            "name": "Auto (over a light Hero)",
+            "value": ""
+          },
+          {
+            "name": "Always (over the first block)",
+            "value": "always"
+          },
+          {
+            "name": "Never (the page starts below the header)",
+            "value": "never"
+          }
+        ]
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"

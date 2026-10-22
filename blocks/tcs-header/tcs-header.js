@@ -1,4 +1,5 @@
 import { pictureOf } from '../../decorators/image-decorator.js';
+import { setHeaderOverlay } from '../../utils/header-space.js';
 import { linkOf } from '../../utils/links.js';
 import { readProperties, textOf } from '../../utils/properties.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -17,6 +18,10 @@ import { toSitePath } from '../../utils/urls.js';
  * authored in its section) up to the Menu depth. It is added as the section after the block's, the
  * way an authored menu is delivered, so blocks/header (unchanged) makes it the menu: the menu
  * button, its levels, keyboard and focus handling. Without pages there is no menu (no button).
+ *
+ * Header over the first block (desktop): on the Navigation page the block sets the site's mode,
+ * <html data-header-overlay> (utils/header-space.js, remembered for the next pages); the layout is
+ * in styles/styles.css (it applies before the header loads) and the transparent bar here.
  */
 
 /**
@@ -109,7 +114,9 @@ export default async function decorate(block) {
   const props = readProperties(block);
   const section = block.closest('.section');
   // on the Navigation page: decorated in its fragment (not in the page yet), before the header
-  const settings = !block.isConnected && !hasMenu(section) ? menuSettings(block, props) : null;
+  const inHeader = !block.isConnected;
+  const settings = inHeader && !hasMenu(section) ? menuSettings(block, props) : null;
+  if (inHeader) setHeaderOverlay(textOf(props.headeroverlay).toLowerCase());
   const [t, menu] = await Promise.all([
     getPlaceholders(),
     settings ? buildMenuSection(settings) : null,
