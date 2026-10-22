@@ -685,7 +685,7 @@ Evidence to collect (no secrets): page URL with the hash, viewport, a screenshot
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 5 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 5 instance(s) in total:
 - Block library: `block-library/anchor-list/anchor-list`, `block-library/anchor-list/anchor-list-sticky`, `block-library/foundations/section-anchors`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/story`
 

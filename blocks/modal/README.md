@@ -668,7 +668,7 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 3 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 3 instance(s) in total:
 - Block library: `block-library/modal/modal-block`, `block-library/modal/modal-long-content`, `block-library/modal/modal-with-a-form`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

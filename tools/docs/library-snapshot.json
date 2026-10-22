@@ -1,5 +1,5 @@
 {
- "package": "1.0.13",
+ "package": "1.0.14",
  "examples": {
   "list": {
    "listLabel": "Pages",
@@ -55,7 +55,9 @@
    "showCta": false,
    "mobileIndicator": true,
    "includeDescendants": true,
-   "mobileColumns": 1
+   "mobileColumns": 1,
+   "showImage": false,
+   "showEyebrow": false
   },
   "button-block": {
    "link": "/language-master/en/curated-design-pages",
@@ -138,6 +140,11 @@
    "newTab": "true",
    "imageAlt": "Consultants in a client workshop",
    "theme": "dark"
+  },
+  "media-contacts": {
+   "title": "Media contacts",
+   "titleType": "h2",
+   "classes_animation": "motion-fade-up"
   },
   "filter-list": {
    "title": "Insights",
@@ -505,7 +512,7 @@
  },
  "usage": {
   "list": {
-   "instances": 240,
+   "instances": 243,
    "library": [
     "block-library/accordion",
     "block-library/anchor-list",
@@ -540,6 +547,7 @@
     "block-library/list/list-item-display",
     "block-library/list/lists-made-before",
     "block-library/list/sources",
+    "block-library/media-contacts",
     "block-library/modal",
     "block-library/modal/fragments",
     "block-library/page-header",
@@ -558,6 +566,8 @@
    "curated": [
     "curated-design-pages/case-study",
     "curated-design-pages/collection",
+    "curated-design-pages/forms",
+    "curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank",
     "curated-design-pages/home",
     "curated-design-pages/industry-landing-page",
     "curated-design-pages/media-and-investor",
@@ -857,6 +867,18 @@
    ],
    "other": []
   },
+  "media-contacts": {
+   "instances": 6,
+   "library": [
+    "block-library/media-contacts/media-contacts-region",
+    "block-library/media-contacts/media-contacts-variations",
+    "block-library/templates/press-release-template"
+   ],
+   "curated": [
+    "curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank"
+   ],
+   "other": []
+  },
   "filter-list": {
    "instances": 32,
    "library": [
@@ -878,7 +900,7 @@
    ]
   },
   "page-header": {
-   "instances": 18,
+   "instances": 19,
    "library": [
     "block-library/page-header/article",
     "block-library/page-header/article-default",
@@ -899,12 +921,13 @@
    "curated": [
     "curated-design-pages/case-study",
     "curated-design-pages/collection",
+    "curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank",
     "curated-design-pages/story"
    ],
    "other": []
   },
   "teaser": {
-   "instances": 172,
+   "instances": 173,
    "library": [
     "block-library/animation/background-by-block",
     "block-library/animation/content-animation",
@@ -928,6 +951,7 @@
    "curated": [
     "curated-design-pages/case-study",
     "curated-design-pages/collection",
+    "curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank",
     "curated-design-pages/home",
     "curated-design-pages/industry-landing-page",
     "curated-design-pages/insights",

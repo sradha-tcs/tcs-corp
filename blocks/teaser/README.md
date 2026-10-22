@@ -1433,9 +1433,9 @@ Evidence to collect: the page URL, viewport width, browser, a screenshot, the bl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 172 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 173 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/animation/content-animation`, `block-library/animation/speed-and-trigger`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`, `block-library/foundations/section-variations`, `block-library/gen-carousel/teaser-slides`, `block-library/page-header/tags-and-content-type`, `block-library/teaser/alignment`, `block-library/teaser/article-meta`, `block-library/teaser/cta-styles`, `block-library/teaser/description-eyebrow-spacing`, `block-library/teaser/image-options-and-colours`, `block-library/teaser/image-positions`, `block-library/teaser/layouts`, `block-library/teaser/links-and-stats`, `block-library/teaser/mobile-image-position`, `block-library/teaser/title-sizes-and-weights`
-- Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/insights`, `curated-design-pages/media-and-investor`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`, `curated-design-pages/what-we-do`, `curated-design-pages/who-we-are`
+- Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/insights`, `curated-design-pages/media-and-investor`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`, `curated-design-pages/what-we-do`, `curated-design-pages/who-we-are`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
 

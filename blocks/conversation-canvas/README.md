@@ -1025,7 +1025,7 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 33 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 33 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/animation/skeleton-loading`, `block-library/animation/speed-and-trigger`, `block-library/conversation-canvas/conversation-canvas`, `block-library/conversation-canvas/docked`, `block-library/conversation-canvas/floating`, `block-library/conversation-canvas/journey-and-actions`, `block-library/footer/footer-conversation-canvas`
 - Curated design pages: `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/what-we-do`
 

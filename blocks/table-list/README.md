@@ -875,7 +875,7 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 23 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 23 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/table-list/item-actions`, `block-library/table-list/motion`, `block-library/table-list/numbers`, `block-library/table-list/numbers-on-mobile`, `block-library/table-list/table-list`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/what-we-do`
 

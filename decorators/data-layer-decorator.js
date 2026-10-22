@@ -5,7 +5,8 @@
  * - page: { page: { 'page-{hash}': { '@type', 'dc:title', 'xdm:language', 'xdm:template', ... } } }
  * - blocks: { component: { '{id}': { '@type': 'tcs-corp/components/{block}', parentId, ... } } }
  *   once they're decorated; the id is the block's id, else '{block}-{n}' (data-cmp-id)
- * - events: cmp:click (links and buttons), cmp:show / cmp:hide (accordion items, dialogs),
+ * - events: cmp:click (links and buttons; mailto: / tel: links as their kind, email / phone,
+ *   without the address), cmp:show / cmp:hide (accordion items, dialogs),
  *   cmp:media (play, pause, ended), cmp:submit (forms: their id and field names, no values),
  *   cmp:search (search forms), cmp:change (filters)
  * Blocks refine it with data attributes: data-cmp-id (a child component, e.g. a card),
@@ -15,7 +16,7 @@
 import { pushComponentEvent, pushComponents, pushToDataLayer } from '../utils/analytics.js';
 import { getPageLanguage, getPageMetadata, getPageTags } from '../utils/metadata.js';
 import { currentBreakpoint } from '../utils/viewport.js';
-import { redactSearchTerm } from '../utils/privacy.js';
+import { contactLinkKind, redactSearchTerm } from '../utils/privacy.js';
 
 const TYPE = 'tcs-corp/components';
 const FILE = /\.(pdf|docx?|xlsx?|pptx?|zip|csv|txt|mp3|mp4)(\?|#|$)/i;
@@ -122,11 +123,13 @@ function onClick(e) {
   const a = el.closest('a[href]');
   // outside the blocks, the links of the page's text (as the page's clicks)
   if (!blockOf(el) && !(a && a.closest('main'))) return;
+  // mail and phone links: their kind, not the address (personal data)
+  const contact = a ? contactLinkKind(a.getAttribute('href')) : '';
   pushComponentEvent('cmp:click', componentOf(el), {
-    interaction: el.dataset.cmpInteraction || (a ? 'link' : 'button'),
-    'dc:title': text(el),
-    'xdm:linkURL': a?.href || undefined,
-    'xdm:linkType': linkType(a),
+    interaction: el.dataset.cmpInteraction || contact || (a ? 'link' : 'button'),
+    'dc:title': contact || text(el),
+    'xdm:linkURL': contact ? `${a.protocol}` : a?.href || undefined,
+    'xdm:linkType': contact ? 'other' : linkType(a),
     value: el.dataset.cmpValue || undefined,
     position: positionOf(el),
     breakpoint: currentBreakpoint(),

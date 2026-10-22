@@ -9,8 +9,17 @@
  * @param {string} value
  * @returns {string} '' for an empty search
  */
-// eslint-disable-next-line import/prefer-default-export
 export const redactSearchTerm = (value) => String(value || '').trim()
   .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, '[email]')
   .replace(/\+?\d[\d\s().-]{5,}\d/g, '[number]')
   .slice(0, 100);
+
+/**
+ * The kind of a contact link (mailto: / tel:), whose address the data layer leaves out.
+ * @param {string} href
+ * @returns {'email'|'phone'|''} '' for other links
+ */
+export function contactLinkKind(href) {
+  const scheme = String(href || '').trim().toLowerCase().split(':')[0];
+  return { mailto: 'email', tel: 'phone' }[scheme] || '';
+}

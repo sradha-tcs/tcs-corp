@@ -65,7 +65,7 @@ These are integration points (code comments name a personalisation service as on
 | Data | Where it is available today | Current use |
 | --- | --- | --- |
 | `persona` | Bulk metadata column, `getPageMetadata().persona`, query index `persona` | None in blocks (handover 14.9, item 17) |
-| `region`, `country`, `language` | Metadata columns, query index; `xdm:language` in the data layer page entry | `region` selects the media contacts of the Press Release template (`templates/press-release/press-release.js`, `inRegion`): page metadata, not the visitor |
+| `region`, `country`, `language` | Metadata columns, query index; `xdm:language` in the data layer page entry | `region` selects the contacts of the Media Contacts block (`blocks/media-contacts/media-contacts.js`, `inRegion`): page metadata, not the visitor |
 | `campaign-id` | Metadata column, `getPageMetadata().campaignId`, query index `campaignId` | None |
 | `page-type`, `content-type`, `category`, tags | Metadata, query index, data layer (`xdm:template`, `xdm:tags`) | Templates, Page Header, List, Filter List |
 | `featured`, `priority` | Metadata, query index | Filter List spotlight and featured cards |
