@@ -92,6 +92,7 @@
   height: var(--quote-mark-height);
   background: url('/icons/quote-open.svg') no-repeat center;
   background-size: contain;
+  transform: translate(-1.875rem);
 }
 
 .quote .quote-card::after {
@@ -130,7 +131,7 @@
 }
 
 .quote :is(.quote-text, .quote-author) > * + * {
-  margin-top: var(--space-200);
+  margin-top: 0;
 }
 
 @media (width >= 900px) {
