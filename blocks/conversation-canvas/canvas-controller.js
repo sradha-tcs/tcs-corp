@@ -11,10 +11,11 @@ import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
  *   (reading order, focus, listeners, editor instrumentation) never moves and is never cloned
  * - the journey state is <html data-canvas-journey-state> (STATES); the header announces its
  *   menu with a header:menu event ({ open }): the floating Canvas is HIDDEN while it's open
- * - a Canvas row in place that takes focus (a click on its menu button or search field while the
- *   floating row comes up to it) hands the journey over: the floating row lands on it at once
- *   (focused in canvas-journey.js, so there's never a second row on screen) and the page scrolls
- *   it up to the dock line
+ * - a Canvas row in use (focus in it) stays docked while it's on screen (focused in
+ *   canvas-journey.js): the floating row doesn't come back over it while the user types
+ * - one row in use at a time while a row floats: the other Canvas rows are inert placeholders;
+ *   with no row floating (the header Canvas docked on the first screen, a section or the footer
+ *   Canvas docked) every Canvas row is in use
  * - only active Canvases take part: one with Hide block or not shown (a hidden tab or section)
  *   never floats and nothing docks on it, wherever it is (header, page, footer, Primary)
  * - a failure here only stops the floating (nothing floats): page, header and footer still work
@@ -63,7 +64,8 @@ const byDomOrder = (a, b) => (
 function release(entry) {
   entry.row.classList.remove(FLOATING, HANDOFF);
   entry.block.classList.remove(OWNER);
-  if (entry.primary) entry.row.inert = true;
+  // a Primary dock in place is hidden; a Canvas row in place is usable
+  entry.row.inert = !!entry.primary;
   if (entry.slot) {
     entry.slot.style.minHeight = '';
     entry.slot.classList.remove(APPROACHING);
@@ -146,6 +148,12 @@ function measure() {
 /** applies a journey result: classes, the reserved space of a floating row, the footer lift */
 function apply(result) {
   const { live, canvases, offset } = geometry;
+  // while a row floats it is the only one in use: the other Canvas rows are placeholders (inert:
+  // not clicked, focused or read out, e.g. a row hidden while the floating row comes up to it);
+  // with none floating (a row docked) every row is in use. Not in the editor, where authors
+  // select them
+  const floating = result.owner >= 0;
+  const editing = document.documentElement.classList.contains('adobe-ue-edit');
   live.forEach((entry, i) => {
     const floats = i === result.owner;
     const { block, row, slot } = entry;
@@ -155,6 +163,7 @@ function apply(result) {
       // a hidden dock can't be reached by keyboard or screen readers
       row.inert = !floats;
     } else {
+      row.inert = floating && !floats && !editing;
       // keep the place of the row while it floats, so the page doesn't move
       slot.style.minHeight = floats ? `${canvases[i].rowHeight}px` : '';
       // the floating row lands on the next Canvas: its own row shows once it has arrived
@@ -233,26 +242,16 @@ export default function registerCanvas(entry) {
       suppressed = !!e.detail?.open;
       schedule();
     });
-    // a row in place that takes focus: the floating row lands on it, the page brings it up to
-    // the dock line (layout reads in the event, not while scrolling)
+    // a row in use (focus in it, e.g. typing in a docked row) stays docked while it's on screen,
+    // so it doesn't turn into a placeholder under the user's hands (focused in canvas-journey.js)
     document.addEventListener('focusin', (e) => {
       const held = entries.find((x) => !x.primary && x.row.contains(e.target));
-      if (!held || held.row.classList.contains(FLOATING)) {
-        focusedEntry = null;
-        schedule();
-        return;
-      }
-      focusedEntry = held;
-      // at once, in this frame: the row shows (focus) while the floating row lands, never both
+      const next = held && !held.row.classList.contains(FLOATING) ? held : null;
+      if (next === focusedEntry) return;
+      focusedEntry = next;
+      // at once, in this frame
       cancelAnimationFrame(frame);
       update();
-      const rect = held.row.getBoundingClientRect();
-      const offset = parseFloat(getComputedStyle(held.slot).scrollMarginBottom) || 0;
-      const below = rect.bottom - (window.innerHeight - offset);
-      if (below > 0 && rect.top < window.innerHeight) {
-        const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollBy({ top: below, behavior: smooth ? 'smooth' : 'auto' });
-      }
     });
     document.addEventListener('focusout', (e) => {
       if (focusedEntry && !focusedEntry.row.contains(e.relatedTarget)) {

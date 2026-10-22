@@ -94,8 +94,8 @@ export function assignRoles(canvases) {
  * @param {number|null} input.footerTop Document top of the footer, null without one
  * @param {boolean} [input.suppressed] The floating Canvas is suppressed (e.g. the menu is open)
  * @param {number} [input.focused] The Canvas whose row in place holds focus (index into canvases,
- *   -1 for none): on screen it counts as arrived, so the floating row lands on it instead of
- *   floating over it (one row on screen); the controller scrolls it to the dock line
+ *   -1 for none): on screen it counts as arrived, so it stays docked (in use) and the floating
+ *   row doesn't come back over it
  * @param {Array<{ primary: boolean, floats: boolean, role: string|null, top: number|null,
  *   bottom: number|null, rowHeight: number, inHeader?: boolean }>} input.canvases In DOM order;
  *   top / bottom are the document coordinates of the search row's place (null for Primary);
