@@ -74,7 +74,9 @@ function measure() {
       entries.splice(i, 1);
     }
   }
-  const live = entries.filter((e) => e.block.isConnected).sort(byDomOrder);
+  const live = entries.filter((entry) => entry.block.isConnected
+    && !entry.block.closest('.hideblock, [hidden]')
+    && entry.block.getClientRects().length > 0).sort(byDomOrder);
   const firstSection = document.querySelector('main > .section');
   const roles = assignRoles(live.map((e) => ({
     primary: e.primary,
@@ -127,6 +129,7 @@ function measure() {
 /** applies a journey result: classes, the reserved space of a floating row, the footer lift */
 function apply(result) {
   const { live, canvases, offset } = geometry;
+  entries.filter((entry) => !live.includes(entry)).forEach(release);
   live.forEach((entry, i) => {
     const floats = i === result.owner;
     const { block, row, slot } = entry;
@@ -160,7 +163,14 @@ function update() {
   frame = 0;
   try {
     if (dirty) measure();
-    if (!geometry?.live.length) return;
+    if (!geometry) return;
+    if (!geometry.live.length) {
+      entries.forEach(release);
+      setRoot('--conversation-canvas-obscured', '0px');
+      setRoot('state', STATES.HIDDEN);
+      previous = {};
+      return;
+    }
     const result = resolveJourney({ ...geometry, scrollY: window.scrollY, suppressed });
     const changed = Object.keys(result).some((key) => result[key] !== previous[key]);
     if (changed) apply(result);

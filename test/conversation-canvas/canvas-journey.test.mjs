@@ -172,7 +172,7 @@ describe('HIDDEN', () => {
   });
 
   it('when only Canvases that dock but never float were passed', () => {
-    const docksOnly = page([slot(500, { floats: false }), slot(6000)], ['hero', 'footer']);
+    const docksOnly = page([slot(500, { floats: false }), slot(6000, { floats: false })], ['hero', 'footer']);
     assert.equal(docksOnly(2000).state, STATES.HIDDEN);
     assert.equal(docksOnly(0).state, STATES.INITIAL);
   });
@@ -213,10 +213,29 @@ describe('page variations', () => {
     assert.deepEqual(walk(noFooter).bad, []);
   });
 
-  it('a Canvas only in the footer: INITIAL until it docks', () => {
+  it('a Canvas only in the footer floats immediately until it docks', () => {
     const footerOnly = page([slot(6000)], ['footer']);
-    assert.equal(footerOnly(1000).state, STATES.INITIAL);
+    assert.equal(footerOnly(0).state, STATES.FLOATING);
+    assert.equal(footerOnly(0).owner, 0);
+    assert.equal(footerOnly(1000).state, STATES.FLOATING);
     assert.equal(footerOnly(MAX).state, STATES.FOOTER_DOCKED);
+    assert.equal(footerOnly(0).owner, 0, 'floats again when scrolling back up');
+    assert.deepEqual(walk(footerOnly).bad, []);
+  });
+
+  it('a footer-only Canvas respects Docks only and menu suppression', () => {
+    const docksOnly = page([slot(6000, { floats: false })], ['footer']);
+    assert.equal(docksOnly(0).owner, -1);
+    assert.equal(docksOnly(MAX).state, STATES.FOOTER_DOCKED);
+    const footerOnly = page([slot(6000)], ['footer']);
+    assert.equal(footerOnly(0, { suppressed: true }).state, STATES.HIDDEN);
+    assert.equal(footerOnly(0, { suppressed: true }).owner, -1);
+  });
+
+  it('a floating footer does not approach its own reserved slot', () => {
+    const footerOnly = page([slot(6000)], ['footer']);
+    assert.equal(footerOnly(arrival(6000) - 50).owner, 0);
+    assert.equal(footerOnly(arrival(6000) - 50).approaching, -1);
   });
 
   it('two Canvases on screen: the one nearest to the floating position is docked', () => {
@@ -246,8 +265,8 @@ describe('page variations', () => {
 
 describe('the header Canvas at the bottom of the window', () => {
   /*
-   * The header Canvas row sits at the dock line at the top of the page (52px offset: the line is
-   * at 1000 - 52 - 72 = 876px) and floats as soon as scrolling would carry it up; a section Canvas
+  * The header Canvas row floats immediately (52px offset: the line is
+  * at 1000 - 52 - 72 = 876px); a section Canvas
    * at 3000 and the footer Canvas at 6000 as on the home page.
    */
   const OFFSET = 52;
@@ -256,15 +275,15 @@ describe('the header Canvas at the bottom of the window', () => {
   const bottomOf = (canvases, extra = {}) => page(canvases, ['header', 'section', 'footer'], { offset: OFFSET, ...extra });
   const site = bottomOf([header(LINE), slot(3000), slot(6000)]);
 
-  it('INITIAL at the top of the page: in place at the dock line (the bottom of the first screen)', () => {
+  it('FLOATING immediately at the top of the page', () => {
     const r = site(0);
-    assert.equal(r.state, STATES.INITIAL);
-    assert.equal(r.docked, 0);
-    assert.equal(r.owner, -1);
+    assert.equal(r.state, STATES.FLOATING);
+    assert.equal(r.docked, -1);
+    assert.equal(r.owner, 0);
   });
 
-  it('FLOATING as soon as it would move up: the same row, fixed at the same bottom offset', () => {
-    assert.equal(site(1).state, STATES.INITIAL, 'within the rounding tolerance');
+  it('stays FLOATING on the first scroll: the same row at the same bottom offset', () => {
+    assert.equal(site(1).state, STATES.FLOATING);
     const r = site(10);
     assert.equal(r.state, STATES.FLOATING);
     assert.equal(r.owner, 0);
@@ -272,9 +291,26 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(site(400).state, STATES.FLOATING, 'still floating while its place is on screen');
   });
 
-  it('back to INITIAL when scrolled back to the top', () => {
+  it('still FLOATING when scrolled back to the top', () => {
     assert.equal(site(500).state, STATES.FLOATING);
-    assert.equal(site(0).state, STATES.INITIAL);
+    assert.equal(site(0).state, STATES.FLOATING);
+  });
+
+  it('a header-only Canvas floats immediately even below the viewport', () => {
+    const headerOnly = page([header(1500)], ['header']);
+    assert.equal(headerOnly(0).state, STATES.FLOATING);
+    assert.equal(headerOnly(0).owner, 0);
+    assert.equal(headerOnly(3000).owner, 0);
+    assert.equal(headerOnly(5000).lift, 200);
+    assert.deepEqual(walk(headerOnly).bad, []);
+  });
+
+  it('header and footer together float the header immediately and dock at the footer', () => {
+    const chromeOnly = page([header(1500), slot(6000)], ['header', 'footer']);
+    assert.equal(chromeOnly(0).owner, 0);
+    assert.equal(chromeOnly(MAX).state, STATES.FOOTER_DOCKED);
+    assert.equal(chromeOnly(0).owner, 0);
+    assert.deepEqual(walk(chromeOnly).bad, []);
   });
 
   it('a hero shorter than the window: the row is above the dock line and floats from the start', () => {
@@ -290,8 +326,8 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(site(at(6000)).state, STATES.FOOTER_DOCKED);
     const { states, bad } = walk(site);
     assert.deepEqual(bad, []);
-    assert.equal(states[0], STATES.INITIAL);
-    assert.equal(states.at(-1), STATES.INITIAL);
+    assert.equal(states[0], STATES.FLOATING);
+    assert.equal(states.at(-1), STATES.FLOATING);
   });
 
   it('at most one Canvas floats, never while one is docked', () => {

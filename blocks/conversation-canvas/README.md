@@ -1,6 +1,6 @@
 # Conversation Canvas
 
-The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow, title and text, a search row (a round menu button with the site menu, a search field with voice input and a submit icon button) and optional quick actions (button items), or, in the Primary (sticky) style, a floating search and site navigation dock. It can be authored in the page body, in the header (a section of the nav page) and in the footer (the Footer's Conversation Canvas Page), and all Canvases of a page take part in one **floating journey**: one search row floats at the bottom of the window, lands on each Canvas in place and stops at the footer Canvas.
+The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow, title and text, a search row (a round menu button with a pop-up site menu, a search field with voice input and a submit icon button) and optional quick actions (button items), or, in the Primary (sticky) style, a floating search and site navigation dock. It can be authored in the page body, in the header (a section of the nav page) and in the footer (the Footer's Conversation Canvas Page), and all Canvases of a page take part in one **floating journey**: one search row floats at the bottom of the window, lands on each Canvas in place and stops at the footer Canvas.
 
 > Naming: the requirement and Figma say "Canvas" (sometimes "Canva" / "floating Canva"). The block keeps its technical name `conversation-canvas` (classes `conversation-canvas-*`, component "Conversation Canvas") so authored content and styles don't break.
 
@@ -21,7 +21,13 @@ The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow
 
 **Templates and page types.** Any page (Section and Columns Container filters; not offered in the Tabs Container). Typical places: the Home hero, a full-width section of a landing page, the header Canvas (a nav page section) and the footer Canvas (`references/footer-conversation-canvas`). The curated design pages Home, Industry landing page and What we do use it.
 
-**Data source.** Authored properties; the site menu and the Primary navigation come from the locale's query index (`path`, `title`); Primary suggestions from the page's tags labelled from the taxonomy; UI texts from placeholders.
+**Data source.** Authored properties; the site menu and the Primary navigation come from the locale's query index (`path`, `title`); suggestions from the page's tags labelled from the taxonomy or the suggestion API, with two localized example questions as fallback; UI texts from placeholders.
+
+**Hierarchical submenu.** All styles share parent pills with separate destination links and chevrons. Pills appear below the search row over a full-width fade (light by default, dark with BG Style Dark), without a boxed menu background. Hovering a pill or focusing its link previews its children above search; the panel remains pinned when the pointer leaves, switches when another pill is hovered or focused, and closes when an option is selected. A parent chevron drills into second-level pills; an L2 chevron opens suggestions with Back restoring that exact L2 view. Suggestion selection fills search without submitting; the search submit button is unchanged. Search and its typed query remain available at every level. The original hamburger moves from beside search into the section navigation and returns beside search at the top level; no duplicate menu button is created. The close icon uses a neutral dark glyph on a light surface, and chevrons stay transparent when hovered or expanded. All navigation pills remain visible and wrap as needed, without an internal scrollbar; a ResizeObserver adjusts the visual lane without growing the dock or document. Escape dismisses the panel first and returns focus to its opener; another Escape closes navigation. Outside clicks, focus leaving and page scrolling retain their dismissal behavior. The floating journey and its scroll handling are unchanged.
+
+**Hover panel and L3 pages.** The preview is a wide translucent panel, with two balanced columns for six or more links from 600px and one scrollable column on mobile. Default / Secondary navigation overlays its reserved visual lane without growing the dock or document; focus changes use `preventScroll`. On an indexed L3 leaf page all styles show a compact back arrow and suggestion pills. Back restores the L2 parent's child links. Selecting a suggestion fills and focuses search and emits an input event, but never submits; Enter or the submit button runs the search.
+
+**Scroll dismissal.** Page scrolling closes opened hamburger navigation and child panels, removes the menu gradient, and restores the hamburger beside search without moving the viewport. Hover previews dismiss too; search and default L3 suggestions remain available. The listener is passive and does not change dock/float handling.
 
 **Related blocks.** TCS Header ([README](../header/README.md), hosts the header Canvas and announces its menu), Footer (hosts the footer Canvas), Form Variations ([README](../form-variations/README.md), for data capture), Columns Container ([README](../columns-container/README.md)).
 
@@ -262,13 +268,12 @@ File name:
 conversation-canvas-menu-open-desktop.png
 
 Purpose:
-The site menu of a Default Canvas at 1440 px (Figma Full menu 1124:26210 / 1124:26244): the first level as pills below the search row over the faded page, a pill's child pages in the panel above on hover; a second level with its open item and the third level in the panel; and the four skeleton pills shown while the query index loads.
+The pop-up site menu of a Default Canvas, opened above the search row, with two levels; and the four skeleton rows shown while the query index loads.
 
 Annotations:
-A = Menu button (aria-expanded="true", the blue close button)
-B = First-level pills
-C = Panel of a page's child pages (List Container rows)
-D = Second level: menu button, open item (blue pill), chevrons
+A = Menu button (aria-expanded="true")
+B = Menu panel
+C = Nested level
 ```
 
 ```text
@@ -354,7 +359,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Canvas Style | `classes` | select | No | "" | Default (""), Primary (sticky) (`primary`), Secondary (`secondary`) | — | secondary |
-| Floating journey | `classes_journey` | select | No | "" | Floats and docks (""), Docks only (`nofloat`), Decorative (`decorative`) | Floats and docks: the search row docks in place and floats once scrolled past, until the next Canvas or the footer Canvas. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). The footer Canvas never floats. Delivered as a block class. | nofloat |
+| Floating journey | `classes_journey` | select | No | "" | Floats and docks (""), Docks only (`nofloat`), Decorative (`decorative`) | Floats and docks: the header Canvas floats immediately. Without an eligible header or Primary dock, the footer Canvas floats immediately until it docks at the footer. Page-body Canvases dock in place and float once scrolled past. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). Delivered as a block class. | nofloat |
 | Quick actions | `classes_actions` | select | No | "" | Auto (""), Pills (`action-pills`), Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer (Figma). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type). Delivered as a block class. | action-pills |
 | BG Style | `bgStyle` | select | No | `default` | Default (`default`), Dark (Primary) (`dark`) | — | default |
 | BG Background Image | `backgroundImage` | reference | No | — | — | — | /content/dam/tcs-corp/home/home-hero-background.jpg |
@@ -366,7 +371,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Text | `text` | richtext | No | "" | — | — | — |
 | Menu | `menu` | container | No | — | — | — | — |
 | Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /language-master/en/dummy-pages |
-| Menu › Menu depth | `menuDepth` | number | No | `1` | — | — | 2 |
+| Menu › Menu depth | `menuDepth` | number | No | `3` | — | — | 2 |
 | Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Delivered as a block class. | text-links |
 | Search bar | `searchBar` | container | No | — | — | — | — |
 | Search bar › Search bar water mark | `searchPlaceholder` | text | No | — | — | — | Ask us a question |
@@ -427,7 +432,7 @@ Notes the tables can't show:
 - **Search bar water mark** is the input's placeholder and its visually hidden label (fallback `searchPlaceholder`, "Ask us a question").
 - **Search bar button icon type hover text** is the submit button's accessible name and tooltip (fallback `submit`, "Submit").
 - **Search page**: a search opens it with `?q=` and the query, unless a page integration handles the `conversation-canvas:search` event; without either, a status for screen readers says "Search isn’t available yet."
-- **Menu root path** is converted to the published path; empty gives the locale root (e.g. `/de-de`). **Menu depth** 1 to 3 levels below the root.
+- **Menu root path** is converted to the published path; empty gives the locale root (e.g. `/de-de`). **Menu depth** 1 to 3 levels below the root, default 3. Existing authored values remain in effect: change depth 1 to 2 or 3 to expose submenus.
 - **Quick actions** (Conversation Canvas Button items): Views and Type come from the item (`buttonView`, `buttonVariant`), else from the link formatting, defaults Button / Primary; Title is dropped when equal to the text.
 - **Data layer impact:** filter tags supplied by script carry `data-cmp-interaction="filter"` and `data-cmp-value`; see Data Layer and Analytics.
 - **Legacy mapping:** button items authored with the former shared `button` model are read from their link and option cells (any cell value that is a known view or type; an unknown value is the icon). If no row has a known key, single-cell rows are read as properties in model order (Canvas Style and the collapsed alt texts excluded).
@@ -599,7 +604,7 @@ Verified from the repository, the published content and Figma *New Screens from 
 
 ### Default
 
-Purpose: the standard ask-us panel. Use for heroes and sections; don't use for data capture. Required: nothing; recommended: Title, Search bar fields. Dialog: Canvas Style Default. Rendering: white panel (`--color-bg-default`), 1.25rem corners, blue glow left / yellow right, centred content, search row, quick actions. Site menu (Default and Secondary, desktop; Figma Full menu 1124:26210 / 1124:26244): the menu button (a blue close button while open) opens the pages below the Menu root path as a row below the search row, the page faded behind (white 70%); the first level as pills. A page with child pages shows them, while the pointer is on it, in a panel above the row in place of the search row (Figma List Container 1124:26250: 14 / 20px rows 49px apart with an arrow at the right of every row and a Black/300 divider below every row but the last; 25.5938rem, or two columns filled top to bottom, 2.5rem apart and 51.1875rem wide, for more than six pages; 1.25rem padding); its chevron button opens it too (keyboard, touch; hidden on the first-level pills until focused, shown on touch screens). A link's text opens its page. In the panel, the arrow of a page with child pages opens its level: the row shows that level's pages as text items, starting with a menu button back to the first level (a back arrow below the second level), the page as a filled blue pill with a chevron and its child pages in the panel; hovering another item shows its child pages. Escape closes the panel, then the menu; a click outside or focus leaving the search row closes it; it opens at the first level again. While open, the search row moves up when the row below wouldn't fit in the window (e.g. the header Canvas or a floating row at its bottom), recalculated on scroll and resize only while open. The menu button and its menu show from 1200px only (on tablet and mobile the site navigation is the header's menu button, `blocks/tcs-header`). The menu's display, size, margin and padding are its own, also inside `<header>` (the header Canvas), where the header's `header nav` rules would otherwise size it. While the header's tablet / mobile menu is open, the header Canvas is hidden (the menu covers the page, whose Canvases are inert; nothing floats) and shows again in its place, with its search text, when the menu closes. Desktop / tablet / mobile: see Responsive Behavior. Accessibility: H2 title, search landmark, labelled controls. Data layer: `cmp:click`, `cmp:search`. Personalization: none; the authored panel renders.
+Purpose: the standard ask-us panel. Use for heroes and sections; don't use for data capture. Required: nothing; recommended: Title, Search bar fields. Dialog: Canvas Style Default. Rendering: white panel (`--color-bg-default`), 1.25rem corners, blue glow left / yellow right, centred content, search row, quick actions. Desktop / tablet / mobile: see Responsive Behavior. Accessibility: H2 title, search landmark, labelled controls. Data layer: `cmp:click`, `cmp:search`. Personalization: none; the authored panel renders.
 
 ```text
 [Screenshot Placeholder]
@@ -696,8 +701,8 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 
 ## Accessibility
 
-- **Semantic HTML:** `h2` title; the search form has `role="search"`, an `input type="search"` with a visually hidden `label`; native `button`s for the menu, voice, submit, navigation toggles and back; `nav` elements labelled "Menu" (site menu) and "Site" (Primary navigation); lists for menus, actions and filters.
-- **Disclosures:** the menu button has `aria-controls` and `aria-expanded`; navigation toggles `aria-expanded` / `aria-controls` to the panel; on pages where the full menu is the default the Primary menu button uses `aria-expanded`, elsewhere `aria-pressed`; the voice button `aria-pressed` while listening.
+- **Semantic HTML:** `h2` title; the search form has `role="search"`, an `input type="search"` with a visually hidden `label`; native `button`s for the menu, voice, submit, navigation toggles and back; `nav` elements labelled "Menu" (pop-up menu) and "Site" (Primary navigation); lists for menus, actions and filters.
+- **Disclosures:** every menu button has `aria-controls` and `aria-expanded`; chevrons have localized names, `aria-expanded` and `aria-controls` for the preview panel; the voice button uses `aria-pressed` while listening.
 - **Current page:** `aria-current="page"` (or `true` for an ancestor) in the dock and panel.
 - **Keyboard and focus:** Escape closes the menu or the panel and returns focus to its button; the menu closes when focus leaves the search row or on a click outside; the sub-page panel follows its toggles in the DOM (keyboard order) while CSS shows it above them; focused elements scroll clear of the floating row (`scroll-padding-bottom`, WCAG 2.4.11); the approaching row is shown again as soon as it holds focus (`:focus-within`).
 - **Floating is visual only:** DOM and reading order never change, nothing is announced while scrolling; the hidden Primary dock is `inert`; the floating row is hidden while the header menu is open.
@@ -713,7 +718,7 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 | Key | Expected behavior |
 | --- | ----------------- |
 | Enter (in the search field) | Submits a non-empty query |
-| Escape | Closes the open sub-page panel (Default / Secondary site menu, Primary), then the menu (Default / Secondary), focus back on its button |
+| Escape | Closes the open menu (Default / Secondary) or sub-page panel (Primary), focus back on its button |
 | Tab / Shift+Tab | Moves through the row; leaving the search row closes its menu; focused elements scroll clear of the floating row |
 
 ## Data Layer and Analytics
@@ -728,7 +733,7 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 | Block decorated | component state | `@type`, `parentId`, `dc:title` | Inventory of Canvases (header, page, footer) |
 | Click on a link, button or quick action | `cmp:click` | `interaction`, `dc:title`, `xdm:linkURL`, `xdm:linkType`, `breakpoint` | Navigation and action clicks |
 | Click on a filter tag | `cmp:click` | `interaction: filter`, `value` | Filter use |
-| Search submitted (Enter, arrow or suggestion) | `cmp:search` | `xdm:searchTerm` (redacted) | Search terms without personal data |
+| Search submitted (Enter or submit arrow) | `cmp:search` | `xdm:searchTerm` (redacted) | Search terms without personal data; suggestion selection only fills the field |
 
 The intended path is Adobe Client Data Layer → Adobe Data Collection (Tags) → AEP Web SDK → Edge Network → Analytics / CJA, but Tags and the Web SDK aren't configured yet (blocked: measurement plan). No consent mechanism is implemented.
 
@@ -740,9 +745,9 @@ This block does not currently expose verified personalization behavior. There is
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 600px | Padding 4rem / 1.5rem; title 2.5rem (Bigger 2.75rem, Medium 1.75rem); Primary dock: the 17.5rem search pill only | Background `object-fit: cover`; icon 2.5rem | Floating row 1.25rem above the window bottom (plus safe area), at most the window width minus 1.5rem gutters |
+| Below 600px | Padding 4rem / 1.5rem; title 2.5rem (Bigger 2.75rem, Medium 1.75rem); Primary dock includes its menu button and navigation | Background `object-fit: cover`; icon 2.5rem | Single-column submenu; pills wrap; floating row 1.25rem above the window bottom (plus safe area) |
 | 600px and above | Padding 5rem / 2.5rem; a section Canvas (`main`) at least 50rem high, content centred, 1.5rem gutters; title 3.125rem (Bigger 4rem, Medium 2rem) | As below 600px | Floating row 3.875rem above the bottom, 28.9375rem wide |
-| 900px and above | Primary dock: menu button, 33.125rem search pill, navigation and sub-page panel over a fade (black for Dark); an open panel replaces the search row | As above | Primary navigation, panels and Escape |
+| 900px and above | Primary dock: menu button, 33.125rem search row, navigation and sub-page panel over a fade (black for Dark) | As above | Search remains visible at every level; navigation stays below it |
 | 1200px and above | Padding 7.5rem / 5rem / 5rem; section Canvas 10rem / 5rem; title 4rem (Bigger 6rem, Medium 2.5rem) | As above | Floating row 3.25rem above the bottom, 37.9375rem wide; the header menu (which hides the journey) exists only below 1200px |
 
 The Primary dock keeps a 1.5rem offset at every width. On tablet the row in place is 37.9375rem (607px) and the floating row 28.9375rem (463px), both from Figma, so it changes width as it floats and lands.
@@ -763,23 +768,25 @@ blocks/conversation-canvas/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`scripts/aem.js`](../../scripts/aem.js) | Edge Delivery core library (block loading, CSS, metadata, optimized pictures) | `conversation-canvas.js`: { toClassName } |
-| [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `conversation-canvas.js`: { moveInstrumentation } |
-| [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media optimized) | `conversation-canvas.js`: { buildImage } |
-| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | `conversation-canvas.js`: { getPageTags } |
-| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `conversation-canvas.js`: { getPages } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `conversation-canvas.js`: { getLocale } |
-| [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `conversation-canvas.js`: { resolveTags } |
-| [`decorators/a11y-decorator.js`](../../decorators/a11y-decorator.js) | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | `conversation-canvas.js`: { hideVisually } |
-| [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `conversation-canvas.js`: { createButton } |
-| [`decorators/icon-button-decorator.js`](../../decorators/icon-button-decorator.js) | `createIconButton` | `conversation-canvas.js`: { createIconButton } |
-| [`utils/buttons.js`](../../utils/buttons.js) | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | `conversation-canvas.js`: { BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, readButtonOptions, } |
-| [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `conversation-canvas.js`: { linkOf } |
-| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `conversation-canvas.js`: { normalizeKey as normalize, textOf } |
-| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `conversation-canvas.js`: { toSitePath } |
-| [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `conversation-canvas.js`: { uniqueId } |
-| [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `conversation-canvas.js`: { fillPlaceholder, getPlaceholders } |
-| [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `conversation-canvas.js`: { bone, skeletonElement, skeletonWhile } |
+| [`blocks\conversation-canvas\canvas-journey.js`](../../blocks\conversation-canvas\canvas-journey.js) | — | `canvas-controller.js`: { assignRoles, resolveJourney, STATES } |
+| [`scripts\aem.js`](../../scripts\aem.js) | — | `conversation-canvas.js`: { toClassName } |
+| [`scripts\scripts.js`](../../scripts\scripts.js) | — | `conversation-canvas.js`: { moveInstrumentation } |
+| [`decorators\responsive-image-decorator.js`](../../decorators\responsive-image-decorator.js) | — | `conversation-canvas.js`: { buildImage } |
+| [`utils\metadata.js`](../../utils\metadata.js) | — | `conversation-canvas.js`: { getPageTags } |
+| [`utils\query-index.js`](../../utils\query-index.js) | — | `conversation-canvas.js`: { getPages } |
+| [`utils\site.js`](../../utils\site.js) | — | `conversation-canvas.js`: { getLocale } |
+| [`utils\taxonomy.js`](../../utils\taxonomy.js) | — | `conversation-canvas.js`: { resolveTags } |
+| [`decorators\a11y-decorator.js`](../../decorators\a11y-decorator.js) | — | `conversation-canvas.js`: { hideVisually } |
+| [`decorators\button-decorator.js`](../../decorators\button-decorator.js) | — | `conversation-canvas.js`: { createButton } |
+| [`decorators\icon-button-decorator.js`](../../decorators\icon-button-decorator.js) | — | `conversation-canvas.js`: { createIconButton } |
+| [`utils\buttons.js`](../../utils\buttons.js) | — | `conversation-canvas.js`: { BUTTON_ALIGNMENTS, BUTTON_TYPES, BUTTON_VIEWS, readButtonOptions, } |
+| [`utils\links.js`](../../utils\links.js) | — | `conversation-canvas.js`: { linkOf } |
+| [`utils\properties.js`](../../utils\properties.js) | — | `conversation-canvas.js`: { normalizeKey as normalize, textOf } |
+| [`utils\urls.js`](../../utils\urls.js) | — | `conversation-canvas.js`: { toSitePath } |
+| [`utils\ids.js`](../../utils\ids.js) | — | `conversation-canvas.js`: { uniqueId } |
+| [`utils\placeholders.js`](../../utils\placeholders.js) | — | `conversation-canvas.js`: { fillPlaceholder, getPlaceholders } |
+| [`blocks\conversation-canvas\canvas-controller.js`](../../blocks\conversation-canvas\canvas-controller.js) | — | `conversation-canvas.js`: registerCanvas |
+| [`decorators\skeleton-decorator.js`](../../decorators\skeleton-decorator.js) | — | `conversation-canvas.js`: { bone, skeletonElement, skeletonWhile } |
 
 <!-- END GENERATED: files -->
 
@@ -800,7 +807,7 @@ A key-value block: one `key | value` row per set property (`readBlock` normalise
 ### Rendered DOM contract
 
 - Block classes: `primary` / `secondary`, `conversation-canvas-bg-{style}`, `conversation-canvas-title-{bigger|medium}`, `conversation-canvas-has-background`; journey: `conversation-canvas-owner`, `data-canvas-role` (`header`, `section`, `footer`, `dock`).
-- Default / Secondary: `.conversation-canvas-background` (optional), `.conversation-canvas-content` > `.conversation-canvas-intro` (`.conversation-canvas-icon`, `p.conversation-canvas-eyebrow`, `h2.conversation-canvas-title`, `.conversation-canvas-text`), `.conversation-canvas-search-slot` > `.conversation-canvas-search` (menu toggle, `nav.conversation-canvas-menu`, `form.conversation-canvas-search-form`), `ul.conversation-canvas-filters` (Secondary), `ul.conversation-canvas-buttons`.
+- Default / Secondary: optional background and intro, then `.conversation-canvas-search-slot` > `.conversation-canvas-menu-dock` containing the search row and `.conversation-canvas-menu-surface`; filters (Secondary) and quick actions follow.
 - Primary: `.conversation-canvas-dock` > `.conversation-canvas-search`, `nav.conversation-canvas-nav` (`data-view`: `root`, `section`, `suggestions`), `.conversation-canvas-nav-panel`.
 - Ids per instance: `conversation-canvas-{n}-q`, `-menu`, `-nav`, `-panel`.
 - Floating: `.conversation-canvas-floating` on the row (or dock), `.conversation-canvas-handoff` (no entry animation), `.conversation-canvas-approaching` on the next slot; `--conversation-canvas-lift` on the row; `--conversation-canvas-obscured` and `data-canvas-journey-state` on `<html>`; `--conversation-canvas-first-section-bottom` on the header (used by `blocks/header/header.css`).
@@ -812,9 +819,10 @@ INITIAL → FLOATING → SECTION_DOCKED → FLOATING_AFTER_SECTION → … → F
 ```
 
 - **Targets**: every Default / Secondary Canvas in the journey (it has a search row in place). Roles come from the semantic container, not DOM order (see Placement above).
+- **Hidden Canvases**: Hide block (`hideblock`), a hidden ancestor or an element removed from layout excludes the Canvas from ownership and docking. On remeasurement, a hidden owner releases its row and the remaining visible Canvases continue the journey. Hidden Primary docks are excluded too.
 - **Dock line**: the top of the floating row (viewport height − floating offset − row height).
-- **Docked**: a target's search row is on screen at or above the dock line; nothing floats. With two rows in place, the one nearest to the dock line is the docked one; the state stays INITIAL while the header Canvas is still in place. The header Canvas is docked only while its row is at the dock line (2px tolerance); as soon as scrolling would carry it up it floats, at the same place.
-- **Owner** (the one floating row): the Primary (sticky) Canvas if there is one that floats, else the last target (DOM order) that has crossed the dock line and may float. After each section Canvas the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it back.
+- **Docked**: a body or footer target's search row is on screen at or above the dock line; nothing floats. With two rows in place, the one nearest to the dock line is the docked one. A header Canvas on Floats and docks floats immediately instead of waiting for a scroll threshold.
+- **Owner** (the one floating row): the Primary (sticky) Canvas if there is one that floats, else the last eligible target scrolled past, else an eligible header Canvas, else the eligible footer Canvas. Header-only, footer-only and header-plus-footer pages therefore float from page load without a body Canvas. After each section Canvas the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it back. Docks only and Decorative remain opt-outs.
 - **Approaching**: the next target coming up from below. Its own row is hidden (opacity, still focusable and read) until it reaches the dock line, where it replaces the floating row at the same position (no duplicate row, no jump).
 - **Final stop**: once the footer Canvas reaches the dock line (or the page bottom on a short page) nothing floats any more.
 - **No footer Canvas**: the floating row is lifted to stay above the footer's top edge; it never covers footer navigation or legal links.
@@ -846,7 +854,7 @@ The header and the Canvas don't import each other: the event is the only contrac
 - The row floats with `position: fixed` **inside its own block**: no DOM moves, no clones, no re-initialisation; reading order, focus, listeners and editor instrumentation stay put. Its slot keeps `min-height` while it floats, so the page doesn't move (no CLS).
 - Measurement (slot positions, footer top, page height, the floating offset from the slot's `scroll-margin-bottom`, the bottom of the first section) happens on registration, on `resize` and through a `ResizeObserver` on `<body>` (sections, images, fonts, header and footer loading) once a resize has settled for 100ms (`RESIZE_SETTLE`), never while scrolling.
 - Scroll: one passive listener for all Canvases; one update per animation frame that reads only `scrollY`, resolves the journey and writes classes only when the result changes; `<html>` custom properties and the state are written only when their value changes.
-- Stacking: the owner block gets `z-index: var(--conversation-canvas-z-floating)` (100, above page content; blocks use 10 at most); the block's `isolation: isolate` would otherwise keep the floating row below later positioned content. The site menu uses `z-index: 101`; while it is open the search row's `::before` fades the page (white 70%) below it.
+- Stacking: the owner block gets `z-index: var(--conversation-canvas-z-floating)` (100, above page content; blocks use 10 at most); the block's `isolation: isolate` would otherwise keep the floating row below later positioned content. The pop-up menu uses `z-index: 101`.
 - Lift (fallback) uses the `translate` property, so it never conflicts with the centring `transform` or the entry animation.
 - Universal Editor: re-decorated blocks register as new entries; removed ones are released on the next measurement. Fragment Canvases (header, footer) are decorated before they are attached and join the journey once on the page. The shared listeners and the ResizeObserver are attached once per page (no MutationObserver).
 - Failures are isolated: an error in the controller releases every row (nothing floats, state `hidden`); header, navigation, page and footer keep working.
@@ -872,7 +880,7 @@ document.addEventListener('conversation-canvas:search', (e) => {
 | Module | Export | Purpose |
 | ------ | ------ | ------- |
 | `conversation-canvas.js` | `default decorate(block)` | Block decoration |
-| `conversation-canvas.js` | `setConversationCanvasSuggestions(block, suggestions)` | Primary: replaces the suggestion pills (strings) and re-renders |
+| `conversation-canvas.js` | `setConversationCanvasSuggestions(block, suggestions)` | Replaces suggestion pills (strings) on Primary and L3 leaf Canvases; selection fills search without submitting |
 | `conversation-canvas.js` | `setConversationCanvasFilters(block, tags)` | Secondary: renders `{ label, href?, active? }` as links or `aria-pressed` buttons (no behaviour of their own) |
 | `canvas-controller.js` | `default registerCanvas({ block, row, slot, primary, floats })` | Adds a Canvas to the journey (once per block) |
 | `canvas-journey.js` | `STATES`, `ROLES`, `TRANSITIONS`, `isAllowedTransition`, `assignRoles`, `resolveJourney` | The pure state model |
@@ -969,6 +977,7 @@ Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (
 | A search does nothing visible | No Search page and no integration | Check the Search page field; listen for `conversation-canvas:search` in the console | Set the Search page or connect an integration | A query opens results |
 | The menu shows "No pages found" | Viewed in Universal Editor, root in another locale, pages not indexed, a parent page missing from the index | Open `/query-index.json` on aem.page and look for the root's child paths | Test on aem.page; fix the root; publish the missing pages | The menu lists the pages |
 | The Primary dock never appears | Floating journey Docks only on the Primary, Hide block on, or a Canvas in place on screen | Inspect the dock for `conversation-canvas-floating` and the journey state | Set Floats and docks; check other Canvases | The dock floats after scrolling |
+| Hiding the middle Canvas used to remove the floating search and menu | The controller still assigned ownership to the hidden Canvas | Check whether a hidden Canvas holds `conversation-canvas-floating` | Use the controller fix that excludes hidden Canvases; keep the header Canvas on Floats and docks | The header row floats past the hidden section and docks at the visible footer Canvas |
 | Nothing floats after the last section Canvas (state `hidden`) | That Canvas is Docks only and no earlier Canvas may float | Check Floating journey of each Canvas | Set Floats and docks on one Canvas | State `floating-after-section` |
 | The floating row stops above the footer | No footer Canvas (Conversation Canvas Page empty or unpublished) | Check the Footer block and the referenced page | Reference and publish the footer canvas page | State `footer-docked` at the bottom |
 | The submit tooltip shows a test word | Hover text holds a test value | Open the Canvas (or the footer canvas page) | Enter "Submit" or clear it; publish | Tooltip and name read "Submit" |
@@ -1007,7 +1016,7 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 | BG Style Dark and Navigation style apply only to Primary (CSS) | No visible change on Default / Secondary | Use a background image or a Section style | Not recorded |
 | Floating journey Docks only on a Primary Canvas | The dock never floats, so it never shows | Use Floats and docks on Primary | Not recorded |
 | Hide block and spacing apply only in `main` | No effect on header / footer Canvases | Edit the nav or footer canvas page | Not recorded |
-| The site menu keeps the title suffix after a vertical bar (only the dock removes it) | Long menu labels | Shorter page titles | Not recorded |
+| The pop-up menu keeps the title suffix after a vertical bar (only the dock removes it) | Long menu labels | Shorter page titles | Not recorded |
 | The dock panel has an `aria-label` without a landmark role | The label may not be announced | — | Not recorded |
 | Unkeyed (single-cell) rows: a row with a link is read as a button item | Only hand-made markup affected | Use keyed rows | Not planned |
 | Footer canvas sample with a test hover text (F-33) | Odd button name and tooltip | Correct the field | Not recorded |

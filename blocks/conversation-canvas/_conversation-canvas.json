@@ -68,7 +68,7 @@
           "valueType": "string",
           "name": "classes_journey",
           "label": "Floating journey",
-          "description": "Floats and docks: the search row docks in place and floats once scrolled past, until the next Canvas or the footer Canvas. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). The footer Canvas never floats.",
+          "description": "Floats and docks: the header Canvas floats immediately. Without an eligible header or Primary dock, the footer Canvas floats immediately until it docks at the footer. Page-body Canvases dock in place and float once scrolled past. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it).",
           "value": "",
           "options": [
             {
@@ -203,7 +203,7 @@
               "valueType": "number",
               "name": "menuDepth",
               "label": "Menu depth",
-              "value": 1,
+              "value": 3,
               "min": 1,
               "max": 3
             }

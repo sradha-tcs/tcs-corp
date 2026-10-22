@@ -32,10 +32,6 @@ const FIELDS = [
 const COLLAPSED = ['classes', 'iconalt', 'searchaudioiconalt'];
 const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
-// the site menu shows a level of more pages than this in two columns
-const MENU_COLUMNS_FROM = 6;
-// px the open site menu keeps clear of the bottom of the window
-const MENU_WINDOW_MARGIN = 24;
 
 /**
  * Reads the key-value property rows and the Button List item rows of the block.
@@ -116,7 +112,7 @@ function buildListButton(row) {
 function menuSettings(config) {
   const root = toSitePath(config.menurootpath?.querySelector('a')?.getAttribute('href')
     || textOf(config.menurootpath)) || getLocale().root;
-  const depth = Math.max(1, parseInt(textOf(config.menudepth), 10) || 1);
+  const depth = Math.max(1, Math.min(3, parseInt(textOf(config.menudepth), 10) || 3));
   return { root, depth };
 }
 
@@ -152,200 +148,7 @@ async function loadMenuTree(root, depth) {
   return tree;
 }
 
-const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
-
-function findNode(tree, path) {
-  if (tree.path === path) return tree;
-  for (let i = 0; i < tree.children.length; i += 1) {
-    const found = findNode(tree.children[i], path);
-    if (found) return found;
-  }
-  return null;
-}
-
-const isWithin = (node, ancestor) => {
-  for (let n = node; n; n = n.parent) if (n === ancestor) return true;
-  return false;
-};
-
-// a hovered item's panel stays this long once the pointer leaves it (on its way to the panel)
-const HOVER_CLOSE_DELAY = 300;
-
-/**
- * Builds the site menu of the Default and Secondary styles (desktop, Figma Full menu 1124:26210 /
- * 1124:26244): a level's pages as a row below the search row, the first level as pills. A page
- * with child pages shows them in a panel above the row (Figma List Container 1124:26250) while
- * the pointer is on it, or with its chevron button (keyboard, touch). A link's text opens its
- * page; in the panel, the arrow of a page with child pages opens its level: the row shows that
- * level's pages, with a menu button back to the first level (a back arrow below the second), and
- * the page's child pages open in the panel.
- * @returns {Promise<Element>} the menu content; its reset() shows the first level again
- */
-async function buildMenuList(root, depth) {
-  const tree = await loadMenuTree(root, depth);
-  const container = document.createElement('div');
-  container.className = 'conversation-canvas-nav conversation-canvas-menu-levels';
-  container.dataset.view = 'root';
-  const list = document.createElement('ul');
-  list.className = 'conversation-canvas-nav-list';
-  container.append(list);
-  if (!tree.children.length) {
-    const li = document.createElement('li');
-    li.className = 'conversation-canvas-menu-empty';
-    li.textContent = t('noPagesFound', 'No pages found');
-    list.append(li);
-    container.reset = () => {};
-    return container;
-  }
-  const current = findNode(tree, normalizePath(window.location.pathname));
-  const panel = document.createElement('div');
-  panel.className = 'conversation-canvas-menu-panel';
-  panel.id = uniqueId('conversation-canvas-menu-panel');
-  panel.hidden = true;
-
-  // the item whose panel is open; pinned: opened by its chevron or an arrow, not by the pointer
-  let open = null;
-  let pinned = false;
-  let closeTimer = 0;
-  const closePanel = () => {
-    clearTimeout(closeTimer);
-    panel.hidden = true;
-    panel.replaceChildren();
-    open?.classList.remove('conversation-canvas-nav-open');
-    open?.querySelector('.conversation-canvas-nav-chevron')?.setAttribute('aria-expanded', 'false');
-    open = null;
-    pinned = false;
-  };
-
-  let render;
-  const openPanel = (li, node, pin) => {
-    clearTimeout(closeTimer);
-    if (open === li) {
-      pinned = pinned || pin;
-      return;
-    }
-    closePanel();
-    const rows = document.createElement('ul');
-    rows.setAttribute('aria-label', node.title);
-    rows.append(...node.children.map((child) => {
-      const row = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = child.path;
-      a.textContent = child.title;
-      if (current === child) a.setAttribute('aria-current', 'page');
-      row.append(a);
-      if (child.children.length) {
-        const next = document.createElement('button');
-        next.type = 'button';
-        next.className = 'conversation-canvas-menu-next';
-        next.setAttribute('aria-label', t('showSubmenu', 'Show {label} menu', { label: child.title }));
-        next.addEventListener('click', (e) => {
-          // the level replaces this button: a click outside the row would close the menu
-          e.stopPropagation();
-          render(node, child);
-        });
-        row.append(next);
-      }
-      return row;
-    }));
-    // more than six pages: two columns, filled top to bottom
-    if (node.children.length > MENU_COLUMNS_FROM) {
-      rows.className = 'conversation-canvas-menu-columns';
-      rows.style.setProperty('--conversation-canvas-menu-rows', Math.ceil(node.children.length / 2));
-    }
-    panel.append(rows);
-    panel.hidden = false;
-    // in its item, after its chevron: Tab reaches the panel's links next
-    li.append(panel);
-    li.classList.add('conversation-canvas-nav-open');
-    li.querySelector('.conversation-canvas-nav-chevron')?.setAttribute('aria-expanded', 'true');
-    open = li;
-    pinned = pin;
-  };
-
-  const item = (child) => {
-    const li = document.createElement('li');
-    li.dataset.path = child.path;
-    const a = document.createElement('a');
-    a.className = 'conversation-canvas-nav-item';
-    a.href = child.path;
-    a.textContent = child.title;
-    if (current && isWithin(current, child)) {
-      a.classList.add('conversation-canvas-nav-current');
-      a.setAttribute('aria-current', current === child ? 'page' : 'true');
-    }
-    li.append(a);
-    if (!child.children.length) return li;
-    li.classList.add('conversation-canvas-nav-group');
-    const chevron = document.createElement('button');
-    chevron.type = 'button';
-    chevron.className = 'conversation-canvas-nav-chevron';
-    chevron.setAttribute('aria-label', t('showSubmenu', 'Show {label} menu', { label: child.title }));
-    chevron.setAttribute('aria-expanded', 'false');
-    chevron.setAttribute('aria-controls', panel.id);
-    chevron.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (open === li && pinned) closePanel();
-      else openPanel(li, child, true);
-    });
-    li.append(chevron);
-    li.addEventListener('pointerenter', (e) => {
-      if (e.pointerType === 'mouse') openPanel(li, child, false);
-    });
-    li.addEventListener('pointerleave', (e) => {
-      if (e.pointerType !== 'mouse' || open !== li || pinned) return;
-      closeTimer = setTimeout(() => {
-        if (open === li && !pinned) closePanel();
-      }, HOVER_CLOSE_DELAY);
-    });
-    return li;
-  };
-
-  render = (node, child) => {
-    closePanel();
-    const items = [];
-    if (node !== tree) {
-      const back = document.createElement('button');
-      back.type = 'button';
-      back.className = 'conversation-canvas-nav-back';
-      // back to the first level (Figma: the menu icon), else up one level (an arrow)
-      const toRoot = node.parent === tree;
-      back.classList.toggle('conversation-canvas-nav-back-menu', toRoot);
-      back.setAttribute('aria-label', toRoot ? t('menu', 'Menu') : t('back', 'Back'));
-      back.addEventListener('click', (e) => {
-        e.stopPropagation();
-        render(node.parent || tree);
-        // focus on the item of the level that was open
-        list.querySelector(`li[data-path="${node.path}"] > a`)?.focus();
-      });
-      const li = document.createElement('li');
-      li.append(back);
-      items.push(li);
-    }
-    items.push(...node.children.map(item));
-    list.replaceChildren(...items);
-    container.dataset.view = node === tree ? 'root' : 'level';
-    if (!child) return;
-    const li = list.querySelector(`li[data-path="${child.path}"]`);
-    if (!li) return;
-    openPanel(li, child, true);
-    li.querySelector('a').focus();
-  };
-
-  // Escape closes an open panel first, focus back on its item
-  container.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape' || !open) return;
-    e.stopPropagation();
-    const opener = open.querySelector('.conversation-canvas-nav-chevron');
-    closePanel();
-    opener?.focus();
-  });
-  container.reset = () => render(tree);
-  render(tree);
-  return container;
-}
-
-/** the skeleton of the site menu and the Primary navigation while the query index loads: pills */
+/** the skeleton of the Primary navigation while the query index loads: pills */
 function navSkeleton() {
   const pills = skeletonElement('skeleton-row');
   for (let i = 0; i < 4; i += 1) pills.append(bone('pill'));
@@ -372,7 +175,6 @@ function buildMenuToggle(controls, label = t('menu', 'Menu')) {
 function buildSearchForm(config, id, block) {
   const form = document.createElement('form');
   form.className = 'conversation-canvas-search-form';
-  // a search landmark, named by its placeholder when there are several on the page
   form.setAttribute('role', 'search');
   const placeholder = textOf(config.searchplaceholder) || t('searchPlaceholder', 'Ask us a question');
   const input = document.createElement('input');
@@ -385,16 +187,13 @@ function buildSearchForm(config, id, block) {
   label.htmlFor = input.id;
   label.textContent = placeholder;
 
-  // audio (speech input), only where the browser supports it
   const audio = document.createElement('button');
   audio.type = 'button';
   audio.className = 'conversation-canvas-audio';
-  // the icon's alt text names the button (collapsed into the image; a separate row is read too)
   const audioAlt = textOf(config.searchaudioiconalt)
     || config.searchaudioicon?.querySelector('img')?.getAttribute('alt')?.trim();
   audio.setAttribute('aria-label', audioAlt || t('searchByVoice', 'Search by voice'));
   const audioImage = imageOf(config.searchaudioicon, '');
-  // the button has the name, so the icon is decorative
   const audioImg = audioImage?.tagName === 'IMG' ? audioImage : audioImage?.querySelector('img');
   audioImg?.setAttribute('alt', '');
   if (audioImage) audio.append(audioImage);
@@ -431,7 +230,6 @@ function buildSearchForm(config, id, block) {
     audio.hidden = true;
   }
 
-  // submit: an icon button from the button decorator (icon button types)
   const submitLabel = textOf(config.searchbuttonlabel) || t('submit', 'Submit');
   const submit = createIconButton({
     label: submitLabel,
@@ -440,7 +238,6 @@ function buildSearchForm(config, id, block) {
     buttonType: 'submit',
   });
 
-  // a polite status when the search can't run (no integration, no Search page)
   const status = document.createElement('p');
   status.className = 'conversation-canvas-search-status visually-hidden';
   status.setAttribute('role', 'status');
@@ -451,8 +248,6 @@ function buildSearchForm(config, id, block) {
     status.textContent = '';
     const query = input.value.trim();
     if (!query) return;
-    // hand the query to whichever search experience is wired up on the page: an integration
-    // that handles it calls preventDefault(); else the Search page opens with the query
     const handled = !block.dispatchEvent(new CustomEvent('conversation-canvas:search', {
       bubbles: true, cancelable: true, detail: { query },
     }));
@@ -470,114 +265,38 @@ function buildSearchForm(config, id, block) {
   return form;
 }
 
-/**
- * Builds the search row of the Default and Secondary styles: menu button with a popover menu
- * of the site tree, and the search form.
- */
-function buildSearch(config, id, block) {
-  const row = document.createElement('div');
-  row.className = 'conversation-canvas-search';
+const docks = new WeakMap();
+const PANEL_COLUMNS_FROM = 6;
 
-  const menuToggle = buildMenuToggle(`${id}-menu`);
-  menuToggle.setAttribute('aria-expanded', 'false');
-  const menu = document.createElement('nav');
-  menu.className = 'conversation-canvas-menu';
-  menu.id = `${id}-menu`;
-  menu.setAttribute('aria-label', t('menu', 'Menu'));
-  menu.hidden = true;
-  const { root, depth } = menuSettings(config);
-  let menuLoaded = false;
+const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 
-  // the menu's row is below the search row: the search row moves up while the menu is open, so
-  // the menu stays in the window (e.g. the header Canvas or a floating row at its bottom)
-  let placeFrame = 0;
-  const placeMenu = () => {
-    placeFrame = 0;
-    const lift = parseFloat(row.style.getPropertyValue('--conversation-canvas-menu-lift')) || 0;
-    const rect = menu.getBoundingClientRect();
-    const room = window.innerHeight - MENU_WINDOW_MARGIN;
-    // 0 while it isn't shown (closed, or below desktop, where the menu button is hidden)
-    const next = !menu.hidden && rect.height
-      ? Math.max(0, Math.round(rect.bottom + lift - room)) : 0;
-    if (next !== lift) row.style.setProperty('--conversation-canvas-menu-lift', `${next}px`);
-  };
-  const schedulePlace = () => {
-    if (!placeFrame) placeFrame = requestAnimationFrame(placeMenu);
-  };
-  const closeMenu = () => {
-    menu.hidden = true;
-    menuToggle.setAttribute('aria-expanded', 'false');
-    window.removeEventListener('scroll', schedulePlace);
-    window.removeEventListener('resize', schedulePlace);
-    row.style.removeProperty('--conversation-canvas-menu-lift');
-  };
-  menuToggle.addEventListener('click', async () => {
-    if (!menu.hidden) {
-      closeMenu();
-      return;
-    }
-    menu.hidden = false;
-    menuToggle.setAttribute('aria-expanded', 'true');
-    window.addEventListener('scroll', schedulePlace, { passive: true });
-    window.addEventListener('resize', schedulePlace);
-    schedulePlace();
-    if (!menuLoaded) {
-      menuLoaded = true;
-      const list = buildMenuList(root, depth);
-      skeletonWhile(menu, list, navSkeleton);
-      menu.append(await list);
-      schedulePlace();
-    } else {
-      // it opens at its first level
-      menu.querySelector('.conversation-canvas-menu-levels')?.reset();
-    }
-  });
-  row.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !menu.hidden) {
-      closeMenu();
-      menuToggle.focus();
-    }
-  });
-  document.addEventListener('click', (e) => {
-    if (!menu.hidden && !row.contains(e.target)) closeMenu();
-  });
-  row.addEventListener('focusout', (e) => {
-    if (!menu.hidden && e.relatedTarget && !row.contains(e.relatedTarget)) closeMenu();
-  });
-
-  row.append(menuToggle, menu, buildSearchForm(config, id, block));
-  return row;
+function findNode(tree, path) {
+  if (tree.path === path) return tree;
+  for (let i = 0; i < tree.children.length; i += 1) {
+    const found = findNode(tree.children[i], path);
+    if (found) return found;
+  }
+  return null;
 }
 
-/*
- * Primary (sticky) dock: the whole canvas floats at the bottom of the viewport, except while
- * another canvas's search row is docked in place, until the footer canvas (canvas-journey.js).
- * It holds the search row and, on desktop, the site navigation:
- * - home (the menu root): pills for the top-level sections
- * - a page with sub-pages: pills for its sub-pages; pills with their own sub-pages open a
- *   panel listing them, shown in place of the search row
- * - a page without sub-pages: suggestion pills (dynamic, or the page's Tags), or its
- *   parent's sub-pages when there are no suggestions
- * The menu button next to the search toggles the full menu (top-level sections); the back
- * button in the navigation goes up one level.
- */
-const docks = new WeakMap();
-const PANEL_COLUMNS_FROM = 6; // panel items from which the panel uses two columns
+const isWithin = (node, ancestor) => {
+  for (let n = node; n; n = n.parent) if (n === ancestor) return true;
+  return false;
+};
 
 /**
- * Builds the primary dock and returns it; its navigation renders once the site tree loads.
+ * Builds the shared Canvas navigation; its pills render once the site tree loads.
  */
-function buildDock(config, id, block) {
+function buildDock(config, id, block, primary = true) {
   const dock = document.createElement('div');
-  dock.className = 'conversation-canvas-dock';
+  dock.className = primary ? 'conversation-canvas-dock'
+    : 'conversation-canvas-search conversation-canvas-menu-dock';
 
-  // panel for a pill's sub-pages, shown in place of the search row
   const panel = document.createElement('div');
   panel.className = 'conversation-canvas-nav-panel';
   panel.id = `${id}-panel`;
   panel.hidden = true;
 
-  // search row: full menu toggle and search form
   const row = document.createElement('div');
   row.className = 'conversation-canvas-search';
   const menuToggle = buildMenuToggle(`${id}-nav`);
@@ -589,27 +308,52 @@ function buildDock(config, id, block) {
   nav.id = `${id}-nav`;
   nav.setAttribute('aria-label', t('siteNavigation', 'Site'));
 
-  // the panel after its toggles (the nav), so Tab reaches it once open; CSS shows it above them
-  dock.append(row, nav, panel);
+  const navObserver = new ResizeObserver(([entry]) => {
+    const height = entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+    const value = `${Math.ceil(height) / 16}rem`;
+    if (dock.style.getPropertyValue('--conversation-canvas-nav-height') !== value) {
+      dock.style.setProperty('--conversation-canvas-nav-height', value);
+      dock.style.setProperty('--conversation-canvas-obscured', `calc(${value} + 8rem)`);
+    }
+  });
+  navObserver.observe(nav);
+
+  const surface = document.createElement('div');
+  surface.className = 'conversation-canvas-menu-surface';
+  if (primary) dock.append(panel, row, nav);
+  else {
+    surface.append(nav);
+    surface.hidden = true;
+    dock.append(panel, row, surface);
+  }
 
   const state = {
-    tree: null, current: null, view: null, suggestions: [], collapsed: false,
+    tree: null, current: null, view: null, suggestions: [], collapsed: !primary, expanded: false,
   };
   const textOfNode = (node) => node.title.replace(/\s*\|.*$/, '');
+
+  const pill = (tag, text) => {
+    const el = document.createElement(tag);
+    el.className = 'conversation-canvas-nav-item';
+    el.textContent = text;
+    if (tag === 'button') el.type = 'button';
+    return el;
+  };
 
   const closePanel = () => {
     panel.hidden = true;
     panel.replaceChildren();
     dock.classList.remove('conversation-canvas-panel-open');
-    nav.querySelectorAll('[aria-expanded="true"]').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+    nav.querySelectorAll('.conversation-canvas-nav-toggle[aria-expanded="true"]')
+      .forEach((button) => button.setAttribute('aria-expanded', 'false'));
   };
 
   const openPanel = (button, node) => {
+    if (!panel.hidden && button.getAttribute('aria-expanded') === 'true') return;
     closePanel();
     const list = document.createElement('ul');
     list.className = 'conversation-canvas-nav-panel-list';
     const wide = node.children.length >= PANEL_COLUMNS_FROM;
-    // balanced columns: the first column ends at item ceil(n / 2)
     const columnEnd = wide ? Math.ceil(node.children.length / 2) - 1 : -1;
     node.children.forEach((child, i) => {
       const li = document.createElement('li');
@@ -619,6 +363,7 @@ function buildDock(config, id, block) {
       a.href = child.path;
       a.className = 'conversation-canvas-nav-panel-link';
       a.textContent = textOfNode(child);
+      a.addEventListener('click', closePanel);
       if (state.current === child) a.setAttribute('aria-current', 'page');
       li.append(a);
       list.append(li);
@@ -635,13 +380,17 @@ function buildDock(config, id, block) {
     const { tree, current } = state;
     if (!current || current === tree) return { type: 'root' };
     if (current.children.length) return { type: 'section', node: current };
-    if (state.suggestions.length) return { type: 'suggestions' };
+    const thirdLevel = current.parent?.parent && current.parent.parent !== tree;
+    if (state.suggestions.length && (primary || thirdLevel)) {
+      return { type: 'suggestions' };
+    }
     return current.parent === tree ? { type: 'root' } : { type: 'section', node: current.parent };
   };
 
   const parentView = (view) => {
     const { tree, current } = state;
     if (view.type === 'suggestions') {
+      if (view.returnView) return view.returnView;
       return current.parent === tree ? { type: 'root' } : { type: 'section', node: current.parent };
     }
     if (view.type === 'section' && view.node.parent && view.node.parent !== tree) {
@@ -650,65 +399,99 @@ function buildDock(config, id, block) {
     return { type: 'root' };
   };
 
-  const pill = (tag, text) => {
-    const el = document.createElement(tag);
-    el.className = 'conversation-canvas-nav-item';
-    el.textContent = text;
-    if (tag === 'button') el.type = 'button';
-    return el;
-  };
-
-  // eslint-disable-next-line no-use-before-define
-  const setView = (view) => { state.view = view; render(); };
+  // Defined setView above render; disable-line prevents no-use-before-define on render()
+  function setView(view) {
+    state.view = view;
+    render(); // eslint-disable-line no-use-before-define
+  }
 
   function render() {
     closePanel();
     const { tree, view } = state;
     const items = [];
-    if (view.type !== 'root') {
+    const drilling = !state.collapsed && view.type === 'section';
+    row.hidden = false;
+    dock.classList.toggle('conversation-canvas-menu-drilling', drilling);
+    dock.classList.toggle('conversation-canvas-menu-open', !state.collapsed);
+
+    if (drilling) {
+      menuToggle.remove();
+      items.push(menuToggle);
+    } else if (menuToggle.parentElement !== row) {
+      row.prepend(menuToggle);
+    }
+
+    if (view.type === 'suggestions') {
       const back = document.createElement('button');
       back.type = 'button';
       back.className = 'conversation-canvas-nav-back';
-      // back to the full menu (Figma: the menu icon), else up one level (an arrow)
-      const toRoot = parentView(view).type === 'root';
-      back.classList.toggle('conversation-canvas-nav-back-menu', toRoot);
-      back.setAttribute('aria-label', toRoot ? t('menu', 'Menu') : t('back', 'Back'));
-      back.addEventListener('click', () => setView(parentView(view)));
+      back.setAttribute('aria-label', t('back', 'Back'));
+      back.addEventListener('click', () => {
+        state.expanded = true;
+        setView(parentView(view));
+      });
       items.push(back);
     }
+
     if (view.type === 'suggestions') {
       state.suggestions.forEach((text) => {
         const item = pill('button', text);
         item.classList.add('conversation-canvas-nav-suggestion');
         item.addEventListener('click', () => {
           form.elements.q.value = text.replace(/^["“]|["”]$/g, '');
-          form.requestSubmit();
+          form.elements.q.dispatchEvent(new Event('input', { bubbles: true }));
+          form.elements.q.focus({ preventScroll: true });
         });
         items.push(item);
       });
     } else {
       const node = view.type === 'root' ? tree : view.node;
       node.children.forEach((child) => {
-        let item;
-        if (child.children.length && view.type === 'section') {
-          item = pill('button', textOfNode(child));
-          item.classList.add('conversation-canvas-nav-toggle');
-          item.setAttribute('aria-expanded', 'false');
-          item.setAttribute('aria-controls', panel.id);
-          item.addEventListener('click', () => {
-            if (item.getAttribute('aria-expanded') === 'true') closePanel();
-            else openPanel(item, child);
+        const item = document.createElement('div');
+        item.className = 'conversation-canvas-nav-pill';
+        const link = pill('a', textOfNode(child));
+        link.href = child.path;
+        item.append(link);
+        let toggle = null;
+        if (child.children.length) {
+          toggle = createIconButton({
+            label: t('expandSubpages', 'Explore {title}', { title: textOfNode(child) }),
+            icon: 'chevron-down',
+            type: 'tertiary',
           });
-        } else {
-          item = pill('a', textOfNode(child));
-          item.href = child.path;
+          toggle.classList.add('conversation-canvas-nav-toggle');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-controls', panel.id);
+          toggle.addEventListener('click', () => {
+            if (view.type === 'root') {
+              state.expanded = true;
+              setView({ type: 'section', node: child });
+            } else {
+              state.expanded = true;
+              setView({ type: 'suggestions', returnView: view });
+            }
+          });
+          item.append(toggle);
         }
+        const preview = () => {
+          if (toggle) openPanel(toggle, child);
+          else closePanel();
+        };
+        item.addEventListener('mouseenter', preview);
+        link.addEventListener('focus', preview);
         if (state.current && isWithin(state.current, child)) {
-          item.classList.add('conversation-canvas-nav-current');
-          item.setAttribute('aria-current', state.current === child ? 'page' : 'true');
+          link.classList.add('conversation-canvas-nav-current');
+          link.setAttribute('aria-current', state.current === child ? 'page' : 'true');
         }
         items.push(item);
       });
+    }
+
+    if (!items.length) {
+      const empty = document.createElement('span');
+      empty.className = 'conversation-canvas-menu-empty';
+      empty.textContent = t('noPagesFound', 'No pages found');
+      items.push(empty);
     }
     const list = document.createElement('ul');
     list.className = 'conversation-canvas-nav-list';
@@ -718,49 +501,91 @@ function buildDock(config, id, block) {
       return li;
     }));
     nav.replaceChildren(list);
-    // the first level shows pills, the levels below text items (Figma Full menu)
     nav.dataset.view = view.type;
     nav.hidden = state.collapsed || !items.length;
-    if (defaultView().type === 'root') {
-      menuToggle.removeAttribute('aria-pressed');
-      menuToggle.setAttribute('aria-expanded', String(!state.collapsed));
-    } else {
-      menuToggle.removeAttribute('aria-expanded');
-      menuToggle.setAttribute('aria-pressed', String(view.type === 'root'));
-    }
+    surface.hidden = state.collapsed;
+    menuToggle.setAttribute('aria-expanded', String(!state.collapsed));
+    const toggleLabel = !state.collapsed && !drilling ? t('closeMenu', 'Close menu') : t('menu', 'Menu');
+    menuToggle.setAttribute('aria-label', toggleLabel);
+    menuToggle.classList.toggle('conversation-canvas-menu-close', !state.collapsed && !drilling);
   }
 
-  // menu button: full menu on / off (on home, where the full menu is the default: show / hide)
+  const closeNavigation = () => {
+    state.expanded = false;
+    state.collapsed = true;
+    dock.classList.remove('conversation-canvas-menu-open', 'is-opening', 'conversation-canvas-menu-drilling');
+    if (state.tree) setView({ type: 'root' });
+    else {
+      surface.hidden = true;
+      nav.hidden = true;
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+
   menuToggle.addEventListener('click', () => {
-    if (!state.tree) return;
-    if (defaultView().type === 'root') {
-      state.collapsed = !state.collapsed;
-      render();
+    if (!state.collapsed && state.view?.type === 'section') {
+      setView({ type: 'root' });
+    } else if (!state.collapsed && state.expanded) {
+      closeNavigation();
     } else {
-      setView(state.view.type === 'root' ? defaultView() : { type: 'root' });
+      state.expanded = true;
+      state.collapsed = false;
+      nav.hidden = false;
+      surface.hidden = false;
+      dock.classList.add('conversation-canvas-menu-open');
+
+      dock.classList.add('is-opening');
+      const enablePointer = () => {
+        dock.classList.remove('is-opening');
+        window.removeEventListener('mousemove', enablePointer);
+      };
+      window.addEventListener('mousemove', enablePointer, { once: true });
+
+      menuToggle.setAttribute('aria-expanded', 'true');
+      if (state.tree) setView({ type: 'root' });
+    }
+  });
+  menuToggle.setAttribute('aria-expanded', 'false');
+
+  dock.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (!panel.hidden) {
+      closePanel();
+    } else {
+      closeNavigation();
     }
   });
 
-  dock.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape' || panel.hidden) return;
-    const opener = nav.querySelector('[aria-expanded="true"]');
-    closePanel();
-    opener?.focus();
-  });
   document.addEventListener('click', (e) => {
-    if (!panel.hidden && !dock.contains(e.target)) closePanel();
+    if (!state.collapsed && !e.composedPath().includes(dock)) closeNavigation();
+  });
+
+  window.addEventListener('scroll', () => {
+    if (state.expanded && !state.collapsed) {
+      closeNavigation();
+    } else if (!panel.hidden) closePanel();
+  }, { passive: true });
+
+  dock.addEventListener('focusout', (e) => {
+    if (e.relatedTarget && !dock.contains(e.relatedTarget)) closeNavigation();
   });
 
   const { root, depth } = menuSettings(config);
-  // suggestions: the page's tags (Tags metadata), labelled from the taxonomy
   const tagLabels = resolveTags(getPageTags()).then((tags) => tags.map((tag) => tag.label));
   const loaded = Promise.all([loadMenuTree(root, depth), tagLabels]).then(([tree, labels]) => {
-    if (!state.suggestions.length) state.suggestions = labels;
+    if (!state.suggestions.length) {
+      state.suggestions = labels.length ? labels : [
+        t('canvasSuggestionSimilarChallenges', 'What customers have solved similar challenges?'),
+        t('canvasSuggestionIndustryCustomers', 'Find customers in my industry'),
+      ];
+    }
     state.tree = tree;
     state.current = findNode(tree, normalizePath(window.location.pathname));
-    setView(defaultView());
+    const view = defaultView();
+    if (!state.expanded && view.type === 'suggestions') state.collapsed = false;
+    setView(state.expanded || (!primary && view.type !== 'suggestions') ? { type: 'root' } : view);
   });
-  // pills while the site tree loads; a failure leaves the navigation empty, as before
+
   skeletonWhile(nav, loaded, navSkeleton);
   // eslint-disable-next-line no-console
   loaded.catch((e) => console.error('conversation canvas navigation', e));
@@ -768,28 +593,20 @@ function buildDock(config, id, block) {
   docks.set(block, {
     setSuggestions(suggestions) {
       state.suggestions = suggestions;
-      if (state.tree) setView(defaultView());
+      if (state.tree) {
+        const view = defaultView();
+        if (view.type === 'suggestions') state.collapsed = false;
+        setView(view);
+      }
     },
   });
   return dock;
 }
 
-/**
- * Sets the suggestion pills of a primary (sticky) canvas, shown on pages without sub-pages,
- * e.g. AI prompts from a personalisation service. Clicking one searches for it.
- * @param {Element} block The conversation canvas block
- * @param {string[]} suggestions
- */
 export function setConversationCanvasSuggestions(block, suggestions = []) {
   docks.get(block)?.setSuggestions(suggestions);
 }
 
-/**
- * Renders filter tags into the conversation canvas filter list (Secondary style). The tags are
- * dynamic, so the list is empty until a script supplies them, e.g. from a personalisation service.
- * @param {Element} block The conversation canvas block
- * @param {Array<{ label: string, href?: string, active?: boolean }>} tags
- */
 export function setConversationCanvasFilters(block, tags = []) {
   const list = block.querySelector('.conversation-canvas-filters');
   if (!list) return;
@@ -813,28 +630,21 @@ export function setConversationCanvasFilters(block, tags = []) {
   }));
 }
 
-/**
- * loads and decorates the block
- * @param {Element} block The block element
- */
 export default async function decorate(block) {
   t = await getPlaceholders();
   const id = uniqueId('conversation-canvas');
   const { config, buttonRows } = readBlock(block);
 
-  // style options
   const style = normalize(textOf(config.classes));
   if (STYLES.includes(style)) block.classList.add(style);
   const primary = block.classList.contains('primary');
   block.classList.add(`conversation-canvas-bg-${toClassName(textOf(config.bgstyle)) || 'default'}`);
   const titleSize = normalize(textOf(config.titlesize));
   if (TITLE_SIZES.includes(titleSize)) block.classList.add(`conversation-canvas-title-${titleSize}`);
-  // Floating journey: Docks only (nofloat): a stop of the journey whose own row doesn't float;
-  // Decorative: a Canvas in place that isn't part of the journey (the Primary dock always is)
+
   const floats = !block.classList.contains('nofloat');
   const inJourney = primary || !block.classList.contains('decorative');
 
-  // primary (sticky): only the floating dock (search row and site navigation)
   if (primary) {
     const dock = buildDock(config, id, block);
     block.replaceChildren(dock);
@@ -849,7 +659,6 @@ export default async function decorate(block) {
   const content = document.createElement('div');
   content.className = 'conversation-canvas-content';
 
-  // background image
   const background = imageOf(config.backgroundimage, '');
   if (background) {
     const bg = document.createElement('div');
@@ -859,7 +668,6 @@ export default async function decorate(block) {
     block.append(bg);
   }
 
-  // icon, eyebrow, title, text
   const intro = document.createElement('div');
   intro.className = 'conversation-canvas-intro';
   const icon = imageOf(config.icon, textOf(config.iconalt));
@@ -889,24 +697,20 @@ export default async function decorate(block) {
   }
   if (intro.children.length) content.append(intro);
 
-  // search row, in place; floats once scrolled past (canvas-controller.js, canvas-journey.js)
   const slot = document.createElement('div');
   slot.className = 'conversation-canvas-search-slot';
-  const row = buildSearch(config, id, block);
+  const row = buildDock(config, id, block, false);
   slot.append(row);
   content.append(slot);
 
-  // filter tags (secondary): markup only, filled by setConversationCanvasFilters()
   if (block.classList.contains('secondary')) {
     const filters = document.createElement('ul');
     filters.className = 'conversation-canvas-filters';
     filters.setAttribute('aria-label', t('suggestions', 'Suggestions'));
-    // no empty list for screen readers: shown once setConversationCanvasFilters() adds tags
     filters.hidden = true;
     content.append(filters);
   }
 
-  // button list
   const buttons = buttonRows.map(buildListButton).filter(Boolean);
   if (buttons.length) {
     const list = document.createElement('ul');

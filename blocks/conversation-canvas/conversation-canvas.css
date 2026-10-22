@@ -1,15 +1,12 @@
-/* Conversation Canvas: Default, Primary (sticky) and Secondary styles (New Screens from New DS, Figma) */
+/* Conversation Canvas: Default, Primary (sticky) and Secondary styles */
 .conversation-canvas {
   --conversation-canvas-surface: rgb(255 255 255 / 60%);
   --conversation-canvas-outline: #494c4d;
 
-  /* the open / current navigation item (Figma Full menu) */
-  --conversation-canvas-active: #4e84ff;
+  /* Elevated offset to guarantee safe spacing above browser bottom/taskbars */
+  --conversation-canvas-float-offset: calc(5.5rem + env(safe-area-inset-bottom, 0rem));
 
-  /* space below the floating row, clear of the home indicator (canvas-controller.js reads it) */
-  --conversation-canvas-float-offset: calc(var(--space-600) + env(safe-area-inset-bottom, 0rem));
-
-  /* the floating canvas is above page content (blocks use z-index 10 at most) */
+  /* Floating canvas layer above standard page content */
   --conversation-canvas-z-floating: 100;
 
   position: relative;
@@ -22,31 +19,22 @@
   text-align: center;
 }
 
-/*
- * The floating row's offset from the bottom of the window (Figma: the search row 52px desktop /
- * 62px tablet above the hero's bottom in home-desktop 229:15426 / home-tablet 671:52732, the hero
- * filling the first screen; mobile Ask TCS 1124:27368: 54px including the home indicator), plus
- * the device safe area. The header Canvas sits the same offset above the bottom of the first
- * screen, so it doesn't move when it floats. The Primary dock keeps its own offset.
- */
 .conversation-canvas:not(.primary) {
-  --conversation-canvas-float-offset: calc(1.25rem + env(safe-area-inset-bottom, 0rem));
+  --conversation-canvas-float-offset: calc(4.5rem + env(safe-area-inset-bottom, 0rem));
 }
 
 @media (width >= 600px) {
-  .conversation-canvas:not(.primary) {
-    --conversation-canvas-float-offset: calc(3.875rem + env(safe-area-inset-bottom, 0rem));
+  .conversation-canvas {
+    --conversation-canvas-float-offset: calc(6.5rem + env(safe-area-inset-bottom, 0rem));
   }
 }
 
 @media (width >= 1200px) {
-  .conversation-canvas:not(.primary) {
-    --conversation-canvas-float-offset: calc(3.25rem + env(safe-area-inset-bottom, 0rem));
+  .conversation-canvas {
+    --conversation-canvas-float-offset: calc(6.5rem + env(safe-area-inset-bottom, 0rem));
   }
 }
 
-/* soft brand blobs behind the content (BG Style: Default); the block itself doesn't clip,
-   so the menu can open outside it */
 .conversation-canvas::before {
   content: '';
   position: absolute;
@@ -93,7 +81,6 @@
   margin: 0 auto;
 }
 
-/* icon, eyebrow, title, text */
 .conversation-canvas .conversation-canvas-intro {
   display: flex;
   flex-direction: column;
@@ -125,7 +112,6 @@
   letter-spacing: -0.05rem;
 }
 
-/* 16px gap + 24px = 40px between the icon / eyebrow and the title */
 .conversation-canvas .conversation-canvas-icon + .conversation-canvas-title,
 .conversation-canvas .conversation-canvas-eyebrow + .conversation-canvas-title {
   margin-top: var(--space-600);
@@ -154,12 +140,10 @@
   margin: 0;
 }
 
-/* 40px between the title and the text too (Figma 251:41883) */
 .conversation-canvas .conversation-canvas-title + .conversation-canvas-text {
   margin-top: var(--space-600);
 }
 
-/* search row: menu button, search field with audio and submit buttons */
 .conversation-canvas .conversation-canvas-search-slot {
   display: flex;
   justify-content: center;
@@ -189,6 +173,13 @@
   color: var(--conversation-canvas-outline);
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+/* HIDE HAMBURGER MENU BUTTON IN MOBILE VIEW (<600px) */
+@media (width <= 599px) {
+  .conversation-canvas .conversation-canvas-menu-toggle {
+    display: none !important;
+  }
 }
 
 .conversation-canvas .conversation-canvas-menu-toggle::before {
@@ -279,210 +270,15 @@
   mask: url('../../icons/mic.svg') center / contain no-repeat;
 }
 
-/*
- * Site menu (Default and Secondary, desktop; Figma Full menu 1124:26210 / 1124:26244): a row of
- * a level's pages below the search row, centred on it, the first level as pills, the levels below
- * as text items (the navigation styles of the Primary dock below: .conversation-canvas-nav-*).
- * In the site header (the header Canvas) it is a nav inside <header>: display, size, margin and
- * padding are its own, not the header bar's (header nav).
- */
-.conversation-canvas .conversation-canvas-menu {
-  display: block;
-  position: absolute;
-  top: calc(100% + 2.3125rem);
-  left: 50%;
-  z-index: 101;
-  box-sizing: border-box;
-  width: max-content;
-  max-width: calc(100vw - 2 * var(--space-600));
-  height: auto;
-  margin: 0;
-  padding: 0;
-  text-align: start;
-  transform: translateX(-50%);
-}
-
-.conversation-canvas .conversation-canvas-menu[hidden] {
-  display: none;
-}
-
-.conversation-canvas .conversation-canvas-menu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 .conversation-canvas .conversation-canvas-menu-empty {
+  display: block;
+  padding: var(--space-200) var(--space-100);
   color: var(--color-text-secondary);
-}
-
-/*
- * the panel of an item's child pages, above the row in place of the search row (Figma 1124:26244,
- * List Container 1124:26250): rows of 14 / 20px text, an arrow at the right of every row, a
- * Black/300 divider below every row but the last, 49px apart; one column 369.5px, two (more than
- * six pages, filled top to bottom) 819px. It is in its item (keyboard order) and placed by the menu.
- */
-.conversation-canvas .conversation-canvas-menu-panel {
-  position: absolute;
-  bottom: calc(100% + 2.3125rem);
-  left: 50%;
-  box-sizing: border-box;
-  width: min(25.5938rem, calc(100vw - 2 * var(--space-600)));
-  max-height: 60vh;
-  overflow: auto;
-  border: var(--border-width-200) solid var(--color-border-default);
-  border-radius: 1.25rem;
-  padding: var(--space-500);
-  background-color: var(--white-700);
-  backdrop-filter: blur(1.25rem);
-  transform: translateX(-50%);
-}
-
-.conversation-canvas .conversation-canvas-menu-panel[hidden] {
-  display: none;
-}
-
-.conversation-canvas .conversation-canvas-menu-panel:has(.conversation-canvas-menu-columns) {
-  width: min(51.1875rem, calc(100vw - 2 * var(--space-600)));
-}
-
-.conversation-canvas .conversation-canvas-menu-panel > ul {
-  display: grid;
-  align-items: start;
-  gap: var(--space-400) var(--space-1000);
-}
-
-.conversation-canvas .conversation-canvas-menu-panel > .conversation-canvas-menu-columns {
-  grid-template-rows: repeat(var(--conversation-canvas-menu-rows, 4), auto);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-flow: column;
-}
-
-.conversation-canvas .conversation-canvas-menu-panel li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-200);
-  border-bottom: var(--border-width-100) solid var(--black-300);
-  padding-bottom: var(--space-300);
-}
-
-.conversation-canvas .conversation-canvas-menu-panel li:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-/* a row's link takes the room its arrow button leaves */
-.conversation-canvas .conversation-canvas-menu-panel a {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-200);
-  min-width: 0;
-  color: var(--color-text-default);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  letter-spacing: calc(-0.005 * 0.875rem);
+  font-size: var(--button-font-size);
+  line-height: 1.625rem;
   text-decoration: none;
 }
 
-/* the arrow of a page without child pages (decorative; the others' is their button) */
-.conversation-canvas .conversation-canvas-menu-panel a:only-child::after {
-  content: '';
-  flex: none;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  margin-block: -0.125rem;
-  background-color: currentcolor;
-  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
-}
-
-.conversation-canvas .conversation-canvas-menu-panel a:hover,
-.conversation-canvas .conversation-canvas-menu-panel a:focus-visible,
-.conversation-canvas .conversation-canvas-menu-panel a[aria-current] {
-  color: var(--conversation-canvas-active);
-}
-
-/* 24px, so a row with child pages is as high as the others */
-.conversation-canvas .conversation-canvas-menu-next {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  margin: -0.125rem 0;
-  border: 0;
-  border-radius: var(--radius-full);
-  padding: 0;
-  background: none;
-  color: var(--color-icon-default);
-  cursor: pointer;
-}
-
-.conversation-canvas .conversation-canvas-menu-next::before {
-  content: '';
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  background-color: currentcolor;
-  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
-}
-
-.conversation-canvas .conversation-canvas-menu-next:hover {
-  color: var(--conversation-canvas-active);
-}
-
-/*
- * open (Figma 1124:26210): the menu button a blue close button, the page faded behind the search
- * row and the menu; the row moves up by the lift the menu needs to stay in the window
- * (buildSearch)
- */
-@media (width >= 1200px) {
-  .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true'] {
-    border-color: var(--conversation-canvas-active);
-    background-color: var(--conversation-canvas-active);
-    color: var(--color-text-on-brand);
-  }
-
-  .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true']::before {
-    mask-image: url('../../icons/close.svg');
-  }
-
-  .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden])) {
-    /* with the floating row's own lift (above a footer without a Canvas) */
-    translate: 0 calc(-1 * (var(--conversation-canvas-lift, 0rem) + var(--conversation-canvas-menu-lift, 0rem)));
-  }
-
-  /* an open panel takes the place of the search row (Figma 1124:26244) */
-  .conversation-canvas .conversation-canvas-search:has(.conversation-canvas-menu-panel:not([hidden])) > :not(.conversation-canvas-menu) {
-    visibility: hidden;
-  }
-
-  .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden]))::before {
-    content: '';
-    position: absolute;
-    inset: -100vmax;
-    z-index: -1;
-    background-color: var(--white-500);
-    pointer-events: none;
-  }
-}
-
-/*
- * The site menu button and its pop-over show on desktop only (from 1200px): on tablet and mobile
- * the site navigation is the header's menu button (blocks/tcs-header); search, voice, submit, the
- * Primary dock and the floating journey are unchanged
- */
-@media (width < 1200px) {
-  .conversation-canvas:not(.primary) .conversation-canvas-search > :is(.conversation-canvas-menu-toggle, .conversation-canvas-menu) {
-    display: none;
-  }
-}
-
-/*
- * Floating journey (canvas-journey.js): the owner's row floats at the bottom of the viewport,
- * lands on the next canvas's row (hidden while it comes up, so there's one row on screen) and
- * stops at the footer canvas. Without one, the lift keeps it above the footer.
- */
 .conversation-canvas.conversation-canvas-owner {
   z-index: var(--conversation-canvas-z-floating);
 }
@@ -498,25 +294,12 @@
   animation: conversation-canvas-float-in 0.3s ease-out;
 }
 
-/* lifting off a canvas's row in place: no entry animation, it's already there */
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff {
   animation: none;
 }
 
-/* focused elements scroll clear of the floating row (WCAG 2.4.11) */
 html:has(.conversation-canvas-owner) {
   scroll-padding-bottom: var(--conversation-canvas-obscured, 0);
-}
-
-/*
- * while the header menu is open the journey is HIDDEN (canvas-controller.js): nothing floats, and
- * the menu covers the page with its Canvases (main and footer are inert). The header Canvas isn't
- * in the page but above it: it's hidden too (out of reach for keyboard and screen readers), so the
- * menu is a page of its own; it shows again, in its place, when the menu closes. Keyed on the menu
- * button (open on tablet and mobile only), not the journey state, which a failure also sets.
- */
-header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
-  visibility: hidden;
 }
 
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-menu-toggle,
@@ -544,7 +327,6 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   }
 }
 
-/* filter tags (secondary): markup only, filled by setCanvasFilters() */
 .conversation-canvas .conversation-canvas-filters {
   display: flex;
   flex-wrap: wrap;
@@ -560,7 +342,6 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   display: none;
 }
 
-/* button list */
 .conversation-canvas .conversation-canvas-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -571,11 +352,6 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   list-style: none;
 }
 
-/*
- * Quick actions as pills (Figma Intelligent Personalisation Block 251:41883, Filter tag: the
- * look of the shared .tag-filter): by default in page sections; buttons in the footer
- * (Figma Footer 2496:91965) and with Quick actions = Buttons.
- */
 :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons {
   gap: var(--space-300);
   max-width: 56.25rem;
@@ -605,18 +381,15 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   display: none;
 }
 
-/* secondary */
 .conversation-canvas.secondary .conversation-canvas-intro {
   gap: var(--space-1000);
 }
 
-/* tablet */
 @media (width >= 600px) {
   .conversation-canvas {
     padding: var(--space-2000) var(--space-1000);
   }
 
-  /* a section Canvas (Figma 2313:52736): at least 800px high, content centered, 24px gutters */
   main .conversation-canvas:not(.primary) {
     display: flex;
     flex-direction: column;
@@ -659,16 +432,13 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
     letter-spacing: -0.0056rem;
     line-height: 1.8125rem;
   }
-
 }
 
-/* desktop */
 @media (width >= 1200px) {
   .conversation-canvas {
     padding: var(--space-3000) var(--space-2000) var(--space-2000);
   }
 
-  /* a section Canvas (Figma 251:41883): 160px / 80px */
   main .conversation-canvas:not(.primary) {
     padding: var(--space-4000) var(--space-2000);
   }
@@ -701,7 +471,6 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
     letter-spacing: -0.0625rem;
   }
 
-
   .conversation-canvas.secondary {
     padding: var(--space-4000) var(--space-2000);
   }
@@ -711,12 +480,226 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   }
 }
 
+.conversation-canvas .conversation-canvas-menu-dock {
+  --conversation-canvas-active: var(--color-border-brand);
+  --conversation-canvas-search-height: 4.5rem;
 
-/*
- * Primary (sticky): only the floating dock, visible until the footer comes into view.
- * Mobile: the search pill only (navigation is in the site header). Desktop: menu button,
- * search pill and site navigation over a white fade.
- */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: var(--conversation-canvas-search-height);
+  isolation: isolate;
+}
+
+.conversation-canvas .conversation-canvas-menu-dock > .conversation-canvas-search {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: var(--conversation-canvas-search-height);
+}
+
+/* Main Navigation Surface directly below search bar */
+.conversation-canvas .conversation-canvas-menu-surface {
+  position: absolute;
+  top: calc(var(--conversation-canvas-search-height) + var(--space-300));
+  left: 50%;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-300);
+  width: min(80rem, calc(100vw - 2 * var(--space-600)));
+  transform: translateX(-50%);
+}
+
+/* Sub-Menu Panel FLOATING CLEANLY ABOVE search bar */
+.conversation-canvas .conversation-canvas-nav-panel {
+  position: absolute;
+  bottom: calc(100% + var(--space-400));
+  left: 50%;
+  z-index: 100;
+  box-sizing: border-box;
+  width: min(100%, 28rem);
+  max-height: min(50vh, 24rem);
+  overflow-y: auto;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: 1rem;
+  padding: var(--space-400) var(--space-600);
+  background-color: rgb(255 255 255 / 95%);
+  backdrop-filter: blur(1.5rem);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 16%), 0 2px 6px rgb(0 0 0 / 6%);
+  text-align: start;
+  transform: translateX(-50%);
+  animation: conversation-panel-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.conversation-canvas .conversation-canvas-nav-panel.conversation-canvas-nav-panel-wide {
+  width: min(51rem, calc(100vw - 2 * var(--space-600)));
+}
+
+@keyframes conversation-panel-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* BASE NAVIGATION & PILL ELEMENTS */
+.conversation-canvas .conversation-canvas-nav {
+  max-width: 100%;
+  overflow: visible;
+}
+
+.conversation-canvas .conversation-canvas-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem 0.75rem;
+  max-width: 80rem;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-list > li {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.conversation-canvas .conversation-canvas-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-default);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+}
+
+.conversation-canvas .conversation-canvas-nav-item {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-200);
+  min-height: 2.75rem;
+  margin: 0;
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: var(--space-200) var(--space-600);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5rem;
+  letter-spacing: -0.0056rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.conversation-canvas :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
+  padding: 0.5rem 1.25rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-item {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-current {
+  border-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas .conversation-canvas-nav-item:hover,
+.conversation-canvas .conversation-canvas-nav-item:focus-visible,
+.conversation-canvas .conversation-canvas-nav-current {
+  border-color: var(--conversation-canvas-active);
+  color: var(--color-text-default);
+  text-decoration: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-toggle::after {
+  display: block;
+}
+
+.conversation-canvas .conversation-canvas-nav-pill .conversation-canvas-nav-item {
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.conversation-canvas .conversation-canvas-nav-pill .button.icon-button.conversation-canvas-nav-toggle {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  padding: var(--space-200);
+  background-color: transparent;
+  color: var(--color-text-default);
+}
+
+.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+.conversation-canvas .conversation-canvas-nav-pill:has(.conversation-canvas-nav-current) {
+  border-color: var(--conversation-canvas-active);
+}
+
+.conversation-canvas .conversation-canvas-nav-back {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  border: var(--border-width-200) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: 0;
+  background-color: rgb(255 255 255 / 80%);
+  color: var(--conversation-canvas-active);
+  cursor: pointer;
+}
+
+.conversation-canvas .conversation-canvas-nav-back::before {
+  content: '';
+  width: var(--space-500);
+  height: var(--space-500);
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-left.svg') center / contain no-repeat;
+}
+
+.conversation-canvas .conversation-canvas-nav-back.conversation-canvas-nav-back-menu::before {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  mask-image: url('../../icons/menu.svg');
+}
+
+.conversation-canvas .conversation-canvas-nav .conversation-canvas-nav-suggestion {
+  min-height: 2.5rem;
+  padding: var(--space-200) var(--space-500);
+  background-color: var(--color-bg-default);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: 0;
+  white-space: normal;
+}
+
+/* DOCK CONTAINER & PRIMARY STYLES */
 .conversation-canvas.primary {
   border-radius: 0;
   padding: 0;
@@ -737,6 +720,8 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 }
 
 .conversation-canvas .conversation-canvas-dock {
+  --conversation-canvas-active: #4e84ff;
+
   position: fixed;
   right: 0;
   bottom: 0;
@@ -745,12 +730,15 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.3125rem;
-  padding: var(--space-600) var(--space-600) var(--conversation-canvas-float-offset);
+  gap: 1rem;
+  padding: var(--space-400) var(--space-600) calc(var(--conversation-canvas-float-offset) + 1.5rem);
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
   opacity: 0;
   pointer-events: none;
   transform: translateY(var(--space-600));
   visibility: hidden;
+  isolation: isolate;
   transition: opacity 0.3s, transform 0.3s, visibility 0s 0.3s;
 }
 
@@ -762,19 +750,10 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   transition: opacity 0.3s, transform 0.3s;
 }
 
-/* the fade is decorative: only the controls take clicks */
 .conversation-canvas .conversation-canvas-dock > * {
   pointer-events: auto;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .conversation-canvas .conversation-canvas-dock,
-  .conversation-canvas .conversation-canvas-dock.conversation-canvas-floating {
-    transition: none;
-  }
-}
-
-/* mobile: the Ask TCS pill (Figma Mobile Ask TCS 1124:27452: 280px, 40% grey, 4px padding) */
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
   width: min(100%, 17.5rem);
 }
@@ -790,249 +769,75 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   color: var(--conversation-canvas-outline);
 }
 
-/* navigation pills */
-.conversation-canvas .conversation-canvas-nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-300);
-  max-width: 80rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.conversation-canvas .conversation-canvas-nav-item {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-200);
-  min-height: 3rem;
-  margin: 0;
-  border: var(--border-width-100) solid var(--color-border-default);
-  border-radius: var(--radius-full);
-  padding: var(--space-200) var(--space-600);
-  background-color: var(--color-bg-default);
-  color: var(--color-text-default);
-  font-family: var(--body-font-family);
-  font-size: 1.125rem;
-  font-weight: var(--font-weight-regular);
-  line-height: 1.8125rem;
-  letter-spacing: -0.0056rem;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-}
-
-/* levels (see Navigation levels below): first level pills, the levels below text items */
-.conversation-canvas :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
-  padding: var(--space-300) var(--space-800);
-  font-weight: var(--font-weight-medium);
-}
-
-.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-item {
-  border-color: transparent;
-  background-color: transparent;
-}
-
-.conversation-canvas .conversation-canvas-nav-item:hover,
-.conversation-canvas .conversation-canvas-nav-item:focus-visible,
-.conversation-canvas .conversation-canvas-nav-current {
-  border-color: var(--conversation-canvas-active);
-  color: var(--color-text-default);
-  text-decoration: none;
-}
-
-.conversation-canvas .conversation-canvas-nav-toggle::after {
-  content: '';
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  background-color: currentcolor;
-  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
-  transition: transform 0.2s;
-}
-
-.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"] {
-  border-color: var(--conversation-canvas-active);
-  background-color: var(--conversation-canvas-active);
-  color: var(--color-text-on-brand);
-}
-
-.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"]::after {
-  transform: rotate(180deg);
-}
-
-.conversation-canvas .conversation-canvas-nav-back {
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {
   display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  margin: 0;
-  border: var(--border-width-200) solid var(--color-border-default);
-  border-radius: var(--radius-full);
-  padding: 0;
-  background-color: rgb(255 255 255 / 40%);
-  color: var(--conversation-canvas-active);
-  cursor: pointer;
 }
 
-.conversation-canvas .conversation-canvas-nav-back::before {
-  content: '';
-  width: var(--space-500);
-  height: var(--space-500);
-  background-color: currentcolor;
-  mask: url('../../icons/arrow-left.svg') center / contain no-repeat;
-}
-
-/*
- * Navigation levels (Figma Full menu 1124:26210 / 1124:26244): the first level as pills
- * (12px 32px, medium), the levels below as text items with the open one filled; their row
- * starts with the menu button (back to the first level) or a back arrow (deeper levels).
- * :where() keeps the specificity of the pill rules, so the variants below still apply.
- */
-.conversation-canvas :where(.conversation-canvas-nav:not([data-view='root'])) .conversation-canvas-nav-current {
-  border-color: var(--conversation-canvas-active);
-}
-
-.conversation-canvas .conversation-canvas-nav-back.conversation-canvas-nav-back-menu::before {
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  mask-image: url('../../icons/menu.svg');
-}
-
-/* panel with a pill's sub-pages, in place of the search row */
-.conversation-canvas .conversation-canvas-nav-panel {
-  box-sizing: border-box;
-  width: min(100%, 26.25rem);
-  border: var(--border-width-200) solid var(--color-border-default);
-  border-radius: 1.25rem;
-  padding: var(--space-300) var(--space-800);
-  background-color: rgb(255 255 255 / 40%);
-  backdrop-filter: blur(1.25rem);
-}
-
-/* the sub-page panel follows its toggles in the DOM (keyboard order) and shows above them */
 .conversation-canvas .conversation-canvas-dock > .conversation-canvas-nav-panel {
   order: -1;
 }
 
-.conversation-canvas .conversation-canvas-nav-panel.conversation-canvas-nav-panel-wide {
-  width: min(100%, 51rem);
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-wide .conversation-canvas-nav-panel-list {
-  column-gap: var(--space-1000);
-  columns: 2;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-item {
-  break-inside: avoid;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-400);
-  border-bottom: var(--border-width-100) solid var(--color-border-neutral-tertiary);
-  padding: var(--space-300) 0;
-  color: var(--color-text-default);
-  font-size: var(--button-font-size);
-  line-height: 1.375rem;
-  text-decoration: none;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-link::after {
-  content: '';
-  flex: none;
-  width: var(--space-400);
-  height: var(--space-400);
-  background-color: currentcolor;
-  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-link:hover,
-.conversation-canvas .conversation-canvas-nav-panel-link:focus-visible,
-.conversation-canvas .conversation-canvas-nav-panel-link[aria-current] {
-  color: var(--conversation-canvas-active);
-  text-decoration: none;
-}
-
-.conversation-canvas .conversation-canvas-nav-panel-column-end .conversation-canvas-nav-panel-link,
-.conversation-canvas .conversation-canvas-nav-panel-item:last-child .conversation-canvas-nav-panel-link {
-  border-bottom: 0;
-}
-
-/* mobile: search pill only */
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle,
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav,
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel {
-  display: none;
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel:not([hidden]) {
+  display: block;
 }
 
-@media (width >= 900px) {
-  .conversation-canvas .conversation-canvas-dock {
-    padding: var(--space-2000) var(--space-600) var(--conversation-canvas-float-offset);
-    background: linear-gradient(0deg, var(--color-bg-default) 55%, rgb(255 255 255 / 0%) 100%);
-  }
-
-  /* Figma Full menu (1124:26210): the 530px search pill alone, 40% white with a light outline;
-     the full menu is reached from the row below (the menu button of a level, Figma 1124:26244) */
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
-    width: min(100%, 33.125rem);
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
-    border-color: var(--color-border-default);
-    padding: var(--space-300) var(--space-300) var(--space-300) var(--space-600);
-    background-color: var(--color-bg-opacity);
-    backdrop-filter: none;
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input {
-    font-weight: var(--font-weight-light);
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
-    color: var(--color-text-default);
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav {
-    display: block;
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav[hidden] {
-    display: none;
-  }
-
-  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel:not([hidden]) {
-    display: block;
-  }
-
-  /* an open panel takes the place of the search row */
-  .conversation-canvas.primary .conversation-canvas-dock.conversation-canvas-panel-open .conversation-canvas-search {
-    display: none;
-  }
+/* DRILLING MODE MODIFIERS */
+.conversation-canvas .conversation-canvas-menu-dock.conversation-canvas-menu-drilling .conversation-canvas-nav-list {
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-300);
 }
 
-/*
- * Navigation style Text links ("Full menu - No Pill", Figma 1734:31279): the navigation items
- * are text; the current one and an open toggle are filled pills.
- */
+.conversation-canvas .conversation-canvas-menu-dock.conversation-canvas-menu-drilling .conversation-canvas-menu-toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--border-width-100) solid rgb(0 0 0 / 8%);
+  border-radius: var(--radius-full);
+  background-color: rgb(0 0 0 / 4%);
+  color: #4e84ff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.conversation-canvas .conversation-canvas-menu-dock.conversation-canvas-menu-drilling .conversation-canvas-menu-toggle:hover {
+  background-color: rgb(0 0 0 / 8%);
+}
+
+.conversation-canvas .conversation-canvas-menu-dock.conversation-canvas-menu-drilling .conversation-canvas-menu-toggle::before {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: currentcolor;
+}
+
+.conversation-canvas .conversation-canvas-menu-dock.is-opening .conversation-canvas-menu-surface,
+.conversation-canvas .conversation-canvas-menu-dock.is-opening .conversation-canvas-nav {
+  pointer-events: none !important;
+}
+
+.conversation-canvas .conversation-canvas-menu-open::before {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--conversation-canvas-float-offset));
+  left: 50%;
+  z-index: -1;
+  width: 100vw;
+  height: calc(100% + 14rem + var(--conversation-canvas-nav-space, 0rem));
+  max-height: 100vh;
+  background: linear-gradient(to bottom, transparent, var(--conversation-canvas-menu-gradient, var(--color-bg-default)) 75%);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.conversation-canvas.conversation-canvas-bg-dark {
+  --conversation-canvas-menu-gradient: var(--color-bg-neutral);
+}
+
+/* THEME & VARIANT OVERRIDES */
 .conversation-canvas.text-links .conversation-canvas-nav-item {
   border-color: transparent;
   background-color: transparent;
 }
 
-/* the first level as text items too (no pills) */
 .conversation-canvas.text-links :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
   padding: var(--space-200) var(--space-600);
   font-weight: var(--font-weight-regular);
@@ -1043,23 +848,18 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   border-color: var(--conversation-canvas-active);
 }
 
-.conversation-canvas.text-links .conversation-canvas-nav-current,
-.conversation-canvas.text-links .conversation-canvas-nav-toggle[aria-expanded="true"] {
+.conversation-canvas.text-links .conversation-canvas-nav-current {
   border-color: var(--conversation-canvas-active);
   background-color: var(--conversation-canvas-active);
   color: var(--color-text-on-brand);
 }
 
-/*
- * BG Style Dark, Primary (sticky) ("L1 Media & Investors", Figma 1734:38272): a black fade,
- * a translucent dark search pill and light navigation.
- */
 .conversation-canvas.primary.conversation-canvas-bg-dark {
   --conversation-canvas-outline: var(--grey-300);
 }
 
 .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form,
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
+.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle:not(.conversation-canvas-menu-close) {
   border-color: var(--conversation-canvas-outline);
   background-color: var(--black-400);
 }
@@ -1091,8 +891,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   color: var(--color-text-on-neutral);
 }
 
-.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-current,
-.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-toggle[aria-expanded="true"] {
+.conversation-canvas.primary.conversation-canvas-bg-dark.text-links .conversation-canvas-nav-current {
   border-color: var(--conversation-canvas-active);
   background-color: var(--conversation-canvas-active);
 }
@@ -1102,12 +901,139 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   background-color: transparent;
 }
 
+/* HIGH SPECIFICITY PSEUDO-SELECTORS (Placed last to satisfy no-descending-specificity) */
+.conversation-canvas .conversation-canvas-nav-pill:has(.conversation-canvas-nav-toggle[aria-expanded="true"]) {
+  border-color: #4e84ff;
+  background-color: #4e84ff;
+  color: #fff;
+}
+
+.conversation-canvas .conversation-canvas-nav-pill:has(.conversation-canvas-nav-toggle[aria-expanded="true"]) .conversation-canvas-nav-item,
+.conversation-canvas .conversation-canvas-nav-pill:has(.conversation-canvas-nav-toggle[aria-expanded="true"]) .conversation-canvas-nav-toggle {
+  color: #fff;
+}
+
+.conversation-canvas .conversation-canvas-nav-pill:has(.conversation-canvas-nav-toggle[aria-expanded="true"]) .conversation-canvas-nav-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* SUB-MENU PANEL LINKS */
+.conversation-canvas .conversation-canvas-nav-panel-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-wide .conversation-canvas-nav-panel-list {
+  column-gap: var(--space-1000);
+  columns: 1;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-item {
+  break-inside: avoid;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-400);
+  border-bottom: var(--border-width-100) solid var(--color-border-neutral-tertiary);
+  padding: var(--space-300) 0;
+  color: var(--color-text-default);
+  font-size: var(--button-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375rem;
+  text-decoration: none;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link::after {
+  content: '';
+  flex: none;
+  width: var(--space-400);
+  height: var(--space-400);
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+  transition: transform 0.15s ease;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link:hover,
+.conversation-canvas .conversation-canvas-nav-panel-link:focus-visible,
+.conversation-canvas .conversation-canvas-nav-panel-link[aria-current] {
+  color: var(--conversation-canvas-active);
+  text-decoration: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-link:hover::after {
+  transform: translateX(3px);
+}
+
+.conversation-canvas .conversation-canvas-nav-panel-column-end .conversation-canvas-nav-panel-link,
+.conversation-canvas .conversation-canvas-nav-panel-item:last-child .conversation-canvas-nav-panel-link {
+  border-bottom: 0;
+}
+
+/* MEDIA QUERIES */
+@media (prefers-reduced-motion: reduce) {
+  .conversation-canvas .conversation-canvas-dock,
+  .conversation-canvas .conversation-canvas-dock.conversation-canvas-floating {
+    transition: none;
+  }
+}
+
+@media (width >= 600px) {
+  .conversation-canvas .conversation-canvas-nav-panel-wide .conversation-canvas-nav-panel-list {
+    columns: 2;
+  }
+}
+
 @media (width >= 900px) {
-  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock {
-    background: linear-gradient(0deg, var(--black-1000) 55%, transparent 100%);
+  .conversation-canvas .conversation-canvas-dock {
+    padding: var(--space-600) var(--space-600) calc(var(--conversation-canvas-float-offset) + 1.5rem);
+    background: linear-gradient(0deg, var(--color-bg-default) 65%, rgb(255 255 255 / 0%) 100%);
   }
 
-  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search {
+    width: min(100%, 33.125rem);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
+    border-color: var(--color-border-default);
+    padding: var(--space-300) var(--space-300) var(--space-300) var(--space-600);
+    background-color: var(--color-bg-opacity);
+    backdrop-filter: none;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input {
+    font-weight: var(--font-weight-light);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
+    color: var(--color-text-default);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav {
+    display: block;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav[hidden] {
+    display: none;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav-panel:not([hidden]) {
+    display: block;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock.conversation-canvas-panel-open .conversation-canvas-search {
+    display: flex;
+  }
+
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock {
+    background: linear-gradient(0deg, var(--black-1000) 65%, transparent 100%);
+  }
+
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle:not(.conversation-canvas-menu-close) {
     width: 3rem;
     height: 3rem;
     background-color: transparent;
@@ -1115,85 +1041,28 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   }
 }
 
-/* site menu items (Default and Secondary, see Site menu above) */
-
-/* a page with child pages: its link and its chevron button (shows them in the panel) */
-.conversation-canvas .conversation-canvas-nav-group {
-  display: flex;
-  align-items: center;
-  border-radius: var(--radius-full);
-  transition: background-color 0.2s;
-}
-
-.conversation-canvas .conversation-canvas-nav-chevron {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  margin: 0 var(--space-600) 0 calc(-1 * var(--space-400));
-  border: 0;
-  border-radius: var(--radius-full);
-  padding: 0;
-  background: none;
-  color: var(--color-icon-default);
-  cursor: pointer;
-}
-
-.conversation-canvas .conversation-canvas-nav-chevron::before {
-  content: '';
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  background-color: currentcolor;
-  mask: url('../../icons/chevron-down.svg') center / contain no-repeat;
-  transition: transform 0.2s;
-}
-
-.conversation-canvas .conversation-canvas-nav-open > .conversation-canvas-nav-chevron::before {
-  transform: rotate(180deg);
-}
-
-/* the first level: pills without a chevron (Figma), shown for the keyboard and touch screens */
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron {
-  margin: 0 var(--space-200) 0 calc(-1 * (var(--icon-size-s) + var(--space-200)));
-  opacity: 0;
-  pointer-events: none;
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron:focus-visible {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-chevron {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='root'] .conversation-canvas-nav-open > .conversation-canvas-nav-item {
-  border-color: var(--conversation-canvas-active);
-}
-
-/* the levels below: the open item is a filled pill (Figma 1124:26244 "Services") */
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-group > .conversation-canvas-nav-item {
-  padding-inline-end: var(--space-500);
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open {
-  background-color: var(--conversation-canvas-active);
-}
-
-.conversation-canvas .conversation-canvas-menu-levels[data-view='level'] .conversation-canvas-nav-open > :is(.conversation-canvas-nav-item, .conversation-canvas-nav-chevron) {
-  color: var(--color-text-on-brand);
-}
-
-/* the next canvas's row is hidden while it comes up to the floating row (one row on screen) */
 .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
   opacity: 0;
 }
 
-/* a Canvas filling a Full Width section (no gutter) has no rounded corners (Figma 251:41883) */
 main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   border-radius: 0;
+}
+
+.conversation-canvas .conversation-canvas-menu-toggle.conversation-canvas-menu-close::before {
+  mask-image: url('../../icons/close.svg');
+}
+
+.conversation-canvas .conversation-canvas-menu-toggle.conversation-canvas-menu-close {
+  border-color: var(--conversation-canvas-outline);
+  background-color: var(--color-bg-default);
+  color: var(--conversation-canvas-outline);
+}
+
+.conversation-canvas .conversation-canvas-menu-surface[hidden],
+.conversation-canvas .conversation-canvas-search[hidden],
+.conversation-canvas .conversation-canvas-nav-panel[hidden],
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search[hidden],
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav[hidden] {
+  display: none;
 }
