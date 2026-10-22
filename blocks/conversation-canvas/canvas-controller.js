@@ -14,7 +14,9 @@ import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
  * - a Canvas row in place that takes focus (a click on its menu button or search field while the
  *   floating row comes up to it) hands the journey over: the floating row lands on it at once
  *   (focused in canvas-journey.js, so there's never a second row on screen) and the page scrolls
- *   it up to the dock line; Canvases that aren't shown (Hide block, a hidden tab) aren't stops
+ *   it up to the dock line
+ * - only active Canvases take part: one with Hide block or not shown (a hidden tab or section)
+ *   never floats and nothing docks on it, wherever it is (header, page, footer, Primary)
  * - a failure here only stops the floating (nothing floats): page, header and footer still work
  * - writes on <html> (custom properties, the journey state) restyle the whole page: they are
  *   made only when the value changes, and resizes while the page loads are measured once they
@@ -68,6 +70,10 @@ function release(entry) {
   }
 }
 
+/** whether a Canvas takes part in the journey: not hidden (Hide block) and shown */
+const isActive = (entry) => !entry.block.classList.contains('hideblock')
+  && (entry.primary ? entry.block : entry.slot).getClientRects().length > 0;
+
 /** reads the page geometry (layout reads only, the writes follow in apply) */
 function measure() {
   // drop Canvases taken off the page (re-decorated in Universal Editor); keep ones not attached
@@ -80,9 +86,14 @@ function measure() {
       entries.splice(i, 1);
     }
   }
-  // a Canvas that isn't shown (Hide block, a hidden tab or section: no boxes) isn't a stop
-  const live = entries.filter((e) => e.block.isConnected
-    && (e.primary || e.slot.getClientRects().length)).sort(byDomOrder);
+  // only active Canvases take part: not one with Hide block (in the header and footer too, and
+  // in the editor, where it shows faded) or one not shown (a hidden tab or section: no boxes);
+  // one that was active lets go of the journey (no floating row, role or reserved space left)
+  const live = entries.filter((e) => e.block.isConnected && isActive(e)).sort(byDomOrder);
+  entries.filter((e) => e.block.isConnected && !live.includes(e)).forEach((e) => {
+    release(e);
+    delete e.block.dataset.canvasRole;
+  });
   const firstSection = document.querySelector('main > .section');
   const roles = assignRoles(live.map((e) => ({
     primary: e.primary,
