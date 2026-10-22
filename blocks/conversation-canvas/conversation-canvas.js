@@ -32,6 +32,8 @@ const FIELDS = [
 const COLLAPSED = ['classes', 'iconalt', 'searchaudioiconalt'];
 const STYLES = ['primary', 'secondary'];
 const TITLE_SIZES = ['bigger', 'medium'];
+// the site menu shows a level of more pages than this in two columns
+const MENU_COLUMNS_FROM = 6;
 
 /**
  * Reads the key-value property rows and the Button List item rows of the block.
@@ -204,6 +206,11 @@ async function buildMenuList(root, depth) {
       }
       return li;
     }));
+    // more than six pages: two columns, filled top to bottom (Figma List Container 1124:26250)
+    const columns = node.children.length > MENU_COLUMNS_FROM;
+    list.classList.toggle('conversation-canvas-menu-columns', columns);
+    if (columns) list.style.setProperty('--conversation-canvas-menu-rows', Math.ceil(node.children.length / 2));
+    else list.style.removeProperty('--conversation-canvas-menu-rows');
     focus?.focus();
   };
   back.addEventListener('click', (e) => {

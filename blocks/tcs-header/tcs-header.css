@@ -107,4 +107,18 @@
   header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
     top: 0.5rem;
   }
+
+  /* the menu: its title ("Menu", a level's Back and title) left-aligned with the rows below */
+  header nav:has(.tcs-header-brand) .nav-sections .nav-level {
+    padding-inline-start: 0;
+  }
+
+  header nav:has(.tcs-header-brand) .nav-sections .nav-level-back {
+    justify-items: start;
+  }
+
+  /* a linked section's arrow (on its button) in line with the other rows' arrows, at the right */
+  header nav:has(.tcs-header-brand) .nav-sections .nav-drop-toggle[aria-label] {
+    justify-content: flex-end;
+  }
 }
