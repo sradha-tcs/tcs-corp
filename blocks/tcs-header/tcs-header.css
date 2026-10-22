@@ -68,3 +68,52 @@
     height: 2.75rem;
   }
 }
+
+/*
+ * In the site header (blocks/header with this block's logos, tablet and mobile below 1200px;
+ * Figma Mobile Nav 2325:55704 at 402px and 1124:25497 at 1024px): 24px gutters, the TCS logo
+ * 30.7px and the TATA logo 38px high at every width below desktop, the menu button 32px on the
+ * right, its icon three 2px lines 26px wide and 8px apart in --color-icon-default (the close icon
+ * of the open menu stays the header's). The header's layout and menu behaviour stay in
+ * blocks/header.
+ */
+@media (width < 1200px) {
+  header nav:has(.tcs-header-brand) {
+    padding-inline: var(--space-600);
+  }
+
+  header nav .nav-brand .tcs-header-brand img {
+    height: 1.9165rem;
+  }
+
+  header nav .nav-tools .tcs-header-group img {
+    height: 2.375rem;
+  }
+
+  header nav:has(.tcs-header-brand) .nav-hamburger button {
+    color: var(--color-icon-default);
+  }
+
+  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon,
+  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::before,
+  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
+    width: 1.625rem;
+  }
+
+  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::before {
+    top: -0.5rem;
+  }
+
+  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
+    top: 0.5rem;
+  }
+
+  /*
+   * One site navigation below 1200px: once the header has the menu button, the Conversation
+   * Canvases' own site menu button and its pop-over (Default and Secondary styles) are hidden; their
+   * search, voice and submit, the Primary dock and the floating journey stay as they are
+   */
+  body:has(header .nav-hamburger) .conversation-canvas:not(.primary) .conversation-canvas-search > :is(.conversation-canvas-menu-toggle, .conversation-canvas-menu) {
+    display: none;
+  }
+}

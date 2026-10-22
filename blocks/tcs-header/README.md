@@ -105,6 +105,8 @@ C = TCS Logo Link
 D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
+G = Menu root path
+H = Menu depth
 ```
 
 ```text
@@ -233,6 +235,8 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
+| Menu root path | `menuRootPath` | aem-content | No | — | — | Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list). Empty: the Menu root path of the Conversation Canvas in the same section. | — |
+| Menu depth | `menuDepth` | number | No | — | — | Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1. | — |
 
 #### Additional tab — TCS Header
 
@@ -374,8 +378,9 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 
 - **Purpose:** the site header's brand and tools.
 - **When to use / not:** always on nav pages; not needed on positional nav pages authored before (brand, sections, tools), which still work.
-- **Fields:** the six Content fields.
+- **Fields:** the six logo fields, and **Menu root path** / **Menu depth** for the tablet and mobile menu.
 - **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
+- **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page at the start of the lazy phase, so the header doesn't wait for it). `blocks/header` (unchanged) makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`) and, once the header has the menu button, hides the Conversation Canvases' own site menu button and pop-over (Default and Secondary; search, voice, submit and the Primary dock stay).
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
 - **Data layer:** clicks report the header component (`header-1`).
@@ -517,6 +522,8 @@ blocks/tcs-header/
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `tcs-header.js`: { getPageTree } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
 
 <!-- END GENERATED: files -->
 
