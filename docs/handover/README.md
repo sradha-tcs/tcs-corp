@@ -8,9 +8,9 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 | File | Description |
 |---|---|
 | [knowledge-base/](knowledge-base/README.md) | The project knowledge base: the single source of truth for humans and AI agents, per topic, linking to the detailed sources (this handover, AGENTS.md, the block READMEs) |
-| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.40, 21 October 2026 (3,429 pages; one table of contents with 1,233 linked entries, one page numbering, PDF bookmarks down to the variations). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (596) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (31) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
+| [TCS-CORP-HANDOVER.pdf](TCS-CORP-HANDOVER.pdf) | The official project handover, version 2.41, 22 October 2026 (3,442 pages; one table of contents with 1,251 linked entries, one page numbering, PDF bookmarks down to the variations). It serves as handover document, technical architecture and solution design document, authoring guide, training workbook, AMS handover guide, support runbook, operations guide, new joiner onboarding guide and component specification guide. Every screenshot (601) has callout letters on its fields and is followed by Screenshot Details, a **Field Entry Table** (Callout, Field Name, Example Value, Mandatory, Business Purpose, What Author Should Enter, Validation Rules), Expected Page Output, Business Rules, Common Authoring Mistakes and Troubleshooting; every variation with a screenshot has a step-by-step walkthrough (461); every component (32) has its variations, field specification, specification, input / output models, business rules, troubleshooting, support runbook, common authoring mistakes, author quick reference guide and an execution example |
 | [TCS-CORP-HANDOVER.md](TCS-CORP-HANDOVER.md) | The editable source of the PDF (Markdown) |
-| [screenshots/](screenshots/README.md) | The 628 figures of the document (596 screenshots, 32 dialog references) |
+| [screenshots/](screenshots/README.md) | The 633 figures of the document (601 screenshots, 32 dialog references) |
 | [../proposals/](../proposals/README.md) | Design proposals that follow up on the handover (e.g. the Cards and Card refactoring) |
 
 | Part | Contents |
@@ -21,7 +21,7 @@ Editor). The documents aren't served on the website (`docs/` is listed in `.hlxi
 | 3 | Site structure: hierarchy, 13 locales, page model, folders, navigation, content organisation, error pages, redirects, the temporary language master review (3.9) |
 | 4 | Content architecture: templates, content types, metadata and taxonomy models, placeholders (all keys), references, sheets, shared content, localisation |
 | 5 | Authoring fundamentals: access, Universal Editor, pages, sections and blocks, images, the Additional tab, preview / publish / validation / rollback |
-| 6 | Component library: 6.0 Component Inventory (with the brief's component names mapped), 6.1 Header … 6.31 Interactive Dashboard — each with purpose (business problem, supported taxonomy), visual overview, every variation with its screenshot and authoring block, authoring experience, authoring guide with a walkthrough per variation, field specification, annotation map, specification, input and output models (Target personalisation output), business rules, best practices, troubleshooting, support runbook, common authoring mistakes, author quick reference guide, component execution example |
+| 6 | Component library: 6.0 Component Inventory (with the brief's component names mapped), 6.1 Header … 6.33 Media Contacts — each with purpose (business problem, supported taxonomy), visual overview, every variation with its screenshot and authoring block, authoring experience, authoring guide with a walkthrough per variation, field specification, annotation map, specification, input and output models (Target personalisation output), business rules, best practices, troubleshooting, support runbook, common authoring mistakes, author quick reference guide, component execution example |
 | 7–9 | Taxonomy, metadata (every field, with the field usage matrix 8.4: search, analytics and personalisation usage), data sheets (every sheet) |
 | 10–11 | Error pages; analytics and data layer |
 | 12–15 | Publishing, deployment and release; global troubleshooting (each issue with its escalation process); operational runbook and AMS handover; appendix (glossary, cheat sheets, component inventory, screenshot register) |
@@ -57,7 +57,7 @@ and page numbering:
 | 16 | Component 6.26 Separator |
 | 17 | Components 6.27–6.28 |
 | 18 | Component 6.29 Form Variations |
-| 19 | Components 6.30–6.31 |
+| 19 | Components 6.30–6.33 |
 | 20 | Parts 7–12 |
 | 21 | Parts 13–18 |
 
