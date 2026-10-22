@@ -13,7 +13,7 @@
               "filter": "table-list",
               "key-value": true,
               "variations": "industries",
-              "backgroundColor": "",
+              "backgroundColor": "white",
               "listHeadingType": "h2",
               "maxCards": 4,
               "ctaStyle": "",
@@ -79,11 +79,11 @@
           "name": "backgroundColor",
           "label": "Background color",
           "description": "Choose the background color for the Table List.",
-          "value": "",
+          "value": "white",
           "options": [
             {
-              "name": "Default / transparent",
-              "value": ""
+              "name": "White (default)",
+              "value": "white"
             },
             {
               "name": "Black",

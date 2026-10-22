@@ -151,11 +151,12 @@ function readBlock(block) {
 
   const variation = pick(textOf(cells.variations), VARIATIONS, 'industries');
   const defaults = VARIATION_DEFAULTS[variation];
+  const backgroundColor = pick(textOf(cells.backgroundcolor), BACKGROUND_COLORS, 'white');
   const maxItems = Number.parseInt(textOf(cells.maxcards), 10);
   const headingCell = cells.listheading;
   return {
     variation,
-    backgroundColor: pick(textOf(cells.backgroundcolor), BACKGROUND_COLORS, ''),
+    backgroundColor,
     heading: textOf(headingCell),
     headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h2'),
     maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
@@ -166,8 +167,7 @@ function readBlock(block) {
     numbers: pick(textOf(cells.numbers), NUMBERS, defaults.numbers),
     itemAction: pick(textOf(cells.itemaction), ITEM_ACTIONS, defaults.itemAction),
     buttonText: textOf(cells.itembuttonlabel),
-    grayDescriptions: textOf(cells.backgroundcolor).toLowerCase() === 'white'
-      && isOn(cells.graydescriptions),
+    grayDescriptions: backgroundColor === 'white' && isOn(cells.graydescriptions),
     motion: pick(textOf(cells.motion), MOTIONS, 'none'),
     items,
     header,
