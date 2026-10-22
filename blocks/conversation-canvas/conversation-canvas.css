@@ -426,9 +426,12 @@
  * (buildSearch)
  */
 @media (width >= 1200px) {
-  /* the menu button: a blue menu icon (Figma 1124:27046) */
+  /* the menu button: the Figma Circle Menu (4308:42483), a brand-blue circle with a white menu
+     icon, in place and floating */
   .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle {
-    color: var(--conversation-canvas-active);
+    border-color: var(--color-bg-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
   }
 
   .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true'] {
@@ -521,7 +524,7 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   visibility: hidden;
 }
 
-.conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-menu-toggle,
+/* the floating search field on a light frosted fill; the menu button keeps its circle (above) */
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form {
   background-color: rgb(255 255 255 / 90%);
   backdrop-filter: blur(var(--blur-100));
