@@ -19,7 +19,7 @@ import { toSitePath } from '../../utils/urls.js';
  * way an authored menu is delivered, so blocks/header (unchanged) makes it the menu: the menu
  * button, its levels, keyboard and focus handling. Without pages there is no menu (no button).
  *
- * Header over the first block (desktop): on the Navigation page the block sets the site's mode,
+ * Header over the first block (every width): on the Navigation page the block sets the site's mode,
  * <html data-header-overlay> (utils/header-space.js, remembered for the next pages); the layout is
  * in styles/styles.css (it applies before the header loads) and the transparent bar here.
  */

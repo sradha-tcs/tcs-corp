@@ -92,7 +92,7 @@
           "name": "headerOverlay",
           "label": "Header over the first block",
           "value": "",
-          "description": "Desktop (from 1200px): whether the logo bar lies transparent over the page's first block, which then starts at the top of the page. Auto: over an opening light Hero (as on Home). Tablet and mobile keep the header bar.",
+          "description": "At every width: whether the logo bar lies transparent over the page's first block, which then starts at the top of the page (the bar turns solid once the page scrolls). Auto: over an opening light Hero (as on Home).",
           "options": [
             {
               "name": "Auto (over a light Hero)",

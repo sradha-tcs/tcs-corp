@@ -315,18 +315,17 @@ main > .section:first-child .hero {
 }
 
 /*
- * Desktop: the opening hero lies under the header (styles/styles.css: a light one unless the
+ * The opening hero lies under the header at every width (styles/styles.css: a light one unless the
  * TCS Header says never, any one when it says always): it grows by the header height (at most to
  * the first screen) and keeps its content below the logos.
  */
-@media (width >= 1200px) {
-  html[data-header-overlay='always'] main > .section:first-child .hero {
-    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
-    padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
-  }
-
-  html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
-    padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
-  }
+html[data-header-overlay='always'] main > .section:first-child .hero {
+  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+  padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
+
+html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+  padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
+}
+

@@ -19,7 +19,7 @@ The site header of every page (the TCS Header of Figma *New Screens from New DS*
 
 - Desktop (>= 1200px): the Figma logo bar only, TCS logo left and TATA logo right, 124px high. There is no navigation in the header (strict Figma, product decision of 16 October 2026, handover F-72): the site navigation is in the Conversation Canvas.
 - Tablet and mobile (< 1200px): a fixed 64px bar with the two logos and a menu button; the menu opens full screen and shows one level at a time (title "Menu", then the open section's label, a Back button from the second level).
-- Desktop over a light hero: when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). The TCS Header's **Header over the first block** can change this (Always: over any first block; Never: never), see [TCS Header](../tcs-header/README.md).
+- Desktop over a light hero: when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). With a TCS Header this applies at every width and its **Header over the first block** can change it (Always: over any first block; Never: never), and the logo bar stays fixed at the top on desktop too, see [TCS Header](../tcs-header/README.md).
 
 Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25825; mobile menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile (229:15426, 671:52732, 4082:120430).
 

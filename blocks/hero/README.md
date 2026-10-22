@@ -817,8 +817,8 @@ This block does not currently expose verified personalization behavior. There is
 | < 600px | Min height 35rem; padding `--space-1600` block, `--space-600` inline; content full width | Cover crop around the centre; Contained image padded `--space-600` | CTAs wrap; toggle bottom right |
 | >= 600px | Min height 40rem; inline padding `--space-1000` | As above | As above |
 | >= 900px | Min height 53.125rem; padding `--space-3000` block, 2.75rem inline; larger gaps; eyebrow `--body-font-size-s`; Left / Right content limited to 47.5rem | Icon 3rem | As above |
-| >= 1200px | In the first section, a light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen); with the TCS Header's Header over the first block Always any Hero does, with Never none | As above | As above |
 | First section (all widths) | Min height at most the screen below the header bar (`100dvh - --nav-height`); taller content grows the hero | Eager, high-priority image | — |
+| First section, under the header (all widths) | A light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen); with the TCS Header's Header over the first block Always any Hero does, with Never none | As above | As above |
 
 ## For Developers
 
@@ -987,7 +987,7 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 - **Lottie.** The player (`utils/lottie.js`) loads once per page, when the animation is within 200px of the viewport, in idle time (200ms timeout fallback); the animation pauses off screen.
 - **DOM size.** At most the media, the content and the toggle.
 - **Listeners / observers.** Visibility observers of the animation decorator; the shared motion IntersectionObserver.
-- **Layout shift.** The Hero has a minimum height; a desktop light Hero in the first section reserves the header height (`--header-height`, `--header-reserved`); with the TCS Header's Header over the first block Always any first Hero does, with Never none (`<html data-header-overlay>`, remembered for the next pages; a visitor's first page with Always / Never can shift once, KB-D-052).
+- **Layout shift.** The Hero has a minimum height; a light Hero in the first section reserves the header height (at every width) (`--header-height`, `--header-reserved`); with the TCS Header's Header over the first block Always any first Hero does, with Never none (`<html data-header-overlay>`, remembered for the next pages; a visitor's first page with Always / Never can shift once, KB-D-052).
 - **High-cost configurations.** Background animation on the first Hero delays the LCP image paint (F-94); large Lottie files.
 
 ## Security and Privacy
