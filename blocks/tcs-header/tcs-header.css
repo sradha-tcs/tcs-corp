@@ -107,13 +107,4 @@
   header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
     top: 0.5rem;
   }
-
-  /*
-   * One site navigation below 1200px: once the header has the menu button, the Conversation
-   * Canvases' own site menu button and its pop-over (Default and Secondary styles) are hidden; their
-   * search, voice and submit, the Primary dock and the floating journey stay as they are
-   */
-  body:has(header .nav-hamburger) .conversation-canvas:not(.primary) .conversation-canvas-search > :is(.conversation-canvas-menu-toggle, .conversation-canvas-menu) {
-    display: none;
-  }
 }
