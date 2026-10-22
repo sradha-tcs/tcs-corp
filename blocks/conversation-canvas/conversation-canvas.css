@@ -386,6 +386,18 @@
   text-decoration: none;
 }
 
+/* the arrow of every row (Figma List Container 1124:26250): a page's own (decorative), the
+   others' is their button opening its child pages */
+.conversation-canvas .conversation-canvas-menu-panel a:only-child::after {
+  content: '';
+  flex: none;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  margin-block: -0.125rem;
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+}
+
 .conversation-canvas .conversation-canvas-menu-panel a:hover,
 .conversation-canvas .conversation-canvas-menu-panel a:focus-visible,
 .conversation-canvas .conversation-canvas-menu-panel a[aria-current] {
@@ -450,7 +462,7 @@
   }
 
   /* an open panel takes the place of the search row (Figma 1124:26244) */
-  .conversation-canvas .conversation-canvas-search:has(.conversation-canvas-menu-panel:not([hidden])) > :not(.conversation-canvas-menu) {
+  .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden]) .conversation-canvas-menu-panel:not([hidden])) > :not(.conversation-canvas-menu) {
     visibility: hidden;
   }
 
