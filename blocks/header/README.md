@@ -636,7 +636,7 @@ This block does not currently expose verified personalization behavior. There is
 | -------- | ------ | -------------- | -------------------- |
 | Mobile (< 600px) | Fixed bar 4rem (64px), 1rem gutters: TCS logo, TATA logo, menu button | TCS logo 1.2104rem, TATA logo 1.5rem high | Menu button opens the full-screen menu, one level at a time |
 | Tablet (600–1199px) | As mobile with 1.5rem (24px) gutters; header Canvas search row 28.9375rem | TCS 1.9165rem, TATA 2.375rem | As mobile |
-| Desktop (>= 1200px) | Logo bar 7.75rem (124px), 5rem (80px) gutters, not fixed; no menu; over a light hero without a band; header Canvas search row 37.9375rem | TCS 2.175rem, TATA 2.75rem | No menu; crossing 1200px resets the menu state (`matchMedia` change) |
+| Desktop (>= 1200px) | Logo bar 7.75rem (124px), 5rem (80px) gutters, not fixed (with a TCS Header: fixed at the top, `blocks/tcs-header`); no menu; over a light hero without a band; header Canvas search row 37.9375rem | TCS 2.175rem, TATA 2.75rem | No menu; crossing 1200px resets the menu state (`matchMedia` change) |
 
 ## For Developers
 

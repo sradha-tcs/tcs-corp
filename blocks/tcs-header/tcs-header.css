@@ -138,3 +138,36 @@
     background-color: var(--background-color);
   }
 }
+
+/*
+ * Desktop: the logo bar stays at the top of the window while the page scrolls (as on tablet and
+ * mobile), whatever Header over the first block says: the header keeps its place on the page
+ * (in the flow, or over the first block), only its bar is fixed. z-index 20: above page content
+ * (blocks use 10 at most), below the floating Canvas. Over the first block it is transparent at
+ * the top of the page and turns solid once the page has scrolled by the bar's height, so the
+ * logos never lie on the content scrolling under them (a scroll-driven animation; browsers
+ * without one keep the transparent bar).
+ */
+@media (width >= 1200px) {
+  header:has(.tcs-header-brand) .nav-wrapper {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (width >= 1200px) {
+    header:has(.tcs-header-brand) .nav-wrapper {
+      animation: tcs-header-bar-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 var(--nav-height);
+    }
+  }
+}
+
+@keyframes tcs-header-bar-solid {
+  to {
+    background-color: var(--background-color);
+  }
+}

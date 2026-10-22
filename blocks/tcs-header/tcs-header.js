@@ -51,29 +51,34 @@ function buildLogo(imageCell, altCell, linkCell, className, fallback) {
 const rootOf = (cell) => toSitePath(linkOf(cell)?.getAttribute('href') || textOf(cell));
 
 /**
- * The menu settings: the block's own Menu root path and Menu depth, else those of the Conversation
- * Canvas in the same section (read before it is decorated: blocks load in order), else none.
- * @returns {{ root: string, depth: number } | null}
+ * The menu settings to try, in order: the block's own Menu root path and Menu depth, then those of
+ * the Conversation Canvas in the same section (read before it is decorated: blocks load in order).
+ * @returns {Array<{ root: string, depth: number }>}
  */
 function menuSettings(block, props) {
-  let root = rootOf(props.menurootpath);
-  let depth = textOf(props.menudepth);
-  if (!root) {
-    const canvas = block.closest('.section')?.querySelector('.conversation-canvas');
-    const canvasProps = canvas ? readProperties(canvas) : {};
-    root = rootOf(canvasProps.menurootpath);
-    depth = depth || textOf(canvasProps.menudepth);
-  }
-  return root ? { root, depth: Math.max(1, parseInt(depth, 10) || 1) } : null;
+  const canvas = block.closest('.section')?.querySelector('.conversation-canvas');
+  const canvasProps = canvas ? readProperties(canvas) : {};
+  const own = textOf(props.menudepth);
+  return [
+    { root: rootOf(props.menurootpath), depth: own },
+    { root: rootOf(canvasProps.menurootpath), depth: own || textOf(canvasProps.menudepth) },
+  ].filter(({ root }) => root)
+    .map(({ root, depth }) => ({ root, depth: Math.max(1, parseInt(depth, 10) || 1) }));
 }
 
 /**
  * The menu of the Navigation page: a section with the list of the tree's pages (any depth), the
- * markup of an authored menu; null without pages.
+ * markup of an authored menu, from the first settings with pages in the site's query index (a
+ * Menu root path of another site, e.g. the language master on /en, has none there); null without
+ * pages.
  */
-async function buildMenuSection({ root, depth }) {
-  const tree = await getPageTree(root, depth);
-  if (!tree.children.length) return null;
+async function buildMenuSection(candidates) {
+  let tree = null;
+  for (let i = 0; i < candidates.length && !tree?.children.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    tree = await getPageTree(candidates[i].root, candidates[i].depth);
+  }
+  if (!tree?.children.length) return null;
   const toList = (nodes) => {
     const list = document.createElement('ul');
     nodes.forEach((node) => {
@@ -115,11 +120,11 @@ export default async function decorate(block) {
   const section = block.closest('.section');
   // on the Navigation page: decorated in its fragment (not in the page yet), before the header
   const inHeader = !block.isConnected;
-  const settings = inHeader && !hasMenu(section) ? menuSettings(block, props) : null;
+  const settings = inHeader && !hasMenu(section) ? menuSettings(block, props) : [];
   if (inHeader) setHeaderOverlay(textOf(props.headeroverlay).toLowerCase());
   const [t, menu] = await Promise.all([
     getPlaceholders(),
-    settings ? buildMenuSection(settings) : null,
+    settings.length ? buildMenuSection(settings) : null,
   ]);
   const bar = document.createElement('div');
   bar.className = 'tcs-header-bar';

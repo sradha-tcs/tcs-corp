@@ -299,14 +299,14 @@ C = Diagonal arrow
 
 Model `table-list`; template name "Table List" (the block class AEM renders); key-value block (one row per property); children: `table-list-card`.
 
-Stored on a new component (definition template): `variations` = `"industries"`, `backgroundColor` = `""`, `listHeadingType` = `"h2"`, `maxCards` = `4`, `ctaStyle` = `""`, `hideButton` = `false`, `numbers` = `""`, `itemAction` = `""`, `grayDescriptions` = `false`.
+Stored on a new component (definition template): `variations` = `"industries"`, `backgroundColor` = `"white"`, `listHeadingType` = `"h2"`, `maxCards` = `4`, `ctaStyle` = `""`, `hideButton` = `false`, `numbers` = `""`, `itemAction` = `""`, `grayDescriptions` = `false`.
 
 #### Content tab — Table List
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Variation | `variations` | select | No | `industries` | Variation 1 - Title, description, arrow (`industries`), Variation 2 - Description, large title, button (`solutions`), Variation 3 - Description, number, large title, arrow (`products`) | Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. | solutions |
-| Background color | `backgroundColor` | select | No | "" | Default / transparent (""), Black (`black`), Dark Green (`dark-green`) | Choose the background color for the Table List. | — |
+| Background color | `backgroundColor` | select | No | `white` | White (default) (`white`), Black (`black`), Dark Green (`dark-green`) | Choose the background color for the Table List. | — |
 | Heading | `listHeading` | text | No | "" | — | — | Industries we serve |
 | Heading Type | `listHeadingType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`) | Delivered with `listHeading` (field collapse). | h2 |
 | Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 10; customErrorMsg: Maximum items must be between 1 and 10. | Display between 1 and 10 items. | 3 |

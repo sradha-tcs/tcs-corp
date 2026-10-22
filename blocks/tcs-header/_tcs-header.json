@@ -75,7 +75,7 @@
           "valueType": "string",
           "name": "menuRootPath",
           "label": "Menu root path",
-          "description": "Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list). Empty: the Menu root path of the Conversation Canvas in the same section."
+          "description": "Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list); a page of this site (e.g. /en/..., not the language master). Empty, or without pages in this site: the Menu root path of the Conversation Canvas in the same section."
         },
         {
           "component": "number",

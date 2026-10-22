@@ -380,7 +380,8 @@ header:not(:has(.nav-wrapper)) {
  * hero adds the header's height on top (blocks/hero, --header-height set by blocks/header); other
  * blocks can keep their content clear of the logos with --header-overlay-space (the header's
  * height while it lies over them; unset otherwise: use var(--header-overlay-space, 0rem)), or their
- * Padding top (Additional tab).
+ * Padding top (Additional tab). z-index 20: the logo bar stays on top while the page scrolls under
+ * it (blocks/tcs-header), above page content (blocks use 10 at most), below the floating Canvas.
  */
 @media (width >= 1200px) {
   html[data-header-overlay='always'] body {
@@ -394,13 +395,13 @@ header:not(:has(.nav-wrapper)) {
   html[data-header-overlay='always'] header {
     position: absolute;
     inset: 0 0 auto;
-    z-index: 2;
+    z-index: 20;
   }
 
   html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
     position: absolute;
     inset: 0 0 auto;
-    z-index: 2;
+    z-index: 20;
   }
 }
 
