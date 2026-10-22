@@ -91,6 +91,8 @@
 }
 
 .video .video-placeholder .video-placeholder-play {
+  --color-bg-brand: #000;
+
   position: relative;
   transform: scale(1.4);
 }
