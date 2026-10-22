@@ -115,7 +115,7 @@ export async function getMediaContacts() {
     email: cell(row, 'email'),
     phone: cell(row, 'phone'),
     region: cell(row, 'region'),
-  })).filter((contact) => contact.id || contact.name);
+  })).filter((contact) => contact.id || contact.name || contact.email || contact.phone);
 }
 
 /**

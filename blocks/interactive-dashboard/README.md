@@ -467,7 +467,7 @@ No content, links, external requests or data. Nothing to sanitise.
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 1 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 1 instance(s) in total:
 - Block library: `block-library/interactive-dashboard/interactive-dashboard`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

@@ -214,7 +214,7 @@ In Universal Editor edit mode each column is outlined and labelled with its name
 
 ### Columns Container (`columns-container`)
 
-Model `columns-container`; template name "Columns Container" (the block class AEM renders); children: `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `quote`, `testimonial`, `anchor-list`, `accordion`, `tabs-block`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `conversation-canvas`, `cards`, `fragment`.
+Model `columns-container`; template name "Columns Container" (the block class AEM renders); children: `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `quote`, `media-contacts`, `testimonial`, `anchor-list`, `accordion`, `tabs-block`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `conversation-canvas`, `cards`, `fragment`.
 
 Stored on a new component (definition template): `style` = `"columns-container-section"`, `columnsGap` = `"medium"`, `columnsAlign` = `"top"`, `columnsFrom` = `"desktop"`, `columnsPerRow` = `"auto"`.
 
@@ -664,7 +664,7 @@ No external content, query strings or user data; the editor hints are set with `
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 38 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 38 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/columns-container/alignment-gap-and-breakpoints`, `block-library/columns-container/columns-of-blocks`, `block-library/columns-container/columns-per-row`, `block-library/columns/columns-mobile-inset`, `block-library/columns/columns-variations`, `block-library/foundations/section-colours-with-blocks`, `block-library/fragment/fragments/cta-banner`, `block-library/tabs/fragments/tab-industries`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

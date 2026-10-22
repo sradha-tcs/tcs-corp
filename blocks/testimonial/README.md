@@ -803,7 +803,7 @@ Evidence to collect: the page URL, viewport, browser, a screenshot, and the bloc
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 17 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 17 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/testimonial/testimonial-variations`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`
 

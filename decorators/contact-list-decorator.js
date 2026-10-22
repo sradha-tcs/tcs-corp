@@ -1,6 +1,7 @@
 /**
- * Contact list decorator: a list of contacts (e.g. the Media Contacts data sheet,
- * utils/data.js getMediaContacts) with mail and phone links.
+ * Contact list decorator: groups of contacts (e.g. the Media Contacts data sheet grouped by
+ * blocks/media-contacts/media-contacts-data.js) with a heading per group and mail and phone
+ * links listed one below the other.
  */
 
 const textElement = (tagName, className, text) => {
@@ -10,40 +11,56 @@ const textElement = (tagName, className, text) => {
   return el;
 };
 
-/** a mailto: / tel: link in a paragraph */
-function contactLink(className, href, text) {
-  const p = document.createElement('p');
-  const a = textElement('a', className, text);
+/**
+ * A mail / phone link: its kind for screen readers (visually hidden) and for the data layer,
+ * which records the kind and the group, not the address (decorators/data-layer-decorator.js).
+ */
+function contactLink(kind, href, text, { label, group }) {
+  const li = document.createElement('li');
+  li.className = `contact-list-${kind}`;
+  const a = document.createElement('a');
   a.href = href;
-  p.append(a);
-  return p;
+  a.className = 'contact-list-link';
+  a.dataset.cmpInteraction = kind;
+  if (group) a.dataset.cmpValue = group;
+  a.append(textElement('span', 'visually-hidden', `${label}: `), textElement('span', 'contact-list-text', text));
+  li.append(a);
+  return li;
 }
 
 /**
- * Builds the contact list with a heading.
- * @param {{ name: string, designation: string, email: string, phone: string,
- *   region: string }[]} contacts
- * @param {string} heading
- * @returns {Element | null}
+ * Builds the contact groups: a list of groups, each with its heading and its contacts.
+ * @param {{ heading: string, contacts: { name: string, email: string, phone: string,
+ *   tel: string }[] }[]} groups
+ * @param {Object} options
+ * @param {string} options.headingLevel h2-h6, the level of the group headings
+ * @param {{ email: string, phone: string }} options.labels the kinds' names (placeholders)
+ * @returns {HTMLUListElement | null} null without contacts
  */
 // eslint-disable-next-line import/prefer-default-export
-export function buildContactList(contacts, heading) {
-  if (!contacts?.length) return null;
-  const wrapper = document.createElement('div');
-  wrapper.className = 'contact-list';
-  wrapper.append(textElement('h2', 'contact-list-heading', heading));
+export function buildContactGroups(groups, { headingLevel, labels }) {
+  if (!groups?.length) return null;
   const list = document.createElement('ul');
-  contacts.forEach((contact) => {
-    const li = document.createElement('li');
-    if (contact.name) li.append(textElement('p', 'contact-list-name', contact.name));
-    const role = [contact.designation, contact.region].filter(Boolean).join(', ');
-    if (role) li.append(textElement('p', 'contact-list-designation', role));
-    if (contact.email) li.append(contactLink('contact-list-email', `mailto:${contact.email}`, contact.email));
-    if (contact.phone) {
-      li.append(contactLink('contact-list-phone', `tel:${contact.phone.replace(/[^\d+]/g, '')}`, contact.phone));
-    }
-    list.append(li);
+  list.className = 'contact-list-groups';
+  groups.forEach((group, index) => {
+    const item = document.createElement('li');
+    item.className = 'contact-list-group';
+    item.dataset.cmpPosition = String(index + 1);
+    if (group.heading) item.append(textElement(headingLevel, 'contact-list-heading', group.heading));
+    const entries = document.createElement('ul');
+    entries.className = 'contact-list-entries';
+    group.contacts.forEach((contact) => {
+      if (contact.name) entries.append(textElement('li', 'contact-list-name', contact.name));
+      const options = { group: group.heading };
+      if (contact.email) {
+        entries.append(contactLink('email', `mailto:${contact.email}`, contact.email, { ...options, label: labels.email }));
+      }
+      if (contact.tel) {
+        entries.append(contactLink('phone', contact.tel, contact.phone, { ...options, label: labels.phone }));
+      }
+    });
+    item.append(entries);
+    list.append(item);
   });
-  wrapper.append(list);
-  return wrapper;
+  return list;
 }

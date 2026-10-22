@@ -1297,7 +1297,7 @@ Evidence to collect (no secrets): page URL, viewport, a screenshot, the block's 
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 32 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 32 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/animation/skeleton-loading`, `block-library/filter-list/content-types`, `block-library/filter-list/filter-list`, `block-library/filter-list/filters`, `block-library/filter-list/insights-listing`, `block-library/filter-list/layouts-and-card-styles`, `block-library/filter-list/rules`
 - Curated design pages: `curated-design-pages/collection`, `curated-design-pages/insights`
 - Other pages: `dummy-pages/explore-insights`

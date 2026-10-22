@@ -29,9 +29,9 @@ checks) live in [`../utils`](../utils/README.md).
 | `stats-decorator.js` | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | testimonial, teaser |
 | `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
-| `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article, blog, press-release templates |
+| `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article and blog templates (both), press-release template (`ensurePageHeader`) |
 | `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
-| `contact-list-decorator.js` | `buildContactList` (contacts with mail / phone links, e.g. Media Contacts) | press-release template |
+| `contact-list-decorator.js` | `buildContactGroups` (groups of contacts, each with its heading and its mail / phone links one below the other; the links carry `data-cmp-interaction` email / phone) | media-contacts |
 | `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, testimonial, conversation-canvas, link decorator |
 | `block-options-decorator.js` | `applyBlockOptions` (the Additional tab of every block dialog: an `anchor-…` class becomes the block's id, unique on the page; Hide block, padding and margin are classes styled in `styles/styles.css`) | `scripts.js` (`decorateMain`), `editor-support.js` |
 | `data-layer-decorator.js` | `trackPage`, `trackBlocks`, `trackInteractions`, `componentIdOf` (Adobe Client Data Layer for every block, Core Components schema, read by Adobe Tags / Web SDK; see "Data layer" below) | `scripts.js`, list, modal |
@@ -51,7 +51,9 @@ code:
   - `cmp:click`: links and buttons, with `interaction` (`data-cmp-interaction`, else link /
     button), `dc:title`, `xdm:linkURL`, `xdm:linkType` (other / exit / download), `value`
     (`data-cmp-value`), `position` (`data-cmp-position`), `breakpoint` (mobile / tablet /
-    desktop)
+    desktop). A `mailto:` / `tel:` link is recorded by its kind (`dc:title` and `interaction`
+    email / phone, `xdm:linkURL` `mailto:` / `tel:`), never with the address
+    (`utils/privacy.js` `contactLinkKind`)
   - `cmp:show` / `cmp:hide`: accordion items, tabs, carousel slides, modals
   - `cmp:media`: play, pause and ended of videos (not muted background loops)
   - `cmp:search` (`xdm:searchTerm`) and `cmp:submit` (field names only, never values)

@@ -13,7 +13,7 @@ This guide is the governance view of the blocks of the TCS Corporate Website (AE
 
 | Fact | Value | Source |
 | --- | --- | --- |
-| Block folders | 30 (each with a README) | `blocks/` |
+| Block folders | 31 (each with a README; Media Contacts added on 22 October 2026, KB-D-054) | `blocks/` |
 | Components in the editor | 62: Default Content 4 (Text, Title, Image, Button (basic)), Sections 1, Blocks 57 (blocks, items and section containers) | `component-definition.json` |
 | Models / filters | 63 models, 26 filters | `component-models.json`, `component-filters.json` |
 | Statuses | 28 Active, 1 Compatibility-only (Columns), 1 Experimental (Interactive Dashboard) | `tools/docs/blocks.json` |
@@ -73,6 +73,7 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Hero](../../../blocks/hero/README.md) (`hero`) | Container | Active | Full-width banner with image or Lottie, title, description and CTAs |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) (`interactive-dashboard`) | Independent | Experimental | Placeholder reserved for a future dashboard; renders nothing; in no filter |
 | [List](../../../blocks/list/README.md) (`list`) | Container | Active | Child pages, a fixed list or tagged pages from the query index, as cards or links |
+| [Media Contacts](../../../blocks/media-contacts/README.md) (`media-contacts`) | Independent | Active | The Media Contacts sheet's contacts, grouped by designation and region; replaces the press-release template's Media contacts (KB-D-054) |
 | [Modal](../../../blocks/modal/README.md) (`modal`) | Independent | Active | Opens a page's content in a dialog (button or auto-linked `/modals/` links) |
 | [Page Header](../../../blocks/page-header/README.md) (`page-header`) | Container | Active | The title area of a page from its metadata |
 | [Quote](../../../blocks/quote/README.md) (`quote`) | Independent | Active | A quotation with author, optional image and title |
@@ -143,7 +144,7 @@ A visual or behavioural variant is expressed inside the existing block, in this 
 | Mechanism | How it reaches the code | Examples | Rule |
 | --- | --- | --- | --- |
 | Block option (`classes` select / multiselect, `classes_<name>`) | Values become classes on the block; they never shift content rows | Teaser Layout `classes` (`no-image`, `background`, `card`); Hero `classes_alignment`, `classes_horizontal`, `classes_media`; Page Header `classes` (`landing`, `secondary`, `article`, `display`); Conversation Canvas `classes`, `classes_journey`, `classes_actions` | Use for presentation; every value must be applied by the CSS or JavaScript |
-| Key-value property | A `name \| value` row read with `readProperties` (`utils/properties.js`) | List / Cards layout per breakpoint, Separator settings, Video playback | Use for settings-heavy blocks (17 key-value blocks) |
+| Key-value property | A `name \| value` row read with `readProperties` (`utils/properties.js`) | List / Cards layout per breakpoint, Separator settings, Video playback | Use for settings-heavy blocks (18 key-value blocks with Media Contacts) |
 | Shared presentation group | One field group reused by several models | `models/_card-list.json` groups `header`, `cards`, `layout`, `scroll`, `advanced` used by List and Cards | Reuse the group instead of copying fields |
 | Additional tab | `classes_*` fields (blocks) or `container*` fields (section containers) | Anchor ID, Hide block, padding, margin, Animation Type, Motion Speed, Animation Trigger, Background animation | Never re-implement spacing, anchors or animation as block fields |
 | Background colour | Shared labels, classes and tokens | Teaser BG Color, Columns Container BG Color (`containerBgColor`), Section Style (`bg-grey`, `bg-dark`, `bg-dark-green`) | Sets only the colour; use the theme tokens for text |
@@ -238,7 +239,7 @@ Uses:
 - **Regression runs**: the audits loaded every library and curated page at 5 widths with axe and data-layer checks (188 pages, 940 loads) and compared aem.page with the local preview.
 - **Example values in the READMEs**: `npm run build:docs` reads the library snapshot for the "Example" column and the usage section of each README.
 
-Usage recorded in [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) (package 1.0.13; instances in all pages; pages counted once per block; "other" are the dummy pages used as List and Filter List sources):
+Usage recorded in [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) (package 1.0.14; instances in all pages; pages counted once per block; "other" are the dummy pages used as List and Filter List sources):
 
 | Block | Instances | Library pages | Curated pages | Other pages |
 | --- | --- | --- | --- | --- |
@@ -259,9 +260,10 @@ Usage recorded in [tools/docs/library-snapshot.json](../../../tools/docs/library
 | [Header](../../../blocks/header/README.md) | Not recorded (authored through the nav page) | 0 | 0 | 0 |
 | [Hero](../../../blocks/hero/README.md) | 182 | 13 | 5 | 123 |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) | 1 | 1 | 0 | 0 |
-| [List](../../../blocks/list/README.md) | 240 | 47 | 9 | 85 |
+| [List](../../../blocks/list/README.md) | 243 | 48 | 11 | 85 |
+| [Media Contacts](../../../blocks/media-contacts/README.md) | 6 | 3 | 1 | 0 |
 | [Modal](../../../blocks/modal/README.md) | 3 | 3 | 0 | 0 |
-| [Page Header](../../../blocks/page-header/README.md) | 18 | 15 | 3 | 0 |
+| [Page Header](../../../blocks/page-header/README.md) | 19 | 15 | 4 | 0 |
 | [Quote](../../../blocks/quote/README.md) | 12 | 3 | 2 | 0 |
 | [Separator](../../../blocks/separator/README.md) | 118 | 3 | 0 | 0 |
 | [Tab](../../../blocks/tab/README.md) | 53 | 4 | 0 | 0 |
@@ -269,7 +271,7 @@ Usage recorded in [tools/docs/library-snapshot.json](../../../tools/docs/library
 | [Table List](../../../blocks/table-list/README.md) | 23 | 6 | 6 | 0 |
 | [Tabs](../../../blocks/tabs/README.md) (container and block) | 24 | 7 | 0 | 0 |
 | [TCS Header](../../../blocks/tcs-header/README.md) | 2 | 2 | 0 | 0 |
-| [Teaser](../../../blocks/teaser/README.md) | 172 | 18 | 11 | 0 |
+| [Teaser](../../../blocks/teaser/README.md) | 173 | 18 | 12 | 0 |
 | [Testimonial](../../../blocks/testimonial/README.md) | 17 | 3 | 4 | 0 |
 | [Video](../../../blocks/video/README.md) | 27 | 2 | 0 | 0 |
 
