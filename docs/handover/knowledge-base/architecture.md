@@ -331,6 +331,7 @@ Troubleshooting by symptom: handover Part 13 — Global Troubleshooting Guide.
 | Inherited metadata | `nav`, `footer`, `error-page` of parent pages | In memory per page view and `sessionStorage` key `tcs-inherited-metadata` for the browser session (a changed parent value shows in a new session) | `utils/inherited-metadata.js` |
 | Font flag | `fonts-loaded` | `sessionStorage`, browser session; not set on `localhost` | `scripts/scripts.js` |
 | Header height | `header-height-v2-{breakpoint}` (rem) | `localStorage`, no expiry; refreshed when the header loads | `utils/header-space.js` |
+| Header overlay mode | `header-overlay-v1` (`always` / `never`; removed for Auto) | `localStorage`, no expiry; set when the header's TCS Header loads, applied in the eager phase (`<html data-header-overlay>`) | `utils/header-space.js` |
 | Preloads | Module and stylesheet paths already preloaded | `Set` per page view | `scripts/scripts.js` `preloadedModules` |
 
 ## Related

@@ -96,6 +96,7 @@ A future tag manager must be loaded by project code (`scripts/delayed.js`) so `s
 | Key | Storage | Written by | Content |
 | --- | --- | --- | --- |
 | `header-height-v2-{mobile\|tablet\|desktop}` | `localStorage` | [`utils/header-space.js`](../../../utils/header-space.js) | The loaded header height in rem, so the next page reserves it (no layout shift) |
+| `header-overlay-v1` | `localStorage` | [`utils/header-space.js`](../../../utils/header-space.js) `setHeaderOverlay` (from the TCS Header) | The nav page's Header over the first block mode (`always` / `never`), so the next page lays out for it; no personal data |
 | `fonts-loaded` | `sessionStorage` | [`scripts/scripts.js`](../../../scripts/scripts.js) `loadFonts` (not on `localhost`) | `true` once `fonts.css` has loaded |
 | `tcs-inherited-metadata` | `sessionStorage` | [`utils/inherited-metadata.js`](../../../utils/inherited-metadata.js) | The Navigation, Footer and 404 Page values of parent pages, by URL |
 
