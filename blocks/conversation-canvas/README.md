@@ -334,7 +334,7 @@ B = The same row floating
 2. **Open its properties.** Select the block; the dialog has the tabs Content and Additional.
 3. **Choose the style.** Canvas Style Default, Secondary or Primary (sticky). Primary renders only the floating dock: intro, background and buttons aren't shown.
 4. **Enter the content.** Icon (and Icon Alt Text only if the icon carries meaning), Eyebrow, Title, Title Type, Text, BG Background Image; Menu root path and Menu depth (1 to 3) for the site menu; the Search bar fields: water mark (the placeholder and the field's label), audio icon and its alt text, button icon type, hover text (the submit button's name) and Search page.
-5. **Set the journey.** Floating journey: Floats and docks (default), Docks only, or Decorative; Quick actions: Auto, Pills or Buttons; for Primary also Navigation style and BG Style.
+5. **Set the journey.** Default and Secondary: Floating journey Floats and docks (default) or Stays in place, and Quick actions Auto, Pills or Buttons; Primary (always floating) instead shows Navigation style and BG Style (the dialog shows only the fields of the chosen Canvas Style).
 6. **Add quick actions.** Select the block in the content tree and Add > Conversation Canvas Button; set Link, Text, Views (Button, Icon, Link), Type and Icon. Reorder them by dragging in the content tree.
 7. **Preview** on aem.page (the query index isn't available in the editor, so the menu shows "No pages found" there), scroll the page to check floating and docking.
 8. **Publish** the page (and the nav or footer canvas page when you changed those), then **validate**: the menu lists the pages, a search opens the Search page with `?q=` and the row floats and docks as expected.
@@ -353,10 +353,10 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Canvas Style | `classes` | select | No | "" | Default (""), Primary (sticky) (`primary`), Secondary (`secondary`) | — | secondary |
-| Floating journey | `classes_journey` | select | No | "" | Floats and docks (""), Docks only (`nofloat`), Decorative (`decorative`) | Floats and docks: the search row docks in place and floats once scrolled past, until the next Canvas or the footer Canvas. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). The footer Canvas never floats. Delivered as a block class. | nofloat |
-| Quick actions | `classes_actions` | select | No | "" | Auto (""), Pills (`action-pills`), Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer (Figma). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type). Delivered as a block class. | action-pills |
-| BG Style | `bgStyle` | select | No | `default` | Default (`default`), Dark (Primary) (`dark`) | — | default |
+| Canvas Style | `classes` | select | No | "" | Default (""), Primary (sticky) (`primary`), Secondary (`secondary`) | Default: the ask-us panel (title, text, search row, quick actions). Primary (sticky): only a search and site navigation dock, floating at the bottom of the window from the top of the page to the footer. Secondary: the topic exploration panel (Default with the glows reversed and suggestion filters a script can fill). | secondary |
+| Floating journey | `classes_journey` | select | No | "" | Floats and docks (""), Stays in place (`nofloat`) | Default and Secondary. Floats and docks: the search row stays in place, floats once scrolled past and lands on the next Canvas, until the footer Canvas. Stays in place: the row never floats; a floating row lands on it while it is on screen. The footer Canvas never floats; Primary always floats. Shown when `classes` is not `primary`. Delivered as a block class. | nofloat |
+| Quick actions | `classes_actions` | select | No | "" | Auto (""), Pills (`action-pills`), Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer (Figma). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type). Shown when `classes` is not `primary`. Delivered as a block class. | action-pills |
+| BG Style | `bgStyle` | select | No | `default` | Default (`default`), Dark (Primary) (`dark`) | Shown when `classes` is `primary`. | default |
 | BG Background Image | `backgroundImage` | reference | No | — | — | — | /content/dam/tcs-corp/home/home-hero-background.jpg |
 | Icon | `icon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/icons/chat-icon.svg |
 | Icon Alt Text | `iconAlt` | text | No | — | — | Delivered with `icon` (field collapse). | — |
@@ -367,7 +367,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Menu | `menu` | container | No | — | — | — | — |
 | Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /language-master/en/dummy-pages |
 | Menu › Menu depth | `menuDepth` | number | No | `1` | — | — | 2 |
-| Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Delivered as a block class. | text-links |
+| Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Shown when `classes` is `primary`. Delivered as a block class. | text-links |
 | Search bar | `searchBar` | container | No | — | — | — | — |
 | Search bar › Search bar water mark | `searchPlaceholder` | text | No | — | — | — | Ask us a question |
 | Search bar › Search bar audio icon | `searchAudioIcon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/icons/audio-icon.svg |
@@ -417,7 +417,7 @@ Notes the tables can't show:
 | Field | Values | Effect |
 | ----- | ------ | ------ |
 | Canvas Style | Default / Primary (sticky) / Secondary | The variation (block class `primary` / `secondary`) |
-| Floating journey (`classes_journey`) | Floats and docks (default) / Docks only (`nofloat`) / Decorative (`decorative`) | Docks only: a stop of the journey whose own row never floats (the previous row floats on after it). Decorative: a Canvas in place that isn't part of the journey (Primary docks always are) |
+| Floating journey (`classes_journey`, Default and Secondary only) | Floats and docks (default) / Stays in place (`nofloat`) | Stays in place: a stop of the journey whose own row never floats; a floating row lands on it while it's on screen (the previous row floats on after it). `decorative` (no longer offered) is read as Stays in place. Primary always floats |
 | Quick actions (`classes_actions`) | Auto (default) / Pills (`action-pills`) / Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections (`main`), buttons elsewhere (footer, header). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type) |
 | BG Style | Default / Dark (Primary) | Adds `conversation-canvas-bg-{value}`; only the Primary dock has Dark styles |
 | Navigation style (`classes_navstyle`) | Pills / Text links | Primary dock navigation only |
@@ -551,7 +551,7 @@ B = Quick actions
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Floating journey | Floats and docks | Default journey | Row floats once passed, lands on the next Canvas |
-| A | Floating journey (second Canvas of the page) | Docks only | A stop that shouldn't float itself | The previous row floats on after it |
+| A | Floating journey (second Canvas of the page) | Stays in place | A stop that shouldn't float itself | The previous row floats on after it |
 | B | Quick actions | Pills | Figma filter-tag look | Pills without arrows |
 
 **Author action:** set the values on each Canvas of the page. **Expected preview:** on aem.page scroll down: one floating row, landing on each Canvas, stopping at the footer Canvas. **Business rule:** authors never set offsets, z-index or thresholds; roles come from placement. **Validation:** `document.documentElement.dataset.canvasJourneyState` shows the state. **Common mistake:** every Canvas set to Docks only: nothing floats (state `hidden`).
@@ -652,9 +652,11 @@ A = Back / menu button
 B = Suggestion pills
 ```
 
-### Floating journey: Docks only and Decorative
+### Floating journey: the three behaviours
 
-Docks only (`nofloat`): the Canvas is a stop (rows dock on it) but its own row never floats. Decorative (`decorative`): the Canvas isn't registered with the journey: it never floats and nothing docks on it. On a Primary Canvas, Docks only means the dock never floats, so it never shows.
+The Canvas options give three behaviours, each with its own use: **Primary (sticky)** (Canvas Style): the dock floats at the bottom of the window from the top of the page to the footer (site search and navigation on long pages). **Floats and docks** (Floating journey, the default for Default and Secondary): the row stays in place, floats once scrolled past and lands on the next Canvas, until the footer Canvas. **Stays in place** (`nofloat`): the row never floats; a floating row lands on it while it's on screen, so there's never a second row over it. The former Docks only is Stays in place; the former Decorative (a Canvas outside the journey, which the floating row passed over, showing two rows) is read as Stays in place too; Floating journey isn't offered for Primary, which always floats (Docks only on a Primary used to hide the dock for good). A Canvas that isn't shown (Hide block, a hidden tab) isn't a stop: the floating row goes on past it.
+
+**One row on screen.** While the floating row comes up to the next Canvas, that Canvas's own row is hidden (`.conversation-canvas-approaching`). When its row takes focus (a click on its menu button or search field, or Tab), the journey hands over at once (`focused` in `canvas-journey.js`): the floating row lands on it, its row shows, and the page scrolls it up to the dock line (smoothly, at once with reduced motion). An open site menu closes when its row starts or stops floating, so it never hangs on a row that has landed elsewhere.
 
 ### Placement: header, section and footer Canvas
 
@@ -699,7 +701,7 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 - **Semantic HTML:** `h2` title; the search form has `role="search"`, an `input type="search"` with a visually hidden `label`; native `button`s for the menu, voice, submit, navigation toggles and back; `nav` elements labelled "Menu" (site menu) and "Site" (Primary navigation); lists for menus, actions and filters.
 - **Disclosures:** the menu button has `aria-controls` and `aria-expanded`; navigation toggles `aria-expanded` / `aria-controls` to the panel; on pages where the full menu is the default the Primary menu button uses `aria-expanded`, elsewhere `aria-pressed`; the voice button `aria-pressed` while listening.
 - **Current page:** `aria-current="page"` (or `true` for an ancestor) in the dock and panel.
-- **Keyboard and focus:** Escape closes the menu or the panel and returns focus to its button; the menu closes when focus leaves the search row or on a click outside; the sub-page panel follows its toggles in the DOM (keyboard order) while CSS shows it above them; focused elements scroll clear of the floating row (`scroll-padding-bottom`, WCAG 2.4.11); the approaching row is shown again as soon as it holds focus (`:focus-within`).
+- **Keyboard and focus:** Escape closes the menu or the panel and returns focus to its button; the menu closes when focus leaves the search row or on a click outside; the sub-page panel follows its toggles in the DOM (keyboard order) while CSS shows it above them; focused elements scroll clear of the floating row (`scroll-padding-bottom`, WCAG 2.4.11); the approaching row is shown again as soon as it holds focus (`:focus-within`), and then the floating row lands on it (one row on screen, scrolled up to the dock line).
 - **Floating is visual only:** DOM and reading order never change, nothing is announced while scrolling; the hidden Primary dock is `inert`; the floating row is hidden while the header menu is open.
 - **Announcements:** a visually hidden `role="status"` says "Search isn’t available yet." when a search can't run.
 - **Touch targets:** the menu button is 3.6875rem (59px), navigation items and the back button 3rem (48px), the voice button 2rem (32px). The Primary input keeps 1rem text so iOS Safari doesn't zoom on focus. The floating offset includes `env(safe-area-inset-bottom)`.
@@ -780,6 +782,7 @@ blocks/conversation-canvas/
 | [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `conversation-canvas.js`: { uniqueId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `conversation-canvas.js`: { fillPlaceholder, getPlaceholders } |
 | [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `conversation-canvas.js`: { bone, skeletonElement, skeletonWhile } |
+| [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `conversation-canvas.js`: { buildEditorItems, editorItemHint } |
 
 <!-- END GENERATED: files -->
 
@@ -795,7 +798,7 @@ The header (`blocks/header`) and footer (`blocks/footer`) only *host* Canvases: 
 
 ### Input DOM
 
-A key-value block: one `key | value` row per set property (`readBlock` normalises the key and keeps the 17 known `FIELDS`); rows with a link and no known key are button items (each a row of cells: the link with its text and title, then the view, type and icon values); grouped fields (Menu, Search bar) arrive as plain keys. Canvas Style, Floating journey, Quick actions, Navigation style and the Additional tab arrive as block classes. Fallback without keys: single-cell rows in model order.
+A key-value block: one `key | value` row per set property (`readBlock` normalises the key and keeps the 17 known `FIELDS`); rows of the `conversation-canvas-button` model (Universal Editor, `data-aue-model`) and rows with a link and no known key are button items (each a row of cells: the link with its text and title, then the view, type and icon values); grouped fields (Menu, Search bar) arrive as plain keys. Canvas Style, Floating journey, Quick actions, Navigation style and the Additional tab arrive as block classes. Fallback without keys: single-cell rows in model order.
 
 ### Rendered DOM contract
 
@@ -952,7 +955,10 @@ graph LR
 | CONVERSATION-CANVAS-QA-12 | Integration | Listener with `preventDefault()` | No navigation; the listener gets `detail.query` |
 | CONVERSATION-CANVAS-QA-13 | Voice | Chrome / a browser without the Web Speech API | Button toggles `aria-pressed` and fills the field / button hidden |
 | CONVERSATION-CANVAS-QA-14 | Journey down and up | Header Canvas, section Canvas, footer Canvas | States `initial` → `floating` → `section-docked` → `floating-after-section` → `footer-docked` and back; one floating row |
-| CONVERSATION-CANVAS-QA-15 | Docks only / Decorative | Floating journey values | Docks only never floats itself; Decorative isn't part of the journey |
+| CONVERSATION-CANVAS-QA-15 | Stays in place | Floating journey Stays in place on a section Canvas | Its row never floats; the floating row lands on it while it's on screen |
+| CONVERSATION-CANVAS-QA-15b | One row on screen | Scroll until the next (section or footer) Canvas comes up; click its search field or menu button | Only that row shows; the floating row has landed; the page scrolls it up |
+| CONVERSATION-CANVAS-QA-15c | Hidden Canvas | Hide block on a section Canvas | The floating row floats on past it (not invisible) |
+| CONVERSATION-CANVAS-QA-15d | Add a button | Universal Editor: select the Canvas > Add > Conversation Canvas Button | A placeholder ("Not shown yet…") appears in the buttons, selectable; with a link it becomes the button |
 | CONVERSATION-CANVAS-QA-16 | No footer Canvas | Footer without canvas page | The floating row stays above the footer |
 | CONVERSATION-CANVAS-QA-17 | Header menu | Open the menu below 1200px | State `hidden`; nothing floats; back after closing |
 | CONVERSATION-CANVAS-QA-18 | Focus clearance | Tab to a link under the floating row | The link scrolls clear of the row |
@@ -960,7 +966,7 @@ graph LR
 | CONVERSATION-CANVAS-QA-20 | Layout shift | Scroll past a Canvas | No page movement when the row floats or lands |
 | CONVERSATION-CANVAS-QA-21 | Existing content | Button items of the former shared `button` model | Rendered with their view and type |
 
-Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (roles from placement, the journey down and up, every transition of continuous scrolls against `TRANSITIONS`, single owner, HIDDEN, Docks only, Primary, missing intermediate / footer Canvas, two Canvases on screen, header Canvas with a hero, short page).
+Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (roles from placement, the journey down and up, every transition of continuous scrolls against `TRANSITIONS`, single owner, HIDDEN, Stays in place (nofloat), Primary, a focused row in place, missing intermediate / footer Canvas, two Canvases on screen, header Canvas with a hero, short page).
 
 ## Troubleshooting
 
@@ -968,8 +974,8 @@ Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (
 | ------- | ------------ | ---------------- | ---------- | ------------ |
 | A search does nothing visible | No Search page and no integration | Check the Search page field; listen for `conversation-canvas:search` in the console | Set the Search page or connect an integration | A query opens results |
 | The menu shows "No pages found" | Viewed in Universal Editor, root in another locale, pages not indexed, a parent page missing from the index | Open `/query-index.json` on aem.page and look for the root's child paths | Test on aem.page; fix the root; publish the missing pages | The menu lists the pages |
-| The Primary dock never appears | Floating journey Docks only on the Primary, Hide block on, or a Canvas in place on screen | Inspect the dock for `conversation-canvas-floating` and the journey state | Set Floats and docks; check other Canvases | The dock floats after scrolling |
-| Nothing floats after the last section Canvas (state `hidden`) | That Canvas is Docks only and no earlier Canvas may float | Check Floating journey of each Canvas | Set Floats and docks on one Canvas | State `floating-after-section` |
+| The Primary dock never appears | Hide block on, or a Canvas in place on screen | Inspect the dock for `conversation-canvas-floating` and the journey state | Set Floats and docks; check other Canvases | The dock floats after scrolling |
+| Nothing floats after the last section Canvas (state `hidden`) | That Canvas is Stays in place and no earlier Canvas may float | Check Floating journey of each Canvas | Set Floats and docks on one Canvas | State `floating-after-section` |
 | The floating row stops above the footer | No footer Canvas (Conversation Canvas Page empty or unpublished) | Check the Footer block and the referenced page | Reference and publish the footer canvas page | State `footer-docked` at the bottom |
 | The submit tooltip shows a test word | Hover text holds a test value | Open the Canvas (or the footer canvas page) | Enter "Submit" or clear it; publish | Tooltip and name read "Submit" |
 | Dock pills on the wrong level | The page is deeper than Menu depth or outside the root | Compare the URL with root and depth | Increase the depth (max 3) or change the root | Expected view |
@@ -1005,7 +1011,6 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 | The menu ignores `hide-in-nav` and `robots` (F-33) and lists pages in path order, not the Figma order (F-78) | Unexpected or misordered entries | Exclude pages from the index | Not recorded |
 | The query index isn't available in Universal Editor | "No pages found" while authoring | Check on aem.page | Not planned |
 | BG Style Dark and Navigation style apply only to Primary (CSS) | No visible change on Default / Secondary | Use a background image or a Section style | Not recorded |
-| Floating journey Docks only on a Primary Canvas | The dock never floats, so it never shows | Use Floats and docks on Primary | Not recorded |
 | Hide block and spacing apply only in `main` | No effect on header / footer Canvases | Edit the nav or footer canvas page | Not recorded |
 | The site menu keeps the title suffix after a vertical bar (only the dock removes it) | Long menu labels | Shorter page titles | Not recorded |
 | The dock panel has an `aria-label` without a landmark role | The label may not be announced | — | Not recorded |
@@ -1049,3 +1054,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block audit: Canvas search redacted in the data layer and given a Search page | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: Canvas in tabs corrected | docs/handover revision history | 20 October 2026 |
 | Handover 2.36 | Canvas controller writes `<html>` custom properties only on change; resizes measured once settled | docs/handover revision history | 20 October 2026 |
+| Not recorded | Floating journey options Floats and docks / Stays in place (Decorative merged, not for Primary); one row on screen when an in-place row takes focus; hidden Canvases leave the journey; editor placeholders for Buttons without a link | KB-D-053 (Proposed) | 22 October 2026 |

@@ -93,6 +93,9 @@ export function assignRoles(canvases) {
  * @param {number} input.offset Space below the floating row (px)
  * @param {number|null} input.footerTop Document top of the footer, null without one
  * @param {boolean} [input.suppressed] The floating Canvas is suppressed (e.g. the menu is open)
+ * @param {number} [input.focused] The Canvas whose row in place holds focus (index into canvases,
+ *   -1 for none): on screen it counts as arrived, so the floating row lands on it instead of
+ *   floating over it (one row on screen); the controller scrolls it to the dock line
  * @param {Array<{ primary: boolean, floats: boolean, role: string|null, top: number|null,
  *   bottom: number|null, rowHeight: number, inHeader?: boolean }>} input.canvases In DOM order;
  *   top / bottom are the document coordinates of the search row's place (null for Primary);
@@ -104,7 +107,7 @@ export function assignRoles(canvases) {
  */
 export function resolveJourney({
   scrollY, viewportHeight: vh, documentHeight, offset = 0, footerTop = null, suppressed = false,
-  canvases,
+  focused = -1, canvases,
 }) {
   const result = {
     state: INITIAL, owner: -1, docked: -1, approaching: -1, lift: 0,
@@ -119,7 +122,8 @@ export function resolveJourney({
   // the search row has reached the floating position (a short page may not scroll that far:
   // at the very bottom the footer Canvas counts as arrived once it's on screen)
   const arrived = (c) => c.top <= dockLine(c)
-    || (atBottom && c.role === ROLES.FOOTER && c.top < vh);
+    || (atBottom && c.role === ROLES.FOOTER && c.top < vh)
+    || (c.index === focused && c.top < vh && c.bottom > 0);
 
   // a row that has arrived stays in place while it's on screen; the header Canvas's only while it
   // is at the dock line (it floats as soon as it would move up)

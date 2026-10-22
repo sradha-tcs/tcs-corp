@@ -11,6 +11,10 @@ import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
  *   (reading order, focus, listeners, editor instrumentation) never moves and is never cloned
  * - the journey state is <html data-canvas-journey-state> (STATES); the header announces its
  *   menu with a header:menu event ({ open }): the floating Canvas is HIDDEN while it's open
+ * - a Canvas row in place that takes focus (a click on its menu button or search field while the
+ *   floating row comes up to it) hands the journey over: the floating row lands on it at once
+ *   (focused in canvas-journey.js, so there's never a second row on screen) and the page scrolls
+ *   it up to the dock line; Canvases that aren't shown (Hide block, a hidden tab) aren't stops
  * - a failure here only stops the floating (nothing floats): page, header and footer still work
  * - writes on <html> (custom properties, the journey state) restyle the whole page: they are
  *   made only when the value changes, and resizes while the page loads are measured once they
@@ -30,6 +34,8 @@ let frame = 0;
 let dirty = true;
 let listening = false;
 let suppressed = false;
+// the entry whose row in place holds focus (see focusin below)
+let focusedEntry = null;
 let firstSectionBottom = null;
 // the page loads in steps (sections, images, header, footer): measure once a step has settled
 const RESIZE_SETTLE = 100;
@@ -74,7 +80,9 @@ function measure() {
       entries.splice(i, 1);
     }
   }
-  const live = entries.filter((e) => e.block.isConnected).sort(byDomOrder);
+  // a Canvas that isn't shown (Hide block, a hidden tab or section: no boxes) isn't a stop
+  const live = entries.filter((e) => e.block.isConnected
+    && (e.primary || e.slot.getClientRects().length)).sort(byDomOrder);
   const firstSection = document.querySelector('main > .section');
   const roles = assignRoles(live.map((e) => ({
     primary: e.primary,
@@ -161,7 +169,10 @@ function update() {
   try {
     if (dirty) measure();
     if (!geometry?.live.length) return;
-    const result = resolveJourney({ ...geometry, scrollY: window.scrollY, suppressed });
+    const focused = focusedEntry ? geometry.live.indexOf(focusedEntry) : -1;
+    const result = resolveJourney({
+      ...geometry, scrollY: window.scrollY, suppressed, focused,
+    });
     const changed = Object.keys(result).some((key) => result[key] !== previous[key]);
     if (changed) apply(result);
     previous = result;
@@ -210,6 +221,33 @@ export default function registerCanvas(entry) {
     document.addEventListener('header:menu', (e) => {
       suppressed = !!e.detail?.open;
       schedule();
+    });
+    // a row in place that takes focus: the floating row lands on it, the page brings it up to
+    // the dock line (layout reads in the event, not while scrolling)
+    document.addEventListener('focusin', (e) => {
+      const held = entries.find((x) => !x.primary && x.row.contains(e.target));
+      if (!held || held.row.classList.contains(FLOATING)) {
+        focusedEntry = null;
+        schedule();
+        return;
+      }
+      focusedEntry = held;
+      // at once, in this frame: the row shows (focus) while the floating row lands, never both
+      cancelAnimationFrame(frame);
+      update();
+      const rect = held.row.getBoundingClientRect();
+      const offset = parseFloat(getComputedStyle(held.slot).scrollMarginBottom) || 0;
+      const below = rect.bottom - (window.innerHeight - offset);
+      if (below > 0 && rect.top < window.innerHeight) {
+        const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollBy({ top: below, behavior: smooth ? 'smooth' : 'auto' });
+      }
+    });
+    document.addEventListener('focusout', (e) => {
+      if (focusedEntry && !focusedEntry.row.contains(e.relatedTarget)) {
+        focusedEntry = null;
+        schedule();
+      }
     });
     // sections, images, fonts, header and footer load later and move the page
     new ResizeObserver(remeasureSettled).observe(document.body);
