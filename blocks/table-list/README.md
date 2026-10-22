@@ -129,12 +129,14 @@ The Content tab of the Table List properties in Universal Editor, with the field
 
 Annotations:
 A = Variation
-B = Heading
-C = Heading Type
-D = Maximum items
-E = Text
-F = Link
-G = Style
+B = Background color
+C = Heading
+D = Heading Type
+E = Maximum items
+F = Text
+G = Link
+H = Style
+I = Hide button
 ```
 
 ```text
@@ -150,6 +152,7 @@ Annotations:
 A = Numbers
 B = Item link
 C = Button text
+D = Gray descriptions
 ```
 
 ```text
@@ -296,19 +299,21 @@ C = Diagonal arrow
 
 Model `table-list`; template name "Table List" (the block class AEM renders); key-value block (one row per property); children: `table-list-card`.
 
-Stored on a new component (definition template): `variations` = `"industries"`, `listHeadingType` = `"h2"`, `maxCards` = `4`, `ctaStyle` = `""`, `numbers` = `""`, `itemAction` = `""`.
+Stored on a new component (definition template): `variations` = `"industries"`, `backgroundColor` = `""`, `listHeadingType` = `"h2"`, `maxCards` = `4`, `ctaStyle` = `""`, `hideButton` = `false`, `numbers` = `""`, `itemAction` = `""`, `grayDescriptions` = `false`.
 
 #### Content tab — Table List
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Variation | `variations` | select | No | `industries` | Variation 1 - Title, description, arrow (`industries`), Variation 2 - Description, large title, button (`solutions`), Variation 3 - Description, number, large title, arrow (`products`) | Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. | solutions |
+| Background color | `backgroundColor` | select | No | "" | Default / transparent (""), Black (`black`), Dark Green (`dark-green`) | Choose the background color for the Table List. | — |
 | Heading | `listHeading` | text | No | "" | — | — | Industries we serve |
 | Heading Type | `listHeadingType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`) | Delivered with `listHeading` (field collapse). | h2 |
 | Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 10; customErrorMsg: Maximum items must be between 1 and 10. | Display between 1 and 10 items. | 3 |
 | Text | `viewAllLabel` | text | No | "" | — | Text of the link next to the heading, e.g. Industries or All Products & Platforms. | View all |
 | Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /language-master/en/dummy-pages/industries |
 | Style | `ctaStyle` | select | No | "" | Variation default (""), Filled button (`primary`), Outline button (`secondary`), Text link (`tertiary`) | Variation default: filled button (Variation 1), outline button (Variation 2), text link (Variation 3). | primary |
+| Hide button | `hideButton` | boolean | No | `false` | on / off | Hides the heading call to action and all item buttons and arrows. The heading and item content remain visible. | — |
 
 #### Items tab — Table List
 
@@ -317,6 +322,7 @@ Stored on a new component (definition template): `variations` = `"industries"`, 
 | Numbers | `numbers` | select | No | "" | Variation default (""), Show (`show`), Show on mobile only (`mobile`), Hide (`hide`) | Variation default: on mobile only (Variation 1), hidden (Variation 2), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number. | show |
 | Item link | `itemAction` | select | No | "" | Variation default (""), Arrow (`arrow`), Diagonal arrow (`arrow-up-right`), Button (`button`) | Variation default: arrow (Variation 1), button (Variation 2), diagonal arrow (Variation 3). | arrow |
 | Button text | `itemButtonLabel` | text | No | — | — | Default: Explore (in the page language). Shown when `itemAction` is `button` or (`itemAction` is off or empty and `variations` is `solutions`). | Explore |
+| Gray descriptions | `grayDescriptions` | boolean | No | `false` | on / off | Use secondary gray text for item descriptions instead of the default text color. Shown when `backgroundColor` is `white`. | — |
 
 #### Additional tab — Table List
 
@@ -724,7 +730,7 @@ blocks/table-list/
 | [`utils/buttons.js`](../../utils/buttons.js) | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | `table-list.js`: { pick } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `table-list.js`: { isEditing } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `table-list.js`: { matchCells } |
-| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `table-list.js`: { normalizeKey, textOf } |
+| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `table-list.js`: { isOn, normalizeKey, textOf } |
 | [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `table-list.js`: { toSitePath } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `table-list.js`: { fillPlaceholder, getPlaceholders } |
 | [`utils/motion.js`](../../utils/motion.js) | `CONTENT_MOTIONS`, `BACKGROUND_MOTIONS`, `contentMotionOf`, `backgroundMotionOf` (the Content animation / Background animation of the Additional tab, read from the block classes `motion-*` / `bg-motion-*`; unknown values | `table-list.js`: { addLegacyMotion } |
