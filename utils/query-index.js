@@ -180,3 +180,44 @@ export async function getPages() {
     .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
     .map(toPage);
 }
+
+/**
+ * The site tree of pages below a root path, up to a depth (e.g. the TCS Header's tablet / mobile
+ * menu): each node is { path, title, parent, children }, children in path order; a page whose
+ * parent page isn't indexed is left out (as in the Conversation Canvas menus). Pure: rows are
+ * index rows (path, title).
+ * @param {{ path: string, title?: string }[]} rows
+ * @param {string} root Site path of the tree's root (e.g. /en/home, or / for the whole site)
+ * @param {number} depth Levels below the root
+ * @returns {Object} the root node
+ */
+export function pageTree(rows, root, depth) {
+  const base = root === '/' ? '' : String(root || '').replace(/\/$/, '');
+  const tree = {
+    path: base || '/', title: '', parent: null, children: [],
+  };
+  const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
+  const nodes = new Map([[tree.path, tree]]);
+  (rows || [])
+    .filter(({ path }) => path?.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
+    .sort((x, y) => levelOf(x.path) - levelOf(y.path) || x.path.localeCompare(y.path))
+    .forEach(({ path, title }) => {
+      const parent = nodes.get(path.slice(0, path.lastIndexOf('/')) || '/');
+      if (!parent) return;
+      const node = {
+        path, title: title || path.split('/').pop().replace(/-/g, ' '), parent, children: [],
+      };
+      parent.children.push(node);
+      nodes.set(path, node);
+    });
+  return tree;
+}
+
+/**
+ * The site tree of the current locale's pages below a root path (see pageTree), from the query
+ * index; an empty tree when the index isn't available (e.g. on AEM author).
+ * @returns {Promise<Object>} the root node
+ */
+export async function getPageTree(root, depth) {
+  return pageTree(await getPages().catch(() => []), root, depth);
+}

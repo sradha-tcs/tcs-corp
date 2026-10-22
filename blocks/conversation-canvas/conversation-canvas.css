@@ -276,16 +276,23 @@
   mask: url('../../icons/mic.svg') center / contain no-repeat;
 }
 
-/* menu panel, opening above the search row */
+/*
+ * menu panel, opening above the search row. In the site header (the header Canvas) it is a nav
+ * inside <header>: height, display and margin are its own, not the header bar's (header nav)
+ */
 .conversation-canvas .conversation-canvas-menu {
+  display: block;
   position: absolute;
   bottom: calc(100% + var(--space-300));
   left: 0;
   z-index: 101;
   box-sizing: border-box;
-  min-width: 15rem;
-  max-width: min(22.5rem, calc(100vw - 2 * var(--space-600)));
+
+  /* one width for every level, so the panel doesn't change size as the levels open */
+  width: min(22.5rem, calc(100vw - 2 * var(--space-600)));
+  height: auto;
   max-height: 60vh;
+  margin: 0;
   overflow: auto;
   border-radius: var(--radius-l);
   padding: var(--space-300);
@@ -296,6 +303,16 @@
 
 .conversation-canvas .conversation-canvas-menu[hidden] {
   display: none;
+}
+
+/*
+ * one level at a time, as the header's tablet / mobile menu: a row per page, its link and, for a
+ * page with child pages, an arrow button opening them; a sub-level has a Back button and its title
+ */
+.conversation-canvas .conversation-canvas-menu-levels li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
 }
 
 .conversation-canvas .conversation-canvas-menu ul {
@@ -322,6 +339,12 @@
   text-decoration: none;
 }
 
+/* a row's link takes the room its arrow button leaves */
+.conversation-canvas .conversation-canvas-menu-levels li > a {
+  flex: 1;
+  min-width: 0;
+}
+
 .conversation-canvas .conversation-canvas-menu a:hover,
 .conversation-canvas .conversation-canvas-menu a:focus-visible {
   color: var(--color-text-brand);
@@ -329,6 +352,69 @@
 
 .conversation-canvas .conversation-canvas-menu-empty {
   color: var(--color-text-secondary);
+}
+
+/* a sub-level: its Back button and title */
+.conversation-canvas .conversation-canvas-menu-level {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+  border-bottom: var(--border-width-100) solid var(--color-border-default);
+  padding-bottom: var(--space-200);
+}
+
+.conversation-canvas .conversation-canvas-menu-level[hidden] {
+  display: none;
+}
+
+.conversation-canvas .conversation-canvas-menu-title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--button-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.625rem;
+}
+
+.conversation-canvas :is(.conversation-canvas-menu-back, .conversation-canvas-menu-next) {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: none;
+  color: var(--color-icon-default);
+  cursor: pointer;
+}
+
+.conversation-canvas :is(.conversation-canvas-menu-back, .conversation-canvas-menu-next)::before {
+  content: '';
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+}
+
+.conversation-canvas .conversation-canvas-menu-back::before {
+  mask-image: url('../../icons/arrow-left.svg');
+}
+
+.conversation-canvas :is(.conversation-canvas-menu-back, .conversation-canvas-menu-next):hover {
+  color: var(--color-text-brand);
+}
+
+/*
+ * The site menu button and its pop-over show on desktop only (from 1200px): on tablet and mobile
+ * the site navigation is the header's menu button (blocks/tcs-header); search, voice, submit, the
+ * Primary dock and the floating journey are unchanged
+ */
+@media (width < 1200px) {
+  .conversation-canvas:not(.primary) .conversation-canvas-search > :is(.conversation-canvas-menu-toggle, .conversation-canvas-menu) {
+    display: none;
+  }
 }
 
 /*

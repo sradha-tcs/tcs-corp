@@ -71,6 +71,22 @@
           "description": "Usually https://www.tata.com/."
         },
         {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "menuRootPath",
+          "label": "Menu root path",
+          "description": "Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list). Empty: the Menu root path of the Conversation Canvas in the same section."
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "menuDepth",
+          "label": "Menu depth",
+          "min": 1,
+          "max": 3,
+          "description": "Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1."
+        },
+        {
           "component": "tab",
           "name": "additionalTab",
           "label": "Additional"
