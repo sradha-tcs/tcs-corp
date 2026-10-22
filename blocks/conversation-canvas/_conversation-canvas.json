@@ -61,14 +61,15 @@
               "name": "Secondary",
               "value": "secondary"
             }
-          ]
+          ],
+          "description": "Default: the ask-us panel (title, text, search row, quick actions). Primary (sticky): only a search and site navigation dock, floating at the bottom of the window from the top of the page to the footer. Secondary: the topic exploration panel (Default with the glows reversed and suggestion filters a script can fill)."
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "classes_journey",
           "label": "Floating journey",
-          "description": "Floats and docks: the search row docks in place and floats once scrolled past, until the next Canvas or the footer Canvas. Docks only: a stop of the journey, its own row stays in place. Decorative: not part of the journey (never floats, nothing docks on it). The footer Canvas never floats.",
+          "description": "Default and Secondary. Floats and docks: the search row stays in place, floats once scrolled past and lands on the next Canvas, until the footer Canvas. Stays in place: the row never floats; a floating row lands on it while it is on screen. The footer Canvas never floats; Primary always floats.",
           "value": "",
           "options": [
             {
@@ -76,14 +77,18 @@
               "value": ""
             },
             {
-              "name": "Docks only",
+              "name": "Stays in place",
               "value": "nofloat"
-            },
-            {
-              "name": "Decorative",
-              "value": "decorative"
             }
-          ]
+          ],
+          "condition": {
+            "!==": [
+              {
+                "var": "classes"
+              },
+              "primary"
+            ]
+          }
         },
         {
           "component": "select",
@@ -105,7 +110,15 @@
               "name": "Buttons",
               "value": "action-buttons"
             }
-          ]
+          ],
+          "condition": {
+            "!==": [
+              {
+                "var": "classes"
+              },
+              "primary"
+            ]
+          }
         },
         {
           "component": "select",
@@ -122,7 +135,15 @@
               "name": "Dark (Primary)",
               "value": "dark"
             }
-          ]
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "classes"
+              },
+              "primary"
+            ]
+          }
         },
         {
           "component": "reference",
@@ -225,7 +246,15 @@
               "name": "Text links",
               "value": "text-links"
             }
-          ]
+          ],
+          "condition": {
+            "===": [
+              {
+                "var": "classes"
+              },
+              "primary"
+            ]
+          }
         },
         {
           "component": "container",
