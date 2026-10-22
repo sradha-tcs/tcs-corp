@@ -524,6 +524,8 @@ function buildSearch(config, id, block) {
     if (!menu.hidden) closeMenu();
   };
   closeMenu = () => {
+    // back to the first level, no panel open (an open panel hides the search row, see the CSS)
+    menu.querySelector('.conversation-canvas-menu-levels')?.reset();
     menu.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
     window.removeEventListener('scroll', onScroll);
