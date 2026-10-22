@@ -403,7 +403,6 @@ html:not([data-header-overlay='never']) body:has(main > .section:first-child .he
   z-index: 20;
 }
 
-
 header .header,
 footer .footer {
   visibility: hidden;

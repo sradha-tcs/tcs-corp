@@ -155,6 +155,14 @@ header:has(.tcs-header-brand) .nav-wrapper {
 }
 
 /*
+ * in-page targets (a #link to a heading or a block's Anchor ID) scroll clear of the fixed bar,
+ * with the 1.5rem the headings keep; the Anchor List sets its own offset on its targets (inline)
+ */
+html:has(header .tcs-header-brand) :is(h1, h2, h3, h4, h5, h6, [id^='anchor-']) {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-600));
+}
+
+/*
  * Header over the first block (the TCS Header's option, <html data-header-overlay>, the layout in
  * styles/styles.css), at every width: the bar is transparent over the first block (Auto: an
  * opening light Hero; Always: any first block), so it shows behind the logos; Never: the bar keeps

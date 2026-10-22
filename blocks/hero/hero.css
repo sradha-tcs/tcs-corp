@@ -328,4 +328,3 @@ html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.b
   min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
-
