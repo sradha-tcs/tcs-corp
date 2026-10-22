@@ -19,7 +19,7 @@ The site header of every page (the TCS Header of Figma *New Screens from New DS*
 
 - Desktop (>= 1200px): the Figma logo bar only, TCS logo left and TATA logo right, 124px high. There is no navigation in the header (strict Figma, product decision of 16 October 2026, handover F-72): the site navigation is in the Conversation Canvas.
 - Tablet and mobile (< 1200px): a fixed 64px bar with the two logos and a menu button; the menu opens full screen and shows one level at a time (title "Menu", then the open section's label, a Back button from the second level).
-- Desktop over a light hero: when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388).
+- Desktop over a light hero: when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). The TCS Header's **Header over the first block** can change this (Always: over any first block; Never: never), see [TCS Header](../tcs-header/README.md).
 
 Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25825; mobile menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile (229:15426, 671:52732, 4082:120430).
 
@@ -513,6 +513,7 @@ B = Canvas row
 
 - **Purpose:** Figma Logos 667:52520 / Hero 4082:120388: the logos over the hero image.
 - **Rendering:** `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) from 1200px when `main > .section:first-child .hero` isn't `bg-dark`, `bg-dark-subtle` or `bg-black`; `header.css` makes `.nav-wrapper` transparent; `blocks/hero` adds `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads.
+- **Header over the first block (TCS Header):** with `<html data-header-overlay="always">` the header lies over any first block (transparent from `tcs-header.css`), with `never` it stays in the flow; this block's code is unchanged (see [TCS Header](../tcs-header/README.md)).
 
 ```text
 [Screenshot Placeholder]
@@ -804,7 +805,7 @@ graph LR
 | HEADER-QA-08 | Linked label | Section label is a link | Link navigates; arrow button "Show {label} menu" opens the level |
 | HEADER-QA-09 | Keyboard | Escape with the menu open; Tab past the last row | Menu closes, focus on the menu button; tabbing out closes it |
 | HEADER-QA-10 | Breakpoint change | Open the menu at 1024px, resize to 1300px | Menu state reset, page scroll unlocked |
-| HEADER-QA-11 | Light hero | First section a light Hero, 1440px | Header without band over the hero; hero doesn't move when the header loads |
+| HEADER-QA-11 | Light hero | First section a light Hero, 1440px | Header without band over the hero; hero doesn't move when the header loads (TCS Header option Auto; Always / Never: TCS-HEADER-QA-12 to 15) |
 | HEADER-QA-12 | Header Canvas | Nav page with a Canvas section, Home | Row at the bottom of the first screen; floats on scroll; hidden while the tablet menu is open |
 | HEADER-QA-13 | Positional nav page | Nav page without TCS Header block | Sections 1–3 are brand, menu, tools |
 | HEADER-QA-14 | Placeholders | `/de-de` page | Button names from the German placeholders |

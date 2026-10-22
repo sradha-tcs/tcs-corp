@@ -210,7 +210,7 @@ B = Properties panel, Content tab
 1. **Open the Navigation page** (`references/nav` of the locale, or the area's nav page) in Universal Editor.
 2. **Add the block** to the first section: section › Add › **TCS Header** (offered in every section).
 3. **Open its properties** (select the block, Properties panel).
-4. **Content tab:** select the TCS Logo asset, enter TCS Logo Alt Text, choose the TCS Logo Link (the locale Home); select the TATA Logo, enter TATA Logo Alt Text, enter the TATA Logo Link (`https://www.tata.com`).
+4. **Content tab:** select the TCS Logo asset, enter TCS Logo Alt Text, choose the TCS Logo Link (the locale Home); select the TATA Logo, enter TATA Logo Alt Text, enter the TATA Logo Link (`https://www.tata.com`). Optional: Menu root path and Menu depth (tablet / mobile menu); **Header over the first block** (desktop): Auto (default: over an opening light Hero), Always (over any first block, which starts at the top of the page; give a block other than a Hero a Padding top so its content clears the logos), Never (the page starts below the header).
 5. **Additional tab** (optional): Anchor ID, Hide block, padding and margin. On the Navigation page they have no effect in the site header.
 6. **Preview** the nav page and a content page using it (desktop, tablet, mobile).
 7. **Publish** the Navigation page and the logo assets.
@@ -505,7 +505,7 @@ This block does not currently expose verified personalization behavior. There is
 | Tablet (600–1199px) | As mobile; 1.5rem gutter | TCS 1.9165rem, TATA 2.375rem | Links |
 | Desktop (>= 1200px) | TCS left, TATA right; 5rem gutter | TCS 2.175rem, TATA 2.75rem | Links |
 
-In the site header the header's CSS applies (same heights).
+In the site header the header's CSS applies (same heights). On desktop, **Header over the first block** decides whether the bar lies transparent over the page's first block (Auto: an opening light Hero; Always: any first block, which starts at the top of the page; Never: the page starts below the bar); tablet and mobile keep the header bar in every mode.
 
 ## For Developers
 
@@ -531,9 +531,9 @@ blocks/tcs-header/
 
 <!-- END GENERATED: files -->
 
-**Input DOM.** A key-value block: one row per delivered property (`readProperties`: `tcslogo`, `tcslogolink`, `tatalogo`, `tatalogolink`, plus the Additional tab classes). The alt fields aren't rows: they collapse into the images' `alt`.
+**Input DOM.** A key-value block: one row per delivered property (`readProperties`: `tcslogo`, `tcslogolink`, `tatalogo`, `tatalogolink`, `menurootpath`, `menudepth`, `headeroverlay` (`always`, `never` or empty), plus the Additional tab classes). The alt fields aren't rows: they collapse into the images' `alt`.
 
-**Decoration flow.** `readProperties(block)`, `getPlaceholders()`, then `buildLogo` per logo: `pictureOf(imageCell)` (moves the editor instrumentation to the picture), the alt fallback, the href (link `href` or cell text, `https://` added to a bare domain), an `a` or `span`; `block.replaceChildren(bar)`.
+**Decoration flow.** `readProperties(block)`; in the nav fragment (`!block.isConnected`, not on the nav page itself) `setHeaderOverlay(headeroverlay)` (`utils/header-space.js`: `<html data-header-overlay>`, remembered as `localStorage` `header-overlay-v1` and applied by `reserveHeaderSpace` in the eager phase of the next pages) and, without an authored menu, the menu section from `getPageTree`; `getPlaceholders()`, then `buildLogo` per logo: `pictureOf(imageCell)` (moves the editor instrumentation to the picture), the alt fallback, the href (link `href` or cell text, `https://` added to a bare domain), an `a` or `span`; `block.replaceChildren(bar)`.
 
 **Rendered DOM contract.**
 
@@ -547,6 +547,8 @@ blocks/tcs-header/
 ```
 
 `blocks/header` relies on `.tcs-header`, `.tcs-header-brand` and `.tcs-header-group`.
+
+**Header over the first block: CSS contract.** `<html data-header-overlay>` is `always`, `never` or absent (Auto). `styles/styles.css` (loaded before the header) takes `<header>` out of the flow from 1200px for Auto over an opening light Hero and for Always, and sets `--header-overlay-space` on `body` (the header's height while it lies over the first block; unset otherwise, use `var(--header-overlay-space, 0rem)`); `blocks/hero` and `templates/home` keep a Hero's content below the logos; `tcs-header.css` makes `header .nav-wrapper` transparent (Always) or keeps its background over a light Hero (Never).
 
 **Events / async.** Awaits the placeholders; no listeners.
 
@@ -582,7 +584,8 @@ blocks/tcs-header/
 - **Role.** The authoring model of the header's logos (not a duplicate of the header, audit decision "Retain").
 - **Content model.** Key-value block, two image + link pairs.
 - **Rendering.** Client-side decoration; consumed by `blocks/header` after the nav fragment is decorated.
-- **Dependencies.** `decorators/image-decorator.js` (`pictureOf`), `utils/links.js` (`linkOf`), `utils/properties.js`, `utils/placeholders.js`.
+- **Dependencies.** `decorators/image-decorator.js` (`pictureOf`), `utils/links.js` (`linkOf`), `utils/properties.js`, `utils/placeholders.js`, `utils/query-index.js` (`getPageTree`), `utils/urls.js`, `utils/header-space.js` (`setHeaderOverlay`).
+- **Header over the first block.** A site-wide (per nav page) desktop layout mode set by the block in the lazy phase; the layout must apply before the header loads (KB-D-039), so the mode is remembered per browser and applied in the eager phase of the next pages; a visitor's first page with Always or Never can shift once when the header arrives (decision log KB-D-052, Proposed).
 - **Data layer / Web SDK / Target.** Central click capture; no Target.
 - **Consent, identity, caching.** None in the block; the nav page is CDN cached.
 - **Performance.** No network request of its own beyond the placeholders (cached once per page).
@@ -595,6 +598,8 @@ graph LR
   TH --> LNK[utils/links.js]
   TH --> PROP[utils/properties.js]
   TH --> PH[utils/placeholders.js]
+  TH --> HS[utils/header-space.js setHeaderOverlay]
+  HS -- html data-header-overlay --> CSS[styles/styles.css, blocks/hero, templates/home]
   TH -- .tcs-header-brand / .tcs-header-group --> H[blocks/header applyLogoBar]
   TH -. clicks .-> DL[data-layer-decorator.js]
 ```
@@ -614,6 +619,10 @@ graph LR
 | TCS-HEADER-QA-09 | Positional nav page | Nav page without the block | Header still shows brand, menu, tools |
 | TCS-HEADER-QA-10 | Canvas in the same section | TCS Header and a Conversation Canvas in one section | Logos in the bar, Canvas in the header Canvas |
 | TCS-HEADER-QA-11 | Data layer | Click a logo (standalone) | `cmp:click` on `component.tcs-header-1` |
+| TCS-HEADER-QA-12 | Header over the first block: Auto | Option empty, Home at 1440px | Bar transparent over the light Hero, as before; nothing moves when the header loads |
+| TCS-HEADER-QA-13 | Always | Option Always, a page opening with a block other than a Hero, 1440px | Bar transparent; the block starts at the top of the page; `<html data-header-overlay="always">` |
+| TCS-HEADER-QA-14 | Never | Option Never, Home at 1440px, second page view | Solid bar; the Hero starts below it; no shift on the second page (`localStorage` `header-overlay-v1`) |
+| TCS-HEADER-QA-15 | Tablet / mobile | Always or Never, 390px and 1024px | Header bar unchanged |
 
 ## Troubleshooting
 
@@ -624,6 +633,9 @@ graph LR
 | TATA link leads to a 404 on the site | Old content with a relative link | Inspect `href` | Enter `https://www.tata.com` | Correct target |
 | Logo name shown as text | No image selected | Properties panel | Select the asset | Image shown |
 | Spacing options have no effect in the header | Additional tab styles apply only inside `main` | — | Expected | — |
+| Header over the first block has no effect | Nav page not published, the page uses another nav page, or tablet / mobile | `<html data-header-overlay>` on the page; the page's Navigation | Publish the nav page; check the width (desktop only) | Attribute set, layout as chosen |
+| The page moves once when the header loads (Always / Never) | The visitor's first page: the mode isn't known before the header loads | Second page view: no shift | Expected (KB-D-052, Proposed) | CLS 0 on the next page |
+| Text of the first block under the logos (Always) | The block has no space for the header | Inspect the block's top padding | Padding top (Additional tab) or `--header-overlay-space` in the block's CSS | Text below the logos |
 
 Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, the asset paths, a screenshot per breakpoint.
 
@@ -631,10 +643,12 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 - Decorated with the nav page fragment in the lazy phase (or with its section on a page); module and stylesheet preloaded on every page (`CHROME_BLOCKS`).
 - Images as delivered; no extra requests, observers or listeners. Small DOM (two links).
+- Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052).
 
 ## Security and Privacy
 
 - Links are as authored; a bare domain is completed with `https://`; no other URL validation or query strings; no personal data.
+- `localStorage` key `header-overlay-v1` (`always` / `never`, removed for Auto): the nav page's layout mode, no personal data.
 
 ## Known Limitations
 
@@ -644,6 +658,9 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 | Offered in every section (`section` filter) | Authors may add it to content pages | Add it only to nav pages | Not recorded (audit suggestion: nav-page-only filter) |
 | Logo assets not yet in DAM (F-77) | No logos until authored | Block library sample PNGs | Not recorded (content task) |
 | Additional tab has no effect in the site header | Spacing / hide only on the nav page itself | — | Not planned |
+| Header over the first block: first page shift | A visitor's first page with Always or Never moves once when the header loads | Keep Auto where the first block is a light Hero | To be discussed (KB-D-052, Proposed) |
+| Header over the first block: one mode per browser | A nav page without a TCS Header keeps the mode remembered from another nav page | Add the TCS Header to every nav page | Not recorded |
+| Header over the first block: dark first blocks | Dark logos aren't visible over a dark first block (Always) | Keep Auto / Never for dark first blocks | Not recorded (a light-logo option) |
 
 ## Related Documentation
 
@@ -673,3 +690,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: no-image fallback and unnamed TATA logo link corrected with placeholder names (D-D-25) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
+| PR #141 | Header over the first block (Auto / Always / Never, desktop) | KB-D-052 (Proposed) | 22 October 2026 |

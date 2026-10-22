@@ -987,7 +987,7 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 - **Lottie.** The player (`utils/lottie.js`) loads once per page, when the animation is within 200px of the viewport, in idle time (200ms timeout fallback); the animation pauses off screen.
 - **DOM size.** At most the media, the content and the toggle.
 - **Listeners / observers.** Visibility observers of the animation decorator; the shared motion IntersectionObserver.
-- **Layout shift.** The Hero has a minimum height; a desktop light Hero in the first section reserves the header height (`--header-height`, `--header-reserved`).
+- **Layout shift.** The Hero has a minimum height; a desktop light Hero in the first section reserves the header height (`--header-height`, `--header-reserved`); with the TCS Header's Header over the first block Always any first Hero does, with Never none (`<html data-header-overlay>`, remembered for the next pages; a visitor's first page with Always / Never can shift once, KB-D-052).
 - **High-cost configurations.** Background animation on the first Hero delays the LCP image paint (F-94); large Lottie files.
 
 ## Security and Privacy
