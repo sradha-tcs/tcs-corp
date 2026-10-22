@@ -817,7 +817,7 @@ This block does not currently expose verified personalization behavior. There is
 | < 600px | Min height 35rem; padding `--space-1600` block, `--space-600` inline; content full width | Cover crop around the centre; Contained image padded `--space-600` | CTAs wrap; toggle bottom right |
 | >= 600px | Min height 40rem; inline padding `--space-1000` | As above | As above |
 | >= 900px | Min height 53.125rem; padding `--space-3000` block, 2.75rem inline; larger gaps; eyebrow `--body-font-size-s`; Left / Right content limited to 47.5rem | Icon 3rem | As above |
-| >= 1200px | In the first section, a light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen) | As above | As above |
+| >= 1200px | In the first section, a light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen); with the TCS Header's Header over the first block Always any Hero does, with Never none | As above | As above |
 | First section (all widths) | Min height at most the screen below the header bar (`100dvh - --nav-height`); taller content grows the hero | Eager, high-priority image | — |
 
 ## For Developers
@@ -877,7 +877,7 @@ The toggle exists only for Lotto. `hero-has-media` is set only when media render
 
 **Exported functions.** Only the default `decorate`.
 
-**Parent / child contracts.** As a Gen Carousel slide the Hero is decorated normally and then moved into a slide by `blocks/gen-carousel/gen-carousel.js`. `styles/styles.css` and `templates/home/home.css` select `main > .section:first-child .hero` (header over a light hero, Home first screen); keep the `bg-dark`, `bg-dark-subtle`, `bg-black` class names.
+**Parent / child contracts.** As a Gen Carousel slide the Hero is decorated normally and then moved into a slide by `blocks/gen-carousel/gen-carousel.js`. `styles/styles.css` and `templates/home/home.css` select `main > .section:first-child .hero` (header over a light hero, Home first screen; with `<html data-header-overlay>` from the TCS Header); keep the `bg-dark`, `bg-dark-subtle`, `bg-black` class names.
 
 **Data-layer hooks.** `data-cmp-interaction="animation"` on the toggle; nothing else.
 

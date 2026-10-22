@@ -122,3 +122,19 @@
     justify-content: flex-end;
   }
 }
+
+/*
+ * Header over the first block (desktop; the TCS Header's option, <html data-header-overlay>, the
+ * layout in styles/styles.css): always, the bar is transparent over any first block, so it shows
+ * behind the logos; never, the bar keeps its background also above an opening light Hero (which
+ * then starts below it). Automatic: blocks/header (transparent over a light Hero).
+ */
+@media (width >= 1200px) {
+  html[data-header-overlay='always'] header .nav-wrapper {
+    background-color: transparent;
+  }
+
+  html[data-header-overlay='never'] body:has(main > .section:first-child .hero) header .nav-wrapper {
+    background-color: var(--background-color);
+  }
+}

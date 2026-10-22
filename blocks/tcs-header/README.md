@@ -107,6 +107,7 @@ E = TATA Logo Alt Text
 F = TATA Logo Link
 G = Menu root path
 H = Menu depth
+I = Header over the first block
 ```
 
 ```text
@@ -237,6 +238,7 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
 | Menu root path | `menuRootPath` | aem-content | No | — | — | Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list). Empty: the Menu root path of the Conversation Canvas in the same section. | — |
 | Menu depth | `menuDepth` | number | No | — | — | Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1. | — |
+| Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | Desktop (from 1200px): whether the logo bar lies transparent over the page's first block, which then starts at the top of the page. Auto: over an opening light Hero (as on Home). Tablet and mobile keep the header bar. | — |
 
 #### Additional tab — TCS Header
 
@@ -381,6 +383,7 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Fields:** the six logo fields, and **Menu root path** / **Menu depth** for the tablet and mobile menu.
 - **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
 - **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page at the start of the lazy phase, so the header doesn't wait for it). `blocks/header` (unchanged) makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`). The open menu's title row ("Menu", or a level's Back arrow and title) starts at the gutter, left-aligned with the rows below, and a linked section's arrow (on its button) is at the right edge, in line with the other rows' arrows. While the menu is open the header Canvas is hidden (`blocks/conversation-canvas`); it shows again in its place when the menu closes. Below 1200px the Conversation Canvases don't show their own site menu button (`blocks/conversation-canvas`): the header's menu button is the site navigation there; on desktop the Canvas menu lists the same pages, one level at a time like this menu.
+- **Header over the first block (desktop, from 1200px):** **Auto** (default) keeps the behaviour before: the logo bar lies transparent over an opening light Hero (Home), else it's a bar above the page. **Always**: the bar is transparent over the page's first block, whatever it is, which starts at the top of the page; a Hero keeps its content below the logos, other blocks need their own top space (their Padding top, Additional tab, or `var(--header-overlay-space, 0rem)` in a block's CSS); the logos should be transparent images (a JPG keeps its white box over a coloured block) and dark logos aren't visible over a dark block. **Never**: the bar is above the page also over a light Hero. Tablet and mobile keep the header bar. The block sets `<html data-header-overlay>` (`utils/header-space.js` `setHeaderOverlay`) when decorated in the nav fragment, not on the nav page itself; the layout is in `styles/styles.css` (it applies before the header loads), the transparent bar in `tcs-header.css`. The mode is remembered per browser and applied before the header loads on the next pages, so only a visitor's first page with Always or Never can move once when the header arrives (decision log KB-D-052, Proposed).
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
 - **Data layer:** clicks report the header component (`header-1`).
@@ -519,6 +522,7 @@ blocks/tcs-header/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `tcs-header.js`: { setHeaderOverlay } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
