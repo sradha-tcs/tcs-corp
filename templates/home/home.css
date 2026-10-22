@@ -37,6 +37,27 @@ body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
   min-height: calc(100svh - var(--nav-height));
 }
 
+/*
+ * the logo bar lies over the hero at every width (styles/styles.css: a light one, unless the
+ * TCS Header says never; any one when it says always): the hero is the whole screen and its
+ * content starts below the logos (Figma: the text centred in the screen)
+ */
+html[data-header-overlay='always'] body.home main > .section:first-of-type .hero {
+  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+}
+
+html:not([data-header-overlay='never']) body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+}
+
+html[data-header-overlay='always'] body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
+  min-height: 100svh;
+}
+
+html:not([data-header-overlay='never']) body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+  min-height: 100svh;
+}
+
 @media (width >= 600px) {
   body.home main > .section:first-of-type .hero {
     --home-hero-canvas-space: calc(8.375rem + env(safe-area-inset-bottom, 0rem));
@@ -46,27 +67,6 @@ body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
 @media (width >= 1200px) {
   body.home main > .section:first-of-type .hero {
     --home-hero-canvas-space: calc(7.75rem + env(safe-area-inset-bottom, 0rem));
-  }
-
-  /*
-   * the logo bar lies over the hero (styles/styles.css: a light one, unless the TCS Header says
-   * never; any one when it says always): the hero is the whole screen and its content starts
-   * below the logos (Figma: the text centred in the screen)
-   */
-  html[data-header-overlay='always'] body.home main > .section:first-of-type .hero {
-    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
-  }
-
-  html:not([data-header-overlay='never']) body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
-  }
-
-  html[data-header-overlay='always'] body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
-    min-height: 100svh;
-  }
-
-  html:not([data-header-overlay='never']) body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-    min-height: 100svh;
   }
 }
 

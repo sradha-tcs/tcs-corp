@@ -90,7 +90,9 @@
     height: 2.375rem;
   }
 
+  /* no box of its own: the bar's background shows (transparent over the first block) */
   header nav:has(.tcs-header-brand) .nav-hamburger button {
+    background-color: transparent;
     color: var(--color-icon-default);
   }
 
@@ -124,16 +126,59 @@
 }
 
 /*
- * Header over the first block (desktop; the TCS Header's option, <html data-header-overlay>, the
- * layout in styles/styles.css): always, the bar is transparent over any first block, so it shows
- * behind the logos; never, the bar keeps its background also above an opening light Hero (which
- * then starts below it). Automatic: blocks/header (transparent over a light Hero).
+ * The logo bar stays at the top of the window while the page scrolls, at every width, whatever
+ * Header over the first block says: the header keeps its place on the page (in the flow, or over
+ * the first block), only its bar is fixed. z-index 20: above page content (blocks use 10 at
+ * most), below the floating Canvas. Over the first block it is transparent at the top of the page
+ * and turns solid once the page has scrolled by the bar's height, so the logos never lie on the
+ * content scrolling under them (a scroll-driven animation; browsers without one keep the
+ * transparent bar).
  */
-@media (width >= 1200px) {
-  html[data-header-overlay='always'] header .nav-wrapper {
-    background-color: transparent;
-  }
+header:has(.tcs-header-brand) .nav-wrapper {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+}
 
+@supports (animation-timeline: scroll()) {
+  header:has(.tcs-header-brand) .nav-wrapper {
+    animation: tcs-header-bar-solid linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--nav-height);
+  }
+}
+
+@keyframes tcs-header-bar-solid {
+  to {
+    background-color: var(--background-color);
+  }
+}
+
+/*
+ * in-page targets (a #link to a heading or a block's Anchor ID) scroll clear of the fixed bar,
+ * with the 1.5rem the headings keep; the Anchor List sets its own offset on its targets (inline)
+ */
+html:has(header .tcs-header-brand) :is(h1, h2, h3, h4, h5, h6, [id^='anchor-']) {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-600));
+}
+
+/*
+ * Header over the first block (the TCS Header's option, <html data-header-overlay>, the layout in
+ * styles/styles.css), at every width: the bar is transparent over the first block (Auto: an
+ * opening light Hero; Always: any first block), so it shows behind the logos; Never: the bar keeps
+ * its background (on desktop also over a light Hero, which blocks/header makes transparent). The
+ * open tablet / mobile menu covers the page: its bar keeps its background.
+ */
+:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header:has(.tcs-header-brand) .nav-wrapper,
+html[data-header-overlay='always'] header .nav-wrapper {
+  background-color: transparent;
+}
+
+header .nav-wrapper:has(.nav-hamburger button[aria-expanded='true']) {
+  background-color: var(--background-color);
+}
+
+@media (width >= 1200px) {
   html[data-header-overlay='never'] body:has(main > .section:first-child .hero) header .nav-wrapper {
     background-color: var(--background-color);
   }

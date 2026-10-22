@@ -4,7 +4,7 @@
  * exactly that space before the header loads and nothing moves when it arrives (no layout shift).
  * Without a remembered height, styles/styles.css reserves the logo bar (--header-reserved).
  *
- * The header over the first block (TCS Header option Header over the first block, desktop): the
+ * The header over the first block (TCS Header option Header over the first block): the
  * mode is <html data-header-overlay> ('always', 'never'; none: automatic, over an opening light
  * Hero), which styles/styles.css needs before the header loads. It is remembered too, so the next
  * pages lay the page out for it from the start; a visitor's first page has the automatic layout
