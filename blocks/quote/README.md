@@ -525,7 +525,7 @@ Pre-publish checklist: no typed quotation marks; the author name is spelled as a
 
 ## Accessibility
 
-- **Semantic HTML:** the title is a real heading. The quote and its author are a `<figure>` with a `<blockquote>` and a `<figcaption>` as its direct child. The quotation marks are CSS `content` with empty alternative text (`content: '\201C' / ''`).
+- **Semantic HTML:** the title is a real heading. The quote and its author are a `<figure>` with a `<blockquote>` and a `<figcaption>` as its direct child. The quotation marks are decorative SVG backgrounds of empty `::before` / `::after` boxes (`icons/quote-open.svg`, `icons/quote-close.svg`), so screen readers don't announce them.
 - **Headings:** Title Type sets the level; pick the one that fits the page outline.
 - **Keyboard and focus:** the block adds no interactive elements. Links inside the rich text keep the site's focus styles.
 - **Alt text:** Image Alt Text, else `alt=""` (decorative).
@@ -562,8 +562,8 @@ This block does not currently expose verified personalization behavior. The repo
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 900px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; Grey padding 2.5rem / 1.5rem; quote marks 5rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
-| 900px and wider (desktop) | Body up to 70rem, centred; with an image, a 498 : 204 : 418 grid (418 : 204 : 498 with `image-left`) with the card overlapping the image; Grey padding 7.5rem / 5rem; quote marks 7.5rem | 622:869 crop; right or left | None |
+| Below 900px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; Grey padding 2.5rem / 1.5rem; quote marks 1.9167rem x 3.8333rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
+| 900px and wider (desktop) | Body up to 70rem, centred; with an image, a 498 : 204 : 418 grid (418 : 204 : 498 with `image-left`) with the card overlapping the image; Grey padding 7.5rem / 5rem; quote marks 2.875rem x 5.75rem | 622:869 crop; right or left | None |
 
 ## For Developers
 

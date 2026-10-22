@@ -1,7 +1,8 @@
 /* Quote (TCS.com DS Figma "Text & Image Overlap", 2590-300067) */
 .quote {
   --quote-bg: var(--color-bg-default);
-  --quote-mark-size: 5rem;
+  --quote-mark-width: 1.9167rem;
+  --quote-mark-height: 3.8333rem;
   --quote-mark-column: 2.5rem;
 
   background-color: var(--quote-bg);
@@ -83,23 +84,22 @@
   margin: 0 var(--space-400) calc(-1 * var(--space-1200));
 }
 
-/* opening and closing quote marks (Figma: 120px brand blue, closing mark at the bottom) */
-.quote .quote-card::before,
-.quote .quote-card::after {
-  color: var(--color-text-brand);
-  font-size: var(--quote-mark-size);
-  line-height: 0.77;
-  letter-spacing: calc(-0.02 * var(--quote-mark-size));
-}
-
+/* opening and closing quote marks (Figma: 120px brand blue, closing mark at the bottom);
+   SVG icons on a 46 : 92 canvas with the mark at its top, where the former glyphs were */
 .quote .quote-card::before {
-  content: '\201C';
-  content: '\201C' / '';
+  content: '';
+  width: var(--quote-mark-width);
+  height: var(--quote-mark-height);
+  background: url('/icons/quote-open.svg') no-repeat center;
+  background-size: contain;
 }
 
 .quote .quote-card::after {
-  content: '\201D';
-  content: '\201D' / '';
+  content: '';
+  width: var(--quote-mark-width);
+  height: var(--quote-mark-height);
+  background: url('/icons/quote-close.svg') no-repeat center;
+  background-size: contain;
   align-self: end;
 }
 
@@ -135,7 +135,8 @@
 
 @media (width >= 900px) {
   .quote {
-    --quote-mark-size: 7.5rem;
+    --quote-mark-width: 2.875rem;
+    --quote-mark-height: 5.75rem;
   }
 
   .quote.bg-grey {
