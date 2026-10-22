@@ -1,6 +1,6 @@
 # Conversation Canvas
 
-The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow, title and text, a search row (a round menu button with a pop-up site menu, a search field with voice input and a submit icon button) and optional quick actions (button items), or, in the Primary (sticky) style, a floating search and site navigation dock. It can be authored in the page body, in the header (a section of the nav page) and in the footer (the Footer's Conversation Canvas Page), and all Canvases of a page take part in one **floating journey**: one search row floats at the bottom of the window, lands on each Canvas in place and stops at the footer Canvas.
+The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow, title and text, a search row (a round menu button with the site menu, a search field with voice input and a submit icon button) and optional quick actions (button items), or, in the Primary (sticky) style, a floating search and site navigation dock. It can be authored in the page body, in the header (a section of the nav page) and in the footer (the Footer's Conversation Canvas Page), and all Canvases of a page take part in one **floating journey**: one search row floats at the bottom of the window, lands on each Canvas in place and stops at the footer Canvas.
 
 > Naming: the requirement and Figma say "Canvas" (sometimes "Canva" / "floating Canva"). The block keeps its technical name `conversation-canvas` (classes `conversation-canvas-*`, component "Conversation Canvas") so authored content and styles don't break.
 
@@ -262,12 +262,13 @@ File name:
 conversation-canvas-menu-open-desktop.png
 
 Purpose:
-The pop-up site menu of a Default Canvas, opened above the search row, with two levels; and the four skeleton rows shown while the query index loads.
+The site menu of a Default Canvas at 1440 px (Figma Full menu 1124:26210 / 1124:26244): the first level as pills below the search row over the faded page, a pill's child pages in the panel above on hover; a second level with its open item and the third level in the panel; and the four skeleton pills shown while the query index loads.
 
 Annotations:
-A = Menu button (aria-expanded="true")
-B = Menu panel
-C = Nested level
+A = Menu button (aria-expanded="true", the blue close button)
+B = First-level pills
+C = Panel of a page's child pages (List Container rows)
+D = Second level: menu button, open item (blue pill), chevrons
 ```
 
 ```text
@@ -598,7 +599,7 @@ Verified from the repository, the published content and Figma *New Screens from 
 
 ### Default
 
-Purpose: the standard ask-us panel. Use for heroes and sections; don't use for data capture. Required: nothing; recommended: Title, Search bar fields. Dialog: Canvas Style Default. Rendering: white panel (`--color-bg-default`), 1.25rem corners, blue glow left / yellow right, centred content, search row, quick actions. Site menu (Default and Secondary): the menu button opens the pages below the Menu root path one level at a time, as the header's tablet / mobile menu (the first level; a page with child pages has an arrow button that opens them, with a Back button and the level's title; it opens at the first level again; Escape or a click outside closes it), in a panel of one width (25.5938rem at most, 1.25rem padding), every level with the rows of Figma List Container 1124:26250 (14 / 20px text, an arrow at the right of every row, a Black/300 divider below every row but the last, 49px apart); a level of more than six pages shows in two columns filled top to bottom, 2.5rem apart, in a panel up to 51.1875rem wide; the menu button and its panel show from 1200px only (on tablet and mobile the site navigation is the header's menu button, `blocks/tcs-header`). The panel's height and display are its own, also inside `<header>` (the header Canvas), where the header's `header nav` rules would otherwise size it. While the header's tablet / mobile menu is open, the header Canvas is hidden (the menu covers the page, whose Canvases are inert; nothing floats) and shows again in its place, with its search text, when the menu closes. Desktop / tablet / mobile: see Responsive Behavior. Accessibility: H2 title, search landmark, labelled controls. Data layer: `cmp:click`, `cmp:search`. Personalization: none; the authored panel renders.
+Purpose: the standard ask-us panel. Use for heroes and sections; don't use for data capture. Required: nothing; recommended: Title, Search bar fields. Dialog: Canvas Style Default. Rendering: white panel (`--color-bg-default`), 1.25rem corners, blue glow left / yellow right, centred content, search row, quick actions. Site menu (Default and Secondary, desktop; Figma Full menu 1124:26210 / 1124:26244): the menu button (a blue close button while open) opens the pages below the Menu root path as a row below the search row, the page faded behind (white 70%); the first level as pills. A page with child pages shows them, while the pointer is on it, in a panel above the row in place of the search row (Figma List Container 1124:26250: 14 / 20px rows 49px apart with an arrow at the right of every row and a Black/300 divider below every row but the last; 25.5938rem, or two columns filled top to bottom, 2.5rem apart and 51.1875rem wide, for more than six pages; 1.25rem padding); its chevron button opens it too (keyboard, touch; hidden on the first-level pills until focused, shown on touch screens). A link's text opens its page. In the panel, the arrow of a page with child pages opens its level: the row shows that level's pages as text items, starting with a menu button back to the first level (a back arrow below the second level), the page as a filled blue pill with a chevron and its child pages in the panel; hovering another item shows its child pages. Escape closes the panel, then the menu; a click outside or focus leaving the search row closes it; it opens at the first level again. While open, the search row moves up when the row below wouldn't fit in the window (e.g. the header Canvas or a floating row at its bottom), recalculated on scroll and resize only while open. The menu button and its menu show from 1200px only (on tablet and mobile the site navigation is the header's menu button, `blocks/tcs-header`). The menu's display, size, margin and padding are its own, also inside `<header>` (the header Canvas), where the header's `header nav` rules would otherwise size it. While the header's tablet / mobile menu is open, the header Canvas is hidden (the menu covers the page, whose Canvases are inert; nothing floats) and shows again in its place, with its search text, when the menu closes. Desktop / tablet / mobile: see Responsive Behavior. Accessibility: H2 title, search landmark, labelled controls. Data layer: `cmp:click`, `cmp:search`. Personalization: none; the authored panel renders.
 
 ```text
 [Screenshot Placeholder]
@@ -695,7 +696,7 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 
 ## Accessibility
 
-- **Semantic HTML:** `h2` title; the search form has `role="search"`, an `input type="search"` with a visually hidden `label`; native `button`s for the menu, voice, submit, navigation toggles and back; `nav` elements labelled "Menu" (pop-up menu) and "Site" (Primary navigation); lists for menus, actions and filters.
+- **Semantic HTML:** `h2` title; the search form has `role="search"`, an `input type="search"` with a visually hidden `label`; native `button`s for the menu, voice, submit, navigation toggles and back; `nav` elements labelled "Menu" (site menu) and "Site" (Primary navigation); lists for menus, actions and filters.
 - **Disclosures:** the menu button has `aria-controls` and `aria-expanded`; navigation toggles `aria-expanded` / `aria-controls` to the panel; on pages where the full menu is the default the Primary menu button uses `aria-expanded`, elsewhere `aria-pressed`; the voice button `aria-pressed` while listening.
 - **Current page:** `aria-current="page"` (or `true` for an ancestor) in the dock and panel.
 - **Keyboard and focus:** Escape closes the menu or the panel and returns focus to its button; the menu closes when focus leaves the search row or on a click outside; the sub-page panel follows its toggles in the DOM (keyboard order) while CSS shows it above them; focused elements scroll clear of the floating row (`scroll-padding-bottom`, WCAG 2.4.11); the approaching row is shown again as soon as it holds focus (`:focus-within`).
@@ -712,7 +713,7 @@ Steps: add the block, fill the fields, add two Conversation Canvas Buttons, publ
 | Key | Expected behavior |
 | --- | ----------------- |
 | Enter (in the search field) | Submits a non-empty query |
-| Escape | Closes the open menu (Default / Secondary) or sub-page panel (Primary), focus back on its button |
+| Escape | Closes the open sub-page panel (Default / Secondary site menu, Primary), then the menu (Default / Secondary), focus back on its button |
 | Tab / Shift+Tab | Moves through the row; leaving the search row closes its menu; focused elements scroll clear of the floating row |
 
 ## Data Layer and Analytics
@@ -845,7 +846,7 @@ The header and the Canvas don't import each other: the event is the only contrac
 - The row floats with `position: fixed` **inside its own block**: no DOM moves, no clones, no re-initialisation; reading order, focus, listeners and editor instrumentation stay put. Its slot keeps `min-height` while it floats, so the page doesn't move (no CLS).
 - Measurement (slot positions, footer top, page height, the floating offset from the slot's `scroll-margin-bottom`, the bottom of the first section) happens on registration, on `resize` and through a `ResizeObserver` on `<body>` (sections, images, fonts, header and footer loading) once a resize has settled for 100ms (`RESIZE_SETTLE`), never while scrolling.
 - Scroll: one passive listener for all Canvases; one update per animation frame that reads only `scrollY`, resolves the journey and writes classes only when the result changes; `<html>` custom properties and the state are written only when their value changes.
-- Stacking: the owner block gets `z-index: var(--conversation-canvas-z-floating)` (100, above page content; blocks use 10 at most); the block's `isolation: isolate` would otherwise keep the floating row below later positioned content. The pop-up menu uses `z-index: 101`.
+- Stacking: the owner block gets `z-index: var(--conversation-canvas-z-floating)` (100, above page content; blocks use 10 at most); the block's `isolation: isolate` would otherwise keep the floating row below later positioned content. The site menu uses `z-index: 101`; while it is open the search row's `::before` fades the page (white 70%) below it.
 - Lift (fallback) uses the `translate` property, so it never conflicts with the centring `transform` or the entry animation.
 - Universal Editor: re-decorated blocks register as new entries; removed ones are released on the next measurement. Fragment Canvases (header, footer) are decorated before they are attached and join the journey once on the page. The shared listeners and the ResizeObserver are attached once per page (no MutationObserver).
 - Failures are isolated: an error in the controller releases every row (nothing floats, state `hidden`); header, navigation, page and footer keep working.
@@ -1006,7 +1007,7 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 | BG Style Dark and Navigation style apply only to Primary (CSS) | No visible change on Default / Secondary | Use a background image or a Section style | Not recorded |
 | Floating journey Docks only on a Primary Canvas | The dock never floats, so it never shows | Use Floats and docks on Primary | Not recorded |
 | Hide block and spacing apply only in `main` | No effect on header / footer Canvases | Edit the nav or footer canvas page | Not recorded |
-| The pop-up menu keeps the title suffix after a vertical bar (only the dock removes it) | Long menu labels | Shorter page titles | Not recorded |
+| The site menu keeps the title suffix after a vertical bar (only the dock removes it) | Long menu labels | Shorter page titles | Not recorded |
 | The dock panel has an `aria-label` without a landmark role | The label may not be announced | — | Not recorded |
 | Unkeyed (single-cell) rows: a row with a link is read as a button item | Only hand-made markup affected | Use keyed rows | Not planned |
 | Footer canvas sample with a test hover text (F-33) | Odd button name and tooltip | Correct the field | Not recorded |
