@@ -122,3 +122,18 @@ Widths: 51 pages at 375 px, 50 at 768 px, 50 at 1,440 px.
 | `deliverables/metadata-w1-rows.csv` / `.tsv` | Metadata sheet rows |
 | `deliverables/redirects-w1.csv` | Redirect rows (none in W1) |
 | `validation.json`, `validation-summary.json` | The automated checks of the 151 preview pages |
+
+## 10. Release 1.0.1 (23 October 2026): Wave 1 fixes
+
+Built in the final link pass of Wave 2 (`tcs-corp-migration-w1-press-releases-1.0.1.zip`), so its links also go to the Wave 2 releases.
+
+| Issue | Fix in 1.0.1 |
+|---|---|
+| W1-I-08 wide tables; tables in rich text | AEM doesn't deliver a table in a Text as a table (its cells arrive as paragraphs, seen on aem.page): **every table is now a Table block** (up to 9 columns, PR #153), merged cells flattened (one header row, a value spanning rows repeated, spacer columns left out). The importer had also dropped merged-cell spans and empty cells, which shifted the columns of the financial tables: fixed and the 6 pages re-crawled |
+| W1-I-06 "Connect with us" | Links to the source's target, `https://www.tcs.com/contact-us/whats-on-your-mind/global-contact-us` (outside the migration scope, kept to tcs.com as W1-I-01), instead of the sample contact page |
+| W1-I-05 image on TCS's UAT Scene7 | Taken from TCS's production Scene7 account (same name, the image exists there); its alt (another release's title) set decorative |
+| W1-I-09 Universal Editor | Checked by the user on the installed pilot: closed |
+| W1-I-10 / T-01 newsroom hierarchy | Decided: pages stay at the CSV's target paths. `who-we-are/newsroom` becomes a **Newsroom** page (Page Header, the latest 12 press releases, a link to all press releases); one new metadata row (`deliverables/metadata-w1-1.0.1-newsroom-row-no-header.tsv`) |
+| Links between releases | A link to a page of the list goes to its AEM path only once that page is migrated; links to pages of later waves stay on tcs.com until then (no link to a missing page) |
+
+**Install:** upload and install 1.0.1 over 1.0.0 (same filters: the 150 pages, the two hub pages' content, the new images); paste the Newsroom row into the Metadata sheet; publish the changed pages, the Newsroom page and the sheet (at its `.json` path); reindex.
