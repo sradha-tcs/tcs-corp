@@ -577,8 +577,8 @@ a.button:any-link::after,
 button.button::after {
   content: '';
   flex-shrink: 0;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
+  /* width: var(--icon-size-s); */
+  /* height: var(--icon-size-s); */
   background-color: currentcolor;
   mask: url('../icons/arrow-right.svg') center / contain no-repeat;
 }

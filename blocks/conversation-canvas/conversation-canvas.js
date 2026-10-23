@@ -141,7 +141,7 @@ async function loadMenuTree(root, depth) {
     const nodes = new Map([[tree.path, tree]]);
     data
       .filter(({ path }) => path.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
-      .sort((x, y) => levelOf(x.path) - levelOf(y.path) || x.path.localeCompare(y.path))
+      .sort((x, y) => levelOf(x.path) - levelOf(y.path) || y.path.localeCompare(x.path))
       .forEach(({ path, title }) => {
         const parent = nodes.get(path.slice(0, path.lastIndexOf('/')) || '/');
         if (!parent) return;
