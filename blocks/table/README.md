@@ -729,7 +729,7 @@ blocks/table/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `table.js`: { moveInstrumentation } |
-| [`decorators/table-scroll-decorator.js`](../../decorators/table-scroll-decorator.js) | — | `table.js`: { nameTable, observeScrollRegion } |
+| [`decorators/table-scroll-decorator.js`](../../decorators/table-scroll-decorator.js) | `decorateContentTables` (the tables of rich text in a `.table-scroll` container, styled in `styles/styles.css`), `observeScrollRegion` (a table wider than its container scrolls inside it, in a labelled region keyboard us | `table.js`: { nameTable, observeScrollRegion } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `table.js`: { getPlaceholders } |
 
 <!-- END GENERATED: files -->
