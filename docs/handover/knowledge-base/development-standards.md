@@ -230,7 +230,7 @@ Legacy values the code still reads (verified in code):
 | Built-in Columns and Button components | Definitions kept (`button-basic` model); not offered in filters | Columns Container / Column Breaks; Button Block |
 | Section Style `highlight` | `main .section.highlight` in `styles/styles.css` | Style Grey (`bg-grey`) |
 | Teaser `titleSize` | No longer delivered; the title takes its level's size | Title Type |
-| List Item rows of 16 cells (before the Display toggles) | `itemLayoutFor` in `blocks/list/list-data.js` | 22-cell rows |
+| List Item rows of 16 cells (before the Display toggles; 13 without tab cells) | `itemLayoutFor` / `readItemCells` in `blocks/list/list-data.js` | 22-cell rows (19 when AEM leaves out the tab cells) |
 | Form item `name` (lower-cased by AEM) | Keys still work in lower case | `fieldName` |
 | Index columns `featureCard` / `featuredPriority` | `utils/query-index.js` fallbacks | `featured` / `priority` |
 | Separator Width Auto, Variant Custom; List / Cards Component ID | Still read | The widths, Default, Anchor ID |

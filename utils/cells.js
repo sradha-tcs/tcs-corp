@@ -52,9 +52,12 @@ export function withoutTabCells(cells, layout) {
  * @param {Element[]} cells
  * @param {string[]} fields the model's fields, in order (grouped fields count once)
  * @param {Object<string, (cell: Element) => boolean>} matchers what a value of each field is like
+ * @param {{ tail?: string[] }} [options] tail: the model's last fields (e.g. toggles), read from
+ *   the end of a row that isn't a cell per field: its last cells that are empty or fit them
+ *   belong to them, so a value of the last field can't move to an earlier field of its kind
  * @returns {Object<string, Element>} the cell of each field found
  */
-export function matchCells(cells, fields, matchers) {
+export function matchCells(cells, fields, matchers, { tail = [] } = {}) {
   const matched = {};
   if (cells.length === fields.length) {
     fields.forEach((field, i) => {
@@ -62,16 +65,28 @@ export function matchCells(cells, fields, matchers) {
     });
     return matched;
   }
+  const fits = (cell, field) => matchers[field]?.(cell) ?? true;
+  let count = 0;
+  while (count < Math.min(tail.length, cells.length)) {
+    const cell = cells[cells.length - 1 - count];
+    if (!isEmpty(cell) && !fits(cell, tail[tail.length - 1 - count])) break;
+    count += 1;
+  }
+  const tailFields = tail.slice(tail.length - count);
+  cells.slice(cells.length - count).forEach((cell, i) => {
+    if (!isEmpty(cell)) matched[tailFields[i]] = cell;
+  });
+  const rest = fields.filter((field) => !tailFields.includes(field));
   let next = 0;
-  cells.forEach((cell) => {
-    if (next >= fields.length) return;
+  cells.slice(0, cells.length - count).forEach((cell) => {
+    if (next >= rest.length) return;
     if (isEmpty(cell)) {
       next += 1;
       return;
     }
-    const index = fields.findIndex((field, i) => i >= next && (matchers[field]?.(cell) ?? true));
+    const index = rest.findIndex((field, i) => i >= next && fits(cell, field));
     if (index < 0) return;
-    matched[fields[index]] = cell;
+    matched[rest[index]] = cell;
     next = index + 1;
   });
   return matched;

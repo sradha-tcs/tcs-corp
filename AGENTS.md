@@ -192,6 +192,7 @@ Each block should be self-contained and re-useable, with CSS and JS files follow
 
 **AEM delivery rules (verified on aem.page, block audit of 19 October 2026, docs/audit/).** Code and the local preview must assume what AEM really delivers:
 - A block that isn't key-value gets an **empty row for each dialog tab** of its model (Form Variations, Table, Accordion, Hero, Embed, Fragment, Modal): read rows by `data-aue-prop` in the editor, else skip empty tab rows, never "the first row".
+- An item row may also arrive **without its tab cells** (a List Item row of 19 cells instead of 22, block-library/list/card-colours-and-overrides, 23 October 2026): know each delivered layout by its number of cells and read it by position (`itemLayoutFor` / `readItemCells` in `blocks/list/list-data.js`); never let a true / false value move to another toggle.
 - An item row whose model has a `classes` field starts with a cell **"<node name>, <classes>"** (e.g. `email, field-text`); a `name` field is the item node's name, not a cell.
 - In key-value blocks, **grouped fields** (`prefix_name`) aren't delivered: use plain names (Video `poster` / `posterAlt`).
 - Fields ending in Text, Title, Type, Alt or MimeType **collapse** into their base field (`linkType` becomes bold / italic around the link): use another name (`buttonVariant`) for a value that must be read.

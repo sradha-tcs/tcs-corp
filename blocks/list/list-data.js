@@ -10,6 +10,7 @@ import {
   CARD_KINDS, CARD_THEMES, flag, hash, integer, isExternal, isSafeUrl, isYes, normalizePath,
   normalizePresentation, pickValue as pick, text, toISODate,
 } from '../../utils/card-list-config.js';
+import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { formatDate } from '../../utils/dates.js';
 import { columnOf, listOf } from '../../utils/query-index.js';
 
@@ -33,14 +34,54 @@ export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
 export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel',
   'showActionLabel'];
 
+/** the layout of rows rendered before the Display toggles were added (ariaLabel their last cell) */
+const LAYOUT_BEFORE_DISPLAY = ITEM_LAYOUT.slice(0, ITEM_LAYOUT.length - ITEM_DISPLAY.length);
 /**
- * The layout of a List Item row of `count` cells: the model's, or for a row rendered before the
- * Display toggles were added (ariaLabel its last cell), the layout up to that cell.
+ * The row layouts AEM delivers List Items in: the model's with an empty cell per dialog tab (22
+ * cells) or without them (19, e.g. block-library/list/card-colours-and-overrides), and the same
+ * for rows rendered before the Display toggles (16, 13). Each has its own number of cells, so a
+ * row of one of them is read strictly by position (a boolean cell can't move to another field).
+ */
+const ITEM_LAYOUTS = [ITEM_LAYOUT, ITEM_FIELDS, LAYOUT_BEFORE_DISPLAY,
+  LAYOUT_BEFORE_DISPLAY.filter(Boolean)];
+
+/**
+ * The layout of a List Item row of `count` cells: the delivered layout of that many cells, else
+ * the model's (its cells are then matched by their values, matchCells).
  * @param {number} count
  */
 export function itemLayoutFor(count) {
-  const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
-  return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
+  return ITEM_LAYOUTS.find((layout) => layout.length === count) || ITEM_LAYOUT;
+}
+
+const cellText = (cell) => cell?.textContent.trim() || '';
+const BOOLEAN_CELL = (cell) => /^(true|false)$/i.test(cellText(cell));
+// a true / false cell is a toggle's, never a text field's (rows matched by their values)
+const TEXT_CELL = (cell) => !cell.querySelector('a[href], picture, img') && !BOOLEAN_CELL(cell);
+/** what a value of each List Item field is like, for rows matched by their values */
+export const ITEM_MATCHERS = {
+  link: (cell) => !!cell.querySelector('a[href]'),
+  image: (cell) => !!cell.querySelector('picture, img'),
+  newTab: BOOLEAN_CELL,
+  kind: (cell) => /^(image|panel|report|stat)$/i.test(cellText(cell)),
+  theme: (cell) => /^(dark|navy|brand|brand-light|grey|mid-grey|gradient|image)$/i.test(cellText(cell)),
+};
+['headline', 'summary', 'eyebrow', 'tags', 'subtitle', 'ctaLabel', 'analyticsLabel', 'ariaLabel']
+  .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
+ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = BOOLEAN_CELL; });
+
+/**
+ * The cell of each field of a List Item row: a row of a delivered layout (itemLayoutFor) by
+ * position; any other row by the cells' values, its last cells read as the Display toggles (the
+ * model's last fields), so a toggle's value stays with its toggle.
+ * @param {Element[]} cells the row's cells
+ * @returns {Object<string, Element>}
+ */
+export function readItemCells(cells) {
+  const layout = itemLayoutFor(cells.length);
+  return matchCells(withoutTabCells(cells, layout), layout.filter(Boolean), ITEM_MATCHERS, {
+    tail: layout === ITEM_LAYOUT ? ITEM_DISPLAY : [],
+  });
 }
 
 /**
