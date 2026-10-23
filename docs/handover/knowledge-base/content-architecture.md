@@ -47,6 +47,15 @@ This file is the knowledge base summary of how content is organised on the TCS C
 
 **Language master under review (temporary).** Pages below `/language-master/en` (`REVIEW_ROOTS`) list their own pages from the query index (`indexRoot`), read their own placeholders, redirects, taxonomy and data sheets (`REVIEW_SHEETS`), use their own `references/` and `error-pages/` (`REVIEW_PAGES`) and inherit up to `/language-master/en`. Remove after the rollout (handover Part 3.9, finding F-88).
 
+**Language master URLs (validated 23 October 2026).** The mappings follow Adobe's path mapping rules (https://www.aem.live/developer/authoring-path-mapping): the folder mapping `/content/tcs-corp/language-master/en/:/language-master/en/` covers every child page, and the page mapping `/content/tcs-corp/language-master/en:/language-master/en/` is the special case that publishes the root page as `/language-master/en/index`, served at `/language-master/en/` (the same pattern as `/en/`). No other mapping is needed.
+
+| AEM page | Preview | Live |
+| --- | --- | --- |
+| `/content/tcs-corp/language-master/en` (Home) | `https://main--tcs-corp--sradha-tcs.aem.page/language-master/en/` | `https://main--tcs-corp--sradha-tcs.aem.live/language-master/en/` |
+| `/content/tcs-corp/language-master/en/<path>` (child pages) | `https://main--tcs-corp--sradha-tcs.aem.page/language-master/en/<path>` | `https://main--tcs-corp--sradha-tcs.aem.live/language-master/en/<path>` |
+
+The Home URL ends with `/` (`/language-master/en` without it is a 404, as `/en`). On 23 October 2026 the child pages, sheets, references and error pages resolved, but the Home page was a 404 and wasn't in the query index: it has to be previewed and published from AEM (Manage Publication on `/content/tcs-corp/language-master/en`). If it still returns a 404 after publishing, check that the site configuration's `public.json` → `paths` has the page mapping (AEM applies that configuration, not the repository file).
+
 **Rules.**
 
 - Add or change a locale only in `LOCALES`, then run `npm run build:paths` and commit both files; the site administrator re-applies `public.json` and `metadata.source`.
