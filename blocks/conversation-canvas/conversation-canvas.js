@@ -385,6 +385,7 @@ function buildSearchForm(config, id, block) {
     'Ask us a question',
   ];
 
+  const [firstPlaceholder] = placeholders;
   let placeholderIndex = 0;
 
   const input = document.createElement('input');
@@ -392,11 +393,11 @@ function buildSearchForm(config, id, block) {
   input.name = 'q';
   input.id = `${id}-q`;
   input.autocomplete = 'off';
-  input.placeholder = placeholders[0];
+  input.placeholder = firstPlaceholder;
 
   const label = hideVisually(document.createElement('label'));
   label.htmlFor = input.id;
-  label.textContent = placeholders[0];
+  label.textContent = firstPlaceholder;
 
   // Rotate placeholders every 3 seconds
   setInterval(() => {
