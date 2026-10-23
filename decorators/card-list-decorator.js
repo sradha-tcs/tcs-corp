@@ -165,10 +165,10 @@ function hiddenTitle(title, display) {
  * action when shown, else the title; a card without a destination isn't linked.
  */
 export function renderCard(card, listConfig, { t, level, kind }) {
-  const config = cardDisplay(card, listConfig);
-  const article = element('article', `list-card list-card-${kind}`);
   // Card colour paints panel, report and statistic cards; an image card has its image
-  const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
+  const theme = kind === 'image' ? '' : themeOf(card, listConfig.cardTheme);
+  const config = cardDisplay(card, listConfig, { kind, theme });
+  const article = element('article', `list-card list-card-${kind}`);
   if (theme) article.classList.add(`theme-${theme}`);
   const readingTime = readingTimeOf(card, t);
   const tags = config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];

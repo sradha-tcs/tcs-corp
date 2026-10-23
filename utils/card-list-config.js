@@ -161,20 +161,28 @@ export function themeOf(card, cardTheme) {
  * Show Action Label inherits the List's Show call to action unless the item sets it (true /
  * false): then it wins for that card only, both ways. Off always removes the call to action, also
  * with Hide Title on (the renderer then keeps a linked card's title visible as its one link).
+ * An Image background panel (Figma "Card / Theme / image") shows its eyebrow and title only: no
+ * description, and no default call to action unless the item sets Show Action Label on
+ * (cardActionLabel; an authored Call to action label still shows).
  * @param {Object} card { title, display }
  * @param {Object} config the list's presentation (normalizePresentation)
+ * @param {{ kind?: string, theme?: string }} [style] the card's kind and colour (kindOf, themeOf)
  * @returns {Object} the configuration for this card
  */
-export function cardDisplay(card, config) {
+export function cardDisplay(card, config, { kind = '', theme = '' } = {}) {
   const own = card.display || {};
+  const imagePanel = kind === 'panel' && theme === 'image';
   return {
     ...config,
     showImage: config.showImage && own.showImage !== false,
     showEyebrow: config.showEyebrow && own.showEyebrow !== false,
-    showDescription: config.showDescription && own.showDescription !== false,
+    showDescription: config.showDescription && own.showDescription !== false && !imagePanel,
     // a card's own Show Description off hides it on text cards too
-    ownDescription: own.showDescription !== false,
+    ownDescription: own.showDescription !== false && !imagePanel,
     showCta: typeof own.showActionLabel === 'boolean' ? own.showActionLabel : config.showCta,
+    // the item's Show Action Label set on: also the default label on an Image background panel
+    actionLabelSet: own.showActionLabel === true,
+    imagePanel,
     showLabel: own.showLabel !== false,
     titleHidden: !!own.titleHidden && !!card.title,
   };
@@ -182,16 +190,20 @@ export function cardDisplay(card, config) {
 
 /**
  * The text of a card's call to action: none when the card's call to action is off (cardDisplay),
- * else its Call to action label, else the default of its kind (e.g. Explore for panels).
+ * else its Call to action label, else the default of its kind (e.g. Explore for panels); an
+ * Image background panel has no default unless its item sets Show Action Label on.
  * @param {Object} card { ctaLabel }
- * @param {{ showCta: boolean }} display from cardDisplay()
+ * @param {{ showCta: boolean, imagePanel?: boolean, actionLabelSet?: boolean }} display from
+ *   cardDisplay()
  * @param {string} kind one of CARD_KINDS
  * @param {Object<string, string>} [defaults] the default labels by kind
  * @returns {string} '' for no call to action
  */
 export function cardActionLabel(card, display, kind, defaults = {}) {
   if (!display.showCta) return '';
-  return text(card.ctaLabel) || defaults[kind] || '';
+  const label = text(card.ctaLabel);
+  if (label || (display.imagePanel && !display.actionLabelSet)) return label;
+  return defaults[kind] || '';
 }
 
 /**

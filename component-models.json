@@ -2815,7 +2815,7 @@
             true
           ]
         },
-        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour. Image background panels show the eyebrow and title only (no description, no default Explore; an authored Call to action label still shows)."
       },
       {
         "component": "select",
@@ -4688,7 +4688,7 @@
           }
         ],
         "value": "",
-        "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
+        "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour. Image background panels show the eyebrow and title only (no description, no default Explore; an authored Call to action label still shows)."
       },
       {
         "component": "text",
@@ -14371,7 +14371,7 @@
             true
           ]
         },
-        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour. Image background panels show the eyebrow and title only (no description, no default Explore; an authored Call to action label still shows)."
       },
       {
         "component": "select",
@@ -16229,7 +16229,7 @@
             "value": "image"
           }
         ],
-        "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata."
+        "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata. Image background panels show the eyebrow and title only (no description, no default Explore unless Show Action Label is set on)."
       },
       {
         "component": "text",

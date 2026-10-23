@@ -1008,7 +1008,7 @@
             }
           ],
           "value": "",
-          "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
+          "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour. Image background panels show the eyebrow and title only (no description, no default Explore; an authored Call to action label still shows)."
         },
         {
           "component": "text",

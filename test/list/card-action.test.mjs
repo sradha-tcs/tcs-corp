@@ -5,7 +5,9 @@
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyOverrides, kindOf, normalizeConfig } from '../../blocks/list/list-data.js';
+import {
+  applyOverrides, kindOf, normalizeConfig, themeOf,
+} from '../../blocks/list/list-data.js';
 import { cardActionLabel, cardDisplay } from '../../utils/card-list-config.js';
 
 const DEFAULTS = { panel: 'Explore', report: 'Download' };
@@ -14,11 +16,18 @@ const config = (raw = {}) => normalizeConfig({ displayasteaser: 'true', ...raw }
 const card = (item = {}) => applyOverrides({
   title: 'Banking', url: '/en/industries/banking', ctaLabel: '', kind: '', theme: '',
 }, item);
+// the card's presentation as the card list decorator renders it (renderCard)
+const displayOf = (c, cfg) => {
+  const kind = kindOf(c, cfg.cardStyle);
+  const theme = kind === 'image' ? '' : themeOf(c, cfg.cardTheme);
+  return { kind, display: cardDisplay(c, cfg, { kind, theme }) };
+};
 // the call to action a card renders: its label, '' for none
 const action = (item, raw) => {
   const cfg = config(raw);
   const c = card(item);
-  return cardActionLabel(c, cardDisplay(c, cfg), kindOf(c, cfg.cardStyle), DEFAULTS);
+  const { kind, display } = displayOf(c, cfg);
+  return cardActionLabel(c, display, kind, DEFAULTS);
 };
 
 describe('Show Action Label (List Item)', () => {
@@ -44,8 +53,7 @@ describe('Show Action Label (List Item)', () => {
       kind: 'panel', theme: 'image', ctaLabel: 'Read more', titleHidden: 'true', showActionLabel: 'false',
     };
     assert.equal(action(item), '');
-    const c = card(item);
-    const display = cardDisplay(c, config());
+    const { display } = displayOf(card(item), config());
     assert.equal(display.showCta, false);
     assert.equal(display.titleHidden, true);
   });
@@ -88,7 +96,8 @@ describe('Show Action Label inherits the List\'s Show call to action', () => {
     const cfg = config({ showcta: 'true', cardstyle: 'panel' });
     const labels = [{}, { showActionLabel: 'false' }, {}].map((item) => {
       const c = card(item);
-      return cardActionLabel(c, cardDisplay(c, cfg), kindOf(c, cfg.cardStyle), DEFAULTS);
+      const { kind, display } = displayOf(c, cfg);
+      return cardActionLabel(c, display, kind, DEFAULTS);
     });
     assert.deepEqual(labels, ['Explore', '', 'Explore']);
   });
@@ -96,7 +105,8 @@ describe('Show Action Label inherits the List\'s Show call to action', () => {
     const cfg = config({ showcta: 'false', cardstyle: 'panel' });
     const labels = [{}, { showActionLabel: 'true', ctaLabel: 'Learn more' }, {}].map((item) => {
       const c = card(item);
-      return cardActionLabel(c, cardDisplay(c, cfg), kindOf(c, cfg.cardStyle), DEFAULTS);
+      const { kind, display } = displayOf(c, cfg);
+      return cardActionLabel(c, display, kind, DEFAULTS);
     });
     assert.deepEqual(labels, ['', 'Learn more', '']);
   });
@@ -104,5 +114,45 @@ describe('Show Action Label inherits the List\'s Show call to action', () => {
     const page = { title: 'Banking', ctaLabel: '', kind: 'panel' };
     assert.equal(cardDisplay(page, config({ showcta: 'true' })).showCta, true);
     assert.equal(cardDisplay(page, config({ showcta: 'false' })).showCta, false);
+  });
+});
+
+describe('Image background panels (Figma Card / Theme / image): eyebrow and title only', () => {
+  it('no default Explore and no description, as in the Figma Transformation themes', () => {
+    const cfg = config({ cardstyle: 'panel' });
+    const c = card({ theme: 'image', description: 'Text' });
+    const { display } = displayOf(c, cfg);
+    assert.equal(action({ theme: 'image' }, { cardstyle: 'panel' }), '');
+    assert.equal(display.showDescription, false);
+    assert.equal(display.ownDescription, false);
+  });
+  it('the List\'s Card colour Image background works the same', () => {
+    assert.equal(action({}, { cardstyle: 'panel', cardtheme: 'image' }), '');
+  });
+  it('the item\'s Show Action Label set on brings the default Explore back', () => {
+    assert.equal(action({ kind: 'panel', theme: 'image', showActionLabel: 'true' }), 'Explore');
+  });
+  it('an authored Call to action label still shows, unless Show Action Label is off', () => {
+    assert.equal(action({ kind: 'panel', theme: 'image', ctaLabel: 'Read more' }), 'Read more');
+    assert.equal(action({ kind: 'panel', theme: 'image', ctaLabel: 'Read more', showActionLabel: 'false' }), '');
+  });
+  it('the other Card colours keep their description and Explore (Figma Card / Theme / Solid)', () => {
+    ['', 'dark', 'navy', 'brand', 'grey', 'gradient'].forEach((theme) => {
+      const { display } = displayOf(card({ kind: 'panel', theme }), config());
+      assert.equal(action({ kind: 'panel', theme }), 'Explore', theme);
+      assert.equal(display.showDescription, true, theme);
+    });
+  });
+  it('only panels: report and statistic cards with Image background are unchanged', () => {
+    assert.equal(action({ kind: 'report', theme: 'image' }), 'Download');
+    assert.equal(displayOf(card({ kind: 'stat', theme: 'image' }), config()).display.ownDescription, true);
+  });
+  it('one image panel among solid panels: only it loses description and Explore', () => {
+    assert.deepEqual([
+      action({ kind: 'panel', theme: 'navy' }),
+      action({ kind: 'panel', theme: 'image' }),
+      action({ kind: 'panel', theme: 'brand' }),
+      action({ kind: 'panel', theme: 'image' }),
+    ], ['Explore', '', 'Explore', '']);
   });
 });

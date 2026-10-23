@@ -1289,7 +1289,7 @@
               "value": "image"
             }
           ],
-          "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata."
+          "description": "Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata. Image background panels show the eyebrow and title only (no description, no default Explore unless Show Action Label is set on)."
         },
         {
           "component": "text",

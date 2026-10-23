@@ -183,7 +183,7 @@
             true
           ]
         },
-        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour."
+        "description": "Panel, report and statistic cards (image cards keep their image). A colour here applies to every card (an item's own Card colour still wins). Default for the style: the card's own colour, else (List) the page's card-theme metadata, else the style's colour. Image background panels show the eyebrow and title only (no description, no default Explore; an authored Call to action label still shows)."
       },
       {
         "component": "select",
