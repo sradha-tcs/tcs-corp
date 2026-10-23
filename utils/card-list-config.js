@@ -156,6 +156,18 @@ export function themeOf(card, cardTheme) {
 }
 
 /**
+ * Whether a card shows its call to action: the item's own Show Action Label when authored
+ * (List Item: true / false), else the list's Show call to action. Only that card follows it.
+ * @param {Object} card { display: { showActionLabel: boolean|null } }
+ * @param {boolean} showCta the list's Show call to action
+ * @returns {boolean}
+ */
+export function ctaShownOf(card, showCta) {
+  const own = card.display?.showActionLabel;
+  return typeof own === 'boolean' ? own : !!showCta;
+}
+
+/**
  * Normalizes the authored presentation properties (lower-case keys, text values): missing or
  * invalid values get their defaults, so a configuration never breaks rendering.
  * @param {Object<string, string>} raw

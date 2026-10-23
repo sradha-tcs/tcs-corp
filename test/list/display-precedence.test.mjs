@@ -1,12 +1,14 @@
 /*
  * List cards: field-by-field content from the linked page, and the Card style / Card colour
- * precedence (List Item > List > page card-style / card-theme metadata > automatic): node --test
+ * precedence (List Item > List > page card-style / card-theme metadata > automatic) and the
+ * Show Action Label precedence (List Item when authored > List's Show call to action): node --test
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildCards, kindOf, normalizeConfig, normalizePageToCard, themeOf,
 } from '../../blocks/list/list-data.js';
+import { ctaShownOf } from '../../utils/card-list-config.js';
 
 // an index page (utils/query-index.js): columns by their index name (card-style -> cardStyle)
 const page = (path, row = {}) => ({
@@ -158,5 +160,35 @@ describe('List Item content from the linked page (field by field)', () => {
   it('an empty source gives no cards', () => {
     const { cards } = parent({ parentpath: '/en/nothing' });
     assert.deepEqual(cards, []);
+  });
+});
+
+describe('Show Action Label of List Items (call to action)', () => {
+  // whether each card shows its call to action, as the card list decorator decides it
+  const ctas = (cfg, cards) => cards.map((card) => ctaShownOf(card, cfg.showCta));
+  const items = [
+    { href: '/en/news/a', showActionLabel: '' },
+    { href: '/en/news/b', showActionLabel: 'false' },
+    { href: '/en/news/c', showActionLabel: 'true' },
+    { href: '/en/news/d' },
+  ];
+  it('without an authored value, each item follows the List\'s Show call to action', () => {
+    const on = fixed({ showcta: 'true' }, [items[0], items[3]]);
+    const off = fixed({ showcta: 'false' }, [items[0], items[3]]);
+    assert.deepEqual(ctas(on.cfg, on.cards), [true, true]);
+    assert.deepEqual(ctas(off.cfg, off.cards), [false, false]);
+  });
+  it('Show Action Label off hides the call to action of that item only', () => {
+    const { cfg, cards } = fixed({ showcta: 'true' }, items);
+    assert.deepEqual(ctas(cfg, cards), [true, false, true, true]);
+  });
+  it('Show Action Label on shows it for that item only, with the List\'s off', () => {
+    const { cfg, cards } = fixed({ showcta: 'false' }, items);
+    assert.deepEqual(ctas(cfg, cards), [false, false, true, false]);
+  });
+  it('cards of other sources (and Cards) follow the List\'s Show call to action', () => {
+    const { cfg, cards } = parent({ showcta: 'false' });
+    assert.ok(cards.length && ctas(cfg, cards).every((shown) => shown === false));
+    assert.equal(ctaShownOf({}, true), true);
   });
 });

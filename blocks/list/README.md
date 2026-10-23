@@ -470,7 +470,7 @@ Purpose:
 The List Item Display toggles (block-library/list/list-item-display): cards of one Fixed list with Hide Title, Show Description, Show Image, Show Eyebrow, Show Label and Show Action Label turned off one at a time.
 
 Annotations:
-A = Card with Hide Title on (the action label stays visible)
+A = Card with Hide Title on (its action label is the link)
 B = Card with Show Image off (no image area)
 C = Card with Show Eyebrow off (tags in its place)
 D = Statistic card with Show Label off
@@ -705,12 +705,12 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | Card colour | `theme` | select | No | "" | As the list (""), Dark (`dark`), Navy (`navy`), Brand blue (`brand`), Light blue (`brand-light`), Light grey (`grey`), Mid grey (`mid-grey`), Grey gradient (`gradient`), Image background (`image`) | Panel, report and statistic cards (image cards keep their image); overrides the List's Card colour and the page's card-theme metadata. | brand |
 | Analytics label | `analyticsLabel` | text | No | — | — | — | — |
 | Accessibility label | `ariaLabel` | text | No | — | — | The link name for screen readers, e.g. Read the TwinX case study. | — |
-| Hide Title | `titleHidden` | boolean | No | `false` | on / off | Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays. | true |
+| Hide Title | `titleHidden` | boolean | No | `false` | on / off | Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: without a call to action (none, or Show Action Label off), the title stays visible. | true |
 | Show Description | `showDescription` | boolean | No | `true` | on / off | Off: no description on this card (neither this item's nor its page's). | false |
 | Show Image | `showImage` | boolean | No | `true` | on / off | Off: no image on this card (neither this item's nor its page's). | false |
 | Show Eyebrow | `showEyebrow` | boolean | No | `true` | on / off | Off: no eyebrow on this card (the tags or content type take its place, as without an eyebrow). | false |
 | Show Label | `showLabel` | boolean | No | `true` | on / off | Off: no Label on this card (statistic cards show the Label above the description). | false |
-| Show Action Label | `showActionLabel` | boolean | No | `true` | on / off | Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays. | false |
+| Show Action Label | `showActionLabel` | boolean | No | `true` | on / off | Overrides the List's Show call to action for this card only, once changed (an item never changed follows the List). Off: no call to action; the title is the card's link and stays visible, also with Hide Title on. | false |
 
 <!-- END GENERATED: fields -->
 
@@ -728,7 +728,7 @@ Notes on what the tables above don't show:
 | 4 | automatic / the style's colour | |
 
   A Card style other than Mixed, or a Card colour, forces every card that doesn't set its own. With Mixed and Default for the style each page decides. Lists made before keep their Card style (Image card by default). Card colour paints panel, report and statistic cards; image cards keep their image.
-- **List Item Display toggles** (added 20 October 2026, handover 2.34): they apply to that item's card only, on top of the List's Show options (a List with Show image off shows no images, whatever its items say). Hide Title keeps the title for screen readers and the heading outline and names the card's link; a linked card keeps one visible link (with Show Action Label off too, the action label stays; without an action label the title stays visible). Show Description off hides the description on every card style, also panel, report and statistic cards. Show Eyebrow off: image cards show the tags in its place. Items authored before (without the toggles) show everything. Examples: block-library/list/list-item-display.
+- **List Item Display toggles** (added 20 October 2026, handover 2.34): they apply to that item's card only, on top of the List's Show options (a List with Show image off shows no images, whatever its items say). Hide Title keeps the title for screen readers and the heading outline and names the card's link; a linked card keeps one visible link (without a call to action, the title stays visible). Show Action Label overrides the List's Show call to action for that card only once it is changed (AEM stores no value for a toggle never changed, so such items follow the List): off hides the call to action (also with Hide Title on: the title then stays visible as the link), on shows it even when the List's Show call to action is off (23 October 2026, KB-D-055). Show Description off hides the description on every card style, also panel, report and statistic cards. Show Eyebrow off: image cards show the tags in its place. Items authored before (without the toggles) show everything. Examples: block-library/list/list-item-display.
 - **Show options of the List:** Show description applies to image cards and link rows (panel, report and statistic cards always show theirs); Show tags also shows the reading time; on image cards an eyebrow takes the place of the tags; at most three tags are shown. Image cards show the date after the content type label (the taxonomy label of the content-type tag, e.g. Blog).
 - **Validation in code:** every value is validated again and invalid values fall back to the default: Child depth 1–10, Maximum search depth 0–10, Maximum items 0 or more (0, empty or invalid: all), columns 1–6, gap 0–120 (px, rendered in rem), items visible 1–8, card width 0 or 120–1200, Initial item index 0–200.
 - **Display as teaser** adds the block class `display-teaser` (not `teaser`, which the Teaser styles select: F-83), off adds `links`.

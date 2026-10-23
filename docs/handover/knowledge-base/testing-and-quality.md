@@ -40,8 +40,8 @@ Never report a test as Passed that was not executed; a review or reasoning subst
 
 | File | Module(s) under test | What it covers | Tests |
 | --- | --- | --- | --- |
-| [test/list/list-data.test.mjs](../../../test/list/list-data.test.mjs) | `blocks/list/list-data.js`, `utils/cells.js`, `utils/redirects.js` | List configuration defaults and clamping, author hints, child pages and depth, page metadata precedence, redirects (chains, loops), fixed lists, unsafe links, ordering, List Item rows (including rows rendered before the Display toggles) | 57 |
-| [test/list/display-precedence.test.mjs](../../../test/list/display-precedence.test.mjs) | `blocks/list/list-data.js` | Card style and colour precedence (List Item > List > page > automatic), field-by-field overrides from the linked page | 16 |
+| [test/list/list-data.test.mjs](../../../test/list/list-data.test.mjs) | `blocks/list/list-data.js`, `utils/cells.js`, `utils/redirects.js` | List configuration defaults and clamping, author hints, child pages and depth, page metadata precedence, redirects (chains, loops), fixed lists, unsafe links, ordering, List Item rows (including rows rendered before the Display toggles) | 58 |
+| [test/list/display-precedence.test.mjs](../../../test/list/display-precedence.test.mjs) | `blocks/list/list-data.js`, `utils/card-list-config.js` | Card style and colour precedence (List Item > List > page > automatic), field-by-field overrides from the linked page, Show Action Label precedence (List Item when authored > List's Show call to action) | 20 |
 | [test/list/query-index-tags.test.mjs](../../../test/list/query-index-tags.test.mjs) | `utils/query-index.js` | Tags from `article:tag` and `cq-tags`, merged without duplicates | 4 |
 | [test/cards/cards-data.test.mjs](../../../test/cards/cards-data.test.mjs) | `blocks/cards/cards-data.js`, `utils/dates.js` | Card item cells in model order, field mapping, dates, new tab, external links, unsafe links, shared card-list settings | 15 |
 | [test/items/item-rows.test.mjs](../../../test/items/item-rows.test.mjs) | `utils/cells.js` (`itemRows`) | Item rows told apart by model in the editor and by cells on the page | 24 |
@@ -121,7 +121,7 @@ Dialog changes are tested with a test matrix that has these columns: Test ID, Bl
 - **Every option alone**: each value of each changed field at least once (Teaser Title Type H1–H6, Image position Left / Right / Top / Bottom, every List Item toggle).
 - **Representative combinations**: high-risk combinations are tested together rather than the full cross product. For example, TE-03 tests four position × BG Color × button layout combinations so that each value appears at least once. The report doesn't use a formal pairwise generator.
 - **High-risk cases**:
-  - fallbacks (Hide Title with Show Action Label off: the action label stays);
+  - fallbacks (Hide Title with Show Action Label off: the call to action is hidden and the title stays visible as the link, KB-D-055);
   - empty fields;
   - multiple instances on a page;
   - legacy content (16-cell List Item rows, the former Title size, Section Highlight);
