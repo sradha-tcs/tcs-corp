@@ -7,6 +7,7 @@ import {
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
+import { showsCta } from '../../utils/card-list-config.js';
 import modelLayout from '../model-layout.mjs';
 import { resolveRedirect } from '../../utils/redirects.js';
 import { PAGES } from './fixtures.mjs';
@@ -354,6 +355,24 @@ describe('list item cells', () => {
     assert.equal(cells.titleHidden, undefined);
     assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
   });
+  it('reads a row AEM delivers without its tab cells (a cell per field, 19 cells)', () => {
+    const row = fields();
+    assert.equal(row.length, ITEM_FIELDS.length);
+    const layout = itemLayoutFor(row.length);
+    assert.deepEqual(layout, ITEM_FIELDS);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assertRead(cells);
+    assert.equal(cells.showEyebrow.textContent, 'true');
+  });
+  it('reads a row rendered before the Display toggles without its tab cells (13 cells)', () => {
+    const row = fields().slice(0, -ITEM_DISPLAY.length);
+    assert.equal(row.length, 13);
+    const layout = itemLayoutFor(row.length);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assert.equal(cells.ariaLabel.textContent, 'Read the agentic bank');
+    assert.equal(cells.headline.textContent, 'The agentic bank');
+    assert.equal(cells.titleHidden, undefined);
+  });
   it('keeps a row whose tab cells have values', () => {
     const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
     assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
@@ -361,9 +380,9 @@ describe('list item cells', () => {
 });
 
 describe('list item display', () => {
-  it('shows everything for an item authored before the Display toggles', () => {
+  it('shows everything but the call to action for an item authored before the Display toggles', () => {
     assert.deepEqual(itemDisplay({}), {
-      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
+      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: false,
     });
   });
   it('turns a Show option off only for an authored "false", Hide Title on only for "true"', () => {
@@ -375,7 +394,13 @@ describe('list item display', () => {
     assert.equal(display.showImage, false);
     assert.equal(display.showEyebrow, true);
     assert.equal(display.showLabel, true);
-    assert.equal(display.showActionLabel, true);
+    assert.equal(display.showActionLabel, false);
+  });
+  it('turns Show Action Label on only for an authored "true"', () => {
+    assert.equal(itemDisplay({ showActionLabel: 'true' }).showActionLabel, true);
+    assert.equal(itemDisplay({ showActionLabel: 'TRUE' }).showActionLabel, true);
+    assert.equal(itemDisplay({ showActionLabel: 'false' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: '' }).showActionLabel, false);
   });
   it('travels with the card of a List Item', () => {
     const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });
@@ -383,5 +408,30 @@ describe('list item display', () => {
     assert.equal(card.display.showImage, false);
     assert.equal(card.display.titleHidden, true);
     assert.equal(card.display.showDescription, true);
+  });
+});
+
+describe('list call to action', () => {
+  it('has no Show call to action: a value saved on a List authored before is ignored', () => {
+    assert.equal(config().showCta, false);
+    assert.equal(config({ showcta: 'true' }).showCta, false);
+  });
+  it('shows a List Item\'s call to action only with its Show Action Label on', () => {
+    const on = applyOverrides({ title: 'A' }, { showActionLabel: 'true' });
+    const off = applyOverrides({ title: 'B' }, { showActionLabel: 'false' });
+    const unset = applyOverrides({ title: 'C' }, {});
+    assert.equal(showsCta(config(), on.display), true);
+    assert.equal(showsCta(config(), off.display), false);
+    assert.equal(showsCta(config(), unset.display), false);
+  });
+  it('decides per item: one List Item\'s toggle leaves the others unchanged', () => {
+    const cards = [{ showActionLabel: 'true' }, {}, { showActionLabel: 'true', titleHidden: 'true' },
+      { showActionLabel: 'false', titleHidden: 'true' }]
+      .map((item, i) => applyOverrides({ title: `Card ${i}` }, item));
+    assert.deepEqual(cards.map((card) => showsCta(config(), card.display)), [true, false, true, false]);
+  });
+  it('shows no call to action on cards from the query index (no List Item)', () => {
+    const card = normalizePageToCard(byPath.get('/en/insights/agentic-bank'), config());
+    assert.equal(showsCta(config(), card.display), false);
   });
 });

@@ -156,6 +156,18 @@ export function themeOf(card, cardTheme) {
 }
 
 /**
+ * Whether a card shows its call to action: a List Item's own Show Action Label (the List has no
+ * Show call to action), else the configuration's Show call to action (Cards; off for the List,
+ * so its cards from the query index have none).
+ * @param {Object} config the normalized presentation
+ * @param {{ showActionLabel?: boolean }} [display] the card's own Display toggles
+ * @returns {boolean}
+ */
+export function showsCta(config, display = {}) {
+  return typeof display.showActionLabel === 'boolean' ? display.showActionLabel : !!config.showCta;
+}
+
+/**
  * Normalizes the authored presentation properties (lower-case keys, text values): missing or
  * invalid values get their defaults, so a configuration never breaks rendering.
  * @param {Object<string, string>} raw

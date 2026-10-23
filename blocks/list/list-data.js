@@ -34,25 +34,32 @@ export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'sho
   'showActionLabel'];
 
 /**
- * The layout of a List Item row of `count` cells: the model's, or for a row rendered before the
- * Display toggles were added (ariaLabel its last cell), the layout up to that cell.
+ * The layout of a List Item row of `count` cells: the model's; a row AEM delivers without its
+ * tab cells (a cell per field); or for a row rendered before the Display toggles were added
+ * (ariaLabel its last cell), the layout up to that cell, with or without its tab cells.
  * @param {number} count
  */
 export function itemLayoutFor(count) {
+  if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
+  if (count === ITEM_FIELDS.length - ITEM_DISPLAY.length) return ITEM_FIELDS.slice(0, count);
   const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
   return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
 }
 
+/** the Display toggles that are off unless authored on (the others are on unless authored off) */
+const ITEM_DISPLAY_OFF = ['titleHidden', 'showActionLabel'];
+
 /**
- * A List Item's Display toggles: the Show options are on unless authored off ("false"), Hide
- * Title is off unless authored on; an item without them (authored before) shows everything.
+ * A List Item's Display toggles: the Show options are on unless authored off ("false"); Hide
+ * Title and Show Action Label are off unless authored on ("true"), so an item shows its call
+ * to action only with its own Show Action Label on.
  * @param {Object} item the authored values (titleHidden, showDescription, ...)
  * @returns {{ titleHidden: boolean, showDescription: boolean, showImage: boolean,
  *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean }}
  */
 export function itemDisplay(item = {}) {
   return Object.fromEntries(ITEM_DISPLAY.map((name) => [name,
-    name === 'titleHidden' ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
+    ITEM_DISPLAY_OFF.includes(name) ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
 }
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
@@ -115,6 +122,9 @@ export function normalizeConfig(raw = {}) {
     maxItems: maxItems > 0 ? maxItems : Infinity,
     emptyBehavior: pick(get('emptybehavior'), EMPTY_BEHAVIORS, 'message'),
     ...normalizePresentation(raw),
+    // no Show call to action: each List Item's Show Action Label decides (a value saved on
+    // Lists authored before is ignored)
+    showCta: false,
   };
 }
 

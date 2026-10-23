@@ -14545,13 +14545,6 @@
         }
       },
       {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "showCta",
-        "label": "Show call to action",
-        "value": true
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "imageLoading",
@@ -16250,7 +16243,7 @@
         "name": "titleHidden",
         "label": "Hide Title",
         "value": false,
-        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with Show Action Label off, the title stays visible as the link."
       },
       {
         "component": "boolean",
@@ -16289,8 +16282,8 @@
         "valueType": "boolean",
         "name": "showActionLabel",
         "label": "Show Action Label",
-        "value": true,
-        "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
+        "value": false,
+        "description": "On: the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore). Off (default): no call to action; the title is the card's link."
       }
     ]
   },
