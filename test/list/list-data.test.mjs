@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, readItemCells, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -358,13 +358,79 @@ describe('list item cells', () => {
     const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
     assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
   });
+
+  // Show Action Label off (the last toggle) must reach its own field, whatever the row's shape
+  const toggles = (cells) => Object.fromEntries(['newTab', ...ITEM_DISPLAY]
+    .filter((field) => cells[field]).map((field) => [field, cells[field].textContent]));
+  const link = () => cell('', { link: '/en/insights/agentic-bank' });
+  const fullRow = (values = {}) => ITEM_LAYOUT.map((field) => (field === 'link' ? link() : cell(values[field] ?? '')));
+  it('reads a row without its tab cells (19, as delivered on card-colours-and-overrides) by position', () => {
+    // link, 12 empty fields, Hide Title off, Show Description / Image / Eyebrow / Label on,
+    // Show Action Label off
+    const row = [link(), ...Array.from({ length: 12 }, () => cell()), cell('false'),
+      cell('true'), cell('true'), cell('true'), cell('true'), cell('false')];
+    assert.equal(row.length, ITEM_FIELDS.length);
+    assert.equal(itemLayoutFor(row.length), ITEM_FIELDS);
+    assert.deepEqual(toggles(readItemCells(row)), {
+      titleHidden: 'false',
+      showDescription: 'true',
+      showImage: 'true',
+      showEyebrow: 'true',
+      showLabel: 'true',
+      showActionLabel: 'false',
+    });
+  });
+  it('reads Show Action Label off in a full row (22) and in one without tab cells (19)', () => {
+    const row = fullRow({ headline: 'H', showActionLabel: 'false' });
+    assert.deepEqual(toggles(readItemCells(row)), { showActionLabel: 'false' });
+    const noTabs = row.filter((_, i) => ITEM_LAYOUT[i] !== null);
+    assert.deepEqual(toggles(readItemCells(noTabs)), { showActionLabel: 'false' });
+  });
+  it('keeps the toggles at the end of a row of another shape (cells left out)', () => {
+    // one empty cell left out (21 cells): not read as a row before the toggles
+    const short = fullRow({ headline: 'H', showActionLabel: 'false' });
+    short.splice(14, 1);
+    assert.equal(itemLayoutFor(short.length), ITEM_LAYOUT);
+    assert.deepEqual(toggles(readItemCells(short)), { showActionLabel: 'false' });
+    // only the cells with a value: Open in a new tab stays newTab, the last toggle stays its own
+    const filled = (values) => fullRow(values).filter((c) => c.textContent || c.querySelector('a[href]'));
+    assert.deepEqual(toggles(readItemCells(filled({ headline: 'H', showActionLabel: 'false' }))), { showActionLabel: 'false' });
+    assert.deepEqual(
+      toggles(readItemCells(filled({ newTab: 'false', headline: 'H', showActionLabel: 'false' }))),
+      { newTab: 'false', showActionLabel: 'false' },
+    );
+    assert.deepEqual(
+      toggles(readItemCells(filled({ headline: 'H', showLabel: 'true', showActionLabel: 'false' }))),
+      { showLabel: 'true', showActionLabel: 'false' },
+    );
+  });
+  it('never reads a true / false cell as a text field', () => {
+    const cells = readItemCells([link(), cell('H'), cell('false')]);
+    assert.equal(cells.headline.textContent, 'H');
+    assert.equal(cells.summary, undefined);
+    assert.equal(cells.showActionLabel.textContent, 'false');
+  });
+  it('passes Show Action Label off to the card', () => {
+    const row = [link(), ...Array.from({ length: 12 }, () => cell()), cell('false'),
+      cell('true'), cell('true'), cell('true'), cell('true'), cell('false')];
+    const cells = readItemCells(row);
+    const item = Object.fromEntries(ITEM_DISPLAY.map((field) => [field, cells[field]?.textContent || '']));
+    assert.equal(itemDisplay(item).showActionLabel, false);
+  });
 });
 
 describe('list item display', () => {
   it('shows everything for an item authored before the Display toggles', () => {
+    // Show Action Label not authored (null): the card follows the List's Show call to action
     assert.deepEqual(itemDisplay({}), {
-      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
+      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: null,
     });
+  });
+  it('reads Show Action Label as authored on, authored off or not authored (inherit)', () => {
+    assert.equal(itemDisplay({ showActionLabel: 'true' }).showActionLabel, true);
+    assert.equal(itemDisplay({ showActionLabel: 'FALSE' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: '' }).showActionLabel, null);
+    assert.equal(itemDisplay({ showActionLabel: 'maybe' }).showActionLabel, null);
   });
   it('turns a Show option off only for an authored "false", Hide Title on only for "true"', () => {
     const display = itemDisplay({
@@ -375,7 +441,7 @@ describe('list item display', () => {
     assert.equal(display.showImage, false);
     assert.equal(display.showEyebrow, true);
     assert.equal(display.showLabel, true);
-    assert.equal(display.showActionLabel, true);
+    assert.equal(display.showActionLabel, null);
   });
   it('travels with the card of a List Item', () => {
     const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });

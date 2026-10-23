@@ -4,7 +4,6 @@ import {
 } from '../../decorators/card-list-decorator.js';
 import { renderWhenLoaded } from '../../decorators/skeleton-decorator.js';
 import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
-import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isAuthor, isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -16,8 +15,8 @@ import { getLocale, pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_DISPLAY, buildCards, itemLayoutFor, mergeFixedItems, normalizeConfig,
-  normalizePath, validateConfig,
+  HEADINGS, ITEM_DISPLAY, buildCards, mergeFixedItems, normalizeConfig, normalizePath,
+  readItemCells, validateConfig,
 } from './list-data.js';
 
 /*
@@ -30,19 +29,6 @@ import {
  * card list decorator, shared with the Cards block (manually authored cards). The data side is
  * ./list-data.js; lists made before (a title and a CTA only) render as they did.
  */
-
-const TEXT_CELL = (cell) => !cell.querySelector('a[href], picture, img');
-const ITEM_MATCHERS = {
-  link: (cell) => !!cell.querySelector('a[href]'),
-  image: (cell) => !!cell.querySelector('picture, img'),
-  newTab: (cell) => /^(true|false)$/i.test(textOf(cell)),
-  kind: (cell) => /^(image|panel|report|stat)$/i.test(textOf(cell)),
-  theme: (cell) => /^(dark|navy|brand|brand-light|grey|mid-grey|gradient|image)$/i.test(textOf(cell)),
-};
-['headline', 'summary', 'eyebrow', 'tags', 'subtitle', 'ctaLabel', 'analyticsLabel', 'ariaLabel']
-  .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
-// the Display toggles: true / false
-ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; });
 
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
@@ -109,10 +95,7 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const listItems = legacy ? [] : itemRows.map((row) => {
-    // rows rendered before the Display toggles were added have fewer cells
-    const layout = itemLayoutFor(row.children.length);
-    const fieldCells = withoutTabCells([...row.children], layout);
-    const cells = matchCells(fieldCells, layout.filter(Boolean), ITEM_MATCHERS);
+    const cells = readItemCells([...row.children]);
     const a = cells.link?.querySelector('a[href]');
     const href = a?.getAttribute('href') || '';
     const img = cells.image?.querySelector('img');
