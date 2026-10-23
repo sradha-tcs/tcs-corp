@@ -31,7 +31,7 @@ How the WCAG 2.2 additions stand in the code:
 
 ## Semantic HTML, headings and landmarks
 
-- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width (Table block and the tables of rich text, `decorators/table-scroll-decorator.js`) become labelled `role="region"` elements. No skip link was identified (bypass relies on the landmarks): see [Recommendations](#gaps-and-recommendations).
+- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width become labelled `role="region"` elements. No skip link was identified (bypass relies on the landmarks): see [Recommendations](#gaps-and-recommendations).
 - **Native elements**: Accordion is built on `details` / `summary`; Modal and the video pop-up use `dialog` with `showModal()`; the Separator renders `hr`; tables keep header cells.
 - **Headings**: blocks with a title have an authored level (Title Type / Title heading level, `decorators/heading-decorator.js` `HEADINGS` h1–h6); the level renders the element and its size follows it, so "the outline matches the look" (dialog options report, section 10). The Page Header renders the page H1 from metadata. A hidden List Item title stays in the DOM, visually hidden. Authors are responsible for a logical order.
 - **Language**: `decorators/seo-decorator.js` sets `<html lang>` from the locale (or `language` metadata); content loaded from another locale (the `/en` 404 fallback) is marked with its `lang` (`loadErrorPage` in `scripts/scripts.js`).

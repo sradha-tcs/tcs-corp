@@ -789,38 +789,6 @@ main img {
   height: auto;
 }
 
-/* tables of rich text (default content): a table wider than the content scrolls inside its own
-   region, not the page (decorators/table-scroll-decorator.js); the cells as the Table block's */
-main .default-content-wrapper .table-scroll {
-  max-width: 100%;
-  margin-block: var(--space-400);
-  overflow-x: auto;
-}
-
-main .default-content-wrapper .table-scroll:focus-visible {
-  outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: var(--space-100);
-}
-
-main .default-content-wrapper .table-scroll table {
-  min-width: 100%;
-  border-collapse: collapse;
-  color: var(--color-text-default);
-  font-size: var(--body-font-size-s);
-  line-height: 1.5;
-}
-
-main .default-content-wrapper .table-scroll :is(th, td) {
-  padding: var(--space-200) var(--space-300);
-  border-bottom: var(--border-width-100) solid var(--color-border-default);
-  text-align: start;
-  vertical-align: top;
-}
-
-main .default-content-wrapper .table-scroll :is(th, td) p {
-  margin: 0;
-}
-
 /* hidden visually, kept for screen readers (decorators/a11y-decorator.js hideVisually) */
 .visually-hidden {
   position: absolute;

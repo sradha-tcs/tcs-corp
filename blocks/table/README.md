@@ -1,7 +1,7 @@
 # Table
 
 The Table block presents structured, comparable information as a native, accessible HTML
-`table`, built from Row items of one to five rich-text columns. The first row is the column
+`table`, built from Row items of one to nine rich-text columns. The first row is the column
 header row unless No Header is chosen, the first column can hold row headers (First Column
 Header), the heading directly before the table names it, and a table wider than its container
 scrolls inside a labelled region keyboard users can focus. It is based on the Block Collection
@@ -32,12 +32,14 @@ sideways inside the block while the page stays put.
 **Related blocks.** Table List (`blocks/table-list`, list-style rows with actions), Columns
 Container (layout, not data), List / Cards (collections of items).
 
-**When to use.** Two-dimensional data where each value relates to a row and a column; up to five
-columns of short values.
+**When to use.** Two-dimensional data where each value relates to a row and a column; up to nine
+columns of short values (wider tables scroll inside the block on small screens).
 
 **When not to use.** Page layout or side-by-side content (Columns Container); a single list (a
-bulleted list or List / Cards); more than five columns, merged cells, sorting, filtering or
-pagination (not implemented).
+bulleted list or List / Cards); more than nine columns, merged cells (flatten them: one header row,
+the value repeated in each cell it spanned), sorting, filtering or pagination (not implemented). A
+table in a Text (rich text) isn't delivered as a table by AEM (its cells arrive as paragraphs): use
+this block.
 
 **Realistic use cases.**
 
@@ -233,6 +235,84 @@ D = Column 4
 E = Column 5
 ```
 
+```text
+[Screenshot Placeholder]
+
+File name:
+table-col-6-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Row properties in Universal Editor, with the fields of the table "Fields — Row" in Authorable Fields below.
+
+Annotations:
+A = Column 1
+B = Column 2
+C = Column 3
+D = Column 4
+E = Column 5
+F = Column 6
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+table-col-7-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Row properties in Universal Editor, with the fields of the table "Fields — Row" in Authorable Fields below.
+
+Annotations:
+A = Column 1
+B = Column 2
+C = Column 3
+D = Column 4
+E = Column 5
+F = Column 6
+G = Column 7
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+table-col-8-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Row properties in Universal Editor, with the fields of the table "Fields — Row" in Authorable Fields below.
+
+Annotations:
+A = Column 1
+B = Column 2
+C = Column 3
+D = Column 4
+E = Column 5
+F = Column 6
+G = Column 7
+H = Column 8
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+table-col-9-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Row properties in Universal Editor, with the fields of the table "Fields — Row" in Authorable Fields below.
+
+Annotations:
+A = Column 1
+B = Column 2
+C = Column 3
+D = Column 4
+E = Column 5
+F = Column 6
+G = Column 7
+H = Column 8
+I = Column 9
+```
+
 <!-- END GENERATED: screenshots -->
 
 States without a screenshot:
@@ -331,7 +411,7 @@ Model `table`; template name "Table" (the block class AEM renders); children: `t
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Options | `classes` | multiselect | No | "" | Border (`undefined`), Header (`undefined`) | — | — |
-| Columns | `filter` | select | No | `table` | 1 Column (`table`), 2 Columns (`table-2-columns`), 3 Columns (`table-3-columns`), 4 Columns (`table-4-columns`), 5 Columns (`table-5-columns`) | — | table-4-columns |
+| Columns | `filter` | select | No | `table` | 1 Column (`table`), 2 Columns (`table-2-columns`), 3 Columns (`table-3-columns`), 4 Columns (`table-4-columns`), 5 Columns (`table-5-columns`), 6 Columns (`table-6-columns`), 7 Columns (`table-7-columns`), 8 Columns (`table-8-columns`), 9 Columns (`table-9-columns`) | — | table-4-columns |
 
 #### Additional tab — Table
 
@@ -410,6 +490,72 @@ Model `table-col-5`; template name "Row" (the block class AEM renders).
 | Column 3 | `column3text` | richtext | No | — | — | — | — |
 | Column 4 | `column4text` | richtext | No | — | — | — | — |
 | Column 5 | `column5text` | richtext | No | — | — | — | — |
+
+### Row (`table-col-6`)
+
+Model `table-col-6`; template name "Row" (the block class AEM renders).
+
+#### Fields — Row
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Column 1 | `column1text` | richtext | No | — | — | — | — |
+| Column 2 | `column2text` | richtext | No | — | — | — | — |
+| Column 3 | `column3text` | richtext | No | — | — | — | — |
+| Column 4 | `column4text` | richtext | No | — | — | — | — |
+| Column 5 | `column5text` | richtext | No | — | — | — | — |
+| Column 6 | `column6text` | richtext | No | — | — | — | — |
+
+### Row (`table-col-7`)
+
+Model `table-col-7`; template name "Row" (the block class AEM renders).
+
+#### Fields — Row
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Column 1 | `column1text` | richtext | No | — | — | — | — |
+| Column 2 | `column2text` | richtext | No | — | — | — | — |
+| Column 3 | `column3text` | richtext | No | — | — | — | — |
+| Column 4 | `column4text` | richtext | No | — | — | — | — |
+| Column 5 | `column5text` | richtext | No | — | — | — | — |
+| Column 6 | `column6text` | richtext | No | — | — | — | — |
+| Column 7 | `column7text` | richtext | No | — | — | — | — |
+
+### Row (`table-col-8`)
+
+Model `table-col-8`; template name "Row" (the block class AEM renders).
+
+#### Fields — Row
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Column 1 | `column1text` | richtext | No | — | — | — | — |
+| Column 2 | `column2text` | richtext | No | — | — | — | — |
+| Column 3 | `column3text` | richtext | No | — | — | — | — |
+| Column 4 | `column4text` | richtext | No | — | — | — | — |
+| Column 5 | `column5text` | richtext | No | — | — | — | — |
+| Column 6 | `column6text` | richtext | No | — | — | — | — |
+| Column 7 | `column7text` | richtext | No | — | — | — | — |
+| Column 8 | `column8text` | richtext | No | — | — | — | — |
+
+### Row (`table-col-9`)
+
+Model `table-col-9`; template name "Row" (the block class AEM renders).
+
+#### Fields — Row
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Column 1 | `column1text` | richtext | No | — | — | — | — |
+| Column 2 | `column2text` | richtext | No | — | — | — | — |
+| Column 3 | `column3text` | richtext | No | — | — | — | — |
+| Column 4 | `column4text` | richtext | No | — | — | — | — |
+| Column 5 | `column5text` | richtext | No | — | — | — | — |
+| Column 6 | `column6text` | richtext | No | — | — | — | — |
+| Column 7 | `column7text` | richtext | No | — | — | — | — |
+| Column 8 | `column8text` | richtext | No | — | — | — | — |
+| Column 9 | `column9text` | richtext | No | — | — | — | — |
 
 <!-- END GENERATED: fields -->
 
@@ -583,7 +729,7 @@ and the region is called "Table".
 - **Purpose:** dense numeric tables. **Rendering:** a 1px `--color-border-default` border on every
   cell.
 
-### 1 to 5 Columns
+### 1 to 9 Columns
 
 - **Purpose:** the number of fields per Row (Row models `table-row`, `table-col-2` …
   `table-col-5`). **Dialog:** Columns, before adding Rows.
@@ -594,7 +740,7 @@ and the region is called "Table".
   with a ResizeObserver), the block gets `tabindex="0"`, `role="region"` and an `aria-label` (the
   heading's text, else the placeholder `table`, "Table"); removed when it fits. The block scrolls
   horizontally (`overflow-x: auto`) and shows a 2px brand focus outline.
-- **Responsive:** typical on mobile for 4 and 5 columns.
+- **Responsive:** typical on mobile from 4 columns.
 
 ```text
 [Screenshot Placeholder]
@@ -657,7 +803,7 @@ links.
 - **Cells:** short values; descriptive link text inside sentences (a link alone in a cell paragraph
   becomes a link button).
 - **Images, icons, tags, metadata:** not part of the design; the block reads no tags or metadata.
-- **Min / max items:** 1 to 5 columns (the Row models); no verified technical limit on the number
+- **Min / max items:** 1 to 9 columns (the Row models); no verified technical limit on the number
   of Rows was identified.
 - **Localization:** translate every cell; check that translated text doesn't widen the table much;
   number and date formats aren't localised by the block.
@@ -729,7 +875,7 @@ blocks/table/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `table.js`: { moveInstrumentation } |
-| [`decorators/table-scroll-decorator.js`](../../decorators/table-scroll-decorator.js) | `decorateContentTables` (the tables of rich text in a `.table-scroll` container, styled in `styles/styles.css`), `observeScrollRegion` (a table wider than its container scrolls inside it, in a labelled region keyboard us | `table.js`: { nameTable, observeScrollRegion } |
+| [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `table.js`: { uniqueId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `table.js`: { getPlaceholders } |
 
 <!-- END GENERATED: files -->
@@ -780,7 +926,7 @@ the `tr` / cells, so in-place editing of cells keeps working.
 ## For Site Administrators
 
 - **Availability:** in the `section`, `columns-container` and `tabs` filters.
-- **Governance:** `_table.json` (block, five Row models, five filters); aggregates generated.
+- **Governance:** `_table.json` (block, nine Row models, nine filters); aggregates generated.
 - **Allowed children:** Row of the selected Columns filter only.
 - **Localization:** cell text per locale; placeholder `table` per locale.
 
@@ -823,7 +969,7 @@ graph LR
 | TABLE-QA-03 | First Column Header | First Column Header | First body cells `th scope="row"` |
 | TABLE-QA-04 | Row headers only | No Header + First Column Header | Label / value table |
 | TABLE-QA-05 | Striped / Bordered | Each and both | Odd body rows grey / cell borders |
-| TABLE-QA-06 | Column counts | 1 to 5 Columns | Add offers the matching Row |
+| TABLE-QA-06 | Column counts | 1 to 9 Columns | Add offers the matching Row |
 | TABLE-QA-07 | Mixed Rows | Columns changed after Rows | Shorter rows padded with empty cells |
 | TABLE-QA-08 | Tab rows | Table authored in AEM | No empty first row; header is the first Row |
 | TABLE-QA-09 | Name | Heading right before / not before | `aria-labelledby` present / absent; region "Table" |
@@ -865,7 +1011,7 @@ width, the block's classes and the accessibility tree of the table.
 
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
-| Maximum 5 columns | Wider data doesn't fit | Split the table | Not recorded |
+| Maximum 9 columns | Wider data doesn't fit | Split the table | Not recorded |
 | No merged cells, sorting, filtering, `caption`, column alignment or sticky headers | Limited table features | Simplify the data | Not recorded |
 | No stacked mobile layout | Wide tables scroll | Fewer columns | Not recorded |
 | Changing Columns doesn't convert existing Rows | Padded empty cells | Recreate the Rows | Not planned |

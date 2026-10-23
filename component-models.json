@@ -22330,6 +22330,22 @@
           {
             "name": "5 Columns",
             "value": "table-5-columns"
+          },
+          {
+            "name": "6 Columns",
+            "value": "table-6-columns"
+          },
+          {
+            "name": "7 Columns",
+            "value": "table-7-columns"
+          },
+          {
+            "name": "8 Columns",
+            "value": "table-8-columns"
+          },
+          {
+            "name": "9 Columns",
+            "value": "table-9-columns"
           }
         ]
       },
@@ -23147,6 +23163,206 @@
         "valueType": "string",
         "name": "column5text",
         "label": "Column 5"
+      }
+    ]
+  },
+  {
+    "id": "table-col-6",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column 1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column 2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column 3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column 4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column 5"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column6text",
+        "label": "Column 6"
+      }
+    ]
+  },
+  {
+    "id": "table-col-7",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column 1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column 2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column 3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column 4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column 5"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column6text",
+        "label": "Column 6"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column7text",
+        "label": "Column 7"
+      }
+    ]
+  },
+  {
+    "id": "table-col-8",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column 1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column 2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column 3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column 4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column 5"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column6text",
+        "label": "Column 6"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column7text",
+        "label": "Column 7"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column8text",
+        "label": "Column 8"
+      }
+    ]
+  },
+  {
+    "id": "table-col-9",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column1text",
+        "label": "Column 1"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column2text",
+        "label": "Column 2"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column3text",
+        "label": "Column 3"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column4text",
+        "label": "Column 4"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column5text",
+        "label": "Column 5"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column6text",
+        "label": "Column 6"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column7text",
+        "label": "Column 7"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column8text",
+        "label": "Column 8"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "column9text",
+        "label": "Column 9"
       }
     ]
   },

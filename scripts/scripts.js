@@ -19,7 +19,6 @@ import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorat
 import { buildImage } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
-import { decorateContentTables } from '../decorators/table-scroll-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
 import { availableId } from '../utils/ids.js';
@@ -322,7 +321,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
   applyBlockOptions(main);
   decorateButtons(main);
-  decorateContentTables(main);
 }
 
 /**
