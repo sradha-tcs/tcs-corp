@@ -27,9 +27,9 @@ Two more Additional tab fields, after **Animation Type** (the label of the Conte
 The two fields are shown only once the block has an Animation Type (or, on blocks with a
 background, a Background animation); without an animation they have no effect.
 
-- **Speed** (`styles/motion.css`): the block's `--motion-duration` is 300 / 600 / 900ms; the
-  background takes 1.5 times as long (450 / 900 / 1350ms) and repeated items start a fifth of the
-  duration apart (60 / 120 / 180ms). One keyframe per effect; the speed is only CSS variables, set
+- **Speed** (`styles/motion.css`): the block's `--motion-duration` is 500 / 1000 / 2000ms; the
+  background takes 1.5 times as long (750 / 1500 / 3000ms) and repeated items start a fifth of the
+  duration apart (100 / 200 / 400ms). One keyframe per effect; the speed is only CSS variables, set
   on every `.block` so nested blocks keep their own speed. No timers set the duration (one 4 s
   safety timer only cleans up classes if an `animationend` never comes).
 - **On Scroll** (default): the page's one IntersectionObserver (thresholds 0 to 0.25) starts a
@@ -145,7 +145,7 @@ Conversation Canvas. E: the rest.
   (capped at 5), `isHorizontal`, `isVisibleColor`. `decorators/motion-decorator.js`:
   `prepareMotion(container)`, `releaseMotion(block)`.
 - **CSS.** `styles/motion.css`, loaded only on pages with an animated block: tokens
-  (`--motion-duration` 600ms, `--motion-duration-background` 900ms, `--motion-stagger` 80ms,
+  (`--motion-duration` 1000ms, `--motion-duration-background` 1500ms, `--motion-stagger` 200ms,
   `--motion-ease`, `--motion-distance` = `--space-600`, `--motion-distance-slide` =
   `--space-1600`), one keyframe per effect, the state classes.
 - **When.** `scripts.js` loads each section with `loadSection(section, prepareMotion)` (and the
