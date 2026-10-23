@@ -5,6 +5,7 @@
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
   buildCards, kindOf, normalizeConfig, normalizePageToCard, themeOf,
 } from '../../blocks/list/list-data.js';
@@ -190,5 +191,40 @@ describe('Show Action Label of List Items (call to action)', () => {
     const { cfg, cards } = parent({ showcta: 'false' });
     assert.ok(cards.length && ctas(cfg, cards).every((shown) => shown === false));
     assert.equal(ctaShownOf({}, true), true);
+  });
+});
+
+describe('Call to action defaults of a new List and List Item', () => {
+  const definitions = JSON.parse(readFileSync(new URL('../../blocks/list/_list.json', import.meta.url)));
+  const templateOf = (id) => definitions.definitions.find((d) => d.id === id).plugins.xwalk.page.template;
+  const template = templateOf('list');
+  const itemTemplate = templateOf('list-item');
+  const itemField = definitions.models.find((m) => m.id === 'list-item').fields
+    .find((f) => f.name === 'showActionLabel');
+  it('a new List stores Show call to action off; a new List Item stores no Show Action Label', () => {
+    assert.equal(template.showCta, false);
+    assert.equal('showActionLabel' in itemTemplate, false);
+    assert.equal(itemField.value, false);
+  });
+  // the new List as stored (template values) with items never changed and one set on / off
+  const stored = (raw) => Object.fromEntries(Object.entries({ ...template, ...raw })
+    .map(([key, value]) => [key.toLowerCase(), String(value)]));
+  const ctas = (raw, items) => {
+    const cfg = normalizeConfig(stored(raw));
+    return buildCards(cfg, { pages: PAGES, items }).map((card) => ctaShownOf(card, cfg.showCta));
+  };
+  const a = (showActionLabel) => ({ href: '/en/news/a', showActionLabel });
+  const others = [{ href: '/en/news/b' }, { href: '/en/news/c' }];
+  it('defaults: no call to action on any card', () => {
+    assert.deepEqual(ctas({}, [a(''), ...others]), [false, false, false]);
+  });
+  it('scenario 1: List off, Item A on: only Item A', () => {
+    assert.deepEqual(ctas({}, [a('true'), ...others]), [true, false, false]);
+  });
+  it('scenario 2: List on: every card', () => {
+    assert.deepEqual(ctas({ showCta: true }, [a(''), ...others]), [true, true, true]);
+  });
+  it('scenario 3: List on, Item A off: every card but Item A', () => {
+    assert.deepEqual(ctas({ showCta: true }, [a('false'), ...others]), [false, true, true]);
   });
 });
