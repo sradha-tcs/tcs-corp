@@ -1,740 +1,970 @@
-/*
- * Teaser (TCS.com DS Figma "Text & Image", "2 Slot Section", "Text Section - 2 Columns",
- * "Secondary Page Header", "Careers", "Media Coverage"). Layouts: Image & Text (default), Text
- * split (.no-image), Background image (.background), Card (.card); Style options as classes.
- */
-.teaser {
-  /* Figma value with no site token: list dividers */
-  --teaser-divider: #b2b2b2;
-  --teaser-title-color: var(--color-text-default);
-  --teaser-text-color: var(--color-text-secondary);
-  --teaser-meta-color: var(--color-text-secondary);
-  --teaser-link-color: var(--color-text-default);
-  --teaser-stat-color: var(--color-text-brand);
-  --teaser-overlay: rgb(12 12 13 / 60%);
-  --teaser-gap: var(--space-1000);
-  --teaser-body-gap: var(--space-800);
-
-  display: grid;
-  gap: var(--teaser-gap);
-  align-items: center;
-}
-
-/* BG Color: only the background colour (the space around the content: the Padding fields) */
-.teaser.bg-grey {
-  background-color: var(--color-bg-secondary);
-}
-
-.teaser:is(.bg-dark, .bg-dark-green, .background, .card) {
-  --teaser-divider: #767676;
-  --teaser-title-color: var(--color-text-on-neutral);
-  --teaser-text-color: rgb(255 255 255 / 70%);
-  --teaser-meta-color: rgb(255 255 255 / 70%);
-  --teaser-link-color: var(--color-text-on-neutral);
-  --teaser-stat-color: var(--brand-300);
-  --teaser-eyebrow-color: var(--brand-300); /* the brand text colour is too dark on dark (2.3:1) */
-
-  color: var(--color-text-on-neutral);
-}
-
-.teaser.bg-dark {
-  --teaser-overlay: rgb(12 12 13 / 80%);
-
-  background-color: var(--color-bg-neutral);
-}
-
-.teaser.bg-dark-green {
-  --teaser-overlay: rgb(0 59 57 / 80%);
-
-  background-color: var(--color-bg-dark-green);
-}
-
-/* Top spacing: Page header, the larger space above a teaser that opens a page */
-.teaser.spacing-header {
-  padding-top: var(--space-1600);
-}
-
-/* kicker: the eyebrow, then the tags and (on the right) date, reading time and actions */
-.teaser .teaser-kicker {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-300) var(--space-1000);
-}
-
-.teaser .teaser-info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-200) var(--space-1000);
-}
-
-.teaser :is(.teaser-date, .teaser-reading-time) {
-  margin: 0;
-  color: var(--teaser-title-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-light);
-  line-height: 1.21;
-  letter-spacing: calc(0.005 * var(--body-font-size-xs));
-}
-
-.teaser .teaser-actions {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-100);
-}
-
-/* listen / download / share: icons in the text color, brand on hover */
-.teaser .teaser-actions :is(a, button).button.icon-button.tertiary {
-  color: var(--teaser-title-color);
-}
-
-.teaser .teaser-actions :is(a, button).button.icon-button.tertiary:is(:hover, :focus-visible) {
-  color: var(--color-icon-brand);
-}
-
-.teaser .teaser-status {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin: var(--space-100) 0 0;
-  color: var(--teaser-meta-color);
-  font-size: var(--body-font-size-xs);
-  white-space: nowrap;
-}
-
-.teaser .teaser-status:empty {
-  display: none;
-}
-
-/* author: round image, name and designation */
-.teaser .teaser-author {
-  display: flex;
-  align-items: center;
-  gap: var(--space-200);
-}
-
-.teaser .teaser-author-image img {
-  display: block;
-  width: var(--space-1000);
-  height: var(--space-1000);
-  border-radius: var(--radius-full);
-  object-fit: cover;
-}
-
-.teaser .teaser-author-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  color: var(--teaser-title-color);
-  font-size: var(--heading-font-size-xs);
-  line-height: 1.375;
-}
-
-.teaser :is(.teaser-author-name, .teaser-author-designation) {
-  margin: 0;
-}
-
-.teaser .teaser-author-name {
-  font-weight: var(--font-weight-light);
-}
-
-.teaser .teaser-author-designation {
-  font-weight: var(--font-weight-medium);
-}
-
-.teaser .teaser-body {
-  gap: var(--teaser-body-gap);
-}
-
-/* the Lottie animation's pause / play button (WCAG 2.2.2), in the media's corner */
-.teaser .teaser-media:has(> .animation-toggle) {
-  position: relative;
-}
-
-.teaser .teaser-media > .animation-toggle {
-  position: absolute;
-  z-index: 1;
-  inset-block-end: var(--space-300);
-  inset-inline-end: var(--space-300);
-}
-
-/* image (or Lottie animation): Image ratio and Image corners */
-.teaser .teaser-media picture,
-.teaser .teaser-media img,
-.teaser .teaser-animation {
-  display: block;
-  width: 100%;
-}
-
-.teaser .teaser-media img,
-.teaser .teaser-animation {
-  height: auto;
-  aspect-ratio: 10 / 9;
-  border-radius: var(--radius-l);
-  object-fit: cover;
-}
-
-/* above or below the text: a wide image */
-.teaser:is(.image-top, .image-bottom) .teaser-media :is(img, .teaser-animation) {
-  aspect-ratio: 16 / 9;
-}
-
-.teaser.ratio-8-9 .teaser-media :is(img, .teaser-animation) {
-  aspect-ratio: 8 / 9;
-}
-
-.teaser.ratio-1-1 .teaser-media :is(img, .teaser-animation) {
-  aspect-ratio: 1;
-}
-
-.teaser.ratio-original .teaser-media img {
-  aspect-ratio: auto;
-}
-
-.teaser.square .teaser-media :is(img, .teaser-animation) {
-  border-radius: 0;
-}
-
-/* content */
-.teaser .teaser-content,
-.teaser .teaser-header,
-.teaser .teaser-intro,
-.teaser .teaser-body {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.teaser .teaser-content,
-.teaser .teaser-header {
-  gap: var(--space-300);
-}
-
-.teaser .teaser-intro {
-  gap: var(--space-800);
-}
-
-.teaser .teaser-eyebrow {
-  flex: 1 0 100%;
-  margin: 0;
-  color: var(--teaser-eyebrow-color, var(--color-text-brand));
-  font-size: var(--body-font-size-l);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.625;
-}
-
-/* Eyebrow style: Label, small uppercase grey (like the tags) */
-.teaser.eyebrow-label .teaser-eyebrow {
-  color: var(--teaser-meta-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.57;
-  letter-spacing: calc(0.01 * var(--body-font-size-xs));
-  text-transform: uppercase;
-}
-
-.teaser .teaser-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-200) var(--space-400);
-  color: var(--teaser-meta-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.57;
-  letter-spacing: calc(0.01 * var(--body-font-size-xs));
-}
-
-/* tags: uppercase, separated by a bar (Figma "BANKING | AI NATIVE") */
-.teaser .teaser-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-200);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-transform: uppercase;
-}
-
-.teaser .teaser-tags li + li::before {
-  content: '|';
-  margin-inline-end: var(--space-200);
-}
-
-.teaser .teaser-heading-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-400) var(--space-600);
-}
-
-/* Title Type: the heading level sets the size (H1 64px, H2 48px ... H6 20px on desktop) */
-.teaser .teaser-title {
-  --teaser-title-size: var(--heading-font-size-xxl);
-
-  flex: 1 1 auto;
-  margin: 0;
-  color: var(--teaser-title-color);
-  font-size: var(--teaser-title-size);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.2;
-  letter-spacing: calc(-0.03 * var(--teaser-title-size));
-}
-
-.teaser h1.teaser-title {
-  --teaser-title-size: var(--display-font-size-2);
-}
-
-.teaser h3.teaser-title {
-  --teaser-title-size: var(--heading-font-size-xl);
-
-  letter-spacing: calc(-0.025 * var(--teaser-title-size));
-}
-
-.teaser :is(h4, h5, h6).teaser-title {
-  line-height: 1.3;
-  letter-spacing: calc(-0.015 * var(--teaser-title-size));
-}
-
-.teaser h4.teaser-title {
-  --teaser-title-size: var(--heading-font-size-l);
-}
-
-.teaser h5.teaser-title {
-  --teaser-title-size: var(--heading-font-size-m);
-}
-
-.teaser h6.teaser-title {
-  --teaser-title-size: var(--heading-font-size-s);
-}
-
-.teaser .teaser-view-all {
-  flex: none;
-}
-
-.teaser :is(.teaser-description, .teaser-short-description) {
-  color: var(--teaser-text-color);
-  font-size: var(--body-font-size-m);
-  line-height: 1.39;
-}
-
-.teaser :is(.teaser-description, .teaser-short-description) > * {
-  margin: 0;
-}
-
-.teaser :is(.teaser-description, .teaser-short-description) > * + * {
-  margin-top: var(--space-600);
-}
-
-/* stats: the title above a large brand value (Figma "Text Section - 2 Columns" with stats) */
-.teaser .teaser-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-600) var(--space-200);
-  margin: 0;
-}
-
-.teaser .teaser-stat {
-  display: flex;
-  flex: 1 0 11.25rem;
-  flex-direction: column;
-  gap: var(--space-100);
-}
-
-.teaser .teaser-stat-label {
-  color: var(--teaser-title-color);
-  font-size: var(--body-font-size-l);
-  line-height: 1.417;
-}
-
-.teaser .teaser-stat-value {
-  margin: 0;
-  color: var(--teaser-stat-color);
-  font-size: var(--display-font-size-1);
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.teaser :is(.teaser-stat-label, .teaser-stat-value) > * {
-  margin: 0;
-}
-
-/* links: Default text links and buttons are stacked */
-.teaser .teaser-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-300);
-}
-
-/* Buttons side by side: in a row, wrapping (List links keep their full-width rows) */
-.teaser.buttons-inline .teaser-links {
-  flex-flow: row wrap;
-  align-items: center;
-  gap: var(--space-300) var(--space-600);
-}
-
-/* List: full-width rows with a divider under each row but the last */
-.teaser .teaser-link-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-600);
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.teaser .teaser-link-list li {
-  padding-bottom: var(--space-300);
-  border-bottom: var(--border-width-100) solid var(--teaser-divider);
-}
-
-.teaser .teaser-link-list li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.teaser .teaser-link-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2000);
-  color: var(--teaser-link-color);
-  font-size: var(--heading-font-size-m);
-  line-height: 1.417;
-  letter-spacing: calc(-0.015 * var(--heading-font-size-m));
-  text-decoration: none;
-}
-
-.teaser .teaser-link-list-item::after {
-  content: '';
-  flex: none;
-  width: var(--icon-size-s);
-  height: var(--icon-size-s);
-  background-color: var(--teaser-divider);
-  mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
-  transition: background-color 0.2s;
-}
-
-.teaser .teaser-link-list-item[target='_blank']::after {
-  mask-image: url('../../icons/arrow-up-right.svg');
-}
-
-.teaser .teaser-link-list-item:is(:hover, :focus-visible) {
-  color: var(--color-text-brand);
-  text-decoration: none;
-}
-
-.teaser .teaser-link-list-item:is(:hover, :focus-visible)::after {
-  background-color: currentcolor;
-}
-
-/* List arrow: Down right, on List links, Text links and buttons */
-.teaser.arrow-down-right :is(.teaser-link-list-item, .teaser-links a.button):not([target='_blank'])::after {
-  mask-image: url('../../icons/arrow-up-right.svg');
-  transform: rotate(90deg);
-}
-
-/* List arrow: None, List links without an arrow (decorative: the link text names them) */
-.teaser.arrow-none .teaser-link-list-item::after {
-  display: none;
-}
-
-/* buttons on dark backgrounds and images */
-.teaser:is(.bg-dark, .bg-dark-green, .background, .card) a.button.secondary:not(:hover, :focus-visible) {
-  border-color: var(--color-text-on-neutral);
-  color: var(--color-text-on-neutral);
-}
-
-.teaser:is(.bg-dark, .bg-dark-green, .background, .card) a.button.tertiary:not(:hover, :focus-visible) {
-  color: var(--color-text-on-neutral);
-}
-
-.teaser:is(.bg-dark, .bg-dark-green, .background, .card) a.button.tertiary:is(:hover, :focus-visible),
-.teaser:is(.bg-dark, .bg-dark-green, .background, .card) .teaser-link-list-item:is(:hover, :focus-visible) {
-  color: var(--brand-300);
-}
-
-/* Text split: larger title and text, top aligned */
-.teaser.no-image {
-  --teaser-text-color: var(--color-text-default);
-  --teaser-body-gap: var(--space-1000);
-
-  align-items: start;
-}
-
-.teaser.no-image:is(.bg-dark, .bg-dark-green) {
-  --teaser-text-color: rgb(255 255 255 / 70%);
-}
-
-.teaser.no-image .teaser-title {
-  font-weight: var(--font-weight-regular);
-}
-
-.teaser.no-image :is(.teaser-description, .teaser-short-description) {
-  color: var(--teaser-text-color);
-  font-size: var(--body-font-size-l);
-  line-height: 1.417;
-}
-
-.teaser.no-image .teaser-media img {
-  border-radius: 0;
-}
-
-/* an image in the text column (e.g. a chart) shows whole, without corners */
-.teaser.no-image:not(.ratio-8-9, .ratio-1-1) .teaser-media img {
-  aspect-ratio: auto;
-}
-
-
-/* Background image and Card: the image behind the text, under an overlay */
-.teaser:is(.background, .card) {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.teaser:is(.background, .card)::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background-color: var(--teaser-overlay);
-}
-
-.teaser:is(.background, .card) .teaser-media {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-}
-
-.teaser:is(.background, .card) .teaser-media :is(picture, img, .teaser-animation) {
-  height: 100%;
-  aspect-ratio: auto;
-  border-radius: 0;
-}
-
-.teaser.background {
-  align-items: center;
-  justify-content: center;
-  min-height: 35rem;
-  padding: var(--space-2000) var(--space-600);
-}
-
-/* Card: rounded, the header at the top and the links at the bottom (Figma "Media Kit") */
-.teaser.card {
-  --teaser-overlay: rgb(0 0 0 / 70%);
-
-  align-items: stretch;
-  min-height: 25rem;
-  border-radius: var(--radius-l);
-  padding: var(--space-600);
-}
-
-.teaser.card .teaser-content {
-  flex: 1;
-  justify-content: space-between;
-  gap: var(--space-1000);
-}
-
-.teaser.card .teaser-title {
-  max-width: 31.25rem;
-}
-
-/* Text alignment: Right */
-.teaser.text-right .teaser-content {
-  text-align: end;
-}
-
-.teaser.text-right :is(.teaser-kicker, .teaser-meta, .teaser-tags, .teaser-heading-row, .teaser-author) {
-  justify-content: flex-end;
-}
-
-.teaser.text-right .teaser-links {
-  align-items: flex-end;
-}
-
-/* Image & Text without an image (Hide Image): centered (Figma "Careers") */
-.teaser:not(.no-image, .teaser-has-media, .card, .text-left, .text-right) .teaser-content,
-.teaser.text-center:not(.no-image) .teaser-content {
-  width: 100%;
-  max-width: 37.5rem;
-  margin-inline: auto;
-  text-align: center;
-}
-
-.teaser:not(.no-image, .teaser-has-media, .card, .text-left, .text-right) :is(.teaser-kicker, .teaser-meta, .teaser-tags, .teaser-heading-row, .teaser-author),
-.teaser.text-center:not(.no-image) :is(.teaser-kicker, .teaser-meta, .teaser-tags, .teaser-heading-row, .teaser-author) {
-  justify-content: center;
-}
-
-.teaser:not(.no-image, .teaser-has-media, .card, .text-left, .text-right) .teaser-links,
-.teaser.text-center:not(.no-image) .teaser-links {
-  align-items: center;
-}
-
-/* Buttons side by side: the row follows the text alignment */
-.teaser.buttons-inline.text-right .teaser-links {
-  justify-content: flex-end;
-}
-
-.teaser.buttons-inline:not(.no-image, .teaser-has-media, .card, .text-left, .text-right) .teaser-links,
-.teaser.buttons-inline.text-center:not(.no-image) .teaser-links {
-  justify-content: center;
-}
-
-.teaser.teaser-has-media.text-center .teaser-content {
-  max-width: none;
-}
-
-/* Text alignment: Left, for the layouts that center by default */
-.teaser.text-left :is(.teaser-content, .teaser-heading-row) {
-  text-align: start;
-}
-
-/* Vertical alignment */
-.teaser.valign-top {
-  align-items: start;
-}
-
-.teaser.valign-middle {
-  align-items: center;
-}
-
-.teaser.valign-bottom {
-  align-items: end;
-}
-
-.teaser.background.valign-top {
-  justify-content: flex-start;
-}
-
-.teaser.background.valign-bottom {
-  justify-content: flex-end;
-}
-
-/* Image position: Bottom; Image position (mobile): above or below the text */
-.teaser:is(.image-bottom, .mobile-image-bottom) .teaser-media {
-  order: 2;
-}
-
-.teaser.teaser-has-media.mobile-image-top .teaser-media {
-  order: -1;
-}
-
-.teaser.no-image.mobile-image-top .teaser-media {
-  order: -1;
-}
-
-/* Title weight, Description size */
-.teaser.title-regular .teaser-title {
-  font-weight: var(--font-weight-regular);
-}
-
-.teaser.title-semibold .teaser-title {
-  font-weight: var(--font-weight-semibold);
-}
-
-.teaser.text-regular :is(.teaser-description, .teaser-short-description) {
-  font-size: var(--body-font-size-m);
-  line-height: 1.61;
-}
-
-.teaser.text-large :is(.teaser-description, .teaser-short-description) {
-  font-size: var(--body-font-size-l);
-  line-height: 1.417;
-}
-
-@media (width >= 600px) {
-  /* Image & Text, Left / Right: image and text side by side */
-  .teaser.teaser-has-media:not(.image-top, .image-bottom) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .teaser.teaser-has-media:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
-    order: 0;
-  }
-
-  .teaser.teaser-has-media:is(.image-right, .image-bottom) .teaser-media {
-    order: 2;
-  }
-}
-
-@media (width >= 900px) {
+  /*
+  * Teaser (TCS.com DS Figma "Text & Image", "2 Slot Section", "Text Section - 2 Columns",
+  * "Secondary Page Header", "Careers", "Media Coverage"). Layouts: Image & Text (default), Text
+  * split (.no-image), Background image (.background), Card (.card); Style options as classes.
+  */
   .teaser {
-    --teaser-gap: var(--space-2000);
-    --teaser-body-gap: var(--space-1000);
-  }
+    /* Figma value with no site token: list dividers */
+    --teaser-divider: #b2b2b2;
+    --teaser-title-color: var(--color-text-default);
+    --teaser-text-color: var(--color-text-secondary);
+    --teaser-meta-color: var(--color-text-secondary);
+    --teaser-link-color: var(--color-text-default);
+    --teaser-stat-color: var(--color-text-brand);
+    --teaser-overlay: rgb(12 12 13 / 0%);
+    --teaser-gap: var(--space-1000);
+    --teaser-body-gap: var(--space-800);
+    --teaser-aligned-content-width: 37.5rem;
 
-  .teaser.spacing-header {
-    padding-top: var(--space-5000);
-  }
-
-  .teaser .teaser-eyebrow {
-    font-size: var(--body-font-size-s);
-  }
-
-  .teaser .teaser-stat-value {
-    font-size: 6rem;
-  }
-
-  .teaser.no-image:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
-    order: 0;
-  }
-
-  .teaser.no-image {
-    --teaser-body-gap: var(--space-1200);
-  }
-
-  /* Text split: the eyebrow, date and tags above both columns */
-  .teaser.no-image .teaser-content {
     display: grid;
-    grid-template-areas: 'kicker kicker' 'heading body';
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 var(--space-600);
-    align-items: start;
-  }
-
-  .teaser.no-image .teaser-header {
-    display: contents;
-  }
-
-  .teaser.no-image .teaser-kicker {
-    grid-area: kicker;
-    margin-bottom: var(--space-1000);
-  }
-
-  .teaser.no-image .teaser-intro {
-    grid-area: heading;
-  }
-
-  .teaser.no-image .teaser-body {
-    grid-area: body;
-  }
-
-  .teaser.no-image.valign-middle .teaser-content {
+    gap: var(--teaser-gap);
     align-items: center;
   }
 
-  .teaser.no-image.valign-bottom .teaser-content {
-    align-items: end;
+  /* BG Color: only the background colour (the space around the content: the Padding fields) */
+  .teaser.bg-grey {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .teaser.bg-navy {
+    --teaser-overlay: rgb(1 22 39 / 80%);
+
+    background-color: rgb(1 22 39);
+  }
+
+  .teaser:is(.bg-dark, .bg-dark-green, .bg-navy, .background, .card) {
+    --teaser-divider: #767676;
+    --teaser-title-color: var(--color-text-on-neutral);
+    --teaser-text-color: rgb(255 255 255 / 70%);
+    --teaser-meta-color: rgb(255 255 255 / 70%);
+    --teaser-link-color: var(--color-text-on-neutral);
+    --teaser-stat-color: var(--brand-300);
+    --teaser-eyebrow-color: var(--brand-300);
+
+    /* the brand text colour is too dark on dark (2.3:1) */
+
+    color: var(--color-text-on-neutral);
+  }
+
+  .teaser.bg-dark {
+    --teaser-overlay: rgb(12 12 13 / 80%);
+
+    background-color: var(--color-bg-neutral);
+  }
+
+  .teaser.bg-dark-green {
+    --teaser-overlay: rgb(0 59 57 / 80%);
+
+    background-color: var(--color-bg-dark-green);
+  }
+
+  /* Top spacing: Page header, the larger space above a teaser that opens a page */
+  .teaser.spacing-header {
+    padding-top: var(--space-1600);
+  }
+
+  /* kicker: the eyebrow, then the tags and (on the right) date, reading time and actions */
+  .teaser .teaser-kicker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-300) var(--space-1000);
+  }
+
+  .teaser .teaser-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-200) var(--space-1000);
+  }
+
+  .teaser :is(.teaser-date, .teaser-reading-time) {
+    margin: 0;
+    color: var(--teaser-title-color);
+    font-size: var(--body-font-size-xs);
+    font-weight: var(--font-weight-light);
+    line-height: 1.21;
+    letter-spacing: calc(0.005 * var(--body-font-size-xs));
+  }
+
+  .teaser .teaser-actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-100);
+  }
+
+  /* listen / download / share: icons in the text color, brand on hover */
+  .teaser .teaser-actions :is(a, button).button.icon-button.tertiary {
+    color: var(--teaser-title-color);
+  }
+
+  .teaser .teaser-actions :is(a, button).button.icon-button.tertiary:is(:hover, :focus-visible) {
+    color: var(--color-icon-brand);
+  }
+
+  .teaser .teaser-status {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin: var(--space-100) 0 0;
+    color: var(--teaser-meta-color);
+    font-size: var(--body-font-size-xs);
+    white-space: nowrap;
+  }
+
+  .teaser .teaser-status:empty {
+    display: none;
+  }
+
+  /* author: round image, name and designation */
+  .teaser .teaser-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-200);
+  }
+
+  .teaser .teaser-author-image img {
+    display: block;
+    width: var(--space-1000);
+    height: var(--space-1000);
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+
+  .teaser .teaser-author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    color: var(--teaser-title-color);
+    font-size: var(--heading-font-size-xs);
+    line-height: 1.375;
+  }
+
+  .teaser :is(.teaser-author-name, .teaser-author-designation) {
+    margin: 0;
+  }
+
+  .teaser .teaser-author-name {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser .teaser-author-designation {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser .teaser-body {
+    gap: var(--teaser-body-gap);
+  }
+
+  /* the Lottie animation's pause / play button (WCAG 2.2.2), in the media's corner */
+  .teaser .teaser-media:has(> .animation-toggle) {
+    position: relative;
+  }
+
+  .teaser .teaser-media>.animation-toggle {
+    position: absolute;
+    z-index: 1;
+    inset-block-end: var(--space-300);
+    inset-inline-end: var(--space-300);
+  }
+
+  /* image (or Lottie animation): Image ratio and Image corners */
+  .teaser .teaser-media picture,
+  .teaser .teaser-media img,
+  .teaser .teaser-animation {
+    display: block;
+    width: 100%;
+  }
+
+  .teaser .teaser-media img,
+  .teaser .teaser-animation {
+    height: auto;
+    aspect-ratio: 10 / 9;
+    border-radius: var(--radius-l);
+    object-fit: cover;
+  }
+
+  /* above or below the text: a wide image */
+  .teaser:is(.image-top, .image-bottom) .teaser-media :is(img, .teaser-animation) {
+    aspect-ratio: 16 / 9;
+  }
+
+  .teaser.ratio-8-9 .teaser-media :is(img, .teaser-animation) {
+    aspect-ratio: 8 / 9;
+  }
+
+  .teaser.ratio-1-1 .teaser-media :is(img, .teaser-animation) {
+    aspect-ratio: 1;
+  }
+
+  .teaser.ratio-original .teaser-media :is(img, .teaser-animation) {
+    aspect-ratio: auto;
+  }
+
+  .teaser.square .teaser-media :is(img, .teaser-animation) {
+    border-radius: 0;
+  }
+
+  /* content */
+  .teaser .teaser-content,
+  .teaser .teaser-header,
+  .teaser .teaser-intro,
+  .teaser .teaser-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .teaser .teaser-content,
+  .teaser .teaser-header {
+    gap: var(--space-300);
+  }
+
+  .teaser .teaser-intro {
+    gap: var(--space-800);
+  }
+
+  .teaser .teaser-eyebrow {
+    flex: 1 0 100%;
+    margin: 0;
+    color: var(--teaser-eyebrow-color, var(--color-text-brand));
+    font-size: var(--body-font-size-l);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.625;
+  }
+
+  /* Eyebrow style: Label, small uppercase grey (like the tags) */
+  .teaser.eyebrow-label .teaser-eyebrow {
+    color: var(--teaser-meta-color);
+    font-size: var(--body-font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.57;
+    letter-spacing: calc(0.01 * var(--body-font-size-xs));
+    text-transform: uppercase;
+  }
+
+  /* Authored eyebrow colors */
+  .teaser.eyebrow-grey .teaser-eyebrow {
+    color: rgb(90 90 90);
+  }
+
+  .teaser.eyebrow-white .teaser-eyebrow {
+    color: var(--color-text-on-neutral);
+  }
+
+  .teaser .teaser-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-200) var(--space-400);
+    color: var(--teaser-meta-color);
+    font-size: var(--body-font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.57;
+    letter-spacing: calc(0.01 * var(--body-font-size-xs));
+  }
+
+  /* tags: uppercase, separated by a bar (Figma "BANKING | AI NATIVE") */
+  .teaser .teaser-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-200);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-transform: uppercase;
+  }
+
+  .teaser .teaser-tags li + li::before {
+    content: '|';
+    margin-inline-end: var(--space-200);
+  }
+
+  .teaser .teaser-heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-400) var(--space-600);
+  }
+
+  /* Title Type: the heading level sets the size (H1 64px, H2 48px ... H6 20px on desktop) */
+  .teaser .teaser-title {
+    --teaser-title-size: var(--heading-font-size-xxl);
+
+    flex: 1 1 auto;
+    margin: 0;
+    color: var(--teaser-title-color);
+    font-size: var(--teaser-title-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * var(--teaser-title-size));
+  }
+
+  .teaser :is(h4, h5, h6).teaser-title {
+    line-height: 1.3;
+    letter-spacing: calc(-0.015 * var(--teaser-title-size));
+  }
+
+  /* Authored title colors */
+  .teaser.title-dark .teaser-title {
+    color: rgb(48 48 48);
+  }
+
+  .teaser.title-white .teaser-title {
+    color: var(--color-text-on-neutral);
+  }
+
+  .teaser h1.teaser-title {
+    --teaser-title-size: var(--display-font-size-2);
+  }
+
+  .teaser h3.teaser-title {
+    --teaser-title-size: var(--heading-font-size-xl);
+
+    letter-spacing: calc(-0.025 * var(--teaser-title-size));
+  }
+
+  .teaser h4.teaser-title {
+    --teaser-title-size: var(--heading-font-size-l);
+  }
+
+  .teaser h5.teaser-title {
+    --teaser-title-size: var(--heading-font-size-m);
+  }
+
+  .teaser h6.teaser-title {
+    --teaser-title-size: var(--heading-font-size-s);
+  }
+
+  .teaser .teaser-view-all {
+    flex: none;
+  }
+
+  .teaser :is(.teaser-description, .teaser-short-description) {
+    color: var(--teaser-text-color);
+    font-size: var(--body-font-size-m);
+    line-height: 1.39;
+  }
+
+  .teaser :is(.teaser-description, .teaser-short-description)>* {
+    margin: 0;
+  }
+
+  .teaser :is(.teaser-description, .teaser-short-description)>*+* {
+    margin-top: var(--space-600);
+  }
+
+  /* stats: the title above a large brand value (Figma "Text Section - 2 Columns" with stats) */
+  .teaser .teaser-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-600) var(--space-200);
+    margin: 0;
+  }
+
+  .teaser .teaser-stat {
+    display: flex;
+    flex: 1 0 11.25rem;
+    flex-direction: column;
+    gap: var(--space-100);
+  }
+
+  .teaser .teaser-stat-label {
+    color: var(--teaser-title-color);
+    font-size: var(--body-font-size-l);
+    line-height: 1.417;
+  }
+
+  .teaser .teaser-stat-value {
+    margin: 0;
+    color: var(--teaser-stat-color);
+    font-size: var(--display-font-size-1);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .teaser :is(.teaser-stat-label, .teaser-stat-value)>* {
+    margin: 0;
+  }
+
+  /* links: Default text links and buttons are stacked */
+  .teaser .teaser-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: var(--space-300);
+  }
+
+  .teaser .teaser-links :is(a, button).teaser-cta-no-arrow::after {
+    display: none;
+  }
+
+  /* Buttons side by side: in a row, wrapping (List links keep their full-width rows) */
+  .teaser.buttons-inline .teaser-links {
+    flex-flow: row wrap;
+    align-items: center;
+    gap: var(--space-300) var(--space-600);
+  }
+
+  .teaser.buttons-inline .teaser-links> :is(a, button).button {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  /* List: full-width rows with a divider under each row but the last */
+  .teaser .teaser-link-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-600);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .teaser.buttons-inline .teaser-link-list {
+    flex: 1 0 100%;
+  }
+
+  .teaser .teaser-link-list li {
+    padding-bottom: var(--space-300);
+    border-bottom: var(--border-width-100) solid var(--teaser-divider);
+  }
+
+  .teaser .teaser-link-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .teaser .teaser-link-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2000);
+    color: var(--teaser-link-color);
+    font-size: var(--heading-font-size-m);
+    line-height: 1.417;
+    letter-spacing: calc(-0.015 * var(--heading-font-size-m));
+    text-decoration: none;
+  }
+
+  .teaser .teaser-link-list-item::after {
+    content: '';
+    flex: none;
+    width: var(--icon-size-s);
+    height: var(--icon-size-s);
+    background-color: var(--teaser-divider);
+    mask: url('../../icons/arrow-right.svg') center / contain no-repeat;
+    transition: background-color 0.2s;
+  }
+
+  .teaser .teaser-link-list-item[target='_blank']::after {
+    mask-image: url('../../icons/arrow-up-right.svg');
+  }
+
+  .teaser .teaser-link-list-item:is(:hover, :focus-visible) {
+    color: var(--color-text-brand);
+    text-decoration: none;
+  }
+
+  .teaser .teaser-link-list-item:is(:hover, :focus-visible)::after {
+    background-color: currentcolor;
+  }
+
+  /* List arrow: Down right, on List links, Text links and buttons */
+  .teaser.arrow-down-right :is(.teaser-link-list-item, .teaser-links a.button):not([target='_blank'])::after {
+    mask-image: url('../../icons/arrow-up-right.svg');
+    transform: rotate(90deg);
+  }
+
+  /* List arrow: None, List links without an arrow (decorative: the link text names them) */
+  .teaser.arrow-none .teaser-link-list-item::after {
+    display: none;
+  }
+
+  /* buttons on dark backgrounds and images */
+
+  /* Text split: larger title and text, top aligned */
+  .teaser.no-image {
+    --teaser-text-color: var(--color-text-default);
+    --teaser-body-gap: var(--space-1000);
+
+    align-items: start;
+  }
+
+  .teaser.no-image:is(.bg-dark, .bg-dark-green, .bg-navy) {
+    --teaser-text-color: rgb(255 255 255 / 70%);
+  }
+
+  /* Buttons on dark backgrounds and images */
+  .teaser:where(.bg-dark,
+    .bg-dark-green,
+    .bg-navy,
+    .background,
+    .card) a.button.tertiary:not(:hover, :focus-visible) {
+    color: var(--color-text-on-neutral);
+  }
+
+  .teaser:where(.bg-dark,
+    .bg-dark-green,
+    .bg-navy,
+    .background,
+    .card) a.button.tertiary:is(:hover, :focus-visible),
+  .teaser:where(.bg-dark,
+    .bg-dark-green,
+    .bg-navy,
+    .background,
+    .card) .teaser-link-list-item:is(:hover, :focus-visible) {
+    color: var(--brand-300);
+  }
+
+  .teaser:where(.bg-dark,
+    .bg-dark-green,
+    .bg-navy,
+    .background,
+    .card) a.button.secondary:not(.button-bg-white,
+    .button-bg-blue,
+    :hover,
+    :focus-visible) {
+    border-color: var(--color-text-on-neutral);
+    color: var(--color-text-on-neutral);
+  }
+
+  /* Authored white CTA background */
+  .teaser .teaser-links .button.button-bg-white {
+    border-color: var(--grey-200);
+    background-color: #fff;
+    color: rgb(48 48 48);
+  }
+
+  /* Authored blue CTA background */
+  .teaser .teaser-links .button.button-bg-blue {
+    border-color: rgb(33 106 195);
+    background-color: rgb(33 106 195);
+    color: #fff;
+  }
+
+  /* Authored rectangular CTA shape */
+  .teaser .teaser-links .button.button-rectangle {
+    border: var(--border-width-100) solid var(--grey-200);
+    border-radius: 0;
+  }
+
+  /* Authored button arrows inherit the button text color */
+  .teaser .teaser-links .button:is(.button-bg-white,
+    .button-bg-blue)::after {
+    background-color: currentcolor;
+  }
+
+  .teaser.no-image .teaser-title {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.no-image :is(.teaser-description, .teaser-short-description) {
+    color: var(--teaser-text-color);
+    font-size: var(--body-font-size-l);
+    line-height: 1.417;
+  }
+
+  .teaser.no-image .teaser-media :is(img, .teaser-animation) {
+    border-radius: 0;
+  }
+
+
+  /* an image in the text column (e.g. a chart) shows whole, without corners */
+  .teaser.no-image:not(.ratio-8-9, .ratio-1-1) .teaser-media img {
+    aspect-ratio: auto;
+  }
+
+
+  /* Background image and Card: the image behind the text, under an overlay */
+  .teaser:is(.background, .card) {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .teaser:is(.background, .card)::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: var(--teaser-overlay);
+  }
+
+  .teaser:is(.background, .card) .teaser-media {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+  }
+
+  .teaser:is(.background, .card) .teaser-media :is(picture, img, .teaser-animation) {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
   }
 
   .teaser.background {
-    min-height: 48.75rem;
-    padding: var(--space-3000) var(--space-2000);
+    align-items: center;
+    justify-content: center;
+    min-height: 35rem;
+    padding: var(--space-2000) var(--space-600);
   }
 
+  /* Card: rounded, the header at the top and the links at the bottom (Figma "Media Kit") */
   .teaser.card {
-    min-height: 35.625rem;
-    padding: var(--space-1000);
+    --teaser-overlay: rgb(0 0 0 / 70%);
+
+    align-items: stretch;
+    min-height: 25rem;
+    border-radius: var(--radius-l);
+    padding: var(--space-600);
   }
-}
+
+  .teaser.card .teaser-content {
+    flex: 1;
+    justify-content: space-between;
+    gap: var(--space-1000);
+  }
+
+  .teaser.card .teaser-title {
+    max-width: 31.25rem;
+  }
+
+  .teaser:not(.no-image,
+    .teaser-has-media,
+    .card,
+    .text-left,
+    .text-center,
+    .text-right,
+    .text-justify) .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /*
+  * Text alignment
+  *
+  * Left, Center, Right and Justify use the same content width.
+  * Only the container position and internal alignment change.
+  */
+  .teaser:is(.text-left,
+    .text-center,
+    .text-right,
+    .text-justify):not(.no-image, .card) .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+  }
+
+  /* Left */
+  .teaser.text-left:not(.no-image, .card) .teaser-content {
+    margin-inline: 0 auto;
+    text-align: start;
+  }
+
+  /* Center */
+  .teaser.text-center:not(.no-image, .card) .teaser-content {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* Right */
+  .teaser.text-right:not(.no-image, .card) .teaser-content {
+    margin-inline: auto 0;
+    text-align: end;
+  }
+
+  /* Kicker, tags, heading, metadata and author alignment */
+  .teaser.text-left :is(.teaser-kicker,
+    .teaser-meta,
+    .teaser-tags,
+    .teaser-heading-row,
+    .teaser-author) {
+    justify-content: flex-start;
+  }
+
+  .teaser.text-center :is(.teaser-kicker,
+    .teaser-meta,
+    .teaser-tags,
+    .teaser-heading-row,
+    .teaser-author) {
+    justify-content: center;
+  }
+
+  .teaser.text-right :is(.teaser-kicker,
+    .teaser-meta,
+    .teaser-tags,
+    .teaser-heading-row,
+    .teaser-author) {
+    justify-content: flex-end;
+  }
+
+  /* Stacked links and buttons */
+  .teaser.text-left .teaser-links {
+    align-items: flex-start;
+  }
+
+  .teaser.text-center .teaser-links {
+    align-items: center;
+  }
+
+  .teaser.text-right .teaser-links {
+    align-items: flex-end;
+  }
+
+  /* Justify: paragraph content only */
+  .teaser.text-justify:not(.no-image, .card) .teaser-content {
+    margin-inline: 0 auto;
+  }
+
+  .teaser.text-justify :is(.teaser-description, .teaser-short-description) {
+    text-align: justify;
+    text-align-last: start;
+  }
+
+  .teaser.text-justify :is(.teaser-title,
+    .teaser-eyebrow,
+    .teaser-date,
+    .teaser-reading-time,
+    .teaser-author-details) {
+    text-align: start;
+  }
+
+  .teaser.text-justify :is(.teaser-kicker,
+    .teaser-meta,
+    .teaser-tags,
+    .teaser-heading-row,
+    .teaser-author) {
+    justify-content: flex-start;
+  }
+
+  .teaser.text-justify .teaser-links {
+    align-items: flex-start;
+  }
+
+  .teaser:not(.no-image,
+    .teaser-has-media,
+    .card,
+    .text-left,
+    .text-center,
+    .text-right,
+    .text-justify) .teaser-links {
+    align-items: center;
+  }
+
+  .teaser.buttons-inline.text-justify .teaser-links {
+    justify-content: flex-start;
+  }
+
+  /* Inline links and buttons */
+  .teaser.buttons-inline.text-left .teaser-links {
+    justify-content: flex-start;
+  }
+
+  .teaser.buttons-inline.text-center .teaser-links {
+    justify-content: center;
+  }
+
+  .teaser.buttons-inline.text-right .teaser-links {
+    justify-content: flex-end;
+  }
+
+  /*
+  * Default centered behavior:
+  * Image & Text without an image and without an explicit alignment.
+  */
+
+  .teaser:not(.no-image,
+    .teaser-has-media,
+    .card,
+    .text-left,
+    .text-center,
+    .text-right,
+    .text-justify) :is(.teaser-kicker,
+    .teaser-meta,
+    .teaser-tags,
+    .teaser-heading-row,
+    .teaser-author) {
+    justify-content: center;
+  }
+
+  .teaser.buttons-inline:not(.no-image,
+    .teaser-has-media,
+    .card,
+    .text-left,
+    .text-center,
+    .text-right,
+    .text-justify) .teaser-links {
+    justify-content: center;
+  }
+
+  /* Vertical alignment */
+  .teaser.valign-top {
+    align-items: start;
+  }
+
+  .teaser.valign-middle {
+    align-items: center;
+  }
+
+  .teaser.valign-bottom {
+    align-items: end;
+  }
+
+  .teaser.background.valign-top {
+    justify-content: flex-start;
+  }
+
+  .teaser.background.valign-middle {
+    justify-content: center;
+  }
+
+  .teaser.background.valign-bottom {
+    justify-content: flex-end;
+  }
+
+  /* Image position: Bottom; Image position (mobile): above or below the text */
+  .teaser:is(.image-bottom, .mobile-image-bottom) .teaser-media {
+    order: 2;
+  }
+
+  .teaser.teaser-has-media.mobile-image-top .teaser-media {
+    order: -1;
+  }
+
+  .teaser.no-image.mobile-image-top .teaser-media {
+    order: -1;
+  }
+
+  /* Title weight, Description size */
+  .teaser.title-regular .teaser-title {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.title-semibold .teaser-title {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-m);
+    line-height: 1.61;
+  }
+
+  .teaser.text-large :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-l);
+    line-height: 1.417;
+  }
+
+  @media (width >=600px) {
+    /* Image & Text, Left / Right: image and text side by side */
+    .teaser.teaser-has-media:not(.image-top, .image-bottom) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .teaser.teaser-has-media:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
+      order: 0;
+    }
+
+    .teaser.teaser-has-media:is(.image-right, .image-bottom) .teaser-media {
+      order: 2;
+    }
+  }
+
+  @media (width >=900px) {
+    .teaser {
+      --teaser-gap: var(--space-2000);
+      --teaser-body-gap: var(--space-1000);
+    }
+
+    .teaser.spacing-header {
+      padding-top: var(--space-5000);
+    }
+
+    .teaser .teaser-eyebrow {
+      font-size: var(--body-font-size-s);
+    }
+
+    .teaser .teaser-stat-value {
+      font-size: 6rem;
+    }
+
+    .teaser.no-image:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
+      order: 0;
+    }
+
+    .teaser.no-image {
+      --teaser-body-gap: var(--space-1200);
+    }
+
+    /* Text split: the eyebrow, date and tags above both columns */
+    .teaser.no-image .teaser-content {
+      display: grid;
+      grid-template-areas: 'kicker kicker' 'heading body';
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 var(--space-600);
+      align-items: start;
+    }
+
+    .teaser.no-image .teaser-header {
+      display: contents;
+    }
+
+    .teaser.no-image .teaser-kicker {
+      grid-area: kicker;
+      margin-bottom: var(--space-1000);
+    }
+
+    .teaser.no-image .teaser-intro {
+      grid-area: heading;
+    }
+
+    .teaser.no-image .teaser-body {
+      grid-area: body;
+    }
+
+    .teaser.no-image.valign-middle .teaser-content {
+      align-items: center;
+    }
+
+    .teaser.no-image.valign-bottom .teaser-content {
+      align-items: end;
+    }
+
+    .teaser.no-image.text-left .teaser-content {
+      text-align: start;
+    }
+
+    .teaser.no-image.text-center .teaser-content {
+      text-align: center;
+    }
+
+    .teaser.no-image.text-right .teaser-content {
+      text-align: end;
+    }
+
+    .teaser.no-image.text-justify .teaser-content {
+      text-align: start;
+    }
+
+    .teaser.no-image.text-justify :is(.teaser-description, .teaser-short-description) {
+      text-align: justify;
+      text-align-last: start;
+    }
+
+    .teaser.background {
+      min-height: 48.75rem;
+      padding: var(--space-3000) var(--space-2000);
+    }
+
+    .teaser.card {
+      min-height: 35.625rem;
+      padding: var(--space-1000);
+    }
+  }
