@@ -1310,7 +1310,7 @@
           "name": "titleHidden",
           "label": "Hide Title",
           "value": false,
-          "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+          "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with Show Action Label off too, the title stays visible as the card's link."
         },
         {
           "component": "boolean",
@@ -1350,7 +1350,7 @@
           "name": "showActionLabel",
           "label": "Show Action Label",
           "value": true,
-          "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
+          "description": "Off: no call to action on this card (neither its Call to action label nor the default, e.g. Explore); the title is the card's link (its text names it), also with Hide Title on."
         }
       ]
     }

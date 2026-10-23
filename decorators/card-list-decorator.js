@@ -24,7 +24,7 @@ import { moveInstrumentation } from '../scripts/scripts.js';
 import { pushComponents } from '../utils/analytics.js';
 import { readButtonOptions } from '../utils/buttons.js';
 import {
-  BREAKPOINTS, HEADINGS, kindOf, themeOf,
+  BREAKPOINTS, HEADINGS, cardActionLabel, cardDisplay, kindOf, themeOf,
 } from '../utils/card-list-config.js';
 import { uniqueId } from '../utils/ids.js';
 import { textOf } from '../utils/properties.js';
@@ -154,27 +154,6 @@ function mediaOf(card, config, breakpoints) {
   return media;
 }
 
-/**
- * The presentation of one card: the list's (or Cards') Show options with the card's own Display
- * toggles (List Item: Hide Title, Show Description / Image / Eyebrow / Label / Action Label).
- * A linked card keeps one visible link: with its title hidden, its action label stays.
- */
-function displayOf(card, config) {
-  const own = card.display || {};
-  const titleHidden = !!own.titleHidden && !!card.title;
-  return {
-    ...config,
-    showImage: config.showImage && own.showImage !== false,
-    showEyebrow: config.showEyebrow && own.showEyebrow !== false,
-    showDescription: config.showDescription && own.showDescription !== false,
-    // a card's own Show Description off hides it on text cards too
-    ownDescription: own.showDescription !== false,
-    showCta: config.showCta && (own.showActionLabel !== false || titleHidden),
-    showLabel: own.showLabel !== false,
-    titleHidden,
-  };
-}
-
 /** a title kept for screen readers and the heading outline, not shown (Hide Title) */
 function hiddenTitle(title, display) {
   if (title && display.titleHidden) hideVisually(title);
@@ -186,7 +165,7 @@ function hiddenTitle(title, display) {
  * action when shown, else the title; a card without a destination isn't linked.
  */
 export function renderCard(card, listConfig, { t, level, kind }) {
-  const config = displayOf(card, listConfig);
+  const config = cardDisplay(card, listConfig);
   const article = element('article', `list-card list-card-${kind}`);
   // Card colour paints panel, report and statistic cards; an image card has its image
   const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
@@ -196,12 +175,14 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   const eyebrow = config.showEyebrow ? card.eyebrow : '';
   const linked = config.linkItems && !!card.url;
 
-  // the call to action, when shown, is the card's one link; else the title is
-  const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
-  const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
+  // the call to action, when shown, is the card's one link; else the title is. Show Action Label
+  // off is checked before any label (authored or the default Explore / Download) is taken
+  const ctaLabel = cardActionLabel(card, config, kind, {
+    report: t('download', 'Download'), panel: t('explore', 'Explore'),
+  });
   const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
-  // a hidden title can't be the card's link (an invisible focus): the call to action stays,
-  // or, without an action label, the title stays visible
+  // a hidden title can't be the card's link (an invisible focus): without a call to action
+  // (none, or Show Action Label off) a linked card's title stays visible
   const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
   if (linked && !cta) config.titleHidden = false;
   if (cta) {
@@ -265,7 +246,7 @@ export function renderCard(card, listConfig, { t, level, kind }) {
 
 /** a row of the list of links (Display as teaser off) */
 export function renderRow(card, listConfig, { t, level }) {
-  const config = displayOf(card, listConfig);
+  const config = cardDisplay(card, listConfig);
   const article = element('article', 'list-row');
   const linked = config.linkItems && !!card.url;
   const title = card.title ? element(level, 'list-row-title') : null;
@@ -291,7 +272,7 @@ export function renderRow(card, listConfig, { t, level }) {
 
 /** the feature card (First card as feature): the image behind tags, title and author */
 export function renderFeature(card, listConfig, { t, level, authors = new Map() }) {
-  const config = displayOf(card, listConfig);
+  const config = cardDisplay(card, listConfig);
   const article = element('article', 'list-feature');
   const content = element('div', 'list-feature-content');
   const author = authors.get(card.authorId);

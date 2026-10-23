@@ -156,6 +156,44 @@ export function themeOf(card, cardTheme) {
 }
 
 /**
+ * The presentation of one card: the list's (or Cards') Show options with the card's own Display
+ * toggles (List Item: Hide Title, Show Description / Image / Eyebrow / Label / Action Label).
+ * Show Action Label off always removes the call to action, also with Hide Title on (the renderer
+ * then keeps a linked card's title visible as its one link).
+ * @param {Object} card { title, display }
+ * @param {Object} config the list's presentation (normalizePresentation)
+ * @returns {Object} the configuration for this card
+ */
+export function cardDisplay(card, config) {
+  const own = card.display || {};
+  return {
+    ...config,
+    showImage: config.showImage && own.showImage !== false,
+    showEyebrow: config.showEyebrow && own.showEyebrow !== false,
+    showDescription: config.showDescription && own.showDescription !== false,
+    // a card's own Show Description off hides it on text cards too
+    ownDescription: own.showDescription !== false,
+    showCta: config.showCta && own.showActionLabel !== false,
+    showLabel: own.showLabel !== false,
+    titleHidden: !!own.titleHidden && !!card.title,
+  };
+}
+
+/**
+ * The text of a card's call to action: none when the card's call to action is off (cardDisplay),
+ * else its Call to action label, else the default of its kind (e.g. Explore for panels).
+ * @param {Object} card { ctaLabel }
+ * @param {{ showCta: boolean }} display from cardDisplay()
+ * @param {string} kind one of CARD_KINDS
+ * @param {Object<string, string>} [defaults] the default labels by kind
+ * @returns {string} '' for no call to action
+ */
+export function cardActionLabel(card, display, kind, defaults = {}) {
+  if (!display.showCta) return '';
+  return text(card.ctaLabel) || defaults[kind] || '';
+}
+
+/**
  * Normalizes the authored presentation properties (lower-case keys, text values): missing or
  * invalid values get their defaults, so a configuration never breaks rendering.
  * @param {Object<string, string>} raw
