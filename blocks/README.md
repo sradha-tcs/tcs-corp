@@ -44,7 +44,7 @@ The project-wide rules, architecture and standards are in the [project knowledge
 | [Quote](./quote/README.md) (`quote`) | Independent | A quotation with author, optional image and title | Image position, BG Color | Yes | Active | [README](./quote/README.md) |
 | [Separator](./separator/README.md) (`separator`) | Independent | A divider line between content | Variants, widths per breakpoint, theme, motion | Yes | Active | [README](./separator/README.md) |
 | [Tab](./tab/README.md) (`tab`) | Child item | Starts a tab panel in a Tabs Container | Columns per row of its Column Breaks | Yes | Active | [README](./tab/README.md) |
-| [Table](./table/README.md) (`table`) | Container | A data table of rows with 1–5 columns | Header row, column counts | Yes | Active | [README](./table/README.md) |
+| [Table](./table/README.md) (`table`) | Container | A data table of rows with 1–9 columns | Header row, column counts | Yes | Active | [README](./table/README.md) |
 | [Table List](./table-list/README.md) (`table-list`) | Container | A numbered list of linked items (industries, services) | Variations, item actions, numbers | Yes | Active | [README](./table-list/README.md) |
 | [Tabs](./tabs/README.md) (`tabs`) | Container (section) and block | Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments) | Styles, alignment, orientation | Yes | Active | [README](./tabs/README.md) |
 | [TCS Header](./tcs-header/README.md) (`tcs-header`) | Independent | The TCS and TATA logos of the header, on the nav page | — | Yes | Active | [README](./tcs-header/README.md) |
