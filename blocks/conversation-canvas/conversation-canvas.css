@@ -249,7 +249,7 @@
 
 .conversation-canvas .conversation-canvas-search-form input::placeholder {
   color: rgb(0 0 0 / 55%);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
   opacity: 1;
 }
