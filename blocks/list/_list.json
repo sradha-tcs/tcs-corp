@@ -1350,7 +1350,7 @@
           "name": "showActionLabel",
           "label": "Show Action Label",
           "value": true,
-          "description": "Off: no call to action on this card (neither its Call to action label nor the default, e.g. Explore); the title is the card's link (its text names it), also with Hide Title on."
+          "description": "Untouched, the card follows the List's Show call to action. Set on or off here, it overrides the List for this card only. Off: no call to action (neither the Call to action label nor the default, e.g. Explore); the title is the card's link, also with Hide Title on."
         }
       ]
     }

@@ -363,7 +363,7 @@ describe('list item cells', () => {
 describe('list item display', () => {
   it('shows everything for an item authored before the Display toggles', () => {
     assert.deepEqual(itemDisplay({}), {
-      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
+      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: null,
     });
   });
   it('turns a Show option off only for an authored "false", Hide Title on only for "true"', () => {
@@ -375,7 +375,8 @@ describe('list item display', () => {
     assert.equal(display.showImage, false);
     assert.equal(display.showEyebrow, true);
     assert.equal(display.showLabel, true);
-    assert.equal(display.showActionLabel, true);
+    // not configured: inherits the List's Show call to action
+    assert.equal(display.showActionLabel, null);
   });
   it('travels with the card of a List Item', () => {
     const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });

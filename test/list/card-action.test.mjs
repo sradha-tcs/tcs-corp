@@ -1,5 +1,6 @@
 /*
- * List cards: the List Item's Show Action Label toggle and the card's call to action
+ * List cards: the List Item's Show Action Label toggle and the card's call to action, inherited from
+ * the List's Show call to action unless the item sets it
  * (utils/card-list-config.js cardDisplay, cardActionLabel): node --test
  */
 import { describe, it } from 'node:test';
@@ -55,11 +56,53 @@ describe('Show Action Label (List Item)', () => {
       action({ kind: 'panel' }),
     ], ['Explore', '', 'Explore']);
   });
-  it('the List\'s Show call to action off hides every call to action', () => {
+  it('the List\'s Show call to action off hides the call to action of items that inherit it', () => {
     assert.equal(action({ kind: 'panel', ctaLabel: 'Learn more' }, { showcta: 'false' }), '');
+    assert.equal(action({ kind: 'panel', showActionLabel: '' }, { showcta: 'false' }), '');
   });
   it('image cards have no default call to action', () => {
     assert.equal(action({ kind: 'image' }), '');
     assert.equal(action({ kind: 'image', ctaLabel: 'Read more' }), 'Read more');
+  });
+});
+
+describe('Show Action Label inherits the List\'s Show call to action', () => {
+  // the List's Show call to action x the item's Show Action Label (true / false / not configured)
+  const MATRIX = [
+    ['true', '', 'Explore'],
+    ['true', 'true', 'Explore'],
+    ['true', 'false', ''],
+    ['false', '', ''],
+    ['false', 'true', 'Explore'],
+    ['false', 'false', ''],
+    // a List made before Show call to action (not stored): on
+    ['', '', 'Explore'],
+    ['', 'false', ''],
+  ];
+  MATRIX.forEach(([showcta, showActionLabel, expected]) => {
+    it(`List ${showcta || 'not set'}, item ${showActionLabel || 'not configured'}: ${expected || 'no call to action'}`, () => {
+      assert.equal(action({ kind: 'panel', showActionLabel }, { showcta }), expected);
+    });
+  });
+  it('the example: A and C inherit the List (shown), B overrides it (hidden)', () => {
+    const cfg = config({ showcta: 'true', cardstyle: 'panel' });
+    const labels = [{}, { showActionLabel: 'false' }, {}].map((item) => {
+      const c = card(item);
+      return cardActionLabel(c, cardDisplay(c, cfg), kindOf(c, cfg.cardStyle), DEFAULTS);
+    });
+    assert.deepEqual(labels, ['Explore', '', 'Explore']);
+  });
+  it('an item set on shows its call to action in a List set off; the others inherit off', () => {
+    const cfg = config({ showcta: 'false', cardstyle: 'panel' });
+    const labels = [{}, { showActionLabel: 'true', ctaLabel: 'Learn more' }, {}].map((item) => {
+      const c = card(item);
+      return cardActionLabel(c, cardDisplay(c, cfg), kindOf(c, cfg.cardStyle), DEFAULTS);
+    });
+    assert.deepEqual(labels, ['', 'Learn more', '']);
+  });
+  it('cards without Display toggles (child and tagged pages, Cards) follow the List', () => {
+    const page = { title: 'Banking', ctaLabel: '', kind: 'panel' };
+    assert.equal(cardDisplay(page, config({ showcta: 'true' })).showCta, true);
+    assert.equal(cardDisplay(page, config({ showcta: 'false' })).showCta, false);
   });
 });

@@ -158,8 +158,9 @@ export function themeOf(card, cardTheme) {
 /**
  * The presentation of one card: the list's (or Cards') Show options with the card's own Display
  * toggles (List Item: Hide Title, Show Description / Image / Eyebrow / Label / Action Label).
- * Show Action Label off always removes the call to action, also with Hide Title on (the renderer
- * then keeps a linked card's title visible as its one link).
+ * Show Action Label inherits the List's Show call to action unless the item sets it (true /
+ * false): then it wins for that card only, both ways. Off always removes the call to action, also
+ * with Hide Title on (the renderer then keeps a linked card's title visible as its one link).
  * @param {Object} card { title, display }
  * @param {Object} config the list's presentation (normalizePresentation)
  * @returns {Object} the configuration for this card
@@ -173,7 +174,7 @@ export function cardDisplay(card, config) {
     showDescription: config.showDescription && own.showDescription !== false,
     // a card's own Show Description off hides it on text cards too
     ownDescription: own.showDescription !== false,
-    showCta: config.showCta && own.showActionLabel !== false,
+    showCta: typeof own.showActionLabel === 'boolean' ? own.showActionLabel : config.showCta,
     showLabel: own.showLabel !== false,
     titleHidden: !!own.titleHidden && !!card.title,
   };

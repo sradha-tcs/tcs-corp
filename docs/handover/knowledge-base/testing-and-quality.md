@@ -122,6 +122,7 @@ Dialog changes are tested with a test matrix that has these columns: Test ID, Bl
 - **Representative combinations**: high-risk combinations are tested together rather than the full cross product. For example, TE-03 tests four position × BG Color × button layout combinations so that each value appears at least once. The report doesn't use a formal pairwise generator.
 - **High-risk cases**:
   - fallbacks (Hide Title with Show Action Label off: no call to action, the title stays visible as the link; handover 2.43);
+  - inheritance (List Show call to action × List Item Show Action Label not set / on / off: the item's value wins when set; handover 2.44);
   - empty fields;
   - multiple instances on a page;
   - legacy content (16-cell List Item rows, the former Title size, Section Highlight);

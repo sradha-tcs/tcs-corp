@@ -46,13 +46,19 @@ export function itemLayoutFor(count) {
 /**
  * A List Item's Display toggles: the Show options are on unless authored off ("false"), Hide
  * Title is off unless authored on; an item without them (authored before) shows everything.
+ * Show Action Label is null when not configured: the card inherits the List's Show call to
+ * action (cardDisplay in utils/card-list-config.js); an authored "true" / "false" overrides it.
  * @param {Object} item the authored values (titleHidden, showDescription, ...)
  * @returns {{ titleHidden: boolean, showDescription: boolean, showImage: boolean,
- *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean }}
+ *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean|null }}
  */
 export function itemDisplay(item = {}) {
-  return Object.fromEntries(ITEM_DISPLAY.map((name) => [name,
-    name === 'titleHidden' ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
+  return Object.fromEntries(ITEM_DISPLAY.map((name) => {
+    const value = text(item[name]).toLowerCase();
+    if (name === 'titleHidden') return [name, isYes(value)];
+    if (name === 'showActionLabel') return [name, value === '' ? null : value !== 'false'];
+    return [name, value !== 'false'];
+  }));
 }
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
