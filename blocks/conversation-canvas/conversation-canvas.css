@@ -221,6 +221,17 @@
   border-color: var(--color-border-brand);
 }
 
+.conversation-canvas .conversation-canvas-search-form button[type='submit']:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.conversation-canvas .conversation-canvas-search-form.has-value button[type='submit'] {
+  background-color: #4e84ff;
+  color: #fff;
+  opacity: 1;
+}
+
 .conversation-canvas .conversation-canvas-search-form input {
   flex: 1;
   min-width: 0;
@@ -237,7 +248,9 @@
 }
 
 .conversation-canvas .conversation-canvas-search-form input::placeholder {
-  color: var(--color-text-default);
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 18px;
+  font-weight: 400;
   opacity: 1;
 }
 

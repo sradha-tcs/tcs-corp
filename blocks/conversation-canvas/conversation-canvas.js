@@ -377,16 +377,36 @@ function buildSearchForm(config, id, block) {
   form.className = 'conversation-canvas-search-form';
   // a search landmark, named by its placeholder when there are several on the page
   form.setAttribute('role', 'search');
-  const placeholder = textOf(config.searchplaceholder) || t('searchPlaceholder', 'Ask us a question');
+  const placeholders = [
+    'Ask us about transformational AI',
+    'Ask us about our services',
+    'Ask for a session with our experts',
+    'Ask us how we can help your business',
+    'Ask us a question',
+  ];
+
+  let placeholderIndex = 0;
+
   const input = document.createElement('input');
   input.type = 'search';
   input.name = 'q';
   input.id = `${id}-q`;
-  input.placeholder = placeholder;
   input.autocomplete = 'off';
+  input.placeholder = placeholders[0];
+
   const label = hideVisually(document.createElement('label'));
   label.htmlFor = input.id;
-  label.textContent = placeholder;
+  label.textContent = placeholders[0];
+
+  // Rotate placeholders every 3 seconds
+  setInterval(() => {
+    // Don't rotate when user is typing
+    if (input.value.trim()) return;
+
+    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+    input.placeholder = placeholders[placeholderIndex];
+    label.textContent = placeholders[placeholderIndex];
+  }, 3000);
 
   // audio (speech input), only where the browser supports it
   const audio = document.createElement('button');
@@ -442,6 +462,16 @@ function buildSearchForm(config, id, block) {
     type: textOf(config.searchbuttonstyle).toLowerCase() || 'primary',
     buttonType: 'submit',
   });
+  submit.disabled = true;
+  const updateSearchState = () => {
+    const hasValue = input.value.trim().length > 0;
+
+    form.classList.toggle('has-value', hasValue);
+    submit.disabled = !hasValue;
+  };
+
+  input.addEventListener('input', updateSearchState);
+  updateSearchState();
 
   // a polite status when the search can't run (no integration, no Search page)
   const status = document.createElement('p');
@@ -560,12 +590,12 @@ function buildSearch(config, id, block) {
       menuToggle.focus();
     }
   });
-  document.addEventListener('click', (e) => {
-    if (!menu.hidden && !row.contains(e.target)) closeMenu();
-  });
-  row.addEventListener('focusout', (e) => {
-    if (!menu.hidden && e.relatedTarget && !row.contains(e.relatedTarget)) closeMenu();
-  });
+  // document.addEventListener('click', (e) => {
+  //   if (!menu.hidden && !row.contains(e.target)) closeMenu();
+  // });
+  // row.addEventListener('focusout', (e) => {
+  //   if (!menu.hidden && e.relatedTarget && !row.contains(e.relatedTarget)) closeMenu();
+  // });
 
   row.append(menuToggle, menu, buildSearchForm(config, id, block));
   return row;
