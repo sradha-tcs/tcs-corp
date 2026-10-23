@@ -27,7 +27,7 @@ Legend: ✅ existing block fits · ⚠️ fits with a compromise · ❌ no block
 |---|---|---|---|---|
 | Careers event registration forms (e.g. Agentic AI NextGen careers event) | 6 | Lead-generation form: name, e-mail, phone, primary skill, industry, experience, location (drop-downs), consent; submitted to a TCS back end | **Form Variations** block with the same fields, labels, options and consent text | ❌ submission: see W7-D6 |
 
-## 3. Decisions needed
+## 3. Decisions (confirmed by the user, 23 October 2026: the recommendation of each; W7-D6: Button to the tcs.com form)
 
 | ID | Topic | Options | Recommendation |
 |---|---|---|---|
