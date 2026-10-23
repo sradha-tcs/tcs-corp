@@ -35,8 +35,8 @@ Once every batch was migrated, Wave 1 and every batch were rebuilt so that a lin
 
 | Wave | Pages | Internal links | Kept to tcs.com (page not migrated yet) | Outside the scope (tcs.com) |
 |---|---|---|---|---|
-| w1 | 150 | 169 | 12 | 541 |
-| w2-b01 | 250 | 264 | 38 | 1110 |
+| w1 | 150 | 181 | 0 | 541 |
+| w2-b01 | 250 | 302 | 0 | 1110 |
 | w2-b02 | 250 | 290 | 1 | 918 |
 | w2-b03 | 250 | 274 | 0 | 833 |
 | w2-b04 | 250 | 275 | 0 | 842 |
@@ -45,6 +45,11 @@ Once every batch was migrated, Wave 1 and every batch were rebuilt so that a lin
 | w2-b07 | 248 | 253 | 0 | 1095 |
 | w2-b08 | 250 | 271 | 0 | 1002 |
 | w2-b09 | 157 | 167 | 0 | 675 |
+| w3 | 20 | 19 | 0 | 10 |
+| w4-b01 | 250 | 256 | 0 | 243 |
+| w4-b02 | 250 | 254 | 0 | 104 |
+| w4-b03 | 5 | 5 | 0 | 1 |
+| w5 | 132 | 54 | 0 | 96 |
 
 Internal links to a page that doesn't exist: **0**.
 
@@ -54,16 +59,11 @@ Title (the Page Header's H1), description, publish date, heading levels, image a
 
 | Wave | Pages | Title | Description | Publish date | Media Contacts | Tables | Images | Problems |
 |---|---|---|---|---|---|---|---|---|
-| w1 | 150 | 150 | 150 | 150 | 150 | 32 | 107 | 0 |
-| w2-b01 | 250 | 250 | 250 | 248 | 250 | 9 | 99 | 2 |
-| w2-b02 | 250 | 250 | 250 | 248 | 250 | 13 | 127 | 2 |
-| w2-b03 | 250 | 250 | 250 | 248 | 250 | 15 | 104 | 2 |
-| w2-b04 | 250 | 250 | 250 | 249 | 250 | 9 | 192 | 1 |
-| w2-b05 | 250 | 250 | 250 | 248 | 250 | 13 | 132 | 2 |
-| w2-b06 | 250 | 250 | 250 | 247 | 250 | 20 | 102 | 3 |
-| w2-b07 | 248 | 248 | 248 | 247 | 248 | 12 | 138 | 1 |
-| w2-b08 | 250 | 250 | 250 | 249 | 250 | 0 | 135 | 1 |
-| w2-b09 | 157 | 157 | 157 | 157 | 157 | 2 | 92 | 0 |
+| w3 | 20 | 20 | 18 | 17 | 18 | 1 | 3 | 3 |
+| w4-b01 | 250 | 250 | 245 | 243 | 71 | 1 | 162 | 7 |
+| w4-b02 | 250 | 250 | 249 | 250 | 0 | 0 | 239 | 2 |
+| w4-b03 | 5 | 5 | 5 | 5 | 0 | 0 | 3 | 0 |
+| w5 | 132 | 132 | 132 | 89 | 0 | 51 | 2 | 19 |
 
 **Releases without a publish date** (14: the source text has no dateline): add `publish-date` in their Metadata sheet row.
 
@@ -90,10 +90,9 @@ Title (the Page Header's H1), description, publish date, heading levels, image a
 | no hero image | 604 |
 | no meta description in the source (generated from the first paragraph, review) | 191 |
 | no About TCS section | 140 |
-| link to a page of the list not migrated yet (kept to tcs.com until it is) | 39 |
+| document not downloaded (kept to tcs.com) | 38 |
 | table with merged cells flattened into a Table block (review) | 34 |
 | hero alt reused across releases, set decorative (review) | 23 |
-| no publish date found | 14 |
 | hero alt was generic, set decorative (review) | 9 |
 | old media contacts table left out (Media Contacts block) | 9 |
 | hero alt is another release's title, set decorative (review) | 7 |
@@ -101,6 +100,8 @@ Title (the Page Header's H1), description, publish date, heading levels, image a
 | image download failed | 3 |
 | unmapped source tag | 3 |
 | hero alt of the UAT image set decorative (review) | 1 |
+| link to a page of the list not migrated yet (kept to tcs.com until it is) | 1 |
+| no publish date found | 1 |
 | inline image left out (icon or no source) | 1 |
 
 ## 5. Browser checks per batch (one page in ten of the delivered build)

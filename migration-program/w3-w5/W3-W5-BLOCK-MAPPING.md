@@ -50,7 +50,7 @@ New tags: `content-type/news-alert`, `content-type/analyst-report` (merged); TCS
 | Investor calendar | 1 | Banner · events in tabs (Key dates, Investor conferences) | Page Header · **Tabs** with a **Table** of dates per tab | ⚠️ see D-3 |
 | Secondary navigation (on every IR page) | — | The investor relations section menu | Not migrated per page (navigation, like the header) | ⚠️ see D-5 |
 
-## 4. Decisions needed
+## 4. Decisions (confirmed by the user, 23 October 2026: the recommendation of each)
 
 | ID | Topic | Options | Recommendation |
 |---|---|---|---|
