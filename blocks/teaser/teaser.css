@@ -528,6 +528,7 @@
     .background,
     .card) a.button.secondary:not(.button-bg-white,
     .button-bg-blue,
+    .button-bg-translucent,
     :hover,
     :focus-visible) {
     border-color: var(--color-text-on-neutral);
@@ -548,15 +549,30 @@
     color: #fff;
   }
 
+  /* Authored translucent CTA background for dark and image backgrounds */
+  .teaser .teaser-links .button.button-bg-translucent {
+    border-color: rgb(255 255 255 / 30%);
+    background-color: rgb(255 255 255 / 15%);
+    color: var(--color-text-on-neutral);
+  }
+
+  .teaser .teaser-links .button.button-bg-translucent:is( :hover,
+    :focus-visible) {
+    border-color: rgb(255 255 255 / 45%);
+    background-color: rgb(255 255 255 / 25%);
+    color: var(--color-text-on-neutral);
+  }
+
   /* Authored rectangular CTA shape */
   .teaser .teaser-links .button.button-rectangle {
     border: var(--border-width-100) solid var(--grey-200);
-    border-radius: 0;
+    border-radius: 0.3125rem;
   }
 
   /* Authored button arrows inherit the button text color */
   .teaser .teaser-links .button:is(.button-bg-white,
-    .button-bg-blue)::after {
+    .button-bg-blue,
+    .button-bg-translucent)::after {
     background-color: currentcolor;
   }
 
@@ -576,7 +592,7 @@
 
 
   /* an image in the text column (e.g. a chart) shows whole, without corners */
-  .teaser.no-image:not(.ratio-8-9, .ratio-1-1) .teaser-media img {
+  .teaser.no-image:not(.ratio-8-9, .ratio-1-1) .teaser-media :is(img, .teaser-animation) {
     aspect-ratio: auto;
   }
 
@@ -589,6 +605,79 @@
     flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
+  }
+
+  /* Card and Background authored horizontal positioning */
+  .teaser:is(.card, .background).text-left {
+    align-items: stretch;
+  }
+
+  .teaser.title-semibold .teaser-title {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.title-regular .teaser-title {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.card .teaser-title {
+    max-width: min(100%, 31.25rem);
+  }
+
+  .teaser.card.text-left .teaser-title {
+    max-width: min(100%, 30rem);
+  }
+
+  .teaser:not(.no-image,
+    .teaser-has-media,
+    .card,
+    .text-left,
+    .text-center,
+    .text-right,
+    .text-justify) .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .teaser.card .teaser-content {
+    flex: 1;
+    justify-content: space-between;
+    gap: var(--space-1000);
+  }
+
+  .teaser.card.valign-top .teaser-content {
+    justify-content: flex-start;
+  }
+
+  .teaser.card.valign-middle .teaser-content {
+    justify-content: center;
+  }
+
+  .teaser.card.valign-bottom .teaser-content {
+    justify-content: flex-end;
+  }
+
+  .teaser:is(.card, .background).text-left .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+    margin-inline: 0 auto;
+    text-align: start;
+  }
+
+  .teaser:is(.card, .background).text-center .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .teaser:is(.card, .background).text-right {
+    align-items: stretch;
+  }
+
+  .teaser:is(.card, .background).text-right .teaser-content {
+    width: min(100%, var(--teaser-aligned-content-width));
+    margin-inline: auto 0;
+    text-align: end;
   }
 
   .teaser:is(.background, .card)::before {
@@ -626,28 +715,6 @@
     min-height: 25rem;
     border-radius: var(--radius-l);
     padding: var(--space-600);
-  }
-
-  .teaser.card .teaser-content {
-    flex: 1;
-    justify-content: space-between;
-    gap: var(--space-1000);
-  }
-
-  .teaser.card .teaser-title {
-    max-width: 31.25rem;
-  }
-
-  .teaser:not(.no-image,
-    .teaser-has-media,
-    .card,
-    .text-left,
-    .text-center,
-    .text-right,
-    .text-justify) .teaser-content {
-    width: min(100%, var(--teaser-aligned-content-width));
-    margin-inline: auto;
-    text-align: center;
   }
 
   /*
@@ -844,13 +911,6 @@
   }
 
   /* Title weight, Description size */
-  .teaser.title-regular .teaser-title {
-    font-weight: var(--font-weight-regular);
-  }
-
-  .teaser.title-semibold .teaser-title {
-    font-weight: var(--font-weight-semibold);
-  }
 
   .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
     font-size: var(--body-font-size-m);

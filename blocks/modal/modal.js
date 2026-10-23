@@ -1,7 +1,7 @@
 /*
  * Modal (Block Collection): shows a fragment in a dialog.
  * https://www.aem.live/developer/block-collection/modal
- * Links to a /modals/ path open as a modal (scripts.js); other blocks can use createModal()
+ * Links to a /modal/ path open as a modal (scripts.js); other blocks can use createModal()
  * and openModal(). An authored Modal block renders its link as a button that opens the modal:
  * a <button>, not a link, so it opens the dialog in Universal Editor's preview too (the editor
  * navigates to the target of clicked links).

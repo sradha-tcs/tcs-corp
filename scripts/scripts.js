@@ -557,14 +557,14 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 /**
- * Opens links to a /modals/ page as a modal (blocks/modal).
+ * Opens links to a /modal/ page as a modal (blocks/modal).
  * @param {Document} doc
  */
 function autolinkModals(doc) {
   doc.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
     // links already handled (e.g. by the Modal block) are skipped
-    if (!e.defaultPrevented && origin?.href && new URL(origin.href).pathname.includes('/modals/')) {
+    if (!e.defaultPrevented && origin?.href && new URL(origin.href).pathname.includes('/modal/')) {
       e.preventDefault();
       const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
       openModal(origin.href, { opener: origin });

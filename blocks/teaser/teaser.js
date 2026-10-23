@@ -62,6 +62,7 @@ const LINK_STYLES = [
 const BUTTON_BACKGROUNDS = [
   'button-bg-white',
   'button-bg-blue',
+  'button-bg-translucent',
 ];
 const BUTTON_SHAPES = [
   'button-rectangle',

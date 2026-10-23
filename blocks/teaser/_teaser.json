@@ -248,14 +248,7 @@
           "name": "tags",
           "label": "Tags",
           "multi": true,
-          "condition": {
-            "===": [
-              {
-                "var": "displayTags"
-              },
-              true
-            ]
-          }
+          "description": "Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled."
         },
         {
           "component": "aem-content",
@@ -627,6 +620,10 @@
                 {
                   "name": "Blue",
                   "value": "button-bg-blue"
+                },
+                {
+                  "name": "Translucent white",
+                  "value": "button-bg-translucent"
                 }
               ],
               "description": "Sets the background of this CTA button. Blue uses rgb(33 106 195)."
@@ -779,6 +776,10 @@
             {
               "name": "Blue",
               "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
             }
           ],
           "description": "Sets the Primary CTA button background. Blue uses rgb(33 106 195)."
@@ -911,6 +912,10 @@
             {
               "name": "Blue",
               "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
             }
           ],
           "description": "Sets the Secondary CTA button background. Blue uses rgb(33 106 195)."
@@ -2082,9 +2087,13 @@
             {
               "name": "Blue",
               "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
             }
           ],
-          "description": "Sets the background colour of Primary and Secondary CTA buttons in this Teaser. Text links and List links are not affected."
+          "description": "Sets the background colour of Primary and Secondary CTA buttons. Translucent white uses a 15% white background and is intended for dark or image backgrounds. Text links and List links are not affected."
         },
         {
           "component": "select",

@@ -1,6 +1,6 @@
 # Modal
 
-Shows the content of a fragment page in a native `<dialog>` over the page (the Block Collection modal, adapted). An authored **Modal** block renders a button that opens the dialog; links whose path contains `/modals/` open as a modal anywhere on the page (`scripts/scripts.js` `autolinkModals`); other blocks (the Video block's Play in a Pop-up) use its exported `createModal()` / `openModal()`.
+Shows the content of a fragment page in a native `<dialog>` over the page (the Block Collection modal, adapted). An authored **Modal** block renders a button that opens the dialog; links whose path contains `/modal/` open as a modal anywhere on the page (`scripts/scripts.js` `autolinkModals`); other blocks (the Video block's Play in a Pop-up) use its exported `createModal()` / `openModal()`.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -21,7 +21,7 @@ Shows the content of a fragment page in a native `<dialog>` over the page (the B
 
 **Data source.** The fragment page named in Modal Content, fetched (`{path}.plain.html`) and decorated each time the dialog opens.
 
-**Related blocks.** [Fragment](../fragment/README.md) (same loader, inline instead of a dialog), the Video block (`blocks/video`, Play in a Pop-up uses `createModal`), Form Variations (a form on a modal page), Button Block (a button linking to a `/modals/` page opens a modal too).
+**Related blocks.** [Fragment](../fragment/README.md) (same loader, inline instead of a dialog), the Video block (`blocks/video`, Play in a Pop-up uses `createModal`), Form Variations (a form on a modal page), Button Block (a button linking to a `/modal/` page opens a modal too).
 
 **When to use.** Short, secondary, self-contained content.
 
@@ -148,14 +148,14 @@ B = Backdrop
 
 ## For Content Authors
 
-1. **Create the modal page** (a fragment page, e.g. under the locale's `modals/` or `references/` folder) and start it with a heading: the heading names the dialog.
+1. **Create the modal page** (a fragment page, e.g. under the locale's `modal/` or `references/` folder) and start it with a heading: the heading names the dialog.
 2. **Publish the modal page.**
 3. **Add the block** to the host page: section (or Columns Container column, or Tab) › Add › **Modal**.
 4. **Open its properties.** Pick the page in **Modal Content** and enter the **Button Text** (a verb and an object, e.g. "View our awards").
 5. **Additional tab** (optional): Anchor ID, Hide block, padding and margin apply to the button's block on the page, not to the dialog.
 6. **Preview:** select the button (it works in Universal Editor preview too); check the dialog's content, scrolling and closing.
 7. **Publish** the host page.
-8. **Auto-linked alternative:** in any text or button, link to a page whose path contains `/modals/`: on the site, the link opens that page in a dialog.
+8. **Auto-linked alternative:** in any text or button, link to a page whose path contains `/modal/`: on the site, the link opens that page in a dialog.
 9. **Validate** on the published site: the dialog opens, is named by its heading, closes with Escape and returns focus to the button.
 
 Minimum required: Modal Content. Recommended: Button Text; a heading at the top of the modal page. Optional: the Additional tab.
@@ -172,7 +172,7 @@ Model `modal`; template name "Modal" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modals/. Opens in a dialog. | /language-master/en/block-library/modal/fragments/contact-form |
+| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modal/. Opens in a dialog. | /language-master/en/block-library/modal/fragments/contact-form |
 | Button Text | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | Contact our team |
 
 #### Additional tab — Modal
@@ -355,10 +355,10 @@ A = Dialog
 B = Close button
 ```
 
-### Auto-linked `/modals/` link
+### Auto-linked `/modal/` link
 
 - **Purpose:** open a modal from any link (text, button, header or footer) without a Modal block.
-- **Configuration:** a link whose URL path contains `/modals/`.
+- **Configuration:** a link whose URL path contains `/modal/`.
 - **Rendering:** a document click listener (`autolinkModals`, started in the lazy phase) prevents the navigation and calls `openModal(href, { opener })`; links already handled (`defaultPrevented`) are skipped.
 - **Data layer:** dialog id `modal-{path as class name}`.
 - **Note:** in Universal Editor the editor navigates to clicked links; use a Modal block to open dialogs there.
@@ -370,7 +370,7 @@ File name:
 modal-auto-link-desktop.png
 
 Purpose:
-A dialog opened by an inline link to a /modals/ page.
+A dialog opened by an inline link to a /modal/ page.
 
 Annotations:
 A = Inline link
@@ -421,7 +421,7 @@ Scenario: a "Contact our team" dialog with a form on the Get in touch page.
 
 | Field | Example value | Guidance |
 | ----- | ------------- | -------- |
-| Modal page | `/content/tcs-corp/us/en/modals/contact-form` (library `block-library/modal/fragments/contact-form`) | A heading first, then the Form Variations block |
+| Modal page | `/content/tcs-corp/us/en/modal/contact-form` (library `block-library/modal/fragments/contact-form`) | A heading first, then the Form Variations block |
 | Modal Content | The modal page | Same locale |
 | Button Text | `Contact our team` | Verb and object |
 | Additional › Anchor ID | `anchor-g01b-modal` (library sample) | Stable analytics id |
@@ -567,7 +567,7 @@ blocks/modal/
 
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
-| Modal page | Dialog content | e.g. `/{locale}/modals/…` | Nothing opens |
+| Modal page | Dialog content | e.g. `/{locale}/modal/…` | Nothing opens |
 | `blocks/fragment` `loadFragment` | Loads the page | `blocks/fragment/fragment.js` | No dialog content |
 | Close icon | Close button | `icons/close.svg` | Button without icon (still named) |
 | Placeholders `open`, `close`, `dialog`, `modalEmpty` | UI text | `/{locale}/placeholders.json` | English fallbacks |
@@ -611,7 +611,7 @@ graph LR
 | MODAL-QA-06 | Closing | Close button, Escape, backdrop click | Closes each way; focus back on the opener |
 | MODAL-QA-07 | Double click | Double-click the opener | One dialog |
 | MODAL-QA-08 | Long content | Terms page | Scrolls inside; sticky close button; page locked |
-| MODAL-QA-09 | Auto-link | Inline link to a `/modals/` page | Opens a dialog instead of navigating |
+| MODAL-QA-09 | Auto-link | Inline link to a `/modal/` page | Opens a dialog instead of navigating |
 | MODAL-QA-10 | Video pop-up | Video with Play in a Pop-up | Video in the dialog |
 | MODAL-QA-11 | Universal Editor preview | Select the opener in preview | Dialog opens in the visible area of the frame |
 | MODAL-QA-12 | Viewports | 390 / 1024 / 1440px | Widths as the Responsive Behavior table |
@@ -626,7 +626,7 @@ graph LR
 | The button does nothing | Modal page not published, wrong path, or not a site path | Network: `{path}.plain.html` status | Publish / correct Modal Content | Dialog opens |
 | No button | Modal Content empty, or Hide block on | Properties panel | Choose the page; switch Hide block off | Button visible |
 | Button says "Open" | Button Text empty or equal to the URL | Properties panel | Enter a descriptive text | Correct label |
-| A link opens a dialog (or navigates) unexpectedly | Its path contains `/modals/` (auto-link), or clicked before the lazy phase / in the editor | Check the URL | Move pages out of `modals` folders; use a Modal block in the editor | Intended behaviour on `.aem.page` |
+| A link opens a dialog (or navigates) unexpectedly | Its path contains `/modal/` (auto-link), or clicked before the lazy phase / in the editor | Check the URL | Move pages out of `modal` folders; use a Modal block in the editor | Intended behaviour on `.aem.page` |
 | Screen readers say "Dialog" only | Modal page without a heading | Inspect `aria-label` | Add a heading | `aria-labelledby` set |
 | Content unstyled or blocks missing | A block of the modal page failed | Console `failed to load …` | Fix the content; escalate block errors | Renders as on its page |
 | No `cmp:show` / `cmp:hide` | Dialog didn't open; Tags not configured | `adobeDataLayer.filter((e) => e.eventInfo?.interaction === 'dialog')` | Fix the opening; configure Tags later | Events present |
@@ -643,7 +643,7 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 ## Security and Privacy
 
 - Only root-relative same-site paths are loaded (`loadFragment`); absolute URLs are reduced to their path.
-- Auto-link checks only the path (`/modals/`), not the link's origin: an external link whose path contains `/modals/` would open the same path of this site instead of navigating.
+- Auto-link checks only the path (`/modal/`), not the link's origin: an external link whose path contains `/modal/` would open the same path of this site instead of navigating.
 - Content is the site's own HTML; no query strings, no personal data; form data in a dialog is handled by Form Variations.
 
 ## Known Limitations
@@ -652,15 +652,15 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 | ---------- | ------ | ---------- | ------------------ |
 | The Video pop-up player (`.modal .video-modal-player`, up to 75rem) is wider than the dialog (56.25rem) (F-51) | Player runs past the dialog edge at 1440px | — | Not recorded (F-51 open, P2) |
 | The modal page is fetched at every opening | Repeated requests | — | Not planned |
-| The opener is always a primary button (no style option, audit) | No secondary / tertiary opener | Use a Button Block linking to a `/modals/` page | Not recorded |
-| Auto-link ignores the link's origin | External `/modals/` links don't navigate | Avoid such links | Not recorded |
+| The opener is always a primary button (no style option, audit) | No secondary / tertiary opener | Use a Button Block linking to a `/modal/` page | Not recorded |
+| Auto-link ignores the link's origin | External `/modal/` links don't navigate | Avoid such links | Not recorded |
 | Auto-link starts in the lazy phase and not in Universal Editor (the editor navigates) | Early clicks navigate | Use a Modal block for editor previews | Not planned |
 | A failed fetch shows no message | Silent failure | Publish the modal page | Not recorded |
 
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [Fragment](../fragment/README.md) (loader), [Header](../header/README.md) and [Footer](../footer/README.md) (links to `/modals/` pages open as modals)
+- [Fragment](../fragment/README.md) (loader), [Header](../header/README.md) and [Footer](../footer/README.md) (links to `/modal/` pages open as modals)
 - Model: [`_modal.json`](./_modal.json); auto-link: [`scripts/scripts.js`](../../scripts/scripts.js)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)
