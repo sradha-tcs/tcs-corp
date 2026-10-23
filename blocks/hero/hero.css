@@ -173,8 +173,8 @@
 
 .hero .hero-icon img {
   display: block;
-  width: var(--icon-size-l);
-  height: var(--icon-size-l);
+  width: var(--icon-size-l) !important;
+  height: var(--icon-size-l) !important;
   object-fit: contain;
 }
 

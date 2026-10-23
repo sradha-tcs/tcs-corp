@@ -92,7 +92,7 @@ This page defines the terms used across the TCS Corporate Website code, the hand
 | Term | Definition |
 | --- | --- |
 | Animation Type | Additional tab content animation (`classes_animation`): Fade in / up / down / left / right, Slide up / down / left / right, Scale in |
-| Motion Speed / Animation Trigger | `classes_animationspeed` (Medium 600 ms, `motion-fast` 300 ms, `motion-slow` 900 ms) and `classes_animationtrigger` (On Scroll by default, `motion-on-load`); shown once an animation is chosen |
+| Motion Speed / Animation Trigger | `classes_animationspeed` (Medium 1000 ms, `motion-fast` 500 ms, `motion-slow` 2000 ms) and `classes_animationtrigger` (On Scroll by default, `motion-on-load`); shown once an animation is chosen |
 | Background animation | `classes_bganimation` on Hero, Teaser, Quote, Testimonial, Form Variations and Conversation Canvas: Fade in, Reveal, Wipe left to right / right to left / bottom to top, Scale reveal |
 | Skeleton | A block-shaped placeholder shown when a block's data takes longer than 150 ms (`renderWhenLoaded`, `skeletonWhile` in [decorators/skeleton-decorator.js](../../../decorators/skeleton-decorator.js)) |
 | BG Color / Section Style colours | Teaser BG Color, Columns Container `containerBgColor` and Section Style share Default, Grey, Dark, Dark green (`bg-grey`, `bg-dark`, `bg-dark-green`) and set only the colour |
