@@ -41,7 +41,7 @@ Every tracked area of the repository with its purpose, consumers, dependencies, 
 | Agent instructions | `AGENTS.md` | Verified project rules for agents and developers | AI agents (via `CLAUDE.md`), developers | — | Active | [AGENTS.md](../../../../AGENTS.md) |
 | Claude pointer | `CLAUDE.md` | Points to AGENTS.md (`see @AGENTS.md`) | Claude Code | `AGENTS.md` | Active | — |
 | Agent plugin settings | `.agents/settings.json` | Enabled agent plugins of the delivery workspace | Agent tooling | — | Active | — |
-| Migration project | `.migration/project.json` | Project type and site paths for the migration tooling (contains the author host: don't copy it) | Migration / block library skills | — | Requires validation | — |
+| Migration project | `.migration/project.json` | Project type and site paths for the migration tooling; managed by the workspace tooling, so it keeps the author host (a recorded exception, F-112, KB-D-056) | Migration / block library skills | — | Requires validation | — |
 | Content mount | `fstab.yaml` | Mounts the AEM author content source (markup) for Edge Delivery | Edge Delivery content bus | AEM author | Active | Handover Part 2 — Solution Architecture |
 | Path mappings | `paths.json` | AEM content paths to published paths (154 mappings), includes and excludes; generated | Site configuration `public.json` (applied by an administrator) | `utils/site.js` `LOCALES`, `tools/paths/generate-paths.mjs` | Active | [AGENTS.md](../../../../AGENTS.md) "Site structure and site data" |
 | Query index | `helix-query.yaml` | The `/query-index.json` definition: excluded paths, metadata columns | List, Filter List, Conversation Canvas (`utils/query-index.js`), sitemap | Page metadata | Active | Handover Part 8 — Metadata Documentation |
