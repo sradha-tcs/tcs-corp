@@ -14,7 +14,7 @@ const row = (cells, model) => ({
 const ITEMS = [
   ['hero', 'hero-cta', FIELD_ROW_ITEM, ['link', 'linkTarget', 'linkStyle', 'linkArrow']],
   ['page-header', 'page-header-cta', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle']],
-  ['teaser', 'teaser-link', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle']],
+  ['teaser', 'teaser-link', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle', 'buttonBackground', 'buttonShape']],
   ['teaser', 'teaser-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   ['testimonial', 'testimonial-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   ['anchor-list', 'anchor-list-item', KEY_VALUE_ITEM, [null, 'label', 'anchorName']],

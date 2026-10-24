@@ -248,14 +248,7 @@
           "name": "tags",
           "label": "Tags",
           "multi": true,
-          "condition": {
-            "===": [
-              {
-                "var": "displayTags"
-              },
-              true
-            ]
-          }
+          "description": "Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled."
         },
         {
           "component": "aem-content",
@@ -319,11 +312,11 @@
               "value": ""
             },
             {
-              "name": "Lotto",
+              "name": "Lottie",
               "value": "lottie"
             }
           ],
-          "description": "Default: the Image is a picture. Lotto: the Image is a Lottie animation file (.json)."
+          "description": "Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json)."
         },
         {
           "component": "reference",
@@ -596,10 +589,62 @@
                   "value": "primary"
                 },
                 {
+                  "name": "Primary Button (no arrow)",
+                  "value": "primary-no-arrow"
+                },
+                {
                   "name": "Secondary Button",
                   "value": "secondary"
+                },
+                {
+                  "name": "Secondary Button (no arrow)",
+                  "value": "secondary-no-arrow"
                 }
               ]
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaBackground",
+              "label": "CTA Background",
+              "value": "",
+              "options": [
+                {
+                  "name": "Style default",
+                  "value": ""
+                },
+                {
+                  "name": "White",
+                  "value": "button-bg-white"
+                },
+                {
+                  "name": "Blue",
+                  "value": "button-bg-blue"
+                },
+                {
+                  "name": "Translucent white",
+                  "value": "button-bg-translucent"
+                }
+              ],
+              "description": "Sets the background of this CTA button. Blue uses rgb(33 106 195)."
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaShape",
+              "label": "CTA Shape",
+              "value": "",
+              "options": [
+                {
+                  "name": "Style default",
+                  "value": ""
+                },
+                {
+                  "name": "Rectangle",
+                  "value": "button-rectangle"
+                }
+              ],
+              "description": "Sets this CTA button's shape. Rectangle uses the grey-200 border."
             }
           ],
           "description": "Kept for teasers authored before; add items with Add instead."
@@ -695,10 +740,72 @@
               "value": "primary"
             },
             {
+              "name": "Primary Button (no arrow)",
+              "value": "primary-no-arrow"
+            },
+            {
               "name": "Secondary Button",
               "value": "secondary"
+            },
+            {
+              "name": "Secondary Button (no arrow)",
+              "value": "secondary-no-arrow"
             }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "primaryCtaBackground",
+          "label": "Primary CTA Background",
+          "value": "",
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "White",
+              "value": "button-bg-white"
+            },
+            {
+              "name": "Blue",
+              "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
+            }
+          ],
+          "description": "Sets the Primary CTA button background. Blue uses rgb(33 106 195)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "primaryCtaShape",
+          "label": "Primary CTA Shape",
+          "value": "",
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Rectangle",
+              "value": "button-rectangle"
+            }
+          ],
+          "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
         },
         {
           "component": "text",
@@ -769,10 +876,72 @@
               "value": "primary"
             },
             {
+              "name": "Primary Button (no arrow)",
+              "value": "primary-no-arrow"
+            },
+            {
               "name": "Secondary Button",
               "value": "secondary"
+            },
+            {
+              "name": "Secondary Button (no arrow)",
+              "value": "secondary-no-arrow"
             }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaBackground",
+          "label": "Secondary CTA Background",
+          "value": "",
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "White",
+              "value": "button-bg-white"
+            },
+            {
+              "name": "Blue",
+              "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
+            }
+          ],
+          "description": "Sets the Secondary CTA button background. Blue uses rgb(33 106 195)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "secondaryCtaShape",
+          "label": "Secondary CTA Shape",
+          "value": "",
+          "condition": {
+            "!": {
+              "var": "multiLinks"
+            }
+          },
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Rectangle",
+              "value": "button-rectangle"
+            }
+          ],
+          "description": "Sets the Secondary CTA shape. Rectangle uses the grey-200 border."
         },
         {
           "component": "boolean",
@@ -859,6 +1028,10 @@
             {
               "name": "Dark green",
               "value": "dark-green"
+            },
+            {
+              "name": "Navy",
+              "value": "navy"
             }
           ],
           "description": "Only the background colour; set the space around the content with the Padding fields of the Additional tab."
@@ -885,9 +1058,13 @@
             {
               "name": "Right",
               "value": "text-right"
+            },
+            {
+              "name": "Justify",
+              "value": "text-justify"
             }
           ],
-          "description": "Layout default: left, centered for Background image and when Image & Text has no image."
+          "description": "Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced."
         },
         {
           "component": "select",
@@ -939,6 +1116,28 @@
         {
           "component": "select",
           "valueType": "string",
+          "name": "titleColor",
+          "label": "Title color",
+          "value": "",
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Dark",
+              "value": "title-dark"
+            },
+            {
+              "name": "White",
+              "value": "title-white"
+            }
+          ],
+          "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
           "name": "descriptionSize",
           "label": "Description size",
           "value": "",
@@ -961,7 +1160,7 @@
           "component": "select",
           "valueType": "string",
           "name": "eyebrowStyle",
-          "label": "Eyebrow style",
+          "label": "Eyebrow Style",
           "value": "",
           "options": [
             {
@@ -971,8 +1170,17 @@
             {
               "name": "Label (uppercase, grey)",
               "value": "eyebrow-label"
+            },
+            {
+              "name": "Grey",
+              "value": "eyebrow-grey"
+            },
+            {
+              "name": "White",
+              "value": "eyebrow-white"
             }
-          ]
+          ],
+          "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
         },
         {
           "component": "select",
@@ -1848,10 +2056,62 @@
               "value": "primary"
             },
             {
+              "name": "Primary Button (no arrow)",
+              "value": "primary-no-arrow"
+            },
+            {
               "name": "Secondary Button",
               "value": "secondary"
+            },
+            {
+              "name": "Secondary Button (no arrow)",
+              "value": "secondary-no-arrow"
             }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "buttonBackground",
+          "label": "Button background",
+          "value": "",
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "White",
+              "value": "button-bg-white"
+            },
+            {
+              "name": "Blue",
+              "value": "button-bg-blue"
+            },
+            {
+              "name": "Translucent white",
+              "value": "button-bg-translucent"
+            }
+          ],
+          "description": "Sets the background colour of Primary and Secondary CTA buttons. Translucent white uses a 15% white background and is intended for dark or image backgrounds. Text links and List links are not affected."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "buttonShape",
+          "label": "Button shape",
+          "value": "",
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Rectangle",
+              "value": "button-rectangle"
+            }
+          ],
+          "description": "Style default uses the button system's existing shape. Rectangle removes the pill shape and uses the grey-200 border."
         }
       ]
     },

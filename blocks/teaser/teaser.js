@@ -47,28 +47,78 @@ let newTabHint = '';
  */
 
 const LAYOUTS = ['no-image', 'background', 'card'];
-const BG_COLORS = ['grey', 'dark', 'dark-green'];
+const BG_COLORS = ['grey', 'dark', 'dark-green', 'navy'];
 // Image position (Image & Text): beside the text (left, right) or above / below it
 const IMAGE_POSITIONS = ['left', 'right', 'top', 'bottom'];
 // Text link is stored as tertiary (an empty value isn't delivered: the default style would apply)
-const LINK_STYLES = ['list', 'primary', 'secondary', 'tertiary'];
+const LINK_STYLES = [
+  'list',
+  'primary',
+  'primary-no-arrow',
+  'secondary',
+  'secondary-no-arrow',
+  'tertiary',
+];
+const BUTTON_BACKGROUNDS = [
+  'button-bg-white',
+  'button-bg-blue',
+  'button-bg-translucent',
+];
+const BUTTON_SHAPES = [
+  'button-rectangle',
+];
 // Style and Image options: property (normalized name) and its values, also block classes
 const OPTIONS = {
-  textalignment: ['text-left', 'text-center', 'text-right'],
-  verticalalignment: ['valign-top', 'valign-middle', 'valign-bottom'],
-  imagepositionmobile: ['mobile-image-top', 'mobile-image-bottom'],
-  titleweight: ['title-regular', 'title-semibold'],
-  descriptionsize: ['text-regular', 'text-large'],
-  eyebrowstyle: ['eyebrow-label'],
-  topspacing: ['spacing-header'],
-  imageratio: ['ratio-8-9', 'ratio-1-1', 'ratio-original'],
-  imagecorners: ['square'],
-  linkarrow: ['arrow-down-right', 'arrow-none'],
+  textalignment: [
+    'text-left',
+    'text-center',
+    'text-right',
+    'text-justify',
+  ],
+  verticalalignment: [
+    'valign-top',
+    'valign-middle',
+    'valign-bottom',
+  ],
+  imagepositionmobile: [
+    'mobile-image-top',
+    'mobile-image-bottom',
+  ],
+  titleweight: [
+    'title-regular',
+    'title-semibold',
+  ],
+  titlecolor: [
+    'title-dark',
+    'title-white',
+  ],
+  descriptionsize: [
+    'text-regular',
+    'text-large',
+  ],
+  eyebrowstyle: [
+    'eyebrow-label',
+    'eyebrow-grey',
+    'eyebrow-white',
+  ],
+  topspacing: [
+    'spacing-header',
+  ],
+  imageratio: [
+    'ratio-8-9',
+    'ratio-1-1',
+    'ratio-original',
+  ],
+  imagecorners: [
+    'square',
+  ],
+  linkarrow: [
+    'arrow-down-right',
+    'arrow-none',
+  ],
 };
 
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
-
-/** a Show toggle that defaults to on: only an authored "false" turns it off */
 
 /** tags (labels from the taxonomy) */
 async function buildMeta(props) {
@@ -119,43 +169,111 @@ function buildAuthor(props) {
 }
 
 /**
- * A Link Style value: Default ("") | list | primary | secondary. A missing row falls back to
- * the model default; an empty row is Default.
+ * Resolves an authored Link Style.
+ *
+ * Supported values:
+ * list, primary, primary-no-arrow, secondary,
+ * secondary-no-arrow and tertiary.
+ *
+ * @param {Element} cell Property cell containing the authored style
+ * @param {string} fallback Style used when the property is missing
+ * @returns {string}
  */
 function linkStyleOf(cell, fallback = '') {
   if (!cell) return fallback;
+
   const value = toClassName(textOf(cell));
   return LINK_STYLES.includes(value) ? value : '';
 }
 
 /**
- * Renders links in their Link Style: Default text links with an arrow, Primary / Secondary
- * Button buttons, or List rows with dividers (consecutive List links share one list; links
- * opening a new window point up and right).
+ * Returns an authored appearance class when it is allowed.
+ * @param {Element} cell Property cell containing the authored value
+ * @param {string[]} allowedValues Allowed CSS class values
+ * @returns {string}
+ */
+function appearanceOf(cell, allowedValues) {
+  if (!cell) return '';
+
+  const value = toClassName(textOf(cell));
+  return allowedValues.includes(value) ? value : '';
+}
+
+/**
+ * Renders links in their Link Style: Default text links with an arrow,
+ * Primary / Secondary buttons, or List rows with dividers.
+ *
  * @param {Element} container
- * @param {{ link: HTMLAnchorElement, newWindow: boolean, style: string }[]} entries
+ * @param {{
+ *   link: HTMLAnchorElement,
+ *   newWindow: boolean,
+ *   style: string,
+ *   background?: string,
+ *   shape?: string
+ * }[]} entries
  */
 function renderLinks(container, entries) {
   let list = null;
-  entries.forEach(({ link, newWindow, style }) => {
+
+  entries.forEach(({
+    link,
+    newWindow,
+    style,
+    background = '',
+    shape = '',
+  }) => {
     if (style === 'list') {
       if (!list) {
         list = document.createElement('ul');
         list.className = 'teaser-link-list';
         container.append(list);
       }
+
       const li = document.createElement('li');
       link.className = 'teaser-link-list-item';
       setLinkTarget(link, newWindow);
-      if (newWindow) announceNewTab(link, newTabHint);
+
+      if (newWindow) {
+        announceNewTab(link, newTabHint);
+      }
+
       li.append(link);
       list.append(li);
       return;
     }
+
     list = null;
+
+    const resolvedStyle = style || 'tertiary';
+    const noArrow = resolvedStyle.endsWith('-no-arrow');
+    const buttonStyle = noArrow
+      ? resolvedStyle.replace('-no-arrow', '')
+      : resolvedStyle;
+
     decorateButton(link, {
-      view: 'button', type: style || 'tertiary', newWindow, newTabHint,
+      view: 'button',
+      type: buttonStyle,
+      newWindow,
+      newTabHint,
     });
+
+    if (noArrow) {
+      link.classList.add('teaser-cta-no-arrow');
+    }
+
+    const supportsAppearance = [
+      'primary',
+      'secondary',
+    ].includes(buttonStyle);
+
+    if (supportsAppearance && background) {
+      link.classList.add(background);
+    }
+
+    if (supportsAppearance && shape) {
+      link.classList.add(shape);
+    }
+
     container.append(link);
   });
 }
@@ -168,15 +286,51 @@ function buildLinks(props, rows, hint) {
   const multi = isOn(props.multilinks);
   // Multiple links off: the Primary and Secondary CTA, each in its own Link Style
   const ctas = multi ? [] : [
-    [props.primarycta, props.primaryctatarget, props.primaryctastyle, 'primary'],
-    [props.secondarycta, props.secondaryctatarget, props.secondaryctastyle, 'secondary'],
-  ].map(([cell, target, style, fallback]) => {
+    [
+      props.primarycta,
+      props.primaryctatext,
+      props.primaryctatarget,
+      props.primaryctastyle,
+      props.primaryctabackground,
+      props.primaryctashape,
+      'primary',
+    ],
+    [
+      props.secondarycta,
+      props.secondaryctatext,
+      props.secondaryctatarget,
+      props.secondaryctastyle,
+      props.secondaryctabackground,
+      props.secondaryctashape,
+      'secondary',
+    ],
+  ].map(([
+    cell,
+    label,
+    target,
+    style,
+    background,
+    shape,
+    fallback,
+  ]) => {
     const link = linkOf(cell);
-    if (link) moveInstrumentation(cell, link);
+
+    if (link) {
+      const authoredLabel = textOf(label);
+
+      if (authoredLabel) {
+        link.textContent = authoredLabel;
+      }
+
+      moveInstrumentation(cell, link);
+    }
+
     return link && {
       link,
       newWindow: textOf(target) === NEW_WINDOW,
       style: linkStyleOf(style, fallback),
+      background: appearanceOf(background, BUTTON_BACKGROUNDS),
+      shape: appearanceOf(shape, BUTTON_SHAPES),
     };
   }).filter(Boolean);
   // Multiple links on: the Links multifield (authored before Link items), in its CTA Link Style
@@ -186,9 +340,22 @@ function buildLinks(props, rows, hint) {
   if (multi && props.links) moveInstrumentation(props.links, links);
   // the Link items, always, after the CTAs or the Links list
   const items = readLinkRows(rows);
-  const more = [...listed, ...items.map((item) => ({ ...item, fallback: '' }))].map((item) => ({
+  const more = [
+    ...listed,
+    ...items.map((item) => ({
+      ...item,
+      fallback: '',
+    })),
+  ].map((item) => ({
     ...item,
-    style: item.values.find((value) => LINK_STYLES.includes(value)) || item.fallback,
+    style: item.values.find((value) => LINK_STYLES.includes(value))
+      || item.fallback,
+    background: item.values.find(
+      (value) => BUTTON_BACKGROUNDS.includes(value),
+    ) || '',
+    shape: item.values.find(
+      (value) => BUTTON_SHAPES.includes(value),
+    ) || '',
   }));
   more.forEach(({ link, row }) => { if (row) moveInstrumentation(row, link); });
   const entries = [...ctas, ...more];
@@ -273,8 +440,19 @@ export default async function decorate(block) {
     headingRow.append(title);
   }
   const viewAll = linkOf(props.viewall);
+
   if (viewAll) {
-    decorateButton(viewAll, { view: 'button', type: 'primary' });
+    const authoredLabel = textOf(props.viewalltext);
+
+    if (authoredLabel) {
+      viewAll.textContent = authoredLabel;
+    }
+
+    decorateButton(viewAll, {
+      view: 'button',
+      type: 'primary',
+    });
+
     viewAll.classList.add('teaser-view-all');
     moveInstrumentation(props.viewall, viewAll);
     headingRow.append(viewAll);
@@ -307,9 +485,22 @@ export default async function decorate(block) {
   content.className = 'teaser-content';
   content.append(...[header, body].filter((part) => part.children.length));
 
-  block.classList.remove(...LAYOUTS, ...BG_COLORS.map((color) => `bg-${color}`));
-  if (layout) block.classList.add(layout);
-  if (bgColor) block.classList.add(`bg-${bgColor}`);
+  const optionClasses = Object.values(OPTIONS).flat();
+
+  block.classList.remove(
+    ...LAYOUTS,
+    ...BG_COLORS.map((color) => `bg-${color}`),
+    ...optionClasses,
+  );
+
+  if (layout) {
+    block.classList.add(layout);
+  }
+
+  if (bgColor) {
+    block.classList.add(`bg-${bgColor}`);
+  }
+
   block.classList.add(...styles);
   block.classList.toggle('buttons-inline', isOn(props.buttonssidebyside));
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
