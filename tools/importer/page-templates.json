@@ -1,0 +1,147 @@
+{
+  "templates": [
+    {
+      "name": "eds-page",
+      "description": "Pages already on Edge Delivery Services (this site's published preview), copied unchanged into content/ for the local preview: sections, blocks (as block tables), section options and page metadata from the page's .plain.html and head",
+      "urls": [
+        "https://main--tcs-corp--sradha-tcs.aem.page/en/home",
+        "https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/about-tcs",
+        "https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/insights",
+        "https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/insights/ai-driven-transformation"
+      ],
+      "blocks": []
+    },
+    {
+      "name": "press-release",
+      "urls": [
+        "https://www.tcs.com/who-we-are/newsroom/press-release/best-buys-global-capability-center-india-transition-tcs",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/dgcx-partners-with-tcs-advance-upgrade-derivatives-market-infrastructure",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-accelerate-ai-led-technology-transformation-germany-aareal-bank",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-financial-results-q2-fy-2027",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-hypervault-establish-large-scale-ai-data-center-campus-telangana",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-launches-indias-first-lights-out-factory-lab-advance-ai-first-manufacturing",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-launches-industrial-intelligence-foundry-accelerate-ai-led-autonomy-engineering",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-renews-title-partnership-jaguar-tcs-racing-expands-role-as-official-ai-partner-formula-e-gen4-era",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/mystate-limited-selects-tcs-bancs-transform-core-banking-operations",
+        "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-certified-top-employe-in-latin-america-"
+      ],
+      "representativeUrl": "https://www.tcs.com/who-we-are/newsroom/press-release/best-buys-global-capability-center-india-transition-tcs",
+      "description": "tcs.com press releases (source template TCS NewsRoom Template): page header from metadata, body as default content (tables as Table blocks, images), the About TCS boilerplate, TCS media contacts (Media Contacts block), In the News (List block)",
+      "blocks": [
+        {
+          "name": "page-header",
+          "instances": [
+            "div.heroBanner"
+          ]
+        },
+        {
+          "name": "table",
+          "instances": [
+            "div.heroBanner ~ div.rowContainer div.richText table",
+            "div.heroBanner ~ div.responsivegrid div.rowContainer table"
+          ]
+        },
+        {
+          "name": "media-contacts",
+          "instances": [
+            "div.cmp-experiencefragment--media-contacts"
+          ]
+        },
+        {
+          "name": "list",
+          "instances": [
+            "div.cmp-experiencefragment--media-contacts div.relatedContent"
+          ]
+        },
+        {
+          "name": "teaser",
+          "instances": [
+            "div.cmp-experiencefragment--email-sign-up"
+          ]
+        }
+      ],
+      "urlPattern": "/who-we-are/newsroom/press-release/*",
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "page-header",
+          "selector": [
+            "div.heroBanner"
+          ],
+          "style": null,
+          "blocks": [
+            "page-header"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "press-release-body",
+          "selector": [
+            "div.heroBanner ~ div.rowContainer div.richText",
+            "div.heroBanner ~ div.responsivegrid div.rowContainer div.w-75"
+          ],
+          "style": null,
+          "blocks": [
+            "table"
+          ],
+          "defaultContent": [
+            "div.heroBanner ~ div.rowContainer div.richText > :not(div.table__scroller-rte)",
+            "div.heroBanner ~ div.responsivegrid div.rowContainer div.w-75 > :not(div.table__scroller-rte)"
+          ]
+        },
+        {
+          "id": "rc3",
+          "name": "about-tcs",
+          "selector": [
+            "div.heroBanner ~ div.rowContainer ~ div.rowContainer div.richText"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.heroBanner ~ div.rowContainer ~ div.rowContainer div.richText > *"
+          ]
+        },
+        {
+          "id": "rc4",
+          "name": "media-contacts",
+          "selector": [
+            "div.cmp-experiencefragment--media-contacts"
+          ],
+          "style": null,
+          "blocks": [
+            "media-contacts"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "in-the-news",
+          "selector": [
+            "div.cmp-experiencefragment--media-contacts div.relatedContent"
+          ],
+          "style": null,
+          "blocks": [
+            "list"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "connect-with-us",
+          "selector": [
+            "div.cmp-experiencefragment--email-sign-up"
+          ],
+          "style": null,
+          "blocks": [
+            "teaser"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "xwalk"
+  }
+}

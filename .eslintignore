@@ -3,3 +3,5 @@ dompurify.min.js
 *.min.js
 # the audit tools: scripts of the delivery workspace (absolute paths, Playwright), kept as evidence
 docs/audit/tools
+# the content migration bundles (generated, tools/importer/README.md)
+tools/importer/*.bundle.js
