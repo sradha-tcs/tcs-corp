@@ -26,7 +26,7 @@ if (!sitemapFile) {
 }
 
 const rows = JSON.parse(readFileSync(sitemapFile, 'utf8')).list.split('\n')
-  .map((line) => line.split('\t')).filter(([url]) => url);
+  .map((line) => line.replace(/&amp;/g, '&').split('\t')).filter(([url]) => url);
 const index = await (await fetch(`${HOST}/query-index.json?limit=10000`)).json();
 const migrated = new Set(index.data.map((r) => r.path.replace(/\/$/, '')));
 // pages the earlier migration put at another path: the language master's Redirects sheet

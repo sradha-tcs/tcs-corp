@@ -9,7 +9,9 @@ the site's code; nothing here is loaded by a page.
 | File | Purpose |
 | --- | --- |
 | [inventory.mjs](./inventory.mjs) | The migration list: every tcs.com sitemap URL with its locale, area, target page and status (migrated / to do), from the sitemap, the query index and the language master's Redirects sheet |
-| [inventory/tcs-sitemap-inventory.csv](./inventory/tcs-sitemap-inventory.csv) | Its output (25 October 2026: 10,539 URLs, 3,181 migrated) |
+| [inventory/tcs-sitemap-inventory.csv](./inventory/tcs-sitemap-inventory.csv) | Its output (25 October 2026: 10,539 URLs, 3,183 migrated) |
+| [mapping.mjs](./mapping.mjs) | The mapping: every inventory URL and language master page with its AEM path, preview and live URL and status, page type and blocks |
+| [inventory/migration-mapping.csv](./inventory/migration-mapping.csv) | Its output (10,746 rows); summary in [docs/migration/mapping-summary.md](../../docs/migration/mapping-summary.md) |
 | [page-templates.json](./page-templates.json) | The page templates: source URLs, block mapping (source selectors per block) and sections |
 | `import-<template>.js` | One import script per template: orchestrates the transformers and parsers, writes the page metadata and the target path |
 | [parsers/](./parsers/) | One parser per block: the source element to the block's rows, in the block model's order |
