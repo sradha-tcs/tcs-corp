@@ -11,3 +11,8 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# content migration tooling output (tools/importer/README.md): bundles, source snapshots, reports
+tools/importer/*.bundle.js
+tools/importer/bd-snapshots/
+tools/importer/reports/

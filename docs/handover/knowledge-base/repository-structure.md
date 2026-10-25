@@ -55,7 +55,7 @@ Only paths tracked by Git (file counts from `git ls-files`):
 ├── styles/                        styles.css, lazy-styles.css, fonts.css, motion.css, card-list.css
 ├── templates/                     home, article, blog, press-release + README.md
 ├── test/                          unit tests (node --test) and helpers
-├── tools/                         docs, modules and paths generators; sidekick config
+├── tools/                         docs, modules and paths generators; sidekick config; importer (content migration)
 ├── utils/                         26 util modules + README.md
 ├── well-known/adobe/              Cloud Manager challenge file (second copy, without the dot)
 └── xwalk.json                     xwalk site option: multi-field enabled
@@ -178,6 +178,7 @@ No ownership is recorded in the repository: there is no `CODEOWNERS` file, and t
 | [tools/docs/report-block-docs.mjs](../../../tools/docs/report-block-docs.mjs) | Builds [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../../blocks/BLOCK-DOCUMENTATION-REPORT.md) | `node tools/docs/report-block-docs.mjs [base-ref]` |
 | [tools/docs/blocks.json](../../../tools/docs/blocks.json), [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) | Hand-maintained block metadata (status, type, purpose); block library snapshot (package 1.0.13) for examples and usage | Inputs of the docs generator |
 | [tools/sidekick/config.json](../../../tools/sidekick/config.json) | AEM Sidekick configuration ("AEM Editor" edit URL pattern) | Read by Sidekick |
+| [tools/importer/](../../../tools/importer/README.md) | tcs.com content migration: inventory, page templates, import scripts, parsers, transformers, reference comparison, content package builder (not served) | Per migration wave, see [docs/migration/README.md](../../migration/README.md) |
 
 Generated output must not be edited by hand; every generator is checked by `npm test` except `generate-paths.mjs`.
 

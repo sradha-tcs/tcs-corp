@@ -1,0 +1,4 @@
+https://main--tcs-corp--sradha-tcs.aem.page/en/home
+https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/about-tcs
+https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/insights
+https://main--tcs-corp--sradha-tcs.aem.page/en/dummy-pages/insights/ai-driven-transformation
