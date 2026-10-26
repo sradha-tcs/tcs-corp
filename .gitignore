@@ -11,3 +11,6 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# BYOG site configuration values (docs/setup/BYOG-ENVIRONMENT-SETUP.md): ids, emails, host
+docs/setup/byog/byog.env

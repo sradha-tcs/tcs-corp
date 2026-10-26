@@ -98,7 +98,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── utils/                      # Shared helpers that build no UI (properties, metadata, placeholders, taxonomy, ...), see utils/README.md
 ├── templates/                  # Code of the Site Global Templates, loaded by Page Type (home, article, blog, press-release), see templates/README.md
 ├── models/                     # Folder containing component definitions, models and filters for default content, pages, sections etc.
-├── docs/                       # Not served (.hlxignore): handover/ (the project handover PDF and its Markdown source), proposals/ (design proposals), animation/ (block animation and skeleton loading report), audit/ (block ecosystem audit: report, inventories, register, tools), blocks/ (block documentation report and per-block review notes)
+├── docs/                       # Not served (.hlxignore): handover/ (the project handover PDF and its Markdown source), proposals/ (design proposals), animation/ (block animation and skeleton loading report), audit/ (block ecosystem audit: report, inventories, register, tools), blocks/ (block documentation report and per-block review notes), setup/ (BYOG environment setup: Cloud Manager, Configuration Service, Sidekick; site-config.mjs)
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
 ├── head.html                   # Global HTML head content
