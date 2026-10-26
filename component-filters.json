@@ -258,7 +258,8 @@
     "id": "teaser",
     "components": [
       "teaser-link",
-      "teaser-stat"
+      "teaser-stat",
+      "teaser-collage-image"
     ]
   },
   {

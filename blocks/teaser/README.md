@@ -1,6 +1,6 @@
 # Teaser
 
-The Teaser is the site's most versatile single-message block. It combines a title with an optional eyebrow, tags, date, reading time, listen / download / share actions, author, description, image or Lottie animation, stats, links and a short description, in one of four layouts: Image & Text, Text split, Background image and Card. It implements the TCS.com Design System Figma frames "Text & Image", "2 Slot Section", "Text Section - 2 Columns", "Secondary Page Header", "Careers", "Media Coverage" and "Media Kit", plus the article header elements of "L3 Header". It is a key-value block: Links and Stats are Link and Stat items added to it with Add, and `blocks/teaser/teaser.js` rebuilds the rows into a media part and a content part.
+The Teaser is the site's most versatile single-message block. It combines a title with an optional eyebrow, tags, date, reading time, listen / download / share actions, author, description, image or Lottie animation, stats, links and a short description, in one of five layouts: Image & Text, Text split, Background image, Card and Image collage. It implements the TCS.com Design System Figma frames "Text & Image", "2 Slot Section", "Text Section - 2 Columns", "Secondary Page Header", "Careers", "Media Coverage" and "Media Kit", plus the article header elements of "L3 Header". It is a key-value block: Links, Stats and collage images are Link, Stat and Collage image items added to it with Add, and `blocks/teaser/teaser.js` rebuilds the rows into a media part and a content part.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -19,6 +19,7 @@ The Teaser is the site's most versatile single-message block. It combines a titl
   - **Text split:** the eyebrow, tags and article meta across the top; the title and author on the left; the description, an optional image (for example a chart), stats, links and short description on the right (from 900px).
   - **Background image:** centred text over the image under a dark overlay.
   - **Card:** a rounded card with the image behind its text and the links at the bottom.
+  - **Image collage:** centred text on a dark background, surrounded by up to nine floating Collage image items (black and white by default).
 - **Templates / page types:** any page. Teasers are also the slides of a Gen Carousel section (block library `block-library/gen-carousel/teaser-slides`).
 - **Data source:** authored fields and items. Tag labels come from the locale's taxonomy (`/{locale}/taxonomy.json`) and UI labels from its placeholders. The block reads no page metadata or query index.
 - **Related blocks:** Hero (`blocks/hero`, the full-height opening banner, which shares the Lotto image type); Page Header (`blocks/page-header`, metadata-driven article header, which shares `decorators/article-meta-decorator.js`); Testimonial (shares `decorators/stats-decorator.js`); [Cards](../cards/README.md) and [List](../list/README.md) for collections (their "Display as teaser" is a card presentation, class `display-teaser`, not this block); [Columns Container](../columns-container/README.md).
@@ -411,6 +412,21 @@ A = Stats Title
 B = Stats Value
 ```
 
+```text
+[Screenshot Placeholder]
+
+File name:
+teaser-collage-image-dialog-collage-image-desktop.png
+
+Purpose:
+The Collage image tab of the Collage image properties in Universal Editor, with the fields of the table "Collage image tab — Collage image" in Authorable Fields below.
+
+Annotations:
+A = Image
+B = Image alt text
+C = Image treatment
+```
+
 <!-- END GENERATED: screenshots -->
 
 The handover screenshots were taken with the code of handover 2.31. Since 2.32: Title Type sets the title size (the "Title size" screenshots show a field that no longer exists); BG Color no longer adds padding; Image position has Top and Bottom, and Left / Right apply from 600px; Buttons side by side and List arrow None exist. Since 2.41, CTA Link Style also offers Primary Button (no arrow), retaining the primary button dimensions with a navy background. The properties panel screenshot shows the six tabs used before handover 2.8; the dialog now has Content, Style and Additional. The states below have no screenshot yet.
@@ -579,7 +595,7 @@ Minimum content: a Title, or any other content part. Recommended: Eyebrow, Title
 
 ### Teaser (`teaser`)
 
-Model `teaser`; template name "Teaser" (the block class AEM renders); key-value block (one row per property); children: `teaser-link`, `teaser-stat`.
+Model `teaser`; template name "Teaser" (the block class AEM renders); key-value block (one row per property); children: `teaser-link`, `teaser-stat`, `teaser-collage-image`.
 
 Stored on a new component (definition template): `titleType` = `"h2"`, `imagePosition` = `"left"`, `showEyebrow` = `true`, `showDescription` = `true`, `dateFormat` = `"dd-mm-yyyy"`, `primaryCtaStyle` = `"primary"`, `secondaryCtaStyle` = `"secondary"`.
 
@@ -603,7 +619,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Date label | `dateLabel` | text | No | — | — | Shown before the date, e.g. Published. Shown when `showDate` is `true`. | Published |
 | Reading time | `readingTime` | text | No | — | — | Minutes (e.g. 14, shown as "14 min read") or any text. | 14 |
 | Display Tags | `displayTags` | boolean | No | `false` | on / off | — | true |
-| Tags | `tags` | aem-tag (multiple) | No | — | — | Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled. | — |
+| Tags | `tags` | aem-tag | No | — | — | Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled. | — |
 | Listen link | `listenLink` | aem-content | No | — | — | An audio version of the page: shows the listen icon. | — |
 | Download | `download` | boolean | No | `false` | on / off | Shows the download icon (prints the page or saves it as PDF). | true |
 | Share | `socialShare` | boolean | No | `false` | on / off | Shows the share icon (share dialog, or the link copied). | true |
@@ -649,12 +665,12 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Layout | `classes` | select | No | "" | Image & Text (""), Text split (title left, text right) (`no-image`), Background image (`background`), Card (`card`) | Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text. | no-image |
+| Layout | `classes` | select | No | "" | Image & Text (""), Text split (title left, text right) (`no-image`), Background image (`background`), Card (`card`), Image collage (`image-collage`) | Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text. | no-image |
 | BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Dark (`dark`), Dark green (`dark-green`), Navy (`navy`) | Only the background colour; set the space around the content with the Padding fields of the Additional tab. | grey |
 | Text alignment | `textAlignment` | select | No | "" | Layout default (""), Left (`text-left`), Center (`text-center`), Right (`text-right`), Justify (`text-justify`) | Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced. | text-left |
 | Vertical alignment | `verticalAlignment` | select | No | "" | Layout default (""), Top (`valign-top`), Center (`valign-middle`), Bottom (`valign-bottom`) | How the text and the image (or the two text columns) line up. Layout default: center, top for Text split. | valign-top |
 | Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | title-regular |
-| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
+| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
 | Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
 | Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
 | Top spacing | `topSpacing` | select | No | "" | Default (""), Page header (extra space above) (`spacing-header`) | Page header: the larger space above a teaser that opens a page. | spacing-header |
@@ -704,13 +720,27 @@ Model `teaser-stat`; template name "Stat" (the block class AEM renders).
 | Stats Title | `statLabel` | richtext | No | "" | — | — | — |
 | Stats Value | `statValue` | richtext | No | "" | — | A single line, e.g. 40%. | — |
 
+### Collage image (`teaser-collage-image`)
+
+Model `teaser-collage-image`; template name "Collage image" (the block class AEM renders).
+
+#### Collage image tab — Collage image
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Image | `image` | reference | Yes | — | — | — | — |
+| Image alt text | `imageAlt` | text | No | — | — | Leave empty when the collage image is decorative. Delivered with `image` (field collapse). | — |
+| Image treatment | `imageTreatment` | select | No | `black-white` | Black and white (`black-white`), Normal (`normal`) | — | — |
+
 <!-- END GENERATED: fields -->
 
 What the tables don't show:
 
 - **Title Type:** the heading level (H1–H6) and the size together: 64 / 48 / 40 / 28 / 24 / 20px from 900px, and 40 / 32 / 28 / 24 / 18 / 16px below (the global tokens in `styles/styles.css`). Without a Title Type, the title uses a heading level found in the authored title, else H2. **Hide Title** keeps the heading for screen readers (`hideVisually`); it is still the data layer's `dc:title`.
 - **Show Eyebrow / Show Description:** on unless explicitly off (`isOnByDefault`). The other toggles (Show Date, Display Tags, Download, Share, Hide Image, Multiple links, Buttons side by side) are off unless set to on.
-- **Layout (`classes`):** `no-image` (Text split), `background`, `card`, or empty (Image & Text). The value is read from the row, else from a block class.
+- **Layout (`classes`):** `no-image` (Text split), `background`, `card`, `image-collage`, or empty (Image & Text). The value is read from the row, else from a block class.
+- **Image collage:** the Teaser's own Image is not shown; the images are Collage image items (`teaser-collage-image`, added with Add). AEM delivers each one as a row of three cells: the empty tab cell, the image (its Image alt text collapsed into the `<img>`) and the Image treatment (`COLLAGE_LAYOUT` in `teaser.js`). On the page, a Collage image item is the item row with a picture and no link (a Stat item has no picture). The first nine items with an image are used. Black and white (default) sets `image-black-white`, Normal sets `image-normal`. The collage is decorative (`aria-hidden`). From 900px all nine positions are used; below 900px only items 2, 3, 5 and 8 are shown.
+- **Title color:** Style default, Dark, White or Light blue (`title-light-blue`).
 - **Image:** with Hide Image on or no image, there is no media. With Image type Lotto and a `.json` link, the block plays a Lottie animation with a pause / play button. Its accessible name is Image alt text, else the delivered link text (`animationLabel`); without either it is decorative. Behind the text (Background image, Card), the animation fills its box like a cover image. With Lotto but a picture, the picture is shown.
 - **Image position:** Left (default), Right, Top or Bottom, for Image & Text with media. It sets `image-right`, `image-top` or `image-bottom` and `teaser-has-media`. A legacy `image-*` block class is read too.
 - **Image position (mobile):** below 600px (Image & Text) or 900px (Text split). Default keeps the image above (Left / Right) or in the text order (Text split).
@@ -1005,6 +1035,12 @@ A = Header
 B = Links at the bottom
 ```
 
+### Image collage
+
+- **Purpose:** a statement section framed by a collage of images. **Configuration:** Layout Image collage (`image-collage`) and up to nine Collage image items (Image, Image alt text, Image treatment).
+- **Rendering:** centred text on a dark background (`#0c0c0d` with a radial and linear gradient overlay) and the images placed absolutely around it, at 80% opacity, floating up and down (`teaser-collage-zig` / `teaser-collage-zag`, 7s / 8s, endless). Minimum height 42rem, from 900px 48rem.
+- **Accessibility:** the images are decorative (`aria-hidden`). The floating stops with reduced motion (`prefers-reduced-motion`), but there is no pause / play button yet (WCAG 2.2.2, see AGENTS.md "Accessibility").
+
 ### Image type Lotto (Lottie animation)
 
 - **Purpose:** an animated illustration. **Configuration:** Image type Lotto and a Lottie `.json` from AEM Assets (published).
@@ -1238,7 +1274,7 @@ blocks/teaser/
 | [`decorators/link-decorator.js`](../../decorators/link-decorator.js) | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | `teaser.js`: { announceNewTab, setLinkTarget } |
 | [`decorators/stats-decorator.js`](../../decorators/stats-decorator.js) | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | `teaser.js`: { buildStats } |
 | [`decorators/tag-decorator.js`](../../decorators/tag-decorator.js) | `buildTagList` | `teaser.js`: { buildTagList } |
-| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `teaser.js`: { KEY_VALUE_ITEM, itemRows } |
+| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `teaser.js`: { KEY_VALUE_ITEM, itemRows, withoutTabCells } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `teaser.js`: { NEW_WINDOW, linkOf, readLinkItems, readLinkRows, } |
 | [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | `teaser.js`: { animationLabel, isAnimation } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `teaser.js`: { getPlaceholders } |

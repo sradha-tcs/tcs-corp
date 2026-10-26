@@ -101,7 +101,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Table List](./table-list/README.md) (`table-list`) | `table-list` | Table List Item (`table-list-card`) |
 | [Tabs Container](./tabs/README.md) (`tabs`) | `tabs` | [Tab](./tab/README.md) (`tab`), [Column Break](./column-break/README.md) (`column-break`), Text (`text`), Image (`image`), [Button](./button-block/README.md) (`button-block`), Title (`title`), [Hero](./hero/README.md) (`hero`), [Teaser](./teaser/README.md) (`teaser`), [Quote](./quote/README.md) (`quote`), [Media Contacts](./media-contacts/README.md) (`media-contacts`), [Testimonial](./testimonial/README.md) (`testimonial`), [Anchor List](./anchor-list/README.md) (`anchor-list`), [Accordion](./accordion/README.md) (`accordion`), [Table](./table/README.md) (`table`), [Table List](./table-list/README.md) (`table-list`), [List](./list/README.md) (`list`), [Separator](./separator/README.md) (`separator`), [Embed](./embed/README.md) (`embed`), [Video](./video/README.md) (`video`), [Modal](./modal/README.md) (`modal`), [Form Variations](./form-variations/README.md) (`form-variations`), [Filter List](./filter-list/README.md) (`filter-list`), [Cards](./cards/README.md) (`cards`), [Fragment](./fragment/README.md) (`fragment`), Tabs (`tabs-block`) |
 | [Tabs](./tabs/README.md) (`tabs-block`) | `tabs-block` | Tab (`tabs-item`) |
-| [Teaser](./teaser/README.md) (`teaser`) | `teaser` | Link (`teaser-link`), Stat (`teaser-stat`) |
+| [Teaser](./teaser/README.md) (`teaser`) | `teaser` | Link (`teaser-link`), Stat (`teaser-stat`), Collage image (`teaser-collage-image`) |
 | [Testimonial](./testimonial/README.md) (`testimonial`) | `testimonial` | Stat (`testimonial-stat`) |
 
 <!-- END GENERATED: relationships -->

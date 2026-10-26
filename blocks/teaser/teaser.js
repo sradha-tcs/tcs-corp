@@ -13,7 +13,7 @@ import { pictureOf } from '../../decorators/image-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
-import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
+import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
 import {
   NEW_WINDOW, linkOf, readLinkItems, readLinkRows,
 } from '../../utils/links.js';
@@ -46,7 +46,7 @@ let newTabHint = '';
  * ratio and corners, link arrow, top spacing, buttons side by side) become block classes.
  */
 
-const LAYOUTS = ['no-image', 'background', 'card'];
+const LAYOUTS = ['no-image', 'background', 'card', 'image-collage'];
 const BG_COLORS = ['grey', 'dark', 'dark-green', 'navy'];
 // Image position (Image & Text): beside the text (left, right) or above / below it
 const IMAGE_POSITIONS = ['left', 'right', 'top', 'bottom'];
@@ -67,6 +67,11 @@ const BUTTON_BACKGROUNDS = [
 const BUTTON_SHAPES = [
   'button-rectangle',
 ];
+
+const COLLAGE_IMAGE_LIMIT = 9;
+// the cells of a Collage image item: a dialog tab, the image (its alt text collapsed into it),
+// the Image treatment
+const COLLAGE_LAYOUT = [null, 'image', 'imageTreatment'];
 // Style and Image options: property (normalized name) and its values, also block classes
 const OPTIONS = {
   textalignment: [
@@ -91,6 +96,7 @@ const OPTIONS = {
   titlecolor: [
     'title-dark',
     'title-white',
+    'title-light-blue',
   ],
   descriptionsize: [
     'text-regular',
@@ -395,18 +401,54 @@ function buildMedia(block, props, layout) {
 }
 
 /**
+ * The Image collage images: up to nine Collage image items (a cell per field, not key-value
+ * rows: the image, with its alt text collapsed into it, and the Image treatment), decorative.
+ */
+function buildCollageImages(rows) {
+  const collage = document.createElement('div');
+  collage.className = 'teaser-collage';
+  collage.setAttribute('aria-hidden', 'true');
+  rows.forEach((row) => {
+    if (collage.children.length >= COLLAGE_IMAGE_LIMIT) return;
+    const cells = withoutTabCells([...row.children], COLLAGE_LAYOUT);
+    const imageCell = cells.find((cell) => cell.querySelector('picture'));
+    const picture = pictureOf(imageCell);
+    if (!picture) return;
+    const treatmentCell = cells[cells.length - 1];
+    const treatment = treatmentCell !== imageCell ? toClassName(textOf(treatmentCell)) : '';
+    const item = document.createElement('div');
+    item.className = `teaser-collage-item teaser-collage-item-${collage.children.length + 1}`;
+    item.classList.add(treatment === 'normal' ? 'image-normal' : 'image-black-white');
+    moveInstrumentation(row, item);
+    item.append(picture);
+    collage.append(item);
+  });
+  return collage.children.length ? collage : null;
+}
+
+/**
  * loads and decorates the block
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
   const props = readProperties(block);
-  // Link and Stat items: a Link item has a link
-  // (in its first cell: a Stat item starts with an empty tab cell, its label may hold a link)
+  // Link, Stat and Collage image items: a Link item has a link
+  // (in its first cell: a Stat item starts with an empty tab cell, its label may hold a link),
+  // a Collage image item a picture
   const hasLink = (row) => !!row.firstElementChild?.querySelector('a[href]');
+  const hasPicture = (row) => !!row.querySelector('picture');
   const linkRows = itemRows(block, ['teaser-link'], (row) => KEY_VALUE_ITEM(row) && hasLink(row));
-  const statRows = itemRows(block, ['teaser-stat'], (row) => KEY_VALUE_ITEM(row) && !hasLink(row));
+  const statRows = itemRows(block, ['teaser-stat'], (row) => KEY_VALUE_ITEM(row) && !hasLink(row)
+    && !hasPicture(row));
+  const collageRows = itemRows(block, ['teaser-collage-image'], (row) => KEY_VALUE_ITEM(row)
+    && !hasLink(row) && hasPicture(row));
   const [t, hint] = await Promise.all([
-    getPlaceholders(), editorItemHint([...linkRows, ...statRows]),
+    getPlaceholders(),
+    editorItemHint([
+      ...linkRows,
+      ...statRows,
+      ...collageRows,
+    ]),
   ]);
   newTabHint = t('opensInNewTab', '(opens in a new tab)');
   const layout = option(block, props.classes, LAYOUTS);
@@ -471,7 +513,10 @@ export default async function decorate(block) {
   if (isOnByDefault(props.showdescription) && textOf(props.description)) {
     body.append(fromCell(props.description, 'div', 'teaser-description'));
   }
-  const media = buildMedia(block, props, layout);
+  const media = layout === 'image-collage'
+    ? null
+    : buildMedia(block, props, layout);
+
   if (media && layout === 'no-image') body.append(media);
   const stats = buildStats(props.stats, 'teaser', statRows, hint);
   if (stats) body.append(stats);
@@ -480,6 +525,10 @@ export default async function decorate(block) {
   if (textOf(props.shortdescription)) {
     body.append(fromCell(props.shortdescription, 'div', 'teaser-short-description'));
   }
+
+  const collage = layout === 'image-collage'
+    ? buildCollageImages(collageRows)
+    : null;
 
   const content = document.createElement('div');
   content.className = 'teaser-content';
@@ -504,10 +553,12 @@ export default async function decorate(block) {
   block.classList.add(...styles);
   block.classList.toggle('buttons-inline', isOn(props.buttonssidebyside));
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
-  const beside = media && layout !== 'no-image';
+  const beside = media
+    && layout !== 'no-image'
+    && layout !== 'image-collage';
   const imageText = !!beside && !layout;
   IMAGE_POSITIONS.forEach((name) => block.classList.toggle(`image-${name}`, imageText && position === name && name !== 'left'));
   block.classList.toggle('teaser-has-media', imageText);
 
-  block.replaceChildren(...[beside ? media : null, content].filter(Boolean));
+  block.replaceChildren(...[beside ? media : null, collage, content].filter(Boolean));
 }

@@ -1141,6 +1141,21 @@
           }
         },
         {
+          "title": "Collage image",
+          "id": "teaser-collage-image",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Collage image",
+                  "model": "teaser-collage-image"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Testimonial",
           "id": "testimonial",
           "plugins": {

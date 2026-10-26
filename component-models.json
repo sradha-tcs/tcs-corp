@@ -26515,6 +26515,10 @@
           {
             "name": "Card",
             "value": "card"
+          },
+          {
+            "name": "Image collage",
+            "value": "image-collage"
           }
         ],
         "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
@@ -26644,6 +26648,10 @@
           {
             "name": "White",
             "value": "title-white"
+          },
+          {
+            "name": "Light blue",
+            "value": "title-light-blue"
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
@@ -27650,6 +27658,48 @@
         "label": "Stats Value",
         "description": "A single line, e.g. 40%.",
         "value": ""
+      }
+    ]
+  },
+  {
+    "id": "teaser-collage-image",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "collageTab",
+        "label": "Collage image"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text",
+        "description": "Leave empty when the collage image is decorative."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "imageTreatment",
+        "label": "Image treatment",
+        "value": "black-white",
+        "options": [
+          {
+            "name": "Black and white",
+            "value": "black-white"
+          },
+          {
+            "name": "Normal",
+            "value": "normal"
+          }
+        ]
       }
     ]
   },
