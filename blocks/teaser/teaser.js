@@ -72,6 +72,7 @@ const COLLAGE_IMAGE_LIMIT = 9;
 // the cells of a Collage image item: a dialog tab, the image (its alt text collapsed into it),
 // the Image treatment
 const COLLAGE_LAYOUT = [null, 'image', 'imageTreatment'];
+const COLLAGE_TREATMENTS = ['black-white', 'normal'];
 // Style and Image options: property (normalized name) and its values, also block classes
 const OPTIONS = {
   textalignment: [
@@ -403,11 +404,13 @@ function buildMedia(block, props, layout) {
 /**
  * The Image collage images: up to nine Collage image items (a cell per field, not key-value
  * rows: the image, with its alt text collapsed into it, and the Image treatment), decorative.
+ * @returns {{ collage: Element|null, rendered: Set<Element> }} and the item rows it shows
  */
 function buildCollageImages(rows) {
   const collage = document.createElement('div');
   collage.className = 'teaser-collage';
   collage.setAttribute('aria-hidden', 'true');
+  const rendered = new Set();
   rows.forEach((row) => {
     if (collage.children.length >= COLLAGE_IMAGE_LIMIT) return;
     const cells = withoutTabCells([...row.children], COLLAGE_LAYOUT);
@@ -422,8 +425,9 @@ function buildCollageImages(rows) {
     moveInstrumentation(row, item);
     item.append(picture);
     collage.append(item);
+    rendered.add(row);
   });
-  return collage.children.length ? collage : null;
+  return { collage: collage.children.length ? collage : null, rendered };
 }
 
 /**
@@ -434,14 +438,15 @@ export default async function decorate(block) {
   const props = readProperties(block);
   // Link, Stat and Collage image items: a Link item has a link
   // (in its first cell: a Stat item starts with an empty tab cell, its label may hold a link),
-  // a Collage image item a picture
+  // a Collage image item a picture, or (without an image yet) only its Image treatment
   const hasLink = (row) => !!row.firstElementChild?.querySelector('a[href]');
-  const hasPicture = (row) => !!row.querySelector('picture');
+  const isCollage = (row) => !!row.querySelector('picture') || (row.children.length === 3
+    && !textOf(row.children[1]) && COLLAGE_TREATMENTS.includes(textOf(row.lastElementChild)));
   const linkRows = itemRows(block, ['teaser-link'], (row) => KEY_VALUE_ITEM(row) && hasLink(row));
   const statRows = itemRows(block, ['teaser-stat'], (row) => KEY_VALUE_ITEM(row) && !hasLink(row)
-    && !hasPicture(row));
+    && !isCollage(row));
   const collageRows = itemRows(block, ['teaser-collage-image'], (row) => KEY_VALUE_ITEM(row)
-    && !hasLink(row) && hasPicture(row));
+    && !hasLink(row) && isCollage(row));
   const [t, hint] = await Promise.all([
     getPlaceholders(),
     editorItemHint([
@@ -526,9 +531,20 @@ export default async function decorate(block) {
     body.append(fromCell(props.shortdescription, 'div', 'teaser-short-description'));
   }
 
-  const collage = layout === 'image-collage'
-    ? buildCollageImages(collageRows)
-    : null;
+  // in the editor, the Collage image items not shown (no image yet, more than nine, or another
+  // Layout) are placeholders below the text, so Add visibly adds them
+  const { collage, rendered } = layout === 'image-collage'
+    ? buildCollageImages(collageRows) : { collage: null, rendered: new Set() };
+  const pendingCollage = buildEditorItems(
+    collageRows.filter((row) => !rendered.has(row)),
+    layout === 'image-collage' ? hint : t('collageEditorHint', 'Shown with Layout Image collage.'),
+  );
+  if (pendingCollage.length) {
+    const list = document.createElement('div');
+    list.className = 'teaser-collage-editor-items';
+    list.append(...pendingCollage);
+    body.append(list);
+  }
 
   const content = document.createElement('div');
   content.className = 'teaser-content';

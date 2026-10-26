@@ -1002,6 +1002,17 @@
     will-change: transform;
   }
 
+  /* Universal Editor: the collage images can be selected (items carry instrumentation) */
+  .teaser.image-collage .teaser-collage-item[data-aue-resource] {
+    pointer-events: auto;
+  }
+
+  /* Universal Editor: Collage image items not shown yet, as placeholders below the text */
+  .teaser .teaser-collage-editor-items {
+    display: grid;
+    gap: var(--space-200);
+  }
+
   .teaser.image-collage .teaser-collage-item :is(picture, img) {
     display: block;
     width: 100%;
