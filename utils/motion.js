@@ -21,7 +21,7 @@ export const BACKGROUND_MOTIONS = ['fade-in', 'reveal', 'wipe-right', 'wipe-left
  * content animation in ms (styles/motion.css --motion-duration; the background animation and the
  * stagger scale with it)
  */
-export const MOTION_SPEEDS = { fast: 300, medium: 600, slow: 900 };
+export const MOTION_SPEEDS = { fast: 500, medium: 1000, slow: 2000 };
 
 /** Animation Trigger: the block class motion-on-load (On Scroll / Viewport Entry: no class) */
 export const MOTION_TRIGGERS = ['scroll', 'load'];
