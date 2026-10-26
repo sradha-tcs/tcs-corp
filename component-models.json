@@ -25761,7 +25761,6 @@
         "valueType": "string",
         "name": "tags",
         "label": "Tags",
-        "multi": true,
         "description": "Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled."
       },
       {
