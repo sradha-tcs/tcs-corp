@@ -577,7 +577,7 @@ Pre-publish checklist:
 
 - **Labels.** Short (1–3 words); a label is also the title of its level.
 - **Links.** Section labels may link to the section's landing page; menu links are plain rows with an arrow.
-- **Logos.** One asset per logo for all breakpoints, transparent SVG (`/content/dam/tcs-corp/header/tcs-logo.svg`, `tata-logo.svg`, F-77). The CSS sets the height and the width follows the aspect ratio:
+- **Logos.** One asset per logo for all breakpoints, transparent SVG (`/content/dam/tcs-corp/header/tcs-logo.svg`, `tata-logo.svg`, F-77). The CSS sets the height and the width follows the aspect ratio, except the TCS logo has a fixed 9.125rem (146px) desktop width:
 
 | Logo | Mobile | Tablet (>= 600px) | Desktop (>= 1200px) |
 | ---- | ------ | ----------------- | ------------------- |

@@ -451,7 +451,7 @@ Pre-publish checklist:
 
 ## Content and Asset Guidelines
 
-- **Logos.** One asset per logo for every breakpoint (Figma uses the same vector at every size); upload SVGs to `/content/dam/tcs-corp/header/` (`tcs-logo.svg`, `tata-logo.svg`, F-77). The width follows the aspect ratio:
+- **Logos.** One asset per logo for every breakpoint (Figma uses the same vector at every size); upload SVGs to `/content/dam/tcs-corp/header/` (`tcs-logo.svg`, `tata-logo.svg`, F-77). The width follows the aspect ratio, except the TCS logo has a fixed 9.125rem (146px) desktop width:
 
 | Logo | Mobile | Tablet (>= 600px) | Desktop (>= 1200px) |
 | ---- | ------ | ----------------- | ------------------- |

@@ -486,6 +486,22 @@
           }
         },
         {
+          "title": "Combined Input Field",
+          "id": "field-combined",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Combined Input Field",
+                  "model": "field-combined",
+                  "classes": "field-combined"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Textarea Field",
           "id": "field-textarea",
           "plugins": {
