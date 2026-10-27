@@ -95,7 +95,9 @@ export function getLocale(pathname = window.location.pathname) {
  * TEMPORARY, for the review of the language master before its rollout to /en: pages published
  * below these roots (the paths.json mapping /content/tcs-corp/language-master/en/ ->
  * /language-master/en/) list the pages of their own tree from the query index, as a locale site
- * does. Remove with the mapping once the language master is rolled out and unpublished.
+ * does. tools/paths/generate-paths.mjs maps each root as a locale (npm run build:paths): its
+ * folder (child pages and sheets), its root page (the Home page, at {root}/), its taxonomy page.
+ * Remove with the mappings once the language master is rolled out and unpublished.
  */
 export const REVIEW_ROOTS = ['/language-master/en'];
 
