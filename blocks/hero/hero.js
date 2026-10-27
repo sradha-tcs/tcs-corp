@@ -17,12 +17,10 @@ let newTabHint = '';
  * - content: icon, eyebrow, title (heading) and description (element group "content_")
  * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
  * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
- *   and Title, Link Type (new-window), CTA view (primary | secondary), for a Secondary CTA its
- *   BG Color (secondary-bg-light-grey | secondary-bg-black-40) and Border color
- *   (secondary-border-black | secondary-border-white) as classes of the link, and CTA Arrow
- *   (right | down; without one, links to the page's own sections point down). CTAs authored
- *   before, in the CTA List composite multifield, come first: their CTA view is the link's bold
- *   (primary) / italic (secondary) formatting
+ *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
+ *   down; without one, links to the page's own sections point down). CTAs authored before, in
+ *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
+ *   / italic (secondary) formatting
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
  * before the Additional tab's animations, mapped to them),
@@ -30,7 +28,10 @@ let newTabHint = '';
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
  * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
- * icon-black | icon-white | icon-blue (Icon color: recolours the SVG icon, see tintIcon).
+ * icon-black | icon-white | icon-blue (Icon color: recolours the SVG icon, see tintIcon),
+ * secondary-bg-light-grey | secondary-bg-black-40 (Secondary CTA BG Color) and
+ * secondary-border-black | secondary-border-white (Secondary CTA Border color): the Secondary
+ * CTAs' background and border (hero.css).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -41,10 +42,6 @@ const LEGACY_MOTIONS = {
 const ARROWS = ['right', 'down'];
 const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
 const CTA_STYLES = ['primary', 'secondary'];
-// Secondary CTA BG Color and Border color of a CTA item (only read for a Secondary CTA)
-const SECONDARY_OPTIONS = [
-  'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
-];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 // Icon color values (the colours are in hero.css)
@@ -199,10 +196,6 @@ function buildCtas(cell, rows, hint) {
       newWindow,
       newTabHint,
     });
-    // a Secondary CTA's background and border colour (kept when the view changes: ignored then)
-    if (type === 'secondary') {
-      a.classList.add(...values.filter((value) => SECONDARY_OPTIONS.includes(value)));
-    }
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
       a.classList.add('hero-cta-down');

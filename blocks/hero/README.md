@@ -217,6 +217,8 @@ B = Horizontal Alignment
 C = Text Alignment
 D = BG Color
 E = Icon color
+F = Secondary CTA BG Color
+G = Secondary CTA Border color
 ```
 
 ```text
@@ -255,9 +257,7 @@ A = CTA Link
 B = CTA Title
 C = CTA Link Type
 D = CTA view
-E = Secondary CTA BG Color
-F = Border color
-G = CTA Arrow
+E = CTA Arrow
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -369,7 +369,7 @@ B = Left-aligned text and CTAs
 2. **Open its properties.** Select the Hero in the content tree; the properties panel shows the **Content**, **Style** and **Additional** tabs.
 3. **Enter content (Content tab).** Choose a **Hero Image Path** and enter its **Hero Image alt text** (leave the alt empty only for a decorative image). Enter the **Eyebrow**, **Title** and **Description**; set **Title heading level** to H1 for the page's main Hero, H2 for any other. Add an **Icon** (with **Icon Image Alt Text**) only if the design needs it.
 4. **Select variations.** For an animation set **Hero Image type** to Lotto and choose a Lottie `.json` file as the Hero Image Path. For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
-5. **Add CTAs.** Select the Hero, choose **Add (+)** and pick **CTA**. Fill **CTA Link** (required) and **CTA Title**; choose **CTA view** (Default text link, Primary, Secondary; for Secondary also **Secondary CTA BG Color** and **Border color**, shown only then), **CTA Arrow** (Auto, Right, Down) and **CTA Link Type** (Open in New Window only when needed). Reorder CTAs by dragging them in the content tree; the page shows them in that order.
+5. **Add CTAs.** Select the Hero, choose **Add (+)** and pick **CTA**. Fill **CTA Link** (required) and **CTA Title**; choose **CTA view** (Default text link, Primary, Secondary), **CTA Arrow** (Auto, Right, Down) and **CTA Link Type** (Open in New Window only when needed). Reorder CTAs by dragging them in the content tree; the page shows them in that order.
 6. **Additional tab.** Set an Anchor ID, Hide block, animations or spacing only when needed (see [Authorable Fields](#authorable-fields)).
 7. **Preview.** Switch Universal Editor to Preview (animations play only there) or open the page on aem.page; check desktop, tablet and mobile widths.
 8. **Publish.** Publish the page with its referenced assets. A Lottie `.json` file is served only once it is published itself (images travel with the page).
@@ -417,6 +417,8 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Text Alignment | `classes_textAlignment` | select | No | `text-center` | Left align (`text-left`), Center align (`text-center`), Right align (`text-right`) | Alignment of the icon, text and CTAs inside the content block. Delivered as a block class. | text-left |
 | BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay. Delivered as a block class. | bg-dark |
 | Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
+| Secondary CTA BG Color | `classes_secondaryctabg` | select | No | "" | Default (""), Light grey (#F5F5F5) (`secondary-bg-light-grey`), Black, 40% opacity (#0C0C0D66) (`secondary-bg-black-40`) | For the CTAs with CTA view Secondary. Default: transparent, as before. Delivered as a block class. | — |
+| Secondary CTA Border color | `classes_secondaryctaborder` | select | No | `secondary-border-black` | Black (`secondary-border-black`), White (`secondary-border-white`) | The 1px border of the CTAs with CTA view Secondary. Delivered as a block class. | — |
 
 #### Additional tab — Hero
 
@@ -449,8 +451,6 @@ Model `hero-cta`; template name "CTA" (the block class AEM renders).
 | CTA Title | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | — |
 | CTA Link Type | `linkTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA view | `linkStyle` | select | No | "" | Default (""), Primary (`primary`), Secondary (`secondary`) | — | — |
-| Secondary CTA BG Color | `secondaryBackground` | select | No | "" | Default (""), Light grey (#F5F5F5) (`secondary-bg-light-grey`), Black, 40% opacity (#0C0C0D66) (`secondary-bg-black-40`) | Default: transparent, as before. Shown when `linkStyle` is `secondary`. | — |
-| Border color | `secondaryBorder` | select | No | `secondary-border-black` | Black (`secondary-border-black`), White (`secondary-border-white`) | The 1px border of the Secondary CTA. Shown when `linkStyle` is `secondary`. | — |
 | CTA Arrow | `linkArrow` | select | No | "" | Auto (down for links to sections of this page) (""), Right (`right`), Down (`down`) | Direction of the arrow next to the CTA text. | — |
 
 <!-- END GENERATED: fields -->
@@ -463,8 +463,9 @@ Notes on the significant fields (the tables above list every field, default and 
 - **Eyebrow.** Rendered as `p.hero-eyebrow` only when there is a Title; without a Title every text element goes to the description.
 - **Title / Title heading level.** The heading level collapses into the title (AEM delivers an `h1` or `h2`); it becomes `.hero-title`. Accessibility and SEO: one H1 per page.
 - **Description.** Rich text in `div.hero-description` (omitted when empty).
-- **CTA (item) fields.** CTA view Primary / Secondary render `a.button.primary` / `a.button.secondary`; Default renders `a.button.tertiary` (text with an arrow). A Secondary CTA's **Secondary CTA BG Color** (Default: transparent; Light grey `#F5F5F5`, `--grey-100`, with dark text; Black, 40% opacity `#0C0C0D66`, `--black-400`) and **Border color** (Black `--black-1000`, the dialog default; White `--white-1000`) become link classes (`secondary-bg-light-grey`, `secondary-bg-black-40`, `secondary-border-black`, `secondary-border-white`) with a 1px border; they apply only while the CTA view is Secondary (values kept from an earlier Secondary view are ignored), hover and focus stay the Secondary button's, and a Secondary CTA without them (all CTAs authored before) keeps its transparent background and the border of its BG Color. The CTA item has 6 cells (`.eslintrc.js` `max-cells` `hero-cta: 6`). CTA Arrow Down, or Auto with a link starting with `#`, adds `hero-cta-down` (down arrow). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder text `opensInNewTab` ("(opens in a new tab)"). A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder).
+- **CTA (item) fields.** CTA view Primary / Secondary render `a.button.primary` / `a.button.secondary`; Default renders `a.button.tertiary` (text with an arrow). CTA Arrow Down, or Auto with a link starting with `#`, adds `hero-cta-down` (down arrow). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder text `opensInNewTab` ("(opens in a new tab)"). A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder).
 - **BG Color.** Default: white overlay at 80 %. Light, no overlay: the image as is. Dark blue: navy overlay at 80 %; Dark blue (subtle): 60 %; Black: black at 80 %; the dark options switch the title to white, the description to 50 % white (85 % on Dark blue (subtle)), the eyebrow to `--brand-300` (white on Dark blue (subtle)) and Secondary / Default CTAs to white. Without media no overlay is drawn.
+- **Secondary CTA BG Color / Secondary CTA Border color.** Style tab options of the Hero for all its CTAs with CTA view Secondary (Primary and Default CTAs are unchanged; the fields are always shown, as the Hero's dialog can't see the CTAs' views). BG Color: Default (transparent, as before), Light grey `#F5F5F5` (`--grey-100`, with dark text so it stays readable on dark backgrounds), Black, 40% opacity `#0C0C0D66` (`--black-400`). Border color: Black (`--black-1000`, the dialog default) or White (`--white-1000`), 1px. They are block classes (`secondary-bg-light-grey`, `secondary-bg-black-40`, `secondary-border-black`, `secondary-border-white`); hover and focus stay the Secondary button's. A Hero without them (all heroes authored before) keeps its Secondary CTAs' transparent background and the border of its BG Color.
 - **Alignments.** Vertical and Horizontal Alignment position the content block (nine positions); Text Alignment aligns the icon, text and CTAs inside it. Heroes authored before Text Alignment existed follow their Horizontal Alignment.
 - **Data-layer impact.** None of the fields changes the data-layer entry except the Title (its text is the component's `dc:title`) and Anchor ID (the component id).
 - **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA view as bold / italic, CTA Arrow) are still read and shown before the CTA items. The former **Motion Type** values (`motion-fade`, `motion-slide`, `motion-zoom`) are mapped by `mapLegacyMotion` to Fade in, Fade up and Background Scale reveal, played Slow unless a Motion Speed is set, and only when the block has no Animation Type / Background animation of its own.

@@ -41,8 +41,6 @@ module.exports = {
       'field-textarea': 6,
       'field-checkbox': 5,
       'contact-card': 5,
-      // Hero CTA: link, Link Type, CTA view, Secondary CTA BG Color and Border color, arrow
-      'hero-cta': 6,
     }],
   },
   overrides: [
