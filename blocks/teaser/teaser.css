@@ -1335,53 +1335,107 @@
 
   @media (width < 900px) {
     .teaser.image-collage {
-      min-height: 42rem;
-      padding-inline: var(--space-600);
+      min-height: 64rem;
+      padding-inline: var(--space-800);
     }
 
-    .teaser.image-collage .teaser-collage-item:is(.teaser-collage-item-1,
-      .teaser-collage-item-4,
-      .teaser-collage-item-6,
-      .teaser-collage-item-7,
-      .teaser-collage-item-9) {
-      display: none;
+    .teaser.image-collage .teaser-content {
+      width: 100%;
+      max-width: 37.5rem;
+      gap: var(--space-600);
+    }
+
+    .teaser.image-collage .teaser-intro {
+      width: 100%;
+      padding-block: 0.625rem;
+      gap: var(--space-500);
+    }
+
+    .teaser.image-collage .teaser-title {
+      --teaser-title-size: 2rem;
+
+      width: 100%;
+      font-size: var(--teaser-title-size);
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.2;
+      letter-spacing: calc(-0.03 * var(--teaser-title-size));
+      text-align: center;
+    }
+
+    .teaser.image-collage :is(.teaser-description, .teaser-short-description) {
+      width: 100%;
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-regular);
+      line-height: 1.6;
+      letter-spacing: calc(-0.005 * 1.125rem);
+      text-align: center;
+    }
+
+    /*
+     * Figma uses a fixed 1024 × 1024 photo composition.
+     * The mobile component crops this composition horizontally.
+     */
+    .teaser.image-collage .teaser-collage {
+      top: 0;
+      bottom: auto;
+      left: 50%;
+      width: 64rem;
+      min-width: 64rem;
+      height: 64rem;
+      transform: translateX(-50%);
+    }
+
+    .teaser.image-collage .teaser-collage-item {
+      display: block;
+      border-radius: 1.5rem;
+    }
+
+    .teaser.image-collage .teaser-collage-item-1 {
+      inset: -31.25% 17.43% 79.79% 52.15%;
+      opacity: 1;
     }
 
     .teaser.image-collage .teaser-collage-item-2 {
-      top: 0;
-      left: 8%;
-      width: 48%;
-      height: 19%;
+      inset: -5.57% -23.06% 54.1% 92.64%;
       opacity: 0.7;
     }
 
     .teaser.image-collage .teaser-collage-item-3 {
-      top: 5%;
-      right: -10%;
-      left: auto;
-      width: 42%;
-      height: 16%;
+      inset: 60.94% 84.58% 16.11% -16.11%;
       opacity: 0.6;
     }
 
-    .teaser.image-collage .teaser-collage-item-5 {
-      top: 30%;
-      left: -12%;
-      width: 37%;
-      height: 26%;
-      opacity: 0.4;
-    }
-
-    .teaser.image-collage .teaser-collage-item-8 {
-      bottom: -3%;
-      left: 4%;
-      width: 54%;
-      height: 22%;
+    .teaser.image-collage .teaser-collage-item-4 {
+      inset: 73.05% 53.54% -27.05% 18.89%;
       opacity: 1;
     }
 
-    .teaser.image-collage .teaser-content {
-      width: min(100%, 32rem);
+    .teaser.image-collage .teaser-collage-item-5 {
+      inset: -14.26% 53.4% 74.61% 22.01%;
+      opacity: 0.4;
+    }
+
+    .teaser.image-collage .teaser-collage-item-6 {
+      inset: 50% -23.06% 16.11% 88.06%;
+      opacity: 0.5;
+    }
+
+    .teaser.image-collage .teaser-collage-item-7 {
+      inset: 14.16% 82.15% 50% -11.88%;
+      opacity: 1;
+    }
+
+    .teaser.image-collage .teaser-collage-item-8 {
+      inset: 80.08% 33.33% -5.66% 49.93%;
+      opacity: 1;
+    }
+
+    .teaser.image-collage .teaser-collage-item-9 {
+      top: 69.71%;
+      right: 16.2479%;
+      bottom: 18.88%;
+      width: 13.7375%;
+      opacity: 1;
     }
   }
 
