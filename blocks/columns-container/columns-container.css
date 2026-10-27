@@ -31,6 +31,10 @@
   background-color: var(--color-bg-dark-green);
 }
 
+.block.columns-container.bg-navy {
+  background-color: var(--color-bg-brand-hover);
+}
+
 /* on Dark and Dark Green: the theme contract of styles/styles.css (light text, links, buttons) */
 
 /* Gap */

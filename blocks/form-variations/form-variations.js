@@ -1,5 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { decorateButton } from '../../decorators/button-decorator.js';
+// import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
@@ -8,37 +8,17 @@ import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 
-// UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
-/*
- * Form Variations (blocks/form-variations/_form-variations.json): a form built from child
- * field items. The first rows are the block properties (Form Title, Form Description, Submit
- * action; AEM adds an empty row for each dialog tab). AEM delivers an item row's node name and its
- * read-only "classes" field (the item type) in its first cell, "email, field-text": the field
- * items store their field key in "name", which is the node name, so the key comes from that cell
- * too. Older markup has the type alone in the first cell, then the key cell. Fields, buttons
- * and contact cards with "Show only if dropdown value equals" appear when any dropdown of the
- * form has that value.
- *
- * Submit: a valid submit dispatches a bubbling, cancelable "form-variations:submit" event on the
- * block ({ detail: { data } }); an integration that handles it calls preventDefault(). Otherwise
- * the data is POSTed as JSON ({ data }) to the Submit action; without either, the visitor is
- * told the form isn't connected and keeps the values (nothing is claimed as sent).
- */
-
 const ITEM_TYPES = [
-  'field-text', 'field-select', 'field-textarea', 'field-checkbox', 'contact-card', 'field-submit',
+  'field-text', 'field-select', 'field-combined', 'field-textarea', 'field-checkbox', 'contact-card', 'field-submit',
 ];
-/** the item types whose first field is the field key */
-const KEYED_TYPES = ['field-text', 'field-select', 'field-textarea', 'field-checkbox'];
-/** the cells after the type cell of a keyed item with its fieldName field (current model) */
+const KEYED_TYPES = ['field-text', 'field-select', 'field-combined', 'field-textarea', 'field-checkbox'];
 const FIELD_COUNT = {
-  'field-text': 5, 'field-select': 5, 'field-textarea': 5, 'field-checkbox': 4,
+  'field-text': 5, 'field-select': 5, 'field-combined': 5, 'field-textarea': 5, 'field-checkbox': 4,
 };
-/** node names AEM gives items without a field key: their template names in class-name form */
 const TEMPLATE_NAMES = [
-  'text-input-field', 'dropdown-select-field', 'textarea-field', 'consent-checkbox-field',
+  'text-input-field', 'dropdown-select-field', 'combined-input-field', 'textarea-field', 'consent-checkbox-field',
   'contact-card-output', 'submit-button',
 ];
 const INPUT_KINDS = ['text', 'email', 'tel'];
@@ -48,20 +28,12 @@ const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
 const splitList = (value) => value.split(',').map((item) => item.trim()).filter(Boolean);
 
-/** a cell holding a text, as a stand-in for a field cell AEM doesn't deliver */
 function textCell(text) {
   const cell = document.createElement('div');
   cell.textContent = text;
   return cell;
 }
 
-/**
- * The item type of a row and its field cells in model order:
- * - AEM: first cell "<node name>, <type>" (the node name is the field key of keyed items)
- * - older markup: first cell "<type>", then the field cells
- * - Universal Editor model without a type cell
- * @returns {{ type: string, cells: Element[] }}
- */
 export function readItem(row) {
   const cells = [...row.children];
   const tokens = textOf(cells[0]).split(',').map((v) => v.trim()).filter(Boolean);
@@ -69,10 +41,7 @@ export function readItem(row) {
   if (type) {
     const fields = cells.slice(1);
     if (tokens.length === 1 || !KEYED_TYPES.includes(type)) return { type, cells: fields };
-    // current model: the key is its own fieldName cell (as authored, e.g. firstName)
     if (fields.length >= FIELD_COUNT[type]) return { type, cells: fields };
-    // items authored before: the key was the item's node name, delivered in class-name form
-    // (firstname), unless it is only the item's template name (no key)
     const key = tokens.find((v) => v !== type);
     return { type, cells: [textCell(TEMPLATE_NAMES.includes(key) ? '' : key), ...fields] };
   }
@@ -81,11 +50,6 @@ export function readItem(row) {
   return { type: '', cells };
 }
 
-/**
- * The block's own property cells (Form Title, Form Description, Submit action), without the
- * empty rows AEM adds for the dialog tabs (Content first, Additional last).
- * @param {Element[]} cells the first cells of the rows before the items
- */
 export function readProperties(cells) {
   const byProp = (name) => cells.find((cell) => cell?.dataset.aueProp === name
     || cell?.querySelector(`[data-aue-prop="${name}"]`));
@@ -98,7 +62,6 @@ export function readProperties(cells) {
   return { titleCell, descriptionCell, actionCell };
 }
 
-/** moves the editor instrumentation of a cell (and its only child) onto an element */
 function instrument(cell, el) {
   if (!cell) return;
   if (cell.children.length === 1) moveInstrumentation(cell.firstElementChild, el);
@@ -112,7 +75,6 @@ function createGroup(classNames, dependsOn) {
   return group;
 }
 
-/** a label with the authored text (keeping its instrumentation) and a required marker */
 function createLabel(id, cell, required, fallback) {
   const label = document.createElement('label');
   label.className = 'form-variations-label';
@@ -136,74 +98,6 @@ function setRequired(control, required) {
   if (required) control.dataset.required = 'true';
 }
 
-/** the autocomplete value of a field from its name or type (WCAG 1.3.5 input purpose) */
-const AUTOCOMPLETE = [
-  [/first|given/, 'given-name'], [/last|surname|family/, 'family-name'], [/^(full[-_ ]?)?name$/, 'name'],
-  [/e-?mail/, 'email'], [/phone|mobile|tel/, 'tel'], [/company|organi[sz]ation/, 'organization'],
-  [/job|designation|position/, 'organization-title'], [/country/, 'country-name'],
-  [/city|town/, 'address-level2'], [/zip|postal|post[-_ ]?code/, 'postal-code'],
-];
-function autocompleteOf(name, type) {
-  if (type === 'email') return 'email';
-  if (type === 'tel') return 'tel';
-  const match = AUTOCOMPLETE.find(([pattern]) => pattern.test(name.toLowerCase()));
-  return match ? match[1] : '';
-}
-
-/** the visible error of a field, linked to it (aria-invalid, aria-describedby) */
-function showError(control, message) {
-  const id = `${control.id}-error`;
-  let error = control.form?.querySelector(`#${CSS.escape(id)}`);
-  if (!error) {
-    error = document.createElement('p');
-    error.className = 'form-variations-error';
-    error.id = id;
-    control.closest('.form-variations-group')?.append(error);
-  }
-  error.textContent = message;
-  control.setAttribute('aria-invalid', 'true');
-  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
-  if (!described.includes(id)) control.setAttribute('aria-describedby', [...described, id].join(' '));
-}
-
-function clearError(control) {
-  control.removeAttribute('aria-invalid');
-  const id = `${control.id}-error`;
-  control.form?.querySelector(`#${CSS.escape(id)}`)?.remove();
-  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter((v) => v && v !== id);
-  if (described.length) control.setAttribute('aria-describedby', described.join(' '));
-  else control.removeAttribute('aria-describedby');
-}
-
-/** the message of an invalid field, from the placeholders */
-function errorOf(control) {
-  const { validity } = control;
-  if (validity.valueMissing) return t('fieldRequired', 'This field is required.');
-  if (validity.typeMismatch && control.type === 'email') return t('fieldEmail', 'Enter a valid email address.');
-  if (validity.typeMismatch || validity.patternMismatch) return t('fieldFormat', 'Enter a valid value.');
-  if (validity.tooLong) return t('fieldTooLong', 'This text is too long.');
-  return control.validationMessage;
-}
-
-/**
- * Validates the visible fields: errors next to the fields, focus on the first invalid one.
- * @returns {boolean} whether the form is valid
- */
-function validate(form) {
-  const controls = [...form.elements].filter((el) => el.matches('input, select, textarea')
-    && !el.disabled && el.type !== 'hidden' && el.type !== 'submit');
-  const invalid = controls.filter((control) => {
-    if (control.checkValidity()) {
-      clearError(control);
-      return false;
-    }
-    showError(control, errorOf(control));
-    return true;
-  });
-  invalid[0]?.focus();
-  return !invalid.length;
-}
-
 function buildTextField(cells, nextId) {
   const [nameCell, labelCell, kindCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'text';
@@ -218,8 +112,6 @@ function buildTextField(cells, nextId) {
   input.type = INPUT_KINDS.includes(kind) ? kind : 'text';
   input.id = id;
   input.name = name;
-  const autocomplete = autocompleteOf(name, input.type);
-  if (autocomplete) input.autocomplete = autocomplete;
   setRequired(input, required);
   group.append(createLabel(id, labelCell, required, name), input);
   return group;
@@ -253,6 +145,39 @@ function buildSelectField(cells, nextId) {
   instrument(optionsCell, select);
 
   group.append(createLabel(id, labelCell, required, name), select);
+  return group;
+}
+
+function buildCombinedField(cells, nextId) {
+  const [nameCell, labelCell, optionsCell, requiredCell, dependsCell] = cells;
+  const name = textOf(nameCell) || 'score';
+  const required = isTrue(requiredCell);
+  const id = nextId(name);
+
+  const group = createGroup(['field-combined', 'full-width'], textOf(dependsCell));
+  const row = document.createElement('div');
+  row.className = 'form-variations-combined-row';
+
+  const input = document.createElement('input');
+  input.className = 'form-variations-control combined-input';
+  input.type = 'text';
+  input.id = id;
+  input.name = name;
+  setRequired(input, required);
+
+  const select = document.createElement('select');
+  select.className = 'form-variations-control combined-select';
+  select.name = `${name}Unit`;
+
+  splitList(textOf(optionsCell)).forEach((val) => {
+    const opt = document.createElement('option');
+    opt.value = val;
+    opt.textContent = val;
+    select.append(opt);
+  });
+
+  row.append(input, select);
+  group.append(createLabel(id, labelCell, required, name), row);
   return group;
 }
 
@@ -312,7 +237,6 @@ function buildCheckboxField(cells, nextId) {
   const label = document.createElement('label');
   label.className = 'form-variations-checkbox-label';
   label.htmlFor = id;
-  // the consent text is rich text (sanitized by the platform): keep its markup
   const text = document.createElement('span');
   text.className = 'form-variations-consent';
   if (labelCell) {
@@ -370,7 +294,6 @@ function buildSubmit(cells) {
   button.type = 'submit';
   button.textContent = textOf(labelCell) || t('send', 'Send');
   instrument(labelCell, button);
-  decorateButton(button, { view: 'button', type: 'primary' });
   group.append(button);
   return group;
 }
@@ -378,20 +301,15 @@ function buildSubmit(cells) {
 const BUILDERS = {
   'field-text': buildTextField,
   'field-select': buildSelectField,
+  'field-combined': buildCombinedField,
   'field-textarea': buildTextareaField,
   'field-checkbox': buildCheckboxField,
   'contact-card': buildContactCard,
   'field-submit': buildSubmit,
 };
 
-/**
- * Shows the conditional fields and contact cards whose value is selected in any dropdown.
- * Hidden fields are disabled (left out of validation and the submitted data) and not required.
- * In the editor everything stays visible so authors can select it.
- */
 function updateVisibility(form, editing) {
   const conditional = [...form.querySelectorAll('[data-depends-on]')];
-  // repeat while a hidden dropdown hides further fields (chained conditions)
   for (let pass = 0; pass <= conditional.length; pass += 1) {
     const selected = [...form.querySelectorAll('select')]
       .filter((select) => !select.disabled && select.value)
@@ -409,7 +327,6 @@ function updateVisibility(form, editing) {
   }
 }
 
-/** the form values; repeated names become arrays */
 function collectData(form) {
   const data = {};
   new FormData(form).forEach((value, key) => {
@@ -419,14 +336,37 @@ function collectData(form) {
   return data;
 }
 
-/**
- * loads and decorates the block
- * @param {Element} block The block element
- */
 export default async function decorate(block) {
   t = await getPlaceholders();
   const nextId = createIdFactory(uniqueId('form-variations'));
   const editing = isInEditor(block);
+
+  // Background Image Handling
+  const section = block.closest('.section');
+  const img = section?.querySelector('picture img');
+  if (section && img) {
+    const bgUrl = img.src;
+    section.style.backgroundImage = `linear-gradient(to right, #050811 40%, rgba(5, 8, 17, 0.3) 70%, transparent 100%), url('${bgUrl}')`;
+    section.style.backgroundSize = 'cover';
+    section.style.backgroundPosition = 'right center';
+    img.closest('picture')?.remove();
+  }
+
+  // Create Back Button (< BACK)
+  const backBtn = document.createElement('button');
+  backBtn.className = 'form-variations-back';
+  backBtn.setAttribute('type', 'button');
+  backBtn.innerHTML = '&lt; BACK';
+  backBtn.addEventListener('click', () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
+
+  const innerWrapper = document.createElement('div');
+  innerWrapper.className = 'form-variations-inner';
 
   const form = document.createElement('form');
   form.className = 'form-variations-form';
@@ -443,12 +383,6 @@ export default async function decorate(block) {
     itemsStarted = true;
     const el = BUILDERS[type](cells, nextId);
     moveInstrumentation(row, el);
-    if (editing && el.dataset.dependsOn) {
-      const note = document.createElement('p');
-      note.className = 'form-variations-condition';
-      note.textContent = t('shownWhenValue', 'Shown when a dropdown value is "{value}"', { value: el.dataset.dependsOn });
-      el.prepend(note);
-    }
     form.append(el);
   });
 
@@ -457,6 +391,7 @@ export default async function decorate(block) {
   const action = actionLink?.getAttribute('href') || textOf(actionCell);
   const header = document.createElement('div');
   header.className = 'form-variations-header';
+
   const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', 'h2') : null;
   if (title) header.append(title);
   if (descriptionCell && textOf(descriptionCell)) {
@@ -474,76 +409,32 @@ export default async function decorate(block) {
 
   form.addEventListener('change', (e) => {
     if (!e.target.matches('select')) return;
-    const shown = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden);
     updateVisibility(form, editing);
-    const added = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden && !shown.includes(el));
-    if (!editing && added.length) status.textContent = t('fieldsUpdated', 'More fields are shown below.');
   });
-  // the required marker explained once (it's hidden from screen readers, the fields are required)
-  if (form.querySelector('[required]')) {
-    const note = document.createElement('p');
-    note.className = 'form-variations-required-note';
-    note.textContent = t('requiredNote', '* Required fields');
-    form.prepend(note);
-  }
 
-  form.addEventListener('input', (e) => {
-    status.textContent = '';
-    if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) clearError(e.target);
-  });
   const succeed = () => {
     form.reset();
-    form.querySelectorAll('textarea').forEach((textarea) => textarea.dispatchEvent(new Event('input')));
     updateVisibility(form, editing);
     status.textContent = t('formSuccess', 'Thank you, your details were sent.');
   };
-  const fail = (key, fallback) => { status.textContent = t(key, fallback); };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // a submission is being sent: a second click or Enter doesn't send it again
     if (form.getAttribute('aria-busy') === 'true') return;
     status.textContent = '';
-    if (!validate(form)) return;
     const data = collectData(form);
-    // an integration that handles the submit (preventDefault) can report its outcome with
-    // detail.respondWith(promise): rejected, the visitor is told it failed
-    let pending = null;
-    const detail = { data, respondWith: (promise) => { pending = promise; } };
-    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, cancelable: true, detail }));
-    const button = form.querySelector('button[type="submit"]');
-    if (handled) {
-      try {
-        await pending;
-        succeed();
-      } catch {
-        fail('formError', 'Your details couldn’t be sent. Please try again.');
-      }
-    } else if (!action) {
-      fail('formNotConnected', 'This form isn’t connected yet: your details weren’t sent.');
-    } else {
-      button?.setAttribute('aria-disabled', 'true');
-      form.setAttribute('aria-busy', 'true');
+
+    if (action) {
       try {
         const response = await fetch(action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data }) });
         if (response.ok) succeed();
-        else fail('formError', 'Your details couldn’t be sent. Please try again.');
       } catch {
-        fail('formError', 'Your details couldn’t be sent. Please try again.');
-      } finally {
-        button?.removeAttribute('aria-disabled');
-        form.removeAttribute('aria-busy');
+        status.textContent = t('formError', 'Your details couldn’t be sent. Please try again.');
       }
     }
-    // focus stays on the page (the submit button may be hidden by the reset)
-    status.focus();
   });
-  if (editing && !action) {
-    const note = document.createElement('p');
-    note.className = 'form-variations-condition';
-    note.textContent = t('formNoAction', 'No Submit action set: submissions aren’t sent anywhere.');
-    form.prepend(note);
-  }
 
-  block.replaceChildren(...(header.children.length ? [header] : []), form, status);
+  innerWrapper.append(...(header.children.length ? [header] : []), form, status);
+  block.replaceChildren(backBtn, innerWrapper);
   updateVisibility(form, editing);
 }
