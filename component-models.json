@@ -14455,6 +14455,34 @@
       {
         "component": "boolean",
         "valueType": "boolean",
+        "name": "featureShowAuthor",
+        "label": "Show author on feature card",
+        "value": true,
+        "description": "The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change.",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "featureFirst"
+                },
+                true
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
         "name": "linkItems",
         "label": "Link items",
         "value": true

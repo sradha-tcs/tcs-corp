@@ -17,7 +17,7 @@ import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
   HEADINGS, ITEM_DISPLAY, buildCards, itemLayoutFor, mergeFixedItems, normalizeConfig,
-  normalizePath, validateConfig,
+  normalizePath, showsFeatureAuthor, validateConfig,
 } from './list-data.js';
 
 /*
@@ -47,7 +47,8 @@ ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; }
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
   'parentusecurrentpage', 'directchildrenonly', 'childdepth', 'rootpath', 'tagsusecurrentpage',
-  'tags', 'tagmatch', 'includedescendants', 'maxdepth', 'orderby', 'sortorder', 'maxitems']);
+  'tags', 'tagmatch', 'includedescendants', 'maxdepth', 'orderby', 'sortorder', 'maxitems',
+  'featureshowauthor']);
 const PATH_PROPERTIES = ['parentpath', 'rootpath'];
 const LIST_PROPERTIES = ['tags', 'classes'];
 const debug = (...args) => {
@@ -189,7 +190,7 @@ export default async function decorate(block) {
   const loaded = Promise.all([
     needsIndex ? getPages() : [],
     loadRedirects(),
-    config.featureFirst ? getAuthors().catch(() => []) : [],
+    showsFeatureAuthor(config) ? getAuthors().catch(() => []) : [],
   ]);
   // laid out before the pages arrive, so the skeleton takes the list's grid / scroll layout
   applyCardListLayout(block, config);

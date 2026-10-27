@@ -1,10 +1,11 @@
 /* Unit tests of the List block's data (blocks/list/list-data.js): run with npm test */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import {
   ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
-  normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
-  validateConfig, withIds,
+  normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
+  sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import modelLayout from '../model-layout.mjs';
@@ -60,6 +61,34 @@ describe('configuration', () => {
       const c = config({ desktopmode: d, tabletmode: t, mobilemode: m });
       assert.deepEqual([c.responsive.desktop.mode, c.responsive.tablet.mode, c.responsive.mobile.mode], [d, t, m]);
     });
+  });
+});
+
+describe('feature card author (Show author on feature card)', () => {
+  const feature = { displayasteaser: 'true', featurefirst: 'true' };
+  it('lists authored before show the author: on by default', () => {
+    assert.equal(config().featureShowAuthor, true);
+    assert.equal(showsFeatureAuthor(config(feature)), true);
+  });
+  it('off hides the author of the feature card', () => {
+    assert.equal(config({ ...feature, featureshowauthor: 'false' }).featureShowAuthor, false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'false' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'true' })), true);
+  });
+  it('only a feature card shows an author (no Authors sheet otherwise)', () => {
+    assert.equal(showsFeatureAuthor(config({ displayasteaser: 'true' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, displayasteaser: 'false' })), false);
+  });
+  it('the dialog field: List only, after First card as feature, shown only for a feature card', async () => {
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url), 'utf8'));
+    const fields = (id) => models.find((m) => m.id === id).fields;
+    const names = fields('list').map((f) => f.name);
+    assert.equal(names[names.indexOf('featureFirst') + 1], 'featureShowAuthor');
+    const field = fields('list').find((f) => f.name === 'featureShowAuthor');
+    assert.equal(field.value, true);
+    assert.deepEqual(JSON.stringify(field.condition).match(/"var":"\w+"/g), ['"var":"displayAsTeaser"', '"var":"featureFirst"']);
+    // the Cards block has no authors: no field there
+    assert.ok(!fields('cards').some((f) => f.name === 'featureShowAuthor'));
   });
 });
 

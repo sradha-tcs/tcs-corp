@@ -263,7 +263,9 @@
             true
           ]
         }
-      },
+      }
+    ],
+    "cardsShow": [
       {
         "component": "boolean",
         "valueType": "boolean",

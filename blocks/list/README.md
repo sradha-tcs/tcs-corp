@@ -16,7 +16,7 @@ The List is the AEM Core Components **List** for Edge Delivery Services (xwalk /
 - **Business purpose:** keeps listings of site content up to date without manual work. When an author publishes a new child page or tags a page, every List that selects it shows the new card, with the title, text and image the page defines in its metadata. Authors decide what is listed (source, tags, order, maximum) and how it looks; page owners maintain the card content once, on the page.
 - **User experience:** an optional header (title, description, a CTA on the right), then the cards or rows. Each breakpoint is a grid or a horizontal scroller with optional previous / next buttons and a scroll indicator. While the query index loads (more than 150ms), a skeleton in the list's layout keeps the section visible.
 - **Templates / page types:** any page; no template adds or removes it. Typical: home and landing pages (child pages, curated selections), article and blog pages (related tagged pages), press-release and news overview pages (rows of links ordered by date).
-- **Data source:** the locale's published query index (`/query-index.json`, `helix-query.yaml`), the redirects sheet (`/{locale}/redirects.json`), the Authors sheet (feature card only), the taxonomy (tag labels) and the placeholders (UI text). List Items add authored values on top.
+- **Data source:** the locale's published query index (`/query-index.json`, `helix-query.yaml`), the redirects sheet (`/{locale}/redirects.json`), the Authors sheet (feature card only, unless Show author on feature card is off), the taxonomy (tag labels) and the placeholders (UI text). List Items add authored values on top.
 - **Related blocks:** [Cards](../cards/README.md) (the same presentation, content typed in the block), [Filter List](../filter-list/README.md) (query index lists with filter pills and sorting), [Table List](../table-list/README.md) (tabular listings), [Page Header](../page-header/README.md) (uses the same page metadata).
 
 | Source | What it lists |
@@ -27,7 +27,7 @@ The List is the AEM Core Components **List** for Edge Delivery Services (xwalk /
 
 - **When to use:** the cards represent published, indexed pages of the same locale; the list should update itself (Child pages, Tagged pages); the cards should reuse the pages' own metadata; ordering by title or last modified, or a maximum number of items, is needed.
 - **When not to use:** content that isn't a page (statistics without detail pages, capabilities with their own wording, rich text descriptions): use [Cards](../cards/README.md); visitors must filter or search: use [Filter List](../filter-list/README.md); Content Fragment lists (not supported, by decision); full-text search (the Core List search source isn't available); pages of another locale.
-- **Realistic use cases:** a services hub listing its child pages; "Related to Agentic AI" rails of tagged insights; news rows ordered by last modified; media coverage and investor relations rails of report pages (Mixed); editor's picks with per-item title overrides; statistic rows (a Fixed list with the number as Title); a featured spotlight with the author's photo and designation (First card as feature); external partner links mixed with site pages.
+- **Realistic use cases:** a services hub listing its child pages; "Related to Agentic AI" rails of tagged insights; news rows ordered by last modified; media coverage and investor relations rails of report pages (Mixed); editor's picks with per-item title overrides; statistic rows (a Fixed list with the number as Title); a featured spotlight with the author's photo and designation (First card as feature), or a clean hero spotlight without the author (Show author on feature card off); external partner links mixed with site pages.
 
 ## Visual Reference
 
@@ -371,10 +371,10 @@ C = Card colour
 D = Image ratio
 E = Panel height
 F = First card as feature
-G = Link items
-H = Open links in a new tab
-I = Show image
-J = Show eyebrow
+G = Show author on feature card
+H = Link items
+I = Open links in a new tab
+J = Show image
 ```
 
 ```text
@@ -548,7 +548,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
    - **Tagged pages:** pick the **Search root** (or use the current page), the **Tags** and **Match** (Any / All); optionally limit **Include descendant pages** and **Maximum search depth**.
    Fields that don't apply to the chosen source or option are hidden.
 5. **Order and limit (Content):** **Order by** (Manual, Title, Last modified), **Sort order**, **Maximum items** (0: all).
-6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show options, Date format, Image loading (Eager only for a list on the first screen).
+6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature (then Show author on feature card), the Show options, Date format, Image loading (Eager only for a list on the first screen).
 7. **Set the layout per breakpoint (Display):** Desktop, Tablet and Mobile display (Grid or Horizontal scroll), columns or items visible, gap, previous / next buttons and scroll indicator; then the scroll options and **When there are no items**.
 8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles.
 9. **Preview:** switch Universal Editor to Preview, or open the page preview. Child pages and Tagged pages lists show their pages only on the published page (AEM author has no query index).
@@ -607,6 +607,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Image ratio | `imageRatio` | select | No | `16-9` | 16:9 (`16-9`), 1:1 (`1-1`), 4:3 (`4-3`), 3:2 (`3-2`) | Shown when `displayAsTeaser` is `true`. | 1-1 |
 | Panel height | `panelHeight` | select | No | `portrait` | Portrait (2:3) (`portrait`), Compact (`compact`), Content (`auto`) | Panel, report and statistic cards. Shown when `displayAsTeaser` is `true`. | compact |
 | First card as feature | `featureFirst` | boolean | No | `false` | on / off | The first card as a large spotlight above the others. Shown when `displayAsTeaser` is `true`. | true |
+| Show author on feature card | `featureShowAuthor` | boolean | No | `true` | on / off | The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change. Shown when `displayAsTeaser` is `true` and `featureFirst` is `true`. | — |
 | Link items | `linkItems` | boolean | No | `true` | on / off | — | false |
 | Open links in a new tab | `openInNewTab` | boolean | No | `false` | on / off | The default for the items. | — |
 | Show image | `showImage` | boolean | No | `true` | on / off | — | false |
@@ -935,6 +936,8 @@ Each card's style follows the precedence in [Authorable Fields](#authorable-fiel
 ### First card as feature
 
 The first card becomes a full-width spotlight above the others (`feature-first` class) with its image, tags, reading time and, when the page has an `author-id`, the author lockup (photo, name, designation) from the Authors sheet (`getAuthors`, loaded only for this option). Use once per page, near the top.
+
+**Show author on feature card** (`featureShowAuthor`, on by default; shown in the dialog only while Display as teaser and First card as feature are on) decides whether the feature card shows that lockup. Off: the feature card has no author (a clean hero layout) and the Authors sheet isn't loaded; the page's `author-id` and the other cards don't change (they never show an author), nor does the author elsewhere (Page Header, other Lists). Lists authored before have no value and show the author, as before. The Cards block has no authors, so it has no such option.
 
 ```text
 [Screenshot Placeholder]
@@ -1265,6 +1268,7 @@ graph LR
 | Wrong link target | Redirects sheet entry | Check `/{locale}/redirects.json` | Correct the sheet | Card URL |
 | Editor hint "Set up the list" | Missing tags, parent, root or items | Read the hint | Fill the named field | Cards render |
 | Cards not styled as expected | Precedence (item > List > page) | `?debug=list` card `kind` / `theme` | Change the right level | Classes on the card |
+| The feature card shows no author | Show author on feature card off, the page has no `author-id`, or it isn't in the Authors sheet | The List's Display tab; the page's `author-id` in the index; `/{locale}/data/authors.json` | Turn the option on, or fix the `author-id` / the sheet | Author lockup on the feature card |
 
 Evidence to collect: the page URL, the block's settings (screenshots of the dialog), `?debug=list` console output, the index row of a missing page. No credentials or author host names.
 
@@ -1331,3 +1335,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.16 | Page `card-style` / `card-theme` metadata and the Card style / colour precedence | docs/handover revision history | 18 October 2026 |
 | Handover 2.18 | Content animation and skeleton loading | docs/handover revision history | 18 October 2026 |
 | Handover 2.34 | List Item Display toggles (Hide Title, Show Description / Image / Eyebrow / Label / Action Label) | docs/handover revision history | 20 October 2026 |
+| Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |

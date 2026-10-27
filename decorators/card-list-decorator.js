@@ -289,12 +289,15 @@ export function renderRow(card, listConfig, { t, level }) {
   return article;
 }
 
-/** the feature card (First card as feature): the image behind tags, title and author */
+/**
+ * the feature card (First card as feature): the image behind tags, title and author; the
+ * author only while the List's Show author on feature card isn't off (featureShowAuthor)
+ */
 export function renderFeature(card, listConfig, { t, level, authors = new Map() }) {
   const config = displayOf(card, listConfig);
   const article = element('article', 'list-feature');
   const content = element('div', 'list-feature-content');
-  const author = authors.get(card.authorId);
+  const author = listConfig.featureShowAuthor === false ? null : authors.get(card.authorId);
   const readingTime = readingTimeOf(card, t);
   const title = card.title ? element(level, 'list-feature-title') : null;
   if (title && config.linkItems && card.url) title.append(cardLink(card, card.title, t));
