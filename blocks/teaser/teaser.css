@@ -1437,6 +1437,38 @@
       width: 13.7375%;
       opacity: 1;
     }
+
+    /* the body fills the text column, so buttons side by side share its width (never wider) */
+    .teaser.image-collage .teaser-body {
+      width: 100%;
+    }
+
+    /* side by side while the labels fit on one line; otherwise each button gets a full row */
+    .teaser.image-collage.buttons-inline .teaser-links {
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: var(--space-400);
+    }
+
+    .teaser.image-collage .teaser-links> :is(a, button).button {
+      flex: 1 1 auto;
+      width: auto;
+      min-width: 0;
+      min-height: 3.125rem;
+      padding: 0.75rem 0.75rem 0.75rem 1rem;
+      gap: var(--space-200);
+      font-size: 0.75rem;
+      letter-spacing: calc(0.01 * 0.75rem);
+      white-space: nowrap;
+    }
+
+    .teaser.image-collage .teaser-links> :is(a, button).button::after {
+      flex: 0 0 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
