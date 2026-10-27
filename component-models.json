@@ -13160,6 +13160,62 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "secondaryBackground",
+        "label": "Secondary CTA BG Color",
+        "description": "Default: transparent, as before.",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light grey (#F5F5F5)",
+            "value": "secondary-bg-light-grey"
+          },
+          {
+            "name": "Black, 40% opacity (#0C0C0D66)",
+            "value": "secondary-bg-black-40"
+          }
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "linkStyle"
+            },
+            "secondary"
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryBorder",
+        "label": "Border color",
+        "description": "The 1px border of the Secondary CTA.",
+        "value": "secondary-border-black",
+        "options": [
+          {
+            "name": "Black",
+            "value": "secondary-border-black"
+          },
+          {
+            "name": "White",
+            "value": "secondary-border-white"
+          }
+        ],
+        "condition": {
+          "===": [
+            {
+              "var": "linkStyle"
+            },
+            "secondary"
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "linkArrow",
         "label": "CTA Arrow",
         "description": "Direction of the arrow next to the CTA text.",

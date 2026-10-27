@@ -327,6 +327,33 @@
   color: var(--brand-300);
 }
 
+/*
+ * Secondary CTA BG Color and Border color (CTA item options, only on a Secondary CTA): without
+ * them the CTA keeps the transparent background and the border of its BG Color, as before;
+ * hover and focus stay the Secondary button's
+ */
+.hero .hero-ctas a.button.secondary:is(.secondary-bg-light-grey, .secondary-bg-black-40, .secondary-border-black, .secondary-border-white) {
+  border-width: var(--border-width-100);
+  border-style: solid;
+}
+
+.hero .hero-ctas a.button.secondary.secondary-bg-light-grey:not(:hover, :focus-visible) {
+  background-color: var(--grey-100);
+  color: var(--color-text-neutral);
+}
+
+.hero .hero-ctas a.button.secondary.secondary-bg-black-40:not(:hover, :focus-visible) {
+  background-color: var(--black-400);
+}
+
+.hero .hero-ctas a.button.secondary.secondary-border-black:not(:hover, :focus-visible) {
+  border-color: var(--black-1000);
+}
+
+.hero .hero-ctas a.button.secondary.secondary-border-white:not(:hover, :focus-visible) {
+  border-color: var(--white-1000);
+}
+
 @media (width >= 600px) {
   .hero {
     --hero-min-height: 40rem;
