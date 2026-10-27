@@ -9731,21 +9731,6 @@
         "required": true
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "label",
-        "label": "Field Label",
-        "description": "e.g. SCORE",
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "options",
-        "label": "Unit Dropdown Options",
-        "description": "Comma separated, e.g. CGPA, Percentage"
-      },
-      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "required",
