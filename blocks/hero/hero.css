@@ -19,12 +19,16 @@
   --hero-title-color: var(--color-text-default);
   --hero-eyebrow-color: var(--brand-400); /* #216AC3, the same on every BG Color */
   --hero-description-color: var(--color-text-secondary);
+  --hero-title-size: var(--display-font-size-2);
   --hero-title-max-width: 62.5rem;
+  --hero-title-max-width-tab: 60rem;
   --hero-description-max-width: 53.125rem;
   --hero-position: center;
   --hero-text-align: center;
   --hero-align: center;
   --hero-content-max-width: 62.5rem;
+  --hero-eyebrow-max-width: 62.5rem;
+  --hero-eyebrow-max-width-tab: 60rem;
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -239,22 +243,35 @@
   object-fit: contain;
 }
 
+/* the eyebrow follows the Text Alignment (centred by default) */
 .hero .hero-eyebrow {
+  --hero-eyebrow-size: var(--body-font-size-xs);
+
+  display: flex;
+  align-items: center;
+  justify-content: var(--hero-align);
+  width: 100%;
+  max-width: var(--hero-eyebrow-max-width);
   margin: 0 0 var(--hero-gap-eyebrow);
   color: var(--hero-eyebrow-color);
-  font-size: var(--body-font-size-l);
+  font-family: var(--body-font-family);
+  font-size: var(--hero-eyebrow-size);
   font-weight: var(--font-weight-semibold);
-  line-height: 1.625;
+  line-height: 1.6;
+  letter-spacing: calc(0.0125 * var(--hero-eyebrow-size));
+  text-align: var(--hero-text-align);
 }
 
+/* the title size: display 2 on mobile and from 900px, 3.125rem on tablet */
 .hero .hero-title {
-  max-width: var(--hero-title-max-width);
+  max-width: var(--hero-title-max-width) !important;
   margin: 0;
   color: var(--hero-title-color);
-  font-size: var(--display-font-size-2);
+  font-size: var(--hero-title-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--display-line-height);
-  letter-spacing: calc(-0.025 * var(--display-font-size-2));
+  letter-spacing: calc(-0.025 * var(--hero-title-size));
+  text-wrap: balance;
 }
 
 .hero .hero-description {
@@ -280,8 +297,15 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: var(--hero-align);
-  gap: var(--space-400) var(--hero-gap-ctas);
+  gap: var(--space-200) var(--hero-gap-ctas);
   margin-top: var(--hero-gap-ctas);
+}
+
+.hero .hero-ctas a.button {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  letter-spacing: 0.01rem;
 }
 
 /* in-page links (e.g. "Discover our story") point down */
@@ -307,6 +331,12 @@
   .hero {
     --hero-min-height: 40rem;
     --hero-padding-inline: var(--space-1000);
+    --hero-title-size: 3.125rem;
+    --hero-title-max-width: var(--hero-title-max-width-tab);
+  }
+
+  .hero .hero-eyebrow {
+    max-width: var(--hero-eyebrow-max-width-tab);
   }
 }
 
@@ -319,10 +349,12 @@
     --hero-gap-eyebrow: var(--space-1000);
     --hero-gap-content: var(--space-1000);
     --hero-gap-ctas: var(--space-1000);
+    --hero-title-size: var(--display-font-size-2);
+    --hero-title-max-width: 62.5rem;
   }
 
   .hero .hero-eyebrow {
-    font-size: var(--body-font-size-s);
+    --hero-eyebrow-size: var(--body-font-size-s);
   }
 
   .hero .hero-icon img {

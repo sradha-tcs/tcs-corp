@@ -816,9 +816,9 @@ This block does not currently expose verified personalization behavior. There is
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| < 600px | Min height 35rem; padding `--space-1600` block, `--space-600` inline; content full width | Cover crop around the centre; Contained image padded `--space-600` | CTAs wrap; toggle bottom right |
-| >= 600px | Min height 40rem; inline padding `--space-1000` | As above | As above |
-| >= 900px | Min height 53.125rem; padding `--space-3000` block, 2.75rem inline; larger gaps; eyebrow `--body-font-size-s`; Left / Right content limited to 47.5rem | Icon 3rem | As above |
+| < 600px | Min height 35rem; padding `--space-1600` block, `--space-600` inline; content full width; eyebrow `--body-font-size-xs` (0.75rem), at most 62.5rem wide, aligned with the Text Alignment; title `--display-font-size-2` (2.5rem, balanced lines); CTA text 1rem medium | Cover crop around the centre; Contained image padded `--space-600` | CTAs wrap (row gap `--space-200`); toggle bottom right |
+| >= 600px | Min height 40rem; inline padding `--space-1000`; title 3.125rem, at most 60rem wide; eyebrow at most 60rem wide | As above | As above |
+| >= 900px | Min height 62.5rem; padding `--space-3000` block, 2.75rem inline; larger gaps; eyebrow `--body-font-size-s` (1rem); title `--display-font-size-2` (4rem), at most 62.5rem wide; Left / Right content limited to 47.5rem | Icon `--icon-size-l` at every width: its `!important` size (#159) wins over the 3rem rule | As above |
 | First section (all widths) | Min height at most the screen below the header bar (`100dvh - --nav-height`); taller content grows the hero | Eager, high-priority image | — |
 | First section, under the header (all widths) | A light Hero (not Dark blue, subtle or Black) lies under the header: its min height and top padding grow by the header height (at most the screen); with the TCS Header's Header over the first block Always any Hero does, with Never none | As above | As above |
 
