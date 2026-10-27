@@ -65,7 +65,10 @@ function renderDecorations(line, config) {
   });
 }
 
-/** draws or fades the line in once when it scrolls into view (never hides it otherwise) */
+/**
+ * draws or fades the line each time 10% of it enters the viewport (reset once it has left), and
+ * replays it while the page is scrolled with the separator in view (not for reduced motion)
+ */
 function initializeAnimation(block, config) {
   if (config.animation === 'none') return;
   const reduced = prefersReducedMotion();
@@ -74,11 +77,40 @@ function initializeAnimation(block, config) {
     block.classList.add('animate-ready');
     if (reduced) block.classList.add('reduced-motion');
     const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      block.classList.add('is-visible');
-      observer.disconnect();
-    }, { threshold: 0.1 });
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          block.classList.remove('is-visible');
+          block.querySelector('.separator-line')?.getAnimations?.()
+            .forEach((animation) => animation.cancel());
+        } else if (entry.intersectionRatio >= 0.1) block.classList.add('is-visible');
+      });
+    }, { threshold: [0, 0.1] });
     observer.observe(block);
+    if (!reduced) {
+      const animationName = config.animation === 'fade' ? 'separator-fade' : 'separator-draw';
+      let scrollTimer;
+      const trackedAnimations = new WeakSet();
+      const replay = (animation) => {
+        if (!scrollTimer || !block.classList.contains('is-visible')) return;
+        animation.currentTime = 0;
+        animation.play();
+      };
+      window.addEventListener('scroll', () => {
+        window.clearTimeout(scrollTimer);
+        scrollTimer = window.setTimeout(() => { scrollTimer = undefined; }, 200);
+        if (block.classList.contains('is-visible')) {
+          block.querySelector('.separator-line')?.getAnimations?.()
+            .filter((animation) => animation.animationName === animationName)
+            .forEach((animation) => {
+              if (!trackedAnimations.has(animation)) {
+                trackedAnimations.add(animation);
+                animation.addEventListener('finish', () => replay(animation));
+              }
+              if (animation.playState === 'finished') replay(animation);
+            });
+        }
+      }, { passive: true, capture: true });
+    }
   } catch {
     block.classList.remove('animate-ready');
   }

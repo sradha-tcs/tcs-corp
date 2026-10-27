@@ -475,15 +475,7 @@
               "value": "high"
             }
           ],
-          "description": "High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings.",
-          "condition": {
-            "===": [
-              {
-                "var": "contrastMode"
-              },
-              "high"
-            ]
-          }
+          "description": "High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings."
         },
         {
           "component": "boolean",
@@ -1096,7 +1088,7 @@
               "value": "draw-from-center"
             }
           ],
-          "description": "Once, when the separator scrolls into view."
+          "description": "Each time the separator scrolls into view, and again while the page is scrolled with it in view."
         },
         {
           "component": "select",

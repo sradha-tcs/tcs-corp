@@ -418,7 +418,7 @@ Stored on a new component (definition template): `accessibilityMode` = `"decorat
 | Start decoration | `startDecoration` | select | No | `none` | None (`none`), Dot (`dot`), Square (`square`), Diamond (`diamond`) | — | square |
 | Center decoration | `centerDecoration` | select | No | `none` | None (`none`), Dot (`dot`), Square (`square`), Diamond (`diamond`) | — | dot |
 | End decoration | `endDecoration` | select | No | `none` | None (`none`), Dot (`dot`), Square (`square`), Diamond (`diamond`) | — | square |
-| Background contrast | `contrastMode` | select | No | `standard` | Standard (`standard`), High (stronger line) (`high`) | High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings. Shown when `contrastMode` is `high`. | high |
+| Background contrast | `contrastMode` | select | No | `standard` | Standard (`standard`), High (stronger line) (`high`) | High: a stronger colour, e.g. on busy or tinted backgrounds. Kept for separators authored before; see the other settings. | high |
 | Show on desktop | `showDesktop` | boolean | No | `true` | on / off | — | false |
 | Show on tablet | `showTablet` | boolean | No | `true` | on / off | — | false |
 | Show on mobile | `showMobile` | boolean | No | `true` | on / off | — | false |
@@ -440,7 +440,7 @@ Stored on a new component (definition template): `accessibilityMode` = `"decorat
 | Use section padding | `useSectionPadding` | boolean | No | `false` | on / off | On: no spacing of its own (the section's spacing only), so there's no double spacing. | true |
 | Stretch to container width | `stretchToContainer` | boolean | No | `false` | on / off | The line fills its container on every breakpoint. Kept for separators authored before; see the other settings. Shown when `stretchToContainer` is `true`. | true |
 | Respect content maximum width | `respectMaxWidth` | boolean | No | `true` | on / off | Never wider than the site's content width (also full bleed). | false |
-| Animate on view | `animateOnView` | select | No | `none` | None (`none`), Fade (`fade`), Draw from start (`draw-from-start`), Draw from center (`draw-from-center`) | Once, when the separator scrolls into view. | fade |
+| Animate on view | `animateOnView` | select | No | `none` | None (`none`), Fade (`fade`), Draw from start (`draw-from-start`), Draw from center (`draw-from-center`) | Each time the separator scrolls into view, and again while the page is scrolled with it in view. | fade |
 | Reduced motion fallback | `reducedMotionFallback` | select | No | `static` | Show immediately (`static`), Short fade (`fade`) | For visitors who prefer reduced motion. Shown when `animateOnView` is not `none`. | static |
 | Print | `printVisibility` | select | No | `show` | Show when printed (`show`), Hide when printed (`hide`) | — | hide |
 | Analytics | `analyticsEnabled` | boolean | No | `false` | on / off | Adds the separator to the Adobe Data Layer (no interaction events). | true |
@@ -487,11 +487,11 @@ Notes on the significant fields (the tables above give every label, default and 
 | Use section padding | `section-padding` | No own vertical spacing on any breakpoint |
 | Stretch to container width | `stretch` | The line fills its container whatever the width settings (maximum widths still apply) |
 | Respect content maximum width | `respect-max` | Caps the line at `--content-max-width`, full bleed included |
-| Animate on view | `animate-*`, `motion-*` | Once, when 10 % is in view (IntersectionObserver) |
+| Animate on view | `animate-*`, `motion-*` | Each time 10 % comes into view (IntersectionObserver), reset once out of view; replayed while the page is scrolled with it in view |
 | Print | `print-hide` | Hidden when printed; otherwise printed at full opacity |
 | Analytics / Analytics label | `data-analytics` | On: one data-layer state entry with the label as `dc:title` (at most 120 characters); off: the separator isn't tracked |
 
-**Legacy mapping.** Values authored before are still read: Separator width "Auto" (`auto`, rendered as 100 %) and variant "Custom" (`custom-design`, rendered as Default) were removed from the dialog (block ecosystem audit, handover 2.27); Component ID, Background contrast and Stretch to container width are shown in the dialog only when a separator already has a value ("Kept for separators authored before"). Widths written as "50%" or "50 percent" are read as `50-percent`; booleans accept true / yes / on / 1 / y and false / no / off / 0 / n; unknown values fall back to the defaults.
+**Legacy mapping.** Values authored before are still read: Separator width "Auto" (`auto`, rendered as 100 %) and variant "Custom" (`custom-design`, rendered as Default) were removed from the dialog (block ecosystem audit, handover 2.27); Component ID and Stretch to container width are shown in the dialog only when a separator already has a value ("Kept for separators authored before"); Background contrast is shown on every separator again (KB-D-058). Widths written as "50%" or "50 percent" are read as `50-percent`; booleans accept true / yes / on / 1 / y and false / no / off / 0 / n; unknown values fall back to the defaults.
 
 **Additional tab.** Anchor ID, Hide block and Padding / Margin: see AGENTS.md "Additional tab". The Separator has no Animation Type, Motion Speed or Animation Trigger (it animates with Animate on view; `test/motion/motion.test.mjs` checks it is left out). The Additional tab's Padding top / bottom classes can override the separator's own spacing (handover 6.26.13, Issue 5).
 
@@ -675,7 +675,7 @@ A = Line at 75 % on tablet
 
 ### Animate on view: Fade, Draw from start, Draw from center
 
-Once, when 10 % of the block is in view: the line fades in (0.6s opacity) or scales from its start (right in right-to-left) or centre. For reduced motion: Show immediately (no animation is prepared) or Short fade (opacity only). The hidden starting state exists only after the script added `animate-ready`, so a failure never hides the line.
+Each time 10 % of the block comes into view: the line fades in (0.6s, `separator-fade`, to its Line opacity) or scales from its start (right in right-to-left) or centre (`separator-draw`); the keyframes run only on screen (`@media screen`). Once the block has left the viewport, `is-visible` is removed and the animation cancelled, so it plays again on the next entry. While the page is scrolled with the separator in view, the finished animation is replayed (a capture scroll listener per animated separator, idle 200ms after the last scroll event; KB-D-057). For reduced motion: Show immediately (no animation is prepared) or Short fade (opacity only, on each entry, not replayed while scrolling). The hidden starting state exists only after the script added `animate-ready`, so a failure never hides the line.
 
 ### Print and Analytics
 
@@ -768,7 +768,7 @@ This block does not currently expose verified personalization behavior. There is
 | < 600px (mobile) | `hide-mobile`, `mobile-width-*`, `mobile-thickness-*`, `mobile-align-*`, `mobile-top-*` / `mobile-bottom-*` apply | No images | None |
 | 600–1199px (tablet) | The `tablet-*` classes apply | No images | None |
 | >= 1200px (desktop) | The `desktop-*` classes apply | No images | None |
-| All | General settings where no breakpoint value is set; print and forced-colours rules | — | Animation once on view |
+| All | General settings where no breakpoint value is set; print and forced-colours rules | — | Animation on each entry into view, replayed while scrolling |
 
 The CSS uses range media queries (`width < 600px`, `600px <= width < 1200px`, `width >= 1200px`), so a breakpoint value applies only within its range; there are no resize listeners.
 
@@ -896,7 +896,7 @@ graph LR
 | SEPARATOR-QA-10 | Visibility | Each Show on … off; all off | Hidden in that range without spacing; all off: nothing on the page, dashed note in the editor |
 | SEPARATOR-QA-11 | Overrides | Desktop / Tablet / Mobile width, thickness, alignment, spacing | Each applies only in its range |
 | SEPARATOR-QA-12 | Use section padding | On | No own vertical spacing |
-| SEPARATOR-QA-13 | Animation | Fade, Draw from start, Draw from center; reduced motion static / fade | Plays once on view; reduced motion as chosen; never left hidden |
+| SEPARATOR-QA-13 | Animation | Fade, Draw from start, Draw from center; reduced motion static / fade | Plays on each entry into view and replays while scrolling with it in view; reduced motion as chosen (no replay while scrolling); never left hidden |
 | SEPARATOR-QA-14 | Print | Hide when printed | Absent from print; otherwise printed at full opacity |
 | SEPARATOR-QA-15 | Forced colours | Windows high contrast | Line and decorations in `CanvasText` |
 | SEPARATOR-QA-16 | Component ID | Duplicate Component IDs | Second gets a suffix; `?debug=separator` logs it |
@@ -942,7 +942,7 @@ Evidence to collect (no secrets): URL, viewport, the block's classes and `id`, t
 | No free-form CSS class or colour fields (controlled options only, by the design system) | Custom looks need a new option | Add a variant / option | Not planned |
 | An Accessible label is read as the separator's name by most screen readers, not all | Name not announced everywhere | Use headings for important structure | Not planned |
 | Theme Auto follows only `.section.dark` / `.section.brand`; Section Style Dark / Dark Green don't switch its palette (F-21) | Light-palette line on dark sections | Choose Theme Dark or Brand | Not recorded |
-| Duplicate controls kept for content authored before (Component ID, Background contrast, Stretch; audit D-D-17) | Two ways to set id, colour and width | Use the main fields | Not recorded |
+| Duplicate controls kept for content authored before (Component ID, Background contrast, Stretch; audit D-D-17); Background contrast is shown on every separator again (KB-D-058) | Two ways to set id, colour and width | Use the main fields | Not recorded |
 
 ## Related Documentation
 

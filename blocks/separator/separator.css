@@ -193,10 +193,6 @@
 }
 
 /* animation on view (only once the script has prepared it, so a failure never hides it) */
-.separator[class*='animate-'] .separator-line {
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
 .separator.animate-draw-from-start .separator-line {
   transform-origin: left center;
 }
@@ -211,8 +207,39 @@
 
 .separator.animate-draw-from-start.animate-ready:not(.is-visible, .reduced-motion) .separator-line,
 .separator.animate-draw-from-center.animate-ready:not(.is-visible, .reduced-motion) .separator-line {
-  opacity: 1;
+  opacity: var(--separator-opacity);
   transform: scaleX(0);
+}
+
+@media screen {
+  .separator.animate-ready.is-visible .separator-line {
+    animation: separator-fade 0.6s ease-out both;
+  }
+
+  .separator.animate-draw-from-start.animate-ready.is-visible:not(.reduced-motion) .separator-line,
+  .separator.animate-draw-from-center.animate-ready.is-visible:not(.reduced-motion) .separator-line {
+    animation-name: separator-draw;
+  }
+}
+
+@keyframes separator-draw {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes separator-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: var(--separator-opacity);
+  }
 }
 
 /* mobile only (Figma 402 frames) */
