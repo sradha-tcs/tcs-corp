@@ -251,7 +251,7 @@
   align-items: center;
   justify-content: var(--hero-align);
   width: 100%;
-  max-width: var(--hero-eyebrow-max-width);
+  max-width: var(--hero-eyebrow-max-width) !important;
   margin: 0 0 var(--hero-gap-eyebrow);
   color: var(--hero-eyebrow-color);
   font-family: var(--body-font-family);
@@ -351,10 +351,6 @@
     --hero-gap-ctas: var(--space-1000);
     --hero-title-size: var(--display-font-size-2);
     --hero-title-max-width: 62.5rem;
-  }
-
-  .hero .hero-eyebrow {
-    --hero-eyebrow-size: var(--body-font-size-s);
   }
 
   .hero .hero-icon img {
