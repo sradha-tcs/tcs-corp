@@ -628,6 +628,17 @@
     max-width: min(100%, 31.25rem);
   }
 
+  .teaser.image-collage .teaser-title {
+    --teaser-title-size: 3rem;
+
+    width: 100%;
+    font-size: var(--teaser-title-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * var(--teaser-title-size));
+    text-align: center;
+  }
+
   .teaser.card.text-left .teaser-title {
     max-width: min(100%, 30rem);
   }
@@ -653,8 +664,10 @@
   .teaser.image-collage .teaser-content {
     position: relative;
     z-index: 2;
+    align-items: center;
     width: min(100%, var(--teaser-aligned-content-width));
     margin-inline: auto;
+    gap: var(--space-600);
     text-align: center;
   }
 
@@ -940,38 +953,62 @@
 
   /* Image collage: centered content surrounded by nine animated images */
   .teaser.image-collage {
+    /* Figma value with no site token: the collage description */
+    --teaser-collage-text-color: #9e9fa3;
     --teaser-title-color: var(--color-text-on-neutral);
-    --teaser-text-color: rgb(255 255 255 / 65%);
+    --teaser-text-color: var(--teaser-collage-text-color);
     --teaser-meta-color: rgb(255 255 255 / 70%);
     --teaser-link-color: var(--color-text-on-neutral);
     --teaser-eyebrow-color: var(--brand-300);
-    --teaser-overlay: rgb(12 12 13 / 66%);
+    --teaser-aligned-content-width: 37.5rem;
 
     position: relative;
     isolation: isolate;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     min-height: 40rem;
     overflow: hidden;
-    padding: var(--space-3000) var(--space-600);
-    background-color: #0c0c0d;
+    padding-inline: var(--space-800);
+    background-color: var(--black-1000);
     color: var(--color-text-on-neutral);
   }
 
   .teaser.image-collage::before {
     content: '';
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     inset: 0;
     background:
       radial-gradient(circle at center,
         rgb(255 255 255 / 4%),
         transparent 55%),
-      linear-gradient(rgb(12 12 13 / 45%),
-        rgb(12 12 13 / 80%));
+      var(--black-1000);
     pointer-events: none;
+  }
+
+  .teaser.image-collage .teaser-intro {
+    align-items: center;
+    width: 100%;
+    padding-block: 0.625rem;
+    gap: var(--space-500);
+  }
+
+  .teaser.image-collage .teaser-heading-row {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .teaser.image-collage :is(.teaser-description, .teaser-short-description) {
+    width: 100%;
+    color: var(--teaser-collage-text-color);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+    letter-spacing: calc(-0.005 * 1.125rem);
+    text-align: center;
   }
 
   .teaser.image-collage :is(.teaser-kicker,
@@ -983,7 +1020,31 @@
   }
 
   .teaser.image-collage.buttons-inline .teaser-links {
+    flex-flow: row wrap;
     justify-content: center;
+    gap: var(--space-400);
+  }
+
+  .teaser.image-collage .teaser-links> :is(a, button).button {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 3rem;
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    gap: var(--space-200);
+    border-color: var(--slate-100);
+    border-radius: var(--radius-full);
+    background-color: var(--black-800);
+    color: var(--slate-100);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: 0.01rem;
+  }
+
+  .teaser.image-collage .teaser-links> :is(a, button).button::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: currentcolor;
   }
 
   .teaser.image-collage .teaser-collage {
@@ -996,21 +1057,23 @@
   .teaser.image-collage .teaser-collage-item {
     position: absolute;
     overflow: hidden;
-    border-radius: var(--radius-l);
-    opacity: 0.8;
+    border-radius: 1.5rem;
     transform: translate3d(0, 0, 0);
     will-change: transform;
   }
 
-  /* Universal Editor: the collage images can be selected (items carry instrumentation) */
+  /* Universal Editor: instrumented collage images remain selectable */
   .teaser.image-collage .teaser-collage-item[data-aue-resource] {
     pointer-events: auto;
   }
 
-  /* Universal Editor: Collage image items not shown yet, as placeholders below the text */
+  /* Universal Editor: pending collage items appear below the content */
   .teaser .teaser-collage-editor-items {
+    position: relative;
+    z-index: 3;
     display: grid;
     gap: var(--space-200);
+    width: 100%;
   }
 
   .teaser.image-collage .teaser-collage-item :is(picture, img) {
@@ -1021,6 +1084,7 @@
 
   .teaser.image-collage .teaser-collage-item img {
     object-fit: cover;
+    object-position: center;
   }
 
   .teaser.image-collage .teaser-collage-item.image-black-white img {
@@ -1034,22 +1098,22 @@
   @keyframes teaser-collage-zig {
     0%,
     100% {
-      transform: translate3d(0, -0.75rem, 0);
+      transform: translate3d(0, -0.5rem, 0);
     }
 
     50% {
-      transform: translate3d(0, 0.75rem, 0);
+      transform: translate3d(0, 0.5rem, 0);
     }
   }
 
   @keyframes teaser-collage-zag {
     0%,
     100% {
-      transform: translate3d(0, 0.75rem, 0);
+      transform: translate3d(0, 0.5rem, 0);
     }
 
     50% {
-      transform: translate3d(0, -0.75rem, 0);
+      transform: translate3d(0, -0.5rem, 0);
     }
   }
 
@@ -1199,88 +1263,80 @@
       padding: var(--space-1000);
     }
 
+    /* Image collage: 1440 × 1024 Figma reference */
     .teaser.image-collage {
-      min-height: 48rem;
-      padding: var(--space-4000) var(--space-2000);
+      min-height: 64rem;
+      padding-inline: var(--space-800);
     }
 
+    /* Restore images hidden by the narrow-screen treatment */
     .teaser.image-collage .teaser-collage-item {
       display: block;
+      border-radius: 1.5rem;
     }
 
+    /* Photo 01: approximately 438 × 527px */
     .teaser.image-collage .teaser-collage-item-1 {
-      top: -2%;
-      left: 0;
-      width: 17%;
-      height: 18%;
-      border-radius: 0 0 var(--radius-l) 0;
+      inset: -31.25% 17.43% 79.79% 52.15%;
+      opacity: 1;
     }
 
+    /* Photo 02: approximately 438 × 527px */
     .teaser.image-collage .teaser-collage-item-2 {
-      top: 0;
-      left: 22%;
-      width: 24%;
-      height: 25%;
+      inset: -5.57% -23.06% 54.1% 92.64%;
+      opacity: 0.7;
     }
 
+    /* Photo 03: approximately 454 × 235px */
     .teaser.image-collage .teaser-collage-item-3 {
-      top: -1%;
-      left: 54%;
-      width: 27%;
-      height: 20%;
+      inset: 60.94% 84.58% 16.11% -16.11%;
+      opacity: 0.6;
     }
 
+    /* Photo 04: approximately 397 × 553px */
     .teaser.image-collage .teaser-collage-item-4 {
-      top: 0;
-      right: 0;
-      width: 8%;
-      height: 45%;
-      border-radius: 0 0 0 var(--radius-l);
+      inset: 73.05% 53.54% -27.05% 18.89%;
+      opacity: 1;
     }
 
+    /* Photo 05: approximately 354 × 406px */
     .teaser.image-collage .teaser-collage-item-5 {
-      top: 14%;
-      left: 0;
-      width: 17%;
-      height: 35%;
-      border-radius: 0 var(--radius-l) var(--radius-l) 0;
+      inset: -14.26% 53.4% 74.61% 22.01%;
+      opacity: 0.4;
     }
 
+    /* Photo 06: approximately 504 × 347px */
     .teaser.image-collage .teaser-collage-item-6 {
-      top: 49%;
-      right: 0;
-      width: 12%;
-      height: 34%;
-      border-radius: var(--radius-l) 0 0 var(--radius-l);
+      inset: 50% -23.06% 16.11% 88.06%;
+      opacity: 0.5;
     }
 
+    /* Photo 07: approximately 428 × 367px */
     .teaser.image-collage .teaser-collage-item-7 {
-      bottom: -1%;
-      left: 0;
-      width: 15%;
-      height: 39%;
-      border-radius: 0 var(--radius-l) 0 0;
+      inset: 14.16% 82.15% 50% -11.88%;
+      opacity: 1;
     }
 
+    /* Photo 08: approximately 241 × 262px */
     .teaser.image-collage .teaser-collage-item-8 {
-      bottom: -3%;
-      left: 20%;
-      width: 28%;
-      height: 30%;
+      inset: 80.08% 33.33% -5.66% 49.93%;
+      opacity: 1;
     }
 
+    /* Photo 09: approximately 198 × 117px */
     .teaser.image-collage .teaser-collage-item-9 {
-      right: 30%;
-      bottom: -4%;
-      width: 17%;
-      height: 25%;
+      top: 69.71%;
+      right: 16.2479%;
+      bottom: 18.88%;
+      width: 13.7375%;
+      opacity: 1;
     }
   }
 
   @media (width < 900px) {
     .teaser.image-collage {
       min-height: 42rem;
-      padding: var(--space-3000) var(--space-600);
+      padding-inline: var(--space-600);
     }
 
     .teaser.image-collage .teaser-collage-item:is(.teaser-collage-item-1,
@@ -1296,6 +1352,7 @@
       left: 8%;
       width: 48%;
       height: 19%;
+      opacity: 0.7;
     }
 
     .teaser.image-collage .teaser-collage-item-3 {
@@ -1304,6 +1361,7 @@
       left: auto;
       width: 42%;
       height: 16%;
+      opacity: 0.6;
     }
 
     .teaser.image-collage .teaser-collage-item-5 {
@@ -1311,6 +1369,7 @@
       left: -12%;
       width: 37%;
       height: 26%;
+      opacity: 0.4;
     }
 
     .teaser.image-collage .teaser-collage-item-8 {
@@ -1318,6 +1377,7 @@
       left: 4%;
       width: 54%;
       height: 22%;
+      opacity: 1;
     }
 
     .teaser.image-collage .teaser-content {
@@ -1329,5 +1389,6 @@
     .teaser.image-collage .teaser-collage-item {
       animation: none;
       transform: none;
+      will-change: auto;
     }
   }

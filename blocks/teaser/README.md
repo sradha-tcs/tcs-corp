@@ -1038,7 +1038,7 @@ B = Links at the bottom
 ### Image collage
 
 - **Purpose:** a statement section framed by a collage of images. **Configuration:** Layout Image collage (`image-collage`) and up to nine Collage image items (Image, Image alt text, Image treatment).
-- **Rendering:** centred text on a dark background (`#0c0c0d` with a radial and linear gradient overlay) and the images placed absolutely around it, at 80% opacity, floating up and down (`teaser-collage-zig` / `teaser-collage-zag`, 7s / 8s, endless). Minimum height 42rem, from 900px 48rem.
+- **Rendering:** centred text (title 3rem semibold, description 1.125rem in `#9e9fa3`, a Figma value with no site token: `--teaser-collage-text-color`) on a dark background (`--black-1000` with a soft radial highlight), with pill buttons (white outline and text on `--black-800`). The images are placed absolutely around the text (1.5rem corners), floating 0.5rem up and down (`teaser-collage-zig` / `teaser-collage-zag`, 7s / 8s, endless). From 900px the block is 64rem high (the Figma 1440 × 1024 frame) and each image has its own Figma position, size and opacity (40–100%), partly outside the block. Below 900px the block is 42rem high and shows images 2, 3, 5 and 8.
 - **Accessibility:** the images are decorative (`aria-hidden`). The floating stops with reduced motion (`prefers-reduced-motion`), but there is no pause / play button yet (WCAG 2.2.2, see AGENTS.md "Accessibility").
 
 ### Image type Lotto (Lottie animation)
