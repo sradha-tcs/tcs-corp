@@ -116,6 +116,8 @@ export function normalizeConfig(raw = {}) {
     emptyBehavior: pick(get('emptybehavior'), EMPTY_BEHAVIORS, 'message'),
     // the feature card's author (First card as feature); lists authored before show it
     featureShowAuthor: flag(get('featureshowauthor'), true),
+    // the content type on image cards (Show content type); lists authored before show it
+    showContentLabel: flag(get('showcontentlabel'), true),
     ...normalizePresentation(raw),
   };
 }

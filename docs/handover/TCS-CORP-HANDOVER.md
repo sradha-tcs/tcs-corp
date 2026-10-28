@@ -1,7 +1,7 @@
 ---
 title: "TCS Corporate Website — Project Handover"
 subtitle: "Adobe Experience Manager Edge Delivery Services with Universal Editor: architecture, authoring, components, operations and support"
-date: "October 24, 2026"
+date: "October 28, 2026"
 ---
 
 # Document Control
@@ -12,8 +12,8 @@ date: "October 24, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.44 |
-| Date | 24 October 2026 |
+| Version | 2.46 |
+| Date | 28 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
@@ -77,6 +77,7 @@ date: "October 24, 2026"
 | 2.43 | 24 October 2026 | Delivery team | **No AEM ids or author host in the document** (F-112): the AEM program and environment ids and the author host are removed from every chapter (AGENTS.md: no AEM program / environment ids or author hosts in any file; the block READMEs and the knowledge base were already checked for them); the author host is written `{aem-author}` (Document Information), the ids are in Cloud Manager. No change to the code or the content model. F-112 |
 | 2.44 | 24 October 2026 | Delivery team | **Redirects at the CDN: specification** (3.8.4, F-36, O-03, KB-D-055 Proposed): `docs/proposals/redirects-cdn.md` specifies the rules the production CDN applies in front of the site: `/` → `/en/`, the Redirects sheet rows of the path's locale, the old tcs.com URLs of the 3,191 migrated pages (2,499 same path, 37 letter case only: a pattern rule to the default locale; 655 another path: the language master's Redirects sheet, 648 rows), with data, test cases, acceptance criteria and decisions R-D1 to R-D4. **Author host exception** (F-112, KB-D-056 Proposed): `fstab.yaml` (the content source) and `.migration/project.json` (managed by the workspace tooling) keep the author host; no other file holds it; the audit note `docs/audit/reaudit/review-d.md` writes a publish host placeholder as `{aem-publish}`. No change to the code or the content model. F-36, F-112, O-03 |
 | 2.45 | 27 October 2026 | Delivery team | **List: Show author on feature card** (6.16): authors decide whether the feature card (First card as feature) shows the author lockup of its page's `author-id`, without changing the page metadata; a List-only Display option (`featureShowAuthor`, on by default, shown only while Display as teaser and First card as feature are on, below First card as feature); off: no lockup and the Authors sheet isn't loaded; the other cards, the Page Header and other Lists unchanged; Lists authored before keep the author. The shared Display fields of `models/_card-list.json` are split (`cards`, `cardsShow`) so the option sits below First card as feature in the List; the Cards dialog is unchanged (Cards has no authors). Unit tests: `test/list` (default, off, feature only, dialog field). `npm test` and `npm run lint` passed. — |
+| 2.46 | 28 October 2026 | Delivery team | **List: Show content type** (6.16): authors decide whether image cards show their page's content type (e.g. Case Study): the content type tag in the kicker below the image and the `content-type` label next to the date, without changing the page metadata; a List-only Display option (`showContentLabel`, on by default, shown only while Display as teaser is on and Card style is Image card or Mixed, between Date format and Show call to action); off: no content type on any image card of the List (also a List Item set to Image card), the next tags take the tag's place and the date stays (`visibleTags`, `isContentTypeTag` in `utils/card-list-config.js`); report cards, link rows, the Cards block and the page metadata unchanged; no List Item toggle (the List Item's Show Label stays the Label's); Lists authored before keep the label. The shared Display fields of `models/_card-list.json` are split again (`cardsShow`, `cardsAction`) so the option sits among the Show options in the List; the Cards dialog is unchanged (Cards types its Content label per card). Unit tests: `test/list` (default, off, content type tag left out, metadata kept, dialog field). `npm test` 356 passed, `npm run lint` passed. The PDF isn't regenerated with this revision. — |
 
 ## Review and Approval
 
@@ -3327,7 +3328,7 @@ The implementation distinguishes two classification fields. Both are page metada
 | Component | Behaviour | Rule |
 |:-----------------|:------------------------------------------------------------|:-------------------------------|
 | Page Header | Landing and Secondary layouts: the content type is the eyebrow above the title (else the tags). Article layout: the content type is shown next to the tags in the meta row (`page-header-collection`). Display layout: tags only. | Displayed as authored (text) |
-| List (query index source) and Cards | The card's content type label: next to the date on image cards; the kicker on report cards. With Card style **Mixed**, a card whose content type contains "report" (case-insensitive, `/report/i`) becomes a **report card**; cards without an image become panels; others image cards. | `kindOf()` in `utils/card-list-config.js` |
+| List (query index source) and Cards | The card's content type label: next to the date on image cards (List: unless Show content type is off); the kicker on report cards. With Card style **Mixed**, a card whose content type contains "report" (case-insensitive, `/report/i`) becomes a **report card**; cards without an image become panels; others image cards. | `kindOf()` in `utils/card-list-config.js` |
 | Filter List | **Content types** filter: a page is kept when `toClassName(content-type)` is one of the selected values (for example `Case Study` matches `case-study`). The card eyebrow comes from the **Eyebrow source** column (default `content-type`). With Card style **Mixed**, a page whose eyebrow text contains "report" is shown as a report card with a "Download" action. | `candidatesOf()`, `isReport()` in `blocks/filter-list/filter-list.js` |
 | Query index | Indexed as `contentType` | `helix-query.yaml` |
 
@@ -57007,6 +57008,7 @@ All other fields keep their default values. Each callout letter marks the field'
 - Image alt comes from card-image-alt, else image-alt, else the image is decorative.
 - The title is the card's one link unless a call to action label is set.
 - A page without any image gets no image area.
+- Show content type (`showContentLabel`, on by default, shown only while Card style is Image card or Mixed) off: no content type on the image cards (neither its tag in the kicker nor the label next to the date); nothing else changes (rev 2.46).
 
 **Common Authoring Mistakes**
 
@@ -57030,7 +57032,8 @@ All other fields keep their default values. Each callout letter marks the field'
 `featured-image`).
 
 **Business Rules:** As Cards Variation 1 (6.15.3); pages without an image show no image area.
-Up to 3 tags; reading time from `reading-time`; content type from `content-type`.
+Up to 3 tags; reading time from `reading-time`; content type from `content-type` (unless Show content
+type is off).
 
 **Rendering Rules:** `article.list-card.list-card-image`; images built with
 `createOptimizedPicture` for `/media_` images of the site (750 / 600 px), otherwise a plain

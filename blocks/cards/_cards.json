@@ -80,6 +80,9 @@
           "...": "../../models/_card-list.json#/fields/cardsShow"
         },
         {
+          "...": "../../models/_card-list.json#/fields/cardsAction"
+        },
+        {
           "...": "../../models/_card-list.json#/fields/layout"
         },
         {

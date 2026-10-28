@@ -48,7 +48,7 @@ ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; }
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
   'parentusecurrentpage', 'directchildrenonly', 'childdepth', 'rootpath', 'tagsusecurrentpage',
   'tags', 'tagmatch', 'includedescendants', 'maxdepth', 'orderby', 'sortorder', 'maxitems',
-  'featureshowauthor']);
+  'featureshowauthor', 'showcontentlabel']);
 const PATH_PROPERTIES = ['parentpath', 'rootpath'];
 const LIST_PROPERTIES = ['tags', 'classes'];
 const debug = (...args) => {

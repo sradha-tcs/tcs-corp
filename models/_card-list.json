@@ -357,7 +357,9 @@
             true
           ]
         }
-      },
+      }
+    ],
+    "cardsAction": [
       {
         "component": "boolean",
         "valueType": "boolean",

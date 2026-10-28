@@ -77,6 +77,22 @@ export function contentTypeLabel(contentType, tagIds = [], labels = new Map()) {
   return labels.get(tag) || `${words.charAt(0).toUpperCase()}${words.slice(1)}`;
 }
 
+/** whether a tag ID is a content type tag (…:content-type/case-study) */
+export const isContentTypeTag = (id) => /(^|[:/])content-type\//.test(text(id));
+
+/**
+ * The tag labels a card shows, at most `max`: without its content type tags when the content
+ * type is hidden (Show content type off), so the next tags take their place.
+ * @param {{ tags: string[], tagIds?: string[] }} card labels in the order of their IDs
+ * @param {{ contentType?: boolean, max?: number }} [options]
+ * @returns {string[]}
+ */
+export function visibleTags(card, { contentType = true, max = Infinity } = {}) {
+  const tags = (card.tags || [])
+    .filter((_, i) => contentType || !isContentTypeTag(card.tagIds?.[i]));
+  return tags.slice(0, max);
+}
+
 export const normalizePath = (path) => text(path).replace(/[?#].*$/, '').replace(/\.html$/, '')
   .replace(/(.)\/$/, '$1');
 
