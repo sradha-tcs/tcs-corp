@@ -1,12 +1,26 @@
-/* ==========================================================================
-   1. CSS Variables, Base Container & Utility Resets
-   ========================================================================== */
-
+/*
+ * Conversation Canvas: Default, Primary (sticky) and Secondary styles (New Screens from New DS;
+ * TCS Designs - Prototypes "Floating menu" 1:3117 desktop / 1:3169 mobile). Mobile first: the
+ * base rules are the mobile layout, 600px tablet, 900px the Primary dock, 1200px desktop. The
+ * Canvas styles its row in every context (page, header, footer: the footer's own rules are the
+ * frame, title and glows in blocks/footer).
+ */
 .conversation-canvas {
   --conversation-canvas-surface: rgb(255 255 255 / 60%);
   --conversation-canvas-outline: #494c4d;
+
+  /* the open / current navigation item (Figma Full menu) */
   --conversation-canvas-active: #4e84ff;
+
+  /* Figma Floating menu values without a design token: the search field's ring, the hover of the
+     footer's Quick actions */
+  --conversation-canvas-field-ring: rgb(70 115 219 / 18%);
+  --conversation-canvas-footer-hover: #b3b3b3;
+
+  /* space below the floating row, clear of the home indicator (canvas-controller.js reads it) */
   --conversation-canvas-float-offset: calc(var(--space-600) + env(safe-area-inset-bottom, 0rem));
+
+  /* the floating canvas is above page content (blocks use z-index 10 at most, the logo bar 20) */
   --conversation-canvas-z-floating: 100;
 
   position: relative;
@@ -19,18 +33,15 @@
   text-align: center;
 }
 
+/* the floating row's offset from the bottom of the window, plus the device safe area; the header
+   Canvas sits the same offset above the bottom of the first screen, so it doesn't move when it
+   floats. The Primary dock keeps its own offset */
 .conversation-canvas:not(.primary) {
   --conversation-canvas-float-offset: calc(1.25rem + env(safe-area-inset-bottom, 0rem));
 }
 
-/* Header hamburger utility override */
-header .nav-hamburger,
-header .header-hamburger,
-header .nav-toggle {
-  display: none !important;
-}
-
-/* Base gradients and background media layer */
+/* soft brand blobs behind the content (BG Style: Default); the block itself doesn't clip, so the
+   menu can open outside it */
 .conversation-canvas::before {
   content: '';
   position: absolute;
@@ -68,23 +79,24 @@ header .nav-toggle {
   object-fit: cover;
 }
 
-/* Core Content Structure */
 .conversation-canvas .conversation-canvas-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-1000);
   width: 100%;
-  max-width: 80rem;
+  max-width: 100%;
   margin: 0 auto;
+  padding: 0 var(--space-400);
 }
 
+/* icon, eyebrow, title, text */
 .conversation-canvas .conversation-canvas-intro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   gap: var(--space-400);
+  width: 100%;
 }
 
 .conversation-canvas.secondary .conversation-canvas-intro {
@@ -98,7 +110,6 @@ header .nav-toggle {
   object-fit: contain;
 }
 
-/* Typography Defaults (Fluid / Mobile-First Base) */
 .conversation-canvas .conversation-canvas-eyebrow {
   margin: 0;
   color: var(--color-text-brand);
@@ -116,6 +127,7 @@ header .nav-toggle {
   letter-spacing: -0.05rem;
 }
 
+/* 16px gap + 24px = 40px between the icon / eyebrow and the title */
 .conversation-canvas .conversation-canvas-icon + .conversation-canvas-title,
 .conversation-canvas .conversation-canvas-eyebrow + .conversation-canvas-title {
   margin-top: var(--space-600);
@@ -144,15 +156,16 @@ header .nav-toggle {
   margin: 0;
 }
 
+/* 40px between the title and the text too */
 .conversation-canvas .conversation-canvas-title + .conversation-canvas-text {
   margin-top: var(--space-600);
 }
 
-
-/* ==========================================================================
-   2. Search Cluster & Form Controls (Shared Functional Mechanics)
-   ========================================================================== */
-
+/*
+ * The search row (Figma Floating menu): the menu button, the Circle Menu (a 59px brand-blue
+ * circle with a white menu icon, at every width: the site navigation), 17px, the search field
+ * (72px high) with the voice and submit buttons. Mobile: 354px at most.
+ */
 .conversation-canvas .conversation-canvas-search-slot {
   display: flex;
   justify-content: center;
@@ -165,101 +178,157 @@ header .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
+  gap: 1.0625rem;
+  width: min(22.125rem, calc(100vw - 2rem));
+  min-width: 0;
+  max-width: 22.125rem;
+  height: 4.5rem;
+  margin: 0 auto;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
+/* in the footer: 17px between the menu button and the field at every width */
+footer .conversation-canvas .conversation-canvas-search {
+  gap: 1.0625rem;
+}
+
+/* the open menu moves the row up by the lift it needs to stay in the window (buildSearch), with
+   the floating row's own lift (above a footer without a Canvas) */
 .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden])) {
   translate: 0 calc(-1 * (var(--conversation-canvas-lift, 0rem) + var(--conversation-canvas-menu-lift, 0rem)));
 }
 
-.conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
+/* the row a floating row lands on is hidden while it comes up (one row on screen); on mobile the
+   floating row itself always shows */
+.conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within, .conversation-canvas-floating) {
   opacity: 0;
 }
 
+/* while the page scrolls (buildSearch) */
 .conversation-canvas .conversation-canvas-search.conversation-canvas-minimized {
   transform: scale(0.94);
+}
+
+.conversation-canvas .conversation-canvas-search.conversation-canvas-minimized:not(.conversation-canvas-floating) {
   opacity: 0.85;
 }
 
-/* Menu Toggle inside search cluster */
+/* the Circle Menu (Figma 4308:42483): the same in every state on mobile */
 .conversation-canvas .conversation-canvas-menu-toggle {
   display: grid;
   flex: none;
   place-items: center;
+  width: 3.6875rem;
+  height: 3.6875rem;
   margin: 0;
+  border: 0;
+  border-radius: var(--radius-full);
   padding: 0;
+  background-color: var(--color-bg-brand);
+  color: var(--color-icon-on-brand);
+  backdrop-filter: blur(0.8563rem);
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .conversation-canvas .conversation-canvas-menu-toggle::before {
   content: '';
+  width: 1.25rem;
+  height: 1.25rem;
   background-color: currentcolor;
   mask: url('../../icons/menu.svg') center / contain no-repeat;
 }
 
-.conversation-canvas .conversation-canvas-menu-toggle:hover,
-.conversation-canvas .conversation-canvas-menu-toggle[aria-expanded="true"] {
-  background-color: var(--color-bg-default);
-}
-
-/* Non-primary search menu toggle state */
-.conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle {
-  border-color: var(--color-bg-brand);
-  background-color: var(--color-bg-brand);
-  color: var(--color-icon-on-brand);
-}
-
-.conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true'] {
-  border-color: var(--conversation-canvas-active);
-  background-color: var(--conversation-canvas-active);
-  color: var(--color-text-on-brand);
-}
-
+/* open: a close icon */
 .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true']::before {
   mask-image: url('../../icons/close.svg');
 }
 
-/* Search Form Wrapper */
+/* the search field (Figma AI input container): 278 x 72px on mobile, a 4px brand ring */
 .conversation-canvas .conversation-canvas-search-form {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  background-color: var(--conversation-canvas-surface);
+  gap: var(--space-200);
+  width: 17.375rem;
+  min-width: 0;
+  max-width: 100%;
+  height: 4.5rem;
+  min-height: 4.5rem;
+  max-height: 4.5rem;
+  border: var(--border-width-200) solid var(--color-border-neutral);
+  border-radius: 3.625rem;
+  padding: var(--space-300) 0.875rem var(--space-300) 1.125rem;
+  background-color: var(--color-bg-default);
+  box-shadow: 0 0 0 0.25rem var(--conversation-canvas-field-ring);
+  backdrop-filter: blur(2.5rem);
   transition: border-color 0.2s;
 }
 
+/* in the footer the field fills the row */
+footer .conversation-canvas .conversation-canvas-search-form {
+  flex: 1;
+  min-width: 0;
+}
+
+/* the field shows its focus (the input has no outline of its own) */
 .conversation-canvas .conversation-canvas-search-form:focus-within {
   border-color: var(--color-border-brand);
 }
 
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form,
+.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
+  backdrop-filter: blur(var(--blur-100));
+}
+
 .conversation-canvas .conversation-canvas-search-form input {
   box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 8.375rem;
+  height: 1.375rem;
+  min-height: 1.375rem;
+  max-height: 1.375rem;
   margin: 0;
   border: 0;
   padding: 0;
   background: none;
   color: var(--color-text-default);
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375rem;
+  letter-spacing: calc(-0.005 * 1rem);
   outline: none;
 }
 
-/* Microphone Trigger */
+.conversation-canvas .conversation-canvas-search-form input::placeholder {
+  color: var(--color-text-default);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  opacity: 0.8;
+}
+
+/* voice input (speech recognition), shown where the browser supports it */
 .conversation-canvas .conversation-canvas-audio {
   display: grid;
   flex: none;
   place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   margin: 0;
   border: 0;
   border-radius: var(--radius-full);
   padding: 0;
   background: none;
-  color: var(--color-text-default);
+  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
-.conversation-canvas .conversation-canvas-audio[aria-pressed="true"] {
-  color: var(--color-text-brand);
+.conversation-canvas .conversation-canvas-audio[aria-pressed='true'] {
   outline: var(--border-width-200) solid currentcolor;
 }
 
@@ -269,41 +338,137 @@ header .nav-toggle {
 
 .conversation-canvas .conversation-canvas-audio img {
   display: block;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
 }
 
 .conversation-canvas .conversation-canvas-audio-default::before {
   content: '';
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
   background-color: currentcolor;
   mask: url('../../icons/mic.svg') center / contain no-repeat;
 }
 
-/* Submit Action Button */
+/* submit: an icon button (button decorator), light until there is a query, then black */
 .conversation-canvas .conversation-canvas-search-form button[type='submit'],
 .conversation-canvas .conversation-canvas-search-submit {
   flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  border: 0;
   border-radius: var(--radius-full);
-  border-color: #F5F5F5;
-  background-color: #F5F5F5;
-  color: #fff;
-  opacity: 0.4;
-  cursor: default;
+  padding: var(--space-200);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-on-brand);
+  cursor: pointer;
   transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 
 .conversation-canvas .conversation-canvas-search-form.has-value button[type='submit'],
 .conversation-canvas .conversation-canvas-search-form.has-value .conversation-canvas-search-submit {
-  border-color: #000 !important;
-  background-color: #000 !important;
-  color: #fff !important;
-  opacity: 1 !important;
+  border-color: var(--color-bg-neutral);
+  background-color: var(--color-bg-neutral);
+  color: var(--color-text-on-brand);
+  opacity: 1;
   cursor: pointer;
 }
 
+/* filter tags (Secondary): markup only, filled by setConversationCanvasFilters() */
+.conversation-canvas .conversation-canvas-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-300);
+  max-width: 56.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-/* ==========================================================================
-   3. Site Popover, Submenu Panel & Floating Behavior
-   ========================================================================== */
+.conversation-canvas .conversation-canvas-filters:empty {
+  display: none;
+}
 
+/*
+ * Quick actions (the Button List; Figma Filter tag pills): wrapping rows of pills, at most five
+ * (the rest is hidden), 44px high on mobile.
+ */
+.conversation-canvas .conversation-canvas-buttons {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-200);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-buttons > * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conversation-canvas .conversation-canvas-buttons > :nth-child(n + 6) {
+  display: none;
+}
+
+.conversation-canvas .conversation-canvas-buttons > li > :is(a, button).button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 2.75rem;
+  max-height: none;
+  border: var(--border-width-100) solid var(--color-border-neutral-secondary);
+  border-radius: var(--radius-full);
+  padding: var(--space-200) var(--space-400);
+  background: var(--white-400);
+  color: var(--color-text-neutral);
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+}
+
+/* page Canvases: medium text (the footer's are set in its rules below) */
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons > li > :is(a, button).button {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.0056rem;
+}
+
+.conversation-canvas .conversation-canvas-buttons > li > a.button:is(:hover, :focus-visible) {
+  border-color: var(--color-border-brand-secondary);
+  background-color: rgb(255 255 255 / 90%);
+  color: var(--color-text-brand);
+}
+
+/* no arrow on the pills (an icon button keeps its icon) */
+.conversation-canvas .conversation-canvas-buttons > li > :is(a, button).button:not(.icon-button)::after {
+  content: none;
+  display: none;
+}
+
+/*
+ * Site menu (Default and Secondary; Figma Full menu 1124:26210 / 1124:26244): a row of a level's
+ * pages below the search row, centred on it, the first level as pills, the levels below as text
+ * items (the navigation styles of the Primary dock below: .conversation-canvas-nav-*). In the
+ * site header (the header Canvas) it is a nav inside <header>: display, size, margin and padding
+ * are its own, not the header bar's.
+ */
 .conversation-canvas .conversation-canvas-menu {
   display: block;
   position: absolute;
@@ -334,11 +499,13 @@ header .nav-toggle {
   color: var(--color-text-secondary);
 }
 
-/* Backdrop when menu is active */
+/* an open panel takes the place of the search row (Figma 1124:26244) */
 .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden]) .conversation-canvas-menu-panel:not([hidden])) > :not(.conversation-canvas-menu) {
   visibility: hidden;
 }
 
+/* the page behind the open menu: a grey fade the size of the window, placed on it by buildSearch
+   (--conversation-canvas-menu-x / -y: the row's place in the window) */
 .conversation-canvas .conversation-canvas-search:has(> .conversation-canvas-menu:not([hidden]))::before {
   content: '';
   position: absolute;
@@ -351,7 +518,12 @@ header .nav-toggle {
   pointer-events: none;
 }
 
-/* Submenu panel container */
+/*
+ * the panel of an item's child pages, above the row in place of the search row (Figma List
+ * Container 1124:26250): rows with an arrow at the right and a divider below every row but the
+ * last; one column, two for more than six pages (filled top to bottom). It is in its item
+ * (keyboard order) and placed by the menu.
+ */
 .conversation-canvas .conversation-canvas-menu-panel {
   position: absolute;
   bottom: calc(100% + 2.3125rem);
@@ -396,17 +568,12 @@ header .nav-toggle {
   padding-bottom: var(--space-300);
 }
 
-.conversation-canvas .conversation-canvas-buttons > li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .conversation-canvas .conversation-canvas-menu-panel li:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
+/* a row's link takes the room its arrow button leaves */
 .conversation-canvas .conversation-canvas-menu-panel a {
   display: flex;
   flex: 1;
@@ -421,6 +588,8 @@ header .nav-toggle {
   text-decoration: none;
 }
 
+/* the arrow of every row: a page's own (decorative), the others' is their button opening its
+   child pages */
 .conversation-canvas .conversation-canvas-menu-panel a:only-child::after {
   content: '';
   flex: none;
@@ -437,6 +606,7 @@ header .nav-toggle {
   color: var(--conversation-canvas-active);
 }
 
+/* 24px, so a row with child pages is as high as the others */
 .conversation-canvas .conversation-canvas-menu-next {
   display: grid;
   flex: none;
@@ -464,7 +634,12 @@ header .nav-toggle {
   color: var(--conversation-canvas-active);
 }
 
-/* Floating Search Dock Behavior */
+/*
+ * Floating journey (canvas-journey.js): the owner's row floats at the bottom of the viewport,
+ * lands on the next canvas's row (hidden while it comes up, so there's one row on screen) and
+ * stops at the footer canvas. Without one, the lift keeps it above the footer. On mobile the
+ * floating row is the full 354px row and always shows (also while the header host is hidden).
+ */
 .conversation-canvas.conversation-canvas-owner {
   z-index: var(--conversation-canvas-z-floating);
 }
@@ -474,29 +649,29 @@ header .nav-toggle {
   bottom: var(--conversation-canvas-float-offset);
   left: 50%;
   z-index: var(--conversation-canvas-z-floating);
-  width: auto;
-  max-width: calc(100vw - 2 * var(--space-600));
+  display: flex;
+  width: min(22.125rem, calc(100vw - 2rem));
+  max-width: 22.125rem;
+  visibility: visible;
   transform: translateX(-50%);
   translate: 0 calc(-1 * var(--conversation-canvas-lift, 0rem));
   animation: conversation-canvas-float-in 0.3s ease-out;
 }
 
+/* lifting off a canvas's row in place: no entry animation, it's already there */
 .conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff {
   animation: none;
 }
 
+/* focused elements scroll clear of the floating row (WCAG 2.4.11) */
 html:has(.conversation-canvas-owner) {
   scroll-padding-bottom: var(--conversation-canvas-obscured, 0);
 }
 
+/* while the header menu is open the journey is hidden (canvas-controller.js) and the header
+   Canvas too: the menu is a page of its own */
 header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   visibility: hidden;
-}
-
-.conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form {
-  background-color: rgb(255 255 255 / 90%);
-  backdrop-filter: blur(var(--blur-100));
-  box-shadow: var(--shadow-300);
 }
 
 @keyframes conversation-canvas-float-in {
@@ -517,11 +692,7 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   }
 }
 
-
-/* ==========================================================================
-   4. Navigation Controls, Filters & Shared Button Layouts
-   ========================================================================== */
-
+/* the navigation's Home (first level) and Back buttons */
 .conversation-canvas .conversation-canvas-nav-home,
 .conversation-canvas .conversation-canvas-nav-back {
   box-sizing: border-box;
@@ -530,30 +701,29 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   width: 3rem;
   height: 3rem;
   margin: 0;
-  border: var(--border-width-100, 1px) solid var(--color-border-default, #ccc);
-  border-radius: var(--radius-full, 9999px);
+  border: var(--border-width-100) solid var(--color-border-default);
+  border-radius: var(--radius-full);
   padding: 0;
-  background-color: var(--color-bg-default, #fff);
-  color: var(--color-text-default, #333);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
   cursor: pointer;
   transition: border-color 0.2s, background-color 0.2s, color 0.2s;
 }
 
-.conversation-canvas .conversation-canvas-nav-home::before {
-  content: '';
-  display: block;
-  width: 1.125rem;
-  height: 1.125rem;
-  background-color: currentcolor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9 22 9 12 15 12 15 22'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
+.conversation-canvas .conversation-canvas-nav-home::before,
 .conversation-canvas .conversation-canvas-nav-back::before {
   content: '';
   display: block;
   width: 1.125rem;
   height: 1.125rem;
   background-color: currentcolor;
+}
+
+.conversation-canvas .conversation-canvas-nav-home::before {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9 22 9 12 15 12 15 22'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.conversation-canvas .conversation-canvas-nav-back::before {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='12' x2='5' y2='12'/%3E%3Cpolyline points='12 19 5 12 12 5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
@@ -561,10 +731,11 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
 .conversation-canvas .conversation-canvas-nav-home:focus-visible,
 .conversation-canvas .conversation-canvas-nav-back:hover,
 .conversation-canvas .conversation-canvas-nav-back:focus-visible {
-  border-color: var(--conversation-canvas-active, #4e84ff);
-  color: var(--conversation-canvas-active, #4e84ff);
+  border-color: var(--conversation-canvas-active);
+  color: var(--conversation-canvas-active);
 }
 
+/* the suggestions of a page without child pages (dashed pills; a click searches for them) */
 .conversation-canvas .conversation-canvas-nav-suggestion {
   border: var(--border-width-100) dashed var(--color-border-neutral-secondary);
   background-color: var(--color-bg-default);
@@ -578,78 +749,11 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   color: var(--conversation-canvas-active);
 }
 
-/* Filter Tags Cluster */
-.conversation-canvas .conversation-canvas-filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-300);
-  max-width: 56.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.conversation-canvas .conversation-canvas-filters:empty {
-  display: none;
-}
-
-/* Button & Action Pills Base Setup */
-.conversation-canvas .conversation-canvas-buttons {
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.conversation-canvas .conversation-canvas-buttons a.button::after,
-.conversation-canvas .conversation-canvas-buttons button.button::after {
-  content: none !important;
-  display: none !important;
-}
-
-/* Hide pills beyond 5 */
-.conversation-canvas .conversation-canvas-buttons > li:nth-child(n+6) {
-  display: none !important;
-}
-
-/* Pill appearance for non-action buttons & action-pills variant */
-:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons {
-  gap: var(--space-300);
-  max-width: 56.25rem;
-}
-
-:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button {
-  height: auto;
-  min-height: 0;
-  border: var(--border-width-100) solid var(--color-border-default);
-  border-radius: var(--radius-full);
-  padding: var(--space-300) var(--space-800);
-  background-color: var(--color-bg-default);
-  color: var(--color-text-default);
-  font-size: 1.125rem;
-  font-weight: var(--font-weight-medium);
-  line-height: 1.8125rem;
-  letter-spacing: -0.0056rem;
-}
-
-footer .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-  border-color: var(--color-border-default) !important;
-  background-color: #B3B3B3 !important;
-  color: #000 !important;
-}
-
-:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-  border-color: var(--color-border-brand);
-  background-color: var(--color-bg-brand);
-  color: var(--color-text-on-brand);
-}
-
-
-/* ==========================================================================
-   5. Primary Canvas & Bottom Dock Elements
-   ========================================================================== */
-
+/*
+ * Primary (sticky) dock: the whole canvas floats at the bottom of the viewport, except while
+ * another canvas's search row is docked in place, until the footer canvas (canvas-journey.js).
+ * It holds the search row and the site navigation.
+ */
 .conversation-canvas.primary {
   border-radius: 0;
   padding: 0;
@@ -678,7 +782,8 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-400) var(--space-600) var(--conversation-canvas-float-offset);
+  gap: var(--space-400);
+  padding: var(--space-300) var(--space-300) var(--conversation-canvas-float-offset);
   background: linear-gradient(0deg, var(--color-bg-default) 55%, rgb(255 255 255 / 0%) 100%);
   opacity: 0;
   pointer-events: none;
@@ -706,27 +811,6 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   }
 }
 
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
-  border-color: var(--color-border-default);
-  padding: var(--space-200) var(--space-300) var(--space-200) var(--space-500);
-  background-color: var(--color-bg-opacity, rgb(255 255 255 / 90%));
-  backdrop-filter: blur(var(--blur-100));
-}
-
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input {
-  font-weight: var(--font-weight-light);
-}
-
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
-  color: var(--color-text-default);
-}
-
-.conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {
-  display: grid;
-  width: 3rem;
-  height: 3rem;
-}
-
 .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-nav {
   display: block;
 }
@@ -739,14 +823,23 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   display: none;
 }
 
-/* Dock Navigation List */
+/* the navigation: one scrolling row below 900px */
 .conversation-canvas .conversation-canvas-nav-list {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  max-width: 100vw;
   margin: 0;
-  padding: 0;
+  overflow-x: auto;
+  padding: 0 var(--space-400);
   list-style: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.conversation-canvas .conversation-canvas-nav-list::-webkit-scrollbar {
+  display: none;
 }
 
 .conversation-canvas .conversation-canvas-nav-item {
@@ -772,6 +865,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
+/* the first level shows pills, the levels below text items (Figma Full menu) */
 .conversation-canvas :where(.conversation-canvas-nav[data-view='root']) .conversation-canvas-nav-item {
   padding: var(--space-300) var(--space-800);
   font-weight: var(--font-weight-medium);
@@ -799,23 +893,24 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   transition: transform 0.2s;
 }
 
-.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"] {
+.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded='true'] {
   border-color: var(--conversation-canvas-active);
   background-color: var(--conversation-canvas-active);
   color: var(--color-text-on-brand);
 }
 
-.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded="true"]::after {
+.conversation-canvas .conversation-canvas-nav-toggle[aria-expanded='true']::after {
   transform: rotate(180deg);
 }
 
+/* the panel of a pill's sub-pages, shown in place of the search row */
 .conversation-canvas .conversation-canvas-nav-panel {
   box-sizing: border-box;
   width: min(100%, 26.25rem);
   border: var(--border-width-200) solid var(--color-border-default);
   border-radius: 1.25rem;
   padding: var(--space-300) var(--space-800);
-  background-color: rgb(255 255 255 / 40%);
+  background-color: var(--white-400);
   backdrop-filter: blur(1.25rem);
 }
 
@@ -880,11 +975,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   border-bottom: 0;
 }
 
-
-/* ==========================================================================
-   6. Menu Hierarchy Level Pills & Chevrons
-   ========================================================================== */
-
+/* the site menu's levels (Default and Secondary): pills with a chevron for child pages */
 .conversation-canvas .conversation-canvas-nav-group {
   box-sizing: border-box;
   display: inline-flex;
@@ -926,7 +1017,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
 }
 
 .conversation-canvas .conversation-canvas-nav-chevron {
-  display: inline-grid !important;
+  display: inline-grid;
   flex: none;
   place-items: center;
   width: var(--icon-size-s);
@@ -961,25 +1052,9 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   color: var(--color-text-on-brand);
 }
 
-
-/* ==========================================================================
-   7. Dark Mode Configuration
-   ========================================================================== */
-
+/* Primary with BG Style Dark: the navigation on a dark fade */
 .conversation-canvas.primary.conversation-canvas-bg-dark {
   --conversation-canvas-outline: var(--grey-300);
-}
-
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form,
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
-  border-color: var(--conversation-canvas-outline);
-  background-color: var(--black-400);
-}
-
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input,
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input::placeholder,
-.conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-audio {
-  color: var(--color-text-on-neutral);
 }
 
 .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-nav-item {
@@ -1000,11 +1075,7 @@ main > .section:has(> .conversation-canvas-wrapper:only-child > .conversation-ca
   background-color: transparent;
 }
 
-
-/* ==========================================================================
-   8. Global Overrides & Visibility State
-   ========================================================================== */
-
+/* Hide block: the header and footer Canvases aren't in a section that hides them */
 html:not(.adobe-ue-edit) :is(header, footer) .conversation-canvas.hideblock {
   display: none;
 }
@@ -1013,237 +1084,65 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   border-radius: 0;
 }
 
+/* in the footer (blocks/footer: its canvas without a surface, the title, the glows): 16px text
+   and its own hover of the Quick actions */
+footer .conversation-canvas .conversation-canvas-search-form input {
+  font-size: var(--footer-search-text-size, 1rem);
+}
 
-/* ==========================================================================
-   9. Mobile Viewport Layout (< 600px)
-   ========================================================================== */
+footer .conversation-canvas .conversation-canvas-buttons {
+  align-items: center;
+}
 
-@media (width < 600px) {
+footer .conversation-canvas .conversation-canvas-buttons > li > a.button.secondary {
+  font-weight: var(--footer-button-weight);
+  letter-spacing: calc(0.01 * var(--footer-button-text-size));
+}
+
+footer .conversation-canvas .conversation-canvas-buttons > li > a.button:is(:hover, :focus-visible) {
+  border-color: var(--color-border-default);
+  background-color: var(--conversation-canvas-footer-hover);
+  color: var(--color-text-default);
+}
+
+/* tablet (and desktop where it says so) */
+@media (width >= 600px) {
   .conversation-canvas .conversation-canvas-content {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 var(--space-400, 1rem);
+    max-width: 80rem;
+    padding: 0;
   }
 
-  .conversation-canvas .conversation-canvas-intro {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  /* Outer search cluster container */
+  /* the header (blocks/header) and footer give the row its width on tablet */
   .conversation-canvas .conversation-canvas-search {
-    display: inline-flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 17px !important;
-    width: min(354px, calc(100vw - 2rem)) !important;
-    min-width: 0 !important;
-    max-width: 354px !important;
-    height: 72px !important;
-    margin: 0 auto;
+    gap: var(--space-300);
+    width: auto;
+    min-width: auto;
+    max-width: 100%;
+    height: 4rem;
+    margin: 0;
   }
 
   .conversation-canvas .conversation-canvas-search.conversation-canvas-floating {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    width: min(354px, calc(100vw - 2rem)) !important;
-    z-index: 9999 !important;
+    width: auto;
+    max-width: calc(100vw - 2 * var(--space-600));
+    visibility: inherit;
   }
 
-  .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search.conversation-canvas-floating {
-    opacity: 1 !important;
+  .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search.conversation-canvas-floating:not(:focus-within) {
+    opacity: 0;
   }
 
-  /* Circular Menu Toggle Button */
-  .conversation-canvas .conversation-canvas-menu-toggle {
-    flex: none !important;
-    width: 59px !important;
-    height: 59px !important;
-    border-radius: 29.5px !important;
-    border: none !important;
-    background-color: #216ac3 !important;
-    color: #fff !important;
-    backdrop-filter: blur(13.7px);
-    padding: 0 !important;
-  }
-
-  footer .conversation-canvas .conversation-canvas-menu-toggle {
-    display: grid !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-menu-toggle::before {
-    width: 20px !important;
-    height: 20px !important;
-    background-color: #fff !important;
-  }
-
-  /* Search Input Pill */
-  .conversation-canvas .conversation-canvas-search-form {
-    box-sizing: border-box !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    width: 278px !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: 72px !important;
-    min-height: 72px !important;
-    max-height: 72px !important;
-    padding: 12px 14px 12px 18px !important;
-    border: 2px solid #303030 !important;
-    border-radius: 58px !important;
-    background-color: #fff !important;
-    box-shadow: 0 0 0 4px rgb(70 115 219 / 18%) !important;
-    backdrop-filter: blur(40px);
-  }
-
-  .conversation-canvas .conversation-canvas-search-form input {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 134px !important;
-    height: 22px !important;
-    min-height: 22px !important;
-    max-height: 22px !important;
-    border: 0 !important;
-    padding: 0 !important;
-    font-family: Inter, sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    line-height: 22px !important;
-    letter-spacing: -0.005em !important;
-    color: #0c0c0d !important;
-  }
-
-  .conversation-canvas .conversation-canvas-search-form input::placeholder {
-    color: #0c0c0d !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    opacity: 0.8 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-audio {
-    flex: none !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    min-height: 40px !important;
-    padding: 0 !important;
-    color: #5a5a5a !important;
-  }
-
-  .conversation-canvas .conversation-canvas-audio img,
-  .conversation-canvas .conversation-canvas-audio-default::before {
-    width: 24px !important;
-    height: 24px !important;
-    background-color: #5a5a5a !important;
-  }
-
-  .conversation-canvas .conversation-canvas-search-form button[type='submit'],
-  .conversation-canvas .conversation-canvas-search-submit {
-    flex: none !important;
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    min-height: 36px !important;
-    border-radius: 9999px !important;
-    border: 0 !important;
-    background-color: #F5F5F5 !important;
-    color: #fff !important;
-    opacity: 1 !important;
-    padding: 8px !important;
-    cursor: pointer !important;
-  }
-
-  .conversation-canvas .conversation-canvas-search-form button[type='submit']::before,
-  .conversation-canvas .conversation-canvas-search-submit::before {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  /* Responsive Mobile Buttons / Suggestion Pills */
-  .conversation-canvas .conversation-canvas-buttons {
-    display: flex !important;
-    flex-flow: row wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button {
-    box-sizing: border-box !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: auto !important;
-    min-height: 44px !important;
-    max-height: none !important;
-    padding: 8px 16px !important;
-    font-size: 15px !important;
-    line-height: 20px !important;
-    border-radius: 9999px !important;
-    border: 1px solid #767676 !important;
-    background: rgb(255 255 255 / 40%) !important;
-    color: #303030 !important;
-    text-decoration: none !important;
-    white-space: normal !important;
-    text-align: center !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3 !important;
-    background-color: rgb(255 255 255 / 90%) !important;
-    color: #216AC3 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-dock {
-    gap: 1rem;
-    padding: var(--space-300) var(--space-300) var(--conversation-canvas-float-offset);
-  }
-
-  .conversation-canvas .conversation-canvas-nav-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    max-width: 100vw;
-    padding: 0 var(--space-400);
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .conversation-canvas .conversation-canvas-nav-list::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-
-/* ==========================================================================
-   10. Tablet & Intermediate Screen Viewports (600px - 1199px)
-   ========================================================================== */
-
-@media (width >= 600px) and (width < 1200px) {
-  .conversation-canvas .conversation-canvas-search {
-    gap: var(--space-300);
-    height: 4rem;
+  .conversation-canvas .conversation-canvas-search.conversation-canvas-minimized.conversation-canvas-floating {
+    opacity: 0.85;
   }
 
   .conversation-canvas .conversation-canvas-menu-toggle {
     width: 3.25rem;
     height: 3.25rem;
     border: var(--border-width-200) solid var(--conversation-canvas-outline);
-    border-radius: var(--radius-full);
     background-color: var(--conversation-canvas-surface);
     color: var(--conversation-canvas-outline);
+    backdrop-filter: none;
   }
 
   .conversation-canvas .conversation-canvas-menu-toggle::before {
@@ -1251,25 +1150,81 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     height: var(--icon-size-s);
   }
 
+  .conversation-canvas .conversation-canvas-menu-toggle:hover {
+    background-color: var(--color-bg-default);
+  }
+
+  /* the Circle Menu: brand blue, the active blue while its menu is open */
+  .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle {
+    border-color: var(--color-bg-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+  }
+
+  .conversation-canvas:not(.primary) .conversation-canvas-search > .conversation-canvas-menu-toggle[aria-expanded='true'] {
+    border-color: var(--conversation-canvas-active);
+    background-color: var(--conversation-canvas-active);
+    color: var(--color-text-on-brand);
+  }
+
   .conversation-canvas .conversation-canvas-search-form {
-    width: min(34rem, calc(100vw - 8rem));
-    height: 4rem;
-    border: var(--border-width-200) solid var(--conversation-canvas-outline);
-    border-radius: 3.625rem;
-    padding: var(--space-200) var(--space-400);
     gap: var(--space-200);
+    width: min(34rem, calc(100vw - 8rem));
+    min-width: auto;
+    max-width: none;
+    height: 4rem;
+    min-height: auto;
+    max-height: none;
+    border-color: var(--conversation-canvas-outline);
+    padding: var(--space-200) var(--space-400);
+    background-color: var(--conversation-canvas-surface);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  /* the footer's Figma AI input container: 24px before the text */
+  footer .conversation-canvas .conversation-canvas-search-form {
+    padding: var(--space-300) var(--space-300) var(--space-300) var(--footer-search-padding-start, var(--space-600));
+  }
+
+  .conversation-canvas .conversation-canvas-search-form:focus-within {
+    border-color: var(--color-border-brand);
+  }
+
+  /* the floating search field on a light frosted fill */
+  .conversation-canvas .conversation-canvas-search.conversation-canvas-floating .conversation-canvas-search-form {
+    background-color: rgb(255 255 255 / 90%);
+    box-shadow: var(--shadow-300);
   }
 
   .conversation-canvas .conversation-canvas-search-form input {
-    flex: 1 1 auto;
     width: auto;
-    height: 1.375rem;
+    min-width: auto;
+    max-width: none;
+    min-height: auto;
+    max-height: none;
+    font: inherit;
     font-size: var(--button-font-size);
+    letter-spacing: normal;
+  }
+
+  .conversation-canvas .conversation-canvas-search-form input::placeholder {
+    color: revert;
+    font-size: revert;
+    font-weight: revert;
+    opacity: revert;
   }
 
   .conversation-canvas .conversation-canvas-audio {
     width: 2.25rem;
     height: 2.25rem;
+    min-width: auto;
+    min-height: auto;
+    color: var(--color-text-default);
+  }
+
+  .conversation-canvas .conversation-canvas-audio[aria-pressed='true'] {
+    color: var(--color-text-brand);
   }
 
   .conversation-canvas .conversation-canvas-audio img,
@@ -1278,70 +1233,111 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     height: 1.35rem;
   }
 
+  /* the submit: dimmed until there is a query */
   .conversation-canvas .conversation-canvas-search-form button[type='submit'],
   .conversation-canvas .conversation-canvas-search-submit {
-    width: 2.25rem;
-    height: 2.25rem;
+    min-width: auto;
+    min-height: 0;
+    border: var(--border-width-100) solid var(--color-bg-secondary);
+    padding: var(--space-300);
+    opacity: 0.4;
+    cursor: default;
   }
 
-  /* Flexible tablet pill row */
   .conversation-canvas .conversation-canvas-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 8px !important;
-    width: 100%;
+    min-width: auto;
     max-width: 50rem;
-    height: auto;
+    min-height: auto;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 48px;
-    padding: 10px 24px;
-    background: rgb(255 255 255 / 40%);
-    border: 1px solid #767676;
-    border-radius: 9999px;
-    color: #303030;
-    font-size: 16px;
-    text-decoration: none;
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons {
+    max-width: 56.25rem;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li > :is(a, button).button {
+    height: 3rem;
+    min-height: var(--button-height);
+    padding: 0.625rem var(--space-600);
+    font-size: 1rem;
+    line-height: normal;
     white-space: nowrap;
     transition: border-color 0.2s, background-color 0.2s, color 0.2s;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3;
-    background-color: rgb(255 255 255 / 90%);
-    color: #216AC3;
+  /* page Canvases (and Quick actions: Pills): the shared .tag-filter look */
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons > li > :is(a, button).button {
+    height: auto;
+    min-height: 0;
+    border-color: var(--color-border-default);
+    padding: var(--space-300) var(--space-800);
+    background: var(--color-bg-default);
+    color: var(--color-text-default);
+    font-size: 1.125rem;
+    line-height: 1.8125rem;
+  }
+
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons > li > a.button:is(:hover, :focus-visible) {
+    border-color: var(--color-border-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-text-on-brand);
+  }
+
+  /* the footer's Figma Button (blocks/footer custom properties) */
+  footer .conversation-canvas .conversation-canvas-search {
+    width: min(100%, var(--footer-search-width, 38.0625rem));
+  }
+
+  footer .conversation-canvas .conversation-canvas-buttons > li > a.button.secondary {
+    border: var(--footer-button-border);
+    padding: var(--footer-button-padding);
+    background-color: var(--footer-button-background);
+    color: var(--footer-button-color);
+    font-size: var(--footer-button-text-size);
+    font-weight: var(--footer-button-weight);
+    line-height: var(--footer-button-text-size);
+    letter-spacing: calc(0.01 * var(--footer-button-text-size));
+  }
+
+  footer .conversation-canvas .conversation-canvas-buttons > li > a.button.secondary:is(:hover, :focus-visible) {
+    border-width: var(--border-width-200);
+    border-color: var(--color-border-default);
+    background-color: var(--conversation-canvas-footer-hover);
+    color: var(--color-text-default);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-menu-toggle {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form {
+    border-color: var(--color-border-default);
+    padding: var(--space-200) var(--space-300) var(--space-200) var(--space-500);
+    background-color: var(--color-bg-opacity);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input {
+    font-weight: var(--font-weight-light);
+  }
+
+  .conversation-canvas.primary .conversation-canvas-dock .conversation-canvas-search-form input::placeholder {
+    color: var(--color-text-default);
+  }
+
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form,
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-menu-toggle {
+    border-color: var(--conversation-canvas-outline);
+    background-color: var(--black-400);
+  }
+
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input,
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-search-form input::placeholder,
+  .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock .conversation-canvas-audio {
+    color: var(--color-text-on-neutral);
   }
 }
 
-/* Intermediate Dock rules for 600px - 899px */
-@media (width >= 600px) and (width < 900px) {
-  .conversation-canvas .conversation-canvas-dock {
-    gap: 1rem;
-    padding: var(--space-300) var(--space-300) var(--conversation-canvas-float-offset);
-  }
-
-  .conversation-canvas .conversation-canvas-nav-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    max-width: 100vw;
-    padding: 0 var(--space-400);
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .conversation-canvas .conversation-canvas-nav-list::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* Intermediate Dock rules for >= 900px */
+/* the Primary dock: the navigation wraps, 37px above the search row */
 @media (width >= 900px) {
   .conversation-canvas .conversation-canvas-dock {
     gap: 2.3125rem;
@@ -1352,6 +1348,9 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     flex-wrap: wrap;
     gap: var(--space-300);
     max-width: 80rem;
+    overflow-x: visible;
+    padding: 0;
+    scrollbar-width: auto;
   }
 
   .conversation-canvas.primary.conversation-canvas-bg-dark .conversation-canvas-dock {
@@ -1366,11 +1365,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 }
 
-
-/* ==========================================================================
-   11. Desktop Viewport Layout (>= 1200px)
-   ========================================================================== */
-
+/* desktop (Figma 1440): the 599 x 72px field, 53px Quick actions in a 900px block */
 @media (width >= 1200px) {
   .conversation-canvas {
     padding: var(--space-3000) var(--space-2000) var(--space-2000);
@@ -1380,21 +1375,15 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     --conversation-canvas-float-offset: calc(3.25rem + env(safe-area-inset-bottom, 0rem));
   }
 
-  main .conversation-canvas:not(.primary) {
-    padding: var(--space-4000) var(--space-2000);
-  }
-
+  main .conversation-canvas:not(.primary),
   .conversation-canvas.secondary {
     padding: var(--space-4000) var(--space-2000);
   }
 
-  .conversation-canvas .conversation-canvas-content {
-    gap: var(--space-1000);
-  }
-
+  /* the intro's Figma frame: 1280 x 230px, never wider than the content */
   .conversation-canvas .conversation-canvas-intro {
-    width: 80rem !important;
-    height: 14.375rem !important;
+    width: min(100%, 80rem);
+    min-height: 14.375rem;
   }
 
   .conversation-canvas .conversation-canvas-eyebrow {
@@ -1417,253 +1406,151 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     letter-spacing: -0.0625rem;
   }
 
-  /* Desktop Outer Search Cluster */
+  /* the row is as wide as its content, also in the header and the footer */
   .conversation-canvas .conversation-canvas-search {
-    gap: var(--space-300);
-    width: auto !important;
-    max-width: 100% !important;
-    height: 4.5rem !important;
+    height: 4.5rem;
+  }
+
+  .conversation-canvas .conversation-canvas-search-slot > .conversation-canvas-search {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .conversation-canvas .conversation-canvas-search.conversation-canvas-floating {
+    max-width: 100%;
   }
 
   .conversation-canvas .conversation-canvas-menu-toggle {
     width: 3.6875rem;
     height: 3.6875rem;
-    border: var(--border-width-200) solid var(--conversation-canvas-outline);
-    border-radius: var(--radius-full);
-    background-color: var(--conversation-canvas-surface);
-    color: var(--conversation-canvas-outline);
   }
 
-  .conversation-canvas .conversation-canvas-menu-toggle::before {
-    width: var(--icon-size-s);
-    height: var(--icon-size-s);
-  }
-
-  /* Desktop Search Input Pill: 599px x 72px */
   .conversation-canvas .conversation-canvas-search-form {
-    gap: var(--space-200);
-    width: 37.4375rem !important;
-    min-width: 37.4375rem !important;
-    max-width: 37.4375rem !important;
-    height: 4.5rem !important;
-    min-height: 4.5rem !important;
-    max-height: 4.5rem !important;
-    border: var(--border-width-200) solid var(--conversation-canvas-outline);
-    border-radius: 3.625rem;
+    border-color: var(--conversation-canvas-outline);
     padding: var(--space-200) var(--space-300) var(--space-200) var(--space-400);
   }
 
-  /* Desktop Input Field: 455px x 22px */
+  .conversation-canvas .conversation-canvas-search > .conversation-canvas-search-form {
+    width: 37.4375rem;
+    min-width: 37.4375rem;
+    max-width: 37.4375rem;
+    height: 4.5rem;
+    min-height: 4.5rem;
+    max-height: 4.5rem;
+  }
+
+  /* 455 x 22px */
   .conversation-canvas .conversation-canvas-search-form input {
-    flex: 0 0 28.4375rem !important;
-    width: 28.4375rem !important;
-    min-width: 28.4375rem !important;
-    max-width: 28.4375rem !important;
-    height: 1.375rem !important;
-    min-height: 1.375rem !important;
-    max-height: 1.375rem !important;
-    font-size: var(--button-font-size);
+    flex: 0 0 28.4375rem;
+    width: 28.4375rem;
+    min-width: 28.4375rem;
+    max-width: 28.4375rem;
+    min-height: 1.375rem;
+    max-height: 1.375rem;
     font-weight: var(--font-weight-medium);
-    line-height: 1.375rem !important;
+    line-height: 1.375rem;
     letter-spacing: calc(-0.005 * var(--button-font-size));
   }
 
   .conversation-canvas .conversation-canvas-search-form input::placeholder {
     color: rgb(0 0 0 / 55%);
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-regular);
     opacity: 1;
   }
 
   .conversation-canvas .conversation-canvas-audio {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .conversation-canvas .conversation-canvas-audio img,
   .conversation-canvas .conversation-canvas-audio-default::before {
-    width: 1.5025rem !important;
-    height: 1.5025rem !important;
+    width: 1.5025rem;
+    height: 1.5025rem;
   }
 
   .conversation-canvas .conversation-canvas-search-form button[type='submit'],
   .conversation-canvas .conversation-canvas-search-submit {
-    width: 2.25rem !important;
-    height: 2.25rem !important;
-    min-width: 2.25rem !important;
-    min-height: 2.25rem !important;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
   }
 
-  /* Desktop 6-Column Pill Layout (Exact Grid Spec) */
   .conversation-canvas .conversation-canvas-buttons {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    width: 56.25rem !important;
-    max-width: 56.25rem !important;
-    min-width: 56.25rem !important;
-    height: 7.375rem !important;     /* 118px */
-    min-height: 7.375rem !important;
-    max-height: 7.375rem !important;
+    align-items: normal;
+    width: 56.25rem;
+    min-width: 56.25rem;
+    max-width: 56.25rem;
+    height: 7.375rem;
+    min-height: 7.375rem;
+    max-height: 7.375rem;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button {
-    box-sizing: border-box !important;
-    display: inline-flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    height: 53px !important;
-    min-height: 53px !important;
-    max-height: 53px !important;
-    padding: 12px 32px !important;
-    background: rgb(255 255 255 / 40%) !important;
-    border: 1px solid #767676 !important;
-    border-radius: 9999px !important;
-    color: #303030 !important;
-    font-family: Inter, sans-serif !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    font-size: 18px !important;
-    line-height: 29px !important;
-    letter-spacing: -0.005em !important;
-    text-decoration: none !important;
-    white-space: nowrap !important;
-    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  /* 53px pills in every context */
+  .conversation-canvas .conversation-canvas-buttons > li > :is(a, button).button,
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons > li > :is(a, button).button,
+  footer .conversation-canvas .conversation-canvas-buttons > li > a.button.secondary {
+    height: 3.3125rem;
+    min-height: 3.3125rem;
+    max-height: 3.3125rem;
+    border: var(--border-width-100) solid var(--color-border-neutral-secondary);
+    padding: var(--space-300) var(--space-800);
+    background: var(--white-400);
+    color: var(--color-text-neutral);
+    font-family: var(--body-font-family);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.8125rem;
+    letter-spacing: calc(-0.005 * 1.125rem);
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3 !important;
-    background-color: rgb(255 255 255 / 90%) !important;
-    color: #216AC3 !important;
+  .conversation-canvas .conversation-canvas-buttons > li > a.button:is(:hover, :focus-visible),
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons > li > a.button:is(:hover, :focus-visible) {
+    border-color: var(--color-border-brand-secondary);
+    background-color: rgb(255 255 255 / 90%);
+    color: var(--color-text-brand);
   }
 
-  /* Grid Item Positions & Sizing */
-
-  /* .conversation-canvas .conversation-canvas-buttons > li:nth-child(1) {
-    grid-column: 1 / 3;
-    width: 13.3125rem !important;
-    height: 3.3125rem !important;
-  } */
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(1) a.button.secondary {
-    box-sizing: border-box !important;
-    width: 13.3125rem !important;
-    height: 3.3125rem !important;
-    min-width: 13.3125rem !important;
-    min-height: 3.3125rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
+  /*
+   * the first five Quick actions (Secondary view): the Figma widths of the Home actions, their
+   * labels in a 1.8125rem line 4rem narrower than the pill
+   */
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(1) {
+    --conversation-canvas-pill-width: 13.3125rem;
   }
 
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(1) a.button.secondary span {
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(2) {
+    --conversation-canvas-pill-width: 17.0626rem;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(3) {
+    --conversation-canvas-pill-width: 11rem;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(4) {
+    --conversation-canvas-pill-width: 14.6875rem;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(5) {
+    --conversation-canvas-pill-width: 14.0625rem;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(-n + 5) > a.button.secondary {
+    display: flex;
+    width: var(--conversation-canvas-pill-width);
+    min-width: var(--conversation-canvas-pill-width);
+    padding: 0;
+  }
+
+  .conversation-canvas .conversation-canvas-buttons > li:nth-child(-n + 5) > a.button.secondary span {
     display: inline-block;
-    width: 9.3125rem !important;
-    height: 1.8125rem !important;
-    line-height: 1.8125rem !important;
+    width: calc(var(--conversation-canvas-pill-width) - 4rem);
+    height: 1.8125rem;
+    line-height: 1.8125rem;
   }
 
-  /* .conversation-canvas .conversation-canvas-buttons > li:nth-child(2) {
-    grid-column: 3 / 5;
-    width: 17.0626rem !important;
-    height: 3.3125rem !important;
-  } */
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(2) a.button.secondary {
-    box-sizing: border-box !important;
-    width: 17.0626rem !important;
-    height: 3.3125rem !important;
-    min-width: 17.0626rem !important;
-    min-height: 3.3125rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(2) a.button.secondary span {
-    display: inline-block;
-    width: 13.0625rem !important;
-    height: 1.8125rem !important;
-    line-height: 1.8125rem !important;
-  }
-
-  /* .conversation-canvas .conversation-canvas-buttons > li:nth-child(3) {
-    grid-column: 5 / 7;
-    width: 11rem !important;
-    height: 3.3125rem !important;
-  } */
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(3) a.button.secondary {
-    box-sizing: border-box !important;
-    width: 11rem !important;
-    height: 3.3125rem !important;
-    min-width: 11rem !important;
-    min-height: 3.3125rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(3) a.button.secondary span {
-    display: inline-block;
-    width: 7rem !important;
-    height: 1.8125rem !important;
-    line-height: 1.8125rem !important;
-  }
-
-  /* .conversation-canvas .conversation-canvas-buttons > li:nth-child(4) {
-    grid-column: 2 / 4;
-    width: 14.6875rem !important;
-    height: 3.3125rem !important;
-  } */
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(4) a.button.secondary {
-    box-sizing: border-box !important;
-    width: 14.6875rem !important;
-    height: 3.3125rem !important;
-    min-width: 14.6875rem !important;
-    min-height: 3.3125rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(4) a.button.secondary span {
-    display: inline-block;
-    width: 10.6875rem !important;
-    height: 1.8125rem !important;
-    line-height: 1.8125rem !important;
-  }
-
-  /* .conversation-canvas .conversation-canvas-buttons > li:nth-child(5) {
-    grid-column: 4 / 6;
-    width: 14.0625rem !important;
-    height: 3.3125rem !important;
-  } */
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(5) a.button.secondary {
-    box-sizing: border-box !important;
-    width: 14.0625rem !important;
-    height: 3.3125rem !important;
-    min-width: 14.0625rem !important;
-    min-height: 3.3125rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-  }
-
-  .conversation-canvas .conversation-canvas-buttons > li:nth-child(5) a.button.secondary span {
-    display: inline-block;
-    width: 10.0625rem !important;
-    height: 1.8125rem !important;
-    line-height: 1.8125rem !important;
+  footer .conversation-canvas .conversation-canvas-buttons > li > a.button.secondary:is(:hover, :focus-visible) {
+    border-width: var(--border-width-100);
   }
 }

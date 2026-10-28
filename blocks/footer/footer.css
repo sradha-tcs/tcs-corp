@@ -24,12 +24,12 @@ footer {
   --footer-canvas-title-size: 3.25rem;
   --footer-canvas-title-line-height: 3.875rem;
   --footer-canvas-title-max-width: 20rem;
-  --footer-canvas-buttons-direction: column;
+
+  /* the footer canvas's search row and Quick actions on tablet (read by the Conversation Canvas,
+     blocks/conversation-canvas: the row is the Canvas's Floating menu on mobile and desktop) */
   --footer-button-text-size: 0.75rem;
   --footer-search-text-size: 1rem;
   --footer-search-width: 38.0625rem;
-  --footer-search-gap: 1.0625rem;
-  --footer-menu-display: none;
 
   /* Figma's mobile search row overflows the column; 16px keeps the placeholder visible */
   --footer-search-padding-start: var(--space-400);
@@ -138,53 +138,6 @@ footer .footer-canvas .conversation-canvas .conversation-canvas-title {
   text-wrap: balance;
 }
 
-/* Figma "Floating menu": the menu button (not on mobile: the site header has the navigation),
-   17px, the search field; 609px wide */
-footer .footer-canvas .conversation-canvas .conversation-canvas-search {
-  gap: var(--footer-search-gap);
-  width: min(100%, var(--footer-search-width));
-}
-
-footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
-  display: var(--footer-menu-display);
-}
-
-footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
-  flex-direction: var(--footer-canvas-buttons-direction);
-  align-items: center;
-}
-
-/* Figma "AI input container": 12px padding (72px tall), 24px before the 16 / 22 text */
-footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
-  flex: 1;
-  min-width: 0;
-  padding: var(--space-300) var(--space-300) var(--space-300) var(--footer-search-padding-start);
-}
-
-footer .footer-canvas .conversation-canvas .conversation-canvas-search-form input {
-  font-size: var(--footer-search-text-size);
-}
-
-footer .footer-canvas .conversation-canvas a.button.secondary {
-  font-size: var(--footer-button-text-size);
-  line-height: var(--footer-button-text-size);
-  letter-spacing: calc(0.01 * var(--footer-button-text-size));
-}
-
-footer .footer-canvas .conversation-canvas a.button.secondary:not(:hover, :focus-visible) {
-  border: var(--footer-button-border);
-  padding: var(--footer-button-padding);
-  background-color: var(--footer-button-background);
-  color: var(--footer-button-color);
-  font-weight: var(--footer-button-weight);
-}
-
-footer .footer-canvas .conversation-canvas a.button.secondary:is(:hover, :focus-visible) {
-  border-width: 0.125rem;
-  padding: var(--footer-button-padding);
-  font-weight: var(--footer-button-weight);
-}
-
 footer .footer p {
   margin: 0;
 }
@@ -262,10 +215,8 @@ footer .footer .footer-social img {
     --footer-canvas-title-size: 6rem;
     --footer-canvas-title-line-height: 7.1875rem;
     --footer-canvas-title-max-width: none;
-    --footer-canvas-buttons-direction: row;
     --footer-button-text-size: 1rem;
     --footer-search-padding-start: var(--space-600);
-    --footer-menu-display: grid;
   }
 }
 

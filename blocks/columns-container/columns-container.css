@@ -32,7 +32,7 @@
 }
 
 .block.columns-container.bg-navy {
-  background-color: var(--color-bg-brand-hover);
+  background-color: var(--color-bg-navy);
 }
 
 /* on Dark and Dark Green: the theme contract of styles/styles.css (light text, links, buttons) */

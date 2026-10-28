@@ -279,7 +279,7 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 
 /* Navy: the prototypes Figma "Models & Data" background (#011627) */
 .table-list.background-navy {
-  background-color: var(--brand-600);
+  background-color: var(--color-bg-navy);
 }
 
 .table-list:is(.background-black, .background-dark-green, .background-navy) {

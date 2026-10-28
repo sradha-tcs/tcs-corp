@@ -15,7 +15,7 @@ Form Variations builds an accessible, client-side validated web form from child 
 
 **Business purpose.** Authors create contact, enquiry, call-back and feedback forms without developer work, with consistent TCS styling, accessible labels and errors, and conditional content (for example a Region dropdown that reveals the matching regional contact card).
 
-**User experience.** The visitor sees an optional H2 title and description, a "* Required fields" note when any field is mandatory, the fields in authored order (fields whose Field Name / ID contains "name" side by side on desktop), and a primary submit button. Errors are validated on submit and shown under each invalid field; a status message below the form reports the outcome.
+**User experience.** The visitor sees a "< BACK" button (the previous page, else the locale's Home; placeholder `back`), an optional eyebrow with its icon (Eyebrow icon, else the default layers icon), an H2 title and description, a "* Required fields" note when any field is mandatory, the fields in authored order (Field width Half side by side from 900px; text fields whose Field Name / ID contains "name" are half by default), optional rich text between them, and a primary submit button. The form is dark (TCS Designs - Prototypes) on the section's dark background; from 900px the Background image (else an image authored as default content in the form's section) shows beside the form. Errors are validated on submit and shown under each invalid field; a status message below the form reports the outcome.
 
 **Templates and page types.** Any page: the block is in the Section, Columns Container and Tabs Container filters. No template adds it automatically. It can be reused through a Fragment, or shown in a pop-up through a Modal (the block library has a `block-library/modal/fragments/contact-form` page).
 
@@ -126,10 +126,13 @@ Purpose:
 The Content tab of the Form Variations properties in Universal Editor, with the fields of the table "Content tab — Form Variations" in Authorable Fields below.
 
 Annotations:
-A = Form Title / Heading
-B = Form Description
-C = Submit action
-D = Theme
+A = Eyebrow / Category Title
+B = Eyebrow Icon Asset (Optional)
+C = Form Title / Heading
+D = Form Description
+E = Background Image
+F = Submit action
+G = Theme
 ```
 
 ```text
@@ -168,8 +171,9 @@ A = Field type
 B = Field Name / ID
 C = Field Label
 D = Input Type
-E = Mandatory Field (*)
-F = Show only if dropdown value equals
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -185,9 +189,29 @@ Annotations:
 A = Field type
 B = Dropdown Name / ID
 C = Dropdown Label
-D = Mandatory Field (*)
-E = Options
-F = Show only if dropdown value equals
+D = Field Width
+E = Mandatory Field (*)
+F = Options
+G = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-combined-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Combined Input Field properties in Universal Editor, with the fields of the table "Fields — Combined Input Field" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Field Name / ID
+C = Field Label
+D = Dropdown Options
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -204,8 +228,9 @@ A = Field type
 B = Field Name / ID
 C = Field Label
 D = Max Character Limit
-E = Mandatory Field (*)
-F = Show only if dropdown value equals
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -221,7 +246,25 @@ Annotations:
 A = Field type
 B = Checkbox Name / ID
 C = Consent Text / Disclaimer
-D = Mandatory Field (*)
+D = Field Width
+E = Mandatory Field (*)
+F = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-richtext-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Rich Text Field properties in Universal Editor, with the fields of the table "Fields — Rich Text Field" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Element ID / Name
+C = Rich Text Content
+D = Field Width
 E = Show only if dropdown value equals
 ```
 
@@ -240,6 +283,9 @@ B = Show when dropdown value equals
 C = Contact Name
 D = Emails
 E = Phones
+F = Email Icon Asset (Optional)
+G = Phone Icon Asset (Optional)
+H = Field Width
 ```
 
 ```text
@@ -254,7 +300,8 @@ The dialog of the Submit Button properties in Universal Editor, with the fields 
 Annotations:
 A = Field type
 B = Button Label
-C = Show only if dropdown value equals
+C = Field Width
+D = Show only if dropdown value equals
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -350,16 +397,19 @@ B = Inverted primary button
 
 ### Form Variations (`form-variations`)
 
-Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-textarea`, `field-checkbox`, `contact-card`, `field-submit`.
+Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-checkbox`, `field-richtext`, `contact-card`, `field-submit`.
 
 #### Content tab — Form Variations
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Eyebrow / Category Title | `formEyebrow` | text | No | — | — | e.g. CORPORATE SOCIAL RESPONSIBILITY - TCS EMPOWERS | — |
+| Eyebrow Icon Asset (Optional) | `formEyebrowIcon` | aem-content | No | — | — | — | — |
 | Form Title / Heading | `formHeading` | text | No | — | — | — | Contact us |
 | Form Description | `formDescription` | richtext | No | "" | — | — | — |
-| Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so. | — |
-| Theme | `classes` | select | No | "" | Default (""), Dark (`dark`) | — | dark |
+| Background Image | `bgImage` | aem-content | No | — | — | The image beside the form from 900px (the section's background). Empty: an image authored above the form in its section. | — |
+| Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON). | — |
+| Theme | `classes` | select | No | `dark` | Default (""), Dark (`dark`) | The form is Dark (TCS Designs) in either case: Default is kept for the forms authored before. | dark |
 
 #### Additional tab — Form Variations
 
@@ -367,10 +417,10 @@ Model `form-variations`; template name "Form Variations" (the block class AEM re
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
 | Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off (shown faded in the editor). Delivered as a block class. | — |
-| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | motion-fade-up |
-| Motion Speed | `classes_animationspeed` | select | No | "" | Medium (""), Fast (`motion-fast`), Slow (`motion-slow`) | How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long). Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
-| Animation Trigger | `classes_animationtrigger` | select | No | "" | On Scroll / Viewport Entry (""), On Page Load (`motion-on-load`) | When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
-| Background animation | `classes_bganimation` | select | No | "" | None (""), Fade in (`bg-motion-fade-in`), Reveal from the centre (`bg-motion-reveal`), Wipe left to right (`bg-motion-wipe-right`), Wipe right to left (`bg-motion-wipe-left`), Wipe bottom to top (`bg-motion-wipe-up`), Scale reveal (`bg-motion-scale`) | How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | bg-motion-wipe-right |
+| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items appear one after another. None: shown as is. Delivered as a block class. | motion-fade-up |
+| Motion Speed | `classes_animationspeed` | select | No | "" | Medium (""), Fast (`motion-fast`), Slow (`motion-slow`) | How fast the block's animations run. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
+| Animation Trigger | `classes_animationtrigger` | select | No | "" | On Scroll / Viewport Entry (""), On Page Load (`motion-on-load`) | When the block's animations run. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
+| Background animation | `classes_bganimation` | select | No | "" | None (""), Fade in (`bg-motion-fade-in`), Reveal from the centre (`bg-motion-reveal`), Wipe left to right (`bg-motion-wipe-right`), Wipe right to left (`bg-motion-wipe-left`), Wipe bottom to top (`bg-motion-wipe-up`), Scale reveal (`bg-motion-scale`) | How the block's background appears. Delivered as a block class. | bg-motion-wipe-right |
 | Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
 | Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
 | Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
@@ -391,11 +441,12 @@ Stored on a new component (definition template): `classes` = `"field-text"`, `in
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-text` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. firstName. Names containing "name" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written). | firstName |
-| Field Label | `label` | text | Yes | — | — | e.g. First name | First name |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | firstName |
+| Field Label | `label` | text | Yes | — | — | — | First name |
 | Input Type | `inputKind` | select | No | `text` | Text (`text`), Email (`email`), Tel (`tel`) | — | text |
+| Field Width | `fieldWidth` | select | No | "" | Auto / Name-based (""), Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | Other |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | Other |
 
 ### Dropdown / Select Field (`field-select`)
 
@@ -408,11 +459,30 @@ Stored on a new component (definition template): `classes` = `"field-select"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-select` | — | Read only. | — |
-| Dropdown Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written). | region |
-| Dropdown Label | `label` | text | Yes | — | — | e.g. Sector | Region |
+| Dropdown Name / ID | `fieldName` | text | Yes | — | — | — | region |
+| Dropdown Label | `label` | text | Yes | — | — | — | Region |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
-| Options | `options` | text | No | — | — | Comma separated, e.g. Technology, Sport, Asia Pacific, India | Asia Pacific, Europe, India, North America |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Options | `options` | text | No | — | — | — | Asia Pacific, Europe, India, North America |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Combined Input Field (`field-combined`)
+
+Model `field-combined`; template name "Combined Input Field" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-combined"`.
+
+#### Fields — Combined Input Field
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-combined` | — | Read only. | — |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | — |
+| Field Label | `label` | text | Yes | — | — | — | — |
+| Dropdown Options | `options` | text | No | — | — | The units, separated by commas (e.g. CGPA, Percentage). Empty: CGPA and Percentage. | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Textarea Field (`field-textarea`)
 
@@ -425,11 +495,12 @@ Stored on a new component (definition template): `classes` = `"field-textarea"`,
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-textarea` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written). | message |
-| Field Label | `label` | text | Yes | — | — | e.g. How can we help you? | How can we help you? |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | message |
+| Field Label | `label` | text | Yes | — | — | — | How can we help you? |
 | Max Character Limit | `maxLength` | number | No | `1500` | — | — | 1500 |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | false |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Consent Checkbox Field (`field-checkbox`)
 
@@ -442,10 +513,27 @@ Stored on a new component (definition template): `classes` = `"field-checkbox"`,
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-checkbox` | — | Read only. | — |
-| Checkbox Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written). | consent |
+| Checkbox Name / ID | `fieldName` | text | Yes | — | — | — | consent |
 | Consent Text / Disclaimer | `label` | richtext | Yes | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `true` | on / off | — | true |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Rich Text Field (`field-richtext`)
+
+Model `field-richtext`; template name "Rich Text Field" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-richtext"`.
+
+#### Fields — Rich Text Field
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-richtext` | — | Read only. | — |
+| Element ID / Name | `fieldName` | text | Yes | — | — | — | — |
+| Rich Text Content | `label` | richtext | Yes | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Contact Card Output (`contact-card`)
 
@@ -458,10 +546,13 @@ Stored on a new component (definition template): `classes` = `"contact-card"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `contact-card` | — | Read only. | — |
-| Show when dropdown value equals | `region` | text | Yes | — | — | e.g. India | India |
-| Contact Name | `contactName` | text | Yes | — | — | e.g. Iris Tham | India media relations |
-| Emails | `emails` | text | No | — | — | Comma separated | media.india@example.com, press.india@example.com |
-| Phones | `phones` | text | No | — | — | Comma separated | +91 00 0000 0000 |
+| Show when dropdown value equals | `region` | text | No | — | — | — | India |
+| Contact Name | `contactName` | text | Yes | — | — | — | India media relations |
+| Emails | `emails` | text | No | — | — | — | media.india@example.com, press.india@example.com |
+| Phones | `phones` | text | No | — | — | — | +91 00 0000 0000 |
+| Email Icon Asset (Optional) | `emailIcon` | aem-content | No | — | — | — | — |
+| Phone Icon Asset (Optional) | `phoneIcon` | aem-content | No | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 
 ### Submit Button (`field-submit`)
 
@@ -475,7 +566,8 @@ Stored on a new component (definition template): `classes` = `"field-submit"`, `
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-submit` | — | Read only. | — |
 | Button Label | `label` | text | No | `Send` | — | — | Send |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the button. | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 <!-- END GENERATED: fields -->
 
@@ -649,7 +741,7 @@ B = Status "Thank you, your details were sent."
 
 ### Default theme
 
-Purpose: a form on a light page. Use it by default; don't use it on a dark section background unless the theme contract of the section (styles/styles.css) gives enough contrast. Required: field items and a Submit Button; optional: title, description. Dialog: Theme = Default. Rendering: centred, at most 45rem wide; one column below 900px, two columns from 900px. Accessibility and data layer as in the sections below. Personalization: none; the authored form renders.
+Purpose: kept for the forms authored before. The form is always Dark (KB-D-060, Proposed): Theme = Default renders the same as Dark.
 
 ```text
 [Screenshot Placeholder]
@@ -668,7 +760,7 @@ C = Send button
 
 ### Dark theme
 
-Purpose: a highlighted panel (e.g. "Talk to our experts"). Dialog: Theme = Dark (block class `dark`). Rendering: a dark (`--color-bg-neutral`) panel with `--radius-l` corners across the container, content centred at 45rem; padding grows at 600px and 900px; light labels, transparent inputs, a light-blue contact name and status, and the primary button inverted to white. Error colour `#ff6b6b` (hard-coded). Background animation, when chosen, reveals this panel.
+Purpose: the TCS Designs form (e.g. "Talk to our experts"); every form (block class `dark`). Rendering: the section takes the form's dark background (`--form-variations-bg` #01000e); the form at most 38rem wide, 2rem from the left from 1200px with Back above it at the top left; fields with a line below them (white once focused, a 2px outline for the keyboard), white labels, muted description and consent text, the blue contact name, the Figma blue Send pill (full width on mobile); errors in `--form-variations-error` (#e91d1d). From 900px the section shows the Background image at the right with a fade to the form's side. The Figma colours are block custom properties at the top of the stylesheet.
 
 ```text
 [Screenshot Placeholder]
@@ -685,9 +777,17 @@ B = Contact card
 C = White Send button
 ```
 
-### Half-width name fields
+### Field width
 
-Not a dialog option: a Text Input Field whose Field Name / ID contains "name" gets `half-width` and sits beside the next half-width field from 900px. Use it for First name / Last name; avoid "name" in other field names.
+Every item has a Field width: Full (`full-width`, the default) or Half (`half-width`), side by side with the next half item from 900px. A Text Input Field without a Field width whose Field Name / ID contains "name" is half (First name / Last name).
+
+### Combined Input Field and Rich Text Field
+
+Combined: a text input with a dropdown of units beside it on one line (Dropdown Options, e.g. CGPA, Percentage; empty: placeholder `fieldUnits`); the dropdown is named after the field ("Score unit", placeholder `fieldUnit`); the value is sent under the key, the unit under the key + `Unit` (`scoreUnit`). Rich Text Field: a text between the fields (e.g. a privacy notice with links), not sent with the form.
+
+### Pages published with the earlier model
+
+Items and block properties are read by name (`form-layout.js`): a row with one cell less (no Field width; the contact card without its icons; the Combined field without label and units) and a block with only Title, Description and Submit action are read with the earlier model until the page is published again (KB-D-060).
 
 ### Conditional items
 
@@ -785,11 +885,10 @@ This block does not currently expose verified personalization behavior. There is
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 600px | One column, every item full width; Dark panel padding `--space-1000` / `--space-600` | No images | Native mobile keyboards per Input Type |
-| 600px and above | One column; Dark panel padding `--space-1200` / `--space-1000` | No images | As below 600px |
-| 900px and above | Two columns: `half-width` text fields side by side, the other items span both columns; Dark panel padding `--space-1600` | No images | As below 600px |
-
-The "* Required fields" note has no `full-width` class, so from 900px it takes one grid column (handover finding F-32).
+| Below 600px | One column; padding 3.75rem / 1rem / 4rem; title 2rem, description 1.125rem, eyebrow 0.75rem; Send full width; Back above the form | Background image not shown | Native mobile keyboards per Input Type |
+| 600px and above | One column; title 2.5rem, description 1.5rem, eyebrow 1rem; Send as wide as its text | As below 600px | As below 600px |
+| 900px and above | Two columns: Half items side by side, the others and the "* Required fields" note span both columns | The Background image (else the section's default-content image) at the right of the section, a fade from the form's side | As below 600px |
+| 1200px and above | The form 2rem from the left, Back at the top left (absolute) | As 900px | As below 600px |
 
 ## For Developers
 
@@ -799,6 +898,7 @@ The "* Required fields" note has no `full-width` class, so from 900px it takes o
 blocks/form-variations/
 ├── README.md
 ├── _form-variations.json
+├── form-layout.js
 ├── form-variations.css
 └── form-variations.js
 ```
@@ -814,6 +914,7 @@ blocks/form-variations/
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `form-variations.js`: { textOf } |
 | [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `form-variations.js`: { createIdFactory, uniqueId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `form-variations.js`: { fillPlaceholder, getPlaceholders } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `form-variations.js`: { getLocale } |
 
 <!-- END GENERATED: files -->
 
@@ -978,9 +1079,11 @@ Evidence to collect (without secrets): page URL on aem.page, the item rows of `{
 | `cmp:submit` is pushed before the outcome (R-D-3) | Analytics can't tell delivered submissions | Use a success signal from the integration | Blocked: measurement plan |
 | The double-submit guard (`aria-busy`) covers only the Submit action request | While an integration's promise is pending, another Send dispatches the event again | Let the integration ignore repeated calls | Not recorded |
 | One value per condition; conditions match any dropdown of the form | Complex routing needs several items | Add one item per value | Not planned |
-| Width derived from the field name; the required note takes one grid column from 900px; the checkbox error sits beside the consent text (F-32) | Layout surprises | Start with a full-width item, pair half-width fields | Not recorded |
-| Item cells read by position (O-18) | A missing cell shifts later values | Set every item field once | Not recorded |
-| Error colours hard-coded (`#c8102e`, `#ff6b6b`) | Not themable by tokens | — | Not recorded |
+| Half width without a Field width only for text fields with "name" in their key | Layout surprises with such keys | Set the Field width | Not recorded |
+| Item cells read in model order, named by `form-layout.js` (current and earlier model, O-18) | A model change needs `form-layout.js` changed with it (test/form-variations fails otherwise) | Change both together | Not recorded |
+| The Figma form colours are block custom properties, not design tokens | Not themable by the site tokens | — | Not recorded |
+| Only the Dark form exists; Theme = Default looks Dark (KB-D-060) | Authors may expect a light form | — | Proposed |
+| A dropdown shows its first option (Figma), no "Select an option" | A required dropdown is always filled | Put the most common value first | Proposed |
 | No radio groups, multi-select, file upload, date, number or multi-step forms | Unsupported form types | Other solutions | Not recorded |
 
 ## Related Documentation
@@ -995,7 +1098,7 @@ Evidence to collect (without secrets): page URL on aem.page, the item rows of `{
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 19 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 19 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/form-variations/field-types`, `block-library/form-variations/form-variations`, `block-library/modal/fragments/contact-form`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
@@ -1010,3 +1113,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.18 | Background animation offered on Form Variations (Additional tab) | docs/handover revision history | 18 October 2026 |
 | Handover 2.27 | Block audit: forms were empty on the published site (item node name and classes in the first cell, empty row per dialog tab); corrected | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: field keys in their own `fieldName` field, double-submit guard, integration outcomes (`detail.respondWith`) | docs/handover revision history | 20 October 2026 |
+| Not recorded | TCS Designs dark form (Eyebrow and icon, Back, Background image, Field width, Rich Text and Combined fields, contact icons) merged with main's behaviour (validation, autocomplete, `form-variations:submit`, not-connected / error messages, `aria-busy`, editor notes, required note, button decorator); Combined field cell count and default units corrected; items and properties read by name in the current and the earlier model (`form-layout.js`, test/form-variations); the section background set on the section (it was transparent) and the Background image as a custom property (CSS `attr()` URLs don't load); CSS mobile first without `!important` | fix/tcs-header-header-form, KB-D-060 (Proposed) | 28 October 2026 |

@@ -964,7 +964,7 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 - [Cards](../cards/README.md), [List](../list/README.md), [Filter List](../filter-list/README.md), [Table](../table/README.md), [Accordion](../accordion/README.md), [Anchor List](../anchor-list/README.md)
 - Model: [`_table-list.json`](_table-list.json)
 - [Animation and skeletons](../../docs/animation/README.md)
-- [Table List showcase](../../docs/showcase/table-list-showcase.md): every variation (70) on 14 Universal Editor pages, `block-library/table-list/table-list-showcase-01` … `-14` of the language master; content package `docs/showcase/tcs-corp-table-list-showcase-content-1.1.0.zip`, built by `node tools/showcase/build-table-list-showcase.mjs` from `tools/showcase/table-list-showcase-data.mjs` (add a variation there when the block gets one)
+- Table List showcase (`docs/showcase/table-list-showcase.md`, not in the repository yet: Not recorded): every variation (70) on 14 Universal Editor pages, `block-library/table-list/table-list-showcase-01` … `-14` of the language master; content package `docs/showcase/tcs-corp-table-list-showcase-content-1.1.0.zip`, built by `node tools/showcase/build-table-list-showcase.mjs` from `tools/showcase/table-list-showcase-data.mjs` (add a variation there when the block gets one)
 - [Handover 6.18 Table List Block](../../docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->

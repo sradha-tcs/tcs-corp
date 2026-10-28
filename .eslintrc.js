@@ -19,8 +19,8 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     // section properties render as section-metadata key/value rows, not block cells;
-    // the Table List settings and the form field / table / card / Teaser Link items need one
-    // cell per value
+    // the Table List settings, the Form Variations block (Eyebrow, its icon, Background image)
+    // and the form field / table / card / Teaser Link items need one cell per value
     'xwalk/max-cells': ['error', {
       '*': 4,
       section: 6,
@@ -44,7 +44,7 @@ module.exports = {
       'contact-card': 8,
       'teaser-link': 5,
       'field-richtext': 6,
-      'form-variations': 6,
+      'form-variations': 7,
       'field-combined': 7,
     }],
   },

@@ -187,7 +187,7 @@
           "component": "aem-content",
           "name": "bgImage",
           "label": "Background Image",
-          "description": "Select or paste a background image reference for desktop view (>=992px)."
+          "description": "The image beside the form from 900px (the section's background). Empty: an image authored above the form in its section."
         },
         {
           "component": "aem-content",
@@ -200,6 +200,7 @@
           "valueType": "string",
           "name": "classes",
           "label": "Theme",
+          "description": "The form is Dark (TCS Designs) in either case: Default is kept for the forms authored before.",
           "value": "dark",
           "options": [
             { "name": "Default", "value": "" },
@@ -581,7 +582,7 @@
         { "component": "text", "valueType": "string", "name": "classes", "label": "Field type", "value": "field-combined", "readOnly": true },
         { "component": "text", "valueType": "string", "name": "fieldName", "label": "Field Name / ID", "required": true },
         { "component": "text", "valueType": "string", "name": "label", "label": "Field Label", "required": true },
-        { "component": "text", "valueType": "string", "name": "options", "label": "Dropdown Options", "value": "CGPA, Percentage" },
+        { "component": "text", "valueType": "string", "name": "options", "label": "Dropdown Options", "description": "The units, separated by commas (e.g. CGPA, Percentage). Empty: CGPA and Percentage." },
         {
           "component": "select",
           "valueType": "string",

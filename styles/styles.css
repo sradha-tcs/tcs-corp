@@ -97,6 +97,7 @@
   --color-bg-neutral-tertiary: var(--black-500);
   --color-bg-neutral-tertiary-hover: var(--black-400);
   --color-bg-dark-green: #003b39; /* Figma "Dark green" (Section Style, Teaser and Columns Container BG Color) */
+  --color-bg-navy: var(--brand-600); /* prototypes Figma "Navy" #011627 (Columns Container BG Color, Table List Background) */
   --color-bg-warning: var(--warning-500);
 
   /* text */
@@ -1086,12 +1087,12 @@ main .section.dark a:hover:not(.button) {
 
 /*
  * Theme contract of the dark backgrounds (Section Style and Columns Container BG Color Dark /
- * Dark Green): the text, link and focus tokens turn light for everything inside, so blocks that
+ * Dark Green, Columns Container Navy): the text, link and focus tokens turn light for everything inside, so blocks that
  * use the tokens follow; a block with its own light background inside (Teaser or Columns
  * Container BG Color Grey) sets them back. Blocks with their own dark theme (Teaser Dark, cards
  * with a Card colour) keep their own colours.
  */
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) {
   --color-text-default: var(--color-text-on-neutral);
   --color-text-secondary: rgb(255 255 255 / 70%);
   --color-text-brand: var(--brand-300);
@@ -1102,7 +1103,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) {
   color: var(--color-text-on-neutral);
 }
 
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) :is(.teaser, .block.columns-container).bg-grey {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) :is(.teaser, .block.columns-container).bg-grey {
   --color-text-default: var(--black-1000);
   --color-text-secondary: var(--slate-700);
   --color-text-brand: var(--brand-400);
@@ -1114,27 +1115,27 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) :is(.t
 }
 
 /* links in running text: underlined on the dark colours (not told apart by colour alone) */
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) p a:any-link:not(.button) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) p a:any-link:not(.button) {
   text-decoration: underline;
 }
 
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.secondary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) a.button.secondary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
   border-color: var(--color-border-neutral-tertiary);
   color: var(--color-text-on-neutral);
 }
 
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.tertiary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) a.button.tertiary:not(:hover, :focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
   color: var(--color-text-on-neutral);
 }
 
 /* Primary: inverted (white), the black fill would disappear on the dark colour */
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.primary:not(:is(.teaser, .block.columns-container).bg-grey *) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) a.button.primary:not(:is(.teaser, .block.columns-container).bg-grey *) {
   border-color: var(--white-1000);
   background-color: var(--white-1000);
   color: var(--black-1000);
 }
 
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) a.button.primary:is(:hover, :focus-visible):not(:is(.teaser, .block.columns-container).bg-grey *) {
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green, .bg-navy) a.button.primary:is(:hover, :focus-visible):not(:is(.teaser, .block.columns-container).bg-grey *) {
   border-color: var(--grey-300);
   background-color: var(--grey-300);
   color: var(--black-1000);
