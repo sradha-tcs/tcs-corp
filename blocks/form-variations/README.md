@@ -136,28 +136,6 @@ D = Theme
 [Screenshot Placeholder]
 
 File name:
-form-variations-dialog-additional-desktop.png
-
-Purpose:
-The Additional tab of the Form Variations properties in Universal Editor, with the fields of the table "Additional tab — Form Variations" in Authorable Fields below.
-
-Annotations:
-A = Anchor ID
-B = Hide block
-C = Animation Type
-D = Motion Speed
-E = Animation Trigger
-F = Background animation
-G = Padding left
-H = Padding right
-I = Padding top
-J = Padding bottom
-```
-
-```text
-[Screenshot Placeholder]
-
-File name:
 field-text-dialog-fields-desktop.png
 
 Purpose:
@@ -188,6 +166,22 @@ C = Dropdown Label
 D = Mandatory Field (*)
 E = Options
 F = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-combined-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Combined Input Field properties in Universal Editor, with the fields of the table "Fields — Combined Input Field" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Field Name / ID
+C = Mandatory Field (*)
+D = Show only if dropdown value equals
 ```
 
 ```text
@@ -350,7 +344,7 @@ B = Inverted primary button
 
 ### Form Variations (`form-variations`)
 
-Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-textarea`, `field-checkbox`, `contact-card`, `field-submit`.
+Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-checkbox`, `contact-card`, `field-submit`.
 
 #### Content tab — Form Variations
 
@@ -360,25 +354,6 @@ Model `form-variations`; template name "Form Variations" (the block class AEM re
 | Form Description | `formDescription` | richtext | No | "" | — | — | — |
 | Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so. | — |
 | Theme | `classes` | select | No | "" | Default (""), Dark (`dark`) | — | dark |
-
-#### Additional tab — Form Variations
-
-| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
-| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
-| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off (shown faded in the editor). Delivered as a block class. | — |
-| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | motion-fade-up |
-| Motion Speed | `classes_animationspeed` | select | No | "" | Medium (""), Fast (`motion-fast`), Slow (`motion-slow`) | How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long). Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
-| Animation Trigger | `classes_animationtrigger` | select | No | "" | On Scroll / Viewport Entry (""), On Page Load (`motion-on-load`) | When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
-| Background animation | `classes_bganimation` | select | No | "" | None (""), Fade in (`bg-motion-fade-in`), Reveal from the centre (`bg-motion-reveal`), Wipe left to right (`bg-motion-wipe-right`), Wipe right to left (`bg-motion-wipe-left`), Wipe bottom to top (`bg-motion-wipe-up`), Scale reveal (`bg-motion-scale`) | How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | bg-motion-wipe-right |
-| Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
-| Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
-| Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
-| Padding bottom | `classes_paddingbottom` | select | No | "" | Default (""), 0 (none) (`pb-0`), 0.25rem (space-100) (`pb-100`), 0.5rem (space-200) (`pb-200`), 0.75rem (space-300) (`pb-300`), 1rem (space-400) (`pb-400`), 1.25rem (space-500) (`pb-500`), 1.5rem (space-600) (`pb-600`), 2rem (space-800) (`pb-800`), 2.5rem (space-1000) (`pb-1000`), 3rem (space-1200) (`pb-1200`), 4rem (space-1600) (`pb-1600`), 5rem (space-2000) (`pb-2000`), 6rem (space-2400) (`pb-2400`), 7.5rem (space-3000) (`pb-3000`) | Delivered as a block class. | — |
-| Margin left | `classes_marginleft` | select | No | "" | Default (""), 0 (none) (`ml-0`), 0.25rem (space-100) (`ml-100`), 0.5rem (space-200) (`ml-200`), 0.75rem (space-300) (`ml-300`), 1rem (space-400) (`ml-400`), 1.25rem (space-500) (`ml-500`), 1.5rem (space-600) (`ml-600`), 2rem (space-800) (`ml-800`), 2.5rem (space-1000) (`ml-1000`), 3rem (space-1200) (`ml-1200`), 4rem (space-1600) (`ml-1600`), 5rem (space-2000) (`ml-2000`), 6rem (space-2400) (`ml-2400`), 7.5rem (space-3000) (`ml-3000`) | Delivered as a block class. | — |
-| Margin right | `classes_marginright` | select | No | "" | Default (""), 0 (none) (`mr-0`), 0.25rem (space-100) (`mr-100`), 0.5rem (space-200) (`mr-200`), 0.75rem (space-300) (`mr-300`), 1rem (space-400) (`mr-400`), 1.25rem (space-500) (`mr-500`), 1.5rem (space-600) (`mr-600`), 2rem (space-800) (`mr-800`), 2.5rem (space-1000) (`mr-1000`), 3rem (space-1200) (`mr-1200`), 4rem (space-1600) (`mr-1600`), 5rem (space-2000) (`mr-2000`), 6rem (space-2400) (`mr-2400`), 7.5rem (space-3000) (`mr-3000`) | Delivered as a block class. | — |
-| Margin top | `classes_margintop` | select | No | "" | Default (""), 0 (none) (`mt-0`), 0.25rem (space-100) (`mt-100`), 0.5rem (space-200) (`mt-200`), 0.75rem (space-300) (`mt-300`), 1rem (space-400) (`mt-400`), 1.25rem (space-500) (`mt-500`), 1.5rem (space-600) (`mt-600`), 2rem (space-800) (`mt-800`), 2.5rem (space-1000) (`mt-1000`), 3rem (space-1200) (`mt-1200`), 4rem (space-1600) (`mt-1600`), 5rem (space-2000) (`mt-2000`), 6rem (space-2400) (`mt-2400`), 7.5rem (space-3000) (`mt-3000`) | Delivered as a block class. | — |
-| Margin bottom | `classes_marginbottom` | select | No | "" | Default (""), 0 (none) (`mb-0`), 0.25rem (space-100) (`mb-100`), 0.5rem (space-200) (`mb-200`), 0.75rem (space-300) (`mb-300`), 1rem (space-400) (`mb-400`), 1.25rem (space-500) (`mb-500`), 1.5rem (space-600) (`mb-600`), 2rem (space-800) (`mb-800`), 2.5rem (space-1000) (`mb-1000`), 3rem (space-1200) (`mb-1200`), 4rem (space-1600) (`mb-1600`), 5rem (space-2000) (`mb-2000`), 6rem (space-2400) (`mb-2400`), 7.5rem (space-3000) (`mb-3000`) | Delivered as a block class. | — |
 
 ### Text Input Field (`field-text`)
 
@@ -391,11 +366,11 @@ Stored on a new component (definition template): `classes` = `"field-text"`, `in
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-text` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. firstName. Names containing "name" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written). | firstName |
+| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. firstName. | firstName |
 | Field Label | `label` | text | Yes | — | — | e.g. First name | First name |
 | Input Type | `inputKind` | select | No | `text` | Text (`text`), Email (`email`), Tel (`tel`) | — | text |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | Other |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | Other |
 
 ### Dropdown / Select Field (`field-select`)
 
@@ -408,11 +383,26 @@ Stored on a new component (definition template): `classes` = `"field-select"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-select` | — | Read only. | — |
-| Dropdown Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written). | region |
-| Dropdown Label | `label` | text | Yes | — | — | e.g. Sector | Region |
+| Dropdown Name / ID | `fieldName` | text | Yes | — | — | — | region |
+| Dropdown Label | `label` | text | Yes | — | — | — | Region |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
-| Options | `options` | text | No | — | — | Comma separated, e.g. Technology, Sport, Asia Pacific, India | Asia Pacific, Europe, India, North America |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Options | `options` | text | No | — | — | — | Asia Pacific, Europe, India, North America |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Combined Input Field (`field-combined`)
+
+Model `field-combined`; template name "Combined Input Field" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-combined"`.
+
+#### Fields — Combined Input Field
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-combined` | — | Read only. | — |
+| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. score | — |
+| Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Textarea Field (`field-textarea`)
 
@@ -425,11 +415,11 @@ Stored on a new component (definition template): `classes` = `"field-textarea"`,
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-textarea` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written). | message |
-| Field Label | `label` | text | Yes | — | — | e.g. How can we help you? | How can we help you? |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | message |
+| Field Label | `label` | text | Yes | — | — | — | How can we help you? |
 | Max Character Limit | `maxLength` | number | No | `1500` | — | — | 1500 |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | false |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Consent Checkbox Field (`field-checkbox`)
 
@@ -442,10 +432,10 @@ Stored on a new component (definition template): `classes` = `"field-checkbox"`,
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-checkbox` | — | Read only. | — |
-| Checkbox Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written). | consent |
+| Checkbox Name / ID | `fieldName` | text | Yes | — | — | — | consent |
 | Consent Text / Disclaimer | `label` | richtext | Yes | — | — | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `true` | on / off | — | true |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the field. | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Contact Card Output (`contact-card`)
 
@@ -458,10 +448,10 @@ Stored on a new component (definition template): `classes` = `"contact-card"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `contact-card` | — | Read only. | — |
-| Show when dropdown value equals | `region` | text | Yes | — | — | e.g. India | India |
-| Contact Name | `contactName` | text | Yes | — | — | e.g. Iris Tham | India media relations |
-| Emails | `emails` | text | No | — | — | Comma separated | media.india@example.com, press.india@example.com |
-| Phones | `phones` | text | No | — | — | Comma separated | +91 00 0000 0000 |
+| Show when dropdown value equals | `region` | text | Yes | — | — | — | India |
+| Contact Name | `contactName` | text | Yes | — | — | — | India media relations |
+| Emails | `emails` | text | No | — | — | — | media.india@example.com, press.india@example.com |
+| Phones | `phones` | text | No | — | — | — | +91 00 0000 0000 |
 
 ### Submit Button (`field-submit`)
 
@@ -475,7 +465,7 @@ Stored on a new component (definition template): `classes` = `"field-submit"`, `
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-submit` | — | Read only. | — |
 | Button Label | `label` | text | No | `Send` | — | — | Send |
-| Show only if dropdown value equals | `dependsOn` | text | No | — | — | Leave empty to always show the button. | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 <!-- END GENERATED: fields -->
 
@@ -806,7 +796,6 @@ blocks/form-variations/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `form-variations.js`: { moveInstrumentation } |
-| [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `form-variations.js`: { decorateButton } |
 | [`decorators/content-decorator.js`](../../decorators/content-decorator.js) | `fromCell` (property content into an element, keeping editor instrumentation) | `form-variations.js`: { fromCell } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `form-variations.js`: { buildHeading } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `form-variations.js`: { isInEditor } |
@@ -995,7 +984,7 @@ Evidence to collect (without secrets): page URL on aem.page, the item rows of `{
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 19 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 19 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/form-variations/field-types`, `block-library/form-variations/form-variations`, `block-library/modal/fragments/contact-form`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

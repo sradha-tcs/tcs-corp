@@ -17025,6 +17025,27 @@
               {
                 "name": "Secondary Button",
                 "value": "secondary"
+              },
+              {
+                "name": "Blue CTA",
+                "value": "blue"
+              }
+            ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaShape",
+            "label": "CTA Shape",
+            "value": "",
+            "options": [
+              {
+                "name": "Default (pill)",
+                "value": ""
+              },
+              {
+                "name": "Round (circle)",
+                "value": "round"
               }
             ]
           }
@@ -17784,6 +17805,28 @@
           {
             "name": "Secondary Button",
             "value": "secondary"
+          },
+          {
+            "name": "Blue CTA",
+            "value": "blue"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkShape",
+        "label": "CTA Shape",
+        "description": "Round makes the CTA circular. Use a short label so it fits inside the circle.",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (pill)",
+            "value": ""
+          },
+          {
+            "name": "Round (circle)",
+            "value": "round"
           }
         ]
       }

@@ -124,6 +124,34 @@
   color: var(--color-icon-brand);
 }
 
+.page-header .page-header-ctas a.button.blue {
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+  border-color: var(--color-bg-brand);
+}
+
+.page-header .page-header-ctas a.button.blue:hover,
+.page-header .page-header-ctas a.button.blue:focus-visible {
+  background-color: var(--color-bg-brand-hover);
+  border-color: var(--color-bg-brand-hover);
+  color: var(--color-text-on-brand);
+}
+
+.page-header .page-header-ctas a.button.page-header-cta-round {
+  flex: 0 0 auto;
+  width: 6rem;
+  height: 6rem;
+  min-height: 6rem;
+  border-radius: var(--radius-full);
+  padding: var(--space-200);
+  gap: var(--space-100);
+  font-size: var(--body-font-size-xs);
+  letter-spacing: 0;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .page-header .page-header-status {
   position: absolute;
   top: 100%;

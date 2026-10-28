@@ -35,7 +35,7 @@ import { resolveTags } from '../../utils/taxonomy.js';
 const LAYOUTS = ['landing', 'secondary', 'article', 'display'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
 // Text link is stored as tertiary (and as '' before): both render as a text link
-const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
+const CTA_STYLES = ['primary', 'secondary', 'tertiary', 'blue'];
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
 
 /** the layout: the block's Layout, or from the Page Type */
@@ -75,6 +75,7 @@ function buildCtas(cell, rows, hint, newTabHint) {
     decorateButton(link, {
       view: 'button', type, newWindow, newTabHint,
     });
+    link.classList.toggle('page-header-cta-round', values.includes('round'));
     if (row) moveInstrumentation(row, link);
     ctas.append(link);
   });
