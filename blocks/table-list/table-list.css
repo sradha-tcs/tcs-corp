@@ -3,6 +3,8 @@
  * Variation 1 (industries): title | description | arrow; on mobile the number and title above
  * the description. Variation 2 (solutions): description | large title | outline button.
  * Variation 3 (products): description | number and large title | diagonal arrow.
+ * Variation 4 (segments, prototypes Figma "List Item - Industry"): wide title | narrow grey
+ * description | arrow, stacked on mobile; the linked row is highlighted on hover and focus.
  * Mobile first; tablet from 600px, desktop from 1200px.
  */
 .table-list {
@@ -38,6 +40,16 @@
 .table-list .table-list-cta {
   flex: none;
   margin: 0;
+}
+
+/* Eyebrow: a short label on its own line above the heading */
+.table-list .table-list-eyebrow {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.625;
+  letter-spacing: calc(0.0125 * 1rem);
 }
 
 .table-list .table-list-cta .button:not(.tertiary) {
@@ -128,6 +140,10 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 
 .table-list .table-list-arrow.arrow-up-right {
   mask-image: url('../../icons/arrow-up-right.svg');
+}
+
+.table-list .table-list-arrow.arrow-circle {
+  mask-image: url('../../icons/arrow-right-circle.svg');
 }
 
 .table-list a.table-list-arrow::after {
@@ -261,7 +277,12 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   background-color: var(--color-bg-dark-green);
 }
 
-.table-list:is(.background-black, .background-dark-green) {
+/* Navy: the prototypes Figma "Models & Data" background (#011627) */
+.table-list.background-navy {
+  background-color: var(--brand-600);
+}
+
+.table-list:is(.background-black, .background-dark-green, .background-navy) {
   --color-text-default: var(--color-text-on-neutral);
   --color-text-secondary: rgb(255 255 255 / 70%);
   --color-text-brand: var(--brand-300);
@@ -272,39 +293,39 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   color: var(--color-text-on-neutral);
 }
 
-.table-list:is(.background-black, .background-dark-green) .table-list-description {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .table-list-description {
   color: var(--color-text-default);
 }
 
-.table-list:is(.background-black, .background-dark-green) .table-list-title {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .table-list-title {
   color: var(--slate-300);
 }
 
-.table-list:is(.background-black, .background-dark-green) .table-list-item {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .table-list-item {
   border-bottom-color: var(--slate-600);
 }
 
-.table-list:is(.background-black, .background-dark-green) .table-list-arrow {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .table-list-arrow {
   color: var(--color-text-on-neutral);
 }
 
-.table-list:is(.background-black, .background-dark-green) .button:is(.secondary, .tertiary) {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .button:is(.secondary, .tertiary) {
   border-color: var(--color-text-on-neutral);
   background-color: transparent;
   color: var(--color-text-on-neutral);
 }
 
-.table-list:is(.background-black, .background-dark-green) .button:is(.secondary, .tertiary):is(:hover, :focus-visible) {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .button:is(.secondary, .tertiary):is(:hover, :focus-visible) {
   background-color: var(--white-100);
 }
 
-.table-list:is(.background-black, .background-dark-green) .button.primary {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .button.primary {
   border-color: var(--color-text-on-neutral);
   background-color: var(--color-text-on-neutral);
   color: var(--black-1000);
 }
 
-.table-list:is(.background-black, .background-dark-green) .button.primary:is(:hover, :focus-visible) {
+.table-list:is(.background-black, .background-dark-green, .background-navy) .button.primary:is(:hover, :focus-visible) {
   border-color: var(--grey-300);
   background-color: var(--grey-300);
 }
@@ -313,15 +334,231 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   color: var(--color-text-secondary);
 }
 
+/*
+ * Variation 4: title, description and the arrow below it stacked on mobile, a divider below
+ * every item (the last too); the row of a linked item is highlighted on hover and focus
+ */
+.table-list.segments {
+  --table-list-header-spacing: var(--space-1000);
+  --table-list-item-gap: 0;
+  --table-list-row-hover: var(--color-bg-secondary);
+}
+
+.table-list.segments:is(.background-black, .background-dark-green, .background-navy) {
+  --table-list-row-hover: var(--white-100);
+}
+
+/* their rows follow the width of the list (e.g. beside the header), not of the screen */
+.table-list:is(.segments, .approach) .table-list-items {
+  container: table-list-items / inline-size;
+}
+
+/* the call to action: outline pill on the light grey background */
+.table-list.segments.background-white .table-list-cta .button.secondary:not(:hover, :focus-visible) {
+  background-color: var(--color-bg-secondary);
+}
+
+/* a narrow list (below 25.5rem, Figma mobile): title, description and arrow stacked */
+.table-list.segments .table-list-item {
+  grid-template: 'main' 'description' 'action' / minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-400);
+  padding: var(--space-1000) var(--space-500) calc(var(--space-500) + var(--space-1000));
+  transition: background-color 0.2s;
+}
+
+.table-list.segments .table-list-main {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.39;
+  letter-spacing: calc(-0.02 * 1.75rem);
+}
+
+/* --color-text-secondary: 6.9:1 on white (the Figma's 80% opacity would give 4.3:1) */
+.table-list.segments .table-list-description {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375;
+  letter-spacing: calc(-0.01 * 1rem);
+}
+
+.table-list.segments .table-list-action {
+  justify-self: start;
+  margin-top: var(--space-600);
+  margin-inline-start: 0;
+}
+
+/* from 25.5rem (Figma 476 and 628px columns): title above description, the arrow beside them */
+@container table-list-items (width >= 25.5rem) {
+  .table-list.segments .table-list-item {
+    grid-template: 'main action' 'description action' / minmax(0, 1fr) auto;
+    gap: var(--space-300) var(--space-1000);
+  }
+
+  .table-list.segments .table-list-action {
+    margin-top: 0;
+  }
+}
+
+/* from 44.5rem (Figma 864 and 1280px): wide title | description (at most 338px) | arrow */
+@container table-list-items (width >= 44.5rem) {
+  .table-list.segments .table-list-item {
+    grid-template: 'main description action' / minmax(0, 1fr) minmax(0, 21.15rem) auto;
+    column-gap: var(--space-600);
+  }
+
+  .table-list.segments .table-list-action {
+    margin-inline-start: var(--space-400);
+  }
+}
+
+/* --slate-500: 3:1 on white for the arrow (the Figma's --slate-400 gives 2:1) */
+.table-list.segments.background-white .table-list-arrow {
+  color: var(--slate-500);
+}
+
+/*
+ * Heading position Beside (Figma What we do "Models & Data"): the eyebrow, a statement-style
+ * heading and the call to action in a column next to the list from 900px, above it before;
+ * dividers 24px below the rows, none below the last
+ */
+.table-list.header-beside {
+  --table-list-header-spacing: var(--space-600);
+}
+
+.table-list.header-beside .table-list-item {
+  padding-bottom: calc(var(--space-500) + var(--space-600));
+}
+
+/*
+ * Variation 5 (approach, Figma Case Study "Approach"): the item title as a small uppercase label
+ * above a large description in a narrow list, beside it from 44rem (description column 23.55rem,
+ * Figma 376.8px); no arrow unless the item has a Link
+ */
+.table-list.approach {
+  --table-list-item-gap: var(--space-600);
+}
+
+.table-list.approach .table-list-item {
+  grid-template: 'main' 'description' / minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-400) var(--space-600);
+  padding: var(--space-1000) 0 calc(var(--space-500) + var(--space-1000));
+}
+
+.table-list.approach .table-list-item:has(.table-list-action) {
+  grid-template: 'main action' 'description action' / minmax(0, 1fr) auto;
+}
+
+.table-list.approach .table-list-main {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  letter-spacing: calc(-0.02 * 1.25rem);
+  text-transform: uppercase;
+}
+
+.table-list.approach.background-white .table-list-title {
+  color: var(--color-text-secondary);
+}
+
+.table-list.approach .table-list-description {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.39;
+  letter-spacing: calc(-0.01 * 1.5rem);
+}
+
+@container table-list-items (width >= 44rem) {
+  .table-list.approach .table-list-item {
+    grid-template: 'main description' / minmax(0, 1fr) minmax(0, 23.55rem);
+  }
+
+  .table-list.approach .table-list-item:has(.table-list-action) {
+    grid-template: 'main description action' / minmax(0, 1fr) minmax(0, 23.55rem) auto;
+  }
+}
+
+/*
+ * Variation 6 (platforms, Figma Product "Our transformation solutions"): Variation 2's layout (the
+ * block also has the solutions class) with a 24px arrow, the description at the top and the
+ * Figma row spacing (40px above, 60px below each row)
+ */
+.table-list.solutions.platforms {
+  --table-list-arrow-size: var(--icon-size-s);
+}
+
+.table-list.solutions.platforms .table-list-item {
+  padding: var(--space-1000) 0 calc(var(--space-500) + var(--space-1000));
+}
+
+/* Heading position Beside: no divider below the last row */
+.table-list.header-beside .table-list-item:last-child {
+  border-bottom: 0;
+}
+
 /* Variation 1: no divider below the last item */
 .table-list.industries .table-list-item:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
 
+/* Variation 4: the linked row highlighted on hover and keyboard focus */
+.table-list.segments .table-list-item:has(a.table-list-arrow):hover,
+.table-list.segments .table-list-item:has(a.table-list-arrow:focus-visible) {
+  background-color: var(--table-list-row-hover);
+}
+
+.table-list.segments a.table-list-arrow:focus-visible,
+.table-list.segments .table-list-item:hover a.table-list-arrow {
+  color: var(--color-text-default);
+  transform: none;
+}
+
+/* Variation 4 on a dark background (Figma "Models & Data"): white titles, 80% #cdcdcd
+   descriptions (7.7:1 on navy), 40% white arrows (3.8:1, white on hover and focus) */
+.table-list.segments:is(.background-black, .background-dark-green, .background-navy) .table-list-title {
+  color: var(--color-text-default);
+}
+
+.table-list.segments:is(.background-black, .background-dark-green, .background-navy) .table-list-description {
+  color: color-mix(in srgb, var(--slate-300) 80%, transparent);
+}
+
+.table-list.segments:is(.background-black, .background-dark-green, .background-navy) .table-list-arrow {
+  color: color-mix(in srgb, var(--white-1000) 40%, transparent);
+}
+
+.table-list.segments .table-list-header {
+  gap: var(--space-600);
+}
+
+/* the call to action goes below the heading on mobile */
+.table-list.segments .table-list-heading {
+  flex-basis: 100%;
+  font-size: 1.75rem;
+  line-height: 1.39;
+  letter-spacing: calc(-0.025 * 1.75rem);
+}
+
+/* Heading position Beside: the header (after Variation 4's header rules) */
+.table-list.header-beside .table-list-header {
+  row-gap: var(--space-400);
+  align-content: start;
+}
+
+.table-list.header-beside .table-list-heading {
+  flex-basis: 100%;
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: calc(-0.03 * 1.75rem);
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .table-list .table-list-arrow {
+  .table-list .table-list-arrow,
+  .table-list.segments .table-list-item {
     transition: none;
   }
 }
@@ -402,6 +639,75 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   .table-list.products .table-list-trademark {
     margin-inline-start: 0.525rem;
   }
+
+  .table-list.segments .table-list-heading {
+    flex-basis: 50%;
+    font-size: 2.5rem;
+    line-height: 1.4;
+    letter-spacing: calc(-0.025 * 2.5rem);
+  }
+
+  .table-list.segments .table-list-description {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: calc(-0.01 * 1.25rem);
+  }
+
+  .table-list.approach .table-list-description {
+    font-size: 1.75rem;
+    letter-spacing: calc(-0.01 * 1.75rem);
+  }
+
+  .table-list.solutions.platforms .table-list-item {
+    align-items: start;
+    column-gap: var(--space-600);
+  }
+
+  .table-list.solutions.platforms .table-list-description {
+    letter-spacing: calc(-0.015 * 1.125rem);
+  }
+
+  /* the arrow centred on the first line of the title (2.5rem at 1.2) */
+  .table-list.solutions.platforms .table-list-action {
+    display: flex;
+    align-items: center;
+    align-self: start;
+    min-height: 3rem;
+    margin-inline-start: var(--space-400);
+  }
+
+  .table-list.header-beside .table-list-heading {
+    flex-basis: 100%;
+    font-size: 2rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * 2rem);
+  }
+
+  .table-list.header-beside .table-list-eyebrow {
+    font-size: 0.875rem;
+    line-height: 1.5714;
+    letter-spacing: calc(0.0125 * 0.875rem);
+  }
+}
+
+@media (width >= 900px) {
+  /* Heading position Beside: two equal columns, 24px apart (Figma 628 + 24 + 628px) */
+  .table-list.header-beside:has(> .table-list-header) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--space-600);
+  }
+
+  .table-list.header-beside .table-list-header {
+    margin-bottom: 0;
+  }
+
+  /* Figma tablet "Models & Data": 24px from the edge, two 476px columns at 1024px */
+  .table-list.header-beside:is(.segments, .approach, .platforms) {
+    padding-inline: var(--space-600);
+  }
 }
 
 /* desktop */
@@ -478,5 +784,29 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   .table-list.products .table-list-description {
     font-size: 1.5rem;
     line-height: 1.42;
+  }
+
+  .table-list:is(.segments, .approach, .platforms):not(.background-white) {
+    padding-block: var(--space-3000);
+  }
+
+  .table-list.header-beside:is(.segments, .approach, .platforms) {
+    padding-inline: var(--space-2000);
+  }
+
+  .table-list.solutions.platforms .table-list-action {
+    min-height: 5.6rem;
+  }
+
+  .table-list.header-beside .table-list-heading {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * 2.5rem);
+  }
+
+  .table-list.header-beside .table-list-eyebrow {
+    font-size: 1rem;
+    line-height: 1.625;
+    letter-spacing: calc(0.0125 * 1rem);
   }
 }

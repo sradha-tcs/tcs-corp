@@ -1,56 +1,86 @@
+/* Form Variations Block - Target Layout & Box Model Matches */
+
 .form-variations {
-  /* no error color in the design tokens yet */
-  --form-variations-error: #c8102e;
-  --form-variations-label-color: var(--color-text-neutral-secondary);
-  --form-variations-input-bg: var(--color-bg-default);
-  --form-variations-input-color: var(--color-text-default);
-  --form-variations-input-border: var(--color-border-tertiary);
-  --form-variations-muted: var(--color-text-neutral-tertiary);
-  --form-variations-divider: var(--color-border-default);
+  --form-variations-error: #ff6b6b;
+  --form-variations-label-color: #fff;
+  --form-variations-input-bg: transparent;
+  --form-variations-input-color: #fff;
+  --form-variations-input-border: rgb(255 255 255 / 40%);
+  --form-variations-muted: #b0b0b0;
+  --form-variations-divider: rgb(255 255 255 / 20%);
 
   max-width: 45rem;
   margin-inline: auto;
   color: var(--color-text-default);
 }
 
+/* Dark Theme Outer Box Model (Matches Inspected Element: padding-top: 60px / 6.25rem, padding-x: 16px) */
 .form-variations.dark {
-  --form-variations-error: #ff6b6b;
-  --form-variations-label-color: var(--color-text-light-overlay);
-  --form-variations-input-bg: transparent;
-  --form-variations-input-color: var(--color-text-on-neutral);
-  --form-variations-input-border: var(--color-border-neutral-secondary);
-  --form-variations-muted: var(--color-text-light-overlay);
-  --form-variations-divider: var(--color-border-neutral);
-
-  max-width: none;
-  padding: var(--space-1000) var(--space-600);
-  border-radius: var(--radius-l);
-  background-color: var(--color-bg-neutral);
-  color: var(--color-text-on-neutral);
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  padding: 6.25rem 1rem 4rem;
+  background-color: #050811;
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 0;
 }
 
-.form-variations.dark > * {
-  max-width: 45rem;
-  margin-inline: auto;
+/* Inner Form Container Offset (Left aligned, max-width matches target form area) */
+.form-variations.dark .form-variations-inner {
+  position: relative;
+  max-width: 36rem;
+  margin-left: 5rem; /* Indent form to sit right/below of < BACK link */
+  margin-right: auto;
+}
+
+/* Back Link (< BACK) Positioned to the Top Left */
+.form-variations .form-variations-back {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 2;
+}
+
+.form-variations .form-variations-back:hover {
+  opacity: 0.8;
 }
 
 .form-variations .form-variations-header {
-  margin-bottom: var(--space-800);
+  margin-bottom: 2rem;
 }
 
-.form-variations .form-variations-title {
+/* Heading & Subtitle */
+.form-variations.dark .form-variations-title {
   margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: var(--heading-font-size-s, 1.25rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
 }
 
-.form-variations .form-variations-description {
-  color: var(--form-variations-muted);
-  font-size: var(--body-font-size-m);
+.form-variations.dark .form-variations-description {
+  font-size: 1.375rem;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #e0e0e0;
 }
 
-.form-variations .form-variations-description > :first-child {
-  margin-top: 0;
-}
-
+/* Grid Layout */
 .form-variations .form-variations-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -68,232 +98,202 @@
   display: none;
 }
 
-.form-variations .form-variations-label {
-  color: var(--form-variations-label-color);
-  font-size: var(--label-font-size);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--label-line-height);
+/* Sentence Case Labels */
+.form-variations.dark .form-variations-label {
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .form-variations .form-variations-required {
-  margin-inline-start: var(--space-100);
-  color: var(--form-variations-error);
+  margin-inline-start: 2px;
+  color: #fff;
 }
 
-.form-variations .form-variations-control {
+/* Input Controls with Bottom Line Only */
+.form-variations.dark .form-variations-control {
   box-sizing: border-box;
   width: 100%;
-  padding: var(--space-300) var(--space-400);
-  border: var(--border-width-100) solid var(--form-variations-input-border);
-  border-radius: var(--radius-m);
-  background-color: var(--form-variations-input-bg);
-  color: var(--form-variations-input-color);
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--form-variations-input-border);
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
   font: inherit;
-  font-size: var(--body-font-size-m);
+  font-size: 1.125rem;
   line-height: var(--body-line-height);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
 }
 
-.form-variations select.form-variations-control {
-  appearance: auto;
+.form-variations.dark select.form-variations-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 0.875rem;
+  padding-right: 1.5rem;
+  cursor: pointer;
 }
 
 .form-variations.dark select option {
-  background-color: var(--grey-900);
-  color: var(--color-text-on-neutral);
+  background-color: #0d111d;
+  color: #fff;
 }
 
-.form-variations textarea.form-variations-control {
-  min-height: 7.5rem;
+.form-variations.dark textarea.form-variations-control {
+  min-height: 5rem;
   resize: vertical;
 }
 
-.form-variations .form-variations-control:focus-visible {
-  border-color: var(--color-border-brand);
-  outline: var(--border-width-200) solid var(--color-border-brand);
-  outline-offset: 0;
+.form-variations.dark .form-variations-control:focus-visible,
+.form-variations.dark .form-variations-control:focus {
+  border-bottom-color: #fff;
+  outline: none;
 }
 
-.form-variations .form-variations-control:user-invalid {
-  border-color: var(--form-variations-error);
-}
-
-.form-variations .form-variations-control:user-invalid:focus-visible {
-  outline-color: var(--form-variations-error);
-}
-
-/* the error of a field, linked to it (text, not only the colour) */
-.form-variations .form-variations-control[aria-invalid='true'] {
-  border-color: var(--form-variations-error);
+.form-variations.dark .form-variations-control[aria-invalid='true'] {
+  border-bottom-color: var(--form-variations-error);
 }
 
 .form-variations .form-variations-error {
-  flex-basis: 100%;
   margin: 0;
   color: var(--form-variations-error);
   font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-medium);
 }
 
 .form-variations .form-variations-required-note {
-  flex-basis: 100%;
-  margin: 0;
+  margin: 0 0 0.5rem;
   color: var(--form-variations-muted);
   font-size: var(--body-font-size-xs);
 }
 
-.form-variations .form-variations-counter {
-  align-self: flex-end;
-  color: var(--form-variations-muted);
-  font-size: var(--body-font-size-xs);
+/* Combined Input Field (SCORE with inline CGPA / Percentage select) */
+.form-variations .field-combined {
+  grid-column: 1 / -1;
 }
 
-/* consent checkbox */
-.form-variations .field-checkbox {
+.form-variations .form-variations-combined-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid var(--form-variations-input-border);
+  transition: border-color 0.2s ease;
+}
+
+.form-variations.dark .form-variations-combined-row:focus-within {
+  border-bottom-color: #fff;
+}
+
+.form-variations.dark .form-variations-combined-row:has([aria-invalid='true']) {
+  border-bottom-color: var(--form-variations-error);
+}
+
+.form-variations .form-variations-combined-row .form-variations-control.combined-input {
+  flex: 1;
+  border-bottom: none !important;
+  padding-right: 1rem;
+}
+
+.form-variations .form-variations-combined-row .form-variations-control.combined-select {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 6rem;
+  border-bottom: none !important;
+  text-align: right;
+  padding-left: 1rem;
+}
+
+/* Consent Checkbox */
+.form-variations.dark .field-checkbox {
   flex-direction: row;
   align-items: flex-start;
   gap: var(--space-300);
+  margin-top: 1.5rem;
 }
 
-.form-variations .form-variations-checkbox {
+.form-variations.dark .form-variations-checkbox {
   flex: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  margin: var(--space-100) 0 0;
-  accent-color: var(--color-bg-brand);
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.2rem;
+  accent-color: #fff;
   cursor: pointer;
 }
 
-.form-variations .form-variations-checkbox:user-invalid {
-  outline: var(--border-width-200) solid var(--form-variations-error);
-  outline-offset: var(--border-width-200);
-}
-
-.form-variations .form-variations-checkbox-label {
-  color: var(--form-variations-label-color);
-  font-size: var(--body-font-size-xs);
-  line-height: var(--label-line-height);
+.form-variations.dark .form-variations-checkbox-label {
+  color: #d0d0d0;
+  font-size: 0.875rem;
+  line-height: 1.4;
   cursor: pointer;
 }
 
-.form-variations .form-variations-consent > :first-child {
-  margin-top: 0;
-}
-
-.form-variations .form-variations-consent > :last-child {
-  margin-bottom: 0;
-}
-
-.form-variations .form-variations-consent > p:last-child {
-  display: inline;
-}
-
-.form-variations .form-variations-checkbox-label a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-/* contact card */
-.form-variations .form-variations-contact-card {
-  gap: var(--space-300);
-  padding-top: var(--space-500);
-  border-top: var(--border-width-100) solid var(--form-variations-divider);
-}
-
-.form-variations .form-variations-contact-name {
-  margin: 0;
-  color: var(--color-text-brand);
-  font-size: var(--heading-font-size-m);
-  font-weight: var(--font-weight-medium);
-}
-
-.form-variations.dark .form-variations-contact-name {
-  color: var(--color-bg-brand-secondary);
-}
-
-.form-variations .form-variations-contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-200);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.form-variations .form-variations-contact-links a {
-  color: inherit;
-  font-size: var(--body-font-size-s);
-  text-decoration: none;
-}
-
-.form-variations .form-variations-contact-links a:hover {
-  text-decoration: underline;
-}
-
-/* submit and status */
+/* Pill Submit Button */
 .form-variations .field-submit {
   align-items: flex-start;
+  margin-top: 2rem;
 }
 
-/* the site primary button is black: invert it on the dark theme */
-.form-variations.dark button.button.primary:not(:disabled) {
-  border-color: var(--color-border-default);
-  background-color: var(--color-bg-default);
-  color: var(--color-text-default);
+.form-variations.dark button.button.primary:not(:disabled),
+.form-variations.dark .field-submit button {
+  border: 1px solid rgb(255 255 255 / 40%);
+  background-color: rgb(255 255 255 / 20%);
+  color: #fff;
+  padding: 0.875rem 3rem;
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .form-variations.dark button.button.primary:not(:disabled):hover,
-.form-variations.dark button.button.primary:not(:disabled):focus-visible {
-  background-color: var(--color-bg-secondary-hover);
-  color: var(--color-text-default);
+.form-variations.dark .field-submit button:hover {
+  background-color: rgb(255 255 255 / 35%);
+  border-color: #fff;
 }
 
-.form-variations .form-variations-status {
-  margin-block: var(--space-400) 0;
-  color: var(--color-text-brand);
-  font-size: var(--body-font-size-s);
-  font-weight: var(--font-weight-medium);
+.form-variations.dark .field-submit button::after,
+.form-variations.dark .field-submit button .icon-arrow {
+  display: none !important;
 }
 
 .form-variations.dark .form-variations-status {
-  color: var(--color-bg-brand-secondary);
+  margin-block: var(--space-400) 0;
+  color: #61afef;
+  font-size: var(--body-font-size-s);
 }
 
-/* the live region stays rendered (not display: none) so the message is announced */
-.form-variations .form-variations-status:empty {
-  margin-block: 0;
-}
-
-/* editor only: conditional items stay visible, with their condition */
-.form-variations .form-variations-condition {
-  margin: 0;
-  color: var(--form-variations-muted);
-  font-size: var(--body-font-size-xs);
-  font-style: italic;
-}
-
-.form-variations .form-variations-group:has(> .form-variations-condition) {
-  padding: var(--space-200);
-  border: var(--border-width-100) dashed var(--form-variations-input-border);
-  border-radius: var(--radius-m);
-}
-
-@media (width >= 600px) {
+/* Responsive Overrides */
+@media only screen and (width <= 1199px) {
   .form-variations.dark {
-    padding: var(--space-1200) var(--space-1000);
+    padding-top: 3.75rem;
+  }
+
+  .form-variations.dark .form-variations-inner {
+    margin-left: 0;
+    margin-top: 2.5rem;
+  }
+
+  .form-variations .form-variations-back {
+    top: 1.5rem;
+    left: 1rem;
   }
 }
 
 @media (width >= 900px) {
-  .form-variations .form-variations-form {
+  .form-variations.dark .form-variations-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.25rem 2rem;
   }
 
   .form-variations .form-variations-group.full-width {
     grid-column: 1 / -1;
-  }
-
-  .form-variations.dark {
-    padding: var(--space-1600);
   }
 }
