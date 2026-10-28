@@ -39,6 +39,10 @@
   --list-feature-title-size: 2rem;
   --list-card-padding: var(--space-400);
 
+  /* image card hover (Figma): the title's colour and underline */
+  --list-hover-duration: 300ms;
+  --list-hover-easing: ease-out;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-1000);
@@ -335,6 +339,18 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--list-card-title-line);
   letter-spacing: calc(-0.025 * var(--list-card-title-size));
+}
+
+/*
+ * image cards (Figma hover, below): the title fades from neutral (#303030) to brand blue
+ * (#216ac3) and back; its underline is always drawn (transparent) and only changes colour, so
+ * nothing moves or resizes
+ */
+.card-list .list-card-image .list-card-title {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  transition: color var(--list-hover-duration) var(--list-hover-easing),
+    text-decoration-color var(--list-hover-duration) var(--list-hover-easing);
 }
 
 .card-list .list-card-description {
@@ -718,9 +734,15 @@
   transform: translateX(var(--space-100));
 }
 
-/* hover: the title underlines */
-.card-list :is(.list-card-title, .list-row-title, .list-feature-title) .list-card-link:hover {
+/* hover: the title underlines (image cards: below) */
+.card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-row-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
+}
+
+/* image cards: the card's hover or focus (anywhere on a linked card) turns the title brand blue */
+.card-list .list-card-image:has(.list-card-link):is(:hover, :focus-within) .list-card-title {
+  color: var(--color-text-brand);
+  text-decoration-color: currentcolor;
 }
 
 .card-list .list-empty {

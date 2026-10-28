@@ -891,7 +891,7 @@ Every variation is a combination of the List's fields (no separate block class t
 
 - **Purpose / when to use:** page teasers with a picture (insights, services). Not for key figures (Statistic) or downloads (Report).
 - **Fields:** Display as teaser on, Card style Image card; optional Image ratio (16:9, 1:1, 4:3, 3:2), Show options, Date format.
-- **Rendering:** `article.list-card.list-card-image`: image (ratio class `ratio-*`, no layout shift), kicker (eyebrow, else up to three tags with reading time), title, description, content type label and `<time datetime>` (Show content type off: neither the label nor the content type tag in the kicker).
+- **Rendering:** `article.list-card.list-card-image`: image (ratio class `ratio-*`, no layout shift), kicker (eyebrow, else up to three tags with reading time), title, description, content type label and `<time datetime>` (Show content type off: neither the label nor the content type tag in the kicker). **Hover (Figma):** hovering or focusing anywhere on a linked image card fades its title from `--color-text-neutral` (#303030) to `--color-text-brand` (#216AC3) with an underline, 300ms ease-out (`--list-hover-duration`, `--list-hover-easing`), and back on leave; the underline is always drawn transparent and only changes colour, so the card, its padding and image don't move or resize. On dark backgrounds the theme contract's light brand colour is used. Cards without a link have no hover; panel, report and statistic cards keep their own hover (`styles/card-list.css`).
 
 ```text
 [Screenshot Placeholder]
@@ -1339,3 +1339,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.34 | List Item Display toggles (Hide Title, Show Description / Image / Eyebrow / Label / Action Label) | docs/handover revision history | 20 October 2026 |
 | Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |
 | Handover 2.46 | Show content type (`showContentLabel`): the content type of image cards (its tag in the kicker and its label before the date) can be turned off; on by default; the shared Display fields split again (`cardsShow`, `cardsAction`) so the option sits between Date format and Show call to action in the List only | docs/handover revision history | 28 October 2026 |
+| Handover 2.47 | Image card hover (Figma): the whole linked card fades the title to brand blue with an underline (300ms ease-out), no layout change | docs/handover revision history | 28 October 2026 |
