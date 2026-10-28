@@ -30,7 +30,7 @@
           "valueType": "string",
           "name": "link",
           "label": "Modal Content",
-          "description": "A fragment page, e.g. under /modals/. Opens in a dialog."
+          "description": "A fragment page, e.g. under /modal/. Opens in a dialog."
         },
         {
           "component": "text",

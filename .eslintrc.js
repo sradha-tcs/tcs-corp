@@ -19,7 +19,8 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     // section properties render as section-metadata key/value rows, not block cells;
-    // the Table List settings and the form field / table / card items need one cell per value
+    // the Table List settings and the form field / table / card / Teaser Link items need one
+    // cell per value
     'xwalk/max-cells': ['error', {
       '*': 4,
       section: 6,
@@ -41,6 +42,7 @@ module.exports = {
       'field-textarea': 6,
       'field-checkbox': 5,
       'contact-card': 5,
+      'teaser-link': 5,
     }],
   },
   overrides: [
