@@ -361,7 +361,16 @@
         "valueType": "boolean",
         "name": "showCta",
         "label": "Show call to action",
-        "value": true
+        "value": true,
+        "description": "List: Child pages and Tagged pages only; in a Fixed list each List Item's Show Action Label decides.",
+        "condition": {
+          "!==": [
+            {
+              "var": "source"
+            },
+            "fixed"
+          ]
+        }
       },
       {
         "component": "select",

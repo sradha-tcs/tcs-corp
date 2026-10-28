@@ -1,12 +1,14 @@
 /*
  * List cards: field-by-field content from the linked page, and the Card style / Card colour
- * precedence (List Item > List > page card-style / card-theme metadata > automatic): node --test
+ * precedence (List Item > List > page card-style / card-theme metadata > automatic) and the one
+ * control of each card's call to action: node --test
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildCards, kindOf, normalizeConfig, normalizePageToCard, themeOf,
 } from '../../blocks/list/list-data.js';
+import { ctaShownOf } from '../../utils/card-list-config.js';
 
 // an index page (utils/query-index.js): columns by their index name (card-style -> cardStyle)
 const page = (path, row = {}) => ({
@@ -158,5 +160,44 @@ describe('List Item content from the linked page (field by field)', () => {
   it('an empty source gives no cards', () => {
     const { cards } = parent({ parentpath: '/en/nothing' });
     assert.deepEqual(cards, []);
+  });
+});
+
+describe('Call to action: one control per card', () => {
+  // the call to action shown on each card, as the card list decorator decides it
+  const ctas = (cfg, cards) => cards.map((card) => ctaShownOf(card, cfg.showCta));
+  const item = (href, showActionLabel) => ({ href, listItem: true, showActionLabel });
+
+  it('a Fixed list: each List Item\'s Show Action Label decides, the List\'s toggle is not read', () => {
+    [{ showcta: 'true' }, { showcta: 'false' }, {}].forEach((raw) => {
+      const { cfg, cards } = fixed(raw, [item('/en/news/a', 'true'), item('/en/news/b', 'false')]);
+      assert.deepEqual(ctas(cfg, cards), [true, false]);
+    });
+  });
+  it('a List Item never changed (no value) shows its call to action, as its dialog shows On', () => {
+    const { cfg, cards } = fixed({ showcta: 'false' }, [item('/en/news/a', ''), { href: '/en/news/b', listItem: true }]);
+    assert.deepEqual(ctas(cfg, cards), [true, true]);
+  });
+  it('Show Action Label off stays off with Hide Title on (the title stays the visible link)', () => {
+    const { cfg, cards } = fixed({}, [{ ...item('/en/news/a', 'false'), titleHidden: 'true' }]);
+    assert.deepEqual(ctas(cfg, cards), [false]);
+  });
+  it('a page of Pages (authored before List Items, no toggle) follows the List', () => {
+    assert.deepEqual(ctas(...Object.values(fixed({ showcta: 'false' }, [{ href: '/en/news/a' }]))), [false]);
+    assert.deepEqual(ctas(...Object.values(fixed({ showcta: 'true' }, [{ href: '/en/news/a' }]))), [true]);
+  });
+  it('Child pages and Tagged pages follow the List\'s Show call to action', () => {
+    const on = parent({ showcta: 'true' });
+    const off = parent({ showcta: 'false' });
+    assert.ok(ctas(on.cfg, on.cards).every(Boolean));
+    assert.ok(ctas(off.cfg, off.cards).every((shown) => !shown));
+  });
+  it('the List\'s Show call to action is hidden in the dialog only for a Fixed list', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url)));
+    const fieldOf = (id) => models.find((model) => model.id === id).fields.find((f) => f.name === 'showCta');
+    assert.deepEqual(fieldOf('list').condition, { '!==': [{ var: 'source' }, 'fixed'] });
+    // Cards has no List source: the condition holds and the toggle stays
+    assert.ok(fieldOf('cards'));
   });
 });

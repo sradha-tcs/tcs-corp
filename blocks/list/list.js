@@ -135,6 +135,8 @@ export function readBlockConfig(block) {
       kind: get('kind').toLowerCase(),
       theme: get('theme').toLowerCase(),
       ...Object.fromEntries(ITEM_DISPLAY.map((field) => [field, get(field)])),
+      // a List Item (not a page of Pages): its Show Action Label decides its call to action
+      listItem: true,
       ref: row,
     };
   }).filter((item) => item.href);

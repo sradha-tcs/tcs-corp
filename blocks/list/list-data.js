@@ -319,6 +319,9 @@ export function applyOverrides(card, item) {
   if (text(item.newTab) !== '') out.openInNewTab = isYes(item.newTab);
   // the item's Display toggles: what the card leaves out (renderCard applies them)
   out.display = itemDisplay(item);
+  // a List Item's call to action follows its Show Action Label only (ctaShownOf); a page of
+  // Pages (authored before List Items) has no such toggle and follows the List's
+  if (item.listItem) out.ctaByItem = true;
   // opaque references the renderer uses: the authored image element and the item's row
   if (item.picture) out.picture = item.picture;
   if (item.ref) out.ref = item.ref;

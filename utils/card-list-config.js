@@ -156,6 +156,19 @@ export function themeOf(card, cardTheme) {
 }
 
 /**
+ * Whether a card shows its call to action, from one control only: a List Item's own Show Action
+ * Label (on unless authored off; the List's Show call to action, hidden for a Fixed list, isn't
+ * read), else the list's Show call to action (Child pages, Tagged pages, Pages, Cards).
+ * @param {Object} card { ctaByItem, display: { showActionLabel } }
+ * @param {boolean} showCta the list's Show call to action
+ * @returns {boolean}
+ */
+export function ctaShownOf(card, showCta) {
+  if (card.ctaByItem) return card.display?.showActionLabel !== false;
+  return !!showCta;
+}
+
+/**
  * Normalizes the authored presentation properties (lower-case keys, text values): missing or
  * invalid values get their defaults, so a configuration never breaks rendering.
  * @param {Object<string, string>} raw

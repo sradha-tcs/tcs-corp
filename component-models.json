@@ -2993,7 +2993,16 @@
         "valueType": "boolean",
         "name": "showCta",
         "label": "Show call to action",
-        "value": true
+        "value": true,
+        "description": "List: Child pages and Tagged pages only; in a Fixed list each List Item's Show Action Label decides.",
+        "condition": {
+          "!==": [
+            {
+              "var": "source"
+            },
+            "fixed"
+          ]
+        }
       },
       {
         "component": "select",
@@ -13796,7 +13805,16 @@
         "valueType": "boolean",
         "name": "showCta",
         "label": "Show call to action",
-        "value": true
+        "value": true,
+        "description": "List: Child pages and Tagged pages only; in a Fixed list each List Item's Show Action Label decides.",
+        "condition": {
+          "!==": [
+            {
+              "var": "source"
+            },
+            "fixed"
+          ]
+        }
       },
       {
         "component": "select",
@@ -15497,7 +15515,7 @@
         "name": "titleHidden",
         "label": "Hide Title",
         "value": false,
-        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: without a call to action (none, or Show Action Label off), the title stays visible."
       },
       {
         "component": "boolean",
@@ -15537,7 +15555,7 @@
         "name": "showActionLabel",
         "label": "Show Action Label",
         "value": true,
-        "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
+        "description": "This card's call to action, whatever the List says (a Fixed list has no Show call to action). Off: no call to action; the title is the card's link and stays visible, also with Hide Title on."
       }
     ]
   },

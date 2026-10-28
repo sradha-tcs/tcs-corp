@@ -510,7 +510,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `displayA
 | Show description | `showDescription` | boolean | No | `true` | on / off | On image cards and link rows; panel, report and statistic cards always show theirs. | — |
 | Show date | `showDate` | boolean | No | `true` | on / off | — | false |
 | Date format | `dateFormat` | select | No | `dd-mmm-yy` | 04 Sep 26 (`dd-mmm-yy`), 04-09-2026 (`dd-mm-yyyy`), 09-04-2026 (`mm-dd-yyyy`), Sep 4, 2026 (`mmm-d-yyyy`), 04/09/26 (`dd/mm/yy`), 4th September 2026 (`do-mmmm-yyyy`) | Shown when `showDate` is `true`. | — |
-| Show call to action | `showCta` | boolean | No | `true` | on / off | — | false |
+| Show call to action | `showCta` | boolean | No | `true` | on / off | List: Child pages and Tagged pages only; in a Fixed list each List Item's Show Action Label decides. Shown when `source` is not `fixed`. | false |
 | Image loading | `imageLoading` | select | No | `lazy` | Lazy (`lazy`), Eager (first screen) (`eager`) | — | — |
 | Desktop display | `desktopMode` | select | No | `grid` | Grid (`grid`), Horizontal scroll (`horizontal-scroll`) | Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints. | horizontal-scroll |
 | Desktop columns | `desktopColumns` | number | No | `4` | — | Shown when `desktopMode` is `grid`. | 3 |

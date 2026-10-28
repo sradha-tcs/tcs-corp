@@ -76,6 +76,7 @@ date: "October 24, 2026"
 | 2.42 | 23 October 2026 | Delivery team | **Table block: up to nine columns** (6.25, F-111): AEM doesn't deliver a table in a Text (rich text) as a table (its cells arrive as paragraphs), so tables need the Table block, which had at most five columns; Columns now offers 6, 7, 8 and 9 Columns (Row models `table-col-6` … `table-col-9`, filters `table-6-columns` … `table-9-columns`); a table wider than its container scrolls inside the block as before. The tcs.com press release migration puts every source table into a Table block (merged cells flattened). `npm test` 331 passed, `npm run lint` passed. F-111 |
 | 2.43 | 24 October 2026 | Delivery team | **No AEM ids or author host in the document** (F-112): the AEM program and environment ids and the author host are removed from every chapter (AGENTS.md: no AEM program / environment ids or author hosts in any file; the block READMEs and the knowledge base were already checked for them); the author host is written `{aem-author}` (Document Information), the ids are in Cloud Manager. No change to the code or the content model. F-112 |
 | 2.44 | 24 October 2026 | Delivery team | **Redirects at the CDN: specification** (3.8.4, F-36, O-03, KB-D-055 Proposed): `docs/proposals/redirects-cdn.md` specifies the rules the production CDN applies in front of the site: `/` → `/en/`, the Redirects sheet rows of the path's locale, the old tcs.com URLs of the 3,191 migrated pages (2,499 same path, 37 letter case only: a pattern rule to the default locale; 655 another path: the language master's Redirects sheet, 648 rows), with data, test cases, acceptance criteria and decisions R-D1 to R-D4. **Author host exception** (F-112, KB-D-056 Proposed): `fstab.yaml` (the content source) and `.migration/project.json` (managed by the workspace tooling) keep the author host; no other file holds it; the audit note `docs/audit/reaudit/review-d.md` writes a publish host placeholder as `{aem-publish}`. No change to the code or the content model. F-36, F-112, O-03 |
+| 2.45 | 28 October 2026 | Delivery team | **List call to action: one control per card** (KB-D-057 Proposed): in a Fixed list each List Item's call to action follows its own Show Action Label only (Off: not rendered, also with Hide Title on, where the title stays visible as the card's link); the List's Show call to action is hidden in the dialog for a Fixed list and decides for Child pages, Tagged pages, the pages of Pages and the Cards block (`ctaShownOf` in `utils/card-list-config.js`). Replaces KB-D-036's rule that the action label stays with Hide Title on |
 
 ## Review and Approval
 
@@ -67925,7 +67926,7 @@ re-validated in code and invalid values fall back to the defaults.
 | Show description (`showDescription`) | boolean | No | No | true | Show the description | — | Boolean | true |
 | Show date (`showDate`) | boolean | No | No | true | Show the date | — | Boolean | true |
 | Date format (`dateFormat`) | select | No | No | dd-mmm-yy (04 Sep 26) | Format of the dates | Use the locale's convention | dd-mmm-yy, dd-mm-yyyy, mm-dd-yyyy, mmm-d-yyyy, dd/mm/yy; shown when Show date on | dd-mm-yyyy |
-| Show call to action (`showCta`) | boolean | No | No | true | Show call to action buttons | Off: the titles are the links | Boolean | true |
+| Show call to action (`showCta`) | boolean | No | No | true | Show call to action buttons (Child pages, Tagged pages and the pages of Pages; hidden for a Fixed list, whose List Items decide with Show Action Label, 2.45) | Off: the titles are the links | Boolean | true |
 | Image loading (`imageLoading`) | select | No | No | lazy | Lazy or eager image loading | Eager only on the first screen | lazy, eager | lazy |
 
 #### Block model `list` — Layout tab
@@ -68018,12 +68019,12 @@ The padding and margin options are the spacing tokens 0, 100, 200, 300, 400, 500
 | Card colour (`theme`) | select | No | No | As the list (empty) | This item's colour | Overrides the list | '', dark, navy, brand, brand-light, grey, mid-grey, gradient, image | navy |
 | Analytics label (`analyticsLabel`) | text | No | No | Empty | Data layer `dc:title` | Stable name | None (no maxLength in this model) | agentic-bank-card |
 | Accessibility label (`ariaLabel`) | text | No | No | Empty | Link's accessible name | When the title isn't enough | None | Read the agentic bank insight |
-| Hide Title (`titleHidden`, Display) | boolean | No | No | Off | Hides the title on the card; it stays for screen readers and in the heading outline and names the card's link (`Read more: <title>`). A linked card keeps one visible link: with Show Action Label off too, the action label stays; without an action label, the title stays visible | Per card (2.34) | On / off | On |
+| Hide Title (`titleHidden`, Display) | boolean | No | No | Off | Hides the title on the card; it stays for screen readers and in the heading outline and names the card's link (`Read more: <title>`). A linked card keeps one visible link: without a call to action (none, or Show Action Label off), the title stays visible (2.45) | Per card (2.34) | On / off | On |
 | Show Description (`showDescription`, Display) | boolean | No | No | On | Off: no description (neither the item's nor its page's), on every card style | Per card (2.34) | On / off | Off |
 | Show Image (`showImage`, Display) | boolean | No | No | On | Off: no image and no image wrapper (also the feature card's) | Per card (2.34) | On / off | Off |
 | Show Eyebrow (`showEyebrow`, Display) | boolean | No | No | On | Off: no eyebrow; image cards show the tags in its place, as without an eyebrow | Per card (2.34) | On / off | Off |
 | Show Label (`showLabel`, Display) | boolean | No | No | On | Off: no Label (`subtitle`, statistic cards) | Per card (2.34) | On / off | Off |
-| Show Action Label (`showActionLabel`, Display) | boolean | No | No | On | Off: no visible call to action; the title is the card's link | Per card (2.34) | On / off | Off |
+| Show Action Label (`showActionLabel`, Display) | boolean | No | No | On | The card's call to action, whatever the List's Show call to action says (2.45). Off: not rendered; the title is the card's link and stays visible, also with Hide Title on | Per card (2.34) | On / off | Off |
 
 #### Field details
 
