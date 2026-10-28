@@ -56,7 +56,7 @@
           "valueType": "string",
           "name": "variations",
           "label": "Variation",
-          "description": "Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow.",
+          "description": "Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. Variation 4: wide title, narrow grey description and arrow; the row is highlighted on hover. Variation 5: small label and large description (steps, without links). Variation 6: description, large right-aligned title and a small arrow.",
           "value": "industries",
           "options": [
             {
@@ -70,6 +70,18 @@
             {
               "name": "Variation 3 - Description, number, large title, arrow",
               "value": "products"
+            },
+            {
+              "name": "Variation 4 - Wide title, grey description, arrow (row hover)",
+              "value": "segments"
+            },
+            {
+              "name": "Variation 5 - Label, large description (steps)",
+              "value": "approach"
+            },
+            {
+              "name": "Variation 6 - Description, right-aligned title, small arrow",
+              "value": "platforms"
             }
           ]
         },
@@ -92,6 +104,10 @@
             {
               "name": "Dark Green",
               "value": "dark-green"
+            },
+            {
+              "name": "Navy",
+              "value": "navy"
             }
           ]
         },
@@ -120,6 +136,32 @@
             {
               "name": "H4",
               "value": "h4"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "listEyebrow",
+          "label": "Eyebrow",
+          "description": "Optional. A short label above the heading, e.g. Models & Data.",
+          "value": ""
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "headerPosition",
+          "label": "Heading position",
+          "description": "Beside the list: the eyebrow, heading and call to action in a column on the left of the list from 900px wide (above it on smaller screens), with a larger statement-style heading.",
+          "value": "",
+          "options": [
+            {
+              "name": "Above the list",
+              "value": ""
+            },
+            {
+              "name": "Beside the list",
+              "value": "beside"
             }
           ]
         },
@@ -156,7 +198,7 @@
           "valueType": "string",
           "name": "ctaStyle",
           "label": "Style",
-          "description": "Variation default: filled button (Variation 1), outline button (Variation 2), text link (Variation 3).",
+          "description": "Variation default: filled button (Variation 1), outline button (Variations 2, 4, 5 and 6), text link (Variation 3).",
           "value": "",
           "options": [
             {
@@ -195,7 +237,7 @@
           "valueType": "string",
           "name": "numbers",
           "label": "Numbers",
-          "description": "Variation default: on mobile only (Variation 1), hidden (Variation 2), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number.",
+          "description": "Variation default: on mobile only (Variation 1), hidden (Variations 2, 4, 5 and 6), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number.",
           "value": "",
           "options": [
             {
@@ -221,7 +263,7 @@
           "valueType": "string",
           "name": "itemAction",
           "label": "Item link",
-          "description": "Variation default: arrow (Variation 1), button (Variation 2), diagonal arrow (Variation 3).",
+          "description": "Variation default: arrow (Variations 1, 4, 5 and 6; Variation 5 shows it only on items with a Link), button (Variation 2), diagonal arrow (Variation 3).",
           "value": "",
           "options": [
             {
@@ -235,6 +277,10 @@
             {
               "name": "Diagonal arrow",
               "value": "arrow-up-right"
+            },
+            {
+              "name": "Circled arrow",
+              "value": "arrow-circle"
             },
             {
               "name": "Button",

@@ -127,6 +127,7 @@
     "components": [
       "field-text",
       "field-select",
+      "field-combined",
       "field-textarea",
       "field-checkbox",
       "contact-card",

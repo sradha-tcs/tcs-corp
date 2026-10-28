@@ -1,11 +1,10 @@
-/* TCS Header: the TCS and TATA logos (Figma "Nav Bar-NEW"); in the site header, see blocks/header */
+/* TCS Header: TCS Logo left, TATA Logo right across all breakpoints */
 .tcs-header .tcs-header-bar {
   display: flex;
   align-items: center;
-  gap: 1.7391rem;
+  justify-content: space-between;
 }
 
-/* a Full Width section has no gutter: the logo bar keeps the header's (Figma: 16 / 24 / 80px) */
 .section:not(.fixed-width) .tcs-header .tcs-header-bar {
   padding-inline: var(--space-400);
 }
@@ -43,7 +42,6 @@
   height: var(--icon-size-s);
 }
 
-/* tablet (Figma Mobile Nav at 1024px): larger logos than mobile */
 @media (width >= 600px) {
   .tcs-header .tcs-header-brand img {
     height: 1.9165rem;
@@ -54,13 +52,9 @@
   }
 }
 
-/* desktop: TCS logo left, TATA logo right */
 @media (width >= 1200px) {
-  .tcs-header .tcs-header-bar {
-    justify-content: space-between;
-  }
-
   .tcs-header .tcs-header-brand img {
+    width: 9.125rem;
     height: 2.175rem;
   }
 
@@ -69,71 +63,7 @@
   }
 }
 
-/*
- * In the site header (blocks/header with this block's logos, tablet and mobile below 1200px;
- * Figma Mobile Nav 2325:55704 at 402px and 1124:25497 at 1024px): 24px gutters, the TCS logo
- * 30.7px and the TATA logo 38px high at every width below desktop, the menu button 32px on the
- * right, its icon three 2px lines 26px wide and 8px apart in --color-icon-default (the close icon
- * of the open menu stays the header's). The header's layout and menu behaviour stay in
- * blocks/header.
- */
-@media (width < 1200px) {
-  header nav:has(.tcs-header-brand) {
-    padding-inline: var(--space-600);
-  }
-
-  header nav .nav-brand .tcs-header-brand img {
-    height: 1.9165rem;
-  }
-
-  header nav .nav-tools .tcs-header-group img {
-    height: 2.375rem;
-  }
-
-  /* no box of its own: the bar's background shows (transparent over the first block) */
-  header nav:has(.tcs-header-brand) .nav-hamburger button {
-    background-color: transparent;
-    color: var(--color-icon-default);
-  }
-
-  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon,
-  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::before,
-  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
-    width: 1.625rem;
-  }
-
-  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::before {
-    top: -0.5rem;
-  }
-
-  header nav[data-expanded='false']:has(.tcs-header-brand) .nav-hamburger-icon::after {
-    top: 0.5rem;
-  }
-
-  /* the menu: its title ("Menu", a level's Back and title) left-aligned with the rows below */
-  header nav:has(.tcs-header-brand) .nav-sections .nav-level {
-    padding-inline-start: 0;
-  }
-
-  header nav:has(.tcs-header-brand) .nav-sections .nav-level-back {
-    justify-items: start;
-  }
-
-  /* a linked section's arrow (on its button) in line with the other rows' arrows, at the right */
-  header nav:has(.tcs-header-brand) .nav-sections .nav-drop-toggle[aria-label] {
-    justify-content: flex-end;
-  }
-}
-
-/*
- * The logo bar stays at the top of the window while the page scrolls, at every width, whatever
- * Header over the first block says: the header keeps its place on the page (in the flow, or over
- * the first block), only its bar is fixed. z-index 20: above page content (blocks use 10 at
- * most), below the floating Canvas. Over the first block it is transparent at the top of the page
- * and turns solid once the page has scrolled by the bar's height, so the logos never lie on the
- * content scrolling under them (a scroll-driven animation; browsers without one keep the
- * transparent bar).
- */
+/* Sticky/Fixed Bar Positioning across all breakpoints */
 header:has(.tcs-header-brand) .nav-wrapper {
   position: fixed;
   inset: 0 0 auto;
@@ -154,32 +84,18 @@ header:has(.tcs-header-brand) .nav-wrapper {
   }
 }
 
-/*
- * in-page targets (a #link to a heading or a block's Anchor ID) scroll clear of the fixed bar,
- * with the 1.5rem the headings keep; the Anchor List sets its own offset on its targets (inline)
- */
+/* JS Fallback for browsers without animation-timeline support */
+header:has(.tcs-header-brand) .nav-wrapper.is-scrolled {
+  background-color: var(--background-color);
+}
+
+/* Target scrolling offset */
 html:has(header .tcs-header-brand) :is(h1, h2, h3, h4, h5, h6, [id^='anchor-']) {
   scroll-margin-top: calc(var(--nav-height) + var(--space-600));
 }
 
-/*
- * Header over the first block (the TCS Header's option, <html data-header-overlay>, the layout in
- * styles/styles.css), at every width: the bar is transparent over the first block (Auto: an
- * opening light Hero; Always: any first block), so it shows behind the logos; Never: the bar keeps
- * its background (on desktop also over a light Hero, which blocks/header makes transparent). The
- * open tablet / mobile menu covers the page: its bar keeps its background.
- */
+/* Overlay Modes */
 :where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header:has(.tcs-header-brand) .nav-wrapper,
 html[data-header-overlay='always'] header .nav-wrapper {
   background-color: transparent;
-}
-
-header .nav-wrapper:has(.nav-hamburger button[aria-expanded='true']) {
-  background-color: var(--background-color);
-}
-
-@media (width >= 1200px) {
-  html[data-header-overlay='never'] body:has(main > .section:first-child .hero) header .nav-wrapper {
-    background-color: var(--background-color);
-  }
 }
