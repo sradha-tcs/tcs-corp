@@ -25,6 +25,7 @@ const DEFAULT_MAX_LENGTH = 1500;
 
 const DEFAULT_MAIL_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>';
 const DEFAULT_PHONE_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>';
+const DEFAULT_EYEBROW_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>';
 
 const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
@@ -55,8 +56,10 @@ export function readItem(row) {
 export function readProperties(cells) {
   const byProp = (name) => cells.find((cell) => cell?.dataset.aueProp === name
     || cell?.querySelector(`[data-aue-prop="${name}"]`));
-  if (byProp('formHeading') || byProp('formDescription') || byProp('bgImage')) {
+  if (byProp('formHeading') || byProp('formDescription') || byProp('bgImage') || byProp('formEyebrow')) {
     return {
+      eyebrowCell: byProp('formEyebrow'),
+      eyebrowIconCell: byProp('formEyebrowIcon'),
       titleCell: byProp('formHeading'),
       descriptionCell: byProp('formDescription'),
       actionCell: byProp('formAction'),
@@ -65,9 +68,9 @@ export function readProperties(cells) {
   }
   const empty = (cell) => !cell || (!textOf(cell) && !cell.querySelector('img, a'));
   const list = cells.length > 2 && empty(cells[0]) ? cells.slice(1) : cells;
-  const [titleCell, descriptionCell, actionCell, bgImageCell] = list;
+  const [eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell] = list;
   return {
-    titleCell, descriptionCell, actionCell, bgImageCell,
+    eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell,
   };
 }
 
@@ -444,7 +447,7 @@ export default async function decorate(block) {
   });
 
   const {
-    titleCell, descriptionCell, actionCell, bgImageCell,
+    eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell,
   } = readProperties(properties);
   const actionLink = linkOf(actionCell);
   const action = actionLink?.getAttribute('href') || textOf(actionCell);
@@ -455,10 +458,7 @@ export default async function decorate(block) {
   const bgUrl = authoredBg || sectionImg?.src;
 
   if (section && bgUrl) {
-    section.style.backgroundImage = `linear-gradient(to right, #050811 40%, rgba(5, 8, 17, 0.3) 70%, transparent 100%), url('${bgUrl}')`;
-    section.style.backgroundSize = 'cover';
-    section.style.backgroundPosition = 'right center';
-    section.style.backgroundAttachment = 'fixed';
+    section.dataset.bgUrl = bgUrl;
     if (sectionImg) sectionImg.closest('picture')?.remove();
   }
 
@@ -476,6 +476,32 @@ export default async function decorate(block) {
 
   const header = document.createElement('div');
   header.className = 'form-variations-header';
+
+  // Render Eyebrow with Icon if Authored
+  const eyebrowText = textOf(eyebrowCell);
+  if (eyebrowText) {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'form-variations-eyebrow';
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'form-variations-eyebrow-icon';
+    const eyebrowIconUrl = linkOf(eyebrowIconCell)?.getAttribute('href') || textOf(eyebrowIconCell);
+    if (eyebrowIconUrl) {
+      const img = document.createElement('img');
+      img.src = eyebrowIconUrl;
+      img.alt = '';
+      iconSpan.append(img);
+    } else {
+      iconSpan.innerHTML = DEFAULT_EYEBROW_ICON;
+    }
+
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = eyebrowText;
+    instrument(eyebrowCell, labelSpan);
+
+    eyebrow.append(iconSpan, labelSpan);
+    header.append(eyebrow);
+  }
 
   const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', 'h2') : null;
   if (title) header.append(title);

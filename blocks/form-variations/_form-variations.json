@@ -161,6 +161,18 @@
         {
           "component": "text",
           "valueType": "string",
+          "name": "formEyebrow",
+          "label": "Eyebrow / Category Title",
+          "description": "e.g. CORPORATE SOCIAL RESPONSIBILITY - TCS EMPOWERS"
+        },
+        {
+          "component": "aem-content",
+          "name": "formEyebrowIcon",
+          "label": "Eyebrow Icon Asset (Optional)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
           "name": "formHeading",
           "label": "Form Title / Heading"
         },
@@ -175,20 +187,20 @@
           "component": "aem-content",
           "name": "bgImage",
           "label": "Background Image",
-          "description": "Select or paste a background image reference for the form section."
+          "description": "Select or paste a background image reference for desktop view (>=992px)."
         },
         {
           "component": "aem-content",
           "name": "formAction",
           "label": "Submit action",
-          "description": "Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so."
+          "description": "Where the form data is sent (POST, JSON)."
         },
         {
           "component": "select",
           "valueType": "string",
           "name": "classes",
           "label": "Theme",
-          "value": "",
+          "value": "dark",
           "options": [
             { "name": "Default", "value": "" },
             { "name": "Dark", "value": "dark" }
