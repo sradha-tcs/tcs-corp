@@ -719,23 +719,33 @@
   margin-top: var(--space-300);
 }
 
+/*
+ * the row's action (Figma): a 40px circle with a 2px stroke and the arrow in a 48px box at the
+ * right; circle and arrow are one mask, so they change colour together. Hover or focus anywhere
+ * on the row only darkens them (no movement); the title stays as it is.
+ */
 .card-list .list-row-arrow {
   grid-row: 1 / span 4;
   grid-column: 2;
-  width: 2rem;
-  height: 2rem;
+  justify-self: end;
+  width: 3rem;
+  height: 3rem;
   background-color: var(--color-icon-tertiary);
-  mask: url('/icons/arrow-right.svg') center / contain no-repeat;
-  transition: background-color 0.2s, transform 0.2s;
+  mask: url('/icons/circle-arrow.svg') center / contain no-repeat;
+  transition: background-color 0.3s ease-out;
 }
 
 .card-list .list-row:is(:hover, :focus-within) .list-row-arrow {
-  background-color: var(--color-icon-brand);
-  transform: translateX(var(--space-100));
+  background-color: var(--color-icon-default);
 }
 
-/* hover: the title underlines (image cards: below) */
-.card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-row-title, .list-feature-title) .list-card-link:hover {
+/* on the dark backgrounds of the theme contract: the light text colour (styles/styles.css) */
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-row:is(:hover, :focus-within) .list-row-arrow {
+  background-color: var(--color-text-default);
+}
+
+/* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
+.card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
 }
 
@@ -815,8 +825,6 @@
   .card-list .list-row-arrow {
     grid-row: 1 / span 4;
     align-self: center;
-    width: 3rem;
-    height: 3rem;
   }
 
   .card-list .list-feature {

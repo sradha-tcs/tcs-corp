@@ -957,7 +957,7 @@ C = Remaining cards
 
 ### Rows of links (Display as teaser off)
 
-Rows with eyebrow or content type and a tag, a large title, the description, the date and an arrow (`aria-hidden`), class `links`; Style option `dividers` adds lines between rows (Figma 5 News). Use for news and press lists; not for visual teasers.
+Rows with eyebrow or content type and a tag, a large title, the description, the date and a circle arrow (`aria-hidden`, `icons/circle-arrow.svg`: a 40px circle with a 2px stroke in a 48px box at the right, #D9D9D9), class `links`; hover or focus anywhere on a row only turns the circle and arrow #1E1E1E (300ms ease-out, no movement; the light text colour on Dark backgrounds), the title stays #0C0C0D without an underline; Style option `dividers` adds lines between rows (Figma 5 News). Use for news and press lists; not for visual teasers.
 
 ### Grid and horizontal scroll per breakpoint
 

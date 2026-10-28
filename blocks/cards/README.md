@@ -960,7 +960,7 @@ C = Feature title
 
 - **Purpose / when to use:** news-style link lists (Figma variation 5) not driven by the query index.
 - **Dialog:** Display as teaser off; Style option **Dividers between rows** (`dividers`) for lines between rows from 600px.
-- **Rendering:** `article.list-row`: kicker (eyebrow, else content type, and the first tag), title link, description, date, a decorative arrow; no images, calls to action, styles, colours or feature.
+- **Rendering:** `article.list-row`: kicker (eyebrow, else content type, and the first tag), title link, description, date, a decorative circle arrow (`icons/circle-arrow.svg`, 48px box, #D9D9D9; hover or focus on the row turns it #1E1E1E over 300ms ease-out without movement, the title isn't underlined); no images, calls to action, styles, colours or feature.
 - **Data layer:** `xdm:variant: links`.
 
 ```text
