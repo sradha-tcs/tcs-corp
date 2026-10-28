@@ -92,7 +92,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Conversation Canvas](./conversation-canvas/README.md) (`conversation-canvas`) | `conversation-canvas` | Conversation Canvas Button (`conversation-canvas-button`) |
 | [Filter List](./filter-list/README.md) (`filter-list`) | `filter-list` | Filter Tag (`filter-list-tag`), Filter Category (`filter-list-category`), Filter Page (`filter-list-page`) |
 | [Footer](./footer/README.md) (`footer`) | `footer` | Footer Link (`footer-link`) |
-| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
+| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Combined Input Field (`field-combined`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
 | [Gen Carousel](./gen-carousel/README.md) (`gen-carousel`) | `gen-carousel` | [Hero](./hero/README.md) (`hero`), [Teaser](./teaser/README.md) (`teaser`) |
 | [Hero](./hero/README.md) (`hero`) | `hero` | CTA (`hero-cta`) |
 | [List](./list/README.md) (`list`) | `list` | List Item (`list-item`) |
