@@ -25,6 +25,7 @@
   --hero-text-align: center;
   --hero-align: center;
   --hero-content-max-width: 62.5rem;
+  --hero-icon-size: var(--icon-size-l);
   --hero-gap-icon: var(--space-300);
   --hero-gap-eyebrow: var(--space-600);
   --hero-gap-content: var(--space-600);
@@ -173,8 +174,8 @@
 
 .hero .hero-icon img {
   display: block;
-  width: var(--icon-size-l) !important;
-  height: var(--icon-size-l) !important;
+  width: var(--hero-icon-size) !important;
+  height: var(--hero-icon-size) !important;
   object-fit: contain;
 }
 
@@ -240,6 +241,7 @@
 }
 
 .hero .hero-eyebrow {
+  align-self: stretch;
   margin: 0 0 var(--hero-gap-eyebrow);
   color: var(--hero-eyebrow-color);
   font-size: var(--body-font-size-l);
@@ -277,6 +279,7 @@
 
 .hero .hero-ctas {
   display: flex;
+  align-self: stretch;
   flex-wrap: wrap;
   align-items: center;
   justify-content: var(--hero-align);
@@ -303,18 +306,51 @@
   color: var(--brand-300);
 }
 
-@media (width >= 600px) {
+/*
+ * Tablet (600px to 1199px, Figma Hero Header 1:3172, 1024px): the content fills the width
+ * between 2rem paddings (960px of 1024px, at most 62.5rem), a 3rem icon 0.5rem above a 14px
+ * eyebrow, a 50px title 1.5rem below it, and 2.5rem to a 48px CTA with 14px text.
+ */
+@media (width >= 600px) and (width < 1200px) {
   .hero {
-    --hero-min-height: 40rem;
-    --hero-padding-inline: var(--space-1000);
+    --display-font-size-2: 3.125rem;
+    --hero-padding-inline: var(--space-800);
+    --hero-icon-size: 3rem;
+    --hero-gap-icon: var(--space-200);
+    --hero-gap-eyebrow: var(--space-600);
+    --hero-gap-ctas: var(--space-1000);
+  }
+
+  .hero .hero-eyebrow {
+    font-size: 0.875rem;
+    line-height: 1.5714;
+    letter-spacing: calc(0.0125 * 0.875rem);
+  }
+
+  .hero .hero-ctas {
+    --button-font-size: 0.875rem;
+    --button-height: 3rem;
+  }
+
+  /* Figma draws the 1px border inside the 48px: 11px + 24px arrow + 11px + the border */
+  .hero .hero-ctas a.button:is(.primary, .secondary) {
+    padding-block: 0.6875rem;
   }
 }
 
+/* the content block's position shows when it takes part of the width */
 @media (width >= 900px) {
+  .hero:is(.align-left, .align-right) {
+    --hero-content-max-width: 47.5rem;
+  }
+}
+
+@media (width >= 1200px) {
   .hero {
     --hero-min-height: 62.5rem;
     --hero-padding-block: var(--space-3000);
     --hero-padding-inline: 2.75rem;
+    --hero-icon-size: 3rem;
     --hero-gap-icon: var(--space-200);
     --hero-gap-eyebrow: var(--space-1000);
     --hero-gap-content: var(--space-1000);
@@ -323,16 +359,6 @@
 
   .hero .hero-eyebrow {
     font-size: var(--body-font-size-s);
-  }
-
-  .hero .hero-icon img {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  /* on the left or right the content block takes part of the width, so its position shows */
-  .hero:is(.align-left, .align-right) {
-    --hero-content-max-width: 47.5rem;
   }
 }
 

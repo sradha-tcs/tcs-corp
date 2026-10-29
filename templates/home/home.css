@@ -23,9 +23,16 @@ body.home main > .section:first-of-type .hero {
   --home-hero-canvas-space: calc(5.25rem + env(safe-area-inset-bottom, 0rem));
   --home-hero-gap: var(--space-600);
 
+  /* the first screen; on tablets the hero hugs its content instead (below) */
+  --home-hero-screen: 100svh;
+
+  /* at least this much space above the content (tablets) */
+  --home-hero-space-top: 0rem;
+  --home-hero-space-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
+
   /* the content is centred between the logo bar and the Canvas row, so it never runs under it */
-  padding-top: var(--home-hero-gap);
-  padding-bottom: calc(var(--home-hero-canvas-space) + var(--home-hero-gap));
+  padding-top: max(var(--home-hero-space-top), var(--home-hero-gap));
+  padding-bottom: var(--home-hero-space-bottom);
 }
 
 /*
@@ -34,7 +41,7 @@ body.home main > .section:first-of-type .hero {
  * resize and its content drift down the page. There the hero keeps its own height (blocks/hero).
  */
 body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
-  min-height: calc(100svh - var(--nav-height));
+  min-height: calc(var(--home-hero-screen) - var(--nav-height));
 }
 
 /*
@@ -43,24 +50,37 @@ body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
  * content starts below the logos (Figma: the text centred in the screen)
  */
 html[data-header-overlay='always'] body.home main > .section:first-of-type .hero {
-  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+  padding-top: max(var(--home-hero-space-top), calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap)));
 }
 
 html:not([data-header-overlay='never']) body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-  padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
+  padding-top: max(var(--home-hero-space-top), calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap)));
 }
 
 html[data-header-overlay='always'] body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero {
-  min-height: 100svh;
+  min-height: var(--home-hero-screen);
 }
 
 html:not([data-header-overlay='never']) body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
-  min-height: 100svh;
+  min-height: var(--home-hero-screen);
 }
 
 @media (width >= 600px) {
   body.home main > .section:first-of-type .hero {
     --home-hero-canvas-space: calc(8.375rem + env(safe-area-inset-bottom, 0rem));
+  }
+}
+
+/*
+ * Tablets (Figma Hero Header 1:3172: fill width, hug height, 762px at 1024px): the hero is as
+ * high as its content, not the screen: 6rem above it (at least below the logo bar), 6rem and
+ * the Figma 12.5rem under the text below it, more than the Canvas row needs.
+ */
+@media (width >= 600px) and (width < 1200px) {
+  body.home main > .section:first-of-type .hero {
+    --home-hero-screen: 0rem;
+    --home-hero-space-top: 6rem;
+    --home-hero-space-bottom: 18.5rem;
   }
 }
 
