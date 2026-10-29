@@ -93,6 +93,16 @@ export const PAGE_MAPPING = {
 const DEFAULT_IMAGE = /\/default-meta-image\.(png|jpe?g|webp)/i;
 
 /**
+ * Whether the List's Show call to action applies (and is in the dialog, _list.json): Child pages
+ * shown as Panel cards (Display as teaser on, Card style Panel).
+ * @param {Object} config from normalizeConfig()
+ * @returns {boolean}
+ */
+export function ctaToggleApplies(config) {
+  return config.source === 'parent' && !!config.displayAsTeaser && config.cardStyle === 'panel';
+}
+
+/**
  * Normalizes the authored properties (lower-case keys, text values) into the configuration:
  * the List's sources and order, and the shared presentation (utils/card-list-config.js);
  * missing or invalid values get their defaults, so a configuration never breaks rendering.
@@ -103,7 +113,7 @@ export function normalizeConfig(raw = {}) {
   const get = (key) => raw[key];
   const directOnly = flag(get('directchildrenonly'), true);
   const maxItems = integer(get('maxitems'), 0, { min: 0 });
-  return {
+  const config = {
     source: pick(get('source'), SOURCES, 'fixed'),
     // parent
     parentPath: normalizePath(get('parentpath')),
@@ -122,10 +132,12 @@ export function normalizeConfig(raw = {}) {
     maxItems: maxItems > 0 ? maxItems : Infinity,
     emptyBehavior: pick(get('emptybehavior'), EMPTY_BEHAVIORS, 'message'),
     ...normalizePresentation(raw),
-    // no Show call to action: each List Item's Show Action Label decides (a value saved on
-    // Lists authored before is ignored)
-    showCta: false,
   };
+  // Show call to action is in the dialog only for Child pages with Panel cards: elsewhere a value
+  // saved before isn't read and the cards keep their call to action (a List Item's own Show
+  // Action Label always decides for its card: showsCta)
+  if (!ctaToggleApplies(config)) config.showCta = true;
+  return config;
 }
 
 /**

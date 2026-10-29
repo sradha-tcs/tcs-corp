@@ -1,8 +1,9 @@
 /* Unit tests of the List block's data (blocks/list/list-data.js): run with npm test */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -412,9 +413,40 @@ describe('list item display', () => {
 });
 
 describe('list call to action', () => {
-  it('has no Show call to action: a value saved on a List authored before is ignored', () => {
-    assert.equal(config().showCta, false);
-    assert.equal(config({ showcta: 'true' }).showCta, false);
+  it('reads Show call to action for Child pages with Panel cards only', () => {
+    const panel = { source: 'parent', displayasteaser: 'true', cardstyle: 'panel' };
+    assert.equal(config({ ...panel, showcta: 'true' }).showCta, true);
+    assert.equal(config({ ...panel, showcta: 'false' }).showCta, false);
+    assert.equal(config(panel).showCta, true);
+    assert.equal(ctaToggleApplies(config(panel)), true);
+  });
+  it('elsewhere a value saved before is not read: the cards keep their call to action', () => {
+    [
+      { source: 'parent', displayasteaser: 'true', cardstyle: 'image' },
+      { source: 'parent', displayasteaser: 'true', cardstyle: 'mixed' },
+      { source: 'parent', displayasteaser: 'false', cardstyle: 'panel' },
+      { source: 'tags', displayasteaser: 'true', cardstyle: 'panel' },
+      { source: 'fixed', displayasteaser: 'true', cardstyle: 'panel' },
+      {},
+    ].forEach((raw) => {
+      const cfg = config({ ...raw, showcta: 'false' });
+      assert.equal(ctaToggleApplies(cfg), false, JSON.stringify(raw));
+      assert.equal(cfg.showCta, true, JSON.stringify(raw));
+    });
+  });
+  it('the toggle is in the List dialog for Child pages + Panel only; Cards keeps its own', () => {
+    const models = JSON.parse(readFileSync(new URL('../../component-models.json', import.meta.url)));
+    const fieldOf = (id) => models.find((model) => model.id === id).fields.find((f) => f.name === 'showCta');
+    const shown = (values) => fieldOf('list').condition.and
+      .every(({ '===': [{ var: name }, value] }) => values[name] === value);
+    assert.equal(shown({ source: 'parent', displayAsTeaser: true, cardStyle: 'panel' }), true);
+    [
+      { source: 'parent', displayAsTeaser: true, cardStyle: 'report' },
+      { source: 'parent', displayAsTeaser: false, cardStyle: 'panel' },
+      { source: 'tags', displayAsTeaser: true, cardStyle: 'panel' },
+      { source: 'fixed', displayAsTeaser: true, cardStyle: 'panel' },
+    ].forEach((values) => assert.equal(shown(values), false, JSON.stringify(values)));
+    assert.equal(fieldOf('cards').condition, undefined);
   });
   it('shows a List Item\'s call to action only with its Show Action Label on', () => {
     const on = applyOverrides({ title: 'A' }, { showActionLabel: 'true' });
@@ -430,8 +462,15 @@ describe('list call to action', () => {
       .map((item, i) => applyOverrides({ title: `Card ${i}` }, item));
     assert.deepEqual(cards.map((card) => showsCta(config(), card.display)), [true, false, true, false]);
   });
-  it('shows no call to action on cards from the query index (no List Item)', () => {
-    const card = normalizePageToCard(byPath.get('/en/insights/agentic-bank'), config());
-    assert.equal(showsCta(config(), card.display), false);
+  it('cards from the query index (no List Item) follow the List: Child pages + Panel toggle', () => {
+    const page = byPath.get('/en/insights/agentic-bank');
+    const panel = { source: 'parent', displayasteaser: 'true', cardstyle: 'panel' };
+    const off = config({ ...panel, showcta: 'false' });
+    const on = config({ ...panel, showcta: 'true' });
+    assert.equal(showsCta(off, normalizePageToCard(page, off).display), false);
+    assert.equal(showsCta(on, normalizePageToCard(page, on).display), true);
+    // another source or card style: the cards keep their call to action
+    const tags = config({ source: 'tags', cardstyle: 'panel', showcta: 'false' });
+    assert.equal(showsCta(tags, normalizePageToCard(page, tags).display), true);
   });
 });
