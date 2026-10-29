@@ -16318,8 +16318,8 @@
         "valueType": "boolean",
         "name": "showActionLabel",
         "label": "Show Action Label",
-        "value": false,
-        "description": "On: the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore). Off (default): no call to action; the title is the card's link."
+        "value": true,
+        "description": "On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it."
       }
     ]
   },

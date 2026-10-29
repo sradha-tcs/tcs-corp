@@ -467,14 +467,14 @@ File name:
 list-item-display-desktop.png
 
 Purpose:
-The List Item Display toggles (block-library/list/list-item-display): cards of one Fixed list with Hide Title on, Show Description, Show Image, Show Eyebrow and Show Label turned off one at a time, and Show Action Label (off by default) turned on.
+The List Item Display toggles (block-library/list/list-item-display): cards of one Fixed list with Hide Title on, Show Description, Show Image, Show Eyebrow, Show Label and Show Action Label (on by default) turned off one at a time.
 
 Annotations:
 A = Card with Hide Title on and Show Action Label on (the action label stays visible)
 B = Card with Show Image off (no image area)
 C = Card with Show Eyebrow off (tags in its place)
 D = Statistic card with Show Label off
-E = Card with Show Action Label off, the default (no call to action; the title is the link)
+E = Card with Show Action Label off (no call to action; the title is the link)
 ```
 
 ```text
@@ -710,7 +710,7 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | Show Image | `showImage` | boolean | No | `true` | on / off | Off: no image on this card (neither this item's nor its page's). | false |
 | Show Eyebrow | `showEyebrow` | boolean | No | `true` | on / off | Off: no eyebrow on this card (the tags or content type take its place, as without an eyebrow). | false |
 | Show Label | `showLabel` | boolean | No | `true` | on / off | Off: no Label on this card (statistic cards show the Label above the description). | false |
-| Show Action Label | `showActionLabel` | boolean | No | `false` | on / off | On: the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore). Off (default): no call to action; the title is the card's link. | false |
+| Show Action Label | `showActionLabel` | boolean | No | `true` | on / off | On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it. | false |
 
 <!-- END GENERATED: fields -->
 
@@ -729,7 +729,7 @@ Notes on what the tables above don't show:
 
   A Card style other than Mixed, or a Card colour, forces every card that doesn't set its own. With Mixed and Default for the style each page decides. Lists made before keep their Card style (Image card by default). Card colour paints panel, report and statistic cards; image cards keep their image.
 - **List Item Display toggles** (added 20 October 2026, handover 2.34): they apply to that item's card only, on top of the List's Show options (a List with Show image off shows no images, whatever its items say). Hide Title keeps the title for screen readers and the heading outline and names the card's link; a linked card keeps one visible link (without a call to action the title stays visible). Show Description off hides the description on every card style, also panel, report and statistic cards. Show Eyebrow off: image cards show the tags in its place. Items authored before (without the toggles) show everything but the call to action. Examples: block-library/list/list-item-display.
-- **Call to action** (KB-D-058, KB-D-059, Proposed): each List Item's **Show Action Label** (off by default) decides its own card's call to action, independently of the other items. On, the card shows `p.list-card-action` with the item's Call to action label, else the card style's default (Explore on panels, Download on reports), as the card's one link; off, the action element isn't rendered and the title is the link. Cards from the query index have no List Item: the List's **Show call to action** (29 October 2026, KB-D-059) is in the dialog only while List source is Child pages, Display as teaser is on and Card style is Panel, and shows (On) or hides (Off) Explore on every fetched card (Off: the title is each card's link). For every other source and card style it isn't in the dialog, a value saved before isn't read and those cards keep their call to action (Explore on panels, Download on reports; `ctaToggleApplies`, `blocks/list/list-data.js`). The List's toggle never applies to a List Item's card. The Cards block keeps its own Show call to action (`showsCta`, `utils/card-list-config.js`). List Item rows AEM delivers without their tab cells (19 cells; 13 for rows from before the toggles) are read field by field.
+- **Call to action** (KB-D-058, KB-D-059, KB-D-060, Proposed): each List Item's **Show Action Label** (in its Display tab, on by default since 29 October 2026, KB-D-060: an item never changed shows its call to action) decides its own card's call to action, independently of the other items. On, the card shows `p.list-card-action` with the item's Call to action label, else the card style's default (Explore on panels, Download on reports), as the card's one link; off, the action element isn't rendered and the title is the link. Cards from the query index have no List Item: the List's **Show call to action** (29 October 2026, KB-D-059) is in the dialog only while List source is Child pages, Display as teaser is on and Card style is Panel, and shows (On) or hides (Off) Explore on every fetched card (Off: the title is each card's link). For every other source and card style it isn't in the dialog, a value saved before isn't read and those cards keep their call to action (Explore on panels, Download on reports; `ctaToggleApplies`, `blocks/list/list-data.js`). The List's toggle never applies to a List Item's card. The Cards block keeps its own Show call to action (`showsCta`, `utils/card-list-config.js`). List Item rows AEM delivers without their tab cells (19 cells; 13 for rows from before the toggles) are read field by field.
 - **List heading:** its size, line height and letter spacing are those of its Title Type (H1–H6, `styles/styles.css`); the List keeps only its colour and semibold weight.
 - **Show options of the List:** Show description applies to image cards and link rows (panel, report and statistic cards always show theirs); Show tags also shows the reading time; on image cards an eyebrow takes the place of the tags; at most three tags are shown. Image cards show the date after the content type label (the taxonomy label of the content-type tag, e.g. Blog).
 - **Validation in code:** every value is validated again and invalid values fall back to the default: Child depth 1–10, Maximum search depth 0–10, Maximum items 0 or more (0, empty or invalid: all), columns 1–6, gap 0–120 (px, rendered in rem), items visible 1–8, card width 0 or 120–1200, Initial item index 0–200.
@@ -1245,7 +1245,7 @@ graph LR
 | LIST-QA-04 | Order and limit | Order by Title, Descending, Maximum items 3 | Three cards, Z to A |
 | LIST-QA-05 | Item overrides | List Item Title and Image set | Authored values win, the rest from the page |
 | LIST-QA-06 | Display toggles | Hide Title, Show Image off, Show Action Label off | As described; one visible link per linked card |
-| LIST-QA-06b | Call to action per item | Two List Items: Show Action Label on and off (default) | Only the first card has `p.list-card-action` (Explore / its label); the second's title is its link |
+| LIST-QA-06b | Call to action per item | Fixed list, Card style Panel: three List Items, Show Action Label on, off, and never changed (default) | The first and third cards have `p.list-card-action` (Explore / its label); the second has no action element and no Explore text, its title is its link |
 | LIST-QA-07 | Card styles and colours | Image, Panel, Report, Statistic, Mixed; each Card colour | Precedence table respected |
 | LIST-QA-08 | Feature and rows | First card as feature; Display as teaser off with dividers | Spotlight with author; rows with lines |
 | LIST-QA-09 | Responsive | Each combination of grid / scroll | Layout per breakpoint at 402, 1024, 1440px |

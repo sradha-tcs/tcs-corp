@@ -381,9 +381,9 @@ describe('list item cells', () => {
 });
 
 describe('list item display', () => {
-  it('shows everything but the call to action for an item authored before the Display toggles', () => {
+  it('shows everything for an item authored before the Display toggles or never changed', () => {
     assert.deepEqual(itemDisplay({}), {
-      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: false,
+      titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
     });
   });
   it('turns a Show option off only for an authored "false", Hide Title on only for "true"', () => {
@@ -395,13 +395,23 @@ describe('list item display', () => {
     assert.equal(display.showImage, false);
     assert.equal(display.showEyebrow, true);
     assert.equal(display.showLabel, true);
-    assert.equal(display.showActionLabel, false);
+    assert.equal(display.showActionLabel, true);
   });
-  it('turns Show Action Label on only for an authored "true"', () => {
+  it('turns Show Action Label off only for an authored "false" (on by default)', () => {
     assert.equal(itemDisplay({ showActionLabel: 'true' }).showActionLabel, true);
-    assert.equal(itemDisplay({ showActionLabel: 'TRUE' }).showActionLabel, true);
     assert.equal(itemDisplay({ showActionLabel: 'false' }).showActionLabel, false);
-    assert.equal(itemDisplay({ showActionLabel: '' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: 'FALSE' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: '' }).showActionLabel, true);
+    assert.equal(itemDisplay({}).showActionLabel, true);
+  });
+  it('the List Item model has Show Action Label on by default, in its Display tab', () => {
+    const models = JSON.parse(readFileSync(new URL('../../component-models.json', import.meta.url)));
+    const { fields } = models.find((model) => model.id === 'list-item');
+    const index = fields.findIndex((f) => f.name === 'showActionLabel');
+    assert.equal(fields[index].value, true);
+    assert.equal(fields[index].condition, undefined);
+    const tab = fields.slice(0, index).reverse().find((f) => f.component === 'tab');
+    assert.equal(tab.label, 'Display');
   });
   it('travels with the card of a List Item', () => {
     const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });
@@ -448,19 +458,25 @@ describe('list call to action', () => {
     ].forEach((values) => assert.equal(shown(values), false, JSON.stringify(values)));
     assert.equal(fieldOf('cards').condition, undefined);
   });
-  it('shows a List Item\'s call to action only with its Show Action Label on', () => {
+  it('shows a List Item\'s call to action unless its Show Action Label is off', () => {
     const on = applyOverrides({ title: 'A' }, { showActionLabel: 'true' });
     const off = applyOverrides({ title: 'B' }, { showActionLabel: 'false' });
     const unset = applyOverrides({ title: 'C' }, {});
     assert.equal(showsCta(config(), on.display), true);
     assert.equal(showsCta(config(), off.display), false);
-    assert.equal(showsCta(config(), unset.display), false);
+    assert.equal(showsCta(config(), unset.display), true);
+    // the List's Show call to action (Child pages + Panel only) never overrides an item
+    const listOff = config({
+      source: 'parent', displayasteaser: 'true', cardstyle: 'panel', showcta: 'false',
+    });
+    assert.equal(showsCta(listOff, unset.display), true);
+    assert.equal(showsCta(config({ showcta: 'true' }), off.display), false);
   });
   it('decides per item: one List Item\'s toggle leaves the others unchanged', () => {
     const cards = [{ showActionLabel: 'true' }, {}, { showActionLabel: 'true', titleHidden: 'true' },
       { showActionLabel: 'false', titleHidden: 'true' }]
       .map((item, i) => applyOverrides({ title: `Card ${i}` }, item));
-    assert.deepEqual(cards.map((card) => showsCta(config(), card.display)), [true, false, true, false]);
+    assert.deepEqual(cards.map((card) => showsCta(config(), card.display)), [true, true, true, false]);
   });
   it('cards from the query index (no List Item) follow the List: Child pages + Panel toggle', () => {
     const page = byPath.get('/en/insights/agentic-bank');

@@ -47,12 +47,12 @@ export function itemLayoutFor(count) {
 }
 
 /** the Display toggles that are off unless authored on (the others are on unless authored off) */
-const ITEM_DISPLAY_OFF = ['titleHidden', 'showActionLabel'];
+const ITEM_DISPLAY_OFF = ['titleHidden'];
 
 /**
- * A List Item's Display toggles: the Show options are on unless authored off ("false"); Hide
- * Title and Show Action Label are off unless authored on ("true"), so an item shows its call
- * to action only with its own Show Action Label on.
+ * A List Item's Display toggles: the Show options, Show Action Label too, are on unless authored
+ * off ("false"); Hide Title is off unless authored on ("true"). An item shows its call to action
+ * unless its own Show Action Label is off.
  * @param {Object} item the authored values (titleHidden, showDescription, ...)
  * @returns {{ titleHidden: boolean, showDescription: boolean, showImage: boolean,
  *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean }}
