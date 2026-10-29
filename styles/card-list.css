@@ -25,8 +25,6 @@
   --list-item-size: var(--list-card-width, calc((100cqi - var(--list-bleed) - (var(--list-visible) - 1) * var(--list-gap)) / var(--list-visible)));
 
   /* type scale (Figma 402 frames) */
-  --list-heading-size: 1.75rem;
-  --list-heading-line: 1.39;
   --list-card-title-size: 1.125rem;
   --list-card-title-line: 1.39;
   --list-panel-title-size: 1.75rem;
@@ -65,13 +63,11 @@
   min-width: 0;
 }
 
+/* the heading's size, line height and letter spacing are its level's (H1-H6, styles/styles.css) */
 .card-list .list-title {
   margin: 0;
   color: var(--color-text-default);
-  font-size: var(--list-heading-size);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--list-heading-line);
-  letter-spacing: calc(-0.025 * var(--list-heading-size));
 }
 
 .card-list .list-description {
@@ -799,8 +795,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     --list-gap: var(--list-gap-tablet, 1.5rem);
     --list-visible: var(--list-visible-tablet, 3.3);
     --list-card-width: var(--list-card-width-tablet);
-    --list-heading-size: 2rem;
-    --list-heading-line: 1.4;
     --list-card-title-size: 1.25rem;
     --list-card-title-line: 1.4;
     --list-panel-title-size: 1.5rem;
@@ -921,7 +915,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     --list-gap: var(--list-gap-desktop, 1.5rem);
     --list-visible: var(--list-visible-desktop, 4.2);
     --list-card-width: var(--list-card-width-desktop);
-    --list-heading-size: 2.5rem;
     --list-card-title-size: 1.5rem;
     --list-card-title-line: 1.42;
     --list-panel-title-size: 1.75rem;

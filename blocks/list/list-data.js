@@ -34,25 +34,32 @@ export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'sho
   'showActionLabel'];
 
 /**
- * The layout of a List Item row of `count` cells: the model's, or for a row rendered before the
- * Display toggles were added (ariaLabel its last cell), the layout up to that cell.
+ * The layout of a List Item row of `count` cells: the model's; a row AEM delivers without its
+ * tab cells (a cell per field); or for a row rendered before the Display toggles were added
+ * (ariaLabel its last cell), the layout up to that cell, with or without its tab cells.
  * @param {number} count
  */
 export function itemLayoutFor(count) {
+  if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
+  if (count === ITEM_FIELDS.length - ITEM_DISPLAY.length) return ITEM_FIELDS.slice(0, count);
   const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
   return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
 }
 
+/** the Display toggles that are off unless authored on (the others are on unless authored off) */
+const ITEM_DISPLAY_OFF = ['titleHidden'];
+
 /**
- * A List Item's Display toggles: the Show options are on unless authored off ("false"), Hide
- * Title is off unless authored on; an item without them (authored before) shows everything.
+ * A List Item's Display toggles: the Show options, Show Action Label too, are on unless authored
+ * off ("false"); Hide Title is off unless authored on ("true"). An item shows its call to action
+ * unless its own Show Action Label is off.
  * @param {Object} item the authored values (titleHidden, showDescription, ...)
  * @returns {{ titleHidden: boolean, showDescription: boolean, showImage: boolean,
  *   showEyebrow: boolean, showLabel: boolean, showActionLabel: boolean }}
  */
 export function itemDisplay(item = {}) {
   return Object.fromEntries(ITEM_DISPLAY.map((name) => [name,
-    name === 'titleHidden' ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
+    ITEM_DISPLAY_OFF.includes(name) ? isYes(item[name]) : text(item[name]).toLowerCase() !== 'false']));
 }
 
 export const SOURCES = ['parent', 'fixed', 'tags'];
@@ -86,6 +93,16 @@ export const PAGE_MAPPING = {
 const DEFAULT_IMAGE = /\/default-meta-image\.(png|jpe?g|webp)/i;
 
 /**
+ * Whether the List's Show call to action applies (and is in the dialog, _list.json): Child pages
+ * shown as Panel cards (Display as teaser on, Card style Panel).
+ * @param {Object} config from normalizeConfig()
+ * @returns {boolean}
+ */
+export function ctaToggleApplies(config) {
+  return config.source === 'parent' && !!config.displayAsTeaser && config.cardStyle === 'panel';
+}
+
+/**
  * Normalizes the authored properties (lower-case keys, text values) into the configuration:
  * the List's sources and order, and the shared presentation (utils/card-list-config.js);
  * missing or invalid values get their defaults, so a configuration never breaks rendering.
@@ -96,7 +113,7 @@ export function normalizeConfig(raw = {}) {
   const get = (key) => raw[key];
   const directOnly = flag(get('directchildrenonly'), true);
   const maxItems = integer(get('maxitems'), 0, { min: 0 });
-  return {
+  const config = {
     source: pick(get('source'), SOURCES, 'fixed'),
     // parent
     parentPath: normalizePath(get('parentpath')),
@@ -120,6 +137,11 @@ export function normalizeConfig(raw = {}) {
     showContentLabel: flag(get('showcontentlabel'), true),
     ...normalizePresentation(raw),
   };
+  // Show call to action is in the dialog only for Child pages with Panel cards: elsewhere a value
+  // saved before isn't read and the cards keep their call to action (a List Item's own Show
+  // Action Label always decides for its card: showsCta)
+  if (!ctaToggleApplies(config)) config.showCta = true;
+  return config;
 }
 
 /**

@@ -359,6 +359,7 @@
         }
       }
     ],
+    "cta": [
     "cardsAction": [
       {
         "component": "boolean",
@@ -366,7 +367,9 @@
         "name": "showCta",
         "label": "Show call to action",
         "value": true
-      },
+      }
+    ],
+    "loading": [
       {
         "component": "select",
         "valueType": "string",

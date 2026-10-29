@@ -77,6 +77,10 @@
           "...": "../../models/_card-list.json#/fields/cards"
         },
         {
+          "...": "../../models/_card-list.json#/fields/cta"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/loading"
           "...": "../../models/_card-list.json#/fields/cardsShow"
         },
         {
