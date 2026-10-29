@@ -322,10 +322,21 @@
 
     /* Figma: balanced title lines up to about 32rem (We help brands / turn AI ambition into / ...) */
     --hero-title-max-width: 36rem;
+
+    /* Figma Supporting description: 440px wide, 2.5rem below the title, medium */
+    --hero-description-max-width: 27.5rem;
+    --hero-gap-content: var(--space-1000);
+    --hero-description-weight: var(--font-weight-medium);
   }
 
   .hero .hero-title {
     text-wrap: balance;
+  }
+
+  .hero .hero-description {
+    font-size: 1.5rem;
+    line-height: 1.2083;
+    letter-spacing: 0;
   }
 
   .hero .hero-eyebrow {
@@ -334,9 +345,12 @@
     letter-spacing: calc(0.0125 * 0.875rem);
   }
 
+  /* Figma: 1.5rem between the CTAs (2.5rem above them stays --hero-gap-ctas) */
   .hero .hero-ctas {
     --button-font-size: 0.875rem;
     --button-height: 3rem;
+
+    gap: var(--space-600);
   }
 
   /* Figma draws the 1px border inside the 48px: 11px + 24px arrow + 11px + the border */
