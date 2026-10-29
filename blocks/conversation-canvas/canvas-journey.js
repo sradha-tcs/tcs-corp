@@ -10,6 +10,8 @@
  * - The header Canvas (hosted by the site header, inHeader) belongs to the bottom of the first
  *   screen: its row sits at the dock line at the top of the page and is docked only there; as soon
  *   as scrolling carries it above the line it floats, so it stays at the bottom of the window.
+ *   Below a first section shorter than the window its row starts above the line (on the bottom
+ *   of the section) and, like a section Canvas, keeps that place until it leaves the screen.
  * - Otherwise one Canvas floats (the owner): the Primary (sticky) Canvas if there is one, else the
  *   last target (DOM order) scrolled past the dock line that may float. After each section Canvas
  *   the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it
@@ -126,8 +128,14 @@ export function resolveJourney({
     || (c.index === focused && c.top < vh && c.bottom > 0);
 
   // a row that has arrived stays in place while it's on screen; the header Canvas's only while it
-  // is at the dock line (it floats as soon as it would move up)
-  const inPlace = (c) => (c.inHeader ? c.top >= dockLine(c) - AT_LINE : c.bottom > 0);
+  // is at the dock line (it floats as soon as it would move up), unless the first section is
+  // shorter than the window (tablet Home hero): its row starts above the line, on the bottom of
+  // the section, and keeps that place until it leaves the screen, so it never floats over the
+  // next section at the top of the page
+  const inPlace = (c) => {
+    if (!c.inHeader || c.top + scrollY < dockLine(c) - AT_LINE) return c.bottom > 0;
+    return c.top >= dockLine(c) - AT_LINE;
+  };
 
   // the journey ends at the footer Canvas: nothing floats below it
   const footer = targets.find((c) => c.role === ROLES.FOOTER);

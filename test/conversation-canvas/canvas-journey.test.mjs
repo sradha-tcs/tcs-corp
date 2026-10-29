@@ -277,10 +277,42 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(site(0).state, STATES.INITIAL);
   });
 
-  it('a hero shorter than the window: the row is above the dock line and floats from the start', () => {
-    const short = bottomOf([header(LINE - 26), slot(3000), slot(6000)]);
-    assert.equal(short(0).state, STATES.FLOATING);
-    assert.equal(short(0).owner, 0);
+  describe('a first section shorter than the window (tablet Home hero)', () => {
+    // the row on the bottom of a 762px hero: 762 - 52 - 72 = 638px, above the 876px dock line
+    const TOP = 638;
+    const short = bottomOf([header(TOP), slot(3000), slot(6000)]);
+
+    it('INITIAL at the top of the page: docked on the bottom of the section, nothing floats', () => {
+      const r = short(0);
+      assert.equal(r.state, STATES.INITIAL);
+      assert.equal(r.docked, 0);
+      assert.equal(r.owner, -1);
+    });
+
+    it('keeps its place while it scrolls up with the page, then floats once it has left', () => {
+      assert.equal(short(300).state, STATES.INITIAL);
+      assert.equal(short(TOP + ROW - 1).docked, 0, 'still on screen by 1px');
+      const r = short(TOP + ROW + 1);
+      assert.equal(r.state, STATES.FLOATING);
+      assert.equal(r.owner, 0);
+      assert.equal(r.docked, -1);
+    });
+
+    it('then the journey as before, with allowed transitions both ways', () => {
+      assert.equal(short(3000 - LINE).state, STATES.SECTION_DOCKED);
+      assert.equal(short(6000 - LINE).state, STATES.FOOTER_DOCKED);
+      const { states, bad } = walk(short);
+      assert.deepEqual(bad, []);
+      assert.equal(states[0], STATES.INITIAL);
+      assert.equal(states.at(-1), STATES.INITIAL);
+    });
+
+    it('at most one Canvas floats, never while one is docked', () => {
+      for (let y = 0; y <= MAX; y += 25) {
+        const r = short(y);
+        assert.ok(r.owner === -1 || r.docked === -1, `owner and docked at ${y}`);
+      }
+    });
   });
 
   it('then section docking, floating after it and the footer stop as before, both directions', () => {
