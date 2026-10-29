@@ -1,6 +1,6 @@
 # Teaser
 
-The Teaser is the site's most versatile single-message block. It combines a title with an optional eyebrow, tags, date, reading time, listen / download / share actions, author, description, image or Lottie animation, stats, links and a short description, in one of four layouts: Image & Text, Text split, Background image and Card. It implements the TCS.com Design System Figma frames "Text & Image", "2 Slot Section", "Text Section - 2 Columns", "Secondary Page Header", "Careers", "Media Coverage" and "Media Kit", plus the article header elements of "L3 Header". It is a key-value block: Links and Stats are Link and Stat items added to it with Add, and `blocks/teaser/teaser.js` rebuilds the rows into a media part and a content part.
+The Teaser is the site's most versatile single-message block. It combines a title with an optional eyebrow, tags, date, reading time, listen / download / share actions, author, description, image or Lottie animation, stats, links and a short description, in one of five layouts: Image & Text, Text split, Background image, Card and Image collage. It implements the TCS.com Design System Figma frames "Text & Image", "2 Slot Section", "Text Section - 2 Columns", "Secondary Page Header", "Careers", "Media Coverage" and "Media Kit", plus the article header elements of "L3 Header". It is a key-value block: Links, Stats and collage images are Link, Stat and Collage image items added to it with Add, and `blocks/teaser/teaser.js` rebuilds the rows into a media part and a content part.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -19,6 +19,7 @@ The Teaser is the site's most versatile single-message block. It combines a titl
   - **Text split:** the eyebrow, tags and article meta across the top; the title and author on the left; the description, an optional image (for example a chart), stats, links and short description on the right (from 900px).
   - **Background image:** centred text over the image under a dark overlay.
   - **Card:** a rounded card with the image behind its text and the links at the bottom.
+  - **Image collage:** centred text on a dark background, surrounded by up to nine floating Collage image items (black and white by default).
 - **Templates / page types:** any page. Teasers are also the slides of a Gen Carousel section (block library `block-library/gen-carousel/teaser-slides`).
 - **Data source:** authored fields and items. Tag labels come from the locale's taxonomy (`/{locale}/taxonomy.json`) and UI labels from its placeholders. The block reads no page metadata or query index.
 - **Related blocks:** Hero (`blocks/hero`, the full-height opening banner, which shares the Lotto image type); Page Header (`blocks/page-header`, metadata-driven article header, which shares `decorators/article-meta-decorator.js`); Testimonial (shares `decorators/stats-decorator.js`); [Cards](../cards/README.md) and [List](../list/README.md) for collections (their "Display as teaser" is a card presentation, class `display-teaser`, not this block); [Columns Container](../columns-container/README.md).
@@ -351,9 +352,10 @@ B = BG Color
 C = Text alignment
 D = Vertical alignment
 E = Title weight
-F = Description size
-G = Eyebrow style
-H = Top spacing
+F = Title color
+G = Description size
+H = Eyebrow Style
+I = Top spacing
 ```
 
 ```text
@@ -392,6 +394,8 @@ A = CTA Link
 B = CTA Title
 C = CTA Link Type
 D = CTA Link Style
+E = Button background
+F = Button shape
 ```
 
 ```text
@@ -408,9 +412,24 @@ A = Stats Title
 B = Stats Value
 ```
 
+```text
+[Screenshot Placeholder]
+
+File name:
+teaser-collage-image-dialog-collage-image-desktop.png
+
+Purpose:
+The Collage image tab of the Collage image properties in Universal Editor, with the fields of the table "Collage image tab — Collage image" in Authorable Fields below.
+
+Annotations:
+A = Image
+B = Image alt text
+C = Image treatment
+```
+
 <!-- END GENERATED: screenshots -->
 
-The handover screenshots were taken with the code of handover 2.31. Since 2.32: Title Type sets the title size (the "Title size" screenshots show a field that no longer exists); BG Color no longer adds padding; Image position has Top and Bottom, and Left / Right apply from 600px; Buttons side by side and List arrow None exist. The properties panel screenshot shows the six tabs used before handover 2.8; the dialog now has Content, Style and Additional. The states below have no screenshot yet.
+The handover screenshots were taken with the code of handover 2.31. Since 2.32: Title Type sets the title size (the "Title size" screenshots show a field that no longer exists); BG Color no longer adds padding; Image position has Top and Bottom, and Left / Right apply from 600px; Buttons side by side and List arrow None exist. Since 2.41, CTA Link Style also offers Primary Button (no arrow), retaining the primary button dimensions with a navy background. The properties panel screenshot shows the six tabs used before handover 2.8; the dialog now has Content, Style and Additional. The states below have no screenshot yet.
 
 ```text
 [Screenshot Placeholder]
@@ -576,7 +595,7 @@ Minimum content: a Title, or any other content part. Recommended: Eyebrow, Title
 
 ### Teaser (`teaser`)
 
-Model `teaser`; template name "Teaser" (the block class AEM renders); key-value block (one row per property); children: `teaser-link`, `teaser-stat`.
+Model `teaser`; template name "Teaser" (the block class AEM renders); key-value block (one row per property); children: `teaser-link`, `teaser-stat`, `teaser-collage-image`.
 
 Stored on a new component (definition template): `titleType` = `"h2"`, `imagePosition` = `"left"`, `showEyebrow` = `true`, `showDescription` = `true`, `dateFormat` = `"dd-mm-yyyy"`, `primaryCtaStyle` = `"primary"`, `secondaryCtaStyle` = `"secondary"`.
 
@@ -600,7 +619,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Date label | `dateLabel` | text | No | — | — | Shown before the date, e.g. Published. Shown when `showDate` is `true`. | Published |
 | Reading time | `readingTime` | text | No | — | — | Minutes (e.g. 14, shown as "14 min read") or any text. | 14 |
 | Display Tags | `displayTags` | boolean | No | `false` | on / off | — | true |
-| Tags | `tags` | aem-tag (multiple) | No | — | — | Shown when `displayTags` is `true`. | — |
+| Tags | `tags` | aem-tag | No | — | — | Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled. | — |
 | Listen link | `listenLink` | aem-content | No | — | — | An audio version of the page: shows the listen icon. | — |
 | Download | `download` | boolean | No | `false` | on / off | Shows the download icon (prints the page or saves it as PDF). | true |
 | Share | `socialShare` | boolean | No | `false` | on / off | Shows the share icon (share dialog, or the link copied). | true |
@@ -608,7 +627,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Author designation | `authorDesignation` | text | No | — | — | e.g. TCS Role. | Head of AI Research |
 | Author image | `authorImage` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/avatar-sample-1.svg |
 | Author image alt text | `authorImageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `authorImage` (field collapse). | Anita Rao |
-| Image type | `imageFormat` | select | No | "" | Default (""), Lotto (`lottie`) | Default: the Image is a picture. Lotto: the Image is a Lottie animation file (.json). | lottie |
+| Image type | `imageFormat` | select | No | "" | Default (""), Lottie (`lottie`) | Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json). | lottie |
 | Image | `image` | reference | No | — | — | Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text. | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
 | Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `image` (field collapse). | Consultants planning a transformation roadmap |
 | Hide Image | `hideImage` | boolean | No | `false` | on / off | — | true |
@@ -621,16 +640,22 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Links (authored before Link items) › CTA Title | `ctaText` | text | No | — | — | — | — |
 | Links (authored before Link items) › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | Links (authored before Link items) › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
-| Links (authored before Link items) › CTA Link Style | `ctaStyle` | select | No | "" | Text link (""), List (`list`), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| Links (authored before Link items) › CTA Link Style | `ctaStyle` | select | No | "" | Text link (""), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | — | — |
+| Links (authored before Link items) › CTA Background | `ctaBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the background of this CTA button. Blue uses rgb(33 106 195). | — |
+| Links (authored before Link items) › CTA Shape | `ctaShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Sets this CTA button's shape. Rectangle uses the grey-200 border. | — |
 | List arrow | `linkArrow` | select | No | "" | Right (""), Down right (`arrow-down-right`), None (`arrow-none`) | Right: the default arrows. Down right: the arrow of every link (List links, buttons, Text links) points down and right. None: List links without an arrow (buttons and Text links keep theirs). Links opening a new tab keep their own arrow. | arrow-down-right |
 | Primary CTA Title | `primaryCtaText` | text | No | — | — | Shown when `multiLinks` is off or empty. Delivered with `primaryCta` (field collapse). | Read the outlook |
 | Primary CTA Link | `primaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-master/en/dummy-pages/contact |
 | Primary CTA Link Type | `primaryCtaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | Shown when `multiLinks` is off or empty. | — |
-| Primary CTA Link Style | `primaryCtaStyle` | select | No | `primary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Secondary Button (`secondary`) | Shown when `multiLinks` is off or empty. | secondary |
+| Primary CTA Link Style | `primaryCtaStyle` | select | No | `primary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | Shown when `multiLinks` is off or empty. | secondary |
+| Primary CTA Background | `primaryCtaBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the Primary CTA button background. Blue uses rgb(33 106 195). Shown when `multiLinks` is off or empty. | — |
+| Primary CTA Shape | `primaryCtaShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Sets the Primary CTA shape. Rectangle uses the grey-200 border. Shown when `multiLinks` is off or empty. | — |
 | Secondary CTA Title | `secondaryCtaText` | text | No | — | — | Shown when `multiLinks` is off or empty. Delivered with `secondaryCta` (field collapse). | Explore cloud services |
 | Secondary CTA Link | `secondaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-master/en/dummy-pages/services/cloud |
 | Secondary CTA Link Type | `secondaryCtaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | Shown when `multiLinks` is off or empty. | — |
-| Secondary CTA Link Style | `secondaryCtaStyle` | select | No | `secondary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Secondary Button (`secondary`) | Shown when `multiLinks` is off or empty. | list |
+| Secondary CTA Link Style | `secondaryCtaStyle` | select | No | `secondary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | Shown when `multiLinks` is off or empty. | list |
+| Secondary CTA Background | `secondaryCtaBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the Secondary CTA button background. Blue uses rgb(33 106 195). Shown when `multiLinks` is off or empty. | — |
+| Secondary CTA Shape | `secondaryCtaShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Sets the Secondary CTA shape. Rectangle uses the grey-200 border. Shown when `multiLinks` is off or empty. | — |
 | Buttons side by side | `buttonsSideBySide` | boolean | No | `false` | on / off | On: the CTAs and links in a row (wrapping when there is no room). Off: one below the other. List links always fill the width. | true |
 | Stats (authored before Stat items) | `stats` | container (multiple) | No | — | — | Kept for teasers authored before; add items with Add instead. | — |
 | Stats (authored before Stat items) › Stats Title | `statLabel` | richtext | No | "" | — | — | — |
@@ -640,13 +665,14 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Layout | `classes` | select | No | "" | Image & Text (""), Text split (title left, text right) (`no-image`), Background image (`background`), Card (`card`) | Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text. | no-image |
-| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Dark (`dark`), Dark green (`dark-green`) | Only the background colour; set the space around the content with the Padding fields of the Additional tab. | grey |
-| Text alignment | `textAlignment` | select | No | "" | Layout default (""), Left (`text-left`), Center (`text-center`), Right (`text-right`) | Layout default: left, centered for Background image and when Image & Text has no image. | text-left |
+| Layout | `classes` | select | No | "" | Image & Text (""), Text split (title left, text right) (`no-image`), Background image (`background`), Card (`card`), Image collage (`image-collage`) | Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text. | no-image |
+| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Dark (`dark`), Dark green (`dark-green`), Navy (`navy`) | Only the background colour; set the space around the content with the Padding fields of the Additional tab. | grey |
+| Text alignment | `textAlignment` | select | No | "" | Layout default (""), Left (`text-left`), Center (`text-center`), Right (`text-right`), Justify (`text-justify`) | Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced. | text-left |
 | Vertical alignment | `verticalAlignment` | select | No | "" | Layout default (""), Top (`valign-top`), Center (`valign-middle`), Bottom (`valign-bottom`) | How the text and the image (or the two text columns) line up. Layout default: center, top for Text split. | valign-top |
 | Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | title-regular |
+| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
 | Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
-| Eyebrow style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`) | — | eyebrow-label |
+| Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
 | Top spacing | `topSpacing` | select | No | "" | Default (""), Page header (extra space above) (`spacing-header`) | Page header: the larger space above a teaser that opens a page. | spacing-header |
 
 #### Additional tab — Teaser
@@ -679,7 +705,9 @@ Model `teaser-link`; template name "Link" (the block class AEM renders).
 | CTA Link | `link` | aem-content | Yes | — | — | — | — |
 | CTA Title | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | — |
 | CTA Link Type | `linkTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
-| CTA Link Style | `linkStyle` | select | No | "" | Text link (""), List (`list`), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| CTA Link Style | `linkStyle` | select | No | "" | Text link (""), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | — | — |
+| Button background | `buttonBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the background colour of Primary and Secondary CTA buttons. Translucent white uses a 15% white background and is intended for dark or image backgrounds. Text links and List links are not affected. | — |
+| Button shape | `buttonShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Style default uses the button system's existing shape. Rectangle removes the pill shape and uses the grey-200 border. | — |
 
 ### Stat (`teaser-stat`)
 
@@ -692,19 +720,34 @@ Model `teaser-stat`; template name "Stat" (the block class AEM renders).
 | Stats Title | `statLabel` | richtext | No | "" | — | — | — |
 | Stats Value | `statValue` | richtext | No | "" | — | A single line, e.g. 40%. | — |
 
+### Collage image (`teaser-collage-image`)
+
+Model `teaser-collage-image`; template name "Collage image" (the block class AEM renders).
+
+#### Collage image tab — Collage image
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Image | `image` | reference | Yes | — | — | — | — |
+| Image alt text | `imageAlt` | text | No | — | — | Leave empty when the collage image is decorative. Delivered with `image` (field collapse). | — |
+| Image treatment | `imageTreatment` | select | No | `black-white` | Black and white (`black-white`), Normal (`normal`) | — | — |
+
 <!-- END GENERATED: fields -->
 
 What the tables don't show:
 
 - **Title Type:** the heading level (H1–H6) and the size together: 64 / 48 / 40 / 28 / 24 / 20px from 900px, and 40 / 32 / 28 / 24 / 18 / 16px below (the global tokens in `styles/styles.css`). Without a Title Type, the title uses a heading level found in the authored title, else H2. **Hide Title** keeps the heading for screen readers (`hideVisually`); it is still the data layer's `dc:title`.
 - **Show Eyebrow / Show Description:** on unless explicitly off (`isOnByDefault`). The other toggles (Show Date, Display Tags, Download, Share, Hide Image, Multiple links, Buttons side by side) are off unless set to on.
-- **Layout (`classes`):** `no-image` (Text split), `background`, `card`, or empty (Image & Text). The value is read from the row, else from a block class.
+- **Layout (`classes`):** `no-image` (Text split), `background`, `card`, `image-collage`, or empty (Image & Text). The value is read from the row, else from a block class.
+- **Image collage:** the Teaser's own Image is not shown; the images are Collage image items (`teaser-collage-image`, added with Add). AEM delivers each one as a row of three cells: the empty tab cell, the image (its Image alt text collapsed into the `<img>`) and the Image treatment (`COLLAGE_LAYOUT` in `teaser.js`). On the page, a Collage image item is the item row with a picture and no link, or, without an image, an empty image cell and an Image treatment value (a Stat item has neither). The first nine items with an image are used. In Universal Editor the collage images can be selected, and the items not shown are dashed placeholders below the text: without an image (or beyond nine) with `itemEditorHint`; with another Layout with the placeholder `collageEditorHint` ("Shown with Layout Image collage."). Black and white (default) sets `image-black-white`, Normal sets `image-normal`. The collage is decorative (`aria-hidden`). All nine positions are used at every width; below 900px the same composition is cropped at the sides (see Variations › Image collage).
+- **Title color:** Style default, Dark, White or Light blue (`title-light-blue`).
 - **Image:** with Hide Image on or no image, there is no media. With Image type Lotto and a `.json` link, the block plays a Lottie animation with a pause / play button. Its accessible name is Image alt text, else the delivered link text (`animationLabel`); without either it is decorative. Behind the text (Background image, Card), the animation fills its box like a cover image. With Lotto but a picture, the picture is shown.
 - **Image position:** Left (default), Right, Top or Bottom, for Image & Text with media. It sets `image-right`, `image-top` or `image-bottom` and `teaser-has-media`. A legacy `image-*` block class is read too.
 - **Image position (mobile):** below 600px (Image & Text) or 900px (Text split). Default keeps the image above (Left / Right) or in the text order (Text split).
 - **Image ratio:** Default 10:9 (16:9 above / below the text; Text split shows the image whole), 8:9, 1:1, Original (pictures only). **Image corners:** Rounded (1rem radius token `--radius-l`) or Square.
-- **Links:** Primary CTA and Secondary CTA (Multiple links off) fall back to Primary and Secondary Button when their style row is missing; Text link is stored as `tertiary`. A Link item without a style is a Text link. List links render as divided full-width rows; consecutive List links share one list. Links set to Open in New Window get `target="_blank"`, `rel="noopener noreferrer"` and the hidden text from the placeholder `opensInNewTab`; List rows that open a new window show an up-right arrow. View All is always a Primary button in the title row, opening in the same window.
-- **List arrow:** Down right turns the arrows of List links, buttons and Text links (not of new-window links). None removes the arrows of List links only.
+- **Links:** Primary CTA and Secondary CTA (Multiple links off) fall back to Primary and Secondary Button when their style row is missing; Text link is stored as `tertiary`. A Link item without a style is a Text link. Primary Button (no arrow) keeps the Primary Button dimensions and uses `rgba(1, 22, 39, 1)` as its background, with no visible arrow. A Link item can select this style too. List links render as divided full-width rows; consecutive List links share one list. Links set to Open in New Window get `target="_blank"`, `rel="noopener noreferrer"` and the hidden text from the placeholder `opensInNewTab`; List rows that open a new window show an up-right arrow. View All is always a Primary button in the title row, opening in the same window.
+- **List arrow:** Down right turns the arrows of List links, buttons and Text links (not of new-window links). None removes the arrows of List links only. Primary Button (no arrow) hides its arrow independently of List arrow.
+- **CTA alignment:** Left, Center and Right alignment use the same full content-width CTA container; the no-arrow style preserves the regular Primary Button's width and height.
 - **Date:** shown with Show Date on and a Date, in its Date Format (default DD-MM-YYYY) as a `<time>` element, after the Date label. **Reading time:** a number becomes "{n} min read" (placeholder `minRead`); other text is shown as typed.
 - **Listen link / Download / Share:** icon buttons with names from placeholders (`listenToThisPage`, `downloadThisPage`, `shareThisPage`). Download prints the page (`window.print()`). Share opens the Web Share dialog, else copies the URL and shows `linkCopied` for 3 seconds.
 - **Tags:** labels from `/{locale}/taxonomy.json`, else derived from the tag ID. They are display only.
@@ -992,6 +1035,12 @@ A = Header
 B = Links at the bottom
 ```
 
+### Image collage
+
+- **Purpose:** a statement section framed by a collage of images. **Configuration:** Layout Image collage (`image-collage`) and up to nine Collage image items (Image, Image alt text, Image treatment).
+- **Rendering:** centred text (title 3rem semibold, description 1.125rem in `#9e9fa3`, a Figma value with no site token: `--teaser-collage-text-color`) on a dark background (`--black-1000` with a soft radial highlight), with pill buttons (white outline and text on `--black-800`). The images are placed absolutely around the text (1.5rem corners), floating 0.5rem up and down (`teaser-collage-zig` / `teaser-collage-zag`, 7s / 8s, endless). From 900px the block is 64rem high (the Figma 1440 × 1024 frame) and each image has its own Figma position, size and opacity (40–100%), partly outside the block. Below 900px the block is 64rem high too, the title 2rem, and the images keep their positions in a fixed 64rem × 64rem composition (Figma 1024 × 1024) centred and cropped at the sides: at 375px images 1, 4, 5 and 8 are in view, at 768px seven of the nine, none over the text. Below 900px the buttons are compact (0.75rem text on one line, 3.125rem high) and the text column is full width; with Buttons side by side they share a row while their labels fit and otherwise wrap, each on a full-width row, so no label is cut off (e.g. "Explore" / "Contact us" side by side down to 320px, longer labels stacked at 375px and side by side at 768px).
+- **Accessibility:** the images are decorative (`aria-hidden`). The floating stops with reduced motion (`prefers-reduced-motion`), but there is no pause / play button yet (WCAG 2.2.2, see AGENTS.md "Accessibility").
+
 ### Image type Lotto (Lottie animation)
 
 - **Purpose:** an animated illustration. **Configuration:** Image type Lotto and a Lottie `.json` from AEM Assets (published).
@@ -1035,8 +1084,8 @@ C = Buttons
 
 ### Link styles and arrows
 
-- **Purpose:** buttons, text links or a list of links. **Configuration:** CTA Link Style (Text link, List, Primary Button, Secondary Button); List arrow (Right, Down right, None); Buttons side by side.
-- **Rendering:** Text link is a tertiary button with an arrow. List is a full-width row with a divider (except the last) and an arrow (an up-right arrow when it opens a new window). Primary / Secondary are buttons. Buttons side by side puts them in a wrapping row that follows the text alignment; List rows keep the full width.
+- **Purpose:** buttons, text links or a list of links. **Configuration:** CTA Link Style (Text link, List, Primary Button, Primary Button (no arrow), Secondary Button); List arrow (Right, Down right, None); Buttons side by side.
+- **Rendering:** Text link is a tertiary button with an arrow. List is a full-width row with a divider (except the last) and an arrow (an up-right arrow when it opens a new window). Primary / Secondary are buttons. Primary Button (no arrow) uses the primary fill `rgba(1, 22, 39, 1)` and hides its arrow without changing button dimensions. Buttons side by side puts them in a wrapping row that follows the text alignment; left, center and right share the same full content-width CTA container; List rows keep the full width.
 - **Accessibility:** List links are in a `<ul>`. A new-window link carries a hidden "(opens in a new tab)" (placeholder `opensInNewTab`). **Data layer:** each click is `cmp:click`, `interaction` `link`.
 
 ```text
@@ -1225,7 +1274,7 @@ blocks/teaser/
 | [`decorators/link-decorator.js`](../../decorators/link-decorator.js) | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | `teaser.js`: { announceNewTab, setLinkTarget } |
 | [`decorators/stats-decorator.js`](../../decorators/stats-decorator.js) | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | `teaser.js`: { buildStats } |
 | [`decorators/tag-decorator.js`](../../decorators/tag-decorator.js) | `buildTagList` | `teaser.js`: { buildTagList } |
-| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `teaser.js`: { KEY_VALUE_ITEM, itemRows } |
+| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `teaser.js`: { KEY_VALUE_ITEM, itemRows, withoutTabCells } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `teaser.js`: { NEW_WINDOW, linkOf, readLinkItems, readLinkRows, } |
 | [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | `teaser.js`: { animationLabel, isAnimation } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `teaser.js`: { getPlaceholders } |
@@ -1376,6 +1425,7 @@ graph LR
 | TEASER-QA-24 | Data layer | Click CTA, Download, Share, animation toggle | `cmp:click` with `link`, `download`, `share`, `animation` |
 | TEASER-QA-25 | Dark Section | Grey Teaser inside a Section with Style Dark | Dark text on grey (theme contract reset) |
 | TEASER-QA-26 | Existing content | Teasers authored before 2.32 (Title size, `image-right` class) | Title follows its Title Type; the image on the right |
+| TEASER-QA-27 | CTA without arrow | Primary Button (no arrow), Left / Center / Right alignment | Navy primary button, no visible arrow, unchanged button dimensions and shared content width |
 
 ## Troubleshooting
 
@@ -1454,3 +1504,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.32 | Title Type sets level and size (Title size removed); Image position Top / Bottom, Left / Right from 600px; BG Color only the colour; Buttons side by side; List arrow Down right on every link (F-103) | docs/handover revision history | 20 October 2026 |
 | Handover 2.34 | List arrow None; a Grey Teaser inside dark Sections and Columns Containers resets the text tokens (F-105) | docs/handover revision history | 20 October 2026 |
 | Handover 2.35 | Packages 1.0.12 and 1.0.13 with the Teaser options verified on aem.live | docs/handover revision history | 20 October 2026 |
+| Handover 2.41 | Primary Button (no arrow) CTA style with navy fill and shared alignment content width | Repository change | 22 October 2026 |

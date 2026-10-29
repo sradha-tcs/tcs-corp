@@ -680,7 +680,6 @@
                   "showDescription": true,
                   "showDate": true,
                   "dateFormat": "dd-mmm-yy",
-                  "showCta": true,
                   "imageLoading": "lazy",
                   "desktopMode": "grid",
                   "desktopColumns": 4,
@@ -1151,6 +1150,21 @@
                 "template": {
                   "name": "Stat",
                   "model": "teaser-stat"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Collage image",
+          "id": "teaser-collage-image",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Collage image",
+                  "model": "teaser-collage-image"
                 }
               }
             }

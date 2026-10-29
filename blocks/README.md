@@ -39,7 +39,7 @@ The project-wide rules, architecture and standards are in the [project knowledge
 | [Interactive Dashboard](./interactive-dashboard/README.md) (`interactive-dashboard`) | Independent | Reserved for a future dashboard; renders nothing on the site | — | Yes | Experimental (placeholder) | [README](./interactive-dashboard/README.md) |
 | [List](./list/README.md) (`list`) | Container | Child pages, a fixed list or tagged pages from the query index, as cards or links | Sources, card styles, layout per breakpoint, rows | Yes | Active | [README](./list/README.md) |
 | [Media Contacts](./media-contacts/README.md) (`media-contacts`) | Independent | The media contacts of the locale's Media Contacts sheet, grouped by designation and region | Title and Title Type; contacts of the page's region, else all | Yes | Active | [README](./media-contacts/README.md) |
-| [Modal](./modal/README.md) (`modal`) | Independent | Opens a page's content in a dialog (button or auto-linked /modals/ links) | Trigger button; auto-linked | Yes | Active | [README](./modal/README.md) |
+| [Modal](./modal/README.md) (`modal`) | Independent | Opens a page's content in a dialog (button or auto-linked /modal/ links) | Trigger button; auto-linked | Yes | Active | [README](./modal/README.md) |
 | [Page Header](./page-header/README.md) (`page-header`) | Container | The title area of a page from its metadata (title, description, tags, author, dates) | Layouts by page type | Yes | Active | [README](./page-header/README.md) |
 | [Quote](./quote/README.md) (`quote`) | Independent | A quotation with author, optional image and title | Image position, BG Color | Yes | Active | [README](./quote/README.md) |
 | [Separator](./separator/README.md) (`separator`) | Independent | A divider line between content | Variants, widths per breakpoint, theme, motion | Yes | Active | [README](./separator/README.md) |
@@ -92,7 +92,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Conversation Canvas](./conversation-canvas/README.md) (`conversation-canvas`) | `conversation-canvas` | Conversation Canvas Button (`conversation-canvas-button`) |
 | [Filter List](./filter-list/README.md) (`filter-list`) | `filter-list` | Filter Tag (`filter-list-tag`), Filter Category (`filter-list-category`), Filter Page (`filter-list-page`) |
 | [Footer](./footer/README.md) (`footer`) | `footer` | Footer Link (`footer-link`) |
-| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
+| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Combined Input Field (`field-combined`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
 | [Gen Carousel](./gen-carousel/README.md) (`gen-carousel`) | `gen-carousel` | [Hero](./hero/README.md) (`hero`), [Teaser](./teaser/README.md) (`teaser`) |
 | [Hero](./hero/README.md) (`hero`) | `hero` | CTA (`hero-cta`) |
 | [List](./list/README.md) (`list`) | `list` | List Item (`list-item`) |
@@ -101,7 +101,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Table List](./table-list/README.md) (`table-list`) | `table-list` | Table List Item (`table-list-card`) |
 | [Tabs Container](./tabs/README.md) (`tabs`) | `tabs` | [Tab](./tab/README.md) (`tab`), [Column Break](./column-break/README.md) (`column-break`), Text (`text`), Image (`image`), [Button](./button-block/README.md) (`button-block`), Title (`title`), [Hero](./hero/README.md) (`hero`), [Teaser](./teaser/README.md) (`teaser`), [Quote](./quote/README.md) (`quote`), [Media Contacts](./media-contacts/README.md) (`media-contacts`), [Testimonial](./testimonial/README.md) (`testimonial`), [Anchor List](./anchor-list/README.md) (`anchor-list`), [Accordion](./accordion/README.md) (`accordion`), [Table](./table/README.md) (`table`), [Table List](./table-list/README.md) (`table-list`), [List](./list/README.md) (`list`), [Separator](./separator/README.md) (`separator`), [Embed](./embed/README.md) (`embed`), [Video](./video/README.md) (`video`), [Modal](./modal/README.md) (`modal`), [Form Variations](./form-variations/README.md) (`form-variations`), [Filter List](./filter-list/README.md) (`filter-list`), [Cards](./cards/README.md) (`cards`), [Fragment](./fragment/README.md) (`fragment`), Tabs (`tabs-block`) |
 | [Tabs](./tabs/README.md) (`tabs-block`) | `tabs-block` | Tab (`tabs-item`) |
-| [Teaser](./teaser/README.md) (`teaser`) | `teaser` | Link (`teaser-link`), Stat (`teaser-stat`) |
+| [Teaser](./teaser/README.md) (`teaser`) | `teaser` | Link (`teaser-link`), Stat (`teaser-stat`), Collage image (`teaser-collage-image`) |
 | [Testimonial](./testimonial/README.md) (`testimonial`) | `testimonial` | Stat (`testimonial-stat`) |
 
 <!-- END GENERATED: relationships -->

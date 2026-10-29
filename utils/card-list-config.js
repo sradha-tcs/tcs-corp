@@ -77,6 +77,22 @@ export function contentTypeLabel(contentType, tagIds = [], labels = new Map()) {
   return labels.get(tag) || `${words.charAt(0).toUpperCase()}${words.slice(1)}`;
 }
 
+/** whether a tag ID is a content type tag (…:content-type/case-study) */
+export const isContentTypeTag = (id) => /(^|[:/])content-type\//.test(text(id));
+
+/**
+ * The tag labels a card shows, at most `max`: without its content type tags when the content
+ * type is hidden (Show content type off), so the next tags take their place.
+ * @param {{ tags: string[], tagIds?: string[] }} card labels in the order of their IDs
+ * @param {{ contentType?: boolean, max?: number }} [options]
+ * @returns {string[]}
+ */
+export function visibleTags(card, { contentType = true, max = Infinity } = {}) {
+  const tags = (card.tags || [])
+    .filter((_, i) => contentType || !isContentTypeTag(card.tagIds?.[i]));
+  return tags.slice(0, max);
+}
+
 export const normalizePath = (path) => text(path).replace(/[?#].*$/, '').replace(/\.html$/, '')
   .replace(/(.)\/$/, '$1');
 
@@ -153,6 +169,18 @@ export function kindOf(card, cardStyle) {
  */
 export function themeOf(card, cardTheme) {
   return [card.theme, cardTheme, card.pageTheme].find((theme) => CARD_THEMES.includes(theme)) || '';
+}
+
+/**
+ * Whether a card shows its call to action: a List Item's own Show Action Label (the List's Show
+ * call to action never applies to it), else the configuration's Show call to action (Cards; the
+ * List's applies to Child pages with Panel cards only, on for its other cards: ctaToggleApplies).
+ * @param {Object} config the normalized presentation
+ * @param {{ showActionLabel?: boolean }} [display] the card's own Display toggles
+ * @returns {boolean}
+ */
+export function showsCta(config, display = {}) {
+  return typeof display.showActionLabel === 'boolean' ? display.showActionLabel : !!config.showCta;
 }
 
 /**
