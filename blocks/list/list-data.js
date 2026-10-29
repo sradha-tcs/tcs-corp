@@ -34,11 +34,16 @@ export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'sho
   'showActionLabel'];
 
 /**
- * The layout of a List Item row of `count` cells: the model's, or for a row rendered before the
- * Display toggles were added (ariaLabel its last cell), the layout up to that cell.
+ * The layout of a List Item row of `count` cells: the model's; a row AEM delivers without its
+ * tab cells (a cell per field: 19, its last cell Show Action Label); or for a row rendered
+ * before the Display toggles were added (ariaLabel its last cell), the layout up to that cell,
+ * with (16) or without (13) its tab cells. A 19-cell row read as an older one would lose its
+ * last three toggles (Show Eyebrow, Show Label, Show Action Label: an authored Off read as On).
  * @param {number} count
  */
 export function itemLayoutFor(count) {
+  if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
+  if (count === ITEM_FIELDS.length - ITEM_DISPLAY.length) return ITEM_FIELDS.slice(0, count);
   const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
   return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
 }

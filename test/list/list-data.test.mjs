@@ -354,6 +354,42 @@ describe('list item cells', () => {
     assert.equal(cells.titleHidden, undefined);
     assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
   });
+  // the pipeline of list.js: the row's layout by its number of cells, then its fields
+  const read = (row) => {
+    const layout = itemLayoutFor(row.length);
+    return matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+  };
+  it('reads a row AEM delivers without its tab cells (19 cells): every Display toggle', () => {
+    // as delivered on aem.page (curated-design-pages/home, Transformation themes): a Panel with
+    // Card colour Image background, no Call to action label, Show Action Label off
+    const row = [cell('/en/a', { link: '/en/a' }), cell(), cell('The foundation for what comes next'),
+      cell('Modern cloud platforms'), cell('', { image: true }), cell('Cloud modernisation'), cell(), cell(),
+      cell(), cell('panel'), cell('image'), cell(), cell(),
+      cell('false'), cell('false'), cell('true'), cell('true'), cell('false'), cell('false')];
+    assert.equal(row.length, ITEM_FIELDS.length);
+    const cells = read(row);
+    assert.equal(cells.kind.textContent, 'panel');
+    assert.equal(cells.theme.textContent, 'image');
+    assert.equal(cells.ctaLabel, undefined);
+    const display = itemDisplay(Object.fromEntries(ITEM_DISPLAY.map((f) => [f, cells[f]?.textContent || ''])));
+    assert.deepEqual(display, {
+      titleHidden: false, showDescription: false, showImage: true, showEyebrow: true, showLabel: false, showActionLabel: false,
+    });
+  });
+  it('reads every field of a full row without tab cells, through its layout', () => {
+    assertRead(read(fields()));
+    assert.equal(read(fields()).showActionLabel?.textContent, undefined);
+    const off = [...fields().slice(0, -1), cell('false')];
+    assert.equal(read(off).showActionLabel.textContent, 'false');
+  });
+  it('reads a row rendered before the Display toggles without its tab cells (13 cells)', () => {
+    const row = fields().slice(0, -ITEM_DISPLAY.length);
+    assert.equal(row.length, 13);
+    const cells = read(row);
+    assert.equal(cells.ariaLabel.textContent, 'Read the agentic bank');
+    assert.equal(cells.theme.textContent, 'navy');
+    assert.equal(cells.titleHidden, undefined);
+  });
   it('keeps a row whose tab cells have values', () => {
     const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
     assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
