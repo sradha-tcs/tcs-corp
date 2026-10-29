@@ -13796,7 +13796,36 @@
         "valueType": "boolean",
         "name": "showCta",
         "label": "Show call to action",
-        "value": true
+        "value": true,
+        "description": "Child pages with Card style Panel: the Explore call to action on every card. Not shown for other sources or card styles (their cards keep their call to action; Fixed list: each List Item's Show Action Label).",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "source"
+                },
+                "parent"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "cardStyle"
+                },
+                "panel"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",

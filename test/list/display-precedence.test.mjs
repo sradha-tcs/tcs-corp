@@ -1,11 +1,13 @@
 /*
  * List cards: field-by-field content from the linked page, and the Card style / Card colour
- * precedence (List Item > List > page card-style / card-theme metadata > automatic): node --test
+ * precedence (List Item > List > page card-style / card-theme metadata > automatic), and where the
+ * List's Show call to action applies (Child pages with Panel cards): node --test
  */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
-  buildCards, kindOf, normalizeConfig, normalizePageToCard, themeOf,
+  buildCards, ctaToggleApplies, kindOf, normalizeConfig, normalizePageToCard, themeOf,
 } from '../../blocks/list/list-data.js';
 
 // an index page (utils/query-index.js): columns by their index name (card-style -> cardStyle)
@@ -158,5 +160,49 @@ describe('List Item content from the linked page (field by field)', () => {
   it('an empty source gives no cards', () => {
     const { cards } = parent({ parentpath: '/en/nothing' });
     assert.deepEqual(cards, []);
+  });
+});
+
+describe('Show call to action: Child pages with Panel cards only', () => {
+  const models = JSON.parse(readFileSync(new URL('../../component-models.json', import.meta.url)));
+  const fieldOf = (id) => models.find((model) => model.id === id).fields.find((f) => f.name === 'showCta');
+  // the dialog condition, evaluated as Universal Editor does for the List's values
+  const shown = (values) => fieldOf('list').condition.and
+    .every(({ '===': [{ var: name }, value] }) => values[name] === value);
+
+  it('the toggle is in the dialog for Child pages + Panel only', () => {
+    const teaser = { displayAsTeaser: true };
+    assert.equal(shown({ ...teaser, source: 'parent', cardStyle: 'panel' }), true);
+    [
+      { source: 'parent', cardStyle: 'image' },
+      { source: 'parent', cardStyle: 'report' },
+      { source: 'parent', cardStyle: 'stat' },
+      { source: 'parent', cardStyle: 'mixed' },
+      { source: 'fixed', cardStyle: 'panel' },
+      { source: 'tags', cardStyle: 'panel' },
+    ].forEach((values) => assert.equal(shown({ ...teaser, ...values }), false, JSON.stringify(values)));
+    // rows of links (Display as teaser off) have no Card style
+    assert.equal(shown({ displayAsTeaser: false, source: 'parent', cardStyle: 'panel' }), false);
+  });
+  it('the Cards block keeps its own toggle, without a condition', () => {
+    assert.ok(fieldOf('cards'));
+    assert.equal(fieldOf('cards').condition, undefined);
+  });
+  it('Child pages + Panel: on or off for every fetched card', () => {
+    assert.equal(parent({ cardstyle: 'panel', showcta: 'true' }).cfg.showCta, true);
+    assert.equal(parent({ cardstyle: 'panel', showcta: 'false' }).cfg.showCta, false);
+    assert.equal(ctaToggleApplies(parent({ cardstyle: 'panel' }).cfg), true);
+  });
+  it('elsewhere a value saved before is not read: the cards keep their call to action', () => {
+    [
+      parent({ cardstyle: 'image', showcta: 'false' }).cfg,
+      parent({ cardstyle: 'mixed', showcta: 'false' }).cfg,
+      parent({ cardstyle: 'panel', showcta: 'false', displayasteaser: 'false' }).cfg,
+      config({ source: 'tags', cardstyle: 'panel', showcta: 'false' }),
+      fixed({ cardstyle: 'panel', showcta: 'false' }, []).cfg,
+    ].forEach((cfg) => {
+      assert.equal(ctaToggleApplies(cfg), false);
+      assert.equal(cfg.showCta, true);
+    });
   });
 });
