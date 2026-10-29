@@ -127,6 +127,7 @@
     "components": [
       "field-text",
       "field-select",
+      "field-combined",
       "field-textarea",
       "field-checkbox",
       "contact-card",
@@ -258,7 +259,8 @@
     "id": "teaser",
     "components": [
       "teaser-link",
-      "teaser-stat"
+      "teaser-stat",
+      "teaser-collage-image"
     ]
   },
   {

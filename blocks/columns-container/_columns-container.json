@@ -72,7 +72,11 @@
             {
               "name": "Dark green",
               "value": "bg-dark-green"
-            }
+            },
+            {
+              "name": "Navy",
+              "value": "bg-navy"
+ }
           ],
           "description": "The background colour of the columns, only the colour (text and buttons turn light on Dark and Dark green); set the space around them with the Padding fields of the Additional tab."
         },

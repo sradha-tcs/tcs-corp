@@ -263,7 +263,9 @@
             true
           ]
         }
-      },
+      }
+    ],
+    "cardsShow": [
       {
         "component": "boolean",
         "valueType": "boolean",
@@ -358,6 +360,7 @@
       }
     ],
     "cta": [
+    "cardsAction": [
       {
         "component": "boolean",
         "valueType": "boolean",

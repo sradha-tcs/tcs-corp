@@ -251,7 +251,7 @@ There is no global column grid token. Grids are per block:
 
 | Token | Value |
 | --- | --- |
-| `--motion-duration` / `--motion-duration-background` / `--motion-stagger` | Medium (default) 600ms / 900ms / 120ms; Fast (`motion-fast`) 300ms / 450ms / 60ms; Slow (`motion-slow`) 900ms / 1350ms / 180ms |
+| `--motion-duration` / `--motion-duration-background` / `--motion-stagger` | Medium (default) 1000ms / 1500ms / 200ms; Fast (`motion-fast`) 500ms / 750ms / 100ms; Slow (`motion-slow`) 2000ms / 3000ms / 400ms |
 | `--motion-ease` | `cubic-bezier(0.4, 0, 0.2, 1)` |
 | `--motion-distance` / `--motion-distance-slide` | `var(--space-1000)` / `var(--space-2000)` |
 | `--motion-scale` | 0.9 |

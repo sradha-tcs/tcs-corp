@@ -26,21 +26,21 @@
  * block, so a nested block doesn't take the speed of the block around it.
  */
 .block {
-  --motion-duration: 600ms;
-  --motion-duration-background: 900ms;
-  --motion-stagger: 120ms;
+  --motion-duration: 1000ms;
+  --motion-duration-background: 1500ms;
+  --motion-stagger: 200ms;
 }
 
 .block.motion-fast {
-  --motion-duration: 300ms;
-  --motion-duration-background: 450ms;
-  --motion-stagger: 60ms;
+  --motion-duration: 500ms;
+  --motion-duration-background: 750ms;
+  --motion-stagger: 100ms;
 }
 
 .block.motion-slow {
-  --motion-duration: 900ms;
-  --motion-duration-background: 1350ms;
-  --motion-stagger: 180ms;
+  --motion-duration: 2000ms;
+  --motion-duration-background: 3000ms;
+  --motion-stagger: 400ms;
 }
 
 /* the effect of each Content animation */

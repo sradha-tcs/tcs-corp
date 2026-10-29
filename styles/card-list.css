@@ -37,6 +37,10 @@
   --list-feature-title-size: 2rem;
   --list-card-padding: var(--space-400);
 
+  /* image card hover (Figma): the title's colour and underline */
+  --list-hover-duration: 300ms;
+  --list-hover-easing: ease-out;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-1000);
@@ -331,6 +335,18 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--list-card-title-line);
   letter-spacing: calc(-0.025 * var(--list-card-title-size));
+}
+
+/*
+ * image cards (Figma hover, below): the title fades from neutral (#303030) to brand blue
+ * (#216ac3) and back; its underline is always drawn (transparent) and only changes colour, so
+ * nothing moves or resizes
+ */
+.card-list .list-card-image .list-card-title {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  transition: color var(--list-hover-duration) var(--list-hover-easing),
+    text-decoration-color var(--list-hover-duration) var(--list-hover-easing);
 }
 
 .card-list .list-card-description {
@@ -699,24 +715,40 @@
   margin-top: var(--space-300);
 }
 
+/*
+ * the row's action (Figma): a 40px circle with a 2px stroke and the arrow in a 48px box at the
+ * right; circle and arrow are one mask, so they change colour together. Hover or focus anywhere
+ * on the row only darkens them (no movement); the title stays as it is.
+ */
 .card-list .list-row-arrow {
   grid-row: 1 / span 4;
   grid-column: 2;
-  width: 2rem;
-  height: 2rem;
+  justify-self: end;
+  width: 3rem;
+  height: 3rem;
   background-color: var(--color-icon-tertiary);
-  mask: url('/icons/arrow-right.svg') center / contain no-repeat;
-  transition: background-color 0.2s, transform 0.2s;
+  mask: url('/icons/circle-arrow.svg') center / contain no-repeat;
+  transition: background-color 0.3s ease-out;
 }
 
 .card-list .list-row:is(:hover, :focus-within) .list-row-arrow {
-  background-color: var(--color-icon-brand);
-  transform: translateX(var(--space-100));
+  background-color: var(--color-icon-default);
 }
 
-/* hover: the title underlines */
-.card-list :is(.list-card-title, .list-row-title, .list-feature-title) .list-card-link:hover {
+/* on the dark backgrounds of the theme contract: the light text colour (styles/styles.css) */
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-row:is(:hover, :focus-within) .list-row-arrow {
+  background-color: var(--color-text-default);
+}
+
+/* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
+.card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
+}
+
+/* image cards: the card's hover or focus (anywhere on a linked card) turns the title brand blue */
+.card-list .list-card-image:has(.list-card-link):is(:hover, :focus-within) .list-card-title {
+  color: var(--color-text-brand);
+  text-decoration-color: currentcolor;
 }
 
 .card-list .list-empty {
@@ -787,8 +819,6 @@
   .card-list .list-row-arrow {
     grid-row: 1 / span 4;
     align-self: center;
-    width: 3rem;
-    height: 3rem;
   }
 
   .card-list .list-feature {

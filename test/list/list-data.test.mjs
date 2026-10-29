@@ -6,7 +6,13 @@ import {
   ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
   validateConfig, withIds,
+import { readFile } from 'node:fs/promises';
+import {
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
+  sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
+import { isContentTypeTag, visibleTags } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { showsCta } from '../../utils/card-list-config.js';
 import modelLayout from '../model-layout.mjs';
@@ -62,6 +68,81 @@ describe('configuration', () => {
       const c = config({ desktopmode: d, tabletmode: t, mobilemode: m });
       assert.deepEqual([c.responsive.desktop.mode, c.responsive.tablet.mode, c.responsive.mobile.mode], [d, t, m]);
     });
+  });
+});
+
+describe('feature card author (Show author on feature card)', () => {
+  const feature = { displayasteaser: 'true', featurefirst: 'true' };
+  it('lists authored before show the author: on by default', () => {
+    assert.equal(config().featureShowAuthor, true);
+    assert.equal(showsFeatureAuthor(config(feature)), true);
+  });
+  it('off hides the author of the feature card', () => {
+    assert.equal(config({ ...feature, featureshowauthor: 'false' }).featureShowAuthor, false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'false' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'true' })), true);
+  });
+  it('only a feature card shows an author (no Authors sheet otherwise)', () => {
+    assert.equal(showsFeatureAuthor(config({ displayasteaser: 'true' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, displayasteaser: 'false' })), false);
+  });
+  it('the dialog field: List only, after First card as feature, shown only for a feature card', async () => {
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url), 'utf8'));
+    const fields = (id) => models.find((m) => m.id === id).fields;
+    const names = fields('list').map((f) => f.name);
+    assert.equal(names[names.indexOf('featureFirst') + 1], 'featureShowAuthor');
+    const field = fields('list').find((f) => f.name === 'featureShowAuthor');
+    assert.equal(field.value, true);
+    assert.deepEqual(JSON.stringify(field.condition).match(/"var":"\w+"/g), ['"var":"displayAsTeaser"', '"var":"featureFirst"']);
+    // the Cards block has no authors: no field there
+    assert.ok(!fields('cards').some((f) => f.name === 'featureShowAuthor'));
+  });
+});
+
+describe('content type on image cards (Show content type)', () => {
+  it('lists authored before show the content type: on by default', () => {
+    assert.equal(config().showContentLabel, true);
+    assert.equal(config({ showcontentlabel: '' }).showContentLabel, true);
+  });
+  it('off hides it, on shows it', () => {
+    assert.equal(config({ showcontentlabel: 'false' }).showContentLabel, false);
+    assert.equal(config({ showcontentlabel: 'true' }).showContentLabel, true);
+  });
+  it('off leaves the content type tag out of the tags; the next tags take its place', () => {
+    const card = {
+      tags: ['Article', 'Banking', 'AI', 'Agentic AI'],
+      tagIds: ['tcs-corp:content-type/article', 'tcs-corp:industry/banking', 'tcs-corp:service/ai',
+        'tcs-corp:topic/agentic-ai'],
+    };
+    assert.deepEqual(visibleTags(card, { max: 3 }), ['Article', 'Banking', 'AI']);
+    assert.deepEqual(visibleTags(card, { contentType: false, max: 3 }), ['Banking', 'AI', 'Agentic AI']);
+    // cards without tag IDs (Cards block) and tags of other roots keep every tag
+    assert.deepEqual(visibleTags({ tags: ['Article'] }, { contentType: false }), ['Article']);
+    assert.equal(isContentTypeTag('tcs-corp:content-type/case-study'), true);
+    assert.equal(isContentTypeTag('content-type/blog'), true);
+    assert.equal(isContentTypeTag('tcs-corp:topic/content-types'), false);
+  });
+  it('keeps the page metadata: the cards still carry their content type', () => {
+    const cfg = config({ source: 'fixed', showcontentlabel: 'false' });
+    const pages = [{ path: '/en/a', title: 'A', row: { path: '/en/a', contentType: 'case-study' } }];
+    assert.equal(buildCards(cfg, { pages, items: [{ href: '/en/a' }] })[0].contentType, 'case-study');
+  });
+  it('the dialog field: List only, between Date format and Show call to action, for image cards', async () => {
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url), 'utf8'));
+    const fields = (id) => models.find((m) => m.id === id).fields;
+    const names = fields('list').map((f) => f.name);
+    assert.equal(names[names.indexOf('dateFormat') + 1], 'showContentLabel');
+    assert.equal(names[names.indexOf('showContentLabel') + 1], 'showCta');
+    const field = fields('list').find((f) => f.name === 'showContentLabel');
+    assert.equal(field.value, true);
+    const condition = JSON.stringify(field.condition);
+    assert.match(condition, /"var":"displayAsTeaser"/);
+    assert.match(condition, /\[\{"var":"cardStyle"\},"image"\]/);
+    assert.match(condition, /\[\{"var":"cardStyle"\},"mixed"\]/);
+    // the Cards block types its Content label per card: no field there, its dialog unchanged
+    const cards = fields('cards').map((f) => f.name);
+    assert.ok(!cards.includes('showContentLabel'));
+    assert.equal(cards[cards.indexOf('dateFormat') + 1], 'showCta');
   });
 });
 

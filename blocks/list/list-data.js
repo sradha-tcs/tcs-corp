@@ -131,6 +131,10 @@ export function normalizeConfig(raw = {}) {
     sortOrder: pick(get('sortorder'), ['ascending', 'descending'], 'ascending'),
     maxItems: maxItems > 0 ? maxItems : Infinity,
     emptyBehavior: pick(get('emptybehavior'), EMPTY_BEHAVIORS, 'message'),
+    // the feature card's author (First card as feature); lists authored before show it
+    featureShowAuthor: flag(get('featureshowauthor'), true),
+    // the content type on image cards (Show content type); lists authored before show it
+    showContentLabel: flag(get('showcontentlabel'), true),
     ...normalizePresentation(raw),
   };
   // Show call to action is in the dialog only for Child pages with Panel cards: elsewhere a value
@@ -138,6 +142,17 @@ export function normalizeConfig(raw = {}) {
   // Action Label always decides for its card: showsCta)
   if (!ctaToggleApplies(config)) config.showCta = true;
   return config;
+}
+
+/**
+ * Whether the List shows an author lockup: only on the feature card (Display as teaser and
+ * First card as feature), unless Show author on feature card is off; the Authors sheet is
+ * loaded only then.
+ * @param {Object} config from normalizeConfig()
+ * @returns {boolean}
+ */
+export function showsFeatureAuthor(config) {
+  return !!(config.displayAsTeaser && config.featureFirst && config.featureShowAuthor);
 }
 
 /**

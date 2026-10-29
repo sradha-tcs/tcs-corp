@@ -28,7 +28,7 @@ indices:
       - '/language-master/*/block-library'
       - '/language-master/*/block-library/**'
       - '/**/fragments/**'
-      - '/**/modals/**'
+      - '/**/modal/**'
     target: /query-index.json
     properties:
       lastModified:

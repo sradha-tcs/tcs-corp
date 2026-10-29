@@ -17,24 +17,39 @@ let t = (key, fallback, values) => fillPlaceholder(fallback, values);
  * - Variation 1 (industries): title, description and arrow
  * - Variation 2 (solutions): description, large title and an outline button
  * - Variation 3 (products): description, number, large title and a diagonal arrow
- * Call to action style, numbers and the item link default per variation and can be changed.
+ * - Variation 4 (segments, TCS prototypes Figma "List Item - Industry"): a wide title, a narrow
+ *   grey description and an arrow; the linked row is highlighted on hover and keyboard focus
+ * - Variation 5 (approach, prototypes Figma Case Study "Approach"): a small label (the item
+ *   title) and a large description; the steps have no arrow unless they have a Link
+ * - Variation 6 (platforms, prototypes Figma Product "Our transformation solutions"): Variation 2
+ *   (its classes too) with a small arrow, the description at the top
+ * Call to action style, numbers and the item link default per variation and can be changed;
+ * an Eyebrow can go above the heading, and Heading position Beside puts the header in a column
+ * next to the list (prototypes Figma What we do "Models & Data").
  * Block properties are key-value rows (name | value), or one row per field in model order;
  * items are rows of number, title, trademark, description and link (with its button text)
  * cells. Unkeyed rows and item cells are matched to their fields by order and content, so
  * fields AEM leaves out (never set) don't shift the others.
  */
 
-// block properties (_table-list.json), in model order
+// block properties (_table-list.json), in model order; fields added later (listeyebrow,
+// headerposition) come last, so unkeyed rows authored before them are still matched in order
 const FIELDS = [
   'variations', 'backgroundcolor', 'listheading', 'maxcards', 'viewalllabel', 'viewalllink',
   'ctastyle', 'hidebutton',
   'numbers', 'itemaction', 'itembuttonlabel', 'graydescriptions', 'motion',
+  'listeyebrow', 'headerposition',
 ];
-const VARIATIONS = ['industries', 'solutions', 'products'];
-const BACKGROUND_COLORS = ['white', 'black', 'dark-green'];
+const VARIATIONS = ['industries', 'solutions', 'products', 'segments', 'approach', 'platforms'];
+// a variation built on another one gets its classes too (and only overrides what differs)
+const VARIATION_BASE = { platforms: 'solutions' };
+const BACKGROUND_COLORS = ['white', 'black', 'dark-green', 'navy'];
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
 const NUMBERS = ['show', 'mobile', 'hide'];
-const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'button'];
+const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'arrow-circle', 'button'];
+const HEADER_POSITIONS = ['beside'];
+// variations whose items without a Link show nothing instead of a decorative arrow
+const LINK_OPTIONAL = ['approach'];
 const MOTIONS = ['none', 'fade', 'slide', 'reveal'];
 const HEADINGS = ['h2', 'h3', 'h4'];
 const TRADEMARKS = { tm: '™', r: '®' };
@@ -46,6 +61,9 @@ const VARIATION_DEFAULTS = {
   industries: { ctaStyle: 'primary', numbers: 'mobile', itemAction: 'arrow' },
   solutions: { ctaStyle: 'secondary', numbers: 'hide', itemAction: 'button' },
   products: { ctaStyle: 'tertiary', numbers: 'show', itemAction: 'arrow-up-right' },
+  segments: { ctaStyle: 'secondary', numbers: 'hide', itemAction: 'arrow' },
+  approach: { ctaStyle: 'secondary', numbers: 'hide', itemAction: 'arrow' },
+  platforms: { ctaStyle: 'secondary', numbers: 'hide', itemAction: 'arrow' },
 };
 
 /**
@@ -85,6 +103,7 @@ const isLink = (cell) => {
 const isOneOf = (values) => (cell) => values.includes(textOf(cell).toLowerCase());
 const OPTION_VALUES = [
   ...VARIATIONS, ...BACKGROUND_COLORS, ...CTA_STYLES, ...NUMBERS, ...ITEM_ACTIONS, ...MOTIONS,
+  ...HEADER_POSITIONS,
 ];
 const isText = (cell) => !isNumber(cell) && !isLink(cell) && !hasHeading(cell)
   && !OPTION_VALUES.includes(textOf(cell).toLowerCase());
@@ -104,6 +123,8 @@ const PROPERTY_MATCHERS = {
   itemaction: isOneOf(ITEM_ACTIONS),
   itembuttonlabel: isText,
   motion: isOneOf(MOTIONS),
+  listeyebrow: isText,
+  headerposition: isOneOf(HEADER_POSITIONS),
 };
 const ITEM_MATCHERS = {
   number: isNumber,
@@ -159,6 +180,8 @@ function readBlock(block) {
     backgroundColor,
     heading: textOf(headingCell),
     headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h2'),
+    eyebrow: textOf(cells.listeyebrow),
+    headerPosition: pick(textOf(cells.headerposition), HEADER_POSITIONS, ''),
     maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
     ctaText: textOf(cells.viewalllabel),
     ctaLink: linkOf(cells.viewalllink),
@@ -199,6 +222,13 @@ function buildHeader(config) {
   const [legacyHeading, legacyLink] = config.header ? [...config.header.children] : [];
   if (config.header) moveInstrumentation(config.header, header);
 
+  if (config.eyebrow) {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'table-list-eyebrow';
+    eyebrow.textContent = config.eyebrow;
+    header.append(eyebrow);
+  }
+
   const text = config.heading || textOf(legacyHeading);
   if (text) {
     const heading = document.createElement(config.headingType);
@@ -236,6 +266,7 @@ function fromCell(cell, tagName, className) {
 function buildAction(linkCell, title, config) {
   if (config.hideButton) return null;
   const href = linkOf(linkCell);
+  if (!href && LINK_OPTIONAL.includes(config.variation)) return null;
   const action = document.createElement('div');
   action.className = 'table-list-action';
   if (config.itemAction === 'button') {
@@ -322,7 +353,9 @@ export default async function decorate(block) {
   const config = readBlock(block);
 
   block.classList.add(config.variation, `numbers-${config.numbers}`);
-  block.classList.remove('background-white', 'background-black', 'background-dark-green');
+  if (VARIATION_BASE[config.variation]) block.classList.add(VARIATION_BASE[config.variation]);
+  if (config.headerPosition) block.classList.add(`header-${config.headerPosition}`);
+  block.classList.remove(...BACKGROUND_COLORS.map((color) => `background-${color}`));
   if (config.backgroundColor) block.classList.add(`background-${config.backgroundColor}`);
   block.classList.toggle('gray-descriptions', config.grayDescriptions);
   addLegacyMotion(block.classList, LEGACY_MOTIONS[config.motion] || '');

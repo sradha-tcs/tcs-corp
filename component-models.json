@@ -5350,6 +5350,10 @@
           {
             "name": "Dark green",
             "value": "bg-dark-green"
+          },
+          {
+            "name": "Navy",
+            "value": "bg-navy"
           }
         ],
         "description": "The background colour of the columns, only the colour (text and buttons turn light on Dark and Dark green); set the space around them with the Padding fields of the Additional tab."
@@ -9595,782 +9599,6 @@
             "value": "dark"
           }
         ]
-      },
-      {
-        "component": "tab",
-        "name": "additionalTab",
-        "label": "Additional"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "classes_anchor",
-        "label": "Anchor ID",
-        "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
-        "validation": {
-          "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
-          "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
-        }
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "classes_hideblock",
-        "label": "Hide block",
-        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
-        "value": false
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_animation",
-        "label": "Animation Type",
-        "value": "",
-        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
-        "options": [
-          {
-            "name": "None",
-            "value": ""
-          },
-          {
-            "name": "Fade in",
-            "value": "motion-fade-in"
-          },
-          {
-            "name": "Fade up",
-            "value": "motion-fade-up"
-          },
-          {
-            "name": "Fade down",
-            "value": "motion-fade-down"
-          },
-          {
-            "name": "Fade left",
-            "value": "motion-fade-left"
-          },
-          {
-            "name": "Fade right",
-            "value": "motion-fade-right"
-          },
-          {
-            "name": "Slide up",
-            "value": "motion-slide-up"
-          },
-          {
-            "name": "Slide down",
-            "value": "motion-slide-down"
-          },
-          {
-            "name": "Slide left",
-            "value": "motion-slide-left"
-          },
-          {
-            "name": "Slide right",
-            "value": "motion-slide-right"
-          },
-          {
-            "name": "Scale in",
-            "value": "motion-scale-in"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_animationspeed",
-        "label": "Motion Speed",
-        "value": "",
-        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
-        "options": [
-          {
-            "name": "Medium",
-            "value": ""
-          },
-          {
-            "name": "Fast",
-            "value": "motion-fast"
-          },
-          {
-            "name": "Slow",
-            "value": "motion-slow"
-          }
-        ],
-        "condition": {
-          "or": [
-            {
-              "and": [
-                {
-                  "var": "classes_animation"
-                },
-                {
-                  "!==": [
-                    {
-                      "var": "classes_animation"
-                    },
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "and": [
-                {
-                  "var": "classes_bganimation"
-                },
-                {
-                  "!==": [
-                    {
-                      "var": "classes_bganimation"
-                    },
-                    ""
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_animationtrigger",
-        "label": "Animation Trigger",
-        "value": "",
-        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
-        "options": [
-          {
-            "name": "On Scroll / Viewport Entry",
-            "value": ""
-          },
-          {
-            "name": "On Page Load",
-            "value": "motion-on-load"
-          }
-        ],
-        "condition": {
-          "or": [
-            {
-              "and": [
-                {
-                  "var": "classes_animation"
-                },
-                {
-                  "!==": [
-                    {
-                      "var": "classes_animation"
-                    },
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "and": [
-                {
-                  "var": "classes_bganimation"
-                },
-                {
-                  "!==": [
-                    {
-                      "var": "classes_bganimation"
-                    },
-                    ""
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_bganimation",
-        "label": "Background animation",
-        "value": "",
-        "description": "How the block's background (its colour, image or overlay as set in the block) appears. It doesn't animate the content: see Animation Type. Motion Speed and Animation Trigger apply to it too. Not played in the editor or when the visitor prefers reduced motion.",
-        "options": [
-          {
-            "name": "None",
-            "value": ""
-          },
-          {
-            "name": "Fade in",
-            "value": "bg-motion-fade-in"
-          },
-          {
-            "name": "Reveal from the centre",
-            "value": "bg-motion-reveal"
-          },
-          {
-            "name": "Wipe left to right",
-            "value": "bg-motion-wipe-right"
-          },
-          {
-            "name": "Wipe right to left",
-            "value": "bg-motion-wipe-left"
-          },
-          {
-            "name": "Wipe bottom to top",
-            "value": "bg-motion-wipe-up"
-          },
-          {
-            "name": "Scale reveal",
-            "value": "bg-motion-scale"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_paddingleft",
-        "label": "Padding left",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "pl-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "pl-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "pl-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "pl-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "pl-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "pl-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "pl-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "pl-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "pl-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "pl-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "pl-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "pl-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "pl-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "pl-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_paddingright",
-        "label": "Padding right",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "pr-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "pr-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "pr-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "pr-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "pr-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "pr-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "pr-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "pr-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "pr-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "pr-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "pr-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "pr-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "pr-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "pr-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_paddingtop",
-        "label": "Padding top",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "pt-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "pt-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "pt-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "pt-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "pt-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "pt-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "pt-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "pt-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "pt-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "pt-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "pt-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "pt-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "pt-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "pt-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_paddingbottom",
-        "label": "Padding bottom",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "pb-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "pb-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "pb-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "pb-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "pb-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "pb-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "pb-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "pb-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "pb-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "pb-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "pb-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "pb-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "pb-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "pb-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_marginleft",
-        "label": "Margin left",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "ml-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "ml-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "ml-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "ml-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "ml-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "ml-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "ml-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "ml-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "ml-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "ml-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "ml-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "ml-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "ml-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "ml-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_marginright",
-        "label": "Margin right",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "mr-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "mr-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "mr-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "mr-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "mr-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "mr-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "mr-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "mr-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "mr-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "mr-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "mr-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "mr-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "mr-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "mr-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_margintop",
-        "label": "Margin top",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "mt-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "mt-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "mt-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "mt-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "mt-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "mt-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "mt-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "mt-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "mt-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "mt-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "mt-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "mt-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "mt-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "mt-3000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_marginbottom",
-        "label": "Margin bottom",
-        "value": "",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "0 (none)",
-            "value": "mb-0"
-          },
-          {
-            "name": "0.25rem (space-100)",
-            "value": "mb-100"
-          },
-          {
-            "name": "0.5rem (space-200)",
-            "value": "mb-200"
-          },
-          {
-            "name": "0.75rem (space-300)",
-            "value": "mb-300"
-          },
-          {
-            "name": "1rem (space-400)",
-            "value": "mb-400"
-          },
-          {
-            "name": "1.25rem (space-500)",
-            "value": "mb-500"
-          },
-          {
-            "name": "1.5rem (space-600)",
-            "value": "mb-600"
-          },
-          {
-            "name": "2rem (space-800)",
-            "value": "mb-800"
-          },
-          {
-            "name": "2.5rem (space-1000)",
-            "value": "mb-1000"
-          },
-          {
-            "name": "3rem (space-1200)",
-            "value": "mb-1200"
-          },
-          {
-            "name": "4rem (space-1600)",
-            "value": "mb-1600"
-          },
-          {
-            "name": "5rem (space-2000)",
-            "value": "mb-2000"
-          },
-          {
-            "name": "6rem (space-2400)",
-            "value": "mb-2400"
-          },
-          {
-            "name": "7.5rem (space-3000)",
-            "value": "mb-3000"
-          }
-        ]
       }
     ]
   },
@@ -10390,7 +9618,7 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. firstName. Names containing \"name\" sit side by side on desktop. Letters, digits, - or _, e.g. firstName (sent as written).",
+        "description": "Submitted as the field key, e.g. firstName.",
         "required": true
       },
       {
@@ -10433,8 +9661,7 @@
         "component": "text",
         "valueType": "string",
         "name": "dependsOn",
-        "label": "Show only if dropdown value equals",
-        "description": "Leave empty to always show the field."
+        "label": "Show only if dropdown value equals"
       }
     ]
   },
@@ -10454,7 +9681,6 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Dropdown Name / ID",
-        "description": "Submitted as the field key, e.g. sector or region. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10462,7 +9688,6 @@
         "valueType": "string",
         "name": "label",
         "label": "Dropdown Label",
-        "description": "e.g. Sector",
         "required": true
       },
       {
@@ -10476,15 +9701,47 @@
         "component": "text",
         "valueType": "string",
         "name": "options",
-        "label": "Options",
-        "description": "Comma separated, e.g. Technology, Sport, Asia Pacific, India"
+        "label": "Options"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "dependsOn",
-        "label": "Show only if dropdown value equals",
-        "description": "Leave empty to always show the field."
+        "label": "Show only if dropdown value equals"
+      }
+    ]
+  },
+  {
+    "id": "field-combined",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-combined",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fieldName",
+        "label": "Field Name / ID",
+        "description": "Submitted as the field key, e.g. score",
+        "required": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals"
       }
     ]
   },
@@ -10504,7 +9761,6 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. feedback. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10512,7 +9768,6 @@
         "valueType": "string",
         "name": "label",
         "label": "Field Label",
-        "description": "e.g. How can we help you?",
         "required": true
       },
       {
@@ -10533,8 +9788,7 @@
         "component": "text",
         "valueType": "string",
         "name": "dependsOn",
-        "label": "Show only if dropdown value equals",
-        "description": "Leave empty to always show the field."
+        "label": "Show only if dropdown value equals"
       }
     ]
   },
@@ -10554,7 +9808,6 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Checkbox Name / ID",
-        "description": "Submitted as the field key, e.g. consent. Letters, digits, - or _, e.g. firstName (sent as written).",
         "required": true
       },
       {
@@ -10575,8 +9828,7 @@
         "component": "text",
         "valueType": "string",
         "name": "dependsOn",
-        "label": "Show only if dropdown value equals",
-        "description": "Leave empty to always show the field."
+        "label": "Show only if dropdown value equals"
       }
     ]
   },
@@ -10596,7 +9848,6 @@
         "valueType": "string",
         "name": "region",
         "label": "Show when dropdown value equals",
-        "description": "e.g. India",
         "required": true
       },
       {
@@ -10604,22 +9855,19 @@
         "valueType": "string",
         "name": "contactName",
         "label": "Contact Name",
-        "description": "e.g. Iris Tham",
         "required": true
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "emails",
-        "label": "Emails",
-        "description": "Comma separated"
+        "label": "Emails"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "phones",
-        "label": "Phones",
-        "description": "Comma separated"
+        "label": "Phones"
       }
     ]
   },
@@ -10645,8 +9893,7 @@
         "component": "text",
         "valueType": "string",
         "name": "dependsOn",
-        "label": "Show only if dropdown value equals",
-        "description": "Leave empty to always show the button."
+        "label": "Show only if dropdown value equals"
       }
     ]
   },
@@ -14455,6 +13702,34 @@
       {
         "component": "boolean",
         "valueType": "boolean",
+        "name": "featureShowAuthor",
+        "label": "Show author on feature card",
+        "value": true,
+        "description": "The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change.",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "featureFirst"
+                },
+                true
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
         "name": "linkItems",
         "label": "Link items",
         "value": true
@@ -14541,6 +13816,46 @@
               "var": "showDate"
             },
             true
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "showContentLabel",
+        "label": "Show content type",
+        "value": true,
+        "description": "Image cards: the content type of the card's page (e.g. Case Study): its content type tag below the image and its content-type label next to the date. Off: image cards without either (the other tags and the date stay); the page metadata and the other card styles don't change.",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "or": [
+                {
+                  "===": [
+                    {
+                      "var": "cardStyle"
+                    },
+                    "image"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "cardStyle"
+                    },
+                    "mixed"
+                  ]
+                }
+              ]
+            }
           ]
         }
       },
@@ -17125,7 +16440,7 @@
         "valueType": "string",
         "name": "link",
         "label": "Modal Content",
-        "description": "A fragment page, e.g. under /modals/. Opens in a dialog."
+        "description": "A fragment page, e.g. under /modal/. Opens in a dialog."
       },
       {
         "component": "text",
@@ -21287,7 +20602,7 @@
         "valueType": "string",
         "name": "variations",
         "label": "Variation",
-        "description": "Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow.",
+        "description": "Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. Variation 4: wide title, narrow grey description and arrow; the row is highlighted on hover. Variation 5: small label and large description (steps, without links). Variation 6: description, large right-aligned title and a small arrow.",
         "value": "industries",
         "options": [
           {
@@ -21301,6 +20616,18 @@
           {
             "name": "Variation 3 - Description, number, large title, arrow",
             "value": "products"
+          },
+          {
+            "name": "Variation 4 - Wide title, grey description, arrow (row hover)",
+            "value": "segments"
+          },
+          {
+            "name": "Variation 5 - Label, large description (steps)",
+            "value": "approach"
+          },
+          {
+            "name": "Variation 6 - Description, right-aligned title, small arrow",
+            "value": "platforms"
           }
         ]
       },
@@ -21323,6 +20650,10 @@
           {
             "name": "Dark Green",
             "value": "dark-green"
+          },
+          {
+            "name": "Navy",
+            "value": "navy"
           }
         ]
       },
@@ -21351,6 +20682,32 @@
           {
             "name": "H4",
             "value": "h4"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "listEyebrow",
+        "label": "Eyebrow",
+        "description": "Optional. A short label above the heading, e.g. Models & Data.",
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "headerPosition",
+        "label": "Heading position",
+        "description": "Beside the list: the eyebrow, heading and call to action in a column on the left of the list from 900px wide (above it on smaller screens), with a larger statement-style heading.",
+        "value": "",
+        "options": [
+          {
+            "name": "Above the list",
+            "value": ""
+          },
+          {
+            "name": "Beside the list",
+            "value": "beside"
           }
         ]
       },
@@ -21387,7 +20744,7 @@
         "valueType": "string",
         "name": "ctaStyle",
         "label": "Style",
-        "description": "Variation default: filled button (Variation 1), outline button (Variation 2), text link (Variation 3).",
+        "description": "Variation default: filled button (Variation 1), outline button (Variations 2, 4, 5 and 6), text link (Variation 3).",
         "value": "",
         "options": [
           {
@@ -21426,7 +20783,7 @@
         "valueType": "string",
         "name": "numbers",
         "label": "Numbers",
-        "description": "Variation default: on mobile only (Variation 1), hidden (Variation 2), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number.",
+        "description": "Variation default: on mobile only (Variation 1), hidden (Variations 2, 4, 5 and 6), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number.",
         "value": "",
         "options": [
           {
@@ -21452,7 +20809,7 @@
         "valueType": "string",
         "name": "itemAction",
         "label": "Item link",
-        "description": "Variation default: arrow (Variation 1), button (Variation 2), diagonal arrow (Variation 3).",
+        "description": "Variation default: arrow (Variations 1, 4, 5 and 6; Variation 5 shows it only on items with a Link), button (Variation 2), diagonal arrow (Variation 3).",
         "value": "",
         "options": [
           {
@@ -21466,6 +20823,10 @@
           {
             "name": "Diagonal arrow",
             "value": "arrow-up-right"
+          },
+          {
+            "name": "Circled arrow",
+            "value": "arrow-circle"
           },
           {
             "name": "Button",
@@ -24984,28 +24345,12 @@
         "description": "Usually https://www.tata.com/."
       },
       {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "menuRootPath",
-        "label": "Menu root path",
-        "description": "Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list); a page of this site (e.g. /en/..., not the language master). Empty, or without pages in this site: the Menu root path of the Conversation Canvas in the same section."
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "menuDepth",
-        "label": "Menu depth",
-        "min": 1,
-        "max": 3,
-        "description": "Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1."
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "headerOverlay",
         "label": "Header over the first block",
         "value": "",
-        "description": "At every width: whether the logo bar lies transparent over the page's first block, which then starts at the top of the page (the bar turns solid once the page scrolls). Auto: over an opening light Hero (as on Home).",
+        "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero.",
         "options": [
           {
             "name": "Auto (over a light Hero)",
@@ -25042,7 +24387,7 @@
         "valueType": "boolean",
         "name": "classes_hideblock",
         "label": "Hide block",
-        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
+        "description": "Hides the whole block on the page until it is turned off.",
         "value": false
       },
       {
@@ -25790,15 +25135,7 @@
         "valueType": "string",
         "name": "tags",
         "label": "Tags",
-        "multi": true,
-        "condition": {
-          "===": [
-            {
-              "var": "displayTags"
-            },
-            true
-          ]
-        }
+        "description": "Select tags for this Teaser. Tags are shown on the page only when Display Tags is enabled."
       },
       {
         "component": "aem-content",
@@ -25862,11 +25199,11 @@
             "value": ""
           },
           {
-            "name": "Lotto",
+            "name": "Lottie",
             "value": "lottie"
           }
         ],
-        "description": "Default: the Image is a picture. Lotto: the Image is a Lottie animation file (.json)."
+        "description": "Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json)."
       },
       {
         "component": "reference",
@@ -26139,10 +25476,62 @@
                 "value": "primary"
               },
               {
+                "name": "Primary Button (no arrow)",
+                "value": "primary-no-arrow"
+              },
+              {
                 "name": "Secondary Button",
                 "value": "secondary"
+              },
+              {
+                "name": "Secondary Button (no arrow)",
+                "value": "secondary-no-arrow"
               }
             ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaBackground",
+            "label": "CTA Background",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "button-bg-white"
+              },
+              {
+                "name": "Blue",
+                "value": "button-bg-blue"
+              },
+              {
+                "name": "Translucent white",
+                "value": "button-bg-translucent"
+              }
+            ],
+            "description": "Sets the background of this CTA button. Blue uses rgb(33 106 195)."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaShape",
+            "label": "CTA Shape",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "Rectangle",
+                "value": "button-rectangle"
+              }
+            ],
+            "description": "Sets this CTA button's shape. Rectangle uses the grey-200 border."
           }
         ],
         "description": "Kept for teasers authored before; add items with Add instead."
@@ -26238,10 +25627,72 @@
             "value": "primary"
           },
           {
+            "name": "Primary Button (no arrow)",
+            "value": "primary-no-arrow"
+          },
+          {
             "name": "Secondary Button",
             "value": "secondary"
+          },
+          {
+            "name": "Secondary Button (no arrow)",
+            "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaBackground",
+        "label": "Primary CTA Background",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "White",
+            "value": "button-bg-white"
+          },
+          {
+            "name": "Blue",
+            "value": "button-bg-blue"
+          },
+          {
+            "name": "Translucent white",
+            "value": "button-bg-translucent"
+          }
+        ],
+        "description": "Sets the Primary CTA button background. Blue uses rgb(33 106 195)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaShape",
+        "label": "Primary CTA Shape",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Rectangle",
+            "value": "button-rectangle"
+          }
+        ],
+        "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
       },
       {
         "component": "text",
@@ -26312,10 +25763,72 @@
             "value": "primary"
           },
           {
+            "name": "Primary Button (no arrow)",
+            "value": "primary-no-arrow"
+          },
+          {
             "name": "Secondary Button",
             "value": "secondary"
+          },
+          {
+            "name": "Secondary Button (no arrow)",
+            "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaBackground",
+        "label": "Secondary CTA Background",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "White",
+            "value": "button-bg-white"
+          },
+          {
+            "name": "Blue",
+            "value": "button-bg-blue"
+          },
+          {
+            "name": "Translucent white",
+            "value": "button-bg-translucent"
+          }
+        ],
+        "description": "Sets the Secondary CTA button background. Blue uses rgb(33 106 195)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaShape",
+        "label": "Secondary CTA Shape",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Rectangle",
+            "value": "button-rectangle"
+          }
+        ],
+        "description": "Sets the Secondary CTA shape. Rectangle uses the grey-200 border."
       },
       {
         "component": "boolean",
@@ -26376,6 +25889,10 @@
           {
             "name": "Card",
             "value": "card"
+          },
+          {
+            "name": "Image collage",
+            "value": "image-collage"
           }
         ],
         "description": "Image & Text: image and text side by side. Text split: title left, text, links and stats right. Background image: the image behind centered text. Card: a rounded card with the image behind its text."
@@ -26402,6 +25919,10 @@
           {
             "name": "Dark green",
             "value": "dark-green"
+          },
+          {
+            "name": "Navy",
+            "value": "navy"
           }
         ],
         "description": "Only the background colour; set the space around the content with the Padding fields of the Additional tab."
@@ -26428,9 +25949,13 @@
           {
             "name": "Right",
             "value": "text-right"
+          },
+          {
+            "name": "Justify",
+            "value": "text-justify"
           }
         ],
-        "description": "Layout default: left, centered for Background image and when Image & Text has no image."
+        "description": "Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced."
       },
       {
         "component": "select",
@@ -26482,6 +26007,32 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "titleColor",
+        "label": "Title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "title-dark"
+          },
+          {
+            "name": "White",
+            "value": "title-white"
+          },
+          {
+            "name": "Light blue",
+            "value": "title-light-blue"
+          }
+        ],
+        "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "descriptionSize",
         "label": "Description size",
         "value": "",
@@ -26504,7 +26055,7 @@
         "component": "select",
         "valueType": "string",
         "name": "eyebrowStyle",
-        "label": "Eyebrow style",
+        "label": "Eyebrow Style",
         "value": "",
         "options": [
           {
@@ -26514,8 +26065,17 @@
           {
             "name": "Label (uppercase, grey)",
             "value": "eyebrow-label"
+          },
+          {
+            "name": "Grey",
+            "value": "eyebrow-grey"
+          },
+          {
+            "name": "White",
+            "value": "eyebrow-white"
           }
-        ]
+        ],
+        "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
       },
       {
         "component": "select",
@@ -27391,10 +26951,62 @@
             "value": "primary"
           },
           {
+            "name": "Primary Button (no arrow)",
+            "value": "primary-no-arrow"
+          },
+          {
             "name": "Secondary Button",
             "value": "secondary"
+          },
+          {
+            "name": "Secondary Button (no arrow)",
+            "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "buttonBackground",
+        "label": "Button background",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "White",
+            "value": "button-bg-white"
+          },
+          {
+            "name": "Blue",
+            "value": "button-bg-blue"
+          },
+          {
+            "name": "Translucent white",
+            "value": "button-bg-translucent"
+          }
+        ],
+        "description": "Sets the background colour of Primary and Secondary CTA buttons. Translucent white uses a 15% white background and is intended for dark or image backgrounds. Text links and List links are not affected."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "buttonShape",
+        "label": "Button shape",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Rectangle",
+            "value": "button-rectangle"
+          }
+        ],
+        "description": "Style default uses the button system's existing shape. Rectangle removes the pill shape and uses the grey-200 border."
       }
     ]
   },
@@ -27420,6 +27032,48 @@
         "label": "Stats Value",
         "description": "A single line, e.g. 40%.",
         "value": ""
+      }
+    ]
+  },
+  {
+    "id": "teaser-collage-image",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "collageTab",
+        "label": "Collage image"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt text",
+        "description": "Leave empty when the collage image is decorative."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "imageTreatment",
+        "label": "Image treatment",
+        "value": "black-white",
+        "options": [
+          {
+            "name": "Black and white",
+            "value": "black-white"
+          },
+          {
+            "name": "Normal",
+            "value": "normal"
+          }
+        ]
       }
     ]
   },
