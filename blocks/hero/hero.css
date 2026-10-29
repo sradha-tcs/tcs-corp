@@ -319,6 +319,13 @@
     --hero-gap-icon: var(--space-200);
     --hero-gap-eyebrow: var(--space-600);
     --hero-gap-ctas: var(--space-1000);
+
+    /* Figma: balanced title lines up to about 32rem (We help brands / turn AI ambition into / ...) */
+    --hero-title-max-width: 36rem;
+  }
+
+  .hero .hero-title {
+    text-wrap: balance;
   }
 
   .hero .hero-eyebrow {
