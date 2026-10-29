@@ -360,7 +360,6 @@
       }
     ],
     "cta": [
-    "cardsAction": [
       {
         "component": "boolean",
         "valueType": "boolean",
