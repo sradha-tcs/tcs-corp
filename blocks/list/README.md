@@ -16,7 +16,7 @@ The List is the AEM Core Components **List** for Edge Delivery Services (xwalk /
 - **Business purpose:** keeps listings of site content up to date without manual work. When an author publishes a new child page or tags a page, every List that selects it shows the new card, with the title, text and image the page defines in its metadata. Authors decide what is listed (source, tags, order, maximum) and how it looks; page owners maintain the card content once, on the page.
 - **User experience:** an optional header (title, description, a CTA on the right), then the cards or rows. Each breakpoint is a grid or a horizontal scroller with optional previous / next buttons and a scroll indicator. While the query index loads (more than 150ms), a skeleton in the list's layout keeps the section visible.
 - **Templates / page types:** any page; no template adds or removes it. Typical: home and landing pages (child pages, curated selections), article and blog pages (related tagged pages), press-release and news overview pages (rows of links ordered by date).
-- **Data source:** the locale's published query index (`/query-index.json`, `helix-query.yaml`), the redirects sheet (`/{locale}/redirects.json`), the Authors sheet (feature card only), the taxonomy (tag labels) and the placeholders (UI text). List Items add authored values on top.
+- **Data source:** the locale's published query index (`/query-index.json`, `helix-query.yaml`), the redirects sheet (`/{locale}/redirects.json`), the Authors sheet (feature card only, unless Show author on feature card is off), the taxonomy (tag labels) and the placeholders (UI text). List Items add authored values on top.
 - **Related blocks:** [Cards](../cards/README.md) (the same presentation, content typed in the block), [Filter List](../filter-list/README.md) (query index lists with filter pills and sorting), [Table List](../table-list/README.md) (tabular listings), [Page Header](../page-header/README.md) (uses the same page metadata).
 
 | Source | What it lists |
@@ -27,7 +27,7 @@ The List is the AEM Core Components **List** for Edge Delivery Services (xwalk /
 
 - **When to use:** the cards represent published, indexed pages of the same locale; the list should update itself (Child pages, Tagged pages); the cards should reuse the pages' own metadata; ordering by title or last modified, or a maximum number of items, is needed.
 - **When not to use:** content that isn't a page (statistics without detail pages, capabilities with their own wording, rich text descriptions): use [Cards](../cards/README.md); visitors must filter or search: use [Filter List](../filter-list/README.md); Content Fragment lists (not supported, by decision); full-text search (the Core List search source isn't available); pages of another locale.
-- **Realistic use cases:** a services hub listing its child pages; "Related to Agentic AI" rails of tagged insights; news rows ordered by last modified; media coverage and investor relations rails of report pages (Mixed); editor's picks with per-item title overrides; statistic rows (a Fixed list with the number as Title); a featured spotlight with the author's photo and designation (First card as feature); external partner links mixed with site pages.
+- **Realistic use cases:** a services hub listing its child pages; "Related to Agentic AI" rails of tagged insights; news rows ordered by last modified; media coverage and investor relations rails of report pages (Mixed); editor's picks with per-item title overrides; statistic rows (a Fixed list with the number as Title); a featured spotlight with the author's photo and designation (First card as feature), or a clean hero spotlight without the author (Show author on feature card off); external partner links mixed with site pages.
 
 ## Visual Reference
 
@@ -371,10 +371,10 @@ C = Card colour
 D = Image ratio
 E = Panel height
 F = First card as feature
-G = Link items
-H = Open links in a new tab
-I = Show image
-J = Show eyebrow
+G = Show author on feature card
+H = Link items
+I = Open links in a new tab
+J = Show image
 ```
 
 ```text
@@ -548,7 +548,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
    - **Tagged pages:** pick the **Search root** (or use the current page), the **Tags** and **Match** (Any / All); optionally limit **Include descendant pages** and **Maximum search depth**.
    Fields that don't apply to the chosen source or option are hidden.
 5. **Order and limit (Content):** **Order by** (Manual, Title, Last modified), **Sort order**, **Maximum items** (0: all).
-6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature, the Show options, Date format, Image loading (Eager only for a list on the first screen).
+6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature (then Show author on feature card), the Show options, Date format, Image loading (Eager only for a list on the first screen).
 7. **Set the layout per breakpoint (Display):** Desktop, Tablet and Mobile display (Grid or Horizontal scroll), columns or items visible, gap, previous / next buttons and scroll indicator; then the scroll options and **When there are no items**.
 8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles.
 9. **Preview:** switch Universal Editor to Preview, or open the page preview. Child pages and Tagged pages lists show their pages only on the published page (AEM author has no query index).
@@ -607,6 +607,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Image ratio | `imageRatio` | select | No | `16-9` | 16:9 (`16-9`), 1:1 (`1-1`), 4:3 (`4-3`), 3:2 (`3-2`) | Shown when `displayAsTeaser` is `true`. | 1-1 |
 | Panel height | `panelHeight` | select | No | `portrait` | Portrait (2:3) (`portrait`), Compact (`compact`), Content (`auto`) | Panel, report and statistic cards. Shown when `displayAsTeaser` is `true`. | compact |
 | First card as feature | `featureFirst` | boolean | No | `false` | on / off | The first card as a large spotlight above the others. Shown when `displayAsTeaser` is `true`. | true |
+| Show author on feature card | `featureShowAuthor` | boolean | No | `true` | on / off | The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change. Shown when `displayAsTeaser` is `true` and `featureFirst` is `true`. | — |
 | Link items | `linkItems` | boolean | No | `true` | on / off | — | false |
 | Open links in a new tab | `openInNewTab` | boolean | No | `false` | on / off | The default for the items. | — |
 | Show image | `showImage` | boolean | No | `true` | on / off | — | false |
@@ -615,6 +616,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Show description | `showDescription` | boolean | No | `true` | on / off | On image cards and link rows; panel, report and statistic cards always show theirs. | false |
 | Show date | `showDate` | boolean | No | `true` | on / off | — | false |
 | Date format | `dateFormat` | select | No | `dd-mmm-yy` | 04 Sep 26 (`dd-mmm-yy`), 04-09-2026 (`dd-mm-yyyy`), 09-04-2026 (`mm-dd-yyyy`), Sep 4, 2026 (`mmm-d-yyyy`), 04/09/26 (`dd/mm/yy`), 4th September 2026 (`do-mmmm-yyyy`) | Shown when `showDate` is `true`. | do-mmmm-yyyy |
+| Show content type | `showContentLabel` | boolean | No | `true` | on / off | Image cards: the content type of the card's page (e.g. Case Study): its content type tag below the image and its content-type label next to the date. Off: image cards without either (the other tags and the date stay); the page metadata and the other card styles don't change. Shown when `displayAsTeaser` is `true` and `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
 | Show call to action | `showCta` | boolean | No | `true` | on / off | — | false |
 | Image loading | `imageLoading` | select | No | `lazy` | Lazy (`lazy`), Eager (first screen) (`eager`) | — | — |
 | Desktop display | `desktopMode` | select | No | `grid` | Grid (`grid`), Horizontal scroll (`horizontal-scroll`) | Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints. | horizontal-scroll |
@@ -729,7 +731,7 @@ Notes on what the tables above don't show:
 
   A Card style other than Mixed, or a Card colour, forces every card that doesn't set its own. With Mixed and Default for the style each page decides. Lists made before keep their Card style (Image card by default). Card colour paints panel, report and statistic cards; image cards keep their image.
 - **List Item Display toggles** (added 20 October 2026, handover 2.34): they apply to that item's card only, on top of the List's Show options (a List with Show image off shows no images, whatever its items say). Hide Title keeps the title for screen readers and the heading outline and names the card's link; a linked card keeps one visible link (with Show Action Label off too, the action label stays; without an action label the title stays visible). Show Description off hides the description on every card style, also panel, report and statistic cards. Show Eyebrow off: image cards show the tags in its place. Items authored before (without the toggles) show everything. Examples: block-library/list/list-item-display.
-- **Show options of the List:** Show description applies to image cards and link rows (panel, report and statistic cards always show theirs); Show tags also shows the reading time; on image cards an eyebrow takes the place of the tags; at most three tags are shown. Image cards show the date after the content type label (the taxonomy label of the content-type tag, e.g. Blog).
+- **Show options of the List:** Show description applies to image cards and link rows (panel, report and statistic cards always show theirs); Show tags also shows the reading time; on image cards an eyebrow takes the place of the tags; at most three tags are shown. Image cards show the date after the content type label (the taxonomy label of the content-type tag, e.g. Blog). **Show content type** (`showContentLabel`, on by default; shown in the dialog only while Display as teaser is on and Card style is Image card or Mixed) off removes the content type from every image card of the List, also a List Item set to Image card in a List of another style: the label before the date and the content type tag in the kicker below the image (`…:content-type/…` tags; the next tags take its place, still at most three); the date and the other tags stay, and the page's `content-type` metadata, the report cards (content type over the title), the link rows (content type in place of the eyebrow) and the Cards block (its own Content label per card) don't change. No List Item toggle controls it: the List Item's Show Label is for its Label (statistic cards) only. Lists authored before have no value and show the label, as before.
 - **Validation in code:** every value is validated again and invalid values fall back to the default: Child depth 1–10, Maximum search depth 0–10, Maximum items 0 or more (0, empty or invalid: all), columns 1–6, gap 0–120 (px, rendered in rem), items visible 1–8, card width 0 or 120–1200, Initial item index 0–200.
 - **Display as teaser** adds the block class `display-teaser` (not `teaser`, which the Teaser styles select: F-83), off adds `links`.
 - **Open in a new tab** links get `target="_blank" rel="noopener noreferrer"` and the "(opens in a new tab)" text (placeholder `opensInNewTab`). A List Item's Open in a new tab (As the list / Yes / No) overrides the List's.
@@ -889,7 +891,7 @@ Every variation is a combination of the List's fields (no separate block class t
 
 - **Purpose / when to use:** page teasers with a picture (insights, services). Not for key figures (Statistic) or downloads (Report).
 - **Fields:** Display as teaser on, Card style Image card; optional Image ratio (16:9, 1:1, 4:3, 3:2), Show options, Date format.
-- **Rendering:** `article.list-card.list-card-image`: image (ratio class `ratio-*`, no layout shift), kicker (eyebrow, else up to three tags with reading time), title, description, content type label and `<time datetime>`.
+- **Rendering:** `article.list-card.list-card-image`: image (ratio class `ratio-*`, no layout shift), kicker (eyebrow, else up to three tags with reading time), title, description, content type label and `<time datetime>` (Show content type off: neither the label nor the content type tag in the kicker). **Hover (Figma):** hovering or focusing anywhere on a linked image card fades its title from `--color-text-neutral` (#303030) to `--color-text-brand` (#216AC3) with an underline, 300ms ease-out (`--list-hover-duration`, `--list-hover-easing`), and back on leave; the underline is always drawn transparent and only changes colour, so the card, its padding and image don't move or resize. On dark backgrounds the theme contract's light brand colour is used. Cards without a link have no hover; panel, report and statistic cards keep their own hover (`styles/card-list.css`). **Header call to action:** in an Image card List, a Secondary header CTA (e.g. View All) has no hover: under the pointer it keeps its resting colours, also on dark backgrounds; keyboard focus keeps the global focus-visible style (`blocks/list/list.css`, overriding `a.button.secondary:hover` of `styles/styles.css` for this button only).
 
 ```text
 [Screenshot Placeholder]
@@ -936,6 +938,8 @@ Each card's style follows the precedence in [Authorable Fields](#authorable-fiel
 
 The first card becomes a full-width spotlight above the others (`feature-first` class) with its image, tags, reading time and, when the page has an `author-id`, the author lockup (photo, name, designation) from the Authors sheet (`getAuthors`, loaded only for this option). Use once per page, near the top.
 
+**Show author on feature card** (`featureShowAuthor`, on by default; shown in the dialog only while Display as teaser and First card as feature are on) decides whether the feature card shows that lockup. Off: the feature card has no author (a clean hero layout) and the Authors sheet isn't loaded; the page's `author-id` and the other cards don't change (they never show an author), nor does the author elsewhere (Page Header, other Lists). Lists authored before have no value and show the author, as before. The Cards block has no authors, so it has no such option.
+
 ```text
 [Screenshot Placeholder]
 
@@ -953,7 +957,7 @@ C = Remaining cards
 
 ### Rows of links (Display as teaser off)
 
-Rows with eyebrow or content type and a tag, a large title, the description, the date and an arrow (`aria-hidden`), class `links`; Style option `dividers` adds lines between rows (Figma 5 News). Use for news and press lists; not for visual teasers.
+Rows with eyebrow or content type and a tag, a large title, the description, the date and a circle arrow (`aria-hidden`, `icons/circle-arrow.svg`: a 40px circle with a 2px stroke in a 48px box at the right, #D9D9D9), class `links`; hover or focus anywhere on a row only turns the circle and arrow #1E1E1E (300ms ease-out, no movement; the light text colour on Dark backgrounds), the title stays #0C0C0D without an underline; Style option `dividers` adds lines between rows (Figma 5 News). Use for news and press lists; not for visual teasers.
 
 ### Grid and horizontal scroll per breakpoint
 
@@ -1265,6 +1269,8 @@ graph LR
 | Wrong link target | Redirects sheet entry | Check `/{locale}/redirects.json` | Correct the sheet | Card URL |
 | Editor hint "Set up the list" | Missing tags, parent, root or items | Read the hint | Fill the named field | Cards render |
 | Cards not styled as expected | Precedence (item > List > page) | `?debug=list` card `kind` / `theme` | Change the right level | Classes on the card |
+| An image card shows no content type | Show content type off, or the page has no `content-type` metadata / content type tag | The List's Display tab (Card style Image card or Mixed shows the option); the page's `contentType` in the index | Turn the option on, or set the page's `content-type` | Content type tag in the kicker and label before the date |
+| The feature card shows no author | Show author on feature card off, the page has no `author-id`, or it isn't in the Authors sheet | The List's Display tab; the page's `author-id` in the index; `/{locale}/data/authors.json` | Turn the option on, or fix the `author-id` / the sheet | Author lockup on the feature card |
 
 Evidence to collect: the page URL, the block's settings (screenshots of the dialog), `?debug=list` console output, the index row of a missing page. No credentials or author host names.
 
@@ -1331,3 +1337,6 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.16 | Page `card-style` / `card-theme` metadata and the Card style / colour precedence | docs/handover revision history | 18 October 2026 |
 | Handover 2.18 | Content animation and skeleton loading | docs/handover revision history | 18 October 2026 |
 | Handover 2.34 | List Item Display toggles (Hide Title, Show Description / Image / Eyebrow / Label / Action Label) | docs/handover revision history | 20 October 2026 |
+| Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |
+| Handover 2.46 | Show content type (`showContentLabel`): the content type of image cards (its tag in the kicker and its label before the date) can be turned off; on by default; the shared Display fields split again (`cardsShow`, `cardsAction`) so the option sits between Date format and Show call to action in the List only | docs/handover revision history | 28 October 2026 |
+| Handover 2.47 | Image card hover (Figma): the whole linked card fades the title to brand blue with an underline (300ms ease-out), no layout change | docs/handover revision history | 28 October 2026 |

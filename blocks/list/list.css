@@ -3,3 +3,20 @@
  * variations 1-14), in styles/card-list.css.
  */
 @import url('../../styles/card-list.css');
+
+/*
+ * Image card lists: the header's Secondary call to action (e.g. View All) has no hover; under
+ * the pointer it keeps its resting look (the global a.button.secondary:hover in
+ * styles/styles.css). Keyboard focus (:focus-visible) keeps the global brand colours and ring.
+ */
+.list.style-image .list-cta-slot a.button.secondary:hover:not(:focus-visible) {
+  border-color: var(--color-border-neutral);
+  background-color: transparent;
+  color: var(--color-text-neutral);
+}
+
+/* on the dark backgrounds of the theme contract: their resting colours (styles/styles.css) */
+:is(.section.dark, :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green)) .list.style-image .list-cta-slot a.button.secondary:hover:not(:focus-visible, :is(.teaser, .block.columns-container).bg-grey *) {
+  border-color: var(--color-border-neutral-tertiary);
+  color: var(--color-text-on-neutral);
+}

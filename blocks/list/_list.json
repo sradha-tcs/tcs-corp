@@ -373,6 +373,80 @@
           "...": "../../models/_card-list.json#/fields/cards"
         },
         {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "featureShowAuthor",
+          "label": "Show author on feature card",
+          "value": true,
+          "description": "The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change.",
+          "condition": {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "displayAsTeaser"
+                  },
+                  true
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "featureFirst"
+                  },
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/cardsShow"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showContentLabel",
+          "label": "Show content type",
+          "value": true,
+          "description": "Image cards: the content type of the card's page (e.g. Case Study): its content type tag below the image and its content-type label next to the date. Off: image cards without either (the other tags and the date stay); the page metadata and the other card styles don't change.",
+          "condition": {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "displayAsTeaser"
+                  },
+                  true
+                ]
+              },
+              {
+                "or": [
+                  {
+                    "===": [
+                      {
+                        "var": "cardStyle"
+                      },
+                      "image"
+                    ]
+                  },
+                  {
+                    "===": [
+                      {
+                        "var": "cardStyle"
+                      },
+                      "mixed"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/cardsAction"
+        },
+        {
           "...": "../../models/_card-list.json#/fields/layout"
         },
         {
