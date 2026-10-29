@@ -18,6 +18,8 @@ const ITEMS = [
   ['teaser', 'teaser-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   // the Image alt text collapses into the image (teaser.js COLLAGE_LAYOUT)
   ['teaser', 'teaser-collage-image', KEY_VALUE_ITEM, [null, 'image', 'imageTreatment']],
+  // the Image alt text collapses into the image (image-collage.js COLLAGE_LAYOUT)
+  ['image-collage', 'image-collage-item', KEY_VALUE_ITEM, [null, 'image', 'imageTreatment']],
   ['testimonial', 'testimonial-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   ['anchor-list', 'anchor-list-item', KEY_VALUE_ITEM, [null, 'label', 'anchorName']],
   ['filter-list', 'filter-list-tag', KEY_VALUE_ITEM, ['tagId']],
