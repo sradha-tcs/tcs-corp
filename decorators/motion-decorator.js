@@ -42,6 +42,8 @@ const CONTENT_TARGETS = {
   quote: { targets: ':scope > *' },
   testimonial: { targets: ':scope > *' },
   'form-variations': { targets: ':scope > *' },
+  // the text and CTAs; the floating images are its background layer
+  'image-collage': { targets: ':scope > .image-collage-content' },
 };
 
 /**
@@ -57,6 +59,7 @@ const BACKGROUNDS = {
   quote: {},
   testimonial: {},
   'form-variations': {},
+  'image-collage': { layers: ':scope > .image-collage-media' },
 };
 
 /** never content targets: background layers and the Lottie pause / play button */
