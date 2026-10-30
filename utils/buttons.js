@@ -4,7 +4,7 @@
  */
 
 export const BUTTON_VIEWS = ['button', 'icon', 'link'];
-export const BUTTON_TYPES = ['primary', 'secondary', 'tertiary'];
+export const BUTTON_TYPES = ['primary', 'secondary', 'tertiary', 'blue'];
 export const BUTTON_ALIGNMENTS = ['left', 'center', 'right'];
 
 /**

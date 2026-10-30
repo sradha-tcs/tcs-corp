@@ -139,6 +139,7 @@ B = CTA List › CTA Title
 C = CTA List › CTA Link
 D = CTA List › CTA Link Type
 E = CTA List › CTA Link Style
+F = CTA List › CTA Shape
 ```
 
 ```text
@@ -177,6 +178,7 @@ A = CTA Link
 B = CTA Title
 C = CTA Link Type
 D = CTA Link Style
+E = CTA Shape
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -316,7 +318,8 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 | CTA List › CTA Title | `ctaText` | text | No | — | — | — | — |
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
-| CTA List › CTA Link Style | `ctaStyle` | select | No | `primary` | Text link (""), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| CTA List › CTA Link Style | `ctaStyle` | select | No | `primary` | Text link (""), Primary Button (`primary`), Secondary Button (`secondary`), Blue CTA (`blue`) | — | — |
+| CTA List › CTA Shape | `ctaShape` | select | No | "" | Default (pill) (""), Round (circle) (`round`) | — | — |
 
 #### Additional tab — Page Header
 
@@ -349,12 +352,14 @@ Stored on a new component (definition template): `linkStyle` = `"primary"`.
 | CTA Link | `link` | aem-content | Yes | — | — | — | — |
 | CTA Title | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | — |
 | CTA Link Type | `linkTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
-| CTA Link Style | `linkStyle` | select | No | `primary` | Text link (`tertiary`), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| CTA Link Style | `linkStyle` | select | No | `primary` | Text link (`tertiary`), Primary Button (`primary`), Secondary Button (`secondary`), Blue CTA (`blue`) | — | — |
+| CTA Shape | `linkShape` | select | No | "" | Default (pill) (""), Round (circle) (`round`) | Round makes the CTA circular. Use a short label so it fits inside the circle. | — |
 
 <!-- END GENERATED: fields -->
 
 Notes on the significant fields:
 
+- **CTA colour and shape.** CTA Link Style **Blue CTA** uses the brand blue `#216ac3` for its fill and border, with white text. Independently choose **CTA Shape: Round (circle)** for a 6rem circular CTA with the trailing arrow, or leave **Default (pill)** to preserve existing rendering. Use short labels for circles. Both CTA items and the legacy CTA List accept the shape; these options are scoped to Page Header CTAs.
 - **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (`page-type`, else `template` metadata).
 - **CTA (item) fields.** CTA Link Style Primary / Secondary render `a.button.primary` / `a.button.secondary`; Text link (`tertiary`, or empty in content authored before) renders `a.button.tertiary`. A new CTA stores Primary Button (definition template). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder `opensInNewTab`. A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder, `itemEditorHint`).
 - **Metadata (not dialog fields).** Title → `h1.page-header-title`; Description → `div.page-header-description`; content-type → eyebrow (Landing, Secondary) or `p.page-header-collection` (Article); tags → `ul.page-header-tags` (Article meta row; Display eyebrow; Landing / Secondary eyebrow when there is no content-type), labels from the taxonomy, else derived from the tag ID; publish-date (`publication-date` as a fallback) → "Published" + `<time>` (dd/mm/yy); reading-time → "{n} min read" for a number; author-id → Authors sheet name, designation and region, image, LinkedIn; author → name only; featured-image and image-alt → the Landing image; listen-link → the listen action.
@@ -670,7 +675,7 @@ blocks/page-header/
 
 **Responsibilities.** `page-header.js` reads the Layout and the legacy CTA List (`readProperties`), the CTA items (`itemRows(block, ['page-header-cta'], KEY_VALUE_ITEM)`), the page metadata, the author and the tags, and builds the layout's DOM. `page-header.css` styles the four layouts, with one breakpoint (900px).
 
-**Input DOM.** Key-value rows (`classes` → Layout; `ctas` → the legacy multifield cell); CTA item rows after them with three cells (link, link type, style; `test/items/item-rows.test.mjs`). The template-added block is an empty `div.page-header`.
+**Input DOM.** Key-value rows (`classes` → Layout; `ctas` → the legacy multifield cell); CTA item rows after them with four cells (link, link type, style, shape; `test/items/item-rows.test.mjs`). Older three-cell CTA rows remain supported. The template-added block is an empty `div.page-header`.
 
 **Rendered DOM.**
 

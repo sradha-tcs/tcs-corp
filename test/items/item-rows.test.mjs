@@ -13,7 +13,7 @@ const row = (cells, model) => ({
 // the item models, their block's rule and the cells the blocks read (null: a dialog tab)
 const ITEMS = [
   ['hero', 'hero-cta', FIELD_ROW_ITEM, ['link', 'linkTarget', 'linkStyle', 'linkArrow']],
-  ['page-header', 'page-header-cta', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle']],
+  ['page-header', 'page-header-cta', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle', 'linkShape']],
   ['teaser', 'teaser-link', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle', 'buttonBackground', 'buttonShape']],
   ['teaser', 'teaser-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   // the Image alt text collapses into the image (teaser.js COLLAGE_LAYOUT)
