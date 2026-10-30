@@ -14691,6 +14691,34 @@
       {
         "component": "boolean",
         "valueType": "boolean",
+        "name": "featureShowAuthor",
+        "label": "Show author on feature card",
+        "value": true,
+        "description": "The author of the feature card's page (photo, name and designation from the Authors sheet). Off: the feature card without its author; the other cards don't change.",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "featureFirst"
+                },
+                true
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
         "name": "linkItems",
         "label": "Link items",
         "value": true
@@ -14783,9 +14811,78 @@
       {
         "component": "boolean",
         "valueType": "boolean",
+        "name": "showContentLabel",
+        "label": "Show content type",
+        "value": true,
+        "description": "Image cards: the content type of the card's page (e.g. Case Study): its content type tag below the image and its content-type label next to the date. Off: image cards without either (the other tags and the date stay); the page metadata and the other card styles don't change.",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "or": [
+                {
+                  "===": [
+                    {
+                      "var": "cardStyle"
+                    },
+                    "image"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "cardStyle"
+                    },
+                    "mixed"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
         "name": "showCta",
         "label": "Show call to action",
-        "value": true
+        "value": true,
+        "description": "Child pages with Card style Panel: the Explore call to action on every card. Not shown for other sources or card styles (their cards keep their call to action; Fixed list: each List Item's Show Action Label).",
+        "condition": {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "source"
+                },
+                "parent"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "displayAsTeaser"
+                },
+                true
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "cardStyle"
+                },
+                "panel"
+              ]
+            }
+          ]
+        }
       },
       {
         "component": "select",
@@ -16486,7 +16583,7 @@
         "name": "titleHidden",
         "label": "Hide Title",
         "value": false,
-        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+        "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with Show Action Label off, the title stays visible as the link."
       },
       {
         "component": "boolean",
@@ -16526,7 +16623,7 @@
         "name": "showActionLabel",
         "label": "Show Action Label",
         "value": true,
-        "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
+        "description": "On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it."
       }
     ]
   },

@@ -1,7 +1,7 @@
 ---
 title: "TCS Corporate Website — Project Handover"
 subtitle: "Adobe Experience Manager Edge Delivery Services with Universal Editor: architecture, authoring, components, operations and support"
-date: "October 24, 2026"
+date: "October 28, 2026"
 ---
 
 # Document Control
@@ -12,8 +12,8 @@ date: "October 24, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.44 |
-| Date | 24 October 2026 |
+| Version | 2.47 |
+| Date | 28 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
 | Code repository | GitHub `sradha-tcs/tcs-corp`, branch `main` |
@@ -76,7 +76,6 @@ date: "October 24, 2026"
 | 2.42 | 23 October 2026 | Delivery team | **Table block: up to nine columns** (6.25, F-111): AEM doesn't deliver a table in a Text (rich text) as a table (its cells arrive as paragraphs), so tables need the Table block, which had at most five columns; Columns now offers 6, 7, 8 and 9 Columns (Row models `table-col-6` … `table-col-9`, filters `table-6-columns` … `table-9-columns`); a table wider than its container scrolls inside the block as before. The tcs.com press release migration puts every source table into a Table block (merged cells flattened). `npm test` 331 passed, `npm run lint` passed. F-111 |
 | 2.43 | 24 October 2026 | Delivery team | **No AEM ids or author host in the document** (F-112): the AEM program and environment ids and the author host are removed from every chapter (AGENTS.md: no AEM program / environment ids or author hosts in any file; the block READMEs and the knowledge base were already checked for them); the author host is written `{aem-author}` (Document Information), the ids are in Cloud Manager. No change to the code or the content model. F-112 |
 | 2.44 | 24 October 2026 | Delivery team | **Redirects at the CDN: specification** (3.8.4, F-36, O-03, KB-D-055 Proposed): `docs/proposals/redirects-cdn.md` specifies the rules the production CDN applies in front of the site: `/` → `/en/`, the Redirects sheet rows of the path's locale, the old tcs.com URLs of the 3,191 migrated pages (2,499 same path, 37 letter case only: a pattern rule to the default locale; 655 another path: the language master's Redirects sheet, 648 rows), with data, test cases, acceptance criteria and decisions R-D1 to R-D4. **Author host exception** (F-112, KB-D-056 Proposed): `fstab.yaml` (the content source) and `.migration/project.json` (managed by the workspace tooling) keep the author host; no other file holds it; the audit note `docs/audit/reaudit/review-d.md` writes a publish host placeholder as `{aem-publish}`. No change to the code or the content model. F-36, F-112, O-03 |
-| 2.45 | 28 October 2026 | Delivery team | **Navigation in the Conversation Canvas, Form Variations follow-up** (KB-D-059, KB-D-060 Proposed; branch `fix/tcs-header-header-form`, after PR #164 and #169): `blocks/header` is back as before PR #164; with a Default / Secondary Canvas on the Navigation page the header shows only the logos (TCS Designs - Prototypes "Logos" 1:3116 / 1:3170) and the Canvas Circle Menu beside the search field is the site navigation at every width ("Floating menu" 1:3117 / 1:3169); without one the header menu stays. Conversation Canvas CSS restructured mobile first without `!important` (computed styles compared with the branch before on Home and the block library at 402 / 768 / 1024 / 1440 px); search submit, Search button style, Escape in the Primary dock and the menu button's state restored; the footer canvas row rules moved from `blocks/footer` to the Canvas. Form Variations: the dark TCS form (Eyebrow, Back, Background image, Field width, Rich Text and Combined fields) with main's validation, autocomplete, submit event and messages; items read by name in the current and the earlier model (`form-layout.js`, `test/form-variations`); the section background and Background image corrected. `npm test` 363 passed, `npm run lint` passed. The PDF is not regenerated (Not recorded: the PDF tooling isn't in this workspace). |
 
 ## Review and Approval
 
@@ -3327,7 +3326,7 @@ The implementation distinguishes two classification fields. Both are page metada
 | Component | Behaviour | Rule |
 |:-----------------|:------------------------------------------------------------|:-------------------------------|
 | Page Header | Landing and Secondary layouts: the content type is the eyebrow above the title (else the tags). Article layout: the content type is shown next to the tags in the meta row (`page-header-collection`). Display layout: tags only. | Displayed as authored (text) |
-| List (query index source) and Cards | The card's content type label: next to the date on image cards; the kicker on report cards. With Card style **Mixed**, a card whose content type contains "report" (case-insensitive, `/report/i`) becomes a **report card**; cards without an image become panels; others image cards. | `kindOf()` in `utils/card-list-config.js` |
+| List (query index source) and Cards | The card's content type label: next to the date on image cards (List: unless Show content type is off); the kicker on report cards. With Card style **Mixed**, a card whose content type contains "report" (case-insensitive, `/report/i`) becomes a **report card**; cards without an image become panels; others image cards. | `kindOf()` in `utils/card-list-config.js` |
 | Filter List | **Content types** filter: a page is kept when `toClassName(content-type)` is one of the selected values (for example `Case Study` matches `case-study`). The card eyebrow comes from the **Eyebrow source** column (default `content-type`). With Card style **Mixed**, a page whose eyebrow text contains "report" is shown as a report card with a "Download" action. | `candidatesOf()`, `isReport()` in `blocks/filter-list/filter-list.js` |
 | Query index | Indexed as `contentType` | `helix-query.yaml` |
 
@@ -57007,6 +57006,7 @@ All other fields keep their default values. Each callout letter marks the field'
 - Image alt comes from card-image-alt, else image-alt, else the image is decorative.
 - The title is the card's one link unless a call to action label is set.
 - A page without any image gets no image area.
+- Show content type (`showContentLabel`, on by default, shown only while Card style is Image card or Mixed) off: no content type on the image cards (neither its tag in the kicker nor the label next to the date); nothing else changes (rev 2.46).
 
 **Common Authoring Mistakes**
 
@@ -57030,7 +57030,8 @@ All other fields keep their default values. Each callout letter marks the field'
 `featured-image`).
 
 **Business Rules:** As Cards Variation 1 (6.15.3); pages without an image show no image area.
-Up to 3 tags; reading time from `reading-time`; content type from `content-type`.
+Up to 3 tags; reading time from `reading-time`; content type from `content-type` (unless Show content
+type is off).
 
 **Rendering Rules:** `article.list-card.list-card-image`; images built with
 `createOptimizedPicture` for `/media_` images of the site (750 / 600 px), otherwise a plain
@@ -57426,7 +57427,8 @@ All other fields keep their default values. Each callout letter marks the field'
 **Business Rules**
 
 - The author-id must match the Authors sheet exactly (arao); no match, no lockup.
-- The Authors sheet is loaded only when First card as feature is on.
+- The Authors sheet is loaded only when First card as feature is on and Show author on feature card isn't off.
+- Show author on feature card (`featureShowAuthor`, on by default, shown only while First card as feature is on) off: the feature card without the author lockup; nothing else changes (rev 2.45).
 - Maximum items 4 includes the feature: one feature and three cards.
 - The author photo is decorative; the name is text.
 - The feature shows tags and reading time, not the description or date.
@@ -57442,7 +57444,7 @@ All other fields keep their default values. Each callout letter marks the field'
 **Troubleshooting**
 
 - **Symptoms:** The feature card shows the title and tags but no author photo or name.
-- **Cause:** The Authors sheet isn't published, or the page's author-id isn't in it.
+- **Cause:** Show author on feature card is off, the Authors sheet isn't published, or the page's author-id isn't in it.
 - **Resolution:** Publish /en/data/authors and check the page's authorId in the index against the sheet.
 - **Verification Steps:** The feature shows Anita Rao and her designation on aem.page.
 
@@ -57452,8 +57454,8 @@ All other fields keep their default values. Each callout letter marks the field'
 needs an image and an `author-id` matching the Authors sheet.
 
 **Business Rules:** As Cards Variation 6, plus the author lockup: the Authors sheet
-(`/{locale}/data/authors.json`) is loaded only when the feature is on; the page's `author-id`
-must equal the sheet's id exactly; no match, no lockup.
+(`/{locale}/data/authors.json`) is loaded only when the feature is on and Show author on feature card
+isn't off; the page's `author-id` must equal the sheet's id exactly; no match, no lockup.
 
 **Rendering Rules:** `article.list-feature` with `div.list-author` (`list-author-image` 2.5rem
 round photo, `list-author-name`, `list-author-designation`).

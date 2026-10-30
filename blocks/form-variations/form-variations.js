@@ -1,5 +1,4 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
@@ -7,101 +6,90 @@ import { linkOf } from '../../utils/links.js';
 import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
-import { getLocale } from '../../utils/site.js';
-import {
-  ITEM_TYPES, KEYED_TYPES, PROPERTY_LAYOUT, fieldsOf, keyedCells, propertiesOf,
-} from './form-layout.js';
 
-// UI text from the placeholders sheet; English fallbacks until it's loaded in decorate()
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
-/*
- * Form Variations (blocks/form-variations/_form-variations.json): a form built from child
- * field items. The first rows are the block properties (Eyebrow, Eyebrow icon, Form Title, Form
- * Description, Background image, Submit action; AEM adds an empty row for each dialog tab). AEM
- * delivers an item row's node name and its read-only "classes" field (the item type) in its first
- * cell, "email, field-text"; the field key is the item's own fieldName field (items authored
- * before kept it in the node name, which AEM delivers in class-name form). Fields, buttons and
- * contact cards with "Show only if dropdown value equals" appear when any dropdown of the form has
- * that value. Every field has a Field width (Full / Half; text fields with "name" in their key are
- * half by default), two per row from 900px.
- *
- * Submit: a valid submit dispatches a bubbling, cancelable "form-variations:submit" event on the
- * block ({ detail: { data, respondWith } }); an integration that handles it calls
- * preventDefault(). Otherwise the data is POSTed as JSON ({ data }) to the Submit action; without
- * either, the visitor is told the form isn't connected and keeps the values (nothing is claimed
- * as sent).
- *
- * A Combined Input Field is a text input with a dropdown of units beside it (e.g. a score in CGPA
- * or Percentage): the value is sent under its key, the unit under the key + Unit (scoreUnit).
- * The form is Dark (TCS Designs - Prototypes) and starts with a Back button (the previous page,
- * else the locale's Home); its Background image (else an image authored as default content in
- * the form's section) becomes the section's background beside the form.
- */
-
-/** node names AEM gives items without a field key: their template names in class-name form */
+const ITEM_TYPES = [
+  'field-text', 'field-select', 'field-combined', 'field-textarea', 'field-checkbox', 'field-richtext', 'contact-card', 'field-submit',
+];
+const KEYED_TYPES = ['field-text', 'field-select', 'field-combined', 'field-textarea', 'field-checkbox', 'field-richtext'];
+const FIELD_COUNT = {
+  'field-text': 6, 'field-select': 6, 'field-combined': 7, 'field-textarea': 6, 'field-checkbox': 5, 'field-richtext': 4,
+};
 const TEMPLATE_NAMES = [
-  'text-input-field', 'dropdown-select-field', 'combined-input-field', 'textarea-field',
-  'consent-checkbox-field', 'rich-text-field', 'contact-card-output', 'submit-button',
+  'text-input-field', 'dropdown-select-field', 'combined-input-field', 'textarea-field', 'consent-checkbox-field', 'rich-text-field',
+  'contact-card-output', 'submit-button',
 ];
 const INPUT_KINDS = ['text', 'email', 'tel'];
 const DEFAULT_MAX_LENGTH = 1500;
 
+const DEFAULT_MAIL_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>';
+const DEFAULT_PHONE_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>';
+const DEFAULT_EYEBROW_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>';
+
 const isTrue = (cell) => textOf(cell).toLowerCase() === 'true';
 const normalize = (value) => String(value || '').trim().toLowerCase();
 const splitList = (value) => value.split(',').map((item) => item.trim()).filter(Boolean);
-/** a reference field (an image in the DAM): its link, else its text */
-const urlOf = (cell) => linkOf(cell)?.getAttribute('href') || textOf(cell);
 
-/** a cell holding a text, as a stand-in for a field cell AEM doesn't deliver */
 function textCell(text) {
   const cell = document.createElement('div');
   cell.textContent = text;
   return cell;
 }
 
-/**
- * The item type of a row and its field cells in model order:
- * - AEM: first cell "<node name>, <type>" (the node name is the field key of keyed items)
- * - older markup: first cell "<type>", then the field cells
- * - Universal Editor model without a type cell
- * @returns {{ type: string, cells: Element[] }}
- */
 export function readItem(row) {
   const cells = [...row.children];
-  const tokens = textOf(cells[0]).split(',').map((v) => v.trim()).filter(Boolean);
-  const type = tokens.find((v) => ITEM_TYPES.includes(v));
+  if (!cells.length) return { type: '', cells: [] };
+
+  const modelAttr = row.dataset.aueModel || row.firstElementChild?.dataset?.aueModel || '';
+  const firstCellText = textOf(cells[0]);
+  const tokens = firstCellText.split(',').map((v) => v.trim()).filter(Boolean);
+
+  const type = tokens.find((v) => ITEM_TYPES.includes(v)) || (ITEM_TYPES.includes(modelAttr) ? modelAttr : '');
+
   if (type) {
     const fields = cells.slice(1);
-    if (tokens.length === 1 || !KEYED_TYPES.includes(type)) return { type, cells: fields };
-    // the key is its own fieldName cell (as authored, e.g. firstName; current or previous model)
-    if (fields.length >= keyedCells(type)) return { type, cells: fields };
-    // items authored before: the key was the item's node name, delivered in class-name form
-    // (firstname), unless it is only the item's template name (no key)
+
+    if (modelAttr === type && !tokens.some((v) => ITEM_TYPES.includes(v))) {
+      return { type, cells };
+    }
+
+    if (tokens.length === 1 || !KEYED_TYPES.includes(type)) {
+      return { type, cells: fields };
+    }
+
+    if (fields.length >= FIELD_COUNT[type]) {
+      return { type, cells: fields };
+    }
+
     const key = tokens.find((v) => v !== type);
     return { type, cells: [textCell(TEMPLATE_NAMES.includes(key) ? '' : key), ...fields] };
   }
-  const model = row.dataset.aueModel || '';
-  if (ITEM_TYPES.includes(model)) return { type: model, cells };
+
   return { type: '', cells };
 }
 
-/**
- * The block's own property cells, without the empty rows AEM adds for the dialog tabs (Content
- * first, Additional last): by their property in Universal Editor, else in model order.
- * @param {Element[]} cells the first cells of the rows before the items
- */
 export function readProperties(cells) {
   const byProp = (name) => cells.find((cell) => cell?.dataset.aueProp === name
     || cell?.querySelector(`[data-aue-prop="${name}"]`));
-  if (PROPERTY_LAYOUT.some(byProp)) {
-    return Object.fromEntries(PROPERTY_LAYOUT.map((name) => [name, byProp(name)]));
+  if (byProp('formHeading') || byProp('formDescription') || byProp('bgImage') || byProp('formEyebrow')) {
+    return {
+      eyebrowCell: byProp('formEyebrow'),
+      eyebrowIconCell: byProp('formEyebrowIcon'),
+      titleCell: byProp('formHeading'),
+      descriptionCell: byProp('formDescription'),
+      actionCell: byProp('formAction'),
+      bgImageCell: byProp('bgImage'),
+    };
   }
   const empty = (cell) => !cell || (!textOf(cell) && !cell.querySelector('img, a'));
-  return propertiesOf(cells.length > 2 && empty(cells[0]) ? cells.slice(1) : cells);
+  const list = cells.length > 2 && empty(cells[0]) ? cells.slice(1) : cells;
+  const [eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell] = list;
+  return {
+    eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell,
+  };
 }
 
-/** moves the editor instrumentation of a cell (and its only child) onto an element */
 function instrument(cell, el) {
   if (!cell) return;
   if (cell.children.length === 1) moveInstrumentation(cell.firstElementChild, el);
@@ -115,28 +103,6 @@ function createGroup(classNames, dependsOn) {
   return group;
 }
 
-/**
- * The Field width of an item: Half or Full as authored, else half for a text field whose key
- * has "name" in it (first name, last name side by side), else full.
- * @returns {'half-width' | 'full-width'}
- */
-function widthOf(cell, key = '') {
-  const authored = normalize(textOf(cell));
-  if (['half-width', 'half'].includes(authored)) return 'half-width';
-  if (['full-width', 'full'].includes(authored)) return 'full-width';
-  return key.toLowerCase().includes('name') ? 'half-width' : 'full-width';
-}
-
-/** the required marker: visual only, the note above the form explains it */
-function requiredMarker() {
-  const marker = document.createElement('span');
-  marker.className = 'form-variations-required';
-  marker.setAttribute('aria-hidden', 'true');
-  marker.textContent = '*';
-  return marker;
-}
-
-/** a label with the authored text (keeping its instrumentation) and a required marker */
 function createLabel(id, cell, required, fallback) {
   const label = document.createElement('label');
   label.className = 'form-variations-label';
@@ -145,7 +111,13 @@ function createLabel(id, cell, required, fallback) {
   text.textContent = textOf(cell) || fallback;
   instrument(cell, text);
   label.append(text);
-  if (required) label.append(requiredMarker());
+  if (required) {
+    const marker = document.createElement('span');
+    marker.className = 'form-variations-required';
+    marker.setAttribute('aria-hidden', 'true');
+    marker.textContent = '*';
+    label.append(marker);
+  }
   return label;
 }
 
@@ -154,199 +126,106 @@ function setRequired(control, required) {
   if (required) control.dataset.required = 'true';
 }
 
-/** an icon: the authored image (decorative, the text beside it names it), else the default icon */
-function iconOf(url, className, defaultIcon) {
-  const icon = document.createElement('span');
-  icon.className = className;
-  icon.setAttribute('aria-hidden', 'true');
-  if (url) {
-    const img = document.createElement('img');
-    img.src = url;
-    img.alt = '';
-    img.loading = 'lazy';
-    icon.append(img);
-  } else {
-    icon.classList.add(`${className}-${defaultIcon}`);
-  }
-  return icon;
-}
-
-/** the autocomplete value of a field from its name or type (WCAG 1.3.5 input purpose) */
-const AUTOCOMPLETE = [
-  [/first|given/, 'given-name'], [/last|surname|family/, 'family-name'], [/^(full[-_ ]?)?name$/, 'name'],
-  [/e-?mail/, 'email'], [/phone|mobile|tel/, 'tel'], [/company|organi[sz]ation/, 'organization'],
-  [/job|designation|position/, 'organization-title'], [/country/, 'country-name'],
-  [/city|town/, 'address-level2'], [/zip|postal|post[-_ ]?code/, 'postal-code'],
-];
-function autocompleteOf(name, type) {
-  if (type === 'email') return 'email';
-  if (type === 'tel') return 'tel';
-  const match = AUTOCOMPLETE.find(([pattern]) => pattern.test(name.toLowerCase()));
-  return match ? match[1] : '';
-}
-
-/** the visible error of a field, linked to it (aria-invalid, aria-describedby) */
-function showError(control, message) {
-  const id = `${control.id}-error`;
-  let error = control.form?.querySelector(`#${CSS.escape(id)}`);
-  if (!error) {
-    error = document.createElement('p');
-    error.className = 'form-variations-error';
-    error.id = id;
-    control.closest('.form-variations-group')?.append(error);
-  }
-  error.textContent = message;
-  control.setAttribute('aria-invalid', 'true');
-  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
-  if (!described.includes(id)) control.setAttribute('aria-describedby', [...described, id].join(' '));
-}
-
-function clearError(control) {
-  control.removeAttribute('aria-invalid');
-  const id = `${control.id}-error`;
-  control.form?.querySelector(`#${CSS.escape(id)}`)?.remove();
-  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter((v) => v && v !== id);
-  if (described.length) control.setAttribute('aria-describedby', described.join(' '));
-  else control.removeAttribute('aria-describedby');
-}
-
-/** the message of an invalid field, from the placeholders */
-function errorOf(control) {
-  const { validity } = control;
-  if (validity.valueMissing) return t('fieldRequired', 'This field is required.');
-  if (validity.typeMismatch && control.type === 'email') return t('fieldEmail', 'Enter a valid email address.');
-  if (validity.typeMismatch || validity.patternMismatch) return t('fieldFormat', 'Enter a valid value.');
-  if (validity.tooLong) return t('fieldTooLong', 'This text is too long.');
-  return control.validationMessage;
-}
-
-/**
- * Validates the visible fields: errors next to the fields, focus on the first invalid one.
- * @returns {boolean} whether the form is valid
- */
-function validate(form) {
-  const controls = [...form.elements].filter((el) => el.matches('input, select, textarea')
-    && !el.disabled && el.type !== 'hidden' && el.type !== 'submit');
-  const invalid = controls.filter((control) => {
-    if (control.checkValidity()) {
-      clearError(control);
-      return false;
-    }
-    showError(control, errorOf(control));
-    return true;
-  });
-  invalid[0]?.focus();
-  return !invalid.length;
-}
-
-/** the options of a dropdown; the first is selected (Figma: a dropdown shows a value) */
-function appendOptions(select, values) {
-  values.forEach((value, index) => {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = value;
-    option.defaultSelected = index === 0;
-    select.append(option);
-  });
+function determineWidth(widthCell, fallbackName = '') {
+  const authored = normalize(textOf(widthCell));
+  if (authored === 'half-width' || authored === 'half') return 'half-width';
+  if (authored === 'full-width' || authored === 'full') return 'full-width';
+  if (fallbackName && fallbackName.toLowerCase().includes('name')) return 'half-width';
+  return 'full-width';
 }
 
 function buildTextField(cells, nextId) {
-  const {
-    fieldName: nameCell, label: labelCell, inputKind: kindCell, fieldWidth: widthCell,
-    required: requiredCell, dependsOn: dependsCell,
-  } = cells;
+  const [nameCell, labelCell, kindCell, widthCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'text';
   const required = isTrue(requiredCell);
   const kind = normalize(textOf(kindCell));
   const id = nextId(name);
+  const widthClass = determineWidth(widthCell, name);
 
-  const group = createGroup(['field-text', widthOf(widthCell, name)], textOf(dependsCell));
+  const group = createGroup(['field-text', widthClass], textOf(dependsCell));
   const input = document.createElement('input');
   input.className = 'form-variations-control';
   input.type = INPUT_KINDS.includes(kind) ? kind : 'text';
   input.id = id;
   input.name = name;
-  const autocomplete = autocompleteOf(name, input.type);
-  if (autocomplete) input.autocomplete = autocomplete;
   setRequired(input, required);
   group.append(createLabel(id, labelCell, required, name), input);
   return group;
 }
 
 function buildSelectField(cells, nextId) {
-  const {
-    fieldName: nameCell, label: labelCell, fieldWidth: widthCell, required: requiredCell,
-    options: optionsCell, dependsOn: dependsCell,
-  } = cells;
+  const [nameCell, labelCell, widthCell, requiredCell, optionsCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'select';
   const required = isTrue(requiredCell);
   const id = nextId(name);
+  const widthClass = determineWidth(widthCell);
 
-  const group = createGroup(['field-select', widthOf(widthCell)], textOf(dependsCell));
+  const group = createGroup(['field-select', widthClass], textOf(dependsCell));
   const select = document.createElement('select');
   select.className = 'form-variations-control';
   select.id = id;
   select.name = name;
   setRequired(select, required);
-  appendOptions(select, splitList(textOf(optionsCell)));
+
+  const optionsList = splitList(textOf(optionsCell));
+  optionsList.forEach((value, index) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value;
+    if (index === 0) option.selected = true;
+    select.append(option);
+  });
   instrument(optionsCell, select);
 
   group.append(createLabel(id, labelCell, required, name), select);
   return group;
 }
 
-/**
- * A text input with a dropdown of units beside it (cells: key, label, the units, width,
- * required, depends on): one label for the input, the dropdown named by it ("Score unit"); the
- * value is sent under its key, the unit under the key + Unit (scoreUnit).
- */
 function buildCombinedField(cells, nextId) {
-  const {
-    fieldName: nameCell, label: labelCell, options: optionsCell, fieldWidth: widthCell,
-    required: requiredCell, dependsOn: dependsCell,
-  } = cells;
+  const [nameCell, labelCell, optionsCell, widthCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'score';
   const required = isTrue(requiredCell);
   const id = nextId(name);
-  const label = textOf(labelCell) || name;
+  const widthClass = determineWidth(widthCell);
 
-  const group = createGroup(['field-combined', widthOf(widthCell)], textOf(dependsCell));
+  const group = createGroup(['field-combined', widthClass], textOf(dependsCell));
   const row = document.createElement('div');
   row.className = 'form-variations-combined-row';
 
   const input = document.createElement('input');
-  input.className = 'form-variations-control form-variations-combined-input';
+  input.className = 'form-variations-control combined-input';
   input.type = 'text';
   input.id = id;
   input.name = name;
   setRequired(input, required);
 
   const select = document.createElement('select');
-  select.className = 'form-variations-control form-variations-combined-select';
-  select.id = nextId(`${name}-unit`);
+  select.className = 'form-variations-control combined-select';
   select.name = `${name}Unit`;
-  select.setAttribute('aria-label', t('fieldUnit', '{label} unit', { label }));
-  const units = splitList(textOf(optionsCell));
-  appendOptions(select, units.length ? units : splitList(t('fieldUnits', 'CGPA, Percentage')));
-  instrument(optionsCell, select);
+
+  const optionsList = splitList(textOf(optionsCell)) || ['CGPA', 'Percentage'];
+  optionsList.forEach((val) => {
+    const opt = document.createElement('option');
+    opt.value = val;
+    opt.textContent = val;
+    select.append(opt);
+  });
 
   row.append(input, select);
-  group.append(createLabel(id, labelCell, required, name), row);
+  group.append(createLabel(id, labelCell, required, 'SCORE'), row);
   return group;
 }
 
 function buildTextareaField(cells, nextId) {
-  const {
-    fieldName: nameCell, label: labelCell, maxLength: maxLengthCell, fieldWidth: widthCell,
-    required: requiredCell, dependsOn: dependsCell,
-  } = cells;
+  const [nameCell, labelCell, maxLengthCell, widthCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'message';
   const required = isTrue(requiredCell);
   const id = nextId(name);
   const parsed = parseInt(textOf(maxLengthCell), 10);
   const limit = parsed > 0 ? parsed : DEFAULT_MAX_LENGTH;
+  const widthClass = determineWidth(widthCell);
 
-  const group = createGroup(['field-textarea', widthOf(widthCell)], textOf(dependsCell));
+  const group = createGroup(['field-textarea', widthClass], textOf(dependsCell));
   const textarea = document.createElement('textarea');
   textarea.className = 'form-variations-control';
   textarea.id = id;
@@ -355,19 +234,12 @@ function buildTextareaField(cells, nextId) {
   textarea.rows = 4;
   setRequired(textarea, required);
 
-  // the count as "(12/1500)" on screen, "12 of 1500 characters" for screen readers
   const counter = document.createElement('span');
   counter.className = 'form-variations-counter';
   counter.id = `${id}-counter`;
   const update = () => {
     const count = textarea.value.length;
-    const visible = document.createElement('span');
-    visible.setAttribute('aria-hidden', 'true');
-    visible.textContent = `(${count}/${limit})`;
-    const spoken = document.createElement('span');
-    spoken.className = 'visually-hidden';
-    spoken.textContent = t('charactersCount', '{count} of {max} characters', { count, max: limit });
-    counter.replaceChildren(visible, spoken);
+    counter.textContent = `(${count}/${limit})`;
   };
   textarea.setAttribute('aria-describedby', counter.id);
   textarea.addEventListener('input', update);
@@ -378,15 +250,13 @@ function buildTextareaField(cells, nextId) {
 }
 
 function buildCheckboxField(cells, nextId) {
-  const {
-    fieldName: nameCell, label: labelCell, fieldWidth: widthCell, required: requiredCell,
-    dependsOn: dependsCell,
-  } = cells;
+  const [nameCell, labelCell, widthCell, requiredCell, dependsCell] = cells;
   const name = textOf(nameCell) || 'consent';
   const required = isTrue(requiredCell);
   const id = nextId(name);
+  const widthClass = determineWidth(widthCell);
 
-  const group = createGroup(['field-checkbox', widthOf(widthCell)], textOf(dependsCell));
+  const group = createGroup(['field-checkbox', widthClass], textOf(dependsCell));
   const input = document.createElement('input');
   input.className = 'form-variations-checkbox';
   input.type = 'checkbox';
@@ -398,7 +268,6 @@ function buildCheckboxField(cells, nextId) {
   const label = document.createElement('label');
   label.className = 'form-variations-checkbox-label';
   label.htmlFor = id;
-  // the consent text is rich text (sanitized by the platform): keep its markup
   const text = document.createElement('span');
   text.className = 'form-variations-consent';
   if (labelCell) {
@@ -407,34 +276,47 @@ function buildCheckboxField(cells, nextId) {
   }
   if (!text.textContent.trim()) text.textContent = name;
   label.append(text);
-  if (required) label.append(requiredMarker());
+  if (required) {
+    const marker = document.createElement('span');
+    marker.className = 'form-variations-required';
+    marker.setAttribute('aria-hidden', 'true');
+    marker.textContent = '*';
+    label.append(marker);
+  }
   group.append(input, label);
   return group;
 }
 
-/** a text between the fields (rich text, e.g. a privacy notice with links); not a form value */
 function buildRichtextField(cells) {
-  const {
-    fieldName: nameCell, label: contentCell, fieldWidth: widthCell, dependsOn: dependsCell,
-  } = cells;
-  const group = createGroup(['field-richtext', widthOf(widthCell)], textOf(dependsCell));
-  const content = document.createElement('div');
-  content.className = 'form-variations-richtext-content';
-  if (contentCell) {
-    content.append(...contentCell.childNodes);
-    moveInstrumentation(contentCell, content);
+  const [nameCell, labelCell, widthCell, dependsCell] = cells;
+  const widthClass = determineWidth(widthCell);
+  const group = createGroup(['field-richtext', widthClass], textOf(dependsCell));
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'form-variations-richtext-content';
+  if (labelCell) {
+    contentDiv.append(...labelCell.childNodes);
+    moveInstrumentation(labelCell, contentDiv);
+  } else {
+    contentDiv.textContent = textOf(nameCell);
   }
-  if (!content.textContent.trim()) content.textContent = textOf(nameCell);
-  group.append(content);
+
+  group.append(contentDiv);
   return group;
 }
 
 function buildContactCard(cells) {
-  const {
-    region: regionCell, contactName: nameCell, emails: emailsCell, phones: phonesCell,
-    emailIcon: emailIconCell, phoneIcon: phoneIconCell, fieldWidth: widthCell,
-  } = cells;
-  const card = createGroup(['form-variations-contact-card', widthOf(widthCell)], textOf(regionCell));
+  const [
+    regionCell,
+    nameCell,
+    emailsCell,
+    phonesCell,
+    emailIconCell,
+    phoneIconCell,
+    widthCell,
+  ] = cells;
+  const widthClass = determineWidth(widthCell);
+  const card = createGroup(['form-variations-contact-card', widthClass], textOf(regionCell));
 
   const name = document.createElement('h3');
   name.className = 'form-variations-contact-name';
@@ -442,41 +324,70 @@ function buildContactCard(cells) {
   instrument(nameCell, name);
   card.append(name);
 
-  const links = [
-    ...splitList(textOf(emailsCell)).map((email) => ({
-      kind: 'email', text: email, href: `mailto:${email}`, icon: urlOf(emailIconCell), defaultIcon: 'mail',
-    })),
-    ...splitList(textOf(phonesCell)).map((phone) => ({
-      kind: 'phone', text: phone, href: `tel:${phone.replace(/[^\d+]/g, '')}`, icon: urlOf(phoneIconCell), defaultIcon: 'phone',
-    })),
-  ];
-  if (links.length) {
-    const list = document.createElement('ul');
-    list.className = 'form-variations-contact-links';
-    links.forEach(({
-      kind, text, href, icon, defaultIcon,
-    }) => {
-      const li = document.createElement('li');
-      li.className = `form-variations-contact-item form-variations-contact-${kind}`;
-      const a = document.createElement('a');
-      a.href = href;
-      a.textContent = text;
-      li.append(iconOf(icon, 'form-variations-contact-icon', defaultIcon), a);
-      list.append(li);
-    });
-    card.append(list);
-  }
+  const emailIconUrl = linkOf(emailIconCell)?.getAttribute('href') || textOf(emailIconCell);
+  const phoneIconUrl = linkOf(phoneIconCell)?.getAttribute('href') || textOf(phoneIconCell);
+
+  const linksList = document.createElement('ul');
+  linksList.className = 'form-variations-contact-links';
+
+  splitList(textOf(emailsCell)).forEach((email) => {
+    const li = document.createElement('li');
+    li.className = 'form-variations-contact-item';
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'contact-icon';
+    if (emailIconUrl) {
+      const img = document.createElement('img');
+      img.src = emailIconUrl;
+      img.alt = 'Email Icon';
+      iconSpan.append(img);
+    } else {
+      iconSpan.innerHTML = DEFAULT_MAIL_ICON;
+    }
+
+    const a = document.createElement('a');
+    a.href = `mailto:${email}`;
+    a.textContent = email;
+
+    li.append(iconSpan, a);
+    linksList.append(li);
+  });
+
+  splitList(textOf(phonesCell)).forEach((phone) => {
+    const li = document.createElement('li');
+    li.className = 'form-variations-contact-item';
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'contact-icon';
+    if (phoneIconUrl) {
+      const img = document.createElement('img');
+      img.src = phoneIconUrl;
+      img.alt = 'Phone Icon';
+      iconSpan.append(img);
+    } else {
+      iconSpan.innerHTML = DEFAULT_PHONE_ICON;
+    }
+
+    const a = document.createElement('a');
+    a.href = `tel:${phone.replace(/[^\d+]/g, '')}`;
+    a.textContent = phone;
+
+    li.append(iconSpan, a);
+    linksList.append(li);
+  });
+
+  if (linksList.children.length) card.append(linksList);
   return card;
 }
 
 function buildSubmit(cells) {
-  const { label: labelCell, fieldWidth: widthCell, dependsOn: dependsCell } = cells;
-  const group = createGroup(['field-submit', widthOf(widthCell)], textOf(dependsCell));
+  const [labelCell, widthCell, dependsCell] = cells;
+  const widthClass = determineWidth(widthCell);
+  const group = createGroup(['field-submit', widthClass], textOf(dependsCell));
   const button = document.createElement('button');
   button.type = 'submit';
   button.textContent = textOf(labelCell) || t('send', 'Send');
   instrument(labelCell, button);
-  decorateButton(button, { view: 'button', type: 'primary' });
   group.append(button);
   return group;
 }
@@ -492,32 +403,34 @@ const BUILDERS = {
   'field-submit': buildSubmit,
 };
 
-/**
- * Shows the conditional fields and contact cards whose value is selected in any dropdown.
- * Hidden fields are disabled (left out of validation and the submitted data) and not required.
- * In the editor everything stays visible so authors can select it.
- */
 function updateVisibility(form, editing) {
   const conditional = [...form.querySelectorAll('[data-depends-on]')];
-  // repeat while a hidden dropdown hides further fields (chained conditions)
+  if (!conditional.length) return;
+
   for (let pass = 0; pass <= conditional.length; pass += 1) {
     const selected = [...form.querySelectorAll('select')]
       .filter((select) => !select.disabled && select.value)
       .map((select) => normalize(select.value));
+
     const before = conditional.map((el) => el.hidden).join();
+
     conditional.forEach((el) => {
-      const visible = editing || selected.includes(normalize(el.dataset.dependsOn));
+      const targetValue = normalize(el.dataset.dependsOn);
+      const visible = editing || selected.includes(targetValue);
+
       el.hidden = !visible;
+      el.style.display = visible ? '' : 'none';
+
       el.querySelectorAll('input, select, textarea, button').forEach((control) => {
         control.disabled = !visible;
         if (control.dataset.required) control.required = visible;
       });
     });
+
     if (conditional.map((el) => el.hidden).join() === before) break;
   }
 }
 
-/** the form values; repeated names become arrays */
 function collectData(form) {
   const data = {};
   new FormData(form).forEach((value, key) => {
@@ -527,61 +440,15 @@ function collectData(form) {
   return data;
 }
 
-/**
- * The Back button: the previous page of the visit, else the locale's Home page.
- */
-function buildBack() {
-  const back = document.createElement('button');
-  back.type = 'button';
-  back.className = 'form-variations-back';
-  back.textContent = t('back', 'Back');
-  back.addEventListener('click', () => {
-    if (window.history.length > 1) window.history.back();
-    else window.location.href = getLocale().root;
-  });
-  return back;
-}
-
-/**
- * The section's background beside the form (from 900px, form-variations.css): the Background
- * image, else an image authored as default content in the form's section (not in another block).
- * On the page that image is removed; in the editor it stays (hidden) so it can still be edited.
- */
-function applySectionImage(block, editing, authored) {
-  const section = block.closest('.section');
-  if (!section) return;
-  const img = section.querySelector(':scope > .default-content-wrapper picture img');
-  const url = authored || img?.currentSrc || img?.src;
-  if (!url) return;
-  section.classList.add('form-variations-backdrop');
-  section.style.setProperty('--form-variations-backdrop-image', `url("${encodeURI(url)}")`);
-  const holder = img?.closest('p') || img?.closest('picture');
-  if (!holder) return;
-  if (editing) holder.hidden = true;
-  else holder.remove();
-}
-
-/** the eyebrow above the title: the Eyebrow icon (else the default icon) and the text */
-function buildEyebrow(eyebrowCell, eyebrowIconCell) {
-  const eyebrow = document.createElement('p');
-  eyebrow.className = 'form-variations-eyebrow';
-  const label = document.createElement('span');
-  label.textContent = textOf(eyebrowCell);
-  instrument(eyebrowCell, label);
-  eyebrow.append(iconOf(urlOf(eyebrowIconCell), 'form-variations-eyebrow-icon', 'layers'), label);
-  return eyebrow;
-}
-
-/**
- * loads and decorates the block
- * @param {Element} block The block element
- */
 export default async function decorate(block) {
   t = await getPlaceholders();
   const nextId = createIdFactory(uniqueId('form-variations'));
   const editing = isInEditor(block);
-  // the TCS Designs form is dark (on the section's dark background)
+
   block.classList.add('dark');
+
+  const innerWrapper = document.createElement('div');
+  innerWrapper.className = 'form-variations-inner';
 
   const form = document.createElement('form');
   form.className = 'form-variations-form';
@@ -596,27 +463,67 @@ export default async function decorate(block) {
       return;
     }
     itemsStarted = true;
-    const el = BUILDERS[type](fieldsOf(type, cells), nextId);
+    const el = BUILDERS[type](cells, nextId);
     moveInstrumentation(row, el);
-    if (editing && el.dataset.dependsOn) {
-      const note = document.createElement('p');
-      note.className = 'form-variations-condition';
-      note.textContent = t('shownWhenValue', 'Shown when a dropdown value is "{value}"', { value: el.dataset.dependsOn });
-      el.prepend(note);
-    }
     form.append(el);
   });
 
   const {
-    formEyebrow: eyebrowCell, formEyebrowIcon: eyebrowIconCell, formHeading: titleCell,
-    formDescription: descriptionCell, bgImage: bgImageCell, formAction: actionCell,
+    eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell,
   } = readProperties(properties);
-  const action = urlOf(actionCell);
-  applySectionImage(block, editing, urlOf(bgImageCell));
+  const actionLink = linkOf(actionCell);
+  const action = actionLink?.getAttribute('href') || textOf(actionCell);
+
+  const authoredBg = linkOf(bgImageCell)?.getAttribute('href') || textOf(bgImageCell);
+  const section = block.closest('.section');
+  const sectionImg = section?.querySelector('picture img');
+  const bgUrl = authoredBg || sectionImg?.src;
+
+  if (section && bgUrl) {
+    section.dataset.bgUrl = bgUrl;
+    if (sectionImg) sectionImg.closest('picture')?.remove();
+  }
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'form-variations-back';
+  backBtn.setAttribute('type', 'button');
+  backBtn.innerHTML = '&lt; BACK';
+  backBtn.addEventListener('click', () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
 
   const header = document.createElement('div');
   header.className = 'form-variations-header';
-  if (textOf(eyebrowCell)) header.append(buildEyebrow(eyebrowCell, eyebrowIconCell));
+
+  const eyebrowText = textOf(eyebrowCell);
+  if (eyebrowText) {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'form-variations-eyebrow';
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'form-variations-eyebrow-icon';
+    const eyebrowIconUrl = linkOf(eyebrowIconCell)?.getAttribute('href') || textOf(eyebrowIconCell);
+    if (eyebrowIconUrl) {
+      const img = document.createElement('img');
+      img.src = eyebrowIconUrl;
+      img.alt = '';
+      iconSpan.append(img);
+    } else {
+      iconSpan.innerHTML = DEFAULT_EYEBROW_ICON;
+    }
+
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = eyebrowText;
+    instrument(eyebrowCell, labelSpan);
+
+    eyebrow.append(iconSpan, labelSpan);
+    header.append(eyebrow);
+  }
+
   const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', 'h2') : null;
   if (title) header.append(title);
   if (descriptionCell && textOf(descriptionCell)) {
@@ -634,79 +541,33 @@ export default async function decorate(block) {
 
   form.addEventListener('change', (e) => {
     if (!e.target.matches('select')) return;
-    const shown = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden);
     updateVisibility(form, editing);
-    const added = [...form.querySelectorAll('[data-depends-on]')].filter((el) => !el.hidden && !shown.includes(el));
-    if (!editing && added.length) status.textContent = t('fieldsUpdated', 'More fields are shown below.');
   });
-  // the required marker explained once (it's hidden from screen readers, the fields are required)
-  if (form.querySelector('[required]')) {
-    const note = document.createElement('p');
-    note.className = 'form-variations-required-note';
-    note.textContent = t('requiredNote', '* Required fields');
-    form.prepend(note);
-  }
 
-  form.addEventListener('input', (e) => {
-    status.textContent = '';
-    if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) clearError(e.target);
-  });
   const succeed = () => {
     form.reset();
-    form.querySelectorAll('textarea').forEach((textarea) => textarea.dispatchEvent(new Event('input')));
     updateVisibility(form, editing);
     status.textContent = t('formSuccess', 'Thank you, your details were sent.');
   };
-  const fail = (key, fallback) => { status.textContent = t(key, fallback); };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // a submission is being sent: a second click or Enter doesn't send it again
     if (form.getAttribute('aria-busy') === 'true') return;
     status.textContent = '';
-    if (!validate(form)) return;
     const data = collectData(form);
-    // an integration that handles the submit (preventDefault) can report its outcome with
-    // detail.respondWith(promise): rejected, the visitor is told it failed
-    let pending = null;
-    const detail = { data, respondWith: (promise) => { pending = promise; } };
-    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', { bubbles: true, cancelable: true, detail }));
-    const button = form.querySelector('button[type="submit"]');
-    if (handled) {
-      try {
-        await pending;
-        succeed();
-      } catch {
-        fail('formError', 'Your details couldn’t be sent. Please try again.');
-      }
-    } else if (!action) {
-      fail('formNotConnected', 'This form isn’t connected yet: your details weren’t sent.');
-    } else {
-      button?.setAttribute('aria-disabled', 'true');
-      form.setAttribute('aria-busy', 'true');
+
+    if (action) {
       try {
         const response = await fetch(action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data }) });
         if (response.ok) succeed();
-        else fail('formError', 'Your details couldn’t be sent. Please try again.');
       } catch {
-        fail('formError', 'Your details couldn’t be sent. Please try again.');
-      } finally {
-        button?.removeAttribute('aria-disabled');
-        form.removeAttribute('aria-busy');
+        status.textContent = t('formError', 'Your details couldn’t be sent. Please try again.');
       }
     }
-    // focus stays on the page (the submit button may be hidden by the reset)
-    status.focus();
   });
-  if (editing && !action) {
-    const note = document.createElement('p');
-    note.className = 'form-variations-condition';
-    note.textContent = t('formNoAction', 'No Submit action set: submissions aren’t sent anywhere.');
-    form.prepend(note);
-  }
 
-  const inner = document.createElement('div');
-  inner.className = 'form-variations-inner';
-  inner.append(...(header.children.length ? [header] : []), form, status);
-  block.replaceChildren(buildBack(), inner);
+  innerWrapper.append(...(header.children.length ? [header] : []), form, status);
+  block.replaceChildren(backBtn, innerWrapper);
+
   updateVisibility(form, editing);
 }

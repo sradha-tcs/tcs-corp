@@ -244,9 +244,9 @@ Notes on the significant fields (see the tables above for labels, values and def
 - **Quote:** renders as a `<blockquote>`. **Quote Author** renders as the `<figcaption>`, and both sit in a `<figure>`. The quotation marks are CSS content with empty alternative text, so screen readers don't read them.
 - **Image / Image Alt Text:** the picture comes from the image cell. Image Alt Text replaces its alt, and an image without alt text gets `alt=""` (decorative). Without a picture, the block doesn't get `quote-has-media`, so there is no overlap.
 - **Image Position (Desktop):** Left adds `image-left` and only takes effect from 900px. **Image Position (Mobile):** Bottom adds `image-bottom` and only takes effect below 900px. A missing or unknown value means Right / Top.
-- **BG Color:** Grey adds `bg-grey`: a grey block and card with their own padding (see Responsive Behavior). Unlike the Teaser's BG Color, this one adds padding.
+- **BG Color:** Grey adds `bg-grey`: a grey block and card. The padding (2.5rem / 1.5rem, 7.5rem / 5rem from 900px; see Responsive Behavior) is the same for every background, so the eyebrow and title line up on white and grey Quotes alike; BG Color sets only the colour.
 - **Legacy mapping:** the select values are also read from block classes (`optionOf`), so a `grey`, `left` or `bottom` class has the same effect as the field. The Style field was removed in handover 2.27; the block doesn't read it.
-- **Additional tab:** Anchor ID, Hide block, the animations and Padding / Margin, as described in AGENTS.md "Additional tab". Background animation applies to the block's background colour (white by default, grey with BG Color Grey). The Additional tab's padding classes override the Grey padding.
+- **Additional tab:** Anchor ID, Hide block, the animations and Padding / Margin, as described in AGENTS.md "Additional tab". Background animation applies to the block's background colour (white by default, grey with BG Color Grey). The Additional tab's padding classes override the block's padding.
 
 ## Screenshot-Based Authoring Steps
 
@@ -377,7 +377,7 @@ B = Publish dialog with the referenced image
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | BG Color | Grey | Set the quote apart from the page | Grey block and card with padding |
+| A | BG Color | Grey | Set the quote apart from the page | Grey block and card |
 | B | Publish | Page and referenced assets | The image must be live too | The published page shows the portrait |
 
 Author action: choose Grey, preview, then publish the page with its references. Expected preview: a grey panel. Expected published result: the grey Quote with the portrait. Business rule: Default or Grey only. Validation: open the published page and check the image loads. Common mistake: publishing the page without the image, so the card renders without the portrait.
@@ -449,7 +449,7 @@ B = Image
 ### Grey background
 
 - **Purpose:** set the quote apart from white content. **Configuration:** BG Color Grey (class `bg-grey`).
-- **Rendering:** the block and the card are grey (`--color-bg-secondary`), with 2.5rem / 1.5rem padding, and 7.5rem / 5rem from 900px.
+- **Rendering:** the block and the card are grey (`--color-bg-secondary`), with the block's padding (2.5rem / 1.5rem, 7.5rem / 5rem from 900px, as on white).
 - **Accessibility:** the text keeps the default text tokens. **Data layer, personalization:** as Default.
 
 ```text
@@ -562,8 +562,8 @@ This block does not currently expose verified personalization behavior. The repo
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 900px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; Grey padding 2.5rem / 1.5rem; quote marks 1.9167rem x 3.8333rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
-| 900px and wider (desktop) | Body up to 70rem, centred; with an image, a 498 : 204 : 418 grid (418 : 204 : 498 with `image-left`) with the card overlapping the image; Grey padding 7.5rem / 5rem; quote marks 2.875rem x 5.75rem | 622:869 crop; right or left | None |
+| Below 900px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; block padding 2.5rem / 1.5rem (every background); quote marks 1.9167rem x 3.8333rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
+| 900px and wider (desktop) | Body up to 70rem, centred; with an image, a 498 : 204 : 418 grid (418 : 204 : 498 with `image-left`) with the card overlapping the image; block padding 7.5rem / 5rem (every background); quote marks 2.875rem x 5.75rem | 622:869 crop; right or left | None |
 
 ## For Developers
 
@@ -679,6 +679,7 @@ graph LR
 | QUOTE-QA-02 | Image Left | Image Position (Desktop) Left | Image on the left from 900px; unchanged below 900px |
 | QUOTE-QA-03 | Image Bottom | Image Position (Mobile) Bottom | Image below the card below 900px; unchanged from 900px |
 | QUOTE-QA-04 | Grey background | BG Color Grey | Grey block and card, 2.5rem / 1.5rem padding, 7.5rem / 5rem from 900px |
+| QUOTE-QA-04b | White background | BG Color Default | Same padding as Grey: eyebrow and title 1.5rem (5rem from 900px) from the block's left edge |
 | QUOTE-QA-05 | Text only | No Image | No `quote-has-media`; the card alone |
 | QUOTE-QA-06 | Missing content | Only a Title | Header only, no body |
 | QUOTE-QA-07 | Decorative image | Image without alt text | `alt=""` |
