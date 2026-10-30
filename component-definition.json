@@ -717,7 +717,6 @@
                   "showDescription": true,
                   "showDate": true,
                   "dateFormat": "dd-mmm-yy",
-                  "showCta": true,
                   "imageLoading": "lazy",
                   "desktopMode": "grid",
                   "desktopColumns": 4,

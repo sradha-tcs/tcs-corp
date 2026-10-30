@@ -28,7 +28,6 @@
               "showDescription": true,
               "showDate": true,
               "dateFormat": "dd-mmm-yy",
-              "showCta": true,
               "imageLoading": "lazy",
               "desktopMode": "grid",
               "desktopColumns": 4,
@@ -444,7 +443,43 @@
           }
         },
         {
-          "...": "../../models/_card-list.json#/fields/cardsAction"
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showCta",
+          "label": "Show call to action",
+          "value": true,
+          "description": "Child pages with Card style Panel: the Explore call to action on every card. Not shown for other sources or card styles (their cards keep their call to action; Fixed list: each List Item's Show Action Label).",
+          "condition": {
+            "and": [
+              {
+                "===": [
+                  {
+                    "var": "source"
+                  },
+                  "parent"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "displayAsTeaser"
+                  },
+                  true
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "panel"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/loading"
         },
         {
           "...": "../../models/_card-list.json#/fields/layout"
@@ -1384,7 +1419,7 @@
           "name": "titleHidden",
           "label": "Hide Title",
           "value": false,
-          "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with the action label hidden too, the action label stays."
+          "description": "Hides the title on the card; it stays for screen readers and in the heading outline, and names the card's link. A linked card keeps one visible link: with Show Action Label off, the title stays visible as the link."
         },
         {
           "component": "boolean",
@@ -1424,7 +1459,7 @@
           "name": "showActionLabel",
           "label": "Show Action Label",
           "value": true,
-          "description": "Off: no visible call to action; the title is the card's link (its text names it). With Hide Title on, the action label stays."
+          "description": "On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it."
         }
       ]
     }
