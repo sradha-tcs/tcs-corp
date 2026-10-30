@@ -129,6 +129,7 @@ function buildCta({
   backgroundCell,
   shapeCell,
   fallbackStyle,
+  className,
   newTabHint,
 }) {
   const link = linkOf(linkCell);
@@ -161,7 +162,10 @@ function buildCta({
     newTabHint,
   });
 
-  link.classList.add('image-collage-cta');
+  link.classList.add(
+    'image-collage-cta',
+    className,
+  );
 
   if (noArrow) {
     link.classList.add('image-collage-cta-no-arrow');
@@ -219,6 +223,7 @@ function buildLinks(props, newTabHint) {
     backgroundCell: props.primaryctabackground,
     shapeCell: props.primaryctashape,
     fallbackStyle: 'primary',
+    className: 'image-collage-cta-primary',
     newTabHint,
   });
 
@@ -230,6 +235,7 @@ function buildLinks(props, newTabHint) {
     backgroundCell: props.secondaryctabackground,
     shapeCell: props.secondaryctashape,
     fallbackStyle: 'secondary',
+    className: 'image-collage-cta-secondary',
     newTabHint,
   });
 
@@ -326,15 +332,15 @@ function buildContent(props, newTabHint) {
   }
 
   /*
-     * The description belongs inside the intro for the Image Collage.
-     * This produces the Figma structure:
-     *
-     * Introduction:
-     * - Title
-     * - Description
-     *
-     * Then the CTA row after the content gap.
-     */
+       * The description belongs inside the intro for the Image Collage.
+       * This produces the Figma structure:
+       *
+       * Introduction:
+       * - Title
+       * - Description
+       *
+       * Then the CTA row after the content gap.
+       */
   if (
     isOnByDefault(props.showdescription)
         && textOf(props.description)
