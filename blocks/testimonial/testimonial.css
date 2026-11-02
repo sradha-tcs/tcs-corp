@@ -1,4 +1,16 @@
 /* Testimonial (TCS.com DS Figma "Testimonial Block", 3291-268576 and 404-29822) */
+main > .section > div:has(> .testimonial) {
+  padding-inline: var(--space-400);
+}
+
+main > .section > div:has(> .testimonial.bg-grey) {
+  background-color: var(--color-bg-secondary);
+}
+
+main > .section > div:has(> .testimonial.bg-navy) {
+  background-color: var(--color-bg-brand-hover);
+}
+
 .testimonial {
   display: flex;
   flex-direction: column;
@@ -13,7 +25,7 @@
 }
 
 .testimonial.bg-grey {
-  background-color: var(--color-bg-secondary);
+  background-color: transparent;
 }
 
 /* section title (Figma section header lockup) */
@@ -175,7 +187,7 @@
  
 /* Navy colour background */
 .testimonial.bg-navy {
-  background-color: var(--color-bg-brand-hover);
+  background-color: transparent;
 }
  
 .testimonial.bg-navy .testimonial-description {

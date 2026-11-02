@@ -16,7 +16,7 @@ import {
  * them) (Figma "Testimonial Block", 404-29822).
  */
 
-const BG_COLORS = ['grey'];
+const BG_COLORS = ['grey', 'navy'];
 
 function buildAuthor(props) {
   const author = document.createElement('div');
