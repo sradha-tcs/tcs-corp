@@ -54,7 +54,7 @@ const MOTIONS = ['none', 'fade', 'slide', 'reveal'];
 const HEADINGS = ['h2', 'h3', 'h4'];
 const TRADEMARKS = { tm: '™', r: '®' };
 const ITEM_FIELDS = ['number', 'title', 'trademark', 'description', 'link'];
-const MAX_ITEMS = 10;
+const MAX_ITEMS = 20;
 
 // what each variation shows unless the dialog says otherwise
 const VARIATION_DEFAULTS = {
