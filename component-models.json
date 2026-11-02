@@ -12801,6 +12801,24 @@
         "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "backgroundColor",
+        "label": "Background color",
+        "value": "",
+        "options": [
+          {
+            "name": "Dark",
+            "value": ""
+          },
+          {
+            "name": "Navy",
+            "value": "bg-navy"
+          }
+        ],
+        "description": "Sets the Image Collage background. Dark uses rgb(12 12 13). Navy uses rgb(1 22 39)."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"

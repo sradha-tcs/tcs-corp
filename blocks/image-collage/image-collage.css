@@ -23,14 +23,18 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
     max-width: none;
     min-height: 64rem;
     overflow: hidden;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: 0;
     padding-inline: 0;
     background-color: var(--image-collage-bg);
     color: var(--image-collage-title-color);
+}
+
+.image-collage.bg-navy {
+    --image-collage-bg: rgb(1 22 39);
 }
 
 .image-collage :is(.image-collage-content,

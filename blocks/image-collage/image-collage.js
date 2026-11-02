@@ -71,6 +71,9 @@ const OPTIONS = {
     'eyebrow-grey',
     'eyebrow-white',
   ],
+  backgroundcolor: [
+    'bg-navy',
+  ],
 };
 
 /**
@@ -296,7 +299,7 @@ function buildContent(props, newTabHint) {
 
   if (
     isOnByDefault(props.showeyebrow)
-        && textOf(props.eyebrow)
+    && textOf(props.eyebrow)
   ) {
     intro.append(
       fromCell(
@@ -343,7 +346,7 @@ function buildContent(props, newTabHint) {
        */
   if (
     isOnByDefault(props.showdescription)
-        && textOf(props.description)
+    && textOf(props.description)
   ) {
     intro.append(
       fromCell(

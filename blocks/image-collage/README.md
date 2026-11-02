@@ -65,6 +65,7 @@ Annotations:
 A = Title weight
 B = Description size
 C = Eyebrow Style
+D = Background color
 ```
 
 ```text
@@ -158,6 +159,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showEyeb
 | Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | — |
 | Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | — |
 | Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | — |
+| Background color | `backgroundColor` | select | No | "" | Dark (""), Navy (`bg-navy`) | Sets the Image Collage background. Dark uses rgb(12 12 13). Navy uses rgb(1 22 39). | — |
 
 #### Additional tab — Image Collage
 
