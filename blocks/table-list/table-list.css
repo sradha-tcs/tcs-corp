@@ -14,6 +14,10 @@
   --table-list-divider: var(--border-width-100) solid var(--slate-400);
   --table-list-arrow-size: 3rem;
 
+  box-sizing: border-box;
+  max-width: 25.125rem;
+  margin-inline: auto;
+  padding-block: var(--space-1000);
   color: var(--color-text-default);
 }
 
@@ -567,6 +571,9 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 @media (width >= 600px) {
   .table-list {
     --table-list-header-spacing: var(--space-2000);
+
+    max-width: 64rem;
+    padding-block: var(--space-3000);
   }
 
   .table-list .table-list-heading {
@@ -704,10 +711,6 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
     margin-bottom: 0;
   }
 
-  /* Figma tablet "Models & Data": 24px from the edge, two 476px columns at 1024px */
-  .table-list.header-beside:is(.segments, .approach, .platforms) {
-    padding-inline: var(--space-600);
-  }
 }
 
 /* desktop */
@@ -715,7 +718,7 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   .table-list {
     --table-list-item-gap: var(--space-600);
 
-    padding-inline: var(--space-1000);
+    max-width: 90rem;
   }
 
   .table-list .table-list-heading {
@@ -784,14 +787,6 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   .table-list.products .table-list-description {
     font-size: 1.5rem;
     line-height: 1.42;
-  }
-
-  .table-list:is(.segments, .approach, .platforms):not(.background-white) {
-    padding-block: var(--space-3000);
-  }
-
-  .table-list.header-beside:is(.segments, .approach, .platforms) {
-    padding-inline: var(--space-2000);
   }
 
   .table-list.solutions.platforms .table-list-action {
