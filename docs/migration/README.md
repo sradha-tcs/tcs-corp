@@ -138,6 +138,18 @@ npm run lint && npm test
 - **Template constants.** Blocks that are the same on every page of a template (In the News, Connect
   with us, the Media Contacts title) are copied from the approved page.
 - **Never overwrite approved pages.** The package leaves out pages already published unless asked.
+- **Field lists drift with the models.** Main added Teaser (`primaryCtaBackground`,
+  `primaryCtaShape`, `secondaryCtaBackground`, `secondaryCtaShape`, `titleColor`) and List
+  (`featureShowAuthor`, `showContentLabel`) fields after the press release pilot; with the old
+  `FIELDS` every later value moved one or more fields (Teaser `bgColor` = grey landed in
+  `secondaryCtaBackground`). The parsers follow the models again (2 November 2026); the press
+  release pages imported before must be re-imported before another package is built from them.
+- **Items and item-only blocks.** An item row has one cell per field group of the item model, no
+  tab cell (Anchor Link: label, anchor name; List Item: link, new tab, title, ...). A block whose
+  model has only Additional tab fields (Accordion) gets only item rows: AEM delivers an empty first
+  row, but in md2jcr's input it would become an empty item.
+- **The importer removes scripts before the transform.** Values in JSON-LD (blog dates) are read
+  from the raw HTML (`payload.html`), not from the document.
 
 ## 6. Pilot: press releases (25 October 2026)
 
@@ -183,6 +195,34 @@ Open after the pilot:
   rewrite step from the mapping).
 - reading-time: words of the release body / 200, rounded up (matches the approved page); the
   earlier migration's exact rule isn't recorded.
+
+## 6a. Pilot: blogs (2 November 2026)
+
+One page, not yet migrated:
+`/content/tcs-corp/language-master/en/insights/blogs/enabling-growth-digital-transformation-commercial-banking`
+(source https://www.tcs.com/insights/blogs/enabling-growth-digital-transformation-commercial-banking,
+source template "TCS Case Studies Template"). No approved blog reference exists yet: the page is
+the wave's reference once approved.
+
+| Check | Result |
+| --- | --- |
+| Importer | `import-blog.js`, `transformers/tcs-blog.js` (sign-up fragment out of the footer band, hidden panels, chapter headings and anchors), parsers `anchor-list.js`, `accordion.js`; `list.js` also reads Related reading (fixed list); `tcs-sections.js` takes a section's anchor name; `page-header.js`, `teaser.js` reused |
+| Structure | 9 fixed-width sections: Page Header (from metadata), Anchor List (5 links, Sticky), 5 chapters with anchor names (2 Accordion blocks, 8 items), Related reading (List, fixed list, 3 items), Connect with us (Teaser no-image) |
+| Metadata | page-type blog, author-id `devang-bhatt`, publish-date 2026-08-13, modified-date 2026-08-14, reading-time 6, content-type / eyebrow Blog, featured-image (hero, Scene7), `cq:tags` content-type/blog and industry/banking |
+| JCR conversion | 1 / 1 converts |
+| Package | `tcs-blog-pilot-1.0.0.zip`: 1 page (filter: that page only), 1 metadata row, no redirect rows; `tcs-blog-pilot-authors.csv`: the Authors sheet row (the author isn't in the sheet yet) |
+| Published | Not done: needs AEM access |
+
+Left out or open (content owner):
+
+- About the author comes from the Authors sheet (template); add the row first or the page shows no
+  author. The "Write to me" e-mail address isn't kept (personal data, no sheet column).
+- Highlights (3 bullets) and the AI summary are hidden on the source page: not migrated.
+- Related reading thumbnails are tcs.com DAM files: the cards have no images until the assets are in
+  AEM. The first related slide has no link and no title on the source: left out.
+- "On this page" is the Anchor List's accessible name (placeholder `onThisPage`), not a visible
+  heading. Industry overlay, Related Insights event cards, share bar and breadcrumb: site chrome or
+  dynamic, as on press releases.
 
 ## 7. Plan for the next waves
 

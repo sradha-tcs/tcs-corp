@@ -17,9 +17,15 @@
  *   blocks.
  * afterTransform: each section's Section Metadata goes before the next section's break (the
  * last one at the end), the markers are removed.
+ *
+ * Anchor name: a section element with data-section-anchor (set by a template transformer, e.g.
+ * tcs-blog.js for the chapters an Anchor List links to) gets it as the section's anchorName
+ * (models/_section.json, delivered as data-anchorname).
  */
 
 const MARKER = 'data-import-section-id';
+const ANCHOR = 'data-section-anchor';
+const MARKER_ANCHOR = 'data-import-section-anchor';
 const SECTION_METADATA = { sectionWidth: 'fixed-width' };
 const ABOUT_START = /^About Tata Consultancy Services/i;
 const OLD_BODY = 'div.heroBanner ~ div.responsivegrid div.rowContainer div.w-75';
@@ -69,9 +75,11 @@ function sectionElement(root, section) {
   return null;
 }
 
-function metadataFor(section) {
+function metadataFor(section, hr) {
   const cells = { ...SECTION_METADATA };
   if (section.style) cells.style = section.style;
+  const anchor = hr.getAttribute(MARKER_ANCHOR);
+  if (anchor) cells.anchorName = anchor;
   return cells;
 }
 
@@ -91,6 +99,7 @@ export default function transform(hookName, element, payload) {
       if (el) {
         const hr = document.createElement('hr');
         hr.setAttribute(MARKER, section.id);
+        if (el.getAttribute(ANCHOR)) hr.setAttribute(MARKER_ANCHOR, el.getAttribute(ANCHOR));
         el.before(hr);
       }
     }
@@ -101,10 +110,10 @@ export default function transform(hookName, element, payload) {
       .map((section) => ({ section, hr: element.querySelector(`hr[${MARKER}="${section.id}"]`) }))
       .filter(({ hr }) => hr);
     for (let i = markers.length - 1; i >= 0; i -= 1) {
-      const { section } = markers[i];
+      const { section, hr } = markers[i];
       const meta = WebImporter.Blocks.createBlock(document, {
         name: 'Section Metadata',
-        cells: metadataFor(section),
+        cells: metadataFor(section, hr),
       });
       const next = markers[i + 1];
       if (next) next.hr.before(meta);
@@ -112,7 +121,10 @@ export default function transform(hookName, element, payload) {
     }
     markers.forEach(({ hr }, i) => {
       if (i === 0) hr.remove(); // the first section opens the page: no break
-      else hr.removeAttribute(MARKER);
+      else {
+        hr.removeAttribute(MARKER);
+        hr.removeAttribute(MARKER_ANCHOR);
+      }
     });
   }
 }

@@ -139,6 +139,265 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "blog",
+      "urls": [
+        "https://www.tcs.com/insights/blogs/enabling-growth-digital-transformation-commercial-banking"
+      ],
+      "representativeUrl": "https://www.tcs.com/insights/blogs/enabling-growth-digital-transformation-commercial-banking",
+      "description": "tcs.com blogs (source template TCS Case Studies Template): page header from metadata, On this page (Anchor List), one section per chapter (default content, Accordion blocks), Related reading (List, fixed list), Connect with us (Teaser); About the author from the Authors data sheet (author-id)",
+      "blocks": [
+        {
+          "name": "page-header",
+          "instances": [
+            "div.heroBanner"
+          ]
+        },
+        {
+          "name": "anchor-list",
+          "instances": [
+            "div.inPageLinks div.inpagelinks-desktop-container"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            "div.insight-container div.tcsAccordion"
+          ]
+        },
+        {
+          "name": "list",
+          "instances": [
+            "div.staticRelatedContent"
+          ]
+        },
+        {
+          "name": "teaser",
+          "instances": [
+            "div.cmp-experiencefragment--email-sign-up"
+          ]
+        }
+      ],
+      "urlPattern": "/insights/blogs/*",
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "page-header",
+          "selector": [
+            "div.heroBanner"
+          ],
+          "style": null,
+          "blocks": [
+            "page-header"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "on-this-page",
+          "selector": [
+            "div.inPageLinks div.inpagelinks-desktop-container"
+          ],
+          "style": null,
+          "blocks": [
+            "anchor-list"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc-chapter-0",
+          "name": "chapter-0",
+          "selector": [
+            "div.insight-container#insights_0"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_0 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-1",
+          "name": "chapter-1",
+          "selector": [
+            "div.insight-container#insights_1"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_1 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-2",
+          "name": "chapter-2",
+          "selector": [
+            "div.insight-container#insights_2"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_2 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-3",
+          "name": "chapter-3",
+          "selector": [
+            "div.insight-container#insights_3"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_3 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-4",
+          "name": "chapter-4",
+          "selector": [
+            "div.insight-container#insights_4"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_4 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-5",
+          "name": "chapter-5",
+          "selector": [
+            "div.insight-container#insights_5"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_5 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-6",
+          "name": "chapter-6",
+          "selector": [
+            "div.insight-container#insights_6"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_6 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-7",
+          "name": "chapter-7",
+          "selector": [
+            "div.insight-container#insights_7"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_7 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-8",
+          "name": "chapter-8",
+          "selector": [
+            "div.insight-container#insights_8"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_8 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-9",
+          "name": "chapter-9",
+          "selector": [
+            "div.insight-container#insights_9"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_9 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-10",
+          "name": "chapter-10",
+          "selector": [
+            "div.insight-container#insights_10"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_10 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc-chapter-11",
+          "name": "chapter-11",
+          "selector": [
+            "div.insight-container#insights_11"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            "div.insight-container#insights_11 div.richText > *"
+          ]
+        },
+        {
+          "id": "rc3",
+          "name": "related-reading",
+          "selector": [
+            "div.staticRelatedContent"
+          ],
+          "style": null,
+          "blocks": [
+            "list"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "connect-with-us",
+          "selector": [
+            "div.cmp-experiencefragment--email-sign-up"
+          ],
+          "style": null,
+          "blocks": [
+            "teaser"
+          ],
+          "defaultContent": []
+        }
+      ]
     }
   ],
   "metadata": {

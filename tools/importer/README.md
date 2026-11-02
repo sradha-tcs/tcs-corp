@@ -30,6 +30,7 @@ preview) and `migration-work/packages/` (the package and sheet rows), both local
 | Template | Source | Target | Blocks | State |
 | --- | --- | --- | --- | --- |
 | `press-release` | tcs.com press releases (`/who-we-are/newsroom/press-release/*`, source template "TCS NewsRoom Template", current and 2016 layouts) | `/language-master/en/who-we-are/newsroom/press-release/<name>` | Page Header, default content, Table, Media Contacts, List, Teaser | Pilot: 10 pages, 25 October 2026 |
+| `blog` | tcs.com blogs (`/insights/blogs/*`, source template "TCS Case Studies Template") | `/language-master/en/insights/blogs/<name>` | Page Header, Anchor List, default content per chapter (anchor names), Accordion, List (fixed list), Teaser | Pilot: 1 page, 2 November 2026 |
 | `eds-page` | Pages on this site's preview | `content/` as they are | Any (block tables unchanged) | Local preview copies |
 
 ## Run a template
@@ -56,8 +57,10 @@ tcs.com answers 403 to scripts: the pages are read in a browser and saved first 
 
 - Use the project's blocks only (blocks/README.md); a block's rows follow its model
   (`blocks/<block>/_<block>.json`): md2jcr maps a key-value block's rows by position, so a parser
-  writes one row per field group in model order (List, Teaser: `FIELDS`); keep it in step with the
-  model after `npm run build:json`.
+  writes one row per field group in model order (List, Teaser, Anchor List: `FIELDS`); keep it in
+  step with the model after `npm run build:json`. Item rows have one cell per field group of the
+  item model, without tab cells; a block with only Additional tab fields (Accordion) has item rows
+  only.
 - Follow the AEM delivery rules of AGENTS.md (item children, no Text / Title / Type / Alt
   suffixes for values that must be read, no sample content).
 - Page-level values other than Title, Description, Keywords and Page Type are metadata sheet

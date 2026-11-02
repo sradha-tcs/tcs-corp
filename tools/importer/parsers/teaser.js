@@ -26,9 +26,10 @@ const FIELDS = [
   'displayTags', 'tags', 'listenLink', 'download', 'socialShare', 'authorName',
   'authorDesignation', 'authorImage', 'imageFormat', 'image', 'hideImage', 'imagePosition',
   'imagePositionMobile', 'imageRatio', 'imageCorners', 'multiLinks', 'links', 'linkArrow',
-  'primaryCta', 'primaryCtaTarget', 'primaryCtaStyle', 'secondaryCta', 'secondaryCtaTarget',
-  'secondaryCtaStyle', 'buttonsSideBySide', 'stats', 'bgColor', 'textAlignment',
-  'verticalAlignment', 'titleWeight', 'descriptionSize', 'eyebrowStyle', 'topSpacing',
+  'primaryCta', 'primaryCtaTarget', 'primaryCtaStyle', 'primaryCtaBackground', 'primaryCtaShape',
+  'secondaryCta', 'secondaryCtaTarget', 'secondaryCtaStyle', 'secondaryCtaBackground',
+  'secondaryCtaShape', 'buttonsSideBySide', 'stats', 'bgColor', 'textAlignment',
+  'verticalAlignment', 'titleWeight', 'titleColor', 'descriptionSize', 'eyebrowStyle', 'topSpacing',
 ];
 
 const DEFAULTS = {
