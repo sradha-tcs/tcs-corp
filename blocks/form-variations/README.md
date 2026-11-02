@@ -21,6 +21,10 @@ Form Variations builds an accessible, client-side validated web form from child 
 
 **Data source.** Authored content only. The block reads no query index, metadata, tags or data sheets; UI texts come from the locale's placeholders sheet.
 
+**Background rendering.** The containing section owns the theme background and image fade variables, alongside the image URL set by the block. Dark uses `#01000e` with light labels; Default / Light uses white with dark labels. The authored Background Image appears from 992px; narrower viewports, including a narrow Universal Editor canvas, show the solid theme background. The model's 900px image hint predates this CSS breakpoint. The fade protects the form text while revealing the image on the right.
+
+**Reference form layout.** From 900px, the content column is five-twelfths of the block's available width (capped at 34rem), inset by one-twelfth, with 6.75rem top padding and a separate Back action. Below 900px it uses the available width, capped at 38rem. Descriptions use 1.5rem text with a 2rem line height from 600px and 1rem paragraph margins. Labels and controls use 1rem text; controls start at 2rem high, and the textarea remains vertically resizable with a right-aligned counter. The desktop background image is viewport-fixed rather than stretched to the full form height, with a darker fade in the Dark theme. The site keeps Inter and its fallback faces; the reference site's Basis font and Bootstrap are not imported.
+
 **Related blocks.** Conversation Canvas ([README](../conversation-canvas/README.md)) for search / question entry points (not data capture); Columns Container ([README](../columns-container/README.md)) to place a form next to other content; Modal and Fragment for reuse.
 
 **When to use.**
@@ -483,7 +487,7 @@ Notes the tables can't show:
 
 - **Form Title / Heading** renders as `h2.form-variations-title` and labels the form (`aria-labelledby`); it is also the `dc:title` of `cmp:submit` in the data layer. Without it the form has no accessible name and `cmp:submit` uses the block name.
 - **Submit action** is read from the cell's link (`href`), else its text. It receives a `POST` with `Content-Type: application/json` and the body `{ "data": { ... } }`. Without it (and without an integration) nothing is sent; in the editor a note says so.
-- **Theme** Dark adds the block class `dark`: a full-width dark panel (`--color-bg-neutral`) with rounded corners, light labels and an inverted primary button.
+- **Theme** Dark adds the block class `dark`: the containing section uses a full-width `#01000e` background and matching image fade, with light labels. The background variables are defined on the section, not just on its child block, so both the solid color and image layers resolve there.
 - **Field Name / ID** (`fieldName`) is the submitted key, sent as written. The dialog marks it required but doesn't validate its characters. A Text Input Field whose name contains "name" (any case) is half width from 900px (`half-width`); every other item is full width. The name also sets `autocomplete` (e.g. `firstName` gives `given-name`, `company` gives `organization`); Input Type Email / Tel set `email` / `tel`.
 - **Mandatory Field (*)**: only the value `true` makes a field required; the asterisk is hidden from screen readers and explained once by "* Required fields".
 - **Options**: comma separated; a disabled, pre-selected "Select an option" prompt comes first.

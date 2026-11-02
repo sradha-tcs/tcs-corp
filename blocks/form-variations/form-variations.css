@@ -5,7 +5,6 @@
  */
 .form-variations {
   /* Default / Light theme colors */
-  --form-variations-bg: #fff;
   --form-variations-text: #000;
   --form-variations-title-color: #000;
   --form-variations-muted: #5e6162;
@@ -19,13 +18,12 @@
   --form-variations-select-bg: #fff;
   --form-variations-select-color: #000;
   --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  --form-variations-gradient-fade: linear-gradient(to right, #fff 45%, rgb(255 255 255 / 25%) 75%, transparent 100%);
 
-  margin-inline: auto;
   position: relative;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
+  margin-inline: auto;
   border-radius: 0;
   padding: 3.75rem var(--space-400, 1rem) var(--space-1600, 4rem);
   background-color: transparent;
@@ -35,7 +33,6 @@
 /* Dark Theme Overrides */
 .form-variations.dark,
 .form-variations[data-theme='dark'] {
-  --form-variations-bg: #01000e;
   --form-variations-text: #fff;
   --form-variations-title-color: #fff;
   --form-variations-muted: #b4b4b8;
@@ -44,15 +41,22 @@
   --form-variations-select-bg: #000;
   --form-variations-select-color: #fff;
   --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  --form-variations-gradient-fade: linear-gradient(to right, #01000e 45%, rgb(1 0 14 / 25%) 75%, transparent 100%);
 }
 
 /* Section Level Background Setup */
 main .section:has(.form-variations),
 main .section.form-variations-container {
+  --form-variations-bg: #fff;
+  --form-variations-gradient-fade: linear-gradient(to right, #fff 45%, rgb(255 255 255 / 25%) 75%, transparent 100%);
+
   position: relative;
   background-color: var(--form-variations-bg) !important;
   background-image: none !important;
+}
+
+main .section:has(.form-variations:is(.dark, [data-theme='dark'])) {
+  --form-variations-bg: #01000e;
+  --form-variations-gradient-fade: linear-gradient(to right, #01000e 45%, rgb(1 0 14 / 55%) 75%, rgb(1 0 14 / 35%) 100%);
 }
 
 /* 991px and below: Always hide the background image, show solid background */
@@ -73,6 +77,7 @@ main .section.form-variations-container {
     background-position: right center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    background-attachment: scroll, fixed;
   }
 }
 
@@ -119,12 +124,13 @@ main .section.form-variations-container {
   display: flex;
   align-items: center;
   gap: 0.625rem;
+  margin-top: 0;
   margin-bottom: var(--space-400, 1rem);
   color: var(--form-variations-text);
   font-size: 0.75rem;
   font-weight: var(--font-weight-bold, 700);
-  line-height: 100%;
-  letter-spacing: 0.15em;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -158,8 +164,12 @@ main .section.form-variations-container {
   color: var(--form-variations-muted);
   font-size: 1.125rem;
   font-weight: var(--font-weight-regular, 400);
-  line-height: 140%;
+  line-height: 1.3333;
   letter-spacing: 0.0313rem;
+}
+
+.form-variations .form-variations-description p {
+  margin-block: 1rem;
 }
 
 /* Fields Grid Layout */
@@ -182,8 +192,9 @@ main .section.form-variations-container {
 
 .form-variations .form-variations-label {
   color: var(--form-variations-text);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: var(--font-weight-regular, 400);
+  line-height: 1.5;
   letter-spacing: normal;
   text-transform: none;
 }
@@ -200,15 +211,21 @@ main .section.form-variations-container {
   border: 0;
   border-bottom: 0.0625rem solid var(--form-variations-input-border);
   border-radius: 0;
-  padding: var(--space-200, 0.5rem) 0 var(--space-400, 1rem);
+  margin: 0;
+  padding: 0.0625rem 0.125rem;
   background-color: transparent;
   box-shadow: none;
   color: var(--form-variations-text);
   font: inherit;
-  font-size: 1.125rem;
-  line-height: 160%;
+  font-size: 1rem;
+  line-height: 1.6875;
   outline: none;
   transition: border-color 0.2s ease;
+}
+
+.form-variations .form-variations-form input.form-variations-control,
+.form-variations .form-variations-form select.form-variations-control {
+  height: 2rem;
 }
 
 .form-variations .form-variations-form select.form-variations-control {
@@ -227,8 +244,16 @@ main .section.form-variations-container {
 }
 
 .form-variations textarea.form-variations-control {
-  min-height: 5rem;
+  height: 2rem;
+  min-height: 2rem;
   resize: vertical;
+}
+
+.form-variations .form-variations-counter {
+  align-self: flex-end;
+  color: var(--form-variations-muted);
+  font-size: 0.75rem;
+  line-height: 1.25;
 }
 
 .form-variations .form-variations-form .form-variations-control:focus {
@@ -474,9 +499,32 @@ main .section.form-variations-container {
 }
 
 @media (width >= 900px) {
+  .form-variations {
+    padding-top: 6.75rem;
+  }
+
+  .form-variations .form-variations-inner {
+    width: 41.6667%;
+    max-width: 34rem;
+    margin-inline: 8.3333% auto;
+  }
+
+  .form-variations .form-variations-eyebrow {
+    max-width: 28rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .form-variations .form-variations-header {
+    margin-bottom: 4rem;
+  }
+
+  .form-variations .form-variations-group {
+    gap: 0;
+  }
+
   .form-variations .form-variations-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.25rem var(--space-800, 2rem);
+    gap: 2.25rem var(--space-600, 1.5rem);
   }
 
   .form-variations .form-variations-group.full-width {
@@ -485,12 +533,6 @@ main .section.form-variations-container {
 
   .form-variations .form-variations-group.half-width {
     grid-column: span 1;
-  }
-}
-
-@media (width >= 1200px) {
-  .form-variations .form-variations-inner {
-    margin-left: var(--space-800, 2rem);
   }
 
   .form-variations .form-variations-back {
