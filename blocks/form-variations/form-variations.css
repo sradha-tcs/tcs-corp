@@ -4,60 +4,98 @@
  * beside the form from 900px. Mobile first: 600px tablet, 900px two columns, 1200px desktop.
  */
 .form-variations {
-  /* the Figma form colours (no design tokens with these values) */
-  --form-variations-error: #e91d1d;
+  /* Default / Light theme colors */
+  --form-variations-bg: #fff;
+  --form-variations-text: #000;
+  --form-variations-title-color: #000;
+  --form-variations-muted: #5e6162;
   --form-variations-input-border: #898a8d;
-  --form-variations-muted: #b4b4b8;
+  --form-variations-input-focus: #000;
+  --form-variations-error: #e91d1d;
   --form-variations-accent: #2469bc;
   --form-variations-accent-hover: #005b9c;
   --form-variations-contact: #3b82f6;
   --form-variations-status: #61afef;
-  --form-variations-text: var(--color-text-on-neutral);
+  --form-variations-select-bg: #fff;
+  --form-variations-select-color: #000;
+  --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  --form-variations-gradient-fade: linear-gradient(to right, #fff 45%, rgb(255 255 255 / 25%) 75%, transparent 100%);
 
-  max-width: 45rem;
   margin-inline: auto;
-  color: var(--form-variations-text);
-}
-
-/* the form's section: the form's dark background; its Background image beside the form */
-main .section.form-variations-container {
-  --form-variations-bg: #01000e;
-
-  position: relative;
-  background-color: var(--form-variations-bg);
-}
-
-.form-variations.dark {
   position: relative;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   border-radius: 0;
-  padding: 3.75rem var(--space-400) var(--space-1600);
+  padding: 3.75rem var(--space-400, 1rem) var(--space-1600, 4rem);
   background-color: transparent;
   color: var(--form-variations-text);
 }
 
-.form-variations.dark .form-variations-inner {
+/* Dark Theme Overrides */
+.form-variations.dark,
+.form-variations[data-theme='dark'] {
+  --form-variations-bg: #01000e;
+  --form-variations-text: #fff;
+  --form-variations-title-color: #fff;
+  --form-variations-muted: #b4b4b8;
+  --form-variations-input-border: #898a8d;
+  --form-variations-input-focus: #fff;
+  --form-variations-select-bg: #000;
+  --form-variations-select-color: #fff;
+  --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  --form-variations-gradient-fade: linear-gradient(to right, #01000e 45%, rgb(1 0 14 / 25%) 75%, transparent 100%);
+}
+
+/* Section Level Background Setup */
+main .section:has(.form-variations),
+main .section.form-variations-container {
+  position: relative;
+  background-color: var(--form-variations-bg) !important;
+  background-image: none !important;
+}
+
+/* 991px and below: Always hide the background image, show solid background */
+@media only screen and (width <= 991px) {
+  main .section:has(.form-variations),
+  main .section.form-variations-container {
+    background-image: none !important;
+  }
+}
+
+/* 992px and above: Show the authored background image on desktop */
+@media only screen and (width >= 992px) {
+  main .section:has(.form-variations).form-variations-backdrop,
+  main .section.form-variations-container.form-variations-backdrop {
+    background-image:
+      var(--form-variations-gradient-fade),
+      var(--form-variations-backdrop-image) !important;
+    background-position: right center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
+
+.form-variations .form-variations-inner {
   position: relative;
   max-width: 38rem;
   margin-inline: 0 auto;
 }
 
-/* Back: "< BACK" (the previous page) */
+/* Back: "< BACK" */
 .form-variations .form-variations-back {
   position: relative;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  margin-bottom: var(--space-600);
+  margin-bottom: var(--space-600, 1.5rem);
   border: 0;
   padding: 0;
   background: none;
   color: var(--form-variations-muted);
   font-size: 1rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold, 700);
   letter-spacing: 0.15rem;
   text-decoration: none;
   text-transform: uppercase;
@@ -65,7 +103,7 @@ main .section.form-variations-container {
 }
 
 .form-variations .form-variations-back::before {
-  content: '<' / '';
+  content: '<';
 }
 
 .form-variations .form-variations-back:hover {
@@ -76,15 +114,15 @@ main .section.form-variations-container {
   margin-bottom: 2.25rem;
 }
 
-/* the eyebrow: its icon (24px, the Eyebrow icon or the default) and the uppercase text */
+/* Eyebrow Header */
 .form-variations .form-variations-eyebrow {
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  margin-bottom: var(--space-400);
+  margin-bottom: var(--space-400, 1rem);
   color: var(--form-variations-text);
   font-size: 0.75rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold, 700);
   line-height: 100%;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -106,51 +144,46 @@ main .section.form-variations-container {
   object-fit: contain;
 }
 
-.form-variations .form-variations-eyebrow-icon-layers {
-  background-color: currentcolor;
-  mask: url('../../icons/layers.svg') center / var(--icon-size-s) no-repeat;
-}
-
-.form-variations.dark .form-variations-title {
+.form-variations .form-variations-title {
   margin-top: 0;
-  margin-bottom: var(--space-400);
-  color: var(--form-variations-text);
+  margin-bottom: var(--space-400, 1rem);
+  color: var(--form-variations-title-color);
   font-size: 2rem;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium, 500);
   line-height: 120%;
   letter-spacing: 0.0313rem;
 }
 
-.form-variations.dark .form-variations-description {
+.form-variations .form-variations-description {
   color: var(--form-variations-muted);
   font-size: 1.125rem;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-regular, 400);
   line-height: 140%;
   letter-spacing: 0.0313rem;
 }
 
-/* the fields: one column on mobile and tablet */
+/* Fields Grid Layout */
 .form-variations .form-variations-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-800) var(--space-600);
+  gap: var(--space-800, 2rem) var(--space-600, 1.5rem);
 }
 
 .form-variations .form-variations-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-200);
+  gap: var(--space-200, 0.5rem);
   min-width: 0;
 }
 
 .form-variations .form-variations-group[hidden] {
-  display: none;
+  display: none !important;
 }
 
-.form-variations.dark .form-variations-label {
+.form-variations .form-variations-label {
   color: var(--form-variations-text);
   font-size: 1.125rem;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-regular, 400);
   letter-spacing: normal;
   text-transform: none;
 }
@@ -160,14 +193,14 @@ main .section.form-variations-container {
   color: var(--form-variations-error);
 }
 
-/* the controls: a line below, white once focused; a visible outline for the keyboard */
-.form-variations.dark .form-variations-form .form-variations-control {
+/* Controls: Underline-Only */
+.form-variations .form-variations-form .form-variations-control {
   box-sizing: border-box;
   width: 100%;
   border: 0;
-  border-bottom: var(--border-width-100) solid var(--form-variations-input-border);
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
   border-radius: 0;
-  padding: var(--space-200) 0 var(--space-400);
+  padding: var(--space-200, 0.5rem) 0 var(--space-400, 1rem);
   background-color: transparent;
   box-shadow: none;
   color: var(--form-variations-text);
@@ -178,37 +211,36 @@ main .section.form-variations-container {
   transition: border-color 0.2s ease;
 }
 
-.form-variations.dark .form-variations-form select.form-variations-control {
+.form-variations .form-variations-form select.form-variations-control {
   appearance: none;
-  padding-right: var(--space-600);
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  padding-right: var(--space-600, 1.5rem);
+  background-image: var(--form-variations-select-arrow);
   background-repeat: no-repeat;
   background-position: right 0 center;
   background-size: 0.875rem;
   cursor: pointer;
 }
 
-.form-variations.dark select option {
-  background-color: var(--color-bg-neutral);
-  color: var(--form-variations-text);
+.form-variations select option {
+  background-color: var(--form-variations-select-bg);
+  color: var(--form-variations-select-color);
 }
 
-.form-variations.dark textarea.form-variations-control {
+.form-variations textarea.form-variations-control {
   min-height: 5rem;
   resize: vertical;
 }
 
-.form-variations.dark .form-variations-form .form-variations-control:focus {
-  border-bottom-color: var(--form-variations-text);
+.form-variations .form-variations-form .form-variations-control:focus {
+  border-bottom-color: var(--form-variations-input-focus);
 }
 
-.form-variations.dark .form-variations-form .form-variations-control:focus-visible {
-  outline: var(--border-width-200) solid var(--form-variations-text);
-  outline-offset: var(--space-100);
+.form-variations .form-variations-form .form-variations-control:focus-visible {
+  outline: 0.125rem solid var(--form-variations-input-focus);
+  outline-offset: var(--space-100, 0.25rem);
 }
 
-/* an invalid field: the line in red, its message below it (form-variations.js) */
-.form-variations.dark .form-variations-form .form-variations-control[aria-invalid='true'] {
+.form-variations .form-variations-form .form-variations-control[aria-invalid='true'] {
   border-bottom-color: var(--form-variations-error);
 }
 
@@ -221,51 +253,52 @@ main .section.form-variations-container {
 
 .form-variations .form-variations-required-note {
   grid-column: 1 / -1;
-  margin: 0 0 var(--space-200);
+  margin: 0 0 var(--space-200, 0.5rem);
   color: var(--form-variations-muted);
   font-size: 0.875rem;
 }
 
-/* the Combined field: the value and its unit on one line */
+/* Combined Score Row */
 .form-variations .form-variations-combined-row {
   position: relative;
   display: flex;
   align-items: center;
-  border-bottom: var(--border-width-100) solid var(--form-variations-input-border);
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
   transition: border-color 0.2s ease;
 }
 
-.form-variations.dark .form-variations-combined-row:focus-within {
-  border-bottom-color: var(--form-variations-text);
+.form-variations .form-variations-combined-row:focus-within {
+  border-bottom-color: var(--form-variations-input-focus);
 }
 
-.form-variations.dark .form-variations-combined-row:has([aria-invalid='true']) {
+.form-variations .form-variations-combined-row:has([aria-invalid='true']) {
   border-bottom-color: var(--form-variations-error);
 }
 
-.form-variations.dark .form-variations-form .form-variations-combined-row .form-variations-combined-input {
+.form-variations .form-variations-form .form-variations-combined-row .form-variations-combined-input {
   flex: 1;
   border-bottom: 0;
-  padding-right: var(--space-400);
+  padding-right: var(--space-400, 1rem);
 }
 
-.form-variations.dark .form-variations-form .form-variations-combined-row .form-variations-combined-select {
+.form-variations .form-variations-form .form-variations-combined-row .form-variations-combined-select {
   flex: 0 0 auto;
   width: auto;
   min-width: 6.5rem;
   border-bottom: 0;
-  padding-left: var(--space-400);
+  padding-left: var(--space-400, 1rem);
   text-align: right;
 }
 
-.form-variations.dark .field-checkbox {
+/* Checkbox */
+.form-variations .field-checkbox {
   flex-flow: row wrap;
   align-items: flex-start;
-  gap: var(--space-300);
-  margin-top: var(--space-600);
+  gap: var(--space-300, 0.75rem);
+  margin-top: var(--space-600, 1.5rem);
 }
 
-.form-variations.dark .form-variations-checkbox {
+.form-variations .form-variations-checkbox {
   flex: none;
   width: 1.125rem;
   height: 1.125rem;
@@ -274,22 +307,21 @@ main .section.form-variations-container {
   cursor: pointer;
 }
 
-.form-variations.dark .form-variations-checkbox-label {
+.form-variations .form-variations-checkbox-label {
   color: var(--form-variations-muted);
   font-size: 0.875rem;
   line-height: 1.5rem;
   cursor: pointer;
 }
 
-/* the consent text runs on with its required marker */
 .form-variations .form-variations-consent > p {
   display: inline;
   margin: 0;
 }
 
-/* a text between the fields: its links white and underlined */
+/* Rich Text Item */
 .form-variations .field-richtext {
-  margin-block: var(--space-200);
+  margin-block: var(--space-200, 0.5rem);
   color: var(--form-variations-muted);
   font-size: 0.875rem;
   line-height: 1.5rem;
@@ -297,36 +329,36 @@ main .section.form-variations-container {
 
 .form-variations .field-richtext a:any-link {
   color: var(--form-variations-text);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold, 700);
   text-decoration: underline;
   text-underline-offset: 0.125rem;
 }
 
 .form-variations .field-richtext p {
-  margin: 0 0 var(--space-200);
+  margin: 0 0 var(--space-200, 0.5rem);
 }
 
 .form-variations .field-richtext p:last-child {
   margin-bottom: 0;
 }
 
-/* the contact card of the selected region */
+/* Contact Card Output */
 .form-variations .form-variations-contact-card {
-  margin-top: var(--space-400);
+  margin-top: var(--space-400, 1rem);
 }
 
 .form-variations .form-variations-contact-name {
-  margin: 0 0 var(--space-500);
+  margin: 0 0 var(--space-500, 1.25rem);
   color: var(--form-variations-contact);
   font-size: 1.5rem;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-regular, 400);
   line-height: 1.2;
 }
 
 .form-variations .form-variations-contact-card .form-variations-contact-links {
   display: flex;
   flex-direction: column;
-  gap: var(--space-400);
+  gap: var(--space-400, 1rem);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -335,7 +367,7 @@ main .section.form-variations-container {
 .form-variations .form-variations-contact-item {
   display: flex;
   align-items: center;
-  gap: var(--space-400);
+  gap: var(--space-400, 1rem);
 }
 
 .form-variations .form-variations-contact-icon {
@@ -354,19 +386,10 @@ main .section.form-variations-container {
   object-fit: contain;
 }
 
-.form-variations .form-variations-contact-icon:is(.form-variations-contact-icon-mail, .form-variations-contact-icon-phone) {
-  background-color: currentcolor;
-  mask: url('../../icons/mail.svg') center / 1.25rem no-repeat;
-}
-
-.form-variations .form-variations-contact-icon.form-variations-contact-icon-phone {
-  mask-image: url('../../icons/phone.svg');
-}
-
 .form-variations .form-variations-contact-item a:any-link {
   color: var(--form-variations-text);
   font-size: 1.2rem;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-regular, 400);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -376,14 +399,14 @@ main .section.form-variations-container {
   text-decoration: underline;
 }
 
-/* submit: the Figma blue pill, the full width on mobile */
+/* Submit Button */
 .form-variations .field-submit {
   align-items: flex-start;
-  margin-top: var(--space-800);
+  margin-top: var(--space-800, 2rem);
 }
 
-.form-variations.dark .field-submit button.button,
-.form-variations.dark button.button.primary:not(:disabled) {
+.form-variations .field-submit button.button,
+.form-variations button.button.primary:not(:disabled) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -391,32 +414,32 @@ main .section.form-variations-container {
   height: 3.5rem;
   border: 0;
   border-radius: 6.25rem;
-  padding: var(--space-300) var(--space-800);
+  padding: var(--space-300, 0.75rem) var(--space-800, 2rem);
   background-color: var(--form-variations-accent);
-  color: var(--form-variations-text);
+  color: #fff !important;
   font-size: 1.125rem;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium, 500);
   letter-spacing: 0.0313rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.form-variations.dark .field-submit button.button:hover,
-.form-variations.dark button.button.primary:not(:disabled):hover {
+.form-variations .field-submit button.button:hover,
+.form-variations button.button.primary:not(:disabled):hover {
   background-color: var(--form-variations-accent-hover);
 }
 
-.form-variations.dark .field-submit button.button::after {
-  display: none;
+.form-variations .field-submit button.button::after {
+  display: none !important;
 }
 
-.form-variations.dark .form-variations-status {
-  margin-block: var(--space-400) 0;
+.form-variations .form-variations-status {
+  margin-block: var(--space-400, 1rem) 0;
   color: var(--form-variations-status);
   font-size: 0.875rem;
 }
 
-/* editor only: conditional items stay visible, with their condition */
+/* Editor Conditional Fields */
 .form-variations .form-variations-condition {
   margin: 0;
   color: var(--form-variations-muted);
@@ -425,44 +448,35 @@ main .section.form-variations-container {
 }
 
 .form-variations .form-variations-group:has(> .form-variations-condition) {
-  border: var(--border-width-100) dashed var(--form-variations-input-border);
-  border-radius: var(--radius-m);
-  padding: var(--space-200);
+  border: 0.0625rem dashed var(--form-variations-input-border);
+  border-radius: var(--radius-m, 0.5rem);
+  padding: var(--space-200, 0.5rem);
 }
 
+/* Responsive Overrides */
 @media (width >= 600px) {
   .form-variations .form-variations-eyebrow {
     font-size: 1rem;
   }
 
-  .form-variations.dark .form-variations-title {
+  .form-variations .form-variations-title {
     font-size: 2.5rem;
   }
 
-  .form-variations.dark .form-variations-description {
+  .form-variations .form-variations-description {
     font-size: 1.5rem;
   }
 
-  .form-variations.dark .field-submit button.button,
-  .form-variations.dark button.button.primary:not(:disabled) {
+  .form-variations .field-submit button.button,
+  .form-variations button.button.primary:not(:disabled) {
     width: auto;
   }
 }
 
-/* two columns: Field width Half side by side; the Background image beside the form */
 @media (width >= 900px) {
-  main .section.form-variations-container.form-variations-backdrop {
-    background-image:
-      linear-gradient(to right, var(--form-variations-bg) 45%, rgb(1 0 14 / 25%) 75%, transparent 100%),
-      var(--form-variations-backdrop-image);
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .form-variations.dark .form-variations-form {
+  .form-variations .form-variations-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.25rem var(--space-800);
+    gap: 2.25rem var(--space-800, 2rem);
   }
 
   .form-variations .form-variations-group.full-width {
@@ -474,16 +488,15 @@ main .section.form-variations-container {
   }
 }
 
-/* desktop: the form 32px from the left, Back above it at the top left */
 @media (width >= 1200px) {
-  .form-variations.dark .form-variations-inner {
-    margin-left: var(--space-800);
+  .form-variations .form-variations-inner {
+    margin-left: var(--space-800, 2rem);
   }
 
   .form-variations .form-variations-back {
     position: absolute;
     top: 1.875rem;
-    left: var(--space-800);
+    left: var(--space-800, 2rem);
     margin-bottom: 0;
   }
 }

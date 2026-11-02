@@ -2,11 +2,17 @@
 .testimonial {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1000);
+  gap: 0.625rem;
+  width: 100%;
+  max-width: var(--content-max-width);
+  min-width: 17.5rem;
+  margin-inline: auto;
+  padding: var(--space-1000) var(--space-400);
+  box-sizing: border-box;
+  height: auto;
 }
 
 .testimonial.bg-grey {
-  padding: var(--space-1000) var(--space-600);
   background-color: var(--color-bg-secondary);
 }
 
@@ -26,6 +32,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-300);
+  width: 100%;
   max-width: 59.375rem;
   margin: 0 auto;
   text-align: center;
@@ -113,6 +120,12 @@
   text-align: center;
 }
 
+.testimonial > :is(.testimonial-title, .testimonial-stats) {
+  width: 100%;
+  max-width: 65rem;
+  margin-inline: auto;
+}
+
 .testimonial .testimonial-stat {
   display: flex;
   flex-direction: column;
@@ -139,12 +152,95 @@
   margin: 0;
 }
 
-@media (width >= 900px) {
+.quote-open,
+.quote-close {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+ 
+ 
+.quote-open {
+  top: -12px;
+  right: -6px;
+}
+ 
+.quote-close {
+  top: -12px;
+  left: -6px;
+}
+ 
+/* Navy colour background */
+.testimonial.bg-navy {
+  background-color: var(--color-bg-brand-hover);
+}
+ 
+.testimonial.bg-navy .testimonial-description {
+  color: var(--brand-300);
+}
+ 
+.testimonial.bg-navy :is(
+  .testimonial-title,
+  .testimonial-eyebrow,
+  .testimonial-author-name,
+  .testimonial-author-details
+) {
+  color: var(--white-800);
+}
+ 
+ 
+ 
+@media (600px <= width < 1200px) {
   .testimonial {
-    gap: var(--space-2000);
+    gap: var(--space-600);
+    min-height: 12.5rem;
+  }
+}
+
+@media (width >= 600px) {
+  main > .section > div:has(> .testimonial) {
+    padding-inline: var(--space-600);
+  }
+}
+
+@media (width >= 900px) {
+  .quote-open,
+  .quote-close {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
   }
 
-  .testimonial.bg-grey {
-    padding: var(--space-3000) var(--space-2000);
+  .quote-open {
+    top: -18px;
+    right: -10px;
   }
+
+  .quote-close {
+    top: -18px;
+    left: -10px;
+  }
+}
+
+@media (width >= 1200px) {
+  main > .section > div:has(> .testimonial) {
+    padding-inline: 0;
+  }
+
+  .testimonial {
+    gap: 0.625rem;
+    padding-block: var(--space-3000);
+    padding-inline: 0;
+  }
+
+  .testimonial > :is(.testimonial-title, .testimonial-stats) {
+    max-width: 68rem;
+  }
+ 
 }

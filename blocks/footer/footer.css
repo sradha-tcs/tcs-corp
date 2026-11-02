@@ -1,86 +1,27 @@
-/*
- * Footer (Figma "Footer - Desktop / Tablet / Mobile": 229-37226, 4347-44552, 4347-44593; 1440 × 802,
- * 1024 × 956, 399 × 800). The page footer holds the sections of
- * the footer page (e.g. a conversation canvas, then the Footer bar) on a white background with
- * soft brand and warning glows at the bottom.
- */
+/* ==========================================================================
+   1. BASE & SHARED STYLES (Applies across all devices)
+   ========================================================================== */
+footer *,
+footer *::before,
+footer *::after {
+  box-sizing: border-box;
+}
+
 footer {
-  /* component tokens (Figma: TB Padding, LR Padding, Large-Spacing, Body/Inter-16) */
-  --footer-padding-block-start: 3.5rem;
-  --footer-padding-inline: var(--space-500);
-  --footer-padding-block-end: var(--space-600);
-  --footer-section-gap: var(--space-2000);
-  --footer-text-size: 0.75rem;
-  --footer-text-line-height: 1.0625rem;
-  --footer-text-weight: var(--font-weight-medium);
-  --footer-text-color: var(--color-text-default);
-  --footer-row-gap: var(--space-400);
-  --footer-column-gap: var(--space-600);
-
-  /* with a conversation canvas: the Figma frame height, the bar at the bottom */
-  --footer-canvas-min-height: 50rem;
-  --footer-canvas-gap: var(--space-1600);
-  --footer-canvas-padding-block-start: 0;
-  --footer-canvas-title-size: 3.25rem;
-  --footer-canvas-title-line-height: 3.875rem;
-  --footer-canvas-title-max-width: 20rem;
-
-  /* the footer canvas's search row and Quick actions on tablet (read by the Conversation Canvas,
-     blocks/conversation-canvas: the row is the Canvas's Floating menu on mobile and desktop) */
-  --footer-button-text-size: 0.75rem;
-  --footer-search-text-size: 1rem;
-  --footer-search-width: 38.0625rem;
-
-  /* Figma's mobile search row overflows the column; 16px keeps the placeholder visible */
-  --footer-search-padding-start: var(--space-400);
-
-  /* Figma "Button" in the footer canvas */
-  --footer-button-background: var(--color-bg-default);
-  --footer-button-border: 0.125rem solid #494c4e;
-  --footer-button-color: var(--color-text-default);
-  --footer-button-weight: var(--font-weight-medium);
-
-  /* 50px tall like Figma: 2px borders, 24px content */
-  --footer-button-padding: calc(var(--space-300) - 0.0625rem) var(--space-600);
-
-  /*
-   * glows: Figma "blue" (720 × 514) and "yellow" (664 × 474) at 30% opacity, centered below the
-   * bottom edge (blue 220px, yellow 157px); the gradients are wider than the shapes to match
-   * their layer blur. Mobile: blue at the left edge, yellow mostly beyond the right edge
-   */
-  --footer-glow-blue: color-mix(in srgb, var(--color-bg-brand) 30%, transparent);
-  --footer-glow-yellow: color-mix(in srgb, var(--color-bg-warning) 30%, transparent);
-  --footer-glow-blue-size: 45rem 31.25rem;
-  --footer-glow-yellow-size: 42.5rem 28.75rem;
-  --footer-glow-blue-position: 6% calc(100% + 13.75rem);
-  --footer-glow-yellow-position: 130% calc(100% + 9.8125rem);
-
-  background-color: var(--color-bg-default);
-  background-image:
-    radial-gradient(
-      ellipse var(--footer-glow-blue-size) at var(--footer-glow-blue-position),
-      var(--footer-glow-blue),
-      transparent
-    ),
-    radial-gradient(
-      ellipse var(--footer-glow-yellow-size) at var(--footer-glow-yellow-position),
-      var(--footer-glow-yellow),
-      transparent
-    );
+  width: 100%;
+  background-color: var(--color-bg-default, #fff);
   background-repeat: no-repeat;
-  color: var(--footer-text-color);
+  color: var(--footer-text-color, #0C0C0D);
+  overflow-x: clip; /* Eliminates the horizontal scrollbar */
 }
 
 footer > .footer > div {
   display: flex;
   flex-direction: column;
-  gap: var(--footer-section-gap);
+  justify-content: space-between;
+  width: 100%;
+  margin-inline: auto;
   box-sizing: border-box;
-  max-width: var(--page-max-width);
-  margin: auto;
-  padding:
-    var(--footer-padding-block-start) var(--footer-padding-inline)
-    var(--footer-padding-block-end);
 }
 
 footer .section > div {
@@ -89,10 +30,6 @@ footer .section > div {
   padding: 0;
 }
 
-/*
- * Footer block with a Conversation Canvas Page: the canvas above the bar; like the Figma frame,
- * the footer has a minimum height and the bar sits at its bottom
- */
 footer > .footer > div:has(.footer-canvas) {
   min-height: var(--footer-canvas-min-height);
 }
@@ -103,15 +40,29 @@ footer .footer-wrapper > .footer:has(.footer-canvas) {
   display: flex;
   flex: 1;
   flex-direction: column;
+  width: 100%;
 }
 
 footer .footer-wrapper > .footer:has(.footer-canvas) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   justify-content: space-between;
-  gap: var(--footer-section-gap);
+  height: 870px;
 }
 
-/* the canvas sits on the footer background, without its own surface, glow and padding */
+/* Vertically expands the canvas so content and bottom bar separate cleanly */
+footer .footer-canvas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 footer .footer-canvas .conversation-canvas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
   border-radius: 0;
   padding: 0;
   background: none;
@@ -121,55 +72,80 @@ footer .footer-canvas .conversation-canvas::before {
   content: none;
 }
 
-/* Figma footer canvas: 64px (mobile) / 80px gaps, buttons stacked on mobile */
 footer .footer-canvas .conversation-canvas .conversation-canvas-content {
-  gap: var(--footer-canvas-gap);
-  padding-block-start: var(--footer-canvas-padding-block-start);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 footer .footer-canvas .conversation-canvas .conversation-canvas-title {
-  max-width: var(--footer-canvas-title-max-width);
   margin-inline: auto;
   color: #1e2222;
-  font-size: var(--footer-canvas-title-size);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--footer-canvas-title-line-height);
+  font-weight: var(--font-weight-medium, 500);
   letter-spacing: calc(-0.03 * var(--footer-canvas-title-size));
   text-wrap: balance;
+  text-align: center;
+}
+
+footer .footer-canvas .conversation-canvas .conversation-canvas-search {
+  width: min(100%, var(--footer-search-width, 38.0625rem));
+  margin-inline: auto;
+}
+
+footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
+  flex: 1;
+  min-width: 0;
+}
+
+footer .footer-canvas .conversation-canvas a.button.secondary {
+  border: 0.125rem solid #494c4e;
+  background-color: var(--color-bg-default, #fff);
+  color: var(--footer-text-color, #0C0C0D);
+  font-weight: var(--font-weight-medium, 500);
+  border-radius: 9999px;
+  text-decoration: none;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-/* the Footer bar: copyright text and the link list (wrap below each other when narrow) */
+/* Bottom Bar - Always pinned to bottom */
 footer .footer-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
-  gap: var(--footer-row-gap) var(--footer-column-gap);
-  font-size: var(--footer-text-size);
-  font-weight: var(--footer-text-weight);
-  line-height: var(--footer-text-line-height);
+  align-items: center;
+  margin-top: auto; /* Pushes the bottom bar away from the buttons */
+  margin-inline: auto;
+  color: #0C0C0D;
 }
 
-/* Figma: the copyright is at least 310px wide, so the links go below it on mobile */
 footer .footer-copyright {
-  min-width: min(100%, 19.375rem);
+  flex: none;
 }
 
 footer .footer-links ul {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--footer-row-gap) var(--footer-column-gap);
+  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 footer .footer-links a:any-link {
-  color: inherit;
+  display: block;
+  color: #0C0C0D !important;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 footer .footer-links a:hover,
@@ -177,11 +153,10 @@ footer .footer-links a:focus-visible {
   text-decoration: underline;
 }
 
-/* social links (the locale's Social Links data sheet) */
 footer .footer .footer-social {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--footer-row-gap);
+  gap: var(--space-400, 1rem);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -190,7 +165,7 @@ footer .footer .footer-social {
 footer .footer .footer-social a {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-200);
+  gap: var(--space-200, 0.5rem);
   color: inherit;
 }
 
@@ -200,33 +175,272 @@ footer .footer .footer-social img {
   height: 1.5rem;
 }
 
-/* tablet (Figma 1024): 120 / 20 / 40 padding, 96 / 115 title, 16 / 22 text, the menu button */
-@media (width >= 600px) {
+
+/* ==========================================================================
+   2. MOBILE VIEW (viewport < 600px | Figma: 399 × 800)
+   ========================================================================== */
+@media (width < 600px) {
   footer {
-    --footer-padding-block-start: var(--space-3000);
-    --footer-padding-inline: var(--space-500);
-    --footer-padding-block-end: var(--space-1000);
-    --footer-text-size: 1rem;
-    --footer-text-line-height: 1.375rem;
-    --footer-glow-blue-position: 25% calc(100% + 13.75rem);
-    --footer-glow-yellow-position: 88% calc(100% + 9.8125rem);
-    --footer-canvas-min-height: 59.75rem;
-    --footer-canvas-gap: var(--space-2000);
-    --footer-canvas-title-size: 6rem;
-    --footer-canvas-title-line-height: 7.1875rem;
-    --footer-canvas-title-max-width: none;
-    --footer-button-text-size: 1rem;
-    --footer-search-padding-start: var(--space-600);
+    --footer-canvas-min-height: 56.875rem;
+    --footer-canvas-title-size: 3.25rem;
+
+    background-image:
+      radial-gradient(ellipse 45rem 31.25rem at 6% calc(100% + 13.75rem), color-mix(in srgb, var(--color-bg-brand, #0076df) 30%, transparent), transparent),
+      radial-gradient(ellipse 42.5rem 28.75rem at 130% calc(100% + 9.8125rem), color-mix(in srgb, var(--color-bg-warning, #f5a623) 30%, transparent), transparent);
+  }
+
+  footer > .footer > div {
+    max-width: 25.125rem;
+    min-height: 56.875rem;
+    gap: var(--space-1600, 4rem);
+    padding: 3.5rem var(--space-500, 1.25rem) var(--space-600, 1.5rem);
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-content {
+    gap: var(--space-1600, 4rem);
+    padding-block-start: 0;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-title {
+    max-width: 20rem;
+    font-size: 3.25rem;
+    line-height: 3.875rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search {
+    gap: 1.0625rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
+    display: none;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
+    flex-direction: column;
+    margin-bottom: 2rem; /* Spacing between button group and footer bar */
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
+    padding: var(--space-300, 0.75rem) var(--space-300, 0.75rem) var(--space-300, 0.75rem) var(--space-400, 1rem);
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search-form input {
+    font-size: 1rem;
+  }
+
+  footer .footer-canvas .conversation-canvas a.button.secondary {
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    letter-spacing: 0.0075rem;
+    padding: calc(var(--space-300, 0.75rem) - 0.0625rem) var(--space-600, 1.5rem);
+  }
+
+  footer .footer-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 354px !important;
+    height: 60px !important;
+  }
+
+  footer .footer-copyright {
+    width: 268px !important;
+    height: 22px !important;
+    font-size: 1rem;
+    line-height: 1.0625rem;
+  }
+
+  footer .footer-links ul {
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 122px !important;
+    height: 22px !important;
+  }
+
+  footer .footer-links a:any-link {
+    width: 122px !important;
+    height: 22px !important;
+    font-size: 1rem;
+    line-height: 1.0625rem;
   }
 }
 
-/* desktop (Figma 1440): 802px tall, 120px top, 80px sides, 40px bottom; the title on two lines */
+
+/* ==========================================================================
+   3. TABLET VIEW (600px <= viewport < 1200px | Figma: 976 × 580)
+   ========================================================================== */
+@media (width >= 600px) and (width < 1200px) {
+  footer {
+    --footer-canvas-min-height: 54.375rem; /* 580px */
+
+    background-image:
+      radial-gradient(ellipse 45rem 31.25rem at 25% calc(100% + 13.75rem), color-mix(in srgb, var(--color-bg-brand, #0076df) 30%, transparent), transparent),
+      radial-gradient(ellipse 42.5rem 28.75rem at 88% calc(100% + 9.8125rem), color-mix(in srgb, var(--color-bg-warning, #f5a623) 30%, transparent), transparent);
+  }
+
+  footer > .footer > div {
+    min-width: 54.375rem; /* 976px */
+    min-height: 64rem; /* 580px */
+    gap: var(--space-2000, 5rem); /* Space/2000 (80px) */
+
+    /* padding: 2.5rem 0 1.5rem; */
+    padding: 80px 24px 40px;
+  }
+
+  footer .footer-canvas .conversation-canvas {
+    justify-content: flex-start;
+    padding-top: 1rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-content {
+    gap: 1.75rem; /* Compact vertical gap between Title, Search, and Buttons */
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-title {
+    max-width: 32rem;
+    font-size: 3.25rem;
+    line-height: 3.75rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search {
+    gap: 1rem;
+    width: 38.0625rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
+    display: grid;
+  }
+
+  /* 4 buttons on row 1, 1 button centered on row 2 */
+  footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 0.75rem 0.5rem;
+    max-width: 58rem; /* Keeps the first 4 buttons on a single row */
+    margin-bottom: var(--space-2000, 5rem); /* Space/2000 gap above footer-bar */
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
+    padding-left: var(--space-600, 1.5rem);
+  }
+
+  footer .footer-canvas .conversation-canvas a.button.secondary {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Footer links row container: 976px × 20px */
+  footer .footer-bar {
+    width: 61rem !important;    /* 976px */
+    max-width: 100%;
+    height: 1.25rem !important; /* 20px */
+    margin: 0 auto !important;
+  }
+
+  /* TATA Consultancy copyright textbox: 234px × 20px */
+  footer .footer-copyright {
+    width: 14.625rem !important; /* 234px */
+    height: 1.25rem !important;  /* 20px */
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  footer .footer-links ul {
+    height: 1.25rem !important;
+    gap: 1.5rem;
+  }
+
+  /* Privacy & Terms textbox: 108px × 20px */
+  footer .footer-links a:any-link {
+    width: 6.75rem !important;   /* 108px */
+    height: 1.25rem !important;  /* 20px */
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   4. DESKTOP VIEW (viewport >= 1200px | Figma: 1440 × 910)
+   ========================================================================== */
 @media (width >= 1200px) {
   footer {
-    --footer-padding-block-start: var(--space-3000);
-    --footer-padding-inline: var(--space-2000);
-    --footer-padding-block-end: var(--space-1000);
-    --footer-canvas-min-height: 50.125rem;
-    --footer-canvas-title-max-width: 61.5rem;
+    --footer-canvas-min-height: 56.875rem; /* 910px */
+
+    background-image:
+      radial-gradient(ellipse 45rem 31.25rem at 25% calc(100% + 13.75rem), color-mix(in srgb, var(--color-bg-brand, #0076df) 30%, transparent), transparent),
+      radial-gradient(ellipse 42.5rem 28.75rem at 88% calc(100% + 9.8125rem), color-mix(in srgb, var(--color-bg-warning, #f5a623) 30%, transparent), transparent);
+  }
+
+  footer > .footer > div {
+    max-width: 90rem;      /* 1440px */
+    min-height: 56.875rem;  /* 910px */
+    gap: var(--space-2000, 5rem);
+
+    /* padding: var(--space-3000, 7.5rem) var(--space-2000, 5rem) var(--space-1000, 2.5rem); */
+    padding: 120px 24px 40px;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-content {
+    gap: var(--space-2000, 5rem);
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-title {
+    max-width: 61.5rem;
+    font-size: 6rem;
+    line-height: 7.1875rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search {
+    gap: 1.0625rem;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
+    display: grid;
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
+    flex-direction: row;
+    margin-bottom: 3.5rem; /* Spacing between button group and footer bar */
+  }
+
+  footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
+    padding-left: var(--space-600, 1.5rem);
+  }
+
+  footer .footer-canvas .conversation-canvas a.button.secondary {
+    font-size: 1.125rem !important;
+    line-height: 1.125rem;
+    padding: calc(var(--space-300, 0.75rem) - 0.0625rem) var(--space-600, 1.5rem);
+  }
+
+  /* Footer links row container: 1280px × 22px */
+  footer .footer-bar {
+    width: 80rem !important;     /* 1280px */
+    max-width: 100%;
+    height: 1.375rem !important; /* 22px */
+    margin: 0 auto !important;
+  }
+
+  /* TATA Consultancy copyright textbox: 268px × 22px */
+  footer .footer-copyright {
+    width: 16.75rem !important;  /* 268px */
+    height: 1.375rem !important; /* 22px */
+    font-size: 1rem !important;
+    line-height: 1.375rem !important;
+  }
+
+  footer .footer-links ul {
+    height: 1.375rem !important;
+    gap: 2.5rem;
+  }
+
+  /* Privacy & Terms textbox: 123px × 22px */
+  footer .footer-links a:any-link {
+    width: 7.6875rem !important; /* 123px */
+    height: 1.375rem !important; /* 22px */
+    font-size: 1rem !important;
+    line-height: 1.375rem !important;
   }
 }

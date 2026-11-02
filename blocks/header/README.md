@@ -514,6 +514,7 @@ B = Canvas row
 - **Purpose:** Figma Logos 667:52520 / Hero 4082:120388: the logos over the hero image.
 - **Rendering:** `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) from 1200px when `main > .section:first-child .hero` isn't `bg-dark`, `bg-dark-subtle` or `bg-black`; `header.css` makes `.nav-wrapper` transparent; `blocks/hero` adds `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads.
 - **Header over the first block (TCS Header):** with `<html data-header-overlay="always">` the header lies over any first block (transparent from `tcs-header.css`), with `never` it stays in the flow; this block's code is unchanged (see [TCS Header](../tcs-header/README.md)).
+- **Logo contrast:** in overlay modes, both logo images are black over an opening light Hero (default or `bg-light`), and start white over dark Heroes or other opening blocks in Always mode. White logos fade to black with the white header background over the first `--nav-height` of scrolling, at every width. Scrolling back restores the initial color. Contrast follows the authored Hero theme, not sampled image pixels. The `is-scrolled` fallback switches the background and logo colors together; non-overlay headers keep their authored logo colors.
 
 ```text
 [Screenshot Placeholder]
@@ -577,7 +578,7 @@ Pre-publish checklist:
 
 - **Labels.** Short (1–3 words); a label is also the title of its level.
 - **Links.** Section labels may link to the section's landing page; menu links are plain rows with an arrow.
-- **Logos.** One asset per logo for all breakpoints, transparent SVG (`/content/dam/tcs-corp/header/tcs-logo.svg`, `tata-logo.svg`, F-77). The CSS sets the height and the width follows the aspect ratio:
+- **Logos.** One asset per logo for all breakpoints, transparent SVG (`/content/dam/tcs-corp/header/tcs-logo.svg`, `tata-logo.svg`, F-77). The CSS sets the height and the width follows the aspect ratio, except the TCS logo has a fixed 9.125rem (146px) desktop width:
 
 | Logo | Mobile | Tablet (>= 600px) | Desktop (>= 1200px) |
 | ---- | ------ | ----------------- | ------------------- |

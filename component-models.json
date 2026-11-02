@@ -9606,12 +9606,12 @@
         "valueType": "string",
         "name": "classes",
         "label": "Theme",
-        "description": "The form is Dark (TCS Designs) in either case: Default is kept for the forms authored before.",
+        "description": "The form theme style.",
         "value": "dark",
         "options": [
           {
-            "name": "Default",
-            "value": ""
+            "name": "Default / Light",
+            "value": "default"
           },
           {
             "name": "Dark",
@@ -21705,12 +21705,12 @@
         "valueType": "number",
         "name": "maxCards",
         "label": "Maximum items",
-        "description": "Display between 1 and 10 items.",
+        "description": "Display between 1 and 20 items.",
         "value": 4,
         "validation": {
           "numberMin": 1,
-          "numberMax": 10,
-          "customErrorMsg": "Maximum items must be between 1 and 10."
+          "numberMax": 20,
+          "customErrorMsg": "Maximum items must be between 1 and 20."
         }
       },
       {
@@ -25334,28 +25334,12 @@
         "description": "Usually https://www.tata.com/."
       },
       {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "menuRootPath",
-        "label": "Menu root path",
-        "description": "Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list); a page of this site (e.g. /en/..., not the language master). Empty, or without pages in this site: the Menu root path of the Conversation Canvas in the same section."
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "menuDepth",
-        "label": "Menu depth",
-        "min": 1,
-        "max": 3,
-        "description": "Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1."
-      },
-      {
         "component": "select",
         "valueType": "string",
         "name": "headerOverlay",
         "label": "Header over the first block",
         "value": "",
-        "description": "At every width: whether the logo bar lies transparent over the page's first block, which then starts at the top of the page (the bar turns solid once the page scrolls). Auto: over an opening light Hero (as on Home).",
+        "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero.",
         "options": [
           {
             "name": "Auto (over a light Hero)",
@@ -25392,7 +25376,7 @@
         "valueType": "boolean",
         "name": "classes_hideblock",
         "label": "Hide block",
-        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
+        "description": "Hides the whole block on the page until it is turned off.",
         "value": false
       },
       {

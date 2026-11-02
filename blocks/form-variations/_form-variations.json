@@ -200,10 +200,10 @@
           "valueType": "string",
           "name": "classes",
           "label": "Theme",
-          "description": "The form is Dark (TCS Designs) in either case: Default is kept for the forms authored before.",
+          "description": "The form theme style.",
           "value": "dark",
           "options": [
-            { "name": "Default", "value": "" },
+            { "name": "Default / Light", "value": "default" },
             { "name": "Dark", "value": "dark" }
           ]
         },

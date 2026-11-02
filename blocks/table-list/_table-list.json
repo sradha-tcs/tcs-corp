@@ -170,12 +170,12 @@
           "valueType": "number",
           "name": "maxCards",
           "label": "Maximum items",
-          "description": "Display between 1 and 10 items.",
+          "description": "Display between 1 and 20 items.",
           "value": 4,
           "validation": {
             "numberMin": 1,
-            "numberMax": 10,
-            "customErrorMsg": "Maximum items must be between 1 and 10."
+            "numberMax": 20,
+            "customErrorMsg": "Maximum items must be between 1 and 20."
           }
         },
         {

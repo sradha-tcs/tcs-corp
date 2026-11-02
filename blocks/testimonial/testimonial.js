@@ -61,6 +61,27 @@ export default async function decorate(block) {
   if (isOnByDefault(props.showdescription) && textOf(props.description)) {
     figure.append(fromCell(props.description, 'blockquote', 'testimonial-description'));
   }
+
+  const description = figure.querySelector('.testimonial-description');
+
+  if (description) {
+    const text = description.textContent.trim();
+
+    if (text.startsWith('“') || text.startsWith('"')) {
+      description.classList.add('has-quote');
+
+      description.textContent = text
+        .replace(/^[“"]\s*/, '')
+        .replace(/\s*[”"]$/, '');
+
+      description.innerHTML = `
+   <img class="quote-open" src="/icons/quote-open.svg" alt="">
+    ${description.textContent}
+   <img class="quote-close" src="/icons/quote-close.svg" alt="">
+  `;
+    }
+  }
+
   // Hide Author Details: the author, its image and designation are not shown
   const author = isOn(props.hideauthor) ? null : buildAuthor(props);
   if (author) {
