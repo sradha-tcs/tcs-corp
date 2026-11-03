@@ -11428,7 +11428,7 @@
             "component": "select",
             "valueType": "string",
             "name": "ctaBackground",
-            "label": "Secondary CTA BG Color",
+            "label": "Secondary CTA BG Color (Secondary only)",
             "value": "",
             "options": [
               {
@@ -11444,21 +11444,13 @@
                 "value": "secondary-bg-black-40"
               }
             ],
-            "description": "Background of this Secondary CTA. Hover and focus keep the Secondary button's style.",
-            "condition": {
-              "==": [
-                {
-                  "var": "ctaType"
-                },
-                "secondary"
-              ]
-            }
+            "description": "Background of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style."
           },
           {
             "component": "select",
             "valueType": "string",
             "name": "ctaBorder",
-            "label": "Secondary CTA Border color",
+            "label": "Secondary CTA Border color (Secondary only)",
             "value": "",
             "options": [
               {
@@ -11474,15 +11466,7 @@
                 "value": "secondary-border-white"
               }
             ],
-            "description": "Border of this Secondary CTA. Hover and focus keep the Secondary button's style.",
-            "condition": {
-              "==": [
-                {
-                  "var": "ctaType"
-                },
-                "secondary"
-              ]
-            }
+            "description": "Border of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style."
           },
           {
             "component": "select",
