@@ -65,7 +65,7 @@ main > .section > div:has(> .testimonial.bg-navy) {
   margin: 0;
   color: var(--color-text-brand);
   font-size: var(--heading-font-size-xl);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   line-height: 1.4;
   letter-spacing: calc(-0.02 * var(--heading-font-size-xl));
 }
