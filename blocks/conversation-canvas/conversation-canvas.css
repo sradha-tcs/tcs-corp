@@ -122,7 +122,7 @@ header .nav-toggle {
 }
 
 .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-  font-size: 2.75rem;
+  font-size: 3rem;
   letter-spacing: -0.0825rem;
 }
 
@@ -302,6 +302,37 @@ header .nav-toggle {
   color: #E6E6E6 !important;
   opacity: 1 !important;
   cursor: pointer !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form .conversation-canvas-search-submit:is(.secondary, .tertiary) {
+  border: var(--border-width-100) solid transparent !important;
+  background-color: transparent !important;
+  color: var(--color-icon-on-disabled) !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form .conversation-canvas-search-submit.secondary {
+  border-color: var(--color-border-disabled) !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form .conversation-canvas-search-submit.tertiary {
+  border: 0 !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form.has-value .conversation-canvas-search-submit:is(.secondary, .tertiary) {
+  background-color: transparent !important;
+  color: var(--color-icon-brand) !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form.has-value .conversation-canvas-search-submit.secondary {
+  border-color: var(--color-border-brand) !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form.has-value .conversation-canvas-search-submit:is(.secondary, .tertiary):is(:hover, :focus-visible) {
+  color: var(--color-icon-brand-secondary) !important;
+}
+
+.conversation-canvas .conversation-canvas-search-form.has-value .conversation-canvas-search-submit.secondary:is(:hover, :focus-visible) {
+  border-color: var(--color-border-brand-secondary) !important;
 }
 
 
@@ -607,8 +638,7 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   list-style: none;
 }
 
-.conversation-canvas .conversation-canvas-buttons a.button::after,
-.conversation-canvas .conversation-canvas-buttons button.button::after {
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button)::after {
   content: none !important;
   display: none !important;
 }
@@ -624,7 +654,8 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   max-width: 56.25rem;
 }
 
-:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button {
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button) {
+  width: auto;
   height: auto;
   min-height: 0;
   border: var(--border-width-100) solid var(--color-border-default);
@@ -638,16 +669,20 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
   letter-spacing: -0.0056rem;
 }
 
-footer .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons .icon-button > span {
+  display: inline;
+}
+
+.conversation-canvas .conversation-canvas-buttons :is(.button, .link-button):is(:hover, :focus-visible) {
   border-color: var(--color-border-default) !important;
   background-color: #B3B3B3 !important;
   color: #000 !important;
 }
 
-:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-  border-color: var(--color-border-brand);
-  background-color: var(--color-bg-brand);
-  color: var(--color-text-on-brand);
+:is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button):is(:hover, :focus-visible) {
+  border-color: var(--color-border-default);
+  background-color: #b3b3b3;
+  color: #000;
 }
 
 
@@ -1041,8 +1076,8 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Mobile Title: 354px x 106px, 44px Font */
-  .conversation-canvas .conversation-canvas-title,
-  .conversation-canvas h2.conversation-canvas-title {
+  .conversation-canvas:not(.conversation-canvas-title-bigger, .conversation-canvas-title-medium) .conversation-canvas-title,
+  .conversation-canvas:not(.conversation-canvas-title-bigger, .conversation-canvas-title-medium) h2.conversation-canvas-title {
     box-sizing: border-box !important;
     width: 354px !important;
     max-width: 100% !important;
@@ -1197,8 +1232,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Content-Driven Dynamic Mobile Pills */
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button {
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button) {
     box-sizing: border-box !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1225,10 +1259,10 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     transition: border-color 0.2s, background-color 0.2s, color 0.2s;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3 !important;
-    background-color: rgb(255 255 255 / 90%) !important;
-    color: #216AC3 !important;
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button):is(:hover, :focus-visible) {
+    border-color: var(--color-border-default) !important;
+    background-color: #b3b3b3 !important;
+    color: #000 !important;
   }
 
   /* Dock and Navigation list (floating behaviors preserved) */
@@ -1298,6 +1332,10 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
    ========================================================================== */
 
 @media (width >= 600px) and (width < 1200px) {
+  .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
+    font-size: 5rem;
+  }
+
   /* Footer H2 Container: 976px x 194px (Figma Details gap: 64px) */
 
   .conversation-canvas-search {
@@ -1314,7 +1352,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Footer H2 Title: 2 lines ("Let's build the" / "future together") */
-  .conversation-canvas h2.conversation-canvas-title {
+  .conversation-canvas:not(.conversation-canvas-title-bigger, .conversation-canvas-title-medium) h2.conversation-canvas-title {
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 580px !important;       /* Constrains width to force "future together" to line 2 */
@@ -1446,8 +1484,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Responsive Pills with 50px height matching Figma */
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button {
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button) {
     box-sizing: border-box !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1472,10 +1509,10 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     transition: border-color 0.2s, background-color 0.2s, color 0.2s;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3 !important;
-    background-color: rgb(255 255 255 / 90%) !important;
-    color: #216AC3 !important;
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button):is(:hover, :focus-visible) {
+    border-color: var(--color-border-default) !important;
+    background-color: #b3b3b3 !important;
+    color: #000 !important;
   }
 
   /* Submit Action Button: Inactive / Default */
@@ -1603,8 +1640,8 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Desktop Title: 2 lines ("Let's build the" / "future together") */
-  .conversation-canvas .conversation-canvas-title,
-  .conversation-canvas h2.conversation-canvas-title {
+  .conversation-canvas:not(.conversation-canvas-title-bigger, .conversation-canvas-title-medium) .conversation-canvas-title,
+  .conversation-canvas:not(.conversation-canvas-title-bigger, .conversation-canvas-title-medium) h2.conversation-canvas-title {
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 820px !important;       /* Constrains width so "future together" breaks to line 2 */
@@ -1622,7 +1659,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   .conversation-canvas.conversation-canvas-title-bigger .conversation-canvas-title {
-    font-size: 6rem;
+    font-size: 7rem;
     letter-spacing: -0.15rem;
   }
 
@@ -1787,9 +1824,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
   }
 
   /* Responsive Pills (53px height matching Figma, dynamic content width) */
-  .conversation-canvas .conversation-canvas-buttons a.button,
-  .conversation-canvas .conversation-canvas-buttons button.button,
-  .conversation-canvas .conversation-canvas-buttons a.button.secondary {
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button) {
     box-sizing: border-box !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1816,8 +1851,7 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     transition: border-color 0.2s, background-color 0.2s, color 0.2s;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button span,
-  .conversation-canvas .conversation-canvas-buttons button.button span {
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button) span {
     display: inline !important;
     width: auto !important;
     max-width: 100% !important;
@@ -1825,9 +1859,9 @@ main > .section:not(.fixed-width) .conversation-canvas:not(.primary) {
     line-height: inherit !important;
   }
 
-  .conversation-canvas .conversation-canvas-buttons a.button:is(:hover, :focus-visible) {
-    border-color: #216AC3 !important;
-    background-color: rgb(255 255 255 / 90%) !important;
-    color: #216AC3 !important;
+  :is(main .conversation-canvas:not(.action-buttons), .conversation-canvas.action-pills) .conversation-canvas-buttons :is(.button, .link-button):is(:hover, :focus-visible) {
+    border-color: var(--color-border-default) !important;
+    background-color: #b3b3b3 !important;
+    color: #000 !important;
   }
 }
