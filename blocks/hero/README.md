@@ -217,8 +217,6 @@ B = Horizontal Alignment
 C = Text Alignment
 D = BG Color
 E = Icon color
-F = Secondary CTA BG Color
-G = Secondary CTA Border color
 ```
 
 ```text
@@ -406,6 +404,8 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA List › CTA view | `ctaType` | select | No | "" | Default (""), Primary (`primary`), Secondary (`secondary`) | — | — |
+| CTA List › Secondary CTA BG Color | `ctaBackground` | select | No | "" | Default (transparent) (""), Light grey (`secondary-bg-light-grey`), Black 40% (`secondary-bg-black-40`) | Background of this Secondary CTA. Hover and focus keep the Secondary button's style. Shown when {"==":[{"var":"ctaType"},"secondary"]}. | — |
+| CTA List › Secondary CTA Border color | `ctaBorder` | select | No | "" | Default (as the BG Color) (""), Black (`secondary-border-black`), White (`secondary-border-white`) | Border of this Secondary CTA. Hover and focus keep the Secondary button's style. Shown when {"==":[{"var":"ctaType"},"secondary"]}. | — |
 | CTA List › CTA Arrow | `ctaArrow` | select | No | `right` | Right (`right`), Down (`down`) | Direction of the arrow next to the CTA text. | — |
 
 #### Style tab — Hero
@@ -417,8 +417,6 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Text Alignment | `classes_textAlignment` | select | No | `text-center` | Left align (`text-left`), Center align (`text-center`), Right align (`text-right`) | Alignment of the icon, text and CTAs inside the content block. Delivered as a block class. | text-left |
 | BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay. Delivered as a block class. | bg-dark |
 | Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
-| Secondary CTA BG Color | `classes_secondaryctabg` | select | No | "" | Default (transparent) (""), Light grey (`secondary-bg-light-grey`), Black 40% (`secondary-bg-black-40`) | Background of the hero's Secondary CTAs. Hover and focus keep the Secondary button's style. Delivered as a block class. | — |
-| Secondary CTA Border color | `classes_secondaryctaborder` | select | No | "" | Default (as the BG Color) (""), Black (`secondary-border-black`), White (`secondary-border-white`) | Border of the hero's Secondary CTAs. Hover and focus keep the Secondary button's style. Delivered as a block class. | — |
 
 #### Additional tab — Hero
 
@@ -467,7 +465,7 @@ Notes on the significant fields (the tables above list every field, default and 
 - **BG Color.** Default: white overlay at 80 %. Light, no overlay: the image as is. Dark blue: navy overlay at 80 %; Dark blue (subtle): 60 %; Black: black at 80 %; the dark options switch the title to white, the description to 50 % white (85 % on Dark blue (subtle)), the eyebrow to `--brand-300` (white on Dark blue (subtle)) and Secondary / Default CTAs to white. Without media no overlay is drawn.
 - **Alignments.** Vertical and Horizontal Alignment position the content block (nine positions); Text Alignment aligns the icon, text and CTAs inside it. Heroes authored before Text Alignment existed follow their Horizontal Alignment.
 - **Data-layer impact.** None of the fields changes the data-layer entry except the Title (its text is the component's `dc:title`) and Anchor ID (the component id).
-- **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA view as bold / italic, CTA Arrow) are still read and shown before the CTA items. The former **Motion Type** values (`motion-fade`, `motion-slide`, `motion-zoom`) are mapped by `mapLegacyMotion` to Fade in, Fade up and Background Scale reveal, played Slow unless a Motion Speed is set, and only when the block has no Animation Type / Background animation of its own.
+- **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA view as bold / italic, CTA Arrow) are still read and shown before the CTA items. A Secondary one can have a **Secondary CTA BG Color** (Light grey, Black 40%) and **Secondary CTA Border color** (Black, White), shown in the dialog only for CTA view Secondary: their values (`secondary-bg-*`, `secondary-border-*`, `SECONDARY_OPTIONS` in `hero.js`) become classes of that CTA's button, which `hero.css` styles (hover and focus keep the Secondary button's style); CTA items don't have them (KB-D-062). The former **Motion Type** values (`motion-fade`, `motion-slide`, `motion-zoom`) are mapped by `mapLegacyMotion` to Fade in, Fade up and Background Scale reveal, played Slow unless a Motion Speed is set, and only when the block has no Animation Type / Background animation of its own.
 - **Additional tab.** Anchor ID, Hide block, spacing, Animation Type, Motion Speed, Animation Trigger and, because the Hero has an authored background, **Background animation**: see AGENTS.md "Additional tab" and "Animation and skeletons". The content animation moves `.hero-content`; the background animation the media and the overlay.
 
 ## Screenshot-Based Authoring Steps
