@@ -9,7 +9,7 @@ import {
 } from '../../decorators/editor-item-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
-import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
+import { itemRows, withoutTabCells } from '../../utils/cells.js';
 import { NEW_WINDOW, linkOf } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import {
@@ -65,11 +65,6 @@ const OPTIONS = {
   descriptionsize: [
     'text-regular',
     'text-large',
-  ],
-  eyebrowstyle: [
-    'eyebrow-label',
-    'eyebrow-grey',
-    'eyebrow-white',
   ],
   backgroundcolor: [
     'bg-navy',
@@ -268,19 +263,6 @@ function buildContent(props, newTabHint) {
 
   intro.className = 'image-collage-intro';
 
-  if (
-    isOnByDefault(props.showeyebrow)
-    && textOf(props.eyebrow)
-  ) {
-    intro.append(
-      fromCell(
-        props.eyebrow,
-        'p',
-        'image-collage-eyebrow',
-      ),
-    );
-  }
-
   const headingRow = document.createElement('div');
 
   headingRow.className = 'image-collage-heading-row';
@@ -330,16 +312,6 @@ function buildContent(props, newTabHint) {
 
   if (links) {
     content.append(links);
-  }
-
-  if (textOf(props.shortdescription)) {
-    content.append(
-      fromCell(
-        props.shortdescription,
-        'div',
-        'image-collage-short-description',
-      ),
-    );
   }
 
   return content.children.length ? content : null;
@@ -453,11 +425,9 @@ function buildPendingItems(rows, rendered, hint) {
 export default async function decorate(block) {
   const props = readProperties(block);
 
-  // on the page the item rows carry no model: they are the rows that aren't key-value pairs
   const collageRows = itemRows(
     block,
     ['image-collage-item'],
-    KEY_VALUE_ITEM,
   );
 
   const [placeholders, hint] = await Promise.all([

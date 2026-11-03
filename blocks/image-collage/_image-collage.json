@@ -12,7 +12,6 @@
                             "model": "image-collage",
                             "key-value": true,
                             "titleType": "h2",
-                            "showEyebrow": true,
                             "showDescription": true,
                             "primaryCtaStyle": "primary",
                             "secondaryCtaStyle": "secondary",
@@ -46,19 +45,6 @@
                     "component": "tab",
                     "name": "contentTab",
                     "label": "Content"
-                },
-                {
-                    "component": "text",
-                    "valueType": "string",
-                    "name": "eyebrow",
-                    "label": "Eyebrow"
-                },
-                {
-                    "component": "boolean",
-                    "valueType": "boolean",
-                    "name": "showEyebrow",
-                    "label": "Show Eyebrow",
-                    "value": true
                 },
                 {
                     "component": "text",
@@ -121,14 +107,6 @@
                     "name": "showDescription",
                     "label": "Show Description",
                     "value": true
-                },
-                {
-                    "component": "richtext",
-                    "valueType": "string",
-                    "name": "shortDescription",
-                    "label": "Short Description",
-                    "description": "Shown after the links.",
-                    "value": ""
                 },
                 {
                     "component": "text",
@@ -372,32 +350,6 @@
                             "value": "text-large"
                         }
                     ]
-                },
-                {
-                    "component": "select",
-                    "valueType": "string",
-                    "name": "eyebrowStyle",
-                    "label": "Eyebrow Style",
-                    "value": "",
-                    "options": [
-                        {
-                            "name": "Brand",
-                            "value": ""
-                        },
-                        {
-                            "name": "Label (uppercase, grey)",
-                            "value": "eyebrow-label"
-                        },
-                        {
-                            "name": "Grey",
-                            "value": "eyebrow-grey"
-                        },
-                        {
-                            "name": "White",
-                            "value": "eyebrow-white"
-                        }
-                    ],
-                    "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
                 },
                 {
                     "component": "select",

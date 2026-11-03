@@ -649,7 +649,6 @@
                   "model": "image-collage",
                   "key-value": true,
                   "titleType": "h2",
-                  "showEyebrow": true,
                   "showDescription": true,
                   "primaryCtaStyle": "primary",
                   "secondaryCtaStyle": "secondary",
