@@ -194,12 +194,12 @@ A = Icon
 B = Icon Image Alt Text
 C = Hero Image type
 D = Hero Image Path
-E = Hero Image alt text
-F = Hero View
-G = Eyebrow
-H = Title
-I = Title heading level
-J = Description
+E = Lottie JSON Path
+F = Hero Image alt text
+G = Hero View
+H = Eyebrow
+I = Title
+J = Title heading level
 ```
 
 ```text
@@ -366,11 +366,11 @@ B = Left-aligned text and CTAs
 1. **Add the block.** In Universal Editor select a Section, a Columns Container column, a Gen Carousel or a Tabs Container in the content tree, choose **Add (+)** and pick **Hero**. A new Hero stores Vertical Alignment Middle, Horizontal Alignment Center, Text Alignment Center align and Title heading level H1.
 2. **Open its properties.** Select the Hero in the content tree; the properties panel shows the **Content**, **Style** and **Additional** tabs.
 3. **Enter content (Content tab).** Choose a **Hero Image Path** and enter its **Hero Image alt text** (leave the alt empty only for a decorative image). Enter the **Eyebrow**, **Title** and **Description**; set **Title heading level** to H1 for the page's main Hero, H2 for any other. Add an **Icon** (with **Icon Image Alt Text**) only if the design needs it.
-4. **Select variations.** For an animation set **Hero Image type** to Lotto and choose a Lottie `.json` file as the Hero Image Path. For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
+4. **Select variations.** For an animation set **Hero Image type** to Lotto and enter the **Lottie JSON Path**: a `.json` file on the site (added to the code repository by a developer, e.g. `/animations/globe.json`) or an https URL. Lottie files in the DAM can't be published to Edge Delivery (KB-D-058). For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
 5. **Add CTAs.** Select the Hero, choose **Add (+)** and pick **CTA**. Fill **CTA Link** (required) and **CTA Title**; choose **CTA view** (Default text link, Primary, Secondary), **CTA Arrow** (Auto, Right, Down) and **CTA Link Type** (Open in New Window only when needed). Reorder CTAs by dragging them in the content tree; the page shows them in that order.
 6. **Additional tab.** Set an Anchor ID, Hide block, animations or spacing only when needed (see [Authorable Fields](#authorable-fields)).
 7. **Preview.** Switch Universal Editor to Preview (animations play only there) or open the page on aem.page; check desktop, tablet and mobile widths.
-8. **Publish.** Publish the page with its referenced assets. A Lottie `.json` file is served only once it is published itself (images travel with the page).
+8. **Publish.** Publish the page with its referenced assets (images travel with the page). Don't reference a Lottie `.json` from the DAM: the publishing rejects JSON assets ("unsupported file type 'application/json'").
 9. **Validate the published output.** On aem.live check the image loads with its alt text, exactly one H1 is on the page, every CTA goes to the right target, and a Lottie animation plays and pauses.
 
 **Minimum required content:** a Title (a Hero without one renders, but has no heading). **Recommended:** a Hero Image with alt text, an Eyebrow, a Description and one or two CTAs. **Optional:** Icon, Lotto, Contained image, alignments, BG Color, Additional tab options.
@@ -392,7 +392,8 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Icon | `content_icon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/square-sample-3.jpg |
 | Icon Image Alt Text | `content_iconAlt` | text | No | — | — | Leave empty if the icon is decorative. Delivered with `content_icon` (field collapse). | — |
 | Hero Image type | `classes_media` | select | No | "" | Default (""), Lotto (`lottie`) | Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Delivered as a block class. | lottie |
-| Hero Image Path | `image` | reference | No | — | — | Default: an image. Lotto: a Lottie animation file (.json). | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
+| Hero Image Path | `image` | reference | No | — | — | Shown when {"==":[{"var":"classes_media"},""]}. | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
+| Lottie JSON Path | `lottieFile` | aem-content | No | — | — | A .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. Lottie files in the DAM can't be published to Edge Delivery. Shown when {"==":[{"var":"classes_media"},"lottie"]}. | — |
 | Hero Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image or animation is decorative. Delivered with `image` (field collapse). | Consultants reviewing a transformation roadmap |
 | Hero View | `classes` | select | No | "" | Default (""), Contained image (`media-contained`) | Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content. | media-contained |
 | Eyebrow | `content_eyebrow` | text | No | — | — | — | Enterprise AI |
@@ -453,7 +454,7 @@ Model `hero-cta`; template name "CTA" (the block class AEM renders).
 
 Notes on the significant fields (the tables above list every field, default and allowed value):
 
-- **Hero Image Path / Hero Image type.** With Default the reference renders as a `<picture>` covering the banner (`object-fit: cover`). With Lotto and a `.json` link the Lottie player renders an SVG animation instead (`createAnimation`, class `hero-animation`). With Lotto and an image, the image is shown; with Default and a `.json` link, no media is rendered.
+- **Hero Image Path / Hero Image type.** With Default the reference renders as a `<picture>` covering the banner (`object-fit: cover`). With Lotto the Lottie player renders an SVG animation instead (`createAnimation`, class `hero-animation`) from the Lottie JSON Path (an `aem-content` field, delivered as a link to the `.json` file: decorative when its text is the path, named by its text otherwise; a row holding only a site path or https URL as text works too) or, for Heroes authored before, a `.json` link in Hero Image Path (named by its Alt). With Lotto and an image, the image is shown; with Default and a `.json` link, no media is rendered.
 - **Hero Image alt text.** Becomes the image's `alt`. For a Lottie file AEM delivers the alt as the link text; `animationLabel` (`utils/media.js`) reads it and the animation gets `role="img"` and `aria-label`; without an alt it is `aria-hidden="true"`.
 - **Icon / Icon Image Alt Text.** The first stand-alone picture before the title becomes `div.hero-icon` (`--icon-size-l`, 3rem from 900px); further pictures go to the description.
 - **Eyebrow.** Rendered as `p.hero-eyebrow` only when there is a Title; without a Title every text element goes to the description.

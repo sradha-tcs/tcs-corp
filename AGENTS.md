@@ -200,7 +200,7 @@ Each block should be self-contained and re-useable, with CSS and JS files follow
 - New components get their **definition template values** stored (a sample text in a template appears on every new item): no sample content in templates or model defaults.
 - A non-image reference (a Lottie `.json`, a PDF) is delivered as a link whose **text is its Alt** (no title): read it with `animationLabel` (`utils/media.js`).
 - An item's `name` property is delivered in **class-name form** (`firstName` -> `firstname`): a value whose case matters needs its own field (Form Variations `fieldName`).
-- **DAM files other than images** (Lottie JSON, videos, captions) are served only once published: images travel with the page, other assets don't.
+- **DAM files other than images** (videos, captions) are served only once published: images travel with the page, other assets don't. **JSON can't be published at all** (the asset publishing accepts SVG, PNG, JPEG, GIF, WebP, AVIF, ICO, MP4 and PDF only): a Lottie file is a site path (code repository) or an https URL, e.g. the Hero's Lottie JSON Path (KB-D-058).
 - `decorateBlock` wraps the text of a block's cells (`wrapTextNodes`): decorate a synthetic block while it is empty, and don't test cells for bare text after decoration.
 The library preview (`.home-work/render-lib.mjs`) reproduces these rules; compare aem.page with the local preview after model changes.
 

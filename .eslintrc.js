@@ -28,6 +28,8 @@ module.exports = {
       tabs: 21,
       'gen-carousel': 18,
       'columns-container': 22,
+      // Hero Image Path and Lottie JSON Path are a row each (DAM JSON can't be published)
+      hero: 5,
       'table-list': 10,
       'table-list-card': 6,
       'list-item': 19,

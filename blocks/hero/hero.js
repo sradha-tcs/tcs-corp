@@ -15,7 +15,8 @@ let newTabHint = '';
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
  * - content: icon, eyebrow, title (heading) and description (element group "content_")
- * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
+ * - media: the hero image; for the Lotto image type the Lottie JSON Path (a site path or an
+ *   https URL to a .json file), or a link to the animation in Hero Image Path (authored before)
  * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
@@ -69,12 +70,24 @@ function isCtaCell(cell) {
   return text.replace(/\s/g, '') === linkText.replace(/\s/g, '');
 }
 
-/** a cell holding only the hero image or an animation link */
+/**
+ * The Lottie JSON Path of a cell holding only that text: a path on the site (code repository,
+ * e.g. /animations/globe.json) or an https URL. DAM JSON assets can't be published to Edge
+ * Delivery (the asset publishing accepts images, videos and PDFs only).
+ */
+function animationPathOf(cell) {
+  if (cell.querySelector('a[href], picture')) return '';
+  const text = cell.textContent.trim();
+  return /^(\/|https:\/\/)\S+$/i.test(text) && isAnimation(text) ? text : '';
+}
+
+/** a cell holding only the hero image, an animation link or a Lottie JSON Path */
 function isMediaCell(cell) {
   if (cell.querySelector(HEADINGS)) return false;
   const pictures = cell.querySelectorAll('picture');
   const links = [...cell.querySelectorAll('a[href]')];
   if (pictures.length === 1 && !cell.textContent.trim()) return true;
+  if (animationPathOf(cell)) return true;
   return links.length === 1 && isAnimation(links[0].href)
     && cell.textContent.trim() === links[0].textContent.trim();
 }
@@ -101,8 +114,13 @@ function buildMedia(block, cell) {
   const picture = cell.querySelector('picture');
   const link = cell.querySelector('a[href]');
 
-  if (block.classList.contains('lottie') && link && isAnimation(link.href)) {
-    const animation = createAnimation(link.href, { label: animationLabel(link), className: 'hero-animation' });
+  // Lotto: the Lottie JSON Path, or a link to the animation in Hero Image Path (authored before);
+  // a path is decorative, a link is named by its Alt (the link text)
+  const animationLink = link && isAnimation(link.href) ? link : null;
+  const path = animationLink?.href || animationPathOf(cell);
+  if (block.classList.contains('lottie') && path) {
+    const label = animationLink ? animationLabel(animationLink) : '';
+    const animation = createAnimation(path, { label, className: 'hero-animation' });
     media.append(animation);
     // the pause / play button above the overlay and the content, in the block's corner (appended
     // to the block after its content)

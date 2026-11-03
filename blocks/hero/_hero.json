@@ -82,8 +82,30 @@
           "valueType": "string",
           "name": "image",
           "label": "Hero Image Path",
-          "description": "Default: an image. Lotto: a Lottie animation file (.json).",
-          "multi": false
+          "multi": false,
+          "condition": {
+            "==": [
+              {
+                "var": "classes_media"
+              },
+              ""
+            ]
+          }
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "lottieFile",
+          "label": "Lottie JSON Path",
+          "description": "A .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. Lottie files in the DAM can't be published to Edge Delivery.",
+          "condition": {
+            "==": [
+              {
+                "var": "classes_media"
+              },
+              "lottie"
+            ]
+          }
         },
         {
           "component": "text",
