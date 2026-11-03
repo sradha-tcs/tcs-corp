@@ -372,6 +372,17 @@
   border-color: var(--white-1000);
 }
 
+/*
+ * Primary CTA BG Color (CTA List): Blue-cyan (azure), #216AC3 with white text (5.4:1); in a dark
+ * section too, where Primary buttons are otherwise inverted (styles/styles.css)
+ */
+.hero .hero-ctas a.button.primary.primary-bg-azure:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-azure:not(:hover, :focus-visible) {
+  border-color: var(--color-bg-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-neutral);
+}
+
 @media (600px <= width < 1200px) {
   .hero {
     --hero-min-height: 40rem;

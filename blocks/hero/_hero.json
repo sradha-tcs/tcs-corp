@@ -206,6 +206,24 @@
             {
               "component": "select",
               "valueType": "string",
+              "name": "ctaPrimaryBackground",
+              "label": "Primary CTA BG Color (Primary only)",
+              "value": "",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "Blue-cyan (azure)",
+                  "value": "primary-bg-azure"
+                }
+              ],
+              "description": "Background of the CTA when its CTA view is Primary; ignored for Default and Secondary. Blue-cyan (azure) is #216AC3 with white text. Hover and focus keep the Primary button's style."
+            },
+            {
+              "component": "select",
+              "valueType": "string",
               "name": "ctaBackground",
               "label": "Secondary CTA BG Color (Secondary only)",
               "value": "",

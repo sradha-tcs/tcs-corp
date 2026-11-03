@@ -20,8 +20,8 @@ let newTabHint = '';
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
  *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
- *   / italic (secondary) formatting; a Secondary one can have a Secondary CTA BG Color and
- *   Border color (SECONDARY_OPTIONS, classes of its button)
+ *   / italic (secondary) formatting; a Primary one can have a Primary CTA BG Color, a Secondary
+ *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS, classes of its button)
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
  * before the Additional tab's animations, mapped to them),
@@ -38,11 +38,15 @@ const LEGACY_MOTIONS = {
 };
 // CTA Arrow values, and every value a CTA List item holds besides its link
 const ARROWS = ['right', 'down'];
-// a Secondary CTA's Secondary CTA BG Color and Border color (CTA List), classes of its button
-const SECONDARY_OPTIONS = [
-  'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
-];
-const CTA_VALUES = [NEW_WINDOW, ...ARROWS, ...SECONDARY_OPTIONS];
+// a CTA's colours by CTA view (CTA List): Primary CTA BG Color, Secondary CTA BG Color and
+// Border color, classes of its button
+const CTA_OPTIONS = {
+  primary: ['primary-bg-azure'],
+  secondary: [
+    'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
+  ],
+};
+const CTA_VALUES = [NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat()];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
@@ -198,9 +202,8 @@ function buildCtas(cell, rows, hint) {
       newWindow,
       newTabHint,
     });
-    if (type === 'secondary') {
-      a.classList.add(...values.filter((value) => SECONDARY_OPTIONS.includes(value)));
-    }
+    // only the colours of the CTA's own view (e.g. a Primary CTA ignores the Secondary ones)
+    a.classList.add(...values.filter((value) => CTA_OPTIONS[type]?.includes(value)));
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
       a.classList.add('hero-cta-down');
