@@ -253,35 +253,6 @@ function buildLinks(props, newTabHint) {
 }
 
 /**
- * Builds the optional View All CTA.
- *
- * @param {Object} props Parent block properties
- * @returns {HTMLAnchorElement|null}
- */
-function buildViewAll(props) {
-  const link = linkOf(props.viewall);
-
-  if (!link) return null;
-
-  const label = textOf(props.viewalltext);
-
-  if (label) {
-    link.textContent = label;
-  }
-
-  decorateButton(link, {
-    view: 'button',
-    type: 'primary',
-  });
-
-  link.classList.add('image-collage-view-all');
-
-  moveInstrumentation(props.viewall, link);
-
-  return link;
-}
-
-/**
  * Builds the content displayed in the center of the collage.
  *
  * @param {Object} props Parent block properties
@@ -322,12 +293,6 @@ function buildContent(props, newTabHint) {
     }
 
     headingRow.append(title);
-  }
-
-  const viewAll = buildViewAll(props);
-
-  if (viewAll) {
-    headingRow.append(viewAll);
   }
 
   if (headingRow.children.length) {

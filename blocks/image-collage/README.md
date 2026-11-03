@@ -48,8 +48,8 @@ E = Hide Title
 F = Description
 G = Show Description
 H = Short Description
-I = View All Text
-J = View All Link
+I = Primary CTA Title
+J = Primary CTA Link
 ```
 
 ```text
@@ -137,8 +137,6 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showEyeb
 | Description | `description` | richtext | No | "" | — | — | — |
 | Show Description | `showDescription` | boolean | No | `true` | on / off | — | — |
 | Short Description | `shortDescription` | richtext | No | "" | — | Shown after the links. | — |
-| View All Text | `viewAllText` | text | No | — | — | Delivered with `viewAll` (field collapse). | — |
-| View All Link | `viewAll` | aem-content | No | — | — | — | — |
 | Primary CTA Title | `primaryCtaText` | text | No | — | — | Delivered with `primaryCta` (field collapse). | — |
 | Primary CTA Link | `primaryCta` | aem-content | No | — | — | — | — |
 | Primary CTA Link Type | `primaryCtaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
@@ -196,7 +194,7 @@ Model `image-collage-item`; template name "Collage image item" (the block class 
 
 Notes on the significant fields:
 
-- **Title Type and the CTA / View All labels** collapse into their base field (AEM field collapse): the title is delivered as a heading of the chosen level, and the labels as the link text. The block reads them from there, as the Teaser does.
+- **Title Type and the CTA labels** collapse into their base field (AEM field collapse): the title is delivered as a heading of the chosen level, and the labels as the link text. The block reads them from there, as the Teaser does.
 - **Show Eyebrow / Show Description** are on by default (definition template); turn them off to keep the text authored but hidden.
 - **Title hidden** keeps the title for screen readers only (`hideVisually`).
 - **CTA Link Style** Primary / Secondary (with or without the arrow); **CTA Background** (White, Blue, Translucent white) and **CTA Shape** (Rectangle) apply to Primary and Secondary buttons only.

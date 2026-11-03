@@ -133,18 +133,6 @@
                 {
                     "component": "text",
                     "valueType": "string",
-                    "name": "viewAllText",
-                    "label": "View All Text"
-                },
-                {
-                    "component": "aem-content",
-                    "valueType": "string",
-                    "name": "viewAll",
-                    "label": "View All Link"
-                },
-                {
-                    "component": "text",
-                    "valueType": "string",
                     "name": "primaryCtaText",
                     "label": "Primary CTA Title"
                 },

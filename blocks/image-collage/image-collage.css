@@ -10,6 +10,8 @@
 .image-collage {
     --image-collage-content-width: 37.5rem;
     --image-collage-bg: #0c0c0d;
+    --image-collage-overlay-start: rgb(12 12 13 / 45%);
+    --image-collage-overlay-end: rgb(12 12 13 / 80%);
     --image-collage-title-color: #fff;
     --image-collage-text-color: #9e9fa3;
     --image-collage-button-color: #f3f3f3;
@@ -35,6 +37,9 @@
 
 .image-collage.bg-navy {
     --image-collage-bg: rgb(1 22 39);
+    --image-collage-overlay-start: rgb(1 22 39 / 45%);
+    --image-collage-overlay-end: rgb(1 22 39 / 80%);
+    --image-collage-button-bg: rgb(1 22 39 / 90%);
 }
 
 .image-collage :is(.image-collage-content,
@@ -58,8 +63,8 @@
         radial-gradient(circle at center,
             rgb(255 255 255 / 4%),
             transparent 55%),
-        linear-gradient(rgb(12 12 13 / 45%),
-            rgb(12 12 13 / 80%));
+        linear-gradient(var(--image-collage-overlay-start),
+            var(--image-collage-overlay-end));
     pointer-events: none;
 }
 
@@ -186,15 +191,23 @@
 
 /* CTA row */
 
+/* CTA row: width follows the authored button labels */
+
 .image-collage .image-collage-links {
     display: flex;
+    flex: none;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
     width: max-content;
-    max-width: none;
+    min-width: 0;
+    max-width: 100%;
+    height: 3rem;
+    padding: 0;
     gap: 1rem;
 }
+
+/* Secondary outlined-pill CTA */
 
 .image-collage .image-collage-links> :is(a, button).image-collage-cta {
     box-sizing: border-box;
@@ -202,29 +215,34 @@
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    height: 3.125rem;
-    min-height: 3.125rem;
+    width: max-content;
+    min-width: 0;
+    max-width: none;
+    height: 3rem;
+    min-height: 3rem;
+    max-height: 3rem;
     margin: 0;
     padding: 0.75rem 1rem 0.75rem 1.5rem;
     gap: 0.5rem;
-    border: 1px solid #303030;
+    border: 1px solid var(--image-collage-button-border);
     border-radius: 9999px;
-    background-color: #0c0c0d;
-    color: #fff;
-    font-size: 0.75rem;
+    background-color: var(--image-collage-button-bg);
+    color: var(--image-collage-button-color);
+    font-size: 1rem;
     font-weight: var(--font-weight-medium);
     line-height: 1;
     letter-spacing: 0.01em;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    backdrop-filter: blur(0.5rem);
+    backdrop-filter: none;
 }
 
 .image-collage .image-collage-links> :is(a, button).image-collage-cta::after {
     flex: 0 0 1.5rem;
     width: 1.5rem;
     height: 1.5rem;
+    background-color: currentcolor;
 }
 
 .image-collage .image-collage-links> :is(a, button).image-collage-cta-no-arrow::after {
@@ -403,7 +421,7 @@
     .image-collage {
         height: 64rem;
         min-height: 64rem;
-        padding-inline: 2rem;
+        padding-inline: 0;
     }
 
 
@@ -473,40 +491,22 @@
     }
 
     .image-collage .image-collage-links {
-        flex: none;
-        flex-flow: row nowrap;
-        width: 26.5rem;
-        min-width: 26.5rem;
-        max-width: 26.5rem;
-        height: 3.125rem;
+        width: max-content;
+        min-width: 0;
+        max-width: 100%;
+        height: 3rem;
         gap: 1rem;
     }
 
     .image-collage .image-collage-links> :is(a, button).image-collage-cta {
-        flex-grow: 0;
-        flex-shrink: 0;
-        height: 3.125rem;
-        min-height: 3.125rem;
-        max-height: 3.125rem;
-        border-color: #303030;
-        background-color: #0c0c0d;
-        color: #fff;
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        max-width: none;
+        height: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
         font-size: 0.75rem;
-        backdrop-filter: blur(0.5rem);
-    }
-
-    .image-collage .image-collage-links> :is(a, button).image-collage-cta-primary {
-        flex-basis: 9.5625rem;
-        width: 9.5625rem;
-        min-width: 9.5625rem;
-        max-width: 9.5625rem;
-    }
-
-    .image-collage .image-collage-links> :is(a, button).image-collage-cta-secondary {
-        flex-basis: 15.9375rem;
-        width: 15.9375rem;
-        min-width: 15.9375rem;
-        max-width: 15.9375rem;
     }
 
     .image-collage .image-collage-item-9 {
@@ -582,34 +582,28 @@
     }
 
     .image-collage .image-collage-links {
-        flex: none;
-        flex-flow: row nowrap;
-        width: 18.875rem;
-        min-width: 18.875rem;
-        max-width: 18.875rem;
+        width: max-content;
+        min-width: 0;
+        max-width: 100%;
         height: 3rem;
         gap: 1rem;
     }
 
     .image-collage .image-collage-links> :is(a, button).image-collage-cta {
-        box-sizing: border-box;
-        flex-grow: 0;
-        flex-shrink: 0;
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        max-width: none;
         height: 3rem;
         min-height: 3rem;
         max-height: 3rem;
-        margin: 0;
+        border-color: var(--image-collage-button-border);
+        background-color: var(--image-collage-button-bg);
+        color: var(--image-collage-button-color);
         font-size: 0.875rem;
         backdrop-filter: none;
     }
 
-    .image-collage .image-collage-links> :is(.image-collage-cta-primary,
-        .image-collage-cta-secondary) {
-        flex: 0 0 8.9375rem;
-        width: 8.9375rem;
-        min-width: 8.9375rem;
-        max-width: 8.9375rem;
-    }
 
     .image-collage .image-collage-item-9 {
         right: 14.623rem;
@@ -684,33 +678,26 @@
     }
 
     .image-collage .image-collage-links {
-        flex: none;
-        flex-flow: row nowrap;
-        width: 20.125rem;
-        min-width: 20.125rem;
-        max-width: 20.125rem;
+        width: max-content;
+        min-width: 0;
+        max-width: 100%;
         height: 3rem;
         gap: 1rem;
     }
 
     .image-collage .image-collage-links> :is(a, button).image-collage-cta {
-        box-sizing: border-box;
-        flex-grow: 0;
-        flex-shrink: 0;
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        max-width: none;
         height: 3rem;
         min-height: 3rem;
         max-height: 3rem;
-        margin: 0;
+        border-color: var(--image-collage-button-border);
+        background-color: var(--image-collage-button-bg);
+        color: var(--image-collage-button-color);
         font-size: 1rem;
         backdrop-filter: none;
-    }
-
-    .image-collage .image-collage-links> :is(.image-collage-cta-primary,
-        .image-collage-cta-secondary) {
-        flex: 0 0 9.5625rem;
-        width: 9.5625rem;
-        min-width: 9.5625rem;
-        max-width: 9.5625rem;
     }
 
     .image-collage .image-collage-item-9 {
