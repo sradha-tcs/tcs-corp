@@ -1,6 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
+import { pictureOf } from '../../decorators/image-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
 import { linkOf } from '../../utils/links.js';
 import { textOf } from '../../utils/properties.js';
@@ -494,6 +495,59 @@ function collectData(form) {
   return data;
 }
 
+function showError(control, message) {
+  const id = `${control.id}-error`;
+  let error = control.form?.querySelector(`#${CSS.escape(id)}`);
+  if (!error) {
+    error = document.createElement('p');
+    error.className = 'form-variations-error';
+    error.id = id;
+    control.closest('.form-variations-group')?.append(error);
+  }
+  error.textContent = message;
+  control.setAttribute('aria-invalid', 'true');
+  const described = (control.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+  if (!described.includes(id)) control.setAttribute('aria-describedby', [...described, id].join(' '));
+}
+
+function clearError(control) {
+  control.removeAttribute('aria-invalid');
+  const id = `${control.id}-error`;
+  control.form?.querySelector(`#${CSS.escape(id)}`)?.remove();
+  const described = (control.getAttribute('aria-describedby') || '').split(' ')
+    .filter((value) => value && value !== id);
+  if (described.length) control.setAttribute('aria-describedby', described.join(' '));
+  else control.removeAttribute('aria-describedby');
+}
+
+function errorOf(control) {
+  const { validity } = control;
+  if (validity.valueMissing) return t('fieldRequired', 'This field is required.');
+  if (validity.typeMismatch && control.type === 'email') {
+    return t('fieldEmail', 'Enter a valid email address.');
+  }
+  if (validity.typeMismatch || validity.patternMismatch) {
+    return t('fieldFormat', 'Enter a valid value.');
+  }
+  if (validity.tooLong) return t('fieldTooLong', 'This text is too long.');
+  return control.validationMessage;
+}
+
+function validate(form) {
+  const controls = [...form.elements].filter((element) => element.matches('input, select, textarea')
+    && !element.disabled && element.type !== 'hidden' && element.type !== 'submit');
+  const invalid = controls.filter((control) => {
+    if (control.checkValidity()) {
+      clearError(control);
+      return false;
+    }
+    showError(control, errorOf(control));
+    return true;
+  });
+  invalid[0]?.focus();
+  return invalid.length === 0;
+}
+
 export default async function decorate(block) {
   t = await getPlaceholders();
   const nextId = createIdFactory(uniqueId('form-variations'));
@@ -533,9 +587,12 @@ export default async function decorate(block) {
   const actionLink = linkOf(actionCell);
   const action = actionLink?.getAttribute('href') || textOf(actionCell);
 
-  const authoredBg = linkOf(bgImageCell)?.getAttribute('href') || textOf(bgImageCell);
+  const authoredBg = pictureOf(bgImageCell)?.querySelector('img')?.src
+    || linkOf(bgImageCell)?.getAttribute('href')
+    || textOf(bgImageCell);
   const section = block.closest('.section');
-  const sectionImg = section?.querySelector('picture img');
+  const sectionImg = [...(section?.querySelectorAll('picture img') || [])]
+    .find((img) => !block.contains(img));
   const bgUrl = authoredBg || sectionImg?.src;
 
   if (section && bgUrl) {
@@ -566,8 +623,14 @@ export default async function decorate(block) {
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'form-variations-eyebrow-icon';
-    const eyebrowIconUrl = linkOf(eyebrowIconCell)?.getAttribute('href') || textOf(eyebrowIconCell);
-    if (eyebrowIconUrl) {
+    const eyebrowIconPicture = pictureOf(eyebrowIconCell);
+    const eyebrowIconImage = eyebrowIconPicture?.querySelector('img');
+    const eyebrowIconUrl = eyebrowIconImage?.src
+      || linkOf(eyebrowIconCell)?.getAttribute('href')
+      || textOf(eyebrowIconCell);
+    if (eyebrowIconPicture && eyebrowIconImage) {
+      iconSpan.append(eyebrowIconPicture);
+    } else if (eyebrowIconUrl) {
       const img = document.createElement('img');
       img.src = eyebrowIconUrl;
       img.alt = '';
@@ -606,17 +669,55 @@ export default async function decorate(block) {
 
   const succeed = () => {
     form.reset();
+    form.querySelectorAll('textarea').forEach((textarea) => {
+      textarea.dispatchEvent(new Event('input'));
+    });
     updateVisibility(form, editing);
     status.textContent = t('formSuccess', 'Thank you, your details were sent.');
   };
+
+  const fail = (key, fallback) => {
+    status.textContent = t(key, fallback);
+  };
+
+  form.addEventListener('input', (e) => {
+    status.textContent = '';
+    if (e.target.getAttribute('aria-invalid') === 'true' && e.target.checkValidity()) {
+      clearError(e.target);
+    }
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (form.getAttribute('aria-busy') === 'true') return;
     status.textContent = '';
+    if (!validate(form)) return;
     const data = collectData(form);
 
-    if (action) {
+    let pending = null;
+    const detail = {
+      data,
+      respondWith: (promise) => { pending = promise; },
+    };
+    const handled = !block.dispatchEvent(new CustomEvent('form-variations:submit', {
+      bubbles: true,
+      cancelable: true,
+      detail,
+    }));
+    const button = form.querySelector('button[type="submit"]');
+
+    if (handled) {
+      try {
+        await pending;
+        succeed();
+      } catch {
+        fail('formError', 'Your details couldn’t be sent. Please try again.');
+      }
+    } else if (!action) {
+      fail('formNotConnected', 'This form isn’t connected yet: your details weren’t sent.');
+    } else {
+      button?.setAttribute('aria-disabled', 'true');
+      form.setAttribute('aria-busy', 'true');
       try {
         const response = await fetch(action, {
           method: 'POST',
@@ -624,10 +725,15 @@ export default async function decorate(block) {
           body: JSON.stringify({ data }),
         });
         if (response.ok) succeed();
+        else fail('formError', 'Your details couldn’t be sent. Please try again.');
       } catch {
-        status.textContent = t('formError', 'Your details couldn’t be sent. Please try again.');
+        fail('formError', 'Your details couldn’t be sent. Please try again.');
+      } finally {
+        button?.removeAttribute('aria-disabled');
+        form.removeAttribute('aria-busy');
       }
     }
+    status.focus();
   });
 
   innerWrapper.append(...(header.children.length ? [header] : []), form, status);

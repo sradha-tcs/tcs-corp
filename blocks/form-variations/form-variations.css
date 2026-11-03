@@ -204,6 +204,10 @@ main .section:has(.form-variations:is(.dark, [data-theme='dark'])) {
   color: var(--form-variations-error);
 }
 
+.form-variations:is(.dark, [data-theme='dark']) .form-variations-required {
+  color: var(--form-variations-text);
+}
+
 /* Controls: Underline-Only */
 .form-variations .form-variations-form .form-variations-control {
   box-sizing: border-box;
