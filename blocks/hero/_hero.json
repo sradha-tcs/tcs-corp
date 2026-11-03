@@ -93,11 +93,11 @@
           }
         },
         {
-          "component": "aem-content",
+          "component": "text",
           "valueType": "string",
           "name": "lottieFile",
           "label": "Lottie JSON Path",
-          "description": "A .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. Lottie files in the DAM can't be published to Edge Delivery.",
+          "description": "Type a .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. Don't use a DAM path: Lottie files in the DAM can't be published to Edge Delivery.",
           "condition": {
             "==": [
               {
