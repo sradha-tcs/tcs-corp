@@ -352,6 +352,50 @@
           "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_secondaryctabg",
+          "label": "Secondary CTA BG Color",
+          "value": "",
+          "options": [
+            {
+              "name": "Default (transparent)",
+              "value": ""
+            },
+            {
+              "name": "Light grey",
+              "value": "secondary-bg-light-grey"
+            },
+            {
+              "name": "Black 40%",
+              "value": "secondary-bg-black-40"
+            }
+          ],
+          "description": "Background of the hero's Secondary CTAs. Hover and focus keep the Secondary button's style."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_secondaryctaborder",
+          "label": "Secondary CTA Border color",
+          "value": "",
+          "options": [
+            {
+              "name": "Default (as the BG Color)",
+              "value": ""
+            },
+            {
+              "name": "Black",
+              "value": "secondary-border-black"
+            },
+            {
+              "name": "White",
+              "value": "secondary-border-white"
+            }
+          ],
+          "description": "Border of the hero's Secondary CTAs. Hover and focus keep the Secondary button's style."
+        },
+        {
           "component": "tab",
           "name": "additionalTab",
           "label": "Additional"
