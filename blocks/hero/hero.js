@@ -50,10 +50,10 @@ const CTA_OPTIONS = {
 // CTA Text color (CTA List), a class of the button whatever its CTA view
 const CTA_TEXT_COLORS = ['cta-text-black', 'cta-text-white'];
 // the Default values of the CTA List selects: not empty, so Universal Editor keeps showing
-// Default (an empty value shows "Select..."); they change nothing. CTA view's tertiary isn't
+// Default (an empty value shows "Select..."); they change nothing. CTA view's default isn't
 // delivered (a Type field collapses into the link as bold / italic for primary / secondary only)
 const CTA_DEFAULTS = [
-  'same-window', 'tertiary', 'primary-bg-default', 'secondary-bg-default', 'secondary-border-default',
+  'same-window', 'default', 'primary-bg-default', 'secondary-bg-default', 'secondary-border-default',
 ];
 const CTA_VALUES = [
   NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat(), ...CTA_TEXT_COLORS, ...CTA_DEFAULTS,

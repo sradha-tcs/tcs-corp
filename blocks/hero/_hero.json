@@ -205,11 +205,11 @@
               "valueType": "string",
               "name": "ctaType",
               "label": "CTA view",
-              "value": "tertiary",
+              "value": "default",
               "options": [
                 {
                   "name": "Default",
-                  "value": "tertiary"
+                  "value": "default"
                 },
                 {
                   "name": "Primary",
