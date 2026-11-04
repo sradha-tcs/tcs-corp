@@ -11447,11 +11447,11 @@
             "valueType": "string",
             "name": "ctaPrimaryBackground",
             "label": "Primary CTA BG Color (Primary only)",
-            "value": "",
+            "value": "primary-bg-default",
             "options": [
               {
                 "name": "Default",
-                "value": ""
+                "value": "primary-bg-default"
               },
               {
                 "name": "Blue-cyan (azure)",
@@ -11465,11 +11465,11 @@
             "valueType": "string",
             "name": "ctaBackground",
             "label": "Secondary CTA BG Color (Secondary only)",
-            "value": "",
+            "value": "secondary-bg-default",
             "options": [
               {
                 "name": "Default (transparent)",
-                "value": ""
+                "value": "secondary-bg-default"
               },
               {
                 "name": "Light grey",
@@ -11487,11 +11487,11 @@
             "valueType": "string",
             "name": "ctaBorder",
             "label": "Secondary CTA Border color (Secondary only)",
-            "value": "",
+            "value": "secondary-border-default",
             "options": [
               {
                 "name": "Default (as the BG Color)",
-                "value": ""
+                "value": "secondary-border-default"
               },
               {
                 "name": "Black",
