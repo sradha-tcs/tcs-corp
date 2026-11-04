@@ -101,6 +101,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── docs/                       # Not served (.hlxignore): handover/ (the project handover PDF and its Markdown source), proposals/ (design proposals), animation/ (block animation and skeleton loading report), audit/ (block ecosystem audit: report, inventories, register, tools), blocks/ (block documentation report and per-block review notes)
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
+├── animations/                 # Lottie .json files, served by the site (DAM JSON can't be published): e.g. the Hero's Lottie JSON Path /animations/lottie-sample.json
 ├── head.html                   # Global HTML head content
 ├── 404.html                    # Custom 404 page
 ├── component-definitions.json  # Aggregate of component definitions from each block and the models/ folder
