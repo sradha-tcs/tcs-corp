@@ -97,7 +97,11 @@
           "valueType": "string",
           "name": "lottieFile",
           "label": "Lottie JSON Path",
-          "description": "Type a .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. Don't use a DAM path: Lottie files in the DAM can't be published to Edge Delivery.",
+          "description": "Type a .json file on the site (e.g. /animations/globe.json, from the code repository) or an https URL. DAM paths (/content/...) aren't accepted: Lottie files in the DAM can't be published to Edge Delivery.",
+          "validation": {
+            "regExp": "^(/(?!content/)[^\\s?#]+|https://[^\\s?#]+)\\.json([?#]\\S*)?$",
+            "customErrorMsg": "Enter a .json file on the site, e.g. /animations/globe.json, or an https URL. DAM paths (/content/dam/...) can't be published."
+          },
           "condition": {
             "==": [
               {
