@@ -124,32 +124,45 @@
   color: var(--color-icon-brand);
 }
 
-.page-header .page-header-ctas a.button.blue {
+/* Button background Blue (CTA items, the Teaser link's button-bg-blue): white text 5.4:1 */
+.page-header .page-header-ctas a.button.button-bg-blue {
+  --page-header-cta-blue-hover: #1b5ea3; /* design: one step darker than #216ac3 */
+
+  border-color: var(--color-border-brand-secondary);
   background-color: var(--color-bg-brand);
   color: var(--color-text-on-brand);
-  border-color: var(--color-bg-brand);
 }
 
-.page-header .page-header-ctas a.button.blue:hover,
-.page-header .page-header-ctas a.button.blue:focus-visible {
-  background-color: var(--color-bg-brand-hover);
-  border-color: var(--color-bg-brand-hover);
+.page-header .page-header-ctas a.button.button-bg-blue:is(:hover, :focus-visible) {
+  border-color: var(--page-header-cta-blue-hover);
+  background-color: var(--page-header-cta-blue-hover);
   color: var(--color-text-on-brand);
 }
 
-.page-header .page-header-ctas a.button.page-header-cta-round {
+/*
+ * Button shape Round: a 6rem circle, buttons only (page-header.js adds it to Primary and
+ * Secondary Buttons whose label fits: words of up to 12 characters, up to 24 in all; a longer
+ * label stays a pill), the label wrapped between words, never inside one
+ */
+.page-header .page-header-ctas a.button.button-round {
   flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
   width: 6rem;
   height: 6rem;
   min-height: 6rem;
   border-radius: var(--radius-full);
   padding: var(--space-200);
   gap: var(--space-100);
-  font-size: var(--body-font-size-xs);
+
+  /* the circle doesn't grow with the breakpoint, so neither does its label (12px) */
+  font-size: 0.75rem;
+  line-height: 1.2;
   letter-spacing: 0;
   text-align: center;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  hyphens: auto;
 }
 
 .page-header .page-header-status {
