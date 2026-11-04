@@ -121,10 +121,10 @@ Dialog changes are tested with a test matrix that has these columns: Test ID, Bl
 - **Every option alone**: each value of each changed field at least once (Teaser Title Type H1–H6, Image position Left / Right / Top / Bottom, every List Item toggle).
 - **Representative combinations**: high-risk combinations are tested together rather than the full cross product. For example, TE-03 tests four position × BG Color × button layout combinations so that each value appears at least once. The report doesn't use a formal pairwise generator.
 - **High-risk cases**:
-  - fallbacks (Hide Title with Show Action Label off: the action label stays);
+  - fallbacks (Hide Title with Show Action Label off: the title stays visible as the card's link);
   - empty fields;
   - multiple instances on a page;
-  - legacy content (16-cell List Item rows, the former Title size, Section Highlight);
+  - legacy content (16- and 13-cell List Item rows, 19-cell rows delivered without tab cells, the former Title size, Section Highlight);
   - nested backgrounds (a Grey Teaser in a dark Section): a combination page found 43 contrast violations that the single-option pages didn't show.
 - **Delivery**: each new property name is checked against the collapse and grouping rules. For example, `hideTitle` was renamed `titleHidden`.
 - **Regression**: a full harness run, `npm test` and lint.

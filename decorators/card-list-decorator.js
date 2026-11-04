@@ -24,7 +24,7 @@ import { moveInstrumentation } from '../scripts/scripts.js';
 import { pushComponents } from '../utils/analytics.js';
 import { readButtonOptions } from '../utils/buttons.js';
 import {
-  BREAKPOINTS, HEADINGS, kindOf, themeOf,
+  BREAKPOINTS, HEADINGS, kindOf, showsCta, themeOf, visibleTags,
 } from '../utils/card-list-config.js';
 import { uniqueId } from '../utils/ids.js';
 import { textOf } from '../utils/properties.js';
@@ -157,7 +157,8 @@ function mediaOf(card, config, breakpoints) {
 /**
  * The presentation of one card: the list's (or Cards') Show options with the card's own Display
  * toggles (List Item: Hide Title, Show Description / Image / Eyebrow / Label / Action Label).
- * A linked card keeps one visible link: with its title hidden, its action label stays.
+ * A List Item's Show Action Label alone decides its call to action (showsCta); a linked card
+ * keeps one visible link: without a call to action, a hidden title stays visible.
  */
 function displayOf(card, config) {
   const own = card.display || {};
@@ -169,8 +170,10 @@ function displayOf(card, config) {
     showDescription: config.showDescription && own.showDescription !== false,
     // a card's own Show Description off hides it on text cards too
     ownDescription: own.showDescription !== false,
-    showCta: config.showCta && (own.showActionLabel !== false || titleHidden),
+    showCta: showsCta(config, own),
     showLabel: own.showLabel !== false,
+    // the List's Show content type (image cards); Cards and lists authored before show it
+    showContentLabel: config.showContentLabel !== false,
     titleHidden,
   };
 }
@@ -192,7 +195,10 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
   if (theme) article.classList.add(`theme-${theme}`);
   const readingTime = readingTimeOf(card, t);
-  const tags = config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];
+  // Show content type off (List): image cards show neither its tag nor its label
+  const tags = config.showTags ? visibleTags(card, {
+    contentType: kind !== 'image' || config.showContentLabel, max: MAX_CARD_TAGS,
+  }) : [];
   const eyebrow = config.showEyebrow ? card.eyebrow : '';
   const linked = config.linkItems && !!card.url;
 
@@ -200,8 +206,8 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
   const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
-  // a hidden title can't be the card's link (an invisible focus): the call to action stays,
-  // or, without an action label, the title stays visible
+  // a hidden title can't be the card's link (an invisible focus): without a call to action,
+  // the title stays visible
   const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
   if (linked && !cta) config.titleHidden = false;
   if (cta) {
@@ -229,7 +235,7 @@ export function renderCard(card, listConfig, { t, level, kind }) {
         config.showTags ? readingTime : '']),
       title,
       description,
-      labelRow('list-card-meta', [contentType, date]),
+      labelRow('list-card-meta', [config.showContentLabel ? contentType : '', date]),
     ];
   } else if (kind === 'report') {
     // Figma report card: its type over the title and description, then a Download link
@@ -289,12 +295,15 @@ export function renderRow(card, listConfig, { t, level }) {
   return article;
 }
 
-/** the feature card (First card as feature): the image behind tags, title and author */
+/**
+ * the feature card (First card as feature): the image behind tags, title and author; the
+ * author only while the List's Show author on feature card isn't off (featureShowAuthor)
+ */
 export function renderFeature(card, listConfig, { t, level, authors = new Map() }) {
   const config = displayOf(card, listConfig);
   const article = element('article', 'list-feature');
   const content = element('div', 'list-feature-content');
-  const author = authors.get(card.authorId);
+  const author = listConfig.featureShowAuthor === false ? null : authors.get(card.authorId);
   const readingTime = readingTimeOf(card, t);
   const title = card.title ? element(level, 'list-feature-title') : null;
   if (title && config.linkItems && card.url) title.append(cardLink(card, card.title, t));

@@ -1,11 +1,14 @@
 /* Unit tests of the List block's data (blocks/list/list-data.js): run with npm test */
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, deduplicateCards, isSafeUrl, kindOf, limitCards,
-  normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, sortCards, toSafeId,
-  validateConfig, withIds,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
+  sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
+import { isContentTypeTag, showsCta, visibleTags } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import modelLayout from '../model-layout.mjs';
 import { resolveRedirect } from '../../utils/redirects.js';
@@ -60,6 +63,81 @@ describe('configuration', () => {
       const c = config({ desktopmode: d, tabletmode: t, mobilemode: m });
       assert.deepEqual([c.responsive.desktop.mode, c.responsive.tablet.mode, c.responsive.mobile.mode], [d, t, m]);
     });
+  });
+});
+
+describe('feature card author (Show author on feature card)', () => {
+  const feature = { displayasteaser: 'true', featurefirst: 'true' };
+  it('lists authored before show the author: on by default', () => {
+    assert.equal(config().featureShowAuthor, true);
+    assert.equal(showsFeatureAuthor(config(feature)), true);
+  });
+  it('off hides the author of the feature card', () => {
+    assert.equal(config({ ...feature, featureshowauthor: 'false' }).featureShowAuthor, false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'false' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, featureshowauthor: 'true' })), true);
+  });
+  it('only a feature card shows an author (no Authors sheet otherwise)', () => {
+    assert.equal(showsFeatureAuthor(config({ displayasteaser: 'true' })), false);
+    assert.equal(showsFeatureAuthor(config({ ...feature, displayasteaser: 'false' })), false);
+  });
+  it('the dialog field: List only, after First card as feature, shown only for a feature card', async () => {
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url), 'utf8'));
+    const fields = (id) => models.find((m) => m.id === id).fields;
+    const names = fields('list').map((f) => f.name);
+    assert.equal(names[names.indexOf('featureFirst') + 1], 'featureShowAuthor');
+    const field = fields('list').find((f) => f.name === 'featureShowAuthor');
+    assert.equal(field.value, true);
+    assert.deepEqual(JSON.stringify(field.condition).match(/"var":"\w+"/g), ['"var":"displayAsTeaser"', '"var":"featureFirst"']);
+    // the Cards block has no authors: no field there
+    assert.ok(!fields('cards').some((f) => f.name === 'featureShowAuthor'));
+  });
+});
+
+describe('content type on image cards (Show content type)', () => {
+  it('lists authored before show the content type: on by default', () => {
+    assert.equal(config().showContentLabel, true);
+    assert.equal(config({ showcontentlabel: '' }).showContentLabel, true);
+  });
+  it('off hides it, on shows it', () => {
+    assert.equal(config({ showcontentlabel: 'false' }).showContentLabel, false);
+    assert.equal(config({ showcontentlabel: 'true' }).showContentLabel, true);
+  });
+  it('off leaves the content type tag out of the tags; the next tags take its place', () => {
+    const card = {
+      tags: ['Article', 'Banking', 'AI', 'Agentic AI'],
+      tagIds: ['tcs-corp:content-type/article', 'tcs-corp:industry/banking', 'tcs-corp:service/ai',
+        'tcs-corp:topic/agentic-ai'],
+    };
+    assert.deepEqual(visibleTags(card, { max: 3 }), ['Article', 'Banking', 'AI']);
+    assert.deepEqual(visibleTags(card, { contentType: false, max: 3 }), ['Banking', 'AI', 'Agentic AI']);
+    // cards without tag IDs (Cards block) and tags of other roots keep every tag
+    assert.deepEqual(visibleTags({ tags: ['Article'] }, { contentType: false }), ['Article']);
+    assert.equal(isContentTypeTag('tcs-corp:content-type/case-study'), true);
+    assert.equal(isContentTypeTag('content-type/blog'), true);
+    assert.equal(isContentTypeTag('tcs-corp:topic/content-types'), false);
+  });
+  it('keeps the page metadata: the cards still carry their content type', () => {
+    const cfg = config({ source: 'fixed', showcontentlabel: 'false' });
+    const pages = [{ path: '/en/a', title: 'A', row: { path: '/en/a', contentType: 'case-study' } }];
+    assert.equal(buildCards(cfg, { pages, items: [{ href: '/en/a' }] })[0].contentType, 'case-study');
+  });
+  it('the dialog field: List only, between Date format and Show call to action, for image cards', async () => {
+    const models = JSON.parse(await readFile(new URL('../../component-models.json', import.meta.url), 'utf8'));
+    const fields = (id) => models.find((m) => m.id === id).fields;
+    const names = fields('list').map((f) => f.name);
+    assert.equal(names[names.indexOf('dateFormat') + 1], 'showContentLabel');
+    assert.equal(names[names.indexOf('showContentLabel') + 1], 'showCta');
+    const field = fields('list').find((f) => f.name === 'showContentLabel');
+    assert.equal(field.value, true);
+    const condition = JSON.stringify(field.condition);
+    assert.match(condition, /"var":"displayAsTeaser"/);
+    assert.match(condition, /\[\{"var":"cardStyle"\},"image"\]/);
+    assert.match(condition, /\[\{"var":"cardStyle"\},"mixed"\]/);
+    // the Cards block types its Content label per card: no field there, its dialog unchanged
+    const cards = fields('cards').map((f) => f.name);
+    assert.ok(!cards.includes('showContentLabel'));
+    assert.equal(cards[cards.indexOf('dateFormat') + 1], 'showCta');
   });
 });
 
@@ -354,6 +432,24 @@ describe('list item cells', () => {
     assert.equal(cells.titleHidden, undefined);
     assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
   });
+  it('reads a row AEM delivers without its tab cells (a cell per field, 19 cells)', () => {
+    const row = fields();
+    assert.equal(row.length, ITEM_FIELDS.length);
+    const layout = itemLayoutFor(row.length);
+    assert.deepEqual(layout, ITEM_FIELDS);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assertRead(cells);
+    assert.equal(cells.showEyebrow.textContent, 'true');
+  });
+  it('reads a row rendered before the Display toggles without its tab cells (13 cells)', () => {
+    const row = fields().slice(0, -ITEM_DISPLAY.length);
+    assert.equal(row.length, 13);
+    const layout = itemLayoutFor(row.length);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assert.equal(cells.ariaLabel.textContent, 'Read the agentic bank');
+    assert.equal(cells.headline.textContent, 'The agentic bank');
+    assert.equal(cells.titleHidden, undefined);
+  });
   it('keeps a row whose tab cells have values', () => {
     const row = Array.from({ length: ITEM_LAYOUT.length }, (_, i) => cell(`v${i}`));
     assert.equal(withoutTabCells(row, ITEM_LAYOUT), row);
@@ -361,7 +457,7 @@ describe('list item cells', () => {
 });
 
 describe('list item display', () => {
-  it('shows everything for an item authored before the Display toggles', () => {
+  it('shows everything for an item authored before the Display toggles or never changed', () => {
     assert.deepEqual(itemDisplay({}), {
       titleHidden: false, showDescription: true, showImage: true, showEyebrow: true, showLabel: true, showActionLabel: true,
     });
@@ -377,11 +473,96 @@ describe('list item display', () => {
     assert.equal(display.showLabel, true);
     assert.equal(display.showActionLabel, true);
   });
+  it('turns Show Action Label off only for an authored "false" (on by default)', () => {
+    assert.equal(itemDisplay({ showActionLabel: 'true' }).showActionLabel, true);
+    assert.equal(itemDisplay({ showActionLabel: 'false' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: 'FALSE' }).showActionLabel, false);
+    assert.equal(itemDisplay({ showActionLabel: '' }).showActionLabel, true);
+    assert.equal(itemDisplay({}).showActionLabel, true);
+  });
+  it('the List Item model has Show Action Label on by default, in its Display tab', () => {
+    const models = JSON.parse(readFileSync(new URL('../../component-models.json', import.meta.url)));
+    const { fields } = models.find((model) => model.id === 'list-item');
+    const index = fields.findIndex((f) => f.name === 'showActionLabel');
+    assert.equal(fields[index].value, true);
+    assert.equal(fields[index].condition, undefined);
+    const tab = fields.slice(0, index).reverse().find((f) => f.component === 'tab');
+    assert.equal(tab.label, 'Display');
+  });
   it('travels with the card of a List Item', () => {
     const card = applyOverrides({ title: 'Page title' }, { showImage: 'false', titleHidden: 'true' });
     assert.equal(card.title, 'Page title');
     assert.equal(card.display.showImage, false);
     assert.equal(card.display.titleHidden, true);
     assert.equal(card.display.showDescription, true);
+  });
+});
+
+describe('list call to action', () => {
+  it('reads Show call to action for Child pages with Panel cards only', () => {
+    const panel = { source: 'parent', displayasteaser: 'true', cardstyle: 'panel' };
+    assert.equal(config({ ...panel, showcta: 'true' }).showCta, true);
+    assert.equal(config({ ...panel, showcta: 'false' }).showCta, false);
+    assert.equal(config(panel).showCta, true);
+    assert.equal(ctaToggleApplies(config(panel)), true);
+  });
+  it('elsewhere a value saved before is not read: the cards keep their call to action', () => {
+    [
+      { source: 'parent', displayasteaser: 'true', cardstyle: 'image' },
+      { source: 'parent', displayasteaser: 'true', cardstyle: 'mixed' },
+      { source: 'parent', displayasteaser: 'false', cardstyle: 'panel' },
+      { source: 'tags', displayasteaser: 'true', cardstyle: 'panel' },
+      { source: 'fixed', displayasteaser: 'true', cardstyle: 'panel' },
+      {},
+    ].forEach((raw) => {
+      const cfg = config({ ...raw, showcta: 'false' });
+      assert.equal(ctaToggleApplies(cfg), false, JSON.stringify(raw));
+      assert.equal(cfg.showCta, true, JSON.stringify(raw));
+    });
+  });
+  it('the toggle is in the List dialog for Child pages + Panel only; Cards keeps its own', () => {
+    const models = JSON.parse(readFileSync(new URL('../../component-models.json', import.meta.url)));
+    const fieldOf = (id) => models.find((model) => model.id === id).fields.find((f) => f.name === 'showCta');
+    const shown = (values) => fieldOf('list').condition.and
+      .every(({ '===': [{ var: name }, value] }) => values[name] === value);
+    assert.equal(shown({ source: 'parent', displayAsTeaser: true, cardStyle: 'panel' }), true);
+    [
+      { source: 'parent', displayAsTeaser: true, cardStyle: 'report' },
+      { source: 'parent', displayAsTeaser: false, cardStyle: 'panel' },
+      { source: 'tags', displayAsTeaser: true, cardStyle: 'panel' },
+      { source: 'fixed', displayAsTeaser: true, cardStyle: 'panel' },
+    ].forEach((values) => assert.equal(shown(values), false, JSON.stringify(values)));
+    assert.equal(fieldOf('cards').condition, undefined);
+  });
+  it('shows a List Item\'s call to action unless its Show Action Label is off', () => {
+    const on = applyOverrides({ title: 'A' }, { showActionLabel: 'true' });
+    const off = applyOverrides({ title: 'B' }, { showActionLabel: 'false' });
+    const unset = applyOverrides({ title: 'C' }, {});
+    assert.equal(showsCta(config(), on.display), true);
+    assert.equal(showsCta(config(), off.display), false);
+    assert.equal(showsCta(config(), unset.display), true);
+    // the List's Show call to action (Child pages + Panel only) never overrides an item
+    const listOff = config({
+      source: 'parent', displayasteaser: 'true', cardstyle: 'panel', showcta: 'false',
+    });
+    assert.equal(showsCta(listOff, unset.display), true);
+    assert.equal(showsCta(config({ showcta: 'true' }), off.display), false);
+  });
+  it('decides per item: one List Item\'s toggle leaves the others unchanged', () => {
+    const cards = [{ showActionLabel: 'true' }, {}, { showActionLabel: 'true', titleHidden: 'true' },
+      { showActionLabel: 'false', titleHidden: 'true' }]
+      .map((item, i) => applyOverrides({ title: `Card ${i}` }, item));
+    assert.deepEqual(cards.map((card) => showsCta(config(), card.display)), [true, true, true, false]);
+  });
+  it('cards from the query index (no List Item) follow the List: Child pages + Panel toggle', () => {
+    const page = byPath.get('/en/insights/agentic-bank');
+    const panel = { source: 'parent', displayasteaser: 'true', cardstyle: 'panel' };
+    const off = config({ ...panel, showcta: 'false' });
+    const on = config({ ...panel, showcta: 'true' });
+    assert.equal(showsCta(off, normalizePageToCard(page, off).display), false);
+    assert.equal(showsCta(on, normalizePageToCard(page, on).display), true);
+    // another source or card style: the cards keep their call to action
+    const tags = config({ source: 'tags', cardstyle: 'panel', showcta: 'false' });
+    assert.equal(showsCta(tags, normalizePageToCard(page, tags).display), true);
   });
 });

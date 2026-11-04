@@ -6,12 +6,11 @@
   --quote-mark-column: 2.5rem;
 
   background-color: var(--quote-bg);
+  padding: var(--space-1000) var(--space-600);
 }
 
 .quote.bg-grey {
   --quote-bg: var(--color-bg-secondary);
-
-  padding: var(--space-1000) var(--space-600);
 }
 
 /* eyebrow and title */
@@ -140,9 +139,7 @@
   .quote {
     --quote-mark-width: 2.875rem;
     --quote-mark-height: 5.75rem;
-  }
 
-  .quote.bg-grey {
     padding: var(--space-3000) var(--space-2000);
   }
 

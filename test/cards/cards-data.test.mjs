@@ -3,7 +3,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { CARD_LAYOUT, buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
 import {
-  contentTypeLabel, kindOf, normalizePresentation, toSafeId,
+  contentTypeLabel, kindOf, normalizePresentation, showsCta, toSafeId,
 } from '../../utils/card-list-config.js';
 import { formatDate } from '../../utils/dates.js';
 import modelLayout from '../model-layout.mjs';
@@ -151,5 +151,13 @@ describe('content type labels and long dates', () => {
       ['1st October 2026', '2nd October 2026', '3rd October 2026', '4th October 2026', '11th October 2026', '13th October 2026', '21st October 2026', '22nd October 2026', '31st October 2026'],
     );
     assert.equal(formatDate('2026-10-12T10:00:00Z', 'do-mmmm-yyyy').iso, '2026-10-12');
+  });
+});
+
+describe('cards call to action', () => {
+  it('keeps the Cards block\'s Show call to action (on by default)', () => {
+    assert.equal(showsCta(config()), true);
+    assert.equal(showsCta(config({ showcta: 'false' })), false);
+    assert.equal(showsCta(config({ showcta: 'true' }), {}), true);
   });
 });
