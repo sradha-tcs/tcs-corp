@@ -7,7 +7,7 @@ The Image Collage block centres a title, a description and up to two calls to ac
 | Technical name | `image-collage` (model `image-collage`, template name "Image Collage") |
 | Display name | Image Collage |
 | Block type | Key-value block (`key-value: true`) with item children |
-| Status | Active (new block; its overlap with the Teaser's Image collage layout is decision KB-D-058, Proposed) |
+| Status | Active (new block; its overlap with the Teaser's Image collage layout is decision KB-D-063, Proposed) |
 | Parent / children | Parents: Section, Columns Container, Tabs Container (filters `section`, `columns-container`, `tabs`). Children: Collage image item (`image-collage-item`, filter `image-collage`) |
 | Owner / version / date | Not recorded / Not recorded / Not recorded |
 
@@ -17,7 +17,7 @@ The Image Collage block centres a title, a description and up to two calls to ac
 - **User experience:** a dark block at least 64rem high (46.875rem on tablets) with a soft overlay over the images. The text column is centred and at most 37.5rem wide. The images float slowly (not with reduced motion) and are decorative (`aria-hidden`), so screen readers read only the text and the CTAs.
 - **Templates / page types:** any page. No template adds the block.
 - **Data source:** authored fields and the Collage image items only. Placeholders: `opensInNewTab` (CTAs opening a new tab) and `itemEditorHint` (empty items in Universal Editor).
-- **Related blocks:** Teaser (`blocks/teaser`), whose Layout Image collage has the same purpose (see KB-D-058); Hero (`blocks/hero`) for the opening banner of a page.
+- **Related blocks:** Teaser (`blocks/teaser`), whose Layout Image collage has the same purpose (see KB-D-063); Hero (`blocks/hero`) for the opening banner of a page.
 - **When to use:** one message framed by a set of images, with at most two CTAs.
 - **When not to use:** when the images carry information (they are decorative and hidden from assistive technology; use Cards or a List); for the page's opening banner (use a Hero).
 - **Realistic use cases:** a "Our work" introduction above a case study list; a brand campaign section; an events or culture page section.
@@ -373,7 +373,7 @@ blocks/image-collage/
 ## For Architects
 
 - **Role:** a presentational, authored-content block with item children; no data source.
-- **Overlap:** the Teaser's Image collage layout covers the same design; decision KB-D-058 (Proposed) records whether both stay.
+- **Overlap:** the Teaser's Image collage layout covers the same design; decision KB-D-063 (Proposed) records whether both stay.
 - **Dependencies:** `decorators/a11y-decorator.js`, `button-decorator.js`, `content-decorator.js`, `editor-item-decorator.js`, `heading-decorator.js`, `image-decorator.js`; `utils/cells.js`, `links.js`, `placeholders.js`, `properties.js`.
 - **Performance:** one cached placeholders request; images are lazy unless the block is in the first section.
 
@@ -412,7 +412,7 @@ Authored content only. No external HTML is injected, no personal data is read or
 
 - At most nine images; the slot positions are fixed by the design.
 - The images are decorative only (`aria-hidden`); their alt text isn't announced.
-- The Teaser's Layout Image collage offers the same design (KB-D-058, Proposed).
+- The Teaser's Layout Image collage offers the same design (KB-D-063, Proposed).
 - The colours are fixed values of the design (`--image-collage-*` custom properties), not the site's semantic tokens, so a dark Section's theme contract doesn't change them.
 
 ## Related Documentation
