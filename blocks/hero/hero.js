@@ -48,7 +48,7 @@ const CTA_OPTIONS = {
   ],
 };
 // CTA Text color (CTA List), a class of the button whatever its CTA view
-const CTA_TEXT_COLORS = ['cta-text-white'];
+const CTA_TEXT_COLORS = ['cta-text-black', 'cta-text-white'];
 const CTA_VALUES = [
   NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat(), ...CTA_TEXT_COLORS,
 ];

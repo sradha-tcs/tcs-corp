@@ -164,11 +164,11 @@
               "valueType": "string",
               "name": "ctaTextColor",
               "label": "CTA Text color",
-              "value": "",
+              "value": "cta-text-black",
               "options": [
                 {
-                  "name": "Default",
-                  "value": ""
+                  "name": "Default (Black)",
+                  "value": "cta-text-black"
                 },
                 {
                   "name": "White",

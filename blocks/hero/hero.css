@@ -384,13 +384,18 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 }
 
 /*
- * CTA Text color (CTA List): White text and arrow (currentcolor) for any CTA view, e.g. on a
- * black background; after the colour rules above and as specific as them, so it wins, in a dark
- * section too; hover and focus keep the button's style
+ * CTA Text color (CTA List): the chosen colour of the text and arrow (currentcolor), whatever the
+ * CTA view and background: Default (Black) or White; after the colour rules above and as
+ * specific as them (in a dark section too), so it wins; hover and focus keep the button's style
  */
+.hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-black:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-black:not(:hover, :focus-visible) {
+  color: var(--black-1000);
+}
+
 .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible),
-main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.cta-text-white:not(:hover, :focus-visible) {
-  color: var(--color-text-on-neutral);
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible) {
+  color: var(--white-1000);
 }
 
 @media (600px <= width < 1200px) {
