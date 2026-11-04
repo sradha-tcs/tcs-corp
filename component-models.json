@@ -11409,11 +11409,11 @@
             "valueType": "string",
             "name": "ctaTarget",
             "label": "CTA Link Type",
-            "value": "",
+            "value": "same-window",
             "options": [
               {
                 "name": "Default",
-                "value": ""
+                "value": "same-window"
               },
               {
                 "name": "Open in New Window",
@@ -11426,11 +11426,11 @@
             "valueType": "string",
             "name": "ctaType",
             "label": "CTA view",
-            "value": "",
+            "value": "tertiary",
             "options": [
               {
                 "name": "Default",
-                "value": ""
+                "value": "tertiary"
               },
               {
                 "name": "Primary",
