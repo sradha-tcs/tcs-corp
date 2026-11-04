@@ -401,7 +401,7 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Description | `content_description` | richtext | No | "" | — | — | — |
 | CTA List | `ctas` | container (multiple) | No | — | — | CTAs authored before CTA items. Add CTAs to the hero with Add (CTA) instead. | — |
 | CTA List › CTA Title | `ctaText` | text | No | — | — | — | — |
-| CTA List › CTA Text color | `ctaTextColor` | select | No | "" | Default (""), White (`cta-text-white`) | Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style. | — |
+| CTA List › CTA Text color | `ctaTextColor` | select | No | "" | Default (""), White (`cta-text-white`) | Text Color of CTA | — |
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA List › CTA view | `ctaType` | select | No | "" | Default (""), Primary (`primary`), Secondary (`secondary`) | — | — |

@@ -11396,7 +11396,7 @@
                 "value": "cta-text-white"
               }
             ],
-            "description": "Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style."
+            "description": "Text Color of CTA"
           },
           {
             "component": "aem-content",
