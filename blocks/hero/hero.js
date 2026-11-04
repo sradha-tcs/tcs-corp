@@ -21,7 +21,8 @@ let newTabHint = '';
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
  *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
  *   / italic (secondary) formatting; a Primary one can have a Primary CTA BG Color, a Secondary
- *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS, classes of its button)
+ *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS), and any one a CTA Text color
+ *   (CTA_TEXT_COLORS): classes of its button
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
  * before the Additional tab's animations, mapped to them),
@@ -46,7 +47,11 @@ const CTA_OPTIONS = {
     'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
   ],
 };
-const CTA_VALUES = [NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat()];
+// CTA Text color (CTA List), a class of the button whatever its CTA view
+const CTA_TEXT_COLORS = ['cta-text-white'];
+const CTA_VALUES = [
+  NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat(), ...CTA_TEXT_COLORS,
+];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
@@ -203,7 +208,8 @@ function buildCtas(cell, rows, hint) {
       newTabHint,
     });
     // only the colours of the CTA's own view (e.g. a Primary CTA ignores the Secondary ones)
-    a.classList.add(...values.filter((value) => CTA_OPTIONS[type]?.includes(value)));
+    a.classList.add(...values.filter((value) => CTA_OPTIONS[type]?.includes(value)
+      || CTA_TEXT_COLORS.includes(value)));
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
       a.classList.add('hero-cta-down');

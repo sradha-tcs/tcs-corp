@@ -268,6 +268,24 @@
             {
               "component": "select",
               "valueType": "string",
+              "name": "ctaTextColor",
+              "label": "CTA Text color",
+              "value": "",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "White",
+                  "value": "cta-text-white"
+                }
+              ],
+              "description": "Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style."
+            },
+            {
+              "component": "select",
+              "valueType": "string",
               "name": "ctaArrow",
               "label": "CTA Arrow",
               "description": "Direction of the arrow next to the CTA text.",
