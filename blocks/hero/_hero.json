@@ -160,6 +160,24 @@
               "label": "CTA Title"
             },
             {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaTextColor",
+              "label": "CTA Text color",
+              "value": "",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "White",
+                  "value": "cta-text-white"
+                }
+              ],
+              "description": "Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style."
+            },
+            {
               "component": "aem-content",
               "valueType": "string",
               "name": "cta",
@@ -219,7 +237,7 @@
                   "value": "primary-bg-azure"
                 }
               ],
-              "description": "Background of the CTA when its CTA view is Primary; ignored for Default and Secondary. Blue-cyan (azure) is #216AC3 with white text. Hover and focus keep the Primary button's style."
+              "description": "Background Color of Primary CTA"
             },
             {
               "component": "select",
@@ -241,7 +259,7 @@
                   "value": "secondary-bg-black-40"
                 }
               ],
-              "description": "Background of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style."
+              "description": "Background Color of Secondary CTA"
             },
             {
               "component": "select",
@@ -263,25 +281,7 @@
                   "value": "secondary-border-white"
                 }
               ],
-              "description": "Border of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style."
-            },
-            {
-              "component": "select",
-              "valueType": "string",
-              "name": "ctaTextColor",
-              "label": "CTA Text color",
-              "value": "",
-              "options": [
-                {
-                  "name": "Default",
-                  "value": ""
-                },
-                {
-                  "name": "White",
-                  "value": "cta-text-white"
-                }
-              ],
-              "description": "Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style."
+              "description": "Border Color of Secondary CTA"
             },
             {
               "component": "select",

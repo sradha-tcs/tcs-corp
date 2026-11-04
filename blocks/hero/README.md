@@ -401,13 +401,13 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Description | `content_description` | richtext | No | "" | — | — | — |
 | CTA List | `ctas` | container (multiple) | No | — | — | CTAs authored before CTA items. Add CTAs to the hero with Add (CTA) instead. | — |
 | CTA List › CTA Title | `ctaText` | text | No | — | — | — | — |
+| CTA List › CTA Text color | `ctaTextColor` | select | No | "" | Default (""), White (`cta-text-white`) | Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style. | — |
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA List › CTA view | `ctaType` | select | No | "" | Default (""), Primary (`primary`), Secondary (`secondary`) | — | — |
-| CTA List › Primary CTA BG Color (Primary only) | `ctaPrimaryBackground` | select | No | "" | Default (""), Blue-cyan (azure) (`primary-bg-azure`) | Background of the CTA when its CTA view is Primary; ignored for Default and Secondary. Blue-cyan (azure) is #216AC3 with white text. Hover and focus keep the Primary button's style. | — |
-| CTA List › Secondary CTA BG Color (Secondary only) | `ctaBackground` | select | No | "" | Default (transparent) (""), Light grey (`secondary-bg-light-grey`), Black 40% (`secondary-bg-black-40`) | Background of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style. | — |
-| CTA List › Secondary CTA Border color (Secondary only) | `ctaBorder` | select | No | "" | Default (as the BG Color) (""), Black (`secondary-border-black`), White (`secondary-border-white`) | Border of the CTA when its CTA view is Secondary; ignored for Default and Primary. Hover and focus keep the Secondary button's style. | — |
-| CTA List › CTA Text color | `ctaTextColor` | select | No | "" | Default (""), White (`cta-text-white`) | Text and arrow colour of the CTA, for every CTA view (e.g. White on a black background). Default keeps the CTA view's colour (black on light backgrounds). Hover and focus keep the button's style. | — |
+| CTA List › Primary CTA BG Color (Primary only) | `ctaPrimaryBackground` | select | No | "" | Default (""), Blue-cyan (azure) (`primary-bg-azure`) | Background Color of Primary CTA | — |
+| CTA List › Secondary CTA BG Color (Secondary only) | `ctaBackground` | select | No | "" | Default (transparent) (""), Light grey (`secondary-bg-light-grey`), Black 40% (`secondary-bg-black-40`) | Background Color of Secondary CTA | — |
+| CTA List › Secondary CTA Border color (Secondary only) | `ctaBorder` | select | No | "" | Default (as the BG Color) (""), Black (`secondary-border-black`), White (`secondary-border-white`) | Border Color of Secondary CTA | — |
 | CTA List › CTA Arrow | `ctaArrow` | select | No | `right` | Right (`right`), Down (`down`) | Direction of the arrow next to the CTA text. | — |
 
 #### Style tab — Hero
