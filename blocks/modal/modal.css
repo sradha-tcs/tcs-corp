@@ -25,12 +25,23 @@ body.modal-open {
   border: 0;
   border-radius: var(--radius-l);
   padding: 0;
-  overflow: hidden auto;
+  overflow-y: auto;
   clip-path: inset(0 round var(--radius-l));
   overscroll-behavior: contain;
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
   transform: translateY(-50%);
+
+}
+
+/*
+ * tablet: 5% of its height below the centre, at most down to --modal-gap from the bottom of the
+ * visible area (100% is the dialog's height), so a tall dialog stays centred and fully visible
+ */
+@media (width >= 600px) and (width < 900px) {
+  .modal dialog {
+    transform: translateY(calc(-50% + min(5%, max(0rem, (var(--modal-height, 100dvh) - 100%) / 2 - var(--modal-gap)))));
+  }
 }
 
 .modal dialog[open] {
