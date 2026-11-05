@@ -367,7 +367,7 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   grid-template: 'main' 'description' 'action' / minmax(0, 1fr);
   align-items: start;
   gap: var(--space-400);
-  padding: var(--space-1000) var(--space-500) calc(var(--space-500) + var(--space-1000));
+  padding: var(--space-500) var(--space-500) calc(var(--space-500) + var(--space-500));
   transition: background-color 0.2s;
 }
 
