@@ -63,7 +63,7 @@
 .anchor-list .anchor-list-link[aria-current='location'] {
   border-bottom-color: var(--color-border-brand);
   color: var(--color-text-default);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-regular);
   letter-spacing: calc(0.005 * var(--body-font-size-m));
 }
 

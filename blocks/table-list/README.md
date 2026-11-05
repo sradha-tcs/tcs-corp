@@ -312,7 +312,7 @@ Stored on a new component (definition template): `variations` = `"industries"`, 
 | Heading Type | `listHeadingType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`) | Delivered with `listHeading` (field collapse). | h2 |
 | Eyebrow | `listEyebrow` | text | No | "" | — | Optional. A short label above the heading, e.g. Models & Data. | — |
 | Heading position | `headerPosition` | select | No | "" | Above the list (""), Beside the list (`beside`) | Beside the list: the eyebrow, heading and call to action in a column on the left of the list from 900px wide (above it on smaller screens), with a larger statement-style heading. | — |
-| Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 10; customErrorMsg: Maximum items must be between 1 and 10. | Display between 1 and 10 items. | 3 |
+| Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 20; customErrorMsg: Maximum items must be between 1 and 20. | Display between 1 and 20 items. | 3 |
 | Text | `viewAllLabel` | text | No | "" | — | Text of the link next to the heading, e.g. Industries or All Products & Platforms. | View all |
 | Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /language-master/en/dummy-pages/industries |
 | Style | `ctaStyle` | select | No | "" | Variation default (""), Filled button (`primary`), Outline button (`secondary`), Text link (`tertiary`) | Variation default: filled button (Variation 1), outline button (Variations 2, 4, 5 and 6), text link (Variation 3). | primary |

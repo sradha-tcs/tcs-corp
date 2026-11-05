@@ -254,7 +254,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showDesc
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`) | — | grey |
+| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Navy (`navy`) | — | grey |
 | Hide Eyebrow | `hideEyebrow` | boolean | No | `false` | on / off | — | true |
 | Hide Title | `titleHidden` | boolean | No | `false` | on / off | The title stays available to screen readers. | true |
 | Show Description | `showDescription` | boolean | No | `true` | on / off | — | true |
