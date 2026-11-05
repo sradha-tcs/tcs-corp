@@ -37,17 +37,6 @@ body.modal-open {
 
 }
 
-/*
- * tablet: 5% of its height below the centre, at most down to --modal-gap from the bottom of the
- * visible area (100% is the dialog's height), so a tall dialog stays centred and fully visible;
- * 100dvh can be less than the viewport (see above), which only makes the shift smaller
- */
-@media (width >= 600px) and (width < 900px) {
-  .modal dialog {
-    transform: translateY(calc(-50% + min(5%, max(0rem, (var(--modal-height, 100dvh) - 100%) / 2 - var(--modal-gap)))));
-  }
-}
-
 .modal dialog[open] {
   display: flex;
   flex-direction: column;
