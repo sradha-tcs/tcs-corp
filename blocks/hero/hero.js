@@ -31,7 +31,7 @@ let newTabHint = '';
  * text-left | text-center | text-right (Text Alignment, inside the content),
  * bg-light | bg-dark | bg-dark-subtle | bg-black | bg-charcoal-80 | bg-navy-60 | bg-charcoal-40
  * (BG Color), icon-black | icon-white | icon-blue | icon-sky-blue (Icon color: recolours the SVG
- * icon, see tintIcon).
+ * icon, see tintIcon), eyebrow-royal-blue | eyebrow-sky-blue (Eyebrow color, in hero.css).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations

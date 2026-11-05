@@ -448,6 +448,28 @@
           "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_eyebrowcolor",
+          "label": "Eyebrow color",
+          "value": "",
+          "options": [
+            {
+              "name": "Default (royal blue)",
+              "value": ""
+            },
+            {
+              "name": "Royal blue",
+              "value": "eyebrow-royal-blue"
+            },
+            {
+              "name": "Soft sky blue",
+              "value": "eyebrow-sky-blue"
+            }
+          ],
+          "description": "Colour of the eyebrow above the title: royal blue #216AC3 (the default) or soft sky blue #A7C8F1."
+        },
+        {
           "component": "tab",
           "name": "additionalTab",
           "label": "Additional"
