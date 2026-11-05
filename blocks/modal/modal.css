@@ -15,6 +15,7 @@ body.modal-open {
 .modal dialog {
   --modal-gap: var(--space-600);
 
+  box-sizing: border-box;
   top: calc(var(--modal-top, 0rem) + var(--modal-height, 100dvh) / 2);
   bottom: auto;
   width: calc(100vw - 3rem);
@@ -24,7 +25,8 @@ body.modal-open {
   border: 0;
   border-radius: var(--radius-l);
   padding: 0;
-  overflow-y: auto;
+  overflow: hidden auto;
+  clip-path: inset(0 round var(--radius-l));
   overscroll-behavior: contain;
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
