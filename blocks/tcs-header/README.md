@@ -21,6 +21,8 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Data source.** Its own fields; UI text (fallback names) from the locale's placeholders.
 
+**Header behavior.** Sticky (default) pins the logo bar to the viewport while scrolling. Float positions it at the document top and lets it scroll away. This is independent of **Header over the first block**: Auto overlays an opening light Hero, Always overlays any first block, and Never leaves the page below a solid bar. Both behaviors retain the existing transparent-to-solid transition when overlaying content. The nav fragment applies both settings; a standalone logo block changes neither. An omitted or invalid behavior defaults to Sticky. The behavior is remembered as `header-position-v1` and restored before loading the header.
+
 **Related blocks.** [Header](../header/README.md) (consumes it), [Conversation Canvas](../conversation-canvas/README.md) (a header Canvas may share its section).
 
 **When to use.** In the first section of every Navigation page.
@@ -105,9 +107,8 @@ C = TCS Logo Link
 D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
-G = Menu root path
-H = Menu depth
-I = Header over the first block
+G = Header over the first block
+H = Header behavior
 ```
 
 ```text
@@ -236,16 +237,15 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
-| Menu root path | `menuRootPath` | aem-content | No | — | — | Tablet and mobile menu: the pages below this page, from the published site (on the Navigation page only, when it has no menu list); a page of this site (e.g. /en/..., not the language master). Empty, or without pages in this site: the Menu root path of the Conversation Canvas in the same section. | — |
-| Menu depth | `menuDepth` | number | No | — | — | Levels of pages below the Menu root path in the menu (1 to 3). Empty: the Conversation Canvas's, else 1. | — |
-| Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block, which then starts at the top of the page (the bar turns solid once the page scrolls). Auto: over an opening light Hero (as on Home). | — |
+| Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero. | — |
+| Header behavior | `headerPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | Independent of Header over the first block. Sticky stays at the top while scrolling; Float scrolls away with the page. Transparency follows Auto, Always or Never. | — |
 
 #### Additional tab — TCS Header
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
-| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off (shown faded in the editor). Delivered as a block class. | — |
+| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off. Delivered as a block class. | — |
 | Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
 | Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
 | Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
@@ -384,7 +384,7 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
 - **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page at the start of the lazy phase, so the header doesn't wait for it). `blocks/header` (unchanged) makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`). The open menu's title row ("Menu", or a level's Back arrow and title) starts at the gutter, left-aligned with the rows below, and a linked section's arrow (on its button) is at the right edge, in line with the other rows' arrows. While the menu is open the header Canvas is hidden (`blocks/conversation-canvas`); it shows again in its place when the menu closes. Below 1200px the Conversation Canvases don't show their own site menu button (`blocks/conversation-canvas`): the header's menu button is the site navigation there; on desktop the Canvas menu lists the same pages, one level at a time like this menu.
 - **Menu root path fallback:** the menu takes the first of the block's own Menu root path and the Conversation Canvas's (in the same section) with pages in the site's query index. A Menu root path of another site (e.g. the language master, `/content/tcs-corp/language-master/en/...`, on an `/en` page) has none there, so the Canvas's is used; without pages in either, there's no menu and no menu button.
-- **The logo bar stays at the top** while the page scrolls, at every width (fixed, `z-index: 20`), in every Header over the first block mode; over the first block it is transparent at the top of the page and turns solid once the page has scrolled by the bar's height (a scroll-driven animation; browsers without one keep it transparent); the open tablet / mobile menu keeps it solid, and the menu button has no box of its own. In-page targets (a `#` link to a heading or an Anchor ID, `anchor-*`) scroll clear of the bar (`scroll-margin-top: calc(var(--nav-height) + 1.5rem)` on pages with a TCS Header); the Anchor List keeps its own offset.
+- **Header behavior** works at every width and with every Header over the first block mode. Sticky (default) keeps the logo bar at the top while scrolling (fixed, `z-index: 20`); Float scrolls away with the page (absolute). Over the first block it is transparent at the top and turns solid over the first bar-height of scrolling (a scroll-driven animation, with the existing `is-scrolled` fallback). In-page targets retain their header offset; the Anchor List keeps its own offset.
 - **Header over the first block (every width):** **Auto** (default) keeps the behaviour before: the logo bar lies transparent over an opening light Hero (Home), else it's a bar above the page. **Always**: the bar is transparent over the page's first block, whatever it is, which starts at the top of the page; a Hero keeps its content below the logos, other blocks need their own top space (their Padding top, Additional tab, or `var(--header-overlay-space, 0rem)` in a block's CSS); the logos should be transparent images (a JPG keeps its white box over a coloured block) and dark logos aren't visible over a dark block. **Never**: the bar is above the page also over a light Hero (the page starts below the 64px / 124px bar). The block sets `<html data-header-overlay>` (`utils/header-space.js` `setHeaderOverlay`) when decorated in the nav fragment, not on the nav page itself; the layout is in `styles/styles.css` (it applies before the header loads), the transparent bar in `tcs-header.css`. The mode is remembered per browser and applied before the header loads on the next pages, so only a visitor's first page with Always or Never can move once when the header arrives (decision log KB-D-052, Proposed).
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
@@ -524,12 +524,10 @@ blocks/tcs-header/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `tcs-header.js`: { setHeaderOverlay } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (logo bar height per breakpoint, `header-height-v2-*`), `setHeaderOverlay` (Auto / Always / Never, `header-overlay-v1`), `setHeaderPosition` (Sticky / Float, `header-position-v | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
-| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `tcs-header.js`: { getPageTree } |
-| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
 
 <!-- END GENERATED: files -->
 
@@ -680,7 +678,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 2 instance(s) in total:
+Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 2 instance(s) in total:
 - Block library: `block-library/header/nav-careers`, `block-library/header/nav-default`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

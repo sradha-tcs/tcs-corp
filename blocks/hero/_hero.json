@@ -160,6 +160,24 @@
               "label": "CTA Title"
             },
             {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaTextColor",
+              "label": "CTA Text color",
+              "value": "cta-text-black",
+              "options": [
+                {
+                  "name": "Default (Black)",
+                  "value": "cta-text-black"
+                },
+                {
+                  "name": "White",
+                  "value": "cta-text-white"
+                }
+              ],
+              "description": "Text Color of CTA"
+            },
+            {
               "component": "aem-content",
               "valueType": "string",
               "name": "cta",
@@ -170,11 +188,11 @@
               "valueType": "string",
               "name": "ctaTarget",
               "label": "CTA Link Type",
-              "value": "",
+              "value": "same-window",
               "options": [
                 {
                   "name": "Default",
-                  "value": ""
+                  "value": "same-window"
                 },
                 {
                   "name": "Open in New Window",
@@ -187,11 +205,11 @@
               "valueType": "string",
               "name": "ctaType",
               "label": "CTA view",
-              "value": "",
+              "value": "default",
               "options": [
                 {
                   "name": "Default",
-                  "value": ""
+                  "value": "default"
                 },
                 {
                   "name": "Primary",
@@ -202,6 +220,68 @@
                   "value": "secondary"
                 }
               ]
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaPrimaryBackground",
+              "label": "Primary CTA BG Color (Primary only)",
+              "value": "primary-bg-default",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": "primary-bg-default"
+                },
+                {
+                  "name": "Blue-cyan (azure)",
+                  "value": "primary-bg-azure"
+                }
+              ],
+              "description": "Background Color of Primary CTA"
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaBackground",
+              "label": "Secondary CTA BG Color (Secondary only)",
+              "value": "secondary-bg-default",
+              "options": [
+                {
+                  "name": "Default (transparent)",
+                  "value": "secondary-bg-default"
+                },
+                {
+                  "name": "Light grey",
+                  "value": "secondary-bg-light-grey"
+                },
+                {
+                  "name": "Black 40%",
+                  "value": "secondary-bg-black-40"
+                }
+              ],
+              "description": "Background Color of Secondary CTA"
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaBorder",
+              "label": "Secondary CTA Border color (Secondary only)",
+              "value": "secondary-border-default",
+              "options": [
+                {
+                  "name": "Default (as the BG Color)",
+                  "value": "secondary-border-default"
+                },
+                {
+                  "name": "Black",
+                  "value": "secondary-border-black"
+                },
+                {
+                  "name": "White",
+                  "value": "secondary-border-white"
+                }
+              ],
+              "description": "Border Color of Secondary CTA"
             },
             {
               "component": "select",

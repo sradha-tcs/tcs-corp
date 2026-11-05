@@ -9,10 +9,19 @@
   --filter-list-report: linear-gradient(160deg, var(--brand-200) 0%, var(--color-bg-default) 70%);
   --filter-list-gap: var(--space-1000);
   --filter-list-columns: 1;
+  --filter-list-width: 25.125rem;
 
   display: flex;
   flex-direction: column;
   gap: var(--space-1000);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--filter-list-width);
+  margin-inline: auto;
+}
+
+main > .section > div:has(> .filter-list) {
+  padding-inline: 0;
 }
 
 /* header: title, description, filters, panel and count */
@@ -561,6 +570,10 @@
 }
 
 @media (width >= 600px) {
+  .filter-list {
+    --filter-list-width: 64rem;
+  }
+
   .filter-list:not(.layout-list) {
     --filter-list-columns: 2;
   }
@@ -621,6 +634,10 @@
 }
 
 @media (width >= 1200px) {
+  .filter-list {
+    --filter-list-width: 90rem;
+  }
+
   .filter-list:is(.card-default, .card-compact, .card-mixed):not(.layout-list) {
     --filter-list-columns: 4;
   }

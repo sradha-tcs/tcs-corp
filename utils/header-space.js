@@ -16,6 +16,11 @@ import { currentBreakpoint } from './viewport.js';
 const key = () => `header-height-v2-${currentBreakpoint()}`;
 const OVERLAY_KEY = 'header-overlay-v1';
 const OVERLAYS = ['always', 'never'];
+const POSITION_KEY = 'header-position-v1';
+
+function applyPosition(mode) {
+  document.documentElement.dataset.headerPosition = mode === 'float' ? 'float' : 'sticky';
+}
 
 function applyOverlay(mode) {
   if (OVERLAYS.includes(mode)) document.documentElement.dataset.headerOverlay = mode;
@@ -31,6 +36,7 @@ export function reserveHeaderSpace() {
     const rem = parseFloat(localStorage.getItem(key()));
     if (rem > 0) document.documentElement.style.setProperty('--header-reserved', `${rem}rem`);
     applyOverlay(localStorage.getItem(OVERLAY_KEY));
+    applyPosition(localStorage.getItem(POSITION_KEY));
   } catch {
     // no storage (private mode): the CSS default stays
   }
@@ -58,6 +64,15 @@ export function setHeaderOverlay(mode) {
   try {
     if (OVERLAYS.includes(mode)) localStorage.setItem(OVERLAY_KEY, mode);
     else localStorage.removeItem(OVERLAY_KEY);
+  } catch {
+    // no storage: applied to this page only
+  }
+}
+
+export function setHeaderPosition(mode) {
+  applyPosition(mode);
+  try {
+    localStorage.setItem(POSITION_KEY, mode === 'float' ? 'float' : 'sticky');
   } catch {
     // no storage: applied to this page only
   }

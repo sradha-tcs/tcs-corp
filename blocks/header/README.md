@@ -15,6 +15,8 @@ The site header of every page (the TCS Header of Figma *New Screens from New DS*
 
 **Business purpose.** One consistent, accessible header on every page of every locale site, maintained by authors on a Navigation page (no code change for a new menu or logo).
 
+**Position and transparency.** The nav page's TCS Header offers **Header behavior** independently of **Header over the first block**. Sticky (default) stays at the viewport top; Float scrolls away with the document. Both support Auto / Always / Never: transparency and content overlap are unchanged by the position choice. Never keeps a solid bar above the page, including pages opening with a light Hero. The setting affects the logo bar, not the Conversation Canvas floating journey.
+
 **User experience.**
 
 - Desktop (>= 1200px): the Figma logo bar only, TCS logo left and TATA logo right, 124px high. There is no navigation in the header (strict Figma, product decision of 16 October 2026, handover F-72): the site navigation is in the Conversation Canvas.
@@ -655,9 +657,8 @@ blocks/header/
 | [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `header.js`: { loadFragment } |
 | [`decorators/motion-decorator.js`](../../decorators/motion-decorator.js) | `prepareMotion` (the Content animation and Background animation of the blocks of a section, before it is shown, or of a fragment, footer page or header Canvas once in the page: first frame paused, run by one Intersection | `header.js`: { prepareMotion } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `header.js`: { removeButtonDecoration } |
-| [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `header.js`: { createIdFactory } |
-| [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { fillPlaceholder, getPlaceholders } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `header.js`: { rememberHeaderSpace } |
+| [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { getPlaceholders } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (logo bar height per breakpoint, `header-height-v2-*`), `setHeaderOverlay` (Auto / Always / Never, `header-overlay-v1`), `setHeaderPosition` (Sticky / Float, `header-position-v | `header.js`: { rememberHeaderSpace } |
 | [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `header.js`: { getInheritedMetadata } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `header.js`: { resolvePagePath } |
 

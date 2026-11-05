@@ -1,0 +1,871 @@
+/*
+ * Image Collage
+ *
+ * Breakpoints:
+ * - Mobile: less than 600px
+ * - Tablet: 600px to 1199px
+ * - Desktop: 1200px and above
+ */
+
+.image-collage {
+    --image-collage-content-width: 37.5rem;
+    --image-collage-bg: #0c0c0d;
+    --image-collage-overlay-start: rgb(12 12 13 / 45%);
+    --image-collage-overlay-end: rgb(12 12 13 / 80%);
+    --image-collage-title-color: #fff;
+    --image-collage-text-color: #9e9fa3;
+    --image-collage-button-color: #f3f3f3;
+    --image-collage-button-bg: rgb(12 12 13 / 90%);
+    --image-collage-button-border: #f3f3f3;
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    min-height: 64rem;
+    overflow: hidden;
+    margin-inline: 0;
+    padding-inline: 0;
+    background-color: var(--image-collage-bg);
+    color: var(--image-collage-title-color);
+}
+
+.image-collage.bg-navy {
+    --image-collage-bg: #011627;
+    --image-collage-overlay-start: rgb(1 22 39 / 45%);
+    --image-collage-overlay-end: rgb(1 22 39 / 80%);
+    --image-collage-button-bg: #011627;
+}
+
+.image-collage :is(.image-collage-content,
+    .image-collage-intro,
+    .image-collage-heading-row,
+    .image-collage-title,
+    .image-collage-description,
+    .image-collage-links) {
+    box-sizing: border-box;
+}
+
+/*
+ * Overlay above the photographs and below the content.
+ */
+.image-collage::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background:
+        radial-gradient(circle at center,
+            rgb(255 255 255 / 4%),
+            transparent 55%),
+        linear-gradient(var(--image-collage-overlay-start),
+            var(--image-collage-overlay-end));
+    pointer-events: none;
+}
+
+/* Content */
+
+.image-collage .image-collage-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, var(--image-collage-content-width));
+    margin-inline: auto;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.image-collage .image-collage-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-block: 0.625rem;
+    gap: 1.25rem;
+}
+
+.image-collage .image-collage-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Title */
+
+.image-collage .image-collage-title {
+    width: 100%;
+    margin: 0;
+    color: var(--image-collage-title-color);
+    font-size: 2rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    text-align: center;
+}
+
+.image-collage.title-regular .image-collage-title {
+    font-weight: var(--font-weight-regular);
+}
+
+.image-collage.title-semibold .image-collage-title {
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Description */
+
+.image-collage .image-collage-description {
+    width: 100%;
+    color: var(--image-collage-text-color);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+    text-align: center;
+}
+
+.image-collage .image-collage-description>* {
+    margin: 0;
+}
+
+.image-collage .image-collage-description>*+* {
+    margin-top: 1rem;
+}
+
+.image-collage.text-regular .image-collage-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+/* CTA row */
+
+/* CTA row: width follows the authored button labels */
+
+.image-collage .image-collage-links {
+    display: flex;
+    flex: none;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
+    height: 3rem;
+    padding: 0;
+    gap: 1rem;
+}
+
+/* Primary and secondary outlined-pill CTAs */
+
+.image-collage .image-collage-links
+    > :is(a, button).image-collage-cta {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    min-width: 0;
+    max-width: none;
+    height: 3rem;
+    min-height: 3rem;
+    max-height: 3rem;
+    margin: 0;
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    gap: 0.5rem;
+    border: 1px solid var(--image-collage-button-border);
+    border-radius: 9999px;
+    background-color: var(--image-collage-button-bg);
+    color: var(--image-collage-button-color);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    backdrop-filter: none;
+}
+
+.image-collage .image-collage-links> :is(a, button).image-collage-cta::after {
+    flex: 0 0 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: currentcolor;
+}
+
+.image-collage .image-collage-links> :is(a, button).image-collage-cta-no-arrow::after {
+    display: none;
+}
+
+/* Photograph composition */
+
+.image-collage .image-collage-media {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 50%;
+    width: 64rem;
+    min-width: 64rem;
+    height: 64rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.image-collage .image-collage-item {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+.image-collage .image-collage-item[data-aue-resource] {
+    pointer-events: auto;
+}
+
+.image-collage .image-collage-item :is(picture, img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.image-collage .image-collage-item img {
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-collage .image-collage-item.image-black-white img {
+    filter: grayscale(1);
+}
+
+.image-collage .image-collage-item.image-normal img {
+    filter: none;
+}
+
+/* Slots and Figma opacity */
+
+.image-collage .image-collage-item-1 {
+    inset: -31.25% 17.43% 79.79% 52.15%;
+    opacity: 1;
+}
+
+.image-collage .image-collage-item-2 {
+    inset: -5.57% -23.06% 54.1% 92.64%;
+    opacity: 0.7;
+}
+
+.image-collage .image-collage-item-3 {
+    inset: 60.94% 84.58% 16.11% -16.11%;
+    opacity: 0.6;
+}
+
+.image-collage .image-collage-item-4 {
+    inset: 73.05% 53.54% -27.05% 18.89%;
+    opacity: 1;
+}
+
+.image-collage .image-collage-item-5 {
+    inset: -14.26% 53.4% 74.61% 22.01%;
+    opacity: 0.4;
+}
+
+.image-collage .image-collage-item-6 {
+    inset: 50% -23.06% 16.11% 88.06%;
+    opacity: 0.5;
+}
+
+.image-collage .image-collage-item-7 {
+    inset: 14.16% 82.15% 50% -11.88%;
+    opacity: 1;
+}
+
+.image-collage .image-collage-item-8 {
+    inset: 80.08% 33.33% -5.66% 49.93%;
+    opacity: 1;
+}
+
+.image-collage .image-collage-item-9 {
+    top: 69.71%;
+    right: 14.623rem;
+    bottom: 18.88%;
+    width: 12.3637rem;
+    opacity: 1;
+}
+
+@keyframes image-collage-zig {
+    0%,
+    100% {
+        transform: translate3d(0, -0.5rem, 0);
+    }
+
+    50% {
+        transform: translate3d(0, 0.5rem, 0);
+    }
+}
+
+@keyframes image-collage-zag {
+    0%,
+    100% {
+        transform: translate3d(0, 0.5rem, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -0.5rem, 0);
+    }
+}
+
+.image-collage .image-collage-item:nth-child(odd) {
+    animation: image-collage-zig 7s ease-in-out infinite;
+}
+
+.image-collage .image-collage-item:nth-child(even) {
+    animation: image-collage-zag 8s ease-in-out infinite;
+}
+
+.image-collage .image-collage-item:nth-child(2) {
+    animation-delay: -1s;
+}
+
+.image-collage .image-collage-item:nth-child(3) {
+    animation-delay: -2.5s;
+}
+
+.image-collage .image-collage-item:nth-child(4) {
+    animation-delay: -4s;
+}
+
+.image-collage .image-collage-item:nth-child(5) {
+    animation-delay: -1.75s;
+}
+
+.image-collage .image-collage-item:nth-child(6) {
+    animation-delay: -3.25s;
+}
+
+.image-collage .image-collage-item:nth-child(7) {
+    animation-delay: -5s;
+}
+
+.image-collage .image-collage-item:nth-child(8) {
+    animation-delay: -2s;
+}
+
+.image-collage .image-collage-item:nth-child(9) {
+    animation-delay: -4.5s;
+}
+
+/* Universal Editor placeholders */
+
+.image-collage .image-collage-editor-items {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    gap: var(--space-200);
+    width: 100%;
+    margin-top: var(--space-600);
+}
+
+@media (width < 600px) {
+    /*
+     * Shared mobile frame
+     *
+     * Figma reference viewport: 402px
+     * Horizontal padding: 32px
+     * Available content width: 402 - 32 - 32 = 338px
+     */
+
+    .image-collage {
+        width: 100%;
+        height: 50rem; /* 800px */
+        min-height: 50rem;
+        padding-inline: 2rem; /* 32px */
+    }
+
+    .image-collage .image-collage-media {
+        inset: 0 auto auto 50%;
+        width: 64rem; /* 1024px */
+        min-width: 64rem;
+        height: 50rem; /* 800px */
+        transform: translateX(-50%);
+    }
+
+    /*
+     * Default dark variation
+     *
+     * Content: 338 × 362
+     * Introduction: 338 × 290
+     */
+
+    .image-collage .image-collage-content {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-width: 37.5rem;
+        height: 22.625rem; /* 362px */
+        min-height: 22.625rem;
+        gap: 1.5rem; /* 24px */
+    }
+
+    .image-collage .image-collage-intro {
+        flex: none;
+        align-self: stretch;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: 18.125rem; /* 290px */
+        min-height: 18.125rem;
+        padding-block: 0.625rem; /* 10px */
+        gap: 1.25rem; /* 20px */
+    }
+
+    .image-collage .image-collage-heading-row {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: 4.75rem; /* 76px */
+    }
+
+    .image-collage .image-collage-title {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: 4.75rem; /* 76px */
+        margin: 0;
+        overflow: hidden;
+        font-size: 2rem; /* 32px */
+        line-height: 1.2;
+    }
+
+.image-collage .image-collage-description {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 10.875rem; /* 174px */
+    min-height: 10.875rem;
+    overflow: hidden;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+}
+
+.image-collage .image-collage-links {
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
+    height: 3rem;
+    gap: 1rem;
+}
+
+.image-collage .image-collage-links
+    > :is(a, button).image-collage-cta {
+    flex: 0 0 auto;
+    width: max-content;
+    min-width: 0;
+    max-width: none;
+    height: 3rem;
+    min-height: 3rem;
+    max-height: 3rem;
+    font-size: 0.75rem; /* 12px */
+}
+
+    /*
+     * Navy variation
+     *
+     * Content: 338 × 292
+     * Introduction: 338 × 220
+     * Title: 338 × 76
+     * Description: 338 × 104
+     */
+
+    .image-collage.bg-navy .image-collage-content {
+        height: 18.25rem; /* 292px */
+        min-height: 18.25rem;
+    }
+
+    .image-collage.bg-navy .image-collage-intro {
+        height: 13.75rem; /* 220px */
+        min-height: 13.75rem;
+    }
+
+    .image-collage.bg-navy .image-collage-heading-row {
+        height: 4.75rem; /* 76px */
+    }
+
+    .image-collage.bg-navy .image-collage-title {
+        height: 4.75rem; /* 76px */
+        font-size: 2rem; /* 32px */
+        line-height: 1.2;
+    }
+
+    .image-collage.bg-navy .image-collage-description {
+        height: 6.5rem; /* 104px */
+        min-height: 6.5rem;
+        font-size: 1rem; /* 16px */
+        line-height: 1.6;
+    }
+
+    /*
+     * Navy CTA row is 340px while content is 338px.
+     * Do not restrict this row with max-width: 100%.
+     */
+    .image-collage.bg-navy .image-collage-links {
+        width: max-content;
+        max-width: none;
+    }
+
+    .image-collage .image-collage-item-9 {
+        right: 14.623rem;
+        width: 12.3637rem;
+    }
+}
+
+@media (width >=600px) and (width < 1200px) {
+    .image-collage {
+        height: 46.875rem;
+        min-height: 46.875rem;
+        padding-inline: 0;
+    }
+
+    .image-collage .image-collage-media {
+        inset: 0 auto auto 50%;
+        width: max(100%, 64rem);
+        min-width: 64rem;
+        height: 46.875rem;
+        transform: translateX(-50%);
+    }
+
+    .image-collage .image-collage-content {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 15.4375rem;
+        min-height: 15.4375rem;
+        gap: 1.5rem;
+    }
+
+    .image-collage .image-collage-intro {
+        flex: none;
+        align-self: stretch;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 10.9375rem;
+        min-height: 10.9375rem;
+        padding-block: 0.625rem;
+        gap: 1.25rem;
+    }
+
+    .image-collage .image-collage-heading-row {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 3rem;
+    }
+
+    .image-collage .image-collage-title {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 3rem;
+        margin: 0;
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .image-collage .image-collage-description {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 5.4375rem;
+        min-height: 5.4375rem;
+        overflow: hidden;
+        font-size: 1.125rem;
+        line-height: 1.6;
+    }
+
+    .image-collage .image-collage-links {
+        width: max-content;
+        min-width: 0;
+        max-width: 100%;
+        height: 3rem;
+        gap: 1rem;
+    }
+
+    .image-collage .image-collage-links> :is(a, button).image-collage-cta {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        max-width: none;
+        height: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
+        border-color: var(--image-collage-button-border);
+        background-color: var(--image-collage-button-bg);
+        color: var(--image-collage-button-color);
+        font-size: 0.875rem;
+        backdrop-filter: none;
+    }
+
+    /*
+     * Navy tablet variation
+     *
+     * Block: 1024 × 800
+     * Content: 600 × 212
+     * Introduction: 600 × 140
+     * Title: 600 × 48
+     * Description: 600 × 52
+     */
+
+    .image-collage.bg-navy {
+        height: 50rem; /* 800px */
+        min-height: 50rem;
+    }
+
+    .image-collage.bg-navy .image-collage-media {
+        height: 50rem; /* 800px */
+    }
+
+    .image-collage.bg-navy .image-collage-content {
+        height: 13.25rem; /* 212px */
+        min-height: 13.25rem;
+    }
+
+    .image-collage.bg-navy .image-collage-intro {
+        height: 8.75rem; /* 140px */
+        min-height: 8.75rem;
+    }
+
+    .image-collage.bg-navy .image-collage-heading-row {
+        height: 3rem; /* 48px */
+    }
+
+    .image-collage.bg-navy .image-collage-title {
+        height: 3rem; /* 48px */
+        font-size: 2.5rem; /* 40px */
+        line-height: 1.2;
+    }
+
+    .image-collage.bg-navy .image-collage-description {
+        height: 3.25rem; /* 52px */
+        min-height: 3.25rem;
+        font-size: 1rem; /* 16px */
+        line-height: 1.6;
+    }
+
+    .image-collage.bg-navy .image-collage-links {
+        width: max-content;
+        max-width: none;
+    }
+
+    .image-collage .image-collage-item-9 {
+        right: 14.623rem;
+        width: 12.3637rem;
+    }
+}
+
+@media (width >=1200px) {
+    .image-collage {
+        height: 64rem;
+        min-height: 64rem;
+        padding-inline: 0;
+    }
+
+    .image-collage .image-collage-media {
+        inset: 0;
+        width: 100%;
+        min-width: 0;
+        height: 64rem;
+        transform: none;
+    }
+
+    .image-collage .image-collage-content {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 16.0625rem;
+        min-height: 16.0625rem;
+        gap: 1.5rem;
+    }
+
+    .image-collage .image-collage-intro {
+        flex: none;
+        align-self: stretch;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 11.5625rem;
+        min-height: 11.5625rem;
+        padding-block: 0.625rem;
+        gap: 1.25rem;
+    }
+
+    .image-collage .image-collage-heading-row {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 3.625rem;
+    }
+
+    .image-collage .image-collage-title {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 3.625rem;
+        margin: 0;
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+
+    .image-collage .image-collage-description {
+        flex: none;
+        width: 37.5rem;
+        min-width: 37.5rem;
+        max-width: 37.5rem;
+        height: 5.4375rem;
+        min-height: 5.4375rem;
+        overflow: hidden;
+        font-size: 1.125rem;
+        line-height: 1.6;
+    }
+
+    .image-collage .image-collage-links {
+        width: max-content;
+        min-width: 0;
+        max-width: 100%;
+        height: 3rem;
+        gap: 1rem;
+    }
+
+    .image-collage .image-collage-links> :is(a, button).image-collage-cta {
+        flex: 0 0 auto;
+        width: max-content;
+        min-width: 0;
+        max-width: none;
+        height: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
+        border-color: var(--image-collage-button-border);
+        background-color: var(--image-collage-button-bg);
+        color: var(--image-collage-button-color);
+        font-size: 1rem;
+        backdrop-filter: none;
+    }
+
+    /*
+     * Navy desktop variation
+     *
+     * Block: 1440 × 1024
+     * Content: 600 × 286
+     * Introduction: 600 × 214
+     * Title: 600 × 116
+     * Description: 600 × 58
+     */
+
+    .image-collage.bg-navy .image-collage-content {
+        height: 17.875rem; /* 286px */
+        min-height: 17.875rem;
+    }
+
+    .image-collage.bg-navy .image-collage-intro {
+        height: 13.375rem; /* 214px */
+        min-height: 13.375rem;
+    }
+
+    .image-collage.bg-navy .image-collage-heading-row {
+        height: 7.25rem; /* 116px */
+    }
+
+    .image-collage.bg-navy .image-collage-title {
+        height: 7.25rem; /* 116px */
+        font-size: 3rem; /* 48px */
+        line-height: 1.2;
+    }
+
+    .image-collage.bg-navy .image-collage-description {
+        height: 3.625rem; /* 58px */
+        min-height: 3.625rem;
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.6;
+    }
+
+    .image-collage.bg-navy .image-collage-links {
+        width: max-content;
+        max-width: none;
+    }
+
+    .image-collage .image-collage-item-9 {
+        right: 16.2479%;
+        width: 13.7375%;
+    }
+}
+
+/*
+ * Allow authored large descriptions and their parent containers
+ * to expand without clipping.
+ */
+
+.image-collage.text-large {
+    height: auto;
+}
+
+.image-collage.text-large .image-collage-content,
+.image-collage.text-large .image-collage-intro {
+    height: auto;
+}
+
+.image-collage.text-large .image-collage-description {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+/* Authored button options */
+
+.image-collage .image-collage-links .image-collage-cta.button-bg-white {
+    border-color: #e3e3e3;
+    background-color: #fff;
+    color: #303030;
+}
+
+.image-collage .image-collage-links .image-collage-cta.button-bg-blue {
+    border-color: #216ac3;
+    background-color: #216ac3;
+    color: #fff;
+}
+
+.image-collage .image-collage-links .image-collage-cta.button-bg-translucent {
+    border-color: rgb(255 255 255 / 30%);
+    background-color: rgb(255 255 255 / 15%);
+    color: #fff;
+}
+
+.image-collage .image-collage-links .image-collage-cta.button-rectangle {
+    border-radius: 0.3125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .image-collage .image-collage-item {
+        animation: none;
+        transform: none;
+        will-change: auto;
+    }
+}
