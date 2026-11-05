@@ -46,7 +46,7 @@ html[data-header-overlay='always'] body.home main > .section:first-of-type .hero
   padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
 }
 
-html:not([data-header-overlay='never']) body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+html:not([data-header-overlay='never']) body.home main > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
   padding-top: calc(var(--header-height, var(--header-reserved)) + var(--home-hero-gap));
 }
 
@@ -54,7 +54,7 @@ html[data-header-overlay='always'] body.home main:not(:has([data-aue-resource]))
   min-height: 100svh;
 }
 
-html:not([data-header-overlay='never']) body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+html:not([data-header-overlay='never']) body.home main:not(:has([data-aue-resource])) > .section:first-of-type .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
   min-height: 100svh;
 }
 
