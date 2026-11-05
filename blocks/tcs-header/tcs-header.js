@@ -10,7 +10,7 @@ import { getPages } from '../../utils/query-index.js';
 const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 
 /**
- * Builds the page tree using query-index.json (same algorithm as conversation-canvas.js)
+ * Builds the page tree using query-index.json
  */
 async function loadMenuTree(root, depth = 3) {
   const base = root === '/' ? '' : root.replace(/\/$/, '');
@@ -46,32 +46,19 @@ async function loadMenuTree(root, depth = 3) {
         nodes.set(path, node);
       });
   } catch (e) {
-    // query index fallback
+    console.error('Failed to load menu tree:', e);
   }
 
   return tree;
 }
 
 /**
- * Resolves the menu root and depth from block properties, page canvas, or URL fallback
+ * Resolves the menu root and depth
  */
 function menuSettings(props) {
   let root = toSitePath(props.menurootpath?.querySelector('a')?.getAttribute('href') || textOf(props.menurootpath));
-  let depth = Math.max(1, parseInt(textOf(props.menudepth), 10) || 3);
+  const depth = Math.max(1, parseInt(textOf(props.menudepth), 10) || 3);
 
-  // If not authored directly in tcs-header, check on-page conversation-canvas
-  if (!root) {
-    const canvas = document.querySelector('.conversation-canvas');
-    if (canvas) {
-      const rootCell = canvas.querySelector('[data-aue-prop="menuRootPath"]') || canvas.querySelector('.menurootpath');
-      const depthCell = canvas.querySelector('[data-aue-prop="menuDepth"]') || canvas.querySelector('.menudepth');
-      const rawRoot = rootCell?.querySelector('a')?.getAttribute('href') || textOf(rootCell);
-      root = toSitePath(rawRoot);
-      depth = Math.max(1, parseInt(textOf(depthCell), 10) || 3);
-    }
-  }
-
-  // Fallback to URL parent if inside a curated section
   if (!root) {
     const current = window.location.pathname;
     if (current.includes('/curated-design-pages')) {
@@ -189,7 +176,6 @@ async function buildMobileDrawer(root, depth) {
       header.addEventListener('click', () => {
         const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
-        // Close sibling accordions
         accordionList.querySelectorAll('.tcs-accordion-header').forEach((h) => {
           h.setAttribute('aria-expanded', 'false');
           const parentItem = h.closest('.tcs-accordion-item');
@@ -220,9 +206,6 @@ async function buildMobileDrawer(root, depth) {
   return drawer;
 }
 
-/**
- * A logo helper: generates image element with proper alt text and links
- */
 function buildLogo(imageCell, altCell, linkCell, className, fallback) {
   const picture = pictureOf(imageCell, altCell);
   const alt = textOf(altCell) || (textOf(linkCell) || linkOf(linkCell) ? fallback : '');
@@ -240,9 +223,6 @@ function buildLogo(imageCell, altCell, linkCell, className, fallback) {
   return logo;
 }
 
-/**
- * Decorates the tcs-header block
- */
 export default async function decorate(block) {
   const props = readProperties(block);
 
@@ -261,14 +241,14 @@ export default async function decorate(block) {
   const brandLogo = buildLogo(props.tcslogo, props.tcslogoalt, props.tcslogolink, 'tcs-header-brand', t('tcsLogo', 'Tata Consultancy Services'));
   const tataLogo = buildLogo(props.tatalogo, props.tatalogoalt, props.tatalogolink, 'tcs-header-group', t('tataLogo', 'TATA Group'));
 
-  // Mobile circular hamburger toggle button
+  // Hamburger toggle button
   const toggleBtn = document.createElement('button');
   toggleBtn.type = 'button';
   toggleBtn.className = 'tcs-header-menu-toggle';
   toggleBtn.setAttribute('aria-label', 'Toggle Navigation Menu');
   toggleBtn.setAttribute('aria-expanded', 'false');
 
-  // Build the complete mobile drawer
+  // Build the complete drawer
   const drawer = await buildMobileDrawer(root, depth);
 
   toggleBtn.addEventListener('click', (e) => {
@@ -280,10 +260,19 @@ export default async function decorate(block) {
     drawer.hidden = !nextState;
     document.body.classList.toggle('nav-menu-open', nextState);
 
-    // Coordinate with canvas-controller.js to suppress floating search
+    // If the drawer was moved by header.js, ensure it syncs
+    const targetDrawer = document.querySelector('.tcs-header-menu-drawer') || drawer;
+    targetDrawer.hidden = !nextState;
+
     document.dispatchEvent(new CustomEvent('header:menu', { detail: { open: nextState } }));
   });
 
   bar.append(...[brandLogo, tataLogo, toggleBtn].filter(Boolean));
   block.replaceChildren(bar, drawer);
+
+  // If header nav already exists, inject drawer directly into nav-wrapper
+  const navWrapper = block.closest('.nav-wrapper') || document.querySelector('header .nav-wrapper');
+  if (navWrapper && !navWrapper.contains(drawer)) {
+    navWrapper.append(drawer);
+  }
 }

@@ -18,6 +18,7 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin: auto;
   max-width: var(--content-max-width);
   height: var(--nav-height);
@@ -106,7 +107,7 @@ header nav .nav-tools img {
 
 @media (width < 600px) {
   header nav {
-    height: 90px;
+    height: var(--nav-height);
     padding-inline: 16px;
     position: relative;
   }
@@ -169,10 +170,22 @@ html:not([data-canvas-journey-state]) header .nav-canvas {
   visibility: hidden;
 }
 
+header:has(.tcs-header-menu-toggle[aria-expanded='true']) .nav-canvas {
+  visibility: hidden;
+}
+
 header .nav-canvas .conversation-canvas {
   border-radius: 0;
   padding: 0 0 var(--conversation-canvas-float-offset);
   background-color: transparent;
+}
+
+header .nav-canvas .conversation-canvas-content {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  padding: 0;
 }
 
 header .nav-canvas .conversation-canvas-search {
