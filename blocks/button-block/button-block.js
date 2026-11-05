@@ -26,6 +26,7 @@ export function readButtonBlock(block) {
     type: pick(textOf(props.buttonvariant), BUTTON_TYPES, 'primary'),
     icon: view === 'icon' ? textOf(props.buttonicon) || 'arrow-right' : '',
     alignment: pick(textOf(props.buttonalignment), BUTTON_ALIGNMENTS, 'left'),
+    textDecoration: textOf(props.textdecoration) || 'none',
   };
 }
 
@@ -35,7 +36,7 @@ export function readButtonBlock(block) {
  */
 export default async function decorate(block) {
   const {
-    link, view, type, icon, alignment,
+    link, view, type, icon, alignment, textDecoration,
   } = readButtonBlock(block);
 
   if (!link) {
@@ -56,5 +57,8 @@ export default async function decorate(block) {
   link.removeAttribute('class');
   wrapper.append(link);
   decorateButton(link, { view, type, icon });
+  if (textDecoration && textDecoration !== 'none') {
+    link.classList.add(`text-decoration-${textDecoration.replace(/\s+/g, '-')}`);
+  }
   block.replaceChildren(wrapper);
 }
