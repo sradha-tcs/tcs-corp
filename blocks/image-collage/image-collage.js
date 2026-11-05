@@ -324,18 +324,6 @@ function buildContent(props, newTabHint) {
  *   rendered: Set<Element>
  * }}
  */
-/**
- * Builds up to nine decorative collage images.
- *
- * Empty items and items after the ninth are not rendered in the media
- * layer. They are preserved separately as Universal Editor placeholders.
- *
- * @param {Element[]} rows Collage image item rows
- * @returns {{
- *   collage: HTMLElement|null,
- *   rendered: Set<Element>
- * }}
- */
 function buildCollageImages(rows) {
   const collage = document.createElement('div');
 
@@ -422,11 +410,6 @@ function buildPendingItems(rows, rendered, hint) {
   return list;
 }
 
-/**
- * Loads and decorates the Image Collage block.
- *
- * @param {Element} block Block element
- */
 /**
  * Loads and decorates the Image Collage block.
  *
