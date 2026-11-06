@@ -20,15 +20,18 @@ let newTabHint = '';
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
  *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
- *   / italic (secondary) formatting
+ *   / italic (secondary) formatting; a Primary one can have a Primary CTA BG Color, a Secondary
+ *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS), and any one a CTA Text color
+ *   (CTA_TEXT_COLORS): classes of its button
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
  * before the Additional tab's animations, mapped to them),
  * align-top | align-middle | align-bottom (Vertical Alignment),
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
- * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
- * icon-black | icon-white | icon-blue (Icon color: recolours the SVG icon, see tintIcon).
+ * bg-light | bg-dark | bg-dark-subtle | bg-black | bg-charcoal-80 | bg-navy-60 | bg-charcoal-40
+ * (BG Color), icon-black | icon-white | icon-blue | icon-sky-blue (Icon color: recolours the SVG
+ * icon, see tintIcon), eyebrow-royal-blue | eyebrow-sky-blue (Eyebrow color, in hero.css).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -37,12 +40,30 @@ const LEGACY_MOTIONS = {
 };
 // CTA Arrow values, and every value a CTA List item holds besides its link
 const ARROWS = ['right', 'down'];
-const CTA_VALUES = [NEW_WINDOW, ...ARROWS];
+// a CTA's colours by CTA view (CTA List): Primary CTA BG Color, Secondary CTA BG Color and
+// Border color, classes of its button
+const CTA_OPTIONS = {
+  primary: ['primary-bg-azure'],
+  secondary: [
+    'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
+  ],
+};
+// CTA Text color (CTA List), a class of the button whatever its CTA view
+const CTA_TEXT_COLORS = ['cta-text-black', 'cta-text-white'];
+// the Default values of the CTA List selects: not empty, so Universal Editor keeps showing
+// Default (an empty value shows "Select..."); they change nothing. CTA view's default isn't
+// delivered (a Type field collapses into the link as bold / italic for primary / secondary only)
+const CTA_DEFAULTS = [
+  'same-window', 'default', 'primary-bg-default', 'secondary-bg-default', 'secondary-border-default',
+];
+const CTA_VALUES = [
+  NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat(), ...CTA_TEXT_COLORS, ...CTA_DEFAULTS,
+];
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 // Icon color values (the colours are in hero.css)
-const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue'];
+const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue', 'icon-sky-blue'];
 
 /**
  * Motion Type authored before: played as the Additional tab's animations (Fade in -> Fade in,
@@ -193,6 +214,9 @@ function buildCtas(cell, rows, hint) {
       newWindow,
       newTabHint,
     });
+    // only the colours of the CTA's own view (e.g. a Primary CTA ignores the Secondary ones)
+    a.classList.add(...values.filter((value) => CTA_OPTIONS[type]?.includes(value)
+      || CTA_TEXT_COLORS.includes(value)));
     const arrow = values.find((value) => ARROWS.includes(value));
     if (arrow === 'down' || (!arrow && a.getAttribute('href').startsWith('#'))) {
       a.classList.add('hero-cta-down');

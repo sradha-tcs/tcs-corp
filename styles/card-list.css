@@ -314,6 +314,7 @@
 }
 
 .card-list .list-card-kicker .list-card-reading-time {
+  color: var(--slate-600);
   text-transform: none;
 }
 

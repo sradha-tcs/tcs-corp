@@ -892,6 +892,42 @@
               "value": "secondary"
             }
           ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "buttonBackground",
+          "label": "Button background",
+          "value": "",
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Blue",
+              "value": "button-bg-blue"
+            }
+          ],
+          "description": "For Primary and Secondary Buttons. Blue: #216AC3 with white text."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "buttonShape",
+          "label": "Button shape",
+          "value": "",
+          "options": [
+            {
+              "name": "Style default",
+              "value": ""
+            },
+            {
+              "name": "Round",
+              "value": "button-round"
+            }
+          ],
+          "description": "For Primary and Secondary Buttons. Round: a 6rem circle, for a short label (words of up to 12 characters, up to 24 in all); a longer label stays a pill."
         }
       ]
     }

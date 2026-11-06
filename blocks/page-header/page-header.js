@@ -36,6 +36,14 @@ const LAYOUTS = ['landing', 'secondary', 'article', 'display'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
 // Text link is stored as tertiary (and as '' before): both render as a text link
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
+// Button background and Button shape (CTA items, the Teaser link's names), for Primary and
+// Secondary Buttons; Blue and Round authored before (CTA Link Style blue, CTA Shape round) too
+const BUTTON_BACKGROUNDS = ['button-bg-blue'];
+const LEGACY_BLUE = 'blue';
+const LEGACY_ROUND = 'round';
+// a Round CTA's label must fit the 6rem circle (no word broken): a longer one stays a pill
+const ROUND_MAX_WORD = 12;
+const ROUND_MAX_LABEL = 24;
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
 
 /** the layout: the block's Layout, or from the Page Type */
@@ -62,7 +70,8 @@ function buildDescription(text) {
 
 /**
  * The CTAs (the CTA List multifield's, then the CTA items), each in its CTA Link Style (Text
- * link, Primary or Secondary Button)
+ * link, Primary or Secondary Button), a button with its Button background (button-bg-blue) and
+ * Button shape (button-round, when the label fits the circle)
  */
 function buildCtas(cell, rows, hint, newTabHint) {
   const ctas = document.createElement('div');
@@ -71,10 +80,23 @@ function buildCtas(cell, rows, hint, newTabHint) {
   [...readLinkItems(cell), ...items].forEach(({
     link, newWindow, values, row,
   }) => {
-    const type = values.find((value) => CTA_STYLES.includes(value)) || 'tertiary';
+    const legacyBlue = values.includes(LEGACY_BLUE);
+    const type = values.find((value) => CTA_STYLES.includes(value))
+      || (legacyBlue ? 'primary' : 'tertiary');
+    const label = link.textContent.trim();
     decorateButton(link, {
       view: 'button', type, newWindow, newTabHint,
     });
+    // Button background and Button shape apply to buttons only (not to a Text link)
+    if (type !== 'tertiary') {
+      const background = values.find((value) => BUTTON_BACKGROUNDS.includes(value))
+        || (legacyBlue ? 'button-bg-blue' : '');
+      if (background) link.classList.add(background);
+      const round = values.includes('button-round') || values.includes(LEGACY_ROUND);
+      const fits = label.length <= ROUND_MAX_LABEL
+        && label.split(/\s+/).every((word) => word.length <= ROUND_MAX_WORD);
+      link.classList.toggle('button-round', round && fits);
+    }
     if (row) moveInstrumentation(row, link);
     ctas.append(link);
   });

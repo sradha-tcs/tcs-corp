@@ -133,7 +133,7 @@ the index held back its section and every section below it.
 | Header, TCS Header, Footer | — | — | — | — | — | Category E: site chrome, no Additional tab |
 
 Categories: A (content): Accordion, Cards, Columns, Embed, Gen Carousel, Interactive Dashboard,
-Page Header, Table, Table List, Tabs, Video. B (content + background): Form Variations, Hero,
+Page Header, Table, Table List, Tabs, Video. B (content + background): Form Variations, Hero, Image Collage,
 Quote, Teaser, Testimonial. C (content + skeleton): Filter List, List. D (all three):
 Conversation Canvas. E: the rest.
 
@@ -174,8 +174,8 @@ tabs.
 
 | Field | Property | Blocks (model files) | Options (value) | Default | Controls |
 |:--|:--|:--|:--|:--|:--|
-| Content animation | `classes_animation` | `blocks/{accordion,cards,columns,conversation-canvas,embed,filter-list,form-variations,gen-carousel,hero,interactive-dashboard,list,page-header,quote,table,table-list,tabs,teaser,testimonial,video}/_*.json` | None (empty), Fade in `motion-fade-in`, Fade up `motion-fade-up`, Fade down `motion-fade-down`, Fade left `motion-fade-left`, Fade right `motion-fade-right`, Slide up `motion-slide-up`, Slide down `motion-slide-down`, Slide left `motion-slide-left`, Slide right `motion-slide-right`, Scale in `motion-scale-in` | None | Content |
-| Background animation | `classes_bganimation` | `blocks/{conversation-canvas,form-variations,hero,quote,teaser,testimonial}/_*.json` | None (empty), Fade in `bg-motion-fade-in`, Reveal from the centre `bg-motion-reveal`, Wipe left to right `bg-motion-wipe-right`, Wipe right to left `bg-motion-wipe-left`, Wipe bottom to top `bg-motion-wipe-up`, Scale reveal `bg-motion-scale` | None | Background |
+| Content animation | `classes_animation` | `blocks/{accordion,cards,columns,conversation-canvas,embed,filter-list,form-variations,gen-carousel,hero,image-collage,interactive-dashboard,list,page-header,quote,table,table-list,tabs,teaser,testimonial,video}/_*.json` | None (empty), Fade in `motion-fade-in`, Fade up `motion-fade-up`, Fade down `motion-fade-down`, Fade left `motion-fade-left`, Fade right `motion-fade-right`, Slide up `motion-slide-up`, Slide down `motion-slide-down`, Slide left `motion-slide-left`, Slide right `motion-slide-right`, Scale in `motion-scale-in` | None | Content |
+| Background animation | `classes_bganimation` | `blocks/{conversation-canvas,form-variations,hero,image-collage,quote,teaser,testimonial}/_*.json` | None (empty), Fade in `bg-motion-fade-in`, Reveal from the centre `bg-motion-reveal`, Wipe left to right `bg-motion-wipe-right`, Wipe right to left `bg-motion-wipe-left`, Wipe bottom to top `bg-motion-wipe-up`, Scale reveal `bg-motion-scale` | None | Background |
 
 Fade = opacity with a short move (1.5rem); Slide = a longer move (4rem) without fading; Scale
 in = opacity with a 94% to 100% scale. Duration, delay and stagger are not authorable: one

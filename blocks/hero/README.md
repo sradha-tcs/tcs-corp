@@ -217,6 +217,7 @@ B = Horizontal Alignment
 C = Text Alignment
 D = BG Color
 E = Icon color
+F = Eyebrow color
 ```
 
 ```text
@@ -401,9 +402,13 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Description | `content_description` | richtext | No | "" | — | — | — |
 | CTA List | `ctas` | container (multiple) | No | — | — | CTAs authored before CTA items. Add CTAs to the hero with Add (CTA) instead. | — |
 | CTA List › CTA Title | `ctaText` | text | No | — | — | — | — |
+| CTA List › CTA Text color | `ctaTextColor` | select | No | `cta-text-black` | Default (Black) (`cta-text-black`), White (`cta-text-white`) | Text Color of CTA | — |
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
-| CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
-| CTA List › CTA view | `ctaType` | select | No | "" | Default (""), Primary (`primary`), Secondary (`secondary`) | — | — |
+| CTA List › CTA Link Type | `ctaTarget` | select | No | `same-window` | Default (`same-window`), Open in New Window (`new-window`) | — | — |
+| CTA List › CTA view | `ctaType` | select | No | `default` | Default (`default`), Primary (`primary`), Secondary (`secondary`) | — | — |
+| CTA List › Primary CTA BG Color (Primary only) | `ctaPrimaryBackground` | select | No | `primary-bg-default` | Default (`primary-bg-default`), Blue-cyan (azure) (`primary-bg-azure`) | Background Color of Primary CTA | — |
+| CTA List › Secondary CTA BG Color (Secondary only) | `ctaBackground` | select | No | `secondary-bg-default` | Default (transparent) (`secondary-bg-default`), Light grey (`secondary-bg-light-grey`), Black 40% (`secondary-bg-black-40`) | Background Color of Secondary CTA | — |
+| CTA List › Secondary CTA Border color (Secondary only) | `ctaBorder` | select | No | `secondary-border-default` | Default (as the BG Color) (`secondary-border-default`), Black (`secondary-border-black`), White (`secondary-border-white`) | Border Color of Secondary CTA | — |
 | CTA List › CTA Arrow | `ctaArrow` | select | No | `right` | Right (`right`), Down (`down`) | Direction of the arrow next to the CTA text. | — |
 
 #### Style tab — Hero
@@ -413,8 +418,9 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Vertical Alignment | `classes_alignment` | select | No | `align-middle` | Top (`align-top`), Middle (`align-middle`), Bottom (`align-bottom`) | Position of the content block: top, middle or bottom of the hero. Delivered as a block class. | align-top |
 | Horizontal Alignment | `classes_horizontal` | select | No | `align-center` | Left (`align-left`), Center (`align-center`), Right (`align-right`) | Position of the content block: left, center or right of the hero (on desktop). Delivered as a block class. | align-left |
 | Text Alignment | `classes_textAlignment` | select | No | `text-center` | Left align (`text-left`), Center align (`text-center`), Right align (`text-right`) | Alignment of the icon, text and CTAs inside the content block. Delivered as a block class. | text-left |
-| BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay. Delivered as a block class. | bg-dark |
-| Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
+| BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`), Charcoal Black 80 (cool charcoal) (`bg-charcoal-80`), Midnight Navy 60 (`bg-navy-60`), Charcoal Black 40 (deep charcoal) (`bg-charcoal-40`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay. Delivered as a block class. | bg-dark |
+| Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`), Soft sky blue (`icon-sky-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
+| Eyebrow color | `classes_eyebrowcolor` | select | No | "" | Default (royal blue) (""), Royal blue (`eyebrow-royal-blue`), Soft sky blue (`eyebrow-sky-blue`) | Colour of the eyebrow above the title. Delivered as a block class. | — |
 
 #### Additional tab — Hero
 
@@ -463,7 +469,7 @@ Notes on the significant fields (the tables above list every field, default and 
 - **BG Color.** Default: white overlay at 80 %. Light, no overlay: the image as is. Dark blue: navy overlay at 80 %; Dark blue (subtle): 60 %; Black: black at 80 %; the dark options switch the title to white, the description to 50 % white (85 % on Dark blue (subtle)), the eyebrow to `--brand-300` (white on Dark blue (subtle)) and Secondary / Default CTAs to white. Without media no overlay is drawn.
 - **Alignments.** Vertical and Horizontal Alignment position the content block (nine positions); Text Alignment aligns the icon, text and CTAs inside it. Heroes authored before Text Alignment existed follow their Horizontal Alignment.
 - **Data-layer impact.** None of the fields changes the data-layer entry except the Title (its text is the component's `dc:title`) and Anchor ID (the component id).
-- **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA view as bold / italic, CTA Arrow) are still read and shown before the CTA items. The former **Motion Type** values (`motion-fade`, `motion-slide`, `motion-zoom`) are mapped by `mapLegacyMotion` to Fade in, Fade up and Background Scale reveal, played Slow unless a Motion Speed is set, and only when the block has no Animation Type / Background animation of its own.
+- **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA view as bold / italic, CTA Arrow) are still read and shown before the CTA items. A Primary one can have a **Primary CTA BG Color** (Blue-cyan (azure), `#216AC3` `--color-bg-brand` with white text, also in dark sections), a Secondary one a **Secondary CTA BG Color** (Light grey, Black 40%) and **Secondary CTA Border color** (Black, White), labelled "(Primary only)" / "(Secondary only)" and always shown in the dialog (Universal Editor doesn't support conditions inside multifields), applied only for their CTA view; any CTA can also have a **CTA Text color** (Default (Black) or White, the field's default Default (Black) for new CTAs: the chosen colour of the text and arrow whatever the CTA view and background, also on Blue-cyan (azure) and in dark sections; choose the one that reads on the background: White on a black button, Black on azure or a light background; CTAs authored before without a value keep their colour): their values (`primary-bg-azure`, `secondary-bg-*`, `secondary-border-*`, `CTA_OPTIONS`, and `cta-text-black`, `cta-text-white`, `CTA_TEXT_COLORS` in `hero.js`) become classes of that CTA's button, which `hero.css` styles (hover and focus keep the button's own style); CTA items don't have them (KB-D-062). The former **Motion Type** values (`motion-fade`, `motion-slide`, `motion-zoom`) are mapped by `mapLegacyMotion` to Fade in, Fade up and Background Scale reveal, played Slow unless a Motion Speed is set, and only when the block has no Animation Type / Background animation of its own.
 - **Additional tab.** Anchor ID, Hide block, spacing, Animation Type, Motion Speed, Animation Trigger and, because the Hero has an authored background, **Background animation**: see AGENTS.md "Additional tab" and "Animation and skeletons". The content animation moves `.hero-content`; the background animation the media and the overlay.
 
 ## Screenshot-Based Authoring Steps
@@ -675,9 +681,9 @@ B = Content block
 
 Purpose: a plain banner without image. Rendering: no `hero-media`, no `hero-has-media`, no overlay; the block background is `--color-bg-default` (navy or black with the dark BG Colors). Use for simple statement pages.
 
-### BG Color: Default, Light no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue subtle (`bg-dark-subtle`), Black (`bg-black`)
+### BG Color: Default, Light no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue subtle (`bg-dark-subtle`), Black (`bg-black`), Charcoal Black 80 (`bg-charcoal-80`), Midnight Navy 60 (`bg-navy-60`), Charcoal Black 40 (`bg-charcoal-40`)
 
-Purpose: readability of the text over the media. Rendering and colours as in [Authorable Fields](#authorable-fields). Use a dark option for white text on photographs; Light, no overlay only with light, calm images. Accessibility: the dark colours were adjusted for WCAG 1.4.3 (re-audit R-B-4); the Default overlay's eyebrow contrast awaits design sign-off.
+Purpose: readability of the text over the media. Rendering and colours as in [Authorable Fields](#authorable-fields); Charcoal Black 80 is a `rgba(34, 35, 41, 0.8)` overlay, Midnight Navy 60 `rgba(1, 18, 31, 0.6)` (the Dark blue subtle overlay with the 50 % white description of the other dark options), Charcoal Black 40 `rgba(12, 12, 13, 0.4)`; all three are dark options (white text, the header keeps its band). Use a dark option for white text on photographs; Light, no overlay only with light, calm images. Accessibility: the dark colours were adjusted for WCAG 1.4.3 (re-audit R-B-4); the Default overlay's eyebrow contrast awaits design sign-off.
 
 ```text
 [Screenshot Placeholder]
@@ -879,7 +885,7 @@ The toggle exists only for Lotto. `hero-has-media` is set only when media render
 
 **Exported functions.** Only the default `decorate`.
 
-**Parent / child contracts.** As a Gen Carousel slide the Hero is decorated normally and then moved into a slide by `blocks/gen-carousel/gen-carousel.js`. `styles/styles.css` and `templates/home/home.css` select `main > .section:first-child .hero` (header over a light hero, Home first screen; with `<html data-header-overlay>` from the TCS Header); keep the `bg-dark`, `bg-dark-subtle`, `bg-black` class names.
+**Parent / child contracts.** As a Gen Carousel slide the Hero is decorated normally and then moved into a slide by `blocks/gen-carousel/gen-carousel.js`. `styles/styles.css` and `templates/home/home.css` select `main > .section:first-child .hero` (header over a light hero, Home first screen; with `<html data-header-overlay>` from the TCS Header); keep the `bg-dark`, `bg-dark-subtle`, `bg-black`, `bg-charcoal-80`, `bg-navy-60`, `bg-charcoal-40` class names (a new dark BG Color goes into those selectors and `blocks/header`, `blocks/tcs-header` too).
 
 **Data-layer hooks.** `data-cmp-interaction="animation"` on the toggle; nothing else.
 

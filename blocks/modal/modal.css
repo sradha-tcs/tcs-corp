@@ -1,8 +1,11 @@
 /*
  * Modal (Block Collection), site styles. The dialog is centered in the visible area and never
  * taller than it: --modal-top and --modal-height are the visible part of the page (modal.js;
- * in a frame, e.g. Universal Editor, that's less than the frame), else the viewport. Long
- * content scrolls inside the dialog (the page behind stays still), the close button at the top.
+ * in a frame, e.g. Universal Editor, that's less than the frame), else the viewport: 100% of
+ * the dialog's containing block, not 100dvh, which stays the device height when a mobile
+ * browser zooms out a page wider than the screen (iPad mini: 1024px of a 1127px tall viewport).
+ * Long content scrolls inside the dialog (the page behind stays still), the close button at
+ * the top.
  */
 body.modal-open {
   overflow: hidden;
@@ -15,20 +18,23 @@ body.modal-open {
 .modal dialog {
   --modal-gap: var(--space-600);
 
-  top: calc(var(--modal-top, 0rem) + var(--modal-height, 100dvh) / 2);
+  box-sizing: border-box;
+  top: calc(var(--modal-top, 0rem) + var(--modal-height, 100%) / 2);
   bottom: auto;
   width: calc(100vw - 3rem);
   max-width: 56.25rem;
-  max-height: calc(var(--modal-height, 100dvh) - 2 * var(--modal-gap));
+  max-height: calc(var(--modal-height, 100%) - 2 * var(--modal-gap));
   margin: 0 auto;
   border: 0;
   border-radius: var(--radius-l);
   padding: 0;
   overflow-y: auto;
+  clip-path: inset(0 round var(--radius-l));
   overscroll-behavior: contain;
   background-color: var(--color-bg-default);
   color: var(--color-text-default);
   transform: translateY(-50%);
+
 }
 
 .modal dialog[open] {
