@@ -1921,6 +1921,36 @@
         "description": "Where the button sits in its section or column."
       },
       {
+        "component": "select",
+        "name": "textDecoration",
+        "label": "Text Decoration",
+        "value": "none",
+        "options": [
+          {
+            "name": "Default",
+            "value": "none"
+          },
+          {
+            "name": "Overline",
+            "value": "overline"
+          },
+          {
+            "name": "line-Through",
+            "value": "line-through"
+          },
+          {
+            "name": "Underline",
+            "value": "underline"
+          },
+          {
+            "name": "underline overline",
+            "value": "underline overline"
+          }
+        ],
+        "valueType": "string",
+        "description": "The text decoration of the button."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
