@@ -9,7 +9,7 @@ import {
 } from '../../decorators/editor-item-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
-import { KEY_VALUE_ITEM, itemRows, withoutTabCells } from '../../utils/cells.js';
+import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import { NEW_WINDOW, linkOf } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import {
@@ -29,11 +29,6 @@ const COLLAGE_IMAGE_LIMIT = 9;
  * 2. Image, with alt text collapsed into the image cell
  * 3. Image treatment
  */
-const COLLAGE_LAYOUT = [
-  null,
-  'image',
-  'imageTreatment',
-];
 
 const COLLAGE_TREATMENTS = [
   'black-white',
@@ -331,6 +326,7 @@ function buildContent(props, newTabHint) {
  */
 function buildCollageImages(rows) {
   const collage = document.createElement('div');
+
   collage.className = 'image-collage-media';
   collage.setAttribute('aria-hidden', 'true');
 
@@ -341,10 +337,7 @@ function buildCollageImages(rows) {
       return;
     }
 
-    const cells = withoutTabCells(
-      [...row.children],
-      COLLAGE_LAYOUT,
-    );
+    const cells = [...row.children];
 
     const imageCell = cells.find(
       (cell) => cell.querySelector('picture'),
@@ -356,11 +349,11 @@ function buildCollageImages(rows) {
 
     if (!picture) return;
 
-    const treatmentCell = cells.find(
-      (cell) => COLLAGE_TREATMENTS.includes(
-        toClassName(textOf(cell)),
-      ),
-    );
+    const treatmentCell = cells.find((cell) => {
+      const value = toClassName(textOf(cell));
+
+      return COLLAGE_TREATMENTS.includes(value);
+    });
 
     const treatment = treatmentCell
       ? toClassName(textOf(treatmentCell))
@@ -423,15 +416,32 @@ function buildPendingItems(rows, rendered, hint) {
  * @param {Element} block Block element
  */
 export default async function decorate(block) {
-  const props = readProperties(block);
-
-  // on the page the item rows carry no model: they are the rows that aren't key-value pairs
-  // (KEY_VALUE_ITEM is required: without it itemRows throws and the block isn't decorated)
-  const collageRows = itemRows(
+  /*
+   * Capture repeated image items before reading parent properties.
+   *
+   * In Author, itemRows() identifies instrumented child items.
+   * On the published page, child items may not retain their model
+   * attributes, so direct children containing pictures are included
+   * as a delivery fallback.
+   */
+  const parsedRows = itemRows(
     block,
     ['image-collage-item'],
     KEY_VALUE_ITEM,
   );
+
+  const pictureRows = [...block.children].filter(
+    (row) => row.querySelector('picture'),
+  );
+
+  const collageRows = [
+    ...new Set([
+      ...parsedRows,
+      ...pictureRows,
+    ]),
+  ];
+
+  const props = readProperties(block);
 
   const [placeholders, hint] = await Promise.all([
     getPlaceholders(),
@@ -444,9 +454,13 @@ export default async function decorate(block) {
   );
 
   const styles = Object.entries(OPTIONS)
-    .map(([name, values]) => (
-      option(block, props[name], values)
-    ))
+    .map(([name, values]) => {
+      const cell = props[name];
+
+      return cell
+        ? option(block, cell, values)
+        : '';
+    })
     .filter(Boolean);
 
   const content = buildContent(
