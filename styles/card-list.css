@@ -606,6 +606,11 @@
   --list-card-strong: var(--slate-100);
 }
 
+.card-list .list-card-panel.theme-brand .list-card-title,
+.card-list .list-card-panel.theme-brand .list-card-title a {
+  color: rgb(243 243 243);
+}
+
 .card-list .list-card.theme-brand-light {
   --list-card-bg: var(--brand-300);
   --list-card-fg: var(--black-1000);
