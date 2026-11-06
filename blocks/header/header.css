@@ -255,13 +255,13 @@ header .nav-canvas .conversation-canvas::before {
 }
 
 :where(html[data-header-overlay='always']) header .nav-wrapper,
-:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header .nav-wrapper {
+:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-light, .bg-white, .light))) header .nav-wrapper {
   --header-logo-invert: calc(1 - var(--header-fade-progress));
-
+ 
   background-color: rgb(255 255 255 / var(--header-fade-progress));
 }
-
-:where(body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header .nav-wrapper {
+ 
+:where(body:has(main > .section:first-child .hero:is(.bg-light, .bg-white, .light))) header .nav-wrapper {
   --header-logo-invert: 0;
 }
 
