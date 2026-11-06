@@ -177,6 +177,8 @@ A = CTA Link
 B = CTA Title
 C = CTA Link Type
 D = CTA Link Style
+E = Button background
+F = Button shape
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -350,11 +352,14 @@ Stored on a new component (definition template): `linkStyle` = `"primary"`.
 | CTA Title | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | — |
 | CTA Link Type | `linkTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA Link Style | `linkStyle` | select | No | `primary` | Text link (`tertiary`), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| Button background | `buttonBackground` | select | No | "" | Style default (""), Blue (`button-bg-blue`) | For Primary and Secondary Buttons. Blue: #216AC3 with white text. | — |
+| Button shape | `buttonShape` | select | No | "" | Style default (""), Round (`button-round`) | For Primary and Secondary Buttons. Round: a 6rem circle, for a short label (words of up to 12 characters, up to 24 in all); a longer label stays a pill. | — |
 
 <!-- END GENERATED: fields -->
 
 Notes on the significant fields:
 
+- **Button background and Button shape** (CTA items, the Teaser link's field names and classes). For a Primary or Secondary Button: **Button background: Blue** (`button-bg-blue`) fills it with the brand blue `#216ac3` (`--color-bg-brand`, border `--color-border-brand-secondary`) and white text (5.4:1), hover and focus `#1b5ea3`; **Button shape: Round** (`button-round`) makes it a 6rem circle with the label (12px, wrapped between words) above the arrow. A label with a word over 12 characters or over 24 characters in all doesn't fit the circle and stays a pill. A Text link ignores both. **Style default** keeps the CTA Link Style. The legacy CTA List has neither (use CTA items); Blue and Round authored before as CTA Link Style `blue` / CTA Shape `round` are shown as Blue and Round.
 - **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (`page-type`, else `template` metadata).
 - **CTA (item) fields.** CTA Link Style Primary / Secondary render `a.button.primary` / `a.button.secondary`; Text link (`tertiary`, or empty in content authored before) renders `a.button.tertiary`. A new CTA stores Primary Button (definition template). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder `opensInNewTab`. A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder, `itemEditorHint`).
 - **Metadata (not dialog fields).** Title → `h1.page-header-title`; Description → `div.page-header-description`; content-type → eyebrow (Landing, Secondary) or `p.page-header-collection` (Article); tags → `ul.page-header-tags` (Article meta row; Display eyebrow; Landing / Secondary eyebrow when there is no content-type), labels from the taxonomy, else derived from the tag ID; publish-date (`publication-date` as a fallback) → "Published" + `<time>` (dd/mm/yy); reading-time → "{n} min read" for a number; author-id → Authors sheet name, designation and region, image, LinkedIn; author → name only; featured-image and image-alt → the Landing image; listen-link → the listen action.
@@ -670,7 +675,7 @@ blocks/page-header/
 
 **Responsibilities.** `page-header.js` reads the Layout and the legacy CTA List (`readProperties`), the CTA items (`itemRows(block, ['page-header-cta'], KEY_VALUE_ITEM)`), the page metadata, the author and the tags, and builds the layout's DOM. `page-header.css` styles the four layouts, with one breakpoint (900px).
 
-**Input DOM.** Key-value rows (`classes` → Layout; `ctas` → the legacy multifield cell); CTA item rows after them with three cells (link, link type, style; `test/items/item-rows.test.mjs`). The template-added block is an empty `div.page-header`.
+**Input DOM.** Key-value rows (`classes` → Layout; `ctas` → the legacy multifield cell); CTA item rows after them with five cells (link, link type, style, Button background, Button shape; `test/items/item-rows.test.mjs`). Older three- and four-cell CTA rows remain supported. The template-added block is an empty `div.page-header`.
 
 **Rendered DOM.**
 

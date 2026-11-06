@@ -134,6 +134,7 @@ A = View
 B = Type
 C = Icon
 D = Alignment
+E = Text Decoration
 ```
 
 ```text
@@ -267,6 +268,7 @@ Stored on a new component (definition template): `buttonView` = `"button"`, `but
 | Type | `buttonVariant` | select | No | `primary` | Primary (`primary`), Secondary (`secondary`), Tertiary (`tertiary`) | The emphasis of the Button and Icon views. Shown when `buttonView` is off or empty or `buttonView` is `button` or `buttonView` is `icon`. | secondary |
 | Icon | `buttonIcon` | select | No | `arrow-right` | Arrow right (`arrow-right`), Chevron right (`chevron-right`), Chevron down (`chevron-down`), Search (`search`) | The icon of the Icon view; the Text becomes its accessible name. Shown when `buttonView` is `icon`. | search |
 | Alignment | `buttonAlignment` | select | No | `left` | Left (`left`), Center (`center`), Right (`right`) | Where the button sits in its section or column. | left |
+| Text Decoration | `textDecoration` | select | No | `none` | Default (`none`), Overline (`overline`), line-Through (`line-through`), Underline (`underline`), underline overline (`underline overline`) | The text decoration of the button. | — |
 
 #### Additional tab — Button
 

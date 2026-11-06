@@ -1921,6 +1921,36 @@
         "description": "Where the button sits in its section or column."
       },
       {
+        "component": "select",
+        "name": "textDecoration",
+        "label": "Text Decoration",
+        "value": "none",
+        "options": [
+          {
+            "name": "Default",
+            "value": "none"
+          },
+          {
+            "name": "Overline",
+            "value": "overline"
+          },
+          {
+            "name": "line-Through",
+            "value": "line-through"
+          },
+          {
+            "name": "Underline",
+            "value": "underline"
+          },
+          {
+            "name": "underline overline",
+            "value": "underline overline"
+          }
+        ],
+        "valueType": "string",
+        "description": "The text decoration of the button."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
@@ -12611,9 +12641,21 @@
           {
             "name": "Black",
             "value": "bg-black"
+          },
+          {
+            "name": "Charcoal Black 80 (cool charcoal)",
+            "value": "bg-charcoal-80"
+          },
+          {
+            "name": "Midnight Navy 60",
+            "value": "bg-navy-60"
+          },
+          {
+            "name": "Charcoal Black 40 (deep charcoal)",
+            "value": "bg-charcoal-40"
           }
         ],
-        "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay."
+        "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay."
       },
       {
         "component": "select",
@@ -12637,9 +12679,35 @@
           {
             "name": "Blue",
             "value": "icon-blue"
+          },
+          {
+            "name": "Soft sky blue",
+            "value": "icon-sky-blue"
           }
         ],
         "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_eyebrowcolor",
+        "label": "Eyebrow color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (royal blue)",
+            "value": ""
+          },
+          {
+            "name": "Royal blue",
+            "value": "eyebrow-royal-blue"
+          },
+          {
+            "name": "Soft sky blue",
+            "value": "eyebrow-sky-blue"
+          }
+        ],
+        "description": "Colour of the eyebrow above the title."
       },
       {
         "component": "tab",
@@ -20104,6 +20172,42 @@
             "value": "secondary"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "buttonBackground",
+        "label": "Button background",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Blue",
+            "value": "button-bg-blue"
+          }
+        ],
+        "description": "For Primary and Secondary Buttons. Blue: #216AC3 with white text."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "buttonShape",
+        "label": "Button shape",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Round",
+            "value": "button-round"
+          }
+        ],
+        "description": "For Primary and Secondary Buttons. Round: a 6rem circle, for a short label (words of up to 12 characters, up to 24 in all); a longer label stays a pill."
       }
     ]
   },

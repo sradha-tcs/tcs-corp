@@ -104,7 +104,10 @@
 
 .hero.bg-dark,
 .hero.bg-dark-subtle,
-.hero.bg-black {
+.hero.bg-black,
+.hero.bg-charcoal-80,
+.hero.bg-navy-60,
+.hero.bg-charcoal-40 {
   --hero-title-color: var(--color-text-on-neutral);
   --hero-description-color: rgb(255 255 255 / 50%);
   --hero-description-weight: var(--font-weight-medium);
@@ -125,6 +128,25 @@
 
 .hero.bg-black {
   --hero-overlay: rgb(0 0 0 / 80%);
+
+  background-color: var(--black-1000);
+}
+
+/* Charcoal Black 80 (cool charcoal), Midnight Navy 60, Charcoal Black 40 (deep charcoal) */
+.hero.bg-charcoal-80 {
+  --hero-overlay: rgb(34 35 41 / 80%);
+
+  background-color: rgb(34 35 41);
+}
+
+.hero.bg-navy-60 {
+  --hero-overlay: rgb(1 18 31 / 60%);
+
+  background-color: var(--hero-navy);
+}
+
+.hero.bg-charcoal-40 {
+  --hero-overlay: rgb(12 12 13 / 40%);
 
   background-color: var(--black-1000);
 }
@@ -201,6 +223,20 @@
 
 .hero.icon-blue {
   --hero-icon-color: var(--brand-500);
+}
+
+/* Soft sky blue, #A7C8F1 */
+.hero.icon-sky-blue {
+  --hero-icon-color: var(--brand-300);
+}
+
+/* Eyebrow color: royal blue #216AC3 (the default) or soft sky blue #A7C8F1 */
+.hero.eyebrow-royal-blue {
+  --hero-eyebrow-color: var(--brand-400);
+}
+
+.hero.eyebrow-sky-blue {
+  --hero-eyebrow-color: var(--brand-300);
 }
 
 .hero .hero-icon-tinted picture {
@@ -332,16 +368,16 @@
 }
 
 /* CTAs on dark backgrounds */
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.secondary:not(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);
   color: var(--color-text-on-neutral);
 }
 
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:not(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
 }
 
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:is(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:is(:hover, :focus-visible) {
   color: var(--brand-300);
 }
 
@@ -545,7 +581,7 @@ html[data-header-overlay='always'] main > .section:first-child .hero {
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
 
-html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
   min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }

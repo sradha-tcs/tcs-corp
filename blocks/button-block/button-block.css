@@ -14,3 +14,20 @@
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-s);
 }
+
+/* Text Decoration: a:any-link outranks a.button:any-link and main a.link-button:any-link */
+.button-block a.text-decoration-overline:any-link {
+  text-decoration: overline;
+}
+
+.button-block a.text-decoration-line-through:any-link {
+  text-decoration: line-through;
+}
+
+.button-block a.text-decoration-underline:any-link {
+  text-decoration: underline;
+}
+
+.button-block a.text-decoration-underline-overline:any-link {
+  text-decoration: underline overline;
+}
