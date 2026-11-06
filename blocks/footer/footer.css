@@ -48,7 +48,7 @@ footer .footer-wrapper > .footer:has(.footer-canvas) {
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  height: 870px;
+  height: 54.375rem;
 }
 
 /* Vertically expands the canvas so content and bottom bar separate cleanly */
@@ -102,7 +102,6 @@ footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
 
 footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
   flex: 1;
-  min-width: 0;
 }
 
 footer .footer-canvas .conversation-canvas a.button.secondary {
@@ -110,7 +109,7 @@ footer .footer-canvas .conversation-canvas a.button.secondary {
   background-color: var(--color-bg-default, #fff);
   color: var(--footer-text-color, #0C0C0D);
   font-weight: var(--font-weight-medium, 500);
-  border-radius: 9999px;
+  border-radius: 624.9375rem;
   text-decoration: none;
 }
 
@@ -125,7 +124,8 @@ footer .footer-bar {
   justify-content: space-between;
   align-items: center;
   margin-top: auto; /* Pushes the bottom bar away from the buttons */
-  margin-inline: auto;
+
+  /* margin-inline: auto; */
   color: #0C0C0D;
 }
 
@@ -143,7 +143,7 @@ footer .footer-links ul {
 
 footer .footer-links a:any-link {
   display: block;
-  color: #0C0C0D !important;
+  color: #0C0C0D;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -177,7 +177,7 @@ footer .footer .footer-social img {
 
 
 /* ==========================================================================
-   2. MOBILE VIEW (viewport < 600px | Figma: 399 × 800)
+   2. MOBILE VIEW (viewport < 37.5rem | Figma: 399 × 800)
    ========================================================================== */
 @media (width < 600px) {
   footer {
@@ -190,8 +190,7 @@ footer .footer .footer-social img {
   }
 
   footer > .footer > div {
-    max-width: 25.125rem;
-    min-height: 56.875rem;
+    width: 100%;
     gap: var(--space-1600, 4rem);
     padding: 3.5rem var(--space-500, 1.25rem) var(--space-600, 1.5rem);
   }
@@ -202,9 +201,13 @@ footer .footer .footer-social img {
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-title {
-    max-width: 20rem;
-    font-size: 3.25rem;
-    line-height: 3.875rem;
+    width: 100%;
+    max-width: 22.125rem;
+    height: auto;
+    min-height: 6.625rem;
+    font-size: 2.75rem;
+    line-height: 120%;
+    letter-spacing: -3%;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search {
@@ -217,7 +220,8 @@ footer .footer .footer-social img {
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
     flex-direction: column;
-    margin-bottom: 2rem; /* Spacing between button group and footer bar */
+    width: 100%;
+    max-width: 22.125rem;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
@@ -235,43 +239,57 @@ footer .footer .footer-social img {
     padding: calc(var(--space-300, 0.75rem) - 0.0625rem) var(--space-600, 1.5rem);
   }
 
+  footer .footer-canvas {
+    width: 22.125rem;
+    height: 50.625rem;
+  }
+
   footer .footer-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 354px !important;
-    height: 60px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* wrap only when necessary */
+    width: 22.125rem;
+    gap: 0.75rem;
   }
 
   footer .footer-copyright {
-    width: 268px !important;
-    height: 22px !important;
-    font-size: 1rem;
-    line-height: 1.0625rem;
+    width: auto;
+    min-width: 14.625rem;
+    height: auto;
+    min-height: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 140%;
+    letter-spacing: 0%;
   }
 
   footer .footer-links ul {
     flex-wrap: wrap;
     gap: 1rem;
-    width: 122px !important;
-    height: 22px !important;
+    width: auto;
+    min-width: 6.75rem;
+    height: auto;
+    min-height: 1.25rem;
   }
 
   footer .footer-links a:any-link {
-    width: 122px !important;
-    height: 22px !important;
-    font-size: 1rem;
-    line-height: 1.0625rem;
+    width: auto;
+    min-width: 6.75rem;
+    height: auto;
+    min-height: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 140%;
+    letter-spacing: 0%;
   }
 }
 
 
 /* ==========================================================================
-   3. TABLET VIEW (600px <= viewport < 1200px | Figma: 976 × 580)
+   3. TABLET VIEW (37.5rem <= viewport < 75rem | Figma: 1024 × 800)
    ========================================================================== */
 @media (width >= 600px) and (width < 1200px) {
   footer {
-    --footer-canvas-min-height: 54.375rem; /* 580px */
+    --footer-canvas-min-height: 50rem;
 
     background-image:
       radial-gradient(ellipse 45rem 31.25rem at 25% calc(100% + 13.75rem), color-mix(in srgb, var(--color-bg-brand, #0076df) 30%, transparent), transparent),
@@ -279,12 +297,12 @@ footer .footer .footer-social img {
   }
 
   footer > .footer > div {
-    min-width: 54.375rem; /* 976px */
-    min-height: 64rem; /* 580px */
-    gap: var(--space-2000, 5rem); /* Space/2000 (80px) */
+    width: 100%;
+    gap: var(--space-2000, 5rem); /* Space/2000 (5rem) */
 
     /* padding: 2.5rem 0 1.5rem; */
-    padding: 80px 24px 40px;
+    padding: 5rem 1.5rem 2.5rem;
+    box-sizing: border-box;
   }
 
   footer .footer-canvas .conversation-canvas {
@@ -293,18 +311,20 @@ footer .footer .footer-social img {
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-content {
-    gap: 1.75rem; /* Compact vertical gap between Title, Search, and Buttons */
+    gap: 4rem; /* Compact vertical gap between Title, Search, and Buttons */
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-title {
     max-width: 32rem;
-    font-size: 3.25rem;
-    line-height: 3.75rem;
+    font-size: 4rem;
+    line-height: 120%;
+    letter-spacing:-3%;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search {
     gap: 1rem;
-    width: 38.0625rem;
+    width: 42.1875rem;
+    height: 4.5rem;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
@@ -317,8 +337,10 @@ footer .footer .footer-social img {
     flex-flow: row wrap;
     justify-content: center;
     gap: 0.75rem 0.5rem;
-    max-width: 58rem; /* Keeps the first 4 buttons on a single row */
-    margin-bottom: var(--space-2000, 5rem); /* Space/2000 gap above footer-bar */
+    width: 100%;
+    max-width: 61rem; /* Keeps the first 4 buttons on a single row */
+
+    /* margin-bottom: var(--space-2000, 5rem); Space/2000 gap above footer-bar */
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
@@ -326,47 +348,47 @@ footer .footer .footer-social img {
   }
 
   footer .footer-canvas .conversation-canvas a.button.secondary {
-    font-size: 0.875rem !important;
+    font-size: 0.875rem;
     line-height: 1.25rem;
     padding: 0.5rem 1rem;
   }
 
-  /* Footer links row container: 976px × 20px */
+  /* Footer links row container: 61rem × 1.25rem */
   footer .footer-bar {
-    width: 61rem !important;    /* 976px */
+    width: 61rem;    /* 61rem */
     max-width: 100%;
-    height: 1.25rem !important; /* 20px */
-    margin: 0 auto !important;
+    height: 1.25rem; /* 1.25rem */
+    margin: 0 auto;
   }
 
-  /* TATA Consultancy copyright textbox: 234px × 20px */
+  /* TATA Consultancy copyright textbox: 14.625rem × 1.25rem */
   footer .footer-copyright {
-    width: 14.625rem !important; /* 234px */
-    height: 1.25rem !important;  /* 20px */
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
+    width: 14.625rem; /* 14.625rem */
+    height: 1.25rem;  /* 1.25rem */
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   footer .footer-links ul {
-    height: 1.25rem !important;
+    height: 1.25rem;
     gap: 1.5rem;
   }
 
-  /* Privacy & Terms textbox: 108px × 20px */
+  /* Privacy & Terms textbox: 6.75rem × 1.25rem */
   footer .footer-links a:any-link {
-    width: 6.75rem !important;   /* 108px */
-    height: 1.25rem !important;  /* 20px */
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
+    width: 6.75rem;   /* 6.75rem */
+    height: 1.25rem;  /* 1.25rem */
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 
 /* ==========================================================================
-   4. DESKTOP VIEW (viewport >= 1200px | Figma: 1440 × 910)
+   4. DESKTOP VIEW (viewport >= 75rem | Figma: 1440 × 1000)
    ========================================================================== */
 @media (width >= 1200px) {
   footer {
-    --footer-canvas-min-height: 56.875rem; /* 910px */
+    --footer-canvas-min-height: 62.5rem;
 
     background-image:
       radial-gradient(ellipse 45rem 31.25rem at 25% calc(100% + 13.75rem), color-mix(in srgb, var(--color-bg-brand, #0076df) 30%, transparent), transparent),
@@ -374,12 +396,14 @@ footer .footer .footer-social img {
   }
 
   footer > .footer > div {
-    max-width: 90rem;      /* 1440px */
-    min-height: 56.875rem;  /* 910px */
+    width: 100%;
+
+    /* max-width: 90rem;      90rem */
     gap: var(--space-2000, 5rem);
 
     /* padding: var(--space-3000, 7.5rem) var(--space-2000, 5rem) var(--space-1000, 2.5rem); */
-    padding: 120px 24px 40px;
+    padding: 7.5rem 5rem 2.5rem;
+    box-sizing: border-box;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-content {
@@ -387,13 +411,19 @@ footer .footer .footer-social img {
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-title {
+    width: 100%;
     max-width: 61.5rem;
+    height: auto;
+    min-height: 14.375rem;
     font-size: 6rem;
-    line-height: 7.1875rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.1875rem;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search {
     gap: 1.0625rem;
+    width: 42.1875rem;
+    height: 4.5rem;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-menu-toggle {
@@ -402,45 +432,56 @@ footer .footer .footer-social img {
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-buttons {
     flex-direction: row;
-    margin-bottom: 3.5rem; /* Spacing between button group and footer bar */
+
+    /* margin-bottom: 3.5rem; Spacing between button group and footer bar */
+    max-width: 56.25rem;
+    width: 100%;
+    height: auto;
+    min-height: 7rem;
   }
 
   footer .footer-canvas .conversation-canvas .conversation-canvas-search-form {
-    padding-left: var(--space-600, 1.5rem);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    gap: 1rem;
   }
 
   footer .footer-canvas .conversation-canvas a.button.secondary {
-    font-size: 1.125rem !important;
+    font-size: 1rem;
     line-height: 1.125rem;
     padding: calc(var(--space-300, 0.75rem) - 0.0625rem) var(--space-600, 1.5rem);
   }
 
-  /* Footer links row container: 1280px × 22px */
+  /* Footer links row container: 80rem × 1.25rem */
   footer .footer-bar {
-    width: 80rem !important;     /* 1280px */
+    width: 80rem;     /* 80rem */
     max-width: 100%;
-    height: 1.375rem !important; /* 22px */
-    margin: 0 auto !important;
+    min-height: 1.25rem;
+    height: auto;
   }
 
-  /* TATA Consultancy copyright textbox: 268px × 22px */
+  /* TATA Consultancy copyright textbox: 14.625rem × 1.25rem */
   footer .footer-copyright {
-    width: 16.75rem !important;  /* 268px */
-    height: 1.375rem !important; /* 22px */
-    font-size: 1rem !important;
-    line-height: 1.375rem !important;
+    width: auto; 
+    min-width:14.625rem;
+    height: auto; 
+    min-height: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 140%;
   }
 
   footer .footer-links ul {
-    height: 1.375rem !important;
+    height: auto;
     gap: 2.5rem;
   }
 
-  /* Privacy & Terms textbox: 123px × 22px */
+  /* Privacy & Terms textbox: 6.75rem × 1.25rem */
   footer .footer-links a:any-link {
-    width: 7.6875rem !important; /* 123px */
-    height: 1.375rem !important; /* 22px */
-    font-size: 1rem !important;
-    line-height: 1.375rem !important;
+    width: auto;
+    min-width: 6.75rem;
+    height: auto;
+    min-height: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 140%;
   }
 }
