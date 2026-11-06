@@ -21,9 +21,15 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Data source.** Its own fields; UI text (fallback names) from the locale's placeholders.
 
-**Header behavior.** Sticky (default) pins the logo bar to the viewport while scrolling. Float positions it at the document top and lets it scroll away. This is independent of **Header over the first block**: Auto overlays an opening light Hero, Always overlays any first block, and Never leaves the page below a solid bar. Both behaviors retain the existing transparent-to-solid transition when overlaying content. The nav fragment applies both settings; a standalone logo block changes neither. An omitted or invalid behavior defaults to Sticky. The behavior is remembered as `header-position-v1` and restored before loading the header.
+**Header behavior.** The Display tab has independent Desktop, Tablet and Mobile behavior controls. Desktop defaults to Float (scrolls away with the page); tablet and mobile default to Sticky (stay at the viewport top). Breakpoints are 1200px and 600px. Each device can instead select the other behavior, or Use shared behavior to inherit the retained Shared header behavior field. This is independent of **Header over the first block**: Auto overlays an opening light Hero, Always overlays any first block, and Never leaves the page below a solid bar. The nav fragment applies the settings; a standalone logo block changes neither. The shared value remains `header-position-v1`; validated device overrides are saved as `header-position-views-v1` and restored before the header loads. Missing device fields use the Figma defaults even on pages authored before these controls were added.
+
+**Author controls.** Open the Navigation page's TCS Header properties, then Display. Set Desktop behavior, Tablet behavior and Mobile behavior separately. The Figma arrangement is Float / Sticky / Sticky. Float means scrolling with the document, not pinning to the bottom. Resizing automatically applies the new device's selection. Content and Additional fields retain their values; moving the existing overlay and shared behavior controls to Display does not change key-value delivery.
+
+**Floating overlay correction, 6 November 2026.** Float keeps an overlay bar fully transparent while scrolling away; logos retain their starting theme colour. The transparent-to-white background and logo fade apply only to Sticky. Never overlay remains solid. An open drawer still has a solid bar for contrast.
 
 **Related blocks.** [Header](../header/README.md) (consumes it), [Conversation Canvas](../conversation-canvas/README.md) (a header Canvas may share its section).
+
+**Working-copy correction, 6 November 2026.** The circular hamburger and accordion drawer now serve mobile and tablet below 1200px; the drawer starts below `--nav-height`. The site header owns logo layout and overlay contrast after extracting these elements: Always is transparent over a dark Hero at the top, with white logos changing to black as the bar becomes white while scrolling. Light Heroes use black logos. This uses the authored theme rather than image-pixel sampling. The current PNG logos retain their transparency but are not converted into vectors; transparent SVG originals are recommended. Escape closes the drawer and restores focus, and entering desktop closes it automatically. Earlier menu descriptions below refer to the previous level-by-level implementation.
 
 **When to use.** In the first section of every Navigation page.
 
@@ -107,8 +113,26 @@ C = TCS Logo Link
 D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
-G = Header over the first block
-H = Header behavior
+G = Menu
+H = Menu › Menu root path
+I = Menu › Menu depth
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+tcs-header-dialog-display-desktop.png
+
+Purpose:
+The Display tab of the TCS Header properties in Universal Editor, with the fields of the table "Display tab — TCS Header" in Authorable Fields below.
+
+Annotations:
+A = Header over the first block
+B = Shared header behavior
+C = Desktop behavior
+D = Tablet behavior
+E = Mobile behavior
 ```
 
 ```text
@@ -123,14 +147,6 @@ The Additional tab of the TCS Header properties in Universal Editor, with the fi
 Annotations:
 A = Anchor ID
 B = Hide block
-C = Padding left
-D = Padding right
-E = Padding top
-F = Padding bottom
-G = Margin left
-H = Margin right
-I = Margin top
-J = Margin bottom
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -237,23 +253,26 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
+| Menu | `menu` | container | No | — | — | — | — |
+| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | Select the parent folder of the navigation pages (e.g., /curated-design-pages) | — |
+| Menu › Menu depth | `menuDepth` | number | No | `3` | — | — | — |
+
+#### Display tab — TCS Header
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero. | — |
-| Header behavior | `headerPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | Independent of Header over the first block. Sticky stays at the top while scrolling; Float scrolls away with the page. Transparency follows Auto, Always or Never. | — |
+| Shared header behavior | `headerPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | Used by devices set to Use shared behavior. Independent of Header over the first block. | — |
+| Desktop behavior | `headerDesktopPosition` | select | No | `float` | Float (scrolls with the page) (`float`), Sticky (stays at the top) (`sticky`), Use shared behavior (`shared`) | From 1200px. Float scrolls away with the page; Sticky stays at the top. | — |
+| Tablet behavior | `headerTabletPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`), Use shared behavior (`shared`) | From 600px to 1199px. Sticky stays at the top; Float scrolls away with the page. | — |
+| Mobile behavior | `headerMobilePosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`), Use shared behavior (`shared`) | Below 600px. Sticky stays at the top; Float scrolls away with the page. | — |
 
 #### Additional tab — TCS Header
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
-| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off. Delivered as a block class. | — |
-| Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
-| Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
-| Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
-| Padding bottom | `classes_paddingbottom` | select | No | "" | Default (""), 0 (none) (`pb-0`), 0.25rem (space-100) (`pb-100`), 0.5rem (space-200) (`pb-200`), 0.75rem (space-300) (`pb-300`), 1rem (space-400) (`pb-400`), 1.25rem (space-500) (`pb-500`), 1.5rem (space-600) (`pb-600`), 2rem (space-800) (`pb-800`), 2.5rem (space-1000) (`pb-1000`), 3rem (space-1200) (`pb-1200`), 4rem (space-1600) (`pb-1600`), 5rem (space-2000) (`pb-2000`), 6rem (space-2400) (`pb-2400`), 7.5rem (space-3000) (`pb-3000`) | Delivered as a block class. | — |
-| Margin left | `classes_marginleft` | select | No | "" | Default (""), 0 (none) (`ml-0`), 0.25rem (space-100) (`ml-100`), 0.5rem (space-200) (`ml-200`), 0.75rem (space-300) (`ml-300`), 1rem (space-400) (`ml-400`), 1.25rem (space-500) (`ml-500`), 1.5rem (space-600) (`ml-600`), 2rem (space-800) (`ml-800`), 2.5rem (space-1000) (`ml-1000`), 3rem (space-1200) (`ml-1200`), 4rem (space-1600) (`ml-1600`), 5rem (space-2000) (`ml-2000`), 6rem (space-2400) (`ml-2400`), 7.5rem (space-3000) (`ml-3000`) | Delivered as a block class. | — |
-| Margin right | `classes_marginright` | select | No | "" | Default (""), 0 (none) (`mr-0`), 0.25rem (space-100) (`mr-100`), 0.5rem (space-200) (`mr-200`), 0.75rem (space-300) (`mr-300`), 1rem (space-400) (`mr-400`), 1.25rem (space-500) (`mr-500`), 1.5rem (space-600) (`mr-600`), 2rem (space-800) (`mr-800`), 2.5rem (space-1000) (`mr-1000`), 3rem (space-1200) (`mr-1200`), 4rem (space-1600) (`mr-1600`), 5rem (space-2000) (`mr-2000`), 6rem (space-2400) (`mr-2400`), 7.5rem (space-3000) (`mr-3000`) | Delivered as a block class. | — |
-| Margin top | `classes_margintop` | select | No | "" | Default (""), 0 (none) (`mt-0`), 0.25rem (space-100) (`mt-100`), 0.5rem (space-200) (`mt-200`), 0.75rem (space-300) (`mt-300`), 1rem (space-400) (`mt-400`), 1.25rem (space-500) (`mt-500`), 1.5rem (space-600) (`mt-600`), 2rem (space-800) (`mt-800`), 2.5rem (space-1000) (`mt-1000`), 3rem (space-1200) (`mt-1200`), 4rem (space-1600) (`mt-1600`), 5rem (space-2000) (`mt-2000`), 6rem (space-2400) (`mt-2400`), 7.5rem (space-3000) (`mt-3000`) | Delivered as a block class. | — |
-| Margin bottom | `classes_marginbottom` | select | No | "" | Default (""), 0 (none) (`mb-0`), 0.25rem (space-100) (`mb-100`), 0.5rem (space-200) (`mb-200`), 0.75rem (space-300) (`mb-300`), 1rem (space-400) (`mb-400`), 1.25rem (space-500) (`mb-500`), 1.5rem (space-600) (`mb-600`), 2rem (space-800) (`mb-800`), 2.5rem (space-1000) (`mb-1000`), 3rem (space-1200) (`mb-1200`), 4rem (space-1600) (`mb-1600`), 5rem (space-2000) (`mb-2000`), 6rem (space-2400) (`mb-2400`), 7.5rem (space-3000) (`mb-3000`) | Delivered as a block class. | — |
+| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor- Delivered as a block class. | — |
+| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Delivered as a block class. | — |
 
 <!-- END GENERATED: fields -->
 
@@ -524,10 +543,13 @@ blocks/tcs-header/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (logo bar height per breakpoint, `header-height-v2-*`), `setHeaderOverlay` (Auto / Always / Never, `header-overlay-v1`), `setHeaderPosition` (Sticky / Float, `header-position-v | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (logo bar height per breakpoint, `header-height-v2-*`), `setHeaderOverlay` (Auto / Always / Never, `header-overlay-v1`), `setHeaderPosition(mode, views)` (shared Sticky / Float | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `tcs-header.js`: { getLocale } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `tcs-header.js`: { getPages } |
 
 <!-- END GENERATED: files -->
 

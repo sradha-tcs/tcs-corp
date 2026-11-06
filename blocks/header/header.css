@@ -6,11 +6,61 @@
 
 /* header and nav layout */
 header .nav-wrapper {
+  --header-fade-progress: var(--header-scroll-progress, 0);
+
   background-color: var(--background-color);
   width: 100%;
   z-index: 20;
   position: fixed;
   inset: 0 0 auto;
+}
+
+:where(html[data-header-position='float']) header .nav-wrapper {
+  --header-fade-progress: 0;
+
+  position: absolute;
+}
+
+@media (width < 600px) {
+  :where(html[data-header-position-mobile='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-mobile='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
+}
+
+@media (600px <= width < 1200px) {
+  :where(html[data-header-position-tablet='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-tablet='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
+}
+
+@media (width >= 1200px) {
+  :where(html[data-header-position-desktop='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-desktop='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
 }
 
 header nav {
@@ -26,17 +76,7 @@ header nav {
   font-family: var(--body-font-family);
 }
 
-@media (width >= 600px) {
-  header nav {
-    padding-inline: var(--space-600);
-  }
-}
-
 @media (width >= 1200px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
   header nav {
     padding-inline: var(--space-2000);
   }
@@ -62,7 +102,7 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
+  gap: var(--space-400);
 }
 
 header nav :is(.nav-brand, .nav-tools) :is(a, picture) {
@@ -74,6 +114,7 @@ header nav :is(.nav-brand, .nav-tools) img {
   display: block;
   width: auto;
   height: 1.2104rem;
+  filter: brightness(0) invert(var(--header-logo-invert, 0));
 }
 
 header nav .nav-tools img {
@@ -105,10 +146,11 @@ header nav .nav-tools img {
    Mobile Header Specifics (< 600px)
    ========================================================================== */
 
-@media (width < 600px) {
+@media (width < 1200px) {
   header nav {
+    --header-brand-width: 7.0512rem;
+
     height: var(--nav-height);
-    padding-inline: 16px;
     position: relative;
   }
 
@@ -118,8 +160,8 @@ header nav .nav-tools img {
   }
 
   header nav .nav-brand img {
-    width: 112.82px;
-    height: 26.89px;
+    width: var(--header-brand-width);
+    height: 1.6806rem;
     object-fit: contain;
   }
 
@@ -132,12 +174,12 @@ header nav .nav-tools img {
   /* Pin TATA logo immediately next to TCS brand logo on mobile */
   header nav .nav-tools p {
     position: absolute;
-    left: calc(16px + 112.82px + 16px);
+    left: calc(var(--space-400) + var(--header-brand-width) + var(--space-400));
   }
 
   header nav .nav-tools p img {
-    width: 29.55px;
-    height: 26px;
+    width: 1.8469rem;
+    height: 1.625rem;
     object-fit: contain;
   }
 }
@@ -212,7 +254,19 @@ header .nav-canvas .conversation-canvas::before {
   }
 }
 
-/* Transparent Header Over Light Hero */
-body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40)) header .nav-wrapper {
-  background-color: transparent;
+:where(html[data-header-overlay='always']) header .nav-wrapper,
+:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header .nav-wrapper {
+  --header-logo-invert: calc(1 - var(--header-fade-progress));
+
+  background-color: rgb(255 255 255 / var(--header-fade-progress));
+}
+
+:where(body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header .nav-wrapper {
+  --header-logo-invert: 0;
+}
+
+header .nav-wrapper:has(.tcs-header-menu-toggle[aria-expanded='true']) {
+  --header-logo-invert: 0;
+
+  background-color: var(--color-bg-default);
 }

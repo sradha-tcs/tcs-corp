@@ -229,7 +229,11 @@ export default async function decorate(block) {
   const inHeader = !block.isConnected || !!block.closest('header') || !!block.closest('.nav-wrapper');
   if (inHeader) {
     setHeaderOverlay(textOf(props.headeroverlay).toLowerCase());
-    setHeaderPosition(textOf(props.headerposition).toLowerCase());
+    setHeaderPosition(textOf(props.headerposition).toLowerCase(), {
+      desktop: textOf(props.headerdesktopposition).toLowerCase() || 'float',
+      tablet: textOf(props.headertabletposition).toLowerCase() || 'sticky',
+      mobile: textOf(props.headermobileposition).toLowerCase() || 'sticky',
+    });
   }
 
   const t = await getPlaceholders();
@@ -245,17 +249,15 @@ export default async function decorate(block) {
   const toggleBtn = document.createElement('button');
   toggleBtn.type = 'button';
   toggleBtn.className = 'tcs-header-menu-toggle';
-  toggleBtn.setAttribute('aria-label', 'Toggle Navigation Menu');
+  toggleBtn.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   toggleBtn.setAttribute('aria-expanded', 'false');
 
   // Build the complete drawer
   const drawer = await buildMobileDrawer(root, depth);
+  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
+  toggleBtn.setAttribute('aria-controls', drawer.id);
 
-  toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
-    const nextState = !isOpen;
-
+  const setMenuOpen = (nextState) => {
     toggleBtn.setAttribute('aria-expanded', String(nextState));
     drawer.hidden = !nextState;
     document.body.classList.toggle('nav-menu-open', nextState);
@@ -265,6 +267,22 @@ export default async function decorate(block) {
     targetDrawer.hidden = !nextState;
 
     document.dispatchEvent(new CustomEvent('header:menu', { detail: { open: nextState } }));
+  };
+
+  toggleBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setMenuOpen(toggleBtn.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggleBtn.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      toggleBtn.focus();
+    }
+  });
+
+  window.matchMedia('(min-width: 1200px)').addEventListener('change', (event) => {
+    if (event.matches) setMenuOpen(false);
   });
 
   bar.append(...[brandLogo, tataLogo, toggleBtn].filter(Boolean));

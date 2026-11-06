@@ -50,8 +50,8 @@
   }
 }
 
-/* Hide Hamburger toggle & Drawer on Tablet & Desktop */
-@media (width >= 600px) {
+/* Hide Hamburger toggle & Drawer on Desktop */
+@media (width >= 1200px) {
   .tcs-header-menu-toggle,
   .tcs-header-menu-drawer {
     display: none !important;
@@ -62,55 +62,21 @@
    Mobile Responsive Layout (< 600px)
    ========================================================================== */
 
-@media (width < 600px) {
-  header nav {
-    height: var(--nav-height);
-    padding: 0 16px;
-    position: relative;
-  }
-
-  /* Group both logos together on the left */
-  header nav .nav-brand {
-    order: 0;
-  }
-
-  header nav .nav-brand img {
-    width: 112.82px;
-    height: 26.89px;
-    object-fit: contain;
-  }
-
-  header nav .nav-tools {
-    order: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  header nav .nav-tools p {
-    position: absolute;
-    left: calc(16px + 112.82px + 16px);
-  }
-
-  header nav .nav-tools p img {
-    width: 29.55px;
-    height: 26px;
-    object-fit: contain;
-  }
-
+@media (width < 1200px) {
   /* 59px Circular Hamburger Button */
   .tcs-header-menu-toggle {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 59px;
-    height: 59px;
-    min-width: 59px;
-    min-height: 59px;
-    border-radius: 29.5px;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    min-width: 3.6875rem;
+    min-height: 3.6875rem;
+    border-radius: 50%;
     border: none;
-    background-color: #216AC3;
+    background-color: var(--color-bg-brand);
     cursor: pointer;
-    backdrop-filter: blur(13.7px);
+    backdrop-filter: blur(0.8563rem);
     padding: 0;
     z-index: 50;
   }
@@ -138,9 +104,9 @@
     display: flex !important;
     flex-direction: column;
     position: fixed;
-    inset: 5.625rem 0 0;
+    inset: var(--nav-height) 0 0;
     height: auto;
-    max-height: calc(100dvh - 5.625rem);
+    max-height: calc(100dvh - var(--nav-height));
     background-color: #FFF !important;
     z-index: 40;
     overflow-y: auto;

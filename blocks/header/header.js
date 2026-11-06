@@ -45,14 +45,20 @@ function applyLogoBar(nav) {
 }
 
 function setupScrollFallback(navWrapper) {
-  if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()')) return;
+  let height = 124;
   const onScroll = () => {
+    const progress = Math.min(1, Math.max(0, window.scrollY / height));
+    navWrapper.style.setProperty('--header-scroll-progress', String(progress));
     if (window.scrollY > 10) {
       navWrapper.classList.add('is-scrolled');
     } else {
       navWrapper.classList.remove('is-scrolled');
     }
   };
+  new ResizeObserver(([entry]) => {
+    height = entry.contentRect.height || height;
+    onScroll();
+  }).observe(navWrapper);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 }

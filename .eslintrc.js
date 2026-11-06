@@ -46,6 +46,7 @@ module.exports = {
       'field-richtext': 6,
       'form-variations': 7,
       'field-combined': 7,
+      'page-header-cta': 10,
     }],
   },
   overrides: [

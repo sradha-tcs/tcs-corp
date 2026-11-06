@@ -95,6 +95,11 @@
           ]
         },
         {
+          "component": "tab",
+          "name": "displayTab",
+          "label": "Display"
+        },
+        {
           "component": "select",
           "valueType": "string",
           "name": "headerOverlay",
@@ -111,12 +116,51 @@
           "component": "select",
           "valueType": "string",
           "name": "headerPosition",
-          "label": "Header behavior",
+          "label": "Shared header behavior",
           "value": "sticky",
-          "description": "Independent of Header over the first block. Sticky stays at the top while scrolling; Float scrolls away with the page.",
+          "description": "Used by devices set to Use shared behavior. Independent of Header over the first block.",
           "options": [
             { "name": "Sticky (stays at the top)", "value": "sticky" },
             { "name": "Float (scrolls with the page)", "value": "float" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "headerDesktopPosition",
+          "label": "Desktop behavior",
+          "value": "float",
+          "description": "From 1200px. Float scrolls away with the page; Sticky stays at the top.",
+          "options": [
+            { "name": "Float (scrolls with the page)", "value": "float" },
+            { "name": "Sticky (stays at the top)", "value": "sticky" },
+            { "name": "Use shared behavior", "value": "shared" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "headerTabletPosition",
+          "label": "Tablet behavior",
+          "value": "sticky",
+          "description": "From 600px to 1199px. Sticky stays at the top; Float scrolls away with the page.",
+          "options": [
+            { "name": "Sticky (stays at the top)", "value": "sticky" },
+            { "name": "Float (scrolls with the page)", "value": "float" },
+            { "name": "Use shared behavior", "value": "shared" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "headerMobilePosition",
+          "label": "Mobile behavior",
+          "value": "sticky",
+          "description": "Below 600px. Sticky stays at the top; Float scrolls away with the page.",
+          "options": [
+            { "name": "Sticky (stays at the top)", "value": "sticky" },
+            { "name": "Float (scrolls with the page)", "value": "float" },
+            { "name": "Use shared behavior", "value": "shared" }
           ]
         },
         {
