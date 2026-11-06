@@ -4,6 +4,46 @@
  */
 @import url('../../styles/card-list.css');
 
+/* Adjust only header-to-content spacing, not the feature-to-grid or navigation gaps. */
+.list.card-list > .list-header + :is(.list-feature, .list-scroller) {
+  margin-block-start: calc(var(--space-500) - var(--space-1000));
+}
+
+/* Only reduce the feature-to-cards gap; keep the shared header and navigation gaps. */
+@media (width >= 600px) {
+  .list.card-list > .list-header + :is(.list-feature, .list-scroller) {
+    margin-block-start: calc(var(--space-1000) - var(--space-2000));
+  }
+
+  .list.card-list.feature-first > .list-feature + .list-scroller {
+    margin-block-start: calc(var(--space-600) - var(--space-2000));
+  }
+}
+
+/* Panel card CTA: the mobile Figma scale is smaller than the global button size. */
+@media (width < 600px) {
+  .list.card-list .list-card-panel .list-card-action .button {
+    --button-font-size: 0.75rem;
+  }
+}
+
+/*
+ * The global H2 token steps up at 900px, before the List's tablet range ends at 1200px.
+ * Keep the List section heading on the 1024px Figma size through the tablet range; the
+ * global H2 rule uses this scoped token for font-size and letter-spacing.
+ */
+@media (width >= 600px) and (width < 1200px) {
+  .list.card-list h2.list-title {
+    --heading-font-size-xl: 2rem;
+
+    line-height: 1.4063;
+  }
+
+  .list.card-list .list-card-panel .list-card-action .button {
+    --button-font-size: 0.875rem;
+  }
+}
+
 /*
  * Image card lists: the header's Secondary call to action (e.g. View All) has no hover; under
  * the pointer it keeps its resting look (the global a.button.secondary:hover in
