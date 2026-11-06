@@ -722,6 +722,19 @@ button.button.tertiary:disabled {
   color: var(--color-icon-brand-secondary);
 }
 
+.button.blue {
+  background-color: #216ac3;
+  color: #fff;
+  border-color: #216ac3;
+}
+
+.button.blue:hover,
+.button.blue:focus-visible {
+  background-color: #1b5ea3;
+  border-color: #1b5ea3;
+  color: #fff;
+}
+
 :is(a, button).button.icon-button[aria-disabled="true"],
 button.button.icon-button:disabled {
   border-color: transparent;
