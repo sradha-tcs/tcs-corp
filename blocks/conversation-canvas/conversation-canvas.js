@@ -538,8 +538,8 @@ function buildSearchForm(config, id) {
 
       recognition.addEventListener('end', stopListening);
 
-      recognition.addEventListener('error', (err) => {
-        console.warn('Voice recognition error code:', err.error, err);
+      recognition.addEventListener('error', () => {
+        // console.warn('Voice recognition error code:', err.error, err);
         stopListening();
       });
 
@@ -547,7 +547,7 @@ function buildSearchForm(config, id) {
         recognition.start();
         audio.setAttribute('aria-pressed', 'true');
       } catch (err) {
-        console.warn('Voice recognition failed to start:', err);
+        // console.warn('Voice recognition failed to start:', err);
         stopListening();
       }
     });
@@ -882,7 +882,7 @@ function buildDock(config, id, block) {
   });
 
   skeletonWhile(nav, loaded, navSkeleton);
-  loaded.catch((e) => console.error('conversation canvas navigation', e));
+  loaded.catch(() => {});
 
   docks.set(block, {
     setSuggestions(suggestions) {
