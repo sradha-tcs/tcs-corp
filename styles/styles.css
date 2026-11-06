@@ -258,7 +258,7 @@
   --blur-100: 0.25rem;
 
   /* nav height */
-  --nav-height: 4rem;
+  --nav-height: 5.625rem;
 
   /*
    * the space the header keeps until it loads: the logo bar (the header Canvas lies on the hero,
@@ -330,6 +330,13 @@
 
     /* layout */
     --section-spacing: var(--spacing-l);
+  }
+}
+
+@media (width >= 600px) {
+  :root {
+    /* Figma tablet and desktop header height: 124px */
+    --nav-height: 7.75rem;
   }
 }
 
