@@ -11692,8 +11692,8 @@
             "value": "icon-blue"
           },
           {
-            "name": "Soft sky blue",
-            "value": "icon-sky-blue"
+            "name": "Pale blue",
+            "value": "icon-pale-blue"
           }
         ],
         "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."

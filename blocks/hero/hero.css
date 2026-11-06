@@ -225,9 +225,9 @@
   --hero-icon-color: var(--brand-500);
 }
 
-/* Soft sky blue, #A7C8F1 */
-.hero.icon-sky-blue {
-  --hero-icon-color: var(--brand-300);
+/* Pale blue, #CEDFF4 */
+.hero.icon-pale-blue {
+  --hero-icon-color: var(--brand-200);
 }
 
 /* Eyebrow color: royal blue #216AC3 (the default) or soft sky blue #A7C8F1 */
