@@ -11652,9 +11652,21 @@
           {
             "name": "Black",
             "value": "bg-black"
+          },
+          {
+            "name": "Charcoal Black 80 (cool charcoal)",
+            "value": "bg-charcoal-80"
+          },
+          {
+            "name": "Midnight Navy 60",
+            "value": "bg-navy-60"
+          },
+          {
+            "name": "Charcoal Black 40 (deep charcoal)",
+            "value": "bg-charcoal-40"
           }
         ],
-        "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy or black overlay."
+        "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay."
       },
       {
         "component": "select",
@@ -11678,9 +11690,35 @@
           {
             "name": "Blue",
             "value": "icon-blue"
+          },
+          {
+            "name": "Soft sky blue",
+            "value": "icon-sky-blue"
           }
         ],
         "description": "Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_eyebrowcolor",
+        "label": "Eyebrow color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default (royal blue)",
+            "value": ""
+          },
+          {
+            "name": "Royal blue",
+            "value": "eyebrow-royal-blue"
+          },
+          {
+            "name": "Soft sky blue",
+            "value": "eyebrow-sky-blue"
+          }
+        ],
+        "description": "Colour of the eyebrow above the title."
       },
       {
         "component": "tab",

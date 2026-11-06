@@ -29,8 +29,9 @@ let newTabHint = '';
  * align-top | align-middle | align-bottom (Vertical Alignment),
  * align-left | align-center | align-right (Horizontal Alignment, the content position),
  * text-left | text-center | text-right (Text Alignment, inside the content),
- * bg-light | bg-dark | bg-dark-subtle | bg-black (BG Color),
- * icon-black | icon-white | icon-blue (Icon color: recolours the SVG icon, see tintIcon).
+ * bg-light | bg-dark | bg-dark-subtle | bg-black | bg-charcoal-80 | bg-navy-60 | bg-charcoal-40
+ * (BG Color), icon-black | icon-white | icon-blue | icon-sky-blue (Icon color: recolours the SVG
+ * icon, see tintIcon), eyebrow-royal-blue | eyebrow-sky-blue (Eyebrow color, in hero.css).
  */
 
 // Motion Type, authored before the Additional tab's animations: its values as those animations
@@ -62,7 +63,7 @@ const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
 // Icon color values (the colours are in hero.css)
-const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue'];
+const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue', 'icon-sky-blue'];
 
 /**
  * Motion Type authored before: played as the Additional tab's animations (Fade in -> Fade in,
