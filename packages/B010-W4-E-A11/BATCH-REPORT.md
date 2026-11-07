@@ -2,11 +2,11 @@
 
 Wave 4 | EXISTING_SAME_PATH | A11 L3 - Story Curated / Generated | 69 workbook rows | URL patterns: careers/brazil/articles/*, careers/chile/Articles/*, careers/colombia/Articles/*, careers/ecuador/articles/*, careers/india/articles/*, careers/mexico/articles/*, careers/peru/articles/*, careers/uruguay/articles/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 56, 'VALIDATED': 13}
+Outcomes: {'VALIDATED': 69}
 
 | Check | Result |
 |---|---|
-| Every-page check | 69 pages, 56 problems (no publish date 41; skipped heading level (3) 13; skipped heading level (32) 1; skipped heading level (33) 1) |
+| Every-page check | 69 pages, 41 problems (no publish date 41) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 7/7 load, 7 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 0 console errors |
 
 | Issue | Count |
@@ -19,10 +19,11 @@ Outcomes: {'PARTIALLY_MIGRATED': 56, 'VALIDATED': 13}
 
 ## Remarks for the content team
 
-Design sections of the page's archetype the live page has no content for:
+What the target design has and the live page has no content for (design sections of the page's archetype, fields such as the publish date):
 
-| Missing sections | Pages |
+| Missing on the live page | Pages |
 |---|---|
+| no publish date on the live page (content team: add the publish date) | 41 |
 | list, testimonial, video | 35 |
 | list, teaser, testimonial, video | 28 |
 | teaser, testimonial, video | 6 |
