@@ -1,10 +1,10 @@
-# Migration model (round 2, version 1.1.0)
+# Migration model (round 2, version 1.2.0)
 
 | | |
 |---|---|
 | Date | 7 November 2026 |
 | Scope | All 8,447 workbook rows: 8,446 migrated in 60 batches, 1 skipped with reason (the empty row 8448) |
-| Supersedes | The batch packages 1.0.0 (pilot and B001–B009): every batch is rebuilt as 1.1.0 |
+| Supersedes | The batch packages 1.0.0 (pilot and B001–B009) and 1.1.0 (B001–B022 delivered before): every batch is rebuilt as 1.2.0 (section 7); install 1.2.0 only |
 | Decisions | EMA-D01 … EMA-D10 (`knowledge-base/decisions.json`, `discovery/14-decision-log.csv`) |
 
 ## 1. Decisions of this round
@@ -42,10 +42,12 @@ Every page is crawled again in a browser, scrolled to the end so lazy content lo
 
 | Asset | DAM folder | Package |
 |---|---|---|
-| Images (inline, cards, heroes, page images) | `/content/dam/tcs-corp/images/<L1>/<L2>/` | the batch's page package |
-| Videos (Scene7 MP4) | `/content/dam/tcs-corp/videos/<L1>/<L2>/` | the batch's media package(s), at most 90 MB each |
-| Audio (podcasts) | `/content/dam/tcs-corp/audio/<L1>/<L2>/` | media package |
-| Documents (PDF, Office) | `/content/dam/tcs-corp/documents/<L1>/<L2>/` | media package |
+| Images (inline, cards, heroes, page images) | `/content/dam/tcs-corp/images/<L1>/<L2>/` | the batch's asset package(s) |
+| Videos (Scene7 MP4) | `/content/dam/tcs-corp/videos/<L1>/<L2>/` | asset package(s) |
+| Audio (podcasts) | `/content/dam/tcs-corp/audio/<L1>/<L2>/` | asset package(s) |
+| Documents (PDF, Office) | `/content/dam/tcs-corp/documents/<L1>/<L2>/` | asset package(s) |
+
+Asset packages are at most 85 MB each (GitHub accepts files up to 100 MB); a video is at most 85 MB (the best Scene7 quality below it).
 
 `<L1>/<L2>` are the page's first two workbook levels (e.g. `who-we-are/newsroom`, `what-we-do/industries`). An asset already migrated (same content hash) is reused, not copied again. Each asset has its own package filter. Videos, audio and documents are served only once published in AEM (images travel with the pages).
 
@@ -55,4 +57,22 @@ The pages are tagged with the language master's existing taxonomy (`tcs-corp:` r
 
 ## 6. Packages and installation
 
-Per batch: `tcs-corp-ema-<batch>-1.1.0.zip` (pages and images) and `tcs-corp-ema-<batch>-media-NN-1.1.0.zip` (videos, audio, documents). Install the page package, then its media packages. Each page's filter covers the page node and its content only, so installing never removes child pages. The final consolidated folder holds every package in installation order with the consolidated sheets.
+Per batch: `tcs-corp-ema-<batch>-assets-NN-1.2.0.zip` (images, videos, audio, documents) and `tcs-corp-ema-<batch>-1.2.0.zip` (the pages). Install the asset packages first, then the page package. Each page's filter covers the page node and its content only, so installing never removes child pages; each asset has its own filter. The consolidated folder holds every package in installation order (`packages/INSTALL-ORDER.md`) with the consolidated sheets.
+
+## 7. Version 1.2.0: no live content left behind
+
+| Source | 1.1.0 | 1.2.0 |
+|---|---|---|
+| Press releases | No Media Contacts block (2,300 pages partially migrated) | A **Media Contacts** block at the end of every press release (title "TCS media contacts"; the contacts come from the Media Contacts sheet) |
+| Page-specific menus, in-page links, sub navigation, link banners, "follow us" / social links | Left out | A menu: its links as a list (headings kept). A component with its own text (e.g. "Segments we serve" with its panels): all its text, headings and links. The global header and footer stay out (prompt section 33) |
+| Image-only link cards (recognitions, logos, social posts) | Empty links in the text (accessibility problem) | **Cards** with the image and the link, titled with the linked page's title (from the crawl), else the image's alt, else "View on <site>" |
+| Slider controls (previous / next arrows, "01 / 04" counters, "close") | Kept as empty links and text | Dropped (controls, not content) |
+| Anonymous poll | Left out | Its question and options as text (no live results: there is no form back end) |
+| Author bio container | Authors sheet row only | Authors sheet row and the bio on the page |
+| Quarterly reports landing / overview (investors) | Logged | The quarters as tabs (text and tables), else as text |
+| Article tags with related insights | Tags only | Tags, and the related insights as a **List** ("Related insights") |
+| A component with images only | Left out | Its images as Image components |
+
+**Remarks (content team).** The curated design page of each archetype has sections the live page may not have (e.g. a testimonial or teaser that the design shows but tcs.com has no content for). These are not invented: `batch-results.csv` has a **Remarks** column per row, `design sections without source content (content team): <blocks> (archetype <Axx>)`, and `BATCH-REPORT.md` a "Remarks for the content team" table. Layout helpers (column breaks, tabs, the page header / hero, buttons, anchor lists, the canvas and the Filter List added by code) aren't listed.
+
+**Throughput.** The pipeline runs four build loops in parallel (each takes every fourth batch) beside the crawl loop; the image and video downloads are prefetched in parallel threads; the first build pass is light (no image dimensions) so each step stays short and resumes after a restart.
