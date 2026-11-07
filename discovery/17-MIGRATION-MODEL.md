@@ -67,6 +67,25 @@ Per batch: `tcs-corp-ema-<batch>-assets-NN-1.2.0.zip` (images, videos, audio, do
 | Page-specific menus, in-page links, sub navigation, link banners, "follow us" / social links | Left out | A menu: its links as a list (headings kept). A component with its own text (e.g. "Segments we serve" with its panels): all its text, headings and links. The global header and footer stay out (prompt section 33) |
 | Image-only link cards (recognitions, logos, social posts) | Empty links in the text (accessibility problem) | **Cards** with the image and the link, titled with the linked page's title (from the crawl), else the image's alt, else "View on <site>" |
 | Slider controls (previous / next arrows, "01 / 04" counters, "close") | Kept as empty links and text | Dropped (controls, not content) |
+| Reading time ("10 MINS READ") of articles | Left in the text | Metadata `reading-time` (the Page Header shows it) |
+| Share links and the author lines of an article's hero | Left in the text | Dropped (the Page Header has share; the author comes from `author-id` and the Authors sheet) |
+| Article quote | Text | **Quote** block (quote, person, role) |
+| Illustration cards (features) | Text | **Cards**, one per feature heading |
+| Image gallery ("binge" gallery without cards or videos) | Its heading only (images left out) | Its heading and every image (**Image** components, in order); slides that load their image only when shown are stepped through in a browser (`gallery-images.mjs`) |
+| Interrupted image downloads (empty files) | Build error | Downloaded again |
+| GIF images (study figures, charts) | Not downloaded | Migrated as GIFs to the DAM `images/<section>/` |
+| Live page without a publish date | Partially migrated ("no publish date") | Migrated; Remarks: "no publish date on the live page (content team: add the publish date)" |
+
+| Expert quote (name, role, quote) | Text | **Quote** block (the quote; the person and role as its author) |
+| "What's next" story card | Text | **List** with the card (title, image, link) |
+| Icon text, page version info (legal pages) | Text, flagged for review | Text (the icons are decorative) |
+| Newsletter sign-up (perspective sign-up) | Text, flagged for review | As the other forms: its text and a button to the tcs.com form |
+| Social share bar | Text | Dropped (the Page Header's share action) |
+| Table wider than 9 columns with at most 9 rows (e.g. dividend per share, a column per year) | Kept in the text (needs authoring) | **Table** block, transposed (a row per column of the source) |
+| SVG images behind extensionless image URLs | Build error | Migrated as SVG assets |
+| Workbook rows whose live page doesn't exist (tcs.com answers 404 "Page Not Found") | FAILED, "not crawled" | FAILED, with the note "source page not found: tcs.com answers 404 … (content team: confirm the page is retired, or supply its content)" |
+
+Images the live site itself no longer serves (404 on tcs.com) can't be migrated; they're listed per batch as "image not downloaded" (issues CSV). Each asset package is built in a fresh working folder and refused above 95 MB, so no package can reach GitHub's 100 MB limit.
 | Anonymous poll | Left out | Its question and options as text (no live results: there is no form back end) |
 | Author bio container | Authors sheet row only | Authors sheet row and the bio on the page |
 | Quarterly reports landing / overview (investors) | Logged | The quarters as tabs (text and tables), else as text |
@@ -75,4 +94,18 @@ Per batch: `tcs-corp-ema-<batch>-assets-NN-1.2.0.zip` (images, videos, audio, do
 
 **Remarks (content team).** The curated design page of each archetype has sections the live page may not have (e.g. a testimonial or teaser that the design shows but tcs.com has no content for). These are not invented: `batch-results.csv` has a **Remarks** column per row, `design sections without source content (content team): <blocks> (archetype <Axx>)`, and `BATCH-REPORT.md` a "Remarks for the content team" table. Layout helpers (column breaks, tabs, the page header / hero, buttons, anchor lists, the canvas and the Filter List added by code) aren't listed.
 
-**Throughput.** The pipeline runs four build loops in parallel (each takes every fourth batch) beside the crawl loop; the image and video downloads are prefetched in parallel threads; the first build pass is light (no image dimensions) so each step stays short and resumes after a restart.
+**Throughput.** The pipeline runs four build loops in parallel (each takes the next batch no other loop is building, one lock per batch) beside the crawl loop; packages are pushed two at a time (at most 180 MB per push); the image and video downloads are prefetched in parallel threads; the first build pass is light (no image dimensions) so each step stays short and resumes after a restart.
+
+## 8. Results (version 1.2.0, 7 November 2026)
+
+| | Rows |
+|---|---|
+| Workbook rows | 8,447 |
+| VALIDATED (migrated, every-page check without problems) | 8,432 |
+| FAILED: the live page doesn't exist (tcs.com answers 404 "Page Not Found") | 14 |
+| SKIPPED_WITH_REASON: the empty row 8448 (EMA-D09) | 1 |
+| PARTIALLY_MIGRATED | 0 |
+
+Remarks for the content team (`consolidated/reports/CONTENT-TEAM-REMARKS.csv`, per row; nothing is invented): the design sections of the page's archetype the live page has no content for (testimonial 7,758 rows, teaser 7,254, video 7,094, list 3,504, table list 1,412, cards 352, quote 12) and the live pages without a publish date (1,469).
+
+Consolidated folder (`consolidated/`): 398 packages in installation order (`packages/INSTALL-ORDER.md`, 22 GB, each at most 95 MB); sheets: metadata (9,440 rows: the language master's published sheet with the migrated pages' rows), redirects (1,300; 652 added for the pages moved to their workbook path, EMA-D01), authors (1,437; 1,416 added), placeholders (as published: the migration adds no UI text), media contacts (as published), locations, partners and social links (published empty: the workbook pages carry no rows for them), source tags without a taxonomy match (758, for review; no tag is created); reports: `FINAL-RECONCILIATION.csv` (every workbook row with its final status, details and remarks), `CONTENT-TEAM-REMARKS.csv`, `FINAL-MIGRATION-SUMMARY.md`.
