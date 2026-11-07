@@ -2,11 +2,11 @@
 
 Wave F | EXISTING_OTHER_PATH (review) | A11 L3 - Story Curated / Generated | 250 workbook rows | URL patterns: who-we-are/newsroom/tcs-in-the-news/*
 
-Outcomes: {'VALIDATED': 249, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 250}
 
 | Check | Result |
 |---|---|
-| Every-page check | 250 pages, 1 problems (a table left in the text (not delivered as a table) 1) |
+| Every-page check | 250 pages, 0 problems (none) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 25/25 load, 25 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 0 console errors |
 
 | Issue | Count |
@@ -15,7 +15,6 @@ Outcomes: {'VALIDATED': 249, 'PARTIALLY_MIGRATED': 1}
 | links kept to tcs.com (outside the workbook / under review) | 58 |
 | third-party embed (check its provider allows it) | 9 |
 | image not downloaded | 4 |
-| table of 0 columns kept in the text (needs authoring) | 1 |
 
 ## Remarks for the content team
 
