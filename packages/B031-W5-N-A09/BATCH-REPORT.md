@@ -2,11 +2,11 @@
 
 Wave 5 | NEW | A09 L2 - Products | 78 workbook rows | URL patterns: what-we-do/products-platforms/tcs-hobs/*, what-we-do/products-platforms/tcs-intelligent-urban-exchange/*, what-we-do/products-platforms/tcs-ion/*, what-we-do/products-platforms/tcs-mastercraft/*, what-we-do/products-platforms/tcs-omnistore/*, what-we-do/products-platforms/tcs-optumera/*, what-we-do/products-platforms/tcs-tap/*
 
-Outcomes: {'VALIDATED': 77, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 78}
 
 | Check | Result |
 |---|---|
-| Every-page check | 78 pages, 1 problems (a link without text 1) |
+| Every-page check | 78 pages, 0 problems (none) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 8/8 load, 8 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 8 console errors |
 
 | Issue | Count |
