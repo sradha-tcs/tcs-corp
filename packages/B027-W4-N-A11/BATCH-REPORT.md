@@ -2,7 +2,7 @@
 
 Wave 4 | NEW | A11 L3 - Story Curated / Generated | 63 workbook rows | URL patterns: who-we-are/events/*, who-we-are/events/tcs-summit-japan/*, who-we-are/newsroom/tcs-in-the-news/*, who-we-are/tcs-way/article/*, who-we-are/worldwide/white-paper/*
 
-Outcomes: {'VALIDATED': 59, 'PARTIALLY_MIGRATED': 1, 'FAILED': 3}
+Outcomes: {'VALIDATED': 60, 'FAILED': 3}
 
 | Check | Result |
 |---|---|
@@ -15,7 +15,6 @@ Outcomes: {'VALIDATED': 59, 'PARTIALLY_MIGRATED': 1, 'FAILED': 3}
 | no date found | 31 |
 | no meta description in the source (generated, review) | 2 |
 | image not downloaded | 1 |
-| component "socialShare" migrated as text (review) | 1 |
 
 ## Remarks for the content team
 
