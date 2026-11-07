@@ -14,9 +14,9 @@ Outcomes: {'VALIDATED': 1}
 
 ## Remarks for the content team
 
-Design sections of the page's archetype the live page has no content for:
+What the target design has and the live page has no content for (design sections of the page's archetype, fields such as the publish date):
 
-| Missing sections | Pages |
+| Missing on the live page | Pages |
 |---|---|
 | list, teaser | 1 |
 
