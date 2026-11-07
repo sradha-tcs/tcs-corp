@@ -2,7 +2,7 @@
 
 Wave 3 | NEW | A09 L2 - Products | 35 workbook rows | URL patterns: what-we-do/*, what-we-do/products-platforms/*, what-we-do/products-platforms/quartz/*, what-we-do/products-platforms/tcs-bancs/*, what-we-do/products-platforms/tcs-chroma/*, what-we-do/products-platforms/tcs-mastercraft/*, what-we-do/products-platforms/tcs-omnistore/*, what-we-do/products-platforms/tcs-tap/*
 
-Outcomes: {'VALIDATED': 32, 'PARTIALLY_MIGRATED': 3}
+Outcomes: {'VALIDATED': 34, 'PARTIALLY_MIGRATED': 1}
 
 | Check | Result |
 |---|---|
@@ -11,13 +11,9 @@ Outcomes: {'VALIDATED': 32, 'PARTIALLY_MIGRATED': 3}
 
 | Issue | Count |
 |---|---|
-| links kept to tcs.com (outside the workbook / under review) | 82 |
+| links kept to tcs.com (outside the workbook / under review) | 77 |
 | no meta description in the source (generated, review) | 10 |
-| relatedContent: 1 linked page(s) not migrated yet, left out of the List | 3 |
-| staticRelatedContent: 1 linked page(s) not migrated yet, left out of the List | 1 |
-| component "horizontalAccordion" migrated as text (review) | 1 |
-| component "image" migrated as text (review) | 1 |
+| image not downloaded | 2 |
 | component "illustrationCards" migrated as text (review) | 1 |
-| image not downloaded | 1 |
 
 Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
