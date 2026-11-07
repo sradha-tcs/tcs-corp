@@ -13,4 +13,13 @@ Outcomes: {'VALIDATED': 4}
 |---|---|
 | links kept to tcs.com (outside the workbook / under review) | 17 |
 
-Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
+## Remarks for the content team
+
+Design sections of the page's archetype the live page has no content for:
+
+| Missing sections | Pages |
+|---|---|
+| table-list, teaser | 3 |
+| table-list | 1 |
+
+Per row: `batch-results.csv` (Remarks: design sections without source content); metadata rows, redirects, authors and issues: the CSVs of this folder.

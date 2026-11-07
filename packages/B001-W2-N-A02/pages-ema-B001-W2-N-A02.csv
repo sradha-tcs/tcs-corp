@@ -1,5 +1,5 @@
-row,source,destination,archetype,result,notes
-"3611","https://www.tcs.com/what-we-do/infrastructure-to-intelligence","/content/tcs-corp/language-master/en/what-we-do/infrastructure-to-intelligence","A02","migrated",""
-"3612","https://www.tcs.com/what-we-do/pace-innovation","/content/tcs-corp/language-master/en/what-we-do/pace-innovation","A02","migrated",""
-"3673","https://www.tcs.com/what-we-do/perpetually-adaptive-enterprise","/content/tcs-corp/language-master/en/what-we-do/perpetually-adaptive-enterprise","A02","migrated",""
-"4951","https://www.tcs.com/what-we-do/tcs-research-and-innovation","/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation","A02","migrated",""
+row,source,destination,archetype,result,notes,remarks
+"3611","https://www.tcs.com/what-we-do/infrastructure-to-intelligence","/content/tcs-corp/language-master/en/what-we-do/infrastructure-to-intelligence","A02","migrated","","design sections without source content (content team): table-list, teaser (archetype A02)"
+"3612","https://www.tcs.com/what-we-do/pace-innovation","/content/tcs-corp/language-master/en/what-we-do/pace-innovation","A02","migrated","","design sections without source content (content team): table-list (archetype A02)"
+"3673","https://www.tcs.com/what-we-do/perpetually-adaptive-enterprise","/content/tcs-corp/language-master/en/what-we-do/perpetually-adaptive-enterprise","A02","migrated","","design sections without source content (content team): table-list, teaser (archetype A02)"
+"4951","https://www.tcs.com/what-we-do/tcs-research-and-innovation","/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation","A02","migrated","","design sections without source content (content team): table-list, teaser (archetype A02)"
