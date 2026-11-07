@@ -2,7 +2,7 @@
 
 Wave 5 | NEW | A12 L3 - Case Study / Custom Story | 138 workbook rows | URL patterns: what-we-do/products-platforms/tcs-chroma/*, what-we-do/products-platforms/tcs-erp-on-cloud-sap-landscape-migration-modernization/*, what-we-do/products-platforms/tcs-hobs/*, what-we-do/products-platforms/tcs-mastercraft/*, what-we-do/products-platforms/tcs-tap/*, what-we-do/services/cloud/*, what-we-do/services/cognitive-business-operations/*, what-we-do/services/consulting/* …
 
-Outcomes: {'VALIDATED': 137, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 138}
 
 | Check | Result |
 |---|---|
@@ -14,7 +14,6 @@ Outcomes: {'VALIDATED': 137, 'PARTIALLY_MIGRATED': 1}
 | links kept to tcs.com (outside the workbook / under review) | 603 |
 | no meta description in the source (generated, review) | 12 |
 | image not downloaded | 8 |
-| component "whatsNextCard" migrated as text (review) | 1 |
 | no date found | 1 |
 
 ## Remarks for the content team
