@@ -34,5 +34,59 @@
   "reason": "Spaces are not allowed in branch names; user decision",
   "affects": "delivery",
   "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D05",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "Row 2 (www.tcs.com) is the language master Home page /content/tcs-corp/language-master/en",
+  "reason": "User decision",
+  "affects": "row 2",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D06",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "Every held row is migrated with a defined composition: authors A10, careers landings A03, careers articles / contact / corporate pages A11",
+  "reason": "User decision",
+  "affects": "1199 rows",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D07",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "Page names with '&' get '-and-'; the source URL redirects to the new path",
+  "reason": "User decision",
+  "affects": "rows 6872, 8039",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D08",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "Hero background video: the Hero shows the poster; the video file goes to the DAM and a Video block after the Hero plays it",
+  "reason": "User decision",
+  "affects": "pages with a hero video",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D09",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "The empty last row is SKIPPED_WITH_REASON",
+  "reason": "User decision",
+  "affects": "row 8448",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D10",
+  "date": "2026-11-07",
+  "evidence": "user instruction of 7 November 2026",
+  "decision": "Every batch is rebuilt (1.1.0) with component model v2 (thumbnails, videos, audio, page images, dates, tags), the delivered batches included",
+  "reason": "User decision",
+  "affects": "all batches",
+  "status": "Approved by the user"
  }
 ]
