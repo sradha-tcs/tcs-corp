@@ -2,7 +2,7 @@
 
 Wave 4 | EXISTING_SAME_PATH | A11 L3 - Story Curated / Generated | 250 workbook rows | URL patterns: who-we-are/newsroom/press-release/*
 
-Outcomes: {'VALIDATED': 249, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 250}
 
 | Check | Result |
 |---|---|
@@ -15,7 +15,6 @@ Outcomes: {'VALIDATED': 249, 'PARTIALLY_MIGRATED': 1}
 | no meta description in the source (generated, review) | 20 |
 | image not downloaded | 2 |
 | no date found | 2 |
-| component "bingeGallery" migrated as text (review) | 1 |
 
 ## Remarks for the content team
 
