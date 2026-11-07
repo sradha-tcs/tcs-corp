@@ -2,7 +2,7 @@
 
 Wave 4 | NEW | A11 L3 - Story Curated / Generated | 250 workbook rows | URL patterns: who-we-are/events/*
 
-Outcomes: {'VALIDATED': 248, 'PARTIALLY_MIGRATED': 2}
+Outcomes: {'VALIDATED': 250}
 
 | Check | Result |
 |---|---|
@@ -16,8 +16,6 @@ Outcomes: {'VALIDATED': 248, 'PARTIALLY_MIGRATED': 2}
 | image not downloaded | 9 |
 | no meta description in the source (generated, review) | 8 |
 | video file not downloaded (Scene7) | 1 |
-| component "expertQuote" migrated as text (review) | 1 |
-| component "iconText" migrated as text (review) | 1 |
 
 ## Remarks for the content team
 
