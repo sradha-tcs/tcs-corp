@@ -2,11 +2,11 @@
 
 Wave 2 | NEW | A03 L1 - Who We Are | 12 workbook rows | URL patterns: who-we-are, who-we-are/*
 
-Outcomes: {'VALIDATED': 11, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 12}
 
 | Check | Result |
 |---|---|
-| Every-page check | 12 pages, 8 problems (a link without text 8) |
+| Every-page check | 12 pages, 0 problems (none) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 0 console errors |
 
 | Issue | Count |
