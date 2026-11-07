@@ -2,12 +2,12 @@
 
 Wave 3 | NEW | A07 L2 - Industry | 14 workbook rows | URL patterns: what-we-do/industries/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 3, 'VALIDATED': 11}
+Outcomes: {'VALIDATED': 14}
 
 | Check | Result |
 |---|---|
-| Every-page check | 14 pages, 12 problems (a link without text 12) |
-| Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 1 empty links, 0 horizontal scroll, 2 console errors |
+| Every-page check | 14 pages, 0 problems (none) |
+| Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 2 console errors |
 
 | Issue | Count |
 |---|---|
