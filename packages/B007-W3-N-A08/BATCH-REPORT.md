@@ -2,7 +2,7 @@
 
 Wave 3 | NEW | A08 L2 - Services | 14 workbook rows | URL patterns: what-we-do/services/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 2, 'VALIDATED': 12}
+Outcomes: {'VALIDATED': 14}
 
 | Check | Result |
 |---|---|
@@ -11,13 +11,6 @@ Outcomes: {'PARTIALLY_MIGRATED': 2, 'VALIDATED': 12}
 
 | Issue | Count |
 |---|---|
-| links kept to tcs.com (outside the workbook / under review) | 88 |
-| staticRelatedContent: 2 linked page(s) not migrated yet, left out of the List | 2 |
-| staticRelatedContent: 1 linked page(s) not migrated yet, left out of the List | 2 |
-| component "horizontalAccordion" migrated as text (review) | 1 |
-| staticRelatedContent: 4 linked page(s) not migrated yet, left out of the List | 1 |
-| video streamed by the source player (blob URL) not migrated: needs the video file in the DAM | 1 |
-| staticRelatedContent: 7 linked page(s) not migrated yet, left out of the List | 1 |
-| staticRelatedContent: 6 linked page(s) not migrated yet, left out of the List | 1 |
+| links kept to tcs.com (outside the workbook / under review) | 100 |
 
 Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
