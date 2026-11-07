@@ -2,7 +2,7 @@
 
 Wave 3 | NEW | A09 L2 - Products | 35 workbook rows | URL patterns: what-we-do/*, what-we-do/products-platforms/*, what-we-do/products-platforms/quartz/*, what-we-do/products-platforms/tcs-bancs/*, what-we-do/products-platforms/tcs-chroma/*, what-we-do/products-platforms/tcs-mastercraft/*, what-we-do/products-platforms/tcs-omnistore/*, what-we-do/products-platforms/tcs-tap/*
 
-Outcomes: {'VALIDATED': 34, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 35}
 
 | Check | Result |
 |---|---|
@@ -14,13 +14,12 @@ Outcomes: {'VALIDATED': 34, 'PARTIALLY_MIGRATED': 1}
 | links kept to tcs.com (outside the workbook / under review) | 82 |
 | no meta description in the source (generated, review) | 10 |
 | image not downloaded | 2 |
-| component "illustrationCards" migrated as text (review) | 1 |
 
 ## Remarks for the content team
 
-Design sections of the page's archetype the live page has no content for:
+What the target design has and the live page has no content for (design sections of the page's archetype, fields such as the publish date):
 
-| Missing sections | Pages |
+| Missing on the live page | Pages |
 |---|---|
 | cards, list, table-list, testimonial | 11 |
 | cards, table-list, testimonial | 11 |
