@@ -12,4 +12,4 @@ Outcomes: {'FAILED': 1}
 | Issue | Count |
 |---|---|
 
-Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
+Per row: `batch-results.csv` (Remarks: design sections without source content); metadata rows, redirects, authors and issues: the CSVs of this folder.
