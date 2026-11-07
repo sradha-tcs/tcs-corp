@@ -2,7 +2,7 @@
 
 Wave 3 | NEW | A10 L2 - Collection | 42 workbook rows | URL patterns: contact-us/*, contact-us/industry-overlay/talk-to-an-expert-capital-markets/*, contact-us/industry-overlay/talk-to-an-expert-cpg/*, contact-us/industry-overlay/talk-to-an-expert-eru/*, contact-us/industry-overlay/talk-to-an-expert-life-sciences/*, contact-us/industry-overlay/talk-to-an-expert-public-services/*, contact-us/industry-overlay/talk-to-an-expert-retail/*, contact-us/industry-overlay/talk-to-an-expert-travel/* …
 
-Outcomes: {'VALIDATED': 38, 'PARTIALLY_MIGRATED': 4}
+Outcomes: {'VALIDATED': 42}
 
 | Check | Result |
 |---|---|
@@ -12,9 +12,7 @@ Outcomes: {'VALIDATED': 38, 'PARTIALLY_MIGRATED': 4}
 | Issue | Count |
 |---|---|
 | no meta description in the source (generated, review) | 37 |
-| links kept to tcs.com (outside the workbook / under review) | 17 |
-| video streamed by the source player (blob URL) not migrated: needs the video file in the DAM | 2 |
-| BLOCK_GAP authorListing: no migration-ready block (kept as text where it has text) | 2 |
-| relatedContent: 1 linked page(s) not migrated yet, left out of the List | 1 |
+| links kept to tcs.com (outside the workbook / under review) | 18 |
+| image not downloaded | 1 |
 
 Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
