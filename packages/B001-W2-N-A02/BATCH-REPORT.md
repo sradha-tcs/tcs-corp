@@ -2,7 +2,7 @@
 
 Wave 2 | NEW | A02 L1 - What We Do | 4 workbook rows | URL patterns: what-we-do/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 3, 'VALIDATED': 1}
+Outcomes: {'VALIDATED': 4}
 
 | Check | Result |
 |---|---|
@@ -11,10 +11,6 @@ Outcomes: {'PARTIALLY_MIGRATED': 3, 'VALIDATED': 1}
 
 | Issue | Count |
 |---|---|
-| links kept to tcs.com (outside the workbook / under review) | 48 |
-| component "horizontalAccordion" migrated as text (review) | 1 |
-| component "image" migrated as text (review) | 1 |
-| audio player not migrated (audio file of the source player; author an Embed or link) | 1 |
-| BLOCK_GAP timelineContainer: no migration-ready block (kept as text where it has text) | 1 |
+| links kept to tcs.com (outside the workbook / under review) | 17 |
 
 Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.

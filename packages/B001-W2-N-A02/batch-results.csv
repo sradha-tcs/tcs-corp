@@ -1,5 +1,5 @@
 "Row ID","Live URL","Destination","Archetype","Outcome","Gaps","Check problems","Notes"
-"3611","https://www.tcs.com/what-we-do/infrastructure-to-intelligence","/content/tcs-corp/language-master/en/what-we-do/infrastructure-to-intelligence","A02","PARTIALLY_MIGRATED","component ""horizontalAccordion"" migrated as text (review) (1)","",""
-"3612","https://www.tcs.com/what-we-do/pace-innovation","/content/tcs-corp/language-master/en/what-we-do/pace-innovation","A02","PARTIALLY_MIGRATED","component ""image"" migrated as text (review) (1); audio player not migrated (audio file of the source player; author an Embed or link) (1)","",""
+"3611","https://www.tcs.com/what-we-do/infrastructure-to-intelligence","/content/tcs-corp/language-master/en/what-we-do/infrastructure-to-intelligence","A02","VALIDATED","","",""
+"3612","https://www.tcs.com/what-we-do/pace-innovation","/content/tcs-corp/language-master/en/what-we-do/pace-innovation","A02","VALIDATED","","",""
 "3673","https://www.tcs.com/what-we-do/perpetually-adaptive-enterprise","/content/tcs-corp/language-master/en/what-we-do/perpetually-adaptive-enterprise","A02","VALIDATED","","",""
-"4951","https://www.tcs.com/what-we-do/tcs-research-and-innovation","/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation","A02","PARTIALLY_MIGRATED","BLOCK_GAP timelineContainer: no migration-ready block (kept as text where it has text) (1)","",""
+"4951","https://www.tcs.com/what-we-do/tcs-research-and-innovation","/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation","A02","VALIDATED","","",""
