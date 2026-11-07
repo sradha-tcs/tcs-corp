@@ -2,7 +2,7 @@
 
 Wave 2 | NEW | A03 L1 - Who We Are | 12 workbook rows | URL patterns: who-we-are, who-we-are/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 5, 'VALIDATED': 7}
+Outcomes: {'VALIDATED': 12}
 
 | Check | Result |
 |---|---|
@@ -11,11 +11,7 @@ Outcomes: {'PARTIALLY_MIGRATED': 5, 'VALIDATED': 7}
 
 | Issue | Count |
 |---|---|
-| links kept to tcs.com (outside the workbook / under review) | 103 |
-| video streamed by the source player (blob URL) not migrated: needs the video file in the DAM | 4 |
+| links kept to tcs.com (outside the workbook / under review) | 29 |
 | no meta description in the source (generated, review) | 2 |
-| BLOCK_GAP timelineContainer: no migration-ready block (kept as text where it has text) | 1 |
-| staticRelatedContent: 4 linked page(s) not migrated yet, left out of the List | 1 |
-| component "horizontalAccordion" migrated as text (review) | 1 |
 
 Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
