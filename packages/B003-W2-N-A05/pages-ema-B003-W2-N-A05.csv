@@ -1,2 +1,2 @@
-row,source,destination,archetype,result,notes
-"5009","https://www.tcs.com/who-we-are/events","/content/tcs-corp/language-master/en/who-we-are/events","A05","migrated",""
+row,source,destination,archetype,result,notes,remarks
+"5009","https://www.tcs.com/who-we-are/events","/content/tcs-corp/language-master/en/who-we-are/events","A05","migrated","","design sections without source content (content team): list, teaser (archetype A05)"

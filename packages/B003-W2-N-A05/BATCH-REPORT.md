@@ -12,4 +12,12 @@ Outcomes: {'VALIDATED': 1}
 | Issue | Count |
 |---|---|
 
-Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
+## Remarks for the content team
+
+Design sections of the page's archetype the live page has no content for:
+
+| Missing sections | Pages |
+|---|---|
+| list, teaser | 1 |
+
+Per row: `batch-results.csv` (Remarks: design sections without source content); metadata rows, redirects, authors and issues: the CSVs of this folder.
