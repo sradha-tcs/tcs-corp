@@ -2,11 +2,11 @@
 
 Wave F | EXISTING_OTHER_PATH (review) | A06 L1 - Investors | 15 workbook rows | URL patterns: investor-relations, investor-relations/*
 
-Outcomes: {'VALIDATED': 14, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 15}
 
 | Check | Result |
 |---|---|
-| Every-page check | 15 pages, 1 problems (a table left in the text (not delivered as a table) 1) |
+| Every-page check | 15 pages, 0 problems (none) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 0 empty links, 1 horizontal scroll, 0 console errors |
 
 | Issue | Count |
@@ -14,7 +14,6 @@ Outcomes: {'VALIDATED': 14, 'PARTIALLY_MIGRATED': 1}
 | links kept to tcs.com (outside the workbook / under review) | 19 |
 | no meta description in the source (generated, review) | 8 |
 | third-party embed (check its provider allows it) | 6 |
-| table of 22 columns kept in the text (needs authoring) | 1 |
 
 ## Remarks for the content team
 
