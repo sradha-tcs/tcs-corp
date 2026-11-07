@@ -6,7 +6,8 @@
   "variation": "page-header: article / landing layout; hero: align-middle align-center text-center bg-<colour> (as the archetype page)",
   "fields": "h1 -> page title (metadata); breadcrumb and share dropped (Page Header builds them); remaining text -> Text",
   "evidence": "page-header: W1-W7 builders; hero: curated pages A01-A09",
-  "status": "VALIDATED for page-header; PILOT for hero"
+  "status": "VALIDATED for page-header; VALIDATED (pilot) for hero",
+  "pilot_pages": 10
  },
  {
   "mapping": "CM-richText",
@@ -24,7 +25,8 @@
   "variation": "teaser: image left/right",
   "fields": "text -> Text; image -> Image (DAM); video -> Embed",
   "evidence": "W5-W7; curated A02",
-  "status": "VALIDATED (text + image); PILOT (teaser)"
+  "status": "VALIDATED (text + image); VALIDATED (pilot, teaser)",
+  "pilot_pages": 6
  },
  {
   "mapping": "CM-quoteCard",
@@ -186,7 +188,8 @@
   "variation": "panel cards",
   "fields": "feature title, text",
   "evidence": "design model (cards)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-statsCard",
@@ -294,7 +297,8 @@
   "variation": "cards, filters from taxonomy",
   "fields": "root path, tags",
   "evidence": "design model A04 / A05 / A10",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-quarterOverview",
@@ -330,7 +334,8 @@
   "variation": "dots",
   "fields": "each story -> Teaser",
   "evidence": "design model",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 2
  },
  {
   "mapping": "CM-relatedContent",
@@ -339,7 +344,8 @@
   "variation": "image cards, horizontal scroll",
   "fields": "tags of the page -> List tags",
   "evidence": "curated A07-A12 (list)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-staticRelatedContent",
@@ -348,7 +354,8 @@
   "variation": "image cards",
   "fields": "each linked page -> List Item",
   "evidence": "curated A07-A12 (list)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 3
  },
  {
   "mapping": "CM-latestCards",
@@ -357,7 +364,8 @@
   "variation": "image cards",
   "fields": "root / tags",
   "evidence": "design model A04 / A05",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-horizontalAccordion",
@@ -582,7 +590,8 @@
   "variation": "image cards",
   "fields": "story image, title, link",
   "evidence": "design model (cards)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-featuredArticles",
@@ -600,7 +609,8 @@
   "variation": "image cards",
   "fields": "linked pages -> List Items",
   "evidence": "design model A11 / A12 (list)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-topHighlightsSlider",
@@ -609,7 +619,8 @@
   "variation": "dots / arrows",
   "fields": "each highlight -> Teaser",
   "evidence": "design model",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-anchorLinks",
@@ -618,7 +629,8 @@
   "variation": "default / sticky",
   "fields": "link labels -> anchors of the sections",
   "evidence": "curated A11 / A12 (anchor-list)",
-  "status": "PILOT"
+  "status": "VALIDATED (pilot)",
+  "pilot_pages": 1
  },
  {
   "mapping": "CM-timelineContainer",

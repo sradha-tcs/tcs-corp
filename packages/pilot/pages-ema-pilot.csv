@@ -1,0 +1,12 @@
+row,source,destination,archetype,result,notes
+"4951","https://www.tcs.com/what-we-do/tcs-research-and-innovation","/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation","A02","migrated",""
+"4952","https://www.tcs.com/who-we-are","/content/tcs-corp/language-master/en/who-we-are","A03","migrated",""
+"5009","https://www.tcs.com/who-we-are/events","/content/tcs-corp/language-master/en/who-we-are/events","A05","migrated",""
+"2112","https://www.tcs.com/investor-relations/shareholder-satisfaction-survey","/content/tcs-corp/language-master/en/investor-relations/shareholder-satisfaction-survey","A06","failed","not crawled"
+"2120","https://www.tcs.com/what-we-do/industries/banking","/content/tcs-corp/language-master/en/what-we-do/industries/banking","A07","migrated",""
+"4182","https://www.tcs.com/what-we-do/services/ai-data-and-analytics","/content/tcs-corp/language-master/en/what-we-do/services/ai-data-and-analytics","A08","migrated",""
+"3974","https://www.tcs.com/what-we-do/products-platforms/tcs-hobs","/content/tcs-corp/language-master/en/what-we-do/products-platforms/tcs-hobs","A09","migrated",""
+"1922","https://www.tcs.com/insights/topics/blockchain-topic","/content/tcs-corp/language-master/en/insights/topics/blockchain-topic","A10","migrated","collection: Filter List of the child pages added (archetype A10)"
+"1855","https://www.tcs.com/insights/global-studies/intelligent-choice-architectures-reimagine-decision-making","/content/tcs-corp/language-master/en/insights/global-studies/intelligent-choice-architectures-reimagine-decision-making","A11","migrated",""
+"3969","https://www.tcs.com/what-we-do/products-platforms/tcs-erp-on-cloud-sap-landscape-migration-modernization/case-study/erp-cloud-platform-transform-indirect-procurement","/content/tcs-corp/language-master/en/what-we-do/products-platforms/tcs-erp-on-cloud-sap-landscape-migration-modernization/case-study/erp-cloud-platform-transform-indirect-procurement","A12","migrated",""
+"1879","https://www.tcs.com/insights/perspectives","/content/tcs-corp/language-master/en/insights/perspectives","A10","migrated","collection: Filter List of the child pages added (archetype A10)"
