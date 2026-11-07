@@ -1,0 +1,184 @@
+[
+ {
+  "row": 4951,
+  "live_url": "https://www.tcs.com/what-we-do/tcs-research-and-innovation",
+  "resolved_path": "/content/tcs-corp/language-master/en/what-we-do/tcs-research-and-innovation",
+  "archetype": "A02",
+  "disposition": "NEW",
+  "components": [
+   "cardContainer",
+   "followUs",
+   "heroBanner",
+   "iconTextV2",
+   "quoteCard",
+   "richText",
+   "solutionCard",
+   "statsCard",
+   "storyCardCarousel",
+   "textWithAsset",
+   "timelineContainer"
+  ],
+  "reason": "archetype A02: the richest crawled candidate"
+ },
+ {
+  "row": 4952,
+  "live_url": "https://www.tcs.com/who-we-are",
+  "resolved_path": "/content/tcs-corp/language-master/en/who-we-are",
+  "archetype": "A03",
+  "disposition": "NEW",
+  "components": [
+   "heroBanner",
+   "richText",
+   "solutionCard",
+   "statsCard",
+   "textOverImage",
+   "textWithAsset",
+   "timelineContainer"
+  ],
+  "reason": "archetype A03: the richest crawled candidate"
+ },
+ {
+  "row": 5009,
+  "live_url": "https://www.tcs.com/who-we-are/events",
+  "resolved_path": "/content/tcs-corp/language-master/en/who-we-are/events",
+  "archetype": "A05",
+  "disposition": "NEW",
+  "components": [
+   "dynamicFilter",
+   "heroBanner"
+  ],
+  "reason": "archetype A05: the richest crawled candidate"
+ },
+ {
+  "row": 2112,
+  "live_url": "https://www.tcs.com/investor-relations/shareholder-satisfaction-survey",
+  "resolved_path": "/content/tcs-corp/language-master/en/investor-relations/shareholder-satisfaction-survey",
+  "archetype": "A06",
+  "disposition": "NEW",
+  "components": [
+   "contactWelcomeScreen"
+  ],
+  "reason": "archetype A06: the richest crawled candidate"
+ },
+ {
+  "row": 2120,
+  "live_url": "https://www.tcs.com/what-we-do/industries/banking",
+  "resolved_path": "/content/tcs-corp/language-master/en/what-we-do/industries/banking",
+  "archetype": "A07",
+  "disposition": "NEW",
+  "components": [
+   "anchorLinks",
+   "cardContainer",
+   "featureCard",
+   "heroBanner",
+   "horizontalTab",
+   "miniSocialMedia",
+   "recommendedReading",
+   "staticRelatedContent",
+   "textWithAsset",
+   "topHighlightsSlider",
+   "whatsHotCard"
+  ],
+  "reason": "archetype A07: the richest crawled candidate"
+ },
+ {
+  "row": 4182,
+  "live_url": "https://www.tcs.com/what-we-do/services/ai-data-and-analytics",
+  "resolved_path": "/content/tcs-corp/language-master/en/what-we-do/services/ai-data-and-analytics",
+  "archetype": "A08",
+  "disposition": "NEW",
+  "components": [
+   "cardContainer",
+   "heroBanner",
+   "horizontalAccordion",
+   "image",
+   "richText",
+   "storyCard"
+  ],
+  "reason": "archetype A08: the richest crawled candidate"
+ },
+ {
+  "row": 3974,
+  "live_url": "https://www.tcs.com/what-we-do/products-platforms/tcs-hobs",
+  "resolved_path": "/content/tcs-corp/language-master/en/what-we-do/products-platforms/tcs-hobs",
+  "archetype": "A09",
+  "disposition": "NEW",
+  "components": [
+   "ctaButton",
+   "featureList",
+   "footerCTA",
+   "heroBanner",
+   "quoteCard",
+   "richText",
+   "solutionCard",
+   "statsCard"
+  ],
+  "reason": "archetype A09: the richest crawled candidate"
+ },
+ {
+  "row": 1922,
+  "live_url": "https://www.tcs.com/insights/topics/blockchain-topic",
+  "resolved_path": "/content/tcs-corp/language-master/en/insights/topics/blockchain-topic",
+  "archetype": "A10",
+  "disposition": "NEW",
+  "components": [
+   "cardContainer",
+   "heroBanner",
+   "latestCards",
+   "quoteCard",
+   "relatedContent",
+   "statsCard",
+   "textWithAsset"
+  ],
+  "reason": "archetype A10: the richest crawled candidate"
+ },
+ {
+  "row": 1855,
+  "live_url": "https://www.tcs.com/insights/global-studies/intelligent-choice-architectures-reimagine-decision-making",
+  "resolved_path": "/content/tcs-corp/language-master/en/insights/global-studies/intelligent-choice-architectures-reimagine-decision-making",
+  "archetype": "A11",
+  "disposition": "NEW",
+  "components": [
+   "featureList",
+   "heroBanner",
+   "horizontalTab",
+   "richText",
+   "staticRelatedContent",
+   "storyCardCarousel",
+   "textWithAsset"
+  ],
+  "reason": "archetype A11: the richest crawled candidate"
+ },
+ {
+  "row": 3969,
+  "live_url": "https://www.tcs.com/what-we-do/products-platforms/tcs-erp-on-cloud-sap-landscape-migration-modernization/case-study/erp-cloud-platform-transform-indirect-procurement",
+  "resolved_path": "/content/tcs-corp/language-master/en/what-we-do/products-platforms/tcs-erp-on-cloud-sap-landscape-migration-modernization/case-study/erp-cloud-platform-transform-indirect-procurement",
+  "archetype": "A12",
+  "disposition": "NEW",
+  "components": [
+   "articleTags",
+   "heroBanner",
+   "quoteCard",
+   "richText",
+   "staticRelatedContent",
+   "statsCard"
+  ],
+  "reason": "archetype A12: the richest crawled candidate"
+ },
+ {
+  "row": 1879,
+  "live_url": "https://www.tcs.com/insights/perspectives",
+  "resolved_path": "/content/tcs-corp/language-master/en/insights/perspectives",
+  "archetype": "A10",
+  "disposition": "NEW",
+  "components": [
+   "ctaButton",
+   "featureGrid",
+   "heroBanner",
+   "richText",
+   "solutionCard",
+   "textWithAsset"
+  ],
+  "reason": "PILOT mapping featureGrid"
+ }
+]

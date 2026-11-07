@@ -1,0 +1,641 @@
+[
+ {
+  "mapping": "CM-heroBanner",
+  "source_pattern": "SP-heroBanner",
+  "target": "page-header (L3 / collection pages); hero (L0, L1, L2 landing pages, per the curated archetypes)",
+  "variation": "page-header: article / landing layout; hero: align-middle align-center text-center bg-<colour> (as the archetype page)",
+  "fields": "h1 -> page title (metadata); breadcrumb and share dropped (Page Header builds them); remaining text -> Text",
+  "evidence": "page-header: W1-W7 builders; hero: curated pages A01-A09",
+  "status": "VALIDATED for page-header; PILOT for hero"
+ },
+ {
+  "mapping": "CM-richText",
+  "source_pattern": "SP-richText",
+  "target": "text (+ table for tables, up to 9 columns)",
+  "variation": "table-N-columns",
+  "fields": "paragraphs, headings (levels normalised), lists, links (rewritten to migrated pages), tables -> Table block",
+  "evidence": "W1-W7",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-textWithAsset",
+  "source_pattern": "SP-textWithAsset",
+  "target": "text + image / embed (video); teaser on landing archetypes",
+  "variation": "teaser: image left/right",
+  "fields": "text -> Text; image -> Image (DAM); video -> Embed",
+  "evidence": "W5-W7; curated A02",
+  "status": "VALIDATED (text + image); PILOT (teaser)"
+ },
+ {
+  "mapping": "CM-quoteCard",
+  "source_pattern": "SP-quoteCard",
+  "target": "quote",
+  "variation": "default",
+  "fields": "quote text, author, designation",
+  "evidence": "W5-W7",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-articleQuote",
+  "source_pattern": "SP-articleQuote",
+  "target": "quote",
+  "variation": "default",
+  "fields": "quote text, author",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-horizontalTab",
+  "source_pattern": "SP-horizontalTab",
+  "target": "tabs (Tabs Container section) with Tab items",
+  "variation": "underline, horizontal",
+  "fields": "tab label -> Tab title; panel -> Text / Table",
+  "evidence": "W5-W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-advanceTab",
+  "source_pattern": "SP-advanceTab",
+  "target": "tabs (Tabs Container section)",
+  "variation": "underline",
+  "fields": "as horizontalTab",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-eventsTab",
+  "source_pattern": "SP-eventsTab",
+  "target": "tabs (Tabs Container section)",
+  "variation": "underline",
+  "fields": "as horizontalTab",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-textOverImage",
+  "source_pattern": "SP-textOverImage",
+  "target": "teaser",
+  "variation": "background (image) / no-image + bg-grey",
+  "fields": "h2 -> title; text -> description; link -> primary CTA; image -> background image",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-footerCTA",
+  "source_pattern": "SP-footerCTA",
+  "target": "teaser",
+  "variation": "no-image, text-center, bg-grey",
+  "fields": "h2 -> title; text -> description; link -> primary CTA",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-solutionCard",
+  "source_pattern": "SP-solutionCard",
+  "target": "cards",
+  "variation": "image / panel cards, 3 / 2 columns",
+  "fields": "card image, title, text, link",
+  "evidence": "W5-W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-featureCard",
+  "source_pattern": "SP-featureCard",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "as solutionCard",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-expertCards",
+  "source_pattern": "SP-expertCards",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "person image, name, designation",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-flexiList",
+  "source_pattern": "SP-flexiList",
+  "target": "cards",
+  "variation": "panel cards",
+  "fields": "item title, text, link",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-iconTextV2",
+  "source_pattern": "SP-iconTextV2",
+  "target": "cards (or tabs when tabbed)",
+  "variation": "panel cards with icons",
+  "fields": "icon, title, text",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-storiesSection",
+  "source_pattern": "SP-storiesSection",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "story image, title, link",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-insightCards",
+  "source_pattern": "SP-insightCards",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "insight image, title, link",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-whatsHotCard",
+  "source_pattern": "SP-whatsHotCard",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "as insightCards",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-interactiveHubPannel",
+  "source_pattern": "SP-interactiveHubPannel",
+  "target": "tabs or cards",
+  "variation": "underline / panel cards",
+  "fields": "panel labels -> tabs",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-contentCards",
+  "source_pattern": "SP-contentCards",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "card image, title, link",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-featureGrid",
+  "source_pattern": "SP-featureGrid",
+  "target": "cards",
+  "variation": "panel cards",
+  "fields": "feature title, text",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-statsCard",
+  "source_pattern": "SP-statsCard",
+  "target": "teaser (stats)",
+  "variation": "teaser stat items",
+  "fields": "value, label (counter text removed)",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-iconLinkList",
+  "source_pattern": "SP-iconLinkList",
+  "target": "text",
+  "variation": "default",
+  "fields": "linked list",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-cardContainer",
+  "source_pattern": "SP-cardContainer",
+  "target": "text",
+  "variation": "default",
+  "fields": "as rich text",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-featureList",
+  "source_pattern": "SP-featureList",
+  "target": "text",
+  "variation": "default",
+  "fields": "as rich text",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-infographics",
+  "source_pattern": "SP-infographics",
+  "target": "image",
+  "variation": "default",
+  "fields": "image with alt (from the source alt or text)",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-image",
+  "source_pattern": "SP-image",
+  "target": "image",
+  "variation": "default",
+  "fields": "image with alt",
+  "evidence": "W6",
+  "status": "VALIDATED (as text in W6; image in the design model)"
+ },
+ {
+  "mapping": "CM-videoCard",
+  "source_pattern": "SP-videoCard",
+  "target": "embed",
+  "variation": "video (YouTube / Vimeo)",
+  "fields": "video URL, title",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-genericVideo",
+  "source_pattern": "SP-genericVideo",
+  "target": "embed",
+  "variation": "video",
+  "fields": "video URL",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-ctaButton",
+  "source_pattern": "SP-ctaButton",
+  "target": "button-block",
+  "variation": "button / primary",
+  "fields": "link, label",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-downloadReport",
+  "source_pattern": "SP-downloadReport",
+  "target": "button-block (document in the DAM)",
+  "variation": "button / primary",
+  "fields": "document link -> DAM document",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-dropdownListing",
+  "source_pattern": "SP-dropdownListing",
+  "target": "filter-list",
+  "variation": "list layout, query index",
+  "fields": "root path, sort latest",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-dynamicFilter",
+  "source_pattern": "SP-dynamicFilter",
+  "target": "filter-list",
+  "variation": "cards, filters from taxonomy",
+  "fields": "root path, tags",
+  "evidence": "design model A04 / A05 / A10",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-quarterOverview",
+  "source_pattern": "SP-quarterOverview",
+  "target": "table + button-block",
+  "variation": "table-N-columns",
+  "fields": "latest year reports table",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-quarterLanding",
+  "source_pattern": "SP-quarterLanding",
+  "target": "tabs (a tab a year) + table",
+  "variation": "underline",
+  "fields": "reports per quarter",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-heroCarousel",
+  "source_pattern": "SP-heroCarousel",
+  "target": "gen-carousel of hero slides",
+  "variation": "dots / arrows",
+  "fields": "each slide -> Hero (image, title, CTA)",
+  "evidence": "curated A01; October: first slide only (logged)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-storyCardCarousel",
+  "source_pattern": "SP-storyCardCarousel",
+  "target": "gen-carousel of teasers, or cards",
+  "variation": "dots",
+  "fields": "each story -> Teaser",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-relatedContent",
+  "source_pattern": "SP-relatedContent",
+  "target": "list (tagged pages, query index)",
+  "variation": "image cards, horizontal scroll",
+  "fields": "tags of the page -> List tags",
+  "evidence": "curated A07-A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-staticRelatedContent",
+  "source_pattern": "SP-staticRelatedContent",
+  "target": "list (fixed List Items)",
+  "variation": "image cards",
+  "fields": "each linked page -> List Item",
+  "evidence": "curated A07-A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-latestCards",
+  "source_pattern": "SP-latestCards",
+  "target": "list (latest pages below a root)",
+  "variation": "image cards",
+  "fields": "root / tags",
+  "evidence": "design model A04 / A05",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-horizontalAccordion",
+  "source_pattern": "SP-horizontalAccordion",
+  "target": "accordion",
+  "variation": "default",
+  "fields": "item title, panel",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-authorBioContainer",
+  "source_pattern": "SP-authorBioContainer",
+  "target": "Authors sheet row + author-id metadata (Page Header shows the author)",
+  "variation": "-",
+  "fields": "name, bio, image",
+  "evidence": "W6 (decision W6-D2)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-worldwideMap",
+  "source_pattern": "SP-worldwideMap",
+  "target": "list (country pages)",
+  "variation": "grid",
+  "fields": "parent page",
+  "evidence": "W6 (decision W6-D3)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-leadGenFormType1",
+  "source_pattern": "SP-leadGenFormType1",
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "fields": "form intro -> Text; form URL -> Button",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "mapping": "CM-leadGenFormType2",
+  "source_pattern": "SP-leadGenFormType2",
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "fields": "as leadGenFormType1",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "mapping": "CM-authorListing",
+  "source_pattern": "SP-authorListing",
+  "target": "filter-list or list of the author's pages (query index by author-id)",
+  "variation": "-",
+  "fields": "author-id -> pages",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-bannerWithText",
+  "source_pattern": "SP-bannerWithText",
+  "target": "not migrated (section menu / banner of the IR pages)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W5 (decision D-5)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-subNavigation",
+  "source_pattern": "SP-subNavigation",
+  "target": "not migrated (navigation)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-followUs",
+  "source_pattern": "SP-followUs",
+  "target": "not migrated (social links are in the footer)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-miniSocialMedia",
+  "source_pattern": "SP-miniSocialMedia",
+  "target": "not migrated (social links are in the footer)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-articleTags",
+  "source_pattern": "SP-articleTags",
+  "target": "page tags (cq:tags) instead of a component",
+  "variation": "-",
+  "fields": "tags -> taxonomy",
+  "evidence": "W6",
+  "status": "VALIDATED (as tags)"
+ },
+ {
+  "mapping": "CM-anonymousPoll",
+  "source_pattern": "SP-anonymousPoll",
+  "target": "not migrated (no poll block)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W6 (decision W6-D1)",
+  "status": "GAP (left out)"
+ },
+ {
+  "mapping": "CM-itwizContactUs",
+  "source_pattern": "SP-itwizContactUs",
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-contactWelcomeScreen",
+  "source_pattern": "SP-contactWelcomeScreen",
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-shortFeedbackSurvey",
+  "source_pattern": "SP-shortFeedbackSurvey",
+  "target": "no block (survey)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-emailSignUp",
+  "source_pattern": "SP-emailSignUp",
+  "target": "form-variations (needs an endpoint) or button to the tcs.com form",
+  "variation": "-",
+  "fields": "email field",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-bingeGallery",
+  "source_pattern": "SP-bingeGallery",
+  "target": "no exact block (video gallery): cards of videos or gen-carousel",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-listFilter",
+  "source_pattern": "SP-listFilter",
+  "target": "filter-list",
+  "variation": "list layout, query index, advanced filter",
+  "fields": "root path, sort latest",
+  "evidence": "W5 (corporate actions listing)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-inPageLinks",
+  "source_pattern": "SP-inPageLinks",
+  "target": "not migrated (section menu)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "W5 (decision D-5)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-embed",
+  "source_pattern": "SP-embed",
+  "target": "embed",
+  "variation": "default",
+  "fields": "embed URL",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "mapping": "CM-podcast",
+  "source_pattern": "SP-podcast",
+  "target": "text (episode text); the audio player is not migrated",
+  "variation": "-",
+  "fields": "title, text",
+  "evidence": "W5 (logged: audio player not migrated)",
+  "status": "GAP (audio player)"
+ },
+ {
+  "mapping": "CM-footer",
+  "source_pattern": "SP-footer",
+  "target": "not migrated (global footer)",
+  "variation": "-",
+  "fields": "-",
+  "evidence": "prompt section 33",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "mapping": "CM-textImage",
+  "source_pattern": "SP-textImage",
+  "target": "text + image; teaser on landing archetypes",
+  "variation": "teaser: image left/right",
+  "fields": "as textWithAsset",
+  "evidence": "W5-W7 (textWithAsset); curated A02",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-eventsHeroBanner",
+  "source_pattern": "SP-eventsHeroBanner",
+  "target": "page-header (event date, place in metadata)",
+  "variation": "landing layout",
+  "fields": "h1 -> title; date -> publish-date",
+  "evidence": "W5 (heroBanner on events)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-storyCard",
+  "source_pattern": "SP-storyCard",
+  "target": "cards",
+  "variation": "image cards",
+  "fields": "story image, title, link",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-featuredArticles",
+  "source_pattern": "SP-featuredArticles",
+  "target": "list (featured pages: featured / priority metadata)",
+  "variation": "image cards",
+  "fields": "linked pages -> List Items",
+  "evidence": "design model A04 / A05 (list)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-recommendedReading",
+  "source_pattern": "SP-recommendedReading",
+  "target": "list (fixed List Items or tagged pages)",
+  "variation": "image cards",
+  "fields": "linked pages -> List Items",
+  "evidence": "design model A11 / A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-topHighlightsSlider",
+  "source_pattern": "SP-topHighlightsSlider",
+  "target": "gen-carousel of teasers",
+  "variation": "dots / arrows",
+  "fields": "each highlight -> Teaser",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-anchorLinks",
+  "source_pattern": "SP-anchorLinks",
+  "target": "anchor-list",
+  "variation": "default / sticky",
+  "fields": "link labels -> anchors of the sections",
+  "evidence": "curated A11 / A12 (anchor-list)",
+  "status": "PILOT"
+ },
+ {
+  "mapping": "CM-timelineContainer",
+  "source_pattern": "SP-timelineContainer",
+  "target": "no timeline block: accordion or tabs by period (closest)",
+  "variation": "-",
+  "fields": "period -> item title; text -> panel",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "mapping": "CM-regionalPrivacy",
+  "source_pattern": "SP-regionalPrivacy",
+  "target": "text (regional privacy notice text)",
+  "variation": "default",
+  "fields": "as rich text",
+  "evidence": "W1-W7 rich text",
+  "status": "PILOT"
+ }
+]

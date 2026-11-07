@@ -1,0 +1,46 @@
+{
+ "crawled": 443,
+ "crawled_ok": 438,
+ "source_components": 71,
+ "mapping_status": {
+  "VALIDATED": 45,
+  "PILOT": 17,
+  "GAP": 9
+ },
+ "unmapped": [],
+ "archetypes": {
+  "A01": 1,
+  "UNCLASSIFIED": 903,
+  "A11": 6689,
+  "A10": 51,
+  "A12": 384,
+  "A06": 16,
+  "A07": 14,
+  "A02": 4,
+  "A09": 357,
+  "A08": 14,
+  "A03": 12,
+  "A05": 2
+ },
+ "confidence": {
+  "HIGH": 4484,
+  "LOW": 1200,
+  "MEDIUM": 2763
+ },
+ "disposition": {
+  "REQUIRES_REVIEW": 1196,
+  "EXISTING_SAME_PATH": 2380,
+  "EXISTING_OTHER_PATH (review)": 650,
+  "NEW": 4218,
+  "INVALID": 3
+ },
+ "waves": {
+  "F": 1849,
+  "4": 3660,
+  "3": 111,
+  "5": 2809,
+  "2": 18
+ },
+ "batches": 60,
+ "pilot": 11
+}

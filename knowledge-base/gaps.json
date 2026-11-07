@@ -1,0 +1,205 @@
+[
+ {
+  "pattern": "SP-leadGenFormType1",
+  "source_component": "leadGenFormType1",
+  "sample_pages": 27,
+  "example_rows": [
+   225,
+   231,
+   243,
+   251,
+   255
+  ],
+  "archetypes": {
+   "A11": 11,
+   "A12": 7,
+   "UNCLASSIFIED": 9
+  },
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "field_mapping": "form intro -> Text; form URL -> Button",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "pattern": "SP-podcast",
+  "source_component": "podcast",
+  "sample_pages": 7,
+  "example_rows": [
+   3612,
+   3656,
+   3661,
+   3666,
+   4117
+  ],
+  "archetypes": {
+   "A02": 1,
+   "UNCLASSIFIED": 5,
+   "A11": 1
+  },
+  "target": "text (episode text); the audio player is not migrated",
+  "variation": "-",
+  "field_mapping": "title, text",
+  "evidence": "W5 (logged: audio player not migrated)",
+  "status": "GAP (audio player)"
+ },
+ {
+  "pattern": "SP-anonymousPoll",
+  "source_component": "anonymousPoll",
+  "sample_pages": 5,
+  "example_rows": [
+   10,
+   22,
+   33,
+   53,
+   123
+  ],
+  "archetypes": {
+   "A11": 3,
+   "UNCLASSIFIED": 2
+  },
+  "target": "not migrated (no poll block)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W6 (decision W6-D1)",
+  "status": "GAP (left out)"
+ },
+ {
+  "pattern": "SP-bingeGallery",
+  "source_component": "bingeGallery",
+  "sample_pages": 5,
+  "example_rows": [
+   1496,
+   4984,
+   8223,
+   8252,
+   8261
+  ],
+  "archetypes": {
+   "A11": 5
+  },
+  "target": "no exact block (video gallery): cards of videos or gen-carousel",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-timelineContainer",
+  "source_component": "timelineContainer",
+  "sample_pages": 3,
+  "example_rows": [
+   4951,
+   4952,
+   8300
+  ],
+  "archetypes": {
+   "A02": 1,
+   "A03": 1,
+   "A11": 1
+  },
+  "target": "no timeline block: accordion or tabs by period (closest)",
+  "variation": "-",
+  "field_mapping": "period -> item title; text -> panel",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-leadGenFormType2",
+  "source_component": "leadGenFormType2",
+  "sample_pages": 2,
+  "example_rows": [
+   428,
+   514
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2
+  },
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "field_mapping": "as leadGenFormType1",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "pattern": "SP-authorListing",
+  "source_component": "authorListing",
+  "sample_pages": 2,
+  "example_rows": [
+   566,
+   867
+  ],
+  "archetypes": {
+   "A10": 2
+  },
+  "target": "filter-list or list of the author's pages (query index by author-id)",
+  "variation": "-",
+  "field_mapping": "author-id -> pages",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-itwizContactUs",
+  "source_component": "itwizContactUs",
+  "sample_pages": 1,
+  "example_rows": [
+   426
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-contactWelcomeScreen",
+  "source_component": "contactWelcomeScreen",
+  "sample_pages": 1,
+  "example_rows": [
+   509
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-shortFeedbackSurvey",
+  "source_component": "shortFeedbackSurvey",
+  "sample_pages": 1,
+  "example_rows": [
+   542
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (survey)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-emailSignUp",
+  "source_component": "emailSignUp",
+  "sample_pages": 1,
+  "example_rows": [
+   1825
+  ],
+  "archetypes": {
+   "A11": 1
+  },
+  "target": "form-variations (needs an endpoint) or button to the tcs.com form",
+  "variation": "-",
+  "field_mapping": "email field",
+  "evidence": "none",
+  "status": "GAP"
+ }
+]

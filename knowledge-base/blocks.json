@@ -1,0 +1,8105 @@
+{
+ "commit": "c06195ef6d6cdf23dc91ac5fe0c0169110e629d4 2026-11-06T18:09:56+05:30 Merge pull request #188 from sradha-tcs/fix/hero-icon-color",
+ "blocks": [
+  {
+   "block": "accordion",
+   "component_id": "accordion",
+   "title": "Accordion",
+   "group": "Blocks",
+   "template_name": "Accordion",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "accordion",
+   "child_filter": "accordion",
+   "children": [
+    "accordion-item"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "accordion-item"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "anchor-list",
+   "component_id": "anchor-list",
+   "title": "Anchor List",
+   "group": "Blocks",
+   "template_name": "Anchor List",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "anchor-list",
+   "child_filter": "anchor-list",
+   "children": [
+    "anchor-list-item"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "anchors",
+     "label": "Links",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "label",
+     "label": "Link Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "anchorName",
+     "label": "Anchor Name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "sticky",
+     "label": "Sticky",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [
+    "anchor-list-item"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "button-block",
+   "component_id": "button-block",
+   "title": "Button",
+   "group": "Blocks",
+   "template_name": "Button Block",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "button-block",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "link",
+     "label": "Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkText",
+     "label": "Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkTitle",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "buttonView",
+     "label": "View",
+     "component": "select",
+     "required": false,
+     "default": "button"
+    },
+    {
+     "name": "buttonVariant",
+     "label": "Type",
+     "component": "select",
+     "required": false,
+     "default": "primary"
+    },
+    {
+     "name": "buttonIcon",
+     "label": "Icon",
+     "component": "select",
+     "required": false,
+     "default": "arrow-right"
+    },
+    {
+     "name": "buttonAlignment",
+     "label": "Alignment",
+     "component": "select",
+     "required": false,
+     "default": "left"
+    },
+    {
+     "name": "textDecoration",
+     "label": "Text Decoration",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "cards",
+   "component_id": "cards",
+   "title": "Cards",
+   "group": "Blocks",
+   "template_name": "Cards",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "cards",
+   "child_filter": "cards",
+   "children": [
+    "card"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": true,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Heading type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "link",
+     "label": "CTA link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkText",
+     "label": "CTA text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkType",
+     "label": "CTA style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "listLabel",
+     "label": "Accessible list label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "displayAsTeaser",
+     "label": "Display as teaser",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "cardStyle",
+     "label": "Card style",
+     "component": "select",
+     "required": false,
+     "default": "image"
+    },
+    {
+     "name": "cardTheme",
+     "label": "Card colour",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageRatio",
+     "label": "Image ratio",
+     "component": "select",
+     "required": false,
+     "default": "16-9"
+    },
+    {
+     "name": "panelHeight",
+     "label": "Panel height",
+     "component": "select",
+     "required": false,
+     "default": "portrait"
+    },
+    {
+     "name": "featureFirst",
+     "label": "First card as feature",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "linkItems",
+     "label": "Link items",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "openInNewTab",
+     "label": "Open links in a new tab",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "showImage",
+     "label": "Show image",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showEyebrow",
+     "label": "Show eyebrow",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showTags",
+     "label": "Show tags",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showDescription",
+     "label": "Show description",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showDate",
+     "label": "Show date",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "dateFormat",
+     "label": "Date format",
+     "component": "select",
+     "required": false,
+     "default": "dd-mmm-yy"
+    },
+    {
+     "name": "showCta",
+     "label": "Show call to action",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "imageLoading",
+     "label": "Image loading",
+     "component": "select",
+     "required": false,
+     "default": "lazy"
+    },
+    {
+     "name": "desktopMode",
+     "label": "Desktop display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "desktopColumns",
+     "label": "Desktop columns",
+     "component": "number",
+     "required": false,
+     "default": 4
+    },
+    {
+     "name": "desktopGap",
+     "label": "Desktop gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 24
+    },
+    {
+     "name": "desktopVisible",
+     "label": "Desktop items visible",
+     "component": "number",
+     "required": false,
+     "default": 4.2
+    },
+    {
+     "name": "desktopCardWidth",
+     "label": "Desktop card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "desktopControls",
+     "label": "Previous / next buttons on desktop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "desktopIndicator",
+     "label": "Scroll indicator on desktop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "tabletMode",
+     "label": "Tablet display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "tabletColumns",
+     "label": "Tablet columns",
+     "component": "number",
+     "required": false,
+     "default": 4
+    },
+    {
+     "name": "tabletGap",
+     "label": "Tablet gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 24
+    },
+    {
+     "name": "tabletVisible",
+     "label": "Tablet items visible",
+     "component": "number",
+     "required": false,
+     "default": 3.3
+    },
+    {
+     "name": "tabletCardWidth",
+     "label": "Tablet card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "tabletControls",
+     "label": "Previous / next buttons on tablet",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "tabletIndicator",
+     "label": "Scroll indicator on tablet",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "mobileMode",
+     "label": "Mobile display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "mobileColumns",
+     "label": "Mobile columns",
+     "component": "number",
+     "required": false,
+     "default": 1
+    },
+    {
+     "name": "mobileGap",
+     "label": "Mobile gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 16
+    },
+    {
+     "name": "mobileVisible",
+     "label": "Mobile items visible",
+     "component": "number",
+     "required": false,
+     "default": 1.2
+    },
+    {
+     "name": "mobileCardWidth",
+     "label": "Mobile card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "mobileControls",
+     "label": "Previous / next buttons on mobile",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "mobileIndicator",
+     "label": "Scroll indicator on mobile",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "equalHeight",
+     "label": "Equal card height",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "stretchCards",
+     "label": "Stretch cards to row height",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "scrollSnap",
+     "label": "Scroll snap",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "snapAlign",
+     "label": "Snap alignment",
+     "component": "select",
+     "required": false,
+     "default": "start"
+    },
+    {
+     "name": "hideScrollbar",
+     "label": "Hide native scrollbar",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "mouseDrag",
+     "label": "Allow mouse drag",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "keyboardScrolling",
+     "label": "Keyboard scrolling",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "scrollStep",
+     "label": "Scroll step",
+     "component": "select",
+     "required": false,
+     "default": "one-card"
+    },
+    {
+     "name": "loop",
+     "label": "Loop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "initialIndex",
+     "label": "Initial item index",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "edgePadding",
+     "label": "Edge",
+     "component": "select",
+     "required": false,
+     "default": "bleed"
+    },
+    {
+     "name": "emptyBehavior",
+     "label": "When there are no cards",
+     "component": "select",
+     "required": false,
+     "default": "hide"
+    },
+    {
+     "name": "emptyMessage",
+     "label": "Empty message",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "analyticsEnabled",
+     "label": "Analytics",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "classes",
+     "label": "Style options",
+     "component": "multiselect",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Display",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Style options",
+     "options": [
+      "stat-compact",
+      "dividers",
+      "header-center"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "card"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "column-break",
+   "component_id": "column-break",
+   "title": "Column Break",
+   "group": "Blocks",
+   "template_name": "Column Break",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "column-break",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Child item",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Column name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "only inside columns-container, tabs"
+   ]
+  },
+  {
+   "block": "columns-container",
+   "component_id": "columns-container",
+   "title": "Columns Container",
+   "group": "Blocks",
+   "template_name": "Columns Container",
+   "resource_type": "core/franklin/components/section/v1/section",
+   "model": "columns-container",
+   "child_filter": "columns-container",
+   "children": [
+    "column-break",
+    "text",
+    "image",
+    "button-block",
+    "title",
+    "hero",
+    "teaser",
+    "image-collage",
+    "quote",
+    "media-contacts",
+    "testimonial",
+    "anchor-list",
+    "accordion",
+    "tabs-block",
+    "table",
+    "table-list",
+    "list",
+    "separator",
+    "embed",
+    "video",
+    "modal",
+    "form-variations",
+    "filter-list",
+    "conversation-canvas",
+    "cards",
+    "fragment"
+   ],
+   "allowed_in": [
+    "main"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container (section)",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "style",
+     "label": "Style",
+     "component": "multiselect",
+     "required": false,
+     "default": [
+      "columns-container-section"
+     ]
+    },
+    {
+     "name": "containerBgColor",
+     "label": "BG Color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "sectionWidth",
+     "label": "Width Type",
+     "component": "select",
+     "required": false,
+     "default": "full-width"
+    },
+    {
+     "name": "backgroundImage",
+     "label": "Background Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "backgroundImageAlt",
+     "label": "Image alt text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "anchorName",
+     "label": "Anchor name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "columnsPerRow",
+     "label": "Columns per row",
+     "component": "select",
+     "required": false,
+     "default": "auto"
+    },
+    {
+     "name": "columnsGap",
+     "label": "Gap",
+     "component": "select",
+     "required": false,
+     "default": "medium"
+    },
+    {
+     "name": "columnsAlign",
+     "label": "Vertical alignment",
+     "component": "select",
+     "required": false,
+     "default": "top"
+    },
+    {
+     "name": "columnsFrom",
+     "label": "Side by side from",
+     "component": "select",
+     "required": false,
+     "default": "desktop"
+    },
+    {
+     "name": "containerAnchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerHide",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "containerAnimation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingLeft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingRight",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingTop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingBottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginLeft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginRight",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginTop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginBottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Layout",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [
+    {
+     "field": "style",
+     "label": "Style",
+     "options": [
+      "columns-container-section",
+      "highlight"
+     ]
+    },
+    {
+     "field": "containerBgColor",
+     "label": "BG Color",
+     "options": [
+      "",
+      "bg-grey",
+      "bg-dark",
+      "bg-dark-green",
+      "bg-navy"
+     ]
+    },
+    {
+     "field": "containerAnimation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "section container (added to the page, not inside a section)"
+   ]
+  },
+  {
+   "block": "columns",
+   "component_id": "columns",
+   "title": "Columns",
+   "group": "Blocks",
+   "template_name": "",
+   "resource_type": "core/franklin/components/columns/v1/columns",
+   "model": "columns",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Compatibility-only",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "columns",
+     "label": "Columns",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "rows",
+     "label": "Rows",
+     "component": "text",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content"
+   ],
+   "additional_tab": false,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "DEPRECATED",
+   "notes": [
+    "in no filter: authors can only reach it through a page model or template",
+    "documented as Compatibility-only: kept for content authored before, not for new migration",
+    "no Additional tab (AGENTS.md rule)"
+   ]
+  },
+  {
+   "block": "conversation-canvas",
+   "component_id": "conversation-canvas",
+   "title": "Conversation Canvas",
+   "group": "Blocks",
+   "template_name": "Conversation Canvas",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "conversation-canvas",
+   "child_filter": "conversation-canvas",
+   "children": [
+    "conversation-canvas-button"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": true,
+   "fields": [
+    {
+     "name": "classes",
+     "label": "Canvas Style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_journey",
+     "label": "Floating journey",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_actions",
+     "label": "Quick actions",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "bgStyle",
+     "label": "BG Style",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "backgroundImage",
+     "label": "BG Background Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "icon",
+     "label": "Icon",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "iconAlt",
+     "label": "Icon Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleSize",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "text",
+     "label": "Text",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "menu",
+     "label": "Menu",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "menuRootPath",
+     "label": "Menu root path",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "menuDepth",
+     "label": "Menu depth",
+     "component": "number",
+     "required": false,
+     "default": 1
+    },
+    {
+     "name": "classes_navstyle",
+     "label": "Navigation style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchBar",
+     "label": "Search bar",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchPlaceholder",
+     "label": "Search bar water mark",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchAudioIcon",
+     "label": "Search bar audio icon",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchAudioIconAlt",
+     "label": "Search bar audio icon alt text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchButtonStyle",
+     "label": "Search bar button icon type",
+     "component": "select",
+     "required": false,
+     "default": "primary"
+    },
+    {
+     "name": "searchButtonLabel",
+     "label": "Search bar button icon type hover text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "searchPage",
+     "label": "Search page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Canvas Style",
+     "options": [
+      "",
+      "primary",
+      "secondary"
+     ]
+    },
+    {
+     "field": "classes_journey",
+     "label": "Floating journey",
+     "options": [
+      "",
+      "nofloat"
+     ]
+    },
+    {
+     "field": "classes_actions",
+     "label": "Quick actions",
+     "options": [
+      "",
+      "action-pills",
+      "action-buttons"
+     ]
+    },
+    {
+     "field": "classes_navstyle",
+     "label": "Navigation style",
+     "options": [
+      "",
+      "text-links"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [
+    "conversation-canvas-button"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "embed",
+   "component_id": "embed",
+   "title": "Embed",
+   "group": "Blocks",
+   "template_name": "Embed",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "embed",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "embed_placeholder",
+     "label": "Placeholder Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "embed_placeholderAlt",
+     "label": "Placeholder Image Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "embed_uri",
+     "label": "URI",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "filter-list",
+   "component_id": "filter-list",
+   "title": "Filter List",
+   "group": "Blocks",
+   "template_name": "Filter List",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "filter-list",
+   "child_filter": "filter-list",
+   "children": [
+    "filter-list-tag",
+    "filter-list-category",
+    "filter-list-page"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showResultCount",
+     "label": "Show result count",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "layout",
+     "label": "Default layout",
+     "component": "select",
+     "required": false,
+     "default": "masonry"
+    },
+    {
+     "name": "cardsPerPage",
+     "label": "Cards per page",
+     "component": "number",
+     "required": false,
+     "default": 9
+    },
+    {
+     "name": "loadMoreCount",
+     "label": "Load more count",
+     "component": "number",
+     "required": false,
+     "default": 6
+    },
+    {
+     "name": "source",
+     "label": "Datasource",
+     "component": "select",
+     "required": false,
+     "default": "query-index"
+    },
+    {
+     "name": "rootPath",
+     "label": "Root path",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "pageItems",
+     "label": "Pages (authored before Page items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "page",
+     "label": "Page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "pageTypes",
+     "label": "Page types",
+     "component": "multiselect",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "contentTypes",
+     "label": "Content types",
+     "component": "multiselect",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "sortBy",
+     "label": "Sort by",
+     "component": "select",
+     "required": false,
+     "default": "latest"
+    },
+    {
+     "name": "primaryCategory",
+     "label": "Primary filter category",
+     "component": "aem-tag",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryTags",
+     "label": "Primary filter tags (authored before Tag items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tagId",
+     "label": "Tag Id",
+     "component": "aem-tag",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showAll",
+     "label": "Show All filter",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "multiSelect",
+     "label": "Allow multi select",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "advancedFilter",
+     "label": "Enable advanced filter",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "advancedCategories",
+     "label": "Advanced filter categories (authored before Category items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "categoryLabel",
+     "label": "Category label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "taxonomyRoot",
+     "label": "Taxonomy root",
+     "component": "aem-tag",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "filterLogic",
+     "label": "Filter logic",
+     "component": "select",
+     "required": false,
+     "default": "and"
+    },
+    {
+     "name": "cardStyle",
+     "label": "Card style",
+     "component": "select",
+     "required": false,
+     "default": "mixed"
+    },
+    {
+     "name": "enableFeatured",
+     "label": "Enable featured cards",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "featuredRule",
+     "label": "Featured rule",
+     "component": "select",
+     "required": false,
+     "default": "featured"
+    },
+    {
+     "name": "featuredItems",
+     "label": "Featured pages (authored before Page items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "featuredPage",
+     "label": "Featured page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "featuredCount",
+     "label": "Featured card count",
+     "component": "number",
+     "required": false,
+     "default": 2
+    },
+    {
+     "name": "enableHero",
+     "label": "Enable hero card",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "heroRule",
+     "label": "Hero rule",
+     "component": "select",
+     "required": false,
+     "default": "featured"
+    },
+    {
+     "name": "heroPage",
+     "label": "Hero page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageSource",
+     "label": "Image source",
+     "component": "text",
+     "required": false,
+     "default": "featured-image"
+    },
+    {
+     "name": "fallbackImage",
+     "label": "Fallback image",
+     "component": "text",
+     "required": false,
+     "default": "thumbnail-image"
+    },
+    {
+     "name": "eyebrowSource",
+     "label": "Eyebrow source",
+     "component": "text",
+     "required": false,
+     "default": "content-type"
+    },
+    {
+     "name": "titleSource",
+     "label": "Title source",
+     "component": "text",
+     "required": false,
+     "default": "title"
+    },
+    {
+     "name": "descriptionSource",
+     "label": "Description source",
+     "component": "text",
+     "required": false,
+     "default": "description"
+    },
+    {
+     "name": "tagSource",
+     "label": "Tag source",
+     "component": "text",
+     "required": false,
+     "default": "tags"
+    },
+    {
+     "name": "urlSource",
+     "label": "Url source",
+     "component": "text",
+     "required": false,
+     "default": "path"
+    },
+    {
+     "name": "authorSource",
+     "label": "Author source",
+     "component": "text",
+     "required": false,
+     "default": "author"
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Cards",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "filter-list-tag",
+    "filter-list-category",
+    "filter-list-page"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "footer",
+   "component_id": "footer",
+   "title": "Footer",
+   "group": "Blocks",
+   "template_name": "Footer",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "footer",
+   "child_filter": "footer",
+   "children": [
+    "footer-link"
+   ],
+   "allowed_in": [
+    "section"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Structural",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "conversationCanvas",
+     "label": "Conversation Canvas Page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "copyright",
+     "label": "Copyright Text",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "links",
+     "label": "Link List",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkText",
+     "label": "Link Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "link",
+     "label": "Link Path",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkTarget",
+     "label": "Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [],
+   "additional_tab": false,
+   "animation": false,
+   "variants": [],
+   "item_components": [
+    "footer-link"
+   ],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "page shell (reference pages): never inside migrated pages (prompt section 33)"
+   ]
+  },
+  {
+   "block": "form-variations",
+   "component_id": "form-variations",
+   "title": "Form Variations",
+   "group": "Blocks",
+   "template_name": "Form Variations",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "form-variations",
+   "child_filter": "form-variations",
+   "children": [
+    "field-text",
+    "field-select",
+    "field-combined",
+    "field-textarea",
+    "field-checkbox",
+    "contact-card",
+    "field-submit"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "formHeading",
+     "label": "Form Title / Heading",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "formDescription",
+     "label": "Form Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "formAction",
+     "label": "Submit action",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes",
+     "label": "Theme",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content"
+   ],
+   "additional_tab": false,
+   "animation": false,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Theme",
+     "options": [
+      "",
+      "dark"
+     ]
+    }
+   ],
+   "item_components": [
+    "field-text",
+    "field-select",
+    "field-combined",
+    "field-textarea",
+    "field-checkbox",
+    "contact-card",
+    "field-submit"
+   ],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "forms have no submission back end (open item O-08, KB recommendation): a form is migrated only with an approved endpoint or as a link to the source form",
+    "no Additional tab (AGENTS.md rule)"
+   ]
+  },
+  {
+   "block": "fragment",
+   "component_id": "fragment",
+   "title": "Fragment",
+   "group": "Blocks",
+   "template_name": "Fragment",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "fragment",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Structural",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "reference",
+     "label": "Reference",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "gen-carousel",
+   "component_id": "gen-carousel",
+   "title": "Gen Carousel",
+   "group": "Blocks",
+   "template_name": "Gen Carousel",
+   "resource_type": "core/franklin/components/section/v1/section",
+   "model": "gen-carousel",
+   "child_filter": "gen-carousel",
+   "children": [
+    "hero",
+    "teaser"
+   ],
+   "allowed_in": [
+    "main"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container (section)",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "style",
+     "label": "Style",
+     "component": "select",
+     "required": false,
+     "default": "gen-carousel-section"
+    },
+    {
+     "name": "carouselNavigation",
+     "label": "Navigation",
+     "component": "select",
+     "required": false,
+     "default": "manual"
+    },
+    {
+     "name": "carouselAriaLabel",
+     "label": "Accessible name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "carouselInterval",
+     "label": "Autoplay interval (seconds)",
+     "component": "number",
+     "required": false,
+     "default": 5
+    },
+    {
+     "name": "containerAnchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerHide",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "containerAnimation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingLeft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingRight",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingTop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingBottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginLeft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginRight",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginTop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginBottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [
+    {
+     "field": "style",
+     "label": "Style",
+     "options": [
+      "gen-carousel-section"
+     ]
+    },
+    {
+     "field": "containerAnimation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "section container (added to the page, not inside a section)"
+   ]
+  },
+  {
+   "block": "header",
+   "component_id": "",
+   "title": "",
+   "group": "",
+   "template_name": "",
+   "resource_type": "",
+   "model": "",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Structural",
+   "unit_tests": false,
+   "fields": [],
+   "tabs": [],
+   "additional_tab": false,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "RUNTIME_ONLY",
+   "notes": [
+    "no component definition: not authorable in Universal Editor",
+    "page shell (reference pages): never inside migrated pages (prompt section 33)"
+   ]
+  },
+  {
+   "block": "hero",
+   "component_id": "hero",
+   "title": "Hero",
+   "group": "Blocks",
+   "template_name": "Hero",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "hero",
+   "child_filter": "hero",
+   "children": [
+    "hero-cta"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "gen-carousel",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "content_icon",
+     "label": "Icon",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "content_iconAlt",
+     "label": "Icon Image Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_media",
+     "label": "Hero Image type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "image",
+     "label": "Hero Image Path",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageAlt",
+     "label": "Hero Image alt text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes",
+     "label": "Hero View",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "content_eyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "content_title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "content_titleType",
+     "label": "Title heading level",
+     "component": "select",
+     "required": false,
+     "default": "h1"
+    },
+    {
+     "name": "content_description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctas",
+     "label": "CTA List",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaText",
+     "label": "CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaTextColor",
+     "label": "CTA Text color",
+     "component": "select",
+     "required": false,
+     "default": "cta-text-black"
+    },
+    {
+     "name": "cta",
+     "label": "CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaTarget",
+     "label": "CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": "same-window"
+    },
+    {
+     "name": "ctaType",
+     "label": "CTA view",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "ctaPrimaryBackground",
+     "label": "Primary CTA BG Color (Primary only)",
+     "component": "select",
+     "required": false,
+     "default": "primary-bg-default"
+    },
+    {
+     "name": "ctaBackground",
+     "label": "Secondary CTA BG Color (Secondary only)",
+     "component": "select",
+     "required": false,
+     "default": "secondary-bg-default"
+    },
+    {
+     "name": "ctaBorder",
+     "label": "Secondary CTA Border color (Secondary only)",
+     "component": "select",
+     "required": false,
+     "default": "secondary-border-default"
+    },
+    {
+     "name": "ctaArrow",
+     "label": "CTA Arrow",
+     "component": "select",
+     "required": false,
+     "default": "right"
+    },
+    {
+     "name": "classes_alignment",
+     "label": "Vertical Alignment",
+     "component": "select",
+     "required": false,
+     "default": "align-middle"
+    },
+    {
+     "name": "classes_horizontal",
+     "label": "Horizontal Alignment",
+     "component": "select",
+     "required": false,
+     "default": "align-center"
+    },
+    {
+     "name": "classes_textAlignment",
+     "label": "Text Alignment",
+     "component": "select",
+     "required": false,
+     "default": "text-center"
+    },
+    {
+     "name": "classes_background",
+     "label": "BG Color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_iconcolor",
+     "label": "Icon color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_eyebrowcolor",
+     "label": "Eyebrow color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_media",
+     "label": "Hero Image type",
+     "options": [
+      "",
+      "lottie"
+     ]
+    },
+    {
+     "field": "classes",
+     "label": "Hero View",
+     "options": [
+      "",
+      "media-contained"
+     ]
+    },
+    {
+     "field": "classes_alignment",
+     "label": "Vertical Alignment",
+     "options": [
+      "align-top",
+      "align-middle",
+      "align-bottom"
+     ]
+    },
+    {
+     "field": "classes_horizontal",
+     "label": "Horizontal Alignment",
+     "options": [
+      "align-left",
+      "align-center",
+      "align-right"
+     ]
+    },
+    {
+     "field": "classes_textAlignment",
+     "label": "Text Alignment",
+     "options": [
+      "text-left",
+      "text-center",
+      "text-right"
+     ]
+    },
+    {
+     "field": "classes_background",
+     "label": "BG Color",
+     "options": [
+      "",
+      "bg-light",
+      "bg-dark",
+      "bg-dark-subtle",
+      "bg-black",
+      "bg-charcoal-80",
+      "bg-navy-60",
+      "bg-charcoal-40"
+     ]
+    },
+    {
+     "field": "classes_iconcolor",
+     "label": "Icon color",
+     "options": [
+      "",
+      "icon-black",
+      "icon-white",
+      "icon-blue",
+      "icon-pale-blue"
+     ]
+    },
+    {
+     "field": "classes_eyebrowcolor",
+     "label": "Eyebrow color",
+     "options": [
+      "",
+      "eyebrow-royal-blue",
+      "eyebrow-sky-blue"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [
+    "hero-cta"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "image-collage",
+   "component_id": "image-collage",
+   "title": "Image Collage",
+   "group": "Blocks",
+   "template_name": "Image Collage",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "image-collage",
+   "child_filter": "image-collage",
+   "children": [
+    "image-collage-item"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active (Proposed, KB-D-063)",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "titleHidden",
+     "label": "Hide Title",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showDescription",
+     "label": "Show Description",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "primaryCtaText",
+     "label": "Primary CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCta",
+     "label": "Primary CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaTarget",
+     "label": "Primary CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaStyle",
+     "label": "Primary CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": "primary"
+    },
+    {
+     "name": "primaryCtaBackground",
+     "label": "Primary CTA Background",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaShape",
+     "label": "Primary CTA Shape",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaText",
+     "label": "Secondary CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCta",
+     "label": "Secondary CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaTarget",
+     "label": "Secondary CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaStyle",
+     "label": "Secondary CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": "secondary"
+    },
+    {
+     "name": "secondaryCtaBackground",
+     "label": "Secondary CTA Background",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaShape",
+     "label": "Secondary CTA Shape",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleWeight",
+     "label": "Title weight",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "descriptionSize",
+     "label": "Description size",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "backgroundColor",
+     "label": "Background color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [
+    "image-collage-item"
+   ],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "documented as Active (Proposed, KB-D-063): its decision is not approved yet"
+   ]
+  },
+  {
+   "block": "interactive-dashboard",
+   "component_id": "interactive-dashboard",
+   "title": "Interactive Dashboard",
+   "group": "Blocks",
+   "template_name": "Interactive Dashboard",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "interactive-dashboard",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Experimental (placeholder)",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "INCOMPLETE",
+   "notes": [
+    "in no filter: authors can only reach it through a page model or template",
+    "documented as Experimental (placeholder): Reserved for a future dashboard; renders nothing on the site"
+   ]
+  },
+  {
+   "block": "list",
+   "component_id": "list",
+   "title": "List",
+   "group": "Blocks",
+   "template_name": "List",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "list",
+   "child_filter": "list",
+   "children": [
+    "list-item"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": true,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Heading type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "link",
+     "label": "CTA link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkText",
+     "label": "CTA text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkType",
+     "label": "CTA style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "listLabel",
+     "label": "Accessible list label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "source",
+     "label": "List source",
+     "component": "select",
+     "required": true,
+     "default": "fixed"
+    },
+    {
+     "name": "pageItems",
+     "label": "Pages (authored before List Items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "page",
+     "label": "Page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "parentPath",
+     "label": "Parent page",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "parentUseCurrentPage",
+     "label": "Use the current page when empty",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "directChildrenOnly",
+     "label": "Direct children only",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "childDepth",
+     "label": "Child depth",
+     "component": "number",
+     "required": false,
+     "default": 2
+    },
+    {
+     "name": "rootPath",
+     "label": "Search root",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tagsUseCurrentPage",
+     "label": "Use the current page when empty",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "tags",
+     "label": "Tags",
+     "component": "aem-tag",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tagMatch",
+     "label": "Match",
+     "component": "select",
+     "required": false,
+     "default": "any"
+    },
+    {
+     "name": "includeDescendants",
+     "label": "Include descendant pages",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "maxDepth",
+     "label": "Maximum search depth",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "orderBy",
+     "label": "Order by",
+     "component": "select",
+     "required": false,
+     "default": "manual"
+    },
+    {
+     "name": "sortOrder",
+     "label": "Sort order",
+     "component": "select",
+     "required": false,
+     "default": "ascending"
+    },
+    {
+     "name": "maxItems",
+     "label": "Maximum items",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "displayAsTeaser",
+     "label": "Display as teaser",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "cardStyle",
+     "label": "Card style",
+     "component": "select",
+     "required": false,
+     "default": "image"
+    },
+    {
+     "name": "cardTheme",
+     "label": "Card colour",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageRatio",
+     "label": "Image ratio",
+     "component": "select",
+     "required": false,
+     "default": "16-9"
+    },
+    {
+     "name": "panelHeight",
+     "label": "Panel height",
+     "component": "select",
+     "required": false,
+     "default": "portrait"
+    },
+    {
+     "name": "featureFirst",
+     "label": "First card as feature",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "featureShowAuthor",
+     "label": "Show author on feature card",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "linkItems",
+     "label": "Link items",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "openInNewTab",
+     "label": "Open links in a new tab",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "showImage",
+     "label": "Show image",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showEyebrow",
+     "label": "Show eyebrow",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showTags",
+     "label": "Show tags",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showDescription",
+     "label": "Show description",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showDate",
+     "label": "Show date",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "dateFormat",
+     "label": "Date format",
+     "component": "select",
+     "required": false,
+     "default": "dd-mmm-yy"
+    },
+    {
+     "name": "showContentLabel",
+     "label": "Show content type",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showCta",
+     "label": "Show call to action",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "imageLoading",
+     "label": "Image loading",
+     "component": "select",
+     "required": false,
+     "default": "lazy"
+    },
+    {
+     "name": "desktopMode",
+     "label": "Desktop display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "desktopColumns",
+     "label": "Desktop columns",
+     "component": "number",
+     "required": false,
+     "default": 4
+    },
+    {
+     "name": "desktopGap",
+     "label": "Desktop gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 24
+    },
+    {
+     "name": "desktopVisible",
+     "label": "Desktop items visible",
+     "component": "number",
+     "required": false,
+     "default": 4.2
+    },
+    {
+     "name": "desktopCardWidth",
+     "label": "Desktop card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "desktopControls",
+     "label": "Previous / next buttons on desktop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "desktopIndicator",
+     "label": "Scroll indicator on desktop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "tabletMode",
+     "label": "Tablet display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "tabletColumns",
+     "label": "Tablet columns",
+     "component": "number",
+     "required": false,
+     "default": 4
+    },
+    {
+     "name": "tabletGap",
+     "label": "Tablet gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 24
+    },
+    {
+     "name": "tabletVisible",
+     "label": "Tablet items visible",
+     "component": "number",
+     "required": false,
+     "default": 3.3
+    },
+    {
+     "name": "tabletCardWidth",
+     "label": "Tablet card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "tabletControls",
+     "label": "Previous / next buttons on tablet",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "tabletIndicator",
+     "label": "Scroll indicator on tablet",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "mobileMode",
+     "label": "Mobile display",
+     "component": "select",
+     "required": false,
+     "default": "grid"
+    },
+    {
+     "name": "mobileColumns",
+     "label": "Mobile columns",
+     "component": "number",
+     "required": false,
+     "default": 1
+    },
+    {
+     "name": "mobileGap",
+     "label": "Mobile gap (px)",
+     "component": "number",
+     "required": false,
+     "default": 16
+    },
+    {
+     "name": "mobileVisible",
+     "label": "Mobile items visible",
+     "component": "number",
+     "required": false,
+     "default": 1.2
+    },
+    {
+     "name": "mobileCardWidth",
+     "label": "Mobile card width (px)",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "mobileControls",
+     "label": "Previous / next buttons on mobile",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "mobileIndicator",
+     "label": "Scroll indicator on mobile",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "equalHeight",
+     "label": "Equal card height",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "stretchCards",
+     "label": "Stretch cards to row height",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "scrollSnap",
+     "label": "Scroll snap",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "snapAlign",
+     "label": "Snap alignment",
+     "component": "select",
+     "required": false,
+     "default": "start"
+    },
+    {
+     "name": "hideScrollbar",
+     "label": "Hide native scrollbar",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "mouseDrag",
+     "label": "Allow mouse drag",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "keyboardScrolling",
+     "label": "Keyboard scrolling",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "scrollStep",
+     "label": "Scroll step",
+     "component": "select",
+     "required": false,
+     "default": "one-card"
+    },
+    {
+     "name": "loop",
+     "label": "Loop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "initialIndex",
+     "label": "Initial item index",
+     "component": "number",
+     "required": false,
+     "default": 0
+    },
+    {
+     "name": "edgePadding",
+     "label": "Edge",
+     "component": "select",
+     "required": false,
+     "default": "bleed"
+    },
+    {
+     "name": "emptyBehavior",
+     "label": "When there are no items",
+     "component": "select",
+     "required": false,
+     "default": "message"
+    },
+    {
+     "name": "emptyMessage",
+     "label": "Empty message",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "analyticsEnabled",
+     "label": "Analytics",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "classes",
+     "label": "Style options",
+     "component": "multiselect",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Display",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Style options",
+     "options": [
+      "stat-compact",
+      "dividers",
+      "header-center"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "list-item"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "media-contacts",
+   "component_id": "media-contacts",
+   "title": "Media Contacts",
+   "group": "Blocks",
+   "template_name": "Media Contacts",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "media-contacts",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": true,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "modal",
+   "component_id": "modal",
+   "title": "Modal",
+   "group": "Blocks",
+   "template_name": "Modal",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "modal",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "link",
+     "label": "Modal Content",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkText",
+     "label": "Button Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "page-header",
+   "component_id": "page-header",
+   "title": "Page Header",
+   "group": "Blocks",
+   "template_name": "Page Header",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "page-header",
+   "child_filter": "page-header",
+   "children": [
+    "page-header-cta"
+   ],
+   "allowed_in": [
+    "section"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "classes",
+     "label": "Layout",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctas",
+     "label": "CTA List",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaText",
+     "label": "CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "cta",
+     "label": "CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaTarget",
+     "label": "CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaStyle",
+     "label": "CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": "primary"
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Style",
+    "CTAs",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Layout",
+     "options": [
+      "",
+      "landing",
+      "secondary",
+      "article",
+      "display"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "page-header-cta"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "quote",
+   "component_id": "quote",
+   "title": "Quote",
+   "group": "Blocks",
+   "template_name": "Quote",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "quote",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "quote",
+     "label": "Quote",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "author",
+     "label": "Quote Author",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "image",
+     "label": "Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageAlt",
+     "label": "Image Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imagePosition",
+     "label": "Image Position (Desktop)",
+     "component": "select",
+     "required": false,
+     "default": "right"
+    },
+    {
+     "name": "imagePositionMobile",
+     "label": "Image Position (Mobile)",
+     "component": "select",
+     "required": false,
+     "default": "top"
+    },
+    {
+     "name": "bgColor",
+     "label": "BG Color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "separator",
+   "component_id": "separator",
+   "title": "Separator",
+   "group": "Blocks",
+   "template_name": "Separator",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "separator",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": true,
+   "fields": [
+    {
+     "name": "componentId",
+     "label": "Component ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "accessibilityMode",
+     "label": "Accessibility mode",
+     "component": "select",
+     "required": false,
+     "default": "decorative"
+    },
+    {
+     "name": "accessibleLabel",
+     "label": "Accessible label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "variant",
+     "label": "Separator variant",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "theme",
+     "label": "Theme",
+     "component": "select",
+     "required": false,
+     "default": "auto"
+    },
+    {
+     "name": "lineStyle",
+     "label": "Line style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "lineThickness",
+     "label": "Line thickness",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "lineColor",
+     "label": "Line colour",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "lineOpacity",
+     "label": "Line opacity",
+     "component": "select",
+     "required": false,
+     "default": "100"
+    },
+    {
+     "name": "width",
+     "label": "Separator width",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "maxWidth",
+     "label": "Maximum width",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "alignment",
+     "label": "Alignment",
+     "component": "select",
+     "required": false,
+     "default": "center"
+    },
+    {
+     "name": "startDecoration",
+     "label": "Start decoration",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "centerDecoration",
+     "label": "Center decoration",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "endDecoration",
+     "label": "End decoration",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "contrastMode",
+     "label": "Background contrast",
+     "component": "select",
+     "required": false,
+     "default": "standard"
+    },
+    {
+     "name": "showDesktop",
+     "label": "Show on desktop",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showTablet",
+     "label": "Show on tablet",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "showMobile",
+     "label": "Show on mobile",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "desktopWidth",
+     "label": "Desktop width",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "desktopThickness",
+     "label": "Desktop thickness",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "desktopAlignment",
+     "label": "Desktop alignment",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "tabletWidth",
+     "label": "Tablet width",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "tabletThickness",
+     "label": "Tablet thickness",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "tabletAlignment",
+     "label": "Tablet alignment",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "mobileWidth",
+     "label": "Mobile width",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "mobileThickness",
+     "label": "Mobile thickness",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "mobileAlignment",
+     "label": "Mobile alignment",
+     "component": "select",
+     "required": false,
+     "default": "inherit"
+    },
+    {
+     "name": "desktopTopSpacing",
+     "label": "Desktop top spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "desktopBottomSpacing",
+     "label": "Desktop bottom spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "tabletTopSpacing",
+     "label": "Tablet top spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "tabletBottomSpacing",
+     "label": "Tablet bottom spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "mobileTopSpacing",
+     "label": "Mobile top spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "mobileBottomSpacing",
+     "label": "Mobile bottom spacing",
+     "component": "select",
+     "required": false,
+     "default": "default"
+    },
+    {
+     "name": "useSectionPadding",
+     "label": "Use section padding",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "stretchToContainer",
+     "label": "Stretch to container width",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "respectMaxWidth",
+     "label": "Respect content maximum width",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "animateOnView",
+     "label": "Animate on view",
+     "component": "select",
+     "required": false,
+     "default": "none"
+    },
+    {
+     "name": "reducedMotionFallback",
+     "label": "Reduced motion fallback",
+     "component": "select",
+     "required": false,
+     "default": "static"
+    },
+    {
+     "name": "printVisibility",
+     "label": "Print",
+     "component": "select",
+     "required": false,
+     "default": "show"
+    },
+    {
+     "name": "analyticsEnabled",
+     "label": "Analytics",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "analyticsLabel",
+     "label": "Analytics label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "General",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "tab",
+   "component_id": "tab",
+   "title": "Tab",
+   "group": "Blocks",
+   "template_name": "Tab",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "tab",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Child item",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": true,
+     "default": ""
+    },
+    {
+     "name": "tabId",
+     "label": "ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "activeTab",
+     "label": "Active tab",
+     "component": "boolean",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_perrow",
+     "label": "Columns per row",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [
+    {
+     "field": "classes_perrow",
+     "label": "Columns per row",
+     "options": [
+      "",
+      "per-row-1",
+      "per-row-2",
+      "per-row-3",
+      "per-row-4"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "only inside tabs"
+   ]
+  },
+  {
+   "block": "table-list",
+   "component_id": "table-list",
+   "title": "Table List",
+   "group": "Blocks",
+   "template_name": "Table List",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "table-list",
+   "child_filter": "table-list",
+   "children": [
+    "table-list-card"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "variations",
+     "label": "Variation",
+     "component": "select",
+     "required": false,
+     "default": "industries"
+    },
+    {
+     "name": "backgroundColor",
+     "label": "Background color",
+     "component": "select",
+     "required": false,
+     "default": "white"
+    },
+    {
+     "name": "listHeading",
+     "label": "Heading",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "listHeadingType",
+     "label": "Heading Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "listEyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "headerPosition",
+     "label": "Heading position",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "maxCards",
+     "label": "Maximum items",
+     "component": "number",
+     "required": false,
+     "default": 4
+    },
+    {
+     "name": "viewAllLabel",
+     "label": "Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "viewAllLink",
+     "label": "Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaStyle",
+     "label": "Style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "hideButton",
+     "label": "Hide button",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "numbers",
+     "label": "Numbers",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "itemAction",
+     "label": "Item link",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "itemButtonLabel",
+     "label": "Button text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "grayDescriptions",
+     "label": "Gray descriptions",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Items",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "table-list-card"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "table",
+   "component_id": "table",
+   "title": "Table",
+   "group": "Blocks",
+   "template_name": "Table",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "table",
+   "child_filter": "table",
+   "children": [
+    "table-row"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "classes",
+     "label": "Options",
+     "component": "multiselect",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "filter",
+     "label": "Columns",
+     "component": "select",
+     "required": false,
+     "default": "table"
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "table-row",
+    "table-col-2",
+    "table-col-3",
+    "table-col-4",
+    "table-col-5",
+    "table-col-6",
+    "table-col-7",
+    "table-col-8",
+    "table-col-9"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "tabs",
+   "component_id": "tabs",
+   "title": "Tabs Container",
+   "group": "Blocks",
+   "template_name": "Tabs",
+   "resource_type": "core/franklin/components/section/v1/section",
+   "model": "tabs",
+   "child_filter": "tabs",
+   "children": [
+    "tab",
+    "column-break",
+    "text",
+    "image",
+    "button-block",
+    "title",
+    "hero",
+    "teaser",
+    "image-collage",
+    "quote",
+    "media-contacts",
+    "testimonial",
+    "anchor-list",
+    "accordion",
+    "table",
+    "table-list",
+    "list",
+    "separator",
+    "embed",
+    "video",
+    "modal",
+    "form-variations",
+    "filter-list",
+    "cards",
+    "fragment",
+    "tabs-block"
+   ],
+   "allowed_in": [
+    "main"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container (section) and block",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "style",
+     "label": "Component",
+     "component": "select",
+     "required": false,
+     "default": "tabs-section"
+    },
+    {
+     "name": "anchorName",
+     "label": "Anchor name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "sectionWidth",
+     "label": "Width Type",
+     "component": "select",
+     "required": false,
+     "default": "full-width"
+    },
+    {
+     "name": "tabsAriaLabel",
+     "label": "Label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tabsStyle",
+     "label": "Style",
+     "component": "select",
+     "required": false,
+     "default": "underline"
+    },
+    {
+     "name": "tabsAlignment",
+     "label": "Alignment",
+     "component": "select",
+     "required": false,
+     "default": "left"
+    },
+    {
+     "name": "tabsOrientation",
+     "label": "Orientation",
+     "component": "select",
+     "required": false,
+     "default": "horizontal"
+    },
+    {
+     "name": "containerAnchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerHide",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "containerAnimation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingLeft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingRight",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingTop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerPaddingBottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginLeft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginRight",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginTop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "containerMarginBottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Styles",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [
+    {
+     "field": "style",
+     "label": "Component",
+     "options": [
+      "tabs-section"
+     ]
+    },
+    {
+     "field": "containerAnimation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "containerAnimationSpeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "containerAnimationTrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [
+    "tabs-block",
+    "tabs-item"
+   ],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "section container (added to the page, not inside a section)"
+   ]
+  },
+  {
+   "block": "tcs-header",
+   "component_id": "tcs-header",
+   "title": "TCS Header",
+   "group": "Blocks",
+   "template_name": "TCS Header",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "tcs-header",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "tcsLogo",
+     "label": "TCS Logo",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tcsLogoAlt",
+     "label": "TCS Logo Alt Text",
+     "component": "text",
+     "required": false,
+     "default": "Tata Consultancy Services"
+    },
+    {
+     "name": "tcsLogoLink",
+     "label": "TCS Logo Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tataLogo",
+     "label": "TATA Logo",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "tataLogoAlt",
+     "label": "TATA Logo Alt Text",
+     "component": "text",
+     "required": false,
+     "default": "TATA Group"
+    },
+    {
+     "name": "tataLogoLink",
+     "label": "TATA Logo Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "headerOverlay",
+     "label": "Header over the first block",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": false,
+   "variants": [],
+   "item_components": [],
+   "readiness": "READY_WITH_CONDITIONS",
+   "notes": [
+    "page shell (reference pages): never inside migrated pages (prompt section 33)"
+   ]
+  },
+  {
+   "block": "teaser",
+   "component_id": "teaser",
+   "title": "Teaser",
+   "group": "Blocks",
+   "template_name": "Teaser",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "teaser",
+   "child_filter": "teaser",
+   "children": [
+    "teaser-link",
+    "teaser-stat",
+    "teaser-collage-image"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "gen-carousel",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showEyebrow",
+     "label": "Show Eyebrow",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "titleHidden",
+     "label": "Hide Title",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showDescription",
+     "label": "Show Description",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "shortDescription",
+     "label": "Short Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "viewAllText",
+     "label": "View All Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "viewAll",
+     "label": "View All Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "showDate",
+     "label": "Show Date",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "date",
+     "label": "Date",
+     "component": "date-time",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "dateFormat",
+     "label": "Date Format",
+     "component": "select",
+     "required": false,
+     "default": "dd-mm-yyyy"
+    },
+    {
+     "name": "dateLabel",
+     "label": "Date label",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "readingTime",
+     "label": "Reading time",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "displayTags",
+     "label": "Display Tags",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "tags",
+     "label": "Tags",
+     "component": "aem-tag",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "listenLink",
+     "label": "Listen link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "download",
+     "label": "Download",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "socialShare",
+     "label": "Share",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "authorName",
+     "label": "Author name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorDesignation",
+     "label": "Author designation",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorImage",
+     "label": "Author image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorImageAlt",
+     "label": "Author image alt text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageFormat",
+     "label": "Image type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "image",
+     "label": "Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageAlt",
+     "label": "Image alt text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "hideImage",
+     "label": "Hide Image",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "imagePosition",
+     "label": "Image position",
+     "component": "select",
+     "required": false,
+     "default": "left"
+    },
+    {
+     "name": "imagePositionMobile",
+     "label": "Image position (mobile)",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageRatio",
+     "label": "Image ratio",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "imageCorners",
+     "label": "Image corners",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "multiLinks",
+     "label": "Multiple links",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "links",
+     "label": "Links (authored before Link items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaText",
+     "label": "CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "cta",
+     "label": "CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaTarget",
+     "label": "CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaStyle",
+     "label": "CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaBackground",
+     "label": "CTA Background",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "ctaShape",
+     "label": "CTA Shape",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "linkArrow",
+     "label": "List arrow",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaText",
+     "label": "Primary CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCta",
+     "label": "Primary CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaTarget",
+     "label": "Primary CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaStyle",
+     "label": "Primary CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": "primary"
+    },
+    {
+     "name": "primaryCtaBackground",
+     "label": "Primary CTA Background",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "primaryCtaShape",
+     "label": "Primary CTA Shape",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaText",
+     "label": "Secondary CTA Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCta",
+     "label": "Secondary CTA Link",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaTarget",
+     "label": "Secondary CTA Link Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaStyle",
+     "label": "Secondary CTA Link Style",
+     "component": "select",
+     "required": false,
+     "default": "secondary"
+    },
+    {
+     "name": "secondaryCtaBackground",
+     "label": "Secondary CTA Background",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "secondaryCtaShape",
+     "label": "Secondary CTA Shape",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "buttonsSideBySide",
+     "label": "Buttons side by side",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "stats",
+     "label": "Stats (authored before Stat items)",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "statLabel",
+     "label": "Stats Title",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "statValue",
+     "label": "Stats Value",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes",
+     "label": "Layout",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "bgColor",
+     "label": "BG Color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "textAlignment",
+     "label": "Text alignment",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "verticalAlignment",
+     "label": "Vertical alignment",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleWeight",
+     "label": "Title weight",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleColor",
+     "label": "Title color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "descriptionSize",
+     "label": "Description size",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "eyebrowStyle",
+     "label": "Eyebrow Style",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "topSpacing",
+     "label": "Top spacing",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes",
+     "label": "Layout",
+     "options": [
+      "",
+      "no-image",
+      "background",
+      "card",
+      "image-collage"
+     ]
+    },
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [
+    "teaser-link",
+    "teaser-stat",
+    "teaser-collage-image"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "testimonial",
+   "component_id": "testimonial",
+   "title": "Testimonial",
+   "group": "Blocks",
+   "template_name": "Testimonial",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "testimonial",
+   "child_filter": "testimonial",
+   "children": [
+    "testimonial-stat"
+   ],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Container",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "titleType",
+     "label": "Title Type",
+     "component": "select",
+     "required": false,
+     "default": "h2"
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorName",
+     "label": "Author",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorImage",
+     "label": "Author Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "authorImageAlt",
+     "label": "Author Image Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "designationLocation",
+     "label": "Designation & Location",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "stats",
+     "label": "Stats",
+     "component": "container",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "statLabel",
+     "label": "Stats Title",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "statValue",
+     "label": "Stats Value",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "bgColor",
+     "label": "BG Color",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "hideEyebrow",
+     "label": "Hide Eyebrow",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "titleHidden",
+     "label": "Hide Title",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "showDescription",
+     "label": "Show Description",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "hideAuthor",
+     "label": "Hide Author Details",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_bganimation",
+     "label": "Background animation",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Content",
+    "Style",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    },
+    {
+     "field": "classes_bganimation",
+     "label": "Background animation",
+     "options": [
+      "",
+      "bg-motion-fade-in",
+      "bg-motion-reveal",
+      "bg-motion-wipe-right",
+      "bg-motion-wipe-left",
+      "bg-motion-wipe-up",
+      "bg-motion-scale"
+     ]
+    }
+   ],
+   "item_components": [
+    "testimonial-stat"
+   ],
+   "readiness": "READY",
+   "notes": []
+  },
+  {
+   "block": "video",
+   "component_id": "video",
+   "title": "Video",
+   "group": "Blocks",
+   "template_name": "Video",
+   "resource_type": "core/franklin/components/block/v1/block",
+   "model": "video",
+   "child_filter": "",
+   "children": [],
+   "allowed_in": [
+    "section",
+    "columns-container",
+    "tabs"
+   ],
+   "runtime_js": true,
+   "css": true,
+   "readme": true,
+   "doc_status": "Active",
+   "doc_type": "Independent",
+   "unit_tests": false,
+   "fields": [
+    {
+     "name": "uri",
+     "label": "Video",
+     "component": "aem-content",
+     "required": true,
+     "default": ""
+    },
+    {
+     "name": "label",
+     "label": "Title",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "caption",
+     "label": "Caption",
+     "component": "richtext",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "transcript",
+     "label": "Transcript",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "poster",
+     "label": "Poster Image",
+     "component": "reference",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "posterAlt",
+     "label": "Poster Image Alt Text",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "captions",
+     "label": "Captions File (WebVTT)",
+     "component": "aem-content",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "captionsLanguage",
+     "label": "Captions Language",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "captionsLabel",
+     "label": "Captions Name",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "privacyMode",
+     "label": "Privacy-enhanced Mode",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "playback",
+     "label": "Playback",
+     "component": "select",
+     "required": false,
+     "default": "click"
+    },
+    {
+     "name": "muted",
+     "label": "Muted",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "loop",
+     "label": "Loop",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "controls",
+     "label": "Show Player Controls",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "startTime",
+     "label": "Start At (seconds)",
+     "component": "number",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "endTime",
+     "label": "End At (seconds)",
+     "component": "number",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "openInModal",
+     "label": "Play in a Pop-up",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "pauseOffscreen",
+     "label": "Pause When Out of View",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "aspectRatio",
+     "label": "Aspect Ratio",
+     "component": "select",
+     "required": false,
+     "default": "16-9"
+    },
+    {
+     "name": "size",
+     "label": "Size",
+     "component": "select",
+     "required": false,
+     "default": "large"
+    },
+    {
+     "name": "alignment",
+     "label": "Alignment",
+     "component": "select",
+     "required": false,
+     "default": "center"
+    },
+    {
+     "name": "rounded",
+     "label": "Rounded Corners",
+     "component": "boolean",
+     "required": false,
+     "default": true
+    },
+    {
+     "name": "classes_anchor",
+     "label": "Anchor ID",
+     "component": "text",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_hideblock",
+     "label": "Hide block",
+     "component": "boolean",
+     "required": false,
+     "default": false
+    },
+    {
+     "name": "classes_animation",
+     "label": "Animation Type",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationspeed",
+     "label": "Motion Speed",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingleft",
+     "label": "Padding left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingright",
+     "label": "Padding right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingtop",
+     "label": "Padding top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_paddingbottom",
+     "label": "Padding bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginleft",
+     "label": "Margin left",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginright",
+     "label": "Margin right",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_margintop",
+     "label": "Margin top",
+     "component": "select",
+     "required": false,
+     "default": ""
+    },
+    {
+     "name": "classes_marginbottom",
+     "label": "Margin bottom",
+     "component": "select",
+     "required": false,
+     "default": ""
+    }
+   ],
+   "tabs": [
+    "Video",
+    "Playback",
+    "Additional"
+   ],
+   "additional_tab": true,
+   "animation": true,
+   "variants": [
+    {
+     "field": "classes_animation",
+     "label": "Animation Type",
+     "options": [
+      "",
+      "motion-fade-in",
+      "motion-fade-up",
+      "motion-fade-down",
+      "motion-fade-left",
+      "motion-fade-right",
+      "motion-slide-up",
+      "motion-slide-down",
+      "motion-slide-left",
+      "motion-slide-right",
+      "motion-scale-in"
+     ]
+    },
+    {
+     "field": "classes_animationspeed",
+     "label": "Motion Speed",
+     "options": [
+      "",
+      "motion-fast",
+      "motion-slow"
+     ]
+    },
+    {
+     "field": "classes_animationtrigger",
+     "label": "Animation Trigger",
+     "options": [
+      "",
+      "motion-on-load"
+     ]
+    }
+   ],
+   "item_components": [],
+   "readiness": "READY",
+   "notes": []
+  }
+ ],
+ "default_content": [
+  "text",
+  "image",
+  "title"
+ ],
+ "section_filter": [
+  "text",
+  "image",
+  "button-block",
+  "title",
+  "page-header",
+  "hero",
+  "teaser",
+  "image-collage",
+  "quote",
+  "media-contacts",
+  "testimonial",
+  "anchor-list",
+  "accordion",
+  "tabs-block",
+  "table",
+  "table-list",
+  "list",
+  "separator",
+  "embed",
+  "video",
+  "modal",
+  "form-variations",
+  "filter-list",
+  "conversation-canvas",
+  "cards",
+  "fragment",
+  "footer",
+  "tcs-header"
+ ],
+ "templates": [
+  "README.md",
+  "article",
+  "blog",
+  "home",
+  "press-release"
+ ]
+}

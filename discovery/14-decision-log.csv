@@ -1,0 +1,5 @@
+"Decision ID","Date","Input evidence","Decision","Reason","Affected","Status"
+"EMA-D01","2026-11-07","reports/03-existing-pages.csv (652 rows)","Workbook paths win: migrate at the workbook destination","User decision; authority 1 (workbook)","rows EXISTING_OTHER_PATH; their current AEM pages to be removed and redirected after go-live","Approved by the user"
+"EMA-D02","2026-11-07","reports/03-existing-pages.csv (2,536 rows)","Re-migrate all pages already migrated at the same path with the design-model mapping","User decision","rows EXISTING_SAME_PATH (AEM edits since October are overwritten)","Approved by the user"
+"EMA-D03","2026-11-07","kb/design-pages.json, kb/package-examples.json","Published block library and curated pages stand in for the 7 November package","Package Manager not reachable; user decision","package example registry","Approved by the user"
+"EMA-D04","2026-11-07","git ref name rules","Delivery branch migrated-page-content (batch packages)","Spaces are not allowed in branch names; user decision","delivery","Approved by the user"

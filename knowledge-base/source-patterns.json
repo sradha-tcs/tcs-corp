@@ -1,0 +1,1470 @@
+[
+ {
+  "pattern": "SP-heroBanner",
+  "source_component": "heroBanner",
+  "sample_pages": 322,
+  "example_rows": [
+   4,
+   2,
+   5,
+   6,
+   7
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 66,
+   "A01": 1,
+   "A11": 186,
+   "A10": 8,
+   "A06": 6,
+   "A07": 2,
+   "A02": 4,
+   "A12": 10,
+   "A09": 25,
+   "A08": 2,
+   "A03": 10,
+   "A05": 2
+  },
+  "target": "page-header (L3 / collection pages); hero (L0, L1, L2 landing pages, per the curated archetypes)",
+  "variation": "page-header: article / landing layout; hero: align-middle align-center text-center bg-<colour> (as the archetype page)",
+  "field_mapping": "h1 -> page title (metadata); breadcrumb and share dropped (Page Header builds them); remaining text -> Text",
+  "evidence": "page-header: W1-W7 builders; hero: curated pages A01-A09",
+  "status": "VALIDATED for page-header; PILOT for hero"
+ },
+ {
+  "pattern": "SP-richText",
+  "source_component": "richText",
+  "sample_pages": 281,
+  "example_rows": [
+   3,
+   4,
+   10,
+   14,
+   22
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 30,
+   "A11": 186,
+   "A10": 5,
+   "A06": 11,
+   "A07": 1,
+   "A02": 4,
+   "A12": 10,
+   "A09": 25,
+   "A08": 2,
+   "A03": 7
+  },
+  "target": "text (+ table for tables, up to 9 columns)",
+  "variation": "table-N-columns",
+  "field_mapping": "paragraphs, headings (levels normalised), lists, links (rewritten to migrated pages), tables -> Table block",
+  "evidence": "W1-W7",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-articleTags",
+  "source_component": "articleTags",
+  "sample_pages": 106,
+  "example_rows": [
+   62,
+   564,
+   1169,
+   1860,
+   1861
+  ],
+  "archetypes": {
+   "A11": 69,
+   "UNCLASSIFIED": 8,
+   "A12": 9,
+   "A09": 20
+  },
+  "target": "page tags (cq:tags) instead of a component",
+  "variation": "-",
+  "field_mapping": "tags -> taxonomy",
+  "evidence": "W6",
+  "status": "VALIDATED (as tags)"
+ },
+ {
+  "pattern": "SP-textWithAsset",
+  "source_component": "textWithAsset",
+  "sample_pages": 104,
+  "example_rows": [
+   3,
+   4,
+   2,
+   5,
+   6
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 54,
+   "A01": 1,
+   "A11": 28,
+   "A10": 4,
+   "A06": 1,
+   "A07": 2,
+   "A02": 3,
+   "A09": 2,
+   "A12": 1,
+   "A03": 8
+  },
+  "target": "text + image / embed (video); teaser on landing archetypes",
+  "variation": "teaser: image left/right",
+  "field_mapping": "text -> Text; image -> Image (DAM); video -> Embed",
+  "evidence": "W5-W7; curated A02",
+  "status": "VALIDATED (text + image); PILOT (teaser)"
+ },
+ {
+  "pattern": "SP-relatedContent",
+  "source_component": "relatedContent",
+  "sample_pages": 95,
+  "example_rows": [
+   59,
+   1860,
+   1880,
+   1892,
+   1908
+  ],
+  "archetypes": {
+   "A11": 75,
+   "A10": 2,
+   "UNCLASSIFIED": 9,
+   "A12": 4,
+   "A09": 5
+  },
+  "target": "list (tagged pages, query index)",
+  "variation": "image cards, horizontal scroll",
+  "field_mapping": "tags of the page -> List tags",
+  "evidence": "curated A07-A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-quoteCard",
+  "source_component": "quoteCard",
+  "sample_pages": 91,
+  "example_rows": [
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 49,
+   "A11": 24,
+   "A10": 3,
+   "A07": 1,
+   "A02": 2,
+   "A09": 4,
+   "A12": 4,
+   "A08": 1,
+   "A03": 3
+  },
+  "target": "quote",
+  "variation": "default",
+  "field_mapping": "quote text, author, designation",
+  "evidence": "W5-W7",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-staticRelatedContent",
+  "source_component": "staticRelatedContent",
+  "sample_pages": 90,
+  "example_rows": [
+   4,
+   62,
+   129,
+   563,
+   564
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 5,
+   "A11": 59,
+   "A07": 1,
+   "A09": 18,
+   "A12": 6,
+   "A03": 1
+  },
+  "target": "list (fixed List Items)",
+  "variation": "image cards",
+  "field_mapping": "each linked page -> List Item",
+  "evidence": "curated A07-A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-footerCTA",
+  "source_component": "footerCTA",
+  "sample_pages": 82,
+  "example_rows": [
+   5,
+   6,
+   7,
+   8,
+   10
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 44,
+   "A11": 27,
+   "A02": 1,
+   "A09": 8,
+   "A08": 1,
+   "A03": 1
+  },
+  "target": "teaser",
+  "variation": "no-image, text-center, bg-grey",
+  "field_mapping": "h2 -> title; text -> description; link -> primary CTA",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-solutionCard",
+  "source_component": "solutionCard",
+  "sample_pages": 66,
+  "example_rows": [
+   4,
+   2,
+   5,
+   6,
+   7
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 47,
+   "A01": 1,
+   "A10": 3,
+   "A06": 1,
+   "A02": 2,
+   "A09": 1,
+   "A08": 1,
+   "A11": 5,
+   "A03": 5
+  },
+  "target": "cards",
+  "variation": "image / panel cards, 3 / 2 columns",
+  "field_mapping": "card image, title, text, link",
+  "evidence": "W5-W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-horizontalTab",
+  "source_component": "horizontalTab",
+  "sample_pages": 63,
+  "example_rows": [
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 47,
+   "A11": 9,
+   "A10": 1,
+   "A06": 1,
+   "A07": 2,
+   "A02": 1,
+   "A03": 2
+  },
+  "target": "tabs (Tabs Container section) with Tab items",
+  "variation": "underline, horizontal",
+  "field_mapping": "tab label -> Tab title; panel -> Text / Table",
+  "evidence": "W5-W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-textOverImage",
+  "source_component": "textOverImage",
+  "sample_pages": 55,
+  "example_rows": [
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 42,
+   "A11": 9,
+   "A03": 4
+  },
+  "target": "teaser",
+  "variation": "background (image) / no-image + bg-grey",
+  "field_mapping": "h2 -> title; text -> description; link -> primary CTA; image -> background image",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-authorBioContainer",
+  "source_component": "authorBioContainer",
+  "sample_pages": 43,
+  "example_rows": [
+   59,
+   62,
+   216,
+   1169,
+   1496
+  ],
+  "archetypes": {
+   "A11": 33,
+   "UNCLASSIFIED": 2,
+   "A09": 8
+  },
+  "target": "Authors sheet row + author-id metadata (Page Header shows the author)",
+  "variation": "-",
+  "field_mapping": "name, bio, image",
+  "evidence": "W6 (decision W6-D2)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-cardContainer",
+  "source_component": "cardContainer",
+  "sample_pages": 30,
+  "example_rows": [
+   10,
+   14,
+   22,
+   26,
+   33
+  ],
+  "archetypes": {
+   "A11": 17,
+   "UNCLASSIFIED": 2,
+   "A10": 2,
+   "A06": 2,
+   "A07": 1,
+   "A02": 4,
+   "A08": 1,
+   "A03": 1
+  },
+  "target": "text",
+  "variation": "default",
+  "field_mapping": "as rich text",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-image",
+  "source_component": "image",
+  "sample_pages": 30,
+  "example_rows": [
+   1861,
+   1869,
+   1872,
+   1914,
+   2368
+  ],
+  "archetypes": {
+   "A11": 21,
+   "A02": 1,
+   "UNCLASSIFIED": 5,
+   "A09": 2,
+   "A08": 1
+  },
+  "target": "image",
+  "variation": "default",
+  "field_mapping": "image with alt",
+  "evidence": "W6",
+  "status": "VALIDATED (as text in W6; image in the design model)"
+ },
+ {
+  "pattern": "SP-leadGenFormType1",
+  "source_component": "leadGenFormType1",
+  "sample_pages": 27,
+  "example_rows": [
+   225,
+   231,
+   243,
+   251,
+   255
+  ],
+  "archetypes": {
+   "A11": 11,
+   "A12": 7,
+   "UNCLASSIFIED": 9
+  },
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "field_mapping": "form intro -> Text; form URL -> Button",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "pattern": "SP-statsCard",
+  "source_component": "statsCard",
+  "sample_pages": 25,
+  "example_rows": [
+   37,
+   48,
+   57,
+   100,
+   1922
+  ],
+  "archetypes": {
+   "A11": 13,
+   "UNCLASSIFIED": 1,
+   "A10": 2,
+   "A06": 1,
+   "A12": 2,
+   "A09": 2,
+   "A02": 1,
+   "A03": 3
+  },
+  "target": "teaser (stats)",
+  "variation": "teaser stat items",
+  "field_mapping": "value, label (counter text removed)",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-iconTextV2",
+  "source_component": "iconTextV2",
+  "sample_pages": 21,
+  "example_rows": [
+   3,
+   9,
+   20,
+   31,
+   42
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 13,
+   "A09": 3,
+   "A11": 2,
+   "A02": 1,
+   "A03": 2
+  },
+  "target": "cards (or tabs when tabbed)",
+  "variation": "panel cards with icons",
+  "field_mapping": "icon, title, text",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-followUs",
+  "source_component": "followUs",
+  "sample_pages": 20,
+  "example_rows": [
+   9,
+   20,
+   31,
+   42,
+   57
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 10,
+   "A11": 8,
+   "A10": 1,
+   "A02": 1
+  },
+  "target": "not migrated (social links are in the footer)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-genericVideo",
+  "source_component": "genericVideo",
+  "sample_pages": 20,
+  "example_rows": [
+   122,
+   2108,
+   2476,
+   2930,
+   3644
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 3,
+   "A11": 15,
+   "A02": 1,
+   "A09": 1
+  },
+  "target": "embed",
+  "variation": "video",
+  "field_mapping": "video URL",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-ctaButton",
+  "source_component": "ctaButton",
+  "sample_pages": 15,
+  "example_rows": [
+   562,
+   1879,
+   2079,
+   2755,
+   3677
+  ],
+  "archetypes": {
+   "A11": 9,
+   "A10": 1,
+   "A06": 1,
+   "A09": 4
+  },
+  "target": "button-block",
+  "variation": "button / primary",
+  "field_mapping": "link, label",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-bannerWithText",
+  "source_component": "bannerWithText",
+  "sample_pages": 15,
+  "example_rows": [
+   1976,
+   1977,
+   2043,
+   2077,
+   2078
+  ],
+  "archetypes": {
+   "A06": 9,
+   "A11": 6
+  },
+  "target": "not migrated (section menu / banner of the IR pages)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W5 (decision D-5)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-storiesSection",
+  "source_component": "storiesSection",
+  "sample_pages": 14,
+  "example_rows": [
+   3,
+   9,
+   20,
+   31,
+   42
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 9,
+   "A11": 4,
+   "A03": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "story image, title, link",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-iconLinkList",
+  "source_component": "iconLinkList",
+  "sample_pages": 14,
+  "example_rows": [
+   5,
+   9,
+   20,
+   31,
+   42
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 10,
+   "A11": 2,
+   "A06": 1,
+   "A03": 1
+  },
+  "target": "text",
+  "variation": "default",
+  "field_mapping": "linked list",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-featureList",
+  "source_component": "featureList",
+  "sample_pages": 13,
+  "example_rows": [
+   9,
+   20,
+   31,
+   42,
+   95
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 7,
+   "A11": 4,
+   "A09": 2
+  },
+  "target": "text",
+  "variation": "default",
+  "field_mapping": "as rich text",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-infographics",
+  "source_component": "infographics",
+  "sample_pages": 13,
+  "example_rows": [
+   53,
+   92,
+   123,
+   1825,
+   2039
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 3,
+   "A11": 7,
+   "A06": 1,
+   "A09": 2
+  },
+  "target": "image",
+  "variation": "default",
+  "field_mapping": "image with alt (from the source alt or text)",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-heroCarousel",
+  "source_component": "heroCarousel",
+  "sample_pages": 10,
+  "example_rows": [
+   3,
+   9,
+   20,
+   31,
+   42
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 9,
+   "A11": 1
+  },
+  "target": "gen-carousel of hero slides",
+  "variation": "dots / arrows",
+  "field_mapping": "each slide -> Hero (image, title, CTA)",
+  "evidence": "curated A01; October: first slide only (logged)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-featureCard",
+  "source_component": "featureCard",
+  "sample_pages": 8,
+  "example_rows": [
+   3,
+   2,
+   57,
+   2120,
+   3611
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2,
+   "A01": 1,
+   "A07": 1,
+   "A02": 1,
+   "A08": 1,
+   "A03": 1,
+   "A11": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "as solutionCard",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-flexiList",
+  "source_component": "flexiList",
+  "sample_pages": 7,
+  "example_rows": [
+   543,
+   552,
+   2040,
+   4982,
+   5480
+  ],
+  "archetypes": {
+   "A11": 6,
+   "A06": 1
+  },
+  "target": "cards",
+  "variation": "panel cards",
+  "field_mapping": "item title, text, link",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-podcast",
+  "source_component": "podcast",
+  "sample_pages": 7,
+  "example_rows": [
+   3612,
+   3656,
+   3661,
+   3666,
+   4117
+  ],
+  "archetypes": {
+   "A02": 1,
+   "UNCLASSIFIED": 5,
+   "A11": 1
+  },
+  "target": "text (episode text); the audio player is not migrated",
+  "variation": "-",
+  "field_mapping": "title, text",
+  "evidence": "W5 (logged: audio player not migrated)",
+  "status": "GAP (audio player)"
+ },
+ {
+  "pattern": "SP-subNavigation",
+  "source_component": "subNavigation",
+  "sample_pages": 6,
+  "example_rows": [
+   9,
+   31,
+   42,
+   75,
+   95
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 6
+  },
+  "target": "not migrated (navigation)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-whatsHotCard",
+  "source_component": "whatsHotCard",
+  "sample_pages": 5,
+  "example_rows": [
+   3,
+   2120,
+   3673,
+   4082,
+   4792
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1,
+   "A07": 1,
+   "A02": 1,
+   "A10": 1,
+   "A11": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "as insightCards",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-miniSocialMedia",
+  "source_component": "miniSocialMedia",
+  "sample_pages": 5,
+  "example_rows": [
+   3,
+   542,
+   2120,
+   8223,
+   8352
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2,
+   "A07": 1,
+   "A11": 2
+  },
+  "target": "not migrated (social links are in the footer)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W6 (decision W6-D4)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-storyCardCarousel",
+  "source_component": "storyCardCarousel",
+  "sample_pages": 5,
+  "example_rows": [
+   2,
+   1855,
+   4951,
+   8261,
+   8275
+  ],
+  "archetypes": {
+   "A01": 1,
+   "A11": 3,
+   "A02": 1
+  },
+  "target": "gen-carousel of teasers, or cards",
+  "variation": "dots",
+  "field_mapping": "each story -> Teaser",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-anonymousPoll",
+  "source_component": "anonymousPoll",
+  "sample_pages": 5,
+  "example_rows": [
+   10,
+   22,
+   33,
+   53,
+   123
+  ],
+  "archetypes": {
+   "A11": 3,
+   "UNCLASSIFIED": 2
+  },
+  "target": "not migrated (no poll block)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W6 (decision W6-D1)",
+  "status": "GAP (left out)"
+ },
+ {
+  "pattern": "SP-bingeGallery",
+  "source_component": "bingeGallery",
+  "sample_pages": 5,
+  "example_rows": [
+   1496,
+   4984,
+   8223,
+   8252,
+   8261
+  ],
+  "archetypes": {
+   "A11": 5
+  },
+  "target": "no exact block (video gallery): cards of videos or gen-carousel",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-dynamicFilter",
+  "source_component": "dynamicFilter",
+  "sample_pages": 5,
+  "example_rows": [
+   1823,
+   2118,
+   5009,
+   5374,
+   5375
+  ],
+  "archetypes": {
+   "A10": 1,
+   "UNCLASSIFIED": 1,
+   "A05": 2,
+   "A11": 1
+  },
+  "target": "filter-list",
+  "variation": "cards, filters from taxonomy",
+  "field_mapping": "root path, tags",
+  "evidence": "design model A04 / A05 / A10",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-worldwideMap",
+  "source_component": "worldwideMap",
+  "sample_pages": 4,
+  "example_rows": [
+   3,
+   3612,
+   3666,
+   8299
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2,
+   "A02": 1,
+   "A03": 1
+  },
+  "target": "list (country pages)",
+  "variation": "grid",
+  "field_mapping": "parent page",
+  "evidence": "W6 (decision W6-D3)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-horizontalAccordion",
+  "source_component": "horizontalAccordion",
+  "sample_pages": 4,
+  "example_rows": [
+   2,
+   3611,
+   4182,
+   8185
+  ],
+  "archetypes": {
+   "A01": 1,
+   "A02": 1,
+   "A08": 1,
+   "A03": 1
+  },
+  "target": "accordion",
+  "variation": "default",
+  "field_mapping": "item title, panel",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-articleQuote",
+  "source_component": "articleQuote",
+  "sample_pages": 4,
+  "example_rows": [
+   564,
+   3975,
+   4586,
+   4905
+  ],
+  "archetypes": {
+   "A11": 3,
+   "A12": 1
+  },
+  "target": "quote",
+  "variation": "default",
+  "field_mapping": "quote text, author",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-latestCards",
+  "source_component": "latestCards",
+  "sample_pages": 4,
+  "example_rows": [
+   1922,
+   1949,
+   8186,
+   8274
+  ],
+  "archetypes": {
+   "A10": 2,
+   "A03": 2
+  },
+  "target": "list (latest pages below a root)",
+  "variation": "image cards",
+  "field_mapping": "root / tags",
+  "evidence": "design model A04 / A05",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-interactiveHubPannel",
+  "source_component": "interactiveHubPannel",
+  "sample_pages": 3,
+  "example_rows": [
+   3,
+   2,
+   57
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2,
+   "A01": 1
+  },
+  "target": "tabs or cards",
+  "variation": "underline / panel cards",
+  "field_mapping": "panel labels -> tabs",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-expertCards",
+  "source_component": "expertCards",
+  "sample_pages": 3,
+  "example_rows": [
+   37,
+   542,
+   2039
+  ],
+  "archetypes": {
+   "A11": 1,
+   "UNCLASSIFIED": 1,
+   "A06": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "person image, name, designation",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-videoCard",
+  "source_component": "videoCard",
+  "sample_pages": 3,
+  "example_rows": [
+   53,
+   123,
+   3620
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2,
+   "A11": 1
+  },
+  "target": "embed",
+  "variation": "video (YouTube / Vimeo)",
+  "field_mapping": "video URL, title",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-timelineContainer",
+  "source_component": "timelineContainer",
+  "sample_pages": 3,
+  "example_rows": [
+   4951,
+   4952,
+   8300
+  ],
+  "archetypes": {
+   "A02": 1,
+   "A03": 1,
+   "A11": 1
+  },
+  "target": "no timeline block: accordion or tabs by period (closest)",
+  "variation": "-",
+  "field_mapping": "period -> item title; text -> panel",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-leadGenFormType2",
+  "source_component": "leadGenFormType2",
+  "sample_pages": 2,
+  "example_rows": [
+   428,
+   514
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 2
+  },
+  "target": "button-block to the tcs.com form (no form back end)",
+  "variation": "primary",
+  "field_mapping": "as leadGenFormType1",
+  "evidence": "W7 (decision W7-D6)",
+  "status": "VALIDATED (as a link); GAP for a working form"
+ },
+ {
+  "pattern": "SP-advanceTab",
+  "source_component": "advanceTab",
+  "sample_pages": 2,
+  "example_rows": [
+   542,
+   2040
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1,
+   "A06": 1
+  },
+  "target": "tabs (Tabs Container section)",
+  "variation": "underline",
+  "field_mapping": "as horizontalTab",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-authorListing",
+  "source_component": "authorListing",
+  "sample_pages": 2,
+  "example_rows": [
+   566,
+   867
+  ],
+  "archetypes": {
+   "A10": 2
+  },
+  "target": "filter-list or list of the author's pages (query index by author-id)",
+  "variation": "-",
+  "field_mapping": "author-id -> pages",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-featureGrid",
+  "source_component": "featureGrid",
+  "sample_pages": 2,
+  "example_rows": [
+   1879,
+   4046
+  ],
+  "archetypes": {
+   "A10": 1,
+   "A09": 1
+  },
+  "target": "cards",
+  "variation": "panel cards",
+  "field_mapping": "feature title, text",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-quarterLanding",
+  "source_component": "quarterLanding",
+  "sample_pages": 2,
+  "example_rows": [
+   1977,
+   2077
+  ],
+  "archetypes": {
+   "A06": 2
+  },
+  "target": "tabs (a tab a year) + table",
+  "variation": "underline",
+  "field_mapping": "reports per quarter",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-downloadReport",
+  "source_component": "downloadReport",
+  "sample_pages": 2,
+  "example_rows": [
+   2040,
+   8278
+  ],
+  "archetypes": {
+   "A06": 1,
+   "A03": 1
+  },
+  "target": "button-block (document in the DAM)",
+  "variation": "button / primary",
+  "field_mapping": "document link -> DAM document",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-inPageLinks",
+  "source_component": "inPageLinks",
+  "sample_pages": 2,
+  "example_rows": [
+   2113,
+   4954
+  ],
+  "archetypes": {
+   "A06": 1,
+   "A03": 1
+  },
+  "target": "not migrated (section menu)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "W5 (decision D-5)",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-embed",
+  "source_component": "embed",
+  "sample_pages": 2,
+  "example_rows": [
+   2113,
+   3642
+  ],
+  "archetypes": {
+   "A06": 1,
+   "UNCLASSIFIED": 1
+  },
+  "target": "embed",
+  "variation": "default",
+  "field_mapping": "embed URL",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-storyCard",
+  "source_component": "storyCard",
+  "sample_pages": 2,
+  "example_rows": [
+   4082,
+   4182
+  ],
+  "archetypes": {
+   "A10": 1,
+   "A08": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "story image, title, link",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-insightCards",
+  "source_component": "insightCards",
+  "sample_pages": 2,
+  "example_rows": [
+   8274,
+   8276
+  ],
+  "archetypes": {
+   "A03": 1,
+   "A11": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "insight image, title, link",
+  "evidence": "W6",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-contentCards",
+  "source_component": "contentCards",
+  "sample_pages": 1,
+  "example_rows": [
+   57
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "cards",
+  "variation": "image cards",
+  "field_mapping": "card image, title, link",
+  "evidence": "design model (cards)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-itwizContactUs",
+  "source_component": "itwizContactUs",
+  "sample_pages": 1,
+  "example_rows": [
+   426
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-contactWelcomeScreen",
+  "source_component": "contactWelcomeScreen",
+  "sample_pages": 1,
+  "example_rows": [
+   509
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (interactive contact module)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-shortFeedbackSurvey",
+  "source_component": "shortFeedbackSurvey",
+  "sample_pages": 1,
+  "example_rows": [
+   542
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "no block (survey)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-emailSignUp",
+  "source_component": "emailSignUp",
+  "sample_pages": 1,
+  "example_rows": [
+   1825
+  ],
+  "archetypes": {
+   "A11": 1
+  },
+  "target": "form-variations (needs an endpoint) or button to the tcs.com form",
+  "variation": "-",
+  "field_mapping": "email field",
+  "evidence": "none",
+  "status": "GAP"
+ },
+ {
+  "pattern": "SP-quarterOverview",
+  "source_component": "quarterOverview",
+  "sample_pages": 1,
+  "example_rows": [
+   1975
+  ],
+  "archetypes": {
+   "A06": 1
+  },
+  "target": "table + button-block",
+  "variation": "table-N-columns",
+  "field_mapping": "latest year reports table",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-eventsTab",
+  "source_component": "eventsTab",
+  "sample_pages": 1,
+  "example_rows": [
+   1976
+  ],
+  "archetypes": {
+   "A06": 1
+  },
+  "target": "tabs (Tabs Container section)",
+  "variation": "underline",
+  "field_mapping": "as horizontalTab",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-dropdownListing",
+  "source_component": "dropdownListing",
+  "sample_pages": 1,
+  "example_rows": [
+   2039
+  ],
+  "archetypes": {
+   "A06": 1
+  },
+  "target": "filter-list",
+  "variation": "list layout, query index",
+  "field_mapping": "root path, sort latest",
+  "evidence": "W5",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-listFilter",
+  "source_component": "listFilter",
+  "sample_pages": 1,
+  "example_rows": [
+   2115
+  ],
+  "archetypes": {
+   "A06": 1
+  },
+  "target": "filter-list",
+  "variation": "list layout, query index, advanced filter",
+  "field_mapping": "root path, sort latest",
+  "evidence": "W5 (corporate actions listing)",
+  "status": "VALIDATED (October waves)"
+ },
+ {
+  "pattern": "SP-topHighlightsSlider",
+  "source_component": "topHighlightsSlider",
+  "sample_pages": 1,
+  "example_rows": [
+   2120
+  ],
+  "archetypes": {
+   "A07": 1
+  },
+  "target": "gen-carousel of teasers",
+  "variation": "dots / arrows",
+  "field_mapping": "each highlight -> Teaser",
+  "evidence": "design model",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-recommendedReading",
+  "source_component": "recommendedReading",
+  "sample_pages": 1,
+  "example_rows": [
+   2120
+  ],
+  "archetypes": {
+   "A07": 1
+  },
+  "target": "list (fixed List Items or tagged pages)",
+  "variation": "image cards",
+  "field_mapping": "linked pages -> List Items",
+  "evidence": "design model A11 / A12 (list)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-anchorLinks",
+  "source_component": "anchorLinks",
+  "sample_pages": 1,
+  "example_rows": [
+   2120
+  ],
+  "archetypes": {
+   "A07": 1
+  },
+  "target": "anchor-list",
+  "variation": "default / sticky",
+  "field_mapping": "link labels -> anchors of the sections",
+  "evidence": "curated A11 / A12 (anchor-list)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-footer",
+  "source_component": "footer",
+  "sample_pages": 1,
+  "example_rows": [
+   3644
+  ],
+  "archetypes": {
+   "UNCLASSIFIED": 1
+  },
+  "target": "not migrated (global footer)",
+  "variation": "-",
+  "field_mapping": "-",
+  "evidence": "prompt section 33",
+  "status": "VALIDATED (left out)"
+ },
+ {
+  "pattern": "SP-featuredArticles",
+  "source_component": "featuredArticles",
+  "sample_pages": 1,
+  "example_rows": [
+   4082
+  ],
+  "archetypes": {
+   "A10": 1
+  },
+  "target": "list (featured pages: featured / priority metadata)",
+  "variation": "image cards",
+  "field_mapping": "linked pages -> List Items",
+  "evidence": "design model A04 / A05 (list)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-textImage",
+  "source_component": "textImage",
+  "sample_pages": 1,
+  "example_rows": [
+   4747
+  ],
+  "archetypes": {
+   "A11": 1
+  },
+  "target": "text + image; teaser on landing archetypes",
+  "variation": "teaser: image left/right",
+  "field_mapping": "as textWithAsset",
+  "evidence": "W5-W7 (textWithAsset); curated A02",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-eventsHeroBanner",
+  "source_component": "eventsHeroBanner",
+  "sample_pages": 1,
+  "example_rows": [
+   5010
+  ],
+  "archetypes": {
+   "A11": 1
+  },
+  "target": "page-header (event date, place in metadata)",
+  "variation": "landing layout",
+  "field_mapping": "h1 -> title; date -> publish-date",
+  "evidence": "W5 (heroBanner on events)",
+  "status": "PILOT"
+ },
+ {
+  "pattern": "SP-regionalPrivacy",
+  "source_component": "regionalPrivacy",
+  "sample_pages": 1,
+  "example_rows": [
+   8299
+  ],
+  "archetypes": {
+   "A03": 1
+  },
+  "target": "text (regional privacy notice text)",
+  "variation": "default",
+  "field_mapping": "as rich text",
+  "evidence": "W1-W7 rich text",
+  "status": "PILOT"
+ }
+]

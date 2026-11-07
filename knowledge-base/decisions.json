@@ -1,0 +1,38 @@
+[
+ {
+  "id": "EMA-D01",
+  "date": "2026-11-07",
+  "evidence": "reports/03-existing-pages.csv (652 rows)",
+  "decision": "Workbook paths win: migrate at the workbook destination",
+  "reason": "User decision; authority 1 (workbook)",
+  "affects": "rows EXISTING_OTHER_PATH; their current AEM pages to be removed and redirected after go-live",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D02",
+  "date": "2026-11-07",
+  "evidence": "reports/03-existing-pages.csv (2,536 rows)",
+  "decision": "Re-migrate all pages already migrated at the same path with the design-model mapping",
+  "reason": "User decision",
+  "affects": "rows EXISTING_SAME_PATH (AEM edits since October are overwritten)",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D03",
+  "date": "2026-11-07",
+  "evidence": "kb/design-pages.json, kb/package-examples.json",
+  "decision": "Published block library and curated pages stand in for the 7 November package",
+  "reason": "Package Manager not reachable; user decision",
+  "affects": "package example registry",
+  "status": "Approved by the user"
+ },
+ {
+  "id": "EMA-D04",
+  "date": "2026-11-07",
+  "evidence": "git ref name rules",
+  "decision": "Delivery branch migrated-page-content (batch packages)",
+  "reason": "Spaces are not allowed in branch names; user decision",
+  "affects": "delivery",
+  "status": "Approved by the user"
+ }
+]

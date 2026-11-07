@@ -1,0 +1,3145 @@
+[
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "accordion",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "button-block",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "stat-compact",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "dividers",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "header-center",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "cards",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "columns-container",
+  "field": "style",
+  "label": "Style",
+  "variation": "columns-container-section",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "style",
+  "label": "Style",
+  "variation": "highlight",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerBgColor",
+  "label": "BG Color",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerBgColor",
+  "label": "BG Color",
+  "variation": "bg-grey",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerBgColor",
+  "label": "BG Color",
+  "variation": "bg-dark",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerBgColor",
+  "label": "BG Color",
+  "variation": "bg-dark-green",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerBgColor",
+  "label": "BG Color",
+  "variation": "bg-navy",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "columns-container",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes",
+  "label": "Canvas Style",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes",
+  "label": "Canvas Style",
+  "variation": "primary",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes",
+  "label": "Canvas Style",
+  "variation": "secondary",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_journey",
+  "label": "Floating journey",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_journey",
+  "label": "Floating journey",
+  "variation": "nofloat",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_actions",
+  "label": "Quick actions",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_actions",
+  "label": "Quick actions",
+  "variation": "action-pills",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_actions",
+  "label": "Quick actions",
+  "variation": "action-buttons",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_navstyle",
+  "label": "Navigation style",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_navstyle",
+  "label": "Navigation style",
+  "variation": "text-links",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "conversation-canvas",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "embed",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "filter-list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "form-variations",
+  "field": "classes",
+  "label": "Theme",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "form-variations",
+  "field": "classes",
+  "label": "Theme",
+  "variation": "dark",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "style",
+  "label": "Style",
+  "variation": "gen-carousel-section",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "gen-carousel",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "hero",
+  "field": "classes_media",
+  "label": "Hero Image type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_media",
+  "label": "Hero Image type",
+  "variation": "lottie",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes",
+  "label": "Hero View",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes",
+  "label": "Hero View",
+  "variation": "media-contained",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_alignment",
+  "label": "Vertical Alignment",
+  "variation": "align-top",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_alignment",
+  "label": "Vertical Alignment",
+  "variation": "align-middle",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_alignment",
+  "label": "Vertical Alignment",
+  "variation": "align-bottom",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_horizontal",
+  "label": "Horizontal Alignment",
+  "variation": "align-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_horizontal",
+  "label": "Horizontal Alignment",
+  "variation": "align-center",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_horizontal",
+  "label": "Horizontal Alignment",
+  "variation": "align-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_textAlignment",
+  "label": "Text Alignment",
+  "variation": "text-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_textAlignment",
+  "label": "Text Alignment",
+  "variation": "text-center",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_textAlignment",
+  "label": "Text Alignment",
+  "variation": "text-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-light",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-dark",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-dark-subtle",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-black",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-charcoal-80",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-navy-60",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_background",
+  "label": "BG Color",
+  "variation": "bg-charcoal-40",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_iconcolor",
+  "label": "Icon color",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_iconcolor",
+  "label": "Icon color",
+  "variation": "icon-black",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_iconcolor",
+  "label": "Icon color",
+  "variation": "icon-white",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_iconcolor",
+  "label": "Icon color",
+  "variation": "icon-blue",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_iconcolor",
+  "label": "Icon color",
+  "variation": "icon-pale-blue",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_eyebrowcolor",
+  "label": "Eyebrow color",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_eyebrowcolor",
+  "label": "Eyebrow color",
+  "variation": "eyebrow-royal-blue",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_eyebrowcolor",
+  "label": "Eyebrow color",
+  "variation": "eyebrow-sky-blue",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "hero",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "image-collage",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "interactive-dashboard",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "INCOMPLETE"
+ },
+ {
+  "block": "list",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "stat-compact",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "dividers",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes",
+  "label": "Style options",
+  "variation": "header-center",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "media-contacts",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "landing",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "secondary",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "article",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "display",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "page-header",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "quote",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY"
+ },
+ {
+  "block": "tab",
+  "field": "classes_perrow",
+  "label": "Columns per row",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tab",
+  "field": "classes_perrow",
+  "label": "Columns per row",
+  "variation": "per-row-1",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tab",
+  "field": "classes_perrow",
+  "label": "Columns per row",
+  "variation": "per-row-2",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tab",
+  "field": "classes_perrow",
+  "label": "Columns per row",
+  "variation": "per-row-3",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tab",
+  "field": "classes_perrow",
+  "label": "Columns per row",
+  "variation": "per-row-4",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table-list",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "table",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "tabs",
+  "field": "style",
+  "label": "Component",
+  "variation": "tabs-section",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimationSpeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "tabs",
+  "field": "containerAnimationTrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY_WITH_CONDITIONS"
+ },
+ {
+  "block": "teaser",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "no-image",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "background",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "card",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes",
+  "label": "Layout",
+  "variation": "image-collage",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "teaser",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-reveal",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-wipe-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "testimonial",
+  "field": "classes_bganimation",
+  "label": "Background animation",
+  "variation": "bg-motion-scale",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-fade-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-up",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-down",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-left",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-slide-right",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animation",
+  "label": "Animation Type",
+  "variation": "motion-scale-in",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-fast",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animationspeed",
+  "label": "Motion Speed",
+  "variation": "motion-slow",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "(default)",
+  "readiness": "READY"
+ },
+ {
+  "block": "video",
+  "field": "classes_animationtrigger",
+  "label": "Animation Trigger",
+  "variation": "motion-on-load",
+  "readiness": "READY"
+ }
+]

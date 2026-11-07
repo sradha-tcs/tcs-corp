@@ -1,0 +1,93 @@
+{
+ "rows": 8447,
+ "level_columns": [
+  "L1",
+  "L2",
+  "L3",
+  "L4",
+  "L5",
+  "L6",
+  "L7"
+ ],
+ "status": {
+  "REQUIRES_REVIEW": 1,
+  "VALID": 8380,
+  "VALID_WITH_WARNINGS": 63,
+  "INVALID": 3
+ },
+ "issues": {
+  "TARGET_URL_NO_LOCALE_ROOT": 1,
+  "ILLEGAL_PAGE_NAME": 2,
+  "MISSING_LIVE_URL": 1,
+  "MISSING_TARGET_URL": 1
+ },
+ "warnings": {
+  "RESOLVES_TO_LOCALE_ROOT": 1,
+  "LIVE_URL_MIXED_CASE": 63,
+  "PAGE_NAME_UPPERCASE": 65
+ },
+ "rules": {
+  "A": 1,
+  "B": 6,
+  "B+C": 8439,
+  "": 1
+ },
+ "depth": {
+  "0": 2,
+  "1": 6,
+  "2": 95,
+  "4": 3415,
+  "3": 1987,
+  "5": 2750,
+  "6": 184,
+  "7": 8
+ },
+ "conflicts": 0,
+ "exists_on_site": 2545,
+ "top_l1": [
+  [
+   "who-we-are",
+   3496
+  ],
+  [
+   "what-we-do",
+   2833
+  ],
+  [
+   "insights",
+   1412
+  ],
+  [
+   "contact-us",
+   317
+  ],
+  [
+   "careers",
+   222
+  ],
+  [
+   "investor-relations",
+   141
+  ],
+  [
+   "inquizitive",
+   21
+  ],
+  [
+   "(none)",
+   2
+  ],
+  [
+   "IT_Testing",
+   1
+  ],
+  [
+   "tcs-accessibility-declaration",
+   1
+  ],
+  [
+   "tcs-insights",
+   1
+  ]
+ ]
+}

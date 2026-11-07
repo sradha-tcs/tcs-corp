@@ -1,0 +1,22 @@
+{
+ "commit": "c06195ef6d6cdf23dc91ac5fe0c0169110e629d4 2026-11-06T18:09:56+05:30 Merge pull request #188 from sradha-tcs/fix/hero-icon-color",
+ "blocks": 32,
+ "readiness": {
+  "READY": 20,
+  "READY_WITH_CONDITIONS": 9,
+  "DEPRECATED": 1,
+  "RUNTIME_ONLY": 1,
+  "INCOMPLETE": 1
+ },
+ "variations": 449,
+ "without_additional_tab": [
+  "columns",
+  "form-variations"
+ ],
+ "section_filter": 28,
+ "default_content": [
+  "text",
+  "image",
+  "title"
+ ]
+}
