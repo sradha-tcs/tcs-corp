@@ -2,12 +2,12 @@
 
 Wave 5 | NEW | A11 L3 - Story Curated / Generated | 243 workbook rows | URL patterns: what-we-do/services/artificial-intelligence/*, what-we-do/services/cloud/*, what-we-do/services/cognitive-business-operations/*
 
-Outcomes: {'VALIDATED': 240, 'PARTIALLY_MIGRATED': 3}
+Outcomes: {'VALIDATED': 243}
 
 | Check | Result |
 |---|---|
 | Every-page check | 243 pages, 19 problems (no publish date 19) |
-| Browser check (1 page in 10; 375 / 768 / 1440 px) | 25/25 load, 25 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 21 console errors |
+| Browser check (1 page in 10; 375 / 768 / 1440 px) | 25/25 load, 25 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 22 console errors |
 
 | Issue | Count |
 |---|---|
@@ -16,7 +16,6 @@ Outcomes: {'VALIDATED': 240, 'PARTIALLY_MIGRATED': 3}
 | no meta description in the source (generated, review) | 18 |
 | image not downloaded | 17 |
 | video file not downloaded (Scene7) | 3 |
-| component "whatsNextCard" migrated as text (review) | 3 |
 | image component without its image (review) | 1 |
 
 ## Remarks for the content team
