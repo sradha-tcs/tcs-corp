@@ -7,7 +7,7 @@ Outcomes: {'VALIDATED': 12}
 | Check | Result |
 |---|---|
 | Every-page check | 12 pages, 0 problems (none) |
-| Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 0 console errors |
+| Browser check (1 page in 10; 375 / 768 / 1440 px) | 2/2 load, 2 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 1 console errors |
 
 | Issue | Count |
 |---|---|
