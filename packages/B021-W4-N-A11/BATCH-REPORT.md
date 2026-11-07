@@ -2,7 +2,7 @@
 
 Wave 4 | NEW | A11 L3 - Story Curated / Generated | 23 workbook rows | URL patterns: inquizitive/*, inquizitive/event/*, insights/article/*
 
-Outcomes: {'PARTIALLY_MIGRATED': 21, 'VALIDATED': 2}
+Outcomes: {'VALIDATED': 23}
 
 | Check | Result |
 |---|---|
@@ -14,6 +14,16 @@ Outcomes: {'PARTIALLY_MIGRATED': 21, 'VALIDATED': 2}
 | links kept to tcs.com (outside the workbook / under review) | 78 |
 | no date found | 21 |
 | no meta description in the source (generated, review) | 1 |
-| component "articleQuote" migrated as text (review) | 1 |
 
-Per row: `batch-results.csv`; metadata rows, redirects, authors and issues: the CSVs of this folder.
+## Remarks for the content team
+
+What the target design has and the live page has no content for (design sections of the page's archetype, fields such as the publish date):
+
+| Missing on the live page | Pages |
+|---|---|
+| list, teaser, testimonial, video | 21 |
+| no publish date on the live page (content team: add the publish date) | 21 |
+| teaser, testimonial, video | 1 |
+| teaser, testimonial | 1 |
+
+Per row: `batch-results.csv` (Remarks: design sections without source content); metadata rows, redirects, authors and issues: the CSVs of this folder.
