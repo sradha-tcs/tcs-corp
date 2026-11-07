@@ -7,7 +7,7 @@ Outcomes: {'VALIDATED': 250}
 | Check | Result |
 |---|---|
 | Every-page check | 250 pages, 0 problems (none) |
-| Browser check (1 page in 10; 375 / 768 / 1440 px) | 25/25 load, 25 one H1, 0 images without alt, 9 empty links, 0 horizontal scroll, 0 console errors |
+| Browser check (1 page in 10; 375 / 768 / 1440 px) | 25/25 load, 25 one H1, 0 images without alt, 9 empty links, 0 horizontal scroll, 1 console errors |
 
 | Issue | Count |
 |---|---|
@@ -19,9 +19,9 @@ Outcomes: {'VALIDATED': 250}
 
 ## Remarks for the content team
 
-Design sections of the page's archetype the live page has no content for:
+What the target design has and the live page has no content for (design sections of the page's archetype, fields such as the publish date):
 
-| Missing sections | Pages |
+| Missing on the live page | Pages |
 |---|---|
 | list, teaser, testimonial, video | 150 |
 | teaser, testimonial, video | 100 |
