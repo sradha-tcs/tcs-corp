@@ -2,7 +2,7 @@
 
 Wave D | NEW | A11 L3 - Story Curated / Generated | 188 workbook rows | URL patterns: who-we-are/legal/tcs-privacy-notice/*, who-we-are/sports-sponsorships/*, who-we-are/sports-sponsorships/tata-mumbai-marathon/*, who-we-are/sports-sponsorships/tcs-sydney-marathon/*, who-we-are/tcs-brand/*, who-we-are/worldwide/*, who-we-are/worldwide/apac/*, who-we-are/worldwide/europe/* …
 
-Outcomes: {'VALIDATED': 187, 'PARTIALLY_MIGRATED': 1}
+Outcomes: {'VALIDATED': 188}
 
 | Check | Result |
 |---|---|
@@ -16,7 +16,6 @@ Outcomes: {'VALIDATED': 187, 'PARTIALLY_MIGRATED': 1}
 | no meta description in the source (generated, review) | 32 |
 | image not downloaded | 6 |
 | video file not downloaded (Scene7) | 1 |
-| component "bingeGallery" migrated as text (review) | 1 |
 | poll migrated as its question and options (no live results) | 1 |
 
 ## Remarks for the content team
