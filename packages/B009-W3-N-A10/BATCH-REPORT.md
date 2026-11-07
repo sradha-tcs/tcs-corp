@@ -2,11 +2,11 @@
 
 Wave 3 | NEW | A10 L2 - Collection | 42 workbook rows | URL patterns: contact-us/*, contact-us/industry-overlay/talk-to-an-expert-capital-markets/*, contact-us/industry-overlay/talk-to-an-expert-cpg/*, contact-us/industry-overlay/talk-to-an-expert-eru/*, contact-us/industry-overlay/talk-to-an-expert-life-sciences/*, contact-us/industry-overlay/talk-to-an-expert-public-services/*, contact-us/industry-overlay/talk-to-an-expert-retail/*, contact-us/industry-overlay/talk-to-an-expert-travel/* …
 
-Outcomes: {'VALIDATED': 40, 'PARTIALLY_MIGRATED': 2}
+Outcomes: {'VALIDATED': 42}
 
 | Check | Result |
 |---|---|
-| Every-page check | 42 pages, 12 problems (a link without text 12) |
+| Every-page check | 42 pages, 0 problems (none) |
 | Browser check (1 page in 10; 375 / 768 / 1440 px) | 5/5 load, 5 one H1, 0 images without alt, 0 empty links, 0 horizontal scroll, 0 console errors |
 
 | Issue | Count |
