@@ -17,24 +17,140 @@ indices:
       - '/*/block-library'
       - '/*/block-library/**'
       - '/site-global-templates/**'
-      # the review roots (REVIEW_ROOTS in utils/site.js, KB-D-068: /language-master/en for
-      # testing, /language-masters/en the language master, /design-block-master/en the block
-      # library and curated design pages) are a level deeper: the same exclusions for their
-      # references, error pages, data, nav / footer and block library (handover F-108)
-      - '/design-block-master/*/references/**'
-      - '/design-block-master/*/error-pages/**'
-      - '/design-block-master/*/data/**'
-      - '/design-block-master/*/nav'
-      - '/design-block-master/*/footer'
-      - '/design-block-master/*/block-library'
-      - '/design-block-master/*/block-library/**'
-      - '/language-master/*/references/**'
-      - '/language-master/*/error-pages/**'
-      - '/language-master/*/data/**'
-      - '/language-master/*/nav'
-      - '/language-master/*/footer'
-      - '/language-master/*/block-library'
-      - '/language-master/*/block-library/**'
+      # the review roots (REVIEW_ROOTS in utils/site.js, KB-D-068) have their own index each
+      # (below), so a locale page doesn't load their rows and a review root page loads only its own
+      - '/language-master/**'
+      - '/language-masters/**'
+      - '/design-block-master/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
+      # AEM (Universal Editor) publishes the page's Tags (cq:tags) as one comma-separated
+      # <meta name="cq-tags">; utils/query-index.js merges it into the tags
+      cqTags:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      # columns of the locales' bulk metadata sheets (e.g. /de-de/metadata.json)
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+      metaDescription:
+        select: head > meta[name="meta-description"]
+        value: attribute(el, "content")
+      pageType:
+        select: head > meta[name="page-type"]
+        value: attribute(el, "content")
+      contentType:
+        select: head > meta[name="content-type"]
+        value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      authorId:
+        select: head > meta[name="author-id"]
+        value: attribute(el, "content")
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: attribute(el, "content")
+      modifiedDate:
+        select: head > meta[name="modified-date"]
+        value: attribute(el, "content")
+      readingTime:
+        select: head > meta[name="reading-time"]
+        value: attribute(el, "content")
+      thumbnailImage:
+        select: head > meta[name="thumbnail-image"]
+        value: attribute(el, "content")
+      featuredImage:
+        select: head > meta[name="featured-image"]
+        value: attribute(el, "content")
+      region:
+        select: head > meta[name="region"]
+        value: attribute(el, "content")
+      country:
+        select: head > meta[name="country"]
+        value: attribute(el, "content")
+      language:
+        select: head > meta[name="language"]
+        value: attribute(el, "content")
+      persona:
+        select: head > meta[name="persona"]
+        value: attribute(el, "content")
+      campaignId:
+        select: head > meta[name="campaign-id"]
+        value: attribute(el, "content")
+      featured:
+        select: head > meta[name="featured"]
+        value: attribute(el, "content")
+      priority:
+        select: head > meta[name="priority"]
+        value: attribute(el, "content")
+      # earlier names of featured / priority (Filter List), read as fallbacks
+      featureCard:
+        select: head > meta[name="feature-card"]
+        value: attribute(el, "content")
+      featuredPriority:
+        select: head > meta[name="featured-priority"]
+        value: attribute(el, "content")
+      # List cards: card-specific metadata (else the page's title, description and images)
+      cardTitle:
+        select: head > meta[name="card-title"]
+        value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
+        value: attribute(el, "content")
+      cardImage:
+        select: head > meta[name="card-image"]
+        value: attribute(el, "content")
+      cardImageAlt:
+        select: head > meta[name="card-image-alt"]
+        value: attribute(el, "content")
+      # the page's Card style and Card colour on List cards (values of the List's options)
+      cardStyle:
+        select: head > meta[name="card-style"]
+        value: attribute(el, "content")
+      cardTheme:
+        select: head > meta[name="card-theme"]
+        value: attribute(el, "content")
+      imageAlt:
+        select: head > meta[name="image-alt"]
+        value: attribute(el, "content")
+      eyebrow:
+        select: head > meta[name="eyebrow"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      # pages hidden from navigation aren't listed by the List block
+      hideInNav:
+        select: head > meta[name="hide-in-nav"]
+        value: attribute(el, "content")
+
+  # /language-masters/en (review root, KB-D-068): its own index, read by utils/query-index.js for its pages
+  language_masters:
+    include:
+      - '/language-masters/**'
+    exclude:
+      - '/**.json'
       - '/language-masters/*/references/**'
       - '/language-masters/*/error-pages/**'
       - '/language-masters/*/data/**'
@@ -44,7 +160,279 @@ indices:
       - '/language-masters/*/block-library/**'
       - '/**/fragments/**'
       - '/**/modal/**'
-    target: /query-index.json
+    target: /language-masters/en/query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
+      # AEM (Universal Editor) publishes the page's Tags (cq:tags) as one comma-separated
+      # <meta name="cq-tags">; utils/query-index.js merges it into the tags
+      cqTags:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      # columns of the locales' bulk metadata sheets (e.g. /de-de/metadata.json)
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+      metaDescription:
+        select: head > meta[name="meta-description"]
+        value: attribute(el, "content")
+      pageType:
+        select: head > meta[name="page-type"]
+        value: attribute(el, "content")
+      contentType:
+        select: head > meta[name="content-type"]
+        value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      authorId:
+        select: head > meta[name="author-id"]
+        value: attribute(el, "content")
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: attribute(el, "content")
+      modifiedDate:
+        select: head > meta[name="modified-date"]
+        value: attribute(el, "content")
+      readingTime:
+        select: head > meta[name="reading-time"]
+        value: attribute(el, "content")
+      thumbnailImage:
+        select: head > meta[name="thumbnail-image"]
+        value: attribute(el, "content")
+      featuredImage:
+        select: head > meta[name="featured-image"]
+        value: attribute(el, "content")
+      region:
+        select: head > meta[name="region"]
+        value: attribute(el, "content")
+      country:
+        select: head > meta[name="country"]
+        value: attribute(el, "content")
+      language:
+        select: head > meta[name="language"]
+        value: attribute(el, "content")
+      persona:
+        select: head > meta[name="persona"]
+        value: attribute(el, "content")
+      campaignId:
+        select: head > meta[name="campaign-id"]
+        value: attribute(el, "content")
+      featured:
+        select: head > meta[name="featured"]
+        value: attribute(el, "content")
+      priority:
+        select: head > meta[name="priority"]
+        value: attribute(el, "content")
+      # earlier names of featured / priority (Filter List), read as fallbacks
+      featureCard:
+        select: head > meta[name="feature-card"]
+        value: attribute(el, "content")
+      featuredPriority:
+        select: head > meta[name="featured-priority"]
+        value: attribute(el, "content")
+      # List cards: card-specific metadata (else the page's title, description and images)
+      cardTitle:
+        select: head > meta[name="card-title"]
+        value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
+        value: attribute(el, "content")
+      cardImage:
+        select: head > meta[name="card-image"]
+        value: attribute(el, "content")
+      cardImageAlt:
+        select: head > meta[name="card-image-alt"]
+        value: attribute(el, "content")
+      # the page's Card style and Card colour on List cards (values of the List's options)
+      cardStyle:
+        select: head > meta[name="card-style"]
+        value: attribute(el, "content")
+      cardTheme:
+        select: head > meta[name="card-theme"]
+        value: attribute(el, "content")
+      imageAlt:
+        select: head > meta[name="image-alt"]
+        value: attribute(el, "content")
+      eyebrow:
+        select: head > meta[name="eyebrow"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      # pages hidden from navigation aren't listed by the List block
+      hideInNav:
+        select: head > meta[name="hide-in-nav"]
+        value: attribute(el, "content")
+
+  # /language-master/en (review root, KB-D-068): its own index, read by utils/query-index.js for its pages
+  language_master:
+    include:
+      - '/language-master/**'
+    exclude:
+      - '/**.json'
+      - '/language-master/*/references/**'
+      - '/language-master/*/error-pages/**'
+      - '/language-master/*/data/**'
+      - '/language-master/*/nav'
+      - '/language-master/*/footer'
+      - '/language-master/*/block-library'
+      - '/language-master/*/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /language-master/en/query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https?:\/\/[^/]+(\/.*)")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
+      # AEM (Universal Editor) publishes the page's Tags (cq:tags) as one comma-separated
+      # <meta name="cq-tags">; utils/query-index.js merges it into the tags
+      cqTags:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      # columns of the locales' bulk metadata sheets (e.g. /de-de/metadata.json)
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+      metaDescription:
+        select: head > meta[name="meta-description"]
+        value: attribute(el, "content")
+      pageType:
+        select: head > meta[name="page-type"]
+        value: attribute(el, "content")
+      contentType:
+        select: head > meta[name="content-type"]
+        value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      authorId:
+        select: head > meta[name="author-id"]
+        value: attribute(el, "content")
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: attribute(el, "content")
+      modifiedDate:
+        select: head > meta[name="modified-date"]
+        value: attribute(el, "content")
+      readingTime:
+        select: head > meta[name="reading-time"]
+        value: attribute(el, "content")
+      thumbnailImage:
+        select: head > meta[name="thumbnail-image"]
+        value: attribute(el, "content")
+      featuredImage:
+        select: head > meta[name="featured-image"]
+        value: attribute(el, "content")
+      region:
+        select: head > meta[name="region"]
+        value: attribute(el, "content")
+      country:
+        select: head > meta[name="country"]
+        value: attribute(el, "content")
+      language:
+        select: head > meta[name="language"]
+        value: attribute(el, "content")
+      persona:
+        select: head > meta[name="persona"]
+        value: attribute(el, "content")
+      campaignId:
+        select: head > meta[name="campaign-id"]
+        value: attribute(el, "content")
+      featured:
+        select: head > meta[name="featured"]
+        value: attribute(el, "content")
+      priority:
+        select: head > meta[name="priority"]
+        value: attribute(el, "content")
+      # earlier names of featured / priority (Filter List), read as fallbacks
+      featureCard:
+        select: head > meta[name="feature-card"]
+        value: attribute(el, "content")
+      featuredPriority:
+        select: head > meta[name="featured-priority"]
+        value: attribute(el, "content")
+      # List cards: card-specific metadata (else the page's title, description and images)
+      cardTitle:
+        select: head > meta[name="card-title"]
+        value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
+        value: attribute(el, "content")
+      cardImage:
+        select: head > meta[name="card-image"]
+        value: attribute(el, "content")
+      cardImageAlt:
+        select: head > meta[name="card-image-alt"]
+        value: attribute(el, "content")
+      # the page's Card style and Card colour on List cards (values of the List's options)
+      cardStyle:
+        select: head > meta[name="card-style"]
+        value: attribute(el, "content")
+      cardTheme:
+        select: head > meta[name="card-theme"]
+        value: attribute(el, "content")
+      imageAlt:
+        select: head > meta[name="image-alt"]
+        value: attribute(el, "content")
+      eyebrow:
+        select: head > meta[name="eyebrow"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      # pages hidden from navigation aren't listed by the List block
+      hideInNav:
+        select: head > meta[name="hide-in-nav"]
+        value: attribute(el, "content")
+
+  # /design-block-master/en (review root, KB-D-068): its own index, read by utils/query-index.js for its pages
+  design_block_master:
+    include:
+      - '/design-block-master/**'
+    exclude:
+      - '/**.json'
+      - '/design-block-master/*/references/**'
+      - '/design-block-master/*/error-pages/**'
+      - '/design-block-master/*/data/**'
+      - '/design-block-master/*/nav'
+      - '/design-block-master/*/footer'
+      - '/design-block-master/*/block-library'
+      - '/design-block-master/*/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /design-block-master/en/query-index.json
     properties:
       lastModified:
         select: none
