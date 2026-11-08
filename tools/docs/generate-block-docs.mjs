@@ -124,8 +124,16 @@ export function fieldTables(model, names, examples = {}) {
     if (base) notes.push(`Delivered with ${code(base)} (field collapse).`);
     if (f.name?.startsWith('classes_')) notes.push('Delivered as a block class.');
     if (f.readOnly) notes.push('Read only.');
+    // the EDAM asset picker (Custom Content Advisor, KB-D-064): the asset field and its hidden
+    // MIME type field
+    if (f.component?.endsWith(':custom-asset')) notes.push('Picked from the AEM Assets environment (EDAM asset picker).');
+    const hidden = !!f.component?.endsWith(':custom-asset-mimetype');
+    if (hidden) {
+      notes.push('Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog.');
+    }
     const example = examples[f.name];
     current.rows.push({
+      hidden,
       label: `${prefix}${esc(f.label || f.name)}`,
       property: f.name ? code(f.name) : '—',
       type: typeOf(f),
@@ -251,7 +259,7 @@ export function screenshotsSection(inputs, block) {
   componentsOf(inputs, block).forEach((c) => {
     fieldTables(c.model, new Set()).forEach(({ tab, rows }) => {
       const slug = (tab || 'fields').toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      const letters = rows.slice(0, 10).map((r, i) => `${String.fromCharCode(65 + i)} = ${r.label}`);
+      const letters = rows.filter((r) => !r.hidden).slice(0, 10).map((r, i) => `${String.fromCharCode(65 + i)} = ${r.label}`);
       placeholders.push(`[Screenshot Placeholder]\n\nFile name:\n${c.id}-dialog-${slug}-desktop.png\n\nPurpose:\nThe ${tab ? `${tab} tab` : 'dialog'} of the ${c.title} properties in Universal Editor, with the fields of the table "${tab ? `${tab} tab` : 'Fields'} — ${c.title}" in Authorable Fields below.\n\nAnnotations:\n${letters.join('\n') || 'None (no fields)'}`);
     });
   });

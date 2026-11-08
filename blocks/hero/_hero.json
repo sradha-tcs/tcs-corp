@@ -46,11 +46,16 @@
           "label": "Content"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "content_icon",
-          "label": "Icon",
-          "multi": false
+          "label": "Icon"
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "content_iconMimeType"
         },
         {
           "component": "text",
@@ -78,12 +83,17 @@
           "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image-or-animation.config.json",
           "valueType": "string",
           "name": "image",
           "label": "Hero Image Path",
-          "description": "Default: an image. Lotto: a Lottie animation file (.json).",
-          "multi": false
+          "description": "Default: an image. Lotto: a Lottie animation file (.json)."
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "imageMimeType"
         },
         {
           "component": "text",

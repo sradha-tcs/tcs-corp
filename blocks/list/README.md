@@ -692,7 +692,8 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Title | `headline` | text | No | — | — | Overrides the page title. | Cloud services for the enterprise |
 | Description | `summary` | text | No | — | — | Overrides the page description. | Co-developed platforms from our partner ecosystem. |
-| Image | `image` | reference | No | — | — | Overrides the page image. | /content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg |
+| Image | `image` | custom-asset-namespace:custom-asset | No | — | — | Overrides the page image. Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg |
+| imageMimeType | `imageMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `image` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | Image alt text | `imageAlt` | text | No | — | — | Empty: the image is decorative. Delivered with `image` (field collapse). | Partner team in a workshop |
 | Eyebrow | `eyebrow` | text | No | — | — | — | Partner |
 | Tags | `tags` | aem-tag (multiple) | No | — | — | Overrides the page tags. | — |

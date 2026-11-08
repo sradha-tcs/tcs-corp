@@ -239,7 +239,8 @@ Model `embed`; template name "Embed" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Placeholder Image | `embed_placeholder` | reference | No | — | — | — | /content/dam/tcs-corp/dummy-pages/images/generative-ai.jpg |
+| Placeholder Image | `embed_placeholder` | custom-asset-namespace:custom-asset | No | — | — | Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/dummy-pages/images/generative-ai.jpg |
+| embed_placeholderMimeType | `embed_placeholderMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `embed_placeholder` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | Placeholder Image Alt Text | `embed_placeholderAlt` | text | No | "" | — | Delivered with `embed_placeholder` (field collapse). | Video: how enterprises scale AI with confidence |
 | URI | `embed_uri` | text | No | — | — | — | https://www.youtube.com/watch?v=Xk3pQ7vT9mA |
 

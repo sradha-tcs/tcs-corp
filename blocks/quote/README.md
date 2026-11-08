@@ -211,7 +211,8 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Delivered with `title` (field collapse). | h2 |
 | Quote | `quote` | richtext | No | "" | — | — | — |
 | Quote Author | `author` | richtext | No | "" | — | Name on the first line, then designation and organisation. | — |
-| Image | `image` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/tall-sample.jpg |
+| Image | `image` | custom-asset-namespace:custom-asset | No | — | — | Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/block-library/images/tall-sample.jpg |
+| imageMimeType | `imageMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `image` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | Image Alt Text | `imageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `image` (field collapse). | Portrait of Anita Rao |
 | Image Position (Desktop) | `imagePosition` | select | No | `right` | Right (`right`), Left (`left`) | Side of the image on desktop (900px and wider); the quote overlaps it. | left |
 | Image Position (Mobile) | `imagePositionMobile` | select | No | `top` | Top (`top`), Bottom (`bottom`) | Image above or below the quote on mobile and tablet (narrower than 900px). | bottom |

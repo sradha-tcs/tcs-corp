@@ -228,10 +228,12 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| TCS Logo | `tcsLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tcs-logo.png |
+| TCS Logo | `tcsLogo` | custom-asset-namespace:custom-asset | No | — | — | Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/block-library/header/tcs-logo.png |
+| tcsLogoMimeType | `tcsLogoMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `tcsLogo` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | TCS Logo Alt Text | `tcsLogoAlt` | text | No | `Tata Consultancy Services` | — | Names the logo link for screen readers. Delivered with `tcsLogo` (field collapse). | Tata Consultancy Services |
 | TCS Logo Link | `tcsLogoLink` | aem-content | No | — | — | Usually the locale Home page. | /language-masters/en/curated-design-pages/home |
-| TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
+| TATA Logo | `tataLogo` | custom-asset-namespace:custom-asset | No | — | — | Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/block-library/header/tata-logo.png |
+| tataLogoMimeType | `tataLogoMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `tataLogo` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
 | Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero. | — |

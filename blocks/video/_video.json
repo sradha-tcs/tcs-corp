@@ -64,12 +64,17 @@
           "description": "A page or document with the transcript; shown as a link below the video"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "poster",
           "label": "Poster Image",
-          "description": "Shown before the video plays, with a play button (Click playback).",
-          "multi": false
+          "description": "Shown before the video plays, with a play button (Click playback)."
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "posterMimeType"
         },
         {
           "component": "text",

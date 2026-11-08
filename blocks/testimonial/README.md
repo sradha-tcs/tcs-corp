@@ -243,7 +243,8 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showDesc
 | Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Delivered with `title` (field collapse). | h2 |
 | Description | `description` | richtext | No | "" | — | The testimonial quote. | — |
 | Author | `authorName` | text | No | — | — | The person’s name, e.g. Ranil Boteju. | Anita Rao |
-| Author Image | `authorImage` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/avatar-sample-1.svg |
+| Author Image | `authorImage` | custom-asset-namespace:custom-asset | No | — | — | Picked from the AEM Assets environment (EDAM asset picker). | /content/dam/tcs-corp/block-library/images/avatar-sample-1.svg |
+| authorImageMimeType | `authorImageMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `authorImage` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | Author Image Alt Text | `authorImageAlt` | text | No | — | — | Leave empty if the name is next to the image. Delivered with `authorImage` (field collapse). | — |
 | Designation & Location | `designationLocation` | richtext | No | "" | — | e.g. Chief Data & Analytics Officer, Lloyds Banking Group, London. | — |
 | Stats | `stats` | container (multiple) | No | — | — | Stats authored before Stat items. Add stats to the testimonial with Add (Stat) instead. | — |

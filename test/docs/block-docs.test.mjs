@@ -29,6 +29,12 @@ describe('block documentation helpers', () => {
     assert.equal(tables[0].tab, 'Content');
     assert.match(tables[0].rows[1].guidance, /Delivered with `title` \(field collapse\)/);
   });
+  it('marks the asset picker MIME type field as hidden (not in the dialog annotations)', () => {
+    const [{ rows }] = fieldTables({ fields: [{ component: 'custom-asset-namespace:custom-asset', name: 'image', label: 'Image' }, { component: 'custom-asset-namespace:custom-asset-mimetype', name: 'imageMimeType' }] }, new Set(['image', 'imageMimeType']));
+    assert.deepEqual(rows.map((r) => r.hidden), [false, true]);
+    assert.match(rows[0].guidance, /EDAM asset picker/);
+    assert.match(rows[1].guidance, /Delivered with `image` \(field collapse\)/);
+  });
   it('makes GitHub heading anchors', () => {
     assert.equal(slug('Data Layer and Analytics'), 'data-layer-and-analytics');
     assert.equal(slug('Authoring Step 2: Add the CTA'), 'authoring-step-2-add-the-cta');

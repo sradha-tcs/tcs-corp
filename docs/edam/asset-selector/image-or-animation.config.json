@@ -1,0 +1,35 @@
+{
+  "repoNames": [
+    "<assets author host>",
+    "<assets delivery host>"
+  ],
+  "aemTierType": [
+    "delivery"
+  ],
+  "alwaysUseDMDelivery": true,
+  "expiryOptions": {
+    "allowSelectionAndDrag": false
+  },
+  "rootPath": "/content/dam/tcs-corp",
+  "filterSchema": [
+    {
+      "groupKey": "FileTypeGroup",
+      "header": "File Type",
+      "fields": [
+        {
+          "element": "checkbox",
+          "name": "type",
+          "defaultValue": ["image/*", "application/json"],
+          "options": [
+            { "label": "Image", "value": "image/*" },
+            { "label": "Lottie animation (.json)", "value": "application/json" }
+          ]
+        }
+      ]
+    }
+  ],
+  "vanityPath": "adobe",
+  "assetDomainMapping": {
+    "<assets delivery host>": "<custom delivery domain>"
+  }
+}

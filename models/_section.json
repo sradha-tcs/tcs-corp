@@ -75,11 +75,16 @@
           "label": "Rounded edge"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "backgroundImage",
-          "label": "Background Image",
-          "multi": false
+          "label": "Background Image"
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "backgroundImageMimeType"
         },
         {
           "component": "text",

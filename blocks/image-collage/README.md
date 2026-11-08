@@ -181,7 +181,8 @@ Model `image-collage-item`; template name "Collage image item" (the block class 
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Image | `image` | reference | Yes | — | — | Add up to nine Collage image items. Authoring order determines the CSS-controlled image slot. | — |
+| Image | `image` | custom-asset-namespace:custom-asset | Yes | — | — | Add up to nine Collage image items. Authoring order determines the CSS-controlled image slot. Picked from the AEM Assets environment (EDAM asset picker). | — |
+| imageMimeType | `imageMimeType` | custom-asset-namespace:custom-asset-mimetype | No | — | — | Delivered with `image` (field collapse). Set by the asset picker (the MIME type of the picked asset; images go through the media bus); not shown in the dialog. | — |
 | Image alt text | `imageAlt` | text | No | — | — | Leave empty when the collage image is decorative. Delivered with `image` (field collapse). | — |
 | Image treatment | `imageTreatment` | select | No | `black-white` | Black and white (`black-white`), Normal (`normal`) | — | — |
 

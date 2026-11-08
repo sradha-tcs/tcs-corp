@@ -78,10 +78,15 @@
     "id": "image",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -370,11 +375,16 @@
         "label": "Rounded edge"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "backgroundImage",
-        "label": "Background Image",
-        "multi": false
+        "label": "Background Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "backgroundImageMimeType"
       },
       {
         "component": "text",
@@ -4524,11 +4534,16 @@
         "label": "Content"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -5406,11 +5421,16 @@
         ]
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "backgroundImage",
-        "label": "Background Image",
-        "multi": false
+        "label": "Background Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "backgroundImageMimeType"
       },
       {
         "component": "text",
@@ -6377,18 +6397,28 @@
         }
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "backgroundImage",
-        "label": "BG Background Image",
-        "multi": false
+        "label": "BG Background Image"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "backgroundImageMimeType"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "icon",
-        "label": "Icon",
-        "multi": false
+        "label": "Icon"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "iconMimeType"
       },
       {
         "component": "text",
@@ -6501,11 +6531,16 @@
             "placeholder": "Ask us a question"
           },
           {
-            "component": "reference",
+            "component": "custom-asset-namespace:custom-asset",
+            "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
             "valueType": "string",
             "name": "searchAudioIcon",
-            "label": "Search bar audio icon",
-            "multi": false
+            "label": "Search bar audio icon"
+          },
+          {
+            "component": "custom-asset-namespace:custom-asset-mimetype",
+            "valueType": "string",
+            "name": "searchAudioIconMimeType"
           },
           {
             "component": "text",
@@ -7455,11 +7490,16 @@
         "label": "Content"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "embed_placeholder",
-        "label": "Placeholder Image",
-        "multi": false
+        "label": "Placeholder Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "embed_placeholderMimeType"
       },
       {
         "component": "text",
@@ -11297,11 +11337,16 @@
         "label": "Content"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "content_icon",
-        "label": "Icon",
-        "multi": false
+        "label": "Icon"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "content_iconMimeType"
       },
       {
         "component": "text",
@@ -11329,12 +11374,17 @@
         "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image-or-animation.config.json",
         "valueType": "string",
         "name": "image",
         "label": "Hero Image Path",
-        "description": "Default: an image. Lotto: a Lottie animation file (.json).",
-        "multi": false
+        "description": "Default: an image. Lotto: a Lottie animation file (.json)."
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -13694,13 +13744,18 @@
         "label": "Collage image"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
         "required": true,
         "description": "Add up to nine Collage image items. Authoring order determines the CSS-controlled image slot."
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -16753,12 +16808,17 @@
         "description": "Overrides the page description."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
         "description": "Overrides the page image."
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -19291,11 +19351,16 @@
         "value": ""
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -25637,11 +25702,16 @@
         "label": "Content"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "tcsLogo",
-        "label": "TCS Logo",
-        "multi": false
+        "label": "TCS Logo"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "tcsLogoMimeType"
       },
       {
         "component": "text",
@@ -25659,11 +25729,16 @@
         "description": "Usually the locale Home page."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "tataLogo",
-        "label": "TATA Logo",
-        "multi": false
+        "label": "TATA Logo"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "tataLogoMimeType"
       },
       {
         "component": "text",
@@ -26510,11 +26585,16 @@
         "description": "e.g. TCS Role."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "authorImage",
-        "label": "Author image",
-        "multi": false
+        "label": "Author image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "authorImageMimeType"
       },
       {
         "component": "text",
@@ -26542,12 +26622,17 @@
         "description": "Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json)."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image-or-animation.config.json",
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
         "description": "Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text."
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -28380,12 +28465,17 @@
         "label": "Collage image"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
         "required": true
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "imageMimeType"
       },
       {
         "component": "text",
@@ -28482,11 +28572,16 @@
         "description": "The person’s name, e.g. Ranil Boteju."
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "authorImage",
-        "label": "Author Image",
-        "multi": false
+        "label": "Author Image"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "authorImageMimeType"
       },
       {
         "component": "text",
@@ -29432,12 +29527,17 @@
         "description": "A page or document with the transcript; shown as a link below the video"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
         "valueType": "string",
         "name": "poster",
         "label": "Poster Image",
-        "description": "Shown before the video plays, with a play button (Click playback).",
-        "multi": false
+        "description": "Shown before the video plays, with a play button (Click playback)."
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset-mimetype",
+        "valueType": "string",
+        "name": "posterMimeType"
       },
       {
         "component": "text",

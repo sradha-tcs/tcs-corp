@@ -12,7 +12,7 @@ date: "October 28, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.47 |
+| Version | 2.50 |
 | Date | 28 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
@@ -81,6 +81,7 @@ date: "October 28, 2026"
 | 2.47 | 28 October 2026 | Delivery team | **List and Cards: image card hover** (6.15, 6.16; Figma): hovering or focusing anywhere on a linked image card (not only its title) fades the title from `--color-text-neutral` (#303030) to `--color-text-brand` (#216AC3) with an underline, 300ms ease-out, and back on leave (`styles/card-list.css`, `--list-hover-duration`, `--list-hover-easing`); the underline is always drawn transparent and only changes colour, so the card, its padding and image don't move or resize (checked in the local preview at 1440 px: 342 × 474 px card at rest and on hover). On dark Section / Columns Container backgrounds the theme contract's light brand colour (`--brand-300`) is used. Cards without a link have no hover; panel, report and statistic cards, the feature card and rows of links keep their own hover. No change to the content model. `npm test` 356 passed, `npm run lint` passed. The PDF isn't regenerated with this revision. — |
 | 2.48 | 8 November 2026 | Delivery team | **Assets from a separate AEM Assets environment (EDAM, KB-D-064, Proposed):** the site renders Dynamic Media with OpenAPI delivery URLs: an image delivery link that stands alone in its cell or paragraph becomes a responsive picture before the blocks are decorated (`decorateDeliveryImages`, `buildDeliveryPicture` in `decorators/responsive-image-decorator.js`; `deliveryAsset`, `deliveryImageUrl` in `utils/media.js`, unit tested); section backgrounds too (`buildImage`); links in running text and original files stay links; DAM paths unchanged. The Universal Editor asset picker for EDAM (Custom Content Advisor, the asset fields of the models) follows separately. Plan: `docs/proposals/remote-assets-edam.md` |
 | 2.49 | 8 November 2026 | Delivery team | **Language master moved to `/content/tcs-corp/language-masters`, published at `/language-masters/en/`** (KB-D-065): `REVIEW_ROOTS` (`utils/site.js`), the `paths.json` mappings (`npm run build:paths`), the query index exclusions, the tests, the block README examples; the site configuration's paths are updated by an administrator. EDAM decision E-D1 answered: Dynamic Media with OpenAPI is licensed (KB-D-064) |
+| 2.50 | 8 November 2026 | Delivery team | **EDAM asset picker (KB-D-064, Proposed; branch `edam-main`):** the 20 asset fields of 15 component models (Card, Columns Container, Conversation Canvas, Embed, Hero, Image, Image Collage item, List Item, Quote, Section, TCS Header, Teaser, Teaser Collage image, Testimonial, Video) are Universal Editor Custom Content Advisor fields (`custom-asset-namespace:custom-asset`) followed by their MIME type field (`<field>MimeType`, filled by the picker: images through the media bus); the picker configuration is read from the Sites author (`/content/dam/tcs-corp-config/asset-selector/`, templates without hosts in `docs/edam/asset-selector/`, set-up in `docs/edam/README.md`), so the repository holds no Assets environment host; `test/models/asset-fields.test.mjs`; the block docs list the MIME type fields as set by the picker (not in the dialog). The document version in the header brought up to date (it read 2.47) |
 
 ## Review and Approval
 
@@ -1125,7 +1126,7 @@ window.adobeDataLayer = window.adobeDataLayer || [];
 
 **Responsibilities:**
 
-- Asset picking in the Universal Editor (`reference` fields: images, section Background Image, Poster Image, author images).
+- Asset picking in the Universal Editor (asset fields: images, section Background Image, Poster Image, author images; on `edam-main` the EDAM asset picker, `custom-asset-namespace:custom-asset` with a `<field>MimeType` field, KB-D-064, `docs/edam/README.md`).
 - Images published to the Edge Delivery media bus and delivered as optimised `/media_<hash>` URLs with responsive `<picture>` (`createOptimizedPicture`, `decorators/responsive-image-decorator.js`).
 - Videos and PDFs linked from pages are published at their DAM path (`/content/dam/tcs-corp/` is in `paths.json` includes).
 - Lottie animations (Hero / Teaser "Lotto" image type) as `.json` links.
@@ -2563,7 +2564,7 @@ All other page-level values (SEO, social, card, author, dates, region, featured,
 | Style | `style` | select: Default, Grey, Dark, Dark Green (2.33; Highlight before) | Section class `bg-grey`, `bg-dark`, `bg-dark-green` (`highlight` for sections authored before) |
 | Width Type | `sectionWidth` | select: Full Width (default), Fixed Width | `fixed-width` class for Fixed Width |
 | Rounded edge | `roundedEdge` | boolean | `rounded` class |
-| Background Image | `backgroundImage` | reference | `.section-background` wrapper with an optimised image (2000px ≥ 600px, 750px below), `has-background` class |
+| Background Image | `backgroundImage` | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | `.section-background` wrapper with an optimised image (2000px ≥ 600px, 750px below), `has-background` class |
 | Image alt text | `backgroundImageAlt` | text | Alt of the background image; empty = decorative |
 | Anchor name | `anchorName` | text | Section `id` (normalised with `toClassName`, leading `#` removed; not set if the id is already used) — target of Anchor List links |
 
@@ -4128,6 +4129,8 @@ The filters are defined in `models/_component-filters.json` (page level), `model
 ### 5.5.1 Where images come from
 
 Images are stored in **AEM Assets** under `/content/dam/tcs-corp/`. Image fields in the Universal Editor (component type `reference`: the Image component, the section Background Image, the image fields of blocks) open the **Assets picker**. You can also drag an asset from the Assets panel onto an image field.
+
+**EDAM set-up (branch `edam-main`, KB-D-064, Proposed):** the assets live in a separate AEM Assets environment. The 20 asset fields of 15 models are Custom Content Advisor fields (`custom-asset-namespace:custom-asset`): **Select** in the field opens the EDAM picker (approved assets of `/content/dam/tcs-corp` on the Assets environment; images only, or images and Lottie files for the Hero and Teaser image); the page stores the asset's delivery URL and its MIME type (`<field>MimeType`), images go through the media bus. Assets can't be dragged onto the page for these fields. Set-up (Extension Manager, the picker configuration on the Sites author): `docs/edam/README.md`.
 
 **Step 1 — Upload**
 
@@ -38011,7 +38014,7 @@ Reproduces the screenshot `screenshots/quote-text-only.jpg` of this variation. T
 | Title Type (`titleType`) | select | No | No | h2 | Heading level of the title | Choose the level that fits the outline | One of h1-h6 (select) | h2 |
 | Quote (`quote`) | richtext | No (Recommended) | No | empty | The statement shown in the card | Do not type quote marks; keep it concise | None | TCS helped us transform our data estate in record time. |
 | Quote Author (`author`) | richtext | No (Recommended) | No | empty | Attribution below the quote | Name on line 1, then designation and organisation | None | Jane Doe; Chief Digital Officer, Example Bank |
-| Image (`image`) | reference | No | No | empty | Portrait overlapped by the card | Portrait from AEM Assets | Asset reference (single) | /content/dam/tcs-corp/people/jane-doe.jpg |
+| Image (`image`) | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | No | No | empty | Portrait overlapped by the card | Portrait from AEM Assets | Asset reference (single) | /content/dam/tcs-corp/people/jane-doe.jpg |
 | Image Alt Text (`imageAlt`) | text | No | No | empty | Alternative text of the image | Describe the image; empty if decorative | None | Portrait of Jane Doe |
 | Image Position (Desktop) (`imagePosition`) | select | No | No | right | Side of the image from 900px | Right or Left | right or left; other values fall back to right | left |
 | Image Position (Mobile) (`imagePositionMobile`) | select | No | No | top | Image above or below the card below 900px | Top or Bottom | top or bottom; other values fall back to top | bottom |
@@ -40585,7 +40588,7 @@ Reproduces the screenshot `screenshots/testimonial-hide-author.jpg` of this vari
 | Title Type (`titleType`) | select | No | No | h2 | Heading level | Fit the outline | h1-h6 | h2 |
 | Description (`description`) | richtext | No (Recommended) | No | empty | The testimonial quote | Concise, approved wording | None | TCS gave us a platform for growth. |
 | Author (`authorName`) | text | No | No | empty | The author's name | Name (and role if no designation) | None | Ranil Boteju |
-| Author Image (`authorImage`) | reference | No | No | empty | Round author photo | Square headshot | Single asset | /content/dam/tcs-corp/people/rb.jpg |
+| Author Image (`authorImage`) | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | No | No | empty | Round author photo | Square headshot | Single asset | /content/dam/tcs-corp/people/rb.jpg |
 | Author Image Alt Text (`authorImageAlt`) | text | No | No | empty | Alt text of the photo | Empty if the name is next to it | None | Photo of Ranil Boteju |
 | Designation & Location (`designationLocation`) | richtext | No | No | empty | Role, organisation, location | One or two lines | None | Chief Data & Analytics Officer, Lloyds Banking Group |
 | Style (`classes`) | select | No | No | Default (empty) | Reserved for styles | Leave Default | Only Default | Default |
@@ -42750,7 +42753,7 @@ Button and Title. Their fields:
 | Text (Text component) | rich text (edited in place) | No | No | empty | Paragraphs, lists, links | Keep it short in narrow columns | None | Our values guide every engagement. |
 | Title (Title component) | text | No | No | empty | Heading in the column | Short heading | None | Our mission |
 | Title Type (Title component) | select | No | No | none set | Heading level | h1-h6; fit the outline | h1-h6 | h3 |
-| Image (Image component) | reference | No | No | empty | Image in the column | From AEM Assets | Single asset | /content/dam/tcs-corp/illustrations/cloud.png |
+| Image (Image component) | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | No | No | empty | Image in the column | From AEM Assets | Single asset | /content/dam/tcs-corp/illustrations/cloud.png |
 | Alt Text (Image component) | text | No | No | empty | Image alternative text | Describe the image | None | Cloud migration illustration |
 | Link (Button component) | aem-content | No | No | empty | Button target | Page or URL | None | /content/tcs-corp/us/en/services/cloud |
 | Text (Button component) | text | No | No | empty | Button label | Action-oriented | None | Explore cloud services |
@@ -54888,7 +54891,7 @@ The padding and margin options are the spacing tokens 0, 100, 200, 300, 400, 500
 
 | Field Name | Field Type | Mandatory | Multi Value | Default Value | Business Purpose | Author Guidance | Validation Rules | Example Value |
 |:-------------------|:-------------|:-----------|:-------|:---------------|:-------------------------|:----------------------|:----------------------|:----------------------|
-| Image (`image`) | reference | No | No | Empty | Card image (also image-background panels and the feature) | From AEM Assets; landscape for 16:9 | None | /content/dam/tcs/services/consulting.jpg |
+| Image (`image`) | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | No | No | Empty | Card image (also image-background panels and the feature) | From AEM Assets; landscape for 16:9 | None | /content/dam/tcs/services/consulting.jpg |
 | Image alt text (`imageAlt`) | text | No | No | Empty (decorative) | Text alternative | Describe meaning; empty if decorative | None | Consultants in a workshop |
 | Eyebrow (`eyebrow`) | text | No | No | Empty | Label above the title | 1–3 words | None | Perspective |
 | Title (`title`) | text | No | No | Empty | Card heading; statistic number | Up to 60 characters (Recommended); stat: the number | None | 4bn |
@@ -68016,7 +68019,7 @@ The padding and margin options are the spacing tokens 0, 100, 200, 300, 400, 500
 | Open in a new tab (`newTab`) | select | No | No | As the list (empty) | Per-item target | Yes for external sites | '', true, false | true |
 | Title (`headline`) | text | No | No | Page title | Overrides the card title | Only when the page's card title doesn't fit | None | The agentic bank |
 | Description (`summary`) | text | No | No | Page description | Overrides the description | Plain text, 1–2 sentences | None | How AI is changing banking. |
-| Image (`image`) | reference | No | No | Page image | Overrides the image | From AEM Assets | None | /content/dam/tcs/insights/agentic.jpg |
+| Image (`image`) | custom-asset (EDAM asset picker on `edam-main`; `reference` before) | No | No | Page image | Overrides the image | From AEM Assets | None | /content/dam/tcs/insights/agentic.jpg |
 | Image alt text (`imageAlt`) | text | No | No | Page alt (empty = decorative) | Text alternative | Describe meaningful images | None | Bank customer using an AI assistant |
 | Eyebrow (`eyebrow`) | text | No | No | Page eyebrow / category | Overrides the eyebrow | 1–3 words | None | Perspective |
 | Tags (`tags`) | aem-tag | No | Yes | Page tags | Overrides the tags | Up to 3 shown | Tag IDs | tcs-corp:industry/banking |

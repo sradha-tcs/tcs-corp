@@ -301,11 +301,16 @@
           "description": "e.g. TCS Role."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "authorImage",
-          "label": "Author image",
-          "multi": false
+          "label": "Author image"
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "authorImageMimeType"
         },
         {
           "component": "text",
@@ -333,12 +338,17 @@
           "description": "Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json)."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image-or-animation.config.json",
           "valueType": "string",
           "name": "image",
           "label": "Image",
-          "multi": false,
           "description": "Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text."
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "imageMimeType"
         },
         {
           "component": "text",
@@ -2171,12 +2181,17 @@
           "label": "Collage image"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "image",
           "label": "Image",
-          "multi": false,
           "required": true
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "imageMimeType"
         },
         {
           "component": "text",

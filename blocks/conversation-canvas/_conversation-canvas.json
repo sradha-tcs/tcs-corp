@@ -146,18 +146,28 @@
           }
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "backgroundImage",
-          "label": "BG Background Image",
-          "multi": false
+          "label": "BG Background Image"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "backgroundImageMimeType"
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "icon",
-          "label": "Icon",
-          "multi": false
+          "label": "Icon"
+        },
+        {
+          "component": "custom-asset-namespace:custom-asset-mimetype",
+          "valueType": "string",
+          "name": "iconMimeType"
         },
         {
           "component": "text",
@@ -270,11 +280,16 @@
               "placeholder": "Ask us a question"
             },
             {
-              "component": "reference",
+              "component": "custom-asset-namespace:custom-asset",
+              "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
               "valueType": "string",
               "name": "searchAudioIcon",
-              "label": "Search bar audio icon",
-              "multi": false
+              "label": "Search bar audio icon"
+            },
+            {
+              "component": "custom-asset-namespace:custom-asset-mimetype",
+              "valueType": "string",
+              "name": "searchAudioIconMimeType"
             },
             {
               "component": "text",
