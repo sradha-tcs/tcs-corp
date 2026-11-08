@@ -625,10 +625,10 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Share | `socialShare` | boolean | No | `false` | on / off | Shows the share icon (share dialog, or the link copied). | true |
 | Author name | `authorName` | text | No | — | — | — | Anita Rao |
 | Author designation | `authorDesignation` | text | No | — | — | e.g. TCS Role. | Head of AI Research |
-| Author image | `authorImage` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/avatar-sample-1.svg |
+| Author image | `authorImage` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/images/avatar-sample-1.svg |
 | Author image alt text | `authorImageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `authorImage` (field collapse). | Anita Rao |
 | Image type | `imageFormat` | select | No | "" | Default (""), Lottie (`lottie`) | Default: the Image is a picture. Lottie: the Image is a Lottie animation file (.json). | lottie |
-| Image | `image` | reference | No | — | — | Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text. | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
+| Image | `image` | custom-asset-namespace:custom-asset | No | — | — | Image & Text: beside the text. Text split: in the text column (e.g. a chart). Background image and Card: behind the text. Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
 | Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `image` (field collapse). | Consultants planning a transformation roadmap |
 | Hide Image | `hideImage` | boolean | No | `false` | on / off | — | true |
 | Image position | `imagePosition` | select | No | `left` | Left (`left`), Right (`right`), Top (`top`), Bottom (`bottom`) | Image & Text: the image left or right of the text (from 600px wide; above it on smaller screens), or above or below the text on every screen. Shown when `classes` is off or empty or `classes` is empty. | right |
@@ -728,7 +728,7 @@ Model `teaser-collage-image`; template name "Collage image" (the block class AEM
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Image | `image` | reference | Yes | — | — | — | — |
+| Image | `image` | custom-asset-namespace:custom-asset | Yes | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | — |
 | Image alt text | `imageAlt` | text | No | — | — | Leave empty when the collage image is decorative. Delivered with `image` (field collapse). | — |
 | Image treatment | `imageTreatment` | select | No | `black-white` | Black and white (`black-white`), Normal (`normal`) | — | — |
 

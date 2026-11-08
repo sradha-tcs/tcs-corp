@@ -390,10 +390,10 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Icon | `content_icon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/square-sample-3.jpg |
+| Icon | `content_icon` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/images/square-sample-3.jpg |
 | Icon Image Alt Text | `content_iconAlt` | text | No | — | — | Leave empty if the icon is decorative. Delivered with `content_icon` (field collapse). | — |
 | Hero Image type | `classes_media` | select | No | "" | Default (""), Lotto (`lottie`) | Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Delivered as a block class. | lottie |
-| Hero Image Path | `image` | reference | No | — | — | Default: an image. Lotto: a Lottie animation file (.json). | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
+| Hero Image Path | `image` | custom-asset-namespace:custom-asset | No | — | — | Default: an image. Lotto: a Lottie animation file (.json). Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
 | Hero Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image or animation is decorative. Delivered with `image` (field collapse). | Consultants reviewing a transformation roadmap |
 | Hero View | `classes` | select | No | "" | Default (""), Contained image (`media-contained`) | Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content. | media-contained |
 | Eyebrow | `content_eyebrow` | text | No | — | — | — | Enterprise AI |

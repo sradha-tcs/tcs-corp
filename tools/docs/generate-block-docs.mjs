@@ -145,6 +145,8 @@ export function fieldTables(model, names, examples = {}) {
     if (base) notes.push(`Delivered with ${code(base)} (field collapse).`);
     if (f.name?.startsWith('classes_')) notes.push('Delivered as a block class.');
     if (f.readOnly) notes.push('Read only.');
+    // the Dynamic Media asset picker (Custom Content Advisor, KB-D-067)
+    if (f.component?.endsWith(':custom-asset')) notes.push('Picked with the Dynamic Media asset picker (stores the delivery URL).');
     const example = examples[f.name];
     current.rows.push({
       label: `${prefix}${esc(f.label || f.name)}`,
