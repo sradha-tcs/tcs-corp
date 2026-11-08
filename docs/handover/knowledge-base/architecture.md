@@ -177,6 +177,7 @@ Shared events (AGENTS.md "Shared events and helpers"): `tabs:reveal` (opens the 
 | AEM author → Edge Delivery | franklin.delivery bridge (`fstab.yaml`), preview / publish | Active |
 | GitHub → Edge Delivery | AEM Code Sync | Active |
 | AEM Assets | Asset picker; images on the media bus; `/content/dam/tcs-corp/` in `paths.json` includes; non-image DAM files are served only once published (AGENTS.md) | Active |
+| AEM Assets, separate environment (EDAM) | Dynamic Media with OpenAPI delivery URLs in the content; standalone image delivery links rendered as responsive pictures (`decorateDeliveryImages`, `decorators/responsive-image-decorator.js`); the Universal Editor Custom Content Advisor for picking ([remote-assets-edam.md](../../proposals/remote-assets-edam.md)) | Proposed (KB-D-064): rendering in the code, asset picker not configured |
 | Query index and sitemap | `helix-query.yaml`, `helix-sitemap.yaml` | Active ([indexing-and-search.md](./indexing-and-search.md)) |
 | Adobe Client Data Layer | `window.adobeDataLayer` populated by `decorators/data-layer-decorator.js` and `utils/analytics.js` (Core Components schema: page, components, `cmp:*` events) | Active |
 | Adobe Tags (Data Collection) | Would be embedded from `scripts/delayed.js` | Not configured (blocked: measurement plan) |

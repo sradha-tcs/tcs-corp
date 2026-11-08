@@ -16,7 +16,7 @@ import {
 import { applyBlockOptions } from '../decorators/block-options-decorator.js';
 import { prepareMotion } from '../decorators/motion-decorator.js';
 import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorator.js';
-import { buildImage } from '../decorators/responsive-image-decorator.js';
+import { buildImage, decorateDeliveryImages } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
@@ -315,6 +315,9 @@ export function decorateSectionsWithOptions(container) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  // images of a separate AEM Assets environment delivered as links become pictures before the
+  // blocks read them (KB-D-064)
+  decorateDeliveryImages(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSectionsWithOptions(main);

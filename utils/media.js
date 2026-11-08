@@ -72,3 +72,47 @@ export function animationLabel(link) {
 
 /** the MIME type of a video file URL, e.g. video/mp4 */
 export const videoType = (source) => `video/${source.split('?')[0].split('.').pop()}`;
+
+// a Dynamic Media with OpenAPI delivery URL of an AEM Assets environment (EDAM, KB-D-064):
+// https://<delivery host>/adobe/assets/urn:aaid:aem:<id>/as/<name> (an image rendition) or
+// .../<id>/original/as/<name> (the original file: videos, audio, documents)
+const DELIVERY = /^\/adobe\/assets\/(urn:aaid:aem:[^/]+)(\/original)?\/as\/([^/]+)$/;
+const RESIZABLE = /\.(jpe?g|png|gif|webp|avif)$/i;
+
+/**
+ * The asset of a Dynamic Media with OpenAPI delivery URL.
+ * @param {string} href an absolute URL
+ * @returns {{ id: string, name: string, original: boolean, image: boolean, resizable: boolean }
+ *   | null} image: an image rendition URL (not the original file); resizable: it takes a width
+ */
+export function deliveryAsset(href) {
+  let url;
+  try {
+    url = new URL(href);
+  } catch {
+    return null;
+  }
+  const m = DELIVERY.exec(url.pathname);
+  if (!m || !/^https?:$/.test(url.protocol)) return null;
+  const name = decodeURIComponent(m[3]);
+  const original = !!m[2];
+  const image = !original && (RESIZABLE.test(name) || /\.svg$/i.test(name));
+  return {
+    id: m[1], name, original, image, resizable: image && RESIZABLE.test(name),
+  };
+}
+
+/**
+ * A delivery image URL at a width (and in WebP where the browser takes it).
+ * @param {string} href a delivery image URL (deliveryAsset(href).resizable)
+ * @param {string|number} width in pixels
+ * @param {{ webp?: boolean }} [options]
+ * @returns {string}
+ */
+export function deliveryImageUrl(href, width, { webp = false } = {}) {
+  const url = new URL(href);
+  url.searchParams.set('width', String(width));
+  if (webp) url.searchParams.set('preferwebp', 'true');
+  else url.searchParams.delete('preferwebp');
+  return url.href;
+}
