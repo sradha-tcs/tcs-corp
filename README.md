@@ -27,8 +27,9 @@ at `/language-masters/en/`, KB-D-065) and the EDAM set-up:
 
 Install as in `consolidated/packages/INSTALL-ORDER.md` (per batch the asset packages, then the page package); on a
 fresh environment `packages-earlier-run-assets/` first. The packages of the old root (`/content/tcs-corp/language-master`:
-page packages 1.2.0) and the superseded 1.0.0 / 1.1.0 packages are not on this branch: they stay on
-`migrated-page-content` for traceability. The reports (`batch-results.csv`, the reconciliation) keep the workbook's
+page packages 1.2.0) and the superseded 1.0.0 / 1.1.0 packages are not on this branch: they are kept in the tag
+`archive/migrated-page-content-2026-11-08` (the former `migrated-page-content` branch, deleted on 8 November 2026;
+this branch is the only delivery branch since). The reports (`batch-results.csv`, the reconciliation) keep the workbook's
 paths (below the old root; the new path is the same with `language-masters`). See `discovery/17-MIGRATION-MODEL.md`,
 sections 7 to 9.
 

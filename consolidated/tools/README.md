@@ -21,7 +21,7 @@ For that set-up the page packages are rebuilt with the assets' delivery URLs fir
 
 ## Before you start (everyone)
 
-1. Get the packages: check out the `migrated-page-content` branch (or download its `consolidated/` folder,
+1. Get the packages: check out the `migrated-page-content-edam` branch (or download its `consolidated/` folder,
    about 22 GB).
 2. Get an access token for author: the environment's Developer Console > Integrations > **Local token**
    (valid 24 hours; your user needs permission to install packages), or a token from service credentials.
