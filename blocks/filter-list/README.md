@@ -377,7 +377,7 @@ Stored on a new component (definition template): `showResultCount` = `false`, `l
 | Cards per page | `cardsPerPage` | number | No | `9` | — | Cards shown first; Load more shows the next ones. | 6 |
 | Load more count | `loadMoreCount` | number | No | `6` | — | Cards added by each Load more. | 3 |
 | Datasource | `source` | select | No | `query-index` | Query Index (`query-index`), Manual List (`manual`) | — | manual |
-| Root path | `rootPath` | aem-content | No | — | — | Pages below this page, e.g. /en/insights. Empty: the whole site of the language. Shown when `source` is not `manual`. | /language-masters/en/dummy-pages/insights |
+| Root path | `rootPath` | aem-content | No | — | — | Pages below this page, e.g. /en/insights. Empty: the whole site of the language. Shown when `source` is not `manual`. | /design-block-master/en/dummy-pages/insights |
 | Pages (authored before Page items) | `pageItems` | container (multiple) | No | — | — | Kept for lists authored before; add items with Add instead. Shown when `source` is `manual`. | — |
 | Pages (authored before Page items) › Page | `page` | aem-content | No | — | — | — | — |
 | Page types | `pageTypes` | multiselect | No | — | Article (`article`), Blog (`blog`), Press release (`press-release`) | Only pages of these page types (page-type metadata). None: every page type. | — |
@@ -1124,7 +1124,7 @@ blocks/filter-list/
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `filter-list.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `filter-list.js`: { isOn, readProperties, textOf } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `filter-list.js`: { columnOf, getPages, listOf } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-masters/en and, until the tree is moved, the old /language-master/en, list | `filter-list.js`: { pageLink, toPublishedPath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `filter-list.js`: { pageLink, toPublishedPath } |
 | [`utils/card-list-config.js`](../../utils/card-list-config.js) | `normalizePresentation` (the card list settings of List and Cards, with defaults and validation), `PRESENTATION_PROPERTIES`, `kindOf` and `themeOf` (the card's Card style and Card colour: item, list, page metadata, autom | `filter-list.js`: { contentTypeLabel } |
 | [`utils/tags.js`](../../utils/tags.js) | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | `filter-list.js`: { readTagValues } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `filter-list.js`: { loadTaxonomy, resolveTags } |
@@ -1297,7 +1297,7 @@ Evidence to collect (no secrets): page URL, viewport, a screenshot, the block's 
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 32 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 32 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/animation/skeleton-loading`, `block-library/filter-list/content-types`, `block-library/filter-list/filter-list`, `block-library/filter-list/filters`, `block-library/filter-list/insights-listing`, `block-library/filter-list/layouts-and-card-styles`, `block-library/filter-list/rules`
 - Curated design pages: `curated-design-pages/collection`, `curated-design-pages/insights`
 - Other pages: `dummy-pages/explore-insights`

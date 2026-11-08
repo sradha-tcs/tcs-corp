@@ -160,7 +160,7 @@ Model `fragment`; template name "Fragment" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Reference | `reference` | aem-content | No | — | — | — | /language-masters/en/block-library/fragment/fragments/cta-banner |
+| Reference | `reference` | aem-content | No | — | — | — | /design-block-master/en/block-library/fragment/fragments/cta-banner |
 
 #### Additional tab — Fragment
 
@@ -587,7 +587,7 @@ Evidence to collect: host page URL, Reference value, network status of the `.pla
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 1 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 1 instance(s) in total:
 - Block library: `block-library/fragment/fragment-block`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

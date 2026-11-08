@@ -997,7 +997,7 @@ Evidence to collect (no secrets): page URL, viewport width, the section's classe
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 24 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 24 instance(s) in total:
 - Block library: `block-library/tabs/tab`, `block-library/tabs/tab-deep-link`, `block-library/tabs/tabs-block`, `block-library/tabs/tabs-block-styles`, `block-library/tabs/tabs-block-with-fragments`, `block-library/tabs/tabs-fixed-width`, `block-library/tabs/tabs-section`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

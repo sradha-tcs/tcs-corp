@@ -230,7 +230,7 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | TCS Logo | `tcsLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tcs-logo.png |
 | TCS Logo Alt Text | `tcsLogoAlt` | text | No | `Tata Consultancy Services` | — | Names the logo link for screen readers. Delivered with `tcsLogo` (field collapse). | Tata Consultancy Services |
-| TCS Logo Link | `tcsLogoLink` | aem-content | No | — | — | Usually the locale Home page. | /language-masters/en/curated-design-pages/home |
+| TCS Logo Link | `tcsLogoLink` | aem-content | No | — | — | Usually the locale Home page. | /design-block-master/en/curated-design-pages/home |
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
@@ -672,7 +672,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 2 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 2 instance(s) in total:
 - Block library: `block-library/header/nav-careers`, `block-library/header/nav-default`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
