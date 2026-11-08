@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant A as Author (Universal Editor)
+  participant S as AEM Sites author
+  participant P as Edge Delivery preview (aem.page)
+  participant L as Edge Delivery live (aem.live)
+  participant I as Query index
+  A->>S: edit page and block fields
+  A->>S: Publish (Quick publish or Manage publication)
+  S->>P: technical account previews the page
+  S->>L: publishes it
+  L->>I: page indexed (helix-query.yaml) unless excluded
+  Note over P,L: Admin API POST preview, live, index (bulk jobs for migrations)

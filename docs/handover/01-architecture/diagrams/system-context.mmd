@@ -1,0 +1,11 @@
+flowchart LR
+  author(["Content author"]) -->|edits| UE["Universal Editor"]
+  UE -->|reads and writes| AEM[("AEM Sites author<br/>/content/tcs-corp")]
+  dev(["Developer"]) -->|push and pull request| GH[("GitHub sradha-tcs/tcs-corp")]
+  GH -->|AEM Code Sync| CODE["Edge Delivery code bus"]
+  AEM -->|publish, Admin API preview and live| CONTENT["Edge Delivery content and media bus"]
+  CODE --> EDS{{"Edge Delivery Services<br/>aem.page and aem.live"}}
+  CONTENT --> EDS
+  DM[("Dynamic Media with OpenAPI<br/>delivery tier")] -->|approved assets| EDS
+  EDS -->|HTML, JS, CSS, sheets, query index| visitor(["Site visitor"])
+  EDS -->|window.adobeDataLayer| ACDL["Adobe Client Data Layer<br/>no Tags or Web SDK"]

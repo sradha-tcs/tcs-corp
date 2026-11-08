@@ -1,0 +1,41 @@
+{
+ "date": "8 November 2026",
+ "clean": true,
+ "list": [
+  {
+   "cmd": "npm run lint",
+   "purpose": "ESLint (Airbnb, json, xwalk model rules) and Stylelint",
+   "result": "Passed (exit 0)"
+  },
+  {
+   "cmd": "npm test",
+   "purpose": "Unit tests (Node test runner)",
+   "result": "384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program)"
+  },
+  {
+   "cmd": "npm run build:json",
+   "purpose": "Aggregate the Universal Editor models",
+   "result": "Passed; no change to the committed files"
+  },
+  {
+   "cmd": "npm run build:docs",
+   "purpose": "Generated sections of the block READMEs",
+   "result": "Passed; no change to the committed files"
+  },
+  {
+   "cmd": "node docs/handover/knowledge-base/validate-knowledge-base.mjs",
+   "purpose": "Knowledge base structure and pointers",
+   "result": "Passed (34 pages, nothing missing or failing)"
+  },
+  {
+   "cmd": "node capture.mjs (documentation program)",
+   "purpose": "Automated checks and screenshots of 200 reference pages at 4 widths",
+   "result": "Completed: 200 pages, 800 screenshots"
+  },
+  {
+   "cmd": "node analyze-links.mjs (documentation program)",
+   "purpose": "Links of the published pages of the roots",
+   "result": "Completed for /design-block-master/en and /language-master/en; /language-masters/en after its publishing"
+  }
+ ]
+}

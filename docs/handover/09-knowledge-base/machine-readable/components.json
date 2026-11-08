@@ -1,0 +1,1782 @@
+[
+ {
+  "id": "component:accordion",
+  "title": "Accordion",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/accordion/_accordion.json"
+  ],
+  "relatedComponents": [
+   "accordion"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "accordion",
+  "model": "accordion",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 13,
+  "children": [
+   "accordion-item"
+  ]
+ },
+ {
+  "id": "component:accordion-item",
+  "title": "Accordion Item",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/accordion/_accordion.json"
+  ],
+  "relatedComponents": [
+   "accordion"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "accordion",
+  "model": "accordion-item",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:anchor-list",
+  "title": "Anchor List",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/anchor-list/_anchor-list.json"
+  ],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "anchor-list",
+  "model": "anchor-list",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 14,
+  "children": [
+   "anchor-list-item"
+  ]
+ },
+ {
+  "id": "component:anchor-list-item",
+  "title": "Anchor Link",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/anchor-list/_anchor-list.json"
+  ],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "anchor-list",
+  "model": "anchor-list-item",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:button-block",
+  "title": "Button",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/button-block/_button-block.json"
+  ],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "button-block",
+  "model": "button-block",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 21,
+  "children": []
+ },
+ {
+  "id": "component:cards",
+  "title": "Cards",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/cards/_cards.json"
+  ],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "cards",
+  "model": "cards",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 72,
+  "children": [
+   "card"
+  ]
+ },
+ {
+  "id": "component:card",
+  "title": "Card",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/cards/_cards.json"
+  ],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "cards",
+  "model": "card",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 18,
+  "children": []
+ },
+ {
+  "id": "component:column-break",
+  "title": "Column Break",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/column-break/_column-break.json"
+  ],
+  "relatedComponents": [
+   "column-break"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "column-break",
+  "model": "column-break",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 11,
+  "children": []
+ },
+ {
+  "id": "component:columns",
+  "title": "Columns",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/columns/_columns.json"
+  ],
+  "relatedComponents": [
+   "columns"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "columns",
+  "model": "columns",
+  "resourceType": "core/franklin/components/columns/v1/columns",
+  "fields": 2,
+  "children": [
+   "column"
+  ]
+ },
+ {
+  "id": "component:columns-container",
+  "title": "Columns Container",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/columns-container/_columns-container.json"
+  ],
+  "relatedComponents": [
+   "columns-container"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "columns-container",
+  "model": "columns-container",
+  "resourceType": "core/franklin/components/section/v1/section",
+  "fields": 23,
+  "children": [
+   "column-break",
+   "text",
+   "image",
+   "button-block",
+   "title",
+   "hero",
+   "teaser",
+   "image-collage",
+   "quote",
+   "media-contacts",
+   "testimonial",
+   "anchor-list",
+   "accordion",
+   "tabs-block",
+   "table",
+   "table-list",
+   "list",
+   "separator",
+   "embed",
+   "video",
+   "modal",
+   "form-variations",
+   "filter-list",
+   "conversation-canvas",
+   "cards",
+   "fragment"
+  ]
+ },
+ {
+  "id": "component:conversation-canvas",
+  "title": "Conversation Canvas",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/conversation-canvas/_conversation-canvas.json"
+  ],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "conversation-canvas",
+  "model": "conversation-canvas",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 36,
+  "children": [
+   "conversation-canvas-button"
+  ]
+ },
+ {
+  "id": "component:conversation-canvas-button",
+  "title": "Conversation Canvas Button",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/conversation-canvas/_conversation-canvas.json"
+  ],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "conversation-canvas",
+  "model": "conversation-canvas-button",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:embed",
+  "title": "Embed",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/embed/_embed.json"
+  ],
+  "relatedComponents": [
+   "embed"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "embed",
+  "model": "embed",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 16,
+  "children": []
+ },
+ {
+  "id": "component:filter-list",
+  "title": "Filter List",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/filter-list/_filter-list.json"
+  ],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "filter-list",
+  "model": "filter-list",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 53,
+  "children": [
+   "filter-list-tag",
+   "filter-list-category",
+   "filter-list-page"
+  ]
+ },
+ {
+  "id": "component:filter-list-tag",
+  "title": "Filter Tag",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/filter-list/_filter-list.json"
+  ],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "filter-list",
+  "model": "filter-list-tag",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 1,
+  "children": []
+ },
+ {
+  "id": "component:filter-list-category",
+  "title": "Filter Category",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/filter-list/_filter-list.json"
+  ],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "filter-list",
+  "model": "filter-list-category",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:filter-list-page",
+  "title": "Filter Page",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/filter-list/_filter-list.json"
+  ],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "filter-list",
+  "model": "filter-list-page",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:footer",
+  "title": "Footer",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/footer/_footer.json"
+  ],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "footer",
+  "model": "footer",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 6,
+  "children": [
+   "footer-link"
+  ]
+ },
+ {
+  "id": "component:footer-link",
+  "title": "Footer Link",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/footer/_footer.json"
+  ],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "footer",
+  "model": "footer-link",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 3,
+  "children": []
+ },
+ {
+  "id": "component:form-variations",
+  "title": "Form Variations",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "form-variations",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 4,
+  "children": [
+   "field-text",
+   "field-select",
+   "field-combined",
+   "field-textarea",
+   "field-checkbox",
+   "contact-card",
+   "field-submit"
+  ]
+ },
+ {
+  "id": "component:field-text",
+  "title": "Text Input Field",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-text",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:field-select",
+  "title": "Dropdown / Select Field",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-select",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:field-combined",
+  "title": "Combined Input Field",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-combined",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 4,
+  "children": []
+ },
+ {
+  "id": "component:field-textarea",
+  "title": "Textarea Field",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-textarea",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:field-checkbox",
+  "title": "Consent Checkbox Field",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-checkbox",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 5,
+  "children": []
+ },
+ {
+  "id": "component:contact-card",
+  "title": "Contact Card Output",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "contact-card",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 5,
+  "children": []
+ },
+ {
+  "id": "component:field-submit",
+  "title": "Submit Button",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/form-variations/_form-variations.json"
+  ],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "form-variations",
+  "model": "field-submit",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 3,
+  "children": []
+ },
+ {
+  "id": "component:fragment",
+  "title": "Fragment",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/fragment/_fragment.json"
+  ],
+  "relatedComponents": [
+   "fragment"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "fragment",
+  "model": "fragment",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 11,
+  "children": []
+ },
+ {
+  "id": "component:gen-carousel",
+  "title": "Gen Carousel",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/gen-carousel/_gen-carousel.json"
+  ],
+  "relatedComponents": [
+   "gen-carousel"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "gen-carousel",
+  "model": "gen-carousel",
+  "resourceType": "core/franklin/components/section/v1/section",
+  "fields": 17,
+  "children": [
+   "hero",
+   "teaser"
+  ]
+ },
+ {
+  "id": "component:hero",
+  "title": "Hero",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/hero/_hero.json"
+  ],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "hero",
+  "model": "hero",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 40,
+  "children": [
+   "hero-cta"
+  ]
+ },
+ {
+  "id": "component:hero-cta",
+  "title": "CTA",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/hero/_hero.json"
+  ],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "hero",
+  "model": "hero-cta",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 5,
+  "children": []
+ },
+ {
+  "id": "component:image-collage",
+  "title": "Image Collage",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/image-collage/_image-collage.json"
+  ],
+  "relatedComponents": [
+   "image-collage"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "image-collage",
+  "model": "image-collage",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 34,
+  "children": [
+   "image-collage-item"
+  ]
+ },
+ {
+  "id": "component:image-collage-item",
+  "title": "Collage image item",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/image-collage/_image-collage.json"
+  ],
+  "relatedComponents": [
+   "image-collage"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "image-collage",
+  "model": "image-collage-item",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 3,
+  "children": []
+ },
+ {
+  "id": "component:interactive-dashboard",
+  "title": "Interactive Dashboard",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/interactive-dashboard/_interactive-dashboard.json"
+  ],
+  "relatedComponents": [
+   "interactive-dashboard"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "interactive-dashboard",
+  "model": "interactive-dashboard",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 13,
+  "children": []
+ },
+ {
+  "id": "component:list",
+  "title": "List",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/list/_list.json"
+  ],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "list",
+  "model": "list",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 90,
+  "children": [
+   "list-item"
+  ]
+ },
+ {
+  "id": "component:list-item",
+  "title": "List Item",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/list/_list.json"
+  ],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "list",
+  "model": "list-item",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 21,
+  "children": []
+ },
+ {
+  "id": "component:media-contacts",
+  "title": "Media Contacts",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/media-contacts/_media-contacts.json"
+  ],
+  "relatedComponents": [
+   "media-contacts"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "media-contacts",
+  "model": "media-contacts",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 15,
+  "children": []
+ },
+ {
+  "id": "component:modal",
+  "title": "Modal",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/modal/_modal.json"
+  ],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "modal",
+  "model": "modal",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 12,
+  "children": []
+ },
+ {
+  "id": "component:page-header",
+  "title": "Page Header",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/page-header/_page-header.json"
+  ],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "page-header",
+  "model": "page-header",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 19,
+  "children": [
+   "page-header-cta"
+  ]
+ },
+ {
+  "id": "component:page-header-cta",
+  "title": "CTA",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/page-header/_page-header.json"
+  ],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "page-header",
+  "model": "page-header-cta",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:quote",
+  "title": "Quote",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/quote/_quote.json"
+  ],
+  "relatedComponents": [
+   "quote"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "quote",
+  "model": "quote",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 24,
+  "children": []
+ },
+ {
+  "id": "component:separator",
+  "title": "Separator",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/separator/_separator.json"
+  ],
+  "relatedComponents": [
+   "separator"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "separator",
+  "model": "separator",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 52,
+  "children": []
+ },
+ {
+  "id": "component:tab",
+  "title": "Tab",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/tab/_tab.json"
+  ],
+  "relatedComponents": [
+   "tab"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "tab",
+  "model": "tab",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 5,
+  "children": []
+ },
+ {
+  "id": "component:table",
+  "title": "Table",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 15,
+  "children": [
+   "table-row"
+  ]
+ },
+ {
+  "id": "component:table-row",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-row",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 1,
+  "children": []
+ },
+ {
+  "id": "component:table-col-2",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-2",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:table-col-3",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-3",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 3,
+  "children": []
+ },
+ {
+  "id": "component:table-col-4",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-4",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 4,
+  "children": []
+ },
+ {
+  "id": "component:table-col-5",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-5",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 5,
+  "children": []
+ },
+ {
+  "id": "component:table-col-6",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-6",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:table-col-7",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-7",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 7,
+  "children": []
+ },
+ {
+  "id": "component:table-col-8",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-8",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 8,
+  "children": []
+ },
+ {
+  "id": "component:table-col-9",
+  "title": "Row",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table/_table.json"
+  ],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table",
+  "model": "table-col-9",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 9,
+  "children": []
+ },
+ {
+  "id": "component:table-list",
+  "title": "Table List",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table-list/_table-list.json"
+  ],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table-list",
+  "model": "table-list",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 28,
+  "children": [
+   "table-list-card"
+  ]
+ },
+ {
+  "id": "component:table-list-card",
+  "title": "Table List Item",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/table-list/_table-list.json"
+  ],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "table-list",
+  "model": "table-list-card",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:tabs",
+  "title": "Tabs Container",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/tabs/_tabs.json"
+  ],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "tabs",
+  "model": "tabs",
+  "resourceType": "core/franklin/components/section/v1/section",
+  "fields": 20,
+  "children": [
+   "tab",
+   "column-break",
+   "text",
+   "image",
+   "button-block",
+   "title",
+   "hero",
+   "teaser",
+   "image-collage",
+   "quote",
+   "media-contacts",
+   "testimonial",
+   "anchor-list",
+   "accordion",
+   "table",
+   "table-list",
+   "list",
+   "separator",
+   "embed",
+   "video",
+   "modal",
+   "form-variations",
+   "filter-list",
+   "cards",
+   "fragment",
+   "tabs-block"
+  ]
+ },
+ {
+  "id": "component:tabs-block",
+  "title": "Tabs",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/tabs/_tabs.json"
+  ],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "tabs",
+  "model": "tabs-block",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 15,
+  "children": [
+   "tabs-item"
+  ]
+ },
+ {
+  "id": "component:tabs-item",
+  "title": "Tab",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/tabs/_tabs.json"
+  ],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "tabs",
+  "model": "tabs-item",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 4,
+  "children": []
+ },
+ {
+  "id": "component:tcs-header",
+  "title": "TCS Header",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/tcs-header/_tcs-header.json"
+  ],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "tcs-header",
+  "model": "tcs-header",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 17,
+  "children": []
+ },
+ {
+  "id": "component:teaser",
+  "title": "Teaser",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/teaser/_teaser.json"
+  ],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "teaser",
+  "model": "teaser",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 80,
+  "children": [
+   "teaser-link",
+   "teaser-stat",
+   "teaser-collage-image"
+  ]
+ },
+ {
+  "id": "component:teaser-link",
+  "title": "Link",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/teaser/_teaser.json"
+  ],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "teaser",
+  "model": "teaser-link",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 6,
+  "children": []
+ },
+ {
+  "id": "component:teaser-stat",
+  "title": "Stat",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/teaser/_teaser.json"
+  ],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "teaser",
+  "model": "teaser-stat",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:teaser-collage-image",
+  "title": "Collage image",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/teaser/_teaser.json"
+  ],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "teaser",
+  "model": "teaser-collage-image",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 3,
+  "children": []
+ },
+ {
+  "id": "component:testimonial",
+  "title": "Testimonial",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/testimonial/_testimonial.json"
+  ],
+  "relatedComponents": [
+   "testimonial"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "testimonial",
+  "model": "testimonial",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 30,
+  "children": [
+   "testimonial-stat"
+  ]
+ },
+ {
+  "id": "component:testimonial-stat",
+  "title": "Stat",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/testimonial/_testimonial.json"
+  ],
+  "relatedComponents": [
+   "testimonial"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "testimonial",
+  "model": "testimonial-stat",
+  "resourceType": "core/franklin/components/block/v1/block/item",
+  "fields": 2,
+  "children": []
+ },
+ {
+  "id": "component:video",
+  "title": "Video",
+  "role": "Development",
+  "subject": "component",
+  "sourceFiles": [
+   "blocks/video/_video.json"
+  ],
+  "relatedComponents": [
+   "video"
+  ],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "block": "video",
+  "model": "video",
+  "resourceType": "core/franklin/components/block/v1/block",
+  "fields": 35,
+  "children": []
+ },
+ {
+  "id": "component:text",
+  "title": "Text",
+  "role": "All",
+  "subject": "default content component",
+  "sourceFiles": [
+   "models/"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "resourceType": "core/franklin/components/text/v1/text",
+  "fields": 0
+ },
+ {
+  "id": "component:title",
+  "title": "Title",
+  "role": "All",
+  "subject": "default content component",
+  "sourceFiles": [
+   "models/"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "resourceType": "core/franklin/components/title/v1/title",
+  "fields": 2
+ },
+ {
+  "id": "component:image",
+  "title": "Image",
+  "role": "All",
+  "subject": "default content component",
+  "sourceFiles": [
+   "models/"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "resourceType": "core/franklin/components/image/v1/image",
+  "fields": 2
+ },
+ {
+  "id": "component:button",
+  "title": "Button (basic)",
+  "role": "All",
+  "subject": "default content component",
+  "sourceFiles": [
+   "models/"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "resourceType": "core/franklin/components/button/v1/button",
+  "fields": 4
+ },
+ {
+  "id": "component:section",
+  "title": "Section",
+  "role": "All",
+  "subject": "default content component",
+  "sourceFiles": [
+   "models/"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Medium",
+  "openQuestions": [],
+  "resourceType": "core/franklin/components/section/v1/section",
+  "fields": 7
+ }
+]

@@ -1,7 +1,7 @@
 # EDAM runbook: from decisions to live pages
 
 > **For a separate AEM Assets environment only.** The project decided on 8 November 2026 (KB-D-067) for Dynamic
-> Media on the Sites environment itself: follow `../docs/edam/README.md` instead.
+> Media on the Sites environment itself: follow `../docs/handover/07-administration-governance/markdown/DYNAMIC-MEDIA-SETUP.md` instead.
 
 Step by step for the migrated TCS Corporate content with its assets on a separate AEM Assets environment
 (EDAM). Each step says who does it, where, and how to check it before the next one. Plan and decisions:

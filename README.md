@@ -36,19 +36,24 @@ sections 7 to 9.
 Before installing on an author that has the old root, move the existing tree (Sites console > Move, references
 adjusted) and have the site's path mapping changed for the new root (`edam-main` of the site repository).
 
-## Documents (KB-D-066)
+## Documentation (KB-D-066, KB-D-069)
 
-`docs/` holds the project documents moved from the code repository on 8 November 2026: the handover
-(`docs/handover/TCS-CORP-HANDOVER.md`, its PDF and screenshots), the author / developer / admin guides, the design
-proposals, the audit, animation and block documentation reports, and the Dynamic Media set-up (`docs/edam/`). The
-knowledge base stays in the code repository ([docs/handover/knowledge-base](https://github.com/sradha-tcs/tcs-corp/blob/main/docs/handover/knowledge-base/README.md)).
+[`docs/handover/`](docs/handover/README.md) holds the **role-specific documentation** of the site (KB-D-069, 8 November
+2026): 01 architecture, 02 development (a folder per block and curated design page), 03 authoring (a guide per
+component), 04 business analysis, 05 quality assurance (test cases, execution results with evidence), 06 operations,
+07 administration and governance (with the Dynamic Media set-up), 08 release and DevOps, 09 knowledge base (humans,
+AI agents, LLM retrieval, machine-readable inventories), 10 training, 11 audit and remediation; Markdown with paired
+PDFs and real screenshots of the published reference pages. Every code change updates it: its generator is
+[`docs-tools/`](docs-tools/README.md). The former consolidated handover, guides, proposals and reports are kept in the
+tag `archive/docs-before-role-docs-2026-11-08`. The knowledge base for code work stays in the code repository
+([docs/handover/knowledge-base](https://github.com/sradha-tcs/tcs-corp/blob/main/docs/handover/knowledge-base/README.md)).
 
 ## Dynamic Media (decided 8 November 2026, KB-D-067)
 
 After the installation below, the assets are approved and delivered by **Dynamic Media with OpenAPI** from the
 Sites environment's delivery tier, and the 8,432 migrated pages below `/language-masters/en` are rebuilt with the
 assets' delivery URLs and reinstalled: `edam-assets.sh --steps 4,5` and `aem-sites.sh` against the **Sites author**
-(details and the asset picker set-up: `docs/edam/README.md`).
+(details and the asset picker set-up: [docs/handover/07-administration-governance/markdown/DYNAMIC-MEDIA-SETUP.md](docs/handover/07-administration-governance/markdown/DYNAMIC-MEDIA-SETUP.md)).
 
 ## The three roots (KB-D-068)
 

@@ -1,0 +1,5 @@
+{
+ "generated": "2026-11-08",
+ "strategy": "one chunk per ## section; the front matter (id, role, topic, sourceFiles) is attached to every chunk",
+ "chunks": []
+}

@@ -1,0 +1,2712 @@
+[
+ {
+  "id": "US-F-E01-01-01",
+  "title": "As a content author, I want to add and configure the Header in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-01",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E01-01-02",
+  "title": "As a site visitor, I want to see and use the Header: Site header from the nav reference page: brand, menu sections, tools",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-01",
+  "testCases": [
+   "TC-HEADER-001",
+   "TC-HEADER-002",
+   "TC-HEADER-003",
+   "TC-HEADER-004"
+  ]
+ },
+ {
+  "id": "US-F-E01-02-01",
+  "title": "As a content author, I want to add and configure the TCS Header in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-02",
+  "testCases": [
+   "TC-TCS-HEADER-002",
+   "TC-TCS-HEADER-004",
+   "TC-TCS-HEADER-005"
+  ]
+ },
+ {
+  "id": "US-F-E01-02-02",
+  "title": "As a site visitor, I want to see and use the TCS Header: The TCS and TATA logos of the header, on the nav page",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-02",
+  "testCases": [
+   "TC-TCS-HEADER-001",
+   "TC-TCS-HEADER-006",
+   "TC-TCS-HEADER-007",
+   "TC-TCS-HEADER-008"
+  ]
+ },
+ {
+  "id": "US-F-E01-02-03",
+  "title": "As a content author, I want to choose the TCS Header's variations (—)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-02",
+  "testCases": [
+   "TC-TCS-HEADER-003"
+  ]
+ },
+ {
+  "id": "US-F-E01-03-01",
+  "title": "As a content author, I want to add and configure the Footer in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-03",
+  "testCases": [
+   "TC-FOOTER-002",
+   "TC-FOOTER-005",
+   "TC-FOOTER-006"
+  ]
+ },
+ {
+  "id": "US-F-E01-03-02",
+  "title": "As a site visitor, I want to see and use the Footer: Site footer bar on the footer reference page (copyright, links, Conversation Canvas)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-03",
+  "testCases": [
+   "TC-FOOTER-001",
+   "TC-FOOTER-007",
+   "TC-FOOTER-008",
+   "TC-FOOTER-009"
+  ]
+ },
+ {
+  "id": "US-F-E01-03-03",
+  "title": "As a content author, I want to choose the Footer's variations (Footer Link items; Conversation Canvas page)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-03",
+  "testCases": [
+   "TC-FOOTER-003",
+   "TC-FOOTER-004"
+  ]
+ },
+ {
+  "id": "US-F-E01-04-01",
+  "title": "As a content author, I want to add and configure the Fragment in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "fragment"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-04",
+  "testCases": [
+   "TC-FRAGMENT-002",
+   "TC-FRAGMENT-003",
+   "TC-FRAGMENT-004"
+  ]
+ },
+ {
+  "id": "US-F-E01-04-02",
+  "title": "As a site visitor, I want to see and use the Fragment: Includes the sections of another page",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "fragment"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-04",
+  "testCases": [
+   "TC-FRAGMENT-001",
+   "TC-FRAGMENT-005",
+   "TC-FRAGMENT-006",
+   "TC-FRAGMENT-007"
+  ]
+ },
+ {
+  "id": "US-F-E01-05-01",
+  "title": "As a content author, I want to add and configure the Modal in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-05",
+  "testCases": [
+   "TC-MODAL-002",
+   "TC-MODAL-003",
+   "TC-MODAL-004"
+  ]
+ },
+ {
+  "id": "US-F-E01-05-02",
+  "title": "As a site visitor, I want to see and use the Modal: Opens a page's content in a dialog (button or auto-linked /modal/ links)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E01",
+  "feature": "F-E01-05",
+  "testCases": [
+   "TC-MODAL-001",
+   "TC-MODAL-005",
+   "TC-MODAL-006",
+   "TC-MODAL-007"
+  ]
+ },
+ {
+  "id": "US-F-E02-01-01",
+  "title": "As a content author, I want to add and configure the Hero in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-01",
+  "testCases": [
+   "TC-HERO-002",
+   "TC-HERO-022",
+   "TC-HERO-023"
+  ]
+ },
+ {
+  "id": "US-F-E02-01-02",
+  "title": "As a site visitor, I want to see and use the Hero: Full-width banner with image or Lottie, title, description and CTAs",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-01",
+  "testCases": [
+   "TC-HERO-001",
+   "TC-HERO-024",
+   "TC-HERO-025",
+   "TC-HERO-026"
+  ]
+ },
+ {
+  "id": "US-F-E02-01-03",
+  "title": "As a content author, I want to choose the Hero's variations (Views, nine positions, BG Color, animation)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-01",
+  "testCases": [
+   "TC-HERO-003",
+   "TC-HERO-004",
+   "TC-HERO-005",
+   "TC-HERO-006",
+   "TC-HERO-007",
+   "TC-HERO-008",
+   "TC-HERO-009",
+   "TC-HERO-010",
+   "TC-HERO-011",
+   "TC-HERO-012",
+   "TC-HERO-013",
+   "TC-HERO-014",
+   "TC-HERO-015",
+   "TC-HERO-016",
+   "TC-HERO-017",
+   "TC-HERO-018",
+   "TC-HERO-019",
+   "TC-HERO-020",
+   "TC-HERO-021"
+  ]
+ },
+ {
+  "id": "US-F-E02-02-01",
+  "title": "As a content author, I want to add and configure the Page Header in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-02",
+  "testCases": [
+   "TC-PAGE-HEADER-002",
+   "TC-PAGE-HEADER-010",
+   "TC-PAGE-HEADER-011"
+  ]
+ },
+ {
+  "id": "US-F-E02-02-02",
+  "title": "As a site visitor, I want to see and use the Page Header: The title area of a page from its metadata (title, description, tags, author, dates)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-02",
+  "testCases": [
+   "TC-PAGE-HEADER-001",
+   "TC-PAGE-HEADER-012",
+   "TC-PAGE-HEADER-013",
+   "TC-PAGE-HEADER-014"
+  ]
+ },
+ {
+  "id": "US-F-E02-02-03",
+  "title": "As a content author, I want to choose the Page Header's variations (Layouts by page type)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E02",
+  "feature": "F-E02-02",
+  "testCases": [
+   "TC-PAGE-HEADER-003",
+   "TC-PAGE-HEADER-004",
+   "TC-PAGE-HEADER-005",
+   "TC-PAGE-HEADER-006",
+   "TC-PAGE-HEADER-007",
+   "TC-PAGE-HEADER-008",
+   "TC-PAGE-HEADER-009"
+  ]
+ },
+ {
+  "id": "US-F-E03-01-01",
+  "title": "As a content author, I want to add and configure the Teaser in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-01",
+  "testCases": [
+   "TC-TEASER-002",
+   "TC-TEASER-037",
+   "TC-TEASER-038"
+  ]
+ },
+ {
+  "id": "US-F-E03-01-02",
+  "title": "As a site visitor, I want to see and use the Teaser: Title, text, image and links in one of four layouts",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-01",
+  "testCases": [
+   "TC-TEASER-001",
+   "TC-TEASER-039",
+   "TC-TEASER-040",
+   "TC-TEASER-041"
+  ]
+ },
+ {
+  "id": "US-F-E03-01-03",
+  "title": "As a content author, I want to choose the Teaser's variations (Layouts (Image & Text, Text split, Background image, Card), image positions, BG Color, styles)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-01",
+  "testCases": [
+   "TC-TEASER-003",
+   "TC-TEASER-004",
+   "TC-TEASER-005",
+   "TC-TEASER-006",
+   "TC-TEASER-007",
+   "TC-TEASER-008",
+   "TC-TEASER-009",
+   "TC-TEASER-010",
+   "TC-TEASER-011",
+   "TC-TEASER-012",
+   "TC-TEASER-013",
+   "TC-TEASER-014",
+   "TC-TEASER-015",
+   "TC-TEASER-016",
+   "TC-TEASER-017",
+   "TC-TEASER-018",
+   "TC-TEASER-019",
+   "TC-TEASER-020",
+   "TC-TEASER-021",
+   "TC-TEASER-022",
+   "TC-TEASER-023",
+   "TC-TEASER-024",
+   "TC-TEASER-025",
+   "TC-TEASER-026",
+   "TC-TEASER-027",
+   "TC-TEASER-028",
+   "TC-TEASER-029",
+   "TC-TEASER-030",
+   "TC-TEASER-031",
+   "TC-TEASER-032",
+   "TC-TEASER-033",
+   "TC-TEASER-034",
+   "TC-TEASER-035",
+   "TC-TEASER-036"
+  ]
+ },
+ {
+  "id": "US-F-E03-02-01",
+  "title": "As a content author, I want to add and configure the Cards in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-02",
+  "testCases": [
+   "TC-CARDS-002",
+   "TC-CARDS-022",
+   "TC-CARDS-023"
+  ]
+ },
+ {
+  "id": "US-F-E03-02-02",
+  "title": "As a site visitor, I want to see and use the Cards: Manually authored cards with the List's presentation (grid or horizontal scroll)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-02",
+  "testCases": [
+   "TC-CARDS-001",
+   "TC-CARDS-024",
+   "TC-CARDS-025",
+   "TC-CARDS-026"
+  ]
+ },
+ {
+  "id": "US-F-E03-02-03",
+  "title": "As a content author, I want to choose the Cards's variations (Card style (image, panel, report, statistic, mixed), Card colour, layout per breakpoint)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-02",
+  "testCases": [
+   "TC-CARDS-003",
+   "TC-CARDS-004",
+   "TC-CARDS-005",
+   "TC-CARDS-006",
+   "TC-CARDS-007",
+   "TC-CARDS-008",
+   "TC-CARDS-009",
+   "TC-CARDS-010",
+   "TC-CARDS-011",
+   "TC-CARDS-012",
+   "TC-CARDS-013",
+   "TC-CARDS-014",
+   "TC-CARDS-015",
+   "TC-CARDS-016",
+   "TC-CARDS-017",
+   "TC-CARDS-018",
+   "TC-CARDS-019",
+   "TC-CARDS-020",
+   "TC-CARDS-021"
+  ]
+ },
+ {
+  "id": "US-F-E03-03-01",
+  "title": "As a content author, I want to add and configure the Columns Container in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-03",
+  "testCases": [
+   "TC-COLUMNS-CONTAINER-002",
+   "TC-COLUMNS-CONTAINER-021",
+   "TC-COLUMNS-CONTAINER-022"
+  ]
+ },
+ {
+  "id": "US-F-E03-03-02",
+  "title": "As a site visitor, I want to see and use the Columns Container: A section laid out in columns of default content and blocks",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-03",
+  "testCases": [
+   "TC-COLUMNS-CONTAINER-001",
+   "TC-COLUMNS-CONTAINER-023",
+   "TC-COLUMNS-CONTAINER-024",
+   "TC-COLUMNS-CONTAINER-025"
+  ]
+ },
+ {
+  "id": "US-F-E03-03-03",
+  "title": "As a content author, I want to choose the Columns Container's variations (Columns per row, gap, vertical alignment, side by side from, BG Color)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-03",
+  "testCases": [
+   "TC-COLUMNS-CONTAINER-003",
+   "TC-COLUMNS-CONTAINER-004",
+   "TC-COLUMNS-CONTAINER-005",
+   "TC-COLUMNS-CONTAINER-006",
+   "TC-COLUMNS-CONTAINER-007",
+   "TC-COLUMNS-CONTAINER-008",
+   "TC-COLUMNS-CONTAINER-009",
+   "TC-COLUMNS-CONTAINER-010",
+   "TC-COLUMNS-CONTAINER-011",
+   "TC-COLUMNS-CONTAINER-012",
+   "TC-COLUMNS-CONTAINER-013",
+   "TC-COLUMNS-CONTAINER-014",
+   "TC-COLUMNS-CONTAINER-015",
+   "TC-COLUMNS-CONTAINER-016",
+   "TC-COLUMNS-CONTAINER-017",
+   "TC-COLUMNS-CONTAINER-018",
+   "TC-COLUMNS-CONTAINER-019",
+   "TC-COLUMNS-CONTAINER-020"
+  ]
+ },
+ {
+  "id": "US-F-E03-04-01",
+  "title": "As a content author, I want to add and configure the Columns in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-04",
+  "testCases": [
+   "TC-COLUMNS-002",
+   "TC-COLUMNS-003",
+   "TC-COLUMNS-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-04-02",
+  "title": "As a site visitor, I want to see and use the Columns: The built-in Columns block: columns of default content",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-04",
+  "testCases": [
+   "TC-COLUMNS-001",
+   "TC-COLUMNS-005",
+   "TC-COLUMNS-006",
+   "TC-COLUMNS-007"
+  ]
+ },
+ {
+  "id": "US-F-E03-05-01",
+  "title": "As a content author, I want to add and configure the Column Break in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "column-break"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-05",
+  "testCases": [
+   "TC-COLUMN-BREAK-002",
+   "TC-COLUMN-BREAK-003",
+   "TC-COLUMN-BREAK-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-05-02",
+  "title": "As a site visitor, I want to see and use the Column Break: Starts a column in a Columns Container or a Tab",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "column-break"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-05",
+  "testCases": [
+   "TC-COLUMN-BREAK-001",
+   "TC-COLUMN-BREAK-005",
+   "TC-COLUMN-BREAK-006",
+   "TC-COLUMN-BREAK-007"
+  ]
+ },
+ {
+  "id": "US-F-E03-06-01",
+  "title": "As a content author, I want to add and configure the Quote in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "quote"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-06",
+  "testCases": [
+   "TC-QUOTE-002",
+   "TC-QUOTE-007",
+   "TC-QUOTE-008"
+  ]
+ },
+ {
+  "id": "US-F-E03-06-02",
+  "title": "As a site visitor, I want to see and use the Quote: A quotation with author, optional image and title",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "quote"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-06",
+  "testCases": [
+   "TC-QUOTE-001",
+   "TC-QUOTE-009",
+   "TC-QUOTE-010",
+   "TC-QUOTE-011"
+  ]
+ },
+ {
+  "id": "US-F-E03-06-03",
+  "title": "As a content author, I want to choose the Quote's variations (Image position, BG Color)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "quote"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-06",
+  "testCases": [
+   "TC-QUOTE-003",
+   "TC-QUOTE-004",
+   "TC-QUOTE-005",
+   "TC-QUOTE-006"
+  ]
+ },
+ {
+  "id": "US-F-E03-07-01",
+  "title": "As a content author, I want to add and configure the Testimonial in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "testimonial"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-07",
+  "testCases": [
+   "TC-TESTIMONIAL-002",
+   "TC-TESTIMONIAL-005",
+   "TC-TESTIMONIAL-006"
+  ]
+ },
+ {
+  "id": "US-F-E03-07-02",
+  "title": "As a site visitor, I want to see and use the Testimonial: A client testimonial with author, image and stats",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "testimonial"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-07",
+  "testCases": [
+   "TC-TESTIMONIAL-001",
+   "TC-TESTIMONIAL-007",
+   "TC-TESTIMONIAL-008",
+   "TC-TESTIMONIAL-009"
+  ]
+ },
+ {
+  "id": "US-F-E03-07-03",
+  "title": "As a content author, I want to choose the Testimonial's variations (BG Color, show / hide options)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "testimonial"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-07",
+  "testCases": [
+   "TC-TESTIMONIAL-003",
+   "TC-TESTIMONIAL-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-08-01",
+  "title": "As a content author, I want to add and configure the Separator in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "separator"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-08",
+  "testCases": [
+   "TC-SEPARATOR-002",
+   "TC-SEPARATOR-035",
+   "TC-SEPARATOR-036"
+  ]
+ },
+ {
+  "id": "US-F-E03-08-02",
+  "title": "As a site visitor, I want to see and use the Separator: A divider line between content",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "separator"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-08",
+  "testCases": [
+   "TC-SEPARATOR-001",
+   "TC-SEPARATOR-037",
+   "TC-SEPARATOR-038",
+   "TC-SEPARATOR-039"
+  ]
+ },
+ {
+  "id": "US-F-E03-08-03",
+  "title": "As a content author, I want to choose the Separator's variations (Variants, widths per breakpoint, theme, motion)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "separator"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-08",
+  "testCases": [
+   "TC-SEPARATOR-003",
+   "TC-SEPARATOR-004",
+   "TC-SEPARATOR-005",
+   "TC-SEPARATOR-006",
+   "TC-SEPARATOR-007",
+   "TC-SEPARATOR-008",
+   "TC-SEPARATOR-009",
+   "TC-SEPARATOR-010",
+   "TC-SEPARATOR-011",
+   "TC-SEPARATOR-012",
+   "TC-SEPARATOR-013",
+   "TC-SEPARATOR-014",
+   "TC-SEPARATOR-015",
+   "TC-SEPARATOR-016",
+   "TC-SEPARATOR-017",
+   "TC-SEPARATOR-018",
+   "TC-SEPARATOR-019",
+   "TC-SEPARATOR-020",
+   "TC-SEPARATOR-021",
+   "TC-SEPARATOR-022",
+   "TC-SEPARATOR-023",
+   "TC-SEPARATOR-024",
+   "TC-SEPARATOR-025",
+   "TC-SEPARATOR-026",
+   "TC-SEPARATOR-027",
+   "TC-SEPARATOR-028",
+   "TC-SEPARATOR-029",
+   "TC-SEPARATOR-030",
+   "TC-SEPARATOR-031",
+   "TC-SEPARATOR-032",
+   "TC-SEPARATOR-033",
+   "TC-SEPARATOR-034"
+  ]
+ },
+ {
+  "id": "US-F-E03-09-01",
+  "title": "As a content author, I want to add and configure the Image Collage in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "image-collage"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-09",
+  "testCases": [
+   "TC-IMAGE-COLLAGE-002",
+   "TC-IMAGE-COLLAGE-016",
+   "TC-IMAGE-COLLAGE-017"
+  ]
+ },
+ {
+  "id": "US-F-E03-09-02",
+  "title": "As a site visitor, I want to see and use the Image Collage: Centred eyebrow, title, description and CTAs on a dark background framed by up to nine floating decorative images",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "image-collage"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-09",
+  "testCases": [
+   "TC-IMAGE-COLLAGE-001",
+   "TC-IMAGE-COLLAGE-018",
+   "TC-IMAGE-COLLAGE-019",
+   "TC-IMAGE-COLLAGE-020"
+  ]
+ },
+ {
+  "id": "US-F-E03-09-03",
+  "title": "As a content author, I want to choose the Image Collage's variations (Title weight, description size, eyebrow style, CTA styles, backgrounds and shapes, image treatment)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "image-collage"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-09",
+  "testCases": [
+   "TC-IMAGE-COLLAGE-003",
+   "TC-IMAGE-COLLAGE-004",
+   "TC-IMAGE-COLLAGE-005",
+   "TC-IMAGE-COLLAGE-006",
+   "TC-IMAGE-COLLAGE-007",
+   "TC-IMAGE-COLLAGE-008",
+   "TC-IMAGE-COLLAGE-009",
+   "TC-IMAGE-COLLAGE-010",
+   "TC-IMAGE-COLLAGE-011",
+   "TC-IMAGE-COLLAGE-012",
+   "TC-IMAGE-COLLAGE-013",
+   "TC-IMAGE-COLLAGE-014",
+   "TC-IMAGE-COLLAGE-015"
+  ]
+ },
+ {
+  "id": "US-F-E03-10-01",
+  "title": "As a content author, I want to add and configure the Accordion in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "accordion"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-10",
+  "testCases": [
+   "TC-ACCORDION-002",
+   "TC-ACCORDION-003",
+   "TC-ACCORDION-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-10-02",
+  "title": "As a site visitor, I want to see and use the Accordion: Expandable question / answer or detail panels (native details / summary)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "accordion"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-10",
+  "testCases": [
+   "TC-ACCORDION-001",
+   "TC-ACCORDION-005",
+   "TC-ACCORDION-006",
+   "TC-ACCORDION-007"
+  ]
+ },
+ {
+  "id": "US-F-E03-11-01",
+  "title": "As a content author, I want to add and configure the Tabs in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-11",
+  "testCases": [
+   "TC-TABS-002",
+   "TC-TABS-022",
+   "TC-TABS-023"
+  ]
+ },
+ {
+  "id": "US-F-E03-11-02",
+  "title": "As a site visitor, I want to see and use the Tabs: Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-11",
+  "testCases": [
+   "TC-TABS-001",
+   "TC-TABS-024",
+   "TC-TABS-025",
+   "TC-TABS-026"
+  ]
+ },
+ {
+  "id": "US-F-E03-11-03",
+  "title": "As a content author, I want to choose the Tabs's variations (Styles, alignment, orientation)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tabs"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-11",
+  "testCases": [
+   "TC-TABS-003",
+   "TC-TABS-004",
+   "TC-TABS-005",
+   "TC-TABS-006",
+   "TC-TABS-007",
+   "TC-TABS-008",
+   "TC-TABS-009",
+   "TC-TABS-010",
+   "TC-TABS-011",
+   "TC-TABS-012",
+   "TC-TABS-013",
+   "TC-TABS-014",
+   "TC-TABS-015",
+   "TC-TABS-016",
+   "TC-TABS-017",
+   "TC-TABS-018",
+   "TC-TABS-019",
+   "TC-TABS-020",
+   "TC-TABS-021"
+  ]
+ },
+ {
+  "id": "US-F-E03-12-01",
+  "title": "As a content author, I want to add and configure the Tab in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tab"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-12",
+  "testCases": [
+   "TC-TAB-002",
+   "TC-TAB-004",
+   "TC-TAB-005"
+  ]
+ },
+ {
+  "id": "US-F-E03-12-02",
+  "title": "As a site visitor, I want to see and use the Tab: Starts a tab panel in a Tabs Container",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tab"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-12",
+  "testCases": [
+   "TC-TAB-001",
+   "TC-TAB-006",
+   "TC-TAB-007",
+   "TC-TAB-008"
+  ]
+ },
+ {
+  "id": "US-F-E03-12-03",
+  "title": "As a content author, I want to choose the Tab's variations (Columns per row of its Column Breaks)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tab"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-12",
+  "testCases": [
+   "TC-TAB-003"
+  ]
+ },
+ {
+  "id": "US-F-E03-13-01",
+  "title": "As a content author, I want to add and configure the Gen Carousel in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-13",
+  "testCases": [
+   "TC-GEN-CAROUSEL-002",
+   "TC-GEN-CAROUSEL-016",
+   "TC-GEN-CAROUSEL-017"
+  ]
+ },
+ {
+  "id": "US-F-E03-13-02",
+  "title": "As a site visitor, I want to see and use the Gen Carousel: A section whose Heroes or Teasers rotate as slides",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-13",
+  "testCases": [
+   "TC-GEN-CAROUSEL-001",
+   "TC-GEN-CAROUSEL-018",
+   "TC-GEN-CAROUSEL-019",
+   "TC-GEN-CAROUSEL-020"
+  ]
+ },
+ {
+  "id": "US-F-E03-13-03",
+  "title": "As a content author, I want to choose the Gen Carousel's variations (Navigation (dots, arrows), automatic interval)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-13",
+  "testCases": [
+   "TC-GEN-CAROUSEL-003",
+   "TC-GEN-CAROUSEL-004",
+   "TC-GEN-CAROUSEL-005",
+   "TC-GEN-CAROUSEL-006",
+   "TC-GEN-CAROUSEL-007",
+   "TC-GEN-CAROUSEL-008",
+   "TC-GEN-CAROUSEL-009",
+   "TC-GEN-CAROUSEL-010",
+   "TC-GEN-CAROUSEL-011",
+   "TC-GEN-CAROUSEL-012",
+   "TC-GEN-CAROUSEL-013",
+   "TC-GEN-CAROUSEL-014",
+   "TC-GEN-CAROUSEL-015"
+  ]
+ },
+ {
+  "id": "US-F-E03-14-01",
+  "title": "As a content author, I want to add and configure the Table in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-14",
+  "testCases": [
+   "TC-TABLE-002",
+   "TC-TABLE-005",
+   "TC-TABLE-006"
+  ]
+ },
+ {
+  "id": "US-F-E03-14-02",
+  "title": "As a site visitor, I want to see and use the Table: A data table of rows with 1–9 columns",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-14",
+  "testCases": [
+   "TC-TABLE-001",
+   "TC-TABLE-007",
+   "TC-TABLE-008",
+   "TC-TABLE-009"
+  ]
+ },
+ {
+  "id": "US-F-E03-14-03",
+  "title": "As a content author, I want to choose the Table's variations (Header row, column counts)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-14",
+  "testCases": [
+   "TC-TABLE-003",
+   "TC-TABLE-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-15-01",
+  "title": "As a content author, I want to add and configure the Anchor List in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-15",
+  "testCases": [
+   "TC-ANCHOR-LIST-002",
+   "TC-ANCHOR-LIST-003",
+   "TC-ANCHOR-LIST-004"
+  ]
+ },
+ {
+  "id": "US-F-E03-15-02",
+  "title": "As a site visitor, I want to see and use the Anchor List: In-page navigation to section anchors, optionally sticky",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-15",
+  "testCases": [
+   "TC-ANCHOR-LIST-001",
+   "TC-ANCHOR-LIST-005",
+   "TC-ANCHOR-LIST-006",
+   "TC-ANCHOR-LIST-007"
+  ]
+ },
+ {
+  "id": "US-F-E03-16-01",
+  "title": "As a content author, I want to add and configure the Button in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-16",
+  "testCases": [
+   "TC-BUTTON-BLOCK-002",
+   "TC-BUTTON-BLOCK-008",
+   "TC-BUTTON-BLOCK-009"
+  ]
+ },
+ {
+  "id": "US-F-E03-16-02",
+  "title": "As a site visitor, I want to see and use the Button: A link styled as a button, icon button or link button",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-16",
+  "testCases": [
+   "TC-BUTTON-BLOCK-001",
+   "TC-BUTTON-BLOCK-010",
+   "TC-BUTTON-BLOCK-011",
+   "TC-BUTTON-BLOCK-012"
+  ]
+ },
+ {
+  "id": "US-F-E03-16-03",
+  "title": "As a content author, I want to choose the Button's variations (View (button, icon, link), Type (primary, secondary, tertiary), icon, alignment)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E03",
+  "feature": "F-E03-16",
+  "testCases": [
+   "TC-BUTTON-BLOCK-003",
+   "TC-BUTTON-BLOCK-004",
+   "TC-BUTTON-BLOCK-005",
+   "TC-BUTTON-BLOCK-006",
+   "TC-BUTTON-BLOCK-007"
+  ]
+ },
+ {
+  "id": "US-F-E04-01-01",
+  "title": "As a content author, I want to add and configure the Video in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "video"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-01",
+  "testCases": [
+   "TC-VIDEO-002",
+   "TC-VIDEO-007",
+   "TC-VIDEO-008"
+  ]
+ },
+ {
+  "id": "US-F-E04-01-02",
+  "title": "As a site visitor, I want to see and use the Video: A DAM, YouTube or Vimeo video inline or in a pop-up, with poster and captions",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "video"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-01",
+  "testCases": [
+   "TC-VIDEO-001",
+   "TC-VIDEO-009",
+   "TC-VIDEO-010",
+   "TC-VIDEO-011"
+  ]
+ },
+ {
+  "id": "US-F-E04-01-03",
+  "title": "As a content author, I want to choose the Video's variations (Inline or pop-up, autoplay / loop options)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "video"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-01",
+  "testCases": [
+   "TC-VIDEO-003",
+   "TC-VIDEO-004",
+   "TC-VIDEO-005",
+   "TC-VIDEO-006"
+  ]
+ },
+ {
+  "id": "US-F-E04-02-01",
+  "title": "As a content author, I want to add and configure the Embed in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "embed"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-02",
+  "testCases": [
+   "TC-EMBED-002",
+   "TC-EMBED-003",
+   "TC-EMBED-004"
+  ]
+ },
+ {
+  "id": "US-F-E04-02-02",
+  "title": "As a site visitor, I want to see and use the Embed: Third-party embeds (YouTube, Vimeo, X and other URLs) behind a privacy-friendly facade",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "embed"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-02",
+  "testCases": [
+   "TC-EMBED-001",
+   "TC-EMBED-005",
+   "TC-EMBED-006",
+   "TC-EMBED-007"
+  ]
+ },
+ {
+  "id": "US-F-E04-03-01",
+  "title": "As a content author, I want to add and configure the Interactive Dashboard in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "interactive-dashboard"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-03",
+  "testCases": [
+   "TC-INTERACTIVE-DASHBOARD-002",
+   "TC-INTERACTIVE-DASHBOARD-003",
+   "TC-INTERACTIVE-DASHBOARD-004"
+  ]
+ },
+ {
+  "id": "US-F-E04-03-02",
+  "title": "As a site visitor, I want to see and use the Interactive Dashboard: Reserved for a future dashboard; renders nothing on the site",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "interactive-dashboard"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E04",
+  "feature": "F-E04-03",
+  "testCases": [
+   "TC-INTERACTIVE-DASHBOARD-001",
+   "TC-INTERACTIVE-DASHBOARD-005",
+   "TC-INTERACTIVE-DASHBOARD-006",
+   "TC-INTERACTIVE-DASHBOARD-007"
+  ]
+ },
+ {
+  "id": "US-F-E05-01-01",
+  "title": "As a content author, I want to add and configure the List in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-01",
+  "testCases": [
+   "TC-LIST-002",
+   "TC-LIST-026",
+   "TC-LIST-027"
+  ]
+ },
+ {
+  "id": "US-F-E05-01-02",
+  "title": "As a site visitor, I want to see and use the List: Child pages, a fixed list or tagged pages from the query index, as cards or links",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-01",
+  "testCases": [
+   "TC-LIST-001",
+   "TC-LIST-028",
+   "TC-LIST-029",
+   "TC-LIST-030"
+  ]
+ },
+ {
+  "id": "US-F-E05-01-03",
+  "title": "As a content author, I want to choose the List's variations (Sources, card styles, layout per breakpoint, rows)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-01",
+  "testCases": [
+   "TC-LIST-003",
+   "TC-LIST-004",
+   "TC-LIST-005",
+   "TC-LIST-006",
+   "TC-LIST-007",
+   "TC-LIST-008",
+   "TC-LIST-009",
+   "TC-LIST-010",
+   "TC-LIST-011",
+   "TC-LIST-012",
+   "TC-LIST-013",
+   "TC-LIST-014",
+   "TC-LIST-015",
+   "TC-LIST-016",
+   "TC-LIST-017",
+   "TC-LIST-018",
+   "TC-LIST-019",
+   "TC-LIST-020",
+   "TC-LIST-021",
+   "TC-LIST-022",
+   "TC-LIST-023",
+   "TC-LIST-024",
+   "TC-LIST-025"
+  ]
+ },
+ {
+  "id": "US-F-E05-02-01",
+  "title": "As a content author, I want to add and configure the Filter List in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-02",
+  "testCases": [
+   "TC-FILTER-LIST-002",
+   "TC-FILTER-LIST-013",
+   "TC-FILTER-LIST-014"
+  ]
+ },
+ {
+  "id": "US-F-E05-02-02",
+  "title": "As a site visitor, I want to see and use the Filter List: Filterable listing of the locale's pages from the query index",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-02",
+  "testCases": [
+   "TC-FILTER-LIST-001",
+   "TC-FILTER-LIST-015",
+   "TC-FILTER-LIST-016",
+   "TC-FILTER-LIST-017"
+  ]
+ },
+ {
+  "id": "US-F-E05-02-03",
+  "title": "As a content author, I want to choose the Filter List's variations (Layouts, card styles, filters, featured cards)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "filter-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-02",
+  "testCases": [
+   "TC-FILTER-LIST-003",
+   "TC-FILTER-LIST-004",
+   "TC-FILTER-LIST-005",
+   "TC-FILTER-LIST-006",
+   "TC-FILTER-LIST-007",
+   "TC-FILTER-LIST-008",
+   "TC-FILTER-LIST-009",
+   "TC-FILTER-LIST-010",
+   "TC-FILTER-LIST-011",
+   "TC-FILTER-LIST-012"
+  ]
+ },
+ {
+  "id": "US-F-E05-03-01",
+  "title": "As a content author, I want to add and configure the Table List in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-03",
+  "testCases": [
+   "TC-TABLE-LIST-002",
+   "TC-TABLE-LIST-011",
+   "TC-TABLE-LIST-012"
+  ]
+ },
+ {
+  "id": "US-F-E05-03-02",
+  "title": "As a site visitor, I want to see and use the Table List: A numbered list of linked items (industries, services)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-03",
+  "testCases": [
+   "TC-TABLE-LIST-001",
+   "TC-TABLE-LIST-013",
+   "TC-TABLE-LIST-014",
+   "TC-TABLE-LIST-015"
+  ]
+ },
+ {
+  "id": "US-F-E05-03-03",
+  "title": "As a content author, I want to choose the Table List's variations (Variations, item actions, numbers)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-03",
+  "testCases": [
+   "TC-TABLE-LIST-003",
+   "TC-TABLE-LIST-004",
+   "TC-TABLE-LIST-005",
+   "TC-TABLE-LIST-006",
+   "TC-TABLE-LIST-007",
+   "TC-TABLE-LIST-008",
+   "TC-TABLE-LIST-009",
+   "TC-TABLE-LIST-010"
+  ]
+ },
+ {
+  "id": "US-F-E05-04-01",
+  "title": "As a content author, I want to add and configure the Media Contacts in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "media-contacts"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-04",
+  "testCases": [
+   "TC-MEDIA-CONTACTS-002",
+   "TC-MEDIA-CONTACTS-004",
+   "TC-MEDIA-CONTACTS-005"
+  ]
+ },
+ {
+  "id": "US-F-E05-04-02",
+  "title": "As a site visitor, I want to see and use the Media Contacts: The media contacts of the locale's Media Contacts sheet, grouped by designation and region",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "media-contacts"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-04",
+  "testCases": [
+   "TC-MEDIA-CONTACTS-001",
+   "TC-MEDIA-CONTACTS-006",
+   "TC-MEDIA-CONTACTS-007",
+   "TC-MEDIA-CONTACTS-008"
+  ]
+ },
+ {
+  "id": "US-F-E05-04-03",
+  "title": "As a content author, I want to choose the Media Contacts's variations (Title and Title Type; contacts of the page's region, else all)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "media-contacts"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E05",
+  "feature": "F-E05-04",
+  "testCases": [
+   "TC-MEDIA-CONTACTS-003"
+  ]
+ },
+ {
+  "id": "US-F-E06-01-01",
+  "title": "As a content author, I want to add and configure the Form Variations in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E06",
+  "feature": "F-E06-01",
+  "testCases": [
+   "TC-FORM-VARIATIONS-002",
+   "TC-FORM-VARIATIONS-005",
+   "TC-FORM-VARIATIONS-006"
+  ]
+ },
+ {
+  "id": "US-F-E06-01-02",
+  "title": "As a site visitor, I want to see and use the Form Variations: Forms (contact, download, subscribe) built from field items",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E06",
+  "feature": "F-E06-01",
+  "testCases": [
+   "TC-FORM-VARIATIONS-001",
+   "TC-FORM-VARIATIONS-007",
+   "TC-FORM-VARIATIONS-008",
+   "TC-FORM-VARIATIONS-009"
+  ]
+ },
+ {
+  "id": "US-F-E06-01-03",
+  "title": "As a content author, I want to choose the Form Variations's variations (Form variations and field items)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E06",
+  "feature": "F-E06-01",
+  "testCases": [
+   "TC-FORM-VARIATIONS-003",
+   "TC-FORM-VARIATIONS-004"
+  ]
+ },
+ {
+  "id": "US-F-E07-01-01",
+  "title": "As a content author, I want to add and configure the Conversation Canvas in Universal Editor",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E07",
+  "feature": "F-E07-01",
+  "testCases": [
+   "TC-CONVERSATION-CANVAS-002",
+   "TC-CONVERSATION-CANVAS-013",
+   "TC-CONVERSATION-CANVAS-014"
+  ]
+ },
+ {
+  "id": "US-F-E07-01-02",
+  "title": "As a site visitor, I want to see and use the Conversation Canvas: Search prompt with quick actions; one floating journey across header, page and footer",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E07",
+  "feature": "F-E07-01",
+  "testCases": [
+   "TC-CONVERSATION-CANVAS-001",
+   "TC-CONVERSATION-CANVAS-015",
+   "TC-CONVERSATION-CANVAS-016",
+   "TC-CONVERSATION-CANVAS-017"
+  ]
+ },
+ {
+  "id": "US-F-E07-01-03",
+  "title": "As a content author, I want to choose the Conversation Canvas's variations (Primary (sticky dock), Secondary, journey options, action styles)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E07",
+  "feature": "F-E07-01",
+  "testCases": [
+   "TC-CONVERSATION-CANVAS-003",
+   "TC-CONVERSATION-CANVAS-004",
+   "TC-CONVERSATION-CANVAS-005",
+   "TC-CONVERSATION-CANVAS-006",
+   "TC-CONVERSATION-CANVAS-007",
+   "TC-CONVERSATION-CANVAS-008",
+   "TC-CONVERSATION-CANVAS-009",
+   "TC-CONVERSATION-CANVAS-010",
+   "TC-CONVERSATION-CANVAS-011",
+   "TC-CONVERSATION-CANVAS-012"
+  ]
+ },
+ {
+  "id": "US-F-E08-01-01",
+  "title": "As a site visitor or content author, I want Locale sites by path",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E08",
+  "feature": "F-E08-01",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E08-02-01",
+  "title": "As a site visitor or content author, I want Review roots with their own references and sheets",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E08",
+  "feature": "F-E08-02",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E08-03-01",
+  "title": "As a site visitor or content author, I want Inherited navigation, footer and 404 page",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E08",
+  "feature": "F-E08-03",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E08-04-01",
+  "title": "As a site visitor or content author, I want Placeholders, taxonomy and data sheets",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E08",
+  "feature": "F-E08-04",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E09-01-01",
+  "title": "As a site visitor or content author, I want Adobe Client Data Layer",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E09",
+  "feature": "F-E09-01",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E09-02-01",
+  "title": "As a site visitor or content author, I want Accessibility baseline (WCAG 2.1 AA)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E09",
+  "feature": "F-E09-02",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E09-03-01",
+  "title": "As a site visitor or content author, I want Three-phase loading and module preloading",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E09",
+  "feature": "F-E09-03",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E09-04-01",
+  "title": "As a site visitor or content author, I want Content and background animation",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E09",
+  "feature": "F-E09-04",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E10-01-01",
+  "title": "As a site visitor or content author, I want Migration packages (8,432 pages)",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E10",
+  "feature": "F-E10-01",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E10-02-01",
+  "title": "As a site visitor or content author, I want Redirects from the tcs.com URLs",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E10",
+  "feature": "F-E10-02",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E10-03-01",
+  "title": "As a site visitor or content author, I want Dynamic Media delivery of the assets",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E10",
+  "feature": "F-E10-03",
+  "testCases": []
+ },
+ {
+  "id": "US-F-E10-04-01",
+  "title": "As a site visitor or content author, I want Publishing and indexing",
+  "role": "Business analysis",
+  "subject": "user story",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Inferred, requires business validation",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "Low",
+  "openQuestions": [
+   "Business validation"
+  ],
+  "epic": "E10",
+  "feature": "F-E10-04",
+  "testCases": []
+ }
+]

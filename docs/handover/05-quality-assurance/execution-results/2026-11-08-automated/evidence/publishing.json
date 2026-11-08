@@ -1,0 +1,33 @@
+{
+ "roots": [
+  {
+   "root": "/design-block-master/en",
+   "paths": 345,
+   "published": 344,
+   "indexed": 335,
+   "notPublished": [
+    "/design-block-master/en/error-pages/404 (the root has no error pages)"
+   ],
+   "state": "done"
+  },
+  {
+   "root": "/language-master/en",
+   "paths": 3567,
+   "published": 3566,
+   "indexed": 3557,
+   "notPublished": [],
+   "state": "done"
+  },
+  {
+   "root": "/language-masters/en",
+   "paths": 8442,
+   "published": 0,
+   "indexed": 0,
+   "notPublished": [],
+   "state": "in progress"
+  }
+ ],
+ "notPublished": [
+  "/design-block-master/en/error-pages/404 (the root has no error pages)"
+ ]
+}

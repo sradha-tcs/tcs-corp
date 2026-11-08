@@ -1,0 +1,4577 @@
+[
+ {
+  "id": "page:/design-block-master/en/block-library",
+  "title": "Block library",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/accordion",
+  "title": "Accordion",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list",
+   "accordion"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/accordion"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/accordion",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/accordion/accordion",
+  "title": "Accordion",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "accordion"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/accordion/accordion"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/accordion/accordion",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/anchor-list",
+  "title": "Anchor List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/anchor-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/anchor-list",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/anchor-list/anchor-list",
+  "title": "Anchor List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/anchor-list/anchor-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/anchor-list/anchor-list",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/anchor-list/anchor-list-sticky",
+  "title": "Anchor List: sticky",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/anchor-list/anchor-list-sticky"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/anchor-list/anchor-list-sticky",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation",
+  "title": "Animation",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/background-animation",
+  "title": "Background animation: every option",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/background-animation"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/background-animation",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/background-by-block",
+  "title": "Background animation on each block",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "conversation-canvas",
+   "teaser",
+   "quote",
+   "testimonial",
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/background-by-block"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/background-by-block",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/content-animation",
+  "title": "Animation Type: every option",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/content-animation"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/content-animation",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/repeated-items",
+  "title": "Animation Type: repeated items",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards",
+   "list",
+   "accordion",
+   "columns-container",
+   "column-break",
+   "table-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/repeated-items"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/repeated-items",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/skeleton-loading",
+  "title": "Skeleton loading",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list",
+   "filter-list",
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/skeleton-loading"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/skeleton-loading",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/animation/speed-and-trigger",
+  "title": "Motion Speed and Animation Trigger",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "cards",
+   "conversation-canvas",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/animation/speed-and-trigger"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/animation/speed-and-trigger",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards",
+  "title": "Cards",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/card-colours",
+  "title": "Cards: card colours",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/card-colours"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/card-colours",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/heights-links-legacy",
+  "title": "Cards: heights, links and cards made before",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/heights-links-legacy"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/heights-links-legacy",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/card-styles",
+  "title": "Cards: card styles",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/card-styles"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/card-styles",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/grid-and-horizontal-scroll",
+  "title": "Cards: grid and horizontal scroll",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/grid-and-horizontal-scroll"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/grid-and-horizontal-scroll",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/per-card-styles-and-colours",
+  "title": "Cards: per-card styles and colours",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/per-card-styles-and-colours"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/per-card-styles-and-colours",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/cards/images-panels-style-options",
+  "title": "Cards: images, panels and style options",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/cards/images-panels-style-options"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/cards/images-panels-style-options",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns",
+  "title": "Columns",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns-container",
+  "title": "Columns Container",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns-container"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns-container",
+  "consoleErrors": 16,
+  "failedRequests": 16
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns-container/alignment-gap-and-breakpoints",
+  "title": "Columns Container: alignment, gap and breakpoints",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns-container/alignment-gap-and-breakpoints"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns-container/alignment-gap-and-breakpoints",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns-container/columns-per-row",
+  "title": "Columns Container: columns per row",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "columns-container",
+   "column-break"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns-container/columns-per-row"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns-container/columns-per-row",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns-container/columns-of-blocks",
+  "title": "Columns Container: columns of blocks",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "columns-container",
+   "column-break",
+   "button-block",
+   "cards",
+   "teaser",
+   "quote",
+   "accordion",
+   "form-variations",
+   "list",
+   "testimonial"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns-container/columns-of-blocks"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns-container/columns-of-blocks",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns/columns-mobile-inset",
+  "title": "Columns: mobile inset",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container",
+   "column-break"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns/columns-mobile-inset"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns/columns-mobile-inset",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas",
+  "title": "Conversation Canvas",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/columns/columns-variations",
+  "title": "Columns variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/columns/columns-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/columns/columns-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas/docked",
+  "title": "Conversation Canvas: docked",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas/docked"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas/docked",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas/floating",
+  "title": "Conversation Canvas: floating",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas/floating"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas/floating",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas/conversation-canvas",
+  "title": "Conversation Canvas",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas/conversation-canvas"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas/conversation-canvas",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas/footer-canvas",
+  "title": "Conversation Canvas in the footer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas/footer-canvas"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas/footer-canvas",
+  "consoleErrors": 0,
+  "failedRequests": 0
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/embed",
+  "title": "Embed",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/embed"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/embed",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/conversation-canvas/journey-and-actions",
+  "title": "Conversation Canvas: journey, actions and styles",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/conversation-canvas/journey-and-actions"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/conversation-canvas/journey-and-actions",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/embed/embed",
+  "title": "Embed",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "embed"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/embed/embed"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/embed/embed",
+  "consoleErrors": 4,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list",
+  "title": "Filter List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/content-types",
+  "title": "Filter List: content types",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/content-types"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/content-types",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/filter-list",
+  "title": "Filter List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/filter-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/filter-list",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/insights-listing",
+  "title": "Insights listing",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/insights-listing"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/insights-listing",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/filters",
+  "title": "Filter List filters",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/filters"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/filters",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/layouts-and-card-styles",
+  "title": "Filter List layouts and card styles",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/layouts-and-card-styles"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/layouts-and-card-styles",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer",
+  "title": "Footer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/filter-list/rules",
+  "title": "Filter List rules",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "filter-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/filter-list/rules"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/filter-list/rules",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/campaign-page",
+  "title": "Page with the campaign footer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/campaign-page"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/campaign-page",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/default-footer-page",
+  "title": "Page with the default footer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/default-footer-page"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/default-footer-page",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/footer-campaign",
+  "title": "Footer: campaign",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block",
+   "footer"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/footer-campaign"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/footer-campaign",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/footer-conversation-canvas",
+  "title": "Footer Conversation",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "conversation-canvas"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/footer-conversation-canvas"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/footer-conversation-canvas",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/footer-default",
+  "title": "Footer: default",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/footer-default"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/footer-default",
+  "consoleErrors": 0,
+  "failedRequests": 0
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/footer-investors",
+  "title": "Footer: investors",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "footer"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/footer-investors"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/footer-investors",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/footer/investors-page",
+  "title": "Page with the investors footer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/footer/investors-page"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/footer/investors-page",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/form-variations",
+  "title": "Form Variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/form-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/form-variations",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/form-variations/field-types",
+  "title": "Form Variations: field types",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/form-variations/field-types"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/form-variations/field-types",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations",
+  "title": "Foundations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/form-variations/form-variations",
+  "title": "Form Variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/form-variations/form-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/form-variations/form-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/button",
+  "title": "Button",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/button"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/button",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/button-icons-and-alignment",
+  "title": "Button: views, types, icons and alignment",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/button-icons-and-alignment"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/button-icons-and-alignment",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/image",
+  "title": "Image",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/image"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/image",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/section-anchors",
+  "title": "Sections: anchors",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/section-anchors"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/section-anchors",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/section-variations",
+  "title": "Sections: variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/section-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/section-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/section-views",
+  "title": "Sections: views",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/section-views"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/section-views",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/section-colours-with-blocks",
+  "title": "Sections: colours with blocks",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block",
+   "teaser",
+   "cards",
+   "list",
+   "accordion",
+   "columns-container",
+   "column-break"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/section-colours-with-blocks"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/section-colours-with-blocks",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/section-widths",
+  "title": "Sections: widths",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/section-widths"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/section-widths",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/text",
+  "title": "Text",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/text"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/text",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/foundations/title",
+  "title": "Title",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/foundations/title"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/foundations/title",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/fragment",
+  "title": "Fragment",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/fragment"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/fragment",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/fragment/fragment-block",
+  "title": "Fragment",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "fragment",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/fragment/fragment-block"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/fragment/fragment-block",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/fragment/fragments",
+  "title": "Fragments",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/fragment/fragments"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/fragment/fragments",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/fragment/fragments/cta-banner",
+  "title": "Fragment source: CTA banner",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/fragment/fragments/cta-banner"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/fragment/fragments/cta-banner",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel",
+  "title": "Gen Carousel",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel/auto",
+  "title": "Gen Carousel: auto",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel/auto"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel/auto",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel/hero-slides",
+  "title": "Gen Carousel: hero slides",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel/hero-slides"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel/hero-slides",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel/manual-and-auto",
+  "title": "Gen Carousel: manual and auto",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel/manual-and-auto"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel/manual-and-auto",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel/single-slide",
+  "title": "Gen Carousel: single slide",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel/single-slide"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel/single-slide",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/gen-carousel/teaser-slides",
+  "title": "Gen Carousel: teaser slides",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "gen-carousel",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/gen-carousel/teaser-slides"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/gen-carousel/teaser-slides",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/header",
+  "title": "Header",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/header"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/header",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/header/header-careers",
+  "title": "Header: area navigation (careers)",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/header/header-careers"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/header/header-careers",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/header/header-default",
+  "title": "Header: default navigation",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/header/header-default"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/header/header-default",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/header/nav-careers",
+  "title": "Navigation page: careers area",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/header/nav-careers"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/header/nav-careers",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/header/nav-default",
+  "title": "Navigation page: default",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "tcs-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/header/nav-default"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/header/nav-default",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/hero",
+  "title": "Hero",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/hero"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/hero/hero-ctas",
+  "title": "Hero CTAs",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/hero/hero-ctas"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero/hero-ctas",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/hero/hero-motion",
+  "title": "Hero motion",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/hero/hero-motion"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero/hero-motion",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/hero/hero-overview",
+  "title": "Hero overview",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/hero/hero-overview"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero/hero-overview",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/interactive-dashboard",
+  "title": "Interactive Dashboard",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/interactive-dashboard"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/interactive-dashboard",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/hero/hero-styles",
+  "title": "Hero styles",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "hero"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/hero/hero-styles"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero/hero-styles",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/interactive-dashboard/interactive-dashboard",
+  "title": "Interactive Dashboard",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "interactive-dashboard"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/interactive-dashboard/interactive-dashboard"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/interactive-dashboard/interactive-dashboard",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list",
+  "title": "List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-colours-and-overrides",
+  "title": "List: card colours, overrides and empty states",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-colours-and-overrides"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-colours-and-overrides",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages",
+  "title": "List: card style and colour from pages",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages",
+  "consoleErrors": 16,
+  "failedRequests": 16
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages/automatic",
+  "title": "No style set: automatic",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages/automatic"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages/automatic",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages/image-light-blue",
+  "title": "An image card in light blue",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages/image-light-blue"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages/image-light-blue",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages/panel-grey",
+  "title": "A panel in grey",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages/panel-grey"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages/panel-grey",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages/report-navy",
+  "title": "A report in navy",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages/report-navy"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages/report-navy",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/card-style-from-pages/statistic",
+  "title": "A statistic",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/card-style-from-pages/statistic"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/card-style-from-pages/statistic",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/empty-state",
+  "title": "List: empty state",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/empty-state"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/empty-state",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/cards",
+  "title": "List: cards",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/cards"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/cards",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/figma-variations",
+  "title": "List: Figma variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/figma-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/figma-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/layout-and-scrolling",
+  "title": "List: layout and scrolling",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/layout-and-scrolling"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/layout-and-scrolling",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/list-item-display",
+  "title": "List: List Item display options",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/list-item-display"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/list-item-display",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/lists-made-before",
+  "title": "List: lists made before",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/lists-made-before"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/lists-made-before",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal",
+  "title": "Modal",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/list/sources",
+  "title": "List: sources",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/list/sources"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/list/sources",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/auto-linked-modal",
+  "title": "Auto-linked modal",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/auto-linked-modal"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/auto-linked-modal",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/fragments",
+  "title": "Fragments",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/fragments"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/fragments",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/fragments/contact-form",
+  "title": "Modal source: contact form",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/fragments/contact-form"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/fragments/contact-form",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/fragments/privacy-notice",
+  "title": "Modal source: privacy notice",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/fragments/privacy-notice"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/fragments/privacy-notice",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/fragments/recognition",
+  "title": "Modal source: recognition",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/fragments/recognition"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/fragments/recognition",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/modal-block",
+  "title": "Modal block",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/modal-block"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/modal-block",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/fragments/terms",
+  "title": "Modal source: programme terms",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/fragments/terms"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/fragments/terms",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/modal-long-content",
+  "title": "Modal with long content",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/modal-long-content"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/modal-long-content",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/modal/modal-with-a-form",
+  "title": "Modal with a form",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "modal"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/modal/modal-with-a-form"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/modal/modal-with-a-form",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header",
+  "title": "Page Header",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/article",
+  "title": "How agentic AI is reshaping banking operations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/article"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/article",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/article-default",
+  "title": "How agentic AI is reshaping banking operations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/article-default"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/article-default",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/cta-primary",
+  "title": "Cloud transformation services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/cta-primary"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/cta-primary",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/cta-secondary",
+  "title": "Cloud transformation services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/cta-secondary"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/cta-secondary",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/cta-text-link",
+  "title": "Cloud transformation services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/cta-text-link"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/cta-text-link",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/default-by-page-type",
+  "title": "Banking and financial services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/default-by-page-type"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/default-by-page-type",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/display",
+  "title": "Sustainable cloud, by design",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/display"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/display",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/guest-author",
+  "title": "Lessons from a mainframe-to-cloud migration",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/guest-author"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/guest-author",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/landing",
+  "title": "Banking and financial services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/landing"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/landing",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/landing-default",
+  "title": "Banking and financial services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/landing-default"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/landing-default",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/landing-featured-image",
+  "title": "Banking and financial services",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/landing-featured-image"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/landing-featured-image",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/landing-text-only",
+  "title": "All insights",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/landing-text-only"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/landing-text-only",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/press-release",
+  "title": "TCS expands its AI innovation network in Europe",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header",
+   "anchor-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/press-release"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/press-release",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/secondary",
+  "title": "Our leadership",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/secondary"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/secondary",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/tablet-widths",
+  "title": "How agentic AI is reshaping banking operations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/tablet-widths"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/tablet-widths",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/page-header/tags-and-content-type",
+  "title": "Tags and content type",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "list",
+   "page-header",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/page-header/tags-and-content-type"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/page-header/tags-and-content-type",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/quote",
+  "title": "Quote",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list",
+   "quote"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/quote"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/quote",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/quote/quote-variations",
+  "title": "Quote variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "quote"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/quote/quote-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/quote/quote-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/separator",
+  "title": "Separator",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list",
+   "separator"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/separator"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/separator",
+  "consoleErrors": 16,
+  "failedRequests": 16
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/separator/option-reference",
+  "title": "Separator: option reference",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "separator"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/separator/option-reference"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/separator/option-reference",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/separator/theme-auto",
+  "title": "Separator: theme auto",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "separator"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/separator/theme-auto"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/separator/theme-auto",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table",
+  "title": "Table",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/separator/separator-variations",
+  "title": "Separator variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "separator"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/separator/separator-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/separator/separator-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list",
+  "title": "Table List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list/item-actions",
+  "title": "Table List: item actions",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list/item-actions"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list/item-actions",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list/numbers",
+  "title": "Table List numbers",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list/numbers"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list/numbers",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list/motion",
+  "title": "Table List motion",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list/motion"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list/motion",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list/numbers-on-mobile",
+  "title": "Table List numbers on mobile only",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list/numbers-on-mobile"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list/numbers-on-mobile",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table/table",
+  "title": "Table",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "table"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table/table"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table/table",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/table-list/table-list",
+  "title": "Table List",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/table-list/table-list"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/table-list/table-list",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs",
+  "title": "Tabs",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments",
+  "title": "Fragments",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments/cloud-overview",
+  "title": "Cloud for the whole enterprise",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments/cloud-overview"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments/cloud-overview",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments/consulting-overview",
+  "title": "Consulting that delivers outcomes",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments/consulting-overview"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments/consulting-overview",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments/security-overview",
+  "title": "Security built into every layer",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "cards"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments/security-overview"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments/security-overview",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments/tab-industries",
+  "title": "Tab source: industries",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments/tab-industries"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments/tab-industries",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/fragments/tab-overview",
+  "title": "Tab source: overview",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/fragments/tab-overview"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/fragments/tab-overview",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tab",
+  "title": "Tab",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs",
+   "tab",
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tab"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tab",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tab-deep-link",
+  "title": "Tab deep link",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs",
+   "tab",
+   "columns-container",
+   "column-break"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tab-deep-link"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tab-deep-link",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tabs-block",
+  "title": "Tabs block",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tabs-block"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tabs-block",
+  "consoleErrors": 16,
+  "failedRequests": 16
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tabs-block-styles",
+  "title": "Tabs block: styles, alignment and orientation",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tabs-block-styles"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tabs-block-styles",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tabs-block-with-fragments",
+  "title": "Tabs block with fragments",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tabs-block-with-fragments"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tabs-block-with-fragments",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tabs-fixed-width",
+  "title": "Tabs: fixed width",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs",
+   "tab",
+   "columns-container",
+   "column-break"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tabs-fixed-width"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tabs-fixed-width",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser",
+  "title": "Teaser",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/tabs/tabs-section",
+  "title": "Tabs section",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "tabs",
+   "tab",
+   "columns-container",
+   "column-break",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/tabs/tabs-section"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/tabs/tabs-section",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/alignment",
+  "title": "Teaser alignment",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/alignment"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/alignment",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/article-meta",
+  "title": "Teaser article meta and content options",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/article-meta"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/article-meta",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/cta-styles",
+  "title": "Teaser: CTA styles",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/cta-styles"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/cta-styles",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/description-eyebrow-spacing",
+  "title": "Teaser description, eyebrow and spacing",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/description-eyebrow-spacing"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/description-eyebrow-spacing",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/image-options-and-colours",
+  "title": "Teaser image options and background colours",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/image-options-and-colours"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/image-options-and-colours",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/image-positions",
+  "title": "Teaser: image positions",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser",
+   "image-collage"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/image-positions"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/image-positions",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/layouts",
+  "title": "Teaser layouts",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/layouts"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/layouts",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/mobile-image-position",
+  "title": "Teaser image position on mobile",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/mobile-image-position"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/mobile-image-position",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/links-and-stats",
+  "title": "Teaser links and stats",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/links-and-stats"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/links-and-stats",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/teaser/title-sizes-and-weights",
+  "title": "Teaser title types and weights",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "anchor-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/teaser/title-sizes-and-weights"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/teaser/title-sizes-and-weights",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/article-template",
+  "title": "Article template",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/article-template"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/article-template",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates",
+  "title": "Templates",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/testimonial",
+  "title": "Testimonial",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/testimonial"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/testimonial",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/video/video-pop-up",
+  "title": "Video pop-up",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "video"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/video/video-pop-up"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/video/video-pop-up",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/video/video",
+  "title": "Video",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "video"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/video/video"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/video/video",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/ar-landing",
+  "title": "ar-landing",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/ar-landing"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/ar-landing",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/csr",
+  "title": "csr",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/csr"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/csr",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/csr-form",
+  "title": "csr",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/csr-form"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/csr-form",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/global-contact-us",
+  "title": "global-contact-us",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/global-contact-us"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/global-contact-us",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/inquizitive",
+  "title": "inquizitive",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/inquizitive"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/inquizitive",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/media-form",
+  "title": "media-form",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/media-form"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/media-form",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/talk-to-an-expert-retail",
+  "title": "talk-to-an-expert-retail",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/talk-to-an-expert-retail"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/talk-to-an-expert-retail",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/forms/website-feedback-form",
+  "title": "website-feedback-form",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "form-variations"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/forms/website-feedback-form"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/forms/website-feedback-form",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/home",
+  "title": "Home",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "list",
+   "conversation-canvas",
+   "table-list",
+   "teaser"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/home"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/home",
+  "consoleErrors": 0,
+  "failedRequests": 0
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/industry-landing-page",
+  "title": "Industry Landing Page",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "cards",
+   "video",
+   "columns-container",
+   "column-break",
+   "table-list",
+   "list",
+   "testimonial"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/industry-landing-page"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/industry-landing-page",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/insights",
+  "title": "Insights",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "filter-list",
+   "testimonial"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/insights"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/insights",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/media-and-investor",
+  "title": "Media and Investor",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "filter-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/media-and-investor"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/media-and-investor",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/news-and-events",
+  "title": "News and Events",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "filter-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/news-and-events"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/news-and-events",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/product",
+  "title": "Product",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "cards",
+   "list",
+   "testimonial",
+   "table-list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/product"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/product",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/services",
+  "title": "Services",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "teaser",
+   "cards",
+   "columns-container",
+   "column-break",
+   "list",
+   "testimonial"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/services"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/services",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/story",
+  "title": "Beyond the Ledger: Activating Intelligence in core banking",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header",
+   "anchor-list",
+   "tabs",
+   "tab",
+   "video",
+   "columns-container",
+   "column-break",
+   "teaser",
+   "testimonial",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/story"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/story",
+  "consoleErrors": 8,
+  "failedRequests": 8
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/what-we-do",
+  "title": "What We Do",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "columns-container",
+   "column-break",
+   "table-list",
+   "conversation-canvas",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/what-we-do"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/what-we-do",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/who-we-are",
+  "title": "Who We Are",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "teaser",
+   "cards",
+   "testimonial",
+   "list",
+   "quote",
+   "gen-carousel"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/who-we-are"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/who-we-are",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/blog-template",
+  "title": "Blog template",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/blog-template"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/blog-template",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/error-page-404",
+  "title": "Error page (404)",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/error-page-404"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/error-page-404",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/error-page-404-careers",
+  "title": "Error page (404) for careers",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/error-page-404-careers"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/error-page-404-careers",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/home-template",
+  "title": "Home template",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "hero",
+   "cards",
+   "button-block"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/home-template"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/home-template",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/templates/press-release-template",
+  "title": "Press release template",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/templates/press-release-template"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/templates/press-release-template",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/testimonial/testimonial-variations",
+  "title": "Testimonial variations",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "anchor-list",
+   "testimonial"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/testimonial/testimonial-variations"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/testimonial/testimonial-variations",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/block-library/video",
+  "title": "Video",
+  "role": "Authoring",
+  "subject": "block library page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/block-library/video"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/video",
+  "consoleErrors": 12,
+  "failedRequests": 12
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages",
+  "title": "Curated design pages",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages",
+  "consoleErrors": 20,
+  "failedRequests": 20
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/case-study",
+  "title": "Huntington Bank",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header",
+   "anchor-list",
+   "video",
+   "teaser",
+   "table-list",
+   "testimonial",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/case-study"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/case-study",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ },
+ {
+  "id": "page:/design-block-master/en/curated-design-pages/collection",
+  "title": "The Agentic bank",
+  "role": "Authoring",
+  "subject": "curated design page",
+  "sourceFiles": [],
+  "relatedComponents": [
+   "page-header",
+   "teaser",
+   "filter-list",
+   "table-list",
+   "list"
+  ],
+  "relatedPages": [
+   "/design-block-master/en/curated-design-pages/collection"
+  ],
+  "status": "Published",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "url": "https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/curated-design-pages/collection",
+  "consoleErrors": 4,
+  "failedRequests": 4
+ }
+]

@@ -1,0 +1,92 @@
+{
+ "pages": 335,
+ "failed": [],
+ "kinds": {
+  "to /language-master/en": 1281,
+  "unmapped AEM path": 380,
+  "external": 20,
+  "own root": 15,
+  "locale or other": 7,
+  "dam": 35
+ },
+ "missing": {
+  "/design-block-master/en/curated-design-pages/forms/tcs.com": [
+   "/design-block-master/en/curated-design-pages/forms/csr-form",
+   "/design-block-master/en/curated-design-pages/forms/csr-form",
+   "/design-block-master/en/curated-design-pages/forms/csr-form"
+  ],
+  "/language-master/en/news-and-events": [
+   "/design-block-master/en/curated-design-pages/news-and-events",
+   "/design-block-master/en/curated-design-pages/news-and-events"
+  ],
+  "/language-master/en/dummy-pages/jaguar-tcs-racing": [
+   "/design-block-master/en/curated-design-pages/who-we-are"
+  ],
+  "/language-master/en/dummy-pages/jaguar": [
+   "/design-block-master/en/curated-design-pages/who-we-are"
+  ]
+ },
+ "unmapped": {
+  "/content/tcs-corp/design-block-master/english": [
+   "/design-block-master/en/block-library",
+   "/design-block-master/en/block-library",
+   "/design-block-master/en/block-library",
+   "/design-block-master/en/block-library",
+   "/design-block-master/en/block-library"
+  ],
+  "/content/campaigns": [
+   "/design-block-master/en/block-library/teaser/image-positions"
+  ],
+  "/content/dam": [
+   "/design-block-master/en/block-library/teaser/image-positions",
+   "/design-block-master/en/curated-design-pages/what-we-do"
+  ],
+  "/content/2026": [
+   "/design-block-master/en/curated-design-pages/home",
+   "/design-block-master/en/references/footer-conversation-canvas"
+  ],
+  "/content/tcs-corp/language-master": [
+   "/design-block-master/en/curated-design-pages/industry-landing-page"
+  ],
+  "/content/aem-eds-xwalk": [
+   "/design-block-master/en/curated-design-pages/industry-landing-page"
+  ],
+  "/content/cq:i18n": [
+   "/design-block-master/en/curated-design-pages/what-we-do",
+   "/design-block-master/en/curated-design-pages/what-we-do",
+   "/design-block-master/en/curated-design-pages/what-we-do",
+   "/design-block-master/en/curated-design-pages/what-we-do",
+   "/design-block-master/en/curated-design-pages/what-we-do"
+  ]
+ },
+ "crossRoot": {
+  "/design-block-master/en -> /language-master/en": [
+   "/design-block-master/en/block-library/accordion/accordion",
+   "/design-block-master/en/block-library/accordion/accordion",
+   "/design-block-master/en/block-library",
+   "/design-block-master/en/block-library/animation/content-animation",
+   "/design-block-master/en/block-library/animation/content-animation"
+  ]
+ },
+ "damLinks": 35,
+ "counts": {
+  "cross": {
+   "/design-block-master/en -> /language-master/en": 1281
+  },
+  "unmapped": {
+   "/content/tcs-corp/design-block-master/english": 358,
+   "/content/campaigns": 1,
+   "/content/dam": 2,
+   "/content/2026": 2,
+   "/content/tcs-corp/language-master": 1,
+   "/content/aem-eds-xwalk": 1,
+   "/content/cq:i18n": 15
+  },
+  "missing": {
+   "/design-block-master/en/curated-design-pages/forms/tcs.com": 3,
+   "/language-master/en/news-and-events": 2,
+   "/language-master/en/dummy-pages/jaguar-tcs-racing": 1,
+   "/language-master/en/dummy-pages/jaguar": 1
+  }
+ }
+}

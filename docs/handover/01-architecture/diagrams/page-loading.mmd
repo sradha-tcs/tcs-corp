@@ -1,0 +1,6 @@
+flowchart TB
+  start["loadPage"] --> eager["Eager: decorateMain, decorateDeliveryImages,<br/>first section, template, LCP image"]
+  eager --> lazy["Lazy: other sections, header, footer,<br/>lazy-styles.css, block modules preloaded"]
+  lazy --> delayed["Delayed: delayed.js after 3 s"]
+  eager -.-> motion["prepareMotion per section"]
+  lazy -.-> dl["Data layer: page and component entries"]

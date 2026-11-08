@@ -1,0 +1,1208 @@
+[
+ {
+  "id": "KB-D-001",
+  "title": "Code structure",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-002",
+  "title": "Site data",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-003",
+  "title": "Site structure",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-004",
+  "title": "Configuration",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-005",
+  "title": "Redirects",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-006",
+  "title": "Navigation",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "11 October 2026"
+ },
+ {
+  "id": "KB-D-007",
+  "title": "Site structure",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "12 October 2026"
+ },
+ {
+  "id": "KB-D-008",
+  "title": "SEO",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "12 October 2026"
+ },
+ {
+  "id": "KB-D-009",
+  "title": "List",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "Not recorded"
+ },
+ {
+  "id": "KB-D-010",
+  "title": "Language master",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-011",
+  "title": "Block library",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-012",
+  "title": "Additional tab",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "13 October 2026"
+ },
+ {
+  "id": "KB-D-013",
+  "title": "Universal Editor dialogs",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-065",
+  "title": "Language master path",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved (product owner, 8 November 2026)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "8 November 2026"
+ },
+ {
+  "id": "KB-D-066",
+  "title": "Project documents",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved (product owner, 8 November 2026)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "8 November 2026"
+ },
+ {
+  "id": "KB-D-068",
+  "title": "Site roots",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved (product owner, 8 November 2026)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "8 November 2026"
+ },
+ {
+  "id": "KB-D-069",
+  "title": "Documentation",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved (product owner, 8 November 2026)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "8 November 2026"
+ },
+ {
+  "id": "KB-D-014",
+  "title": "List, Filter List",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Superseded (KB-D-015)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-015",
+  "title": "Content model",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-016",
+  "title": "Editor experience",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-017",
+  "title": "Delivery rules",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-018",
+  "title": "Delivery rules",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-019",
+  "title": "Section containers",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-020",
+  "title": "Field naming",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-021",
+  "title": "Teaser, Hero",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "13 October 2026"
+ },
+ {
+  "id": "KB-D-022",
+  "title": "Cards",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-023",
+  "title": "Header",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "16 October 2026"
+ },
+ {
+  "id": "KB-D-024",
+  "title": "Conversation Canvas",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "16 October 2026"
+ },
+ {
+  "id": "KB-D-025",
+  "title": "Header",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "16 October 2026"
+ },
+ {
+  "id": "KB-D-026",
+  "title": "List, Cards",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-027",
+  "title": "List",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "18 October 2026"
+ },
+ {
+  "id": "KB-D-028",
+  "title": "Columns Container",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-029",
+  "title": "Columns Container",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-030",
+  "title": "Columns Container",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-031",
+  "title": "Button",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-032",
+  "title": "Columns, Button",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-033",
+  "title": "Teaser",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-034",
+  "title": "Backgrounds",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-035",
+  "title": "Theme",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-036",
+  "title": "List Item",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-037",
+  "title": "Accessibility",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "19 October 2026"
+ },
+ {
+  "id": "KB-D-038",
+  "title": "Page loading",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "17 October 2026"
+ },
+ {
+  "id": "KB-D-039",
+  "title": "Header layout shift",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "18 October 2026"
+ },
+ {
+  "id": "KB-D-040",
+  "title": "Animation",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "18 October 2026"
+ },
+ {
+  "id": "KB-D-041",
+  "title": "Skeletons",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "18 October 2026"
+ },
+ {
+  "id": "KB-D-042",
+  "title": "Module loading",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-043",
+  "title": "Fonts",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "20 October 2026"
+ },
+ {
+  "id": "KB-D-044",
+  "title": "Block documentation",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "21 October 2026"
+ },
+ {
+  "id": "KB-D-045",
+  "title": "Publishing",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Approved",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "Not recorded"
+ },
+ {
+  "id": "KB-D-046",
+  "title": "Cards (D-1)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-047",
+  "title": "Cards (D-2)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-048",
+  "title": "Cards (D-3)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-049",
+  "title": "Cards (D-4)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-050",
+  "title": "Cards (D-5)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-051",
+  "title": "Cards (D-6)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "14 October 2026"
+ },
+ {
+  "id": "KB-D-052",
+  "title": "Header over the first block",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "22 October 2026"
+ },
+ {
+  "id": "KB-D-053",
+  "title": "Conversation Canvas journey options",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "22 October 2026"
+ },
+ {
+  "id": "KB-D-054",
+  "title": "Media contacts",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "22 October 2026"
+ },
+ {
+  "id": "KB-D-058",
+  "title": "List, List Item",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "23 October 2026"
+ },
+ {
+  "id": "KB-D-059",
+  "title": "List Show call to action: Child pages with Panel cards",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "29 October 2026"
+ },
+ {
+  "id": "KB-D-060",
+  "title": "List Item Show Action Label on by default",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "29 October 2026"
+ },
+ {
+  "id": "KB-D-061",
+  "title": "Form Variations Additional tab",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "29 October 2026"
+ },
+ {
+  "id": "KB-D-055",
+  "title": "Redirects at the CDN",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "24 October 2026"
+ },
+ {
+  "id": "KB-D-056",
+  "title": "Author host in configuration files",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "24 October 2026"
+ },
+ {
+  "id": "KB-D-062",
+  "title": "Hero Secondary CTA colours in the CTA List",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "3 November 2026"
+ },
+ {
+  "id": "KB-D-063",
+  "title": "Image Collage block",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Proposed",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "29 October 2026"
+ },
+ {
+  "id": "KB-D-064",
+  "title": "Assets (EDAM)",
+  "role": "All",
+  "subject": "decision",
+  "sourceFiles": [
+   "docs/handover/knowledge-base/decision-log.md"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Not adopted (product owner, 8 November 2026)",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "date": "8 November 2026"
+ }
+]

@@ -1,0 +1,8 @@
+flowchart TB
+  root["/content/tcs-corp"]
+  root --> loc["13 locale sites<br/>us/en to /en ... kr/ko-kr to /ko-kr"]
+  root --> lm["language-master/en to /language-master/en/<br/>Testing with dummy content"]
+  root --> lms["language-masters/en to /language-masters/en/<br/>The language master: migrated content, real sheets"]
+  root --> dbm["design-block-master/en to /design-block-master/en/<br/>Block library and curated design pages"]
+  root --> sgt["site-global-templates<br/>author only"]
+  lms -. later source of .-> loc

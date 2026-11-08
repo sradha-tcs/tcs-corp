@@ -1,0 +1,914 @@
+[
+ {
+  "id": "route:0",
+  "title": "/content/tcs-corp/us/en/:/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/us/en/",
+  "published": "/en/"
+ },
+ {
+  "id": "route:1",
+  "title": "/content/tcs-corp/de/de-de/:/de-de/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/de/de-de/",
+  "published": "/de-de/"
+ },
+ {
+  "id": "route:2",
+  "title": "/content/tcs-corp/fr/fr-fr/:/fr-fr/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/fr/fr-fr/",
+  "published": "/fr-fr/"
+ },
+ {
+  "id": "route:3",
+  "title": "/content/tcs-corp/ca/fr-ca/:/fr-ca/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/ca/fr-ca/",
+  "published": "/fr-ca/"
+ },
+ {
+  "id": "route:4",
+  "title": "/content/tcs-corp/es/es-es/:/es-es/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/es/es-es/",
+  "published": "/es-es/"
+ },
+ {
+  "id": "route:5",
+  "title": "/content/tcs-corp/pt/pt-pt/:/pt-pt/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/pt/pt-pt/",
+  "published": "/pt-pt/"
+ },
+ {
+  "id": "route:6",
+  "title": "/content/tcs-corp/nl/nl-nl/:/nl-nl/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/nl/nl-nl/",
+  "published": "/nl-nl/"
+ },
+ {
+  "id": "route:7",
+  "title": "/content/tcs-corp/se/sv-se/:/sv-se/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/se/sv-se/",
+  "published": "/sv-se/"
+ },
+ {
+  "id": "route:8",
+  "title": "/content/tcs-corp/dk/da-dk/:/da-dk/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/dk/da-dk/",
+  "published": "/da-dk/"
+ },
+ {
+  "id": "route:9",
+  "title": "/content/tcs-corp/no/no-no/:/no-no/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/no/no-no/",
+  "published": "/no-no/"
+ },
+ {
+  "id": "route:10",
+  "title": "/content/tcs-corp/cn/zh-cn/:/zh-cn/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/cn/zh-cn/",
+  "published": "/zh-cn/"
+ },
+ {
+  "id": "route:11",
+  "title": "/content/tcs-corp/jp/ja-jp/:/ja-jp/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/jp/ja-jp/",
+  "published": "/ja-jp/"
+ },
+ {
+  "id": "route:12",
+  "title": "/content/tcs-corp/kr/ko-kr/:/ko-kr/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/kr/ko-kr/",
+  "published": "/ko-kr/"
+ },
+ {
+  "id": "route:13",
+  "title": "/content/tcs-corp/language-master/en/:/language-master/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-master/en/",
+  "published": "/language-master/en/"
+ },
+ {
+  "id": "route:14",
+  "title": "/content/tcs-corp/language-masters/en/:/language-masters/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-masters/en/",
+  "published": "/language-masters/en/"
+ },
+ {
+  "id": "route:15",
+  "title": "/content/tcs-corp/design-block-master/en/:/design-block-master/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/design-block-master/en/",
+  "published": "/design-block-master/en/"
+ },
+ {
+  "id": "route:16",
+  "title": "/content/tcs-corp/us/en:/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/us/en",
+  "published": "/en/"
+ },
+ {
+  "id": "route:17",
+  "title": "/content/tcs-corp/de/de-de:/de-de/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/de/de-de",
+  "published": "/de-de/"
+ },
+ {
+  "id": "route:18",
+  "title": "/content/tcs-corp/fr/fr-fr:/fr-fr/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/fr/fr-fr",
+  "published": "/fr-fr/"
+ },
+ {
+  "id": "route:19",
+  "title": "/content/tcs-corp/ca/fr-ca:/fr-ca/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/ca/fr-ca",
+  "published": "/fr-ca/"
+ },
+ {
+  "id": "route:20",
+  "title": "/content/tcs-corp/es/es-es:/es-es/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/es/es-es",
+  "published": "/es-es/"
+ },
+ {
+  "id": "route:21",
+  "title": "/content/tcs-corp/pt/pt-pt:/pt-pt/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/pt/pt-pt",
+  "published": "/pt-pt/"
+ },
+ {
+  "id": "route:22",
+  "title": "/content/tcs-corp/nl/nl-nl:/nl-nl/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/nl/nl-nl",
+  "published": "/nl-nl/"
+ },
+ {
+  "id": "route:23",
+  "title": "/content/tcs-corp/se/sv-se:/sv-se/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/se/sv-se",
+  "published": "/sv-se/"
+ },
+ {
+  "id": "route:24",
+  "title": "/content/tcs-corp/dk/da-dk:/da-dk/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/dk/da-dk",
+  "published": "/da-dk/"
+ },
+ {
+  "id": "route:25",
+  "title": "/content/tcs-corp/no/no-no:/no-no/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/no/no-no",
+  "published": "/no-no/"
+ },
+ {
+  "id": "route:26",
+  "title": "/content/tcs-corp/cn/zh-cn:/zh-cn/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/cn/zh-cn",
+  "published": "/zh-cn/"
+ },
+ {
+  "id": "route:27",
+  "title": "/content/tcs-corp/jp/ja-jp:/ja-jp/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/jp/ja-jp",
+  "published": "/ja-jp/"
+ },
+ {
+  "id": "route:28",
+  "title": "/content/tcs-corp/kr/ko-kr:/ko-kr/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/kr/ko-kr",
+  "published": "/ko-kr/"
+ },
+ {
+  "id": "route:29",
+  "title": "/content/tcs-corp/language-master/en:/language-master/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-master/en",
+  "published": "/language-master/en/"
+ },
+ {
+  "id": "route:30",
+  "title": "/content/tcs-corp/language-masters/en:/language-masters/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-masters/en",
+  "published": "/language-masters/en/"
+ },
+ {
+  "id": "route:31",
+  "title": "/content/tcs-corp/design-block-master/en:/design-block-master/en/",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/design-block-master/en",
+  "published": "/design-block-master/en/"
+ },
+ {
+  "id": "route:32",
+  "title": "/content/tcs-corp/us/en/taxonomy:/en/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/us/en/taxonomy",
+  "published": "/en/taxonomy.json"
+ },
+ {
+  "id": "route:33",
+  "title": "/content/tcs-corp/de/de-de/taxonomy:/de-de/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/de/de-de/taxonomy",
+  "published": "/de-de/taxonomy.json"
+ },
+ {
+  "id": "route:34",
+  "title": "/content/tcs-corp/fr/fr-fr/taxonomy:/fr-fr/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/fr/fr-fr/taxonomy",
+  "published": "/fr-fr/taxonomy.json"
+ },
+ {
+  "id": "route:35",
+  "title": "/content/tcs-corp/ca/fr-ca/taxonomy:/fr-ca/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/ca/fr-ca/taxonomy",
+  "published": "/fr-ca/taxonomy.json"
+ },
+ {
+  "id": "route:36",
+  "title": "/content/tcs-corp/es/es-es/taxonomy:/es-es/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/es/es-es/taxonomy",
+  "published": "/es-es/taxonomy.json"
+ },
+ {
+  "id": "route:37",
+  "title": "/content/tcs-corp/pt/pt-pt/taxonomy:/pt-pt/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/pt/pt-pt/taxonomy",
+  "published": "/pt-pt/taxonomy.json"
+ },
+ {
+  "id": "route:38",
+  "title": "/content/tcs-corp/nl/nl-nl/taxonomy:/nl-nl/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/nl/nl-nl/taxonomy",
+  "published": "/nl-nl/taxonomy.json"
+ },
+ {
+  "id": "route:39",
+  "title": "/content/tcs-corp/se/sv-se/taxonomy:/sv-se/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/se/sv-se/taxonomy",
+  "published": "/sv-se/taxonomy.json"
+ },
+ {
+  "id": "route:40",
+  "title": "/content/tcs-corp/dk/da-dk/taxonomy:/da-dk/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/dk/da-dk/taxonomy",
+  "published": "/da-dk/taxonomy.json"
+ },
+ {
+  "id": "route:41",
+  "title": "/content/tcs-corp/no/no-no/taxonomy:/no-no/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/no/no-no/taxonomy",
+  "published": "/no-no/taxonomy.json"
+ },
+ {
+  "id": "route:42",
+  "title": "/content/tcs-corp/cn/zh-cn/taxonomy:/zh-cn/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/cn/zh-cn/taxonomy",
+  "published": "/zh-cn/taxonomy.json"
+ },
+ {
+  "id": "route:43",
+  "title": "/content/tcs-corp/jp/ja-jp/taxonomy:/ja-jp/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/jp/ja-jp/taxonomy",
+  "published": "/ja-jp/taxonomy.json"
+ },
+ {
+  "id": "route:44",
+  "title": "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/kr/ko-kr/taxonomy",
+  "published": "/ko-kr/taxonomy.json"
+ },
+ {
+  "id": "route:45",
+  "title": "/content/tcs-corp/language-master/en/taxonomy:/language-master/en/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-master/en/taxonomy",
+  "published": "/language-master/en/taxonomy.json"
+ },
+ {
+  "id": "route:46",
+  "title": "/content/tcs-corp/language-masters/en/taxonomy:/language-masters/en/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/language-masters/en/taxonomy",
+  "published": "/language-masters/en/taxonomy.json"
+ },
+ {
+  "id": "route:47",
+  "title": "/content/tcs-corp/design-block-master/en/taxonomy:/design-block-master/en/taxonomy.json",
+  "role": "All",
+  "subject": "path mapping",
+  "sourceFiles": [
+   "paths.json"
+  ],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Current",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "aem": "/content/tcs-corp/design-block-master/en/taxonomy",
+  "published": "/design-block-master/en/taxonomy.json"
+ }
+]

@@ -2,7 +2,7 @@
 
 > **Dynamic Media on the Sites environment (decided 8 November 2026, KB-D-067):** `content-packages/` receives the
 > page packages 1.3.0-edam that `aem-sites.sh` builds with the delivery URLs of the Sites environment's assets
-> (`../docs/edam/README.md`); `edam-zips/` and `EDAM-RUNBOOK.md` are only for a separate AEM Assets environment.
+> (`../docs/handover/07-administration-governance/markdown/DYNAMIC-MEDIA-SETUP.md`); `edam-zips/` and `EDAM-RUNBOOK.md` are only for a separate AEM Assets environment.
 
 For a site whose assets live in a **separate AEM Assets environment (EDAM)**, where content packages can't be
 installed. Nothing here replaces `../packages/` or `../consolidated/packages/`: those stay as they are for a

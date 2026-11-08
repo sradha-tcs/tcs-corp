@@ -1,0 +1,7 @@
+flowchart LR
+  fb["feature branch"] --> pr["Pull request into main<br/>feature preview URL"]
+  pr --> checks["CI: lint, AEM Code Sync, PageSpeed check"]
+  checks --> review["Human review"]
+  review --> merge["merge to main"]
+  merge --> sync["Code Sync to main aem.page and aem.live"]
+  merge -. rollback .-> revert["revert commit or PR"]

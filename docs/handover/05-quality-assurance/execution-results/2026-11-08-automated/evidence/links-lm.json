@@ -1,0 +1,95 @@
+{
+ "pages": 3556,
+ "failed": [],
+ "kinds": {
+  "own root": 5016,
+  "external": 17640,
+  "locale or other": 9,
+  "dam": 810,
+  "unmapped AEM path": 25
+ },
+ "missing": {
+  "/language-master/en/curated-design-pages/forms/tcs.com": [
+   "/language-master/en/curated-design-pages/forms/csr-form",
+   "/language-master/en/curated-design-pages/forms/csr-form",
+   "/language-master/en/curated-design-pages/forms/csr-form"
+  ],
+  "/language-master/en/news-and-events": [
+   "/language-master/en/curated-design-pages/news-and-events",
+   "/language-master/en/curated-design-pages/news-and-events"
+  ],
+  "/language-master/en/dummy-pages/jaguar-tcs-racing": [
+   "/language-master/en/curated-design-pages/who-we-are"
+  ],
+  "/language-master/en/dummy-pages/jaguar": [
+   "/language-master/en/curated-design-pages/who-we-are"
+  ],
+  "/language-master/en/insights/blogs/cryptocurrencies-mortgage-payment": [
+   "/language-master/en/insights/blogs/enabling-growth-digital-transformation-commercial-banking"
+  ],
+  "/language-master/en/what-we-do/industries/banking": [
+   "/language-master/en/insights/blogs/enabling-growth-digital-transformation-commercial-banking"
+  ],
+  "/language-master/en/insights/blogs/remote-work-role-reshaping-mortgage-lending-practices": [
+   "/language-master/en/insights/blogs/enabling-growth-digital-transformation-commercial-banking"
+  ],
+  "/language-master/en/media-and-investor/financial-statements": [
+   "/language-master/en/media-and-investor/investor-relations"
+  ],
+  "/language-master/en/who-we-are/newsroom/press-release/www.tcs.com": [
+   "/language-master/en/who-we-are/newsroom/press-release/among-top-three-cfo-finance-accounting-service-providers-hfs-research"
+  ]
+ },
+ "unmapped": {
+  "/content/campaigns": [
+   "/language-master/en/block-library/teaser/image-positions",
+   "/language-master/en/what-we-do",
+   "/language-master/en/what-we-do"
+  ],
+  "/content/dam": [
+   "/language-master/en/block-library/teaser/image-positions",
+   "/language-master/en/curated-design-pages/what-we-do",
+   "/language-master/en/insights/blogs/enabling-growth-digital-transformation-commercial-banking"
+  ],
+  "/content/2026": [
+   "/language-master/en/curated-design-pages/home",
+   "/language-master/en/references/footer-conversation-canvas"
+  ],
+  "/content/tcs-corp/language-master": [
+   "/language-master/en/curated-design-pages/industry-landing-page"
+  ],
+  "/content/aem-eds-xwalk": [
+   "/language-master/en/curated-design-pages/industry-landing-page"
+  ],
+  "/content/cq:i18n": [
+   "/language-master/en/curated-design-pages/what-we-do",
+   "/language-master/en/curated-design-pages/what-we-do",
+   "/language-master/en/curated-design-pages/what-we-do",
+   "/language-master/en/curated-design-pages/what-we-do",
+   "/language-master/en/curated-design-pages/what-we-do"
+  ]
+ },
+ "crossRoot": {},
+ "damLinks": 810,
+ "counts": {
+  "unmapped": {
+   "/content/campaigns": 3,
+   "/content/dam": 3,
+   "/content/2026": 2,
+   "/content/tcs-corp/language-master": 1,
+   "/content/aem-eds-xwalk": 1,
+   "/content/cq:i18n": 15
+  },
+  "missing": {
+   "/language-master/en/curated-design-pages/forms/tcs.com": 3,
+   "/language-master/en/news-and-events": 2,
+   "/language-master/en/dummy-pages/jaguar-tcs-racing": 1,
+   "/language-master/en/dummy-pages/jaguar": 1,
+   "/language-master/en/insights/blogs/cryptocurrencies-mortgage-payment": 1,
+   "/language-master/en/what-we-do/industries/banking": 1,
+   "/language-master/en/insights/blogs/remote-work-role-reshaping-mortgage-lending-practices": 1,
+   "/language-master/en/media-and-investor/financial-statements": 1,
+   "/language-master/en/who-we-are/newsroom/press-release/www.tcs.com": 1
+  }
+ }
+}

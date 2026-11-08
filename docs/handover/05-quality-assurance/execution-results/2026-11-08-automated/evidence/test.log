@@ -1,0 +1,637 @@
+
+> @adobe/aem-boilerplate@1.3.0 test
+> node --test 'test/**/*.test.mjs'
+
+(node:179213) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/cards/cards-data.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ card items
+  ✔ are read in the order of the card model, with its dialog tabs (8.127978ms)
+  ✔ maps the authored fields (1.580697ms)
+  ✔ formats the date in the block format (1.558215ms)
+  ✔ opens in a new tab as the block, or as the card says (0.658769ms)
+  ✔ marks links leaving the site (0.310455ms)
+  ✔ keeps cards without a link (not linked) and skips unsafe links and empty cards (0.769791ms)
+  ✔ ignores unknown styles and colours (0.225747ms)
+  ✔ numbers the shown cards in the authored order (0.401923ms)
+✔ card items (15.602319ms)
+▶ shared card list settings
+  ✔ has the List defaults (0.484224ms)
+  ✔ clamps and validates the values (0.30047ms)
+  ✔ keeps the known style options only (0.19998ms)
+  ✔ prefixes ids that do not start with a letter (0.25012ms)
+  ✔ picks the card kind of mixed cards (0.226462ms)
+✔ shared card list settings (1.913913ms)
+▶ content type labels and long dates
+  ✔ labels a content type by its tag, else in words (0.304067ms)
+  ✔ formats 4th September 2026 with English ordinals (0.324355ms)
+✔ content type labels and long dates (0.818971ms)
+▶ cards call to action
+  ✔ keeps the Cards block's Show call to action (on by default) (0.443754ms)
+✔ cards call to action (0.554745ms)
+(node:179221) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/conversation-canvas/canvas-journey.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ roles from placement
+  ✔ header, section and footer (1.743144ms)
+  ✔ the hero (first Canvas, in the first section) starts the journey without a header Canvas (0.222074ms)
+  ✔ a first Canvas further down the page is a section, not the start (0.21189ms)
+  ✔ only the last Canvas in the footer is the footer stop; Primary has no role (0.183314ms)
+✔ roles from placement (3.827148ms)
+▶ the journey down the page
+  ✔ INITIAL: the hero Canvas in place (0.758343ms)
+  ✔ FLOATING once the hero row has scrolled off the top (0.345016ms)
+  ✔ still FLOATING while the section Canvas comes up (the landing target) (1.271803ms)
+  ✔ SECTION_DOCKED when the section row reaches the floating position (0.243496ms)
+  ✔ FLOATING_AFTER_SECTION: the section Canvas floats on (its variation) (0.26919ms)
+  ✔ FOOTER_DOCKED at the footer Canvas, down to the very bottom (0.317122ms)
+  ✔ at most one Canvas floats, never while one is docked (1.855919ms)
+✔ the journey down the page (5.670371ms)
+▶ transitions
+  ✔ continuous scrolling down and up only makes allowed transitions (7.494232ms)
+  ✔ scrolling up: FOOTER_DOCKED -> FLOATING_AFTER_SECTION -> SECTION_DOCKED -> FLOATING -> INITIAL (2.473111ms)
+  ✔ the state depends on the position only (a jump gives the same result as scrolling) (0.205552ms)
+  ✔ every state can become HIDDEN and back (0.151525ms)
+✔ transitions (10.62735ms)
+▶ HIDDEN
+  ✔ while the header menu is open nothing floats; the state comes back when it closes (0.220143ms)
+  ✔ when only Canvases that dock but never float were passed (0.171188ms)
+✔ HIDDEN (0.539812ms)
+▶ page variations
+  ✔ a Docks only section Canvas is a stop; the hero floats on after it (7.48586ms)
+  ✔ a Primary dock floats from the top and docks at the Canvases in place (4.397488ms)
+  ✔ no intermediate Canvas: FLOATING straight to FOOTER_DOCKED and back (15.669174ms)
+  ✔ no footer Canvas: the floating row is lifted to stay above the footer (4.165495ms)
+  ✔ a Canvas only in the footer: INITIAL until it docks (0.22958ms)
+  ✔ two Canvases on screen: the one nearest to the floating position is docked (4.166359ms)
+  ✔ a header Canvas and the hero on screen together: INITIAL until the header Canvas leaves (3.589954ms)
+  ✔ a short page: the footer Canvas docks at the bottom even before the dock line (0.185033ms)
+✔ page variations (40.416452ms)
+▶ the header Canvas at the bottom of the window
+  ✔ INITIAL at the top of the page: in place at the dock line (the bottom of the first screen) (0.323378ms)
+  ✔ FLOATING as soon as it would move up: the same row, fixed at the same bottom offset (0.199286ms)
+  ✔ back to INITIAL when scrolled back to the top (0.132316ms)
+  ✔ a hero shorter than the window: the row is above the dock line and floats from the start (0.143526ms)
+  ✔ then section docking, floating after it and the footer stop as before, both directions (6.107663ms)
+  ✔ at most one Canvas floats, never while one is docked (0.635398ms)
+  ✔ a Canvas in the hero section (not the header) keeps its place until it leaves the screen (0.171071ms)
+✔ the header Canvas at the bottom of the window (8.071076ms)
+▶ a row in place that holds focus (focused)
+  ✔ without focus: the hero row floats and the section row is approaching (0.144364ms)
+  ✔ focus on the section row: it docks at once, nothing floats (one row on screen) (0.139851ms)
+  ✔ focus on the footer row coming up: the footer docks, nothing floats (0.111766ms)
+  ✔ a focused row off screen changes nothing (0.15775ms)
+✔ a row in place that holds focus (focused) (0.73347ms)
+▶ block documentation (npm run build:docs)
+  ✔ every block folder has a README listed in blocks/README.md (1.747879ms)
+  ✔ blocks/accordion/README.md is current and valid (0.154237ms)
+  ✔ blocks/anchor-list/README.md is current and valid (0.128473ms)
+  ✔ blocks/button-block/README.md is current and valid (0.142859ms)
+  ✔ blocks/cards/README.md is current and valid (0.131627ms)
+  ✔ blocks/column-break/README.md is current and valid (0.10044ms)
+  ✔ blocks/columns/README.md is current and valid (0.087461ms)
+  ✔ blocks/columns-container/README.md is current and valid (0.129539ms)
+  ✔ blocks/conversation-canvas/README.md is current and valid (0.182452ms)
+  ✔ blocks/embed/README.md is current and valid (0.231662ms)
+  ✔ blocks/filter-list/README.md is current and valid (0.135407ms)
+  ✔ blocks/footer/README.md is current and valid (0.087559ms)
+  ✔ blocks/form-variations/README.md is current and valid (0.175761ms)
+  ✔ blocks/fragment/README.md is current and valid (0.110675ms)
+  ✔ blocks/gen-carousel/README.md is current and valid (0.075904ms)
+  ✔ blocks/header/README.md is current and valid (0.048782ms)
+  ✔ blocks/hero/README.md is current and valid (0.059606ms)
+  ✔ blocks/image-collage/README.md is current and valid (0.046206ms)
+  ✔ blocks/interactive-dashboard/README.md is current and valid (0.044796ms)
+  ✔ blocks/list/README.md is current and valid (0.051441ms)
+  ✔ blocks/media-contacts/README.md is current and valid (0.041402ms)
+  ✔ blocks/modal/README.md is current and valid (0.043651ms)
+  ✔ blocks/page-header/README.md is current and valid (0.040312ms)
+  ✔ blocks/quote/README.md is current and valid (0.038819ms)
+  ✔ blocks/separator/README.md is current and valid (0.051577ms)
+  ✔ blocks/tab/README.md is current and valid (0.045816ms)
+  ✔ blocks/table/README.md is current and valid (0.058632ms)
+  ✔ blocks/table-list/README.md is current and valid (0.050746ms)
+  ✔ blocks/tabs/README.md is current and valid (0.057005ms)
+  ✔ blocks/tcs-header/README.md is current and valid (0.047139ms)
+  ✔ blocks/teaser/README.md is current and valid (0.042614ms)
+  ✔ blocks/testimonial/README.md is current and valid (0.038677ms)
+  ✔ blocks/video/README.md is current and valid (0.039045ms)
+  ✔ blocks/README.md is current and valid (0.039112ms)
+✔ block documentation (npm run build:docs) (6.831911ms)
+▶ block documentation helpers
+  ✔ writes visibility conditions in words (0.18311ms)
+  ✔ splits a model at its tabs (0.293304ms)
+  ✔ makes GitHub heading anchors (0.257813ms)
+✔ block documentation helpers (0.956932ms)
+(node:179316) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/cells.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ item models
+  ✔ hero-cta renders the cells its block reads (2.004475ms)
+  ✔ hero-cta rows are told from the hero block's own rows on the page (0.259158ms)
+  ✔ page-header-cta renders the cells its block reads (0.161101ms)
+  ✔ page-header-cta rows are told from the page-header block's own rows on the page (0.182839ms)
+  ✔ teaser-link renders the cells its block reads (0.14616ms)
+  ✔ teaser-link rows are told from the teaser block's own rows on the page (0.125985ms)
+  ✔ teaser-stat renders the cells its block reads (0.133937ms)
+  ✔ teaser-stat rows are told from the teaser block's own rows on the page (0.129715ms)
+  ✔ teaser-collage-image renders the cells its block reads (0.179329ms)
+  ✔ teaser-collage-image rows are told from the teaser block's own rows on the page (0.225696ms)
+  ✔ image-collage-item renders the cells its block reads (0.130212ms)
+  ✔ image-collage-item rows are told from the image-collage block's own rows on the page (0.124111ms)
+  ✔ testimonial-stat renders the cells its block reads (0.08742ms)
+  ✔ testimonial-stat rows are told from the testimonial block's own rows on the page (0.067044ms)
+  ✔ anchor-list-item renders the cells its block reads (0.123882ms)
+  ✔ anchor-list-item rows are told from the anchor-list block's own rows on the page (0.070177ms)
+  ✔ filter-list-tag renders the cells its block reads (0.08257ms)
+  ✔ filter-list-tag rows are told from the filter-list block's own rows on the page (0.075639ms)
+  ✔ filter-list-category renders the cells its block reads (0.061382ms)
+  ✔ filter-list-category rows are told from the filter-list block's own rows on the page (0.056267ms)
+  ✔ filter-list-page renders the cells its block reads (0.095094ms)
+  ✔ filter-list-page rows are told from the filter-list block's own rows on the page (0.077748ms)
+  ✔ footer-link renders the cells its block reads (0.054914ms)
+  ✔ footer-link rows are told from the footer block's own rows on the page (0.053792ms)
+  ✔ items of one block are told apart on the page (11.268458ms)
+✔ item models (18.303176ms)
+▶ itemRows
+  ✔ reads the rows of the item models in the editor (0.327784ms)
+  ✔ leaves out rows of other models in the editor, whatever their cells (0.170478ms)
+  ✔ tells item rows by their cells on the page (0.206087ms)
+✔ itemRows (0.958574ms)
+(node:179324) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/list/list-data.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ Card style of List Items (manual)
+  ✔ 1: the List Item style wins over the list and the page (15.138701ms)
+  ✔ 2: without one, the list style wins over the page (1.881503ms)
+  ✔ 3: with the list on Mixed (by page), the linked page style (0.481659ms)
+  ✔ 4: without any, the automatic style (image with an image, else panel) (0.641972ms)
+  ✔ 12: each List Item style overrides the list style; the others follow the list (0.616858ms)
+✔ Card style of List Items (manual) (20.211713ms)
+▶ Card style of source cards (child pages, tags)
+  ✔ 5: a list style forces every card (1.019357ms)
+  ✔ 6 / 10: with Mixed (by page), each page decides; pages without one are automatic (0.584275ms)
+  ✔ 11: an unsupported page style is ignored: no kind or class is made from it (0.428967ms)
+  ✔ lists made before keep their style (Image card by default) (0.650325ms)
+✔ Card style of source cards (child pages, tags) (3.121905ms)
+▶ Card colour
+  ✔ List Item > list > page > the style default (1.300109ms)
+  ✔ source cards: the list colour, else each page colour; unsupported ones are ignored (0.709503ms)
+✔ Card colour (2.254948ms)
+▶ List Item content from the linked page (field by field)
+  ✔ 7: authored fields win, empty ones come from the linked page (0.437476ms)
+  ✔ 8: a fully authored List Item keeps every authored value (2.017185ms)
+  ✔ 9: a linked page that can't be resolved keeps the authored values and the other items (0.452408ms)
+  ✔ an item without a link is left out, without breaking the list (0.320623ms)
+  ✔ an empty source gives no cards (0.204125ms)
+✔ List Item content from the linked page (field by field) (3.712274ms)
+(node:179343) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/list/list-data.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ configuration
+  ✔ defaults: fixed, manual order, all items, grid everywhere (2.204987ms)
+  ✔ has no search source (0.325519ms)
+  ✔ empty and invalid maximum items mean all items (0.525053ms)
+  ✔ makes component ids safe (0.244241ms)
+  ✔ clamps invalid responsive values (0.342151ms)
+  ✔ reports what an author can fix (0.448219ms)
+  ✔ responsive combination desktop/tablet/mobile = ggg (0.32208ms)
+  ✔ responsive combination desktop/tablet/mobile = sss (0.219493ms)
+  ✔ responsive combination desktop/tablet/mobile = sgg (0.210713ms)
+  ✔ responsive combination desktop/tablet/mobile = gsg (0.366067ms)
+  ✔ responsive combination desktop/tablet/mobile = ggs (0.200905ms)
+  ✔ responsive combination desktop/tablet/mobile = ssg (0.137814ms)
+  ✔ responsive combination desktop/tablet/mobile = sgs (0.105828ms)
+  ✔ responsive combination desktop/tablet/mobile = gss (1.803629ms)
+✔ configuration (9.926365ms)
+▶ feature card author (Show author on feature card)
+  ✔ lists authored before show the author: on by default (0.239132ms)
+  ✔ off hides the author of the feature card (0.235202ms)
+  ✔ only a feature card shows an author (no Authors sheet otherwise) (0.16559ms)
+  ✔ the dialog field: List only, after First card as feature, shown only for a feature card (21.061029ms)
+✔ feature card author (Show author on feature card) (22.1776ms)
+▶ content type on image cards (Show content type)
+  ✔ lists authored before show the content type: on by default (0.367147ms)
+  ✔ off hides it, on shows it (0.244085ms)
+  ✔ off leaves the content type tag out of the tags; the next tags take its place (0.344448ms)
+  ✔ keeps the page metadata: the cards still carry their content type (11.218637ms)
+  ✔ the dialog field: List only, between Date format and Show call to action, for image cards (13.89547ms)
+✔ content type on image cards (Show content type) (26.533313ms)
+▶ parent / child pages
+  ✔ lists the direct children of an explicit parent, not the parent or hidden pages (1.168723ms)
+  ✔ falls back to the current page (0.32955ms)
+  ✔ respects the child depth (0.292547ms)
+  ✔ lists nothing for a missing parent (0.181549ms)
+✔ parent / child pages (2.217113ms)
+▶ page metadata
+  ✔ uses card metadata first, then the page metadata (0.286844ms)
+  ✔ skips the default social image and falls back to the thumbnail (0.266561ms)
+  ✔ keeps optional fields empty when missing, and parses dates safely (0.347895ms)
+  ✔ links to the redirect target (0.380433ms)
+  ✔ follows redirect chains without looping (0.115851ms)
+✔ page metadata (1.631686ms)
+▶ fixed list
+  ✔ an internal page takes its metadata (0.449494ms)
+  ✔ a page of the site without data is listed, titled from its path (0.36152ms)
+  ✔ an external URL without a title is left out (0.160992ms)
+  ✔ an external URL keeps its link text, and is marked external (0.203101ms)
+  ✔ opens in a new tab when the item or the list says so (0.32746ms)
+  ✔ item overrides win over the page metadata (0.326813ms)
+  ✔ skips unsafe links and links without a title (0.229564ms)
+  ✔ reads absolute links to this site as pages (0.354097ms)
+  ✔ keeps the authored order with manual ordering (0.384729ms)
+✔ fixed list (3.276716ms)
+▶ fixed list: Pages and List Items
+  ✔ lists the Pages in their order, then the List Items (0.291047ms)
+  ✔ puts a List Item for one of the Pages in its place (it changes the card) (0.199ms)
+  ✔ matches AEM and published paths with the given key (0.166641ms)
+  ✔ keeps lists made with List Items only (0.108568ms)
+✔ fixed list: Pages and List Items (0.985097ms)
+▶ tag-based pages
+  ✔ any: pages with at least one tag (and child tags) (0.828107ms)
+  ✔ all: pages with every tag (0.604492ms)
+  ✔ children of the root only, or down to the maximum depth (0.631581ms)
+  ✔ no tags or no matches: no cards (0.435367ms)
+  ✔ leaves out the current page (0.363944ms)
+  ✔ uses the current page as the root when empty (0.322254ms)
+✔ tag-based pages (3.502043ms)
+▶ deduplicate, sort and limit
+  ✔ removes duplicate destinations, keeping the first (0.348693ms)
+  ✔ title ascending and descending (0.244653ms)
+  ✔ last modified ascending and descending (0.178346ms)
+  ✔ manual: path order for pages (deterministic) (0.125886ms)
+  ✔ maximum items after sorting (0.459789ms)
+  ✔ stable, unique card ids (0.273588ms)
+✔ deduplicate, sort and limit (1.990154ms)
+▶ card kinds
+  ✔ mixed: report pages as reports, pages without an image as panels (0.50449ms)
+✔ card kinds (0.614698ms)
+▶ list item cells
+  ✔ are read in the order of the list-item model, with its dialog tabs (14.14076ms)
+  ✔ reads a row with a cell per field (0.550339ms)
+  ✔ reads a row as AEM delivers it, with an empty cell per dialog tab (0.231019ms)
+  ✔ reads a row rendered before the Display toggles (16 cells) (0.267674ms)
+  ✔ reads a row AEM delivers without its tab cells (a cell per field, 19 cells) (0.143482ms)
+  ✔ reads a row rendered before the Display toggles without its tab cells (13 cells) (0.119682ms)
+  ✔ keeps a row whose tab cells have values (0.137642ms)
+✔ list item cells (15.935436ms)
+▶ list item display
+  ✔ shows everything for an item authored before the Display toggles or never changed (0.251364ms)
+  ✔ turns a Show option off only for an authored "false", Hide Title on only for "true" (0.116201ms)
+  ✔ turns Show Action Label off only for an authored "false" (on by default) (0.109881ms)
+  ✔ the List Item model has Show Action Label on by default, in its Display tab (11.518495ms)
+  ✔ travels with the card of a List Item (0.198007ms)
+✔ list item display (12.461525ms)
+▶ list call to action
+  ✔ reads Show call to action for Child pages with Panel cards only (0.33525ms)
+  ✔ elsewhere a value saved before is not read: the cards keep their call to action (0.37058ms)
+  ✔ the toggle is in the List dialog for Child pages + Panel only; Cards keeps its own (14.62354ms)
+  ✔ shows a List Item's call to action unless its Show Action Label is off (0.462841ms)
+  ✔ decides per item: one List Item's toggle leaves the others unchanged (0.294777ms)
+  ✔ cards from the query index (no List Item) follow the List: Child pages + Panel toggle (0.335023ms)
+✔ list call to action (16.749562ms)
+(node:179360) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/query-index.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ index tags
+  ✔ reads the article:tag column (a JSON list) (1.519961ms)
+  ✔ reads the cq-tags column (comma separated, as AEM publishes the page Tags) (0.228482ms)
+  ✔ merges both without duplicates (0.18507ms)
+  ✔ is empty without tags (0.150431ms)
+✔ index tags (3.522704ms)
+(node:179368) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/media-contacts/media-contacts-data.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ groupHeading
+  ✔ joins designation and region with & (0.841853ms)
+  ✔ uses the one that is set (0.19902ms)
+✔ groupHeading (2.232954ms)
+▶ groupContacts
+  ✔ puts contacts with the same designation and region in one group, one below the other (1.109512ms)
+  ✔ ignores case and spacing when grouping, and keeps the first row's spelling (0.266088ms)
+  ✔ keeps the phone numbers and names (0.276708ms)
+  ✔ leaves out rows without a name, e-mail or phone, and copes with no rows (0.17625ms)
+✔ groupContacts (2.196943ms)
+▶ telHref
+  ✔ keeps the digits and a leading + (0.427725ms)
+  ✔ drops a + that isn't leading, and returns nothing without digits (0.171843ms)
+✔ telHref (0.873883ms)
+(node:179376) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/media.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ deliveryAsset
+  ✔ reads an image rendition URL (1.719833ms)
+  ✔ reads an original file URL (video, audio, document) as not an image (0.386811ms)
+  ✔ reads an SVG as an image that takes no width (0.216164ms)
+  ✔ keeps the query and decodes the name (0.187348ms)
+  ✔ refuses other URLs (0.226035ms)
+✔ deliveryAsset (4.247526ms)
+▶ deliveryImageUrl
+  ✔ sets the width (0.393357ms)
+  ✔ prefers WebP when asked (0.253592ms)
+  ✔ replaces a width and a WebP preference already in the URL (0.241778ms)
+✔ deliveryImageUrl (1.291068ms)
+(node:179384) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/media.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ vimeoEmbedUrl
+  ✔ reads the id of a video page (1.16123ms)
+  ✔ keeps a player URL (0.298429ms)
+  ✔ reads the id of a channel video (0.248362ms)
+  ✔ keeps the hash of an unlisted video (0.273705ms)
+  ✔ adds player parameters and the start time (0.303357ms)
+✔ vimeoEmbedUrl (3.889104ms)
+▶ block component names
+  ✔ render as the class of an existing block folder (1.195812ms)
+✔ block component names (2.230401ms)
+(node:179408) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/scripts/module-graph.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ module graph (npm run build:modules)
+  ✔ scripts/module-graph.js is current (4.907429ms)
+  ✔ head.html preloads every module scripts.js imports (4.788707ms)
+  ✔ lists existing modules only, each block with its own JavaScript (16.778542ms)
+  ✔ names the stylesheet of the blocks that have one (0.512874ms)
+  ✔ doesn't repeat what head.html preloads in the blocks' lists (0.374935ms)
+✔ module graph (npm run build:modules) (28.991485ms)
+(node:179428) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/motion.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ content animation
+  ✔ reads the block class of each value (0.930954ms)
+  ✔ is none without a value, and ignores unknown values and the earlier Motion Types (0.218867ms)
+  ✔ is independent of the background animation (0.203437ms)
+  ✔ clips sideways motion only (0.964243ms)
+✔ content animation (3.643373ms)
+▶ background animation
+  ✔ reads the block class of each value and ignores unknown values (0.235975ms)
+✔ background animation (0.433216ms)
+▶ motion speed and trigger
+  ✔ reads Motion Speed (Medium without a class) and Animation Trigger (On Scroll without one) (0.287749ms)
+  ✔ are not animation types (no effect of their own) (0.17482ms)
+  ✔ uses one keyframe per effect, the speed only as durations (5.138128ms)
+  ✔ starts on scroll once enough of the block is in view (1.137441ms)
+✔ motion speed and trigger (7.174486ms)
+▶ stagger
+  ✔ starts repeated items one after another, up to a limit (0.26082ms)
+✔ stagger (0.373487ms)
+▶ background colour
+  ✔ tells a painted colour from a transparent one (0.487845ms)
+✔ background colour (0.601129ms)
+▶ authoring fields
+  ✔ gives the container sections fields AEM delivers (no classes_* on sections) (29.774493ms)
+  ✖ offers Content animation after Hide block, with the values of utils/motion.js (198.750847ms)
+  ✖ offers Background animation only on blocks with an authored background (228.410226ms)
+  ✔ leaves out blocks that animate otherwise or not at all (55.992173ms)
+✖ authoring fields (513.399611ms)
+(node:179445) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/privacy.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ redactSearchTerm
+  ✔ keeps an ordinary search term, trimmed (1.011494ms)
+  ✔ replaces e-mail addresses and phone numbers (0.216737ms)
+  ✔ keeps short numbers such as years (0.159232ms)
+  ✔ is empty for an empty search (no event is pushed) (0.150165ms)
+  ✔ cuts long terms at 100 characters (0.226391ms)
+✔ redactSearchTerm (3.3844ms)
+▶ contactLinkKind
+  ✔ names mail and phone links, whose address the data layer leaves out (0.258844ms)
+  ✔ is empty for other links (0.200964ms)
+✔ contactLinkKind (0.723263ms)
+(node:179453) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/blocks/separator/separator-config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ defaults
+  ✔ decorative, default variant, auto theme, solid thin full width, centred, visible everywhere (2.45945ms)
+  ✔ empty block markup: a default separator (0.24474ms)
+✔ defaults (4.850612ms)
+▶ component id
+  ✔ keeps valid ids, sanitizes invalid ones, empty when nothing is left (0.337172ms)
+✔ component id (0.503333ms)
+▶ accessibility mode
+  ✔ semantic keeps an accessible label; decorative drops it (0.42719ms)
+  ✔ missing or invalid: decorative (0.209954ms)
+  ✔ no rule for a decorative separator without a line; a semantic one keeps it (0.417585ms)
+✔ accessibility mode (1.368369ms)
+▶ variants and line settings
+  ✔ variant default (0.593011ms)
+  ✔ variant subtle (0.204892ms)
+  ✔ variant strong (0.201194ms)
+  ✔ variant inset (0.28025ms)
+  ✔ variant full-width (0.139599ms)
+  ✔ variant dotted (0.158936ms)
+  ✔ variant dashed (0.155312ms)
+  ✔ variant gradient (0.128737ms)
+  ✔ variant branded (0.127684ms)
+  ✔ variant custom-design (0.092718ms)
+  ✔ variant presets, overridden by the Appearance settings (0.342374ms)
+  ✔ linethickness thin (0.159209ms)
+  ✔ linethickness medium (0.091915ms)
+  ✔ linethickness thick (0.099243ms)
+  ✔ linestyle solid (0.100745ms)
+  ✔ linestyle dashed (0.109136ms)
+  ✔ linestyle dotted (0.083152ms)
+  ✔ linestyle gradient (0.110259ms)
+  ✔ linestyle none (0.082868ms)
+  ✔ lineopacity 25 (1.71833ms)
+  ✔ lineopacity 50 (0.13942ms)
+  ✔ lineopacity 75 (0.070125ms)
+  ✔ lineopacity 100 (0.062116ms)
+  ✔ linecolor default (0.075482ms)
+  ✔ linecolor subtle (0.059126ms)
+  ✔ linecolor neutral (0.058662ms)
+  ✔ linecolor strong (0.056487ms)
+  ✔ linecolor primary (0.116208ms)
+  ✔ linecolor secondary (0.068043ms)
+  ✔ linecolor accent (0.059639ms)
+  ✔ linecolor inverse (0.098186ms)
+  ✔ unknown values fall back and never become classes (0.283787ms)
+✔ variants and line settings (7.237495ms)
+▶ width and alignment
+  ✔ auto start (0.310415ms)
+  ✔ auto center (0.092551ms)
+  ✔ auto end (0.087136ms)
+  ✔ 25-percent start (0.091894ms)
+  ✔ 25-percent center (0.14904ms)
+  ✔ 25-percent end (0.07807ms)
+  ✔ 50-percent start (0.078417ms)
+  ✔ 50-percent center (0.070413ms)
+  ✔ 50-percent end (0.06249ms)
+  ✔ 75-percent start (0.065382ms)
+  ✔ 75-percent center (0.087264ms)
+  ✔ 75-percent end (0.059425ms)
+  ✔ 100-percent start (0.055909ms)
+  ✔ 100-percent center (0.053941ms)
+  ✔ 100-percent end (0.081754ms)
+  ✔ content-width start (0.060448ms)
+  ✔ content-width center (0.063306ms)
+  ✔ content-width end (0.078319ms)
+  ✔ full-bleed start (0.087397ms)
+  ✔ full-bleed center (0.058979ms)
+  ✔ full-bleed end (0.053023ms)
+  ✔ legacy spellings of widths (0.159324ms)
+  ✔ maximum width, stretch and content limit (0.124262ms)
+✔ width and alignment (2.779634ms)
+▶ responsive
+  ✔ visibility desktop/tablet/mobile = 1/1/1 (0.316646ms)
+  ✔ visibility desktop/tablet/mobile = 1/0/0 (0.118173ms)
+  ✔ visibility desktop/tablet/mobile = 0/1/0 (0.119443ms)
+  ✔ visibility desktop/tablet/mobile = 0/0/1 (0.160835ms)
+  ✔ visibility desktop/tablet/mobile = 1/1/0 (0.097896ms)
+  ✔ visibility desktop/tablet/mobile = 1/0/1 (0.101407ms)
+  ✔ visibility desktop/tablet/mobile = 0/1/1 (0.077744ms)
+  ✔ visibility desktop/tablet/mobile = 0/0/0 (0.114851ms)
+  ✔ width, thickness, alignment and spacing per breakpoint (0.17608ms)
+  ✔ inherit and invalid responsive values add nothing (0.253033ms)
+  ✔ section padding (0.115518ms)
+✔ responsive (2.040004ms)
+▶ decorations
+  ✔ start, center and end shapes; none without a line (0.244451ms)
+✔ decorations (0.31635ms)
+▶ animation, print and analytics
+  ✔ no animation by default; the chosen one with its fallback (0.327209ms)
+  ✔ print visibility (0.129554ms)
+  ✔ analytics off by default; the entry describes the separator (0.261165ms)
+✔ animation, print and analytics (0.864171ms)
+(node:179461) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/site.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ indexRoot
+  ✔ is the locale root of a locale page (1.266162ms)
+  ✔ is the language master tree for its pages under review (0.220889ms)
+  ✔ is the design and block master tree for its pages (KB-D-068) (0.454396ms)
+  ✔ is the testing tree /language-master/en too (KB-D-068) (1.167014ms)
+  ✔ is the default locale root for other pages (0.198412ms)
+✔ indexRoot (4.832332ms)
+▶ localeSheetPath
+  ✔ is the locale sheet on locale pages (0.25554ms)
+  ✔ is the language master copy of its sheets for its pages under review (0.186384ms)
+  ✔ is the locale sheet for sheets the language master does not publish (0.188042ms)
+✔ localeSheetPath (1.01001ms)
+▶ localePagePath
+  ✔ is the locale page on locale pages (0.247229ms)
+  ✔ is the language master references for its pages under review (0.226889ms)
+  ✔ is the language master error page for its pages under review (0.189072ms)
+  ✔ is the language master root page as its Home (0.098446ms)
+  ✔ is the locale page for other pages (0.128594ms)
+✔ localePagePath (1.239265ms)
+▶ on AEM author
+  ✔ a language master page lists and reads the language master (0.168325ms)
+  ✔ a locale page stays on its locale (0.113276ms)
+✔ on AEM author (0.404434ms)
+▶ pageLink
+  ✔ is the AEM page of a published page on author (0.60095ms)
+  ✔ keeps other links, and every link on the site (0.123484ms)
+✔ pageLink (0.865258ms)
+▶ the language master root page
+  ✔ is under review on author and on the site (0.215228ms)
+  ✔ a path that only starts like it is not (0.123314ms)
+✔ the language master root page (0.455627ms)
+▶ getParentPages (inherited Navigation, Footer, 404 Page)
+  ✔ walks up to the language master root page on the site (0.187562ms)
+  ✔ walks up to the language master root page on author (0.106616ms)
+  ✔ has none for the root page itself (0.10598ms)
+  ✔ is unchanged for locale pages (0.140797ms)
+✔ getParentPages (inherited Navigation, Footer, 404 Page) (0.761175ms)
+(node:179469) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///backups/sradha-tcs/tcs-corp/repo/utils/query-index.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /backups/sradha-tcs/tcs-corp/repo/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+▶ pageTree
+  ✔ lists the pages below the root in path order, a level per depth (13.693146ms)
+  ✔ nests the levels up to the depth, with parent links (0.326107ms)
+  ✔ titles a page without a title from its path (0.207253ms)
+  ✔ leaves out a page whose parent page is not indexed (0.23171ms)
+  ✔ is empty for a root without pages below it or without rows (0.18977ms)
+✔ pageTree (16.251858ms)
+▶ paths.json
+  ✔ is what npm run build:paths writes (117.338015ms)
+  ✔ maps /content/tcs-corp/us/en: child pages and sheets, the Home page, taxonomy; included (0.456949ms)
+  ✔ maps /content/tcs-corp/de/de-de: child pages and sheets, the Home page, taxonomy; included (0.155169ms)
+  ✔ maps /content/tcs-corp/fr/fr-fr: child pages and sheets, the Home page, taxonomy; included (0.1086ms)
+  ✔ maps /content/tcs-corp/ca/fr-ca: child pages and sheets, the Home page, taxonomy; included (0.115122ms)
+  ✔ maps /content/tcs-corp/es/es-es: child pages and sheets, the Home page, taxonomy; included (0.104017ms)
+  ✔ maps /content/tcs-corp/pt/pt-pt: child pages and sheets, the Home page, taxonomy; included (0.170855ms)
+  ✔ maps /content/tcs-corp/nl/nl-nl: child pages and sheets, the Home page, taxonomy; included (0.125662ms)
+  ✔ maps /content/tcs-corp/se/sv-se: child pages and sheets, the Home page, taxonomy; included (0.145311ms)
+  ✔ maps /content/tcs-corp/dk/da-dk: child pages and sheets, the Home page, taxonomy; included (0.207764ms)
+  ✔ maps /content/tcs-corp/no/no-no: child pages and sheets, the Home page, taxonomy; included (0.11203ms)
+  ✔ maps /content/tcs-corp/cn/zh-cn: child pages and sheets, the Home page, taxonomy; included (0.116004ms)
+  ✔ maps /content/tcs-corp/jp/ja-jp: child pages and sheets, the Home page, taxonomy; included (0.092772ms)
+  ✔ maps /content/tcs-corp/kr/ko-kr: child pages and sheets, the Home page, taxonomy; included (0.088862ms)
+  ✔ maps /content/tcs-corp/language-master/en: child pages and sheets, the Home page, taxonomy; included (0.086577ms)
+  ✔ maps /content/tcs-corp/language-masters/en: child pages and sheets, the Home page, taxonomy; included (0.059699ms)
+  ✔ maps /content/tcs-corp/design-block-master/en: child pages and sheets, the Home page, taxonomy; included (0.074446ms)
+  ✔ maps the language master Home page to /language-masters/en/ (0.116816ms)
+  ✔ maps the design and block master to /design-block-master/en/ (KB-D-068) (0.166663ms)
+  ✔ keeps the testing root /language-master/en (KB-D-068) (0.086166ms)
+✔ paths.json (122.117818ms)
+ℹ tests 386
+ℹ suites 66
+ℹ pass 384
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10104.701252
+
+✖ failing tests:
+
+test at test/motion/motion.test.mjs:123:3
+✖ offers Content animation after Hide block, with the values of utils/motion.js (198.750847ms)
+  AssertionError [ERR_ASSERTION]: form-variations has Content animation
+      at file:///backups/sradha-tcs/tcs-corp/repo/test/motion/motion.test.mjs:127:14
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///backups/sradha-tcs/tcs-corp/repo/test/motion/motion.test.mjs:124:76)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Promise.all (index 0) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at test/motion/motion.test.mjs:147:3
+✖ offers Background animation only on blocks with an authored background (228.410226ms)
+  AssertionError [ERR_ASSERTION]: form-variations
+  
+  false !== true
+  
+      at file:///backups/sradha-tcs/tcs-corp/repo/test/motion/motion.test.mjs:150:14
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///backups/sradha-tcs/tcs-corp/repo/test/motion/motion.test.mjs:148:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
