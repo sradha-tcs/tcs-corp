@@ -2,8 +2,7 @@
 
 Install in this order with Package Manager or `../tools/install-packages.*` (each page and asset has its own filter: installing never
 removes other content). **Page packages: version 1.3.0** (the language master below `/content/tcs-corp/language-masters`, moved from
-`language-master`; `../../packages-1.3.0-RENAME-REPORT.md`); asset packages: version 1.2.0 (DAM paths, unchanged). The 1.2.0 page
-packages in this folder are superseded. On a **fresh environment** install `../../packages-earlier-run-assets/` first (assets of
+`language-master`; `../packages-1.3.0-RENAME-REPORT.md`); asset packages: version 1.2.0 (DAM paths, unchanged). On a **fresh environment** install `../../packages-earlier-run-assets/` first (assets of
 earlier migration runs the pages use). Then publish the DAM videos, audio and documents (non-image assets are served only once
 published), replace the sheets with `../sheets/` and publish them, then publish and index the pages.
 
