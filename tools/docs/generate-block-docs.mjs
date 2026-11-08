@@ -309,7 +309,7 @@ export function usageSection(inputs, block) {
   const kb = 'Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).';
   if (!usage) return `No block library or curated design page using this block was recorded in the library snapshot.\n\n${kb}`;
   const link = (p) => `\`${p}\``;
-  const lines = [`Pages of the block library package ${inputs.snapshot.package || ''} (language master, \`/content/tcs-corp/language-master/en\`) that contain the block, ${usage.instances} instance(s) in total:`];
+  const lines = [`Pages of the block library package ${inputs.snapshot.package || ''} (language master, \`/content/tcs-corp/language-masters/en\`) that contain the block, ${usage.instances} instance(s) in total:`];
   if (usage.library.length) lines.push(`- Block library: ${usage.library.map(link).join(', ')}`);
   if (usage.curated.length) lines.push(`- Curated design pages: ${usage.curated.map(link).join(', ')}`);
   if (usage.other.length) lines.push(`- Other pages: ${usage.other.map(link).join(', ')}`);
@@ -421,12 +421,12 @@ async function librarySnapshot(root, inputs) {
     Object.entries(fields).forEach(([k, v]) => {
       if (examples[model][k] !== undefined || v === '' || v === null || typeof v === 'object') return;
       if (typeof v === 'string' && (/<[a-z]/i.test(v) || v.length > 80)) return;
-      examples[model][k] = typeof v === 'string' ? v.replace(/^\/content\/tcs-corp\/language-master\/en/, '/language-master/en') : v;
+      examples[model][k] = typeof v === 'string' ? v.replace(/^(\/content\/tcs-corp)?\/language-masters?\/en(?=\/|$)/, '/language-masters/en') : v;
     });
   };
   const blockOfEntry = (e) => e.block || null;
   PAGES.forEach((p) => {
-    const path = String(p.path || '').replace('/content/tcs-corp/language-master/en/', '');
+    const path = String(p.path || '').replace(/^\/content\/tcs-corp\/language-masters?\/en\//, '');
     let kind = 'other';
     if (path.startsWith('block-library/')) kind = 'library';
     else if (path.startsWith('curated-design-pages/')) kind = 'curated';

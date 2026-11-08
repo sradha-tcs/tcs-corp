@@ -256,7 +256,7 @@ Stored on a new component (definition template): `buttonView` = `"button"`, `but
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Link | `link` | aem-content | No | — | — | An AEM page, an asset or a URL. | /language-master/en/curated-design-pages |
+| Link | `link` | aem-content | No | — | — | An AEM page, an asset or a URL. | /language-masters/en/curated-design-pages |
 | Text | `linkText` | text | No | — | — | The label of the button (the accessible name of an icon button). Delivered with `link` (field collapse). | Curated design pages |
 | Title | `linkTitle` | text | No | — | — | Optional tooltip (most buttons need none). Delivered with `link` (field collapse). | Contact the TCS team |
 
@@ -337,7 +337,7 @@ D = Title
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| B | Link | /language-master/en/curated-design-pages | The target page | The button links to the page |
+| B | Link | /language-masters/en/curated-design-pages | The target page | The button links to the page |
 | C | Text | Curated design pages | Visible label | The pill shows the label with an arrow |
 | D | Title | (empty) | Most buttons need no tooltip | No `title` attribute |
 
@@ -481,7 +481,7 @@ Scenario: the primary call to action of a services section.
 
 | Field | Example value | Guidance |
 | ----- | ------------- | -------- |
-| Link | /language-master/en/curated-design-pages | Pick with the picker |
+| Link | /language-masters/en/curated-design-pages | Pick with the picker |
 | Text | Contact us | Verb first, short |
 | Title | Contact the TCS team | Only extra context |
 | View | Button | Default |
@@ -747,7 +747,7 @@ and attributes, the data-layer entry.
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 79 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 79 instance(s) in total:
 - Block library: `block-library/columns-container/alignment-gap-and-breakpoints`, `block-library/columns-container/columns-of-blocks`, `block-library/columns/columns-variations`, `block-library/footer/campaign-page`, `block-library/foundations/button`, `block-library/foundations/button-icons-and-alignment`, `block-library/foundations/section-colours-with-blocks`, `block-library/foundations/section-variations`, `block-library/foundations/section-views`, `block-library/foundations/section-widths`, `block-library/fragment/fragment-block`, `block-library/fragment/fragments/cta-banner`, `block-library/modal/fragments/recognition`, `block-library/tabs/fragments/tab-industries`, `block-library/tabs/tabs-section`, `block-library/templates/error-page-404`, `block-library/templates/error-page-404-careers`, `block-library/templates/home-template`
 - Other pages: `block-library`
 

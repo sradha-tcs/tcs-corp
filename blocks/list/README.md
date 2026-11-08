@@ -576,18 +576,18 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Title | `title` | text | No | — | — | The heading of the cards, e.g. Related to Agentic AI. | Related insights |
 | Heading type | `titleType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Delivered with `title` (field collapse). | h2 |
 | Description | `description` | richtext | No | — | — | — | — |
-| CTA link | `link` | aem-content | No | — | — | — | /language-master/en/curated-design-pages/insights |
+| CTA link | `link` | aem-content | No | — | — | — | /language-masters/en/curated-design-pages/insights |
 | CTA text | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | View all |
 | CTA style | `linkType` | select | No | "" | Text link (""), Primary button (`primary`), Secondary button (`secondary`) | Delivered with `link` (field collapse). | primary |
 | Accessible list label | `listLabel` | text | No | — | — | Names the cards for screen readers when there is no title. | Pages |
 | List source | `source` | select | Yes | `fixed` | Child pages (`parent`), Fixed list (`fixed`), Tagged pages (`tags`) | Child pages of a page, a fixed list of pages (Pages; add List Items to change a card or to link outside the site), or pages with tags. | fixed |
 | Pages (authored before List Items) | `pageItems` | container (multiple) | No | — | — | Lists made before List Items. Add List Items instead (Add on the List). Shown when `source` is `fixed`. | — |
 | Pages (authored before List Items) › Page | `page` | aem-content | No | — | — | — | — |
-| Parent page | `parentPath` | aem-content | No | — | — | Shown when `source` is `parent`. | /language-master/en/dummy-pages/insights |
+| Parent page | `parentPath` | aem-content | No | — | — | Shown when `source` is `parent`. | /language-masters/en/dummy-pages/insights |
 | Use the current page when empty | `parentUseCurrentPage` | boolean | No | `true` | on / off | Shown when `source` is `parent`. | true |
 | Direct children only | `directChildrenOnly` | boolean | No | `true` | on / off | Off: pages down to the Child depth. Shown when `source` is `parent`. | false |
 | Child depth | `childDepth` | number | No | `2` | — | Levels below the parent page (1: its children). Shown when `source` is `parent` and `directChildrenOnly` is `false`. | 2 |
-| Search root | `rootPath` | aem-content | No | — | — | Shown when `source` is `tags`. | /language-master/en/dummy-pages/insights |
+| Search root | `rootPath` | aem-content | No | — | — | Shown when `source` is `tags`. | /language-masters/en/dummy-pages/insights |
 | Use the current page when empty | `tagsUseCurrentPage` | boolean | No | `true` | on / off | Shown when `source` is `tags`. | false |
 | Tags | `tags` | aem-tag (multiple) | No | — | — | Shown when `source` is `tags`. | — |
 | Match | `tagMatch` | select | No | `any` | Any of the tags (`any`), All of the tags (`all`) | Shown when `source` is `tags`. | all |
@@ -682,7 +682,7 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Page or link | `link` | aem-content | Yes | — | — | A page of the site, a path or an external URL (https://...). | /language-master/en/dummy-pages/services/cloud |
+| Page or link | `link` | aem-content | Yes | — | — | A page of the site, a path or an external URL (https://...). | /language-masters/en/dummy-pages/services/cloud |
 | Link text | `linkText` | text | No | — | — | The link text when the page has no title. Delivered with `link` (field collapse). | — |
 | Open in a new tab | `newTab` | select | No | "" | As the list (""), Yes (`true`), No (`false`) | — | true |
 
@@ -770,7 +770,7 @@ D = Accessible list label
 |---|---|---|---|---|
 | A | Title | Related insights | Names the list and its region | H2 heading above the cards |
 | B | Heading type | h2 | Page outline; card titles become h3 | `<h2>` title |
-| C | CTA link / CTA text / CTA style | /language-master/en/curated-design-pages/insights / View all / Text link | A way to the full listing | Text link with arrow on the right of the header |
+| C | CTA link / CTA text / CTA style | /language-masters/en/curated-design-pages/insights / View all / Text link | A way to the full listing | Text link with arrow on the right of the header |
 
 Action: select the section, **Add** > **List**, open the properties and fill the Content tab header fields. Expected preview: the header appears; the list shows the empty message or the editor hint until a source is set. Business rule: one H1 per page, so use h2–h6. Common mistake: no Title and no Accessible list label, so the region is announced as "List"; resolution: fill one of them.
 
@@ -797,7 +797,7 @@ D = Order by, Sort order, Maximum items
 | Callout | Field | Value | Reason | Expected result |
 |---|---|---|---|---|
 | A | List source | Tagged pages | The list follows the tagging | Tag fields shown |
-| B | Search root | /language-master/en/dummy-pages/insights | Limits the pages | Pages below the root only |
+| B | Search root | /language-masters/en/dummy-pages/insights | Limits the pages | Pages below the root only |
 | C | Tags / Match | an AI topic tag / All of the tags | Related content | Pages with every tag (child tags match too) |
 | D | Order by / Sort order / Maximum items | Title / Descending / 3 | Stable, short rail | At most 3 cards |
 
@@ -825,7 +825,7 @@ D = Eyebrow and Call to action label
 
 | Callout | Field | Value | Reason | Expected result |
 |---|---|---|---|---|
-| A | Page or link | /language-master/en/dummy-pages/services/cloud | The card's page | Card from the page's metadata |
+| A | Page or link | /language-masters/en/dummy-pages/services/cloud | The card's page | Card from the page's metadata |
 | B | Title | Cloud services for the enterprise | Placement-specific wording | Overrides the page title |
 | C | Image / Image alt text | /content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg / Partner team in a workshop | A different visual | Overrides the page image |
 | D | Eyebrow / Call to action label | Partner / Learn more | Kicker and explicit action | Eyebrow and a visible call to action |
@@ -1014,9 +1014,9 @@ Scenario: an insights hub shows its three newest AI insights as a rail on mobile
 | Field | Example value | Guidance |
 |---|---|---|
 | Title / Heading type | Related insights / h2 | One heading per list |
-| CTA link / CTA text / CTA style | /language-master/en/curated-design-pages/insights / View all / Text link | Leads to the full listing |
+| CTA link / CTA text / CTA style | /language-masters/en/curated-design-pages/insights / View all / Text link | Leads to the full listing |
 | List source | Tagged pages | Updates itself |
-| Search root | /language-master/en/dummy-pages/insights | Keeps the list in the section |
+| Search root | /language-masters/en/dummy-pages/insights | Keeps the list in the section |
 | Tags / Match | the AI topic tag / Any of the tags | Child tags match too |
 | Order by / Sort order / Maximum items | Last modified / Descending / 3 | Newest first, short |
 | Card style / Image ratio | Image card / 1:1 | Figma variation 4 look |
@@ -1126,7 +1126,7 @@ blocks/list/
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `list.js`: { normalizeKey, textOf } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `list.js`: { getPages, getPagesAt } |
 | [`utils/redirects.js`](../../utils/redirects.js) | `loadRedirects`, `resolveRedirect`, `normalizeRedirectPath` (redirect targets from the locale's redirects sheet, loaded once) | `list.js`: { loadRedirects, resolveRedirect } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `list.js`: { getLocale, pageLink, toPublishedPath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-masters/en, lists its own pages and reads its own placeholders, redirects, | `list.js`: { getLocale, pageLink, toPublishedPath } |
 | [`utils/tags.js`](../../utils/tags.js) | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | `list.js`: { readTagValues } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `list.js`: { resolveTags } |
 
@@ -1320,7 +1320,7 @@ Evidence to collect: the page URL, the block's settings (screenshots of the dial
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 243 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 243 instance(s) in total:
 - Block library: `block-library/accordion`, `block-library/anchor-list`, `block-library/animation`, `block-library/animation/repeated-items`, `block-library/animation/skeleton-loading`, `block-library/animation/speed-and-trigger`, `block-library/cards`, `block-library/columns`, `block-library/columns-container`, `block-library/columns-container/columns-of-blocks`, `block-library/conversation-canvas`, `block-library/embed`, `block-library/filter-list`, `block-library/footer`, `block-library/form-variations`, `block-library/foundations`, `block-library/foundations/section-colours-with-blocks`, `block-library/fragment`, `block-library/fragment/fragments`, `block-library/gen-carousel`, `block-library/header`, `block-library/hero`, `block-library/interactive-dashboard`, `block-library/list`, `block-library/list/card-colours-and-overrides`, `block-library/list/card-style-from-pages`, `block-library/list/cards`, `block-library/list/empty-state`, `block-library/list/figma-variations`, `block-library/list/layout-and-scrolling`, `block-library/list/list-item-display`, `block-library/list/lists-made-before`, `block-library/list/sources`, `block-library/media-contacts`, `block-library/modal`, `block-library/modal/fragments`, `block-library/page-header`, `block-library/page-header/tags-and-content-type`, `block-library/quote`, `block-library/separator`, `block-library/table`, `block-library/table-list`, `block-library/tabs`, `block-library/tabs/fragments`, `block-library/teaser`, `block-library/templates`, `block-library/testimonial`, `block-library/video`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/forms`, `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/media-and-investor`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`, `curated-design-pages/who-we-are`
 - Other pages: `block-library`, `curated-design-pages`, `dummy-pages/careers`, `dummy-pages/case-studies`, `dummy-pages/case-studies/better-operational-decisions-connected-intelligence`, `dummy-pages/case-studies/increasing-streaming-hours-uk-platform`, `dummy-pages/case-studies/intelligence-in-everyday-employee-services`, `dummy-pages/case-studies/modernising-core-banking-for-a-regional-bank`, `dummy-pages/case-studies/orchestrating-vehicle-app-charging-service-experience`, `dummy-pages/case-studies/personalised-banking-at-scale`, `dummy-pages/case-studies/real-time-network-resilience-for-a-bank`, `dummy-pages/case-studies/reimagine-customer-service-with-people-and-agents`, `dummy-pages/case-studies/reimagining-in-home-entertainment-experience`, `dummy-pages/case-studies/transforming-overnight-liquidity-modelling`, `dummy-pages/industries`, `dummy-pages/industries/banking`, `dummy-pages/industries/communications-media-information`, `dummy-pages/industries/cpg-distribution`, `dummy-pages/industries/education`, `dummy-pages/insights`, `dummy-pages/insights/adobe-experience-platform-insights`, `dummy-pages/insights/agentic-ai-banking-operations`, `dummy-pages/insights/agentic-ai-in-hr-chros-future-ready-enterprises`, `dummy-pages/insights/ai-agents-for-customer-service`, `dummy-pages/insights/ai-agents-in-everyday-banking`, `dummy-pages/insights/ai-agents-need-guardrails-not-just-goals`, `dummy-pages/insights/ai-driven-transformation`, `dummy-pages/insights/ai-ready-data-centre-infrastructure-report`, `dummy-pages/insights/audience-growth-stagnant-streaming-market`, `dummy-pages/insights/banking-industry-innovation`, `dummy-pages/insights/beyond-transactions-towards-the-agentic-bank`, `dummy-pages/insights/cloud-modernization-strategy`, `dummy-pages/insights/confidence-in-a-connected-world`, `dummy-pages/insights/connected-factories-industrial-ai`, `dummy-pages/insights/customer-data-platforms`, `dummy-pages/insights/data-centre-becomes-intelligence-factory`, `dummy-pages/insights/decision-intelligence-report`, `dummy-pages/insights/decision-twins-testing-strategy`, `dummy-pages/insights/digital-commerce-trends`, `dummy-pages/insights/enabling-banking-innovation-resilience-core-modernisation`, `dummy-pages/insights/enterprise-data-modernization`, `dummy-pages/insights/fighting-fraud-with-agentic-ai`, `dummy-pages/insights/five-decisions-data-centre-strategy`, `dummy-pages/insights/foresight-factory-floor-digital-twin-logistics`, `dummy-pages/insights/future-of-customer-experience`, `dummy-pages/insights/generative-ai-in-enterprises`, `dummy-pages/insights/hyper-personalization-at-scale`, `dummy-pages/insights/multimodal-ai-evidence-based-engineering-assurance`, `dummy-pages/insights/payments-and-real-time-finance`, `dummy-pages/insights/real-world-impact-tcs-wisdom-ai`, `dummy-pages/insights/reimagining-how-your-business-works`, `dummy-pages/insights/retailers-journey-to-smarter-fulfilment`, `dummy-pages/insights/rethinking-kyc-with-ai-agents`, `dummy-pages/insights/simulating-supply-chain-disruption-digital-twin`, `dummy-pages/insights/skies-of-the-future-aerospace-strategies`, `dummy-pages/insights/smarter-lending-with-ai-agents`, `dummy-pages/insights/sustainable-scale-economics-of-compute`, `dummy-pages/insights/tcs-launches-next-gen-soc-services`, `dummy-pages/insights/the-self-defending-bank`, `dummy-pages/insights/why-premiumisation-is-reshaping-indias-cpg-industry`, `dummy-pages/insights/why-supply-chains-need-a-resilience-reset`, `dummy-pages/investors/annual-report`, `dummy-pages/investors/annual-report/financial-review`, `dummy-pages/investors/annual-report/governance-and-sustainability`, `dummy-pages/investors/annual-report/strategy-and-business-review`, `dummy-pages/investors/ceo-letters`, `dummy-pages/investors/ceo-letters/client-priorities-shared-progress`, `dummy-pages/investors/ceo-letters/innovation-with-purpose`, `dummy-pages/investors/ceo-letters/investing-in-people-and-skills`, `dummy-pages/investors/ceo-letters/responsible-growth-priorities`, `dummy-pages/newsroom`, `dummy-pages/newsroom/best-buy-gcc-transition-to-tcs`, `dummy-pages/newsroom/industrial-intelligence-foundry`, `dummy-pages/newsroom/inside-the-technology-powering-marathon-race-day`, `dummy-pages/newsroom/mystate-selects-tcs-bancs`, `dummy-pages/newsroom/next-gen-system-on-chip-design-services`, `dummy-pages/newsroom/personalising-the-streaming-experience`, `dummy-pages/newsroom/tcs-google-cloud-ai-native-autonomous-enterprises`, `dummy-pages/newsroom/tcs-iem-kolkata-ai-centre-of-excellence`, `dummy-pages/newsroom/tcs-jaguar-renew-formula-e-sponsorship`, `dummy-pages/newsroom/tcs-partners-manageengine-sovereign-cloud`, `dummy-pages/newsroom/tcs-q2-fy27-results-announced`, `dummy-pages/newsroom/tcs-technology-innovation-partner-jfk-terminal-one`, `dummy-pages/products`, `dummy-pages/services`

@@ -160,7 +160,7 @@ Model `fragment`; template name "Fragment" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Reference | `reference` | aem-content | No | — | — | — | /language-master/en/block-library/fragment/fragments/cta-banner |
+| Reference | `reference` | aem-content | No | — | — | — | /language-masters/en/block-library/fragment/fragments/cta-banner |
 
 #### Additional tab — Fragment
 
@@ -262,7 +262,7 @@ A = Reference
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Reference | `/language-master/en/block-library/fragment/fragments/cta-banner` | The shared page | The banner renders in the block |
+| A | Reference | `/language-masters/en/block-library/fragment/fragments/cta-banner` | The shared page | The banner renders in the block |
 
 Business rule: only site paths are loaded (no full URLs). Validation: the content shows in the editor preview. Common mistake: a page of another locale (wrong language).
 
@@ -587,7 +587,7 @@ Evidence to collect: host page URL, Reference value, network status of the `.pla
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 1 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 1 instance(s) in total:
 - Block library: `block-library/fragment/fragment-block`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
