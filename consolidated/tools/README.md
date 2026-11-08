@@ -75,3 +75,47 @@ powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1           # 
 
 Publish the DAM videos, audio and documents (non-image assets are served only once published), replace the
 sheets with `../sheets/` and publish them, then publish and index the pages.
+
+# Exporting the asset IDs (separate AEM Assets environment, EDAM)
+
+After the asset packages are installed on the Assets environment (and processed and approved),
+`export-asset-ids.sh` (macOS) / `export-asset-ids.ps1` (Windows) read every asset below
+`/content/dam/tcs-corp` there (DAM path, asset ID `urn:aaid:aem:<id>`, MIME type, approval status) and
+compare them with `expected-assets.csv` (the 13,010 assets the packages install). Send `asset-ids.csv`
+to the migration team: the page packages are rebuilt from it with the assets' delivery URLs (1.3.0).
+
+The token is one for the **Assets environment** (its Developer Console > Integrations > Local token); the
+user needs read access to `/content/dam/tcs-corp`. The scripts only read: nothing is changed in AEM.
+
+macOS (Terminal):
+
+```bash
+cd <path>/consolidated
+export AEM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com   # the Assets environment
+export AEM_TOKEN='<access token>'
+bash tools/export-asset-ids.sh
+# optional spot check of the delivery tier with 5 approved images:
+export DELIVERY_HOST=delivery-p<program>-e<environment>.adobeaemcloud.com     # or the custom delivery domain
+bash tools/export-asset-ids.sh --check 5
+```
+
+Windows (PowerShell):
+
+```powershell
+cd <path>\consolidated
+$env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"   # the Assets environment
+powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1
+$env:DELIVERY_HOST = "delivery-p<program>-e<environment>.adobeaemcloud.com"
+powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1 -Check 5
+```
+
+Results in `tools/` (or `--out <folder>` / `-Out <folder>`):
+
+- `asset-ids.csv`: `path,asset_id,mime,status,batch` (the expected assets, then any other assets found below
+  the folder, without a batch). Mac and Windows write the same file.
+- `asset-ids-report.txt`: expected, found, **missing** (not installed: listed with their batch, reinstall
+  that batch's asset packages), without an ID, **approved / not approved yet**, other assets.
+- `--check` / `-Check`: one line per image, `200` = delivered; `404` usually means not approved (or not
+  processed) yet.
+
+Run it again at any time (for example after approving more folders): it rewrites both files.
