@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Date | 8 November 2026 |
-| Status | For review — E-D1 answered (licensed); E-D2 to E-D5 open (KB-D-064, Proposed) |
+| Status | **Not adopted** (8 November 2026, KB-D-064): there is no separate AEM Assets environment; the assets stay in the Sites author's DAM and the pages reference them by DAM path. Kept for reference |
 | Scope | Images, videos, audio and documents of the TCS Corporate site, including the 8,432 migrated pages (EMA migration 1.2.0) |
 
 ## 1. Today
