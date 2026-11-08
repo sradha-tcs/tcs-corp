@@ -35,9 +35,36 @@ sections 7 to 9.
 Before installing on an author that has the old root, move the existing tree (Sites console > Move, references
 adjusted) and have the site's path mapping changed for the new root (`edam-main` of the site repository).
 
-## EDAM set-up: two scripts
+## How to install (decided 8 November 2026)
 
-With the assets on a separate AEM Assets environment, run from this folder (details: `RUN-SCRIPTS.md`):
+The assets stay in the **Sites author's own DAM** (the delivery host is the Sites environment's own: there is no
+separate AEM Assets environment) and the pages reference them by **DAM path**: the standard set-up. Install the
+packages of `consolidated/packages/` on the Sites author in the order of its `INSTALL-ORDER.md` (per batch the
+asset packages, then the page package), with one command from `consolidated/`:
+
+```bash
+export AEM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com
+read -r -s -p "Access token: " AEM_TOKEN; export AEM_TOKEN; echo
+bash tools/install-packages.sh --dry-run          # the list, nothing installed
+bash tools/install-packages.sh --batch B001       # pilot
+bash tools/install-packages.sh                    # everything (resumable: run it again after a stop)
+```
+
+```powershell
+$env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -DryRun
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -Batch B001
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1
+```
+
+(The PowerShell version asks for the token, hidden.) On a fresh environment install `packages-earlier-run-assets/`
+first (its README). Then publish the DAM videos, audio and documents, replace and publish the sheets, publish and
+index the pages (`consolidated/packages/INSTALL-ORDER.md`). `packages-for-edam-sites/` isn't used.
+
+## Only for a separate AEM Assets environment (EDAM): two scripts
+
+Not used with the decision above; kept in case the assets move to a separate AEM Assets environment later.
+Run from this folder (details: `RUN-SCRIPTS.md`):
 
 1. **`edam-assets.sh`** (Mac) / **`edam-assets.ps1`** (Windows): the assets to the Assets environment (extract,
    tags, upload, metadata, approval) and their IDs exported to `edam-state/asset-ids.csv`.

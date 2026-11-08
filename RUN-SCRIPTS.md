@@ -1,5 +1,9 @@
 # Two scripts: EDAM assets, then AEM Sites
 
+> **Not used for now (decided 8 November 2026):** the assets stay in the Sites author's own DAM and the pages
+> reference them by DAM path; install `consolidated/packages/` with `consolidated/tools/install-packages.*`
+> (`README.md`, "How to install"). These scripts are only for a separate AEM Assets environment.
+
 Everything the EDAM set-up needs from this branch runs with two scripts, each in a macOS and a Windows version,
 from the branch's root folder (the downloaded branch):
 

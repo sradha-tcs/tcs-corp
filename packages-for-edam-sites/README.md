@@ -1,5 +1,9 @@
 # Packages for the EDAM set-up
 
+> **Not used for now (decided 8 November 2026):** the assets stay in the Sites author's own DAM and the pages
+> reference them by DAM path; install `../consolidated/packages/` (`../README.md`, "How to install"). This folder
+> is only for a separate AEM Assets environment.
+
 For a site whose assets live in a **separate AEM Assets environment (EDAM)**, where content packages can't be
 installed. Nothing here replaces `../packages/` or `../consolidated/packages/`: those stay as they are for a
 local or non-EDAM set-up (assets in the Sites author's own DAM).
