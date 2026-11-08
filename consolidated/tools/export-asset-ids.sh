@@ -11,17 +11,19 @@
 #   DELIVERY_HOST   optional, for --check: the delivery host (delivery-p<program>-e<environment>.adobeaemcloud.com
 #                   or the custom delivery domain)
 #
-# Usage: bash export-asset-ids.sh [--out <folder>] [--check N]
+# Usage: bash export-asset-ids.sh [--batch B0xx] [--out <folder>] [--check N]
+#   --batch B0xx: compare only the assets that batch installs or its pages use (e.g. the pilot B001)
 #   writes <folder>/asset-ids.csv and <folder>/asset-ids-report.txt (default: the folder of this script)
 #   --check N: requests N approved images from the delivery tier (spot check of delivery)
 # Needs curl and perl (both part of macOS).
 set -uo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
-OUT=$HERE CHECK=0
+OUT=$HERE CHECK=0 BATCH=""
 while [ $# -gt 0 ]; do
   case $1 in
     --out) OUT=$2; shift ;;
     --check) CHECK=$2; shift ;;
+    --batch) BATCH=$2; shift ;;
     *) echo "unknown option $1"; exit 2 ;;
   esac
   shift
@@ -64,7 +66,7 @@ done
 
 # merge: asset-ids.csv (expected assets first, then the other assets found) and the report
 perl -MJSON::PP -e '
-  my ($tmp, $out, $exp) = @ARGV;
+  my ($tmp, $out, $exp, $sel) = @ARGV;
   my (%id, %st, %mt);
   for my $f (glob("$tmp/assets-*.json")) { local $/; open my $h, "<", $f; my $d = decode_json(<$h>);
     $id{$_->{"jcr:path"}} = $_->{"jcr:uuid"} for @{$d->{hits}} }
@@ -72,8 +74,10 @@ perl -MJSON::PP -e '
     for (@{$d->{hits}}) { (my $p = $_->{"jcr:path"}) =~ s{/jcr:content/metadata$}{} or next;
       $st{$p} = $_->{"dam:status"} // ""; $mt{$p} = $_->{"dc:format"} // "" } }
   open my $e, "<", $exp or die; <$e>;
-  my (@rows, %want, %c, @missing, @noid);
+  my (@rows, %want, %c, @missing, @noid); my $n = 0;
   while (<$e>) { chomp; my ($p, $b) = split /,/; $want{$p} = 1;
+    my $need = (split /,/, $_)[3] // "";
+    next if $sel ne "" && index($b, $sel) != 0 && " $need" !~ / \Q$sel\E/; $n++;
     if (!exists $id{$p}) { push @missing, "$p,$b"; $c{missing}++; next }
     if (!$id{$p}) { push @noid, $p; $c{noid}++ }
     my $s = $st{$p} // ""; $c{$s eq "approved" ? "approved" : "not approved"}++;
@@ -81,15 +85,14 @@ perl -MJSON::PP -e '
   my @extra = grep { !$want{$_} } sort keys %id;
   push @rows, join(",", $_, ($id{$_} ? "urn:aaid:aem:$id{$_}" : ""), $mt{$_} // "", $st{$_} // "", "") for @extra;
   open my $o, ">", "$out/asset-ids.csv" or die; print $o "path,asset_id,mime,status,batch\n", map { "$_\n" } @rows; close $o;
-  my $n = keys %want;
   open my $r, ">", "$out/asset-ids-report.txt" or die;
   printf $r "Asset ID export, %s UTC\n\n", scalar gmtime;
-  printf $r "Expected (installed by the asset packages): %d\nFound with an asset ID: %d\nMissing (not installed): %d\nWithout an asset ID: %d\nApproved: %d\nNot approved yet: %d\nOther assets below the folder (not from the packages): %d\n",
-    $n, $n - ($c{missing} // 0) - ($c{noid} // 0), $c{missing} // 0, $c{noid} // 0, $c{approved} // 0, $c{"not approved"} // 0, scalar @extra;
+  printf $r "Expected%s: %d\nFound with an asset ID: %d\nMissing (not installed): %d\nWithout an asset ID: %d\nApproved: %d\nNot approved yet: %d\nOther assets below the folder (not from the migration): %d\n",
+    ($sel ne "" ? " (batch $sel)" : " (the EDAM set-up)"), $n, $n - ($c{missing} // 0) - ($c{noid} // 0), $c{missing} // 0, $c{noid} // 0, $c{approved} // 0, $c{"not approved"} // 0, scalar @extra;
   print $r "\nMissing (path,batch):\n", map { "$_\n" } @missing if @missing;
   print $r "\nWithout an asset ID:\n", map { "$_\n" } @noid if @noid;
   close $r;
-' "$TMP" "$OUT" "$HERE/expected-assets.csv" || { echo "merge failed"; exit 1; }
+' "$TMP" "$OUT" "$HERE/expected-assets.csv" "$BATCH" || { echo "merge failed"; exit 1; }
 sed -n '3,9p' "$OUT/asset-ids-report.txt"
 echo "written: $OUT/asset-ids.csv, $OUT/asset-ids-report.txt"
 

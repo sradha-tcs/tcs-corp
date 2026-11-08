@@ -17,10 +17,12 @@
   $env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
   powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1
   powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1 -Check 5
+  powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1 -Batch B001
 #>
 param(
   [string]$Out = "",
-  [int]$Check = 0
+  [int]$Check = 0,
+  [string]$Batch = ""
 )
 $ErrorActionPreference = "Stop"
 $here = $PSScriptRoot
@@ -81,9 +83,14 @@ $rows = New-Object System.Collections.Generic.List[string]
 $rows.Add("path,asset_id,mime,status,batch")
 $want = @{}; $missing = New-Object System.Collections.Generic.List[string]; $noid = New-Object System.Collections.Generic.List[string]
 $approved = 0; $notApproved = 0
+$n = 0
 foreach ($line in (Get-Content $expected | Select-Object -Skip 1)) {
   if (-not $line) { continue }
   $f = $line.Split(','); $p = $f[0]; $b = $f[1]; $want[$p] = $true
+  # -Batch: compare only the assets that batch installs or its pages use (e.g. the pilot B001)
+  $need = if ($f.Count -gt 3) { $f[3] } else { "" }
+  if ($Batch -and -not $b.StartsWith($Batch) -and -not (" $need" -match (" " + [regex]::Escape($Batch)))) { continue }
+  $n++
   if (-not $ids.ContainsKey($p)) { $missing.Add("$p,$b"); continue }
   if (-not $ids[$p]) { $noid.Add($p) }
   $s = "$($status[$p])"
@@ -100,16 +107,15 @@ foreach ($p in $extra) {
 $csv = Join-Path $Out "asset-ids.csv"
 $report = Join-Path $Out "asset-ids-report.txt"
 [IO.File]::WriteAllText($csv, (($rows -join "`n") + "`n"))
-$n = $want.Count
 $lines = @(
   "Asset ID export, $((Get-Date).ToUniversalTime().ToString('ddd MMM d HH:mm:ss yyyy', [Globalization.CultureInfo]::InvariantCulture)) UTC", "",
-  "Expected (installed by the asset packages): $n",
+  "Expected$(if ($Batch) { " (batch $Batch)" } else { " (the EDAM set-up)" }): $n",
   "Found with an asset ID: $($n - $missing.Count - $noid.Count)",
   "Missing (not installed): $($missing.Count)",
   "Without an asset ID: $($noid.Count)",
   "Approved: $approved",
   "Not approved yet: $notApproved",
-  "Other assets below the folder (not from the packages): $($extra.Count)")
+  "Other assets below the folder (not from the migration): $($extra.Count)")
 if ($missing.Count) { $lines += @("", "Missing (path,batch):") + $missing }
 if ($noid.Count) { $lines += @("", "Without an asset ID:") + $noid }
 [IO.File]::WriteAllText($report, (($lines -join "`n") + "`n"))
