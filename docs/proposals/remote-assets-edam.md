@@ -57,7 +57,7 @@ Sites author's own DAM paths. The delivery branch keeps both set-ups apart: `pac
 | ID | Decision | Recommendation |
 |---|---|---|
 | E-D1 | Is Dynamic Media with OpenAPI delivery licensed and enabled on the Assets environment? | **Answered 8 November 2026: yes, the licensed version is used** |
-| E-D2 | Delivery domain: the default `delivery-p…-e…` host or a custom domain (e.g. `assets.tcs.com`) | Custom domain, so the page content doesn't carry environment ids |
+| E-D2 | Delivery domain: the default `delivery-p…-e…` host or a custom domain (e.g. `assets.tcs.com`) | Custom domain, so the page content doesn't carry environment ids. **Answered 8 November 2026: the default delivery host** (a custom domain can follow: rebuild and reinstall the content packages, `assetDomainMapping` in the picker configuration) |
 | E-D3 | Images: Edge Delivery media bus (MIME type stored) or Dynamic Media delivery (smart crops, AVIF) | Media bus for images (the blocks keep their `<picture>` handling, PageSpeed unchanged); Dynamic Media for video |
 | E-D4 | Approval of the 13,010 migrated assets: in bulk at installation, or by the DAM librarian per folder | In bulk per batch after the pilot (the content was approved on tcs.com) |
 | E-D5 | The Sites author's DAM after the move | Kept empty for the site; nothing is installed there |

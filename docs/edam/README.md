@@ -30,7 +30,8 @@ its own Assets environment without a code change.
 2. **Fill in the two templates** of this folder:
    - `<assets author host>` and `<assets delivery host>`: the Assets environment's host names without `https://`
      (`author-p…-e….adobeaemcloud.com`, `delivery-p…-e….adobeaemcloud.com`);
-   - `<custom delivery domain>` (decision E-D2): the custom delivery domain; without one, remove `assetDomainMapping`.
+   - `<custom delivery domain>` (decision E-D2): the custom delivery domain; without one, remove `assetDomainMapping`
+     (E-D2 answered 8 November 2026: the default delivery host for now, so remove it).
    `aemTierType` `delivery` lists approved assets only (the only ones delivered); `rootPath` is the site's
    folder on EDAM (`/content/dam/tcs-corp`); `alwaysUseDMDelivery` stores delivery URLs.
 3. **Upload them to the Sites author**: Assets > Files > create the folder `tcs-corp-config`, in it
