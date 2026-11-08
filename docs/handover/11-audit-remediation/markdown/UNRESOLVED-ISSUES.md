@@ -50,7 +50,7 @@ primary: true
 | ID | Blocker | Impact | Resolution |
 | --- | --- | --- | --- |
 | AB-01 | No AEM author / Universal Editor access in the documentation program | Universal Editor screenshots, dialog and Additional-tab validation, authored-vs-rendered comparison, page properties, authoring test execution | AEM Administrator: grant a documentation account, or a team member captures the screens |
-| AB-02 | /language-masters/en was being published while the set was generated | Analysis of the language master pages (links, rendering) is partial | Rerun the analysis after the publishing job ends |
+| AB-02 | Resolved 8 November 2026: /language-masters/en was being published when the set was first generated | Its link analysis was added after the publishing ended (8,317 pages) | — |
 | AB-03 | Only Chromium (Playwright) was available | Cross-browser and device testing | QA Lead: run the cross-browser matrix |
 | AB-04 | No PageSpeed / Core Web Vitals measurement in the program | Performance audit | Technical Lead: run PageSpeed on the feature preview |
 | AB-05 | No screen reader or manual keyboard testing in the program | Accessibility audit beyond DOM checks | Accessibility tester |

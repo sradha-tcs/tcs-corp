@@ -56,7 +56,6 @@ primary: true
 | GAP-02 | Manual, cross-browser, performance and screen reader test execution | AB-03 to AB-05 | QA Lead |
 | GAP-03 | Business validation of the inferred EPICs, features and stories | No approved backlog in the repository | Product Owner |
 | GAP-04 | SLA and support model | Not recorded | AMS Lead |
-| GAP-05 | Language master page analysis | AB-02 | Migration team |
 | GAP-06 | Production domain, CDN, monitoring | Not recorded | Solution Architect |
 | GAP-07 | Variation combination rules | Not enumerated in the sources | Technical Lead |
 

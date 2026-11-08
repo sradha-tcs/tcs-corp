@@ -68,12 +68,13 @@ primary: true
 | Command | Purpose | Result in this program |
 | --- | --- | --- |
 | `npm run lint` | ESLint (Airbnb, json, xwalk model rules) and Stylelint | Passed (exit 0) |
-| `npm test` | Unit tests (Node test runner) | 384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program) |
+| `npm test` | Unit tests (Node test runner) | 387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program) |
 | `npm run build:json` | Aggregate the Universal Editor models | Passed; no change to the committed files |
 | `npm run build:docs` | Generated sections of the block READMEs | Passed; no change to the committed files |
 | `node docs/handover/knowledge-base/validate-knowledge-base.mjs` | Knowledge base structure and pointers | Passed (34 pages, nothing missing or failing) |
 | `node capture.mjs (documentation program)` | Automated checks and screenshots of 200 reference pages at 4 widths | Completed: 200 pages, 800 screenshots |
-| `node analyze-links.mjs (documentation program)` | Links of the published pages of the roots | Completed for /design-block-master/en and /language-master/en; /language-masters/en after its publishing |
+| `node analyze-links.mjs (documentation program)` | Links of the published pages of the roots | Completed for the three roots |
+| `perf.mjs (documentation program)` | Load timing and query index requests of a page | Before PR #203: index done after 18.4 s (24 requests, 1.37 MB); after: 2.9 s (9 parallel requests, 0.87 MB) on /language-masters/en, 1.1 s (1 request) on /design-block-master/en |
 
 ## Main loading sequence
 

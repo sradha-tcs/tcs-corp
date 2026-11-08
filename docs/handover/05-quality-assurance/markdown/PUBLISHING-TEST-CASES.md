@@ -47,7 +47,7 @@ primary: false
 | --- | --- | --- | --- |
 | TC-PUB-001 | Publish and index /design-block-master/en | Failed | 344 of 345 published, 335 indexed; not published: /design-block-master/en/error-pages/404 (the root has no error pages) |
 | TC-PUB-002 | Publish and index /language-master/en | Passed | 3566 of 3567 published, 3557 indexed |
-| TC-PUB-003 | Publish and index /language-masters/en | Not Run (in progress) | 0 of 8442 published, 0 indexed |
+| TC-PUB-003 | Publish and index /language-masters/en | Failed | 8317 of 8442 published, 8317 indexed; not published: 125 pages: see consolidated/reports/NOT-PUBLISHED-LANGUAGE-MASTERS-2026-11-08.csv on the delivery branch |
 
 ## Screenshots
 

@@ -61,6 +61,7 @@ primary: true
 | DEF-014 | Minor | On block library pages that start with default content, the header logo overlaps the page title at 1440 px (e.g. accordion/accordion) | — |
 | DEF-015 | Minor | "There are no items to show" on 17 reference page(s): /design-block-master/en/block-library/animation/repeated-items, /design-block-master/en/block-library/animation/skeleton-loading, /design-block-master/en/block-library/animation/speed-and-trigger, /design-block-master/en/block-library/foundations/section-colours-with-blocks, /design-block-master/en/block-library/list/card-style-from-pages | — |
 | DEF-016 | Minor | Not published after 4 tries: /design-block-master/en/error-pages/404 (the root has no error pages) | — |
+| DEF-017 | Minor | Not published after 4 tries: 125 pages: see consolidated/reports/NOT-PUBLISHED-LANGUAGE-MASTERS-2026-11-08.csv on the delivery branch | — |
 
 ## Screenshots
 

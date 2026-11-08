@@ -80,7 +80,7 @@ primary: true
 
 ## Query index definition
 
-`helix-query.yaml` defines **one index**, `pages`, published as `/query-index.json`, for all 13 locales (and, temporarily, the language master under review).
+`helix-query.yaml` defines **four indexes** (8 November 2026): `pages`, published as `/query-index.json`, for the 13 locales, and one per review root (KB-D-068): `language_masters` (`/language-masters/en/query-index.json`), `language_master` (`/language-master/en/query-index.json`) and `design_block_master` (`/design-block-master/en/query-index.json`), with the same exclusions and columns. A page reads only its root's index (`indexUrlOf` in `utils/query-index.js`); the sitemap (`helix-sitemap.yaml`) is built from `/query-index.json`, so it lists the locales only.
 
 **Included:** `/**`.
 
@@ -201,7 +201,7 @@ flowchart LR
 
 - **Prefetch:** `prefetchData(main)` (`scripts/scripts.js`) starts `getPages()` and `loadTaxonomy()` when the lazy phase begins on pages with a List, Filter List or Conversation Canvas, and `loadRedirects()` with a List; not in the eager phase, so it doesn't compete with the LCP image. The blocks reuse the same cached promises.
 - **Skeletons:** List and Filter List render through `renderWhenLoaded` (`decorators/skeleton-decorator.js`): data within 150ms renders directly; later data shows a block-shaped skeleton (at least 250ms) so the section and those below aren't held back. The Canvas menus use `skeletonWhile`.
-- **Transfer:** every page view with one of these blocks downloads the whole index (all locales) in pages of 500 rows and filters it in the browser; cost grows with the number of published pages (handover Part 2.10.7 and F-30; per-locale indexes are a recommendation, not implemented).
+- **Transfer:** a page downloads only its root's index (8 November 2026: before, every page downloaded the shared index of all roots, 11,821 rows in 24 sequential requests of 500 rows, about 1.4 MB compressed, finished after about 18 s on a migrated page): requests of 1,000 rows, the ones after the first in parallel; a review root whose index doesn't exist yet falls back to `/query-index.json`. The language master index is still about 8,300 rows (about 1 MB compressed): per-locale indexes of the locales and a lighter navigation index remain recommendations (F-30).
 - **Placement:** avoid index-based blocks in the first section (LCP, handover Part 13.16).
 
 ## Sitemap

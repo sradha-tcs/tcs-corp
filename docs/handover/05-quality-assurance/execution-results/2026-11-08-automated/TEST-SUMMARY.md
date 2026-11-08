@@ -63,19 +63,20 @@ Automated checks only, run by the documentation program on 8 November 2026: the 
 | Not Run | 374 |
 | Curated page cases passed / failed | 1 / 19 |
 | Reference pages with horizontal overflow | 5 |
-| Defects recorded | 16 |
+| Defects recorded | 17 |
 
 ## Commands
 
 | Command | Result |
 | --- | --- |
 | `npm run lint` | Passed (exit 0) |
-| `npm test` | 384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program) |
+| `npm test` | 387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program) |
 | `npm run build:json` | Passed; no change to the committed files |
 | `npm run build:docs` | Passed; no change to the committed files |
 | `node docs/handover/knowledge-base/validate-knowledge-base.mjs` | Passed (34 pages, nothing missing or failing) |
 | `node capture.mjs (documentation program)` | Completed: 200 pages, 800 screenshots |
-| `node analyze-links.mjs (documentation program)` | Completed for /design-block-master/en and /language-master/en; /language-masters/en after its publishing |
+| `node analyze-links.mjs (documentation program)` | Completed for the three roots |
+| `perf.mjs (documentation program)` | Before PR #203: index done after 18.4 s (24 requests, 1.37 MB); after: 2.9 s (9 parallel requests, 0.87 MB) on /language-masters/en, 1.1 s (1 request) on /design-block-master/en |
 
 ## Publishing
 
@@ -83,7 +84,7 @@ Automated checks only, run by the documentation program on 8 November 2026: the 
 | --- | --- | --- | --- | --- |
 | /design-block-master/en | 345 | 344 | 335 | /design-block-master/en/error-pages/404 (the root has no error pages) |
 | /language-master/en | 3567 | 3566 | 3557 | — |
-| /language-masters/en | 8442 | 0 | 0 | — |
+| /language-masters/en | 8442 | 8317 | 8317 | 125 pages: see consolidated/reports/NOT-PUBLISHED-LANGUAGE-MASTERS-2026-11-08.csv on the delivery branch |
 
 ## Screenshots
 

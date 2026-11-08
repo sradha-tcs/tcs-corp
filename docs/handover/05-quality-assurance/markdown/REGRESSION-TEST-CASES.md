@@ -63,6 +63,7 @@ primary: false
 | `test/site/index-root.test.mjs` | 23 |
 | `test/site/page-tree.test.mjs` | 5 |
 | `test/site/paths.test.mjs` | 5 |
+| `test/site/query-index-url.test.mjs` | 3 |
 
 ## Screenshots
 

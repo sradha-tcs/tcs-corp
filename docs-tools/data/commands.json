@@ -10,7 +10,7 @@
   {
    "cmd": "npm test",
    "purpose": "Unit tests (Node test runner)",
-   "result": "384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program)"
+   "result": "387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program)"
   },
   {
    "cmd": "npm run build:json",
@@ -35,7 +35,12 @@
   {
    "cmd": "node analyze-links.mjs (documentation program)",
    "purpose": "Links of the published pages of the roots",
-   "result": "Completed for /design-block-master/en and /language-master/en; /language-masters/en after its publishing"
+   "result": "Completed for the three roots"
+  },
+  {
+   "cmd": "perf.mjs (documentation program)",
+   "purpose": "Load timing and query index requests of a page",
+   "result": "Before PR #203: index done after 18.4 s (24 requests, 1.37 MB); after: 2.9 s (9 parallel requests, 0.87 MB) on /language-masters/en, 1.1 s (1 request) on /design-block-master/en"
   }
  ]
 }

@@ -286,5 +286,23 @@
   "severity": "Minor",
   "area": "Content",
   "evidence": "publishing state"
+ },
+ {
+  "id": "DEF-017",
+  "title": "Not published after 4 tries: 125 pages: see consolidated/reports/NOT-PUBLISHED-LANGUAGE-MASTERS-2026-11-08.csv on the de",
+  "role": "All",
+  "subject": "Publishing",
+  "sourceFiles": [],
+  "relatedComponents": [],
+  "relatedPages": [],
+  "status": "Open",
+  "lastValidatedDate": "2026-11-08",
+  "version": "1.0",
+  "owner": "Documentation Owner (proposed)",
+  "confidence": "High",
+  "openQuestions": [],
+  "severity": "Minor",
+  "area": "Content",
+  "evidence": "publishing state"
  }
 ]

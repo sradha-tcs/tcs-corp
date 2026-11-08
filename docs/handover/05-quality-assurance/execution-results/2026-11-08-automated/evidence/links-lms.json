@@ -1,0 +1,570 @@
+{
+ "pages": 8317,
+ "failed": [],
+ "kinds": {
+  "own root": 23837,
+  "external": 66119,
+  "dam": 2037,
+  "to /language-master/en": 7,
+  "unmapped AEM path": 1
+ },
+ "missing": {
+  "/language-masters/en/careers/chile/articles/chile-learning": [
+   "/language-masters/en/careers/chile"
+  ],
+  "/language-masters/en/careers/chile/articles/chile-tcs-empowers": [
+   "/language-masters/en/careers/chile"
+  ],
+  "/language-masters/en/careers/chile/articles/chile-culture": [
+   "/language-masters/en/careers/chile"
+  ],
+  "/language-masters/en/careers/colombia/articles/colombia-learning": [
+   "/language-masters/en/careers/colombia"
+  ],
+  "/language-masters/en/careers/colombia/articles/colombia-tcs-empowers": [
+   "/language-masters/en/careers/colombia"
+  ],
+  "/language-masters/en/careers/colombia/articles/colombia-culture": [
+   "/language-masters/en/careers/colombia"
+  ],
+  "/language-masters/en/what-we-do/research/blogs/clean-energy-net-zero-goals-carbon-capture-technology": [
+   "/language-masters/en/careers/india/research-and-innovation",
+   "/language-masters/en/insights/authors/sivakumar-subramanian",
+   "/language-masters/en/insights/authors/sivakumar-subramanian",
+   "/language-masters/en/insights/authors/venkataramana-runkana",
+   "/language-masters/en/insights/authors/venkataramana-runkana"
+  ],
+  "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/white-paper/a-supply-chain-model-for-a-robust-pre-owned-jewelry-market": [
+   "/language-masters/en/insights/authors/abarnita-sen",
+   "/language-masters/en/insights/authors/abarnita-sen",
+   "/language-masters/en/insights/authors/chetan-hirurkar",
+   "/language-masters/en/insights/authors/chetan-hirurkar"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/zero-waste-manufacturing-circular-economy": [
+   "/language-masters/en/insights/article/shaping-safe-smart-utilities-energy-sustainability",
+   "/language-masters/en/insights/blogs/accelerating-sdv-architecture-generative-ai-mbse",
+   "/language-masters/en/insights/blogs/achieving-circularity-sustainable-supply-chains",
+   "/language-masters/en/insights/blogs/agentic-pathway-for-ai-native-utility-enterprise",
+   "/language-masters/en/insights/blogs/agriculture-digital-regeneration-sustainable-food-systems"
+  ],
+  "/language-masters/en/insights/perspectives/articles/european-leaders-focus-on-innovation-customers": [
+   "/language-masters/en/insights/authors/akhilesh-tiwari",
+   "/language-masters/en/insights/authors/akhilesh-tiwari",
+   "/language-masters/en/insights/perspectives/articles/location-independent-agile-model-remote-working",
+   "/language-masters/en/insights/perspectives/articles/the-ascent-of-the-smarter-faster-lighter-enterprise"
+  ],
+  "/language-masters/en/what-we-do/industries/retail/white-paper/food-freshness-monitoring-cold-supply-chain": [
+   "/language-masters/en/insights/authors/alok-vyas",
+   "/language-masters/en/insights/authors/alok-vyas",
+   "/language-masters/en/what-we-do/industries/retail/solution/resilient-supply-chain-retail-challenges",
+   "/language-masters/en/what-we-do/research/white-paper/digital-food-passport-enhancing-transparency-quality-circularity",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/connected-services-ecosystem-deliver-value"
+  ],
+  "/language-masters/en/what-we-do/industries/retail/white-paper/supply-chain-outsourcing-framework": [
+   "/language-masters/en/insights/authors/alok-vyas",
+   "/language-masters/en/insights/authors/alok-vyas",
+   "/language-masters/en/what-we-do/industries/retail/solution/resilient-supply-chain-retail-challenges",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/digital-supply-chain-product-availability",
+   "/language-masters/en/what-we-do/pace-innovation/article/transforming-supply-chains-revenue-center"
+  ],
+  "/language-masters/en/what-we-do/industries/energy-resources-utilities/white-paper/the-beginning-of-a-new-era-for-utilities": [
+   "/language-masters/en/insights/authors/anindya-pradhan",
+   "/language-masters/en/insights/authors/anindya-pradhan",
+   "/language-masters/en/insights/authors/aniruddha-mukherjee",
+   "/language-masters/en/insights/authors/aniruddha-mukherjee",
+   "/language-masters/en/insights/authors/subhadip-mahalanabish"
+  ],
+  "/language-masters/en/what-we-do/services/consulting/white-paper/tsa-management-best-practices": [
+   "/language-masters/en/insights/authors/ankita-singh",
+   "/language-masters/en/insights/authors/ankita-singh",
+   "/language-masters/en/insights/authors/julie-wang",
+   "/language-masters/en/insights/authors/julie-wang",
+   "/language-masters/en/insights/authors/sarah-rushforth"
+  ],
+  "/language-masters/en/what-we-do/services/network-solutions-and-services/white-paper/site-engineering-acceleration-5g-network-deployment": [
+   "/language-masters/en/insights/authors/apurwa-loya",
+   "/language-masters/en/insights/authors/apurwa-loya",
+   "/language-masters/en/insights/authors/vikasagarwal",
+   "/language-masters/en/insights/authors/vikasagarwal",
+   "/language-masters/en/insights/blogs/5g-network-deployment-wireless-site-build-accelerator"
+  ],
+  "/language-masters/en/what-we-do/services/consulting/white-paper/five-ways-manage-achieve-synergy-targets-mergers-and-acquisitions": [
+   "/language-masters/en/insights/authors/claire-yan",
+   "/language-masters/en/insights/authors/claire-yan",
+   "/language-masters/en/insights/authors/julie-wang",
+   "/language-masters/en/insights/authors/julie-wang",
+   "/language-masters/en/insights/authors/praveen-bhasin"
+  ],
+  "/language-masters/en/what-we-do/research/blogs/hvac-optimization-energy-conservation-efficiency": [
+   "/language-masters/en/insights/authors/drsrinarayananagarathinam",
+   "/language-masters/en/insights/authors/drsrinarayananagarathinam"
+  ],
+  "/language-masters/en/what-we-do/industries/banking/blog/data-driven-pricing-game-changing-innovation-banking": [
+   "/language-masters/en/insights/authors/hrishikesh-vaishnav",
+   "/language-masters/en/insights/authors/hrishikesh-vaishnav",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/data-driven-decision-making-mortgage-business"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/cognitive-demand-forecasting-solution-framework": [
+   "/language-masters/en/insights/authors/mohanrajkaruppusamy",
+   "/language-masters/en/insights/authors/mohanrajkaruppusamy",
+   "/language-masters/en/what-we-do/industries/retail/article/ai-retail-bottom-up-approach-supply-chain-resilience"
+  ],
+  "/language-masters/en/what-we-do/services/consulting/white-paper/semantic-data-provide-knowledge-unlock-value": [
+   "/language-masters/en/insights/authors/nagarjuna-challa",
+   "/language-masters/en/insights/authors/nagarjuna-challa"
+  ],
+  "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/generative-ai-customer-service-transformation": [
+   "/language-masters/en/insights/authors/nidhisrivastava",
+   "/language-masters/en/insights/authors/nidhisrivastava",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/genai-exceptional-customer-service"
+  ],
+  "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/responsible-ai-driving-progress-innovation-social-good": [
+   "/language-masters/en/insights/authors/nidhisrivastava",
+   "/language-masters/en/insights/authors/nidhisrivastava",
+   "/language-masters/en/insights/authors/sandeep-saxena",
+   "/language-masters/en/insights/authors/sandeep-saxena",
+   "/language-masters/en/insights/blogs/changing-conversation-sustainability-as-strategy"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/digital-thread-generative-ai-intelligent-insights": [
+   "/language-masters/en/insights/authors/prabhu-patruni",
+   "/language-masters/en/insights/authors/prabhu-patruni",
+   "/language-masters/en/insights/blogs/generative-ai-iiot-powering-future-manufacturing",
+   "/language-masters/en/insights/blogs/plm-cloud-connected-digital-enterprise",
+   "/language-masters/en/insights/blogs/reimagining-manufacturing-processes-ai-agents"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/next-gen-technologies-ai-future-mobility": [
+   "/language-masters/en/insights/authors/ramalingeswara-rao-balla",
+   "/language-masters/en/insights/authors/ramalingeswara-rao-balla",
+   "/language-masters/en/insights/blogs/ai-for-business-transformation",
+   "/language-masters/en/insights/blogs/generative-ai-future-automotive-marketing",
+   "/language-masters/en/insights/global-studies/ai-business-study-manufacturing"
+  ],
+  "/language-masters/en/what-we-do/services/tcs-interactive/white-paper/superforecaster-precise-decisioning": [
+   "/language-masters/en/insights/authors/sandeep-banyal",
+   "/language-masters/en/insights/authors/sandeep-banyal",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/agentic-ai-banking-insurance-dilemmas"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/sustainable-aviation-manufacturing-practices": [
+   "/language-masters/en/insights/authors/shiva-gupta",
+   "/language-masters/en/insights/authors/shiva-gupta",
+   "/language-masters/en/insights/blogs/generative-ai-iiot-powering-future-manufacturing",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/aerospace-industry-resilient-supply-chain",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/aerospace-technologies-aviation-mro-revolution"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/sustainability-by-design-build-value": [
+   "/language-masters/en/insights/authors/sreenivasachakravarti",
+   "/language-masters/en/insights/authors/sreenivasachakravarti",
+   "/language-masters/en/insights/authors/swati-murthy",
+   "/language-masters/en/insights/authors/swati-murthy",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/connected-services-ecosystem-deliver-value"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/manufacturing-technology-digital-factory": [
+   "/language-masters/en/insights/authors/sreenivasachakravarti",
+   "/language-masters/en/insights/authors/sreenivasachakravarti",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/digital-technologies-transforming-industrial-manufacturing",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/connected-plants-smart-manufacturing",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/video/tata-chemicals-reimagines-plant-operations"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/improved-cx-persuasive-chatbots": [
+   "/language-masters/en/insights/authors/srivathsan-karanai-margan",
+   "/language-masters/en/insights/authors/srivathsan-karanai-margan",
+   "/language-masters/en/insights/authors/suresh-aranala-krishnamurthy",
+   "/language-masters/en/insights/authors/suresh-aranala-krishnamurthy",
+   "/language-masters/en/insights/blogs/cybersecurity-mesh-model-improved-security"
+  ],
+  "/language-masters/en/insights/blogs/futurists-optimistic-about-future-work": [
+   "/language-masters/en/insights/blogs/advancing-future-innovation-human-humanoid-collaboration",
+   "/language-masters/en/insights/blogs/gen-z-workforce-entry-level-jobs-powering-tcs-ai-first-culture",
+   "/language-masters/en/insights/blogs/human-centred-ai-driving-transformation-through-trust-talent",
+   "/language-masters/en/insights/blogs/navigating-new-cyber-security-frontier",
+   "/language-masters/en/what-we-do/services/consulting/article/building-tariff-smart-supply-chain"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/frictionless-payments-journey-switzerland": [
+   "/language-masters/en/insights/blogs/ai-european-banking-challenges-opportunities",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/cross-border-payments-drivers-evolution",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/embedded-finance-transform-corporate-banking",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/payments-transformation-leading-banks-worldwide",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/tcs-bancs-positioned-leader-omdia-universe"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/connected-vehicle-data-cyber-security": [
+   "/language-masters/en/insights/blogs/ai-for-business-transformation",
+   "/language-masters/en/what-we-do/industries/manufacturing/case-study/supply-chain-harmonization-for-bekaert",
+   "/language-masters/en/what-we-do/industries/manufacturing/video/elevating-tata-motors-limited-customer-experience",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/accelerating-automotive-industry-towards-sustainability",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/augmented-reality-digital-transformation-manufacturing"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/solution/tcs-digifleet-improved-supply-chain-operations": [
+   "/language-masters/en/insights/blogs/cloud-driven-sustainability-futuristic-manufacturing",
+   "/language-masters/en/insights/blogs/iot-vaccine-management-transportation",
+   "/language-masters/en/insights/blogs/last-mile-delivery-fleet-management-system",
+   "/language-masters/en/insights/blogs/last-mile-delivery-fleet-management-system",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/aerospace-industry-ecommerce-added-value"
+  ],
+  "/language-masters/en/insights/blogs/measuring-grid-resilience-utilities-assess-disruptive-events-impact": [
+   "/language-masters/en/insights/blogs/digital-transformation-enable-revenue-stream-construction-industry",
+   "/language-masters/en/insights/blogs/taking-advantage-spatial-data-utility-modernization",
+   "/language-masters/en/who-we-are/events/tcs-at-distributech-international-2026",
+   "/language-masters/en/who-we-are/events/tcs-utilities-forum-insights-texas-energy-market"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/embedded-insurance-innovation-better-cx": [
+   "/language-masters/en/insights/blogs/embedded-insurance-evolution-asia",
+   "/language-masters/en/what-we-do/industries/insurance/video/christelijke-mutualiteit-centralised-insurance-software-app",
+   "/language-masters/en/who-we-are/events/tcs-insurance-innovators-2025-nordics"
+  ],
+  "/language-masters/en/what-we-do/services/data-and-analytics/white-paper/master-data-management-supply-chain-resilience": [
+   "/language-masters/en/insights/blogs/enhancing-dealer-network-management-with-master-data-management",
+   "/language-masters/en/insights/blogs/implementing-ai-effective-data-governance",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/bringing-glitter-back-jewelry-retail"
+  ],
+  "/language-masters/en/insights/blogs/generative-ai-transforming-banking-customer-onboarding": [
+   "/language-masters/en/insights/blogs/generative-ai-bpm-principles-near-real-time-nav-process",
+   "/language-masters/en/what-we-do/services/artificial-intelligence/article/ai-finance-cfo-challenges-opportunities"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/generative-ai-manufacturing-knowledge-gap": [
+   "/language-masters/en/insights/blogs/generative-ai-iiot-powering-future-manufacturing",
+   "/language-masters/en/insights/blogs/going-beyong-rag-unlocking-data-value",
+   "/language-masters/en/insights/blogs/overcoming-barriers-gen-ai-adoption",
+   "/language-masters/en/what-we-do/industries/manufacturing/solution/tcs-manufacturing-ai-agentic-futures",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/ai-driven-model-based-strategy-product-development"
+  ],
+  "/language-masters/en/who-we-are/newsroom/analyst-reports/convergence-private-5g-wi-fi-6-propel-new-enterprise-private-network": [
+   "/language-masters/en/insights/blogs/generative-ai-telecom-optimize-knowledge-base",
+   "/language-masters/en/what-we-do/services/network-solutions-and-services/solution/connected-enterprise-accelerating-next-era-digital-change",
+   "/language-masters/en/what-we-do/services/network-solutions-and-services/solution/network-planning-design-services"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/ai-agents-insurance-claims-function": [
+   "/language-masters/en/insights/blogs/next-gen-insurance-four-key-questions-for-leaders",
+   "/language-masters/en/insights/blogs/rewiring-product-engineering-dna-agentic-ai",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/ai-agents-financial-services-transformation",
+   "/language-masters/en/what-we-do/industries/capital-markets/case-study/colonial-first-state-superannuation-digital-transformation",
+   "/language-masters/en/what-we-do/industries/insurance/case-study/tcs-helps-insurer-implement-employee-health-insurance-solution"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/generative-ai-industry-value-chains": [
+   "/language-masters/en/insights/blogs/reimagining-manufacturing-processes-ai-agents",
+   "/language-masters/en/what-we-do/services/industrial-autonomy-engineering/white-paper/industrial-autonomy-next-operating-model-enterprises",
+   "/language-masters/en/what-we-do/services/industrial-autonomy-engineering/white-paper/industrial-autonomy-next-operating-model-enterprises",
+   "/language-masters/en/what-we-do/services/industrial-autonomy-engineering/white-paper/unified-engineering-road-to-sky-next-generation-mobility",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/podcast/tcs-bringing-things-to-life-podcast"
+  ],
+  "/language-masters/en/what-we-do/industries/retail/solution/algo-retail-enhance-customer-lifetime-value": [
+   "/language-masters/en/insights/blogs/retail-colleague-experience-employee-satisfaction",
+   "/language-masters/en/what-we-do/industries/retail/article/ai-powered-retail-transport-planning",
+   "/language-masters/en/what-we-do/industries/retail/article/five-ways-ai-transform-retail",
+   "/language-masters/en/what-we-do/industries/retail/article/holiday-retail-balance-agility-empathy-technology",
+   "/language-masters/en/what-we-do/industries/retail/article/gartner-market-guide-ai-powered-retail-platform"
+  ],
+  "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/article/cpg-ecosystem-partnership-digital-transformation": [
+   "/language-masters/en/insights/blogs/sustainability-personalization-cpg-trends",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/solution/green-connected-ecosystem-cpg-sustainability",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/solution/tcs-envirozone-sustainability-solution"
+  ],
+  "/language-masters/en/what-we-do/services/enterprise-solutions/solution/tcs-servitization-engine-oracle-cloud-increase-customer-lifetime-value": [
+   "/language-masters/en/insights/blogs/transitioning-towards-servitization-readiness-approach",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/case-study/travelport-transform-customer-experience-drive-sales",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/tcs-oracle-partnership"
+  ],
+  "/language-masters/en/insights/authors/dinanath-kholkar-csbs": [
+   "/language-masters/en/insights/perspectives/articles/the-four-pillars-of-the-futurist-cfo"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/blog/building-sustainable-supply-chains": [
+   "/language-masters/en/insights/topics/sustainability-topic",
+   "/language-masters/en/what-we-do/services/sustainability-services/white-paper/rise-sustainable-responsible-supply-chains"
+  ],
+  "/language-masters/en/who-we-are/newsroom/press-release/tcs-partners-with-cumberland-building-society-transform-core-banking-solution": [
+   "/language-masters/en/what-we-do/industries/banking/solution/digital-mortgage-suite",
+   "/language-masters/en/what-we-do/industries/banking/solution/tcs-digital-mortgage-suite",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/digitalisation-existing-mortgage-jouneys-uk",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/case-study/bancs-credit-unions-building-societies-transformation",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/collateral/bancs-newsletter"
+  ],
+  "/language-masters/en/insights/blogs/evolving-market-risks-financial-institutions-response": [
+   "/language-masters/en/what-we-do/industries/banking/white-paper/corporate-resilience-age-of-geopolitical-uncertainty",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/demystifying-frtb-ima-regulatory-burden-strategic-edge",
+   "/language-masters/en/what-we-do/industries/banking/white-paper/responsible-ai-financial-crime-global-compliance-governance"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/accelerated-computing-mitigate-cybersecurity-threats": [
+   "/language-masters/en/what-we-do/industries/capital-markets/white-paper/digital-assistants-banks-self-service-model",
+   "/language-masters/en/what-we-do/industries/capital-markets/white-paper/wealth-management-client-behavior-analytics",
+   "/language-masters/en/what-we-do/industries/insurance/article/creating-shared-values-and-shared-beliefs-for-purpose-led-insurance",
+   "/language-masters/en/what-we-do/industries/insurance/blog/insurance-solutions-capital-climate-resilience",
+   "/language-masters/en/what-we-do/industries/insurance/blog/digital-solutions-esg-adoption-apac-insurance"
+  ],
+  "/language-masters/en/what-we-do/services/enterprise-solutions/white-paper/generative-ai-human-resources": [
+   "/language-masters/en/what-we-do/industries/communications-media-information-services/article/tcs-tm-forum-knowledge-report",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/tcs-crystallus-forward-broadcasting-service",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/white-paper/accelerate-human-capital-management-deployments-ai-fast-track-success"
+  ],
+  "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/white-paper/cpg-precision-distribution-data-driven-approach": [
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution",
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/solution/revenue-prime"
+  ],
+  "/language-masters/en/what-we-do/industries/education/solution/digital-security-as-a-service-education": [
+   "/language-masters/en/what-we-do/industries/education",
+   "/language-masters/en/what-we-do/industries/education"
+  ],
+  "/language-masters/en/what-we-do/services/cloud/microsoft/white-paper/supply-chain-decarbonization-missing-link-net-zero": [
+   "/language-masters/en/what-we-do/industries/energy-resources-utilities/white-paper/federated-emobility-platform-for-zero-carbon-future",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/home-improvement-retailers-sustainability",
+   "/language-masters/en/what-we-do/pace-innovation/article/transforming-supply-chains-revenue-center",
+   "/language-masters/en/what-we-do/services/consulting/supply-chain",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/power-industry-fast-tracking-digital-transformation"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/iot-connected-services-business-model-transformation": [
+   "/language-masters/en/what-we-do/industries/healthcare/article/connected-care-ecosystem-reinvent-healthcare",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/solution/iot-digital-engineering-advisory-services",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/solution/tcs-connected-universe-platform-analytics",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/digital-intelligence-connected-enterprise",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/electroceuticals-revolution-iot-ai"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/supply-chain-risk-management-insurance": [
+   "/language-masters/en/what-we-do/industries/insurance",
+   "/language-masters/en/what-we-do/industries/insurance",
+   "/language-masters/en/what-we-do/industries/insurance",
+   "/language-masters/en/what-we-do/industries/insurance/solution/guidewire-services-consulting-transformation",
+   "/language-masters/en/what-we-do/industries/insurance/video/christelijke-mutualiteit-centralised-insurance-software-app"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/generative-agentic-autonomous-vehicle-insurance": [
+   "/language-masters/en/what-we-do/industries/insurance",
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/pas-modernization-property-and-casualty-insurance"
+  ],
+  "/language-masters/en/what-we-do/industries/insurance/white-paper/ai-technologies-transform-disability-insurance-claims": [
+   "/language-masters/en/what-we-do/industries/insurance",
+   "/language-masters/en/who-we-are/events/tcs-at-itc-vegas-2025"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/software-defined-vehicles-mobility-experience": [
+   "/language-masters/en/what-we-do/industries/manufacturing/blog/ai-in-manufacturing-moving-beyond-ai-pilots-to-scale-value",
+   "/language-masters/en/what-we-do/industries/manufacturing/solution/transforming-mobility-ecosystems",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/adapting-to-software-defined-vehicle-revolution",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/agentic-finance-practical-approach-evolving-finance-functions",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/driving-smart-sustainable-mobility-hyper-personalized-customer-experiences"
+  ],
+  "/language-masters/en/what-we-do/industries/manufacturing/white-paper/digital-commerce-manufacturing-sector-agility": [
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/rpa-process-automation-manufacturing-improve-operations",
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/shared-services-digital-transformation-manufacturer-guide"
+  ],
+  "/language-masters/en/what-we-do/industries/public-services/white-paper/addressing-climate-change-health-threats": [
+   "/language-masters/en/what-we-do/industries/public-services/anz-uke/public-sector-transformation-smart-governance",
+   "/language-masters/en/what-we-do/services/sustainability-services/solution/carbon-management-driving-net-zero-goals-faster",
+   "/language-masters/en/what-we-do/services/sustainability-services/solution/esg-climate-a-crucial-business-imperative",
+   "/language-masters/en/what-we-do/services/sustainability-services/solution/tcs-global-reporting-initiative-launch-digital-sustainability-taxonomy"
+  ],
+  "/language-masters/en/what-we-do/industries/public-services/solution/digigov-foundation-government-services": [
+   "/language-masters/en/what-we-do/industries/public-services/case-study/cgda-sparsh-program-digitalizes-pension-sanction-process",
+   "/language-masters/en/what-we-do/industries/public-services/india/digital-india-public-services",
+   "/language-masters/en/what-we-do/industries/public-services/india/digital-india-public-services",
+   "/language-masters/en/what-we-do/products-platforms/tcs-digibolt-digital-transformation-business-agility"
+  ],
+  "/language-masters/en/what-we-do/industries/public-services/solution/digigov-federated-identity-management-solution": [
+   "/language-masters/en/what-we-do/industries/public-services/india/digital-india-public-services",
+   "/language-masters/en/what-we-do/industries/public-services/india/digital-india-public-services"
+  ],
+  "/language-masters/en/who-we-are/newsroom/press-release/tcs-omnistore-wins-omnichannel-technology-of-the-year-award": [
+   "/language-masters/en/what-we-do/industries/retail/article/omnistore-2022-retail-system-awards"
+  ],
+  "/language-masters/en/what-we-do/industries/retail/white-paper/bimodal-supply-chain-fashion-retail": [
+   "/language-masters/en/what-we-do/industries/retail/case-study/tapestry-omnichannel-unified-commerce-platform",
+   "/language-masters/en/what-we-do/industries/retail/solution/resilient-supply-chain-retail-challenges",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/building-information-modelling-store-capacity-management",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/demand-volatility-digital-supply-chain",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/digital-supply-chain-product-availability"
+  ],
+  "/language-masters/en/what-we-do/industries/retail/white-paper/retail-sustainability-framework-value-chain": [
+   "/language-masters/en/what-we-do/industries/retail/white-paper/home-improvement-retailers-sustainability",
+   "/language-masters/en/what-we-do/industries/retail/white-paper/retail-data-analytics-grocery-range-rationalization"
+  ],
+  "/language-masters/en/what-we-do/industries/travel-and-logistics/white-paper/smart-airport-reimagine-operating-model": [
+   "/language-masters/en/what-we-do/industries/travel-and-logistics/solution/adaptive-airports-connected-traveler",
+   "/language-masters/en/what-we-do/industries/travel-and-logistics/white-paper/strengthen-mro-predictive-maintenance"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/quartz/interbank-borrowing-quartz-magazine": [
+   "/language-masters/en/what-we-do/products-platforms/quartz/magazine/magazine-edition-3-quartz-takes-off",
+   "/language-masters/en/what-we-do/products-platforms/quartz/magazine/quartz-magazine-edition-1-future-is-tokenized",
+   "/language-masters/en/what-we-do/products-platforms/quartz/magazine/quartz-magazine-edition-2-the-new-age",
+   "/language-masters/en/what-we-do/products-platforms/quartz/magazine/quartz-magazine-edition-4-the-ideas-issue"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-bancs/newsletter/single-event-processing-corporate-actions": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/bancs-frictionless-finance-customer-journey",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/leveraging-ai-asset-servicing-operations",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/t1-settlement-cycle-uk-eu-markets",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/t1-transition-transform-financial-markets-processing",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/tcs-bancs-shareholder-identification"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/bancs-revolutionizing-digital-contracts": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/algorithmic-bias-ai-mitigation-strategies",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/collateral/bancs-articles",
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/solution/digital"
+  ],
+  "/language-masters/en/who-we-are/newsroom/press-release/tcs-bancs-powers-societe-generale-securities-services-transformation-of-pan-european-custody-platform": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/interview/euroclear-post-trade-processing-transformation",
+   "/language-masters/en/who-we-are/events/isitc-annual-securities-operations-summit",
+   "/language-masters/en/who-we-are/events/tcs-bancs-sifma-ops-corporate-actions"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/automated-loan-management-lending-solution": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/solution/corporate-loan-origination"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-hobs/white-papers/generative-ai-reimagine-telelcom-ui-ux": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/case-study/community-fibre-redefines-customer-experience",
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/case-study/fibreconnect-accelerates-wholesale-network-rollout-with-tcs-hobs",
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/video/bridging-gap-consumerization-telco-enterprise-services-webinar",
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/white-papers/accelerating-telecom-digital-transformation-tier-2-3-csps",
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/white-papers/generative-ai-telco-elevating-enterprise-service-cx"
+  ],
+  "/language-masters/en/what-we-do/products-platforms/tcs-mastercraft/whitepaper/five-step-approach-privacy-safe-data-analytics": [
+   "/language-masters/en/what-we-do/products-platforms/tcs-mastercraft/solution/tcs-mastercraft-for-data-management"
+  ],
+  "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/building-future-ready-private-sovereign-ai": [
+   "/language-masters/en/what-we-do/services/artificial-intelligence",
+   "/language-masters/en/what-we-do/services/artificial-intelligence",
+   "/language-masters/en/what-we-do/services/artificial-intelligence/solution/tcs-cloud-content-and-information-management-aws",
+   "/language-masters/en/what-we-do/services/artificial-intelligence/solution/tcs-cloud-content-and-information-management-aws"
+  ],
+  "/language-masters/en/what-we-do/services/cognitive-business-operations/solution/innovative-strategies-future-ready-hr-operations": [
+   "/language-masters/en/what-we-do/services/cognitive-business-operations",
+   "/language-masters/en/what-we-do/services/cognitive-business-operations/solution/tcs-customer-experience-service",
+   "/language-masters/en/what-we-do/services/cognitive-business-operations/white-paper/proactive-hr-operations-digital-friends",
+   "/language-masters/en/who-we-are/events/shared-services-and-outsourcing-week-2025"
+  ],
+  "/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-financial-planning-analysis-sustainable-growth": [
+   "/language-masters/en/what-we-do/services/consulting/finance-transformation",
+   "/language-masters/en/what-we-do/services/consulting/white-paper/future-proof-financial-planning-and-analysis",
+   "/language-masters/en/what-we-do/services/consulting/white-paper/future-proof-financial-planning-and-analysis",
+   "/language-masters/en/what-we-do/services/consulting/white-paper/strategic-cost-cutting-for-better-margins-management"
+  ],
+  "/language-masters/en/what-we-do/services/consulting/white-paper/how-reimagined-operating-model-improves-sustainability-initiatives": [
+   "/language-masters/en/what-we-do/services/consulting/white-paper/enterprise-service-cloud-migration"
+  ],
+  "/language-masters/en/what-we-do/services/enterprise-solutions/solution/oracle-fusion-for-engineering-procurement-construction-companies": [
+   "/language-masters/en/what-we-do/services/enterprise-solutions",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/enterprise-navigator-integrated-consulting-framework-business-transformation",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/sap-s4-hana-migration-tcs-conversion",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/tcs-compass-enterprise-transformation-unlock-business-value",
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/tcs-oracle-cloud-services-innovate-business-processes"
+  ],
+  "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/four-tech-mega-trends-iot-edge": [
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/blog/iot-platform-modernization-unlock-business-value",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/podcast/tcs-bringing-things-to-life-podcast",
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/cloud-based-remote-automation-testing-digital-cockpits",
+   "/language-masters/en/who-we-are/events/tcs-at-esri-user-conference-2025",
+   "/language-masters/en/who-we-are/events/tcs-at-nasscom-design-engineering-summit-2025"
+  ],
+  "/language-masters/en/insights/blogs/how-ethical-explainable-ai-build-responsible-ai-for-future": [
+   "/language-masters/en/what-we-do/services/tcs-interactive/article/the-experience-revolution"
+  ],
+  "/language-masters/en/who-we-are/tcs-way/article/innovating-performance-management-system": [
+   "/language-masters/en/who-we-are/corporate-social-responsibility/article/building-hope-tcs-employees-contributed-millions-hours-of-purpose",
+   "/language-masters/en/who-we-are/events/top-employers-connect-india-tcs",
+   "/language-masters/en/who-we-are/tcs-way/article/design-thinking-center-of-excellence-improve-experiences",
+   "/language-masters/en/who-we-are/tcs-way/article/achieve-sustainable-development-goals-tcs-solutions",
+   "/language-masters/en/who-we-are/tcs-way/article/culture-of-innovation-tcs-building-strong-foundation"
+  ]
+ },
+ "unmapped": {
+  "/content/2026": [
+   "/language-masters/en/references/footer-conversation-canvas"
+  ]
+ },
+ "crossRoot": {
+  "/language-masters/en -> /language-master/en": [
+   "/language-masters/en/references/footer-conversation-canvas",
+   "/language-masters/en/references/footer-conversation-canvas",
+   "/language-masters/en/references/footer-conversation-canvas",
+   "/language-masters/en/references/footer-conversation-canvas",
+   "/language-masters/en/references/footer-conversation-canvas"
+  ]
+ },
+ "damLinks": 2037,
+ "counts": {
+  "missing": {
+   "/language-masters/en/careers/chile/articles/chile-learning": 1,
+   "/language-masters/en/careers/chile/articles/chile-tcs-empowers": 1,
+   "/language-masters/en/careers/chile/articles/chile-culture": 1,
+   "/language-masters/en/careers/colombia/articles/colombia-learning": 1,
+   "/language-masters/en/careers/colombia/articles/colombia-tcs-empowers": 1,
+   "/language-masters/en/careers/colombia/articles/colombia-culture": 1,
+   "/language-masters/en/what-we-do/research/blogs/clean-energy-net-zero-goals-carbon-capture-technology": 5,
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/white-paper/a-supply-chain-model-for-a-robust-pre-owned-jewelry-market": 4,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/zero-waste-manufacturing-circular-economy": 411,
+   "/language-masters/en/insights/perspectives/articles/european-leaders-focus-on-innovation-customers": 4,
+   "/language-masters/en/what-we-do/industries/retail/white-paper/food-freshness-monitoring-cold-supply-chain": 5,
+   "/language-masters/en/what-we-do/industries/retail/white-paper/supply-chain-outsourcing-framework": 5,
+   "/language-masters/en/what-we-do/industries/energy-resources-utilities/white-paper/the-beginning-of-a-new-era-for-utilities": 6,
+   "/language-masters/en/what-we-do/services/consulting/white-paper/tsa-management-best-practices": 7,
+   "/language-masters/en/what-we-do/services/network-solutions-and-services/white-paper/site-engineering-acceleration-5g-network-deployment": 13,
+   "/language-masters/en/what-we-do/services/consulting/white-paper/five-ways-manage-achieve-synergy-targets-mergers-and-acquisitions": 8,
+   "/language-masters/en/what-we-do/research/blogs/hvac-optimization-energy-conservation-efficiency": 2,
+   "/language-masters/en/what-we-do/industries/banking/blog/data-driven-pricing-game-changing-innovation-banking": 3,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/cognitive-demand-forecasting-solution-framework": 3,
+   "/language-masters/en/what-we-do/services/consulting/white-paper/semantic-data-provide-knowledge-unlock-value": 2,
+   "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/generative-ai-customer-service-transformation": 3,
+   "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/responsible-ai-driving-progress-innovation-social-good": 16,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/digital-thread-generative-ai-intelligent-insights": 12,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/next-gen-technologies-ai-future-mobility": 14,
+   "/language-masters/en/what-we-do/services/tcs-interactive/white-paper/superforecaster-precise-decisioning": 3,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/sustainable-aviation-manufacturing-practices": 12,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/sustainability-by-design-build-value": 10,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/manufacturing-technology-digital-factory": 8,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/improved-cx-persuasive-chatbots": 15,
+   "/language-masters/en/insights/blogs/futurists-optimistic-about-future-work": 7,
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/frictionless-payments-journey-switzerland": 8,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/connected-vehicle-data-cyber-security": 7,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/solution/tcs-digifleet-improved-supply-chain-operations": 22,
+   "/language-masters/en/insights/blogs/measuring-grid-resilience-utilities-assess-disruptive-events-impact": 4,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/embedded-insurance-innovation-better-cx": 3,
+   "/language-masters/en/what-we-do/services/data-and-analytics/white-paper/master-data-management-supply-chain-resilience": 3,
+   "/language-masters/en/insights/blogs/generative-ai-transforming-banking-customer-onboarding": 2,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/generative-ai-manufacturing-knowledge-gap": 8,
+   "/language-masters/en/who-we-are/newsroom/analyst-reports/convergence-private-5g-wi-fi-6-propel-new-enterprise-private-network": 3,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/ai-agents-insurance-claims-function": 7,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/generative-ai-industry-value-chains": 13,
+   "/language-masters/en/what-we-do/industries/retail/solution/algo-retail-enhance-customer-lifetime-value": 23,
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/article/cpg-ecosystem-partnership-digital-transformation": 6,
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/tcs-servitization-engine-oracle-cloud-increase-customer-lifetime-value": 3,
+   "/language-masters/en/insights/authors/dinanath-kholkar-csbs": 1,
+   "/language-masters/en/what-we-do/industries/manufacturing/blog/building-sustainable-supply-chains": 2,
+   "/language-masters/en/who-we-are/newsroom/press-release/tcs-partners-with-cumberland-building-society-transform-core-banking-solution": 19,
+   "/language-masters/en/insights/blogs/evolving-market-risks-financial-institutions-response": 3,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/accelerated-computing-mitigate-cybersecurity-threats": 39,
+   "/language-masters/en/what-we-do/services/enterprise-solutions/white-paper/generative-ai-human-resources": 3,
+   "/language-masters/en/what-we-do/industries/consumer-packaged-goods-and-distribution/white-paper/cpg-precision-distribution-data-driven-approach": 3,
+   "/language-masters/en/what-we-do/industries/education/solution/digital-security-as-a-service-education": 2,
+   "/language-masters/en/what-we-do/services/cloud/microsoft/white-paper/supply-chain-decarbonization-missing-link-net-zero": 6,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/iot-connected-services-business-model-transformation": 6,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/supply-chain-risk-management-insurance": 6,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/generative-agentic-autonomous-vehicle-insurance": 2,
+   "/language-masters/en/what-we-do/industries/insurance/white-paper/ai-technologies-transform-disability-insurance-claims": 2,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/software-defined-vehicles-mobility-experience": 9,
+   "/language-masters/en/what-we-do/industries/manufacturing/white-paper/digital-commerce-manufacturing-sector-agility": 2,
+   "/language-masters/en/what-we-do/industries/public-services/white-paper/addressing-climate-change-health-threats": 4,
+   "/language-masters/en/what-we-do/industries/public-services/solution/digigov-foundation-government-services": 4,
+   "/language-masters/en/what-we-do/industries/public-services/solution/digigov-federated-identity-management-solution": 2,
+   "/language-masters/en/who-we-are/newsroom/press-release/tcs-omnistore-wins-omnichannel-technology-of-the-year-award": 1,
+   "/language-masters/en/what-we-do/industries/retail/white-paper/bimodal-supply-chain-fashion-retail": 5,
+   "/language-masters/en/what-we-do/industries/retail/white-paper/retail-sustainability-framework-value-chain": 2,
+   "/language-masters/en/what-we-do/industries/travel-and-logistics/white-paper/smart-airport-reimagine-operating-model": 2,
+   "/language-masters/en/what-we-do/products-platforms/quartz/interbank-borrowing-quartz-magazine": 4,
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/newsletter/single-event-processing-corporate-actions": 15,
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/bancs-revolutionizing-digital-contracts": 3,
+   "/language-masters/en/who-we-are/newsroom/press-release/tcs-bancs-powers-societe-generale-securities-services-transformation-of-pan-european-custody-platform": 3,
+   "/language-masters/en/what-we-do/products-platforms/tcs-bancs/articles/automated-loan-management-lending-solution": 1,
+   "/language-masters/en/what-we-do/products-platforms/tcs-hobs/white-papers/generative-ai-reimagine-telelcom-ui-ux": 5,
+   "/language-masters/en/what-we-do/products-platforms/tcs-mastercraft/whitepaper/five-step-approach-privacy-safe-data-analytics": 1,
+   "/language-masters/en/what-we-do/services/artificial-intelligence/white-paper/building-future-ready-private-sovereign-ai": 4,
+   "/language-masters/en/what-we-do/services/cognitive-business-operations/solution/innovative-strategies-future-ready-hr-operations": 4,
+   "/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-financial-planning-analysis-sustainable-growth": 4,
+   "/language-masters/en/what-we-do/services/consulting/white-paper/how-reimagined-operating-model-improves-sustainability-initiatives": 1,
+   "/language-masters/en/what-we-do/services/enterprise-solutions/solution/oracle-fusion-for-engineering-procurement-construction-companies": 5,
+   "/language-masters/en/what-we-do/services/iot-digital-engineering/white-paper/four-tech-mega-trends-iot-edge": 5,
+   "/language-masters/en/insights/blogs/how-ethical-explainable-ai-build-responsible-ai-for-future": 1,
+   "/language-masters/en/who-we-are/tcs-way/article/innovating-performance-management-system": 16
+  },
+  "cross": {
+   "/language-masters/en -> /language-master/en": 7
+  },
+  "unmapped": {
+   "/content/2026": 1
+  }
+ }
+}

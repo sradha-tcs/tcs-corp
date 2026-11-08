@@ -97,7 +97,7 @@ url                   | page-type      | hide-in-nav
 
 ## Query index definition
 
-`helix-query.yaml` defines **one index**, `pages`, published as `/query-index.json`, for all 13 locales (and, temporarily, the language master under review).
+`helix-query.yaml` defines **four indexes** (8 November 2026): `pages`, published as `/query-index.json`, for the 13 locales, and one per review root (KB-D-068): `language_masters` (`/language-masters/en/query-index.json`), `language_master` (`/language-master/en/query-index.json`) and `design_block_master` (`/design-block-master/en/query-index.json`), with the same exclusions and columns. A page reads only its root's index (`indexUrlOf` in `utils/query-index.js`); the sitemap (`helix-sitemap.yaml`) is built from `/query-index.json`, so it lists the locales only.
 
 **Included:** `/**`.
 

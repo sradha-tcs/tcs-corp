@@ -38,10 +38,23 @@ primary: true
 
 ## Contents
 
+- [Query index (measured 8 November 2026, Chromium, live site)](#query-index-measured-8-november-2026-chromium-live-site)
+- [PageSpeed](#pagespeed)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
 - [Open items](#open-items)
 - [Change history](#change-history)
+
+## Query index (measured 8 November 2026, Chromium, live site)
+
+| Page | Before (shared index) | After (per-root index, PR #203) |
+| --- | --- | --- |
+| Migrated press release (/language-masters/en) | 24 sequential requests, 1.37 MB, done after 18.4 s | 9 requests (parallel), 0.87 MB, done after 2.9 s |
+| Curated home (/design-block-master/en) | the same 24 requests | 1 request, 14 KB, done after 1.1 s |
+
+The shared /query-index.json still holds the review roots' 11,821 rows (no locale content is published, so no locale page reads it today); it drops them when the pages are removed from it.
+
+## PageSpeed
 
 Not Run in this program (AB-04). Target: PageSpeed 100 (AGENTS.md). Page heights captured at 1440 px range from 900 to 18143 px.
 

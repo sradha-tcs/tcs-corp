@@ -50,12 +50,13 @@ primary: true
 | Check | Result |
 | --- | --- |
 | `npm run lint` | Passed (exit 0) |
-| `npm test` | 384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program) |
+| `npm test` | 387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program) |
 | `npm run build:json` | Passed; no change to the committed files |
 | `npm run build:docs` | Passed; no change to the committed files |
 | `node docs/handover/knowledge-base/validate-knowledge-base.mjs` | Passed (34 pages, nothing missing or failing) |
 | `node capture.mjs (documentation program)` | Completed: 200 pages, 800 screenshots |
-| `node analyze-links.mjs (documentation program)` | Completed for /design-block-master/en and /language-master/en; /language-masters/en after its publishing |
+| `node analyze-links.mjs (documentation program)` | Completed for the three roots |
+| `perf.mjs (documentation program)` | Before PR #203: index done after 18.4 s (24 requests, 1.37 MB); after: 2.9 s (9 parallel requests, 0.87 MB) on /language-masters/en, 1.1 s (1 request) on /design-block-master/en |
 
 Generated documentation is current when `build:json` and `build:docs` leave the working tree unchanged: yes (no change).
 

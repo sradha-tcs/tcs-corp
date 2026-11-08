@@ -88,7 +88,7 @@ export function qualityAssurance(ctx) {
     ['TC-E2E-001', 'Author creates, previews and publishes a page under /language-masters/en', 'Blocked (no author access)'],
     ['TC-E2E-002', 'Visitor journey: home → hero → list → detail → contact', 'Not Run'],
     ['TC-E2E-003', 'Locale switch between /en and /de-de keeps the page type', 'Not Run'],
-    ['TC-E2E-004', 'Migrated page under /language-masters/en renders with its own navigation, footer and sheets', 'Not Run (publishing of the root in progress)'],
+    ['TC-E2E-004', 'Migrated page under /language-masters/en renders with its own navigation, footer and sheets', 'Passed (8 November 2026, a migrated press release: its own nav, footer, placeholders, media contacts and query index; taxonomy.json of the root not published yet)'],
     ['TC-E2E-005', 'Redirect from a tcs.com path to its /language-masters/en page', 'Not Applicable (redirects not applied by the platform; CDN rule on hold)'],
   ];
   writeDoc(`${QA}/test-cases/end-to-end/END-TO-END-TEST-CASES.md`, { ...common, id: 'QA-TC-E2E', title: 'End-to-End Test Cases', topic: 'test cases', primary: false, purpose: 'Cross-component journeys', body: table(['ID', 'Journey', 'Status'], e2e) });

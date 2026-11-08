@@ -40,7 +40,7 @@ primary: true
 
 - [Unit Tests](#unit-tests)
 - [Lint](#lint)
-- [Test inventory (18 files, 254 test cases)](#test-inventory-18-files-254-test-cases)
+- [Test inventory (19 files, 257 test cases)](#test-inventory-19-files-257-test-cases)
 - [Result in this program](#result-in-this-program)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
@@ -83,7 +83,7 @@ Not unit tested (no DOM test environment): block decoration, the data layer deco
 
 Ignored: `*.min.js`, `dompurify.min.js`, `docs/audit/tools` ([.eslintignore](https://github.com/sradha-tcs/tcs-corp/blob/main/.eslintignore)). Not linted: `templates/*/*.css`. `npm run lint:fix` fixes what it can.
 
-## Test inventory (18 files, 254 test cases)
+## Test inventory (19 files, 257 test cases)
 
 | File | Suites | Tests |
 | --- | --- | --- |
@@ -105,11 +105,12 @@ Ignored: `*.min.js`, `dompurify.min.js`, `docs/audit/tools` ([.eslintignore](htt
 | `test/site/index-root.test.mjs` | indexRoot; localeSheetPath; localePagePath; on AEM author; pageLink; the language master root page; getParentPages (inherited Navigation, Footer, 404 Page) | 23 |
 | `test/site/page-tree.test.mjs` | pageTree | 5 |
 | `test/site/paths.test.mjs` | paths.json | 5 |
+| `test/site/query-index-url.test.mjs` | indexUrlOf; remainingOffsets | 3 |
 
 ## Result in this program
 
 - `npm run lint`: Passed (exit 0)
-- `npm test`: 384 of 386 passed, 2 failed: offers Background animation only on blocks with an authored background; offers Content animation after Hide block, with the values of utils/motion.js (Form Variations motion tests, known before this program)
+- `npm test`: 387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program)
 
 ## Screenshots
 

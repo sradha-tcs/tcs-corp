@@ -54,8 +54,8 @@ primary: true
 | fields | 1017 |
 | variationFields | 509 |
 | variationOptions | 4532 |
-| testFiles | 18 |
-| testCases | 254 |
+| testFiles | 19 |
+| testCases | 257 |
 | tokens | 352 |
 
 Lint (eslint-plugin-xwalk rules): Passed (exit 0).

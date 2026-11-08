@@ -68,7 +68,13 @@ primary: true
 
 ## /language-masters/en
 
-/language-masters/en: not analysed (Blocked: AB-02).
+| Measure | Value |
+| --- | --- |
+| Pages analysed | 8317 |
+| Links by target | own root: 23837; external: 66119; dam: 2037; to /language-master/en: 7; unmapped AEM path: 1 |
+| Links to pages that aren't published | 893 |
+| Unmapped AEM paths | /content/2026: 1 |
+| Links to another root | /language-masters/en -> /language-master/en: 7 |
 
 Details: the JSON files in [evidence](../evidence/).
 
