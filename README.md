@@ -35,6 +35,24 @@ sections 7 to 9.
 Before installing on an author that has the old root, move the existing tree (Sites console > Move, references
 adjusted) and have the site's path mapping changed for the new root (`edam-main` of the site repository).
 
+## Documents (KB-D-066)
+
+`docs/` holds the project documents moved from the code repository on 8 November 2026: the handover
+(`docs/handover/TCS-CORP-HANDOVER.md`, its PDF and screenshots), the author / developer / admin guides, the design
+proposals, the audit, animation and block documentation reports, and the Dynamic Media set-up (`docs/edam/`). The
+knowledge base stays in the code repository ([docs/handover/knowledge-base](https://github.com/sradha-tcs/tcs-corp/blob/main/docs/handover/knowledge-base/README.md)).
+
+## Dynamic Media (decided 8 November 2026, KB-D-067)
+
+After the installation below, the assets are approved and delivered by **Dynamic Media with OpenAPI** from the
+Sites environment's delivery tier, and the 8,432 migrated pages below `/language-masters/en` are rebuilt with the
+assets' delivery URLs and reinstalled: `edam-assets.sh --steps 4,5` and `aem-sites.sh` against the **Sites author**
+(details and the asset picker set-up: `docs/edam/README.md`). Both language master roots exist:
+`/language-master/en` (the earlier content, DAM paths) and `/language-masters/en` (the migrated pages).
+
+The redirects sheet (`consolidated/sheets/redirects.csv`) maps the tcs.com URLs of the 8,432 migrated pages
+(source: the tcs.com path, e.g. `/careers`) to their pages below `/language-masters/en`.
+
 ## How to install (decided 8 November 2026)
 
 The assets stay in the **Sites author's own DAM** (the delivery host is the Sites environment's own: there is no
@@ -61,10 +79,11 @@ powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1
 first (its README). Then publish the DAM videos, audio and documents, replace and publish the sheets, publish and
 index the pages (`consolidated/packages/INSTALL-ORDER.md`). `packages-for-edam-sites/` isn't used.
 
-## Only for a separate AEM Assets environment (EDAM): two scripts
+## The two scripts
 
-Not used with the decision above; kept in case the assets move to a separate AEM Assets environment later.
-Run from this folder (details: `RUN-SCRIPTS.md`):
+With the Dynamic Media decision they run against the **Sites author** (`EDAM_AUTHOR` = `SITES_AUTHOR` = the Sites
+author; `edam-assets` with `--steps 4,5` only, the assets being installed by the packages); with a separate AEM
+Assets environment they would do the whole set-up. From this folder (details: `RUN-SCRIPTS.md`):
 
 1. **`edam-assets.sh`** (Mac) / **`edam-assets.ps1`** (Windows): the assets to the Assets environment (extract,
    tags, upload, metadata, approval) and their IDs exported to `edam-state/asset-ids.csv`.

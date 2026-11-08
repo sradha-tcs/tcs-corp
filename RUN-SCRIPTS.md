@@ -1,8 +1,10 @@
 # Two scripts: EDAM assets, then AEM Sites
 
-> **Not used for now (decided 8 November 2026):** the assets stay in the Sites author's own DAM and the pages
-> reference them by DAM path; install `consolidated/packages/` with `consolidated/tools/install-packages.*`
-> (`README.md`, "How to install"). These scripts are only for a separate AEM Assets environment.
+> **Dynamic Media on the Sites environment (decided 8 November 2026, KB-D-067):** the assets are installed with
+> `consolidated/tools/install-packages.*` (`README.md`, "How to install"); then both scripts run against the
+> **Sites author**: `edam-assets.sh --steps 4,5` (approval, metadata, asset IDs; after reprocessing the assets) and
+> `aem-sites.sh` (the pages rebuilt with the delivery URLs, `--images dynamic-media` by default, and installed).
+> Step by step: `docs/edam/README.md`. The full set-up below is for a separate AEM Assets environment.
 
 Everything the EDAM set-up needs from this branch runs with two scripts, each in a macOS and a Windows version,
 from the branch's root folder (the downloaded branch):

@@ -4,9 +4,10 @@
 #               1.3.0-edam in packages-for-edam-sites/content-packages: every reference to an asset (/content/dam/...)
 #               becomes its delivery URL on the Assets environment, from edam-state/asset-ids.csv (edam-assets.sh)
 #                 images                    https://<host>/adobe/assets/<asset id>/as/<file name>
-#                                           (+ <field>MimeType for the media bus, not on fileReference)
+#                                           (with --images media-bus also <field>MimeType: the media bus)
 #                 videos, audio, documents  https://<host>/adobe/assets/<asset id>/original/as/<file name>
-#               with INSTALL-ORDER.md, REWRITE-<batch>.csv (every reference) and REWRITE-SUMMARY.md
+#               with INSTALL-ORDER.md, REWRITE-<batch>.csv (every reference) and REWRITE-SUMMARY.md; the sheets of
+#               consolidated/sheets with their asset cells rewritten the same way in content-packages/sheets/
 #   2. install  the built packages on the Sites author with Package Manager, in the installation order
 # A package with a reference whose asset has no ID isn't built or installed (listed at the end, exit 4): upload
 # the missing assets with edam-assets.sh and run again. Resumable: installed packages are recorded in
@@ -19,14 +20,15 @@
 # Options:
 #   --batch B001             only that batch (pilot)
 #   --ids FILE               the asset IDs (default edam-state/asset-ids.csv)
-#   --images MODE            media-bus (default) or dynamic-media (no <field>MimeType)
+#   --images MODE            dynamic-media (default: images too are delivered by Dynamic Media) or media-bus
+#                            (images get <field>MimeType and are copied to the Edge Delivery media bus)
 #   --allow-unresolved       build and install packages anyway, leaving references without an asset ID as DAM paths
 #   --reinstall              install again packages the progress log lists (e.g. after a new delivery host)
 #   --steps LIST             1 (build only) or 2 (install only); default 1,2
 # Needs curl, unzip, zip and perl (all part of macOS). Run from the branch's root folder (where this script is).
 set -uo pipefail
 ROOT=$(cd "$(dirname "$0")" && pwd)
-BATCH="" IDS="$ROOT/edam-state/asset-ids.csv" IMAGES=media-bus ALLOW=0 REINSTALL=0 STEPS="1,2"
+BATCH="" IDS="$ROOT/edam-state/asset-ids.csv" IMAGES=dynamic-media ALLOW=0 REINSTALL=0 STEPS="1,2"
 while [ $# -gt 0 ]; do
   case $1 in
     --batch) BATCH=$2; shift ;;
@@ -206,6 +208,17 @@ if ($STEP{1}) {
     '| Batch | Package | References | Unresolved (no asset ID) | Assets not approved yet | MB |', '|---|---|---|---|---|---|');
   push @s, map { '| ' . join(' | ', @$_) . ' |' } @summary;
   spew("$OUT/REWRITE-SUMMARY.md", join("\n", @s) . "\n");
+  # the sheets: a cell that is a DAM path with an asset ID becomes its delivery URL (e.g. an author image)
+  make_path("$OUT/sheets");
+  my $cells = 0;
+  for my $sf (glob("$ROOT/consolidated/sheets/*.csv")) {
+    my $t = slurp($sf);
+    my $sub = sub { my ($pre, $q, $path) = @_; my ($url) = $url_of->($path); return "$pre$q$path$q" unless $url; $cells++; "$pre$q$url$q" };
+    $t =~ s{(^|,)(")(/content/dam/[^"]+)"(?=,|\r?$)}{$sub->($1, $2, $3)}gme;
+    $t =~ s{(^|,)()(/content/dam/[^,"\r\n]+)(?=,|\r?$)}{$sub->($1, $2, $3)}gme;
+    spew("$OUT/sheets/" . basename($sf), $t);
+  }
+  say_ "sheets: $cells asset cells rewritten -> content-packages/sheets/ (replace the sheets on the author with them)";
   say_ '1 build: ', scalar(@summary) - scalar(keys %blocked), ' built, ', scalar(keys %blocked), ' not built (assets without an ID)';
 }
 
@@ -225,6 +238,11 @@ if ($STEP{2}) {
     my $f = "$OUT/$p->{name}";
     if (!-f $f) { $missing++; say_ "$p->{batch}: $p->{name} not built (run step 1)"; next }
     if ($done{$p->{name}}) { $had++; next }
+    # a batch without migrated pages (B004) has a package without content, which Package Manager refuses
+    if (!grep { m{^jcr_root/} } `unzip -Z1 "$f"`) {
+      say_ "$p->{batch}: $p->{name} has no content (no pages migrated), skipped";
+      open my $lh, '>>', $log or die; print $lh "$p->{name}\n"; close $lh; next;
+    }
     my $ok = 0; my $out = '';
     for my $try (1 .. 3) {
       say_ "$p->{batch} $p->{name} (", sprintf('%.1f', (-s $f) / 1048576), " MB), try $try";

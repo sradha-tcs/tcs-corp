@@ -8,9 +8,11 @@
               1.3.0-edam in packages-for-edam-sites\content-packages: every reference to an asset (/content/dam/...)
               becomes its delivery URL on the Assets environment, from edam-state\asset-ids.csv (edam-assets.ps1)
                 images                    https://<host>/adobe/assets/<asset id>/as/<file name>
-                                          (+ <field>MimeType for the media bus, not on fileReference)
+                                          (with -Images media-bus also <field>MimeType: the media bus;
+                                          -Images dynamic-media, the default: images too come from Dynamic Media)
                 videos, audio, documents  https://<host>/adobe/assets/<asset id>/original/as/<file name>
-              with INSTALL-ORDER.md, REWRITE-<batch>.csv (every reference) and REWRITE-SUMMARY.md
+              with INSTALL-ORDER.md, REWRITE-<batch>.csv (every reference) and REWRITE-SUMMARY.md; the sheets of
+              consolidated\sheets with their asset cells rewritten the same way in content-packages\sheets\
   2. install  the built packages on the Sites author with Package Manager, in the installation order
   A package with a reference whose asset has no ID isn't built or installed (listed at the end, exit 4): upload
   the missing assets with edam-assets.ps1 and run again. Resumable: installed packages are recorded in
@@ -28,7 +30,7 @@
 param(
   [string]$Batch = "",
   [string]$Ids = "",
-  [ValidateSet("media-bus", "dynamic-media")][string]$Images = "media-bus",
+  [ValidateSet("media-bus", "dynamic-media")][string]$Images = "dynamic-media",
   [switch]$AllowUnresolved,
   [switch]$Reinstall,
   [string]$Steps = "1,2"
@@ -195,6 +197,22 @@ try {
     $s = @('# Rewrite summary', '', "Delivery host: ``$hostUrl`` | images: $Images | asset IDs: ``$(Split-Path $Ids -Leaf)`` ($($idmap.Count) assets)", '',
       '| Batch | Package | References | Unresolved (no asset ID) | Assets not approved yet | MB |', '|---|---|---|---|---|---|') + $summary
     [IO.File]::WriteAllText((Join-Path $Out "REWRITE-SUMMARY.md"), (($s -join "`n") + "`n"), $utf8)
+    # the sheets: a cell that is a DAM path with an asset ID becomes its delivery URL (e.g. an author image)
+    $sheetDir = Join-Path $Out "sheets"; New-Item -ItemType Directory -Force -Path $sheetDir | Out-Null
+    $script:cells = 0
+    $cellRx = New-Object regex '(?m)(^|,)("?)(/content/dam/[^",\r\n]+)\2(?=,|\r?$)'
+    foreach ($sf in Get-ChildItem -Path (Join-Path $Root "consolidated/sheets") -Filter *.csv) {
+      $t = [IO.File]::ReadAllText($sf.FullName, $utf8)
+      $t = $cellRx.Replace($t, [Text.RegularExpressions.MatchEvaluator] {
+          param($m)
+          $u = UrlOf $m.Groups[3].Value
+          if (-not $u) { return $m.Value }
+          $script:cells++
+          return "$($m.Groups[1].Value)$($m.Groups[2].Value)$($u.Url)$($m.Groups[2].Value)"
+        })
+      [IO.File]::WriteAllText((Join-Path $sheetDir $sf.Name), $t, $utf8)
+    }
+    Say "sheets: $($script:cells) asset cells rewritten -> content-packages/sheets/ (replace the sheets on the author with them)"
     Say ("1 build: {0} built, {1} not built (assets without an ID)" -f ($summary.Count - $blocked.Count), $blocked.Count)
   }
 
@@ -219,6 +237,10 @@ try {
       $f = Join-Path $Out $p.Name
       if (-not (Test-Path $f)) { $missing++; Say "$($p.Batch): $($p.Name) not built (run step 1)"; continue }
       if ($done[$p.Name]) { $had++; continue }
+      # a batch without migrated pages (B004) has a package without content, which Package Manager refuses
+      $zc = [IO.Compression.ZipFile]::OpenRead($f)
+      try { $hasContent = @($zc.Entries | Where-Object { $_.FullName.StartsWith('jcr_root/') }).Count -gt 0 } finally { $zc.Dispose() }
+      if (-not $hasContent) { Say "$($p.Batch): $($p.Name) has no content (no pages migrated), skipped"; [IO.File]::AppendAllText($plog, "$($p.Name)`n", $utf8); continue }
       $ok = $false
       for ($try = 1; $try -le 3; $try++) {
         Say ("{0} {1} ({2} MB), try {3}" -f $p.Batch, $p.Name, (MB (Get-Item $f).Length), $try)
