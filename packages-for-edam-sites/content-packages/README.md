@@ -19,7 +19,7 @@ Each package is built within minutes of receiving:
 
 1. **`asset-ids.csv`** from the Assets environment (`consolidated/tools/export-asset-ids.sh` / `.ps1`), after
    the batch's EDAM zips are uploaded, the metadata imported and the assets approved (`../edam-zips/README.md`).
-   For the pilot: B001's 3 zips in `../edam-zips/zips/` (53 assets).
+   For the pilot: B001's 4 zips in `../edam-zips/zips/` (57 assets), exported with `--batch B001` / `-Batch B001`.
 2. **The delivery host** (decision E-D2): a custom delivery domain (recommended, no environment ids in the
    content) or the default `delivery-p…-e….adobeaemcloud.com`.
 

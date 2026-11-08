@@ -5,8 +5,8 @@ the asset files at their DAM paths, and the metadata to import.
 
 | Item | What |
 |---|---|
-| `EDAM-ZIPS.md` | All 394 EDAM zips in upload order: per batch one zip per asset package (338), then its `-earlier` zip(s) (56): files, MB, source |
-| `zips/` | The pilot batch B001's 3 zips (ready to use) |
+| `EDAM-ZIPS.md` | All 395 EDAM zips in upload order: per batch one zip per asset package (338), then its `-earlier` zip(s) (56); plus the pilot's `-from-other-batches` zip: files, MB, source |
+| `zips/` | The pilot batch B001's 4 zips (ready to use): its 2 asset zips, its `-earlier` zip and `-from-other-batches` (4 images its pages use from B002): 57 assets |
 | `-earlier` zips | The 1,342 assets of earlier migration runs (the October waves, the pilot) that the pages reuse: no asset package holds them, so the converter can't build them; each goes with the first batch that uses it. B001's is in `zips/`; the migration team provides the others (about 1 GB). List: `metadata/assets-from-earlier-runs.csv` |
 | `tools/build-edam-zips.sh` / `.ps1` | Build all zips on your machine (macOS / Windows) from the asset packages in `../../consolidated/packages/`: no 22 GB download again, a few minutes, resumable |
 | `metadata/edam-metadata.csv` | Metadata Import file of all 14,352 assets (13,010 from the asset packages, 1,342 from earlier runs): `assetPath`, `dc:title`, `dc:description`, `cq:tags` (multi, `\|`), `dc:source` (the tcs.com URL) |
@@ -39,6 +39,9 @@ Options: `--packages <folder>` / `-Packages` (where the asset packages are), `--
 `zips/`), `--force` / `-Force` (rebuild). About 22 GB of free disk space is needed for all zips.
 
 ## 2. Upload to the Assets environment
+
+**Upload every zip before installing any content package:** most batches' pages also use assets of other batches
+(`needed by` in `consolidated/tools/expected-assets.csv`).
 
 Extract the zips into one folder (e.g. `edam-upload/`; you get `edam-upload/tcs-corp/…`). Don't upload the zip
 files themselves: AEM as a Cloud Service stores a zip as one asset and doesn't unpack it.

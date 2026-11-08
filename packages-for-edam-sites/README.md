@@ -7,6 +7,7 @@ local or non-EDAM set-up (assets in the Sites author's own DAM).
 | Folder | What | For | Status |
 |---|---|---|---|
 | `edam-zips/` | The 14,352 asset files (images, videos, audio, documents: 13,010 from the asset packages, 1,342 of earlier runs the pages reuse) as plain zips at their DAM paths, the metadata to import (titles, descriptions, tags, sources) and the tags they use | The Assets environment (EDAM): upload, no Package Manager | Ready: pilot batch B001's 3 zips on the branch; the others built on your machine with `edam-zips/tools/` (the `-earlier` zips from the migration team) |
+| `EDAM-RUNBOOK.md` | **Step by step** from the decisions to live pages: who, where, how to check | Everyone | Start here |
 | `content-packages/` | The 60 page packages rebuilt (version 1.3.0) so the pages reference the assets on EDAM (delivery URLs) instead of the Sites author's DAM paths | The Sites author: Package Manager or `consolidated/tools/install-packages.*` | Built once the assets are on EDAM and their IDs are exported (an asset's ID exists only after it's uploaded) |
 
 ## Order
