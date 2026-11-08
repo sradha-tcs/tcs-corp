@@ -55,31 +55,31 @@ Screenshots of the handover (6.27 Embed Block), taken on the preview with sample
 
 **Desktop rendering** — The Embed at 1440 px: the placeholder image photo-2.svg in a 16:9 frame 900 px wide (56.25rem), centred, with 1rem rounded corners, and the round primary Play button in its centre. The YouTube player is not loaded yet.
 
-![Desktop rendering: The Embed at 1440 px: the placeholder image photo-2.svg in a 16:9 frame 900 px wide 56.25rem, centred, with 1rem rounded corners, and the round primary Play button in its centre. The YouTube player is not loaded yet.](../../docs/handover/screenshots/embed-desktop-view.jpg)
+![Desktop rendering: The Embed at 1440 px: the placeholder image photo-2.svg in a 16:9 frame 900 px wide 56.25rem, centred, with 1rem rounded corners, and the round primary Play button in its centre. The YouTube player is not loaded yet.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-desktop-view.jpg)
 
 **Tablet rendering** — The Embed at 768 px: the placeholder image photo-4.svg at the full content width (about 688 px) in a 16:9 frame with rounded corners and the Play button centred; the Vimeo player loads only after Play.
 
-![Tablet rendering: The Embed at 768 px: the placeholder image photo-4.svg at the full content width about 688 px in a 16:9 frame with rounded corners and the Play button centred; the Vimeo player loads only after Play.](../../docs/handover/screenshots/embed-tablet-view.jpg)
+![Tablet rendering: The Embed at 768 px: the placeholder image photo-4.svg at the full content width about 688 px in a 16:9 frame with rounded corners and the Play button centred; the Vimeo player loads only after Play.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-tablet-view.jpg)
 
 **Mobile rendering** — The Embed at 390 px: the placeholder image photo-2.svg at the full content width (about 342 px) in a 16:9 frame with rounded corners and the Play button centred. No X post is part of this example.
 
-![Mobile rendering: The Embed at 390 px: the placeholder image photo-2.svg at the full content width about 342 px in a 16:9 frame with rounded corners and the Play button centred. No X post is part of this example.](../../docs/handover/screenshots/embed-mobile-view.jpg)
+![Mobile rendering: The Embed at 390 px: the placeholder image photo-2.svg at the full content width about 342 px in a 16:9 frame with rounded corners and the Play button centred. No X post is part of this example.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-mobile-view.jpg)
 
 **Variation example** — The Embed at 1440 px: a 16:9 iframe 900 px wide with rounded corners showing a partner's Market explorer page with Region and Industry filters and the figures +6.4% digital spend growth, 38% cloud adoption and 2.1x AI investment since 2022. The capture uses a local stand-in page for the partner URL.
 
-![Variation example: The Embed at 1440 px: a 16:9 iframe 900 px wide with rounded corners showing a partner's Market explorer page with Region and Industry filters and the figures +6.4% digital spend growth, 38% cloud adoption and 2.1x AI investment si](../../docs/handover/screenshots/embed-generic-iframe.jpg)
+![Variation example: The Embed at 1440 px: a 16:9 iframe 900 px wide with rounded corners showing a partner's Market explorer page with Region and Industry filters and the figures +6.4% digital spend growth, 38% cloud adoption and 2.1x AI investment si](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-generic-iframe.jpg)
 
 **Variation example** — The Embed at 1440 px: the placeholder image photo-3.svg in a centred 900 px 16:9 frame with rounded corners and the round primary Play button in the centre. Only the state before Play is shown; the YouTube player is not in the screenshot.
 
-![Variation example: The Embed at 1440 px: the placeholder image photo-3.svg in a centred 900 px 16:9 frame with rounded corners and the round primary Play button in the centre. Only the state before Play is shown; the YouTube player is not in the scre](../../docs/handover/screenshots/embed-placeholder-play.jpg)
+![Variation example: The Embed at 1440 px: the placeholder image photo-3.svg in a centred 900 px 16:9 frame with rounded corners and the round primary Play button in the centre. Only the state before Play is shown; the YouTube player is not in the scre](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-placeholder-play.jpg)
 
 **Universal Editor canvas** — An annotated edit-mode view at 1440 px (not a Universal Editor screenshot): the H2 Watch: AI at enterprise scale above the Embed block (A) with the placeholder image photo-2.svg (B) and the generated Play button (C) centred on it. No properties panel is shown. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/embed-authoring-view.jpg)
 
-![Universal Editor canvas: An annotated edit-mode view at 1440 px not a Universal Editor screenshot: the H2 Watch: AI at enterprise scale above the Embed block A with the placeholder image photo-2.svg B and the generated Play button C centred on it. No](../../docs/handover/screenshots/embed-authoring-view.jpg)
+![Universal Editor canvas: An annotated edit-mode view at 1440 px not a Universal Editor screenshot: the H2 Watch: AI at enterprise scale above the Embed block A with the placeholder image photo-2.svg B and the generated Play button C centred on it. No](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-authoring-view.jpg)
 
 **Properties panel** — The Embed properties panel: Content tab with Placeholder Image, Placeholder Image Alt Text and URI; the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/embed-properties-panel.jpg)
 
-![Properties panel: The Embed properties panel: Content tab with Placeholder Image, Placeholder Image Alt Text and URI; the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/embed-p](../../docs/handover/screenshots/embed-properties-panel.jpg)
+![Properties panel: The Embed properties panel: Content tab with Placeholder Image, Placeholder Image Alt Text and URI; the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/embed-p](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/embed-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -737,7 +737,7 @@ errors (CSP, framing), Network entries of the provider requests, the block's dat
 - [Model and definition](_embed.json)
 - [Media decorator](../../decorators/media-decorator.js), [media utils](../../utils/media.js)
 - [Vimeo URL tests](../../test/media/vimeo-url.test.mjs)
-- [Handover 6.27 Embed Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.27 Embed Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

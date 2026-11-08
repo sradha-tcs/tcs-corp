@@ -46,23 +46,23 @@ Screenshots of the handover (6.31 Interactive Dashboard Block), taken on the pre
 
 **Desktop rendering** — A page on aem.page at 1440 px: the H2 Performance insights with the line Key figures from our latest annual report, updated every quarter., empty space where the Interactive Dashboard section is, then the H2 Read the full report and its line about downloading the report.
 
-![Desktop rendering: A page on aem.page at 1440 px: the H2 Performance insights with the line Key figures from our latest annual report, updated every quarter., empty space where the Interactive Dashboard section is, then the H2 Read the full report an](../../docs/handover/screenshots/interactive-dashboard-desktop-view.jpg)
+![Desktop rendering: A page on aem.page at 1440 px: the H2 Performance insights with the line Key figures from our latest annual report, updated every quarter., empty space where the Interactive Dashboard section is, then the H2 Read the full report an](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/interactive-dashboard-desktop-view.jpg)
 
 **Tablet rendering** — The same draft page at 768 px: Performance insights with its line, blank space where the hidden Interactive Dashboard section is, then Read the full report and its line; no dashboard is visible.
 
-![Tablet rendering: The same draft page at 768 px: Performance insights with its line, blank space where the hidden Interactive Dashboard section is, then Read the full report and its line; no dashboard is visible.](../../docs/handover/screenshots/interactive-dashboard-tablet-view.jpg)
+![Tablet rendering: The same draft page at 768 px: Performance insights with its line, blank space where the hidden Interactive Dashboard section is, then Read the full report and its line; no dashboard is visible.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/interactive-dashboard-tablet-view.jpg)
 
 **Mobile rendering** — The draft page at 375 px: the H2 Performance insights and Key figures from our latest annual report, updated every quarter., then directly the H2 Read the full report and Download the report for the detailed figures by industry and region.; no dashboard appears.
 
-![Mobile rendering: The draft page at 375 px: the H2 Performance insights and Key figures from our latest annual report, updated every quarter., then directly the H2 Read the full report and Download the report for the detailed figures by industry and ](../../docs/handover/screenshots/interactive-dashboard-mobile-view.jpg)
+![Mobile rendering: The draft page at 375 px: the H2 Performance insights and Key figures from our latest annual report, updated every quarter., then directly the H2 Read the full report and Download the report for the detailed figures by industry and ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/interactive-dashboard-mobile-view.jpg)
 
 **Universal Editor canvas** — The draft page in Universal Editor edit mode at 1440 px: Performance insights and its line, then a dashed, rounded grey box with the centred text Interactive Dashboard (placeholder) and marker A, then Read the full report and its line. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/interactive-dashboard-authoring-view.jpg)
 
-![Universal Editor canvas: The draft page in Universal Editor edit mode at 1440 px: Performance insights and its line, then a dashed, rounded grey box with the centred text Interactive Dashboard placeholder and marker A, then Read the full report and i](../../docs/handover/screenshots/interactive-dashboard-authoring-view.jpg)
+![Universal Editor canvas: The draft page in Universal Editor edit mode at 1440 px: Performance insights and its line, then a dashed, rounded grey box with the centred text Interactive Dashboard placeholder and marker A, then Read the full report and i](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/interactive-dashboard-authoring-view.jpg)
 
 **Properties panel** — Properties panel of the block showing only the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/interactive-dashboard-properties-panel.jpg)
 
-![Properties panel: Properties panel of the block showing only the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/interactive-dashboard-properties-panel.jpg](../../docs/handover/screenshots/interactive-dashboard-properties-panel.jpg)
+![Properties panel: Properties panel of the block showing only the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/interactive-dashboard-properties-panel.jpg](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/interactive-dashboard-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -462,8 +462,8 @@ No content, links, external requests or data. Nothing to sanitise.
 - [Blocks documentation](../README.md)
 - [Table](../table/README.md), [Embed](../embed/README.md), [Cards](../cards/README.md), [List](../list/README.md)
 - [Model and definition](_interactive-dashboard.json)
-- [Animation report](../../docs/animation/README.md)
-- [Handover 6.31 Interactive Dashboard Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Animation report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
+- [Handover 6.31 Interactive Dashboard Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

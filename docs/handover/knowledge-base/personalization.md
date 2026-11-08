@@ -5,7 +5,7 @@ This file records the verified state of personalization on the TCS Corporate Web
 | Attribute | Value |
 | --- | --- |
 | Audience | Product owner, solution architects, developers, analytics and personalization teams, QA, AI agents |
-| Source of truth | The code ([`blocks/`](../../../blocks/README.md), [`utils/metadata.js`](../../../utils/metadata.js), [`helix-query.yaml`](../../../helix-query.yaml), [`scripts/delayed.js`](../../../scripts/delayed.js)), the block READMEs (Personalization sections), [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (section 8), handover Part 11 — Analytics & Data Layer (11.7.7) and Part 2 — Solution Architecture (2.9.8 Adobe Target) in [`TCS-CORP-HANDOVER.md`](../TCS-CORP-HANDOVER.md) |
+| Source of truth | The code ([`blocks/`](../../../blocks/README.md), [`utils/metadata.js`](../../../utils/metadata.js), [`helix-query.yaml`](../../../helix-query.yaml), [`scripts/delayed.js`](../../../scripts/delayed.js)), the block READMEs (Personalization sections), [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (section 8), handover Part 11 — Analytics & Data Layer (11.7.7) and Part 2 — Solution Architecture (2.9.8 Adobe Target) in [`TCS-CORP-HANDOVER.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current (verified absence); Requires validation for any future design (blocked: personalization design, audiences, Adobe Target / AJO access) |
 
@@ -27,7 +27,7 @@ This file records the verified state of personalization on the TCS Corporate Web
 
 | Decision | Source |
 | --- | --- |
-| The Teaser's Personalization option (a class `personalization` and `data-personalization="true"` that nothing read) was removed from the dialog and the code; library content was migrated; Teasers authored with it still render | Handover revision 2.27 (19 October 2026), audit defect D-B-3 ([`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)), re-audit section 1 ([`docs/audit/REAUDIT-2026-10-20.md`](../../../docs/audit/REAUDIT-2026-10-20.md)), [`blocks/teaser/README.md`](../../../blocks/teaser/README.md) |
+| The Teaser's Personalization option (a class `personalization` and `data-personalization="true"` that nothing read) was removed from the dialog and the code; library content was migrated; Teasers authored with it still render | Handover revision 2.27 (19 October 2026), audit defect D-B-3 ([`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)), re-audit section 1 ([`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md)), [`blocks/teaser/README.md`](../../../blocks/teaser/README.md) |
 | Every block is classified "Not personalizable"; personalized rendering, fallback, flicker, cache-key and analytics tests are blocked until an approved personalization design exists | Audit section 8 |
 | Area-specific navigation and footers are content choices (inherited Navigation / Footer pages), not audience personalization | [`blocks/header/README.md`](../../../blocks/header/README.md), [`blocks/footer/README.md`](../../../blocks/footer/README.md) |
 
@@ -103,5 +103,5 @@ Requirements recorded for a future design; none is implemented, and the design i
 - [Security, privacy and consent](./security-privacy-consent.md)
 - [`blocks/README.md`](../../../blocks/README.md) and the block READMEs (Personalization sections)
 - [`AGENTS.md`](../../../AGENTS.md) (Site structure and site data: metadata columns)
-- [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (sections 7, 8, 9)
-- Handover Part 2 — Solution Architecture (2.9.8), Part 11 — Analytics & Data Layer (11.7.7), Part 16 — Handover Findings and Open Items Register ([`TCS-CORP-HANDOVER.md`](../TCS-CORP-HANDOVER.md))
+- [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (sections 7, 8, 9)
+- Handover Part 2 — Solution Architecture (2.9.8), Part 11 — Analytics & Data Layer (11.7.7), Part 16 — Handover Findings and Open Items Register ([`TCS-CORP-HANDOVER.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md))

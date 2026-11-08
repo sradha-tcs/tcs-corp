@@ -43,71 +43,71 @@ Screenshots of the handover (6.4 Page Header Block), taken on the preview with s
 
 **Desktop rendering** — The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Anita Rao lockup (Head of Banking Research, Europe) on the left, the description, Talk to an expert (black) and Download the report (outlined) on the right.
 
-![Desktop rendering: The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Ani](../../docs/handover/screenshots/page-header-desktop-view.jpg)
+![Desktop rendering: The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Ani](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-desktop-view.jpg)
 
 **Tablet rendering** — The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto two lines and title, lockup, description and CTAs stack in one column.
 
-![Tablet rendering: The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto t](../../docs/handover/screenshots/page-header-tablet-view.jpg)
+![Tablet rendering: The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-tablet-view.jpg)
 
 **Mobile rendering** — The article Page Header at 390 px: the meta row wraps onto three lines (BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons), then the title, the Anita Rao lockup, the description, and Talk to an expert and Download the report stacked.
 
-![Mobile rendering: The article Page Header at 390 px: the meta row wraps onto three lines BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons, then the title, the Anita Rao lockup, the description, and Talk to](../../docs/handover/screenshots/page-header-mobile-view.jpg)
+![Mobile rendering: The article Page Header at 390 px: the meta row wraps onto three lines BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons, then the title, the Anita Rao lockup, the description, and Talk to](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-mobile-view.jpg)
 
 **Layout chosen by Page Type** — Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: the meta row, the agentic AI title with the Anita Rao lockup, the description and one Talk to an expert button.
 
-![Layout chosen by Page Type: Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: th](../../docs/handover/screenshots/page-header-default-layout.jpg)
+![Layout chosen by Page Type: Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-default-layout.jpg)
 
 **Landing with image** — The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert (black) and Explore banking insights (outlined) on the left, the blue sample image on the right. Mobile: the text and CTAs stacked, the image below them.
 
-![Landing with image: The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert black and Explore banking insights outlined on the left, the blue sample image](../../docs/handover/screenshots/page-header-landing-with-image.jpg)
+![Landing with image: The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert black and Explore banking insights outlined on the left, the blue sample image](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-landing-with-image.jpg)
 
 **Landing without image** — The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a black Subscribe to updates button, stacked on the left.
 
-![Landing without image: The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a ](../../docs/handover/screenshots/page-header-landing-text-only.jpg)
+![Landing without image: The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-landing-text-only.jpg)
 
 **Secondary layout** — The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board (black) and Corporate governance (outlined).
 
-![Secondary layout: The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board black and Corporate governance outlined.](../../docs/handover/screenshots/page-header-secondary.jpg)
+![Secondary layout: The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board black and Corporate governance outlined.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-secondary.jpg)
 
 **Article layout** — The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and Head of Banking Research, Europe below it; the description, Talk to an expert and Download the report on the right.
 
-![Article layout: The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and He](../../docs/handover/screenshots/page-header-article.jpg)
+![Article layout: The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and He](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-article.jpg)
 
 **Display layout** — The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our approach (black) and Read the report (outlined) vertically centred on the right.
 
-![Display layout: The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our ](../../docs/handover/screenshots/page-header-display.jpg)
+![Display layout: The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-display.jpg)
 
 **Template-generated header** — The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS expands its AI innovation network in Europe left and the description right, with no author and no CTAs.
 
-![Template-generated header: The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS ](../../docs/handover/screenshots/page-header-template-automatic.jpg)
+![Template-generated header: The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-template-automatic.jpg)
 
 **Primary CTA** — The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an arrow.
 
-![Primary CTA: The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an ar](../../docs/handover/screenshots/page-header-cta-primary.jpg)
+![Primary CTA: The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an ar](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-cta-primary.jpg)
 
 **Secondary CTA** — The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.
 
-![Secondary CTA: The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.](../../docs/handover/screenshots/page-header-cta-secondary.jpg)
+![Secondary CTA: The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-cta-secondary.jpg)
 
 **Text link CTA** — The summary column at 1440 px: the description, Talk to an expert (black pill) and Explore services (outlined pill) on one line, and below them View all case studies as a plain text link with an arrow.
 
-![Text link CTA: The summary column at 1440 px: the description, Talk to an expert black pill and Explore services outlined pill on one line, and below them View all case studies as a plain text link with an arrow.](../../docs/handover/screenshots/page-header-cta-text-link.jpg)
+![Text link CTA: The summary column at 1440 px: the description, Talk to an expert black pill and Explore services outlined pill on one line, and below them View all case studies as a plain text link with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-cta-text-link.jpg)
 
 **Name-only author** — The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.
 
-![Name-only author: The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.](../../docs/handover/screenshots/page-header-author-metadata.jpg)
+![Name-only author: The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-author-metadata.jpg)
 
 **Listen icon** — The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones (listen), download and share icons.
 
-![Listen icon: The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones listen, download and share icons.](../../docs/handover/screenshots/page-header-listen-action.jpg)
+![Listen icon: The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones listen, download and share icons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-listen-action.jpg)
 
 **Universal Editor canvas** — The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G the two CTAs. There is no H: the featured image appears only in the Landing layout. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/page-header-authoring-view.jpg)
 
-![Universal Editor canvas: The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G](../../docs/handover/screenshots/page-header-authoring-view.jpg)
+![Universal Editor canvas: The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-authoring-view.jpg)
 
 **Properties panel** — The Page Header properties with the Style tab (Layout select open), the CTAs tab with two CTA List items, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/page-header-properties-panel.jpg)
 
-![Properties panel: The Page Header properties with the Style tab Layout select open, the CTAs tab with two CTA List items, and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots](../../docs/handover/screenshots/page-header-properties-panel.jpg)
+![Properties panel: The Page Header properties with the Style tab Layout select open, the CTAs tab with two CTA List items, and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/page-header-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -833,7 +833,7 @@ Evidence to collect (no secrets): URL, viewport, the page's `<meta>` tags, the r
 - Model: [`_page-header.json`](./_page-header.json)
 - Templates: [`templates/README.md`](../../templates/README.md)
 - Tests: [`test/items/item-rows.test.mjs`](../../test/items/item-rows.test.mjs)
-- [Handover 6.4 Page Header Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.4 Page Header Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

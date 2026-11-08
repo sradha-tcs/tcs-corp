@@ -5,7 +5,7 @@ This file is the knowledge base entry for the Universal Editor configuration of 
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers and AI agents changing block models; architects and QA reviewing them |
-| Source of truth | `blocks/*/_*.json`, [models/](../../../models/_component-models.json), [component-models.json](../../../component-models.json), [component-definition.json](../../../component-definition.json), [component-filters.json](../../../component-filters.json), [.eslintrc.js](../../../.eslintrc.js), [AGENTS.md](../../../AGENTS.md) ("AEM delivery rules", "Dialog tabs", "Item children", "Additional tab"), [docs/audit/](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) |
+| Source of truth | `blocks/*/_*.json`, [models/](../../../models/_component-models.json), [component-models.json](../../../component-models.json), [component-definition.json](../../../component-definition.json), [component-filters.json](../../../component-filters.json), [.eslintrc.js](../../../.eslintrc.js), [AGENTS.md](../../../AGENTS.md) ("AEM delivery rules", "Dialog tabs", "Item children", "Additional tab"), [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; persistence checks in Universal Editor require validation (blocked: AEM author access) |
 
@@ -203,7 +203,7 @@ The code keeps reading values authored before a model change; content is migrate
 | Separator Width Auto, Variant Custom | Widths, Default | Still read | None required |
 | Page Header CTA style `''` | `tertiary` | `''` still a text link | None required |
 
-Sources: [BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 11, [REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md) section 5, [DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md) section 5.
+Sources: [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 11, [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md) section 5, [DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md) section 5.
 
 ## Procedure: Adding or Changing a Field
 
@@ -259,7 +259,7 @@ Sources: [BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md
 - [decorators-and-utilities.md](./decorators-and-utilities.md): `properties.js`, `cells.js`, `multifield.js`, `links.js` and the other shared modules
 - [AGENTS.md](../../../AGENTS.md): "AEM delivery rules", "Dialog tabs", "Item children", "Additional tab", "Content Modeling"
 - [blocks/README.md](../../../blocks/README.md) and the generated field tables in each block README
-- [docs/audit/DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md), [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [docs/audit/REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md)
-- Handover Part 15.4 — Content Modeling Standards and 13.5 — Component Dialog Fields Missing or Outdated in Universal Editor: [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)
+- [docs/audit/DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md), [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [docs/audit/REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md)
+- Handover Part 15.4 — Content Modeling Standards and 13.5 — Component Dialog Fields Missing or Outdated in Universal Editor: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
 - [aem.live: component model definitions](https://www.aem.live/developer/component-model-definitions)
 - Other knowledge base files: [authoring.md](./authoring.md), [content-architecture.md](./content-architecture.md), [development-standards.md](./development-standards.md), [testing-and-quality.md](./testing-and-quality.md), [troubleshooting.md](./troubleshooting.md), [decision-log.md](./decision-log.md)

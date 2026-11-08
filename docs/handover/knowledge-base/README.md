@@ -5,13 +5,15 @@ The single source of truth for the TCS Corporate Website project (AEM Sites with
 | Attribute | Value |
 | --- | --- |
 | Audience | Everyone working on the project: see [Audience](#audience) |
-| Source of truth | The repository at commit 2d06316 (`main`, 21 October 2026); [AGENTS.md](../../../AGENTS.md); the block READMEs ([blocks/README.md](../../../blocks/README.md)); the project handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md), version 2.37) |
+| Source of truth | The repository at commit 2d06316 (`main`, 21 October 2026); [AGENTS.md](../../../AGENTS.md); the block READMEs ([blocks/README.md](../../../blocks/README.md)); the project handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md), version 2.37) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; topics that couldn't be verified are marked "Blocked" or "Requires validation" in their page |
 
 ## Purpose
 
 This knowledge base is the project-wide single source of truth for humans and AI agents. It brings together, per topic, the verified current state of the implementation and the project's standards, and points to the detailed sources: the code itself, [AGENTS.md](../../../AGENTS.md) (the repository rules), the README of each block, the decorator and utility READMEs, the audit reports and the handover. Where the handover or another document differs from the code, the knowledge base describes the code and records the difference ([discrepancy report](./reports/discrepancy-report.md)).
+
+**Where the documents are (KB-D-066, 8 November 2026).** Only this knowledge base is in the code repository. The handover (Markdown, PDF and screenshots), the guides, the design proposals, the audit, animation and block documentation reports and the EDAM set-up are on the branch [`migrated-page-content-edam`](https://github.com/sradha-tcs/tcs-corp/tree/migrated-page-content-edam/docs) under `docs/` (the same paths as before): links to them point there, and they are updated there.
 
 ## Mandatory Usage
 
@@ -104,5 +106,5 @@ Verified at commit 2d06316 (21 October 2026); details and evidence in the linked
 
 - [AGENTS.md](../../../AGENTS.md): repository rules for agents and developers
 - [blocks/README.md](../../../blocks/README.md): block documentation index
-- [docs/handover/README.md](../README.md) and [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md): the project handover
+- [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) and [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md): the project handover
 - [reports/](./reports/README.md): inventory, discrepancies, validation

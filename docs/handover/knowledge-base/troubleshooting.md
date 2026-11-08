@@ -115,7 +115,7 @@ This runbook lists the problems most often met when developing, authoring, publi
 
 ## Further Site-Wide Issues
 
-Each of these has symptoms, root cause, diagnosis, resolution, validation and escalation in the handover's Part 13 — Global Troubleshooting Guide ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)):
+Each of these has symptoms, root cause, diagnosis, resolution, validation and escalation in the handover's Part 13 — Global Troubleshooting Guide ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)):
 
 | Issue | Handover section |
 | --- | --- |
@@ -158,5 +158,5 @@ Don't collect:
 ## Related
 
 - [development-standards.md](./development-standards.md), [testing-and-quality.md](./testing-and-quality.md), [universal-editor.md](./universal-editor.md), [decorators-and-utilities.md](./decorators-and-utilities.md), [architecture.md](./architecture.md), [indexing-and-search.md](./indexing-and-search.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [security-privacy-consent.md](./security-privacy-consent.md), [personalization.md](./personalization.md), [administration-and-operations.md](./administration-and-operations.md), [deployment-and-release.md](./deployment-and-release.md)
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 13 — Global Troubleshooting Guide, 14.3 Logs, 14.4 Common Errors, 14.5 Escalation Matrix, 12.6 Rollback
-- [AGENTS.md](../../../AGENTS.md) "AEM delivery rules", "Module preloading"; [blocks/README.md](../../../blocks/README.md); [docs/audit/REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md) (operations and content actions)
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)): Part 13 — Global Troubleshooting Guide, 14.3 Logs, 14.4 Common Errors, 14.5 Escalation Matrix, 12.6 Rollback
+- [AGENTS.md](../../../AGENTS.md) "AEM delivery rules", "Module preloading"; [blocks/README.md](../../../blocks/README.md); [docs/audit/REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md) (operations and content actions)

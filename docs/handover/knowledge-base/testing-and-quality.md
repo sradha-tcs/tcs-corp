@@ -5,7 +5,7 @@ This page describes how the TCS Corporate website is tested and what evidence ex
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers, QA, reviewers, release managers, AI coding agents |
-| Source of truth | [package.json](../../../package.json), [test/](../../../test/), [.eslintrc.js](../../../.eslintrc.js), [.github/workflows/main.yaml](../../../.github/workflows/main.yaml), [docs/audit/](../../../docs/audit/README.md) (tools, BLOCK-ECOSYSTEM-AUDIT, REAUDIT, DIALOG-OPTIONS), handover revision history and Part 11.8 Validation |
+| Source of truth | [package.json](../../../package.json), [test/](../../../test/), [.eslintrc.js](../../../.eslintrc.js), [.github/workflows/main.yaml](../../../.github/workflows/main.yaml), [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md) (tools, BLOCK-ECOSYSTEM-AUDIT, REAUDIT, DIALOG-OPTIONS), handover revision history and Part 11.8 Validation |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 (`npm test`: 311 / 311 passed; `npm run lint`: clean, run on that commit) |
 | Status | Requires validation (Universal Editor, Analytics, screen reader and non-Chromium browser testing are blocked or not executed) |
 
@@ -78,7 +78,7 @@ The local server (`aem up`) serves local code with previewed content; `--html-fo
 
 ### Audit harness
 
-[docs/audit/tools/harness.mjs](../../../docs/audit/tools/harness.mjs) (Playwright Chromium, axe-core) loads every block library and curated design page of the local preview (`drafts/en/block-library`, `drafts/en/curated-design-pages`) and records per load:
+[docs/audit/tools/harness.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/harness.mjs) (Playwright Chromium, axe-core) loads every block library and curated design page of the local preview (`drafts/en/block-library`, `drafts/en/curated-design-pages`) and records per load:
 
 | Check | Detail |
 | --- | --- |
@@ -91,15 +91,15 @@ The local server (`aem up`) serves local code with previewed content; `--html-fo
 | Data layer | Presence, entries, components, duplicate component ids, page entry |
 | Clicks | At 1440px, up to 8 visible links per page: each must push exactly one `cmp:click` |
 
-Its companions: [compare.mjs](../../../docs/audit/tools/compare.mjs) compares each block of the published preview (aem.page) with the local preview (status and a content signature) and found the critical delivery defects of the first audit; [inventory.mjs](../../../docs/audit/tools/inventory.mjs) and [register.mjs](../../../docs/audit/tools/register.mjs) build the inventories and the defect register.
+Its companions: [compare.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/compare.mjs) compares each block of the published preview (aem.page) with the local preview (status and a content signature) and found the critical delivery defects of the first audit; [inventory.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/inventory.mjs) and [register.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/register.mjs) build the inventories and the defect register.
 
 Limits: the tools use absolute paths and packages of the delivery workspace, and the rendered library pages in `drafts/en/` and the renderer that produces them are not in the repository, so the harness can't run from a fresh clone without that workspace. Results and dates:
 
 | Run | Pages × widths | Result | Source |
 | --- | --- | --- | --- |
-| Block audit, before / after (19 Oct 2026) | 188 × 5 = 940 | Console errors 138 → 0 (test artefact), axe nodes 3745 → 0, 758 / 758 clicks single | [BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#2-runtime-validation-before-and-after) |
-| Re-audit (20 Oct 2026) | 940 | Clean before and after; new defects found by code review, targeted tests and the published site | [REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md) |
-| Dialog options (20 Oct 2026) | 191 × 5 = 955 | 0 errors, 0 failed requests, 0 axe, 0 overflow, 0 duplicate ids, 791 / 791 clicks single | [DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md#15-regression) |
+| Block audit, before / after (19 Oct 2026) | 188 × 5 = 940 | Console errors 138 → 0 (test artefact), axe nodes 3745 → 0, 758 / 758 clicks single | [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#2-runtime-validation-before-and-after) |
+| Re-audit (20 Oct 2026) | 940 | Clean before and after; new defects found by code review, targeted tests and the published site | [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md) |
+| Dialog options (20 Oct 2026) | 191 × 5 = 955 | 0 errors, 0 failed requests, 0 axe, 0 overflow, 0 duplicate ids, 791 / 791 clicks single | [DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md#15-regression) |
 | Load time change (handover 2.36) | 955 | Clean (0 errors, 0 axe, 0 overflow; 791 / 791 clicks) | Handover revision history |
 
 ## Authoring Testing (Universal Editor)
@@ -116,7 +116,7 @@ Substitute evidence: models are linted against the delivery rules, and the local
 
 ## Dialog Option and Combination Testing
 
-Dialog changes are tested with a test matrix that has these columns: Test ID, Block, Dialog configuration, Scenario, Expected result, Actual result, Status, Evidence. The worked example is [DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md#14-dialog-combination-test-matrix) (List Item, Teaser, Columns Container, Section).
+Dialog changes are tested with a test matrix that has these columns: Test ID, Block, Dialog configuration, Scenario, Expected result, Actual result, Status, Evidence. The worked example is [DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md#14-dialog-combination-test-matrix) (List Item, Teaser, Columns Container, Section).
 
 - **Every option alone**: each value of each changed field at least once (Teaser Title Type H1–H6, Image position Left / Right / Top / Bottom, every List Item toggle).
 - **Representative combinations**: high-risk combinations are tested together rather than the full cross product. For example, TE-03 tests four position × BG Color × button layout combinations so that each value appears at least once. The report doesn't use a formal pairwise generator.
@@ -137,7 +137,7 @@ Results recorded there: LI-01…LI-11, TE-01…TE-08, CC-01, CC-02, SE-01…SE-0
 | Check | Method | Status |
 | --- | --- | --- |
 | Automated WCAG 2.0 / 2.1 / 2.2 A and AA | axe in the harness at 1440 and 390px; combination pages for themes | Corrected and passed (3745 → 0 nodes in the first audit; 43 → 0 on the dark-background combination page) |
-| Keyboard, focus, names, semantics | Code review per block (Tab, Shift+Tab, Enter, Space, Escape, arrows, Home / End), targeted browser tests | Executed in the audits; reviews in [docs/audit/blocks/](../../../docs/audit/blocks/group-a-card-lists.md) and [docs/audit/reaudit/](../../../docs/audit/reaudit/review-a.md) |
+| Keyboard, focus, names, semantics | Code review per block (Tab, Shift+Tab, Enter, Space, Escape, arrows, Home / End), targeted browser tests | Executed in the audits; reviews in [docs/audit/blocks/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/blocks/group-a-card-lists.md) and [docs/audit/reaudit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/reaudit/review-a.md) |
 | Contrast of design tokens | axe; the token change needs design sign-off | Corrected and passed; sign-off open |
 | Screen reader (NVDA, VoiceOver) | Not executed | Blocked: no screen reader in the environment |
 | Reduced motion | Harness runs with `reducedMotion: 'reduce'`; code honours `prefers-reduced-motion` | Executed |
@@ -158,11 +158,11 @@ Only **Chromium** (Playwright) was run by the harness and the comparison tool. F
 | --- | --- | --- |
 | ACDL page entry, one component entry per block, unique ids | Passed | Harness (0 pages with duplicate component ids) |
 | One `cmp:click` per click (no missing, no duplicates) | Passed | 758 / 758, later 791 / 791 test clicks |
-| Events per interaction (show / hide, media, submit field names only, redacted search, change) | Passed in the audits' targeted tests | [BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#6-data-layer-deliverables-17-18) |
+| Events per interaction (show / hide, media, submit field names only, redacted search, change) | Passed in the audits' targeted tests | [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#6-data-layer-deliverables-17-18) |
 | Search term redaction | Passed | `test/privacy/privacy.test.mjs` |
 | Delivery to Adobe Analytics / CJA through Tags and the Web SDK | Blocked | Adobe Tags property, datastream and the measurement plan |
 
-Manual console checks and the 16 test cases (page entry, components after 3 seconds, link / download / exit clicks, cards, accordion, tabs, carousel, modal, video, search, submit, filter, Analytics off, breakpoint) are in handover 11.8 Validation ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)).
+Manual console checks and the 16 test cases (page entry, components after 3 seconds, link / download / exit clicks, cards, accordion, tabs, carousel, modal, video, search, submit, filter, Analytics off, breakpoint) are in handover 11.8 Validation ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)).
 
 ## Personalization and Consent
 
@@ -211,12 +211,12 @@ Every test result names its evidence:
 - the actual result in numbers where possible (loads, violations, clicks);
 - for Blocked, what is needed.
 
-Keep the outputs, such as the harness JSON, the register CSVs in [docs/audit/data/](../../../docs/audit/data/runtime-before-after.csv) and screenshots, without personal data, tokens, cookies, author host names or AEM program / environment ids.
+Keep the outputs, such as the harness JSON, the register CSVs in [docs/audit/data/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/data/runtime-before-after.csv) and screenshots, without personal data, tokens, cookies, author host names or AEM program / environment ids.
 
 ## Related
 
 - [development-standards.md](./development-standards.md), [troubleshooting.md](./troubleshooting.md), [universal-editor.md](./universal-editor.md), [decorators-and-utilities.md](./decorators-and-utilities.md), [architecture.md](./architecture.md), [accessibility.md](./accessibility.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [indexing-and-search.md](./indexing-and-search.md), [deployment-and-release.md](./deployment-and-release.md)
-- [docs/audit/README.md](../../../docs/audit/README.md): [BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md), [DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md)
+- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md): [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md), [DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md)
 - Block README sections "For QA and Support Teams" (for example [blocks/list/README.md](../../../blocks/list/README.md#for-qa-and-support-teams))
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): 1.7 Non-Functional Requirements, 11.8 Validation, 12.4 Release Checklist, 14.7 Health Checks, 17.6 Validation Activities
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)): 1.7 Non-Functional Requirements, 11.8 Validation, 12.4 Release Checklist, 14.7 Health Checks, 17.6 Validation Activities
 - [AGENTS.md](../../../AGENTS.md#testing--quality-assurance)
