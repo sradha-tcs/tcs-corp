@@ -181,7 +181,7 @@ Model `image-collage-item`; template name "Collage image item" (the block class 
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Image | `image` | reference | Yes | — | — | Add up to nine Collage image items. Authoring order determines the CSS-controlled image slot. | — |
+| Image | `image` | custom-asset-namespace:custom-asset | Yes | — | — | Add up to nine Collage image items. Authoring order determines the CSS-controlled image slot. Picked with the Dynamic Media asset picker (stores the delivery URL). | — |
 | Image alt text | `imageAlt` | text | No | — | — | Leave empty when the collage image is decorative. Delivered with `image` (field collapse). | — |
 | Image treatment | `imageTreatment` | select | No | `black-white` | Black and white (`black-white`), Normal (`normal`) | — | — |
 

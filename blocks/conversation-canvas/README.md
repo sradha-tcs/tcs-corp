@@ -357,8 +357,8 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Floating journey | `classes_journey` | select | No | "" | Floats and docks (""), Stays in place (`nofloat`) | Default and Secondary. Floats and docks: the search row stays in place, floats once scrolled past and lands on the next Canvas, until the footer Canvas. Stays in place: the row never floats; a floating row lands on it while it is on screen. The footer Canvas never floats; Primary always floats. Shown when `classes` is not `primary`. Delivered as a block class. | nofloat |
 | Quick actions | `classes_actions` | select | No | "" | Auto (""), Pills (`action-pills`), Buttons (`action-buttons`) | How the button items look. Auto: pills in page sections, buttons in the footer (Figma). Pills: filter-tag pills without arrows. Buttons: as each item is authored (view and type). Shown when `classes` is not `primary`. Delivered as a block class. | action-pills |
 | BG Style | `bgStyle` | select | No | `default` | Default (`default`), Dark (Primary) (`dark`) | Shown when `classes` is `primary`. | default |
-| BG Background Image | `backgroundImage` | reference | No | — | — | — | /content/dam/tcs-corp/home/home-hero-background.jpg |
-| Icon | `icon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/icons/chat-icon.svg |
+| BG Background Image | `backgroundImage` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/home/home-hero-background.jpg |
+| Icon | `icon` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/icons/chat-icon.svg |
 | Icon Alt Text | `iconAlt` | text | No | — | — | Delivered with `icon` (field collapse). | — |
 | Eyebrow | `eyebrow` | text | No | — | — | — | Ask TCS |
 | Title | `title` | text | No | — | — | — | Let’s shape what’s next, together |
@@ -370,7 +370,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Shown when `classes` is `primary`. Delivered as a block class. | text-links |
 | Search bar | `searchBar` | container | No | — | — | — | — |
 | Search bar › Search bar water mark | `searchPlaceholder` | text | No | — | — | — | Ask us a question |
-| Search bar › Search bar audio icon | `searchAudioIcon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/icons/audio-icon.svg |
+| Search bar › Search bar audio icon | `searchAudioIcon` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/icons/audio-icon.svg |
 | Search bar › Search bar audio icon alt text | `searchAudioIconAlt` | text | No | — | — | — | Search by voice |
 | Search bar › Search bar button icon type | `searchButtonStyle` | select | No | `primary` | Primary (`primary`), Secondary (`secondary`), Tertiary (`tertiary`) | — | primary |
 | Search bar › Search bar button icon type hover text | `searchButtonLabel` | text | No | — | — | — | Search |

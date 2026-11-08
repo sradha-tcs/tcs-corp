@@ -248,10 +248,10 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| TCS Logo | `tcsLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tcs-logo.png |
+| TCS Logo | `tcsLogo` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/header/tcs-logo.png |
 | TCS Logo Alt Text | `tcsLogoAlt` | text | No | `Tata Consultancy Services` | — | Names the logo link for screen readers. Delivered with `tcsLogo` (field collapse). | Tata Consultancy Services |
 | TCS Logo Link | `tcsLogoLink` | aem-content | No | — | — | Usually the locale Home page. | /design-block-master/en/curated-design-pages/home |
-| TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
+| TATA Logo | `tataLogo` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
 | Menu | `menu` | container | No | — | — | — | — |

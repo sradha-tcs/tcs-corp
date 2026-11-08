@@ -225,7 +225,7 @@ Stored on a new component (definition template): `style` = `"columns-container-s
 | Style | `style` | multiselect | No | `columns-container-section` | Columns Container (`columns-container-section`), Highlight (`highlight`) | Keep Columns Container selected: it makes the section a Columns Container. Add Highlight for the highlight background, as on sections. | columns-container-section |
 | BG Color | `containerBgColor` | select | No | "" | Default (""), Grey (`bg-grey`), Dark (`bg-dark`), Dark green (`bg-dark-green`), Navy (`bg-navy`) | The background colour of the columns, only the colour (text and buttons turn light on Dark and Dark green); set the space around them with the Padding fields of the Additional tab. | bg-dark-green |
 | Width Type | `sectionWidth` | select | No | `full-width` | Full Width (`full-width`), Fixed Width (`fixed-width`) | — | — |
-| Background Image | `backgroundImage` | reference | No | — | — | — | /content/dam/tcs-corp/dummy-pages/images/smart-home.jpg |
+| Background Image | `backgroundImage` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/dummy-pages/images/smart-home.jpg |
 | Image alt text | `backgroundImageAlt` | text | No | — | — | Describe the image for screen readers. Leave empty if the image is decorative. Delivered with `backgroundImage` (field collapse). | — |
 | Anchor name | `anchorName` | text | No | — | regExp: ^#?[a-z0-9][a-z0-9-]*$; customErrorMsg: Lower-case letters, digits and hyphens, e.g. our-offices. | Lets Anchor List links and #links jump to this section, e.g. our-offices (lowercase, no spaces). | our-offices |
 

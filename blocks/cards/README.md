@@ -575,7 +575,7 @@ Model `card`; template name "Card" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Image | `image` | reference | No | — | — | — | — |
+| Image | `image` | custom-asset-namespace:custom-asset | No | — | — | Picked with the Dynamic Media asset picker (stores the delivery URL). | — |
 | Image alt text | `imageAlt` | text | No | — | — | Describes the image for screen readers; empty: decorative. Delivered with `image` (field collapse). | — |
 | Eyebrow | `eyebrow` | text | No | — | — | A short label above the title, e.g. Perspective. | — |
 | Title | `title` | text | No | — | — | Statistic cards: the number, e.g. 4bn. | — |

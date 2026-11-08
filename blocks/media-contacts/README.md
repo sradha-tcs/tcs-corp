@@ -160,8 +160,8 @@ Stored on a new component (definition template): `titleType` = `"h2"`.
 | Territory title color | `regionColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
 | Email color | `emailColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
 | Phone color | `phoneColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
-| Email icon | `emailIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default mail icon. | — |
-| Phone icon | `phoneIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default phone icon. | — |
+| Email icon | `emailIcon` | custom-asset-namespace:custom-asset | No | — | — | Optional custom icon. Leave empty to use the default mail icon. Picked with the Dynamic Media asset picker (stores the delivery URL). | — |
+| Phone icon | `phoneIcon` | custom-asset-namespace:custom-asset | No | — | — | Optional custom icon. Leave empty to use the default phone icon. Picked with the Dynamic Media asset picker (stores the delivery URL). | — |
 
 #### Additional tab — Media Contacts
 

@@ -27,11 +27,11 @@
           "label": "Content"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "tcsLogo",
-          "label": "TCS Logo",
-          "multi": false
+          "label": "TCS Logo"
         },
         {
           "component": "text",
@@ -49,11 +49,11 @@
           "description": "Usually the locale Home page."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "tataLogo",
-          "label": "TATA Logo",
-          "multi": false
+          "label": "TATA Logo"
         },
         {
           "component": "text",
