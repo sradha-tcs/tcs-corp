@@ -30,23 +30,23 @@ Screenshots of the handover (6.33 Media Contacts Block), taken on the preview wi
 
 **Desktop rendering** — The Media Contacts block at 1440 px on the block library page Media Contacts variations: the H2 TCS media contacts, then two columns filled top to bottom: Corporate Communications & India with three e-mail addresses one below the other, Asia Pacific, Canada, Latin America and Australia and New Zealand on the left; Europe, Japan, Middle East & Africa, UK and USA on the right, each with an e-mail address and a phone number, a blue mail or phone icon before each underlined link.
 
-![Desktop rendering: The Media Contacts block at 1440 px on the block library page Media Contacts variations: the H2 TCS media contacts, then two columns filled top to bottom: Corporate Communications & India with three e-mail addresses one below the o](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/media-contacts-desktop-view.jpg)
+![Desktop rendering: The Media Contacts block at 1440 px on the block library page Media Contacts variations: the H2 TCS media contacts, then two columns filled top to bottom: Corporate Communications & India with three e-mail addresses one below the o](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/media-contacts/screenshots/handover/media-contacts-desktop-view.jpg)
 
 **Mobile rendering** — The same block at 375 px: the H2 TCS media contacts and the groups in one column, Corporate Communications & India with its three e-mail addresses, then Asia Pacific, Canada and the other regions, each address and number on its own line with its icon.
 
-![Mobile rendering: The same block at 375 px: the H2 TCS media contacts and the groups in one column, Corporate Communications & India with its three e-mail addresses, then Asia Pacific, Canada and the other regions, each address and number on its own ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/media-contacts-mobile-view.jpg)
+![Mobile rendering: The same block at 375 px: the H2 TCS media contacts and the groups in one column, Corporate Communications & India with its three e-mail addresses, then Asia Pacific, Canada and the other regions, each address and number on its own ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/media-contacts/screenshots/handover/media-contacts-mobile-view.jpg)
 
 **Regional variation** — The block library page Media Contacts: one region at 1440 px, whose region metadata is Europe: the H2 Media contacts in Europe and the single group Europe with roland.bagen@tcs.com and +46 70 3178024.
 
-![Regional variation: The block library page Media Contacts: one region at 1440 px, whose region metadata is Europe: the H2 Media contacts in Europe and the single group Europe with roland.bagen@tcs.com and +46 70 3178024.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/media-contacts-region.jpg)
+![Regional variation: The block library page Media Contacts: one region at 1440 px, whose region metadata is Europe: the H2 Media contacts in Europe and the single group Europe with roland.bagen@tcs.com and +46 70 3178024.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/media-contacts/screenshots/handover/media-contacts-region.jpg)
 
 **Default title** — The second example of the variations page at 1440 px: the block without a Title shows the heading Media contacts (placeholder) above the same groups.
 
-![Default title: The second example of the variations page at 1440 px: the block without a Title shows the heading Media contacts placeholder above the same groups.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/media-contacts-default-title.jpg)
+![Default title: The second example of the variations page at 1440 px: the block without a Title shows the heading Media contacts placeholder above the same groups.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/media-contacts/screenshots/handover/media-contacts-default-title.jpg)
 
 **Press release template** — The end of the block library page Press release template at 1440 px: the release text with About TCS, then the Media Contacts block with the H2 Media contacts and the groups in two columns; the Press Release template no longer appends a section of its own.
 
-![Press release template: The end of the block library page Press release template at 1440 px: the release text with About TCS, then the Media Contacts block with the H2 Media contacts and the groups in two columns; the Press Release template no longer](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/template-press-release-media-contacts.jpg)
+![Press release template: The end of the block library page Press release template at 1440 px: the release text with About TCS, then the Media Contacts block with the H2 Media contacts and the groups in two columns; the Press Release template no longer](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/media-contacts/screenshots/handover/template-press-release-media-contacts.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -417,7 +417,7 @@ graph LR
 - [Model: `_media-contacts.json`](_media-contacts.json)
 - [Grouping tests](../../test/media-contacts/media-contacts-data.test.mjs)
 - [Templates](../../templates/README.md)
-- [Handover 6.33 Media Contacts Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.33 Media Contacts Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

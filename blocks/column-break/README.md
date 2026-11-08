@@ -489,7 +489,7 @@ The label is set with `textContent`. No external content or personal data.
 - [Tabs](../tabs/README.md) and [Tab](../tab/README.md) (Column Breaks in a tab)
 - Model: [`_column-break.json`](_column-break.json)
 - Tests: [`test/models/block-names.test.mjs`](../../test/models/block-names.test.mjs)
-- [Handover 6.32 Columns Container](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.32 Columns Container](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

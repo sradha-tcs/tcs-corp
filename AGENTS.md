@@ -42,9 +42,12 @@ Rules:
   "Blocked: <input needed>" instead.
 - Documentation: every block has a README in the structure of blocks/README.md (written
   sections by hand, generated ones by npm run build:docs, status in tools/docs/blocks.json);
-  update decorators/utils READMEs, AGENTS.md and the handover with the change (the handover and the
-  other project documents are on the branch migrated-page-content-edam under docs/, KB-D-066; only
-  the knowledge base is in this repository).
+  update decorators/utils READMEs, AGENTS.md and the role-specific documentation with the change: the
+  documentation set (architecture, development with one folder per block, authoring, BA, QA,
+  operations, governance, release, knowledge base, training, audit; Markdown with paired PDFs) is on
+  the branch migrated-page-content-edam under docs/handover/ (KB-D-066, KB-D-069): every code change
+  regenerates or updates it (its generator: docs-tools/ on that branch); only this knowledge base is
+  in this repository.
 - Decision log: a change to an approved decision, a new block replacing another, or a new
   integration gets an entry in docs/handover/knowledge-base/decision-log.md (Proposed until
   the user approves).
@@ -100,7 +103,7 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── utils/                      # Shared helpers that build no UI (properties, metadata, placeholders, taxonomy, ...), see utils/README.md
 ├── templates/                  # Code of the Site Global Templates, loaded by Page Type (home, article, blog, press-release), see templates/README.md
 ├── models/                     # Folder containing component definitions, models and filters for default content, pages, sections etc.
-├── docs/                       # Not served (.hlxignore): handover/knowledge-base/ (the knowledge base). The other project documents (the handover PDF and its Markdown source, the guides, proposals, animation and audit reports, block documentation reports, the EDAM set-up) live on the branch migrated-page-content-edam under docs/ (KB-D-066)
+├── docs/                       # Not served (.hlxignore): handover/knowledge-base/ (the knowledge base). The role-specific documentation set (with paired PDFs) lives on the branch migrated-page-content-edam under docs/handover/ (KB-D-066, KB-D-069); the former handover, proposals and reports are kept in the tag archive/docs-before-role-docs-2026-11-08
 ├── fonts/                      # Web fonts
 ├── icons/                      # SVG icons
 ├── head.html                   # Global HTML head content
@@ -356,7 +359,7 @@ With this information, you can construct URLs for the preview environment (same 
 - Follow the existing code style and patterns
 - Test changes locally before committing
 - Follow the Publishing Process documented above
-- Update documentation for significant changes: the block's README (`blocks/<block>/README.md`, the structure of [blocks/README.md](blocks/README.md); its written sections by hand, the generated ones with `npm run build:docs`; status, type and purpose in `tools/docs/blocks.json`), `decorators/README.md` / `utils/README.md`, this file, and the project handover (`docs/handover/TCS-CORP-HANDOVER.md` on the branch migrated-page-content-edam: the component chapter, Part 16 findings, the revision history; then regenerate the PDF, see its `docs/handover/README.md`; running `npm run build:docs` with `HANDOVER` set to a checkout of that handover file refreshes the block READMEs' screenshot list, `tools/docs/handover-screenshots.json`)
+- Update documentation for significant changes: the block's README (`blocks/<block>/README.md`, the structure of [blocks/README.md](blocks/README.md); its written sections by hand, the generated ones with `npm run build:docs`; status, type and purpose in `tools/docs/blocks.json`), `decorators/README.md` / `utils/README.md`, this file, and the role-specific documentation set (`docs/handover/` on the branch migrated-page-content-edam, KB-D-069: the block's folders in 02-development and 03-authoring, its test cases in 05-quality-assurance, the registers; regenerate it and its PDFs with `docs-tools/` on that branch; the former consolidated handover is superseded and kept in the tag archive/docs-before-role-docs-2026-11-08)
 - Design proposals go to `docs/proposals/` on the branch migrated-page-content-edam (listed in its README); the Cards and Card refactoring proposal (`docs/proposals/cards-card-refactoring.md`) is open for decisions
 
 ## If all else fails

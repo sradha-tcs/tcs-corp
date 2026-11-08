@@ -5,7 +5,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Attribute | Value |
 | --- | --- |
 | Audience | Business teams, product owner, new joiners, architects, developers, AMS / support, AI agents |
-| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)) |
+| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation (business KPIs, stakeholder names, production domain and launch scope are not recorded) |
 
@@ -24,7 +24,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Sites | 13 locale sites, plus the language master published temporarily for review |
 | Hosts in use | `main--tcs-corp--sradha-tcs.aem.page` (preview) and `main--tcs-corp--sradha-tcs.aem.live` (live) |
 | Production domain and CDN | Not recorded (handover open item O-03, "To be confirmed") |
-| Handover | [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
+| Handover | [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
 
 ## Business and Program Objectives
 
@@ -252,4 +252,4 @@ Full definitions: [glossary.md](./glossary.md).
 - [AGENTS.md](../../../AGENTS.md): verified project rules
 - [blocks/README.md](../../../blocks/README.md): block inventory
 - [utils/site.js](../../../utils/site.js): locales and the language master review
-- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)

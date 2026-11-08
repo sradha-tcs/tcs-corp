@@ -659,8 +659,8 @@ No external content, query strings or user data; the editor hints are set with `
 - [Columns](../columns/README.md) (the built-in block it replaces)
 - Model: [`_columns-container.json`](_columns-container.json)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs), [`test/models/block-names.test.mjs`](../../test/models/block-names.test.mjs)
-- Animation: [`docs/animation/README.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
-- [Handover 6.32 Columns Container](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- Animation: [`docs/animation/README.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- [Handover 6.32 Columns Container](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

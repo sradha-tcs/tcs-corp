@@ -29,8 +29,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (path) => readFileSync(resolve(ROOT, path), 'utf8');
-// the handover screenshots, on the documents branch (KB-D-066)
-const SHOTS_URL = 'https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/';
+// the handover screenshots, in each block's folder of the role-specific documentation on the
+// documents branch (KB-D-066, KB-D-069):
+// docs/handover/02-development/blocks/<block>/screenshots/handover/
+const SHOTS_URL = (block) => `https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/${block}/screenshots/handover/`;
 const json = (path) => JSON.parse(read(path));
 
 /* ------------------------------------------------------------------ inputs */
@@ -266,7 +268,7 @@ export function screenshotsSection(inputs, block) {
       const shows = rest.join(' — ').replace(/\s*\(Sample content[^)]*\)\s*$/, '').trim();
       const alt = `${title}${shows ? `: ${shows}` : ''}`.replace(/[[\]()]/g, '').replace(/\s+/g, ' ').slice(0, 250);
       return [`**${esc(title)}**${shows ? ` — ${esc(shows)}` : ''}`, '',
-        `![${alt}](${SHOTS_URL}${s.file})`].join('\n');
+        `![${alt}](${SHOTS_URL(block)}${s.file})`].join('\n');
     }).join('\n\n'));
   } else {
     parts.push('No handover screenshot of this block was identified.');

@@ -5,7 +5,7 @@ This page defines the terms used across the TCS Corporate Website code, the hand
 | Attribute | Value |
 | --- | --- |
 | Audience | Everyone on the project: authors, developers, architects, QA, AMS, AI agents |
-| Source of truth | [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), code in `scripts/`, `decorators/`, `utils/`, handover Part 15 — Appendix (15.1 Glossary, 15.2 Acronyms) and Part 16 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)), [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md) |
+| Source of truth | [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), code in `scripts/`, `decorators/`, `utils/`, handover Part 15 — Appendix (15.1 Glossary, 15.2 Acronyms) and Part 16 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)), [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current |
 
@@ -170,10 +170,10 @@ Status from [blocks/README.md](../../../blocks/README.md); each name links to it
 | O-01 … O-20 | Open items "To be confirmed" (names, KPIs, domain, configuration, integrations) | Handover Part 16.3 |
 | P1 / P2 / P3 | Finding priority: blocks go-live of the feature / fix before or soon after go-live / improvement | Handover Part 16.1 |
 | BO-n, PG-n, SC-n | Business objectives, program goals, success criteria | Handover Part 1 |
-| D-A-n, D-B-n, D-C-n, D-D-n | Defects of the block ecosystem audit, by code review group (A card lists, B heroes and teasers, C containers, D forms, media and chrome) | [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 10, [audit/blocks/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/blocks/group-a-card-lists.md) |
+| D-A-n, D-B-n, D-C-n, D-D-n | Defects of the block ecosystem audit, by code review group (A card lists, B heroes and teasers, C containers, D forms, media and chrome) | [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 10, [audit/blocks/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/blocks/group-a-card-lists.md) |
 | L-n | Audit defects found on the live (published) site | Same register |
-| R-A-n … R-D-n, R-L-n | Re-audit defects by review (a–d) and found live after publishing (L) | [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md) section 4 |
-| D-1 … D-6, C-n, G1 | Cards proposal: open product owner decisions, confirmations to test, groups of existing Cards | [cards-card-refactoring.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/proposals/cards-card-refactoring.md) |
+| R-A-n … R-D-n, R-L-n | Re-audit defects by review (a–d) and found live after publishing (L) | [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md) section 4 |
+| D-1 … D-6, C-n, G1 | Cards proposal: open product owner decisions, confirmations to test, groups of existing Cards | [cards-card-refactoring.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/cards-card-refactoring.md) |
 | Handover version (e.g. 2.37) | Revision of the handover document; each row of its revision history names the change | Handover Document Control |
 
 ## Acronyms
@@ -215,4 +215,4 @@ Status from [blocks/README.md](../../../blocks/README.md); each name links to it
 - [project-overview.md](./project-overview.md), [repository-structure.md](./repository-structure.md), [references.md](./references.md)
 - [architecture.md](./architecture.md), [blocks.md](./blocks.md), [content-architecture.md](./content-architecture.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [design-system.md](./design-system.md), [personalization.md](./personalization.md)
 - [AGENTS.md](../../../AGENTS.md): delivery rules, Additional tab, item children, animation, theme
-- Handover Part 15 — Appendix (15.1 Glossary, 15.2 Acronyms) and Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover Part 15 — Appendix (15.1 Glossary, 15.2 Acronyms) and Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
