@@ -64,7 +64,7 @@ Rules:
 
 Typed values: `featured` is true for `yes`, `true`, `1`, `on`, `y` in `featured` or `featureCard`; `priority` is the number in `priority`, else `featuredPriority`, else `null`.
 
-**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root `/language-masters/en` for pages below it (`REVIEW_ROOTS`, temporary), else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
+**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root `/language-masters/en` (or, until the tree is moved, `/language-master/en`) for pages below it (`REVIEW_ROOTS`, temporary), else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
 
 **AEM author.** AEM author has no query index (`isAuthor()` in `utils/environment.js`: the path starts with `/content/`); `getPages()` then returns `[]` and blocks show editor hints (below). Fixed-list pages are read with `getPagesAt`.
 
