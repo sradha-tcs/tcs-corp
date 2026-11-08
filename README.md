@@ -35,4 +35,15 @@ sections 7 to 9.
 Before installing on an author that has the old root, move the existing tree (Sites console > Move, references
 adjusted) and have the site's path mapping changed for the new root (`edam-main` of the site repository).
 
+## EDAM set-up: two scripts
+
+With the assets on a separate AEM Assets environment, run from this folder (details: `RUN-SCRIPTS.md`):
+
+1. **`edam-assets.sh`** (Mac) / **`edam-assets.ps1`** (Windows): the assets to the Assets environment (extract,
+   tags, upload, metadata, approval) and their IDs exported to `edam-state/asset-ids.csv`.
+2. **`aem-sites.sh`** (Mac) / **`aem-sites.ps1`** (Windows): the content packages 1.3.0-edam built with the
+   assets' delivery URLs and installed on the Sites author.
+
+Pilot with `--batch B001` / `-Batch B001` first. Both are resumable (run the same command again to continue).
+
 Each package and report traces back to its workbook rows (Row ID = the CSV row number).

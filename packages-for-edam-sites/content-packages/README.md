@@ -13,30 +13,28 @@ pages only, no assets).
 
 ## Status
 
-**Not built yet: waiting for the asset IDs.** The migration team's rebuild tool is ready and tested on all 60
-batches with stand-in IDs: 33,116 references rewritten, none left as DAM paths, every page still valid XML.
-Each package is built within minutes of receiving:
+**Built on your machine by `aem-sites.sh` / `aem-sites.ps1`** (branch root, `../../RUN-SCRIPTS.md`), after
+`edam-assets.sh` / `.ps1` has put the assets on the Assets environment and exported their IDs
+(`../../edam-state/asset-ids.csv`). The script needs the delivery host (decision E-D2: a custom delivery domain,
+recommended, or the default `delivery-p…-e….adobeaemcloud.com`), builds the packages here and installs them on the
+Sites author. Tested with stand-in IDs on all 60 batches: 33,116 references rewritten, none left as DAM paths,
+every page still valid XML, the same packages as the migration team's rebuild tool.
 
-1. **`asset-ids.csv`** from the Assets environment (`consolidated/tools/export-asset-ids.sh` / `.ps1`), after
-   the batch's EDAM zips are uploaded, the metadata imported and the assets approved (`../edam-zips/README.md`).
-   For the pilot: B001's 4 zips in `../edam-zips/zips/` (57 assets), exported with `--batch B001` / `-Batch B001`.
-2. **The delivery host** (decision E-D2): a custom delivery domain (recommended, no environment ids in the
-   content) or the default `delivery-p…-e….adobeaemcloud.com`.
-
-A batch is built only when every asset it references has an ID; the export's report lists anything missing
-(and assets not approved yet, which aren't delivered).
+A batch is built only when every asset it references has an ID: the script lists the others (exit code 4); run
+`edam-assets` for their assets, then `aem-sites` again.
 
 ## Then
 
 This folder holds `tcs-corp-ema-<batch>-1.3.0-edam.zip`, `INSTALL-ORDER.md`, `REWRITE-<batch>.csv` (every
-reference: page, property, DAM path, delivery URL) and `REWRITE-SUMMARY.md`. Install them on the Sites author
-once the site code for EDAM assets is deployed (Universal Editor Custom Content Advisor, the models' asset
-fields with their MIME type fields, delivery URL rendering):
+reference: page, property, DAM path, delivery URL), `REWRITE-SUMMARY.md` and the installation progress log. Install
+them once the site code for EDAM assets is deployed (Universal Editor Custom Content Advisor, the models' asset
+fields with their MIME type fields, delivery URL rendering): `aem-sites` does it; to install the packages of this
+folder only (no rebuild):
 
 ```bash
-PKG_DIR=packages-for-edam-sites/content-packages bash consolidated/tools/install-packages.sh --only pages
+bash aem-sites.sh --steps 2
 ```
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File consolidated\tools\install-packages.ps1 -Only pages -PackageDir packages-for-edam-sites\content-packages
+powershell -ExecutionPolicy Bypass -File aem-sites.ps1 -Steps 2
 ```

@@ -12,6 +12,9 @@ local or non-EDAM set-up (assets in the Sites author's own DAM).
 
 ## Order
 
+**Two scripts do it** from the branch's root folder: `edam-assets.sh` / `.ps1` (steps 1 to 5) and `aem-sites.sh` /
+`.ps1` (steps 6 and 8, the installation), see `../RUN-SCRIPTS.md`. The steps by hand:
+
 1. **EDAM: tags.** Create the 41 taxonomy tags of `edam-zips/metadata/edam-tags.csv` (with their parents) in
    the Assets environment's Tagging console, so the imported tags resolve.
 2. **EDAM: assets.** Build the EDAM zips, extract them into one folder and upload its `tcs-corp` folder to

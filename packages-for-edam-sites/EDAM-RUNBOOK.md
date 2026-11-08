@@ -24,57 +24,51 @@ adjusted) and have the site's path mapping changed (site configuration and `path
 | # | Step | Check |
 |---|---|---|
 | 1.1 | Admin Console: authors and admins in the product profiles of the Assets environment | They can open its Assets view |
-| 1.2 | Get the files (only what is needed, not the 26 GB branch), see "Getting the files" below | `packages-for-edam-sites/` and `consolidated/tools/` on your machine |
-| 1.3 | Assets environment, Tools > Tagging: create the namespace **TCS Corp** (`tcs-corp`), the parents and the 41 tags of `edam-zips/metadata/edam-tags.csv` (tag, title, parent) | All 41 tags present |
-| 1.4 | Dev starts the site code for EDAM assets (step 3.2) in parallel | Pull request opened |
+| 1.2 | Download the branch `migrated-page-content-edam` (all of it: the scripts read the asset and page packages) | `edam-assets.sh` / `.ps1` and `aem-sites.sh` / `.ps1` in its root folder |
+| 1.3 | Dev starts the site code for EDAM assets (step 3.1) in parallel | Pull request opened |
+
+The two scripts (`../RUN-SCRIPTS.md`) do phases 2 to 5 except the checks in AEM, the sheets and publishing.
+The tags (step 1.3 before) are created by `edam-assets`.
 
 ## Phase 2. Pilot assets: batch B001 (Admin)
 
 | # | Step | Check |
 |---|---|---|
-| 2.1 | Extract the 4 zips of `edam-zips/zips/` into one empty folder, e.g. `edam-upload/` | `edam-upload/tcs-corp/images/…`, `…/videos/…`, `…/audio/…`: 57 files |
-| 2.2 | Assets view of EDAM > Assets (the root, `/content/dam`) > **Add Assets** > upload the folder `edam-upload/tcs-corp`. Don't upload the zip files themselves | `/content/dam/tcs-corp/…` with the 57 files |
-| 2.3 | Wait until processing is complete (no "processing" badge on the assets) | Thumbnails shown |
-| 2.4 | Assets > **Metadata Import**: `edam-zips/metadata/batches/edam-metadata-B001-W2-N-A02.csv`; Field Separator `,`, Multi value Delimiter `\|`, Asset Path Column Name `assetPath`, Launch Workflows off | Titles, descriptions and tags on the assets. If the tags aren't read as a list: Metadata Export of one asset and use its header for `cq:tags` |
-| 2.5 | Approve the 57 assets (select > **Approve**, or Status = Approved) | All approved |
-| 2.6 | Export the asset IDs from EDAM (commands below) with `--batch B001 --check 5` (Mac) / `-Batch B001 -Check 5` (Windows) | Report: **Expected (batch B001): 57, Found 57, Missing 0, Not approved yet 0**; the 5 spot checks answer **200** |
-| 2.7 | Send `asset-ids.csv` and the delivery host (E-D2) to Dev | — |
+| 2.1 | Run **`edam-assets.sh --batch B001`** (Mac) / **`edam-assets.ps1 -Batch B001`** (Windows) with `EDAM_AUTHOR` and `DELIVERY_HOST` set (commands below): extract, tags, upload, metadata, approval, asset ID export with spot checks | Report: **Expected (batch B001): 57, Found 57, Missing 0, Not approved yet 0**; the 5 spot checks answer **200** |
+| 2.2 | Assets view of EDAM: `/content/dam/tcs-corp/…` | The 57 assets processed (thumbnails), approved, with titles, descriptions and tags; the 41 tags in Tools > Tagging under **TCS Corp** |
 
 ## Phase 3. Pilot pages (Dev, Admin)
 
 | # | Step | Check |
 |---|---|---|
-| 3.1 | Dev builds `content-packages/tcs-corp-ema-B001-W2-N-A02-1.3.0-edam.zip` (pages below `/content/tcs-corp/language-masters`) (every asset reference → delivery URL) and pushes it with its `REWRITE-B001-W2-N-A02.csv` | 53 references rewritten, 0 unresolved |
-| 3.2 | Dev: site code for EDAM assets (Universal Editor Custom Content Advisor and its configuration, the 20 asset fields of 15 component models with their MIME type fields, delivery URL rendering, tests, READMEs): reviewed and merged | Pull request merged, checks green |
-| 3.3 | Admin installs the B001 content package on a **non-production** Sites author (commands below: `--only pages`, `PKG_DIR` / `-PackageDir` = `packages-for-edam-sites/content-packages`, `--batch B001`) | Package Manager: installed |
-| 3.4 | Open the 4 B001 pages in Universal Editor | Images show; the image fields open the EDAM asset picker |
-| 3.5 | Publish the 4 pages (and preview first) | On the published pages: every image, the 2 videos and the audio link load from the delivery host (no 404); PageSpeed comparable to before |
-| 3.6 | PO and Dev: pilot accepted, or the findings fixed and 3.1–3.5 repeated | Go for the full run |
+| 3.1 | Dev: site code for EDAM assets (Universal Editor Custom Content Advisor and its configuration, the 20 asset fields of 15 component models with their MIME type fields, delivery URL rendering, tests, READMEs): reviewed and merged | Pull request merged, checks green |
+| 3.2 | Run **`aem-sites.sh --batch B001`** / **`aem-sites.ps1 -Batch B001`** with `SITES_AUTHOR` (a **non-production** Sites author) and `DELIVERY_HOST`: builds `content-packages/tcs-corp-ema-B001-W2-N-A02-1.3.0-edam.zip` (pages below `/content/tcs-corp/language-masters`, every asset reference → delivery URL) and installs it | **53 references, 53 rewritten, 0 unresolved**; installed |
+| 3.3 | Open the 4 B001 pages in Universal Editor | Images show; the image fields open the EDAM asset picker |
+| 3.4 | Publish the 4 pages (and preview first) | On the published pages: every image, the 2 videos and the audio link load from the delivery host (no 404); PageSpeed comparable to before |
+| 3.5 | PO and Dev: pilot accepted, or the findings fixed and 2.1–3.4 repeated | Go for the full run |
 
-## Phase 4. All assets (Admin, Dev)
+## Phase 4. All assets (Admin)
 
 | # | Step | Check |
 |---|---|---|
-| 4.1 | Admin builds the zips of the earlier-run assets: the converter with `--packages packages-earlier-run-assets` / `-Packages packages-earlier-run-assets` | 13 zips `tcs-corp-edam-earlier-NN.zip`, 1,342 files |
-| 4.2 | Admin builds the 338 EDAM zips locally: `tools/build-edam-zips.sh` (Mac) / `build-edam-zips.ps1` (Windows); needs `consolidated/packages/` (22 GB) and 22 GB of free disk | 338 zips in `edam-zips/zips/`, plus the `-earlier` zips |
-| 4.3 | Extract all zips into one folder (the 4 pilot files are the same files) | One `tcs-corp/` tree, 14,352 files |
-| 4.4 | Copy the `tcs-corp` folder to an Azure Blob or Amazon S3 container; Assets environment, Tools > Assets > **Bulk Import**: that source, target `/content/dam`, existing assets replaced; run it | Bulk Import job completed without errors |
-| 4.5 | Wait for processing; Metadata Import of `edam-zips/metadata/edam-metadata.csv` (all 14,352 rows, same settings as 2.4) | Spot checks of titles and tags in several folders |
-| 4.6 | Approve all assets of `/content/dam/tcs-corp` | — |
-| 4.7 | Export the asset IDs (no `--batch`) with `--check 5` | Report: **Expected 14,352, Found 14,352, Missing 0, Not approved yet 0**; spot checks 200. Missing assets are listed with their batch: upload them again, re-export |
-| 4.8 | Send `asset-ids.csv` to Dev | — |
+| 4.1 | Run **`edam-assets.sh`** / **`edam-assets.ps1`** without the batch option (all 14,352 assets, the pilot's are skipped; up to 22 GB of free disk for the extracted files). Long run: when it stops (network, token expired after 24 hours), run it again; it continues | Report: **Expected 14,352, Found 14,352, Missing 0, Not approved yet 0**; spot checks 200. Missing assets are listed with their batch: run it again |
+| 4.2 | Spot checks in the Assets view: titles, tags and approval in several folders | — |
 
 **All assets before any content package:** 52 batches' pages also use assets of other batches.
+Alternative for the upload (e.g. if the network is too slow for 22 GB from one machine): the EDAM zips
+(`edam-zips/tools/build-edam-zips.*`), copied to Azure Blob or Amazon S3 and imported with Tools > Assets >
+**Bulk Import** (target `/content/dam`), then Metadata Import of `edam-zips/metadata/edam-metadata.csv` (Field
+Separator `,`, Multi value Delimiter `\|`, Asset Path Column Name `assetPath`), approval, and
+`edam-assets --steps 5` for the asset IDs.
 
-## Phase 5. All pages (Dev, Admin)
+## Phase 5. All pages (Admin, Dev)
 
 | # | Step | Check |
 |---|---|---|
-| 5.1 | Dev builds the 60 content packages 1.3.0-edam and the sheets with delivery URLs, pushes them with `INSTALL-ORDER.md` and `REWRITE-SUMMARY.md` | 0 unresolved references in every batch |
-| 5.2 | Admin installs them on the Sites author: `install-packages --only pages` with `PKG_DIR` / `-PackageDir` = `packages-for-edam-sites/content-packages` (resumable) | 60 installed (progress log) |
-| 5.3 | Replace the sheets with `consolidated/sheets/` (metadata, redirects, authors, placeholders, data) and publish them | Sheets published |
-| 5.4 | Publish the pages (tree activation of `/content/tcs-corp/language-masters/en`), then re-index | Query index shows the pages |
-| 5.5 | Verify a sample of every batch (`consolidated/reports/BATCH-SUMMARY.md`): images, videos, documents, lists and cards | No missing assets |
+| 5.1 | Run **`aem-sites.sh`** / **`aem-sites.ps1`** without the batch option on the Sites author: builds the 60 content packages 1.3.0-edam (with `INSTALL-ORDER.md`, `REWRITE-<batch>.csv`, `REWRITE-SUMMARY.md`) and installs them (resumable) | 0 unresolved references in every batch; 60 installed (progress log) |
+| 5.2 | Replace the sheets with `consolidated/sheets/` (metadata, redirects, authors, placeholders, data) and publish them | Sheets published |
+| 5.3 | Publish the pages (tree activation of `/content/tcs-corp/language-masters/en`), then re-index | Query index shows the pages |
+| 5.4 | Verify a sample of every batch (`consolidated/reports/BATCH-SUMMARY.md`): images, videos, documents, lists and cards | No missing assets |
 
 ## Phase 6. Close (PO, Admin)
 
@@ -84,47 +78,27 @@ adjusted) and have the site's path mapping changed (site configuration and `path
 | 6.2 | The content team works through `consolidated/reports/CONTENT-TEAM-REMARKS.csv` (design sections without live content, 14 retired pages) |
 | 6.3 | Redirects (on hold until all pages are built): the 652 moved pages and the tcs.com URLs (`consolidated/sheets/redirects.csv`) |
 
-## Getting the files
-
-Only the folders needed, with Git (macOS Terminal or Windows PowerShell with Git for Windows):
-
-```bash
-git clone --filter=blob:none --no-checkout --single-branch --branch migrated-page-content https://github.com/sradha-tcs/tcs-corp.git tcs-migration
-cd tcs-migration
-git sparse-checkout set --no-cone /packages-for-edam-sites/ /consolidated/tools/
-git checkout migrated-page-content
-# for step 4.2 (the converter) also the asset packages, 22 GB:
-git sparse-checkout add /consolidated/packages/
-```
-
 ## Commands
 
-Asset ID export (step 2.6 with the pilot options, step 4.7 without them), from `tcs-migration/consolidated`:
+From the branch's root folder. Leave the tokens out: the scripts ask for them (hidden input).
 
 ```bash
-export AEM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com   # the Assets environment
-export AEM_TOKEN='<access token>'            # its Developer Console > Integrations > Local token
+export EDAM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com    # the Assets environment
+export SITES_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com   # the Sites author
 export DELIVERY_HOST=<delivery host>
-bash tools/export-asset-ids.sh --batch B001 --check 5
+bash edam-assets.sh --batch B001      # step 2.1 (step 4.1 without --batch)
+bash aem-sites.sh --batch B001        # step 3.2 (step 5.1 without --batch)
 ```
 
 ```powershell
-$env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
+$env:EDAM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
+$env:SITES_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
 $env:DELIVERY_HOST = "<delivery host>"
-powershell -ExecutionPolicy Bypass -File tools\export-asset-ids.ps1 -Batch B001 -Check 5
+powershell -ExecutionPolicy Bypass -File edam-assets.ps1 -Batch B001
+powershell -ExecutionPolicy Bypass -File aem-sites.ps1 -Batch B001
 ```
 
-Content package installation (step 3.3 with `--batch B001`, step 5.2 without it), from `tcs-migration`:
-
-```bash
-export AEM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com   # the Sites author
-export AEM_TOKEN='<access token>'
-PKG_DIR=packages-for-edam-sites/content-packages bash consolidated/tools/install-packages.sh --only pages --batch B001
-```
-
-```powershell
-$env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
-powershell -ExecutionPolicy Bypass -File consolidated\tools\install-packages.ps1 -Only pages -Batch B001 -PackageDir packages-for-edam-sites\content-packages
-```
+Options, exit codes and files: `../RUN-SCRIPTS.md`. The separate tools stay available
+(`consolidated/tools/export-asset-ids.*`, `consolidated/tools/install-packages.*`, `edam-zips/tools/build-edam-zips.*`).
 
 Never put a token in a file, a chat or the repository.
