@@ -5,7 +5,7 @@ How code, content and configuration of the TCS Corporate Website reach the previ
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers (L3), technical lead, release manager, Site Administrator, QA |
-| Source of truth | [package.json](../../../package.json), [.github/workflows/](../../../.github/workflows/main.yaml), [.github/pull_request_template.md](../../../.github/pull_request_template.md), [.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs), [.renovaterc.json](../../../.renovaterc.json), [AGENTS.md](../../../AGENTS.md#deployment), [docs/audit/tools/](../../../docs/audit/README.md), handover Part 12 ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [package.json](../../../package.json), [.github/workflows/](../../../.github/workflows/main.yaml), [.github/pull_request_template.md](../../../.github/pull_request_template.md), [.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs), [.renovaterc.json](../../../.renovaterc.json), [AGENTS.md](../../../AGENTS.md#deployment), [docs/audit/tools/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md), handover Part 12 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation (branch protection, required checks, change management and emergency approval, production domain and CDN are not recorded; rollback has not been exercised) |
 
@@ -92,7 +92,7 @@ The CI gate is lint only. Run `npm test` before every PR; adding it to `main.yam
 
 The block library, the curated design pages and sample pages are delivered to AEM as content packages built **outside the repository**:
 
-- The build and migration tooling lives in the delivery workspace (`.home-work/bl/`, for example `bl-migrate.mjs`, which maps old fields to new ones when the pages and the package are built); it is not tracked in Git ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 11).
+- The build and migration tooling lives in the delivery workspace (`.home-work/bl/`, for example `bl-migrate.mjs`, which maps old fields to new ones when the pages and the package are built); it is not tracked in Git ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 11).
 - The packages are distributed on the branch `home-content-package` of the repository (files only, no site code; its README describes each package). For example `block-library/tcs-corp-block-library-content-1.0.13.zip` (current), the curated design pages, Home and Columns Container packages and the matching sheet rows (placeholders, metadata, taxonomy, data CSVs).
 - Install with AEM **Package Manager** (Upload Package, Install). Installing replaces each page of the package: changes made in AEM to those pages since the last install are overwritten; pages outside the package are kept.
 - Tags `home-content-package_<date>` mark earlier states of that branch ("Downloads branch before the handover PDF …"); they are not code releases.
@@ -131,7 +131,7 @@ After a code release or a package install, validate on the preview tier first, t
 - [ ] Changed pages and one page per changed block render without `failed to load module for …` or `failed to load template …` (V-02).
 - [ ] Header, footer and 404 page correct per locale; sheets reachable (V-03, V-08).
 - [ ] Non-image DAM assets used by the pages published (Lottie, video, captions).
-- [ ] `aem.page` compared with the local preview block by block ([docs/audit/tools/compare.mjs](../../../docs/audit/tools/compare.mjs)): this comparison found R-L-1 and R-L-2 after 1.0.9.
+- [ ] `aem.page` compared with the local preview block by block ([docs/audit/tools/compare.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/compare.mjs)): this comparison found R-L-1 and R-L-2 after 1.0.9.
 
 ## Publishing
 
@@ -151,13 +151,13 @@ Content publishing (Universal Editor, Sites console, sheets, references, assets,
 | Unit tests | `npm test` | `test/` (cards, conversation-canvas, docs, items, list, media, models, modules, motion, privacy, separator, site) | Passed (311 / 311) |
 | Lint | `npm run lint` | JS, JSON, models (xwalk rules), CSS | Passed |
 | Generated files | `npm run build:json` then check that nothing changed (Part 17, R-03) | Aggregated component files | Passed (compared with a fresh merge) |
-| Runtime harness | [docs/audit/tools/harness.mjs](../../../docs/audit/tools/harness.mjs) | Every block library and curated page of the local preview at 1440, 1024, 768, 600 and 390 px: console and page errors, failed requests, block status, overflow, duplicate ids, broken images, data layer, axe (WCAG A / AA) at 1440 and 390, a click test | Not run for this page |
-| Published vs local | [docs/audit/tools/compare.mjs](../../../docs/audit/tools/compare.mjs) | Block-by-block signature of `aem.page` against the local preview | Not run for this page |
-| Inventory | [docs/audit/tools/inventory.mjs](../../../docs/audit/tools/inventory.mjs) | Definitions, models, filters, fields, options and their usage in the content package | Not run for this page |
-| Defect register | [docs/audit/tools/register.mjs](../../../docs/audit/tools/register.mjs) | The audit's defects and outcomes | Not applicable |
+| Runtime harness | [docs/audit/tools/harness.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/harness.mjs) | Every block library and curated page of the local preview at 1440, 1024, 768, 600 and 390 px: console and page errors, failed requests, block status, overflow, duplicate ids, broken images, data layer, axe (WCAG A / AA) at 1440 and 390, a click test | Not run for this page |
+| Published vs local | [docs/audit/tools/compare.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/compare.mjs) | Block-by-block signature of `aem.page` against the local preview | Not run for this page |
+| Inventory | [docs/audit/tools/inventory.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/inventory.mjs) | Definitions, models, filters, fields, options and their usage in the content package | Not run for this page |
+| Defect register | [docs/audit/tools/register.mjs](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/register.mjs) | The audit's defects and outcomes | Not applicable |
 | Manual | Part 17 V-01 … V-09 | Content, code, configuration, data layer, SEO, accessibility, locale launch, cache | Not recorded |
 
-The audit tools hard-code paths of the delivery workspace (a Playwright install, an axe copy under `/tmp/audit`, `drafts/en/block-library`, the unpacked content package under `.home-work/`), which are not in Git: re-running them from a clean clone is Blocked until those inputs are provided. Their recorded runs: 940 page loads before and after the first audit, and the re-audit runs ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md), [data/runtime-before-after.csv](../../../docs/audit/data/runtime-before-after.csv)). The block libraries in each locale (`block-library/`) are the manual regression pages for every variation.
+The audit tools hard-code paths of the delivery workspace (a Playwright install, an axe copy under `/tmp/audit`, `drafts/en/block-library`, the unpacked content package under `.home-work/`), which are not in Git: re-running them from a clean clone is Blocked until those inputs are provided. Their recorded runs: 940 page loads before and after the first audit, and the re-audit runs ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md), [data/runtime-before-after.csv](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/data/runtime-before-after.csv)). The block libraries in each locale (`block-library/`) are the manual regression pages for every variation.
 
 ## Rollback
 
@@ -178,7 +178,7 @@ Emergency change approval and the hotfix path are not recorded (handover 12.6.1,
 | Evidence | Where | State |
 | --- | --- | --- |
 | Change history | Merge commits of the pull requests on `main`; the handover revision history (versions 0.1 to 2.37) | Available |
-| Validation reports | [docs/audit/](../../../docs/audit/README.md) (audit, re-audit, dialog options; CSV registers and runtime before / after) | Available |
+| Validation reports | [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md) (audit, re-audit, dialog options; CSV registers and runtime before / after) | Available |
 | Publication records | Handover revisions 2.31 and 2.35 (counts of pages previewed, published, reindexed) | Available |
 | Release tags | None on `main`; `package.json` keeps the boilerplate version `1.3.0`; no `CHANGELOG.md` | Not recorded |
 | Change records | Change management process | Not recorded |
@@ -207,5 +207,5 @@ Emergency change approval and the hotfix path are not recorded (handover 12.6.1,
 - [architecture.md](./architecture.md), [repository-structure.md](./repository-structure.md), [indexing-and-search.md](./indexing-and-search.md), [decision-log.md](./decision-log.md)
 - [AGENTS.md](../../../AGENTS.md#deployment): environments and publishing process
 - [package.json](../../../package.json), [.github/workflows/main.yaml](../../../.github/workflows/main.yaml), [.github/pull_request_template.md](../../../.github/pull_request_template.md), [.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs), [.renovaterc.json](../../../.renovaterc.json)
-- [docs/audit/README.md](../../../docs/audit/README.md) and its tools
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 12 — Publishing, Deployment & Release, Part 13 — Global Troubleshooting Guide (13.15 lint and PageSpeed failures, 13.22 Code Sync), Part 17 — Operations Guide (17.5 Release Activities, 17.6 Validation Activities)
+- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md) and its tools
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)): Part 12 — Publishing, Deployment & Release, Part 13 — Global Troubleshooting Guide (13.15 lint and PageSpeed failures, 13.22 Code Sync), Part 17 — Operations Guide (17.5 Release Activities, 17.6 Validation Activities)

@@ -42,71 +42,71 @@ Screenshots of the handover (6.21 Tabs Block), taken on the preview with sample 
 
 **Desktop rendering** — The Tabs Container at 1440 px: an Underline tab list Consulting, Cloud, Cybersecurity, Data and AI with Cloud selected (semibold, brand underline) above a grey divider; below it the Cloud panel, a Columns with photo-2.svg on the left and the H3 Cloud migration and operations with its text on the right.
 
-![Desktop rendering: The Tabs Container at 1440 px: an Underline tab list Consulting, Cloud, Cybersecurity, Data and AI with Cloud selected semibold, brand underline above a grey divider; below it the Cloud panel, a Columns with photo-2.svg on the left](../../docs/handover/screenshots/tabs-desktop-view.jpg)
+![Desktop rendering: The Tabs Container at 1440 px: an Underline tab list Consulting, Cloud, Cybersecurity, Data and AI with Cloud selected semibold, brand underline above a grey divider; below it the Cloud panel, a Columns with photo-2.svg on the left](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-desktop-view.jpg)
 
 **Tablet rendering** — The same Tabs at 768 px: the four labels Consulting, Cloud, Cybersecurity, Data and AI fit in one row with Cloud underlined, so the list does not scroll here; the Cloud Columns is stacked, photo-2.svg above the H3 Cloud migration and operations and its text.
 
-![Tablet rendering: The same Tabs at 768 px: the four labels Consulting, Cloud, Cybersecurity, Data and AI fit in one row with Cloud underlined, so the list does not scroll here; the Cloud Columns is stacked, photo-2.svg above the H3 Cloud migration an](../../docs/handover/screenshots/tabs-tablet-view.jpg)
+![Tablet rendering: The same Tabs at 768 px: the four labels Consulting, Cloud, Cybersecurity, Data and AI fit in one row with Cloud underlined, so the list does not scroll here; the Cloud Columns is stacked, photo-2.svg above the H3 Cloud migration an](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-tablet-view.jpg)
 
 **Mobile rendering** — The Tabs at 375 px: the tab list shows Consulting, Cloud (selected, underlined) and a cut-off Cybersecu..., with Data and AI off-screen to the right; below it the Cloud panel stacked: photo-2.svg, the H3 Cloud migration and operations on two lines and its text.
 
-![Mobile rendering: The Tabs at 375 px: the tab list shows Consulting, Cloud selected, underlined and a cut-off Cybersecu..., with Data and AI off-screen to the right; below it the Cloud panel stacked: photo-2.svg, the H3 Cloud migration and operations](../../docs/handover/screenshots/tabs-mobile-view.jpg)
+![Mobile rendering: The Tabs at 375 px: the tab list shows Consulting, Cloud selected, underlined and a cut-off Cybersecu..., with Data and AI off-screen to the right; below it the Cloud panel stacked: photo-2.svg, the H3 Cloud migration and operations](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-mobile-view.jpg)
 
 **Tabs Container variation** — A Tabs Container at 1440 px with the tabs Consulting (selected), Cloud and Cybersecurity; the Consulting panel shows the H3 Business and technology consulting, a Columns with photo-1.svg on the left and its text on the right, and the black primary button Explore consulting with an arrow below.
 
-![Tabs Container variation: A Tabs Container at 1440 px with the tabs Consulting selected, Cloud and Cybersecurity; the Consulting panel shows the H3 Business and technology consulting, a Columns with photo-1.svg on the left and its text on the right, ](../../docs/handover/screenshots/tabs-container-mode.jpg)
+![Tabs Container variation: A Tabs Container at 1440 px with the tabs Consulting selected, Cloud and Cybersecurity; the Consulting panel shows the H3 Business and technology consulting, a Columns with photo-1.svg on the left and its text on the right, ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-container-mode.jpg)
 
 **Tabs block variation** — A Tabs block at 1440 px with the tabs Consulting (selected), Cloud and Cybersecurity; the panel shows the fragment page consulting-overview: the H2 Consulting that delivers outcomes and its text, then the Cards heading Consulting capabilities and three cards Strategy, Operations and Change with images, titles and descriptions.
 
-![Tabs block variation: A Tabs block at 1440 px with the tabs Consulting selected, Cloud and Cybersecurity; the panel shows the fragment page consulting-overview: the H2 Consulting that delivers outcomes and its text, then the Cards heading Consulting ](../../docs/handover/screenshots/tabs-block-fragments.jpg)
+![Tabs block variation: A Tabs block at 1440 px with the tabs Consulting selected, Cloud and Cybersecurity; the panel shows the fragment page consulting-overview: the H2 Consulting that delivers outcomes and its text, then the Cards heading Consulting ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-block-fragments.jpg)
 
 **Underline style** — Underline tabs at 1440 px: the plain labels Banking (selected, semibold, 3px brand underline), Retail and Manufacturing on a thin grey divider, and below it the Banking text Modern core banking, payments and risk platforms that help banks serve customers in real time.
 
-![Underline style: Underline tabs at 1440 px: the plain labels Banking selected, semibold, 3px brand underline, Retail and Manufacturing on a thin grey divider, and below it the Banking text Modern core banking, payments and risk platforms that help ba](../../docs/handover/screenshots/tabs-style-underline.jpg)
+![Underline style: Underline tabs at 1440 px: the plain labels Banking selected, semibold, 3px brand underline, Retail and Manufacturing on a thin grey divider, and below it the Banking text Modern core banking, payments and risk platforms that help ba](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-style-underline.jpg)
 
 **Boxed style** — Boxed tabs at 1440 px: Banking (selected) is a white box with a thin border and brand-coloured text, open towards the panel; Retail and Manufacturing are light grey boxes with rounded top corners, 0.25rem apart; below, the Banking text.
 
-![Boxed style: Boxed tabs at 1440 px: Banking selected is a white box with a thin border and brand-coloured text, open towards the panel; Retail and Manufacturing are light grey boxes with rounded top corners, 0.25rem apart; below, the Banking text.](../../docs/handover/screenshots/tabs-style-boxed.jpg)
+![Boxed style: Boxed tabs at 1440 px: Banking selected is a white box with a thin border and brand-coloured text, open towards the panel; Retail and Manufacturing are light grey boxes with rounded top corners, 0.25rem apart; below, the Banking text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-style-boxed.jpg)
 
 **Pills style** — Pill tabs at 1440 px: Banking (selected) is a pill filled with the brand blue and white text; Retail and Manufacturing are outlined pills 0.5rem apart, with no divider under the list; below, the Banking text.
 
-![Pills style: Pill tabs at 1440 px: Banking selected is a pill filled with the brand blue and white text; Retail and Manufacturing are outlined pills 0.5rem apart, with no divider under the list; below, the Banking text.](../../docs/handover/screenshots/tabs-style-pills.jpg)
+![Pills style: Pill tabs at 1440 px: Banking selected is a pill filled with the brand blue and white text; Retail and Manufacturing are outlined pills 0.5rem apart, with no divider under the list; below, the Banking text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-style-pills.jpg)
 
 **Left alignment** — Left-aligned Underline tabs at 1440 px: Consulting (selected), Cloud and Cybersecurity start at the left edge of the content area with free space on the right of the divider; below, the Consulting text Strategy, operating model design and change management that turn transformation goals into measurable results.
 
-![Left alignment: Left-aligned Underline tabs at 1440 px: Consulting selected, Cloud and Cybersecurity start at the left edge of the content area with free space on the right of the divider; below, the Consulting text Strategy, operating model design a](../../docs/handover/screenshots/tabs-alignment-left.jpg)
+![Left alignment: Left-aligned Underline tabs at 1440 px: Consulting selected, Cloud and Cybersecurity start at the left edge of the content area with free space on the right of the divider; below, the Consulting text Strategy, operating model design a](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-alignment-left.jpg)
 
 **Center alignment** — Centre-aligned Underline tabs at 1440 px: Consulting (selected), Cloud and Cybersecurity centred above the full-width grey divider; below, the left-aligned Consulting text. There is no centred Title above the tabs in this example (the chapter caption mentions one).
 
-![Center alignment: Centre-aligned Underline tabs at 1440 px: Consulting selected, Cloud and Cybersecurity centred above the full-width grey divider; below, the left-aligned Consulting text. There is no centred Title above the tabs in this example the ](../../docs/handover/screenshots/tabs-alignment-center.jpg)
+![Center alignment: Centre-aligned Underline tabs at 1440 px: Consulting selected, Cloud and Cybersecurity centred above the full-width grey divider; below, the left-aligned Consulting text. There is no centred Title above the tabs in this example the ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-alignment-center.jpg)
 
 **Full width alignment** — Full width (stretch) Underline tabs at 1440 px: Consulting (selected, its underline a third of the width), Cloud and Cybersecurity share the full width of the content area with their labels centred in each third; below, the Consulting text.
 
-![Full width alignment: Full width stretch Underline tabs at 1440 px: Consulting selected, its underline a third of the width, Cloud and Cybersecurity share the full width of the content area with their labels centred in each third; below, the Consulti](../../docs/handover/screenshots/tabs-alignment-stretch.jpg)
+![Full width alignment: Full width stretch Underline tabs at 1440 px: Consulting selected, its underline a third of the width, Cloud and Cybersecurity share the full width of the content area with their labels centred in each third; below, the Consulti](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-alignment-stretch.jpg)
 
 **Horizontal orientation** — Horizontal Underline tabs at 1440 px: Consulting (selected), Cloud, Cybersecurity and Data and AI in one row above the panel; the Consulting panel shows a Columns with photo-1.svg on the left and the H3 Business and technology consulting with its text on the right.
 
-![Horizontal orientation: Horizontal Underline tabs at 1440 px: Consulting selected, Cloud, Cybersecurity and Data and AI in one row above the panel; the Consulting panel shows a Columns with photo-1.svg on the left and the H3 Business and technology c](../../docs/handover/screenshots/tabs-orientation-horizontal.jpg)
+![Horizontal orientation: Horizontal Underline tabs at 1440 px: Consulting selected, Cloud, Cybersecurity and Data and AI in one row above the panel; the Consulting panel shows a Columns with photo-1.svg on the left and the H3 Business and technology c](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-orientation-horizontal.jpg)
 
 **Vertical orientation** — Vertical Underline tabs at 1200 px: a left column with a thin left border listing Banking, Financial Services and Insurance (selected, semibold, 3px brand left border, wrapped on three lines), Retail and Consumer Goods, Manufacturing and Energy and Utilities; on the right the panel with the H3 Banking, Financial Services and Insurance and its text.
 
-![Vertical orientation: Vertical Underline tabs at 1200 px: a left column with a thin left border listing Banking, Financial Services and Insurance selected, semibold, 3px brand left border, wrapped on three lines, Retail and Consumer Goods, Manufactur](../../docs/handover/screenshots/tabs-orientation-vertical.jpg)
+![Vertical orientation: Vertical Underline tabs at 1200 px: a left column with a thin left border listing Banking, Financial Services and Insurance selected, semibold, 3px brand left border, wrapped on three lines, Retail and Consumer Goods, Manufactur](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-orientation-vertical.jpg)
 
 **Full Width section** — A Full Width Tabs Container on a 1920 px screen: the tabs Consulting (selected), Cloud and Cybersecurity and the divider span the page width inside the 5rem section padding; the Consulting Columns stretches across, a large photo-1.svg on the left and the H3 Business and technology consulting with its text on the right.
 
-![Full Width section: A Full Width Tabs Container on a 1920 px screen: the tabs Consulting selected, Cloud and Cybersecurity and the divider span the page width inside the 5rem section padding; the Consulting Columns stretches across, a large photo-1.s](../../docs/handover/screenshots/tabs-width-full.jpg)
+![Full Width section: A Full Width Tabs Container on a 1920 px screen: the tabs Consulting selected, Cloud and Cybersecurity and the divider span the page width inside the 5rem section padding; the Consulting Columns stretches across, a large photo-1.s](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-width-full.jpg)
 
 **Fixed Width section** — A Fixed Width Tabs Container on a 1920 px screen: the tabs Consulting (selected), Cloud and Cybersecurity and the Consulting Columns are centred at the 90rem content width, with empty space on both sides; photo-1.svg on the left, the H3 Business and technology consulting with its text on the right.
 
-![Fixed Width section: A Fixed Width Tabs Container on a 1920 px screen: the tabs Consulting selected, Cloud and Cybersecurity and the Consulting Columns are centred at the 90rem content width, with empty space on both sides; photo-1.svg on the left, t](../../docs/handover/screenshots/tabs-width-fixed.jpg)
+![Fixed Width section: A Fixed Width Tabs Container on a 1920 px screen: the tabs Consulting selected, Cloud and Cybersecurity and the Consulting Columns are centred at the 90rem content width, with empty space on both sides; photo-1.svg on the left, t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-width-fixed.jpg)
 
 **Universal Editor canvas** — Edit mode preview at 1440 px with letters: D on the selected tab Consulting (A on the Tabs and B on the tab list sit under D at the same corner), C on the dashed Tab chip Consulting, E on the Columns with photo-1.svg and the H3, and G on a second, empty Tabs Container showing Add a Tab, then the components of the tab after it. No content tree is shown and F is not marked. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/tabs-authoring-view.jpg)
 
-![Universal Editor canvas: Edit mode preview at 1440 px with letters: D on the selected tab Consulting A on the Tabs and B on the tab list sit under D at the same corner, C on the dashed Tab chip Consulting, E on the Columns with photo-1.svg and the H3](../../docs/handover/screenshots/tabs-authoring-view.jpg)
+![Universal Editor canvas: Edit mode preview at 1440 px with letters: D on the selected tab Consulting A on the Tabs and B on the tab list sit under D at the same corner, C on the dashed Tab chip Consulting, E on the Columns with photo-1.svg and the H3](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-authoring-view.jpg)
 
 **Properties panel** — The properties panel of a Tabs Container with its four tabs (Properties, Accessibility, Styles, Additional), next to the properties of a Tabs block Tab item with its Tab and Fragment tabs. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/tabs-properties-panel.jpg)
 
-![Properties panel: The properties panel of a Tabs Container with its four tabs Properties, Accessibility, Styles, Additional, next to the properties of a Tabs block Tab item with its Tab and Fragment tabs. Dialog reference generated from the component](../../docs/handover/screenshots/tabs-properties-panel.jpg)
+![Properties panel: The properties panel of a Tabs Container with its four tabs Properties, Accessibility, Styles, Additional, next to the properties of a Tabs block Tab item with its Tab and Fragment tabs. Dialog reference generated from the component](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/tabs-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -992,8 +992,8 @@ Evidence to collect (no secrets): page URL, viewport width, the section's classe
 - [Columns Container](../columns-container/README.md) (the layout built in a tab)
 - Model: [`_tabs.json`](_tabs.json); Tab model: [`../tab/_tab.json`](../tab/_tab.json)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs), [`test/models/block-names.test.mjs`](../../test/models/block-names.test.mjs)
-- Re-audit: [`docs/audit/REAUDIT-2026-10-20.md`](../../docs/audit/REAUDIT-2026-10-20.md)
-- [Handover 6.21 Tabs Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- Re-audit: [`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md)
+- [Handover 6.21 Tabs Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

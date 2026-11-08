@@ -44,139 +44,139 @@ Screenshots of the handover (6.10 Hero Block), taken on the preview with sample 
 
 **Desktop rendering** — The Hero at 1440 px: photo-1.svg full width under the 80 % white overlay; centred, the 3rem square-3 icon, the brand-blue eyebrow 'Enterprise AI', the 4rem H1 'Building on belief', the grey description 'Our AI-led services help enterprises grow, transform and compete with confidence.' and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side.
 
-![Desktop rendering: The Hero at 1440 px: photo-1.svg full width under the 80 % white overlay; centred, the 3rem square-3 icon, the brand-blue eyebrow 'Enterprise AI', the 4rem H1 'Building on belief', the grey description 'Our AI-led services help ent](../../docs/handover/screenshots/hero-desktop-view.jpg)
+![Desktop rendering: The Hero at 1440 px: photo-1.svg full width under the 80 % white overlay; centred, the 3rem square-3 icon, the brand-blue eyebrow 'Enterprise AI', the 4rem H1 'Building on belief', the grey description 'Our AI-led services help ent](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-desktop-view.jpg)
 
 **Tablet rendering** — The same Hero at 768 px: a banner at least 40rem high, photo-1.svg cropped to its centre, the 2.5rem icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief', the 1rem description and the two CTAs, all centred; the CTAs wrap only when they do not fit in one row.
 
-![Tablet rendering: The same Hero at 768 px: a banner at least 40rem high, photo-1.svg cropped to its centre, the 2.5rem icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief', the 1rem description and the two CTAs, all centred; the CTAs](../../docs/handover/screenshots/hero-tablet-view.jpg)
+![Tablet rendering: The same Hero at 768 px: a banner at least 40rem high, photo-1.svg cropped to its centre, the 2.5rem icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief', the 1rem description and the two CTAs, all centred; the CTAs](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-tablet-view.jpg)
 
 **Mobile rendering** — The Hero at 375 px: a banner at least 35rem high with photo-1.svg cropped to its centre; the icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief' and the 1rem description stacked and centred, the CTAs 'Talk to our experts' and 'Explore our services' wrapping one per line when they do not fit side by side.
 
-![Mobile rendering: The Hero at 375 px: a banner at least 35rem high with photo-1.svg cropped to its centre; the icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief' and the 1rem description stacked and centred, the CTAs 'Talk to our e](../../docs/handover/screenshots/hero-mobile-view.jpg)
+![Mobile rendering: The Hero at 375 px: a banner at least 35rem high with photo-1.svg cropped to its centre; the icon, the eyebrow 'Enterprise AI', the 2.5rem H1 'Building on belief' and the 1rem description stacked and centred, the CTAs 'Talk to our e](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-mobile-view.jpg)
 
 **Default image hero** — The Hero at 1440 px: photo-2.svg (alt 'Consultants reviewing a transformation roadmap') full width under the 80 % white overlay, with the brand-blue eyebrow 'Consulting', the H1 'Transform with confidence', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side, centred.
 
-![Default image hero: The Hero at 1440 px: photo-2.svg alt 'Consultants reviewing a transformation roadmap' full width under the 80 % white overlay, with the brand-blue eyebrow 'Consulting', the H1 'Transform with confidence', the grey description and ](../../docs/handover/screenshots/hero-default-image.jpg)
+![Default image hero: The Hero at 1440 px: photo-2.svg alt 'Consultants reviewing a transformation roadmap' full width under the 80 % white overlay, with the brand-blue eyebrow 'Consulting', the H1 'Transform with confidence', the grey description and ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-default-image.jpg)
 
 **Lottie animation hero** — The Hero at 1440 px with Hero Image type Lotto: the pulsing-circle animation.json playing behind the content with no overlay (Light, no overlay); centred, the eyebrow 'AI and automation', the H1 'Intelligence in motion', the description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; the round pause button 1rem from the bottom-right corner.
 
-![Lottie animation hero: The Hero at 1440 px with Hero Image type Lotto: the pulsing-circle animation.json playing behind the content with no overlay Light, no overlay; centred, the eyebrow 'AI and automation', the H1 'Intelligence in motion', the desc](../../docs/handover/screenshots/hero-lotto-animation.jpg)
+![Lottie animation hero: The Hero at 1440 px with Hero Image type Lotto: the pulsing-circle animation.json playing behind the content with no overlay Light, no overlay; centred, the eyebrow 'AI and automation', the H1 'Intelligence in motion', the desc](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-lotto-animation.jpg)
 
 **Contained image hero** — The Hero at 1440 px: the bar chart chart.svg shown whole and centred with no overlay (Contained image, Light, no overlay); at the top, centred, the eyebrow 'Annual report 2026', the H1 'Growth you can measure', the description and one Primary button 'Read the report'.
 
-![Contained image hero: The Hero at 1440 px: the bar chart chart.svg shown whole and centred with no overlay Contained image, Light, no overlay; at the top, centred, the eyebrow 'Annual report 2026', the H1 'Growth you can measure', the description and](../../docs/handover/screenshots/hero-contained-image.jpg)
+![Contained image hero: The Hero at 1440 px: the bar chart chart.svg shown whole and centred with no overlay Contained image, Light, no overlay; at the top, centred, the eyebrow 'Annual report 2026', the H1 'Growth you can measure', the description and](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-contained-image.jpg)
 
 **Hero without media** — The Hero at 1440 px without an image: a plain white banner with no overlay; centred, the brand-blue eyebrow 'About us', the H1 'Technology that moves business forward', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side.
 
-![Hero without media: The Hero at 1440 px without an image: a plain white banner with no overlay; centred, the brand-blue eyebrow 'About us', the H1 'Technology that moves business forward', the grey description and the buttons 'Talk to our experts' Pr](../../docs/handover/screenshots/hero-text-only.jpg)
+![Hero without media: The Hero at 1440 px without an image: a plain white banner with no overlay; centred, the brand-blue eyebrow 'About us', the H1 'Technology that moves business forward', the grey description and the buttons 'Talk to our experts' Pr](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-text-only.jpg)
 
 **Default light overlay** — The Hero at 1440 px with BG Color Default: photo-3.svg under an 80 % white overlay, the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side, centred.
 
-![Default light overlay: The Hero at 1440 px with BG Color Default: photo-3.svg under an 80 % white overlay, the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons 'Talk to our experts' Primary, f](../../docs/handover/screenshots/hero-bg-default.jpg)
+![Default light overlay: The Hero at 1440 px with BG Color Default: photo-3.svg under an 80 % white overlay, the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons 'Talk to our experts' Primary, f](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-bg-default.jpg)
 
 **Light background without overlay** — The Hero at 1440 px with BG Color Light, no overlay: the light gradient light.svg at full strength, with the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side, centred.
 
-![Light background without overlay: The Hero at 1440 px with BG Color Light, no overlay: the light gradient light.svg at full strength, with the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons ](../../docs/handover/screenshots/hero-bg-light.jpg)
+![Light background without overlay: The Hero at 1440 px with BG Color Light, no overlay: the light gradient light.svg at full strength, with the brand-blue eyebrow 'Enterprise AI', the dark H1 'Building on belief', the grey description and the buttons ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-bg-light.jpg)
 
 **Dark blue overlay** — The Hero at 1440 px with BG Color Dark blue: photo-4.svg under an 80 % navy overlay, the eyebrow 'Enterprise AI' still brand blue, the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white, centred.
 
-![Dark blue overlay: The Hero at 1440 px with BG Color Dark blue: photo-4.svg under an 80 % navy overlay, the eyebrow 'Enterprise AI' still brand blue, the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' butt](../../docs/handover/screenshots/hero-bg-dark.jpg)
+![Dark blue overlay: The Hero at 1440 px with BG Color Dark blue: photo-4.svg under an 80 % navy overlay, the eyebrow 'Enterprise AI' still brand blue, the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' butt](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-bg-dark.jpg)
 
 **Subtle dark blue overlay** — The Hero at 1440 px with BG Color Dark blue (subtle): photo-5.svg under a 60 % navy overlay, more visible than with Dark blue; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white, centred.
 
-![Subtle dark blue overlay: The Hero at 1440 px with BG Color Dark blue subtle: photo-5.svg under a 60 % navy overlay, more visible than with Dark blue; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white descripti](../../docs/handover/screenshots/hero-bg-dark-subtle.jpg)
+![Subtle dark blue overlay: The Hero at 1440 px with BG Color Dark blue subtle: photo-5.svg under a 60 % navy overlay, more visible than with Dark blue; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white descripti](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-bg-dark-subtle.jpg)
 
 **Black overlay** — The Hero at 1440 px with BG Color Black: photo-6.svg under an 80 % black overlay; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white, centred.
 
-![Black overlay: The Hero at 1440 px with BG Color Black: photo-6.svg under an 80 % black overlay; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' button and a text](../../docs/handover/screenshots/hero-bg-black.jpg)
+![Black overlay: The Hero at 1440 px with BG Color Black: photo-6.svg under an 80 % black overlay; the brand-blue eyebrow 'Enterprise AI', the white H1 'Building on belief', the 50 % white description, an outline 'Talk to our experts' button and a text](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-bg-black.jpg)
 
 **Content at the top** — The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with Vertical Alignment Top the centred content starts right below the 7.5rem top padding, leaving the lower part of the image free.
 
-![Content at the top: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore](../../docs/handover/screenshots/hero-align-top.jpg)
+![Content at the top: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-top.jpg)
 
 **Content in the middle** — The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with the default Middle the content is centred vertically and horizontally.
 
-![Content in the middle: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Expl](../../docs/handover/screenshots/hero-align-middle.jpg)
+![Content in the middle: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Expl](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-middle.jpg)
 
 **Content at the bottom** — The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with Vertical Alignment Bottom the centred content rests above the 7.5rem bottom padding, leaving the upper part of the image free.
 
-![Content at the bottom: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Expl](../../docs/handover/screenshots/hero-align-bottom.jpg)
+![Content at the bottom: The Hero at 1440 px: photo-7.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Expl](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-bottom.jpg)
 
 **Content on the left** — The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with Horizontal Alignment Left and Left align the 47.5rem content block sits on the left, its text and CTAs left aligned.
 
-![Content on the left: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore o](../../docs/handover/screenshots/hero-align-left.jpg)
+![Content on the left: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore o](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-left.jpg)
 
 **Content in the centre** — The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with the default Center and Center align the content block and its text are centred.
 
-![Content in the centre: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore](../../docs/handover/screenshots/hero-align-center.jpg)
+![Content in the centre: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-center.jpg)
 
 **Content on the right** — The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' (Primary, filled) and 'Explore our services' (Secondary, outline) side by side; with Horizontal Alignment Right and Right align the 47.5rem content block sits on the right, its text and CTAs right aligned.
 
-![Content on the right: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore ](../../docs/handover/screenshots/hero-align-right.jpg)
+![Content on the right: The Hero at 1440 px: wide.svg under the 80 % white overlay with the brand-blue eyebrow 'Manufacturing', the H1 'Reimagine your operations', the grey description and the buttons 'Talk to our experts' Primary, filled and 'Explore ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-align-right.jpg)
 
 **Left-aligned text** — The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all start at its left edge (Text Alignment Left align).
 
-![Left-aligned text: The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all s](../../docs/handover/screenshots/hero-text-left.jpg)
+![Left-aligned text: The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all s](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-text-left.jpg)
 
 **Centred text** — The Hero at 1440 px: photo-2.svg under the white overlay; the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all centred in the content block (default Center align).
 
-![Centred text: The Hero at 1440 px: photo-2.svg under the white overlay; the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all centred in the content block default Ce](../../docs/handover/screenshots/hero-text-center.jpg)
+![Centred text: The Hero at 1440 px: photo-2.svg under the white overlay; the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all centred in the content block default Ce](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-text-center.jpg)
 
 **Right-aligned text** — The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all aligned to its right edge (Text Alignment Right align).
 
-![Right-aligned text: The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all ](../../docs/handover/screenshots/hero-text-right.jpg)
+![Right-aligned text: The Hero at 1440 px: photo-2.svg under the white overlay; inside the centred content block the square-3 icon, the eyebrow 'Manufacturing', the H1 'Reimagine your operations', the description and the Primary and Secondary CTAs all ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-text-right.jpg)
 
 **No motion** — The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white, centred and fully visible with no entrance animation (Motion Type None).
 
-![No motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our se](../../docs/handover/screenshots/hero-motion-none.jpg)
+![No motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our se](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-motion-none.jpg)
 
 **Fade-in motion** — The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white; a frame about 250 ms into the 800 ms Fade in, the whole content block half transparent while the image is static.
 
-![Fade-in motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore o](../../docs/handover/screenshots/hero-motion-fade.jpg)
+![Fade-in motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore o](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-motion-fade.jpg)
 
 **Slide-up motion** — The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white; a frame about 300 ms into the 800 ms Slide up, the content block slightly below its final place and partly transparent.
 
-![Slide-up motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore ](../../docs/handover/screenshots/hero-motion-slide.jpg)
+![Slide-up motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-motion-slide.jpg)
 
 **Zoom motion** — The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our services' with an arrow, both white; a frame about 300 ms into the 1600 ms Zoom (image), the photograph slightly enlarged while the text is fully visible.
 
-![Zoom motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our ](../../docs/handover/screenshots/hero-motion-zoom.jpg)
+![Zoom motion: The Hero at 1440 px: photo-4.svg under the 80 % navy overlay with the brand-blue eyebrow 'Cloud', the white H1 'Accelerate your growth', the 50 % white description and an outline 'Talk to our experts' button and a text link 'Explore our ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-motion-zoom.jpg)
 
 **Default CTA view** — A crop of the CTA row of a Hero at 1440 px (title 'Building on belief' over photo-3.svg): the CTA 'Explore our services' (CTA view Default) as dark text with a trailing right arrow, no border or fill.
 
-![Default CTA view: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the CTA 'Explore our services' CTA view Default as dark text with a trailing right arrow, no border or fill.](../../docs/handover/screenshots/hero-cta-default.jpg)
+![Default CTA view: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the CTA 'Explore our services' CTA view Default as dark text with a trailing right arrow, no border or fill.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-default.jpg)
 
 **Primary CTA** — A crop of the CTA row of a Hero at 1440 px (title 'Building on belief' over photo-3.svg): the Primary CTA 'Talk to our experts' as a pill-shaped filled black button with white text and a right arrow.
 
-![Primary CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the Primary CTA 'Talk to our experts' as a pill-shaped filled black button with white text and a right arrow.](../../docs/handover/screenshots/hero-cta-primary.jpg)
+![Primary CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the Primary CTA 'Talk to our experts' as a pill-shaped filled black button with white text and a right arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-primary.jpg)
 
 **Secondary CTA** — A crop of the CTA row of a Dark blue Hero at 1440 px (title 'Building on belief' over photo-3.svg under the navy overlay): the Secondary CTA 'Explore our services' as a pill-shaped outline button with white border, white text and a right arrow.
 
-![Secondary CTA: A crop of the CTA row of a Dark blue Hero at 1440 px title 'Building on belief' over photo-3.svg under the navy overlay: the Secondary CTA 'Explore our services' as a pill-shaped outline button with white border, white text and a right](../../docs/handover/screenshots/hero-cta-secondary.jpg)
+![Secondary CTA: A crop of the CTA row of a Dark blue Hero at 1440 px title 'Building on belief' over photo-3.svg under the navy overlay: the Secondary CTA 'Explore our services' as a pill-shaped outline button with white border, white text and a right](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-secondary.jpg)
 
 **Right arrow CTA** — A crop of the CTA row of a Hero at 1440 px (title 'Building on belief' over photo-3.svg): the text CTA 'Explore our services' (CTA view Default, CTA Arrow Right) with a right-pointing arrow after the text.
 
-![Right arrow CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the text CTA 'Explore our services' CTA view Default, CTA Arrow Right with a right-pointing arrow after the text.](../../docs/handover/screenshots/hero-cta-arrow-right.jpg)
+![Right arrow CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the text CTA 'Explore our services' CTA view Default, CTA Arrow Right with a right-pointing arrow after the text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-arrow-right.jpg)
 
 **Down arrow CTA** — A crop of the CTA row of a Hero at 1440 px (title 'Building on belief' over photo-3.svg): the text CTA 'Discover our story' (link #anchor-our-story, CTA Arrow Down) with a down-pointing arrow after the text.
 
-![Down arrow CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the text CTA 'Discover our story' link #anchor-our-story, CTA Arrow Down with a down-pointing arrow after the text.](../../docs/handover/screenshots/hero-cta-arrow-down.jpg)
+![Down arrow CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the text CTA 'Discover our story' link #anchor-our-story, CTA Arrow Down with a down-pointing arrow after the text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-arrow-down.jpg)
 
 **New-window CTA** — A crop of the CTA row of a Hero at 1440 px (title 'Building on belief' over photo-3.svg): the Primary button 'Read the full report' in its hover state; it links to https://www.example.com/reports/ai-outlook-2026.pdf and opens in a new tab, with no visible new-tab hint.
 
-![New-window CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the Primary button 'Read the full report' in its hover state; it links to https://www.example.com/reports/ai-outlook-2026.pdf and opens in a new t](../../docs/handover/screenshots/hero-cta-new-window.jpg)
+![New-window CTA: A crop of the CTA row of a Hero at 1440 px title 'Building on belief' over photo-3.svg: the Primary button 'Read the full report' in its hover state; it links to https://www.example.com/reports/ai-outlook-2026.pdf and opens in a new t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-cta-new-window.jpg)
 
 **Hero with an H2 title** — The Hero at 1440 px: photo-8.svg under the 80 % white overlay with the eyebrow 'Industries', the title 'Industries we serve', the description and one Primary button 'Explore industries', centred; it looks the same as an H1 Hero, but the title is an h2 element.
 
-![Hero with an H2 title: The Hero at 1440 px: photo-8.svg under the 80 % white overlay with the eyebrow 'Industries', the title 'Industries we serve', the description and one Primary button 'Explore industries', centred; it looks the same as an H1 Hero](../../docs/handover/screenshots/hero-title-h2.jpg)
+![Hero with an H2 title: The Hero at 1440 px: photo-8.svg under the 80 % white overlay with the eyebrow 'Industries', the title 'Industries we serve', the description and one Primary button 'Explore industries', centred; it looks the same as an H1 Hero](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-title-h2.jpg)
 
 **Universal Editor canvas** — The Hero at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot): the Enterprise AI banner selected, with A on the block, B on photo-1.svg, C on the square-3 icon, D on 'Enterprise AI', E on 'Building on belief', F on the description and G on the two CTAs. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/hero-authoring-view.jpg)
 
-![Universal Editor canvas: The Hero at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot: the Enterprise AI banner selected, with A on the block, B on photo-1.svg, C on the square-3 icon, D on 'Enterprise AI', E](../../docs/handover/screenshots/hero-authoring-view.jpg)
+![Universal Editor canvas: The Hero at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot: the Enterprise AI banner selected, with A on the block, B on photo-1.svg, C on the square-3 icon, D on 'Enterprise AI', E](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-authoring-view.jpg)
 
 **Properties panel** — The Hero properties panel with its five tabs (Image, Content, Links, Style, Additional), the Image tab open showing Icon, Icon Image Alt Text, Hero Image type, Hero Image Path, Hero Image alt text and Hero View. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/hero-properties-panel.jpg)
 
-![Properties panel: The Hero properties panel with its five tabs Image, Content, Links, Style, Additional, the Image tab open showing Icon, Icon Image Alt Text, Hero Image type, Hero Image Path, Hero Image alt text and Hero View. Dialog reference gener](../../docs/handover/screenshots/hero-properties-panel.jpg)
+![Properties panel: The Hero properties panel with its five tabs Image, Content, Links, Style, Additional, the Image tab open showing Icon, Icon Image Alt Text, Hero Image type, Hero Image Path, Hero Image alt text and Hero View. Dialog reference gener](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/hero-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -1021,8 +1021,8 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 - [Page Header](../page-header/README.md), [Gen Carousel](../gen-carousel/README.md), [Teaser](../teaser/README.md), [Button Block](../button-block/README.md)
 - Model: [`_hero.json`](./_hero.json)
 - Tests: [`test/items/item-rows.test.mjs`](../../test/items/item-rows.test.mjs), [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)
-- [Handover 6.10 Hero Block](../../docs/handover/TCS-CORP-HANDOVER.md)
-- [Animation report](../../docs/animation/README.md)
+- [Handover 6.10 Hero Block](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- [Animation report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

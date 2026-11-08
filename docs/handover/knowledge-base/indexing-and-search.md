@@ -5,7 +5,7 @@ This file is the knowledge base summary of the query index and everything built 
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers, site administrators, AMS / support, content leads, AI agents |
-| Source of truth | [`helix-query.yaml`](../../../helix-query.yaml), [`helix-sitemap.yaml`](../../../helix-sitemap.yaml), [`utils/query-index.js`](../../../utils/query-index.js), [`utils/site.js`](../../../utils/site.js) (`indexRoot`), [`scripts/scripts.js`](../../../scripts/scripts.js) (`prefetchData`), [List](../../../blocks/list/README.md), [Filter List](../../../blocks/filter-list/README.md), [Conversation Canvas](../../../blocks/conversation-canvas/README.md) and [Cards](../../../blocks/cards/README.md) READMEs, handover Parts 2.10.7, 12.1.7, 12.1.9 ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [`helix-query.yaml`](../../../helix-query.yaml), [`helix-sitemap.yaml`](../../../helix-sitemap.yaml), [`utils/query-index.js`](../../../utils/query-index.js), [`utils/site.js`](../../../utils/site.js) (`indexRoot`), [`scripts/scripts.js`](../../../scripts/scripts.js) (`prefetchData`), [List](../../../blocks/list/README.md), [Filter List](../../../blocks/filter-list/README.md), [Conversation Canvas](../../../blocks/conversation-canvas/README.md) and [Cards](../../../blocks/cards/README.md) READMEs, handover Parts 2.10.7, 12.1.7, 12.1.9 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; live index state (finding F-10) and sitemap `noindex` handling: Requires validation |
 
@@ -176,6 +176,6 @@ A checklist derived from the configuration and code (results of a full run are N
 - [content-architecture.md](./content-architecture.md) — metadata model, taxonomy, locales, references
 - [blocks.md](./blocks.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md) — related knowledge base files
 - [blocks/list/README.md](../../../blocks/list/README.md), [blocks/filter-list/README.md](../../../blocks/filter-list/README.md), [blocks/conversation-canvas/README.md](../../../blocks/conversation-canvas/README.md), [blocks/cards/README.md](../../../blocks/cards/README.md)
-- [utils/README.md](../../../utils/README.md), [decorators/README.md](../../../decorators/README.md), [docs/animation/README.md](../../../docs/animation/README.md) (skeletons)
+- [utils/README.md](../../../utils/README.md), [decorators/README.md](../../../decorators/README.md), [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md) (skeletons)
 - [AGENTS.md](../../../AGENTS.md) — "Site structure and site data" notes on the query index
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture (2.10.7, 2.11.4), Part 12 — Publishing, Deployment & Release (12.1.7, 12.1.9), Part 13 — Global Troubleshooting Guide (13.9–13.11, 13.25), Part 16 — Handover Findings and Open Items Register
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture (2.10.7, 2.11.4), Part 12 — Publishing, Deployment & Release (12.1.7, 12.1.9), Part 13 — Global Troubleshooting Guide (13.9–13.11, 13.25), Part 16 — Handover Findings and Open Items Register

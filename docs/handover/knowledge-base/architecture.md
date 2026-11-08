@@ -5,7 +5,7 @@ This file is the knowledge base summary of how the TCS Corporate Website is buil
 | Attribute | Value |
 | --- | --- |
 | Audience | Architects, developers, AMS / support, site administrators, AI agents |
-| Source of truth | [`scripts/scripts.js`](../../../scripts/scripts.js), [`scripts/aem.js`](../../../scripts/aem.js), [`scripts/editor-support.js`](../../../scripts/editor-support.js), [`utils/`](../../../utils/README.md), [`decorators/`](../../../decorators/README.md), [`head.html`](../../../head.html), [`404.html`](../../../404.html), [`fstab.yaml`](../../../fstab.yaml), [`paths.json`](../../../paths.json), [`AGENTS.md`](../../../AGENTS.md), handover Part 2 — Solution Architecture ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [`scripts/scripts.js`](../../../scripts/scripts.js), [`scripts/aem.js`](../../../scripts/aem.js), [`scripts/editor-support.js`](../../../scripts/editor-support.js), [`utils/`](../../../utils/README.md), [`decorators/`](../../../decorators/README.md), [`head.html`](../../../head.html), [`404.html`](../../../404.html), [`fstab.yaml`](../../../fstab.yaml), [`paths.json`](../../../paths.json), [`AGENTS.md`](../../../AGENTS.md), handover Part 2 — Solution Architecture ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; integration (Adobe Tags, Web SDK), production CDN / domain and environment access sections: Requires validation |
 
@@ -125,7 +125,7 @@ There is no bundler, so a module's imports are only discovered after it loads (A
 
 `scripts/editor-support.js` listens on `main` for `aue:content-patch`, `-update`, `-add`, `-move`, `-remove` and `-copy`. For each change it loads `scripts/dompurify.min.js`, sanitises the returned HTML (`USE_PROFILES: { html: true }`) and re-decorates only the changed `main`, block, section or default content (`decorateMain`, `decorateBlock`, `applyBlockOptions`, `decorateSectionsWithOptions`, `loadBlock`, `loadSections`); when an update can't be applied in place, the page reloads. `editor-support-rte.js` handles rich-text instrumentation, re-run by a `MutationObserver`. The file isn't referenced by `head.html` or `scripts.js`; handover Part 2.3.6 states it is loaded only in the Universal Editor context (the loading mechanism is outside this repository: Requires validation).
 
-Authoring rules that shape code (block rows, field collapse, item rows, sections without `classes_*`): AGENTS.md "AEM delivery rules", the block READMEs and [docs/audit/README.md](../../../docs/audit/README.md).
+Authoring rules that shape code (block rows, field collapse, item rows, sections without `classes_*`): AGENTS.md "AEM delivery rules", the block READMEs and [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md).
 
 ## Publishing and delivery architecture
 
@@ -177,7 +177,7 @@ Shared events (AGENTS.md "Shared events and helpers"): `tabs:reveal` (opens the 
 | AEM author → Edge Delivery | franklin.delivery bridge (`fstab.yaml`), preview / publish | Active |
 | GitHub → Edge Delivery | AEM Code Sync | Active |
 | AEM Assets | Asset picker; images on the media bus; `/content/dam/tcs-corp/` in `paths.json` includes; non-image DAM files are served only once published (AGENTS.md) | Active |
-| AEM Assets, separate environment (EDAM) | Dynamic Media with OpenAPI delivery URLs in the content; standalone image delivery links rendered as responsive pictures (`decorateDeliveryImages`, `decorators/responsive-image-decorator.js`); the Universal Editor Custom Content Advisor for picking ([remote-assets-edam.md](../../proposals/remote-assets-edam.md)) | Not adopted (KB-D-064, 8 November 2026): no separate Assets environment, the assets stay in the Sites author's DAM; the rendering of delivery URLs stays in the code (no effect on DAM paths) |
+| AEM Assets, separate environment (EDAM) | Dynamic Media with OpenAPI delivery URLs in the content; standalone image delivery links rendered as responsive pictures (`decorateDeliveryImages`, `decorators/responsive-image-decorator.js`); the Universal Editor Custom Content Advisor for picking ([remote-assets-edam.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/proposals/remote-assets-edam.md)) | Not adopted (KB-D-064, 8 November 2026): no separate Assets environment, the assets stay in the Sites author's DAM; the rendering of delivery URLs stays in the code (no effect on DAM paths) |
 | Query index and sitemap | `helix-query.yaml`, `helix-sitemap.yaml` | Active ([indexing-and-search.md](./indexing-and-search.md)) |
 | Adobe Client Data Layer | `window.adobeDataLayer` populated by `decorators/data-layer-decorator.js` and `utils/analytics.js` (Core Components schema: page, components, `cmp:*` events) | Active |
 | Adobe Tags (Data Collection) | Would be embedded from `scripts/delayed.js` | Not configured (blocked: measurement plan) |
@@ -342,5 +342,5 @@ Troubleshooting by symptom: handover Part 13 — Global Troubleshooting Guide.
 - [data-layer-and-analytics.md](./data-layer-and-analytics.md), [blocks.md](./blocks.md), [repository-structure.md](./repository-structure.md), [project-overview.md](./project-overview.md) — related knowledge base files
 - [AGENTS.md](../../../AGENTS.md) — project rules (delivery rules, three-phase loading, module preloading, data layer)
 - [blocks/README.md](../../../blocks/README.md), [decorators/README.md](../../../decorators/README.md), [utils/README.md](../../../utils/README.md), [templates/README.md](../../../templates/README.md)
-- [docs/audit/README.md](../../../docs/audit/README.md), [docs/animation/README.md](../../../docs/animation/README.md)
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture, Part 11 — Analytics & Data Layer, Part 12 — Publishing, Deployment & Release, Part 13 — Global Troubleshooting Guide, Part 16 — Handover Findings and Open Items Register
+- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md), [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture, Part 11 — Analytics & Data Layer, Part 12 — Publishing, Deployment & Release, Part 13 — Global Troubleshooting Guide, Part 16 — Handover Findings and Open Items Register
