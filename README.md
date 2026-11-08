@@ -47,8 +47,18 @@ knowledge base stays in the code repository ([docs/handover/knowledge-base](http
 After the installation below, the assets are approved and delivered by **Dynamic Media with OpenAPI** from the
 Sites environment's delivery tier, and the 8,432 migrated pages below `/language-masters/en` are rebuilt with the
 assets' delivery URLs and reinstalled: `edam-assets.sh --steps 4,5` and `aem-sites.sh` against the **Sites author**
-(details and the asset picker set-up: `docs/edam/README.md`). Both language master roots exist:
-`/language-master/en` (the earlier content, DAM paths) and `/language-masters/en` (the migrated pages).
+(details and the asset picker set-up: `docs/edam/README.md`).
+
+## The three roots (KB-D-068)
+
+| Author path | Published at | Purpose |
+|---|---|---|
+| `/content/tcs-corp/language-master/en` | `/language-master/en/` | Testing: page functionality with dummy content, content limitations and other test aspects (DAM paths) |
+| `/content/tcs-corp/language-masters/en` | `/language-masters/en/` | The language master: the 8,432 migrated pages of these packages, validated (functionality, layout, content) with the real sheet data; later the source of the global website and the regions and languages (MSM or separate content to be decided once the content is final) |
+| `/content/tcs-corp/design-block-master/en` | `/design-block-master/en/` | The block library and the curated design pages |
+
+Each root is a site of its own (its own references, error pages and sheets), mapped in the site configuration and
+in the code (`REVIEW_ROOTS`).
 
 The redirects sheet (`consolidated/sheets/redirects.csv`) maps the tcs.com URLs of the 8,432 migrated pages
 (source: the tcs.com path, e.g. `/careers`) to their pages below `/language-masters/en`.
