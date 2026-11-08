@@ -7,7 +7,7 @@ the asset files at their DAM paths, and the metadata to import.
 |---|---|
 | `EDAM-ZIPS.md` | All 395 EDAM zips in upload order: per batch one zip per asset package (338), then its `-earlier` zip(s) (56); plus the pilot's `-from-other-batches` zip: files, MB, source |
 | `zips/` | The pilot batch B001's 4 zips (ready to use): its 2 asset zips, its `-earlier` zip and `-from-other-batches` (4 images its pages use from B002): 57 assets |
-| `-earlier` zips | The 1,342 assets of earlier migration runs (the October waves, the pilot) that the pages reuse: no asset package holds them, so the converter can't build them; each goes with the first batch that uses it. B001's is in `zips/`; the migration team provides the others (about 1 GB). List: `metadata/assets-from-earlier-runs.csv` |
+| Earlier-run assets | The 1,342 assets of earlier migration runs (the October waves, the pilot) that the pages reuse: built by the converter from `../../packages-earlier-run-assets/` as `tcs-corp-edam-earlier-01.zip` … `-13.zip` (about 1 GB). Pilot B001's are in `zips/` (`-earlier`). List: `metadata/assets-from-earlier-runs.csv` |
 | `tools/build-edam-zips.sh` / `.ps1` | Build all zips on your machine (macOS / Windows) from the asset packages in `../../consolidated/packages/`: no 22 GB download again, a few minutes, resumable |
 | `metadata/edam-metadata.csv` | Metadata Import file of all 14,352 assets (13,010 from the asset packages, 1,342 from earlier runs): `assetPath`, `dc:title`, `dc:description`, `cq:tags` (multi, `\|`), `dc:source` (the tcs.com URL) |
 | `metadata/batches/edam-metadata-<batch>.csv` | The same per batch (pilot imports) |
@@ -26,6 +26,7 @@ macOS (Terminal), from the checked-out branch:
 ```bash
 bash packages-for-edam-sites/edam-zips/tools/build-edam-zips.sh --batch B002   # one batch
 bash packages-for-edam-sites/edam-zips/tools/build-edam-zips.sh                # all (skips the zips already built)
+bash packages-for-edam-sites/edam-zips/tools/build-edam-zips.sh --packages packages-earlier-run-assets   # the earlier-run assets
 ```
 
 Windows (PowerShell):
@@ -33,6 +34,7 @@ Windows (PowerShell):
 ```powershell
 powershell -ExecutionPolicy Bypass -File packages-for-edam-sites\edam-zips\tools\build-edam-zips.ps1 -Batch B002
 powershell -ExecutionPolicy Bypass -File packages-for-edam-sites\edam-zips\tools\build-edam-zips.ps1
+powershell -ExecutionPolicy Bypass -File packages-for-edam-sites\edam-zips\tools\build-edam-zips.ps1 -Packages packages-earlier-run-assets
 ```
 
 Options: `--packages <folder>` / `-Packages` (where the asset packages are), `--out <folder>` / `-Out` (default

@@ -55,7 +55,7 @@ adjusted) and have the site's path mapping changed (site configuration and `path
 
 | # | Step | Check |
 |---|---|---|
-| 4.1 | Dev pushes the 55 other `-earlier` zips (about 1 GB) to `edam-zips/zips/` | Listed in `EDAM-ZIPS.md` as on the branch |
+| 4.1 | Admin builds the zips of the earlier-run assets: the converter with `--packages packages-earlier-run-assets` / `-Packages packages-earlier-run-assets` | 13 zips `tcs-corp-edam-earlier-NN.zip`, 1,342 files |
 | 4.2 | Admin builds the 338 EDAM zips locally: `tools/build-edam-zips.sh` (Mac) / `build-edam-zips.ps1` (Windows); needs `consolidated/packages/` (22 GB) and 22 GB of free disk | 338 zips in `edam-zips/zips/`, plus the `-earlier` zips |
 | 4.3 | Extract all zips into one folder (the 4 pilot files are the same files) | One `tcs-corp/` tree, 14,352 files |
 | 4.4 | Copy the `tcs-corp` folder to an Azure Blob or Amazon S3 container; Assets environment, Tools > Assets > **Bulk Import**: that source, target `/content/dam`, existing assets replaced; run it | Bulk Import job completed without errors |
