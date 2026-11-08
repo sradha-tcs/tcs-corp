@@ -53,6 +53,13 @@ grep -E '^\| [0-9]+ \|' "$ORDER" | while IFS='|' read -r _ n b name mb _; do
   grep -qx "$name" "$LOG" && continue
   f="$PKG_DIR/$name"
   [ -f "$f" ] || { echo "#$n missing file $name"; exit 1; }
+  # a batch whose rows weren't migrated (e.g. B004: the source page is gone) has a page package without
+  # content, which Package Manager refuses ("Missing 'jcr_root'"): nothing to install
+  if ! unzip -Z1 "$f" 2> /dev/null | grep -q '^jcr_root/'; then
+    echo "#$n $b $name: no content in it (no pages migrated), skipped"
+    [ $DRY -eq 1 ] || echo "$name" >> "$LOG"
+    continue
+  fi
   if [ $DRY -eq 1 ]; then echo "#$n $b $name ($mb MB)"; continue; fi
   ok=0
   for try in 1 2 3; do
