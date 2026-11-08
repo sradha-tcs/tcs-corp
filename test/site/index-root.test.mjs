@@ -14,7 +14,13 @@ describe('indexRoot', () => {
     assert.equal(indexRoot('/language-masters/en/curated-design-pages/story'), '/language-masters/en');
     assert.equal(indexRoot('/language-masters/en'), '/language-masters/en');
   });
-  it('is the old language master tree too while the tree moves (KB-D-065)', () => {
+  it('is the design and block master tree for its pages (KB-D-068)', () => {
+    assert.equal(indexRoot('/design-block-master/en/curated-design-pages/home'), '/design-block-master/en');
+    assert.equal(localeSheetPath('placeholders', '/design-block-master/en/block-library/hero'), '/design-block-master/en/placeholders.json');
+    assert.equal(localePagePath('references/nav', '/content/tcs-corp/design-block-master/en/x.html'), '/content/tcs-corp/design-block-master/en/references/nav');
+    assert.equal(indexRoot('/design-block-masterx/en'), '/en');
+  });
+  it('is the testing tree /language-master/en too (KB-D-068)', () => {
     assert.equal(indexRoot('/language-master/en/curated-design-pages/story'), '/language-master/en');
     assert.equal(indexRoot('/content/tcs-corp/language-master/en/x.html'), '/language-master/en');
     assert.equal(localeSheetPath('placeholders', '/language-master/en/x'), '/language-master/en/placeholders.json');

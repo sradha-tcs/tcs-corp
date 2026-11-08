@@ -421,7 +421,7 @@ graph LR
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 6 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 6 instance(s) in total:
 - Block library: `block-library/media-contacts/media-contacts-region`, `block-library/media-contacts/media-contacts-variations`, `block-library/templates/press-release-template`
 - Curated design pages: `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank`
 

@@ -98,11 +98,12 @@ export function getLocale(pathname = window.location.pathname) {
  * does. tools/paths/generate-paths.mjs maps each root as a locale (npm run build:paths): its
  * folder (child pages and sheets), its root page (the Home page, at {root}/), its taxonomy page.
  * Remove with the mappings once the language master is rolled out and unpublished.
- * While the language master moves from /content/tcs-corp/language-master to language-masters
- * (KB-D-065), both roots are served: /language-master/en (the pages not moved yet) and
- * /language-masters/en; remove the old one once the tree is moved and its pages are unpublished.
+ * Three roots, each a site of its own with its references, error pages and sheets (KB-D-068):
+ * /language-master/en tests page functionality with dummy content, /language-masters/en is the
+ * language master (the migrated content, the source of the global site and the regions) and
+ * /design-block-master/en holds the block library and the curated design pages.
  */
-export const REVIEW_ROOTS = ['/language-master/en', '/language-masters/en'];
+export const REVIEW_ROOTS = ['/language-master/en', '/language-masters/en', '/design-block-master/en'];
 
 /**
  * The sheets published below the review roots (paths mapped in the site configuration), read

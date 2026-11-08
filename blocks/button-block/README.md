@@ -256,7 +256,7 @@ Stored on a new component (definition template): `buttonView` = `"button"`, `but
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Link | `link` | aem-content | No | — | — | An AEM page, an asset or a URL. | /language-masters/en/curated-design-pages |
+| Link | `link` | aem-content | No | — | — | An AEM page, an asset or a URL. | /design-block-master/en/curated-design-pages |
 | Text | `linkText` | text | No | — | — | The label of the button (the accessible name of an icon button). Delivered with `link` (field collapse). | Curated design pages |
 | Title | `linkTitle` | text | No | — | — | Optional tooltip (most buttons need none). Delivered with `link` (field collapse). | Contact the TCS team |
 
@@ -747,7 +747,7 @@ and attributes, the data-layer entry.
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 79 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 79 instance(s) in total:
 - Block library: `block-library/columns-container/alignment-gap-and-breakpoints`, `block-library/columns-container/columns-of-blocks`, `block-library/columns/columns-variations`, `block-library/footer/campaign-page`, `block-library/foundations/button`, `block-library/foundations/button-icons-and-alignment`, `block-library/foundations/section-colours-with-blocks`, `block-library/foundations/section-variations`, `block-library/foundations/section-views`, `block-library/foundations/section-widths`, `block-library/fragment/fragment-block`, `block-library/fragment/fragments/cta-banner`, `block-library/modal/fragments/recognition`, `block-library/tabs/fragments/tab-industries`, `block-library/tabs/tabs-section`, `block-library/templates/error-page-404`, `block-library/templates/error-page-404-careers`, `block-library/templates/home-template`
 - Other pages: `block-library`
 

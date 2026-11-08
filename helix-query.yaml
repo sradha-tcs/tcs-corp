@@ -17,10 +17,17 @@ indices:
       - '/*/block-library'
       - '/*/block-library/**'
       - '/site-global-templates/**'
-      # the language master under review (/language-master/en and, after its move (KB-D-065),
-      # /language-masters/en, REVIEW in utils/site.js) is a level deeper: the same exclusions
-      # for its references, error pages, data, nav / footer and block library (handover F-108);
-      # remove with the REVIEW settings after the rollout (the old root once the tree is moved)
+      # the review roots (REVIEW_ROOTS in utils/site.js, KB-D-068: /language-master/en for
+      # testing, /language-masters/en the language master, /design-block-master/en the block
+      # library and curated design pages) are a level deeper: the same exclusions for their
+      # references, error pages, data, nav / footer and block library (handover F-108)
+      - '/design-block-master/*/references/**'
+      - '/design-block-master/*/error-pages/**'
+      - '/design-block-master/*/data/**'
+      - '/design-block-master/*/nav'
+      - '/design-block-master/*/footer'
+      - '/design-block-master/*/block-library'
+      - '/design-block-master/*/block-library/**'
       - '/language-master/*/references/**'
       - '/language-master/*/error-pages/**'
       - '/language-master/*/data/**'
