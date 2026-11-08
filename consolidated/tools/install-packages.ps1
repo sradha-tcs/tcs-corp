@@ -20,11 +20,13 @@
   powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -DryRun
   powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -To 3
   powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1
+  powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -Only assets
 #>
 param(
   [int]$From = 1,
   [int]$To = 999999,
   [string]$Batch = "",
+  [ValidateSet("", "assets", "pages")][string]$Only = "",
   [switch]$DryRun,
   [string]$PackageDir = ""
 )
@@ -42,7 +44,18 @@ $rows = foreach ($line in Get-Content $order) {
   }
 }
 $rows = $rows | Where-Object { $_.N -ge $From -and $_.N -le $To -and ($Batch -eq "" -or $_.Batch.StartsWith($Batch)) }
+# -Only assets: the asset packages only (e.g. for a separate AEM Assets environment); -Only pages: the page packages only
+if ($Only -eq "assets") { $rows = $rows | Where-Object { $_.Name -like "*-assets-*" } }
+if ($Only -eq "pages") { $rows = $rows | Where-Object { $_.Name -notlike "*-assets-*" } }
 
+# one progress log per AEM environment (e.g. the Sites author and a separate Assets environment), named
+# after a fingerprint of AEM_AUTHOR (the log never contains the program or environment id)
+if ("$env:AEM_AUTHOR") {
+  $sha = [Security.Cryptography.SHA1]::Create()
+  $fp = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes("$env:AEM_AUTHOR".TrimEnd('/')))) -replace '-', '').ToLower().Substring(0, 8)
+  $log = Join-Path $PackageDir "install-progress-$fp.log"
+  Write-Host "progress log: install-progress-$fp.log"
+}
 if (-not (Test-Path $log)) { New-Item -ItemType File -Path $log | Out-Null }
 $done = @{}
 Get-Content $log | ForEach-Object { if ($_) { $done[$_.Trim()] = $true } }

@@ -9,8 +9,15 @@ package), through the Package Manager HTTP service. They replace the 398 manual 
 | macOS (and Linux) | `install-packages.sh` (bash) |
 | Windows 10 / 11 | `install-packages.ps1` (Windows PowerShell 5.1 or PowerShell 7) |
 
-Both keep the same progress log (`packages/install-progress.log`): a run continues with the package after
-the last one installed, whichever script installed it.
+Both keep the same progress log per AEM environment (`packages/install-progress-<fingerprint>.log`, the
+fingerprint is derived from `AEM_AUTHOR`, so the Sites author and a separate Assets environment each have
+their own): a run continues with the package after the last one installed in that environment, whichever
+script installed it.
+
+**Separate AEM Assets environment (EDAM):** install the asset packages there with `--only assets`
+(`-Only assets` on Windows) and the page packages on the Sites author with `--only pages` (`-Only pages`).
+For that set-up the page packages are rebuilt with the assets' delivery URLs first (version 1.3.0): see
+`docs/proposals/remote-assets-edam.md` in the site repository for the order of the steps.
 
 ## Before you start (everyone)
 
@@ -34,7 +41,7 @@ bash tools/install-packages.sh --to 3       # a first test: batch B001 (packages
 bash tools/install-packages.sh              # everything else
 ```
 
-Options: `--batch B026` (one batch), `--from N` / `--to N` (a range of the sequence), `--dry-run`.
+Options: `--batch B026` (one batch), `--from N` / `--to N` (a range of the sequence), `--only assets` / `--only pages`, `--dry-run`.
 To keep the Mac awake during the long run: `caffeinate -i bash tools/install-packages.sh`.
 
 ## Windows
@@ -50,7 +57,7 @@ powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1           # 
 ```
 
 - The script asks for the access token (input hidden) unless `$env:AEM_TOKEN` is set.
-- Options: `-Batch B026`, `-From N` / `-To N`, `-DryRun`, `-PackageDir <folder>` (when the packages are
+- Options: `-Batch B026`, `-From N` / `-To N`, `-Only assets` / `-Only pages`, `-DryRun`, `-PackageDir <folder>` (when the packages are
   elsewhere).
 - `-ExecutionPolicy Bypass` applies to this run only (Windows blocks downloaded scripts by default).
 - It uploads with `curl.exe`, part of Windows 10 (1803 and later) and Windows 11.
