@@ -1,0 +1,4 @@
+# migrated-page-content holds migration deliverables only (packages, zips, sheets, reports): nothing on this
+# branch is served by Edge Delivery. Ignoring every file keeps Code Sync from syncing gigabytes of packages on
+# each push (which delayed the code sync of every other branch).
+*
