@@ -26,10 +26,10 @@ This file is the knowledge base summary of the query index and everything built 
 | `/*/nav`, `/*/footer` | Nav and footer pages at the locale root |
 | `/*/block-library`, `/*/block-library/**` | Block libraries (also excluded from publishing in `paths.json`; safeguard) |
 | `/site-global-templates/**` | Template pages (not published; safeguard) |
-| `/language-master/*/references/**`, `/language-master/*/error-pages/**`, `/language-master/*/data/**`, `/language-master/*/nav`, `/language-master/*/footer`, `/language-master/*/block-library`, `/language-master/*/block-library/**` | The same for the language master under review, a folder level deeper (#131, F-108; to remove with the REVIEW settings after the rollout) |
+| `/language-masters/*/references/**`, `/language-masters/*/error-pages/**`, `/language-masters/*/data/**`, `/language-masters/*/nav`, `/language-masters/*/footer`, `/language-masters/*/block-library`, `/language-masters/*/block-library/**` | The same for the language master under review, a folder level deeper (#131, F-108; to remove with the REVIEW settings after the rollout) |
 | `/**/fragments/**`, `/**/modals/**` | Fragment and modal folders anywhere |
 
-The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`); the language master (`/language-master/en/…`) is a level deeper and has its own patterns. Until 21 October 2026 it had none: 166 block library pages, 6 reference pages and the 404 page of the language master were in the live index (F-108). After the fix (#131) a reindex reports "requested path does not match index configuration" for these pages but doesn't remove their rows: they were removed with the Admin API index DELETE (173 / 173; the pages stay published). The index went from 354 to 181 rows (137 language-master content pages, 44 `/en` pages), and the Lists and Filter Lists of the library and the curated Insights page still filled.
+The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`); the language master (`/language-masters/en/…`) is a level deeper and has its own patterns. Until 21 October 2026 it had none: 166 block library pages, 6 reference pages and the 404 page of the language master were in the live index (F-108). After the fix (#131) a reindex reports "requested path does not match index configuration" for these pages but doesn't remove their rows: they were removed with the Admin API index DELETE (173 / 173; the pages stay published). The index went from 354 to 181 rows (137 language-master content pages, 44 `/en` pages), and the Lists and Filter Lists of the library and the curated Insights page still filled.
 
 **Columns** (37 properties, all read from the server-delivered `<head>`):
 
@@ -64,7 +64,7 @@ Rules:
 
 Typed values: `featured` is true for `yes`, `true`, `1`, `on`, `y` in `featured` or `featureCard`; `priority` is the number in `priority`, else `featuredPriority`, else `null`.
 
-**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root `/language-master/en` for pages below it (`REVIEW_ROOTS`, temporary), else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
+**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root `/language-masters/en` for pages below it (`REVIEW_ROOTS`, temporary), else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
 
 **AEM author.** AEM author has no query index (`isAuthor()` in `utils/environment.js`: the path starts with `/content/`); `getPages()` then returns `[]` and blocks show editor hints (below). Fixed-list pages are read with `getPagesAt`.
 

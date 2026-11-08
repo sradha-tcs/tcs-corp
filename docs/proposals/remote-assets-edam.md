@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Date | 8 November 2026 |
-| Status | For review — decisions E-D1 to E-D5 open (KB-D-064, Proposed) |
+| Status | For review — E-D1 answered (licensed); E-D2 to E-D5 open (KB-D-064, Proposed) |
 | Scope | Images, videos, audio and documents of the TCS Corporate site, including the 8,432 migrated pages (EMA migration 1.2.0) |
 
 ## 1. Today
@@ -40,7 +40,7 @@ Advisor" (configurable asset picker), Experience League "Dynamic Media with Open
 | 3 | **Upload the assets as EDAM zips** (`packages-for-edam-sites/edam-zips/`; the asset packages are for a non-EDAM set-up): build the 338 zips locally from the asset packages (`tools/build-edam-zips.sh` / `.ps1`; pilot B001's zips are on the branch), extract them into one folder and upload its `tcs-corp` folder to `/content/dam`: Assets view folder upload for the pilot, **Bulk Import** from an Azure Blob / S3 container for the 22 GB. Then **Metadata Import** of `metadata/edam-metadata.csv` (titles, descriptions, tags, sources) | AEM admin | Assets environment | 13,010 assets at their DAM paths with their metadata |
 | 4 | **Process and approve.** Wait for processing (renditions, Dynamic Media); approve the assets (bulk: select the folders in the Assets view > Approve, or the metadata Status = Approved); check one image, one video and one PDF on the delivery tier | AEM admin, DAM librarian | Assets environment | Delivery URLs answer 200 |
 | 5 | **Export the asset ids.** `tools/export-asset-ids.sh` (macOS) / `export-asset-ids.ps1` (Windows) on the delivery branch (`consolidated/tools/`) read path → asset id (`urn:aaid:aem:<jcr:uuid>`), MIME type and approval status of every asset below `/content/dam/tcs-corp` from the Assets author (read only), compare them with `expected-assets.csv` and write `asset-ids.csv` and a report (missing, not approved) | AEM admin | Assets environment | `asset-ids.csv` (13,010 assets: 10,231 images, 2,429 documents, 294 videos, 56 audio) |
-| 6 | **Rebuild the page packages (1.3.0)** with `asset-ids.csv` into `packages-for-edam-sites/content-packages/`: every DAM path in the components becomes the asset's delivery URL (images with their MIME type, for the media bus); the sheets' image columns too. Same batches, same installation sequence | Migration team | Migration tooling | 60 page packages 1.3.0, sheets 1.3.0 |
+| 6 | **Rebuild the page packages (1.3.0)** with `asset-ids.csv` into `packages-for-edam-sites/content-packages/`: every DAM path in the components becomes the asset's delivery URL (images with their MIME type, for the media bus); the sheets' image columns too. Same batches, same installation sequence | Migration team | Migration tooling | 60 page packages 1.3.0-edam (from 1.3.0, below `/content/tcs-corp/language-masters`, KB-D-065), sheets 1.3.0 |
 | 7 | **Site code and models** (feature branch, PR, KB-D-064 approved first): enable the Custom Content Advisor extension for the Sites environment (Extension Manager); its configuration (`tools/assets-selector/*.config.json`: repositories, file types, root path); the 20 asset fields of 15 component models (card, columns-container, conversation-canvas, embed, hero, image, image-collage-item, list-item, quote, section, tcs-header, teaser, teaser-collage-image, testimonial, video) to `custom-asset-namespace:custom-asset` with a MIME type field; the decorators to render delivery URLs (images as `<picture>`, video and documents as links / players); the metadata and authors sheet readers; tests, READMEs (`npm run build:json`, `build:docs`) | Developers | Repository | Authors pick from EDAM; existing pages still render |
 | 8 | **Install the 60 page packages on the Sites author:** `--only pages` with `AEM_AUTHOR` = the Sites author; replace and publish the sheets | AEM admin | Sites author | Pages reference EDAM |
 | 9 | **Publish, index, verify:** publish the pages (Edge Delivery fetches the approved images from the delivery tier); check the pilot batch, then every batch's sample (images, videos, documents, cards of lists) | Migration team, QA | Sites author, Edge Delivery | Live pages with EDAM assets |
@@ -56,7 +56,7 @@ Sites author's own DAM paths. The delivery branch keeps both set-ups apart: `pac
 
 | ID | Decision | Recommendation |
 |---|---|---|
-| E-D1 | Is Dynamic Media with OpenAPI delivery licensed and enabled on the Assets environment? | Required for this target; otherwise keep the assets on the Sites author (today's set-up) |
+| E-D1 | Is Dynamic Media with OpenAPI delivery licensed and enabled on the Assets environment? | **Answered 8 November 2026: yes, the licensed version is used** |
 | E-D2 | Delivery domain: the default `delivery-p…-e…` host or a custom domain (e.g. `assets.tcs.com`) | Custom domain, so the page content doesn't carry environment ids |
 | E-D3 | Images: Edge Delivery media bus (MIME type stored) or Dynamic Media delivery (smart crops, AVIF) | Media bus for images (the blocks keep their `<picture>` handling, PageSpeed unchanged); Dynamic Media for video |
 | E-D4 | Approval of the 13,010 migrated assets: in bulk at installation, or by the DAM librarian per folder | In bulk per batch after the pilot (the content was approved on tcs.com) |

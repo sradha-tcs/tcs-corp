@@ -209,7 +209,7 @@ The heading is the placeholder "Media contacts".
 
 ## Complete Authoring Example
 
-Scenario: the migrated press release "TCS BaNCS for Treasury marks its entry into Sri Lanka with Indian Bank" (`/content/tcs-corp/language-master/en/curated-design-pages/forms/…`).
+Scenario: the migrated press release "TCS BaNCS for Treasury marks its entry into Sri Lanka with Indian Bank" (`/content/tcs-corp/language-masters/en/curated-design-pages/forms/…`).
 
 | Field | Example value | Guidance |
 | ----- | ------------- | -------- |
@@ -421,7 +421,7 @@ graph LR
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 6 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 6 instance(s) in total:
 - Block library: `block-library/media-contacts/media-contacts-region`, `block-library/media-contacts/media-contacts-variations`, `block-library/templates/press-release-template`
 - Curated design pages: `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank`
 

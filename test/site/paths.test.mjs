@@ -46,8 +46,8 @@ describe('paths.json', () => {
     });
   });
 
-  it('maps the language master Home page to /language-master/en/', () => {
-    assert.ok(paths.mappings.includes('/content/tcs-corp/language-master/en:/language-master/en/'));
-    assert.ok(paths.mappings.includes('/content/tcs-corp/language-master/en/:/language-master/en/'));
+  it('maps the language master Home page to /language-masters/en/', () => {
+    assert.ok(paths.mappings.includes('/content/tcs-corp/language-masters/en:/language-masters/en/'));
+    assert.ok(paths.mappings.includes('/content/tcs-corp/language-masters/en/:/language-masters/en/'));
   });
 });

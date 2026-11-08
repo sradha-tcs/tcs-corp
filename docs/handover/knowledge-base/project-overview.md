@@ -111,7 +111,7 @@ One code base serves every locale; the locale is resolved from the AEM path when
 | 12 | `jp/ja-jp` | `/ja-jp` | ja-JP |
 | 13 | `kr/ko-kr` | `/ko-kr` | ko-KR |
 
-**Language master under review (temporary).** The language master `/content/tcs-corp/language-master/en`, the rollout source of `/en`, is published at `/language-master/en/` so it can be reviewed as a site of its own. Its pages list the language master's own pages from the query index, read its own placeholders, redirects, taxonomy and data sheets and its own references and error pages, and inherit Navigation, Footer and 404 Page up to its root page (`REVIEW_ROOTS`, `REVIEW_SHEETS`, `REVIEW_PAGES`, `indexRoot`, `localeSheetPath`, `localePagePath` in [utils/site.js](../../../utils/site.js); the `REVIEW` block of [tools/paths/generate-paths.mjs](../../../tools/paths/generate-paths.mjs): 11 of the 154 mappings and one include). It is to be removed after the rollout (handover 3.9, finding F-88); the rollout date is not recorded. Test: [test/site/index-root.test.mjs](../../../test/site/index-root.test.mjs).
+**Language master under review (temporary).** The language master `/content/tcs-corp/language-masters/en`, the rollout source of `/en`, is published at `/language-masters/en/` so it can be reviewed as a site of its own. Its pages list the language master's own pages from the query index, read its own placeholders, redirects, taxonomy and data sheets and its own references and error pages, and inherit Navigation, Footer and 404 Page up to its root page (`REVIEW_ROOTS`, `REVIEW_SHEETS`, `REVIEW_PAGES`, `indexRoot`, `localeSheetPath`, `localePagePath` in [utils/site.js](../../../utils/site.js); the `REVIEW` block of [tools/paths/generate-paths.mjs](../../../tools/paths/generate-paths.mjs): 11 of the 154 mappings and one include). It is to be removed after the rollout (handover 3.9, finding F-88); the rollout date is not recorded. Test: [test/site/index-root.test.mjs](../../../test/site/index-root.test.mjs).
 
 Content status per locale and the launch scope per locale are not recorded (handover PG-3, SC-1 "To be confirmed"). There is no language switcher component and no hreflang (handover 1.6.2).
 
@@ -129,7 +129,7 @@ Every locale site has the same layout (details: [AGENTS.md](../../../AGENTS.md#s
 │   ├── placeholders, metadata, taxonomy, redirects   sheets / taxonomy page
 │   └── data/                       authors, locations, partners, social-links, media-contacts
 ├── de/de-de/ … kr/ko-kr/           the 12 other locale sites, same layout
-├── language-master/en/             published temporarily at /language-master/en/ for review
+├── language-masters/en/             published temporarily at /language-masters/en/ for review
 └── site-global-templates/          template pages authors copy; not published
 /content/dam/tcs-corp/              AEM Assets (included in paths.json, published with pages)
 ```
@@ -234,7 +234,7 @@ Verified constraints the code and content work under (rules in [AGENTS.md](../..
 | --- | --- |
 | xwalk | AEM authoring (Universal Editor) for Edge Delivery Services |
 | Locale site | One of the 13 country / language sites |
-| Language master | `/content/tcs-corp/language-master/en`, temporarily published at `/language-master/en` |
+| Language master | `/content/tcs-corp/language-masters/en`, temporarily published at `/language-masters/en` |
 | Block / section container / item | A decorated component / a section turned into a block / a row added to a block with Add |
 | Additional tab | The last dialog tab of every block except header and footer |
 | Query index | `/query-index.json`, the published pages and their metadata columns |

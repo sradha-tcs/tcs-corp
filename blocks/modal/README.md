@@ -172,7 +172,7 @@ Model `modal`; template name "Modal" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modal/. Opens in a dialog. | /language-master/en/block-library/modal/fragments/contact-form |
+| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modal/. Opens in a dialog. | /language-masters/en/block-library/modal/fragments/contact-form |
 | Button Text | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | Contact our team |
 
 #### Additional tab — Modal
@@ -276,7 +276,7 @@ B = Button Text
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Modal Content | `/language-master/en/block-library/modal/fragments/recognition` | The dialog's page | The dialog shows its content |
+| A | Modal Content | `/language-masters/en/block-library/modal/fragments/recognition` | The dialog's page | The dialog shows its content |
 | B | Button Text | `View our awards` | Says what opens | Primary button "View our awards" |
 
 Business rule: an empty Button Text shows "Open". Validation: the button opens the dialog in preview. Common mistake: a Button Text that repeats the URL.
@@ -668,7 +668,7 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 3 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 3 instance(s) in total:
 - Block library: `block-library/modal/modal-block`, `block-library/modal/modal-long-content`, `block-library/modal/modal-with-a-form`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

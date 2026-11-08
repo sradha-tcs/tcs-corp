@@ -6,12 +6,12 @@
    "source": "fixed",
    "displayAsTeaser": false,
    "title": "Related insights",
-   "rootPath": "/language-master/en/dummy-pages/insights",
+   "rootPath": "/language-masters/en/dummy-pages/insights",
    "maxItems": 3,
    "desktopColumns": 3,
-   "link": "/language-master/en/curated-design-pages/insights",
+   "link": "/language-masters/en/curated-design-pages/insights",
    "linkText": "View all",
-   "parentPath": "/language-master/en/dummy-pages/insights",
+   "parentPath": "/language-masters/en/dummy-pages/insights",
    "tabletColumns": 3,
    "directChildrenOnly": false,
    "childDepth": 2,
@@ -60,7 +60,7 @@
    "showEyebrow": false
   },
   "button-block": {
-   "link": "/language-master/en/curated-design-pages",
+   "link": "/language-masters/en/curated-design-pages",
    "linkText": "Curated design pages",
    "buttonView": "button",
    "buttonVariant": "secondary",
@@ -91,7 +91,7 @@
    "titleType": "h2",
    "cardStyle": "image",
    "desktopColumns": 3,
-   "link": "/language-master/en/curated-design-pages/insights",
+   "link": "/language-masters/en/curated-design-pages/insights",
    "linkText": "View all insights",
    "featureFirst": true,
    "displayAsTeaser": false,
@@ -130,7 +130,7 @@
    "image": "/content/dam/tcs-corp/dummy-pages/images/banking.jpg",
    "eyebrow": "Consulting",
    "title": "Business and technology consulting",
-   "link": "/language-master/en/dummy-pages/services/cloud",
+   "link": "/language-masters/en/dummy-pages/services/cloud",
    "readingTime": "6",
    "contentLabel": "Article",
    "date": "2026-09-04",
@@ -148,7 +148,7 @@
   },
   "filter-list": {
    "title": "Insights",
-   "rootPath": "/language-master/en/dummy-pages/insights",
+   "rootPath": "/language-masters/en/dummy-pages/insights",
    "primaryCategory": "tcs-corp:industry",
    "source": "manual",
    "cardsPerPage": 6,
@@ -178,9 +178,9 @@
    "image": "/content/dam/tcs-corp/dummy-pages/images/banking.jpg",
    "primaryCtaText": "Read the outlook",
    "imageAlt": "Consultants planning a transformation roadmap",
-   "primaryCta": "/language-master/en/dummy-pages/contact",
+   "primaryCta": "/language-masters/en/dummy-pages/contact",
    "secondaryCtaText": "Explore cloud services",
-   "secondaryCta": "/language-master/en/dummy-pages/services/cloud",
+   "secondaryCta": "/language-masters/en/dummy-pages/services/cloud",
    "imagePosition": "right",
    "classes": "no-image",
    "multiLinks": true,
@@ -213,7 +213,7 @@
    "authorImage": "/content/dam/tcs-corp/block-library/images/avatar-sample-1.svg",
    "authorImageAlt": "Anita Rao",
    "viewAllText": "View all",
-   "viewAll": "/language-master/en/curated-design-pages/insights",
+   "viewAll": "/language-masters/en/curated-design-pages/insights",
    "titleHidden": true,
    "showEyebrow": false,
    "showDescription": false,
@@ -228,7 +228,7 @@
   "footer": {},
   "conversation-canvas": {
    "title": "Let’s shape what’s next, together",
-   "menuRootPath": "/language-master/en/dummy-pages",
+   "menuRootPath": "/language-masters/en/dummy-pages",
    "menuDepth": 2,
    "searchPlaceholder": "Ask us a question",
    "searchButtonLabel": "Search",
@@ -249,14 +249,14 @@
    "classes_animationspeed": "motion-slow"
   },
   "conversation-canvas-item": {
-   "link": "/language-master/en/dummy-pages/services",
+   "link": "/language-masters/en/dummy-pages/services",
    "linkText": "Explore our services",
    "buttonVariant": "secondary",
    "buttonView": "button",
    "buttonIcon": "chevron-right"
   },
   "fragment": {
-   "reference": "/language-master/en/block-library/fragment/fragments/cta-banner"
+   "reference": "/language-masters/en/block-library/fragment/fragments/cta-banner"
   },
   "tabs-block": {
    "tabsAriaLabel": "How we help",
@@ -268,11 +268,11 @@
   "tabs-block-item": {
    "title": "Overview",
    "tabId": "overview",
-   "fragment": "/language-master/en/block-library/tabs/fragments/tab-overview",
+   "fragment": "/language-masters/en/block-library/tabs/fragments/tab-overview",
    "activeTab": true
   },
   "modal": {
-   "link": "/language-master/en/block-library/modal/fragments/contact-form",
+   "link": "/language-masters/en/block-library/modal/fragments/contact-form",
    "linkText": "Contact our team"
   },
   "page-header": {
@@ -330,7 +330,7 @@
    "summary": "How do I apply for a role at TCS?"
   },
   "list-item": {
-   "link": "/language-master/en/dummy-pages/services/cloud",
+   "link": "/language-masters/en/dummy-pages/services/cloud",
    "headline": "Cloud services for the enterprise",
    "summary": "Co-developed platforms from our partner ecosystem.",
    "image": "/content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg",
@@ -351,7 +351,7 @@
   "table-list": {
    "listHeading": "Industries we serve",
    "viewAllLabel": "View all",
-   "viewAllLink": "/language-master/en/dummy-pages/industries",
+   "viewAllLink": "/language-masters/en/dummy-pages/industries",
    "ctaStyle": "primary",
    "variations": "solutions",
    "numbers": "show",
@@ -364,7 +364,7 @@
   },
   "table-list-item": {
    "title": "Banking",
-   "link": "/language-master/en/curated-design-pages/industry-landing-page",
+   "link": "/language-masters/en/curated-design-pages/industry-landing-page",
    "trademark": "tm",
    "linkText": "Banking",
    "number": "01"
@@ -448,7 +448,7 @@
   "video": {
    "uri": "/content/dam/tcs-corp/block-library/videos/sample-video.mp4",
    "label": "Building on belief: the TCS brand film",
-   "transcript": "/language-master/en/dummy-pages/our-story",
+   "transcript": "/language-masters/en/dummy-pages/our-story",
    "poster": "/content/dam/tcs-corp/dummy-pages/images/banking.jpg",
    "posterAlt": "Engineers collaborating in a modern office",
    "playback": "background",
@@ -501,7 +501,7 @@
   "tcs-header": {
    "tcsLogo": "/content/dam/tcs-corp/block-library/header/tcs-logo.png",
    "tcsLogoAlt": "Tata Consultancy Services",
-   "tcsLogoLink": "/language-master/en/curated-design-pages/home",
+   "tcsLogoLink": "/language-masters/en/curated-design-pages/home",
    "tataLogo": "/content/dam/tcs-corp/block-library/header/tata-logo.png",
    "tataLogoAlt": "TATA Group",
    "tataLogoLink": "https://www.tata.com"

@@ -487,7 +487,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `displayA
 | Title | `title` | text | No | — | — | The heading of the cards, e.g. Related to Agentic AI. | Our services |
 | Heading type | `titleType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Delivered with `title` (field collapse). | h2 |
 | Description | `description` | richtext | No | — | — | — | — |
-| CTA link | `link` | aem-content | No | — | — | — | /language-master/en/curated-design-pages/insights |
+| CTA link | `link` | aem-content | No | — | — | — | /language-masters/en/curated-design-pages/insights |
 | CTA text | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | View all insights |
 | CTA style | `linkType` | select | No | "" | Text link (""), Primary button (`primary`), Secondary button (`secondary`) | Delivered with `link` (field collapse). | primary |
 | Accessible list label | `listLabel` | text | No | — | — | Names the cards for screen readers when there is no title. | — |
@@ -1316,7 +1316,7 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 70 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 70 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/animation/speed-and-trigger`, `block-library/cards/card-colours`, `block-library/cards/card-styles`, `block-library/cards/grid-and-horizontal-scroll`, `block-library/cards/heights-links-legacy`, `block-library/cards/images-panels-style-options`, `block-library/cards/per-card-styles-and-colours`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`, `block-library/tabs/fragments/cloud-overview`, `block-library/tabs/fragments/consulting-overview`, `block-library/tabs/fragments/security-overview`, `block-library/templates/home-template`
 - Curated design pages: `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/who-we-are`
 

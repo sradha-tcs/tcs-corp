@@ -17,7 +17,7 @@ This guide is the governance view of the blocks of the TCS Corporate Website (AE
 | Components in the editor | 62: Default Content 4 (Text, Title, Image, Button (basic)), Sections 1, Blocks 57 (blocks, items and section containers) | `component-definition.json` |
 | Models / filters | 63 models, 26 filters | `component-models.json`, `component-filters.json` |
 | Statuses | 28 Active, 1 Compatibility-only (Columns), 1 Experimental (Interactive Dashboard) | `tools/docs/blocks.json` |
-| Block library | Package 1.0.13 of the language master (`/content/tcs-corp/language-master/en`): 157 block library pages and 11 curated design pages contain blocks | `tools/docs/library-snapshot.json` |
+| Block library | Package 1.0.13 of the language master (`/content/tcs-corp/language-masters/en`): 157 block library pages and 11 curated design pages contain blocks | `tools/docs/library-snapshot.json` |
 | Checks | `npm test` 311 tests passed and `npm run lint` passed on 21 October 2026 at commit 2d06316 | run for this guide |
 
 ## Block Types and Categories
@@ -230,7 +230,7 @@ Extend the existing block when the requirement is a visual variant, a layout per
 
 ## Block Library and Curated Design Pages
 
-The block library and the curated design pages are AEM content of the language master (`/content/tcs-corp/language-master/en/block-library/...` and `.../curated-design-pages/...`), built as a content package from the corrected models; the build workspace (`.home-work/`, with `render-lib.mjs` for the local preview and `bl/bl-migrate.mjs` for migrations) is not in git. Each locale also has a `block-library/` folder, excluded from publishing in `paths.json`; the language master is published at `/language-master/en` while it is under review (temporary, `REVIEW_*` in `utils/site.js`).
+The block library and the curated design pages are AEM content of the language master (`/content/tcs-corp/language-masters/en/block-library/...` and `.../curated-design-pages/...`), built as a content package from the corrected models; the build workspace (`.home-work/`, with `render-lib.mjs` for the local preview and `bl/bl-migrate.mjs` for migrations) is not in git. Each locale also has a `block-library/` folder, excluded from publishing in `paths.json`; the language master is published at `/language-masters/en` while it is under review (temporary, `REVIEW_*` in `utils/site.js`).
 
 Uses:
 
