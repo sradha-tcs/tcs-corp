@@ -12,7 +12,7 @@ date: "October 28, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.50 |
+| Version | 2.51 |
 | Date | 28 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
@@ -82,6 +82,7 @@ date: "October 28, 2026"
 | 2.48 | 8 November 2026 | Delivery team | **Assets from a separate AEM Assets environment (EDAM, KB-D-064, Proposed):** the site renders Dynamic Media with OpenAPI delivery URLs: an image delivery link that stands alone in its cell or paragraph becomes a responsive picture before the blocks are decorated (`decorateDeliveryImages`, `buildDeliveryPicture` in `decorators/responsive-image-decorator.js`; `deliveryAsset`, `deliveryImageUrl` in `utils/media.js`, unit tested); section backgrounds too (`buildImage`); links in running text and original files stay links; DAM paths unchanged. The Universal Editor asset picker for EDAM (Custom Content Advisor, the asset fields of the models) follows separately. Plan: `docs/proposals/remote-assets-edam.md` |
 | 2.49 | 8 November 2026 | Delivery team | **Language master moved to `/content/tcs-corp/language-masters`, published at `/language-masters/en/`** (KB-D-065): `REVIEW_ROOTS` (`utils/site.js`), the `paths.json` mappings (`npm run build:paths`), the query index exclusions, the tests, the block README examples; the site configuration's paths are updated by an administrator. EDAM decision E-D1 answered: Dynamic Media with OpenAPI is licensed (KB-D-064) |
 | 2.50 | 8 November 2026 | Delivery team | **EDAM not adopted** (KB-D-064, product owner): there is no separate AEM Assets environment (the delivery host given is the Sites environment's own), so the assets stay in the Sites author's DAM and the pages reference them by DAM path; the migration installs the asset packages 1.2.0 and page packages 1.3.0 as they are. The EDAM asset picker (PR #195) closed unmerged; the rendering of delivery URLs (2.48) stays, with no effect on DAM paths. The document version in the header brought up to date (it read 2.47) |
+| 2.51 | 8 November 2026 | Delivery team | **Both language master roots served during the move** (KB-D-065): `REVIEW_ROOTS` lists `/language-master/en` (the pages not moved yet) and `/language-masters/en`; `paths.json` (45 mappings) and the site configuration map both; `helix-query.yaml` excludes the references, error pages, data, nav / footer and block library of both; tests for the old root; the old root is removed once the tree is moved |
 
 ## Review and Approval
 
