@@ -31,6 +31,8 @@ param(
   [string]$PackageDir = ""
 )
 $ErrorActionPreference = "Stop"
+Add-Type -AssemblyName System.IO.Compression
+Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 if (-not $PackageDir) { $PackageDir = Join-Path (Split-Path -Parent $PSScriptRoot) "packages" }
 $order = Join-Path $PackageDir "INSTALL-ORDER.md"
@@ -91,6 +93,16 @@ foreach ($r in $rows) {
   if ($done[$r.Name]) { continue }
   $file = Join-Path $PackageDir $r.Name
   if (-not (Test-Path $file)) { Write-Host "#$($r.N) missing file $($r.Name)"; exit 1 }
+  # a batch whose rows weren't migrated (e.g. B004: the source page is gone) has a page package without
+  # content, which Package Manager refuses ("Missing 'jcr_root'"): nothing to install
+  $z = [IO.Compression.ZipFile]::OpenRead($file)
+  try { $hasContent = @($z.Entries | Where-Object { $_.FullName.StartsWith('jcr_root/') }).Count -gt 0 } finally { $z.Dispose() }
+  if (-not $hasContent) {
+    Write-Host ("#{0} {1} {2}: no content in it (no pages migrated), skipped" -f $r.N, $r.Batch, $r.Name)
+    Add-Content -Path $log -Value $r.Name
+    $done[$r.Name] = $true
+    continue
+  }
   $ok = $false
   for ($try = 1; $try -le 3; $try++) {
     Write-Host ("{0} #{1} {2} {3} ({4} MB), try {5}" -f (Get-Date).ToUniversalTime().ToString("s"), $r.N, $r.Batch, $r.Name, $r.MB, $try)
