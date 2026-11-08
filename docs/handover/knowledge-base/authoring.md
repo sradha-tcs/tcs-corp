@@ -248,7 +248,7 @@ Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../
 - The page language (`<html lang>`) is the page's `language` metadata when valid, else the locale's tag ([decorators/seo-decorator.js](../../../decorators/seo-decorator.js)).
 - Creating a locale's content, translation projects, MSM live copies, a language switcher and `hreflang` are not implemented in code; the translation process is not recorded (handover Part 4, 4.9.6; open item O-12).
 - Month abbreviations in formatted dates are English in every locale; prefer the numeric date formats where a block offers a choice (handover 4.9.7).
-- Temporary: pages below `/language-master/en` read the language master's own references, sheets and index rows until its rollout to `/en` (`REVIEW_*` in [utils/site.js](../../../utils/site.js)).
+- Temporary: pages below `/language-masters/en` read the language master's own references, sheets and index rows until its rollout to `/en` (`REVIEW_*` in [utils/site.js](../../../utils/site.js)).
 
 ## Accessibility responsibilities
 

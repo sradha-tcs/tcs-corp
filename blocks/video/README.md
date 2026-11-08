@@ -397,7 +397,7 @@ Stored on a new component (definition template): `playback` = `"click"`, `contro
 | Video | `uri` | aem-content | Yes | — | — | A video file from AEM Assets (MP4, WebM), or a YouTube or Vimeo link | /content/dam/tcs-corp/block-library/videos/sample-video.mp4 |
 | Title | `label` | text | No | — | — | Names the video for screen readers (e.g. "TCS AI lab tour"); not shown on the page | Building on belief: the TCS brand film |
 | Caption | `caption` | richtext | No | — | — | Shown below the video | — |
-| Transcript | `transcript` | aem-content | No | — | — | A page or document with the transcript; shown as a link below the video | /language-master/en/dummy-pages/our-story |
+| Transcript | `transcript` | aem-content | No | — | — | A page or document with the transcript; shown as a link below the video | /language-masters/en/dummy-pages/our-story |
 | Poster Image | `poster` | reference | No | — | — | Shown before the video plays, with a play button (Click playback). | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
 | Poster Image Alt Text | `posterAlt` | text | No | "" | — | Delivered with `poster` (field collapse). | Engineers collaborating in a modern office |
 | Captions File (WebVTT) | `captions` | aem-content | No | — | — | Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there | — |
@@ -580,7 +580,7 @@ D = The transcript link
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Caption | How our people and partners use technology to help enterprises grow and transform. | Context for every visitor | Grey text below the video |
-| B | Transcript | /language-master/en/dummy-pages/our-story | Text alternative of the film | The link "Read the transcript" below the caption |
+| B | Transcript | /language-masters/en/dummy-pages/our-story | Text alternative of the film | The link "Read the transcript" below the caption |
 
 **Author action:** enter the caption and pick the transcript page. **Expected preview:** caption,
 then the link. **Expected published result:** the link opens the published transcript page.
@@ -785,7 +785,7 @@ transcript.
 | Video | /content/dam/tcs-corp/block-library/videos/sample-video.mp4 | Web-optimised MP4 or WebM |
 | Title | Building on belief: the TCS brand film | Always set it |
 | Caption | How our people and partners use technology to help enterprises grow and transform. | One or two sentences |
-| Transcript | /language-master/en/dummy-pages/our-story | A published page or document |
+| Transcript | /language-masters/en/dummy-pages/our-story | A published page or document |
 | Poster Image | /content/dam/tcs-corp/dummy-pages/images/banking.jpg | Same ratio as the video |
 | Poster Image Alt Text | Engineers collaborating in a modern office | Describe the image |
 | Playback | Play button (on the poster image) | Default |
@@ -937,7 +937,7 @@ blocks/video/
 | [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType`, `deliveryAsset` (reads a Dynamic Media with OpenAPI delivery URL of a separate AEM Assets environment), `deliveryImageUrl` (its URL  | `video.js`: { isVimeo, isYoutube, youtubeId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `video.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `video.js`: { isOn, normalizeKey, optionOf, readProperties, textOf, } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `video.js`: { getLocale } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-masters/en and, until the tree is moved, the old /language-master/en, list | `video.js`: { getLocale } |
 | [`utils/viewport.js`](../../utils/viewport.js) | `onVisible` (once), `watchVisibility` (on / off screen), `currentBreakpoint` (mobile / tablet / desktop) | `video.js`: { onVisible, watchVisibility } |
 | [`blocks/modal/modal.js`](../../blocks/modal/modal.js) | — | `video.js`: (dynamic import) |
 
@@ -1150,7 +1150,7 @@ player requests, and the block's `window.adobeDataLayer` entries.
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 27 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 27 instance(s) in total:
 - Block library: `block-library/video/video`, `block-library/video/video-pop-up`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

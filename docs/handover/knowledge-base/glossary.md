@@ -51,7 +51,7 @@ This page defines the terms used across the TCS Corporate Website code, the hand
 | --- | --- |
 | Locale / locale site | One of the 13 country / language sites under `/content/tcs-corp/{country}/{language}`, published at a language-only path (`/en`, `/de-de`, ...); `LOCALES` in [utils/site.js](../../../utils/site.js) |
 | Locale Home | The locale page itself (e.g. `/content/tcs-corp/de/de-de`), published as `/de-de/index`, served at `/de-de/` |
-| Language master | `/content/tcs-corp/language-master/en`, the rollout source of `/en`; temporarily published at `/language-master/en` for review |
+| Language master | `/content/tcs-corp/language-masters/en`, the rollout source of `/en`; temporarily published at `/language-masters/en` for review |
 | Review root | A published root whose pages behave like a locale site during the review (`REVIEW_ROOTS`, with `REVIEW_SHEETS`, `REVIEW_PAGES`); temporary |
 | References | The locale folder `references/` with the nav page, footer page and other fragments |
 | Nav page | The page the Header loads (`references/nav` by default): brand, sections (the menu) and tools, with a TCS Header block and optionally a header Canvas |

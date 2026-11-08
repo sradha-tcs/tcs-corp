@@ -15,8 +15,8 @@
  * Site roots:
  * - a locale: AEM /content/tcs-corp/{country}/{code}, published at /{code}
  * - a language master (TEMPORARY, while it is reviewed before its rollout to the locales):
- *   AEM /content/tcs-corp/language-master/en, published at /language-master/en (its Home page at
- *   /language-master/en/, its child pages at /language-master/en/<path>). Adding one: add its
+ *   AEM /content/tcs-corp/language-masters/en, published at /language-masters/en (its Home page at
+ *   /language-masters/en/, its child pages at /language-masters/en/<path>). Adding one: add its
  *   published root to REVIEW_ROOTS (the code then reads its own pages, sheets and references
  *   there) and run `npm run build:paths`; remove it after the rollout and run it again.
  * Plus the AEM Assets folder, so assets used on the pages are published with them.

@@ -73,7 +73,7 @@ Verified at commit 2d06316 (21 October 2026); details and evidence in the linked
 
 | Area | Status |
 | --- | --- |
-| Sites | 13 locale sites (`/en`, `/de-de`, …) defined in `utils/site.js` and `paths.json`; the language master under review is published at `/language-master/en` (temporary `REVIEW_*` settings) — [content-architecture](./content-architecture.md) |
+| Sites | 13 locale sites (`/en`, `/de-de`, …) defined in `utils/site.js` and `paths.json`; the language master under review is published at `/language-masters/en` (temporary `REVIEW_*` settings) — [content-architecture](./content-architecture.md) |
 | Blocks | 30 block folders: 28 active, Columns compatibility-only (replaced by the Columns Container), Interactive Dashboard an experimental placeholder — [blocks](./blocks.md) |
 | Technologies | Edge Delivery Services (aem.page / aem.live), Universal Editor with xwalk models, vanilla JavaScript and CSS without a build step, the Adobe Client Data Layer, RUM (`sampleRUM`) — [architecture](./architecture.md) |
 | Not configured / not implemented | Adobe Tags (Data Collection), the AEP Web SDK, Analytics and CJA reporting (blocked: measurement plan); Adobe Target and AJO; a consent mechanism; per-locale redirects (sheets exist, not applied by the platform) — [data-layer-and-analytics](./data-layer-and-analytics.md), [personalization](./personalization.md) |

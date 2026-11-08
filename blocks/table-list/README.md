@@ -314,7 +314,7 @@ Stored on a new component (definition template): `variations` = `"industries"`, 
 | Heading position | `headerPosition` | select | No | "" | Above the list (""), Beside the list (`beside`) | Beside the list: the eyebrow, heading and call to action in a column on the left of the list from 900px wide (above it on smaller screens), with a larger statement-style heading. | — |
 | Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 20; customErrorMsg: Maximum items must be between 1 and 20. | Display between 1 and 20 items. | 3 |
 | Text | `viewAllLabel` | text | No | "" | — | Text of the link next to the heading, e.g. Industries or All Products & Platforms. | View all |
-| Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /language-master/en/dummy-pages/industries |
+| Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /language-masters/en/dummy-pages/industries |
 | Style | `ctaStyle` | select | No | "" | Variation default (""), Filled button (`primary`), Outline button (`secondary`), Text link (`tertiary`) | Variation default: filled button (Variation 1), outline button (Variations 2, 4, 5 and 6), text link (Variation 3). | primary |
 | Hide button | `hideButton` | boolean | No | `false` | on / off | Hides the heading call to action and all item buttons and arrows. The heading and item content remain visible. | — |
 
@@ -968,7 +968,7 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 23 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 23 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/table-list/item-actions`, `block-library/table-list/motion`, `block-library/table-list/numbers`, `block-library/table-list/numbers-on-mobile`, `block-library/table-list/table-list`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/what-we-do`
 

@@ -278,7 +278,7 @@ B = Copyright Text
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Conversation Canvas Page | `/content/tcs-corp/language-master/en/block-library/footer/footer-conversation-canvas` | The footer Canvas of the design | "Let's shape what's next, together" above the bar |
+| A | Conversation Canvas Page | `/content/tcs-corp/language-masters/en/block-library/footer/footer-conversation-canvas` | The footer Canvas of the design | "Let's shape what's next, together" above the bar |
 | B | Copyright Text | `© Tata Consultancy Services {year}` | Keeps the year current | "© Tata Consultancy Services 2026" in 2026 |
 
 Expected published result: the Canvas and the copyright on every page using this footer. Business rule: the Canvas page must be published and contain a Conversation Canvas. Validation: the year shows as the current year. Common mistake: typing the year (it won't update); use `{year}`.
@@ -595,7 +595,7 @@ blocks/footer/
 | [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `footer.js`: { getInheritedMetadata } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `footer.js`: { readLinkItems, readLinkRows } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `footer.js`: { getPlaceholders } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `footer.js`: { resolvePagePath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-masters/en and, until the tree is moved, the old /language-master/en, list | `footer.js`: { resolvePagePath } |
 
 <!-- END GENERATED: files -->
 
@@ -755,7 +755,7 @@ Evidence to collect: page URL, the `footer` meta values, network status of the f
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 3 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 3 instance(s) in total:
 - Block library: `block-library/footer/footer-campaign`, `block-library/footer/footer-default`, `block-library/footer/footer-investors`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

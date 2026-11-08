@@ -612,7 +612,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Show Description | `showDescription` | boolean | No | `true` | on / off | — | false |
 | Short Description | `shortDescription` | richtext | No | "" | — | Shown after the links. | — |
 | View All Text | `viewAllText` | text | No | — | — | Delivered with `viewAll` (field collapse). | View all |
-| View All Link | `viewAll` | aem-content | No | — | — | — | /language-master/en/curated-design-pages/insights |
+| View All Link | `viewAll` | aem-content | No | — | — | — | /language-masters/en/curated-design-pages/insights |
 | Show Date | `showDate` | boolean | No | `false` | on / off | — | true |
 | Date | `date` | date-time | No | — | — | Shown when `showDate` is `true`. | 2026-10-13 |
 | Date Format | `dateFormat` | select | No | `dd-mm-yyyy` | DD-MM-YYYY (`dd-mm-yyyy`), MM-DD-YYYY (`mm-dd-yyyy`), MMM d, yyyy (`mmm-d-yyyy`), DD/MM/YY (`dd/mm/yy`) | Shown when `showDate` is `true`. | — |
@@ -645,13 +645,13 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Links (authored before Link items) › CTA Shape | `ctaShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Sets this CTA button's shape. Rectangle uses the grey-200 border. | — |
 | List arrow | `linkArrow` | select | No | "" | Right (""), Down right (`arrow-down-right`), None (`arrow-none`) | Right: the default arrows. Down right: the arrow of every link (List links, buttons, Text links) points down and right. None: List links without an arrow (buttons and Text links keep theirs). Links opening a new tab keep their own arrow. | arrow-down-right |
 | Primary CTA Title | `primaryCtaText` | text | No | — | — | Shown when `multiLinks` is off or empty. Delivered with `primaryCta` (field collapse). | Read the outlook |
-| Primary CTA Link | `primaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-master/en/dummy-pages/contact |
+| Primary CTA Link | `primaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-masters/en/dummy-pages/contact |
 | Primary CTA Link Type | `primaryCtaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | Shown when `multiLinks` is off or empty. | — |
 | Primary CTA Link Style | `primaryCtaStyle` | select | No | `primary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | Shown when `multiLinks` is off or empty. | secondary |
 | Primary CTA Background | `primaryCtaBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the Primary CTA button background. Blue uses rgb(33 106 195). Shown when `multiLinks` is off or empty. | — |
 | Primary CTA Shape | `primaryCtaShape` | select | No | "" | Style default (""), Rectangle (`button-rectangle`) | Sets the Primary CTA shape. Rectangle uses the grey-200 border. Shown when `multiLinks` is off or empty. | — |
 | Secondary CTA Title | `secondaryCtaText` | text | No | — | — | Shown when `multiLinks` is off or empty. Delivered with `secondaryCta` (field collapse). | Explore cloud services |
-| Secondary CTA Link | `secondaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-master/en/dummy-pages/services/cloud |
+| Secondary CTA Link | `secondaryCta` | aem-content | No | — | — | Shown when `multiLinks` is off or empty. | /language-masters/en/dummy-pages/services/cloud |
 | Secondary CTA Link Type | `secondaryCtaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | Shown when `multiLinks` is off or empty. | — |
 | Secondary CTA Link Style | `secondaryCtaStyle` | select | No | `secondary` | Text link (`tertiary`), List (`list`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Secondary Button (`secondary`), Secondary Button (no arrow) (`secondary-no-arrow`) | Shown when `multiLinks` is off or empty. | list |
 | Secondary CTA Background | `secondaryCtaBackground` | select | No | "" | Style default (""), White (`button-bg-white`), Blue (`button-bg-blue`), Translucent white (`button-bg-translucent`) | Sets the Secondary CTA button background. Blue uses rgb(33 106 195). Shown when `multiLinks` is off or empty. | — |
@@ -867,9 +867,9 @@ E = Buttons side by side
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Primary CTA Title / Link | Read the outlook / /language-master/en/dummy-pages/contact | Main action | Primary button |
+| A | Primary CTA Title / Link | Read the outlook / /language-masters/en/dummy-pages/contact | Main action | Primary button |
 | B | Primary CTA Link Style | Primary Button | Default style | Black primary button |
-| C | Secondary CTA Title / Link | Explore cloud services / /language-master/en/dummy-pages/services/cloud | Second action | Secondary button |
+| C | Secondary CTA Title / Link | Explore cloud services / /language-masters/en/dummy-pages/services/cloud | Second action | Secondary button |
 | D | Link item (CTA Link, CTA Title, CTA Link Style) | A related page, List | More links | A List row after the CTAs |
 | E | Buttons side by side | On | Two short CTAs in a row | Buttons in one row, wrapping |
 
@@ -1483,7 +1483,7 @@ Evidence to collect: the page URL, viewport width, browser, a screenshot, the bl
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 173 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 173 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/animation/content-animation`, `block-library/animation/speed-and-trigger`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`, `block-library/foundations/section-variations`, `block-library/gen-carousel/teaser-slides`, `block-library/page-header/tags-and-content-type`, `block-library/teaser/alignment`, `block-library/teaser/article-meta`, `block-library/teaser/cta-styles`, `block-library/teaser/description-eyebrow-spacing`, `block-library/teaser/image-options-and-colours`, `block-library/teaser/image-positions`, `block-library/teaser/layouts`, `block-library/teaser/links-and-stats`, `block-library/teaser/mobile-image-position`, `block-library/teaser/title-sizes-and-weights`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/forms/tcs-bancs-for-treasury-marks-its-entry-into-sri-lanka-with-indian-bank`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/insights`, `curated-design-pages/media-and-investor`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`, `curated-design-pages/what-we-do`, `curated-design-pages/who-we-are`
 

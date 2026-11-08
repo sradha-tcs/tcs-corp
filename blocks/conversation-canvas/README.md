@@ -365,7 +365,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Title Type | `titleSize` | select | No | "" | Default (""), Bigger Title (`bigger`), Medium Title (`medium`) | — | bigger |
 | Text | `text` | richtext | No | "" | — | — | — |
 | Menu | `menu` | container | No | — | — | — | — |
-| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /language-master/en/dummy-pages |
+| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /language-masters/en/dummy-pages |
 | Menu › Menu depth | `menuDepth` | number | No | `1` | — | — | 2 |
 | Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Shown when `classes` is `primary`. Delivered as a block class. | text-links |
 | Search bar | `searchBar` | container | No | — | — | — | — |
@@ -492,7 +492,7 @@ F = Search page
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Menu root path | /language-master/en/dummy-pages | Section of the site | Menu lists its child pages |
+| A | Menu root path | /language-masters/en/dummy-pages | Section of the site | Menu lists its child pages |
 | B | Menu depth | 2 | Two levels | Nested list in the menu |
 | C | Search bar water mark | Ask us a question | Invitation and label | Placeholder and hidden label |
 | D | Search bar button icon type | Primary | Filled arrow | Brand-blue round arrow button |
@@ -523,7 +523,7 @@ D = Type
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Link | /content/tcs-corp/language-master/en/dummy-pages/contact | Destination | Link to the contact page |
+| A | Link | /content/tcs-corp/language-masters/en/dummy-pages/contact | Destination | Link to the contact page |
 | B | Text | Contact us | Visible text | Button text |
 | C | Views | Button | Button look | A button (pill in page sections with Quick actions Auto) |
 | D | Type | Primary | Main action | Primary style when shown as a button |
@@ -674,7 +674,7 @@ Scenario: the Overview Canvas of the block library (`block-library/conversation-
 | Eyebrow | Ask TCS | Short |
 | Title | How can we help you today? | One question |
 | Text | Ask about our services, industries and insights, or browse the site from the menu. | One sentence |
-| Menu root path | /content/tcs-corp/language-master/en/dummy-pages | Same locale |
+| Menu root path | /content/tcs-corp/language-masters/en/dummy-pages | Same locale |
 | Menu depth | 2 | 1 to 3 |
 | Search bar water mark | Ask us a question | Also the field's label |
 | Search bar button icon type | Primary | Filled arrow |
@@ -770,7 +770,7 @@ blocks/conversation-canvas/
 | [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media and EDAM delivery images optimized), `buildDeliveryPicture` (responsive picture of a Dynamic Media with OpenAPI delivery image), `decorateDeliveryImages` (standalone delivery im | `conversation-canvas.js`: { buildImage } |
 | [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | `conversation-canvas.js`: { getPageTags } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `conversation-canvas.js`: { getPages } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `conversation-canvas.js`: { getLocale } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-masters/en and, until the tree is moved, the old /language-master/en, list | `conversation-canvas.js`: { getLocale } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `conversation-canvas.js`: { resolveTags } |
 | [`decorators/a11y-decorator.js`](../../decorators/a11y-decorator.js) | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | `conversation-canvas.js`: { hideVisually } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `conversation-canvas.js`: { createButton } |
@@ -1030,7 +1030,7 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 33 instance(s) in total:
+Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-masters/en`) that contain the block, 33 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/animation/skeleton-loading`, `block-library/animation/speed-and-trigger`, `block-library/conversation-canvas/conversation-canvas`, `block-library/conversation-canvas/docked`, `block-library/conversation-canvas/floating`, `block-library/conversation-canvas/journey-and-actions`, `block-library/footer/footer-conversation-canvas`
 - Curated design pages: `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/what-we-do`
 

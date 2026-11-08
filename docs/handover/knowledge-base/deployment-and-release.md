@@ -194,7 +194,7 @@ Emergency change approval and the hotfix path are not recorded (handover 12.6.1,
 | Sitemap origin | `.aem.live` host until the production domain exists |
 | Redirects (per-locale sheets, `/` → `/en/`) | Blocked: no mechanism applies them |
 | Site configuration `public.json` paths and `metadata.source` | Requires validation (O-04) |
-| Language master review (`REVIEW_*`, `/language-master/en`) | Temporary; remove after the rollout to `/en` |
+| Language master review (`REVIEW_*`, `/language-masters/en`) | Temporary; remove after the rollout to `/en` |
 | Adobe Tags / Web SDK, consent | Blocked: measurement plan and consent model |
 | Form back end, search service | Blocked (O-08, O-09) |
 | Non-image DAM assets published | Requires validation (re-audit operations action) |
