@@ -6,12 +6,12 @@ local or non-EDAM set-up (assets in the Sites author's own DAM).
 
 | Folder | What | For | Status |
 |---|---|---|---|
-| `edam-zips/` | The 13,010 asset files (images, videos, audio, documents) as plain zips at their DAM paths, the metadata to import (titles, descriptions, tags, sources) and the tags they use | The Assets environment (EDAM): upload, no Package Manager | Ready: pilot batch B001's zips on the branch; all others built on your machine in minutes with `edam-zips/tools/` |
+| `edam-zips/` | The 14,352 asset files (images, videos, audio, documents: 13,010 from the asset packages, 1,342 of earlier runs the pages reuse) as plain zips at their DAM paths, the metadata to import (titles, descriptions, tags, sources) and the tags they use | The Assets environment (EDAM): upload, no Package Manager | Ready: pilot batch B001's 3 zips on the branch; the others built on your machine with `edam-zips/tools/` (the `-earlier` zips from the migration team) |
 | `content-packages/` | The 60 page packages rebuilt (version 1.3.0) so the pages reference the assets on EDAM (delivery URLs) instead of the Sites author's DAM paths | The Sites author: Package Manager or `consolidated/tools/install-packages.*` | Built once the assets are on EDAM and their IDs are exported (an asset's ID exists only after it's uploaded) |
 
 ## Order
 
-1. **EDAM: tags.** Create the 36 taxonomy tags of `edam-zips/metadata/edam-tags.csv` (with their parents) in
+1. **EDAM: tags.** Create the 41 taxonomy tags of `edam-zips/metadata/edam-tags.csv` (with their parents) in
    the Assets environment's Tagging console, so the imported tags resolve.
 2. **EDAM: assets.** Build the EDAM zips, extract them into one folder and upload its `tcs-corp` folder to
    `/content/dam` (see `edam-zips/README.md`). Pilot batch B001 first.

@@ -5,17 +5,18 @@ the asset files at their DAM paths, and the metadata to import.
 
 | Item | What |
 |---|---|
-| `EDAM-ZIPS.md` | All 338 EDAM zips (one per asset package, same batches and order): files, MB, source package |
-| `zips/` | The pilot batch B001's 2 zips (ready to use) |
+| `EDAM-ZIPS.md` | All 394 EDAM zips in upload order: per batch one zip per asset package (338), then its `-earlier` zip(s) (56): files, MB, source |
+| `zips/` | The pilot batch B001's 3 zips (ready to use) |
+| `-earlier` zips | The 1,342 assets of earlier migration runs (the October waves, the pilot) that the pages reuse: no asset package holds them, so the converter can't build them; each goes with the first batch that uses it. B001's is in `zips/`; the migration team provides the others (about 1 GB). List: `metadata/assets-from-earlier-runs.csv` |
 | `tools/build-edam-zips.sh` / `.ps1` | Build all zips on your machine (macOS / Windows) from the asset packages in `../../consolidated/packages/`: no 22 GB download again, a few minutes, resumable |
-| `metadata/edam-metadata.csv` | Metadata Import file of all 13,010 assets: `assetPath`, `dc:title`, `dc:description`, `cq:tags` (multi, `\|`), `dc:source` (the tcs.com URL) |
+| `metadata/edam-metadata.csv` | Metadata Import file of all 14,352 assets (13,010 from the asset packages, 1,342 from earlier runs): `assetPath`, `dc:title`, `dc:description`, `cq:tags` (multi, `\|`), `dc:source` (the tcs.com URL) |
 | `metadata/batches/edam-metadata-<batch>.csv` | The same per batch (pilot imports) |
-| `metadata/edam-tags.csv` | The 36 taxonomy tags the assets use (tag, title, parent, number of assets) |
+| `metadata/edam-tags.csv` | The 41 taxonomy tags the assets use (tag, title, parent, number of assets) |
 
 Inside a zip: `tcs-corp/<images|videos|audio|documents>/<L1>/<L2>/<file>`, the path below `/content/dam`
 (e.g. `tcs-corp/images/careers/peru/peru-career-article-thumbnail-image.jpg` →
 `/content/dam/tcs-corp/images/careers/peru/peru-career-article-thumbnail-image.jpg`). Every zip extracts into
-the same `tcs-corp/` tree. Keep the folder and file names: the page packages and the asset ID export
+the same `tcs-corp/` tree (an `-earlier` zip may add folders such as `tcs-corp/images/newsroom/2022/`: they are the paths the pages use). Keep the folder and file names: the page packages and the asset ID export
 (`expected-assets.csv`) rely on these paths.
 
 ## 1. Build the zips
@@ -45,7 +46,7 @@ files themselves: AEM as a Cloud Service stores a zip as one asset and doesn't u
 | Way | When |
 |---|---|
 | **Assets view > Add Assets > upload the `tcs-corp` folder** into the root (`/content/dam`) | The pilot batch and small batches |
-| **Bulk Import** (Tools > Assets > Bulk Import) from an Azure Blob or Amazon S3 container holding the `tcs-corp` folder, target `/content/dam` | Recommended for all 13,010 assets (22 GB): server-side, resumable, no browser upload |
+| **Bulk Import** (Tools > Assets > Bulk Import) from an Azure Blob or Amazon S3 container holding the `tcs-corp` folder, target `/content/dam` | Recommended for all 14,352 assets (22.4 GB): server-side, resumable, no browser upload |
 
 After the upload, the assets are processed automatically (renditions, Dynamic Media); wait until processing is
 complete before the next steps.
