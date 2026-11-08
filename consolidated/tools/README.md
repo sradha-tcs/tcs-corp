@@ -1,33 +1,68 @@
 # Installing the packages automatically
 
-`install-packages.sh` uploads and installs all 398 packages on AEM author in the order of
-`../packages/INSTALL-ORDER.md` (per batch its asset packages, then its page package), through the
-Package Manager HTTP service. It replaces the 398 manual uploads.
+Two scripts that do the same thing, one per platform: they upload and install all 398 packages on AEM
+author in the order of `../packages/INSTALL-ORDER.md` (per batch its asset packages, then its page
+package), through the Package Manager HTTP service. They replace the 398 manual uploads.
 
-## Before you start
+| Platform | Script |
+|---|---|
+| macOS (and Linux) | `install-packages.sh` (bash) |
+| Windows 10 / 11 | `install-packages.ps1` (Windows PowerShell 5.1 or PowerShell 7) |
 
-1. Get the packages: check out the `migrated-page-content` branch (or download its `consolidated/` folder).
-   About 22 GB.
-2. Get an access token for author: Developer Console of the environment > Integrations > **Local token**
-   (valid 24 hours; the user needs permission to install packages), or a token from service credentials.
-   Keep it in your shell only: never in a file, a chat or the repository.
-3. Use bash (macOS, Linux, or Git Bash / WSL on Windows) with `curl`.
+Both keep the same progress log (`packages/install-progress.log`): a run continues with the package after
+the last one installed, whichever script installed it.
 
-## Run
+## Before you start (everyone)
+
+1. Get the packages: check out the `migrated-page-content` branch (or download its `consolidated/` folder,
+   about 22 GB).
+2. Get an access token for author: the environment's Developer Console > Integrations > **Local token**
+   (valid 24 hours; your user needs permission to install packages), or a token from service credentials.
+   Keep it in your terminal only: never in a file, a chat or the repository.
+3. Agree who installs: one person per environment at a time (two runs at once would install packages twice).
+
+## macOS
+
+Open Terminal:
 
 ```bash
-cd consolidated
+cd <path>/consolidated
 export AEM_AUTHOR=https://author-p<program>-e<environment>.adobeaemcloud.com
-export AEM_TOKEN=<access token>
-bash tools/install-packages.sh --dry-run   # the sequence, nothing installed
-bash tools/install-packages.sh --to 3      # a first test: batch B001 (packages 1-3)
-bash tools/install-packages.sh             # everything else
+export AEM_TOKEN='<access token>'
+bash tools/install-packages.sh --dry-run    # the sequence, nothing installed
+bash tools/install-packages.sh --to 3       # a first test: batch B001 (packages 1-3)
+bash tools/install-packages.sh              # everything else
 ```
 
-- **Resumable:** every installed package is recorded in `packages/install-progress.log`; a rerun (after a
-  failure, a network drop or an expired token: export a new one) continues with the next package.
-- `--batch B026` installs one batch; `--from N` / `--to N` a range of the sequence.
-- A package that fails three times stops the run with the server's message; nothing after it is installed.
+Options: `--batch B026` (one batch), `--from N` / `--to N` (a range of the sequence), `--dry-run`.
+To keep the Mac awake during the long run: `caffeinate -i bash tools/install-packages.sh`.
+
+## Windows
+
+Open PowerShell (Start > "PowerShell"):
+
+```powershell
+cd <path>\consolidated
+$env:AEM_AUTHOR = "https://author-p<program>-e<environment>.adobeaemcloud.com"
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -DryRun   # the sequence, nothing installed
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1 -To 3     # a first test: batch B001
+powershell -ExecutionPolicy Bypass -File tools\install-packages.ps1           # everything else
+```
+
+- The script asks for the access token (input hidden) unless `$env:AEM_TOKEN` is set.
+- Options: `-Batch B026`, `-From N` / `-To N`, `-DryRun`, `-PackageDir <folder>` (when the packages are
+  elsewhere).
+- `-ExecutionPolicy Bypass` applies to this run only (Windows blocks downloaded scripts by default).
+- It uploads with `curl.exe`, part of Windows 10 (1803 and later) and Windows 11.
+- Keep the PC from sleeping during the run (Settings > System > Power).
+
+## When something goes wrong
+
+- **"Package Manager answers 401 / 403"**: the token expired or the user may not install packages. Get a new
+  token and run again: it continues where it stopped.
+- **A package fails three times**: the run stops with AEM's message; nothing after it is installed. Fix the
+  cause (or ask the developers), then run again.
+- A network drop or a closed laptop: run again.
 
 ## After the installation
 
