@@ -57,51 +57,51 @@ Screenshots of the handover (6.9 Button Component), taken on the preview with sa
 
 **Desktop rendering** — Six buttons at 1440 px, stacked left aligned in their own paragraphs (not a row): primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insights' with a chevron and a primary pill with the long download label.
 
-![Desktop rendering: Six buttons at 1440 px, stacked left aligned in their own paragraphs not a row: primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insigh](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-desktop-view.jpg)
+![Desktop rendering: Six buttons at 1440 px, stacked left aligned in their own paragraphs not a row: primary 'Contact us', secondary 'Explore services', tertiary 'See all case studies', a blue circular search icon button, the link view 'View all insigh](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-desktop-view.jpg)
 
 **Tablet rendering** — The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line.
 
-![Tablet rendering: The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-tablet-view.jpg)
+![Tablet rendering: The same six stacked buttons at 768 px at identical sizes; the long label 'Download the complete annual sustainability and responsibility report 2026' still fits on one line.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-tablet-view.jpg)
 
 **Mobile rendering** — The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge.
 
-![Mobile rendering: The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-mobile-view.jpg)
+![Mobile rendering: The same six stacked buttons at 375 px at identical sizes; the primary pill with the long download label is clipped at the content edge.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-mobile-view.jpg)
 
 **Primary button** — At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400.
 
-![Primary button: At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-primary.jpg)
+![Primary button: At 402 px, two black primary pills 'Contact us' with arrows, stacked; the lower one, under the pointer, has its label and arrow in slate-400.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-primary.jpg)
 
 **Secondary button** — At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label.
 
-![Secondary button: At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-secondary.jpg)
+![Secondary button: At 402 px, two outlined secondary pills 'Explore services', stacked; the lower one, under the pointer, has a white fill with brand blue border and label.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-secondary.jpg)
 
 **Tertiary button** — At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer.
 
-![Tertiary button: At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-tertiary.jpg)
+![Tertiary button: At 402 px, two tertiary calls to action 'See all case studies' with arrows and no container, stacked; the lower one, under the pointer, is brand blue with the arrow closer.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-tertiary.jpg)
 
 **Icon button** — At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only.
 
-![Icon button: At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-icon.jpg)
+![Icon button: At 402 px, three 2.75rem circular search icon buttons stacked: primary filled blue with a white icon, secondary with a blue outline and icon, tertiary a blue icon only.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-icon.jpg)
 
 **Link view** — At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue.
 
-![Link view: At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-link.jpg)
+![Link view: At 402 px, two underlined semibold 'View all insights' links with chevrons, stacked; the lower one, under the pointer, is brand blue.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-link.jpg)
 
 **Centre-aligned button** — At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area.
 
-![Centre-aligned button: At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-align-center.jpg)
+![Centre-aligned button: At 1440 px, the black primary pill 'Contact us' with its arrow, centred horizontally in the section content area.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-align-center.jpg)
 
 **Right-aligned button** — At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area.
 
-![Right-aligned button: At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-align-right.jpg)
+![Right-aligned button: At 1440 px, the outlined secondary pill 'Explore services' with its arrow, aligned to the right edge of the content area.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-align-right.jpg)
 
 **Button on the Universal Editor canvas** — The centred primary pill 'Contact us' in editor mode at 1440 px (an annotated preview, not a Universal Editor screenshot); A marks the button label and C its paragraph (Alignment). B (Views, Type) is not marked. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/button-authoring-view.jpg)
 
-![Button on the Universal Editor canvas: The centred primary pill 'Contact us' in editor mode at 1440 px an annotated preview, not a Universal Editor screenshot; A marks the button label and C its paragraph Alignment. B Views, Type is not marked. Annot](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-authoring-view.jpg)
+![Button on the Universal Editor canvas: The centred primary pill 'Contact us' in editor mode at 1440 px an annotated preview, not a Universal Editor screenshot; A marks the button label and C its paragraph Alignment. B Views, Type is not marked. Annot](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-authoring-view.jpg)
 
 **Button properties panel** — The Properties panel with Link, Text, Title, Views, Type, Icon (visible because Views is Icon) and Alignment. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-properties-panel.jpg)
 
-![Button properties panel: The Properties panel with Link, Text, Title, Views, Type, Icon visible because Views is Icon and Alignment. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-prope](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/screenshots/button-properties-panel.jpg)
+![Button properties panel: The Properties panel with Link, Text, Title, Views, Type, Icon visible because Views is Icon and Alignment. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/button-prope](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/button-block/screenshots/handover/button-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -743,7 +743,7 @@ and attributes, the data-layer entry.
 - [Button decorator](../../decorators/button-decorator.js), [buttons utils](../../utils/buttons.js), [content buttons decorator](../../decorators/content-buttons-decorator.js)
 - [Built-in Button models](../../models/_button.json)
 - [Block name test](../../test/models/block-names.test.mjs)
-- [Handover 6.9 Button Component](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.9 Button Component](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

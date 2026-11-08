@@ -5,7 +5,7 @@ This page lists the documents a reader of the knowledge base can rely on: every 
 | Attribute | Value |
 | --- | --- |
 | Audience | Everyone on the project, AI agents |
-| Source of truth | `git ls-files` (Markdown, PDF and configuration files), [AGENTS.md](../../../AGENTS.md) "Troubleshooting", [README.md](../../../README.md), handover 15.3 Reference Documents ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)), citations in code comments |
+| Source of truth | `git ls-files` (Markdown, PDF and configuration files), [AGENTS.md](../../../AGENTS.md) "Troubleshooting", [README.md](../../../README.md), handover 15.3 Reference Documents ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)), citations in code comments |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current (blocked inputs listed at the end) |
 
@@ -25,8 +25,8 @@ This page lists the documents a reader of the knowledge base can rely on: every 
 | Document | Covers |
 | --- | --- |
 | [blocks/README.md](../../../blocks/README.md) | Inventory, categories, container and child relationships, shared conventions, deprecated blocks, how the docs are maintained (generated sections: `npm run build:docs`) |
-| [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) | Documentation inventory, 170 handover-vs-code discrepancies per block (section 4), field / variation / container / accessibility / data layer / personalization / responsive matrices, validation |
-| [docs/blocks/reports/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/blocks/reports/hero.md) | Per-block review notes (one file per block folder) used by the report |
+| [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) | Documentation inventory, 170 handover-vs-code discrepancies per block (section 4), field / variation / container / accessibility / data layer / personalization / responsive matrices, validation |
+| [docs/blocks/reports/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/reports/hero.md) | Per-block review notes (one file per block folder) used by the report |
 
 Every block folder has a README with the same structure (overview, authoring, dialog fields per tab, variations, accessibility, data layer, responsive, developer / admin / architect / QA guidance, troubleshooting, change history):
 
@@ -60,11 +60,11 @@ Every block folder has a README with the same structure (overview, authoring, di
 
 | Document | Covers | State |
 | --- | --- | --- |
-| [docs/handover/TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md) | The project handover (version 2.37, about 123,000 lines): Parts 1–18 from project overview and architecture to operations and new joiner training; Part 16 findings and open items | Current as a whole; the Part 6 component chapters predate later changes (F-84, F-107): the block READMEs follow the code |
-| [docs/handover/TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.pdf) | The PDF built from the Markdown | Current (2.37) |
+| [docs/handover/TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) | The project handover (version 2.37, about 123,000 lines): Parts 1–18 from project overview and architecture to operations and new joiner training; Part 16 findings and open items | Current as a whole; the Part 6 component chapters predate later changes (F-84, F-107): the block READMEs follow the code |
+| [docs/handover/TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.pdf) | The PDF built from the Markdown | Current (2.37) |
 | [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) | Part map and how the PDF is built (pandoc, typst, volumes) | Current; its Part 16 range (F-01 … F-98) predates F-99 … F-107 |
-| [docs/handover/screenshots/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/screenshots/README.md) | The handover figures (renderings, annotated previews, dialog references) | Current for version 2.0 figures |
-| [AUTHOR-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/AUTHOR-GUIDE.pdf), [DEVELOPER-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/DEVELOPER-GUIDE.pdf), [ADMIN-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/ADMIN-GUIDE.pdf) | Guides of 11 October 2026 | Deprecated: superseded by the handover |
+| [docs/handover/screenshots/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/screenshots/README.md) | The handover figures (renderings, annotated previews, dialog references) | Current for version 2.0 figures |
+| [AUTHOR-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/AUTHOR-GUIDE.pdf), [DEVELOPER-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/DEVELOPER-GUIDE.pdf), [ADMIN-GUIDE.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/ADMIN-GUIDE.pdf) | Guides of 11 October 2026 | Deprecated: superseded by the handover |
 
 Main handover parts by topic: Part 1 — Project Overview, Part 2 — Solution Architecture, Part 3 — Site Structure, Part 4 — Content Architecture, Part 5 — Authoring Fundamentals, Part 6 — Component Library, Parts 7–9 — Taxonomy, Metadata and Data Sheets, Part 10 — Error Pages, Part 11 — Analytics & Data Layer, Part 12 — Publishing, Deployment & Release, Part 13 — Global Troubleshooting Guide, Part 14 — Operational Runbook & AMS Handover, Part 15 — Appendix, Part 16 — Handover Findings and Open Items Register, Part 17 — Operations Guide, Part 18 — New Joiner Training Guide.
 
@@ -72,16 +72,16 @@ Main handover parts by topic: Part 1 — Project Overview, Part 2 — Solution A
 
 | Document | Covers |
 | --- | --- |
-| [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/README.md) | Index of the audit documents |
-| [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) | Block ecosystem audit of 19 October 2026: runtime before / after, inventories, duplicates, accessibility, data layer, consent, personalization, blocked dependencies, defect register (D-x-n, L-n), migration |
-| [docs/audit/BLOCK-SECTIONS.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-SECTIONS.md) | One audit section per component |
-| [docs/audit/REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/REAUDIT-2026-10-20.md) | Re-audit of 20 October 2026: re-verification, new defects (R-x-n), publication and live verification, blocked dependencies |
-| [docs/audit/DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md) | List Item, Teaser, Columns Container and Section dialog options |
-| [docs/audit/blocks/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/blocks/group-a-card-lists.md), [docs/audit/reaudit/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/reaudit/review-a.md) | The four code reviews of each audit |
-| [docs/audit/data/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/data/defect-register.csv) | CSV data: block inventory, dialog fields, defect and re-audit registers, runtime before / after |
-| [docs/audit/tools/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/tools/harness.mjs) | The evidence scripts (workspace paths, Playwright; excluded from lint) |
-| [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md) | Block animation and skeleton loading report: capability matrix, framework, authoring model, accessibility, performance, tests |
-| [docs/proposals/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/proposals/README.md), [docs/proposals/cards-card-refactoring.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/proposals/cards-card-refactoring.md) | Design proposals; the Cards and Card refactoring is "For review", decisions D-1 to D-6 open |
+| [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md) | Index of the audit documents |
+| [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) | Block ecosystem audit of 19 October 2026: runtime before / after, inventories, duplicates, accessibility, data layer, consent, personalization, blocked dependencies, defect register (D-x-n, L-n), migration |
+| [docs/audit/BLOCK-SECTIONS.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-SECTIONS.md) | One audit section per component |
+| [docs/audit/REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md) | Re-audit of 20 October 2026: re-verification, new defects (R-x-n), publication and live verification, blocked dependencies |
+| [docs/audit/DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md) | List Item, Teaser, Columns Container and Section dialog options |
+| [docs/audit/blocks/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/blocks/group-a-card-lists.md), [docs/audit/reaudit/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/reaudit/review-a.md) | The four code reviews of each audit |
+| [docs/audit/data/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/data/defect-register.csv) | CSV data: block inventory, dialog fields, defect and re-audit registers, runtime before / after |
+| [docs/audit/tools/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/tools/harness.mjs) | The evidence scripts (workspace paths, Playwright; excluded from lint) |
+| [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) | Block animation and skeleton loading report: capability matrix, framework, authoring model, accessibility, performance, tests |
+| [docs/proposals/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md), [docs/proposals/cards-card-refactoring.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/cards-card-refactoring.md) | Design proposals; the Cards and Card refactoring is "For review", decisions D-1 to D-6 open |
 
 ## Configuration and Code Used as Reference
 
@@ -150,4 +150,4 @@ The Admin API (`https://admin.hlx.page/...`) and the site configuration endpoint
 
 - [project-overview.md](./project-overview.md), [repository-structure.md](./repository-structure.md), [glossary.md](./glossary.md)
 - [architecture.md](./architecture.md), [blocks.md](./blocks.md), [content-architecture.md](./content-architecture.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [design-system.md](./design-system.md), [personalization.md](./personalization.md)
-- Handover 15.3 Reference Documents: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover 15.3 Reference Documents: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)

@@ -29,7 +29,7 @@ The design source is the TCS.com Design System in Figma. The code and the block 
 | "Secondary Page Header" / "L3 Header" | [Page Header](../../../blocks/page-header/README.md) | `blocks/page-header/page-header.css` |
 | "Text & Image Overlap" | [Quote](../../../blocks/quote/README.md) | `blocks/quote/quote.css`, `quote.js` |
 | "Testimonial Block" | [Testimonial](../../../blocks/testimonial/README.md) | `blocks/testimonial/testimonial.css`, `testimonial.js` |
-| "List" variations | [List](../../../blocks/list/README.md), [Cards](../../../blocks/cards/README.md), [Table List](../../../blocks/table-list/README.md) | `blocks/list/list.js`, `cards.js`, `table-list.js`; 14 Figma screenshots `list-figma-01` … `list-figma-14` in [`../screenshots/`](https://github.com/sradha-tcs/tcs-corp/tree/migrated-page-content-edam/docs/handover/screenshots) |
+| "List" variations | [List](../../../blocks/list/README.md), [Cards](../../../blocks/cards/README.md), [Table List](../../../blocks/table-list/README.md) | `blocks/list/list.js`, `cards.js`, `table-list.js`; 14 Figma screenshots `list-figma-01` … `list-figma-14` in [`../screenshots/`](https://github.com/sradha-tcs/tcs-corp/tree/archive/docs-before-role-docs-2026-11-08/docs/handover/screenshots) |
 | "Chapter Nav" | [Anchor List](../../../blocks/anchor-list/README.md) | `blocks/anchor-list/anchor-list.css` |
 | "New Screens from New DS": Navigation, "Nav Bar-NEW", "Mobile Nav", home desktop / tablet | [Header](../../../blocks/header/README.md), [TCS Header](../../../blocks/tcs-header/README.md) | `blocks/header/header.css`, `blocks/tcs-header/tcs-header.css` |
 | "New Screens from New DS": Hero, Intelligent Personalisation Block, Footer, Floating menu, Full menu, "Full menu - No Pill", "L1 Media & Investors", Mobile Ask TCS | [Conversation Canvas](../../../blocks/conversation-canvas/README.md) ("Variations" table) | `blocks/conversation-canvas/conversation-canvas.css` |
@@ -41,7 +41,7 @@ How the relationship is used:
 - **Tokens** come from the Figma variables; values that Figma uses but the token set doesn't have are local custom properties in the block, labelled as such (for example `--teaser-divider: #b2b2b2` "Figma value with no site token: list dividers"; `--hero-navy: #01121f` "Figma: Color/01121F"; `--list-dark: #20293c` in `styles/card-list.css`).
 - **Deliberate deviations for accessibility** are recorded: the secondary-text and brand-text tokens were changed to darker palette colours that pass WCAG 1.4.3 ([Colours](#colours)); the header's menu arrows use `--color-icon-default` because the Figma light grey fails 3:1 (handover Part 16, F-75).
 - **Prototype behaviour** Figma doesn't show (scrolling, docking, the footer stop of the floating Canvas) was supplemented in code; the Conversation Canvas README records this under "Figma gaps and decisions".
-- **Per-variation pixel comparison** against Figma is **Blocked**: it needs the Figma file per component ([block ecosystem audit](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 9).
+- **Per-variation pixel comparison** against Figma is **Blocked**: it needs the Figma file per component ([block ecosystem audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 9).
 
 ## Design tokens
 
@@ -123,7 +123,7 @@ All three have `line-gap-override: 0%`. A face whose font isn't installed is ski
 ## Colours
 
 - Use the **semantic** tokens in blocks, not primitives, so dark backgrounds can re-theme them (AGENTS.md "Backgrounds and theme").
-- Two semantic tokens deviate from the original values for contrast, with the measured ratio in a code comment: `--color-text-secondary: var(--slate-700)` "6.9:1 on white (WCAG 1.4.3; `--grey-400`: 2.84:1)"; `--color-text-brand` and `--color-bg-brand: var(--brand-400)` "5.4:1 … (`--brand-500`: 4.43:1)". The audit records that this change "needs design sign-off" ([audit](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 1 and 13).
+- Two semantic tokens deviate from the original values for contrast, with the measured ratio in a code comment: `--color-text-secondary: var(--slate-700)` "6.9:1 on white (WCAG 1.4.3; `--grey-400`: 2.84:1)"; `--color-text-brand` and `--color-bg-brand: var(--brand-400)` "5.4:1 … (`--brand-500`: 4.43:1)". The audit records that this change "needs design sign-off" ([audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 1 and 13).
 - Block-local colours without a token exist (for example `--hero-navy`, `--teaser-divider`, `--list-dark`, `--list-gradient`, the Canvas outline `#494c4d`); they are listed in the block READMEs.
 
 ## Backgrounds and theme
@@ -153,7 +153,7 @@ Other blocks have their own sets: Quote and Testimonial BG Color offer Default /
 | `--color-border-brand` (the focus ring) | `var(--brand-300)` | `var(--brand-500)` |
 | `--link-color` / `--link-hover-color` | `var(--brand-300)` / `var(--color-text-on-neutral)` | `var(--brand-400)` / `var(--brand-600)` |
 
-Also: links in running text (`p a:not(.button)`) are underlined on the dark colours; Secondary and Tertiary buttons turn light; Primary buttons are **inverted** (white fill, `--black-1000` text; hover `--grey-300`); `styles/card-list.css` turns List / Cards image cards light. Blocks with their own dark theme (Teaser Dark, cards with a Card colour) keep their own colours. Measured on the combination page "Sections: colours with blocks" ([dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md), section 10): axe 43 violations before the contract, 0 after; focus ring brand 300 11.34:1 on Dark and 7.23:1 on Dark Green (brand 500 was 2.81:1 on Dark Green); Grey islands brand 500 4.07:1; inverted Primary 19.6:1. Decision: handover revision 2.34, F-105.
+Also: links in running text (`p a:not(.button)`) are underlined on the dark colours; Secondary and Tertiary buttons turn light; Primary buttons are **inverted** (white fill, `--black-1000` text; hover `--grey-300`); `styles/card-list.css` turns List / Cards image cards light. Blocks with their own dark theme (Teaser Dark, cards with a Card colour) keep their own colours. Measured on the combination page "Sections: colours with blocks" ([dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md), section 10): axe 43 violations before the contract, 0 after; focus ring brand 300 11.34:1 on Dark and 7.23:1 on Dark Green (brand 500 was 2.81:1 on Dark Green); Grey islands brand 500 4.07:1; inverted Primary 19.6:1. Decision: handover revision 2.34, F-105.
 
 ### Nested themes
 
@@ -256,7 +256,7 @@ There is no global column grid token. Grids are per block:
 | `--motion-distance` / `--motion-distance-slide` | `var(--space-1000)` / `var(--space-2000)` |
 | `--motion-scale` | 0.9 |
 
-Content effects (Animation Type): Fade in / up / down / left / right, Slide up / down / left / right, Scale in. Background effects (Background animation, on Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas): Fade in, Reveal from the centre, Wipe left to right / right to left / bottom to top, Scale reveal. Only `opacity`, `transform` and `clip-path` animate. Animations apply only with `prefers-reduced-motion: no-preference`, on screen, and never in Universal Editor edit mode. Transitions of interactive states (buttons, tags) are 0.2s. Details: [animation report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md), AGENTS.md "Animation and skeletons".
+Content effects (Animation Type): Fade in / up / down / left / right, Slide up / down / left / right, Scale in. Background effects (Background animation, on Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas): Fade in, Reveal from the centre, Wipe left to right / right to left / bottom to top, Scale reveal. Only `opacity`, `transform` and `clip-path` animate. Animations apply only with `prefers-reduced-motion: no-preference`, on screen, and never in Universal Editor edit mode. Transitions of interactive states (buttons, tags) are 0.2s. Details: [animation report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md), AGENTS.md "Animation and skeletons".
 
 ## Focus states
 
@@ -310,7 +310,7 @@ Mapping checklist for a new Figma variation (practice from AGENTS.md "Blocks" an
 
 | Item | Status | Source |
 | --- | --- | --- |
-| Per-variation Figma comparison | Blocked: needs the Figma file per component | [audit](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 9 |
+| Per-variation Figma comparison | Blocked: needs the Figma file per component | [audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) section 9 |
 | Secondary-text and brand token change for contrast | Requires validation: design sign-off | audit sections 1 and 13 |
 | CJK typography (Inter covers Latin only) | Open (F-38, owner Design) | handover Part 16 |
 | Header menu arrow colour and row gutters differ from Figma for accessibility | Open (F-75, design review) | handover Part 16 |
@@ -326,5 +326,5 @@ Mapping checklist for a new Figma variation (practice from AGENTS.md "Blocks" an
 - [`styles/styles.css`](../../../styles/styles.css), [`styles/fonts.css`](../../../styles/fonts.css), [`styles/motion.css`](../../../styles/motion.css), [`styles/card-list.css`](../../../styles/card-list.css)
 - [`blocks/README.md`](../../../blocks/README.md) and each block's README ("Variations", "Responsive Behavior")
 - [AGENTS.md](../../../AGENTS.md#css) ("CSS"; "Backgrounds and theme" and "Animation and skeletons" in [Blocks](../../../AGENTS.md#blocks))
-- [Dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/audit/DIALOG-OPTIONS-2026-10-20.md), [animation report](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
-- [Handover](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md): Part 1 — 1.7.6 Responsiveness, Part 6 — Component Library, Part 16 — Findings
+- [Dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md), [animation report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- [Handover](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md): Part 1 — 1.7.6 Responsiveness, Part 6 — Component Library, Part 16 — Findings

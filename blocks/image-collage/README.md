@@ -420,7 +420,7 @@ Authored content only. No external HTML is injected, no personal data is read or
 - [Blocks documentation](../README.md)
 - [Teaser](../teaser/README.md) (Layout Image collage)
 - [Model: `_image-collage.json`](_image-collage.json)
-- [Animation and skeletons](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md)
+- [Animation and skeletons](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

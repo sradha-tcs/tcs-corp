@@ -199,7 +199,7 @@ Pure logic goes into utils or block-local data modules with a Node test in `test
 - [universal-editor.md](./universal-editor.md): models whose values these helpers read
 - [decorators/README.md](../../../decorators/README.md) (with the data layer contract) and [utils/README.md](../../../utils/README.md)
 - [templates/README.md](../../../templates/README.md): templates using the template, author-bio and contact-list decorators
-- [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/animation/README.md): motion and skeleton decorators
+- [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md): motion and skeleton decorators
 - [AGENTS.md](../../../AGENTS.md#shared-code-decorators-and-utils): shared code rules, data layer, module preloading
-- Handover Part 2.3 — Component Architecture and Part 11 — Analytics & Data Layer: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover Part 2.3 — Component Architecture and Part 11 — Analytics & Data Layer: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 - Other knowledge base files: [architecture.md](./architecture.md), [development-standards.md](./development-standards.md), [performance.md](./performance.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [security-privacy-consent.md](./security-privacy-consent.md), [testing-and-quality.md](./testing-and-quality.md)
