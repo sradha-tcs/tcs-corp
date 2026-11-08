@@ -12,7 +12,7 @@ date: "October 28, 2026"
 |:----------------|:-------------------------------------------------|
 | Document title | TCS Corporate Website — Project Handover |
 | Document type | Official production handover artifact |
-| Version | 2.47 |
+| Version | 2.50 |
 | Date | 28 October 2026 |
 | Status | Draft for review [To be confirmed: approval — owner: Product Owner] |
 | Solution | Adobe Experience Manager (AEM) as a Cloud Service, Universal Editor authoring, Edge Delivery Services delivery (xwalk) |
@@ -81,6 +81,7 @@ date: "October 28, 2026"
 | 2.47 | 28 October 2026 | Delivery team | **List and Cards: image card hover** (6.15, 6.16; Figma): hovering or focusing anywhere on a linked image card (not only its title) fades the title from `--color-text-neutral` (#303030) to `--color-text-brand` (#216AC3) with an underline, 300ms ease-out, and back on leave (`styles/card-list.css`, `--list-hover-duration`, `--list-hover-easing`); the underline is always drawn transparent and only changes colour, so the card, its padding and image don't move or resize (checked in the local preview at 1440 px: 342 × 474 px card at rest and on hover). On dark Section / Columns Container backgrounds the theme contract's light brand colour (`--brand-300`) is used. Cards without a link have no hover; panel, report and statistic cards, the feature card and rows of links keep their own hover. No change to the content model. `npm test` 356 passed, `npm run lint` passed. The PDF isn't regenerated with this revision. — |
 | 2.48 | 8 November 2026 | Delivery team | **Assets from a separate AEM Assets environment (EDAM, KB-D-064, Proposed):** the site renders Dynamic Media with OpenAPI delivery URLs: an image delivery link that stands alone in its cell or paragraph becomes a responsive picture before the blocks are decorated (`decorateDeliveryImages`, `buildDeliveryPicture` in `decorators/responsive-image-decorator.js`; `deliveryAsset`, `deliveryImageUrl` in `utils/media.js`, unit tested); section backgrounds too (`buildImage`); links in running text and original files stay links; DAM paths unchanged. The Universal Editor asset picker for EDAM (Custom Content Advisor, the asset fields of the models) follows separately. Plan: `docs/proposals/remote-assets-edam.md` |
 | 2.49 | 8 November 2026 | Delivery team | **Language master moved to `/content/tcs-corp/language-masters`, published at `/language-masters/en/`** (KB-D-065): `REVIEW_ROOTS` (`utils/site.js`), the `paths.json` mappings (`npm run build:paths`), the query index exclusions, the tests, the block README examples; the site configuration's paths are updated by an administrator. EDAM decision E-D1 answered: Dynamic Media with OpenAPI is licensed (KB-D-064) |
+| 2.50 | 8 November 2026 | Delivery team | **EDAM not adopted** (KB-D-064, product owner): there is no separate AEM Assets environment (the delivery host given is the Sites environment's own), so the assets stay in the Sites author's DAM and the pages reference them by DAM path; the migration installs the asset packages 1.2.0 and page packages 1.3.0 as they are. The EDAM asset picker (PR #195) closed unmerged; the rendering of delivery URLs (2.48) stays, with no effect on DAM paths. The document version in the header brought up to date (it read 2.47) |
 
 ## Review and Approval
 
