@@ -8,9 +8,13 @@ Roles: **PO** product owner, **Admin** AEM administrator (Sites and Assets), **D
 
 ## Phase 0. Decisions (PO)
 
+**Before anything else: the language master root moves** from `/content/tcs-corp/language-master` to
+`/content/tcs-corp/language-masters` (page packages 1.3.0). On the Sites author, move the existing tree (Sites console > Move, references
+adjusted) and have the site's path mapping changed (site configuration and `paths.json`, `utils/site.js`, `helix-query.yaml`) before installing.
+
 | # | Step | Check |
 |---|---|---|
-| 0.1 | **E-D1**: Dynamic Media with OpenAPI delivery is licensed and enabled on the Assets environment | Yes (otherwise this set-up can't be used) |
+| 0.1 | **E-D1**: Dynamic Media with OpenAPI delivery is licensed and enabled on the Assets environment | **Answered 8 November 2026: yes (licensed)** |
 | 0.2 | **E-D2**: delivery domain: a custom domain (recommended) or the default `delivery-p…-e….adobeaemcloud.com` | Host name known |
 | 0.3 | **E-D3 to E-D5**: images through the Edge Delivery media bus, bulk approval per batch after the pilot, the Sites author's DAM unused | Confirmed or changed |
 | 0.4 | Dev records the answers in the decision log (KB-D-064 → Approved) | Pull request merged |
@@ -40,7 +44,7 @@ Roles: **PO** product owner, **Admin** AEM administrator (Sites and Assets), **D
 
 | # | Step | Check |
 |---|---|---|
-| 3.1 | Dev builds `content-packages/tcs-corp-ema-B001-W2-N-A02-1.3.0.zip` (every asset reference → delivery URL) and pushes it with its `REWRITE-B001-W2-N-A02.csv` | 53 references rewritten, 0 unresolved |
+| 3.1 | Dev builds `content-packages/tcs-corp-ema-B001-W2-N-A02-1.3.0-edam.zip` (pages below `/content/tcs-corp/language-masters`) (every asset reference → delivery URL) and pushes it with its `REWRITE-B001-W2-N-A02.csv` | 53 references rewritten, 0 unresolved |
 | 3.2 | Dev: site code for EDAM assets (Universal Editor Custom Content Advisor and its configuration, the 20 asset fields of 15 component models with their MIME type fields, delivery URL rendering, tests, READMEs): reviewed and merged | Pull request merged, checks green |
 | 3.3 | Admin installs the B001 content package on a **non-production** Sites author (commands below: `--only pages`, `PKG_DIR` / `-PackageDir` = `packages-for-edam-sites/content-packages`, `--batch B001`) | Package Manager: installed |
 | 3.4 | Open the 4 B001 pages in Universal Editor | Images show; the image fields open the EDAM asset picker |
@@ -66,10 +70,10 @@ Roles: **PO** product owner, **Admin** AEM administrator (Sites and Assets), **D
 
 | # | Step | Check |
 |---|---|---|
-| 5.1 | Dev builds the 60 content packages 1.3.0 and the sheets with delivery URLs, pushes them with `INSTALL-ORDER.md` and `REWRITE-SUMMARY.md` | 0 unresolved references in every batch |
+| 5.1 | Dev builds the 60 content packages 1.3.0-edam and the sheets with delivery URLs, pushes them with `INSTALL-ORDER.md` and `REWRITE-SUMMARY.md` | 0 unresolved references in every batch |
 | 5.2 | Admin installs them on the Sites author: `install-packages --only pages` with `PKG_DIR` / `-PackageDir` = `packages-for-edam-sites/content-packages` (resumable) | 60 installed (progress log) |
 | 5.3 | Replace the sheets with `consolidated/sheets/` (metadata, redirects, authors, placeholders, data) and publish them | Sheets published |
-| 5.4 | Publish the pages (tree activation of `/content/tcs-corp/language-master/en`), then re-index | Query index shows the pages |
+| 5.4 | Publish the pages (tree activation of `/content/tcs-corp/language-masters/en`), then re-index | Query index shows the pages |
 | 5.5 | Verify a sample of every batch (`consolidated/reports/BATCH-SUMMARY.md`): images, videos, documents, lists and cards | No missing assets |
 
 ## Phase 6. Close (PO, Admin)

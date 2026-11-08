@@ -1,6 +1,6 @@
 # Content packages for the EDAM set-up
 
-The 60 page packages of the migration rebuilt (version 1.3.0) for a site whose assets are on a separate AEM
+The 60 page packages of the migration rebuilt (version **1.3.0-edam**, from the page packages 1.3.0: the language master below `/content/tcs-corp/language-masters`) for a site whose assets are on a separate AEM
 Assets environment (EDAM): every reference to an asset (`/content/dam/tcs-corp/…`) becomes the asset's
 **delivery URL** on EDAM. Same batches, same installation order; installed on the **Sites author** (they hold
 pages only, no assets).
@@ -28,7 +28,7 @@ A batch is built only when every asset it references has an ID; the export's rep
 
 ## Then
 
-This folder holds `tcs-corp-ema-<batch>-1.3.0.zip`, `INSTALL-ORDER.md`, `REWRITE-<batch>.csv` (every
+This folder holds `tcs-corp-ema-<batch>-1.3.0-edam.zip`, `INSTALL-ORDER.md`, `REWRITE-<batch>.csv` (every
 reference: page, property, DAM path, delivery URL) and `REWRITE-SUMMARY.md`. Install them on the Sites author
 once the site code for EDAM assets is deployed (Universal Editor Custom Content Advisor, the models' asset
 fields with their MIME type fields, delivery URL rendering):

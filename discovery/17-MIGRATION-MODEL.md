@@ -109,3 +109,16 @@ Images the live site itself no longer serves (404 on tcs.com) can't be migrated;
 Remarks for the content team (`consolidated/reports/CONTENT-TEAM-REMARKS.csv`, per row; nothing is invented): the design sections of the page's archetype the live page has no content for (testimonial 7,758 rows, teaser 7,254, video 7,094, list 3,504, table list 1,412, cards 352, quote 12) and the live pages without a publish date (1,469).
 
 Consolidated folder (`consolidated/`): 398 packages in installation order (`packages/INSTALL-ORDER.md`, 22 GB, each at most 95 MB); sheets: metadata (9,440 rows: the language master's published sheet with the migrated pages' rows), redirects (1,300; 652 added for the pages moved to their workbook path, EMA-D01), authors (1,437; 1,416 added), placeholders (as published: the migration adds no UI text), media contacts (as published), locations, partners and social links (published empty: the workbook pages carry no rows for them), source tags without a taxonomy match (758, for review; no tag is created); reports: `FINAL-RECONCILIATION.csv` (every workbook row with its final status, details and remarks), `CONTENT-TEAM-REMARKS.csv`, `FINAL-MIGRATION-SUMMARY.md`.
+
+## 9. Version 1.3.0: language master below /content/tcs-corp/language-masters (8 November 2026)
+
+| Item | 1.2.0 | 1.3.0 |
+|---|---|---|
+| Page packages (60) | Below `/content/tcs-corp/language-master` | Below `/content/tcs-corp/language-masters`: zip paths, filters (25,296 references) and every link in the content (22,722: links, rich text links, list roots, CTAs, table cells, list parent paths); the root gets a page definition ("Language Masters") outside the filters, created only where it doesn't exist. Every entry checked against 1.2.0: identical except the root |
+| Asset packages (338) | DAM paths | Unchanged (1.2.0) |
+| Assets of earlier runs | Only on authors with the October packages | `packages-earlier-run-assets/`: 13 packages, 1,342 assets (1,029 MB), merge filters, for fresh environments |
+| EDAM content packages | Not built | Built from 1.3.0 as `1.3.0-edam` |
+
+The reports (`batch-results.csv`, `FINAL-RECONCILIATION.csv`) keep the workbook's paths (below the old root): the new path is the
+same with `language-masters`. The site's path mapping (site configuration and `paths.json`, `utils/site.js` `REVIEW_ROOTS`,
+`helix-query.yaml`) refers to the old root and is changed in the site repository, outside these packages.
