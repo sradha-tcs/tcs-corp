@@ -1,0 +1,37 @@
+tag,title,parent,parent title,assets
+tcs-corp:content-type/analyst-report,Analyst Report,tcs-corp:content-type,Content Type,1
+tcs-corp:content-type/article,Article,tcs-corp:content-type,Content Type,181
+tcs-corp:content-type/blog,Blog,tcs-corp:content-type,Content Type,14
+tcs-corp:content-type/case-study,Case Study,tcs-corp:content-type,Content Type,18
+tcs-corp:content-type/event,Event,tcs-corp:content-type,Content Type,28
+tcs-corp:content-type/press-release,Press Release,tcs-corp:content-type,Content Type,2
+tcs-corp:content-type/research,Research,tcs-corp:content-type,Content Type,4
+tcs-corp:content-type/whitepaper,Whitepaper,tcs-corp:content-type,Content Type,4
+tcs-corp:esg/csr,Corporate Social Responsibility,tcs-corp:esg,ESG,7
+tcs-corp:industry/automotive,Automotive,tcs-corp:industry,Industry,1
+tcs-corp:industry/banking,Banking,tcs-corp:industry,Industry,15
+tcs-corp:industry/capital-markets,Capital Markets,tcs-corp:industry,Industry,3
+tcs-corp:industry/communications-media-information,"Comms, Media & Information",tcs-corp:industry,Industry,8
+tcs-corp:industry/education,Education,tcs-corp:industry,Industry,3
+tcs-corp:industry/healthcare,Healthcare,tcs-corp:industry,Industry,1
+tcs-corp:industry/high-tech,High Tech,tcs-corp:industry,Industry,5
+tcs-corp:industry/insurance,Insurance,tcs-corp:industry,Industry,6
+tcs-corp:industry/life-sciences,Life Sciences,tcs-corp:industry,Industry,8
+tcs-corp:industry/manufacturing,Manufacturing,tcs-corp:industry,Industry,17
+tcs-corp:industry/public-services,Public Services,tcs-corp:industry,Industry,6
+tcs-corp:industry/retail,Retail,tcs-corp:industry,Industry,17
+tcs-corp:industry/travel-logistics,Travel and Logistics,tcs-corp:industry,Industry,14
+tcs-corp:product/tcs-add,TCS ADD™,tcs-corp:product,Products,11
+tcs-corp:product/tcs-bancs,TCS BaNCS™,tcs-corp:product,Products,8
+tcs-corp:product/tcs-omnistore,TCS OmniStore™,tcs-corp:product,Products,4
+tcs-corp:region/asia-pacific,Asia Pacific,tcs-corp:region,Region,5
+tcs-corp:region/europe,Europe,tcs-corp:region,Region,14
+tcs-corp:region/middle-east-africa,Middle East Africa,tcs-corp:region,Region,3
+tcs-corp:service/cloud,Cloud,tcs-corp:service,Services,8
+tcs-corp:service/cognitive-business-operations,Cognitive Business Operations,tcs-corp:service,Services,8
+tcs-corp:service/consulting,Consulting,tcs-corp:service,Services,4
+tcs-corp:service/cybersecurity,Cybersecurity,tcs-corp:service,Services,4
+tcs-corp:service/enterprise-solutions,Enterprise Solutions,tcs-corp:service,Services,8
+tcs-corp:service/industrial-autonomy-engineering,Industrial Autonomy & Engineering,tcs-corp:service,Services,1
+tcs-corp:service/tcs-interactive,TCS Interactive,tcs-corp:service,Services,3
+tcs-corp:technology/google-cloud,Google Cloud,tcs-corp:technology,Technologies,1
