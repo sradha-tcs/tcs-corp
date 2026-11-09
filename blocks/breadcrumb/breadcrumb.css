@@ -1,0 +1,61 @@
+/*
+ * Breadcrumb: the parent pages as links, then the current page, separated by chevrons (CSS, not
+ * read by screen readers); the trail wraps on narrow screens.
+ */
+.breadcrumb .breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-100) var(--space-200);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+}
+
+.breadcrumb .breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-200);
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: '';
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentcolor;
+  mask: url('../../icons/chevron-right.svg') center / contain no-repeat;
+}
+
+.breadcrumb .breadcrumb-item a:any-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item a:hover,
+.breadcrumb .breadcrumb-item a:focus-visible {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.breadcrumb .breadcrumb-item[aria-current='page'] {
+  color: var(--color-text-default);
+  font-weight: var(--font-weight-medium);
+}
+
+/* while the titles load */
+.breadcrumb .breadcrumb-skeleton-item {
+  width: 5rem;
+}
+
+/* Universal Editor: a Breadcrumb on a page without parent pages */
+.breadcrumb .breadcrumb-empty {
+  margin: 0;
+  padding: var(--space-300) var(--space-400);
+  border: var(--border-width-100) dashed var(--color-border-default);
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-s);
+}

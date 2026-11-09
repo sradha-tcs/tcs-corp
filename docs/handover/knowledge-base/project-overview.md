@@ -194,7 +194,8 @@ No runtime npm dependencies exist; only dev dependencies ([package.json](../../.
 | Production CDN and domain | Not configured; the sitemap origin is the `aem.live` host |
 | Per-locale redirects at the edge, `/` → `/en/` | Not implemented (the platform applies only a root `/redirects.json`) |
 | 403 / 500 / maintenance pages served by the platform | Not implemented (only `404.html`) |
-| hreflang, language switcher, breadcrumb, authentication | Not implemented |
+| hreflang, language switcher, authentication | Not implemented |
+| Breadcrumb | Breadcrumb block (`blocks/breadcrumb`, 9 November 2026): parent pages from the URL, Levels shown, Show current page |
 | Interactive Dashboard | Placeholder that renders nothing |
 
 ## Assumptions

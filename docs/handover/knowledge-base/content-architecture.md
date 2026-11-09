@@ -258,8 +258,9 @@ All Conversation Canvases of a page (header, body, footer) share one floating jo
 | Footer | The footer page's Footer block: Conversation Canvas Page, Copyright Text (`{year}`), Footer Link items; social icons from the Social Links sheet | [blocks/footer/README.md](../../../blocks/footer/README.md) |
 | In page | Anchor List links to section Anchor names and block Anchor IDs (`anchor-…`); the URL hash scrolls after the sections load; `tabs:reveal` opens the tab holding a target | [anchor-list](../../../blocks/anchor-list/README.md), `scripts/scripts.js` |
 | Per site area | Set Navigation / Footer on the area's top page | inheritance above |
+| Breadcrumb | The Breadcrumb block: the page's parent pages up to the locale's Home page (`getParentPages`), Levels shown and Show current page; titles from the query index | [breadcrumb](../../../blocks/breadcrumb/README.md) |
 
-Not implemented: a breadcrumb, a language selector and `hreflang` alternates (handover Parts 4.9.6 and 16.4).
+Not implemented: a language selector and `hreflang` alternates (handover Parts 4.9.6 and 16.4).
 
 ## Error pages
 
