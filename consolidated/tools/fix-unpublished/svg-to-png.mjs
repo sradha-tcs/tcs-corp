@@ -1,5 +1,5 @@
 // SVG files over the 40 KB Edge Delivery limit rendered as PNG (Chromium): the natural size of the SVG,
-// scaled up to at least 1,600 px wide (at most 2x, at most 3,000 px), transparent background.
+// scaled up to at least 1,600 px wide (at most 3,000 px), transparent background.
 // Usage: node svg-to-png.mjs <plan json> <svg dir> <png dir>
 import { createRequire } from 'node:module';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -43,7 +43,11 @@ for (const [ref, v] of Object.entries(plan.svgs)) {
   let text = readFileSync(svg, 'utf8');
   const faces = FACES.filter(([family]) => new RegExp(`['",:\\s]${family}['",;\\s}]`).test(text))
     .map(([family, file, weight, style]) => `@font-face{font-family:'${family}';src:url(data:font/ttf;base64,${font(file)});font-weight:${weight};font-style:${style}}`);
-  if (faces.length) text = text.replace(/<svg\b[^>]*>/, (tag) => `${tag}<style>${faces.join('')}</style>`);
+  // each glyph run has its own position, but Chromium shapes across runs: a ligature (t + i) would swallow
+  // the next run's letter. Wingdings symbols (private use code points) become their Unicode equivalents
+  const css = `${faces.join('')}text,tspan{font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0}`;
+  text = text.replace(/<svg\b[^>]*>/, (tag) => `${tag}<style>${css}</style>`)
+    .replace(//g, '✓').replace(//g, '•');
   const render = `${svg}.render.svg`;
   writeFileSync(render, text);
   const html = `${svg}.html`;
@@ -52,7 +56,7 @@ for (const [ref, v] of Object.entries(plan.svgs)) {
   await page.waitForFunction(() => document.getElementById('i').complete, null, { timeout: 30000 });
   const nat = await page.evaluate(() => { const i = document.getElementById('i'); return { w: i.naturalWidth || 0, h: i.naturalHeight || 0 }; });
   let w = nat.w || 1200; let h = nat.h || 800;
-  const scale = Math.min(2, Math.max(1, 1600 / w), 3000 / w);
+  const scale = Math.min(Math.max(1, 1600 / w), 3000 / w);
   w = Math.round(w * scale); h = Math.round(h * scale);
   await page.setViewportSize({ width: Math.max(w, 1), height: Math.max(h, 1) });
   await page.evaluate(([ww, hh]) => { const i = document.getElementById('i'); i.style.width = `${ww}px`; i.style.height = `${hh}px`; i.style.display = 'block'; }, [w, h]);
