@@ -15,6 +15,15 @@
   --breadcrumb-line-color: var(--white-400);
 }
 
+/*
+ * the page's first block while the header lies over it (styles/styles.css, Header over the first
+ * block): below the logo bar (--header-overlay-space is the header's height then, else unset);
+ * :where keeps an authored Padding top (Additional tab) stronger
+ */
+:where(main > .section:first-child > div:first-child) > .breadcrumb {
+  padding-top: calc(var(--header-overlay-space, 0rem) + var(--space-400));
+}
+
 .breadcrumb nav {
   padding-bottom: var(--space-500);
   border-bottom: var(--border-width-100) solid var(--breadcrumb-line-color);

@@ -286,6 +286,11 @@
     padding-top: var(--space-3000);
   }
 
+  /* below a Breadcrumb (blocks/breadcrumb), which keeps the page's top space */
+  div:has(> .breadcrumb) + div > .page-header {
+    padding-top: var(--space-1000);
+  }
+
   .page-header .page-header-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
