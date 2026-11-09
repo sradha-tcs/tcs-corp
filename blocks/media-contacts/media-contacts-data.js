@@ -1,12 +1,42 @@
 /*
- * Media Contacts data (pure, unit tested in test/media-contacts): the rows of the Media Contacts
- * sheet grouped by designation and region, in sheet order. Contacts with the same designation
+ * Media Contacts data (unit tested in test/media-contacts): authored contact items
+ * grouped by designation and region, in authored order. Contacts with the same designation
  * and region (case and spacing ignored) are one group, listed one below the other under the
  * group's heading ("Corporate Communications & India", or the one that is set).
  */
 
 const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
 const keyOf = (value) => normalize(value).toLowerCase();
+
+export const CONTACT_FIELDS = ['region', 'designation', 'contactName', 'email', 'phone'];
+
+export function telHref(phone) {
+  const digits = normalize(phone).replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+  return /\d/.test(digits) ? `tel:${digits}` : '';
+}
+
+export function readContactRows(rows) {
+  return rows.map((row) => {
+    const values = Object.fromEntries(CONTACT_FIELDS.map((field, index) => [
+      field,
+      normalize((row.querySelector(`[data-aue-prop="${field}"]`)
+        || row.children[index])?.textContent),
+    ]));
+    const email = /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(values.email) ? values.email : '';
+    return {
+      region: values.region,
+      designation: values.designation,
+      name: values.contactName,
+      email,
+      phone: telHref(values.phone) ? values.phone : '',
+      row,
+    };
+  });
+}
+
+export const isCompleteContact = (contact) => (
+  !!(contact.region && (contact.email || contact.phone))
+);
 
 /**
  * The heading of a group: designation and region joined with " & ", or the one that is set.
@@ -16,16 +46,6 @@ const keyOf = (value) => normalize(value).toLowerCase();
  */
 export const groupHeading = (designation, region) => [normalize(designation), normalize(region)]
   .filter(Boolean).join(' & ');
-
-/**
- * A tel: link for a phone number as written in the sheet (digits and a leading + kept).
- * @param {string} phone
- * @returns {string} '' when there are no digits
- */
-export function telHref(phone) {
-  const digits = normalize(phone).replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
-  return /\d/.test(digits) ? `tel:${digits}` : '';
-}
 
 /**
  * Groups contacts by designation and region, keeping the sheet order of the groups and of the
@@ -39,7 +59,10 @@ export function groupContacts(contacts) {
   const groups = new Map();
   (contacts || []).forEach((row) => {
     const contact = {
-      name: normalize(row.name), email: normalize(row.email), phone: normalize(row.phone),
+      name: normalize(row.name),
+      email: normalize(row.email),
+      phone: normalize(row.phone),
+      ...(row.row ? { row: row.row } : {}),
     };
     if (!contact.name && !contact.email && !contact.phone) return;
     const key = `${keyOf(row.designation)}|${keyOf(row.region)}`;

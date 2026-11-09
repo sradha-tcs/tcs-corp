@@ -16939,6 +16939,47 @@
     ]
   },
   {
+    "id": "media-contact",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "region",
+        "label": "Country or territory",
+        "required": true,
+        "description": "Group heading, for example Europe or Middle East & Africa. Use the same country and designation on additional items to list more emails or phone numbers in that group."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "designation",
+        "label": "Designation",
+        "description": "Optional prefix for the group heading, for example Corporate Communications with country India."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "contactName",
+        "label": "Contact name",
+        "description": "Optional name displayed above this item's links."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "email",
+        "label": "Email",
+        "description": "One email address, without mailto:. Add another Media Contact item for each additional address. Enter an email or a phone number."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "phone",
+        "label": "Phone",
+        "description": "One phone number as it should appear, including country code and spacing. Add another Media Contact item for each additional number."
+      }
+    ]
+  },
+  {
     "id": "media-contacts",
     "fields": [
       {
@@ -16951,7 +16992,7 @@
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts). The contacts come from the locale's Media Contacts sheet (data/media-contacts): those of the page's region, else all of them."
+        "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts). Add Media Contact items to author the contact details."
       },
       {
         "component": "select",

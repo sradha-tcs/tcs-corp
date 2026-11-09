@@ -1,4 +1,4 @@
-/* Media Contacts: the Media Contacts sheet's groups (designation & region), their e-mail
+/* Media Contacts: authored groups (designation & region), their e-mail
    addresses and phone numbers one below the other, each with its icon (tcs.com press releases) */
 .media-contacts .media-contacts-title {
   margin: 0 0 var(--space-800);
@@ -71,6 +71,7 @@
 
 /* the address or number underlined (not the icon) */
 .media-contacts .contact-list-text {
+  min-width: 0;
   text-decoration: underline;
   text-decoration-thickness: 0.0625rem;
   text-underline-offset: 0.3125rem;
@@ -88,13 +89,6 @@
 .media-contacts .media-contacts-empty {
   margin: 0;
   color: var(--color-text-secondary);
-}
-
-/* the skeleton while the sheet loads */
-.media-contacts .skeleton .contact-list-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-400);
 }
 
 /* two columns, filled top to bottom (the reading order), a group never split */
