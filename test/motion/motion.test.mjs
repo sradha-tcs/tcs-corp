@@ -101,7 +101,7 @@ describe('authoring fields', () => {
   const blocks = readdirSync(blocksDir).filter((name) => existsSync(new URL(`${name}/_${name}.json`, blocksDir)));
   const BACKGROUND_BLOCKS = ['conversation-canvas', 'form-variations', 'hero', 'image-collage', 'quote', 'teaser', 'testimonial'];
   // columns: AEM doesn't deliver classes_* on the built-in Columns component (no Additional tab)
-  const NO_ANIMATION = ['anchor-list', 'column-break', 'columns', 'footer', 'fragment', 'modal', 'separator', 'tab', 'tcs-header'];
+  const NO_ANIMATION = ['anchor-list', 'breadcrumb', 'column-break', 'columns', 'footer', 'fragment', 'modal', 'separator', 'tab', 'tcs-header'];
 
   // container sections: AEM doesn't deliver a section's classes_* fields, so their Additional tab
   // fields are container* (data attributes, scripts.js applySectionBlockOptions)
