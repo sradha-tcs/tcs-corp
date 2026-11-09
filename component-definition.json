@@ -157,7 +157,8 @@
                   "model": "breadcrumb",
                   "key-value": true,
                   "showCurrent": true,
-                  "levels": "all"
+                  "levels": "all",
+                  "textColor": "default"
                 }
               }
             }

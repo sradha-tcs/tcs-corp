@@ -12,7 +12,8 @@
               "model": "breadcrumb",
               "key-value": true,
               "showCurrent": true,
-              "levels": "all"
+              "levels": "all",
+              "textColor": "default"
             }
           }
         }
@@ -69,6 +70,24 @@
           "label": "Show current page",
           "value": true,
           "description": "Ends the trail with the current page's title (not a link)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "textColor",
+          "label": "Text color",
+          "value": "default",
+          "options": [
+            {
+              "name": "Default",
+              "value": "default"
+            },
+            {
+              "name": "White (over an image or a dark background)",
+              "value": "white"
+            }
+          ],
+          "description": "Default: dark text (light inside a dark Section). White: for a breadcrumb over an image."
         },
         {
           "component": "tab",

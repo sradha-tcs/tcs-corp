@@ -1,6 +1,6 @@
 # Breadcrumb
 
-The Breadcrumb block shows where the current page sits in the site: its parent pages up to the locale's Home page, as links, then the current page. Authors choose how many parent levels it shows and whether the current page ends the trail. It is a key-value block: `blocks/breadcrumb/breadcrumb.js` reads its two settings and builds the trail from the page's own URL.
+The Breadcrumb block shows where the current page sits in the site: its parent pages up to the locale's Home page, as links, then the current page. Authors choose how many parent levels it shows, whether the current page ends the trail and the text colour (white over an image). It is a key-value block: `blocks/breadcrumb/breadcrumb.js` reads its two settings and builds the trail from the page's own URL.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -14,7 +14,7 @@ The Breadcrumb block shows where the current page sits in the site: its parent p
 ## Overview
 
 - **Business purpose:** helps visitors see where they are and move up to a parent page or the Home page in one click.
-- **User experience:** a single line of small links separated by chevrons (Home > Insights > Blogs > AI in banking); the current page is plain text in the default text colour. The trail wraps on narrow screens.
+- **User experience:** one line in capitals with wide letter spacing, the parent pages as links separated by slashes (HOME / INSIGHTS / BLOGS / **AI IN BANKING**), the current page in bold and not a link, above a thin line. The trail wraps on narrow screens.
 - **Templates / page types:** any page below a locale's Home page. No template adds the block.
 - **Data source:** the page's URL (`utils/site.js` `getParentPages`: the parent pages up to the locale's Home page, or the language master's root while it is under review); the parents' titles from the query index (`utils/query-index.js` `getPages`), else from the pages themselves (`getPagesAt`; AEM author has no query index); the current page's title from its `og:title`; the labels Home and Breadcrumb from the placeholders.
 - **Related blocks:** Anchor List (`blocks/anchor-list`) for links within the page; the TCS Header for the site navigation.
@@ -42,6 +42,7 @@ The Content tab of the Breadcrumb properties in Universal Editor, with the field
 Annotations:
 A = Levels shown
 B = Show current page
+C = Text color
 ```
 
 ```text
@@ -70,7 +71,7 @@ J = Margin left
 
 ## For Content Authors
 
-Add a **Breadcrumb** where the trail should appear (usually the first section, above the Page Header). Choose **Levels shown** (All, or 1 to 5 parent levels counting up from the page) and whether to **Show current page**. The labels are the parent pages' titles: to change a label, change that page's Title.
+Add a **Breadcrumb** where the trail should appear (usually the first section, above the Page Header). Choose **Levels shown** (All, or 1 to 5 parent levels counting up from the page), whether to **Show current page** and the **Text color** (White over an image or a dark background). The labels are the parent pages' titles: to change a label, change that page's Title.
 
 ## Authorable Fields
 
@@ -80,7 +81,7 @@ Add a **Breadcrumb** where the trail should appear (usually the first section, a
 
 Model `breadcrumb`; template name "Breadcrumb" (the block class AEM renders); key-value block (one row per property).
 
-Stored on a new component (definition template): `showCurrent` = `true`, `levels` = `"all"`.
+Stored on a new component (definition template): `showCurrent` = `true`, `levels` = `"all"`, `textColor` = `"default"`.
 
 #### Content tab — Breadcrumb
 
@@ -88,6 +89,7 @@ Stored on a new component (definition template): `showCurrent` = `true`, `levels
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Levels shown | `levels` | select | No | `all` | All (from Home) (`all`), 1 parent level (`1`), 2 parent levels (`2`), 3 parent levels (`3`), 4 parent levels (`4`), 5 parent levels (`5`) | How many parent pages the trail shows, counting up from the current page. All: every parent up to the Home page. | — |
 | Show current page | `showCurrent` | boolean | No | `true` | on / off | Ends the trail with the current page's title (not a link). | — |
+| Text color | `textColor` | select | No | `default` | Default (`default`), White (over an image or a dark background) (`white`) | Default: dark text (light inside a dark Section). White: for a breadcrumb over an image. | — |
 
 #### Additional tab — Breadcrumb
 
@@ -110,7 +112,8 @@ Stored on a new component (definition template): `showCurrent` = `true`, `levels
 <!-- END GENERATED: fields -->
 
 - **Levels shown:** All (`all`, the default) shows every parent up to Home; 1 to 5 show only the nearest parents (1: the direct parent). Any other value is All.
-- **Show current page:** on by default (also when no value is stored); the current page's title ends the trail, not as a link, marked with `aria-current="page"`.
+- **Show current page:** on by default (also when no value is stored); the current page's title ends the trail in bold, not as a link, marked with `aria-current="page"`.
+- **Text color:** Default (`default`: `--color-text-default` with a `--color-border-default` line, so it turns light inside a dark Section) or White (`white`: the `text-white` block class, white text with a 40 % white line, for a breadcrumb over an image).
 
 ## Screenshot-Based Authoring Steps
 
@@ -134,7 +137,11 @@ Purpose: a short trail on deep pages. Rendering: the nearest N parents of `getPa
 
 ### Show current page: on, off
 
-Purpose: end the trail with the page itself, or with its parent. Rendering: an `<li aria-current="page">` with the page's title, or none.
+Purpose: end the trail with the page itself, or with its parent. Rendering: an `<li aria-current="page">` with the page's title in bold, or none.
+
+### Text color: Default, White
+
+Purpose: readable on light pages and over images. Rendering: `--breadcrumb-color` and `--breadcrumb-line-color` on the block (`text-white` for White).
 
 ## Complete Authoring Example
 
@@ -142,8 +149,9 @@ Purpose: end the trail with the page itself, or with its parent. Rendering: an `
 | ----- | ----- |
 | Levels shown | All (from Home) |
 | Show current page | On |
+| Text color | White (the breadcrumb sits over the hero image) |
 
-On `/en/insights/blogs/ai-in-banking` (parents Insights and Blogs published): `Home > Insights > Blogs > AI in banking`, the first three as links.
+On `/en/insights/blogs/ai-in-banking` (parents Insights and Blogs published): `HOME / INSIGHTS / BLOGS / AI IN BANKING` in white, the first three as links, the last in bold.
 
 ## Content and Asset Guidelines
 
@@ -154,7 +162,8 @@ On `/en/insights/blogs/ai-in-banking` (parents Insights and Blogs published): `H
 ## Accessibility
 
 - A `<nav>` named by the placeholder `breadcrumb` ("Breadcrumb"), with an ordered list (`<ol>`) of the trail; the current page is `aria-current="page"` and not a link.
-- The chevrons are CSS (`::before`, `icons/chevron-right.svg` as a mask): screen readers don't read them.
+- The slashes are CSS content with empty alternative text (`content: '/' / ''`): screen readers don't read them. The capitals are CSS (`text-transform`), so screen readers read the titles as written.
+- White text is for dark images: check its contrast on the image behind it.
 - Links follow the site's focus style and underline on hover and focus.
 
 ## Data Layer and Analytics
@@ -167,7 +176,7 @@ None: the trail follows the page's place in the site.
 
 ## Responsive Behavior
 
-The same trail on every width, in `--body-font-size-s`; it wraps onto more lines when it doesn't fit.
+The same trail on every width, in `--body-font-size-m` capitals with letter spacing of 0.1 times the font size; it wraps onto more lines when it doesn't fit.
 
 ## For Developers
 
@@ -188,7 +197,7 @@ blocks/breadcrumb/
 | [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `breadcrumb.js`: { bone, renderWhenLoaded, skeletonElement } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `breadcrumb.js`: { isEditing } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `breadcrumb.js`: { getPlaceholders } |
-| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `breadcrumb.js`: { isOnByDefault, readProperties, textOf } |
+| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `breadcrumb.js`: { isOnByDefault, optionOf, readProperties, textOf, } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `breadcrumb.js`: { getPages, getPagesAt } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `breadcrumb.js`: { getParentPages, toPublishedPath } |
 
@@ -215,7 +224,8 @@ In Universal Editor the links are the AEM pages (`…/us/en/insights.html`), as 
 ## Extending the Block
 
 - More levels: add values to `LEVELS` (`breadcrumb-data.js`) and options to `levels` in `_breadcrumb.json`.
-- A different separator: change the mask of `.breadcrumb-item + .breadcrumb-item::before`.
+- A different separator: change the `content` of `.breadcrumb-item + .breadcrumb-item::before` (keep the empty alternative text).
+- Another Text color: add an option to `textColor`, its value to `TEXT_COLORS` (`breadcrumb.js`) and a rule setting `--breadcrumb-color` / `--breadcrumb-line-color`.
 - Run `npm run build:json`, `npm run build:docs` and `npm test` after a model change.
 
 ## For Site Administrators
@@ -274,3 +284,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Date | Change |
 | ---- | ------ |
 | 9 November 2026 | Block added: Levels shown and Show current page, with the Additional tab. |
+| 9 November 2026 | Design: capitals with letter spacing, slash separators, the current page in bold, a line below; Text color (Default, White). |

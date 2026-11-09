@@ -2,7 +2,9 @@ import { getMetadata } from '../../scripts/aem.js';
 import { bone, renderWhenLoaded, skeletonElement } from '../../decorators/skeleton-decorator.js';
 import { isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { isOnByDefault, readProperties, textOf } from '../../utils/properties.js';
+import {
+  isOnByDefault, optionOf, readProperties, textOf,
+} from '../../utils/properties.js';
 import { getPages, getPagesAt } from '../../utils/query-index.js';
 import { getParentPages, toPublishedPath } from '../../utils/site.js';
 import {
@@ -12,10 +14,14 @@ import {
 /*
  * Breadcrumb (blocks/breadcrumb/_breadcrumb.json): a key-value block. The current page's parent
  * pages up to the locale's Home page (utils/site.js getParentPages), the farthest first:
- * Levels shown (levels: all, or the nearest 1 to 5) and Show current page (showCurrent, on by
- * default). Titles from the query index; pages it doesn't have (in the editor, AEM author has
- * no query index) are read from the pages themselves; a parent without a page is left out.
+ * Levels shown (levels: all, or the nearest 1 to 5), Show current page (showCurrent, on by
+ * default) and Text color (textColor: default, or white over an image: the text-white class).
+ * Titles from the query index; pages it doesn't have (in the editor, AEM author has no query
+ * index) are read from the pages themselves; a parent without a page is left out.
  */
+
+// Text color values besides Default (the colours are in breadcrumb.css)
+const TEXT_COLORS = ['white'];
 
 /** a page URL (published, or an AEM page when editing) as its published lookup key */
 const keyOf = (url) => pathKey(toPublishedPath(pathKey(url)));
@@ -68,6 +74,7 @@ export default async function decorate(block) {
   const props = readProperties(block);
   const levels = levelsOf(textOf(props.levels));
   const showCurrent = isOnByDefault(props.showcurrent);
+  block.classList.toggle('text-white', optionOf(block, props.textcolor, TEXT_COLORS) === 'white');
   const parents = getParentPages();
   const trail = trailOf(parents, levels);
   const home = parents[parents.length - 1];
