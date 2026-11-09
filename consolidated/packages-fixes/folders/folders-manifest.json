@@ -1,0 +1,134 @@
+{
+ "pages": [
+  {
+   "before": "/content/tcs-corp/language-masters/en/IT_Testing",
+   "after": "/content/tcs-corp/language-masters/en/it-testing",
+   "links": 0,
+   "change": "folder page (new)"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives",
+   "links": 0,
+   "change": "folder page (new)"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/research/Blogs",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/research/blogs",
+   "links": 0,
+   "change": "folder page (new)"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/IT_Testing/non-gated",
+   "after": "/content/tcs-corp/language-masters/en/it-testing/non-gated",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-apac-financial-planning-data-analytics-sustainable-growth",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-apac-financial-planning-data-analytics-sustainable-growth",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-eu-uk-financial-planning-data-analytics-sustainable-growth",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-eu-uk-financial-planning-data-analytics-sustainable-growth",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-financial-planning-analysis-sustainable-growth",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-financial-planning-analysis-sustainable-growth",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-global-leadership-study-financial-planning-analysis",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-global-leadership-study-financial-planning-analysis",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-na-financial-planning-data-analytics-sustainable-growth",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/perspectives/perspectives-articles-na-financial-planning-data-analytics-sustainable-growth",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/research/Blogs/clean-energy-net-zero-goals-carbon-capture-technology",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/research/blogs/clean-energy-net-zero-goals-carbon-capture-technology",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/research/Blogs/continuous-business-innovation-growth-strategy",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/research/blogs/continuous-business-innovation-growth-strategy",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/research/Blogs/hvac-optimization-energy-conservation-efficiency",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/research/blogs/hvac-optimization-energy-conservation-efficiency",
+   "links": 0,
+   "change": "moved"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/careers/india/research-and-innovation",
+   "after": "/content/tcs-corp/language-masters/en/careers/india/research-and-innovation",
+   "links": 1,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/insights/authors/drsrinarayananagarathinam",
+   "after": "/content/tcs-corp/language-masters/en/insights/authors/drsrinarayananagarathinam",
+   "links": 1,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/insights/authors/sivakumar-subramanian",
+   "after": "/content/tcs-corp/language-masters/en/insights/authors/sivakumar-subramanian",
+   "links": 1,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/insights/authors/venkataramana-runkana",
+   "after": "/content/tcs-corp/language-masters/en/insights/authors/venkataramana-runkana",
+   "links": 1,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/finance-transformation",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/finance-transformation",
+   "links": 1,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/white-paper/future-proof-financial-planning-and-analysis",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/white-paper/future-proof-financial-planning-and-analysis",
+   "links": 2,
+   "change": "links updated"
+  },
+  {
+   "before": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/white-paper/strategic-cost-cutting-for-better-margins-management",
+   "after": "/content/tcs-corp/language-masters/en/what-we-do/services/consulting/white-paper/strategic-cost-cutting-for-better-margins-management",
+   "links": 1,
+   "change": "links updated"
+  }
+ ],
+ "oldLive": [
+  "/language-masters/en/IT_Testing/non-gated",
+  "/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-apac-financial-planning-data-analytics-sustainable-growth",
+  "/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-eu-uk-financial-planning-data-analytics-sustainable-growth",
+  "/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-financial-planning-analysis-sustainable-growth",
+  "/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-global-leadership-study-financial-planning-analysis",
+  "/language-masters/en/what-we-do/industries/banking/Perspectives/perspectives-articles-na-financial-planning-data-analytics-sustainable-growth",
+  "/language-masters/en/what-we-do/research/Blogs/clean-energy-net-zero-goals-carbon-capture-technology",
+  "/language-masters/en/what-we-do/research/Blogs/continuous-business-innovation-growth-strategy",
+  "/language-masters/en/what-we-do/research/Blogs/hvac-optimization-energy-conservation-efficiency"
+ ],
+ "cleanup": [
+  "/content/tcs-corp/language-masters/en/IT_Testing",
+  "/content/tcs-corp/language-masters/en/what-we-do/industries/banking/Perspectives",
+  "/content/tcs-corp/language-masters/en/what-we-do/research/Blogs"
+ ]
+}
