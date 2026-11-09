@@ -852,5 +852,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Not recorded | README generated from verified implementation and approved handover documentation | Repository review | Not recorded |
 | Handover 2.10 | CTAs as CTA items (`page-header-cta`) instead of the CTA List multifield, which is still read (F-87: a Page Header with CTAs was left out on published pages) | docs/handover revision history | 17 October 2026 |
 | Handover 2.17 | Item children in the Page Header field specification | docs/handover revision history | 18 October 2026 |
-| Not recorded | Below a Breadcrumb (`blocks/breadcrumb`): top padding 2.5rem from 900px instead of 7.5rem (the Breadcrumb keeps the page's top space) | Breadcrumb block | 9 November 2026 |
 | Handover 2.18 | Additional tab Content animation | docs/handover revision history | 18 October 2026 |

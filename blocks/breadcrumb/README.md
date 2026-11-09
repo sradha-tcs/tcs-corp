@@ -178,7 +178,7 @@ None: the trail follows the page's place in the site.
 
 The same trail on every width, in `--body-font-size-m` capitals with letter spacing of 0.1 times the font size; it wraps onto more lines when it doesn't fit.
 
-As the page's first block, the trail starts below the logo bar when the header lies over the page (TCS Header **Header over the first block**: Always, or Auto over a light hero): its top padding is `--header-overlay-space` (the header's height) plus 1rem; an authored Padding top (Additional tab) wins. A Page Header right after it gets 2.5rem top padding from 900px instead of 7.5rem (`blocks/page-header/page-header.css`).
+As the page's first block, the trail starts below the logo bar when the header lies over the page (TCS Header **Header over the first block**: Always, or Auto over a light hero): its top padding is `--header-overlay-space` (the header's height) plus 1rem; an authored Padding top (Additional tab) wins.
 
 ## For Developers
 
@@ -287,4 +287,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | ---- | ------ |
 | 9 November 2026 | Block added: Levels shown and Show current page, with the Additional tab. |
 | 9 November 2026 | Design: capitals with letter spacing, slash separators, the current page in bold, a line below; Text color (Default, White). |
-| 9 November 2026 | As the first block: below the logo bar when the header lies over the page; a Page Header right after it has less top space. |
+| 9 November 2026 | As the first block: below the logo bar when the header lies over the page. |
