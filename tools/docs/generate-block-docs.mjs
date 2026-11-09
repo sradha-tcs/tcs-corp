@@ -12,8 +12,11 @@
  *   <!-- BEGIN GENERATED: usage -->       the block library and curated design pages using it
  *   <!-- BEGIN GENERATED: inventory -->   (blocks/README.md) the block inventory
  * Inputs: component-models.json, component-definition.json, component-filters.json, the blocks'
- * own _<block>.json, their JavaScript, decorators/README.md, utils/README.md, the handover
- * (docs/handover/TCS-CORP-HANDOVER.md) and tools/docs/blocks.json (status, type, purpose,
+ * own _<block>.json, their JavaScript, decorators/README.md, utils/README.md, the handover's
+ * screenshots (tools/docs/handover-screenshots.json: the handover and its screenshots live on the
+ * branch migrated-page-content-edam, KB-D-066; HANDOVER=<its TCS-CORP-HANDOVER.md> npm run
+ * build:docs refreshes the list from a checkout of it) and tools/docs/blocks.json (status, type,
+ * purpose,
  * relationships: written by hand); example values and page usage come from the block library
  * build (.home-work, not in git) and are kept in tools/docs/library-snapshot.json.
  * Run `npm run build:docs`; test/docs checks that the generated sections are current.
@@ -26,6 +29,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (path) => readFileSync(resolve(ROOT, path), 'utf8');
+// the handover screenshots, in each block's folder of the role-specific documentation on the
+// documents branch (KB-D-066, KB-D-069):
+// docs/handover/02-development/blocks/<block>/screenshots/handover/
+const SHOTS_URL = (block) => `https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/${block}/screenshots/handover/`;
 const json = (path) => JSON.parse(read(path));
 
 /* ------------------------------------------------------------------ inputs */
@@ -39,7 +46,11 @@ export function loadInputs(root = ROOT) {
   const meta = JSON.parse(r('tools/docs/blocks.json'));
   const snapshot = existsSync(resolve(root, 'tools/docs/library-snapshot.json'))
     ? JSON.parse(r('tools/docs/library-snapshot.json')) : { examples: {}, usage: {} };
-  const handover = r('docs/handover/TCS-CORP-HANDOVER.md');
+  // the handover when a checkout of it is given (HANDOVER), else the screenshot list kept in git
+  const handoverFile = process.env.HANDOVER ? resolve(process.env.HANDOVER) : '';
+  const handover = handoverFile && existsSync(handoverFile) ? readFileSync(handoverFile, 'utf8') : '';
+  const shots = existsSync(resolve(root, 'tools/docs/handover-screenshots.json'))
+    ? JSON.parse(r('tools/docs/handover-screenshots.json')) : { blocks: {} };
   const moduleDocs = {};
   ['decorators', 'utils'].forEach((folder) => {
     r(`${folder}/README.md`).split('\n').forEach((line) => {
@@ -50,7 +61,17 @@ export function loadInputs(root = ROOT) {
   const blocks = readdirSync(resolve(root, 'blocks'), { withFileTypes: true })
     .filter((d) => d.isDirectory()).map((d) => d.name).sort();
   return {
-    root, models, definitions, filters, meta, snapshot, handover, moduleDocs, blocks,
+    root,
+    models,
+    definitions,
+    filters,
+    meta,
+    snapshot,
+    handover,
+    handoverFile,
+    shots,
+    moduleDocs,
+    blocks,
   };
 }
 
@@ -222,16 +243,22 @@ function chapterOf(handover, heading) {
   return handover.slice(at, next < 0 ? undefined : next);
 }
 
-export function screenshotsSection(inputs, block) {
+/** the handover screenshots of a block's chapter that exist next to the handover */
+export function handoverShots(inputs, block) {
   const meta = inputs.meta.blocks[block] || {};
   const chapter = chapterOf(inputs.handover, meta.handover);
   const seen = new Set();
-  const shots = [...chapter.matchAll(/!\[([^\]]*)\]\(screenshots\/([^)\s]+)\)/g)]
+  return [...chapter.matchAll(/!\[([^\]]*)\]\(screenshots\/([^)\s]+)\)/g)]
     .map(([, alt, file]) => ({ alt, file }))
     .filter((s) => !meta.screenshotPrefix
       || meta.screenshotPrefix.some((p) => s.file.startsWith(p)))
     .filter((s) => !seen.has(s.file) && seen.add(s.file))
-    .filter((s) => existsSync(resolve(inputs.root, 'docs/handover/screenshots', s.file)));
+    .filter((s) => existsSync(resolve(dirname(inputs.handoverFile), 'screenshots', s.file)));
+}
+
+export function screenshotsSection(inputs, block) {
+  const meta = inputs.meta.blocks[block] || {};
+  const shots = inputs.handover ? handoverShots(inputs, block) : (inputs.shots.blocks[block] || []);
   const parts = [];
   if (shots.length) {
     parts.push(`Screenshots of the handover (${meta.handover}), taken on the preview with sample content; they show the rendering at the time of the handover revision that added them (later changes are in the sections below and the handover's revision history):`);
@@ -241,7 +268,7 @@ export function screenshotsSection(inputs, block) {
       const shows = rest.join(' — ').replace(/\s*\(Sample content[^)]*\)\s*$/, '').trim();
       const alt = `${title}${shows ? `: ${shows}` : ''}`.replace(/[[\]()]/g, '').replace(/\s+/g, ' ').slice(0, 250);
       return [`**${esc(title)}**${shows ? ` — ${esc(shows)}` : ''}`, '',
-        `![${alt}](../../docs/handover/screenshots/${s.file})`].join('\n');
+        `![${alt}](${SHOTS_URL(block)}${s.file})`].join('\n');
     }).join('\n\n'));
   } else {
     parts.push('No handover screenshot of this block was identified.');
@@ -309,7 +336,7 @@ export function usageSection(inputs, block) {
   const kb = 'Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).';
   if (!usage) return `No block library or curated design page using this block was recorded in the library snapshot.\n\n${kb}`;
   const link = (p) => `\`${p}\``;
-  const lines = [`Pages of the block library package ${inputs.snapshot.package || ''} (language master, \`/content/tcs-corp/language-master/en\`) that contain the block, ${usage.instances} instance(s) in total:`];
+  const lines = [`Pages of the block library package ${inputs.snapshot.package || ''} (design and block master, \`/content/tcs-corp/design-block-master/en\`, KB-D-068) that contain the block, ${usage.instances} instance(s) in total:`];
   if (usage.library.length) lines.push(`- Block library: ${usage.library.map(link).join(', ')}`);
   if (usage.curated.length) lines.push(`- Curated design pages: ${usage.curated.map(link).join(', ')}`);
   if (usage.other.length) lines.push(`- Other pages: ${usage.other.map(link).join(', ')}`);
@@ -421,12 +448,12 @@ async function librarySnapshot(root, inputs) {
     Object.entries(fields).forEach(([k, v]) => {
       if (examples[model][k] !== undefined || v === '' || v === null || typeof v === 'object') return;
       if (typeof v === 'string' && (/<[a-z]/i.test(v) || v.length > 80)) return;
-      examples[model][k] = typeof v === 'string' ? v.replace(/^\/content\/tcs-corp\/language-master\/en/, '/language-master/en') : v;
+      examples[model][k] = typeof v === 'string' ? v.replace(/^(\/content\/tcs-corp)?\/(language-masters?|design-block-master)\/en(?=\/|$)/, '/design-block-master/en') : v;
     });
   };
   const blockOfEntry = (e) => e.block || null;
   PAGES.forEach((p) => {
-    const path = String(p.path || '').replace('/content/tcs-corp/language-master/en/', '');
+    const path = String(p.path || '').replace(/^\/content\/tcs-corp\/(language-masters?|design-block-master)\/en\//, '');
     let kind = 'other';
     if (path.startsWith('block-library/')) kind = 'library';
     else if (path.startsWith('curated-design-pages/')) kind = 'curated';
@@ -471,6 +498,12 @@ async function librarySnapshot(root, inputs) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   let inputs = loadInputs();
+  if (inputs.handover) {
+    const blocks = Object.fromEntries(inputs.blocks.map((b) => [b, handoverShots(inputs, b)])
+      .filter(([, list]) => list.length));
+    writeFileSync(resolve(ROOT, 'tools/docs/handover-screenshots.json'), `${JSON.stringify({ blocks }, null, 1)}\n`);
+    inputs = loadInputs();
+  }
   const snapshot = await librarySnapshot(ROOT, inputs);
   if (snapshot) {
     writeFileSync(resolve(ROOT, 'tools/docs/library-snapshot.json'), `${JSON.stringify(snapshot, null, 1)}\n`);

@@ -5,13 +5,13 @@ This file is the knowledge base summary of the query index and everything built 
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers, site administrators, AMS / support, content leads, AI agents |
-| Source of truth | [`helix-query.yaml`](../../../helix-query.yaml), [`helix-sitemap.yaml`](../../../helix-sitemap.yaml), [`utils/query-index.js`](../../../utils/query-index.js), [`utils/site.js`](../../../utils/site.js) (`indexRoot`), [`scripts/scripts.js`](../../../scripts/scripts.js) (`prefetchData`), [List](../../../blocks/list/README.md), [Filter List](../../../blocks/filter-list/README.md), [Conversation Canvas](../../../blocks/conversation-canvas/README.md) and [Cards](../../../blocks/cards/README.md) READMEs, handover Parts 2.10.7, 12.1.7, 12.1.9 ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [`helix-query.yaml`](../../../helix-query.yaml), [`helix-sitemap.yaml`](../../../helix-sitemap.yaml), [`utils/query-index.js`](../../../utils/query-index.js), [`utils/site.js`](../../../utils/site.js) (`indexRoot`), [`scripts/scripts.js`](../../../scripts/scripts.js) (`prefetchData`), [List](../../../blocks/list/README.md), [Filter List](../../../blocks/filter-list/README.md), [Conversation Canvas](../../../blocks/conversation-canvas/README.md) and [Cards](../../../blocks/cards/README.md) READMEs, handover Parts 2.10.7, 12.1.7, 12.1.9 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; live index state (finding F-10) and sitemap `noindex` handling: Requires validation |
 
 ## Query index definition
 
-`helix-query.yaml` defines **one index**, `pages`, published as `/query-index.json`, for all 13 locales (and, temporarily, the language master under review).
+`helix-query.yaml` defines **four indexes** (8 November 2026): `pages`, published as `/query-index.json`, for the 13 locales, and one per review root (KB-D-068): `language_masters` (`/language-masters/en/query-index.json`), `language_master` (`/language-master/en/query-index.json`) and `design_block_master` (`/design-block-master/en/query-index.json`), with the same exclusions and columns. A page reads only its root's index (`indexUrlOf` in `utils/query-index.js`); the sitemap (`helix-sitemap.yaml`) is built from `/query-index.json`, so it lists the locales only.
 
 **Included:** `/**`.
 
@@ -26,10 +26,10 @@ This file is the knowledge base summary of the query index and everything built 
 | `/*/nav`, `/*/footer` | Nav and footer pages at the locale root |
 | `/*/block-library`, `/*/block-library/**` | Block libraries (also excluded from publishing in `paths.json`; safeguard) |
 | `/site-global-templates/**` | Template pages (not published; safeguard) |
-| `/language-master/*/references/**`, `/language-master/*/error-pages/**`, `/language-master/*/data/**`, `/language-master/*/nav`, `/language-master/*/footer`, `/language-master/*/block-library`, `/language-master/*/block-library/**` | The same for the language master under review, a folder level deeper (#131, F-108; to remove with the REVIEW settings after the rollout) |
+| `/language-masters/*/references/**`, `/language-masters/*/error-pages/**`, `/language-masters/*/data/**`, `/language-masters/*/nav`, `/language-masters/*/footer`, `/language-masters/*/block-library`, `/language-masters/*/block-library/**` | The same for the language master under review, a folder level deeper (#131, F-108; to remove with the REVIEW settings after the rollout) |
 | `/**/fragments/**`, `/**/modals/**` | Fragment and modal folders anywhere |
 
-The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`); the language master (`/language-master/en/…`) is a level deeper and has its own patterns. Until 21 October 2026 it had none: 166 block library pages, 6 reference pages and the 404 page of the language master were in the live index (F-108). After the fix (#131) a reindex reports "requested path does not match index configuration" for these pages but doesn't remove their rows: they were removed with the Admin API index DELETE (173 / 173; the pages stay published). The index went from 354 to 181 rows (137 language-master content pages, 44 `/en` pages), and the Lists and Filter Lists of the library and the curated Insights page still filled.
+The `/*/…` patterns name one path segment before the folder (e.g. `/en/block-library`); the language master (`/language-masters/en/…`) is a level deeper and has its own patterns. Until 21 October 2026 it had none: 166 block library pages, 6 reference pages and the 404 page of the language master were in the live index (F-108). After the fix (#131) a reindex reports "requested path does not match index configuration" for these pages but doesn't remove their rows: they were removed with the Admin API index DELETE (173 / 173; the pages stay published). The index went from 354 to 181 rows (137 language-master content pages, 44 `/en` pages), and the Lists and Filter Lists of the library and the curated Insights page still filled.
 
 **Columns** (37 properties, all read from the server-delivered `<head>`):
 
@@ -64,7 +64,7 @@ Rules:
 
 Typed values: `featured` is true for `yes`, `true`, `1`, `on`, `y` in `featured` or `featureCard`; `priority` is the number in `priority`, else `featuredPriority`, else `null`.
 
-**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root `/language-master/en` for pages below it (`REVIEW_ROOTS`, temporary), else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
+**Locale scoping.** `indexRoot()` ([`utils/site.js`](../../../utils/site.js)) returns the review root (`/language-master/en`, `/language-masters/en` or `/design-block-master/en`, `REVIEW_ROOTS`, KB-D-068) for pages below it, else the page's locale root (`/de-de`). `getPages()` keeps rows whose path is that root or below it (`test/site/index-root.test.mjs`). Every page view still downloads the rows of all locales.
 
 **AEM author.** AEM author has no query index (`isAuthor()` in `utils/environment.js`: the path starts with `/content/`); `getPages()` then returns `[]` and blocks show editor hints (below). Fixed-list pages are read with `getPagesAt`.
 
@@ -132,7 +132,7 @@ flowchart LR
 
 - **Prefetch:** `prefetchData(main)` (`scripts/scripts.js`) starts `getPages()` and `loadTaxonomy()` when the lazy phase begins on pages with a List, Filter List or Conversation Canvas, and `loadRedirects()` with a List; not in the eager phase, so it doesn't compete with the LCP image. The blocks reuse the same cached promises.
 - **Skeletons:** List and Filter List render through `renderWhenLoaded` (`decorators/skeleton-decorator.js`): data within 150ms renders directly; later data shows a block-shaped skeleton (at least 250ms) so the section and those below aren't held back. The Canvas menus use `skeletonWhile`.
-- **Transfer:** every page view with one of these blocks downloads the whole index (all locales) in pages of 500 rows and filters it in the browser; cost grows with the number of published pages (handover Part 2.10.7 and F-30; per-locale indexes are a recommendation, not implemented).
+- **Transfer:** a page downloads only its root's index (8 November 2026: before, every page downloaded the shared index of all roots, 11,821 rows in 24 sequential requests of 500 rows, about 1.4 MB compressed, finished after about 18 s on a migrated page): requests of 1,000 rows, the ones after the first in parallel; a review root whose index doesn't exist yet falls back to `/query-index.json`. The language master index is still about 8,300 rows (about 1 MB compressed): per-locale indexes of the locales and a lighter navigation index remain recommendations (F-30).
 - **Placement:** avoid index-based blocks in the first section (LCP, handover Part 13.16).
 
 ## Sitemap
@@ -176,6 +176,6 @@ A checklist derived from the configuration and code (results of a full run are N
 - [content-architecture.md](./content-architecture.md) — metadata model, taxonomy, locales, references
 - [blocks.md](./blocks.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md) — related knowledge base files
 - [blocks/list/README.md](../../../blocks/list/README.md), [blocks/filter-list/README.md](../../../blocks/filter-list/README.md), [blocks/conversation-canvas/README.md](../../../blocks/conversation-canvas/README.md), [blocks/cards/README.md](../../../blocks/cards/README.md)
-- [utils/README.md](../../../utils/README.md), [decorators/README.md](../../../decorators/README.md), [docs/animation/README.md](../../../docs/animation/README.md) (skeletons)
+- [utils/README.md](../../../utils/README.md), [decorators/README.md](../../../decorators/README.md), [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) (skeletons)
 - [AGENTS.md](../../../AGENTS.md) — "Site structure and site data" notes on the query index
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture (2.10.7, 2.11.4), Part 12 — Publishing, Deployment & Release (12.1.7, 12.1.9), Part 13 — Global Troubleshooting Guide (13.9–13.11, 13.25), Part 16 — Handover Findings and Open Items Register
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 2 — Solution Architecture (2.10.7, 2.11.4), Part 12 — Publishing, Deployment & Release (12.1.7, 12.1.9), Part 13 — Global Troubleshooting Guide (13.9–13.11, 13.25), Part 16 — Handover Findings and Open Items Register

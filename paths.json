@@ -14,6 +14,8 @@
     "/content/tcs-corp/jp/ja-jp/:/ja-jp/",
     "/content/tcs-corp/kr/ko-kr/:/ko-kr/",
     "/content/tcs-corp/language-master/en/:/language-master/en/",
+    "/content/tcs-corp/language-masters/en/:/language-masters/en/",
+    "/content/tcs-corp/design-block-master/en/:/design-block-master/en/",
     "/content/tcs-corp/us/en:/en/",
     "/content/tcs-corp/de/de-de:/de-de/",
     "/content/tcs-corp/fr/fr-fr:/fr-fr/",
@@ -28,6 +30,8 @@
     "/content/tcs-corp/jp/ja-jp:/ja-jp/",
     "/content/tcs-corp/kr/ko-kr:/ko-kr/",
     "/content/tcs-corp/language-master/en:/language-master/en/",
+    "/content/tcs-corp/language-masters/en:/language-masters/en/",
+    "/content/tcs-corp/design-block-master/en:/design-block-master/en/",
     "/content/tcs-corp/us/en/taxonomy:/en/taxonomy.json",
     "/content/tcs-corp/de/de-de/taxonomy:/de-de/taxonomy.json",
     "/content/tcs-corp/fr/fr-fr/taxonomy:/fr-fr/taxonomy.json",
@@ -41,7 +45,9 @@
     "/content/tcs-corp/cn/zh-cn/taxonomy:/zh-cn/taxonomy.json",
     "/content/tcs-corp/jp/ja-jp/taxonomy:/ja-jp/taxonomy.json",
     "/content/tcs-corp/kr/ko-kr/taxonomy:/ko-kr/taxonomy.json",
-    "/content/tcs-corp/language-master/en/taxonomy:/language-master/en/taxonomy.json"
+    "/content/tcs-corp/language-master/en/taxonomy:/language-master/en/taxonomy.json",
+    "/content/tcs-corp/language-masters/en/taxonomy:/language-masters/en/taxonomy.json",
+    "/content/tcs-corp/design-block-master/en/taxonomy:/design-block-master/en/taxonomy.json"
   ],
   "includes": [
     "/content/tcs-corp/us/en",
@@ -58,7 +64,9 @@
     "/content/tcs-corp/jp/ja-jp",
     "/content/tcs-corp/kr/ko-kr",
     "/content/dam/tcs-corp/",
-    "/content/tcs-corp/language-master/en"
+    "/content/tcs-corp/language-master/en",
+    "/content/tcs-corp/language-masters/en",
+    "/content/tcs-corp/design-block-master/en"
   ],
   "excludes": [
     "/content/tcs-corp/us/en/block-library",

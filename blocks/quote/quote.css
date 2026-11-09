@@ -1,8 +1,7 @@
 /* Quote (TCS.com DS Figma "Text & Image Overlap", 2590-300067) */
 .quote {
   --quote-bg: var(--color-bg-default);
-  --quote-mark-width: 1.9167rem;
-  --quote-mark-height: 3.8333rem;
+  --quote-mark-size: 5rem;
   --quote-mark-column: 2.5rem;
 
   background-color: var(--quote-bg);
@@ -32,6 +31,7 @@
 .quote .quote-title {
   margin: 0;
   color: var(--color-text-brand);
+  font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-medium);
   line-height: 1.2;
   letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
@@ -83,39 +83,51 @@
   margin: 0 var(--space-400) calc(-1 * var(--space-1200));
 }
 
-/* opening and closing quote marks (Figma: brand blue SVG icons, closing mark at the bottom);
-   the icons sit in the middle of their box, the margins move them to the card's text */
+/* opening and closing quote marks (Figma: 120px brand blue, closing mark at the bottom) */
+.quote .quote-card::before,
+.quote .quote-card::after {
+  color: var(--color-text-brand);
+  font-size: var(--quote-mark-size);
+  line-height: 0.77;
+  letter-spacing: calc(-0.02 * var(--quote-mark-size));
+}
+
 .quote .quote-card::before {
   content: '';
-  width: var(--quote-mark-width);
-  height: var(--quote-mark-height);
+  width: 2.875rem;
+  height: 5.75rem;
   background: url('/icons/quote-open.svg') no-repeat center;
   background-size: contain;
+
+  /* transform: translateY(-30px); */
   align-self: start;
   margin-top: -2.125rem;
+
 }
 
 .quote .quote-card::after {
   content: '';
-  width: var(--quote-mark-width);
-  height: var(--quote-mark-height);
+  width: 2.875rem;
+  height: 5.75rem;
   background: url('/icons/quote-close.svg') no-repeat center;
   background-size: contain;
   align-self: end;
-  margin-bottom: 2.1875rem;
+  margin-bottom: 1.5rem;
+  margin-left: -0.9375rem;
 }
 
 .quote .quote-card-text {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-1000);
+  gap: var(--space-600);
   min-width: 0;
 }
 
 .quote .quote-text {
   margin: 0;
   color: var(--color-text-default);
+  font-size: var(--heading-font-size-l);
   line-height: 1.39;
   letter-spacing: calc(-0.02 * var(--heading-font-size-l));
 }
@@ -127,18 +139,102 @@
   letter-spacing: calc(-0.015 * var(--heading-font-size-m));
 }
 
-.quote :is(.quote-text, .quote-author) > * {
+.quote :is(.quote-text, .quote-author)>* {
   margin: 0;
 }
 
-.quote :is(.quote-text, .quote-author) > * + * {
+.quote :is(.quote-text, .quote-author)>*+* {
   margin-top: 0;
 }
 
-@media (width >= 900px) {
+@media (width >=768px) and (width < 1024px) {
+  .quote .quote-body {
+    max-width: 45rem;
+    margin-inline: auto;
+  }
+
+
+  .quote .quote-media {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .quote .quote-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    margin-left: 0;
+  }
+
+
+  .quote .quote-card {
+    width: calc(100% - 4rem);
+    max-width: calc(100% - 4rem);
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .quote.quote-has-media .quote-card {
+    margin-top: -7.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (width >=1024px) and (width < 1200px) {
   .quote {
-    --quote-mark-width: 2.875rem;
-    --quote-mark-height: 5.75rem;
+    padding: var(--space-800) var(--space-1000) var(--space-800) var(--space-1000);
+  }
+
+  .quote .quote-body {
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+
+  .quote .quote-media {
+    width: 43.875rem;
+    height: 27.5rem;
+    margin-left: 2.5rem;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .quote .quote-media img {
+    width: 43.75rem;
+    height: 27.5rem;
+    object-fit: contain;
+    margin-left: -3.75rem;
+    margin-top: 0;
+  }
+
+
+  .quote .quote-card {
+    box-sizing: border-box;
+    width: 61rem;
+    min-width: 61rem;
+    max-width: 61rem;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .quote .quote-card-text {
+    gap: 0.75rem;
+  }
+
+
+  .quote.quote-has-media .quote-card {
+    margin: -11.25rem auto 0;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (width >=1200px) {
+  .quote {
+    --quote-mark-size: 7.5rem;
 
     padding: var(--space-3000) var(--space-2000);
   }

@@ -5,7 +5,7 @@ This file describes the analytics foundation that is implemented in the reposito
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers, analytics engineers, QA, AMS / operations, AI agents |
-| Source of truth | [`decorators/data-layer-decorator.js`](../../../decorators/data-layer-decorator.js), [`utils/analytics.js`](../../../utils/analytics.js), [`utils/privacy.js`](../../../utils/privacy.js), [`scripts/scripts.js`](../../../scripts/scripts.js), [`decorators/README.md`](../../../decorators/README.md) (Data layer), [`AGENTS.md`](../../../AGENTS.md) (Data layer), handover Part 11 — Analytics & Data Layer ([`TCS-CORP-HANDOVER.md`](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [`decorators/data-layer-decorator.js`](../../../decorators/data-layer-decorator.js), [`utils/analytics.js`](../../../utils/analytics.js), [`utils/privacy.js`](../../../utils/privacy.js), [`scripts/scripts.js`](../../../scripts/scripts.js), [`decorators/README.md`](../../../decorators/README.md) (Data layer), [`AGENTS.md`](../../../AGENTS.md) (Data layer), handover Part 11 — Analytics & Data Layer ([`TCS-CORP-HANDOVER.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current (data layer); Requires validation (Adobe Tags, Web SDK, Analytics, CJA, consent: blocked, measurement plan) |
 
@@ -219,7 +219,7 @@ RUM (`sampleRUM` in [`scripts/aem.js`](../../../scripts/aem.js), never modified)
 | Automatic media actions aren't the visitor's | `data-cmp-auto` (Video block off-screen pause / resume); background loops ignored |
 | No empty searches, no invalid submits | `redactSearchTerm` returns `''`; `checkValidity()` for `novalidate` forms |
 
-The audit harness confirms it: in the re-audit, 758 of 758 test clicks pushed exactly one `cmp:click`, and no page had duplicate component ids ([`docs/audit/REAUDIT-2026-10-20.md`](../../../docs/audit/REAUDIT-2026-10-20.md)).
+The audit harness confirms it: in the re-audit, 758 of 758 test clicks pushed exactly one `cmp:click`, and no page had duplicate component ids ([`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)).
 
 ## Privacy and data minimisation
 
@@ -270,7 +270,7 @@ adobeDataLayer.filter((e) => e.event).at(-1);            // the last event
 
 | Validation | Status | Source |
 | --- | --- | --- |
-| Audit harness: data layer present, page entry, component count, duplicate component ids, one `cmp:click` per test click (local preview, 188 pages × 5 widths) | Passed (re-audit, 20 October 2026) | [`docs/audit/tools/harness.mjs`](../../../docs/audit/tools/harness.mjs), [`docs/audit/REAUDIT-2026-10-20.md`](../../../docs/audit/REAUDIT-2026-10-20.md) |
+| Audit harness: data layer present, page entry, component count, duplicate component ids, one `cmp:click` per test click (local preview, 188 pages × 5 widths) | Passed (re-audit, 20 October 2026) | [`docs/audit/tools/harness.mjs`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/tools/harness.mjs), [`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md) |
 | Search redaction unit tests (`npm test`) | Passed (5 of 5, run locally on 21 October 2026; CI runs lint only, not `npm test`) | [`test/privacy/privacy.test.mjs`](../../../test/privacy/privacy.test.mjs) |
 | Unit tests of the data layer decorator | Not applicable (none exist) | — |
 | Adobe Tags, Web SDK, Analytics / CJA, duplicate-event checks in the AEP Debugger | Blocked: Tags property, datastream and measurement plan | Audit section 9 |
@@ -292,6 +292,6 @@ Manual test cases (page entry, 3-second component entries, link / download / exi
 - [Security, privacy and consent](./security-privacy-consent.md)
 - [`decorators/README.md`](../../../decorators/README.md), [`utils/README.md`](../../../utils/README.md)
 - [`AGENTS.md`](../../../AGENTS.md) (Data layer, Three-Phase Page Loading)
-- Handover Part 11 — Analytics & Data Layer, Part 13 — Global Troubleshooting Guide, Part 16 — Handover Findings and Open Items Register ([`TCS-CORP-HANDOVER.md`](../TCS-CORP-HANDOVER.md))
-- [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (sections 6, 7 and 9), [`docs/audit/REAUDIT-2026-10-20.md`](../../../docs/audit/REAUDIT-2026-10-20.md)
+- Handover Part 11 — Analytics & Data Layer, Part 13 — Global Troubleshooting Guide, Part 16 — Handover Findings and Open Items Register ([`TCS-CORP-HANDOVER.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md))
+- [`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) (sections 6, 7 and 9), [`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)
 - Block READMEs with data layer sections: [`blocks/README.md`](../../../blocks/README.md)

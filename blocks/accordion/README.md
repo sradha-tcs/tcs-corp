@@ -30,27 +30,27 @@ Screenshots of the handover (6.20 Accordion Block), taken on the preview with sa
 
 **Desktop rendering** — The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1px dividers, chevrons on the right; the second item open with its chevron turned up and its answer about the online assessment and interviews below.
 
-![Desktop rendering: The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1p](../../docs/handover/screenshots/accordion-desktop-view.jpg)
+![Desktop rendering: The Accordion at 1440 px: four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?' between 1p](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-desktop-view.jpg)
 
 **Tablet rendering** — The Accordion at 768 px with the same layout as on desktop but smaller type (summary 1.125rem, body 1rem): the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at the same time?' and 'Do you offer internships and graduate programmes?'; the second, two-line question open with its answer below.
 
-![Tablet rendering: The Accordion at 768 px with the same layout as on desktop but smaller type summary 1.125rem, body 1rem: the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at ](../../docs/handover/screenshots/accordion-tablet-view.jpg)
+![Tablet rendering: The Accordion at 768 px with the same layout as on desktop but smaller type summary 1.125rem, body 1rem: the four items 'How do I apply for a role at TCS?', the selection-process question, 'Can I apply for more than one position at ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-tablet-view.jpg)
 
 **Mobile rendering** — The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets (create a candidate profile, upload your CV, track the status of your application); the three closed summaries below wrap at 1.125rem with chevrons on the right.
 
-![Mobile rendering: The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets create a candidate profile, upload your CV, track the status of your application; the three closed summaries ](../../docs/handover/screenshots/accordion-mobile-view.jpg)
+![Mobile rendering: The Accordion at 375 px: the first item 'How do I apply for a role at TCS?' open with its 1rem paragraph and three bullets create a candidate profile, upload your CV, track the status of your application; the three closed summaries ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-mobile-view.jpg)
 
 **Default Accordion variation** — The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under the pointer, in brand blue.
 
-![Default Accordion variation: The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under t](../../docs/handover/screenshots/accordion-default.jpg)
+![Default Accordion variation: The Accordion at 1440 px with five closed items between 1px dividers, each with a downward chevron: the four careers questions and 'How do you support employees who relocate for an assignment?'; the third summary, under t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-default.jpg)
 
 **Universal Editor canvas** — The Accordion at 1440 px in Universal Editor Edit mode (annotated preview, not a Universal Editor screenshot) with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and D on its open text with the bulleted list. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/accordion-authoring-view.jpg)
 
-![Universal Editor canvas: The Accordion at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and ](../../docs/handover/screenshots/accordion-authoring-view.jpg)
+![Universal Editor canvas: The Accordion at 1440 px in Universal Editor Edit mode annotated preview, not a Universal Editor screenshot with two items: A on the block, B on the second item, C on the first summary 'How do I apply for a role at TCS?' and ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-authoring-view.jpg)
 
 **Properties panel** — The Universal Editor properties panel for the Accordion block (Additional tab with Anchor ID, Hide block and the eight spacing selects) and, side by side, for an Accordion Item (Summary and Text). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/accordion-properties-panel.jpg)
 
-![Properties panel: The Universal Editor properties panel for the Accordion block Additional tab with Anchor ID, Hide block and the eight spacing selects and, side by side, for an Accordion Item Summary and Text. Dialog reference generated from the com](../../docs/handover/screenshots/accordion-properties-panel.jpg)
+![Properties panel: The Universal Editor properties panel for the Accordion block Additional tab with Anchor ID, Hide block and the eight spacing selects and, side by side, for an Accordion Item Summary and Text. Dialog reference generated from the com](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/accordion/screenshots/handover/accordion-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -615,14 +615,14 @@ Evidence to collect (no secrets): page URL, browser and viewport, a screenshot, 
 - [Blocks documentation](../README.md)
 - [Columns Container README](../columns-container/README.md) (a parent)
 - Model file: [`_accordion.json`](_accordion.json)
-- Animation: [docs/animation/README.md](../../docs/animation/README.md); shared modules: [decorators/README.md](../../decorators/README.md), [utils/README.md](../../utils/README.md)
+- Animation: [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md); shared modules: [decorators/README.md](../../decorators/README.md), [utils/README.md](../../utils/README.md)
 - Tests: [test/motion/motion.test.mjs](../../test/motion/motion.test.mjs) (Additional tab animation fields of every block model)
-- Handover: [handover 6.20 Accordion Block](../../docs/handover/TCS-CORP-HANDOVER.md)
-- Block audit: [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)
+- Handover: [handover 6.20 Accordion Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
+- Block audit: [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 8 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 8 instance(s) in total:
 - Block library: `block-library/accordion/accordion`, `block-library/animation/repeated-items`, `block-library/columns-container/columns-of-blocks`, `block-library/foundations/section-colours-with-blocks`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

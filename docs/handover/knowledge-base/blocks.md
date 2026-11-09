@@ -5,7 +5,7 @@ This guide is the governance view of the blocks of the TCS Corporate Website (AE
 | Attribute | Value |
 | --- | --- |
 | Audience | Developers, architects, content leads, QA and AI agents changing or reviewing blocks |
-| Source of truth | [blocks/README.md](../../../blocks/README.md), `blocks/<block>/README.md`, [tools/docs/blocks.json](../../../tools/docs/blocks.json) (status, type, purpose, relationships), [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) (library usage), [component-definition.json](../../../component-definition.json), [component-filters.json](../../../component-filters.json), [AGENTS.md](../../../AGENTS.md), [docs/audit/](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) |
+| Source of truth | [blocks/README.md](../../../blocks/README.md), `blocks/<block>/README.md`, [tools/docs/blocks.json](../../../tools/docs/blocks.json) (status, type, purpose, relationships), [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) (library usage), [component-definition.json](../../../component-definition.json), [component-filters.json](../../../component-filters.json), [AGENTS.md](../../../AGENTS.md), [docs/audit/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current |
 
@@ -17,7 +17,7 @@ This guide is the governance view of the blocks of the TCS Corporate Website (AE
 | Components in the editor | 62: Default Content 4 (Text, Title, Image, Button (basic)), Sections 1, Blocks 57 (blocks, items and section containers) | `component-definition.json` |
 | Models / filters | 63 models, 26 filters | `component-models.json`, `component-filters.json` |
 | Statuses | 28 Active, 1 Compatibility-only (Columns), 1 Experimental (Interactive Dashboard) | `tools/docs/blocks.json` |
-| Block library | Package 1.0.13 of the language master (`/content/tcs-corp/language-master/en`): 157 block library pages and 11 curated design pages contain blocks | `tools/docs/library-snapshot.json` |
+| Block library | Package 1.0.13 of the language master (`/content/tcs-corp/language-masters/en`): 157 block library pages and 11 curated design pages contain blocks | `tools/docs/library-snapshot.json` |
 | Checks | `npm test` 311 tests passed and `npm run lint` passed on 21 October 2026 at commit 2d06316 | run for this guide |
 
 ## Block Types and Categories
@@ -135,7 +135,7 @@ How the relationships work:
 | Unused candidate | No usage found | None recorded. Columns has 0 instances in the library package (its 37 library instances were migrated), but production usage is not verified |
 | Requires validation | Behaviour not verifiable from the repository | Production usage of compatibility-only components and legacy multifields (blocked: AEM author access or a content export) |
 
-The deprecation precedents (built-in Columns and Button, PR #119; audit section 4) define how a block is retired: remove it from every filter, keep its definition and model, keep the code reading its content, migrate the block library content (`.home-work/bl/bl-migrate.mjs`, not in git), record the replacement and the migration in the block README and `tools/docs/blocks.json` (`replacement`, `deprecation`), and leave production content until its usage is known ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 4 and 11).
+The deprecation precedents (built-in Columns and Button, PR #119; audit section 4) define how a block is retired: remove it from every filter, keep its definition and model, keep the code reading its content, migrate the block library content (`.home-work/bl/bl-migrate.mjs`, not in git), record the replacement and the migration in the block README and `tools/docs/blocks.json` (`replacement`, `deprecation`), and leave production content until its usage is known ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 4 and 11).
 
 ## Variation Strategy
 
@@ -150,7 +150,7 @@ A visual or behavioural variant is expressed inside the existing block, in this 
 | Background colour | Shared labels, classes and tokens | Teaser BG Color, Columns Container BG Color (`containerBgColor`), Section Style (`bg-grey`, `bg-dark`, `bg-dark-green`) | Sets only the colour; use the theme tokens for text |
 | Item model | Child items with their own fields | Card style and Card colour per Card / List Item; Teaser Link and Stat | Repeating content is items, never a new block per variant |
 
-Duplicate options were removed in the audit in favour of one canonical control: Hero and Table List Motion Type became the Additional tab animations (`addLegacyMotion` in `utils/motion.js` still maps old values), List / Cards Component ID became the Anchor ID, Separator Width "Auto" and Variant "Custom" were dropped, Quote / Testimonial Style (one option, no effect) and the Teaser Personalization option (no runtime) were removed ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 4). A new option must do something on the delivered page; options AEM never delivers (the built-in Button's View, Icon and Alignment; the built-in Columns' Additional tab) are not offered.
+Duplicate options were removed in the audit in favour of one canonical control: Hero and Table List Motion Type became the Additional tab animations (`addLegacyMotion` in `utils/motion.js` still maps old values), List / Cards Component ID became the Anchor ID, Separator Width "Auto" and Variant "Custom" were dropped, Quote / Testimonial Style (one option, no effect) and the Teaser Personalization option (no runtime) were removed ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 4). A new option must do something on the delivered page; options AEM never delivers (the built-in Button's View, Icon and Alignment; the built-in Columns' Additional tab) are not offered.
 
 ## Dialog Standards
 
@@ -178,7 +178,7 @@ The full module inventory and the rules for shared code are in [decorators-and-u
 
 ## Extend an Existing Block or Create a New One
 
-The audits assessed every pair of similar blocks and retained both only where the authored structure, the data source or the design component differs ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 4):
+The audits assessed every pair of similar blocks and retained both only where the authored structure, the data source or the design component differs ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 4):
 
 | Pair | Decision | Reason |
 | --- | --- | --- |
@@ -230,7 +230,7 @@ Extend the existing block when the requirement is a visual variant, a layout per
 
 ## Block Library and Curated Design Pages
 
-The block library and the curated design pages are AEM content of the language master (`/content/tcs-corp/language-master/en/block-library/...` and `.../curated-design-pages/...`), built as a content package from the corrected models; the build workspace (`.home-work/`, with `render-lib.mjs` for the local preview and `bl/bl-migrate.mjs` for migrations) is not in git. Each locale also has a `block-library/` folder, excluded from publishing in `paths.json`; the language master is published at `/language-master/en` while it is under review (temporary, `REVIEW_*` in `utils/site.js`).
+The block library and the curated design pages are AEM content of the language master (`/content/tcs-corp/language-masters/en/block-library/...` and `.../curated-design-pages/...`), built as a content package from the corrected models; the build workspace (`.home-work/`, with `render-lib.mjs` for the local preview and `bl/bl-migrate.mjs` for migrations) is not in git. Each locale also has a `block-library/` folder, excluded from publishing in `paths.json`; the language master is published at `/language-masters/en` while it is under review (temporary, `REVIEW_*` in `utils/site.js`).
 
 Uses:
 
@@ -306,10 +306,10 @@ These counts describe the library package, not production usage; production usag
 - [universal-editor.md](./universal-editor.md): models, definitions, filters, dialog and field conventions
 - [decorators-and-utilities.md](./decorators-and-utilities.md): shared modules and their rules
 - [blocks/README.md](../../../blocks/README.md): generated inventory, categories, relationships and shared conventions
-- [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../../../docs/blocks/BLOCK-DOCUMENTATION-REPORT.md): documentation inventory and handover-vs-code discrepancies
-- [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) and [docs/audit/REAUDIT-2026-10-20.md](../../../docs/audit/REAUDIT-2026-10-20.md): audits, redundancy assessments, migrations
-- [docs/proposals/README.md](../../../docs/proposals/README.md): the open Cards and Card refactoring proposal (decisions D-1 to D-6 open)
-- [docs/animation/README.md](../../../docs/animation/README.md): animation and skeleton loading
+- [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md): documentation inventory and handover-vs-code discrepancies
+- [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md) and [docs/audit/REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md): audits, redundancy assessments, migrations
+- [docs/proposals/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md): the open Cards and Card refactoring proposal (decisions D-1 to D-6 open)
+- [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md): animation and skeleton loading
 - [AGENTS.md](../../../AGENTS.md): project rules
-- Handover Part 6 — Component Library and Part 15.4 — Content Modeling Standards: [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)
+- Handover Part 6 — Component Library and Part 15.4 — Content Modeling Standards: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 - Other knowledge base files: [architecture.md](./architecture.md), [authoring.md](./authoring.md), [design-system.md](./design-system.md), [accessibility.md](./accessibility.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [testing-and-quality.md](./testing-and-quality.md), [decision-log.md](./decision-log.md)

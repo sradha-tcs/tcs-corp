@@ -41,47 +41,47 @@ Screenshots of the handover (6.24 Gen Carousel Block), taken on the preview with
 
 **Desktop rendering** — At 1200 px: slide 1 of a three-Hero carousel at full content width (navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred), and 2rem below it the pause button, previous arrow, three dots (the first a wide brand pill) and next arrow.
 
-![Desktop rendering: At 1200 px: slide 1 of a three-Hero carousel at full content width navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred, and 2rem below it the pause button,](../../docs/handover/screenshots/gen-carousel-desktop-view.jpg)
+![Desktop rendering: At 1200 px: slide 1 of a three-Hero carousel at full content width navy overlay, eyebrow Enterprise AI, H1 Building on belief, the description and the primary button Explore AI services, centred, and 2rem below it the pause button,](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-desktop-view.jpg)
 
 **Tablet rendering** — At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow, three dots and next arrow.
 
-![Tablet rendering: At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow,](../../docs/handover/screenshots/gen-carousel-tablet-view.jpg)
+![Tablet rendering: At 768 px: slide 1 of a three-Teaser carousel, the photo-4 image above the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, and 1.5rem below it the previous arrow,](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-tablet-view.jpg)
 
 **Mobile rendering** — At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout (35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred), and below it the previous arrow, three dots and next arrow on one line.
 
-![Mobile rendering: At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout 35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred, and below it the previous arrow, ](../../docs/handover/screenshots/gen-carousel-mobile-view.jpg)
+![Mobile rendering: At 375 px: slide 1 of a three-Hero carousel in the Hero mobile layout 35rem high, navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and the button Explore AI services, centred, and below it the previous arrow, ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-mobile-view.jpg)
 
 **Manual navigation** — At 1440 px: slide 1 of the three-Hero carousel (navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services) and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button.
 
-![Manual navigation: At 1440 px: slide 1 of the three-Hero carousel navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button.](../../docs/handover/screenshots/gen-carousel-manual.jpg)
+![Manual navigation: At 1440 px: slide 1 of the three-Hero carousel navy overlay, Enterprise AI, H1 Building on belief, description, Explore AI services and centred 2rem below it the previous arrow, three dots and next arrow, with no pause button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-manual.jpg)
 
 **Auto navigation** — At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and below it only the pause button and three dots, without previous or next arrows.
 
-![Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and below it only the pause button and three dots, without previous or next arrows.](../../docs/handover/screenshots/gen-carousel-auto.jpg)
+![Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and below it only the pause button and three dots, without previous or next arrows.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-auto.jpg)
 
 **Manual and Auto navigation** — At 1440 px: slide 1 of the three-Hero carousel (Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay) and centred below it the pause button, previous arrow, three dots and next arrow.
 
-![Manual and Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and centred below it the pause button, previous arrow, three dots and next arrow.](../../docs/handover/screenshots/gen-carousel-manual-auto.jpg)
+![Manual and Auto navigation: At 1440 px: slide 1 of the three-Hero carousel Enterprise AI, H1 Building on belief, Explore AI services over the navy overlay and centred below it the pause button, previous arrow, three dots and next arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-manual-auto.jpg)
 
 **Single slide** — At 1440 px: a Gen Carousel with a single Hero (navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred) and no controls below it.
 
-![Single slide: At 1440 px: a Gen Carousel with a single Hero navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred and no controls below it.](../../docs/handover/screenshots/gen-carousel-single-slide.jpg)
+![Single slide: At 1440 px: a Gen Carousel with a single Hero navy overlay, eyebrow Enterprise AI, H1 Building on belief, description and Explore AI services, centred and no controls below it.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-single-slide.jpg)
 
 **Hero slides** — At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three dots and next.
 
-![Hero slides: At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three ](../../docs/handover/screenshots/gen-carousel-hero-slides.jpg)
+![Hero slides: At 1440 px: slide 1 of three Hero slides, a full-width photograph under the navy overlay with the eyebrow Enterprise AI, the H1 Building on belief, the description and the primary button Explore AI services, and below it previous, three ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-hero-slides.jpg)
 
 **Teaser slides** — At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous, three dots and next below.
 
-![Teaser slides: At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous,](../../docs/handover/screenshots/gen-carousel-teaser-slides.jpg)
+![Teaser slides: At 1440 px: slide 1 of three Teaser slides, the rounded photo-4 image on the left and on the right the eyebrow Case study, the H2 A digital core for a European bank, the description and the primary button Read the story, with previous,](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-teaser-slides.jpg)
 
 **Universal Editor canvas** — Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A (carousel), B (current slide), C (next button), D (dots) and E (pause button). (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/gen-carousel-authoring-view.jpg)
 
-![Universal Editor canvas: Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A carousel, B current slide, C next button, D dots an](../../docs/handover/screenshots/gen-carousel-authoring-view.jpg)
+![Universal Editor canvas: Universal Editor edit mode at 1440 px: a Gen Carousel of Hero, Teaser, Hero showing slide 2, the Teaser A digital core for a European bank, because it is selected; letters A carousel, B current slide, C next button, D dots an](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-authoring-view.jpg)
 
 **Properties panel** — The Gen Carousel properties panel with the Content tab (Style, Navigation, Autoplay interval) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carousel-properties-panel.jpg)
 
-![Properties panel: The Gen Carousel properties panel with the Content tab Style, Navigation, Autoplay interval and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carouse](../../docs/handover/screenshots/gen-carousel-properties-panel.jpg)
+![Properties panel: The Gen Carousel properties panel with the Content tab Style, Navigation, Autoplay interval and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/gen-carouse](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/gen-carousel/screenshots/handover/gen-carousel-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -695,11 +695,11 @@ Evidence to collect (no secrets): URL, viewport, the section's data attributes, 
 - Model: [`_gen-carousel.json`](./_gen-carousel.json)
 - Section builder: [`scripts/scripts.js`](../../scripts/scripts.js)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)
-- [Handover 6.24 Gen Carousel Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.24 Gen Carousel Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 5 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 5 instance(s) in total:
 - Block library: `block-library/gen-carousel/auto`, `block-library/gen-carousel/hero-slides`, `block-library/gen-carousel/manual-and-auto`, `block-library/gen-carousel/single-slide`, `block-library/gen-carousel/teaser-slides`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

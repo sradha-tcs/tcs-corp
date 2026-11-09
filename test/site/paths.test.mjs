@@ -46,8 +46,19 @@ describe('paths.json', () => {
     });
   });
 
-  it('maps the language master Home page to /language-master/en/', () => {
+  it('maps the language master Home page to /language-masters/en/', () => {
+    assert.ok(paths.mappings.includes('/content/tcs-corp/language-masters/en:/language-masters/en/'));
+    assert.ok(paths.mappings.includes('/content/tcs-corp/language-masters/en/:/language-masters/en/'));
+  });
+  it('maps the design and block master to /design-block-master/en/ (KB-D-068)', () => {
+    assert.ok(paths.mappings.includes('/content/tcs-corp/design-block-master/en:/design-block-master/en/'));
+    assert.ok(paths.mappings.includes('/content/tcs-corp/design-block-master/en/:/design-block-master/en/'));
+    assert.ok(paths.includes.includes('/content/tcs-corp/design-block-master/en'));
+    assert.ok(!paths.excludes.some((e) => e.startsWith('/content/tcs-corp/design-block-master')), 'block library published');
+  });
+  it('keeps the testing root /language-master/en (KB-D-068)', () => {
     assert.ok(paths.mappings.includes('/content/tcs-corp/language-master/en:/language-master/en/'));
     assert.ok(paths.mappings.includes('/content/tcs-corp/language-master/en/:/language-master/en/'));
+    assert.ok(paths.includes.includes('/content/tcs-corp/language-master/en'));
   });
 });

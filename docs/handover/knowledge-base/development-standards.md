@@ -188,11 +188,11 @@ Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Com
 - Never push form values (field names only), raw search terms (`redactSearchTerm`, `utils/privacy.js`) or other personal data.
 - Adobe Tags and the Web SDK are **not configured** (blocked: measurement plan), so nothing leaves the browser; `adobeDataLayer` stays a plain array (no `getState`) until the ACDL library is loaded.
 
-Contract and events: handover Part 11 — Analytics & Data Layer ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) and [decorators/README.md](../../../decorators/README.md#data-layer).
+Contract and events: handover Part 11 — Analytics & Data Layer ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) and [decorators/README.md](../../../decorators/README.md#data-layer).
 
 ## Personalization
 
-None. No Adobe Target, AJO, CJA or audience integration exists in the repository; every block renders its authored default content, which Edge Delivery caches. The only personalization option (a Teaser marker nothing read) was removed in the block audit (D-B-3). Don't add personalization hooks without an approved personalization design (blocked dependency in [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#9-blocked-dependencies-and-what-is-needed)).
+None. No Adobe Target, AJO, CJA or audience integration exists in the repository; every block renders its authored default content, which Edge Delivery caches. The only personalization option (a Teaser marker nothing read) was removed in the block audit (D-B-3). Don't add personalization hooks without an approved personalization design (blocked dependency in [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#9-blocked-dependencies-and-what-is-needed)).
 
 ## Tests
 
@@ -211,9 +211,9 @@ Update in the same change ([AGENTS.md](../../../AGENTS.md#contributing)):
 | A block's behaviour | Its README (written sections, Change History) |
 | A decorator or util export | [decorators/README.md](../../../decorators/README.md) / [utils/README.md](../../../utils/README.md) |
 | A project rule, delivery rule, shared event or convention | [AGENTS.md](../../../AGENTS.md) |
-| Significant changes | The handover [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md): component chapter, Part 16 findings, revision history; then regenerate the PDF ([docs/handover/README.md](../README.md)) |
+| Significant changes | The handover [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md): component chapter, Part 16 findings, revision history; then regenerate the PDF ([docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md)) |
 | Anything this knowledge base summarizes | The knowledge base page (see [Knowledge Base Governance](#knowledge-base-governance)) |
-| A design proposal | [docs/proposals/](../../../docs/proposals/README.md) |
+| A design proposal | [docs/proposals/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md) |
 
 ## Backward Compatibility and Migration
 
@@ -235,7 +235,7 @@ Legacy values the code still reads (verified in code):
 | Index columns `featureCard` / `featuredPriority` | `utils/query-index.js` fallbacks | `featured` / `priority` |
 | Separator Width Auto, Variant Custom; List / Cards Component ID | Still read | The widths, Default, Anchor ID |
 
-Migration rules: keep reading a removed value while AEM still delivers it; migrate the library content (the delivery workspace's migration scripts are not in the repository); record the migration in the block README, the handover and the audit register ([BLOCK-ECOSYSTEM-AUDIT.md](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#11-migration-and-backward-compatibility-deliverables-32-34), [DIALOG-OPTIONS-2026-10-20.md](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md#5-legacy-property-migration-mapping)). Production content migration of the items above is an open content action (re-audit section 5).
+Migration rules: keep reading a removed value while AEM still delivers it; migrate the library content (the delivery workspace's migration scripts are not in the repository); record the migration in the block README, the handover and the audit register ([BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md#11-migration-and-backward-compatibility-deliverables-32-34), [DIALOG-OPTIONS-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md#5-legacy-property-migration-mapping)). Production content migration of the items above is an open content action (re-audit section 5).
 
 ## Code Review
 
@@ -278,7 +278,7 @@ A change is done when all of these hold:
 
 1. **Search for reusable implementations first**: decorators, utils, shared card-list code (`decorators/card-list-decorator.js`, `utils/card-list-config.js`, `models/_card-list.json`), existing blocks and their READMEs.
 2. **Avoid duplicates**: one option per purpose (the audits removed duplicate dialog options such as Teaser Title size vs Title Type, Section Highlight vs Grey); one module per purpose.
-3. **Validate existing content before removal or renaming**: check usage (block library, the audit inventories in [docs/audit/data/](../../../docs/audit/data/block-inventory.csv), the published pages, and production content through an author); production usage needs AEM author access (Blocked for the agent).
+3. **Validate existing content before removal or renaming**: check usage (block library, the audit inventories in [docs/audit/data/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/data/block-inventory.csv), the published pages, and production content through an author); production usage needs AEM author access (Blocked for the agent).
 4. **Preserve backward compatibility or provide migration**: keep reading values AEM still delivers, map legacy values in code, migrate content, and document the mapping.
 5. **Update tests and documentation in the same change**: unit tests, item layouts, generated sections, READMEs, AGENTS.md, the handover and this knowledge base.
 
@@ -297,5 +297,5 @@ Rules for `docs/handover/knowledge-base/`:
 - [testing-and-quality.md](./testing-and-quality.md), [troubleshooting.md](./troubleshooting.md)
 - [universal-editor.md](./universal-editor.md), [decorators-and-utilities.md](./decorators-and-utilities.md), [architecture.md](./architecture.md), [repository-structure.md](./repository-structure.md), [deployment-and-release.md](./deployment-and-release.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [accessibility.md](./accessibility.md), [decision-log.md](./decision-log.md)
 - [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), [decorators/README.md](../../../decorators/README.md), [utils/README.md](../../../utils/README.md), [templates/README.md](../../../templates/README.md)
-- Handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)): Part 12 — Publishing, Deployment & Release; 15.4 Content Modeling Standards; Part 16 — Handover Findings and Open Items Register
-- [docs/audit/README.md](../../../docs/audit/README.md), [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../../../docs/blocks/BLOCK-DOCUMENTATION-REPORT.md), [docs/proposals/README.md](../../../docs/proposals/README.md)
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 12 — Publishing, Deployment & Release; 15.4 Content Modeling Standards; Part 16 — Handover Findings and Open Items Register
+- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md), [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md), [docs/proposals/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md)

@@ -5,7 +5,7 @@ This page states the accessibility target of the TCS Corporate Website, what the
 | Attribute | Value |
 | --- | --- |
 | Audience | Content authors, developers, designers, QA, site administrators, AI agents |
-| Source of truth | Code (`blocks/`, `decorators/a11y-decorator.js`, `decorators/link-decorator.js`, `styles/styles.css`), [AGENTS.md](../../../AGENTS.md) "Accessibility", the block READMEs ("Accessibility" sections), [block ecosystem audit](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [re-audit](../../../docs/audit/REAUDIT-2026-10-20.md), [dialog options report](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md), [handover](../TCS-CORP-HANDOVER.md) 1.7.2 |
+| Source of truth | Code (`blocks/`, `decorators/a11y-decorator.js`, `decorators/link-decorator.js`, `styles/styles.css`), [AGENTS.md](../../../AGENTS.md) "Accessibility", the block READMEs ("Accessibility" sections), [block ecosystem audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [re-audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md), [dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md), [handover](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) 1.7.2 |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation: screen-reader testing is blocked; reflow at 320px, zoom and touch-target sizes are not systematically tested |
 
@@ -63,7 +63,7 @@ How the WCAG 2.2 additions stand in the code:
 - Authored icons are `img` with an empty alt (`decorateIcons` in `scripts/aem.js`); button arrows and list arrows are CSS masks, not content.
 - Lottie animations: `role="img"` with the label, or `aria-hidden` without one; a non-image reference's link text is its Alt (`animationLabel`, `utils/media.js`; AGENTS.md "AEM delivery rules").
 - Background videos are `aria-hidden` and their iframe has `tabindex="-1"`.
-- Text over images (Hero, Teaser Background image / Card) relies on overlays; axe can't judge text over images, so the re-audit tested them in targeted browser checks ([re-audit](../../../docs/audit/REAUDIT-2026-10-20.md), section 2).
+- Text over images (Hero, Teaser Background image / Card) relies on overlays; axe can't judge text over images, so the re-audit tested them in targeted browser checks ([re-audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md), section 2).
 
 ## Links and buttons
 
@@ -122,8 +122,8 @@ Open: the video pause button's brand outline may have low contrast on dark poste
 
 ## Contrast
 
-- **Tokens**: `--color-text-secondary` (`--slate-700`) 6.9:1 on white and `--color-text-brand` / `--color-bg-brand` (`--brand-400`) 5.4:1, replacing `--grey-400` (2.84:1) and `--brand-500` (4.43:1) after the first audit found 3,737 axe colour-contrast nodes; this change still needs design sign-off ([audit](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 1, 2 and 13).
-- **Dark backgrounds**: the theme contract (see [design-system.md](./design-system.md#theme-contract-of-the-dark-backgrounds)) was measured on "Sections: colours with blocks": 43 axe violations before (Grey Teaser in a dark Section 1.09:1, inline links 1.72:1 to the text, List image cards 1.05–1.48:1), 0 after; focus ring brand 300 11.34:1 on Dark and 7.23:1 on Dark Green; Grey islands brand 500 4.07:1; inverted Primary button 19.6:1 ([dialog options report](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md), section 10; handover 2.34, F-105).
+- **Tokens**: `--color-text-secondary` (`--slate-700`) 6.9:1 on white and `--color-text-brand` / `--color-bg-brand` (`--brand-400`) 5.4:1, replacing `--grey-400` (2.84:1) and `--brand-500` (4.43:1) after the first audit found 3,737 axe colour-contrast nodes; this change still needs design sign-off ([audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), sections 1, 2 and 13).
+- **Dark backgrounds**: the theme contract (see [design-system.md](./design-system.md#theme-contract-of-the-dark-backgrounds)) was measured on "Sections: colours with blocks": 43 axe violations before (Grey Teaser in a dark Section 1.09:1, inline links 1.72:1 to the text, List image cards 1.05–1.48:1), 0 after; focus ring brand 300 11.34:1 on Dark and 7.23:1 on Dark Green; Grey islands brand 500 4.07:1; inverted Primary button 19.6:1 ([dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md), section 10; handover 2.34, F-105).
 - **Register entries not yet updated**: handover F-27 (video caption `#999`) and F-28 (secondary text `#999`, white on `#4673db`) still read as open, but the code now uses `--color-text-secondary` for video captions and the darker tokens; non-text contrast of the video pause outline (F-56) and the Teaser's own Dark Primary buttons (F-49) remain open.
 - **Forced colours**: a `forced-colors: active` query exists only in `blocks/separator/separator.css` (the handover's "present in the CSS" covers only that block).
 
@@ -139,11 +139,11 @@ Open: the video pause button's brand outline may have low contrast on dark poste
 
 ## Reduced motion
 
-`utils/environment.js` `prefersReducedMotion()` and `scrollBehavior()` (`auto` instead of `smooth`) are shared. With `prefers-reduced-motion: reduce`: the Additional tab animations aren't prepared (content shows at once), skeletons don't pulse, Lottie stays on its first frame, videos don't autoplay, the Gen Carousel starts paused, smooth scrolling is off. Nothing animates in Universal Editor edit mode. Background animation on the first hero delays the LCP image (F-94; author guidance). See [animation report](../../../docs/animation/README.md) section H.
+`utils/environment.js` `prefersReducedMotion()` and `scrollBehavior()` (`auto` instead of `smooth`) are shared. With `prefers-reduced-motion: reduce`: the Additional tab animations aren't prepared (content shows at once), skeletons don't pulse, Lottie stays on its first frame, videos don't autoplay, the Gen Carousel starts paused, smooth scrolling is off. Nothing animates in Universal Editor edit mode. Background animation on the first hero delays the LCP image (F-94; author guidance). See [animation report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) section H.
 
 ## Personalized content
 
-No personalization runtime exists (no Adobe Target, AJO or edge personalization): every visitor gets the same authored content, so there is no personalized-content accessibility case to test. Blocked until a personalization design exists ([audit](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 8).
+No personalization runtime exists (no Adobe Target, AJO or edge personalization): every visitor gets the same authored content, so there is no personalized-content accessibility case to test. Blocked until a personalization design exists ([audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), section 8).
 
 ## Responsibilities
 
@@ -181,7 +181,7 @@ Recorded evidence:
 | Universal Editor dialogs (authoring accessibility) | Real dialogs | Needs AEM author access | **Blocked** |
 | Reflow at 320px, 200% / 400% zoom, text spacing | — | Not recorded | Not recorded |
 
-Tools: [`docs/audit/tools/harness.mjs`](../../../docs/audit/tools/harness.mjs) (all pages × widths with axe and data-layer checks) and [`compare.mjs`](../../../docs/audit/tools/compare.mjs) (published vs local). The scripts use paths of the delivery workspace (the drafts folder, a local `axe-core` and Playwright install), so they need adapting before re-use: Requires validation.
+Tools: [`docs/audit/tools/harness.mjs`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/tools/harness.mjs) (all pages × widths with axe and data-layer checks) and [`compare.mjs`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/tools/compare.mjs) (published vs local). The scripts use paths of the delivery workspace (the drafts folder, a local `axe-core` and Playwright install), so they need adapting before re-use: Requires validation.
 
 ## Gaps and recommendations
 
@@ -205,5 +205,5 @@ Tools: [`docs/audit/tools/harness.mjs`](../../../docs/audit/tools/harness.mjs) (
 - [AGENTS.md](../../../AGENTS.md#accessibility) "Accessibility" (Testing) and "Accessibility" in [Blocks](../../../AGENTS.md#blocks)
 - [`blocks/README.md`](../../../blocks/README.md) and each block README's "Accessibility" section
 - [`decorators/README.md`](../../../decorators/README.md) (a11y, link, button, skeleton, animation decorators)
-- [Block ecosystem audit](../../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [re-audit](../../../docs/audit/REAUDIT-2026-10-20.md), [dialog options report](../../../docs/audit/DIALOG-OPTIONS-2026-10-20.md), [animation report](../../../docs/animation/README.md)
-- [Handover](../TCS-CORP-HANDOVER.md): Part 1 — 1.7.2 Accessibility, Part 16 — Findings
+- [Block ecosystem audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md), [re-audit](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md), [dialog options report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/DIALOG-OPTIONS-2026-10-20.md), [animation report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- [Handover](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md): Part 1 — 1.7.2 Accessibility, Part 16 — Findings

@@ -60,107 +60,107 @@ Screenshots of the handover (6.28 Video Block), taken on the preview with sample
 
 **Desktop rendering** — The Video block at 1440 px: a Large (900 px) 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partners use technology to help enterprises grow and transform. and the link Read the transcript.
 
-![Desktop rendering: The Video block at 1440 px: a Large 900 px 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partner](../../docs/handover/screenshots/video-desktop-view.jpg)
+![Desktop rendering: The Video block at 1440 px: a Large 900 px 16:9 media area, centred, with 1rem rounded corners, showing the poster photo-1.svg and the round brand-blue Play button in the centre; below it the grey caption How our people and partner](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-desktop-view.jpg)
 
 **Tablet rendering** — Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the round pause button in the bottom-right corner.
 
-![Tablet rendering: Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the ro](../../docs/handover/screenshots/video-tablet-view.jpg)
+![Tablet rendering: Two Video blocks at 768 px: the brand film poster photo-1.svg with the Play button filling the content width, its caption below; then the full-width background video Innovation hub ambience showing its poster photo-4.svg with the ro](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-tablet-view.jpg)
 
 **Mobile rendering** — Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds (poster tall.svg, Size Small) filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Play button and the grey caption.
 
-![Mobile rendering: Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds poster tall.svg, Size Small filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Pl](../../docs/handover/screenshots/video-mobile-view.jpg)
+![Mobile rendering: Two Video blocks at 390 px: a 9:16 vertical video Client story in 60 seconds poster tall.svg, Size Small filling the content width with the Play button, partly under the sticky header; below it the 16:9 brand film poster with the Pl](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-mobile-view.jpg)
 
 **Variation example** — The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg (data centre corridor) and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place after Play, is not captured.
 
-![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg data centre corridor and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place ](../../docs/handover/screenshots/video-play-button-poster.jpg)
+![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area with the poster photo-2.svg data centre corridor and the round brand-blue Play button in the centre; no caption or transcript. The second state, the film playing in place ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-play-button-poster.jpg)
 
 **Variation example** — The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close (x) button at the top right and the native player showing the poster photo-3.svg and its controls; the player is clipped at the dialog's right edge.
 
-![Variation example: The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close x button at the top right and the native player showing the poster photo-3.svg and its controls; the ](../../docs/handover/screenshots/video-popup.jpg)
+![Variation example: The page at 1440 px after pressing Play on a Video with Play in a Pop-up on: the page dimmed behind a white dialog with the Close x button at the top right and the native player showing the poster photo-3.svg and its controls; the ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-popup.jpg)
 
 **Variation example** — The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg (wind turbines) without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not the playing video.
 
-![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg wind turbines without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not th](../../docs/handover/screenshots/video-autoplay-no-controls.jpg)
+![Variation example: The Video block at 1440 px: a Large 16:9 rounded media area showing the poster photo-5.svg wind turbines without a Play button, and the round pause button in the bottom-right corner; in the capture the poster is still shown, not th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-autoplay-no-controls.jpg)
 
 **Variation example** — The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width (1280 px) showing the poster photo-6.svg (Sample image 6) with only the round pause button in the bottom-right corner.
 
-![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width 1280 px showing the poster photo-6.svg Sample image 6 with only the round pause button in the bottom-right corner.](../../docs/handover/screenshots/video-background.jpg)
+![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 area across the section's full content width 1280 px showing the poster photo-6.svg Sample image 6 with only the round pause button in the bottom-right corner.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-background.jpg)
 
 **Variation example** — The Video block at 1440 px in Size Medium (640 px): the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link Read the transcript.
 
-![Variation example: The Video block at 1440 px in Size Medium 640 px: the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link ](../../docs/handover/screenshots/video-caption-transcript.jpg)
+![Variation example: The Video block at 1440 px in Size Medium 640 px: the rounded 16:9 poster photo-3.svg with the Play button, then the grey caption How our people and partners use technology to help enterprises grow and transform. and the blue link ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-caption-transcript.jpg)
 
 **Variation example** — The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide (Size Large), rounded, with the poster photo-1.svg and the centred Play button.
 
-![Variation example: The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide Size Large, rounded, with the poster photo-1.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-16-9.jpg)
+![Variation example: The Video block at 1440 px: the default 16:9 widescreen media area, 900 px wide Size Large, rounded, with the poster photo-1.svg and the centred Play button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-ratio-16-9.jpg)
 
 **Variation example** — The Video block at 1440 px: a 4:3 media area, 900 px wide (Size Large), rounded, with the poster photo-2.svg cropped to fill it and the centred Play button.
 
-![Variation example: The Video block at 1440 px: a 4:3 media area, 900 px wide Size Large, rounded, with the poster photo-2.svg cropped to fill it and the centred Play button.](../../docs/handover/screenshots/video-ratio-4-3.jpg)
+![Variation example: The Video block at 1440 px: a 4:3 media area, 900 px wide Size Large, rounded, with the poster photo-2.svg cropped to fill it and the centred Play button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-ratio-4-3.jpg)
 
 **Variation example** — The Video block at 1440 px: a square 1:1 media area, Size Medium (640 px), centred in the section, rounded, with the poster square-1.svg and the centred Play button.
 
-![Variation example: The Video block at 1440 px: a square 1:1 media area, Size Medium 640 px, centred in the section, rounded, with the poster square-1.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-1-1.jpg)
+![Variation example: The Video block at 1440 px: a square 1:1 media area, Size Medium 640 px, centred in the section, rounded, with the poster square-1.svg and the centred Play button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-ratio-1-1.jpg)
 
 **Variation example** — The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner.
 
-![Variation example: The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner.](../../docs/handover/screenshots/video-ratio-21-9.jpg)
+![Variation example: The Video block at 1440 px: a shallow 21:9 cinema-format background video at Full width across the section's content width, rounded, showing the poster wide.svg with only the pause button in the bottom-right corner.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-ratio-21-9.jpg)
 
 **Variation example** — The Video block at 1440 px: a vertical 9:16 media area, Size Small (420 px), centred in the section, rounded, with the poster tall.svg and the centred Play button.
 
-![Variation example: The Video block at 1440 px: a vertical 9:16 media area, Size Small 420 px, centred in the section, rounded, with the poster tall.svg and the centred Play button.](../../docs/handover/screenshots/video-ratio-9-16.jpg)
+![Variation example: The Video block at 1440 px: a vertical 9:16 media area, Size Small 420 px, centred in the section, rounded, with the poster tall.svg and the centred Play button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-ratio-9-16.jpg)
 
 **Variation example** — The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width (1280 px), showing the poster wide.svg with the centred Play button.
 
-![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width 1280 px, showing the poster wide.svg with the centred Play button.](../../docs/handover/screenshots/video-size-full.jpg)
+![Variation example: The Video block at 1440 px in Size Full width: a rounded 16:9 media area across the section's full content width 1280 px, showing the poster wide.svg with the centred Play button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-size-full.jpg)
 
 **Variation example** — The Video block at 1440 px with the default Size Large (900 px): a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides.
 
-![Variation example: The Video block at 1440 px with the default Size Large 900 px: a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides.](../../docs/handover/screenshots/video-size-large.jpg)
+![Variation example: The Video block at 1440 px with the default Size Large 900 px: a rounded 16:9 poster photo-7.svg with the centred Play button, centred in the section with white space on both sides.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-size-large.jpg)
 
 **Variation example** — The Video block at 1440 px in Size Medium (640 px): a rounded 16:9 poster photo-8.svg (red tones) with the centred Play button, centred in the section.
 
-![Variation example: The Video block at 1440 px in Size Medium 640 px: a rounded 16:9 poster photo-8.svg red tones with the centred Play button, centred in the section.](../../docs/handover/screenshots/video-size-medium.jpg)
+![Variation example: The Video block at 1440 px in Size Medium 640 px: a rounded 16:9 poster photo-8.svg red tones with the centred Play button, centred in the section.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-size-medium.jpg)
 
 **Variation example** — The Video block at 1440 px in Size Small (420 px), Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content.
 
-![Variation example: The Video block at 1440 px in Size Small 420 px, Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content.](../../docs/handover/screenshots/video-size-small.jpg)
+![Variation example: The Video block at 1440 px in Size Small 420 px, Aspect Ratio 9:16 and Alignment Left: a tall rounded vertical poster tall.svg with the Play button at the left edge of the section's content.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-size-small.jpg)
 
 **Variation example** — A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium (640 px) 16:9 Video with the poster photo-2.svg and Play button, centred in the section.
 
-![Variation example: A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium 640 px 16:9 Video with the poster photo-2.svg and Play button, centred in the section.](../../docs/handover/screenshots/video-align-center.jpg)
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and a line of body text, left-aligned, and below them a Size Medium 640 px 16:9 Video with the poster photo-2.svg and Play button, centred in the section.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-align-center.jpg)
 
 **Variation example** — A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text.
 
-![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text.](../../docs/handover/screenshots/video-align-left.jpg)
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-3.svg and Play button aligned with the left edge of the text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-align-left.jpg)
 
 **Variation example** — A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small (420 px) 16:9 Video with the poster photo-5.svg (green) and Play button aligned to the right edge of the section's content.
 
-![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-5.svg green and Play button aligned to the right edge of the section's content.](../../docs/handover/screenshots/video-align-right.jpg)
+![Variation example: A section at 1440 px: the H2 Inside our innovation labs and body text, then a Size Small 420 px 16:9 Video with the poster photo-5.svg green and Play button aligned to the right edge of the section's content.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-align-right.jpg)
 
 **Variation example** — The Video block at 1440 px: a Large 16:9 poster photo-4.svg (purple) with the centred Play button and the default 1rem rounded corners.
 
-![Variation example: The Video block at 1440 px: a Large 16:9 poster photo-4.svg purple with the centred Play button and the default 1rem rounded corners.](../../docs/handover/screenshots/video-rounded.jpg)
+![Variation example: The Video block at 1440 px: a Large 16:9 poster photo-4.svg purple with the centred Play button and the default 1rem rounded corners.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-rounded.jpg)
 
 **Variation example** — The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner.
 
-![Variation example: The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner.](../../docs/handover/screenshots/video-square-corners.jpg)
+![Variation example: The Video block at 1440 px: a full-width 16:9 background video with square corners across the section's content width, showing the poster photo-6.svg and the pause button in the bottom-right corner.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-square-corners.jpg)
 
 **Variation example** — The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video.
 
-![Variation example: The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video.](../../docs/handover/screenshots/video-reduced-motion.jpg)
+![Variation example: The Video block at 1440 px, set to Background video, as seen with the operating system's Reduce motion on: a Large 16:9 rounded poster photo-7.svg with the centred Play button instead of a playing video.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-reduced-motion.jpg)
 
 **Variation example** — A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg (red tones) with the centred Play button, rendered like the current Play button playback.
 
-![Variation example: A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg red tones with the centred Play button, rendered like the current Play button playback.](../../docs/handover/screenshots/video-legacy.jpg)
+![Variation example: A Video block authored with the earlier model at 1440 px: a Large 16:9 rounded poster photo-8.svg red tones with the centred Play button, rendered like the current Play button playback.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-legacy.jpg)
 
 **Universal Editor canvas** — The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button (C), the media area (D), the caption (E) and the Read the transcript link (F), outlined with red dashed boxes; markers A, B and G are not drawn. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/video-authoring-view.jpg)
 
-![Universal Editor canvas: The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button C, the media area D, the caption E and the Read the transcript link F, outlined with red dashed boxes; mark](../../docs/handover/screenshots/video-authoring-view.jpg)
+![Universal Editor canvas: The Video block in Universal Editor edit mode at 1440 px with sample content: the poster photo-1.svg, the Play button C, the media area D, the caption E and the Read the transcript link F, outlined with red dashed boxes; mark](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-authoring-view.jpg)
 
 **Properties panel** — The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg)
 
-![Properties panel: The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg](../../docs/handover/screenshots/video-properties-panel.jpg)
+![Properties panel: The Video properties panel with its tabs Video, Playback, Captions, Display, Privacy and Additional. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/video-properties-panel.jpg](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/video/screenshots/handover/video-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -397,7 +397,7 @@ Stored on a new component (definition template): `playback` = `"click"`, `contro
 | Video | `uri` | aem-content | Yes | — | — | A video file from AEM Assets (MP4, WebM), or a YouTube or Vimeo link | /content/dam/tcs-corp/block-library/videos/sample-video.mp4 |
 | Title | `label` | text | No | — | — | Names the video for screen readers (e.g. "TCS AI lab tour"); not shown on the page | Building on belief: the TCS brand film |
 | Caption | `caption` | richtext | No | — | — | Shown below the video | — |
-| Transcript | `transcript` | aem-content | No | — | — | A page or document with the transcript; shown as a link below the video | /language-master/en/dummy-pages/our-story |
+| Transcript | `transcript` | aem-content | No | — | — | A page or document with the transcript; shown as a link below the video | /design-block-master/en/dummy-pages/our-story |
 | Poster Image | `poster` | reference | No | — | — | Shown before the video plays, with a play button (Click playback). | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
 | Poster Image Alt Text | `posterAlt` | text | No | "" | — | Delivered with `poster` (field collapse). | Engineers collaborating in a modern office |
 | Captions File (WebVTT) | `captions` | aem-content | No | — | — | Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there | — |
@@ -580,7 +580,7 @@ D = The transcript link
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Caption | How our people and partners use technology to help enterprises grow and transform. | Context for every visitor | Grey text below the video |
-| B | Transcript | /language-master/en/dummy-pages/our-story | Text alternative of the film | The link "Read the transcript" below the caption |
+| B | Transcript | /language-masters/en/dummy-pages/our-story | Text alternative of the film | The link "Read the transcript" below the caption |
 
 **Author action:** enter the caption and pick the transcript page. **Expected preview:** caption,
 then the link. **Expected published result:** the link opens the published transcript page.
@@ -785,7 +785,7 @@ transcript.
 | Video | /content/dam/tcs-corp/block-library/videos/sample-video.mp4 | Web-optimised MP4 or WebM |
 | Title | Building on belief: the TCS brand film | Always set it |
 | Caption | How our people and partners use technology to help enterprises grow and transform. | One or two sentences |
-| Transcript | /language-master/en/dummy-pages/our-story | A published page or document |
+| Transcript | /language-masters/en/dummy-pages/our-story | A published page or document |
 | Poster Image | /content/dam/tcs-corp/dummy-pages/images/banking.jpg | Same ratio as the video |
 | Poster Image Alt Text | Engineers collaborating in a modern office | Describe the image |
 | Playback | Play button (on the poster image) | Default |
@@ -934,10 +934,10 @@ blocks/video/
 | [`decorators/media-decorator.js`](../../decorators/media-decorator.js) | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | `video.js`: { createVideoElement, createVimeoFrame, createYoutubeFrame, } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `video.js`: { prefersReducedMotion } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `video.js`: { linkOf } |
-| [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType` | `video.js`: { isVimeo, isYoutube, youtubeId } |
+| [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType`, `deliveryAsset` (reads a Dynamic Media with OpenAPI delivery URL of a separate AEM Assets environment), `deliveryImageUrl` (its URL  | `video.js`: { isVimeo, isYoutube, youtubeId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `video.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `video.js`: { isOn, normalizeKey, optionOf, readProperties, textOf, } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `video.js`: { getLocale } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `video.js`: { getLocale } |
 | [`utils/viewport.js`](../../utils/viewport.js) | `onVisible` (once), `watchVisibility` (on / off screen), `currentBreakpoint` (mobile / tablet / desktop) | `video.js`: { onVisible, watchVisibility } |
 | [`blocks/modal/modal.js`](../../blocks/modal/modal.js) | — | `video.js`: (dynamic import) |
 
@@ -1146,11 +1146,11 @@ player requests, and the block's `window.adobeDataLayer` entries.
 - [Model and definition](_video.json)
 - [Media decorator](../../decorators/media-decorator.js), [media utils](../../utils/media.js)
 - [Vimeo URL tests](../../test/media/vimeo-url.test.mjs)
-- [Handover 6.28 Video Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.28 Video Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 27 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 27 instance(s) in total:
 - Block library: `block-library/video/video`, `block-library/video/video-pop-up`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

@@ -32,6 +32,52 @@ const TITLE_SIZES = ['bigger', 'medium'];
 const MENU_COLUMNS_FROM = 6;
 const MENU_WINDOW_MARGIN = 24;
 
+const L1_ORDER = [
+  'What we do',
+  'Who we are',
+  'Insights',
+  'Careers',
+  'News & Events',
+  'Investors',
+].map((s) => s.toLowerCase());
+
+const L2_ORDER = [
+  'Industries',
+  'Services',
+  'Products & Platforms',
+  'Customers',
+  'Partnerships',
+  'Research & Innovation',
+].map((s) => s.toLowerCase());
+
+function getNodeTitle(title, path) {
+  return (title || path.split('/').pop().replace(/-/g, ' ')).trim();
+}
+
+function sortChildren(children, level) {
+  return children.sort((a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+
+    if (level === 1) {
+      const idxA = L1_ORDER.indexOf(titleA);
+      const idxB = L1_ORDER.indexOf(titleB);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+    } else if (level === 2) {
+      const idxA = L2_ORDER.indexOf(titleA);
+      const idxB = L2_ORDER.indexOf(titleB);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+    }
+
+    // L3+ or unlisted items: ascending alphabetical order
+    return a.title.localeCompare(b.title);
+  });
+}
+
 function readBlock(block) {
   const config = {};
   const buttonRows = [];
@@ -101,20 +147,24 @@ async function loadMenuTree(root, depth) {
   const tree = {
     path: base || '/', title: 'Home', parent: null, children: [], level: 0,
   };
+
   try {
     const data = await getPages();
     const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
     const nodes = new Map([[tree.path, tree]]);
+
+    // Filter valid paths and process parent-first (by level ascending)
     data
       .filter(({ path }) => path.startsWith(`${base}/`) && levelOf(path) >= 1 && levelOf(path) <= depth)
-      .sort((x, y) => levelOf(x.path) - levelOf(y.path) || y.path.localeCompare(x.path))
+      .sort((x, y) => levelOf(x.path) - levelOf(y.path))
       .forEach(({ path, title }) => {
         const parentPath = path.slice(0, path.lastIndexOf('/')) || '/';
         const parent = nodes.get(parentPath);
         if (!parent) return;
+
         const node = {
           path,
-          title: title || path.split('/').pop().replace(/-/g, ' '),
+          title: getNodeTitle(title, path),
           parent,
           children: [],
           level: levelOf(path),
@@ -122,7 +172,17 @@ async function loadMenuTree(root, depth) {
         parent.children.push(node);
         nodes.set(path, node);
       });
+
+    // Recursively sort children at each level
+    const applySorting = (node) => {
+      if (!node.children.length) return;
+      sortChildren(node.children, node.children[0].level);
+      node.children.forEach(applySorting);
+    };
+
+    applySorting(tree);
   } catch { /* empty fallback */ }
+
   return tree;
 }
 
@@ -478,8 +538,8 @@ function buildSearchForm(config, id) {
 
       recognition.addEventListener('end', stopListening);
 
-      recognition.addEventListener('error', (err) => {
-        console.warn('Voice recognition error code:', err.error, err);
+      recognition.addEventListener('error', () => {
+        // console.warn('Voice recognition error code:', err.error, err);
         stopListening();
       });
 
@@ -487,7 +547,7 @@ function buildSearchForm(config, id) {
         recognition.start();
         audio.setAttribute('aria-pressed', 'true');
       } catch (err) {
-        console.warn('Voice recognition failed to start:', err);
+        // console.warn('Voice recognition failed to start:', err);
         stopListening();
       }
     });
@@ -822,7 +882,7 @@ function buildDock(config, id, block) {
   });
 
   skeletonWhile(nav, loaded, navSkeleton);
-  loaded.catch((e) => console.error('conversation canvas navigation', e));
+  loaded.catch(() => {});
 
   docks.set(block, {
     setSuggestions(suggestions) {

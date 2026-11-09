@@ -53,3 +53,15 @@
   position: relative;
   transform: scale(1.4);
 }
+
+@media (width < 600px) {
+  .embed-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (width >= 600px) and (width < 1200px) {
+  .embed-container {
+    padding-inline: 2.5rem;
+  }
+}

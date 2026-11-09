@@ -30,123 +30,123 @@ Screenshots of the handover (6.17 Filter List Block), taken on the preview with 
 
 **Desktop rendering** — The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao's lockup; four masonry columns of six Mixed cards including the Quantum readiness report card and the dark Cloud migration card; a State of AI 2026 spotlight and Load more.
 
-![Desktop rendering: The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao](../../docs/handover/screenshots/filter-list-desktop-view.jpg)
+![Desktop rendering: The Filter List at 1440 px: the title Explore insights & opinions, the description, the Filters label with All, Banking, Retail, Artificial intelligence and Cloud and the round filter button; The agentic bank as hero with Anita Rao](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-desktop-view.jpg)
 
 **Tablet rendering** — The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity) side by side, The agentic bank hero and a two-column card grid.
 
-![Tablet rendering: The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry Banking, Energy, Insurance, Manufacturing, Retail and Topi](../../docs/handover/screenshots/filter-list-tablet-view.jpg)
+![Tablet rendering: The same Filter List at 768 px only: the Filters label with the filter button at the right, the five pills on a full row below, the open Advanced filters panel with Industry Banking, Energy, Insurance, Manufacturing, Retail and Topi](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-tablet-view.jpg)
 
 **Mobile rendering** — The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards (The agentic bank and State of AI 2026 are spotlights, so the cards start with Cloud at scale), The agentic bank featured spotlight and the centred Load more button.
 
-![Mobile rendering: The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards The agentic bank and State of AI 2026 are spotlights, so the cards sta](../../docs/handover/screenshots/filter-list-mobile-view.jpg)
+![Mobile rendering: The Filter List at 375 px: title, description, the Filters label with the filter button at the right and the five pills wrapping below, one column of three cards The agentic bank and State of AI 2026 are spotlights, so the cards sta](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-mobile-view.jpg)
 
 **Masonry layout** — Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a full-width spotlight for The agentic bank below all columns; no Load more.
 
-![Masonry layout: Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a fu](../../docs/handover/screenshots/filter-list-layout-masonry.jpg)
+![Masonry layout: Latest insights at 1440 px in the Masonry layout: four columns of eight Mixed cards of different heights packed without row gaps, newest first from Cloud at scale, with State of AI 2026 and Quantum readiness as report panels, and a fu](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-layout-masonry.jpg)
 
 **Grid layout** — Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards (image, tag line, title, three-line description, meta line), from The agentic bank to The future of work, with space below shorter cards, and a Load more button for the ninth page.
 
-![Grid layout: Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards image, tag line, title, three-line description, meta line, from The agentic bank to The future of work, with space below shorter cards, and a Load more](../../docs/handover/screenshots/filter-list-layout-grid.jpg)
+![Grid layout: Latest insights at 1440 px in the Grid layout: two aligned rows of four Default cards image, tag line, title, three-line description, meta line, from The agentic bank to The future of work, with space below shorter cards, and a Load more](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-layout-grid.jpg)
 
 **List layout** — Perspectives and case studies at 1440 px in the List layout: four cards one per row (The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail), each with the 4:3 image in the left third and the tags, title and meta line in the right two thirds, a divider below each, then Load more.
 
-![List layout: Perspectives and case studies at 1440 px in the List layout: four cards one per row The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail, each with the 4:3 image in the left third and the tags, title and m](../../docs/handover/screenshots/filter-list-layout-list.jpg)
+![List layout: Perspectives and case studies at 1440 px in the List layout: four cards one per row The agentic bank, Cloud at scale, Supply chain resilience, Personalisation in retail, each with the 4:3 image in the left third and the tags, title and m](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-layout-list.jpg)
 
 **Default card style** — Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail banking. and the meta line Article and 04 Sep 26.
 
-![Default card style: Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail ban](../../docs/handover/screenshots/filter-list-card-default.jpg)
+![Default card style: Close-up of the first Default card at 1440 px: the 4:3 rounded image, the uppercase tag line Banking, Article and 8m separated by bars, the title The agentic bank, the description How autonomous operations are reshaping retail ban](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-default.jpg)
 
 **Compact card style** — All insights at 1440 px with Card style Compact: two rows of four outlined text cards (tag line with reading time, medium title link, eyebrow and date), no images and no descriptions, from The agentic bank to The future of work, and a Load more button.
 
-![Compact card style: All insights at 1440 px with Card style Compact: two rows of four outlined text cards tag line with reading time, medium title link, eyebrow and date, no images and no descriptions, from The agentic bank to The future of work, and](../../docs/handover/screenshots/filter-list-card-compact.jpg)
+![Compact card style: All insights at 1440 px with Card style Compact: two rows of four outlined text cards tag line with reading time, medium title link, eyebrow and date, no images and no descriptions, from The agentic bank to The future of work, and](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-compact.jpg)
 
 **Featured card style** — Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, then Load more.
 
-![Featured card style: Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, th](../../docs/handover/screenshots/filter-list-card-featured.jpg)
+![Featured card style: Flagship content at 1440 px with Card style Featured: two rows of three large cards from The agentic bank to The energy transition, each with image, tag line, semibold title, description, meta line and a Read more text button, th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-featured.jpg)
 
 **Mixed card style** — Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark blue panel with Explore; no spotlight and no Load more.
 
-![Mixed card style: Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark](../../docs/handover/screenshots/filter-list-card-mixed.jpg)
+![Mixed card style: Explore insights & opinions at 1440 px: a four-column masonry wall of eight cards in the authored order, image cards without description, Quantum readiness as a light gradient report panel with Download and Cloud migration as a dark](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-mixed.jpg)
 
 **Report card in the Mixed style** — Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the quantum era. and a secondary Download button.
 
-![Report card in the Mixed style: Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the q](../../docs/handover/screenshots/filter-list-card-report.jpg)
+![Report card in the Mixed style: Close-up of the Quantum readiness report card at 1440 px: a light brand-to-white diagonal gradient, the line REPORT and 22 May 26 separated by a bar, the semibold title, the description Preparing cryptography for the q](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-report.jpg)
 
 **Dark card in the Mixed style** — Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line (the page has no tags), the white semibold title Cloud migration, the light description Move workloads with confidence. and a white Explore text button.
 
-![Dark card in the Mixed style: Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line the page has no tags, the white semibold title Cloud migration, the light description Move workloads with confidence. and a](../../docs/handover/screenshots/filter-list-card-dark.jpg)
+![Dark card in the Mixed style: Close-up of the Cloud migration dark card at 1440 px: a dark brand-blue panel without a tag line the page has no tags, the white semibold title Cloud migration, the light description Move workloads with confidence. and a](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-card-dark.jpg)
 
 **Hero spotlight (Featured rule)** — Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's photo, name and Head of Banking Research.
 
-![Hero spotlight Featured rule: Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's](../../docs/handover/screenshots/filter-list-hero-featured.jpg)
+![Hero spotlight Featured rule: Close-up of the hero spotlight at 1440 px: The agentic bank image under a white gradient, at the left the tag line Banking, Article and 8m, the 3rem title The agentic bank, its description and the lockup with Anita Rao's](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-hero-featured.jpg)
 
 **Hero spotlight (Latest rule)** — Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail (Retail, Artificial intelligence, 5m, Anita Rao) above two standard Mixed cards, The energy transition and Touchless insurance claims; no featured spotlight.
 
-![Hero spotlight Latest rule: Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail Retail, Artificial intelligence, 5m, Anita Rao above two standard Mixed cards, The energy transition and Touchless insuranc](../../docs/handover/screenshots/filter-list-hero-latest.jpg)
+![Hero spotlight Latest rule: Latest from our blog and case studies at 1440 px: the hero spotlight for Personalisation in retail Retail, Artificial intelligence, 5m, Anita Rao above two standard Mixed cards, The energy transition and Touchless insuranc](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-hero-latest.jpg)
 
 **Hero spotlight (Manual rule)** — Close-up of the hero spotlight at 1440 px (the card only, not the dialog): Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup of Sara Lee, Supply Chain Lead, over the page image.
 
-![Hero spotlight Manual rule: Close-up of the hero spotlight at 1440 px the card only, not the dialog: Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup o](../../docs/handover/screenshots/filter-list-hero-manual.jpg)
+![Hero spotlight Manual rule: Close-up of the hero spotlight at 1440 px the card only, not the dialog: Supply chain resilience with the tag line Manufacturing, Article and 7m, its description Building networks that adapt to disruption. and the lockup o](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-hero-manual.jpg)
 
 **Featured spotlight (featured=true)** — The results at 1440 px after one Load more: four cards (Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition), The agentic bank spotlight, three more cards (Quantum readiness as a report panel, The future of work, Touchless insurance claims) and the State of AI 2026 spotlight; Load more is gone.
 
-![Featured spotlight featured=true: The results at 1440 px after one Load more: four cards Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition, The agentic bank spotlight, three more cards Quantum readiness as a re](../../docs/handover/screenshots/filter-list-featured-flag.jpg)
+![Featured spotlight featured=true: The results at 1440 px after one Load more: four cards Cloud at scale, Supply chain resilience, Personalisation in retail, The energy transition, The agentic bank spotlight, three more cards Quantum readiness as a re](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-featured-flag.jpg)
 
 **Featured spotlight (priority<=3)** — Insights at 1440 px: four Mixed cards (Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail), then a full-width spotlight for The agentic bank (priority 1) and the Load more button.
 
-![Featured spotlight priority<=3: Insights at 1440 px: four Mixed cards Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail, then a full-width spotlight for The agentic bank priority 1 and the Load mor](../../docs/handover/screenshots/filter-list-featured-priority.jpg)
+![Featured spotlight priority<=3: Insights at 1440 px: four Mixed cards Cloud at scale, State of AI 2026 as a report panel, Supply chain resilience, Personalisation in retail, then a full-width spotlight for The agentic bank priority 1 and the Load mor](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-featured-priority.jpg)
 
 **Featured spotlight (Manual)** — The results at 1440 px (not the dialog): six cards (The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims) followed by spotlights for The future of work, The energy transition and Cloud at scale in the authored order.
 
-![Featured spotlight Manual: The results at 1440 px not the dialog: six cards The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims followed by sp](../../docs/handover/screenshots/filter-list-featured-manual.jpg)
+![Featured spotlight Manual: The results at 1440 px not the dialog: six cards The agentic bank, State of AI 2026 report panel, Supply chain resilience, Personalisation in retail, Quantum readiness report panel, Touchless insurance claims followed by sp](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-featured-manual.jpg)
 
 **Query Index source settings** — The rendered block at 1440 px (not the Source tab): Articles and reports with one masonry row of four Mixed cards (Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work) followed by spotlights for The agentic bank and State of AI 2026.
 
-![Query Index source settings: The rendered block at 1440 px not the Source tab: Articles and reports with one masonry row of four Mixed cards Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work followed by spotl](../../docs/handover/screenshots/filter-list-source-query-index.jpg)
+![Query Index source settings: The rendered block at 1440 px not the Source tab: Articles and reports with one masonry row of four Mixed cards Cloud at scale, Supply chain resilience, Quantum readiness report panel, The future of work followed by spotl](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-source-query-index.jpg)
 
 **Manual List source settings** — The rendered block at 1440 px (not the Source tab): Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless insurance claims; no spotlight and no Load more.
 
-![Manual List source settings: The rendered block at 1440 px not the Source tab: Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless i](../../docs/handover/screenshots/filter-list-source-manual.jpg)
+![Manual List source settings: The rendered block at 1440 px not the Source tab: Recommended reading with five Mixed image cards in the authored order, The future of work, The energy transition, Cloud at scale, Personalisation in retail and Touchless i](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-source-manual.jpg)
 
 **Single select pills** — Insights at 1440 px after selecting Banking: the pills All (outlined), Banking (filled dark, pressed), Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank.
 
-![Single select pills: Insights at 1440 px after selecting Banking: the pills All outlined, Banking filled dark, pressed, Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank.](../../docs/handover/screenshots/filter-list-pills-single.jpg)
+![Single select pills: Insights at 1440 px after selecting Banking: the pills All outlined, Banking filled dark, pressed, Retail, Insurance and Artificial intelligence, the visible count 1 result and a single card for The agentic bank.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-pills-single.jpg)
 
 **Multi select pills** — Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both.
 
-![Multi select pills: Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both.](../../docs/handover/screenshots/filter-list-pills-multi.jpg)
+![Multi select pills: Insights at 1440 px after selecting Insurance and Artificial intelligence: both pills pressed, All, Banking and Retail outlined, the count 1 result and one card for Touchless insurance claims, the only page tagged with both.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-pills-multi.jpg)
 
 **Advanced filter panel (AND)** — Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry (Banking, Energy, Insurance, Manufacturing, Retail) and Topic (Artificial intelligence, Cloud, Cybersecurity), Retail and Artificial intelligence checked; 1 result, Personalisation in retail.
 
-![Advanced filter panel AND: Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry Banking, Energy, Insurance, Manufacturing, Retail and Topic Artificial intell](../../docs/handover/screenshots/filter-list-advanced-and.jpg)
+![Advanced filter panel AND: Insights at 1440 px: the All pill, the filter button with a 2 badge and the open Advanced filters panel with Clear all and the fieldsets Industry Banking, Energy, Insurance, Manufacturing, Retail and Topic Artificial intell](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-advanced-and.jpg)
 
 **Advanced filter panel (OR)** — Insights at 1440 px: the open Advanced filters panel with Banking and Energy (Industry) and Cloud (Topic) checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition.
 
-![Advanced filter panel OR: Insights at 1440 px: the open Advanced filters panel with Banking and Energy Industry and Cloud Topic checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition.](../../docs/handover/screenshots/filter-list-advanced-or.jpg)
+![Advanced filter panel OR: Insights at 1440 px: the open Advanced filters panel with Banking and Energy Industry and Cloud Topic checked, a 3 badge, the count 3 results and cards for The agentic bank, Cloud at scale and The energy transition.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-advanced-or.jpg)
 
 **Latest First order** — All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank (04 Sep 26), Cloud at scale (21 Aug 26) and State of AI 2026 (30 Jul 26) to Touchless insurance claims (18 Apr 26).
 
-![Latest First order: All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank 04 Sep 26, Cloud at scale 21 Aug 26 and State of AI 2026 30 Jul 26 to Touchless insurance claims 18 Apr 26.](../../docs/handover/screenshots/filter-list-sort-latest.jpg)
+![Latest First order: All insights at 1440 px: nine compact cards in four columns, dates descending from The agentic bank 04 Sep 26, Cloud at scale 21 Aug 26 and State of AI 2026 30 Jul 26 to Touchless insurance claims 18 Apr 26.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-sort-latest.jpg)
 
 **Featured First order** — All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Priority example.
 
-![Featured First order: All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Prior](../../docs/handover/screenshots/filter-list-sort-featured.jpg)
+![Featured First order: All insights at 1440 px: nine compact cards starting with the featured pages The agentic bank and State of AI 2026, then Cloud at scale to Touchless insurance claims newest first; with this sample data the order equals the Prior](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-sort-featured.jpg)
 
 **Priority order** — All insights at 1440 px: nine compact cards starting with The agentic bank (priority 1) and State of AI 2026 (priority 2), then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no priority 3.
 
-![Priority order: All insights at 1440 px: nine compact cards starting with The agentic bank priority 1 and State of AI 2026 priority 2, then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no ](../../docs/handover/screenshots/filter-list-sort-priority.jpg)
+![Priority order: All insights at 1440 px: nine compact cards starting with The agentic bank priority 1 and State of AI 2026 priority 2, then the pages without priority newest first, Cloud at scale to Touchless insurance claims; the sample data has no ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-sort-priority.jpg)
 
 **Alphabetical order** — All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Touchless insurance claims.
 
-![Alphabetical order: All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Tou](../../docs/handover/screenshots/filter-list-sort-alphabetical.jpg)
+![Alphabetical order: All insights at 1440 px: nine compact cards A to Z by title, Cloud at scale, Personalisation in retail, Quantum readiness, State of AI 2026, Supply chain resilience, The agentic bank, The energy transition, The future of work, Tou](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-sort-alphabetical.jpg)
 
 **Universal Editor canvas** — The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result count 0 results and F the grey hint The results show on the published page, from the pages' metadata. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/filter-list-authoring-view.jpg)
 
-![Universal Editor canvas: The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result co](../../docs/handover/screenshots/filter-list-authoring-view.jpg)
+![Universal Editor canvas: The Filter List selected in Universal Editor at 1440 px, annotated: A the title Explore insights & opinions, B the description, C the Filters label, D the pills All, Banking, Artificial intelligence and Cloud, E the result co](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-authoring-view.jpg)
 
 **Properties panel** — The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/filter-list-properties-panel.jpg)
 
-![Properties panel: The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. Dialog reference generated from the component model, not a Univers](../../docs/handover/screenshots/filter-list-properties-panel.jpg)
+![Properties panel: The Universal Editor properties panel of the Filter List with the seven tabs Content, Source, Filters, Advanced, Cards, Mapping and Additional, the Content tab open. Dialog reference generated from the component model, not a Univers](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/filter-list/screenshots/handover/filter-list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -377,7 +377,7 @@ Stored on a new component (definition template): `showResultCount` = `false`, `l
 | Cards per page | `cardsPerPage` | number | No | `9` | — | Cards shown first; Load more shows the next ones. | 6 |
 | Load more count | `loadMoreCount` | number | No | `6` | — | Cards added by each Load more. | 3 |
 | Datasource | `source` | select | No | `query-index` | Query Index (`query-index`), Manual List (`manual`) | — | manual |
-| Root path | `rootPath` | aem-content | No | — | — | Pages below this page, e.g. /en/insights. Empty: the whole site of the language. Shown when `source` is not `manual`. | /language-master/en/dummy-pages/insights |
+| Root path | `rootPath` | aem-content | No | — | — | Pages below this page, e.g. /en/insights. Empty: the whole site of the language. Shown when `source` is not `manual`. | /design-block-master/en/dummy-pages/insights |
 | Pages (authored before Page items) | `pageItems` | container (multiple) | No | — | — | Kept for lists authored before; add items with Add instead. Shown when `source` is `manual`. | — |
 | Pages (authored before Page items) › Page | `page` | aem-content | No | — | — | — | — |
 | Page types | `pageTypes` | multiselect | No | — | Article (`article`), Blog (`blog`), Press release (`press-release`) | Only pages of these page types (page-type metadata). None: every page type. | — |
@@ -544,7 +544,7 @@ D = Sort by
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Datasource | Query Index | Automatic list | Pages from the index |
-| B | Root path | /language-master/en/dummy-pages/insights | Only pages below it | The root page itself isn't listed |
+| B | Root path | /language-masters/en/dummy-pages/insights | Only pages below it | The root page itself isn't listed |
 | C | Content types | Article, Report | Narrow the list | Only pages with those `content-type` values |
 | D | Sort by | Latest First | Newest first | Ordered by `publish-date` |
 
@@ -1114,7 +1114,7 @@ blocks/filter-list/
 | [`decorators/icon-button-decorator.js`](../../decorators/icon-button-decorator.js) | `createIconButton` | `filter-list.js`: { createIconButton } |
 | [`decorators/masonry-decorator.js`](../../decorators/masonry-decorator.js) | `layoutMasonry` (a grid's items of different heights packed in columns, in reading order; native masonry where supported) | `filter-list.js`: { layoutMasonry } |
 | [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `filter-list.js`: { bone, renderWhenLoaded, skeletonElement } |
-| [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media optimized) | `filter-list.js`: { buildImage } |
+| [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media and EDAM delivery images optimized), `buildDeliveryPicture` (responsive picture of a Dynamic Media with OpenAPI delivery image), `decorateDeliveryImages` (standalone delivery im | `filter-list.js`: { buildImage } |
 | [`scripts/aem.js`](../../scripts/aem.js) | Edge Delivery core library (block loading, CSS, metadata, optimized pictures) | `filter-list.js`: { toClassName } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `filter-list.js`: { KEY_VALUE_ITEM, itemRows, withoutTabCells } |
 | [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | `filter-list.js`: { getAuthors } |
@@ -1123,8 +1123,8 @@ blocks/filter-list/
 | [`utils/multifield.js`](../../utils/multifield.js) | `readMultifieldItems` (composite multifield items, authored before item children) | `filter-list.js`: { readMultifieldItems } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `filter-list.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `filter-list.js`: { isOn, readProperties, textOf } |
-| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `filter-list.js`: { columnOf, getPages, listOf } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `filter-list.js`: { pageLink, toPublishedPath } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `filter-list.js`: { columnOf, getPages, listOf } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `filter-list.js`: { pageLink, toPublishedPath } |
 | [`utils/card-list-config.js`](../../utils/card-list-config.js) | `normalizePresentation` (the card list settings of List and Cards, with defaults and validation), `PRESENTATION_PROPERTIES`, `kindOf` and `themeOf` (the card's Card style and Card colour: item, list, page metadata, autom | `filter-list.js`: { contentTypeLabel } |
 | [`utils/tags.js`](../../utils/tags.js) | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | `filter-list.js`: { readTagValues } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `filter-list.js`: { loadTaxonomy, resolveTags } |
@@ -1291,13 +1291,13 @@ Evidence to collect (no secrets): page URL, viewport, a screenshot, the block's 
 - Related blocks: [List](../list/README.md), [Cards](../cards/README.md), [Columns Container](../columns-container/README.md) (a parent)
 - Model file: [`_filter-list.json`](_filter-list.json); index definition: [`helix-query.yaml`](../../helix-query.yaml)
 - Tests: [test/items/item-rows.test.mjs](../../test/items/item-rows.test.mjs) (item cells), [test/list/query-index-tags.test.mjs](../../test/list/query-index-tags.test.mjs) (query index tags), [test/site/index-root.test.mjs](../../test/site/index-root.test.mjs) (`indexRoot`, `pageLink`)
-- Shared modules: [decorators/README.md](../../decorators/README.md), [utils/README.md](../../utils/README.md); animation and skeletons: [docs/animation/README.md](../../docs/animation/README.md)
-- Handover: [handover 6.17 Filter List Block](../../docs/handover/TCS-CORP-HANDOVER.md)
-- Block audit: [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](../../docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)
+- Shared modules: [decorators/README.md](../../decorators/README.md), [utils/README.md](../../utils/README.md); animation and skeletons: [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- Handover: [handover 6.17 Filter List Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
+- Block audit: [docs/audit/BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 32 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 32 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/animation/skeleton-loading`, `block-library/filter-list/content-types`, `block-library/filter-list/filter-list`, `block-library/filter-list/filters`, `block-library/filter-list/insights-listing`, `block-library/filter-list/layouts-and-card-styles`, `block-library/filter-list/rules`
 - Curated design pages: `curated-design-pages/collection`, `curated-design-pages/insights`
 - Other pages: `dummy-pages/explore-insights`

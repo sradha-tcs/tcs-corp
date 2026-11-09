@@ -37,35 +37,35 @@ Screenshots of the handover (6.3 Fragment Block), taken on the preview with samp
 
 **Desktop rendering** — The Consulting page at 1440 px: the H2 Strategy that turns into results and its text, then the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cybersecurity with the links Explore consulting, Explore cloud and Explore cybersecurity, and a black Contact us primary button, the three columns side by side, then the H2 Related insights, its text and an outlined View all insights button.
 
-![Desktop rendering: The Consulting page at 1440 px: the H2 Strategy that turns into results and its text, then the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cy](../../docs/handover/screenshots/fragment-desktop-view.jpg)
+![Desktop rendering: The Consulting page at 1440 px: the H2 Strategy that turns into results and its text, then the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cy](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-desktop-view.jpg)
 
 **Tablet rendering** — The Fragment at 768 px: the grey Highlight section with the H2 Talk to our experts and its text, the columns Consulting, Cloud and Cybersecurity stacked one below the other (Columns go side by side only from 900 px), each with its Explore link, and the black Contact us button.
 
-![Tablet rendering: The Fragment at 768 px: the grey Highlight section with the H2 Talk to our experts and its text, the columns Consulting, Cloud and Cybersecurity stacked one below the other Columns go side by side only from 900 px, each with its Exp](../../docs/handover/screenshots/fragment-tablet-view.jpg)
+![Tablet rendering: The Fragment at 768 px: the grey Highlight section with the H2 Talk to our experts and its text, the columns Consulting, Cloud and Cybersecurity stacked one below the other Columns go side by side only from 900 px, each with its Exp](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-tablet-view.jpg)
 
 **Mobile rendering** — The Fragment at 390 px: the grey Highlight section with the H2 Talk to our experts, the intro text wrapped over four lines, Consulting, Cloud and Cybersecurity stacked with their texts and Explore links, and the black Contact us button last.
 
-![Mobile rendering: The Fragment at 390 px: the grey Highlight section with the H2 Talk to our experts, the intro text wrapped over four lines, Consulting, Cloud and Cybersecurity stacked with their texts and Explore links, and the black Contact us but](../../docs/handover/screenshots/fragment-mobile-view.jpg)
+![Mobile rendering: The Fragment at 390 px: the grey Highlight section with the H2 Talk to our experts, the intro text wrapped over four lines, Consulting, Cloud and Cybersecurity stacked with their texts and Explore links, and the black Contact us but](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-mobile-view.jpg)
 
 **Fragment block in a page** — The selected Fragment block in Universal Editor at 1440 px, cropped to the block: the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cybersecurity with the links Explore consulting, Explore cloud and Explore cybersecurity, and a black Contact us primary button, the columns side by side.
 
-![Fragment block in a page: The selected Fragment block in Universal Editor at 1440 px, cropped to the block: the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cybe](../../docs/handover/screenshots/fragment-authored-block.jpg)
+![Fragment block in a page: The selected Fragment block in Universal Editor at 1440 px, cropped to the block: the grey Highlight section of references/cta-banner with the H2 Talk to our experts, its intro text, the H3 columns Consulting, Cloud and Cybe](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-authored-block.jpg)
 
 **Fragment in a tab** — The Tabs block How we help at 1440 px in the Underline style: the tabs Overview and Industries, Industries selected with a blue underline; its panel shows the tab-industries fragment, three columns Banking, Retail and Manufacturing, each with a sample image, an H3, a short text and a link.
 
-![Fragment in a tab: The Tabs block How we help at 1440 px in the Underline style: the tabs Overview and Industries, Industries selected with a blue underline; its panel shows the tab-industries fragment, three columns Banking, Retail and Manufacturing](../../docs/handover/screenshots/fragment-tab-panel.jpg)
+![Fragment in a tab: The Tabs block How we help at 1440 px in the Underline style: the tabs Overview and Industries, Industries selected with a blue underline; its panel shows the tab-industries fragment, three columns Banking, Retail and Manufacturing](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-tab-panel.jpg)
 
 **Fragment in a modal** — The Get in touch page at 1440 px dimmed behind an open dialog loaded from /en/shots/g01b/modals/contact-form: a close icon, the H2 Contact our team, the description, the * Required fields note taking a grid column beside Full name (F-32), Business e-mail, Company, How can we help? with 0/1500, the consent checkbox and the Send button cut at the bottom.
 
-![Fragment in a modal: The Get in touch page at 1440 px dimmed behind an open dialog loaded from /en/shots/g01b/modals/contact-form: a close icon, the H2 Contact our team, the description, the * Required fields note taking a grid column beside Full nam](../../docs/handover/screenshots/fragment-modal.jpg)
+![Fragment in a modal: The Get in touch page at 1440 px dimmed behind an open dialog loaded from /en/shots/g01b/modals/contact-form: a close icon, the H2 Contact our team, the description, the * Required fields note taking a grid column beside Full nam](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-modal.jpg)
 
 **Universal Editor canvas** — The Fragment at 1440 px in editor mode with two markers: A around the whole Fragment block (the grey Talk to our experts section) and B around the included Columns block only (Consulting, Cloud, Cybersecurity with their Explore links); the H2, the text and the Contact us button lie inside A, outside B. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/fragment-authoring-view.jpg)
 
-![Universal Editor canvas: The Fragment at 1440 px in editor mode with two markers: A around the whole Fragment block the grey Talk to our experts section and B around the included Columns block only Consulting, Cloud, Cybersecurity with their Explore ](../../docs/handover/screenshots/fragment-authoring-view.jpg)
+![Universal Editor canvas: The Fragment at 1440 px in editor mode with two markers: A around the whole Fragment block the grey Talk to our experts section and B around the included Columns block only Consulting, Cloud, Cybersecurity with their Explore ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-authoring-view.jpg)
 
 **Properties panel** — The Fragment block's properties with the Content tab (Reference) and the Additional tab (Anchor ID, Hide block, padding and margin selects). (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/fragment-properties-panel.jpg)
 
-![Properties panel: The Fragment block's properties with the Content tab Reference and the Additional tab Anchor ID, Hide block, padding and margin selects. Dialog reference generated from the component model, not a Universal Editor screenshot; file sc](../../docs/handover/screenshots/fragment-properties-panel.jpg)
+![Properties panel: The Fragment block's properties with the Content tab Reference and the Additional tab Anchor ID, Hide block, padding and margin selects. Dialog reference generated from the component model, not a Universal Editor screenshot; file sc](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/fragment/screenshots/handover/fragment-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -160,7 +160,7 @@ Model `fragment`; template name "Fragment" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Reference | `reference` | aem-content | No | — | — | — | /language-master/en/block-library/fragment/fragments/cta-banner |
+| Reference | `reference` | aem-content | No | — | — | — | /design-block-master/en/block-library/fragment/fragments/cta-banner |
 
 #### Additional tab — Fragment
 
@@ -262,7 +262,7 @@ A = Reference
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Reference | `/language-master/en/block-library/fragment/fragments/cta-banner` | The shared page | The banner renders in the block |
+| A | Reference | `/language-masters/en/block-library/fragment/fragments/cta-banner` | The shared page | The banner renders in the block |
 
 Business rule: only site paths are loaded (no full URLs). Validation: the content shows in the editor preview. Common mistake: a page of another locale (wrong language).
 
@@ -583,11 +583,11 @@ Evidence to collect: host page URL, Reference value, network status of the `.pla
 - Model: [`_fragment.json`](./_fragment.json)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)
-- Handover: [handover 6.3 Fragment Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- Handover: [handover 6.3 Fragment Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 1 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 1 instance(s) in total:
 - Block library: `block-library/fragment/fragment-block`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

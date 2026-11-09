@@ -63,7 +63,7 @@ Every tracked area of the repository with its purpose, consumers, dependencies, 
 | Cloud Manager challenge | `.well-known/adobe/cloud-manager-challenge` | Domain verification token file (token not reproduced) | Adobe Cloud Manager (external); `.hlxignore` `.*` excludes dot folders from the code bus | — | Requires validation | — |
 | Cloud Manager challenge (copy) | `well-known/adobe/cloudmanager-challenge.txt` | Second challenge file outside the standard `/.well-known/` path | No consumer found | — | Unused candidate | — |
 | Favicon | `favicon.ico` | Site icon | Browsers | — | Active | — |
-| Repository README | `README.md` | Boilerplate README (placeholders "Your Project's Title...", `{repo}` / `{owner}`) | Readers of the repository | — | Requires validation | [docs/handover/README.md](../../README.md) is the project documentation entry |
+| Repository README | `README.md` | Boilerplate README (placeholders "Your Project's Title...", `{repo}` / `{owner}`) | Readers of the repository | — | Requires validation | [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) is the project documentation entry |
 | Contributing, code of conduct | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` | Boilerplate Project Helix texts | Contributors | — | Requires validation | — |
 | License | `LICENSE` | Apache License 2.0 (boilerplate) | — | — | Active | — |
 
@@ -96,7 +96,7 @@ Every tracked area of the repository with its purpose, consumers, dependencies, 
 | Global styles | `styles/styles.css` | Design tokens, LCP layout, sections and backgrounds (theme contract), buttons, Additional tab classes, Inter fallback faces | `head.html` (every page) | — | Active | [AGENTS.md](../../../../AGENTS.md) "Backgrounds and theme" |
 | Lazy styles | `styles/lazy-styles.css` | Below-the-fold and editor styles (item placeholders) | `scripts.js` (lazy phase), `404.html` | — | Active | — |
 | Fonts | `styles/fonts.css` | `@font-face` for Inter (`fonts/inter-variable.woff2`) | `scripts.js` (`loadFonts`) | `fonts/` | Active | — |
-| Motion | `styles/motion.css` | Animation tokens and keyframes, loaded only when a block animates | `decorators/motion-decorator.js` | — | Active | [docs/animation/README.md](../../../animation/README.md) |
+| Motion | `styles/motion.css` | Animation tokens and keyframes, loaded only when a block animates | `decorators/motion-decorator.js` | — | Active | [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) |
 | Card list styles | `styles/card-list.css` | Shared card presentation of List and Cards | `blocks/list/list.css`, `blocks/cards/cards.css` (`@import`) | — | Active | [blocks/list/README.md](../../../../blocks/list/README.md) |
 
 ## Blocks
@@ -163,7 +163,7 @@ Modules that create or decorate elements ([decorators/README.md](../../../../dec
 | Link | `decorators/link-decorator.js` | `setLinkTarget`, `announceNewTab` | footer, page-header, teaser, button, author bio, card list, social links decorators | a11y decorator | Active | Same |
 | Masonry | `decorators/masonry-decorator.js` | Packs grid items of different heights in columns | filter-list | — | Active | Same |
 | Media | `decorators/media-decorator.js` | YouTube / Vimeo frames and video elements | embed, video | `media.js` | Active | Same |
-| Motion | `decorators/motion-decorator.js` | Prepares and runs Content / Background animation per section; `CONTENT_TARGETS`, `BACKGROUNDS` | `scripts.js`, footer, fragment, header, skeleton decorator | `motion.js`, `environment.js`, `styles/motion.css` | Active | Same; [docs/animation/README.md](../../../animation/README.md) |
+| Motion | `decorators/motion-decorator.js` | Prepares and runs Content / Background animation per section; `CONTENT_TARGETS`, `BACKGROUNDS` | `scripts.js`, footer, fragment, header, skeleton decorator | `motion.js`, `environment.js`, `styles/motion.css` | Active | Same; [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) |
 | Responsive image | `decorators/responsive-image-decorator.js` | `buildImage` from a URL (site media optimized) | `scripts.js`, conversation-canvas, filter-list, page-header, author bio, card list, social links decorators | `aem.js` | Active | Same |
 | Scroller | `decorators/scroller-decorator.js` | Horizontal scroller controls, batched measurements | card list decorator | `environment.js` | Active | Same |
 | SEO | `decorators/seo-decorator.js` | Bulk metadata SEO / social columns to head tags, `<html lang>` | `scripts.js` | `metadata.js`, `aem.js` | Active | Same |
@@ -237,7 +237,7 @@ Default content, page and section models aggregated with the block partials by `
 | Item | Path | Purpose | Consumers | Dependencies | Status | Documentation |
 | --- | --- | --- | --- | --- | --- | --- |
 | Block docs generator | `tools/docs/generate-block-docs.mjs` | Rewrites the generated sections of the block READMEs | `npm run build:docs`, `test/docs` | `component-*.json`, `blocks.json`, `library-snapshot.json`, handover screenshots | Active | [AGENTS.md](../../../../AGENTS.md) "Setup Commands" |
-| Block docs validator | `tools/docs/validate-block-docs.mjs` | Required sections, generated sections current, links, no sensitive identifiers | `test/docs`, manual run | `generate-block-docs.mjs` | Active | [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../../../blocks/BLOCK-DOCUMENTATION-REPORT.md) |
+| Block docs validator | `tools/docs/validate-block-docs.mjs` | Required sections, generated sections current, links, no sensitive identifiers | `test/docs`, manual run | `generate-block-docs.mjs` | Active | [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) |
 | Block docs report | `tools/docs/report-block-docs.mjs` | Builds the block documentation report | Manual run | generator, validator, `docs/blocks/reports/` | Active | Same |
 | Block metadata | `tools/docs/blocks.json` | Status, type, category, purpose, relationships of each block (hand-maintained) | Docs generator | — | Active | [blocks/README.md](../../../../blocks/README.md) |
 | Library snapshot | `tools/docs/library-snapshot.json` | Block library examples and usage (package 1.0.13) for the READMEs | Docs generator | — | Active | — |
@@ -263,7 +263,7 @@ Default content, page and section models aggregated with the block partials by `
 | Model layout helper | `test/model-layout.mjs` | Reads an item model's field layout (tab cells) from a block model partial | Item, List and Cards tests | Block model partials | Active | — |
 | Block names | `test/models/block-names.test.mjs` | Component template names render as existing block folder classes | `npm test` | `component-definition.json` | Active | [decision-log.md](../decision-log.md) KB-D-029 |
 | Module graph | `test/modules/module-graph.test.mjs` | `module-graph.js` and `head.html` preloads current | `npm test` | `tools/modules/` | Active | [AGENTS.md](../../../../AGENTS.md) "Module preloading" |
-| Motion | `test/motion/motion.test.mjs` | Animation values from block classes | `npm test` | `motion.js` | Active | [docs/animation/README.md](../../../animation/README.md) |
+| Motion | `test/motion/motion.test.mjs` | Animation values from block classes | `npm test` | `motion.js` | Active | [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) |
 | Privacy | `test/privacy/privacy.test.mjs` | `redactSearchTerm` | `npm test` | `privacy.js` | Active | [decorators/README.md](../../../../decorators/README.md) |
 | Separator config | `test/separator/separator-config.test.mjs` | Separator defaults and markup | `npm test` | `separator-config.js` | Active | [blocks/separator/README.md](../../../../blocks/separator/README.md) |
 | Site | `test/site/index-root.test.mjs` | `indexRoot`, `getParentPages`, the language master review | `npm test` | `site.js` | Active | [utils/README.md](../../../../utils/README.md) |
@@ -285,14 +285,14 @@ Not served (`docs/*` in `.hlxignore`).
 
 | Item | Path | Purpose | Consumers | Dependencies | Status | Documentation |
 | --- | --- | --- | --- | --- | --- | --- |
-| Project handover | `docs/handover/TCS-CORP-HANDOVER.md`, `.pdf` | The official handover (version 2.37) | All roles | Screenshots, whitepaper tooling | Active | [docs/handover/README.md](../../README.md) |
-| Handover screenshots | `docs/handover/screenshots/` | 628 figures of the handover, also linked from block READMEs | Handover, block READMEs, docs generator | — | Active | [screenshots/README.md](../../screenshots/README.md) |
-| Earlier guides | `docs/handover/AUTHOR-GUIDE.pdf`, `DEVELOPER-GUIDE.pdf`, `ADMIN-GUIDE.pdf` | Guides of 11 October 2026, superseded by the handover | Reference | — | Deprecated | [docs/handover/README.md](../../README.md) |
+| Project handover | `docs/handover/TCS-CORP-HANDOVER.md`, `.pdf` | The official handover (version 2.37) | All roles | Screenshots, whitepaper tooling | Active | [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) |
+| Handover screenshots | `docs/handover/screenshots/` | 628 figures of the handover, also linked from block READMEs | Handover, block READMEs, docs generator | — | Active | [screenshots/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/screenshots/README.md) |
+| Earlier guides | `docs/handover/AUTHOR-GUIDE.pdf`, `DEVELOPER-GUIDE.pdf`, `ADMIN-GUIDE.pdf` | Guides of 11 October 2026, superseded by the handover | Reference | — | Deprecated | [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) |
 | Knowledge base | `docs/handover/knowledge-base/` | Single source of truth index for humans and agents | All roles, AI agents | The sources it links | Active | [README](../README.md) |
-| Block documentation report | `docs/blocks/BLOCK-DOCUMENTATION-REPORT.md`, `docs/blocks/reports/` | README inventory, 170 handover-vs-code discrepancies, matrices; per-block review notes | Documentation, developers | `tools/docs/report-block-docs.mjs` | Active | [report](../../../blocks/BLOCK-DOCUMENTATION-REPORT.md) |
-| Block ecosystem audit | `docs/audit/` (reports, `blocks/`, `reaudit/`, `data/`, `tools/`) | Audit of 19 October 2026, re-audit and dialog options of 20 October 2026; the tools are delivery-workspace scripts kept as evidence (absolute paths, not runnable here) | Developers, QA | — | Active (`docs/audit/tools/`: kept as evidence) | [docs/audit/README.md](../../../audit/README.md) |
-| Animation report | `docs/animation/README.md` | Block animation and skeleton loading | Developers, authors | — | Active | [docs/animation/README.md](../../../animation/README.md) |
-| Proposals | `docs/proposals/` | Design proposals (Cards and Card refactoring, decisions D-1 to D-6 open) | Product owner, architects | — | Active | [docs/proposals/README.md](../../../proposals/README.md) |
+| Block documentation report | `docs/blocks/BLOCK-DOCUMENTATION-REPORT.md`, `docs/blocks/reports/` | README inventory, 170 handover-vs-code discrepancies, matrices; per-block review notes | Documentation, developers | `tools/docs/report-block-docs.mjs` | Active | [report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) |
+| Block ecosystem audit | `docs/audit/` (reports, `blocks/`, `reaudit/`, `data/`, `tools/`) | Audit of 19 October 2026, re-audit and dialog options of 20 October 2026; the tools are delivery-workspace scripts kept as evidence (absolute paths, not runnable here) | Developers, QA | — | Active (`docs/audit/tools/`: kept as evidence) | [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md) |
+| Animation report | `docs/animation/README.md` | Block animation and skeleton loading | Developers, authors | — | Active | [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md) |
+| Proposals | `docs/proposals/` | Design proposals (Cards and Card refactoring, decisions D-1 to D-6 open) | Product owner, architects | — | Active | [docs/proposals/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md) |
 
 ## Drafts
 
@@ -330,4 +330,4 @@ Folders present in the working copy but not tracked by git (local delivery works
 - [Decision log](../decision-log.md)
 - Topic files: [repository structure](../repository-structure.md), [architecture](../architecture.md), [blocks](../blocks.md), [development standards](../development-standards.md), [testing and quality](../testing-and-quality.md)
 - [blocks/README.md](../../../../blocks/README.md), [decorators/README.md](../../../../decorators/README.md), [utils/README.md](../../../../utils/README.md), [templates/README.md](../../../../templates/README.md), [AGENTS.md](../../../../AGENTS.md)
-- [Project handover](../../TCS-CORP-HANDOVER.md) (Part 16 — Handover Findings and Open Items Register), [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](../../../blocks/BLOCK-DOCUMENTATION-REPORT.md)
+- [Project handover](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) (Part 16 — Handover Findings and Open Items Register), [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md)

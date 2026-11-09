@@ -155,6 +155,6 @@ header .nav-canvas .conversation-canvas::before {
 }
 
 /* Transparent Header Over Light Hero */
-body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header .nav-wrapper {
+body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40)) header .nav-wrapper {
   background-color: transparent;
 }

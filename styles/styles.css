@@ -387,7 +387,7 @@ html[data-header-overlay='always'] body {
   --header-overlay-space: var(--header-height, var(--header-reserved));
 }
 
-html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) {
+html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40)) {
   --header-overlay-space: var(--header-height, var(--header-reserved));
 }
 
@@ -397,7 +397,7 @@ html[data-header-overlay='always'] header {
   z-index: 20;
 }
 
-html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black)) header {
+html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40)) header {
   position: absolute;
   inset: 0 0 auto;
   z-index: 20;
@@ -720,6 +720,19 @@ button.button.tertiary:disabled {
 :is(a, button).button.icon-button.tertiary:hover,
 :is(a, button).button.icon-button.tertiary:focus-visible {
   color: var(--color-icon-brand-secondary);
+}
+
+.button.blue {
+  background-color: #216ac3;
+  color: #fff;
+  border-color: #216ac3;
+}
+
+.button.blue:hover,
+.button.blue:focus-visible {
+  background-color: #1b5ea3;
+  border-color: #1b5ea3;
+  color: #fff;
 }
 
 :is(a, button).button.icon-button[aria-disabled="true"],

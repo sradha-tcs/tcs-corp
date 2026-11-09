@@ -39,39 +39,39 @@ Screenshots of the handover (6.14 Columns Block), taken on the preview with samp
 
 **Desktop rendering** — The Columns block at 1440 px with two equal columns 1.5rem apart: photo-1.svg on the left; on the right, vertically centred, the H2 Cloud transformation, end to end, the paragraph From assessment to migration and managed operations… and the button Explore cloud services.
 
-![Desktop rendering: The Columns block at 1440 px with two equal columns 1.5rem apart: photo-1.svg on the left; on the right, vertically centred, the H2 Cloud transformation, end to end, the paragraph From assessment to migration and managed operations](../../docs/handover/screenshots/columns-desktop-view.jpg)
+![Desktop rendering: The Columns block at 1440 px with two equal columns 1.5rem apart: photo-1.svg on the left; on the right, vertically centred, the H2 Cloud transformation, end to end, the paragraph From assessment to migration and managed operations](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-desktop-view.jpg)
 
 **Tablet rendering** — The Columns block at 768 px, stacked: photo-1.svg at full width on top, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services below it.
 
-![Tablet rendering: The Columns block at 768 px, stacked: photo-1.svg at full width on top, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services below it.](../../docs/handover/screenshots/columns-tablet-view.jpg)
+![Tablet rendering: The Columns block at 768 px, stacked: photo-1.svg at full width on top, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services below it.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-tablet-view.jpg)
 
 **Mobile rendering** — The Columns block at 375 px, stacked within 1.5rem side padding: photo-1.svg first, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services.
 
-![Mobile rendering: The Columns block at 375 px, stacked within 1.5rem side padding: photo-1.svg first, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services.](../../docs/handover/screenshots/columns-mobile-view.jpg)
+![Mobile rendering: The Columns block at 375 px, stacked within 1.5rem side padding: photo-1.svg first, then the H2 Cloud transformation, end to end, the paragraph and the button Explore cloud services.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-mobile-view.jpg)
 
 **Two-column variation** — The Columns block at 1440 px with two equal columns: the H3 The challenge and the paragraph about ageing store systems on the left, the H3 The solution and the cloud-native inventory platform paragraph on the right.
 
-![Two-column variation: The Columns block at 1440 px with two equal columns: the H3 The challenge and the paragraph about ageing store systems on the left, the H3 The solution and the cloud-native inventory platform paragraph on the right.](../../docs/handover/screenshots/columns-two-columns.jpg)
+![Two-column variation: The Columns block at 1440 px with two equal columns: the H3 The challenge and the paragraph about ageing store systems on the left, the H3 The solution and the cloud-native inventory platform paragraph on the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-two-columns.jpg)
 
 **Three-column variation** — The Columns block at 1440 px with three equal columns: the H3s Our mission, Our vision and Our values, each with its one-sentence text.
 
-![Three-column variation: The Columns block at 1440 px with three equal columns: the H3s Our mission, Our vision and Our values, each with its one-sentence text.](../../docs/handover/screenshots/columns-three-columns.jpg)
+![Three-column variation: The Columns block at 1440 px with three equal columns: the H3s Our mission, Our vision and Our values, each with its one-sentence text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-three-columns.jpg)
 
 **Image column variation** — The Columns block at 1440 px: the H2 Intelligent operations and the AI-led automation paragraph on the left, photo-2.svg on the right; an inset shows the same block at 375 px with the image moved above the text.
 
-![Image column variation: The Columns block at 1440 px: the H2 Intelligent operations and the AI-led automation paragraph on the left, photo-2.svg on the right; an inset shows the same block at 375 px with the image moved above the text.](../../docs/handover/screenshots/columns-image-column.jpg)
+![Image column variation: The Columns block at 1440 px: the H2 Intelligent operations and the AI-led automation paragraph on the left, photo-2.svg on the right; an inset shows the same block at 375 px with the image moved above the text.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-image-column.jpg)
 
 **Multiple rows variation** — The Columns block at 1440 px with three rows of two equal columns: photo-3.svg beside the H3 Discover, the H3 Design beside photo-4.svg, and photo-5.svg beside the H3 Deliver, each heading with its short paragraph, so the image alternates left, right, left.
 
-![Multiple rows variation: The Columns block at 1440 px with three rows of two equal columns: photo-3.svg beside the H3 Discover, the H3 Design beside photo-4.svg, and photo-5.svg beside the H3 Deliver, each heading with its short paragraph, so the ima](../../docs/handover/screenshots/columns-multiple-rows.jpg)
+![Multiple rows variation: The Columns block at 1440 px with three rows of two equal columns: photo-3.svg beside the H3 Discover, the H3 Design beside photo-4.svg, and photo-5.svg beside the H3 Deliver, each heading with its short paragraph, so the ima](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-multiple-rows.jpg)
 
 **Universal Editor canvas** — The Columns block in Universal Editor edit mode at 1440 px with three columns: the H2 Banking reimagined and its text, square-1.svg, and a text with the button Banking and financial services; letters A on the block, B on a column, C on the title, D on the text and E on the image. An annotated preview, not a Universal Editor screenshot. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/columns-authoring-view.jpg)
 
-![Universal Editor canvas: The Columns block in Universal Editor edit mode at 1440 px with three columns: the H2 Banking reimagined and its text, square-1.svg, and a text with the button Banking and financial services; letters A on the block, B on a co](../../docs/handover/screenshots/columns-authoring-view.jpg)
+![Universal Editor canvas: The Columns block in Universal Editor edit mode at 1440 px with three columns: the H2 Banking reimagined and its text, square-1.svg, and a text with the button Banking and financial services; letters A on the block, B on a co](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-authoring-view.jpg)
 
 **Properties panel** — The Columns properties panel with the Content tab (Columns, Rows) and the Additional tab header. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/columns-properties-panel.jpg)
 
-![Properties panel: The Columns properties panel with the Content tab Columns, Rows and the Additional tab header. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/columns-properties-panel.jpg](../../docs/handover/screenshots/columns-properties-panel.jpg)
+![Properties panel: The Columns properties panel with the Content tab Columns, Rows and the Additional tab header. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/columns-properties-panel.jpg](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/columns/screenshots/handover/columns-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -414,8 +414,8 @@ No external content, input or personal data.
 - [Column Break](../column-break/README.md)
 - Model: [`_columns.json`](_columns.json)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs) (Columns excluded from the animation fields)
-- Re-audit: [`docs/audit/REAUDIT-2026-10-20.md`](../../docs/audit/REAUDIT-2026-10-20.md)
-- [Handover 6.14 Columns Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- Re-audit: [`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)
+- [Handover 6.14 Columns Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

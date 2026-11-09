@@ -104,7 +104,10 @@
 
 .hero.bg-dark,
 .hero.bg-dark-subtle,
-.hero.bg-black {
+.hero.bg-black,
+.hero.bg-charcoal-80,
+.hero.bg-navy-60,
+.hero.bg-charcoal-40 {
   --hero-title-color: var(--color-text-on-neutral);
   --hero-description-color: rgb(255 255 255 / 50%);
   --hero-description-weight: var(--font-weight-medium);
@@ -125,6 +128,25 @@
 
 .hero.bg-black {
   --hero-overlay: rgb(0 0 0 / 80%);
+
+  background-color: var(--black-1000);
+}
+
+/* Charcoal Black 80 (cool charcoal), Midnight Navy 60, Charcoal Black 40 (deep charcoal) */
+.hero.bg-charcoal-80 {
+  --hero-overlay: rgb(34 35 41 / 80%);
+
+  background-color: rgb(34 35 41);
+}
+
+.hero.bg-navy-60 {
+  --hero-overlay: rgb(1 18 31 / 60%);
+
+  background-color: var(--hero-navy);
+}
+
+.hero.bg-charcoal-40 {
+  --hero-overlay: rgb(12 12 13 / 40%);
 
   background-color: var(--black-1000);
 }
@@ -201,6 +223,20 @@
 
 .hero.icon-blue {
   --hero-icon-color: var(--brand-500);
+}
+
+/* Pale blue, #CEDFF4 */
+.hero.icon-pale-blue {
+  --hero-icon-color: var(--brand-200);
+}
+
+/* Eyebrow color: royal blue #216AC3 (the default) or soft sky blue #A7C8F1 */
+.hero.eyebrow-royal-blue {
+  --hero-eyebrow-color: var(--brand-400);
+}
+
+.hero.eyebrow-sky-blue {
+  --hero-eyebrow-color: var(--brand-300);
 }
 
 .hero .hero-icon-tinted picture {
@@ -332,44 +368,70 @@
 }
 
 /* CTAs on dark backgrounds */
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.secondary:not(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);
   color: var(--color-text-on-neutral);
 }
 
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:not(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
 }
 
-.hero:is(.bg-dark, .bg-dark-subtle, .bg-black) a.button.tertiary:is(:hover, :focus-visible) {
+.hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:is(:hover, :focus-visible) {
   color: var(--brand-300);
 }
 
 /*
- * Secondary CTA BG Color and Border color (Style tab): the hero's Secondary CTAs only; without
- * them they keep the transparent background and the border of the BG Color, as before; hover
- * and focus stay the Secondary button's
+ * Secondary CTA BG Color and Border color (CTA List): a Secondary CTA's own classes (hero.js);
+ * without them it keeps the transparent background and the border of the BG Color, as before;
+ * hover and focus stay the Secondary button's
  */
-.hero:is(.secondary-bg-light-grey, .secondary-bg-black-40, .secondary-border-black, .secondary-border-white) .hero-ctas a.button.secondary {
+.hero .hero-ctas a.button.secondary:is(.secondary-bg-light-grey, .secondary-bg-black-40, .secondary-border-black, .secondary-border-white) {
   border-width: var(--border-width-100);
   border-style: solid;
 }
 
-.hero.secondary-bg-light-grey .hero-ctas a.button.secondary:not(:hover, :focus-visible) {
+.hero .hero-ctas a.button.secondary.secondary-bg-light-grey:not(:hover, :focus-visible) {
   background-color: var(--grey-100);
   color: var(--color-text-neutral);
 }
 
-.hero.secondary-bg-black-40 .hero-ctas a.button.secondary:not(:hover, :focus-visible) {
+.hero .hero-ctas a.button.secondary.secondary-bg-black-40:not(:hover, :focus-visible) {
   background-color: var(--black-400);
 }
 
-.hero.secondary-border-black .hero-ctas a.button.secondary:not(:hover, :focus-visible) {
+.hero .hero-ctas a.button.secondary.secondary-border-black:not(:hover, :focus-visible) {
   border-color: var(--black-1000);
 }
 
-.hero.secondary-border-white .hero-ctas a.button.secondary:not(:hover, :focus-visible) {
+.hero .hero-ctas a.button.secondary.secondary-border-white:not(:hover, :focus-visible) {
   border-color: var(--white-1000);
+}
+
+/*
+ * Primary CTA BG Color (CTA List): Blue-cyan (azure), #216AC3 with white text (5.4:1); in a dark
+ * section too, where Primary buttons are otherwise inverted (styles/styles.css)
+ */
+.hero .hero-ctas a.button.primary.primary-bg-azure:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-azure:not(:hover, :focus-visible) {
+  border-color: var(--color-bg-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-neutral);
+}
+
+/*
+ * CTA Text color (CTA List): the chosen colour of the text and arrow (currentcolor), whatever the
+ * CTA view and background: Default (Black) or White; after the colour rules above and as
+ * specific as them (in a dark section too), so it wins; hover and focus keep the button's style
+ */
+.hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-black:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-black:not(:hover, :focus-visible) {
+  color: var(--black-1000);
+}
+
+.hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible) {
+  color: var(--white-1000);
 }
 
 @media (600px <= width < 1200px) {
@@ -417,6 +479,34 @@
     text-align: var(--hero-text-align);
     text-wrap: balance;
   }
+
+  .hero .hero-ctas {
+    width: 100%;
+    max-width: var(--hero-content-max-width-tab);
+    min-height: 3rem;
+    justify-content: var(--hero-align);
+  }
+
+  .hero .hero-ctas a.button:any-link {
+    box-sizing: border-box;
+    min-height: 3rem;
+
+    /* 48px with the 24px arrow: the 1px border comes off the top and bottom padding */
+    padding:
+      calc(var(--space-300) - var(--border-width-100))
+      var(--space-400)
+      calc(var(--space-300) - var(--border-width-100))
+      var(--space-600);
+    gap: var(--space-200);
+    border-radius: var(--radius-full);
+    font-family: var(--body-font-family);
+    font-size: var(--label-font-size);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    letter-spacing: calc(0.01 * var(--label-font-size));
+    text-align: center;
+  }
+
 }
 
 @media (width < 600px) {
@@ -491,7 +581,7 @@ html[data-header-overlay='always'] main > .section:first-child .hero {
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
 
-html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black) {
+html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
   min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }

@@ -39,95 +39,95 @@ Screenshots of the handover (6.30 Conversation Canvas Block), taken on the previ
 
 **Desktop rendering** — The Default canvas at 1440 px: a white rounded panel with blue and yellow glows at the bottom, the chat icon, the eyebrow Ask TCS, the h2 How can we help you today?, the intro text, the search row (round menu button, pill field Ask us a question with microphone and blue arrow) and the buttons Contact us (primary) and Explore services (secondary), all centred.
 
-![Desktop rendering: The Default canvas at 1440 px: a white rounded panel with blue and yellow glows at the bottom, the chat icon, the eyebrow Ask TCS, the h2 How can we help you today?, the intro text, the search row round menu button, pill field Ask ](../../docs/handover/screenshots/conversation-canvas-desktop-view.jpg)
+![Desktop rendering: The Default canvas at 1440 px: a white rounded panel with blue and yellow glows at the bottom, the chat icon, the eyebrow Ask TCS, the h2 How can we help you today?, the intro text, the search row round menu button, pill field Ask ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-desktop-view.jpg)
 
 **Tablet rendering** — The same Default canvas at 768 px: chat icon, Ask TCS, the title How can we help you today? on two lines at 3.125rem, the intro text on two lines, the search row filling the width with menu button, microphone and arrow, and Contact us and Explore services side by side.
 
-![Tablet rendering: The same Default canvas at 768 px: chat icon, Ask TCS, the title How can we help you today? on two lines at 3.125rem, the intro text on two lines, the search row filling the width with menu button, microphone and arrow, and Contact ](../../docs/handover/screenshots/conversation-canvas-tablet-view.jpg)
+![Tablet rendering: The same Default canvas at 768 px: chat icon, Ask TCS, the title How can we help you today? on two lines at 3.125rem, the intro text on two lines, the search row filling the width with menu button, microphone and arrow, and Contact ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-tablet-view.jpg)
 
 **Mobile rendering** — The same Default canvas at 375 px: chat icon, Ask TCS, the 2.5rem title How can we help you today? on three lines, the intro text, the round menu button beside a narrow search pill with microphone and arrow, and the buttons Contact us and Explore services stacked below each other.
 
-![Mobile rendering: The same Default canvas at 375 px: chat icon, Ask TCS, the 2.5rem title How can we help you today? on three lines, the intro text, the round menu button beside a narrow search pill with microphone and arrow, and the buttons Contact ](../../docs/handover/screenshots/conversation-canvas-mobile-view.jpg)
+![Mobile rendering: The same Default canvas at 375 px: chat icon, Ask TCS, the 2.5rem title How can we help you today? on three lines, the intro text, the round menu button beside a narrow search pill with microphone and arrow, and the buttons Contact ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-mobile-view.jpg)
 
 **Default style** — The Default canvas at 1440 px without icon or eyebrow: the h2 How can we help you today?, the text Ask a question in your own words or explore our services and industries., the search row and the buttons Contact us (primary) and Explore services (secondary) on a white panel with blue (left) and yellow (right) glows.
 
-![Default style: The Default canvas at 1440 px without icon or eyebrow: the h2 How can we help you today?, the text Ask a question in your own words or explore our services and industries., the search row and the buttons Contact us primary and Explore ](../../docs/handover/screenshots/conversation-canvas-default.jpg)
+![Default style: The Default canvas at 1440 px without icon or eyebrow: the h2 How can we help you today?, the text Ask a question in your own words or explore our services and industries., the search row and the buttons Contact us primary and Explore ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-default.jpg)
 
 **Secondary style** — The Secondary canvas at 1440 px: the eyebrow Explore topics, the h2 What would you like to explore?, the text, the search row and five script-supplied filter pills: Cloud (active, filled brand blue), AI and data, Cybersecurity, Consulting and Banking, on a panel with a yellow glow left and a blue glow right.
 
-![Secondary style: The Secondary canvas at 1440 px: the eyebrow Explore topics, the h2 What would you like to explore?, the text, the search row and five script-supplied filter pills: Cloud active, filled brand blue, AI and data, Cybersecurity, Consult](../../docs/handover/screenshots/conversation-canvas-secondary.jpg)
+![Secondary style: The Secondary canvas at 1440 px: the eyebrow Explore topics, the h2 What would you like to explore?, the text, the search row and five script-supplied filter pills: Cloud active, filled brand blue, AI and data, Cybersecurity, Consult](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-secondary.jpg)
 
 **Primary (sticky) dock on desktop** — The bottom of /en/services/consulting at 1440 px, scrolled down: the Primary dock floats over a white fade with the round menu button and the search pill Ask us a question (microphone, blue arrow) and, below it, the pills Back (arrow), AI and data, Cloud (with chevron), Consulting (current, blue outline) and Cybersecurity.
 
-![Primary sticky dock on desktop: The bottom of /en/services/consulting at 1440 px, scrolled down: the Primary dock floats over a white fade with the round menu button and the search pill Ask us a question microphone, blue arrow and, below it, the pill](../../docs/handover/screenshots/conversation-canvas-primary-dock.jpg)
+![Primary sticky dock on desktop: The bottom of /en/services/consulting at 1440 px, scrolled down: the Primary dock floats over a white fade with the round menu button and the search pill Ask us a question microphone, blue arrow and, below it, the pill](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-primary-dock.jpg)
 
 **Default title size** — A Default canvas at 1440 px with the eyebrow Ask TCS, the h2 How can we help you today? at 4rem and the search row (menu button, Ask us a question field with microphone and blue arrow); no text or buttons.
 
-![Default title size: A Default canvas at 1440 px with the eyebrow Ask TCS, the h2 How can we help you today? at 4rem and the search row menu button, Ask us a question field with microphone and blue arrow; no text or buttons.](../../docs/handover/screenshots/conversation-canvas-title-default.jpg)
+![Default title size: A Default canvas at 1440 px with the eyebrow Ask TCS, the h2 How can we help you today? at 4rem and the search row menu button, Ask us a question field with microphone and blue arrow; no text or buttons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-title-default.jpg)
 
 **Bigger title** — A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Building on belief at 5rem (Title Type Bigger Title) above the search row; no text or buttons.
 
-![Bigger title: A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Building on belief at 5rem Title Type Bigger Title above the search row; no text or buttons.](../../docs/handover/screenshots/conversation-canvas-title-bigger.jpg)
+![Bigger title: A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Building on belief at 5rem Title Type Bigger Title above the search row; no text or buttons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-title-bigger.jpg)
 
 **Medium title** — A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Questions about our services? Ask us directly. at 2.5rem with line height 1.4 (Title Type Medium Title) above the search row; no text or buttons.
 
-![Medium title: A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Questions about our services? Ask us directly. at 2.5rem with line height 1.4 Title Type Medium Title above the search row; no text or buttons.](../../docs/handover/screenshots/conversation-canvas-title-medium.jpg)
+![Medium title: A Default canvas at 1440 px with the eyebrow Ask TCS and the h2 Questions about our services? Ask us directly. at 2.5rem with line height 1.4 Title Type Medium Title above the search row; no text or buttons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-title-medium.jpg)
 
 **Default background glow** — A Default canvas at 1440 px with the h2 Ask us a question, the text Ask a question in your own words or explore our services and industries. and the search row on a white panel with a blue glow rising from the bottom left and a yellow glow from the bottom right.
 
-![Default background glow: A Default canvas at 1440 px with the h2 Ask us a question, the text Ask a question in your own words or explore our services and industries. and the search row on a white panel with a blue glow rising from the bottom left and](../../docs/handover/screenshots/conversation-canvas-bg-default.jpg)
+![Default background glow: A Default canvas at 1440 px with the h2 Ask us a question, the text Ask a question in your own words or explore our services and industries. and the search row on a white panel with a blue glow rising from the bottom left and](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-bg-default.jpg)
 
 **Background image** — A Default canvas at 1440 px with the light abstract image light.svg (pale blue panel with large white and blue circles) filling the rounded panel behind the h2 Ask us a question, the text and the search row; no glow.
 
-![Background image: A Default canvas at 1440 px with the light abstract image light.svg pale blue panel with large white and blue circles filling the rounded panel behind the h2 Ask us a question, the text and the search row; no glow.](../../docs/handover/screenshots/conversation-canvas-background-image.jpg)
+![Background image: A Default canvas at 1440 px with the light abstract image light.svg pale blue panel with large white and blue circles filling the rounded panel behind the h2 Ask us a question, the text and the search row; no glow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-background-image.jpg)
 
 **Primary search button** — The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a filled brand-blue round arrow button (Search bar button icon type Primary).
 
-![Primary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a filled brand-blue round arrow button Search bar button icon type Primary.](../../docs/handover/screenshots/conversation-canvas-search-primary.jpg)
+![Primary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a filled brand-blue round arrow button Search bar button icon type Primary.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-search-primary.jpg)
 
 **Secondary search button** — The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a round arrow button with a brand-blue outline and no fill (Search bar button icon type Secondary).
 
-![Secondary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a round arrow button with a brand-blue outline and no fill Search bar button icon type Seconda](../../docs/handover/screenshots/conversation-canvas-search-secondary.jpg)
+![Secondary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a round arrow button with a brand-blue outline and no fill Search bar button icon type Seconda](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-search-secondary.jpg)
 
 **Tertiary search button** — The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a plain brand-blue arrow without fill or border (Search bar button icon type Tertiary).
 
-![Tertiary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a plain brand-blue arrow without fill or border Search bar button icon type Tertiary.](../../docs/handover/screenshots/conversation-canvas-search-tertiary.jpg)
+![Tertiary search button: The search row of a canvas at 1440 px, cropped: the round menu button and the pill field Ask us a question with the microphone and a plain brand-blue arrow without fill or border Search bar button icon type Tertiary.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-search-tertiary.jpg)
 
 **Voice input** — The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the default microphone button in its listening state (brand blue with a round outline, aria-pressed="true") next to the filled blue arrow.
 
-![Voice input: The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the default microphone button in its listening state brand blue with a round outline, aria-pressed="true" next to the filled blue arrow.](../../docs/handover/screenshots/conversation-canvas-voice-default.jpg)
+![Voice input: The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the default microphone button in its listening state brand blue with a round outline, aria-pressed="true" next to the filled blue arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-voice-default.jpg)
 
 **Custom audio icon** — The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the custom audio icon audio-icon.svg (five blue sound bars, 1.5rem) in place of the microphone, next to the filled blue arrow.
 
-![Custom audio icon: The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the custom audio icon audio-icon.svg five blue sound bars, 1.5rem in place of the microphone, next to the filled blue arrow.](../../docs/handover/screenshots/conversation-canvas-voice-custom-icon.jpg)
+![Custom audio icon: The search row of a canvas at 1440 px, cropped: the menu button and the pill Ask us a question with the custom audio icon audio-icon.svg five blue sound bars, 1.5rem in place of the microphone, next to the filled blue arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-voice-custom-icon.jpg)
 
 **Button items** — A Default canvas at 1440 px with the h2 Ask us a question, the search row and two centred pill buttons below it: a black primary Contact us and an outlined secondary Explore services, each with a trailing arrow.
 
-![Button items: A Default canvas at 1440 px with the h2 Ask us a question, the search row and two centred pill buttons below it: a black primary Contact us and an outlined secondary Explore services, each with a trailing arrow.](../../docs/handover/screenshots/conversation-canvas-button-view.jpg)
+![Button items: A Default canvas at 1440 px with the h2 Ask us a question, the search row and two centred pill buttons below it: a black primary Contact us and an outlined secondary Explore services, each with a trailing arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-button-view.jpg)
 
 **Icon button item** — A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it one round brand-blue icon button with a white chevron-right (Views Icon, Icon Chevron right); its text Explore our services is not visible.
 
-![Icon button item: A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it one round brand-blue icon button with a white chevron-right Views Icon, Icon Chevron right; its text Explore our services is not visible.](../../docs/handover/screenshots/conversation-canvas-icon-view.jpg)
+![Icon button item: A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it one round brand-blue icon button with a white chevron-right Views Icon, Icon Chevron right; its text Explore our services is not visible.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-icon-view.jpg)
 
 **Link item** — A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it the centred text link View all FAQs with a trailing chevron (Views Link).
 
-![Link item: A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it the centred text link View all FAQs with a trailing chevron Views Link.](../../docs/handover/screenshots/conversation-canvas-link-view.jpg)
+![Link item: A Default canvas at 1440 px with the h2 Ask us a question, the search row and below it the centred text link View all FAQs with a trailing chevron Views Link.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-link-view.jpg)
 
 **Floating search row** — The floating-row page at 1440 px scrolled past its canvas: the sections Industries we serve, Research and insights and Consulting that delivers outcomes, with the canvas's menu button and Ask us a question pill (microphone, blue arrow) floating centred 1.5rem above the viewport bottom, translucent white with shadow and blur.
 
-![Floating search row: The floating-row page at 1440 px scrolled past its canvas: the sections Industries we serve, Research and insights and Consulting that delivers outcomes, with the canvas's menu button and Ask us a question pill microphone, blue a](../../docs/handover/screenshots/conversation-canvas-floating-row.jpg)
+![Floating search row: The floating-row page at 1440 px scrolled past its canvas: the sections Industries we serve, Research and insights and Consulting that delivers outcomes, with the canvas's menu button and Ask us a question pill microphone, blue a](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-floating-row.jpg)
 
 **Footer canvas** — The site footer at 1440 px: the h2 Have a question? Ask us. at 6rem on two lines, the search row (menu button, Ask us a question, microphone, arrow; 38.0625rem wide), Contact us (primary) and About TCS (secondary) side by side, then © TATA Consultancy Services 2027 with Privacy policy, Cookie policy and Terms of use, and the LinkedIn, X, YouTube and Instagram icons.
 
-![Footer canvas: The site footer at 1440 px: the h2 Have a question? Ask us. at 6rem on two lines, the search row menu button, Ask us a question, microphone, arrow; 38.0625rem wide, Contact us primary and About TCS secondary side by side, then © TATA C](../../docs/handover/screenshots/conversation-canvas-footer.jpg)
+![Footer canvas: The site footer at 1440 px: the h2 Have a question? Ask us. at 6rem on two lines, the search row menu button, Ask us a question, microphone, arrow; 38.0625rem wide, Contact us primary and About TCS secondary side by side, then © TATA C](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-footer.jpg)
 
 **Universal Editor canvas** — An annotated editor-mode preview at 1440 px (not a Universal Editor screenshot) of the Default canvas with chat icon, Ask TCS, How can we help you today?, text, search row, Contact us and Explore services, with markers A (block) to I (buttons) on icon, eyebrow, title, text, menu button, search field and submit button. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/conversation-canvas-authoring-view.jpg)
 
-![Universal Editor canvas: An annotated editor-mode preview at 1440 px not a Universal Editor screenshot of the Default canvas with chat icon, Ask TCS, How can we help you today?, text, search row, Contact us and Explore services, with markers A block ](../../docs/handover/screenshots/conversation-canvas-authoring-view.jpg)
+![Universal Editor canvas: An annotated editor-mode preview at 1440 px not a Universal Editor screenshot of the Default canvas with chat icon, Ask TCS, How can we help you today?, text, search row, Contact us and Explore services, with markers A block ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-authoring-view.jpg)
 
 **Properties panel** — Properties panel with the Content tab (Canvas Style, BG Style, images, (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/conversation-canvas-properties-panel.jpg)
 
-![Properties panel: Properties panel with the Content tab Canvas Style, BG Style, images, Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/conversation-canvas-properties-panel.jpg](../../docs/handover/screenshots/conversation-canvas-properties-panel.jpg)
+![Properties panel: Properties panel with the Content tab Canvas Style, BG Style, images, Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/conversation-canvas-properties-panel.jpg](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/conversation-canvas/screenshots/handover/conversation-canvas-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -365,7 +365,7 @@ Model `conversation-canvas`; template name "Conversation Canvas" (the block clas
 | Title Type | `titleSize` | select | No | "" | Default (""), Bigger Title (`bigger`), Medium Title (`medium`) | — | bigger |
 | Text | `text` | richtext | No | "" | — | — | — |
 | Menu | `menu` | container | No | — | — | — | — |
-| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /language-master/en/dummy-pages |
+| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | — | /design-block-master/en/dummy-pages |
 | Menu › Menu depth | `menuDepth` | number | No | `1` | — | — | 2 |
 | Navigation style | `classes_navstyle` | select | No | "" | Pills (""), Text links (`text-links`) | Primary (sticky): the site navigation as pills or as text links (Figma “No Pill”). Shown when `classes` is `primary`. Delivered as a block class. | text-links |
 | Search bar | `searchBar` | container | No | — | — | — | — |
@@ -492,7 +492,7 @@ F = Search page
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Menu root path | /language-master/en/dummy-pages | Section of the site | Menu lists its child pages |
+| A | Menu root path | /language-masters/en/dummy-pages | Section of the site | Menu lists its child pages |
 | B | Menu depth | 2 | Two levels | Nested list in the menu |
 | C | Search bar water mark | Ask us a question | Invitation and label | Placeholder and hidden label |
 | D | Search bar button icon type | Primary | Filled arrow | Brand-blue round arrow button |
@@ -523,7 +523,7 @@ D = Type
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Link | /content/tcs-corp/language-master/en/dummy-pages/contact | Destination | Link to the contact page |
+| A | Link | /content/tcs-corp/language-masters/en/dummy-pages/contact | Destination | Link to the contact page |
 | B | Text | Contact us | Visible text | Button text |
 | C | Views | Button | Button look | A button (pill in page sections with Quick actions Auto) |
 | D | Type | Primary | Main action | Primary style when shown as a button |
@@ -674,7 +674,7 @@ Scenario: the Overview Canvas of the block library (`block-library/conversation-
 | Eyebrow | Ask TCS | Short |
 | Title | How can we help you today? | One question |
 | Text | Ask about our services, industries and insights, or browse the site from the menu. | One sentence |
-| Menu root path | /content/tcs-corp/language-master/en/dummy-pages | Same locale |
+| Menu root path | /content/tcs-corp/language-masters/en/dummy-pages | Same locale |
 | Menu depth | 2 | 1 to 3 |
 | Search bar water mark | Ask us a question | Also the field's label |
 | Search bar button icon type | Primary | Filled arrow |
@@ -767,10 +767,10 @@ blocks/conversation-canvas/
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/aem.js`](../../scripts/aem.js) | Edge Delivery core library (block loading, CSS, metadata, optimized pictures) | `conversation-canvas.js`: { toClassName } |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `conversation-canvas.js`: { moveInstrumentation } |
-| [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media optimized) | `conversation-canvas.js`: { buildImage } |
+| [`decorators/responsive-image-decorator.js`](../../decorators/responsive-image-decorator.js) | `buildImage` (image from a URL; site media and EDAM delivery images optimized), `buildDeliveryPicture` (responsive picture of a Dynamic Media with OpenAPI delivery image), `decorateDeliveryImages` (standalone delivery im | `conversation-canvas.js`: { buildImage } |
 | [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | `conversation-canvas.js`: { getPageTags } |
-| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or the language master's own pages while it is under review (`indexRoot`) with their metadata columns: tags, page and content type, dates, images, author,  | `conversation-canvas.js`: { getPages } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `conversation-canvas.js`: { getLocale } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `conversation-canvas.js`: { getPages } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `conversation-canvas.js`: { getLocale } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `conversation-canvas.js`: { resolveTags } |
 | [`decorators/a11y-decorator.js`](../../decorators/a11y-decorator.js) | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | `conversation-canvas.js`: { hideVisually } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `conversation-canvas.js`: { createButton } |
@@ -1025,12 +1025,12 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 - Model file: [`_conversation-canvas.json`](_conversation-canvas.json)
 - Tests: [canvas journey tests](../../test/conversation-canvas/canvas-journey.test.mjs), [motion tests](../../test/motion/motion.test.mjs)
 - Shared code: [decorators README](../../decorators/README.md), [utils README](../../utils/README.md), [data-layer decorator](../../decorators/data-layer-decorator.js), [privacy utils](../../utils/privacy.js)
-- Animation: [docs/animation/README.md](../../docs/animation/README.md)
-- [Handover 6.30 Conversation Canvas Block](../../docs/handover/TCS-CORP-HANDOVER.md) (6.30.18 Floating Journey)
+- Animation: [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- [Handover 6.30 Conversation Canvas Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) (6.30.18 Floating Journey)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 33 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 33 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/animation/skeleton-loading`, `block-library/animation/speed-and-trigger`, `block-library/conversation-canvas/conversation-canvas`, `block-library/conversation-canvas/docked`, `block-library/conversation-canvas/floating`, `block-library/conversation-canvas/journey-and-actions`, `block-library/footer/footer-conversation-canvas`
 - Curated design pages: `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/what-we-do`
 

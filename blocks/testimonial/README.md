@@ -30,59 +30,59 @@ Screenshots of the handover (6.13 Testimonial Block), taken on the preview with 
 
 **Desktop rendering** — The Testimonial at 1440 px: the H2 What our clients say left aligned in the default text colour; centred below, the eyebrow Client testimonial, the 2.5rem brand-blue quote TCS became an extension of our own team… and the 3rem round photo person-1.svg beside Anita Rao / Chief Digital Officer, Example Bank, London; under a divider four stats in one row: 40%, 25%, 1,200+ and 4.8/5.
 
-![Desktop rendering: The Testimonial at 1440 px: the H2 What our clients say left aligned in the default text colour; centred below, the eyebrow Client testimonial, the 2.5rem brand-blue quote TCS became an extension of our own team… and the 3rem round](../../docs/handover/screenshots/testimonial-desktop-view.jpg)
+![Desktop rendering: The Testimonial at 1440 px: the H2 What our clients say left aligned in the default text colour; centred below, the eyebrow Client testimonial, the 2.5rem brand-blue quote TCS became an extension of our own team… and the 3rem round](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-desktop-view.jpg)
 
 **Tablet rendering** — The Testimonial at 768 px with the smaller base sizes: the 2rem title What our clients say, the centred eyebrow, the 1.75rem blue quote and the author row with person-1.svg; under the divider three stats (40%, 25%, 1,200+) in the first row and 4.8/5 Customer satisfaction alone in the second.
 
-![Tablet rendering: The Testimonial at 768 px with the smaller base sizes: the 2rem title What our clients say, the centred eyebrow, the 1.75rem blue quote and the author row with person-1.svg; under the divider three stats 40%, 25%, 1,200+ in the firs](../../docs/handover/screenshots/testimonial-tablet-view.jpg)
+![Tablet rendering: The Testimonial at 768 px with the smaller base sizes: the 2rem title What our clients say, the centred eyebrow, the 1.75rem blue quote and the author row with person-1.svg; under the divider three stats 40%, 25%, 1,200+ in the firs](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-tablet-view.jpg)
 
 **Mobile rendering** — The Testimonial at 375 px: the title What our clients say, the centred eyebrow and blue quote, the round photo with Anita Rao / Chief Digital Officer, Example Bank, London centred, then the four stats stacked one per row under the divider.
 
-![Mobile rendering: The Testimonial at 375 px: the title What our clients say, the centred eyebrow and blue quote, the round photo with Anita Rao / Chief Digital Officer, Example Bank, London centred, then the four stats stacked one per row under the d](../../docs/handover/screenshots/testimonial-mobile-view.jpg)
+![Mobile rendering: The Testimonial at 375 px: the title What our clients say, the centred eyebrow and blue quote, the round photo with Anita Rao / Chief Digital Officer, Example Bank, London centred, then the four stats stacked one per row under the d](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-mobile-view.jpg)
 
 **Default variation** — The Testimonial at 1440 px on white: the H2 Partners in transformation left aligned; centred below, Customer story, the large blue quote about the real-time view of stock and demand, and Marcus Khan / Chief Operating Officer, Example Retail Group, Toronto; no photo, no stats.
 
-![Default variation: The Testimonial at 1440 px on white: the H2 Partners in transformation left aligned; centred below, Customer story, the large blue quote about the real-time view of stock and demand, and Marcus Khan / Chief Operating Officer, Examp](../../docs/handover/screenshots/testimonial-default.jpg)
+![Default variation: The Testimonial at 1440 px on white: the H2 Partners in transformation left aligned; centred below, Customer story, the large blue quote about the real-time view of stock and demand, and Marcus Khan / Chief Operating Officer, Examp](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-default.jpg)
 
 **Grey background variation** — The Testimonial at 1440 px with BG Color Grey: the title What our clients say, the centred eyebrow, the blue quote, the author row with person-1.svg and the four stats under the divider, all on a light grey panel with 7.5rem / 5rem padding.
 
-![Grey background variation: The Testimonial at 1440 px with BG Color Grey: the title What our clients say, the centred eyebrow, the blue quote, the author row with person-1.svg and the four stats under the divider, all on a light grey panel with 7.5re](../../docs/handover/screenshots/testimonial-grey-background.jpg)
+![Grey background variation: The Testimonial at 1440 px with BG Color Grey: the title What our clients say, the centred eyebrow, the blue quote, the author row with person-1.svg and the four stats under the divider, all on a light grey panel with 7.5re](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-grey-background.jpg)
 
 **Author with photo** — A detail of the Testimonial at 1440 px showing the author row below the quote: the centred author row with the 3rem round photo person-1.svg on the left of Anita Rao and Chief Digital Officer, Example Bank, London.
 
-![Author with photo: A detail of the Testimonial at 1440 px showing the author row below the quote: the centred author row with the 3rem round photo person-1.svg on the left of Anita Rao and Chief Digital Officer, Example Bank, London.](../../docs/handover/screenshots/testimonial-author-photo.jpg)
+![Author with photo: A detail of the Testimonial at 1440 px showing the author row below the quote: the centred author row with the 3rem round photo person-1.svg on the left of Anita Rao and Chief Digital Officer, Example Bank, London.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-author-photo.jpg)
 
 **Author text only** — A detail of the Testimonial at 1440 px showing the author row below the quote: Sara Lee and VP Operations, Example Manufacturing, Munich centred on two lines, without a photo.
 
-![Author text only: A detail of the Testimonial at 1440 px showing the author row below the quote: Sara Lee and VP Operations, Example Manufacturing, Munich centred on two lines, without a photo.](../../docs/handover/screenshots/testimonial-author-text-only.jpg)
+![Author text only: A detail of the Testimonial at 1440 px showing the author row below the quote: Sara Lee and VP Operations, Example Manufacturing, Munich centred on two lines, without a photo.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-author-text-only.jpg)
 
 **Stats variation** — The Testimonial at 1440 px: the H2 Measurable outcomes left aligned, the centred Case study results, the cloud-native quote and Sara Lee / Chief Information Officer, Example Insurance, Amsterdam; under a 1px divider four stats in one row, grey titles above 3rem blue values: Faster time to market 40%, Lower operating cost 25%, Applications migrated 1,200+, Customer satisfaction 4.8/5.
 
-![Stats variation: The Testimonial at 1440 px: the H2 Measurable outcomes left aligned, the centred Case study results, the cloud-native quote and Sara Lee / Chief Information Officer, Example Insurance, Amsterdam; under a 1px divider four stats in one](../../docs/handover/screenshots/testimonial-with-stats.jpg)
+![Stats variation: The Testimonial at 1440 px: the H2 Measurable outcomes left aligned, the centred Case study results, the cloud-native quote and Sara Lee / Chief Information Officer, Example Insurance, Amsterdam; under a 1px divider four stats in one](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-with-stats.jpg)
 
 **Hide Eyebrow variation** — The Testimonial at 1440 px with Hide Eyebrow on: the H2 What our clients say, then directly the centred blue quote and the author row with person-1.svg and Anita Rao / Chief Digital Officer, Example Bank, London; no Client testimonial label and no stats.
 
-![Hide Eyebrow variation: The Testimonial at 1440 px with Hide Eyebrow on: the H2 What our clients say, then directly the centred blue quote and the author row with person-1.svg and Anita Rao / Chief Digital Officer, Example Bank, London; no Client tes](../../docs/handover/screenshots/testimonial-hide-eyebrow.jpg)
+![Hide Eyebrow variation: The Testimonial at 1440 px with Hide Eyebrow on: the H2 What our clients say, then directly the centred blue quote and the author row with person-1.svg and Anita Rao / Chief Digital Officer, Example Bank, London; no Client tes](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-hide-eyebrow.jpg)
 
 **Hide Title variation** — The Testimonial at 1440 px with Hide Title on: no visible title; the block starts with the centred eyebrow Client testimonial, then the blue quote and the author row with person-1.svg and Anita Rao. The H2 stays in the HTML for screen readers.
 
-![Hide Title variation: The Testimonial at 1440 px with Hide Title on: no visible title; the block starts with the centred eyebrow Client testimonial, then the blue quote and the author row with person-1.svg and Anita Rao. The H2 stays in the HTML for ](../../docs/handover/screenshots/testimonial-hide-title.jpg)
+![Hide Title variation: The Testimonial at 1440 px with Hide Title on: no visible title; the block starts with the centred eyebrow Client testimonial, then the blue quote and the author row with person-1.svg and Anita Rao. The H2 stays in the HTML for ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-hide-title.jpg)
 
 **Show Description off** — The Testimonial at 1440 px with Show Description off: the H2 What our clients say, the centred eyebrow Client testimonial and directly the author row with person-1.svg and Anita Rao; under the divider the four stats 40%, 25%, 1,200+ and 4.8/5; no quote.
 
-![Show Description off: The Testimonial at 1440 px with Show Description off: the H2 What our clients say, the centred eyebrow Client testimonial and directly the author row with person-1.svg and Anita Rao; under the divider the four stats 40%, 25%, 1,](../../docs/handover/screenshots/testimonial-description-hidden.jpg)
+![Show Description off: The Testimonial at 1440 px with Show Description off: the H2 What our clients say, the centred eyebrow Client testimonial and directly the author row with person-1.svg and Anita Rao; under the divider the four stats 40%, 25%, 1,](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-description-hidden.jpg)
 
 **Hide Author Details variation** — The Testimonial at 1440 px with Hide Author Details on: the H2 What our clients say, the centred eyebrow and the blue quote, then directly the divider and the four stats 40%, 25%, 1,200+ and 4.8/5; no photo, name or designation.
 
-![Hide Author Details variation: The Testimonial at 1440 px with Hide Author Details on: the H2 What our clients say, the centred eyebrow and the blue quote, then directly the divider and the four stats 40%, 25%, 1,200+ and 4.8/5; no photo, name or des](../../docs/handover/screenshots/testimonial-hide-author.jpg)
+![Hide Author Details variation: The Testimonial at 1440 px with Hide Author Details on: the H2 What our clients say, the centred eyebrow and the blue quote, then directly the divider and the four stats 40%, 25%, 1,200+ and 4.8/5; no photo, name or des](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-hide-author.jpg)
 
 **Universal Editor canvas** — The Testimonial in Universal Editor edit mode at 1440 px, selected, with letters A on the title, B on the eyebrow, C on the quote, D on person-1.svg, E on Anita Rao, F on the designation, G on the stat titles and H on the stat values. An annotated preview, not a Universal Editor screenshot. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/testimonial-authoring-view.jpg)
 
-![Universal Editor canvas: The Testimonial in Universal Editor edit mode at 1440 px, selected, with letters A on the title, B on the eyebrow, C on the quote, D on person-1.svg, E on Anita Rao, F on the designation, G on the stat titles and H on the sta](../../docs/handover/screenshots/testimonial-authoring-view.jpg)
+![Universal Editor canvas: The Testimonial in Universal Editor edit mode at 1440 px, selected, with letters A on the title, B on the eyebrow, C on the quote, D on person-1.svg, E on Anita Rao, F on the designation, G on the stat titles and H on the sta](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-authoring-view.jpg)
 
 **Properties panel** — The Testimonial properties panel showing the six tabs (Content, Author, Style, Show / Hide, Stats, Additional) with the Stats tab open and two items. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/testimonial-properties-panel.jpg)
 
-![Properties panel: The Testimonial properties panel showing the six tabs Content, Author, Style, Show / Hide, Stats, Additional with the Stats tab open and two items. Dialog reference generated from the component model, not a Universal Editor screensh](../../docs/handover/screenshots/testimonial-properties-panel.jpg)
+![Properties panel: The Testimonial properties panel showing the six tabs Content, Author, Style, Show / Hide, Stats, Additional with the Stats tab open and two items. Dialog reference generated from the component model, not a Universal Editor screensh](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/testimonial/screenshots/handover/testimonial-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -254,7 +254,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showDesc
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`) | — | grey |
+| BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Navy (`navy`) | — | grey |
 | Hide Eyebrow | `hideEyebrow` | boolean | No | `false` | on / off | — | true |
 | Hide Title | `titleHidden` | boolean | No | `false` | on / off | The title stays available to screen readers. | true |
 | Show Description | `showDescription` | boolean | No | `true` | on / off | — | true |
@@ -799,11 +799,11 @@ Evidence to collect: the page URL, viewport, browser, a screenshot, and the bloc
 - [Model: `_testimonial.json`](_testimonial.json)
 - [Stats decorator](../../decorators/stats-decorator.js)
 - [Item rows tests](../../test/items/item-rows.test.mjs) and [motion tests](../../test/motion/motion.test.mjs)
-- [Handover 6.13 Testimonial Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.13 Testimonial Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.13 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 17 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 17 instance(s) in total:
 - Block library: `block-library/animation/background-by-block`, `block-library/columns-container/columns-of-blocks`, `block-library/testimonial/testimonial-variations`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/product`, `curated-design-pages/services`, `curated-design-pages/story`
 

@@ -37,31 +37,31 @@ Screenshots of the handover (6.23 Modal Block), taken on the preview with sample
 
 **Desktop rendering** — At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close (X) button at the top right, the H2 Awards and recognition, the introduction, four bulleted awards and the link More about us, with 2rem padding.
 
-![Desktop rendering: At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close X button at the top right, the H2 Awards and recog](../../docs/handover/screenshots/modal-desktop-view.jpg)
+![Desktop rendering: At 1200 px, after selecting View our awards: the page dimmed by the near-black 75 % backdrop and, centred over it, a white dialog 56.25rem wide with 1rem rounded corners, the close X button at the top right, the H2 Awards and recog](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-desktop-view.jpg)
 
 **Tablet rendering** — At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms (Heading 3 sections with their paragraphs), with the close (X) button still at the top right.
 
-![Tablet rendering: At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms Heading 3 sections with their paragra](../../docs/handover/screenshots/modal-tablet-view.jpg)
+![Tablet rendering: At 768 px, after selecting Read the programme terms and scrolling inside the dialog: a white dialog 1.5rem from each screen edge over the dark backdrop, showing the middle of the programme terms Heading 3 sections with their paragra](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-tablet-view.jpg)
 
 **Mobile rendering** — At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close (X) button at the top right, the H2 Programme terms, the introduction and the first Heading 3 sections; the rest scrolls inside.
 
-![Mobile rendering: At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close X button at the top right, the H2 Programme terms, the introduction and the first H](../../docs/handover/screenshots/modal-mobile-view.jpg)
+![Mobile rendering: At 375 px, after selecting Read the programme terms: the dialog 1.5rem from each screen edge and as tall as the screen minus 3rem, showing the close X button at the top right, the H2 Programme terms, the introduction and the first H](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-mobile-view.jpg)
 
 **Modal block variation** — At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog (56.25rem wide, the H2 Awards and recognition, four bulleted awards and More about us) open over it rather than next to it.
 
-![Modal block variation: At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog 56.25rem wide, the H2 Awards and recognition, four bulle](../../docs/handover/screenshots/modal-block-button.jpg)
+![Modal block variation: At 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards, dimmed under the dark backdrop, and the awards dialog 56.25rem wide, the H2 Awards and recognition, four bulle](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-block-button.jpg)
 
 **Auto-linked modal variation** — At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragraphs.
 
-![Auto-linked modal variation: At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragr](../../docs/handover/screenshots/modal-auto-link.jpg)
+![Auto-linked modal variation: At 1440 px: the H2 Stay informed and the paragraph with the inline link privacy notice, dimmed under the backdrop, and over them the dialog opened by that link with the close button, the H2 Privacy notice and three paragr](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-auto-link.jpg)
 
 **Universal Editor canvas** — Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/modal-authoring-view.jpg)
 
-![Universal Editor canvas: Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. Annota](../../docs/handover/screenshots/modal-authoring-view.jpg)
+![Universal Editor canvas: Universal Editor edit mode at 1440 px: the section with the H2 Recognised for excellence, the paragraph and the primary button View our awards; letter A marks the Modal block and B its opener button. No dialog is open. Annota](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-authoring-view.jpg)
 
 **Properties panel** — The Modal properties panel with the Content tab (Modal Content picker and Button Text) and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-panel.jpg)
 
-![Properties panel: The Modal properties panel with the Content tab Modal Content picker and Button Text and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-p](../../docs/handover/screenshots/modal-properties-panel.jpg)
+![Properties panel: The Modal properties panel with the Content tab Modal Content picker and Button Text and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/modal-properties-p](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/modal/screenshots/handover/modal-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -172,7 +172,7 @@ Model `modal`; template name "Modal" (the block class AEM renders).
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modal/. Opens in a dialog. | /language-master/en/block-library/modal/fragments/contact-form |
+| Modal Content | `link` | aem-content | No | — | — | A fragment page, e.g. under /modal/. Opens in a dialog. | /design-block-master/en/block-library/modal/fragments/contact-form |
 | Button Text | `linkText` | text | No | — | — | Delivered with `link` (field collapse). | Contact our team |
 
 #### Additional tab — Modal
@@ -276,7 +276,7 @@ B = Button Text
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Modal Content | `/language-master/en/block-library/modal/fragments/recognition` | The dialog's page | The dialog shows its content |
+| A | Modal Content | `/language-masters/en/block-library/modal/fragments/recognition` | The dialog's page | The dialog shows its content |
 | B | Button Text | `View our awards` | Says what opens | Primary button "View our awards" |
 
 Business rule: an empty Button Text shows "Open". Validation: the button opens the dialog in preview. Common mistake: a Button Text that repeats the URL.
@@ -664,11 +664,11 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 - Model: [`_modal.json`](./_modal.json); auto-link: [`scripts/scripts.js`](../../scripts/scripts.js)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)
-- Handover: [handover 6.23 Modal Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- Handover: [handover 6.23 Modal Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 3 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 3 instance(s) in total:
 - Block library: `block-library/modal/modal-block`, `block-library/modal/modal-long-content`, `block-library/modal/modal-with-a-form`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).

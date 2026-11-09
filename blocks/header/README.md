@@ -19,7 +19,7 @@ The site header of every page (the TCS Header of Figma *New Screens from New DS*
 
 - Desktop (>= 1200px): the Figma logo bar only, TCS logo left and TATA logo right, 124px high. There is no navigation in the header (strict Figma, product decision of 16 October 2026, handover F-72): the site navigation is in the Conversation Canvas.
 - Tablet and mobile (< 1200px): a fixed 64px bar with the two logos and a menu button; the menu opens full screen and shows one level at a time (title "Menu", then the open section's label, a Back button from the second level).
-- Desktop over a light hero: when the page's first section has a Hero that isn't `bg-dark`, `bg-dark-subtle` or `bg-black`, the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). With a TCS Header this applies at every width and its **Header over the first block** can change it (Always: over any first block; Never: never), and the logo bar stays fixed at the top on desktop too, see [TCS Header](../tcs-header/README.md).
+- Desktop over a light hero: when the page's first section has a Hero that isn't one of the dark BG Colors (`bg-dark`, `bg-dark-subtle`, `bg-black`, `bg-charcoal-80`, `bg-navy-60`, `bg-charcoal-40`), the header has no band and lies over the hero (Figma Logos 667:52520, Hero 4082:120388). With a TCS Header this applies at every width and its **Header over the first block** can change it (Always: over any first block; Never: never), and the logo bar stays fixed at the top on desktop too, see [TCS Header](../tcs-header/README.md).
 
 Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25825; mobile menu frames 1124:27418, 1124:27432, 1124:27453), Home desktop / tablet / mobile (229:15426, 671:52732, 4082:120430).
 
@@ -47,55 +47,55 @@ Screenshots of the handover (6.1 Header Block), taken on the preview with sample
 
 **Desktop rendering** — The header at 1440 px in one 4rem row: TCS at the left, Services, Industries, Insights and About us, then Investors and the Contact us primary button at the right. Services is open: its chevron points up and a light grey 12.5rem panel with a pointer triangle lists Consulting, Cloud, Cybersecurity and AI and data.
 
-![Desktop rendering: The header at 1440 px in one 4rem row: TCS at the left, Services, Industries, Insights and About us, then Investors and the Contact us primary button at the right. Services is open: its chevron points up and a light grey 12.5rem pa](../../docs/handover/screenshots/header-desktop-view.jpg)
+![Desktop rendering: The header at 1440 px in one 4rem row: TCS at the left, Services, Industries, Insights and About us, then Investors and the Contact us primary button at the right. Services is open: its chevron points up and a light grey 12.5rem pa](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-desktop-view.jpg)
 
 **Tablet rendering** — The header at 768 px with the menu closed, in one 4rem row: the three-bar menu button at the left, TCS next to it and Investors with the Contact us button at the right; the four sections are hidden.
 
-![Tablet rendering: The header at 768 px with the menu closed, in one 4rem row: the three-bar menu button at the left, TCS next to it and Investors with the Contact us button at the right; the four sections are hidden.](../../docs/handover/screenshots/header-tablet-view.jpg)
+![Tablet rendering: The header at 768 px with the menu closed, in one 4rem row: the three-bar menu button at the left, TCS next to it and Investors with the Contact us button at the right; the four sections are hidden.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-tablet-view.jpg)
 
 **Mobile rendering** — Two 390 px frames side by side. Menu closed: the menu button, TCS and the tools in one 4rem row. Menu open: the X icon and TCS, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and Manufacturing, Insights and About us stacked, and Investors and Contact us at the bottom.
 
-![Mobile rendering: Two 390 px frames side by side. Menu closed: the menu button, TCS and the tools in one 4rem row. Menu open: the X icon and TCS, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and](../../docs/handover/screenshots/header-mobile-view.jpg)
+![Mobile rendering: Two 390 px frames side by side. Menu closed: the menu button, TCS and the tools in one 4rem row. Menu open: the X icon and TCS, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-mobile-view.jpg)
 
 **Default navigation of the /en locale** — An /en content page at 1440 px with the header from /en/references/nav, all dropdowns closed: TCS, Services and Industries with chevrons, Insights, About us, Investors and the Contact us primary button, above the start of the page content.
 
-![Default navigation of the /en locale: An /en content page at 1440 px with the header from /en/references/nav, all dropdowns closed: TCS, Services and Industries with chevrons, Insights, About us, Investors and the Contact us primary button, above the](../../docs/handover/screenshots/header-default-locale-navigation.jpg)
+![Default navigation of the /en locale: An /en content page at 1440 px with the header from /en/references/nav, all dropdowns closed: TCS, Services and Industries with chevrons, Insights, About us, Investors and the Contact us primary button, above the](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-default-locale-navigation.jpg)
 
 **Area-specific navigation** — Two 1440 px headers one above the other (not side by side). Top, a page of /en: TCS, Services, Industries, Insights, About us, Investors, Contact us. Bottom, /en/careers/jobs inheriting nav-careers: TCS Careers, Find jobs with a chevron, Life at TCS, Locations, tcs.com and the Apply now primary button.
 
-![Area-specific navigation: Two 1440 px headers one above the other not side by side. Top, a page of /en: TCS, Services, Industries, Insights, About us, Investors, Contact us. Bottom, /en/careers/jobs inheriting nav-careers: TCS Careers, Find jobs with](../../docs/handover/screenshots/header-alternate-navigation.jpg)
+![Area-specific navigation: Two 1440 px headers one above the other not side by side. Top, a page of /en: TCS, Services, Industries, Insights, About us, Investors, Contact us. Bottom, /en/careers/jobs inheriting nav-careers: TCS Careers, Find jobs with](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-alternate-navigation.jpg)
 
 **An open dropdown** — The header at 1440 px with Services open: its chevron points up, and the light grey 12.5rem panel with the pointer triangle lists Consulting, Cloud, Cybersecurity and AI and data in regular weight, with Cloud underlined under the mouse pointer.
 
-![An open dropdown: The header at 1440 px with Services open: its chevron points up, and the light grey 12.5rem panel with the pointer triangle lists Consulting, Cloud, Cybersecurity and AI and data in regular weight, with Cloud underlined under the mo](../../docs/handover/screenshots/header-desktop-dropdown.jpg)
+![An open dropdown: The header at 1440 px with Services open: its chevron points up, and the light grey 12.5rem panel with the pointer triangle lists Consulting, Cloud, Cybersecurity and AI and data in regular weight, with Cloud underlined under the mo](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-desktop-dropdown.jpg)
 
 **Open mobile menu** — The header at 390 px with the menu open over the full height: the X icon and TCS on top, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and Manufacturing, Insights and About us stacked, and Investors and Contact us at the bottom.
 
-![Open mobile menu: The header at 390 px with the menu open over the full height: the X icon and TCS on top, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and Manufacturing, Insights and About us s](../../docs/handover/screenshots/header-mobile-menu.jpg)
+![Open mobile menu: The header at 390 px with the menu open over the full height: the X icon and TCS on top, then Services with Consulting, Cloud, Cybersecurity and AI and data, Industries with Banking, Retail and Manufacturing, Insights and About us s](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-mobile-menu.jpg)
 
 **Section label rendered as a button** — The header at 1440 px after Tab to Services and Enter: the Services button shows the keyboard focus ring and its chevron points up, and its dropdown lists Consulting, Cloud, Cybersecurity and AI and data.
 
-![Section label rendered as a button: The header at 1440 px after Tab to Services and Enter: the Services button shows the keyboard focus ring and its chevron points up, and its dropdown lists Consulting, Cloud, Cybersecurity and AI and data.](../../docs/handover/screenshots/header-unlinked-section-label.jpg)
+![Section label rendered as a button: The header at 1440 px after Tab to Services and Enter: the Services button shows the keyboard focus ring and its chevron points up, and its dropdown lists Consulting, Cloud, Cybersecurity and AI and data.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-unlinked-section-label.jpg)
 
 **Linked label with dropdown toggle** — The header at 1440 px after Tab from the bold Industries link to its toggle and Enter: Industries stays a link with its chevron pointing up and the dropdown lists Banking, Retail and Manufacturing; no focus ring is visible because the toggle button is 0 × 0 (F-13).
 
-![Linked label with dropdown toggle: The header at 1440 px after Tab from the bold Industries link to its toggle and Enter: Industries stays a link with its chevron pointing up and the dropdown lists Banking, Retail and Manufacturing; no focus ring is ](../../docs/handover/screenshots/header-linked-section-label.jpg)
+![Linked label with dropdown toggle: The header at 1440 px after Tab from the bold Industries link to its toggle and Enter: Industries stays a link with its chevron pointing up and the dropdown lists Banking, Retail and Manufacturing; no focus ring is ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-linked-section-label.jpg)
 
 **Plain first-level link** — The header at 1440 px with the pointer on Insights: Insights is underlined and has no chevron, like About us, while Services and Industries carry closed chevrons; no dropdown is open.
 
-![Plain first-level link: The header at 1440 px with the pointer on Insights: Insights is underlined and has no chevron, like About us, while Services and Industries carry closed chevrons; no dropdown is open.](../../docs/handover/screenshots/header-simple-section-link.jpg)
+![Plain first-level link: The header at 1440 px with the pointer on Insights: Insights is underlined and has no chevron, like About us, while Services and Industries carry closed chevrons; no dropdown is open.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-simple-section-link.jpg)
 
 **Tools on the right of the header** — Two frames one above the other. Top, 1440 px: the full row with Investors as a link and the Contact us primary button at the right end. Bottom, 390 px with the menu closed: the menu button, TCS and the same two tools at the right of the 4rem row.
 
-![Tools on the right of the header: Two frames one above the other. Top, 1440 px: the full row with Investors as a link and the Contact us primary button at the right end. Bottom, 390 px with the menu closed: the menu button, TCS and the same two tools](../../docs/handover/screenshots/header-tools-area.jpg)
+![Tools on the right of the header: Two frames one above the other. Top, 1440 px: the full row with Investors as a link and the Contact us primary button at the right end. Bottom, 390 px with the menu closed: the menu button, TCS and the same two tools](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-tools-area.jpg)
 
 **Universal Editor canvas of the nav page** — references/nav opened directly in editor mode at 1440 px, rendered as an ordinary page under its own header: A the section with the TCS link, B the bulleted list, C Services with its four indented links, D one second-level link, E the section with Investors and the Contact us button. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/header-authoring-view.jpg)
 
-![Universal Editor canvas of the nav page: references/nav opened directly in editor mode at 1440 px, rendered as an ordinary page under its own header: A the section with the TCS link, B the bulleted list, C Services with its four indented links, D one](../../docs/handover/screenshots/header-authoring-view.jpg)
+![Universal Editor canvas of the nav page: references/nav opened directly in editor mode at 1440 px, rendered as an ordinary page under its own header: A the section with the TCS link, B the bulleted list, C Services with its four indented links, D one](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-authoring-view.jpg)
 
 **Properties used to choose the nav page** — Page Properties of a content page with the Navigation field (and Footer, 404 Page) highlighted; plus the properties panel of the Text component holding the list on the nav page. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/header-properties-panel.jpg)
 
-![Properties used to choose the nav page: Page Properties of a content page with the Navigation field and Footer, 404 Page highlighted; plus the properties panel of the Text component holding the list on the nav page. Dialog reference generated from th](../../docs/handover/screenshots/header-properties-panel.jpg)
+![Properties used to choose the nav page: Page Properties of a content page with the Navigation field and Footer, 404 Page highlighted; plus the properties panel of the Text component holding the list on the nav page. Dialog reference generated from th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/header/screenshots/handover/header-properties-panel.jpg)
 
 <!-- END GENERATED: screenshots -->
 
@@ -512,7 +512,7 @@ B = Canvas row
 ### Desktop header over a light hero
 
 - **Purpose:** Figma Logos 667:52520 / Hero 4082:120388: the logos over the hero image.
-- **Rendering:** `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) from 1200px when `main > .section:first-child .hero` isn't `bg-dark`, `bg-dark-subtle` or `bg-black`; `header.css` makes `.nav-wrapper` transparent; `blocks/hero` adds `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads.
+- **Rendering:** `styles/styles.css` takes `<header>` out of the flow (`position: absolute`) from 1200px when `main > .section:first-child .hero` isn't one of the dark BG Colors (`bg-dark`, `bg-dark-subtle`, `bg-black`, `bg-charcoal-80`, `bg-navy-60`, `bg-charcoal-40`); `header.css` makes `.nav-wrapper` transparent; `blocks/hero` adds `--header-height` (else `--header-reserved`) to its top padding and height, so the hero never moves when the header loads.
 - **Header over the first block (TCS Header):** with `<html data-header-overlay="always">` the header lies over any first block (transparent from `tcs-header.css`), with `never` it stays in the flow; this block's code is unchanged (see [TCS Header](../tcs-header/README.md)).
 
 ```text
@@ -657,7 +657,7 @@ blocks/header/
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { getPlaceholders } |
 | [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `header.js`: { rememberHeaderSpace } |
 | [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `header.js`: { getInheritedMetadata } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (temporary: the language master under review, /language-master/en, lists its own pages and reads its own placeholders, redirects,  | `header.js`: { resolvePagePath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `header.js`: { resolvePagePath } |
 
 <!-- END GENERATED: files -->
 
@@ -860,7 +860,7 @@ Evidence to collect: page URL, viewport width, the `nav` meta value of the page 
 - Page property model: [`models/_page.json`](../../models/_page.json)
 - Utilities: [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js), [`utils/header-space.js`](../../utils/header-space.js), [`utils/site.js`](../../utils/site.js), [utils README](../../utils/README.md), [decorators README](../../decorators/README.md)
 - Tests: [`test/conversation-canvas/canvas-journey.test.mjs`](../../test/conversation-canvas/canvas-journey.test.mjs), [`test/site/index-root.test.mjs`](../../test/site/index-root.test.mjs)
-- Handover: [handover 6.1 Header Block (6.1.18 TCS Header)](../../docs/handover/TCS-CORP-HANDOVER.md)
+- Handover: [handover 6.1 Header Block (6.1.18 TCS Header)](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 

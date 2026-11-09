@@ -5,7 +5,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Attribute | Value |
 | --- | --- |
 | Audience | Business teams, product owner, new joiners, architects, developers, AMS / support, AI agents |
-| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)) |
+| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation (business KPIs, stakeholder names, production domain and launch scope are not recorded) |
 
@@ -24,7 +24,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Sites | 13 locale sites, plus the language master published temporarily for review |
 | Hosts in use | `main--tcs-corp--sradha-tcs.aem.page` (preview) and `main--tcs-corp--sradha-tcs.aem.live` (live) |
 | Production domain and CDN | Not recorded (handover open item O-03, "To be confirmed") |
-| Handover | [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](../TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
+| Handover | [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
 
 ## Business and Program Objectives
 
@@ -111,7 +111,7 @@ One code base serves every locale; the locale is resolved from the AEM path when
 | 12 | `jp/ja-jp` | `/ja-jp` | ja-JP |
 | 13 | `kr/ko-kr` | `/ko-kr` | ko-KR |
 
-**Language master under review (temporary).** The language master `/content/tcs-corp/language-master/en`, the rollout source of `/en`, is published at `/language-master/en/` so it can be reviewed as a site of its own. Its pages list the language master's own pages from the query index, read its own placeholders, redirects, taxonomy and data sheets and its own references and error pages, and inherit Navigation, Footer and 404 Page up to its root page (`REVIEW_ROOTS`, `REVIEW_SHEETS`, `REVIEW_PAGES`, `indexRoot`, `localeSheetPath`, `localePagePath` in [utils/site.js](../../../utils/site.js); the `REVIEW` block of [tools/paths/generate-paths.mjs](../../../tools/paths/generate-paths.mjs): 11 of the 154 mappings and one include). It is to be removed after the rollout (handover 3.9, finding F-88); the rollout date is not recorded. Test: [test/site/index-root.test.mjs](../../../test/site/index-root.test.mjs).
+**Review roots (KB-D-068).** Besides the 13 locales there are three review roots, each published as a site of its own (KB-D-068): `/language-master/en` (testing page functionality with dummy content, content limitations), `/language-masters/en` (the language master: the migrated tcs.com content, validated with its real sheet data, later the source of the global site and the regions and languages; MSM or not is open until the content is final) and `/design-block-master/en` (the block library and the curated design pages); each is published at its own path (`/language-master/en/`, `/language-masters/en/`, `/design-block-master/en/`) as a site of its own. The language master `/content/tcs-corp/language-masters/en`, the rollout source of `/en`, is reviewed this way. Its pages list the language master's own pages from the query index, read its own placeholders, redirects, taxonomy and data sheets and its own references and error pages, and inherit Navigation, Footer and 404 Page up to its root page (`REVIEW_ROOTS`, `REVIEW_SHEETS`, `REVIEW_PAGES`, `indexRoot`, `localeSheetPath`, `localePagePath` in [utils/site.js](../../../utils/site.js); the `REVIEW` block of [tools/paths/generate-paths.mjs](../../../tools/paths/generate-paths.mjs): 11 of the 154 mappings and one include). It is to be removed after the rollout (handover 3.9, finding F-88); the rollout date is not recorded. Test: [test/site/index-root.test.mjs](../../../test/site/index-root.test.mjs).
 
 Content status per locale and the launch scope per locale are not recorded (handover PG-3, SC-1 "To be confirmed"). There is no language switcher component and no hreflang (handover 1.6.2).
 
@@ -129,7 +129,7 @@ Every locale site has the same layout (details: [AGENTS.md](../../../AGENTS.md#s
 │   ├── placeholders, metadata, taxonomy, redirects   sheets / taxonomy page
 │   └── data/                       authors, locations, partners, social-links, media-contacts
 ├── de/de-de/ … kr/ko-kr/           the 12 other locale sites, same layout
-├── language-master/en/             published temporarily at /language-master/en/ for review
+├── language-masters/en/             published temporarily at /language-masters/en/ for review
 └── site-global-templates/          template pages authors copy; not published
 /content/dam/tcs-corp/              AEM Assets (included in paths.json, published with pages)
 ```
@@ -234,7 +234,7 @@ Verified constraints the code and content work under (rules in [AGENTS.md](../..
 | --- | --- |
 | xwalk | AEM authoring (Universal Editor) for Edge Delivery Services |
 | Locale site | One of the 13 country / language sites |
-| Language master | `/content/tcs-corp/language-master/en`, temporarily published at `/language-master/en` |
+| Language master | `/content/tcs-corp/language-masters/en`, temporarily published at `/language-masters/en` |
 | Block / section container / item | A decorated component / a section turned into a block / a row added to a block with Add |
 | Additional tab | The last dialog tab of every block except header and footer |
 | Query index | `/query-index.json`, the published pages and their metadata columns |
@@ -252,4 +252,4 @@ Full definitions: [glossary.md](./glossary.md).
 - [AGENTS.md](../../../AGENTS.md): verified project rules
 - [blocks/README.md](../../../blocks/README.md): block inventory
 - [utils/site.js](../../../utils/site.js): locales and the language master review
-- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md)
+- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)

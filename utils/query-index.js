@@ -2,13 +2,22 @@
  * Query index utils: the published pages and their metadata (helix-query.yaml, /query-index.json),
  * loaded once per page and read the same way in every block. Rows of the current locale site.
  */
-import { indexRoot } from './site.js';
+import { indexRoot, REVIEW_ROOTS } from './site.js';
 
 const INDEX = '/query-index.json';
-const PAGE_SIZE = 500;
+// rows per request: the requests after the first run in parallel
+const PAGE_SIZE = 1000;
 const YES = ['yes', 'true', '1', 'on', 'y'];
 
-let pages;
+const pagesByIndex = new Map();
+
+/**
+ * The query index a root's pages are listed in: each review root has its own
+ * ({root}/query-index.json, helix-query.yaml), the locales share /query-index.json.
+ * @param {string} root a published root (indexRoot), e.g. /en or /language-masters/en
+ * @returns {string}
+ */
+export const indexUrlOf = (root) => (REVIEW_ROOTS.includes(root) ? `${root}/query-index.json` : INDEX);
 
 /** a multi-value column: a JSON array, or a comma-separated list */
 export function listOf(value) {
@@ -99,18 +108,28 @@ export function columnOf(page, name) {
   return page.row[key] ?? page.row[name] ?? page[key] ?? '';
 }
 
-async function fetchAll() {
-  const rows = [];
-  for (let offset = 0; ; offset += PAGE_SIZE) {
-    // eslint-disable-next-line no-await-in-loop
-    const resp = await fetch(`${INDEX}?offset=${offset}&limit=${PAGE_SIZE}`);
-    if (!resp.ok) break;
-    // eslint-disable-next-line no-await-in-loop
-    const json = await resp.json();
-    rows.push(...(json.data || []));
-    if (!json.data?.length || rows.length >= (json.total || 0)) break;
-  }
-  return rows;
+/** the offsets of the requests after the first one, for an index of `total` rows */
+export const remainingOffsets = (first, total, size = PAGE_SIZE) => {
+  const offsets = [];
+  for (let offset = first; offset < total; offset += size) offsets.push(offset);
+  return offsets;
+};
+
+/**
+ * Every row of an index: the first request gives the total, the others run in parallel. A review
+ * root whose own index doesn't exist yet (not reindexed) falls back to the shared index.
+ */
+async function fetchAll(url) {
+  const resp = await fetch(`${url}?offset=0&limit=${PAGE_SIZE}`);
+  if (!resp.ok) return url === INDEX ? [] : fetchAll(INDEX);
+  const json = await resp.json();
+  const rows = json.data || [];
+  const rest = await Promise.all(remainingOffsets(rows.length, json.total || 0)
+    .map((offset) => fetch(`${url}?offset=${offset}&limit=${PAGE_SIZE}`)
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((j) => j.data || [])
+      .catch(() => [])));
+  return rows.concat(...rest);
 }
 
 /** an image path of a loaded page: same-origin images by path, others by URL */
@@ -174,9 +193,10 @@ export async function getPagesAt(paths) {
  * @returns {Promise<IndexedPage[]>} empty when the index isn't available (e.g. in the editor)
  */
 export async function getPages() {
-  pages = pages || fetchAll().catch(() => []);
   const root = indexRoot();
-  return (await pages)
+  const url = indexUrlOf(root);
+  if (!pagesByIndex.has(url)) pagesByIndex.set(url, fetchAll(url).catch(() => []));
+  return (await pagesByIndex.get(url))
     .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
     .map(toPage);
 }

@@ -95,7 +95,7 @@ html:has(header .tcs-header-brand) :is(h1, h2, h3, h4, h5, h6, [id^='anchor-']) 
 }
 
 /* Overlay Modes */
-:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black))) header:has(.tcs-header-brand) .nav-wrapper,
+:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40))) header:has(.tcs-header-brand) .nav-wrapper,
 html[data-header-overlay='always'] header .nav-wrapper {
   background-color: transparent;
 }

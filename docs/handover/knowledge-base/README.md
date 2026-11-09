@@ -5,13 +5,17 @@ The single source of truth for the TCS Corporate Website project (AEM Sites with
 | Attribute | Value |
 | --- | --- |
 | Audience | Everyone working on the project: see [Audience](#audience) |
-| Source of truth | The repository at commit 2d06316 (`main`, 21 October 2026); [AGENTS.md](../../../AGENTS.md); the block READMEs ([blocks/README.md](../../../blocks/README.md)); the project handover ([TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md), version 2.37) |
+| Source of truth | The repository at commit 2d06316 (`main`, 21 October 2026); [AGENTS.md](../../../AGENTS.md); the block READMEs ([blocks/README.md](../../../blocks/README.md)); the project handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md), version 2.37) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; topics that couldn't be verified are marked "Blocked" or "Requires validation" in their page |
 
 ## Purpose
 
 This knowledge base is the project-wide single source of truth for humans and AI agents. It brings together, per topic, the verified current state of the implementation and the project's standards, and points to the detailed sources: the code itself, [AGENTS.md](../../../AGENTS.md) (the repository rules), the README of each block, the decorator and utility READMEs, the audit reports and the handover. Where the handover or another document differs from the code, the knowledge base describes the code and records the difference ([discrepancy report](./reports/discrepancy-report.md)).
+
+**Role-specific documentation (KB-D-069, 8 November 2026).** The documentation set for every role (architecture, development with one folder per block and curated page, authoring with one guide per component, business analysis, QA with test cases and execution results, operations, governance, release, a knowledge base for humans and AI agents, training, audit; Markdown with paired PDFs) is on the branch `migrated-page-content-edam` under `docs/handover/`; it replaces the consolidated handover (kept in the tag `archive/docs-before-role-docs-2026-11-08`) and is updated with every code change.
+
+**Where the documents are (KB-D-066, 8 November 2026).** Only this knowledge base is in the code repository. The handover (Markdown, PDF and screenshots), the guides, the design proposals, the audit, animation and block documentation reports and the EDAM set-up are on the branch [`migrated-page-content-edam`](https://github.com/sradha-tcs/tcs-corp/tree/migrated-page-content-edam/docs) under `docs/` (the same paths as before): links to them point there, and they are updated there.
 
 ## Mandatory Usage
 
@@ -73,7 +77,7 @@ Verified at commit 2d06316 (21 October 2026); details and evidence in the linked
 
 | Area | Status |
 | --- | --- |
-| Sites | 13 locale sites (`/en`, `/de-de`, …) defined in `utils/site.js` and `paths.json`; the language master under review is published at `/language-master/en` (temporary `REVIEW_*` settings) — [content-architecture](./content-architecture.md) |
+| Sites | 13 locale sites (`/en`, `/de-de`, …) defined in `utils/site.js` and `paths.json`; the language master under review is published at `/language-masters/en` (temporary `REVIEW_*` settings) — [content-architecture](./content-architecture.md) |
 | Blocks | 30 block folders: 28 active, Columns compatibility-only (replaced by the Columns Container), Interactive Dashboard an experimental placeholder — [blocks](./blocks.md) |
 | Technologies | Edge Delivery Services (aem.page / aem.live), Universal Editor with xwalk models, vanilla JavaScript and CSS without a build step, the Adobe Client Data Layer, RUM (`sampleRUM`) — [architecture](./architecture.md) |
 | Not configured / not implemented | Adobe Tags (Data Collection), the AEP Web SDK, Analytics and CJA reporting (blocked: measurement plan); Adobe Target and AJO; a consent mechanism; per-locale redirects (sheets exist, not applied by the platform) — [data-layer-and-analytics](./data-layer-and-analytics.md), [personalization](./personalization.md) |
@@ -104,5 +108,5 @@ Verified at commit 2d06316 (21 October 2026); details and evidence in the linked
 
 - [AGENTS.md](../../../AGENTS.md): repository rules for agents and developers
 - [blocks/README.md](../../../blocks/README.md): block documentation index
-- [docs/handover/README.md](../README.md) and [TCS-CORP-HANDOVER.md](../TCS-CORP-HANDOVER.md): the project handover
+- [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) and [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md): the project handover
 - [reports/](./reports/README.md): inventory, discrepancies, validation

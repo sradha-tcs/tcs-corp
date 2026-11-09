@@ -1,6 +1,6 @@
 # Documentation-to-Implementation Discrepancy Report
 
-Every difference found while writing the knowledge base between the implementation and the documentation (mostly the handover, written before later changes; also AGENTS.md, READMEs and comments). The knowledge base pages describe the implementation; the last column says which source must be corrected. The 170 block-level differences are in the [block documentation report](../../../blocks/BLOCK-DOCUMENTATION-REPORT.md), section 4.
+Every difference found while writing the knowledge base between the implementation and the documentation (mostly the handover, written before later changes; also AGENTS.md, READMEs and comments). The knowledge base pages describe the implementation; the last column says which source must be corrected. The 170 block-level differences are in the [block documentation report](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md), section 4.
 
 | Attribute | Value |
 | --- | --- |

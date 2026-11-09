@@ -93,13 +93,17 @@ export function getLocale(pathname = window.location.pathname) {
 
 /*
  * TEMPORARY, for the review of the language master before its rollout to /en: pages published
- * below these roots (the paths.json mapping /content/tcs-corp/language-master/en/ ->
- * /language-master/en/) list the pages of their own tree from the query index, as a locale site
+ * below these roots (the paths.json mapping /content/tcs-corp/language-masters/en/ ->
+ * /language-masters/en/) list the pages of their own tree from the query index, as a locale site
  * does. tools/paths/generate-paths.mjs maps each root as a locale (npm run build:paths): its
  * folder (child pages and sheets), its root page (the Home page, at {root}/), its taxonomy page.
  * Remove with the mappings once the language master is rolled out and unpublished.
+ * Three roots, each a site of its own with its references, error pages and sheets (KB-D-068):
+ * /language-master/en tests page functionality with dummy content, /language-masters/en is the
+ * language master (the migrated content, the source of the global site and the regions) and
+ * /design-block-master/en holds the block library and the curated design pages.
  */
-export const REVIEW_ROOTS = ['/language-master/en'];
+export const REVIEW_ROOTS = ['/language-master/en', '/language-masters/en', '/design-block-master/en'];
 
 /**
  * The sheets published below the review roots (paths mapped in the site configuration), read
@@ -117,11 +121,11 @@ export const REVIEW_PAGES = ['references/', 'error-pages/'];
 
 /**
  * The review root of a page, or '': from its published path, or from its AEM path on author
- * (/content/tcs-corp/language-master/en/... is published at /language-master/en/...)
+ * (/content/tcs-corp/language-masters/en/... is published at /language-masters/en/...)
  */
 const reviewRootOf = (pathname) => {
   const siteRoot = pathname.match(CONTENT_ROOT)?.[0] || '';
-  // the review root's own page too (/content/tcs-corp/language-master/en.html on author)
+  // the review root's own page too (/content/tcs-corp/language-masters/en.html on author)
   const path = (siteRoot ? pathname.slice(siteRoot.length) : pathname).toLowerCase()
     .replace(/(\.plain)?\.html$/, '').replace(/\/index$/, '');
   return REVIEW_ROOTS.find((root) => startsWithFolder(path, root)) || '';
@@ -150,7 +154,7 @@ export function getParentPages(pathname = window.location.pathname) {
   const path = pathname.slice(contentRoot.length)
     .replace(/(\.plain)?\.html$/, '')
     .replace(/\/(index)?$/, '');
-  // a page under review inherits up to its review root's page (e.g. /language-master/en), whose
+  // a page under review inherits up to its review root's page (e.g. /language-masters/en), whose
   // AEM path is its published path below the site root
   const review = reviewRootOf(pathname);
   const localeOf = contentRoot ? localeOfAemPath : localeOfSitePath;
@@ -201,7 +205,7 @@ export function toAemPath(pathname, contentRoot) {
 
 /**
  * A page link to follow here: on AEM author a published page path becomes its AEM page
- * (/language-master/en/x becomes /content/tcs-corp/language-master/en/x.html); on the site, and
+ * (/language-masters/en/x becomes /content/tcs-corp/language-masters/en/x.html); on the site, and
  * for other links, the link as it is.
  * @param {string} href
  * @param {string} [pathname] defaults to the current page
