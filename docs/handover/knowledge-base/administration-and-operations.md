@@ -66,7 +66,7 @@ No verified permission model was identified. AEM user groups, permissions per lo
 ## Metadata
 
 - Each locale has a bulk metadata sheet (`{locale}/metadata`, published as `/en/metadata.json`, `/de-de/metadata.json`, ...). The platform applies them only when all 13 are listed in the site configuration: `POST https://admin.hlx.page/config/{org}/sites/{site}/metadata.json` with `{"source": ["/en/metadata.json", "/de-de/metadata.json", ...]}`. Until then no bulk metadata applies; each sheet's URL patterns must start with its locale ([AGENTS.md](../../../AGENTS.md#site-structure-and-site-data)).
-- Whether `metadata.source` is configured is not recorded (open item O-04). Check: `GET https://admin.hlx.page/config/sradha-tcs/sites/tcs-corp/metadata.json` (authenticated; handover Part 17, M-07).
+- `metadata.source` (checked 9 November 2026, `GET https://admin.hlx.page/config/sradha-tcs/sites/tcs-corp/metadata.json`, authenticated) lists the 13 locale sheets and `/language-master/en/metadata.json` (the testing root); `/language-masters/en/metadata.json` (published, 9,440 rows) and `/design-block-master/en/metadata.json` (not published) aren't listed, so the language master's bulk metadata (page types, SEO columns, `hide-in-nav`) doesn't apply until they're added (a site configuration change, decided by the product owner).
 - The columns are listed in [AGENTS.md](../../../AGENTS.md#site-structure-and-site-data); the indexed ones are the properties of [helix-query.yaml](../../../helix-query.yaml). [decorators/seo-decorator.js](../../../decorators/seo-decorator.js) maps the SEO and social columns in the browser.
 - Governance of value lists (page types, content types, regions, persona, campaign codes): handover Part 17, G-04 (frequency not recorded).
 
