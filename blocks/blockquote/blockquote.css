@@ -1,0 +1,59 @@
+/*
+ * Blockquote: the quote in italics next to a rounded line on its left, as tall as the text.
+ * Line color sets --blockquote-line-color (line-* block classes, see blockquote.js).
+ */
+.blockquote {
+  --blockquote-line-color: var(--brand-500);
+  --blockquote-line-width: 0.25rem;
+  --blockquote-gap: var(--space-600);
+
+  max-width: 66rem;
+}
+
+/* Line color: Brand blue, #4673DB (the default) */
+.blockquote.line-brand-blue {
+  --blockquote-line-color: var(--brand-500);
+}
+
+.blockquote .blockquote-text {
+  position: relative;
+  margin: 0;
+  padding-inline-start: calc(var(--blockquote-line-width) + var(--blockquote-gap));
+  color: var(--color-text-default);
+  font-size: var(--body-font-size-l);
+  font-style: italic;
+  line-height: 1.875;
+}
+
+.blockquote .blockquote-text::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: var(--blockquote-line-width);
+  border-radius: var(--radius-full);
+  background-color: var(--blockquote-line-color);
+}
+
+.blockquote .blockquote-text > p {
+  margin: 0;
+}
+
+.blockquote .blockquote-text > p + p {
+  margin-top: var(--space-400);
+}
+
+/* Universal Editor: a Blockquote without a quote yet */
+.blockquote .blockquote-empty {
+  margin: 0;
+  padding: var(--space-300) var(--space-400);
+  border: var(--border-width-100) dashed var(--color-border-default);
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-s);
+}
+
+@media (width >= 900px) {
+  .blockquote {
+    --blockquote-gap: var(--space-1000);
+  }
+}

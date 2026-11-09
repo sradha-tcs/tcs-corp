@@ -17,7 +17,7 @@ The Quote block shows one attributed statement, for example from a client, partn
 - **User experience:** on desktop (900px and wider), a white card holds the quote and its author and overlaps the portrait, which sits on the right or the left. On mobile and tablet the image comes first (or last), and the card overlaps its bottom (or top) edge. With no image, the card stands on its own.
 - **Templates / page types:** any page. No template adds the block.
 - **Data source:** authored fields only. The block reads no sheet, placeholder, taxonomy, metadata or query index.
-- **Related blocks:** Testimonial (`blocks/testimonial`) for a centred testimonial with a small round photo and stats. Teaser (`blocks/teaser`) for image and text with calls to action.
+- **Related blocks:** Blockquote (`blocks/blockquote`) for a plain pull quote in italics next to a coloured line, without an author or image. Testimonial (`blocks/testimonial`) for a centred testimonial with a small round photo and stats. Teaser (`blocks/teaser`) for image and text with calls to action.
 - **When to use:** a single statement deserves emphasis and should be attributed to a named person, ideally with a portrait.
 - **When not to use:** to add a call to action (the block has no CTA field; use a Teaser). To show stats or several quotes in one block (use a Testimonial, or one Quote per Gen Carousel slide). For a short inline quotation in running text (use rich text).
 - **Realistic use cases:** a client quote on a case study page; a leadership statement on a corporate page; a partner endorsement; a pull quote in an article.
