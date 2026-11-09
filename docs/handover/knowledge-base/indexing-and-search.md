@@ -152,6 +152,7 @@ flowchart LR
 | `helix-query.yaml` changed (new column, changed exclude) | Existing rows unchanged until the pages are republished or reindexed | handover Part 12.1.7 |
 | Page metadata changed (card title, tags, featured, priority, content type) | Lists change after the page is republished (and reindexed) | List and Filter List READMEs |
 | Bulk metadata | Indexed only if the sheet applies (`metadata.source`) and the page is republished | handover Part 8 |
+| Path outside an index's `include`, or matched by its `exclude` | That index gets neither updates nor removals for the path: rows written before the exclusion stay (after KB-D-068 the shared `/query-index.json` kept 11,821 review-root rows, unpublished pages included); reindexing doesn't remove them | Verified 9 November 2026; the stale file was unpublished (`DELETE` live and preview of `/query-index.json`) and is recreated when a locale page is indexed |
 
 **Verified reindex operation.** The Admin API index operation `POST https://admin.hlx.page/index/{org}/{site}/{ref}/{path}` (org `sradha-tcs`, site `tcs-corp`, ref `main`) re-indexes a published path (handover Part 12.1.9). It was used per page, after `preview` and `live`, for the language master packages (handover revisions 2.31: 312 / 312 pages; 2.35: 313 / 313 and 315 / 315 pages). Calls need an authorised user or API key; no credentials are recorded. Bulk (`/*`) operations act on all locales and must be agreed with the site owner (handover Part 2.10.13).
 
