@@ -14,8 +14,25 @@ import { currentBreakpoint } from './viewport.js';
 
 // v2: heights remembered before the header Canvas left the header's flow included the Canvas
 const key = () => `header-height-v2-${currentBreakpoint()}`;
+const MIN_HEADER_HEIGHTS = { mobile: 5.625, tablet: 7.75, desktop: 7.75 };
 const OVERLAY_KEY = 'header-overlay-v1';
 const OVERLAYS = ['always', 'never'];
+const POSITION_KEY = 'header-position-v1';
+const POSITION_VIEWS_KEY = 'header-position-views-v1';
+const POSITION_VIEWS = ['desktop', 'tablet', 'mobile'];
+
+function applyPosition(mode, views = {}) {
+  document.documentElement.dataset.headerPosition = mode === 'float' ? 'float' : 'sticky';
+  POSITION_VIEWS.forEach((view) => {
+    const attribute = `headerPosition${view[0].toUpperCase()}${view.slice(1)}`;
+    const position = views?.[view];
+    if (position === 'float' || position === 'sticky') {
+      document.documentElement.dataset[attribute] = position;
+    } else {
+      delete document.documentElement.dataset[attribute];
+    }
+  });
+}
 
 function applyOverlay(mode) {
   if (OVERLAYS.includes(mode)) document.documentElement.dataset.headerOverlay = mode;
@@ -28,9 +45,20 @@ function applyOverlay(mode) {
  */
 export function reserveHeaderSpace() {
   try {
+    const breakpoint = currentBreakpoint();
     const rem = parseFloat(localStorage.getItem(key()));
-    if (rem > 0) document.documentElement.style.setProperty('--header-reserved', `${rem}rem`);
+    if (rem > 0) {
+      const height = Math.max(rem, MIN_HEADER_HEIGHTS[breakpoint]);
+      document.documentElement.style.setProperty('--header-reserved', `${height}rem`);
+    }
     applyOverlay(localStorage.getItem(OVERLAY_KEY));
+    const position = localStorage.getItem(POSITION_KEY);
+    applyPosition(position);
+    try {
+      applyPosition(position, JSON.parse(localStorage.getItem(POSITION_VIEWS_KEY)));
+    } catch {
+      localStorage.removeItem(POSITION_VIEWS_KEY);
+    }
   } catch {
     // no storage (private mode): the CSS default stays
   }
@@ -58,6 +86,19 @@ export function setHeaderOverlay(mode) {
   try {
     if (OVERLAYS.includes(mode)) localStorage.setItem(OVERLAY_KEY, mode);
     else localStorage.removeItem(OVERLAY_KEY);
+  } catch {
+    // no storage: applied to this page only
+  }
+}
+
+export function setHeaderPosition(mode, views = {}) {
+  applyPosition(mode, views);
+  try {
+    localStorage.setItem(POSITION_KEY, mode === 'float' ? 'float' : 'sticky');
+    const positions = Object.fromEntries(POSITION_VIEWS
+      .filter((view) => ['float', 'sticky'].includes(views?.[view]))
+      .map((view) => [view, views[view]]));
+    localStorage.setItem(POSITION_VIEWS_KEY, JSON.stringify(positions));
   } catch {
     // no storage: applied to this page only
   }
