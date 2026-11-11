@@ -150,6 +150,23 @@
   background-color: var(--black-1000);
 }
 
+/* Title color and Description color: Black or White whatever the BG Color (after its rules) */
+.hero.title-black {
+  --hero-title-color: var(--black-1000);
+}
+
+.hero.title-white {
+  --hero-title-color: var(--white-1000);
+}
+
+.hero.description-black {
+  --hero-description-color: var(--black-1000);
+}
+
+.hero.description-white {
+  --hero-description-color: var(--white-1000);
+}
+
 /* media: the image or the Lottie animation behind the content, under the overlay */
 .hero .hero-media {
   position: absolute;

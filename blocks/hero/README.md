@@ -218,6 +218,8 @@ C = Text Alignment
 D = BG Color
 E = Icon color
 F = Eyebrow color
+G = Title color
+H = Description color
 ```
 
 ```text
@@ -421,6 +423,8 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`), Charcoal Black 80 (cool charcoal) (`bg-charcoal-80`), Midnight Navy 60 (`bg-navy-60`), Charcoal Black 40 (deep charcoal) (`bg-charcoal-40`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay. Delivered as a block class. | bg-dark |
 | Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`), Pale blue (`icon-pale-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
 | Eyebrow color | `classes_eyebrowcolor` | select | No | "" | Default (royal blue) (""), Royal blue (`eyebrow-royal-blue`), Soft sky blue (`eyebrow-sky-blue`) | Colour of the eyebrow above the title. Delivered as a block class. | — |
+| Title color | `classes_titlecolor` | select | No | "" | Default (""), Black (`title-black`), White (`title-white`) | Colour of the title. Default: as the BG Color sets it (black on Default and Light, white on the dark options). Delivered as a block class. | — |
+| Description color | `classes_descriptioncolor` | select | No | "" | Default (""), Black (`description-black`), White (`description-white`) | Colour of the description. Default: as the BG Color sets it (black on Default and Light, white on the dark options). Delivered as a block class. | — |
 
 #### Additional tab — Hero
 
@@ -1046,3 +1050,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Motion Type removed from the dialog (block ecosystem audit) | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast | docs/handover revision history | 20 October 2026 |
 | Not recorded | Desktop min height 56.25rem (900px), tablet 46.875rem (750px) with 7.625rem block padding; the opening hero no longer grows by the header height. Desktop (from 1200px) to Figma "Hero" 57:16843 (What we do) and "Hero Header" 3670:14111 (Home): middle-aligned content with 12.5rem (200px) below it; icon to eyebrow 0.5rem; eyebrow 0.875rem / 22px; CTAs 50px high with 0.875rem text; the opening hero under the header (not on Home, which has its own template rule) has as much space below as above. Mobile unchanged | fix/hero-content | 11 November 2026 |
+| Not recorded | Title color (`classes_titlecolor`: Default, Black `title-black`, White `title-white`) and Description color (`classes_descriptioncolor`: Default, Black `description-black`, White `description-white`) in the Style tab; Default keeps the colour the BG Color sets (black and dark grey on Default and Light, white and 50 % / 85 % white on the dark options), Black and White apply whatever the BG Color | fix/hero-content | 11 November 2026 |
