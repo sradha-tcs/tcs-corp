@@ -113,11 +113,11 @@ main .section.form-variations-backdrop .form-variations {
   }
 }
 
-/* Top Back Button Pill */
+/* Top Back Button Pill - Positioned safely away from site header logo */
 .form-variations .form-variations-back {
   position: absolute;
-  top: 36px;
-  left: 24px;
+  top: 1.5rem;
+  left: 1.5rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -142,7 +142,7 @@ main .section.form-variations-backdrop .form-variations {
 @media (width >= 900px) {
   .form-variations .form-variations-back {
     left: 80px;
-    top: 37px;
+    top: 2rem;
   }
 }
 
