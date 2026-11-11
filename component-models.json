@@ -27439,7 +27439,7 @@
         "value": "right",
         "options": [
           {
-            "name": "Right",
+            "name": "Default",
             "value": "right"
           },
           {
@@ -27447,7 +27447,7 @@
             "value": "left"
           }
         ],
-        "description": "Where the links and CTAs go. Right: with the description (default). Left: after the text, below the title in the Text split layout."
+        "description": "Where the links and CTAs go. Default: with the description. Left: after the text, below the title in the Text split layout."
       },
       {
         "component": "tab",

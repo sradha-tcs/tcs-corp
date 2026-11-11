@@ -675,7 +675,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
 | Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
 | Top spacing | `topSpacing` | select | No | "" | Default (""), Page header (extra space above) (`spacing-header`) | Page header: the larger space above a teaser that opens a page. | spacing-header |
-| Link CTA Alignment | `linkCtaAlignment` | select | No | `right` | Right (`right`), Left (`left`) | Where the links and CTAs go. Right: with the description (default). Left: after the text, below the title in the Text split layout. | — |
+| Link CTA Alignment | `linkCtaAlignment` | select | No | `right` | Default (`right`), Left (`left`) | Where the links and CTAs go. Default: with the description. Left: after the text, below the title in the Text split layout. | — |
 
 #### Additional tab — Teaser
 
@@ -1507,4 +1507,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.34 | List arrow None; a Grey Teaser inside dark Sections and Columns Containers resets the text tokens (F-105) | docs/handover revision history | 20 October 2026 |
 | Handover 2.35 | Packages 1.0.12 and 1.0.13 with the Teaser options verified on aem.live | docs/handover revision history | 20 October 2026 |
 | Handover 2.41 | Primary Button (no arrow) CTA style with navy fill and shared alignment content width | Repository change | 22 October 2026 |
-| Not recorded | Link CTA Alignment (`linkCtaAlignment`, Style tab): Right (default) keeps the links and CTAs in the body with the description; Left places them after the text in the content (in Text split, in the left column below the title, after the taller of the two columns) | fix/teaser-links-stat | 11 November 2026 |
+| Not recorded | Link CTA Alignment (`linkCtaAlignment`, Style tab): Default (`right`) keeps the links and CTAs in the body with the description; Left places them after the text in the content (in Text split, in the left column below the title, after the taller of the two columns) | fix/teaser-links-stat | 11 November 2026 |
