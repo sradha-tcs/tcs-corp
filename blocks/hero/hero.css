@@ -15,7 +15,6 @@
   --hero-overlay: rgb(255 255 255 / 80%);
 
   /* Desktop defaults (tablet and mobile below) */
-  --hero-min-height: 62.5rem;
   --hero-padding-block: var(--space-3000);
   --hero-padding-inline: 2.75rem;
   --hero-gap-icon: var(--space-300);
@@ -434,10 +433,18 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
   color: var(--white-1000);
 }
 
+/* desktop: at least 900px high (56.25rem), across the full width */
+@media (width >= 1200px) {
+  .hero {
+    --hero-min-height: 56.25rem;
+  }
+}
+
+/* tablet: at least 750px high (46.875rem), across the full width */
 @media (600px <= width < 1200px) {
   .hero {
-    --hero-min-height: 40rem;
-    --hero-padding-block: var(--space-1600);
+    --hero-min-height: 46.875rem;
+    --hero-padding-block: 7.625rem;
     --hero-padding-inline: var(--space-800);
     --hero-gap-content: var(--space-600);
   }
@@ -470,7 +477,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     max-width: var(--hero-title-max-width-tab);
     height: auto;
     margin: 0;
-    padding-inline: 11rem;
     color: var(--hero-title-color);
     font-size: var(--hero-title-size);
     font-weight: var(--font-weight-medium);
@@ -577,7 +583,7 @@ main > .section:first-child .hero {
  * the first screen) and keeps its content below the logos.
  */
 html[data-header-overlay='always'] main > .section:first-child .hero {
-  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), var(--hero-min-height));
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
 
