@@ -378,7 +378,7 @@
 
   .teaser .teaser-stat-label {
     color: var(--teaser-title-color);
-    font-size: var(--body-font-size-l);
+    font-size: var(--heading-font-size-s);
     line-height: 1.417;
   }
 
