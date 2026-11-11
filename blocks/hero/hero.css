@@ -562,33 +562,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 }
 
 /*
- * Desktop (Figma "Hero" 57:16843 What we do, "Hero Header" 3670:14111 Home): the text column has
- * 200px of space below it, so middle-aligned content sits above the centre; 8px from the icon to
- * the eyebrow; the eyebrow 14 / 22px; the CTAs 50px high with 14px text
- */
-@media (width >= 1200px) {
-  .hero {
-    --hero-gap-icon: var(--space-200);
-  }
-
-  .hero:not(.align-top, .align-bottom) .hero-content {
-    padding-bottom: 12.5rem;
-  }
-
-  .hero .hero-eyebrow {
-    --hero-eyebrow-size: var(--body-font-size-xs);
-
-    line-height: 1.5714;
-  }
-
-  .hero .hero-ctas a.button:any-link {
-    padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
-    font-size: var(--label-font-size);
-    letter-spacing: calc(0.01 * var(--label-font-size));
-  }
-}
-
-/*
  * The opening hero is at most the first screen high (below the header bar): the header's
  * Conversation Canvas sits at the bottom of the first screen (blocks/header), so on a short
  * screen the hero's content stays above it (Figma home-desktop 229:15426: the hero fills the
@@ -611,15 +584,4 @@ html[data-header-overlay='always'] main > .section:first-child .hero {
 html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
   min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
-}
-
-/*
- * desktop, middle-aligned: as much space below as above, so the content is centred in the whole
- * hero, as in Figma (What we do 57:16843); the Home template sets its own (templates/home)
- */
-@media (width >= 1200px) {
-  html[data-header-overlay='always'] body:not(.home) main > .section:first-child .hero:not(.align-top, .align-bottom),
-  html:not([data-header-overlay='never']) body:not(.home) main > .section:first-child .hero:not(.align-top, .align-bottom, .bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
-    padding-bottom: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
-  }
 }
