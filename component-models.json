@@ -27432,6 +27432,24 @@
         "description": "Page header: the larger space above a teaser that opens a page."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkCtaAlignment",
+        "label": "Link CTA Alignment",
+        "value": "right",
+        "options": [
+          {
+            "name": "Right",
+            "value": "right"
+          },
+          {
+            "name": "Left",
+            "value": "left"
+          }
+        ],
+        "description": "Where the links and CTAs go. Right: with the description (default). Left: after the text, below the title in the Text split layout."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
