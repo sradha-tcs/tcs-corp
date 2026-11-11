@@ -117,11 +117,26 @@ function buildMobileSearch() {
 }
 
 /**
- * Builds the Mobile Drawer with accordion hierarchy
+ * A link to a menu page, marked as the current page when it is
  */
-async function buildMobileDrawer(root, depth) {
+function menuLink(node, currentPath, className) {
+  const link = document.createElement('a');
+  link.className = className;
+  link.href = node.path;
+  link.textContent = node.title;
+  if (currentPath === normalizePath(node.path)) link.setAttribute('aria-current', 'page');
+  return link;
+}
+
+/**
+ * Builds the Mobile Drawer: the main view (L1 accordions with their L2 pages, the AI search)
+ * and the L3 panel, which replaces the main view while an L2 page's children are shown
+ * @returns {{ drawer: Element, showMain: Function }} showMain returns to the main view
+ */
+async function buildMobileDrawer(root, depth, t) {
   const drawer = document.createElement('div');
   drawer.className = 'tcs-header-menu-drawer';
+  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
   drawer.hidden = true;
 
   const content = document.createElement('div');
@@ -130,80 +145,133 @@ async function buildMobileDrawer(root, depth) {
   const tree = await loadMenuTree(root, depth);
   const currentPath = normalizePath(window.location.pathname);
 
+  const main = document.createElement('div');
+  main.className = 'tcs-header-drawer-main';
+
   const accordionList = document.createElement('div');
   accordionList.className = 'tcs-header-accordion-list';
 
-  tree.children.forEach((l1Node) => {
+  const l3Panel = document.createElement('div');
+  l3Panel.className = 'tcs-header-l3-panel';
+  l3Panel.id = `${drawer.id}-l3`;
+  l3Panel.hidden = true;
+
+  // the L2 button that opened the L3 panel: focus returns to it on Back
+  let drillTrigger = null;
+
+  const showMain = ({ restoreFocus = false } = {}) => {
+    l3Panel.hidden = true;
+    l3Panel.replaceChildren();
+    main.hidden = false;
+    if (drillTrigger) {
+      drillTrigger.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) drillTrigger.focus();
+      drillTrigger = null;
+    }
+  };
+
+  const showL3 = (l1Node, l2Node, trigger) => {
+    const back = document.createElement('button');
+    back.type = 'button';
+    back.className = 'tcs-header-l3-back';
+    back.textContent = `${t('backTo', 'Back to')} ${l1Node.title}`;
+    back.addEventListener('click', () => showMain({ restoreFocus: true }));
+
+    const list = document.createElement('ul');
+    list.className = 'tcs-header-l3-list';
+    list.setAttribute('aria-label', l2Node.title);
+    l2Node.children.forEach((l3Node) => {
+      const li = document.createElement('li');
+      li.append(menuLink(l3Node, currentPath, 'tcs-header-l3-link'));
+      list.append(li);
+    });
+
+    l3Panel.replaceChildren(back, list);
+    main.hidden = true;
+    l3Panel.hidden = false;
+    drillTrigger = trigger;
+    trigger.setAttribute('aria-expanded', 'true');
+    drawer.scrollTop = 0;
+    back.focus();
+  };
+
+  const setOpen = (item, open) => {
+    item.classList.toggle('is-open', open);
+    item.querySelector('.tcs-accordion-toggle')?.setAttribute('aria-expanded', String(open));
+    const submenu = item.querySelector('.tcs-accordion-submenu');
+    if (submenu) submenu.hidden = !open;
+  };
+
+  tree.children.forEach((l1Node, index) => {
     const item = document.createElement('div');
     item.className = 'tcs-accordion-item';
 
-    const header = document.createElement('button');
-    header.type = 'button';
-    header.className = 'tcs-accordion-header';
-    header.setAttribute('aria-expanded', 'false');
+    // the L1 label goes to its page; the row and its chevron button open the accordion
+    const heading = document.createElement('div');
+    heading.className = 'tcs-accordion-header';
+    heading.append(menuLink(l1Node, currentPath, 'tcs-accordion-label'));
+    item.append(heading);
 
-    const label = document.createElement('span');
-    label.className = 'tcs-accordion-label';
-    label.textContent = l1Node.title;
+    if (l1Node.children.length) {
+      const submenu = document.createElement('ul');
+      submenu.className = 'tcs-accordion-submenu';
+      submenu.id = `${drawer.id}-l1-${index + 1}`;
+      submenu.hidden = true;
 
-    const chevron = document.createElement('span');
-    chevron.className = 'tcs-accordion-chevron';
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'tcs-accordion-toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', submenu.id);
+      toggle.setAttribute('aria-label', `${l1Node.title} ${t('submenu', 'submenu')}`);
+      const chevron = document.createElement('span');
+      chevron.className = 'tcs-accordion-chevron';
+      toggle.append(chevron);
+      heading.append(toggle);
 
-    header.append(label, chevron);
-    item.append(header);
-
-    if (l1Node.children && l1Node.children.length > 0) {
-      const l2List = document.createElement('ul');
-      l2List.className = 'tcs-accordion-submenu';
-      l2List.hidden = true;
+      toggle.addEventListener('click', () => {
+        const open = !item.classList.contains('is-open');
+        accordionList.querySelectorAll('.tcs-accordion-item').forEach((other) => setOpen(other, false));
+        setOpen(item, open);
+      });
+      heading.addEventListener('click', (event) => {
+        if (!event.target.closest('a, button')) toggle.click();
+      });
 
       l1Node.children.forEach((l2Node) => {
         const li = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = l2Node.path;
-        link.textContent = l2Node.title;
-
-        if (currentPath === normalizePath(l2Node.path)) {
-          link.setAttribute('aria-current', 'page');
+        if (l2Node.children.length) {
+          // an L2 page with children opens the L3 panel
+          const drill = document.createElement('button');
+          drill.type = 'button';
+          drill.className = 'tcs-submenu-drill';
+          drill.setAttribute('aria-expanded', 'false');
+          drill.setAttribute('aria-controls', l3Panel.id);
+          const label = document.createElement('span');
+          label.className = 'tcs-submenu-drill-label';
+          label.textContent = l2Node.title;
+          const icon = document.createElement('span');
+          icon.className = 'tcs-submenu-drill-icon';
+          drill.append(label, icon);
+          drill.addEventListener('click', () => showL3(l1Node, l2Node, drill));
+          li.append(drill);
+        } else {
+          li.append(menuLink(l2Node, currentPath, 'tcs-submenu-link'));
         }
-
-        li.append(link);
-        l2List.append(li);
+        submenu.append(li);
       });
 
-      item.append(l2List);
-
-      header.addEventListener('click', () => {
-        const isExpanded = header.getAttribute('aria-expanded') === 'true';
-
-        accordionList.querySelectorAll('.tcs-accordion-header').forEach((h) => {
-          h.setAttribute('aria-expanded', 'false');
-          const parentItem = h.closest('.tcs-accordion-item');
-          parentItem.classList.remove('is-open');
-          const submenu = parentItem.querySelector('.tcs-accordion-submenu');
-          if (submenu) submenu.hidden = true;
-        });
-
-        if (!isExpanded) {
-          header.setAttribute('aria-expanded', 'true');
-          item.classList.add('is-open');
-          l2List.hidden = false;
-        }
-      });
-    } else {
-      header.addEventListener('click', () => {
-        window.location.href = l1Node.path;
-      });
+      item.append(submenu);
     }
 
     accordionList.append(item);
   });
 
-  content.append(accordionList);
-  content.append(buildMobileSearch());
+  main.append(accordionList, buildMobileSearch());
+  content.append(main, l3Panel);
   drawer.append(content);
 
-  return drawer;
+  return { drawer, showMain };
 }
 
 function buildLogo(imageCell, altCell, linkCell, className, fallback) {
@@ -265,13 +333,14 @@ export default async function decorate(block) {
   toggleBtn.setAttribute('aria-expanded', 'false');
 
   // Build the complete drawer
-  const drawer = await buildMobileDrawer(root, depth);
-  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
+  const { drawer, showMain } = await buildMobileDrawer(root, depth, t);
   toggleBtn.setAttribute('aria-controls', drawer.id);
 
   const setMenuOpen = (nextState) => {
     toggleBtn.setAttribute('aria-expanded', String(nextState));
     drawer.hidden = !nextState;
+    // closing the menu returns it to the main (L1) view; open accordions stay open
+    if (!nextState) showMain();
     document.body.classList.toggle('nav-menu-open', nextState);
 
     // If the drawer was moved by header.js, ensure it syncs
