@@ -525,8 +525,11 @@ export default async function decorate(block) {
   if (media && layout === 'no-image') body.append(media);
   const stats = buildStats(props.stats, 'teaser', statRows, hint);
   if (stats) body.append(stats);
+  // Link CTA Alignment: right (default) with the description, left after the text (below the
+  // title in Text split)
+  const linksLeft = textOf(props.linkctaalignment).toLowerCase() === 'left';
   const links = buildLinks(props, linkRows, hint);
-  if (links) body.append(links);
+  if (links && !linksLeft) body.append(links);
   if (textOf(props.shortdescription)) {
     body.append(fromCell(props.shortdescription, 'div', 'teaser-short-description'));
   }
@@ -549,6 +552,7 @@ export default async function decorate(block) {
   const content = document.createElement('div');
   content.className = 'teaser-content';
   content.append(...[header, body].filter((part) => part.children.length));
+  if (links && linksLeft) content.append(links);
 
   const optionClasses = Object.values(OPTIONS).flat();
 
