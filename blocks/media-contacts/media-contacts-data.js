@@ -18,29 +18,43 @@ function valuesOf(cell) {
     .filter(Boolean);
 }
 
-function cellOf(row, field, index) {
-  return row.querySelector(`[data-aue-prop="${field}"]`) || row.children[index];
-}
+const isEmail = (value) => /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(value);
 
 export function telHref(phone) {
   const digits = normalize(phone).replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
   return /\d/.test(digits) ? `tel:${digits}` : '';
 }
 
+const isPhone = (value) => /^[+\d\s().-]+$/.test(value) && !!telHref(value);
+
 export function readContactRows(rows) {
   return rows.map((row) => {
-    const region = valuesOf(cellOf(row, 'region', 0))[0] || '';
-    const designation = valuesOf(cellOf(row, 'designation', 1))[0] || '';
-    const name = valuesOf(cellOf(row, 'contactName', 2))[0] || '';
-    const emails = valuesOf(cellOf(row, 'email', 3))
-      .filter((email) => /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(email));
-    const phones = valuesOf(cellOf(row, 'phone', 4)).filter((phone) => telHref(phone));
+    const cells = [...row.children];
+    const instrumented = CONTACT_FIELDS.map((field) => row.querySelector(`[data-aue-prop="${field}"]`));
+    const completeRow = cells.length === CONTACT_FIELDS.length;
+    const values = cells.flatMap(valuesOf);
+    const emails = values.filter(isEmail);
+    const phones = values.filter(isPhone);
+    const labels = values.filter((value) => !isEmail(value) && !isPhone(value));
+    const fieldValues = (index, inferredIndex) => {
+      const property = instrumented[index] ? valuesOf(instrumented[index]) : null;
+      if (property) return property[0] || '';
+      if (completeRow) return valuesOf(cells[index])[0] || '';
+      return labels[inferredIndex] || '';
+    };
+    const region = fieldValues(0, 0);
+    const designation = fieldValues(1, 1);
+    const name = fieldValues(2, 2);
+    const emailCell = instrumented[3] || (completeRow ? cells[3] : null);
+    const phoneCell = instrumented[4] || (completeRow ? cells[4] : null);
+    const contactEmails = emailCell ? valuesOf(emailCell).filter(isEmail) : emails;
+    const contactPhones = phoneCell ? valuesOf(phoneCell).filter(isPhone) : phones;
     return {
       region,
       designation,
       name,
-      emails,
-      phones,
+      emails: contactEmails,
+      phones: contactPhones,
       row,
     };
   });
@@ -66,12 +80,12 @@ export const groupHeading = (designation, region) => [normalize(designation), no
   .filter(Boolean).join(' & ');
 
 /**
- * Groups contacts by designation and region, keeping the sheet order of the groups and of the
- * contacts in them. Rows without a name, e-mail or phone are left out.
- * @param {{ name?: string, designation?: string, email?: string, phone?: string,
- *   region?: string }[]} contacts
+ * Groups contacts by designation and region, keeping their authored order. Rows without a name,
+ * e-mail or phone are left out.
+ * @param {{ name?: string, designation?: string, emails?: string[], phones?: string[],
+ *   email?: string, phone?: string, region?: string }[]} contacts
  * @returns {{ heading: string, designation: string, region: string,
- *   contacts: { name: string, email: string, phone: string }[] }[]}
+ *   contacts: { name: string, emails: string[], phones: string[] }[] }[]
  */
 export function groupContacts(contacts) {
   const groups = new Map();
