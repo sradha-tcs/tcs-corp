@@ -10,6 +10,13 @@ import {
 } from './media-contacts-data.js';
 
 const TITLE_COLORS = ['title-dark', 'title-white', 'title-light-blue'];
+const COLOR_VARIANTS = ['dark', 'brand', 'light-blue'];
+const COLUMN_VARIANTS = ['1', '2', '3'];
+
+function iconUrl(cell) {
+  const image = cell?.querySelector('img');
+  return image?.currentSrc || image?.src || '';
+}
 
 /** the heading: the authored Title, else the placeholder, at the Title Type's level */
 function headingOf(props, t) {
@@ -39,11 +46,25 @@ export default async function decorate(block) {
   }));
   const titleColor = textOf(props.titlecolor);
   if (TITLE_COLORS.includes(titleColor)) block.classList.add(titleColor);
+  const columns = textOf(props.columns);
+  block.classList.add(`contact-columns-${COLUMN_VARIANTS.includes(columns) ? columns : '2'}`);
+  [
+    ['regioncolor', 'region-color'],
+    ['emailcolor', 'email-color'],
+    ['phonecolor', 'phone-color'],
+  ].forEach(([property, classPrefix]) => {
+    const color = textOf(props[property]);
+    if (COLOR_VARIANTS.includes(color)) block.classList.add(`${classPrefix}-${color}`);
+  });
   const heading = headingOf(props, t);
   const level = Number(heading.tagName.slice(1));
   const list = buildContactList(entries, {
     headingLevel: `h${Math.min(level + 1, 6)}`,
     labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
+    icons: {
+      email: iconUrl(props.emailicon),
+      phone: iconUrl(props.phoneicon),
+    },
   });
   block.hidden = false;
   block.parentElement?.removeAttribute('hidden');

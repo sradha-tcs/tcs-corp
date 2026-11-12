@@ -17043,6 +17043,119 @@
         "description": "Overrides the title color using the Teaser title-color variants."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "columns",
+        "label": "Columns on desktop",
+        "value": "2",
+        "options": [
+          {
+            "name": "1",
+            "value": "1"
+          },
+          {
+            "name": "2",
+            "value": "2"
+          },
+          {
+            "name": "3",
+            "value": "3"
+          }
+        ],
+        "description": "Choose the number of columns from desktop width. The entries stack into one column below 900px."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "regionColor",
+        "label": "Territory title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "emailColor",
+        "label": "Email color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "phoneColor",
+        "label": "Phone color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "emailIcon",
+        "label": "Email icon",
+        "multi": false,
+        "description": "Optional custom icon. Leave empty to use the default mail icon."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "phoneIcon",
+        "label": "Phone icon",
+        "multi": false,
+        "description": "Optional custom icon. Leave empty to use the default phone icon."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"

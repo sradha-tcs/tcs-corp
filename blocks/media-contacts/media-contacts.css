@@ -41,6 +41,18 @@
   letter-spacing: calc(-0.02 * var(--heading-font-size-l));
 }
 
+.media-contacts.region-color-dark .contact-list-heading {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.region-color-brand .contact-list-heading {
+  color: var(--color-text-brand);
+}
+
+.media-contacts.region-color-light-blue .contact-list-heading {
+  color: rgb(167 200 241);
+}
+
 .media-contacts .contact-list-entries {
   display: flex;
   flex-direction: column;
@@ -59,6 +71,30 @@
   overflow-wrap: anywhere;
 }
 
+.media-contacts .contact-list-link:hover {
+  color: var(--color-text-brand);
+}
+
+.media-contacts .contact-list-link:focus-visible {
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: 0.25rem;
+}
+
+.media-contacts.email-color-dark .contact-list-email .contact-list-link,
+.media-contacts.phone-color-dark .contact-list-phone .contact-list-link {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.email-color-brand .contact-list-email .contact-list-link,
+.media-contacts.phone-color-brand .contact-list-phone .contact-list-link {
+  color: var(--color-text-brand);
+}
+
+.media-contacts.email-color-light-blue .contact-list-email .contact-list-link,
+.media-contacts.phone-color-light-blue .contact-list-phone .contact-list-link {
+  color: rgb(167 200 241);
+}
+
 /* the icon (decorative: the link's text says what it is) */
 .media-contacts .contact-list-link::before {
   content: '';
@@ -73,6 +109,17 @@
   mask-image: url('../../icons/phone.svg');
 }
 
+.media-contacts .contact-list-link-custom-icon::before {
+  display: none;
+}
+
+.media-contacts .contact-list-icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
 /* the address or number underlined (not the icon) */
 .media-contacts .contact-list-text {
   min-width: 0;
@@ -81,22 +128,17 @@
   text-underline-offset: 0.3125rem;
 }
 
-.media-contacts .contact-list-link:hover {
-  color: var(--color-text-brand);
-}
-
-.media-contacts .contact-list-link:focus-visible {
-  outline: 0.125rem solid var(--color-border-brand);
-  outline-offset: 0.25rem;
-}
-
 .media-contacts .media-contacts-empty {
   margin: 0;
   color: var(--color-text-secondary);
 }
 
 @media (width >= 900px) {
-  .media-contacts .contact-list {
+  .media-contacts.contact-columns-2 .contact-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-contacts.contact-columns-3 .contact-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
