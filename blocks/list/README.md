@@ -654,7 +654,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | When there are no items | `emptyBehavior` | select | No | `message` | Hide the list (`hide`), Show a message (`message`), Show the fallback items (`fallback`) | Fallback: the List Items of the block (for Child pages and Tagged pages). | fallback |
 | Empty message | `emptyMessage` | text | No | — | — | Shown when `emptyBehavior` is `message`. | — |
 | Analytics | `analyticsEnabled` | boolean | No | `true` | on / off | Card clicks and scrolling in the Adobe Data Layer. | — |
-| Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`) | — | — |
+| Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`), Impact cards (proven impact and outcomes) (`impact-cards`) | — | — |
 
 #### Additional tab — List
 

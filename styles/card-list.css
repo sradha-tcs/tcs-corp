@@ -1019,6 +1019,60 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 }
 
 /*
+ * Impact cards (Style option impact-cards, "Proven impact and outcomes"): image cards on a white
+ * card with rounded corners: the image at the top, then the title and the description, centred;
+ * three per row from the tablet up (utils/card-list-config.js IMPACT_COLUMNS), cards of a row of
+ * equal height. Image cards only: panel, report and statistic cards keep their own look.
+ */
+.card-list.impact-cards {
+  --list-card-title-size: 1.25rem;
+  --list-card-title-line: 1.4;
+}
+
+.card-list.impact-cards .list-card-image {
+  /* a white card on any section colour: its text keeps the light-background tokens */
+  --color-text-default: var(--black-1000);
+  --color-text-secondary: var(--slate-700);
+  --color-text-brand: var(--brand-400);
+  --color-border-brand: var(--brand-500);
+  --link-color: var(--brand-400);
+  --link-hover-color: var(--brand-600);
+
+  gap: var(--space-300);
+  height: 100%;
+  padding-bottom: var(--space-600);
+  border-radius: var(--radius-l);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-neutral);
+  text-align: center;
+}
+
+/* the image fills the card's top, under its rounded corners (no overflow clip: focus rings stay) */
+.card-list.impact-cards .list-card-image > .list-card-media {
+  margin-bottom: var(--space-300);
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.card-list.impact-cards .list-card-image > :not(.list-card-media) {
+  padding-inline: var(--space-600);
+}
+
+.card-list.impact-cards .list-card-image :is(.list-card-kicker, .list-card-meta) {
+  justify-content: center;
+}
+
+.card-list.impact-cards .list-card-image .list-card-description {
+  font-size: 0.875rem;
+}
+
+/* the heading closer to the cards than the lists' 5rem (Figma: 3rem) */
+@media (width >= 600px) {
+  .card-list.impact-cards {
+    gap: var(--space-1200);
+  }
+}
+
+/*
  * On the dark backgrounds of the theme contract (Section Style and Columns Container BG Color
  * Dark / Dark Green, styles/styles.css): image cards, which have no Card colour of their own,
  * turn light; panel, report and statistic cards keep their Card colour.
@@ -1029,4 +1083,20 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 
 :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-description, .list-card-meta) {
   color: rgb(255 255 255 / 70%);
+}
+
+/* on the dark backgrounds of the theme contract: the white card keeps its dark text */
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image {
+  color: var(--color-text-neutral);
+}
+
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image :is(.list-card-description, .list-card-meta) {
+  color: var(--color-text-secondary);
+}
+
+@media (width >= 1200px) {
+  .card-list.impact-cards {
+    --list-card-title-size: 1.5rem;
+    --list-card-title-line: 1.3;
+  }
 }

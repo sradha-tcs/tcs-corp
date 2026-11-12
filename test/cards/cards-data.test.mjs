@@ -120,6 +120,20 @@ describe('shared card list settings', () => {
 
   it('keeps the known style options only', () => {
     assert.deepEqual(config({ classes: 'dividers, stat-compact, rainbow' }).styleOptions, ['dividers', 'stat-compact']);
+    assert.deepEqual(config({ classes: 'impact-cards' }).styleOptions, ['impact-cards']);
+  });
+
+  it('shows impact cards three per row from the tablet up, unless Layout sets the columns', () => {
+    const impact = config({ classes: 'impact-cards' }).responsive;
+    assert.equal(impact.desktop.columns, 3);
+    assert.equal(impact.tablet.columns, 3);
+    assert.equal(impact.mobile.columns, 1);
+    assert.equal(impact.desktop.gap, 24);
+    const authored = config({ classes: 'impact-cards', desktopcolumns: '2', tabletcolumns: '1' }).responsive;
+    assert.equal(authored.desktop.columns, 2);
+    assert.equal(authored.tablet.columns, 1);
+    // the other style options keep the defaults
+    assert.equal(config({ classes: 'dividers' }).responsive.desktop.columns, 4);
   });
 
   it('prefixes ids that do not start with a letter', () => {
