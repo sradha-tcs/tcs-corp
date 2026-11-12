@@ -10,6 +10,18 @@ const keyOf = (value) => normalize(value).toLowerCase();
 
 export const CONTACT_FIELDS = ['region', 'designation', 'contactName', 'email', 'phone'];
 
+function valuesOf(cell) {
+  if (!cell) return [];
+  const items = [...(cell.querySelectorAll?.('li') || [])];
+  return (items.length ? items.map((item) => item.textContent) : [cell.textContent])
+    .map(normalize)
+    .filter(Boolean);
+}
+
+function cellOf(row, field, index) {
+  return row.querySelector(`[data-aue-prop="${field}"]`) || row.children[index];
+}
+
 export function telHref(phone) {
   const digits = normalize(phone).replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
   return /\d/.test(digits) ? `tel:${digits}` : '';
@@ -17,26 +29,32 @@ export function telHref(phone) {
 
 export function readContactRows(rows) {
   return rows.map((row) => {
-    const values = Object.fromEntries(CONTACT_FIELDS.map((field, index) => [
-      field,
-      normalize((row.querySelector(`[data-aue-prop="${field}"]`)
-        || row.children[index])?.textContent),
-    ]));
-    const email = /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(values.email) ? values.email : '';
+    const region = valuesOf(cellOf(row, 'region', 0))[0] || '';
+    const designation = valuesOf(cellOf(row, 'designation', 1))[0] || '';
+    const name = valuesOf(cellOf(row, 'contactName', 2))[0] || '';
+    const emails = valuesOf(cellOf(row, 'email', 3))
+      .filter((email) => /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(email));
+    const phones = valuesOf(cellOf(row, 'phone', 4)).filter((phone) => telHref(phone));
     return {
-      region: values.region,
-      designation: values.designation,
-      name: values.contactName,
-      email,
-      phone: telHref(values.phone) ? values.phone : '',
+      region,
+      designation,
+      name,
+      emails,
+      phones,
       row,
     };
   });
 }
 
-export const isCompleteContact = (contact) => (
-  !!(contact.region && (contact.email || contact.phone))
-);
+export const isCompleteContact = (contact) => {
+  const hasDetails = [
+    contact.emails?.length,
+    contact.email,
+    contact.phones?.length,
+    contact.phone,
+  ].some(Boolean);
+  return Boolean(contact.region && hasDetails);
+};
 
 /**
  * The heading of a group: designation and region joined with " & ", or the one that is set.
@@ -58,13 +76,19 @@ export const groupHeading = (designation, region) => [normalize(designation), no
 export function groupContacts(contacts) {
   const groups = new Map();
   (contacts || []).forEach((row) => {
+    const emails = (Array.isArray(row.emails) ? row.emails : [row.emails || row.email])
+      .map(normalize)
+      .filter(Boolean);
+    const phones = (Array.isArray(row.phones) ? row.phones : [row.phones || row.phone])
+      .map(normalize)
+      .filter(Boolean);
     const contact = {
       name: normalize(row.name),
-      email: normalize(row.email),
-      phone: normalize(row.phone),
+      emails,
+      phones,
       ...(row.row ? { row: row.row } : {}),
     };
-    if (!contact.name && !contact.email && !contact.phone) return;
+    if (!contact.name && !emails.length && !phones.length) return;
     const key = `${keyOf(row.designation)}|${keyOf(row.region)}`;
     if (!groups.has(key)) {
       groups.set(key, {

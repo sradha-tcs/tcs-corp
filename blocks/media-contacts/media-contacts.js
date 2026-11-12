@@ -33,7 +33,10 @@ export default async function decorate(block) {
     .map(({ row }) => row), itemHint, 'li');
   const groups = groupContacts(contacts.filter(isCompleteContact)).map((group) => ({
     ...group,
-    contacts: group.contacts.map((contact) => ({ ...contact, tel: telHref(contact.phone) })),
+    contacts: group.contacts.map((contact) => ({
+      ...contact,
+      phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
+    })),
   }));
   const heading = headingOf(props, t);
   const level = Number(heading.tagName.slice(1));

@@ -16968,14 +16968,16 @@
         "valueType": "string",
         "name": "email",
         "label": "Email",
-        "description": "One email address, without mailto:. Add another Media Contact item for each additional address. Enter an email or a phone number."
+        "multi": true,
+        "description": "Add as many email addresses as needed, without mailto:. Enter one address per value."
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "phone",
         "label": "Phone",
-        "description": "One phone number as it should appear, including country code and spacing. Add another Media Contact item for each additional number."
+        "multi": true,
+        "description": "Add as many phone numbers as needed, including country code and spacing. Enter one number per value."
       }
     ]
   },
