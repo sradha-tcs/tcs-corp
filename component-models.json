@@ -16945,23 +16945,9 @@
         "component": "text",
         "valueType": "string",
         "name": "region",
-        "label": "Country or territory",
+        "label": "Country, territory, organization or group",
         "required": true,
-        "description": "Group heading, for example Europe or Middle East & Africa. Use the same country and designation on additional items to list more emails or phone numbers in that group."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "designation",
-        "label": "Designation",
-        "description": "Optional prefix for the group heading, for example Corporate Communications with country India."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "contactName",
-        "label": "Contact name",
-        "description": "Optional name displayed above this item's links."
+        "description": "Enter the country, territory, organization or group this contact represents, for example Europe, India or SMG. Each Media Contact is displayed as its own entry."
       },
       {
         "component": "text",
@@ -17028,7 +17014,33 @@
             "value": "h6"
           }
         ],
-        "description": "Heading level of the Title; the contact groups are one level below."
+        "description": "Heading level of the Title; each Media Contact label is one level below."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleColor",
+        "label": "Title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "title-dark"
+          },
+          {
+            "name": "White",
+            "value": "title-white"
+          },
+          {
+            "name": "Light blue",
+            "value": "title-light-blue"
+          }
+        ],
+        "description": "Overrides the title color using the Teaser title-color variants."
       },
       {
         "component": "tab",

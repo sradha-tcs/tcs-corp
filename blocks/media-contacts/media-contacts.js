@@ -1,4 +1,4 @@
-import { buildContactGroups } from '../../decorators/contact-list-decorator.js';
+import { buildContactList } from '../../decorators/contact-list-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading, HEADINGS } from '../../decorators/heading-decorator.js';
 import { itemRows, KEY_VALUE_ITEM } from '../../utils/cells.js';
@@ -6,8 +6,10 @@ import { isAuthor, isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties, textOf } from '../../utils/properties.js';
 import {
-  groupContacts, isCompleteContact, readContactRows, telHref,
+  isCompleteContact, readContactRows, telHref,
 } from './media-contacts-data.js';
+
+const TITLE_COLORS = ['title-dark', 'title-white', 'title-light-blue'];
 
 /** the heading: the authored Title, else the placeholder, at the Title Type's level */
 function headingOf(props, t) {
@@ -31,16 +33,15 @@ export default async function decorate(block) {
   const [t, itemHint] = await Promise.all([getPlaceholders(), editorItemHint(rows)]);
   const pending = buildEditorItems(contacts.filter((contact) => !isCompleteContact(contact))
     .map(({ row }) => row), itemHint, 'li');
-  const groups = groupContacts(contacts.filter(isCompleteContact)).map((group) => ({
-    ...group,
-    contacts: group.contacts.map((contact) => ({
-      ...contact,
-      phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
-    })),
+  const entries = contacts.filter(isCompleteContact).map((contact) => ({
+    ...contact,
+    phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
   }));
+  const titleColor = textOf(props.titlecolor);
+  if (TITLE_COLORS.includes(titleColor)) block.classList.add(titleColor);
   const heading = headingOf(props, t);
   const level = Number(heading.tagName.slice(1));
-  const list = buildContactGroups(groups, {
+  const list = buildContactList(entries, {
     headingLevel: `h${Math.min(level + 1, 6)}`,
     labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
   });
@@ -48,7 +49,7 @@ export default async function decorate(block) {
   block.parentElement?.removeAttribute('hidden');
   if (list || pending.length) {
     const content = list || document.createElement('ul');
-    content.className = 'contact-list-groups';
+    content.className = 'contact-list';
     content.append(...pending);
     block.replaceChildren(heading, content);
     return;
@@ -61,6 +62,6 @@ export default async function decorate(block) {
   }
   const hint = document.createElement('p');
   hint.className = 'media-contacts-empty';
-  hint.textContent = t('mediaContactsAuthorHint', 'Add Media Contact items, then enter a country or territory and an email address or phone number.');
+  hint.textContent = t('mediaContactsAuthorHint', 'Add Media Contact entries with a country, territory, organization or group and at least one email or phone.');
   block.replaceChildren(heading, hint);
 }

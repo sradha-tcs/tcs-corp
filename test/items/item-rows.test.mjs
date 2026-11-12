@@ -13,7 +13,7 @@ const row = (cells, model) => ({
 // the item models, their block's rule and the cells the blocks read (null: a dialog tab)
 const ITEMS = [
   ['hero', 'hero-cta', FIELD_ROW_ITEM, ['link', 'linkTarget', 'linkStyle', 'linkArrow']],
-  ['page-header', 'page-header-cta', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle', 'buttonBackground', 'buttonShape']],
+  ['page-header', 'page-header-cta', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle']],
   ['teaser', 'teaser-link', KEY_VALUE_ITEM, ['link', 'linkTarget', 'linkStyle', 'buttonBackground', 'buttonShape']],
   ['teaser', 'teaser-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   // the Image alt text collapses into the image (teaser.js COLLAGE_LAYOUT)
@@ -22,6 +22,7 @@ const ITEMS = [
   ['image-collage', 'image-collage-item', KEY_VALUE_ITEM, [null, 'image', 'imageTreatment']],
   ['testimonial', 'testimonial-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   ['anchor-list', 'anchor-list-item', KEY_VALUE_ITEM, [null, 'label', 'anchorName']],
+  ['media-contacts', 'media-contact', KEY_VALUE_ITEM, ['region', 'email', 'phone']],
   ['filter-list', 'filter-list-tag', KEY_VALUE_ITEM, ['tagId']],
   ['filter-list', 'filter-list-category', KEY_VALUE_ITEM, [null, 'categoryLabel', 'taxonomyRoot']],
   ['filter-list', 'filter-list-page', KEY_VALUE_ITEM, [null, 'page', 'pageRole']],

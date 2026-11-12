@@ -1,5 +1,4 @@
-/* Media Contacts: authored groups (designation & region), their e-mail
-   addresses and phone numbers one below the other, each with its icon (tcs.com press releases) */
+/* Media Contacts: independent territory or organization entries and their contact links. */
 .media-contacts .media-contacts-title {
   margin: 0 0 var(--space-800);
   color: var(--color-text-default);
@@ -8,20 +7,29 @@
   letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
-.media-contacts .contact-list-groups,
+.media-contacts.title-dark .media-contacts-title {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.title-white .media-contacts-title {
+  color: var(--color-text-on-neutral);
+}
+
+.media-contacts.title-light-blue .media-contacts-title {
+  color: rgb(167 200 241);
+}
+
+.media-contacts .contact-list,
 .media-contacts .contact-list-entries {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* spacing below each group (not above: a column's first group starts at its top) */
-.media-contacts .contact-list-group {
-  padding-bottom: var(--space-1000);
-}
-
-.media-contacts .contact-list-group:last-child {
-  padding-bottom: 0;
+.media-contacts .contact-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1000) var(--space-1600);
 }
 
 .media-contacts .contact-list-heading {
@@ -37,10 +45,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-500);
-}
-
-.media-contacts .contact-list-name {
-  font-weight: var(--font-weight-semibold);
 }
 
 .media-contacts .contact-list-link {
@@ -91,14 +95,8 @@
   color: var(--color-text-secondary);
 }
 
-/* two columns, filled top to bottom (the reading order), a group never split */
 @media (width >= 900px) {
-  .media-contacts .contact-list-groups {
-    columns: 2;
-    column-gap: var(--space-1600);
-  }
-
-  .media-contacts .contact-list-group {
-    break-inside: avoid;
+  .media-contacts .contact-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
