@@ -547,7 +547,7 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `displayA
 | When there are no cards | `emptyBehavior` | select | No | `hide` | Hide the block (`hide`), Show a message (`message`) | In the editor a hint is always shown. | message |
 | Empty message | `emptyMessage` | text | No | — | — | Shown when `emptyBehavior` is `message`. | There are no cards to show yet. |
 | Analytics | `analyticsEnabled` | boolean | No | `true` | on / off | Card clicks and scrolling in the Adobe Data Layer. | — |
-| Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`) | — | — |
+| Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`), Impact cards (proven impact and outcomes) (`impact-cards`) | — | — |
 
 #### Additional tab — Cards
 
@@ -1024,7 +1024,17 @@ C = Previous / Next
 
 ### Style options
 
-Compact statistic title (`stat-compact`), Dividers between rows (`dividers`) and Header centred (`header-center`), added as block classes.
+Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`) and Impact cards (`impact-cards`), added as block classes.
+
+### Impact cards (Style option Impact cards, 12 November 2026)
+
+- **Purpose / when to use:** a short row of outcomes ("Proven, Impact and Outcomes"): an image, a title and a short description per card, usually three.
+- **Fields:** the block's Title (the section heading, e.g. Proven, Impact and Outcomes); per Card: Image, Title, Description. Eyebrow, tags, date and call to action still show when authored.
+- **Dialog:** Card style Image (the default); Style options **Impact cards (proven impact and outcomes)**. Put the block in a section with Section Style Grey for the design's grey background.
+- **Rendering:** the image cards (`list-card-image`) of a `.card-list.impact-cards` block are white cards with 1rem (`--radius-l`) rounded corners: the image fills the card's top (rounded top corners, the Image ratio, 16:9 by default), then the title and the description, centred, with 1.5rem side and bottom padding. The cards of a row have the same height (Stretch cards, on by default). The heading is 3rem above the cards from 600px (the lists' 5rem otherwise). Panel, report and statistic cards in the same block keep their own look. On the Dark / Dark green section colours, the cards stay white with dark text.
+- **Responsive:** three cards per row from 600px, one per row below (`utils/card-list-config.js` `IMPACT_COLUMNS`; the Layout tab's Desktop / Tablet columns, when set, win); title 1.25rem, 1.5rem from 1200px; description 0.875rem.
+- **Compatibility:** only blocks with the option get the class; Cards and Lists without it render as before (their columns, styles and markup are unchanged). The option is in the shared Style options, so a List can use it too.
+- **Accessibility:** the title is the card heading (one level below the block's heading); linked cards keep the title link or the call to action as their one link.
 
 ### Legacy cards (compatibility)
 
