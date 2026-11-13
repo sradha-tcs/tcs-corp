@@ -22,7 +22,7 @@ import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
 import { availableId } from '../utils/ids.js';
-import { pageTypeOf } from '../utils/page-type.js';
+import { sheetOverrides } from '../utils/sheet-metadata.js';
 import blockModules, { blockStylesheet } from './module-graph.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
@@ -426,7 +426,7 @@ async function addErrorBackButton(main) {
 const TEMPLATES = ['home', 'article', 'blog', 'press-release'];
 
 /** the Page Type: the metadata sheet's sheet-page-type overrides the page dialog's Page Type */
-const currentPageType = () => toClassName(pageTypeOf(
+const currentPageType = () => toClassName(sheetOverrides(
   getMetadata('sheet-page-type'),
   getMetadata('page-type') || getMetadata('template'),
 ));

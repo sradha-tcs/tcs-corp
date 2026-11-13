@@ -13,7 +13,8 @@
  * | language                                 | <html lang>                              |
  *
  * Social titles, descriptions and images fall back to the SEO ones (og-* to meta-*, twitter-*
- * to og-*). Robots is a standard metadata name and needs no code.
+ * to og-*). meta-title and meta-description override the page dialog's Title and Description, as
+ * everywhere (utils/sheet-metadata.js). Robots is a standard metadata name and needs no code.
  */
 import { getMetadata } from '../scripts/aem.js';
 import { getPageLanguage } from '../utils/metadata.js';

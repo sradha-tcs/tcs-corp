@@ -86,7 +86,7 @@ The same code runs in Universal Editor, so entries are also pushed while authors
 | Field | Value |
 | --- | --- |
 | `@type` | `tcs-corp/components/page` |
-| `dc:title` | `og:title` metadata, else `document.title` (read before the SEO decorator applies `meta-title`) |
+| `dc:title` | The sheet's `meta-title`, else the dialog's Title (`og:title`, else `document.title`; `utils/sheet-metadata.js`) |
 | `xdm:language` | The `language` metadata when it is a language code, else the locale's language tag (`utils/site.js`) |
 | `xdm:template` | The Page Type (the sheet's `sheet-page-type` metadata, else the page's `page-type`); omitted when empty |
 | `xdm:tags` | `article:tag` meta values and the `cq-tags` meta, else the comma-separated `tags` meta; de-duplicated |

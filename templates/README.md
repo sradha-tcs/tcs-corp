@@ -6,7 +6,7 @@ template pages are excluded from publishing in `paths.json`.
 
 A page's **Page Type** selects its template: the `sheet-page-type` column of the locale's metadata
 sheet (e.g. `/en/newsroom/**` → `press-release`), which overrides the Page Type page property
-(`page-type`), else that property (`utils/page-type.js`). A sheet column must not be named
+(`page-type`), else that property (`utils/sheet-metadata.js`). A sheet column must not be named
 `page-type`: Edge Delivery lets the page's own value of the same name win. The value is added as a body class, and when it's in `TEMPLATES`
 (`scripts/scripts.js`), `templates/{name}/{name}.js` and `.css` are loaded eagerly. The
 template's default export gets `main` before it's decorated, so it can add structure.

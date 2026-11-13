@@ -5,7 +5,8 @@
  * named after it:
  *
  * url (the pattern of the pages a row applies to), sheet-page-type (the Page Type, overriding the
- * page dialog's page-type; utils/page-type.js), meta-title, meta-description,
+ * page dialog's page-type), meta-title, meta-description (overriding the page's Title and
+ * Description; utils/sheet-metadata.js),
  * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
  * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
  * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
@@ -15,7 +16,7 @@
  */
 import { getMetadata } from '../scripts/aem.js';
 import { getLocale } from './site.js';
-import { pageTypeOf } from './page-type.js';
+import { sheetOverrides } from './sheet-metadata.js';
 
 /** the first non-empty metadata value of the names */
 const metaOf = (...names) => names.map((name) => getMetadata(name)).find(Boolean) || '';
@@ -71,11 +72,12 @@ export function getPageLanguage() {
 export function getPageMetadata() {
   const priority = parseFloat(getMetadata('priority'));
   return {
-    title: AUTHORED.title,
-    description: AUTHORED.description,
+    // the sheet's meta-title / meta-description override the dialog's (utils/sheet-metadata.js)
+    title: sheetOverrides(getMetadata('meta-title'), AUTHORED.title),
+    description: sheetOverrides(getMetadata('meta-description'), AUTHORED.description),
     image: metaOf('featured-image', 'og:image'),
     // Page Type; the standard Template metadata as a fallback
-    pageType: pageTypeOf(getMetadata('sheet-page-type'), getMetadata('page-type') || getMetadata('template')),
+    pageType: sheetOverrides(getMetadata('sheet-page-type'), getMetadata('page-type') || getMetadata('template')),
     contentType: getMetadata('content-type'),
     category: getMetadata('category'),
     tags: getPageTags(),

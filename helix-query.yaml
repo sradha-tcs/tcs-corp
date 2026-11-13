@@ -59,7 +59,7 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/sheet-metadata.js)
       sheetPageType:
         select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
@@ -199,7 +199,7 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/sheet-metadata.js)
       sheetPageType:
         select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
@@ -339,7 +339,7 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/sheet-metadata.js)
       sheetPageType:
         select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
@@ -479,7 +479,7 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/sheet-metadata.js)
       sheetPageType:
         select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")

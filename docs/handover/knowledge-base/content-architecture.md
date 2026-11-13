@@ -104,7 +104,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 
 **Purpose.** A Page Type gives recurring page kinds their structure. Template pages that authors copy live in `/content/tcs-corp/site-global-templates/` (not published).
 
-**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`sheet-page-type` metadata from the sheet, else the page's `page-type`; `utils/page-type.js`) is in `TEMPLATES`:
+**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`sheet-page-type` metadata from the sheet, else the page's `page-type`; `utils/sheet-metadata.js`) is in `TEMPLATES`:
 
 | Page Type | Adds | Data |
 | --- | --- | --- |
@@ -139,12 +139,14 @@ Page-level values win over bulk metadata; bulk rows apply top to bottom (handove
 
 | Consumer | Reads | Source |
 | --- | --- | --- |
-| SEO decorator (eager) | `meta-title` → `<title>`; `meta-description`, `meta-keywords`; `og-*` (falling back to `meta-*`); `twitter-*` (falling back to `og-*`, `meta-*`); `canonical-url` → `<link rel="canonical">` and `og:url`; `language` → `<html lang>` | [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js) |
-| `getPageMetadata()` | title, description, image (`featured-image`, else `og:image`), the Page Type (`sheet-page-type`, else `page-type`, else `template`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
+| SEO decorator (eager) | `meta-title` → `<title>` (overriding the dialog's Title, as everywhere: `utils/sheet-metadata.js`); `meta-description`, `meta-keywords`; `og-*` (falling back to `meta-*`); `twitter-*` (falling back to `og-*`, `meta-*`); `canonical-url` → `<link rel="canonical">` and `og:url`; `language` → `<html lang>` | [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js) |
+| `getPageMetadata()` | title (`meta-title`, else the dialog's Title), description (`meta-description`, else the dialog's Description), image (`featured-image`, else `og:image`), the Page Type (`sheet-page-type`, else `page-type`, else `template`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
 | `getPageTags()` | `article:tag` metas and `cq-tags`, else a comma-separated `tags` meta | `utils/metadata.js` |
 | `getPageLanguage()` | `language` when it is a language code, else the locale's `lang` | `utils/metadata.js` |
 | Page Header, templates, data layer page entry | `getPageMetadata()` | [page-header](../../../blocks/page-header/README.md), `decorators/data-layer-decorator.js` |
 | Query index | the server head (see [indexing-and-search.md](./indexing-and-search.md)) | `helix-query.yaml` |
+
+**Rules.** The sheet's `meta-title`, `meta-description` and `sheet-page-type` override the page dialog's Title, Description and Page Type, as authored (`utils/sheet-metadata.js`): in the head, the Page Header, the data layer and the index rows that List, Filter List and Canvas cards are built from (the index keeps both: `title` / `metaTitle`, `description` / `metaDescription`, `pageType` / `sheetPageType`); only the delivered HTML (crawlers without JavaScript, link previews) keeps the dialog's.
 
 **Rules.** The query index reads the server-delivered head, so values set by JavaScript (the SEO decorator's) aren't indexed (handover Part 8.1.3). `robots` is a standard name and works server side. Use `card-*`, `eyebrow`, `hide-in-nav`, `card-style`, `card-theme` for List cards (List README "Page metadata contract").
 
