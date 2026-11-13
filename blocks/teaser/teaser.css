@@ -969,15 +969,6 @@
     line-height: 1.417;
   }
 
-  /* Description Text Color */
-  .teaser.description-black :is(.teaser-description, .teaser-short-description) {
-    color: var(--black-1000);
-  }
-
-  .teaser.description-white :is(.teaser-description, .teaser-short-description) {
-    color: var(--white);
-  }
-
   /* Image collage: centered content surrounded by nine animated images */
   .teaser.image-collage {
     /* Figma value with no site token: the collage description */
@@ -1644,4 +1635,16 @@
       transform: none;
       will-change: auto;
     }
+  }
+
+  /*
+   * Description Color (descriptionColor): Black or White whatever the layout and BG Color; last
+   * in the file, so it wins over the layouts' own description colours (Image collage too)
+   */
+  .teaser.description-black :is(.teaser-description, .teaser-short-description) {
+    color: var(--black-1000);
+  }
+
+  .teaser.description-white :is(.teaser-description, .teaser-short-description) {
+    color: var(--white-1000);
   }
