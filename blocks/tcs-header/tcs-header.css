@@ -1,24 +1,11 @@
-/* TCS Header: TCS Logo left, TATA Logo right across all breakpoints */
+/* ==========================================================================
+   TCS Header: Bar & Logos
+   ========================================================================== */
+
 .tcs-header .tcs-header-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.section:not(.fixed-width) .tcs-header .tcs-header-bar {
-  padding-inline: var(--space-400);
-}
-
-@media (width >= 600px) {
-  .section:not(.fixed-width) .tcs-header .tcs-header-bar {
-    padding-inline: var(--space-600);
-  }
-}
-
-@media (width >= 1200px) {
-  .section:not(.fixed-width) .tcs-header .tcs-header-bar {
-    padding-inline: var(--space-2000);
-  }
 }
 
 .tcs-header :is(.tcs-header-brand, .tcs-header-group) {
@@ -63,39 +50,341 @@
   }
 }
 
-/* Sticky/Fixed Bar Positioning across all breakpoints */
-header:has(.tcs-header-brand) .nav-wrapper {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 20;
-}
-
-@supports (animation-timeline: scroll()) {
-  header:has(.tcs-header-brand) .nav-wrapper {
-    animation: tcs-header-bar-solid linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 var(--nav-height);
+/* Hide Hamburger toggle & Drawer on Desktop */
+@media (width >= 1200px) {
+  .tcs-header-menu-toggle,
+  .tcs-header-menu-drawer {
+    display: none !important;
   }
 }
 
-@keyframes tcs-header-bar-solid {
-  to {
-    background-color: var(--background-color);
+/* ==========================================================================
+   Mobile Responsive Layout (< 600px)
+   ========================================================================== */
+
+@media (width < 1200px) {
+  /* 59px Circular Hamburger Button */
+  .tcs-header-menu-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 3.6875rem;
+    height: 3.6875rem;
+    min-width: 3.6875rem;
+    min-height: 3.6875rem;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-bg-brand);
+    cursor: pointer;
+    backdrop-filter: blur(0.8563rem);
+    padding: 0;
+    z-index: 50;
   }
-}
 
-/* JS Fallback for browsers without animation-timeline support */
-header:has(.tcs-header-brand) .nav-wrapper.is-scrolled {
-  background-color: var(--background-color);
-}
+  .tcs-header-menu-toggle::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #FFF;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
 
-/* Target scrolling offset */
-html:has(header .tcs-header-brand) :is(h1, h2, h3, h4, h5, h6, [id^='anchor-']) {
-  scroll-margin-top: calc(var(--nav-height) + var(--space-600));
-}
+  /* Close Icon (✕) when open */
+  .tcs-header-menu-toggle[aria-expanded='true']::before {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
 
-/* Overlay Modes */
-:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40))) header:has(.tcs-header-brand) .nav-wrapper,
-html[data-header-overlay='always'] header .nav-wrapper {
-  background-color: transparent;
+  /* The Mobile Drawer Container */
+  .tcs-header-menu-drawer {
+    display: none;
+  }
+
+  .tcs-header-menu-drawer:not([hidden]) {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    inset: var(--nav-height) 0 0;
+    height: auto;
+    max-height: calc(100dvh - var(--nav-height));
+    background-color: #FFF !important;
+    z-index: 40;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /*
+   * Navigation body (Figma 2957-18746): the main view (L1 accordions, AI search) or the L3 panel.
+   * The drawer lives in the header's nav (blocks/header), outside the block, so its rules are
+   * scoped to the drawer.
+   */
+  .tcs-header-drawer-content {
+    /* Figma open accordion and L3 list background (no design token) */
+    --tcs-nav-open-bg: #f2f6fc;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 2.5rem;
+    box-sizing: border-box;
+    background-color: var(--color-bg-default);
+  }
+
+  .tcs-header-menu-drawer :is(.tcs-header-drawer-main, .tcs-header-l3-panel) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tcs-header-menu-drawer .tcs-header-drawer-main {
+    gap: 2rem;
+  }
+
+  .tcs-header-menu-drawer :is(.tcs-header-drawer-main, .tcs-header-l3-panel, .tcs-accordion-submenu)[hidden] {
+    display: none;
+  }
+
+  /* L1 accordions */
+  .tcs-header-menu-drawer .tcs-header-accordion-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: var(--border-width-100) solid var(--color-border-default);
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-item {
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: var(--border-width-100) solid var(--color-border-default);
+    background-color: var(--color-bg-default);
+    transition: background-color 0.2s ease;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-item.is-open {
+    border-bottom-color: transparent;
+    background-color: var(--tcs-nav-open-bg);
+  }
+
+  /* the row toggles the accordion; its label is a link to the L1 page */
+  .tcs-header-menu-drawer .tcs-accordion-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.5rem;
+    padding: 0 1rem;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-header:has(.tcs-accordion-toggle) {
+    cursor: pointer;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-label {
+    flex: 1 1 auto;
+    padding-block: 0.6rem;
+    color: var(--color-text-default);
+    font-family: var(--body-font-family);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    letter-spacing: calc(-0.015 * 1.5rem);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-item.is-open .tcs-accordion-label,
+  .tcs-header-menu-drawer .tcs-accordion-label[aria-current='page'] {
+    color: var(--color-text-brand);
+  }
+
+  /* chevron button: a 3rem touch target around the 1.5rem Figma icon box */
+  .tcs-header-menu-drawer .tcs-accordion-toggle {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-inline: -0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-chevron {
+    display: block;
+    width: 0.75rem;
+    height: 0.375rem;
+    background-color: var(--color-text-brand);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6' fill='none'%3E%3Cpath d='M1 1L6 5L11 1' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform 0.25s ease;
+  }
+
+  .tcs-header-menu-drawer .tcs-accordion-item.is-open .tcs-accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* L2 pages (level two branches) */
+  .tcs-header-menu-drawer .tcs-accordion-submenu {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0 1rem 1rem 2rem;
+    list-style: none;
+  }
+
+  .tcs-header-menu-drawer :is(.tcs-accordion-submenu, .tcs-header-l3-list) li {
+    margin: 0;
+  }
+
+  /* L2 and L3 rows: 3rem minimum, Figma 18px / 150% */
+  .tcs-header-menu-drawer :is(.tcs-submenu-link, .tcs-submenu-drill, .tcs-header-l3-link, .tcs-header-l3-back) {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.625rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-default);
+    font-family: var(--body-font-family);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    letter-spacing: calc(-0.005 * 1.125rem);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .tcs-header-menu-drawer .tcs-submenu-drill-label {
+    flex: 1 1 auto;
+  }
+
+  .tcs-header-menu-drawer :is(.tcs-accordion-label, .tcs-submenu-link, .tcs-header-l3-link, .tcs-header-l3-back):hover,
+  .tcs-header-menu-drawer .tcs-submenu-drill:hover > .tcs-submenu-drill-label {
+    text-decoration: underline;
+  }
+
+  .tcs-header-menu-drawer :is(.tcs-submenu-link, .tcs-header-l3-link)[aria-current='page'] {
+    color: var(--color-text-brand);
+  }
+
+  /* chevron right (Figma: 1.8px stroke in the middle of a 24px box) */
+  .tcs-header-menu-drawer .tcs-submenu-drill-icon {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--grey-900);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  /* L3 panel: Back to the L1 page's title, then the L3 pages on the open background */
+  .tcs-header-menu-drawer .tcs-header-l3-back {
+    gap: 0.75rem;
+    padding-inline: 1rem;
+    color: var(--color-text-brand);
+  }
+
+  .tcs-header-menu-drawer .tcs-header-l3-back::before {
+    content: '';
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: currentcolor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='12' x2='5' y2='12'/%3E%3Cpolyline points='12 19 5 12 12 5'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .tcs-header-menu-drawer .tcs-header-l3-list {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    list-style: none;
+    background-color: var(--tcs-nav-open-bg);
+  }
+
+  /* Bottom AI Search Box */
+  .tcs-header-mobile-search {
+    width: 100%;
+  }
+
+  .tcs-header-search-form {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 72px;
+    padding: 12px 14px 12px 18px;
+    border: 1px solid #767676;
+    border-radius: 58px;
+    background-color: #FFF;
+    backdrop-filter: blur(40px);
+  }
+
+  .tcs-header-search-form input {
+    flex: 1 1 auto;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -0.005em;
+    color: #0C0C0D;
+  }
+
+  .tcs-header-search-form input::placeholder {
+    color: #0C0C0D;
+    opacity: 0.65;
+  }
+
+  .tcs-header-mic-btn {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .tcs-header-mic-btn::before {
+    content: '';
+    display: block;
+    width: 24.03px;
+    height: 24.03px;
+    background-color: #5A5A5A;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z'/%3E%3Cpath d='M19 10v2a7 7 0 0 1-14 0v-2'/%3E%3Cline x1='12' y1='19' x2='12' y2='22'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .tcs-header-submit-btn {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    border: none;
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tcs-header-submit-btn:not(:disabled) {
+    background-color: #0C0C0D;
+    cursor: pointer;
+  }
+
+  .tcs-header-submit-btn::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #E6E6E6;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  body.nav-menu-open {
+    overflow: hidden;
+  }
 }

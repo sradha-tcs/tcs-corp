@@ -21,7 +21,17 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Data source.** Its own fields; UI text (fallback names) from the locale's placeholders.
 
+**Header behavior.** The Display tab has independent Desktop, Tablet and Mobile behavior controls. Desktop defaults to Float (scrolls away with the page); tablet and mobile default to Sticky (stay at the viewport top). Breakpoints are 1200px and 600px. Each device can instead select the other behavior, or Use shared behavior to inherit the retained Shared header behavior field. This is independent of **Header over the first block**: Auto overlays an opening light Hero, Always overlays any first block, and Never leaves the page below a solid bar. The nav fragment applies the settings; a standalone logo block changes neither. The shared value remains `header-position-v1`; validated device overrides are saved as `header-position-views-v1` and restored before the header loads. Missing device fields use the Figma defaults even on pages authored before these controls were added.
+
+**Author controls.** Open the Navigation page's TCS Header properties, then Display. Set Desktop behavior, Tablet behavior and Mobile behavior separately. The Figma arrangement is Float / Sticky / Sticky. Float means scrolling with the document, not pinning to the bottom. Resizing automatically applies the new device's selection. Content and Additional fields retain their values; moving the existing overlay and shared behavior controls to Display does not change key-value delivery.
+
+**Floating overlay correction, 6 November 2026.** Float keeps an overlay bar fully transparent while scrolling away; logos retain their starting theme colour. The transparent-to-white background and logo fade apply only to Sticky. Never overlay remains solid. An open drawer still has a solid bar for contrast.
+
 **Related blocks.** [Header](../header/README.md) (consumes it), [Conversation Canvas](../conversation-canvas/README.md) (a header Canvas may share its section).
+
+**Working-copy correction, 6 November 2026.** The circular hamburger and accordion drawer now serve mobile and tablet below 1200px; the drawer starts below `--nav-height`. The site header owns logo layout and overlay contrast after extracting these elements: Always is transparent over a dark Hero at the top, with white logos changing to black as the bar becomes white while scrolling. Light Heroes use black logos. This uses the authored theme rather than image-pixel sampling. The current PNG logos retain their transparency but are not converted into vectors; transparent SVG originals are recommended. Escape closes the drawer and restores focus, and entering desktop closes it automatically. Earlier menu descriptions below refer to the previous level-by-level implementation.
+
+**Three-level drawer, 11 November 2026 (Figma TCS Designs 2957-18746).** Below 1200px the drawer lists the L1 pages below **Menu root path** as accordions. Each L1 label is a link to its page (`l1Node.path`). The row or its chevron button (`aria-expanded`, `aria-controls`, one accordion open at a time) shows the L2 pages in `.tcs-accordion-submenu`. An open L1 has the `#f2f6fc` background (`--tcs-nav-open-bg`, no design token) and a brand-blue label. An L2 page with child pages is a drill-down button with a right chevron. It replaces the main view (accordions and AI search) with the L3 panel (`.tcs-header-l3-panel`): a **Back to {L1 title}** button (placeholder `backTo`, focused on open) above the L3 pages as links on `#f2f6fc`. Back returns to the main view with the accordion still open and focus on the L2 button. Closing the menu (button, Escape, desktop width) returns to the main view. An L2 page without children is a link. Rows are at least 3rem high, L1 labels 1.5rem / 120%, L2 and L3 1.125rem / 150%, in the body font. L2 pages with children are reached through their L3 pages only (Figma has no link to them). With Menu depth below 3 there are no L3 pages, so every L2 page is a link. L1 pages without children are links only (no chevron).
 
 **When to use.** In the first section of every Navigation page.
 
@@ -105,7 +115,25 @@ C = TCS Logo Link
 D = TATA Logo
 E = TATA Logo Alt Text
 F = TATA Logo Link
-G = Header over the first block
+G = Menu
+H = Menu › Menu root path
+I = Menu › Menu depth
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+tcs-header-dialog-display-desktop.png
+
+Purpose:
+The Display tab of the TCS Header properties in Universal Editor, with the fields of the table "Display tab — TCS Header" in Authorable Fields below.
+
+Annotations:
+A = Header over the first block
+B = Desktop behavior
+C = Tablet behavior
+D = Mobile behavior
 ```
 
 ```text
@@ -120,14 +148,6 @@ The Additional tab of the TCS Header properties in Universal Editor, with the fi
 Annotations:
 A = Anchor ID
 B = Hide block
-C = Padding left
-D = Padding right
-E = Padding top
-F = Padding bottom
-G = Margin left
-H = Margin right
-I = Margin top
-J = Margin bottom
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -234,22 +254,25 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 | TATA Logo | `tataLogo` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/header/tata-logo.png |
 | TATA Logo Alt Text | `tataLogoAlt` | text | No | `TATA Group` | — | Names the logo link for screen readers. Delivered with `tataLogo` (field collapse). | TATA Group |
 | TATA Logo Link | `tataLogoLink` | aem-content | No | — | — | Usually https://www.tata.com/. | https://www.tata.com |
+| Menu | `menu` | container | No | — | — | — | — |
+| Menu › Menu root path | `menuRootPath` | aem-content | No | — | — | Select the parent folder of the navigation pages (e.g., /curated-design-pages) | — |
+| Menu › Menu depth | `menuDepth` | number | No | `3` | — | — | — |
+
+#### Display tab — TCS Header
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero. | — |
+| Desktop behavior | `headerDesktopPosition` | select | No | `float` | Float (scrolls with the page) (`float`), Sticky (stays at the top) (`sticky`) | From 1200px. Float scrolls away with the page; Sticky stays at the top. | — |
+| Tablet behavior | `headerTabletPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | From 600px to 1199px. Sticky stays at the top; Float scrolls away with the page. | — |
+| Mobile behavior | `headerMobilePosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | Below 600px. Sticky stays at the top; Float scrolls away with the page. | — |
 
 #### Additional tab — TCS Header
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
-| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off. Delivered as a block class. | — |
-| Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
-| Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
-| Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
-| Padding bottom | `classes_paddingbottom` | select | No | "" | Default (""), 0 (none) (`pb-0`), 0.25rem (space-100) (`pb-100`), 0.5rem (space-200) (`pb-200`), 0.75rem (space-300) (`pb-300`), 1rem (space-400) (`pb-400`), 1.25rem (space-500) (`pb-500`), 1.5rem (space-600) (`pb-600`), 2rem (space-800) (`pb-800`), 2.5rem (space-1000) (`pb-1000`), 3rem (space-1200) (`pb-1200`), 4rem (space-1600) (`pb-1600`), 5rem (space-2000) (`pb-2000`), 6rem (space-2400) (`pb-2400`), 7.5rem (space-3000) (`pb-3000`) | Delivered as a block class. | — |
-| Margin left | `classes_marginleft` | select | No | "" | Default (""), 0 (none) (`ml-0`), 0.25rem (space-100) (`ml-100`), 0.5rem (space-200) (`ml-200`), 0.75rem (space-300) (`ml-300`), 1rem (space-400) (`ml-400`), 1.25rem (space-500) (`ml-500`), 1.5rem (space-600) (`ml-600`), 2rem (space-800) (`ml-800`), 2.5rem (space-1000) (`ml-1000`), 3rem (space-1200) (`ml-1200`), 4rem (space-1600) (`ml-1600`), 5rem (space-2000) (`ml-2000`), 6rem (space-2400) (`ml-2400`), 7.5rem (space-3000) (`ml-3000`) | Delivered as a block class. | — |
-| Margin right | `classes_marginright` | select | No | "" | Default (""), 0 (none) (`mr-0`), 0.25rem (space-100) (`mr-100`), 0.5rem (space-200) (`mr-200`), 0.75rem (space-300) (`mr-300`), 1rem (space-400) (`mr-400`), 1.25rem (space-500) (`mr-500`), 1.5rem (space-600) (`mr-600`), 2rem (space-800) (`mr-800`), 2.5rem (space-1000) (`mr-1000`), 3rem (space-1200) (`mr-1200`), 4rem (space-1600) (`mr-1600`), 5rem (space-2000) (`mr-2000`), 6rem (space-2400) (`mr-2400`), 7.5rem (space-3000) (`mr-3000`) | Delivered as a block class. | — |
-| Margin top | `classes_margintop` | select | No | "" | Default (""), 0 (none) (`mt-0`), 0.25rem (space-100) (`mt-100`), 0.5rem (space-200) (`mt-200`), 0.75rem (space-300) (`mt-300`), 1rem (space-400) (`mt-400`), 1.25rem (space-500) (`mt-500`), 1.5rem (space-600) (`mt-600`), 2rem (space-800) (`mt-800`), 2.5rem (space-1000) (`mt-1000`), 3rem (space-1200) (`mt-1200`), 4rem (space-1600) (`mt-1600`), 5rem (space-2000) (`mt-2000`), 6rem (space-2400) (`mt-2400`), 7.5rem (space-3000) (`mt-3000`) | Delivered as a block class. | — |
-| Margin bottom | `classes_marginbottom` | select | No | "" | Default (""), 0 (none) (`mb-0`), 0.25rem (space-100) (`mb-100`), 0.5rem (space-200) (`mb-200`), 0.75rem (space-300) (`mb-300`), 1rem (space-400) (`mb-400`), 1.25rem (space-500) (`mb-500`), 1.5rem (space-600) (`mb-600`), 2rem (space-800) (`mb-800`), 2.5rem (space-1000) (`mb-1000`), 3rem (space-1200) (`mb-1200`), 4rem (space-1600) (`mb-1600`), 5rem (space-2000) (`mb-2000`), 6rem (space-2400) (`mb-2400`), 7.5rem (space-3000) (`mb-3000`) | Delivered as a block class. | — |
+| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor- Delivered as a block class. | — |
+| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Delivered as a block class. | — |
 
 <!-- END GENERATED: fields -->
 
@@ -314,7 +337,7 @@ C = TCS Logo Link
 | ------- | ----- | ----- | ------ | --------------- |
 | A | TCS Logo | `/content/dam/tcs-corp/block-library/header/tcs-logo.png` (production: `/content/dam/tcs-corp/header/tcs-logo.svg`) | One asset for all breakpoints | TCS logo shown |
 | B | TCS Logo Alt Text | `Tata Consultancy Services` | Names the link | Announced name |
-| C | TCS Logo Link | `/language-masters/en/curated-design-pages/home` (the locale Home) | Brand links Home | The logo is a link |
+| C | TCS Logo Link | `/language-master/en/curated-design-pages/home` (the locale Home) | Brand links Home | The logo is a link |
 
 Expected published result: every page using the nav page shows the logo. Validation: the logo link's accessible name is the alt text. Common mistake: a JPG with a white background (F-81); use the transparent SVG.
 
@@ -379,8 +402,8 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Fields:** the six logo fields, and **Menu root path** / **Menu depth** for the tablet and mobile menu.
 - **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
 - **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page at the start of the lazy phase, so the header doesn't wait for it). `blocks/header` (unchanged) makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`). The open menu's title row ("Menu", or a level's Back arrow and title) starts at the gutter, left-aligned with the rows below, and a linked section's arrow (on its button) is at the right edge, in line with the other rows' arrows. While the menu is open the header Canvas is hidden (`blocks/conversation-canvas`); it shows again in its place when the menu closes. Below 1200px the Conversation Canvases don't show their own site menu button (`blocks/conversation-canvas`): the header's menu button is the site navigation there; on desktop the Canvas menu lists the same pages, one level at a time like this menu.
-- **Menu root path fallback:** the menu takes the first of the block's own Menu root path and the Conversation Canvas's (in the same section) with pages in the site's query index. A Menu root path of another site (e.g. the language master, `/content/tcs-corp/language-masters/en/...`, on an `/en` page) has none there, so the Canvas's is used; without pages in either, there's no menu and no menu button.
-- **The logo bar stays at the top** while the page scrolls, at every width (fixed, `z-index: 20`), in every Header over the first block mode; over the first block it is transparent at the top of the page and turns solid once the page has scrolled by the bar's height (a scroll-driven animation; browsers without one keep it transparent); the open tablet / mobile menu keeps it solid, and the menu button has no box of its own. In-page targets (a `#` link to a heading or an Anchor ID, `anchor-*`) scroll clear of the bar (`scroll-margin-top: calc(var(--nav-height) + 1.5rem)` on pages with a TCS Header); the Anchor List keeps its own offset.
+- **Menu root path fallback:** the menu takes the first of the block's own Menu root path and the Conversation Canvas's (in the same section) with pages in the site's query index. A Menu root path of another site (e.g. the language master, `/content/tcs-corp/language-master/en/...`, on an `/en` page) has none there, so the Canvas's is used; without pages in either, there's no menu and no menu button.
+- **Header behavior** works at every width and with every Header over the first block mode. Sticky (default) keeps the logo bar at the top while scrolling (fixed, `z-index: 20`); Float scrolls away with the page (absolute). Over the first block it is transparent at the top and turns solid over the first bar-height of scrolling (a scroll-driven animation, with the existing `is-scrolled` fallback). In-page targets retain their header offset; the Anchor List keeps its own offset.
 - **Header over the first block (every width):** **Auto** (default) keeps the behaviour before: the logo bar lies transparent over an opening light Hero (Home), else it's a bar above the page. **Always**: the bar is transparent over the page's first block, whatever it is, which starts at the top of the page; a Hero keeps its content below the logos, other blocks need their own top space (their Padding top, Additional tab, or `var(--header-overlay-space, 0rem)` in a block's CSS); the logos should be transparent images (a JPG keeps its white box over a coloured block) and dark logos aren't visible over a dark block. **Never**: the bar is above the page also over a light Hero (the page starts below the 64px / 124px bar). The block sets `<html data-header-overlay>` (`utils/header-space.js` `setHeaderOverlay`) when decorated in the nav fragment, not on the nav page itself; the layout is in `styles/styles.css` (it applies before the header loads), the transparent bar in `tcs-header.css`. The mode is remembered per browser and applied before the header loads on the next pages, so only a visitor's first page with Always or Never can move once when the header arrives (decision log KB-D-052, Proposed).
 - **Desktop / tablet / mobile:** as the [Header](../header/README.md).
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
@@ -520,10 +543,13 @@ blocks/tcs-header/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `tcs-header.js`: { setHeaderOverlay } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `tcs-header.js`: { getLocale } |
+| [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `tcs-header.js`: { getPages } |
 
 <!-- END GENERATED: files -->
 
@@ -545,6 +571,8 @@ blocks/tcs-header/
 `blocks/header` relies on `.tcs-header`, `.tcs-header-brand` and `.tcs-header-group`.
 
 **Header over the first block: CSS contract.** `<html data-header-overlay>` is `always`, `never` or absent (Auto). `styles/styles.css` (loaded before the header) takes `<header>` out of the flow at every width for Auto over an opening light Hero and for Always, and sets `--header-overlay-space` on `body` (the header's height while it lies over the first block; unset otherwise, use `var(--header-overlay-space, 0rem)`); `blocks/hero` and `templates/home` keep a Hero's content below the logos; `tcs-header.css` makes `header .nav-wrapper` transparent (Always) or keeps its background over a light Hero (Never).
+
+`tcs-header.css` also takes the loaded header out of the flow in overlay modes at every width. Over an opening light Hero (the default or `bg-light`), both logo images are black, including over light blue artwork. Over dark Heroes (`bg-dark`, `bg-dark-subtle`, `bg-black`) and other opening blocks in Always mode, they start white and fade to black over the same scroll range (`--nav-height`) as the white bar background; scrolling back restores the initial color. Contrast follows the authored Hero theme, not sampled image pixels. The existing `is-scrolled` fallback switches both colors together without scroll-timeline support. Non-overlay and standalone logos retain their authored colors. Use transparent logo assets: filtering also recolors any opaque image background.
 
 **Events / async.** Awaits the placeholders; no listeners.
 
@@ -621,6 +649,10 @@ graph LR
 | TCS-HEADER-QA-15 | Tablet / mobile | Each mode, 390px and 1024px; open the menu | As on desktop (64px bar); the open menu's bar is solid |
 | TCS-HEADER-QA-16 | Menu root path of another site | TCS Header Menu root path in the language master, Canvas Menu root path `/en/home`, 390px | Menu button shown; the menu lists the Canvas's pages |
 | TCS-HEADER-QA-17 | Sticky bar | 390px, 1024px and 1440px, scroll down, each Header over the first block mode | The logo bar stays at the top, solid once scrolled by its height; the logos stay above the content |
+| TCS-HEADER-QA-18 | L1 link and accordion | 390px, open the menu; tap an L1 label, then another L1's chevron and row | The label opens its page; the chevron and the row open the accordion (`aria-expanded="true"`, `#f2f6fc` background, blue label) and close the other one |
+| TCS-HEADER-QA-19 | L2 drill-down | An L1 with an L2 page that has child pages; tap the L2 row | The main view (accordions, AI search) is replaced by Back to {L1 title} and the L3 pages; focus on Back |
+| TCS-HEADER-QA-20 | Back | From QA-19, tap Back | Main view with the same accordion open; focus on the L2 button |
+| TCS-HEADER-QA-21 | Close resets the view | From QA-19, close the menu (button or Escape) and open it again | The main view is shown, not the L3 panel |
 
 ## Troubleshooting
 

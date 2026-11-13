@@ -163,6 +163,12 @@
     ]
   },
   {
+    "id": "media-contacts",
+    "components": [
+      "media-contact"
+    ]
+  },
+  {
     "id": "page-header",
     "components": [
       "page-header-cta"

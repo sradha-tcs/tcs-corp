@@ -435,3 +435,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Version | Change | Source | Date |
 | ------- | ------ | ------ | ---- |
 | Not recorded | New block (model, code and README) | Repository | 29 October 2026 |
+| Not recorded | Description 1rem (16px) instead of 1.125rem on mobile, tablet and desktop (`.image-collage .image-collage-description`); Description size Regular (`text-regular`) and the Navy background on desktop (`bg-navy`) still set 1.125rem, Large 1.5rem | fix/imagecollage-font-fix | 12 November 2026 |

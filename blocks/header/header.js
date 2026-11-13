@@ -7,10 +7,8 @@ import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { resolvePagePath } from '../../utils/site.js';
 
 /**
- * Extracts TCS logo (brand) and TATA logo (tools) from the authored tcs-header block
- * and sets up the simplified brand-left, tools-right layout.
- * @param {Element} nav The container element
- * @returns {boolean} whether the logo bar was successfully applied
+ * Extracts TCS logo (brand), TATA logo + hamburger toggle (tools)
+ * and keeps the drawer connected to nav-wrapper
  */
 function applyLogoBar(nav) {
   const bar = nav.querySelector('.tcs-header-bar') || nav.querySelector('.tcs-header');
@@ -18,52 +16,53 @@ function applyLogoBar(nav) {
 
   const brandElem = bar.querySelector('.tcs-header-brand');
   const toolsElem = bar.querySelector('.tcs-header-group');
+  const toggleElem = bar.querySelector('.tcs-header-menu-toggle');
 
-  const asSection = (logo, role) => {
-    const section = document.createElement('div');
-    section.className = `section nav-${role}`;
-    const p = document.createElement('p');
-    if (logo) p.append(logo);
-    section.append(p);
-    return section;
-  };
+  const brandSection = document.createElement('div');
+  brandSection.className = 'section nav-brand';
+  const brandP = document.createElement('p');
+  if (brandElem) brandP.append(brandElem);
+  brandSection.append(brandP);
 
-  const brand = asSection(brandElem, 'brand');
-  const tools = asSection(toolsElem, 'tools');
+  const toolsSection = document.createElement('div');
+  toolsSection.className = 'section nav-tools';
+  const toolsP = document.createElement('p');
+  if (toolsElem) toolsP.append(toolsElem);
+  toolsSection.append(toolsP);
+  if (toggleElem) toolsSection.append(toggleElem);
+
   const origSection = bar.closest('.section');
-
+  const drawerElem = origSection?.querySelector('.tcs-header-menu-drawer');
   if (origSection) {
-    origSection.replaceWith(brand);
+    origSection.replaceWith(brandSection);
   } else {
-    nav.prepend(brand);
+    nav.prepend(brandSection);
   }
 
-  brand.after(tools);
+  brandSection.after(toolsSection);
+  if (drawerElem) toolsSection.after(drawerElem);
   return true;
 }
 
-/**
- * JavaScript scroll fallback for browsers without CSS scroll-timeline support.
- * Toggles 'is-scrolled' on navWrapper when scrolled past top.
- * @param {Element} navWrapper
- */
 function setupScrollFallback(navWrapper) {
-  if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()')) return;
+  let height = 124;
   const onScroll = () => {
+    const progress = Math.min(1, Math.max(0, window.scrollY / height));
+    navWrapper.style.setProperty('--header-scroll-progress', String(progress));
     if (window.scrollY > 10) {
       navWrapper.classList.add('is-scrolled');
     } else {
       navWrapper.classList.remove('is-scrolled');
     }
   };
+  new ResizeObserver(([entry]) => {
+    height = entry.contentRect.height || height;
+    onScroll();
+  }).observe(navWrapper);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 }
 
-/**
- * loads and decorates the header logo bar
- * @param {Element} block The header block element
- */
 export default async function decorate(block) {
   const defaultPath = resolvePagePath('', 'references/nav');
   const defaultFragment = loadFragment(defaultPath);
@@ -83,7 +82,6 @@ export default async function decorate(block) {
   nav.setAttribute('aria-label', placeholders.mainNavigation || 'Main navigation');
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  // Canvas sections stay in the header below the nav for floating journey
   const canvasSections = [...nav.children].filter((section) => section.querySelector('.conversation-canvas'));
   canvasSections.forEach((section) => {
     const bar = section.querySelector('.tcs-header');
@@ -96,14 +94,7 @@ export default async function decorate(block) {
     section.remove();
   });
 
-  // Extract logos into nav-brand (left) and nav-tools (right)
-  if (!applyLogoBar(nav)) {
-    const classes = ['brand', 'tools'];
-    classes.forEach((c, i) => {
-      const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
-    });
-  }
+  applyLogoBar(nav);
 
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) removeButtonDecoration(navBrand.querySelector('.button, .link-button'));
@@ -123,7 +114,6 @@ export default async function decorate(block) {
     await prepareMotion(navCanvas);
   }
 
-  // Calculate and store header space for main content positioning
   const header = block.closest('header') || block;
   const setHeight = () => {
     document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);

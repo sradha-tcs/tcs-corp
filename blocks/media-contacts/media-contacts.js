@@ -1,21 +1,22 @@
-import { buildContactGroups } from '../../decorators/contact-list-decorator.js';
+import { buildContactList } from '../../decorators/contact-list-decorator.js';
+import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading, HEADINGS } from '../../decorators/heading-decorator.js';
-import { bone, renderWhenLoaded, skeletonElement } from '../../decorators/skeleton-decorator.js';
-import { getMediaContacts, inRegion } from '../../utils/data.js';
+import { itemRows, KEY_VALUE_ITEM } from '../../utils/cells.js';
 import { isAuthor, isEditing } from '../../utils/environment.js';
-import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties, textOf } from '../../utils/properties.js';
-import { groupContacts, telHref } from './media-contacts-data.js';
+import {
+  isCompleteContact, readContactRows, telHref,
+} from './media-contacts-data.js';
 
-/*
- * Media Contacts (blocks/media-contacts/_media-contacts.json): a key-value block (Title, Title
- * Type and the Additional tab). The contacts come from the locale's Media Contacts data sheet
- * (utils/data.js getMediaContacts): those of the page's region (metadata `region`), else all of
- * them, grouped by designation and region (./media-contacts-data.js), each group's e-mail
- * addresses and phone numbers one below the other. Without contacts the block is hidden on the
- * page and says where they come from in Universal Editor.
- */
+const TITLE_COLORS = ['title-dark', 'title-white', 'title-light-blue'];
+const COLOR_VARIANTS = ['dark', 'brand', 'light-blue'];
+const COLUMN_VARIANTS = ['1', '2', '3'];
+
+function iconUrl(cell) {
+  const image = cell?.querySelector('img');
+  return image?.currentSrc || image?.src || '';
+}
 
 /** the heading: the authored Title, else the placeholder, at the Title Type's level */
 function headingOf(props, t) {
@@ -28,54 +29,60 @@ function headingOf(props, t) {
   return heading;
 }
 
-/** a skeleton of two groups while the sheet loads */
-function skeleton() {
-  const list = skeletonElement('contact-list-groups');
-  [0, 1].forEach(() => {
-    const group = skeletonElement('contact-list-group');
-    group.append(bone('title', 'short'), bone('line'), bone('line', 'short'));
-    list.append(group);
-  });
-  return list;
-}
-
 /**
  * loads and decorates the block
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
   const props = readProperties(block);
-  const data = Promise.all([getMediaContacts(), getPlaceholders()]);
-  await renderWhenLoaded(block, {
-    data,
-    skeleton,
-    render: ([contacts, t]) => {
-      const regional = inRegion(contacts, getPageMetadata().region);
-      const groups = groupContacts(regional.length ? regional : contacts).map((group) => ({
-        ...group,
-        contacts: group.contacts.map((contact) => ({ ...contact, tel: telHref(contact.phone) })),
-      }));
-      const heading = headingOf(props, t);
-      const level = Number(heading.tagName.slice(1));
-      const list = buildContactGroups(groups, {
-        headingLevel: `h${Math.min(level + 1, 6)}`,
-        labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
-      });
-      if (list) {
-        block.replaceChildren(heading, list);
-        return;
-      }
-      // no contacts: hidden on the page; in the editor (and on AEM author) a hint
-      if (!isEditing() && !isAuthor()) {
-        block.replaceChildren();
-        block.hidden = true;
-        block.parentElement?.setAttribute('hidden', '');
-        return;
-      }
-      const hint = document.createElement('p');
-      hint.className = 'media-contacts-empty';
-      hint.textContent = t('mediaContactsEditorHint', 'The contacts come from the Media Contacts sheet (data/media-contacts), which has none for this page yet.');
-      block.replaceChildren(heading, hint);
+  const rows = itemRows(block, ['media-contact'], KEY_VALUE_ITEM);
+  const contacts = readContactRows(rows);
+  const [t, itemHint] = await Promise.all([getPlaceholders(), editorItemHint(rows)]);
+  const pending = buildEditorItems(contacts.filter((contact) => !isCompleteContact(contact))
+    .map(({ row }) => row), itemHint, 'li');
+  const entries = contacts.filter(isCompleteContact).map((contact) => ({
+    ...contact,
+    phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
+  }));
+  const titleColor = textOf(props.titlecolor);
+  if (TITLE_COLORS.includes(titleColor)) block.classList.add(titleColor);
+  const columns = textOf(props.columns);
+  block.classList.add(`contact-columns-${COLUMN_VARIANTS.includes(columns) ? columns : '2'}`);
+  [
+    ['regioncolor', 'region-color'],
+    ['emailcolor', 'email-color'],
+    ['phonecolor', 'phone-color'],
+  ].forEach(([property, classPrefix]) => {
+    const color = textOf(props[property]);
+    if (COLOR_VARIANTS.includes(color)) block.classList.add(`${classPrefix}-${color}`);
+  });
+  const heading = headingOf(props, t);
+  const level = Number(heading.tagName.slice(1));
+  const list = buildContactList(entries, {
+    headingLevel: `h${Math.min(level + 1, 6)}`,
+    labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
+    icons: {
+      email: iconUrl(props.emailicon),
+      phone: iconUrl(props.phoneicon),
     },
   });
+  block.hidden = false;
+  block.parentElement?.removeAttribute('hidden');
+  if (list || pending.length) {
+    const content = list || document.createElement('ul');
+    content.className = 'contact-list';
+    content.append(...pending);
+    block.replaceChildren(heading, content);
+    return;
+  }
+  if (!isEditing() && !isAuthor()) {
+    block.replaceChildren();
+    block.hidden = true;
+    block.parentElement?.setAttribute('hidden', '');
+    return;
+  }
+  const hint = document.createElement('p');
+  hint.className = 'media-contacts-empty';
+  hint.textContent = t('mediaContactsAuthorHint', 'Add Media Contact entries with a country, territory, organization or group and at least one email or phone.');
+  block.replaceChildren(heading, hint);
 }
