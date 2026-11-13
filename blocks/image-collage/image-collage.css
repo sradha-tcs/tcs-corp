@@ -454,7 +454,7 @@
     height: 10.875rem; /* 174px */
     min-height: 10.875rem;
     overflow: hidden;
-    font-size: 1.125rem; /* 18px */
+    font-size: 1rem; /* 16px */
     line-height: 1.6;
 }
 
@@ -593,7 +593,7 @@
         height: 5.4375rem;
         min-height: 5.4375rem;
         overflow: hidden;
-        font-size: 1.125rem;
+        font-size: 1rem;
         line-height: 1.6;
     }
 
@@ -741,7 +741,7 @@
         height: 5.4375rem;
         min-height: 5.4375rem;
         overflow: hidden;
-        font-size: 1.125rem;
+        font-size: 1rem;
         line-height: 1.6;
     }
 
