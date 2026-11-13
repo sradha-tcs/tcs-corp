@@ -354,9 +354,9 @@ D = Vertical alignment
 E = Title weight
 F = Title color
 G = Description size
-H = Eyebrow Style
-I = Top spacing
-J = Link CTA Alignment
+H = Description Color
+I = Eyebrow Style
+J = Top spacing
 ```
 
 ```text
@@ -671,10 +671,12 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Text alignment | `textAlignment` | select | No | "" | Layout default (""), Left (`text-left`), Center (`text-center`), Right (`text-right`), Justify (`text-justify`) | Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced. | text-left |
 | Vertical alignment | `verticalAlignment` | select | No | "" | Layout default (""), Top (`valign-top`), Center (`valign-middle`), Bottom (`valign-bottom`) | How the text and the image (or the two text columns) line up. Layout default: center, top for Text split. | valign-top |
 | Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | title-regular |
-| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
-| Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
-| Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
+| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`), Royal blue (`title-royal-blue`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
+| Description size | `descriptionSize` | select | No | "" | Layout default (""), 1rem (16px) (`text-normal`), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
+| Description Color | `descriptionColor` | select | No | "" | Default (""), Black (`description-black`), White (`description-white`) | — | — |
+| Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`), Rich Black (`eyebrow-rich-black`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
 | Top spacing | `topSpacing` | select | No | "" | Default (""), Page header (extra space above) (`spacing-header`) | Page header: the larger space above a teaser that opens a page. | spacing-header |
+| Teaser Content Fixed Width | `teaserFixedWidth` | select | No | "" | Default (""), Fixed Width (824px) (`teaser-fixed-width`) | Fixed width for the teaser content. Applies to the Container that holds text, description, and button layout. | — |
 | Link CTA Alignment | `linkCtaAlignment` | select | No | `right` | Default (`right`), Left (`left`) | Where the links and CTAs go. Default: with the description. Left: after the text, below the title in the Text split layout. | — |
 
 #### Additional tab — Teaser

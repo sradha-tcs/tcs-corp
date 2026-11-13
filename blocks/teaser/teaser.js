@@ -98,15 +98,22 @@ const OPTIONS = {
     'title-dark',
     'title-white',
     'title-light-blue',
+    'title-royal-blue',
   ],
   descriptionsize: [
     'text-regular',
     'text-large',
+    'text-normal',
+  ],
+  descriptioncolor: [
+    'description-black',
+    'description-white',
   ],
   eyebrowstyle: [
     'eyebrow-label',
     'eyebrow-grey',
     'eyebrow-white',
+    'eyebrow-rich-black',
   ],
   topspacing: [
     'spacing-header',
@@ -572,6 +579,9 @@ export default async function decorate(block) {
 
   block.classList.add(...styles);
   block.classList.toggle('buttons-inline', isOn(props.buttonssidebyside));
+  // Teaser Content Fixed Width: the content at 824px (teaser.css .teaser-fixed-width)
+  const fixedWidth = textOf(props.teaserfixedwidth).toLowerCase() === 'teaser-fixed-width';
+  block.classList.toggle('teaser-fixed-width', fixedWidth);
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media
     && layout !== 'no-image'

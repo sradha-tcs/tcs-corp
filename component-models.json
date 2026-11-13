@@ -27104,6 +27104,10 @@
           {
             "name": "Light blue",
             "value": "title-light-blue"
+          },
+          {
+            "name": "Royal blue",
+            "value": "title-royal-blue"
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
@@ -27120,12 +27124,37 @@
             "value": ""
           },
           {
+            "name": "1rem (16px)",
+            "value": "text-normal"
+          },
+          {
             "name": "Regular (18px)",
             "value": "text-regular"
           },
           {
             "name": "Large (24px)",
             "value": "text-large"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionColor",
+        "label": "Description Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "description-black"
+          },
+          {
+            "name": "White",
+            "value": "description-white"
           }
         ]
       },
@@ -27151,6 +27180,10 @@
           {
             "name": "White",
             "value": "eyebrow-white"
+          },
+          {
+            "name": "Rich Black",
+            "value": "eyebrow-rich-black"
           }
         ],
         "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
@@ -27172,6 +27205,24 @@
           }
         ],
         "description": "Page header: the larger space above a teaser that opens a page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserFixedWidth",
+        "label": "Teaser Content Fixed Width",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed Width (824px)",
+            "value": "teaser-fixed-width"
+          }
+        ],
+        "description": "Fixed width for the teaser content. Applies to the Container that holds text, description, and button layout."
       },
       {
         "component": "select",
