@@ -6,17 +6,21 @@
  * | Column                                   | Head                                     |
  * |------------------------------------------|------------------------------------------|
  * | meta-title                               | <title>                                  |
- * | meta-description, meta-keywords          | description, keywords                    |
+ * | meta-description                         | description                              |
+ * | meta-keywords with keyword-action        | keywords (with the dialog's, utils/keywords.js) |
  * | og-title, og-description, og-image, og-type | og:title, og:description, og:image, og:type |
  * | twitter-card, twitter-title, twitter-description, twitter-image | twitter:* |
  * | canonical-url                            | <link rel="canonical">, og:url           |
  * | language                                 | <html lang>                              |
  *
  * Social titles, descriptions and images fall back to the SEO ones (og-* to meta-*, twitter-*
- * to og-*). Robots is a standard metadata name and needs no code.
+ * to og-*). Keywords: keyword-action default (the dialog's Keywords win), override (the sheet's
+ * meta-keywords win) or merge (both, the dialog's first). Robots is a standard metadata name and
+ * needs no code.
  */
 import { getMetadata } from '../scripts/aem.js';
 import { getPageLanguage } from '../utils/metadata.js';
+import { resolveKeywords } from '../utils/keywords.js';
 
 const first = (...names) => names.map((name) => getMetadata(name)).find(Boolean) || '';
 
@@ -63,7 +67,8 @@ export function decorateHead() {
   const title = getMetadata('meta-title');
   if (title) document.title = title;
   setMeta('description', getMetadata('meta-description'));
-  setMeta('keywords', getMetadata('meta-keywords'));
+  // the dialog's Keywords are the keywords <meta> AEM delivers, read before it's replaced
+  setMeta('keywords', resolveKeywords(getMetadata('keywords'), getMetadata('meta-keywords'), getMetadata('keyword-action')));
 
   setMeta('og:title', first('og-title', 'meta-title'));
   setMeta('og:description', first('og-description', 'meta-description'));
