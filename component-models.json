@@ -11721,6 +11721,50 @@
         "description": "Colour of the eyebrow above the title."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_titlecolor",
+        "label": "Title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "title-black"
+          },
+          {
+            "name": "White",
+            "value": "title-white"
+          }
+        ],
+        "description": "Colour of the title. Default: as the BG Color sets it (black on Default and Light, white on the dark options)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_descriptioncolor",
+        "label": "Description color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "description-black"
+          },
+          {
+            "name": "White",
+            "value": "description-white"
+          }
+        ],
+        "description": "Colour of the description. Default: as the BG Color sets it (black on Default and Light, white on the dark options)."
+      },
+      {
         "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
