@@ -221,6 +221,10 @@
   .teaser .teaser-header {
     gap: var(--space-300);
   }
+  
+  .teaser.teaser-fixed-width {
+    min-width: 0;
+  }
 
   .teaser .teaser-intro {
     gap: var(--space-800);
@@ -1190,7 +1194,7 @@
     --teaser-body-gap: var(--space-600);
   }
 
-  .teaser-fixed-width .teaser-content {
+  .teaser.teaser-fixed-width .teaser-content {
     width: 100%;
     max-width: 100%;
   }
@@ -1355,8 +1359,8 @@
     order: 2;
   }
 
-  .teaser-fixed-width .teaser-content {
-    width: 824px;
+  .teaser.teaser-fixed-width .teaser-content {
+    width: min(100%, 51.5rem);
   }
 }
 
