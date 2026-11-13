@@ -72,7 +72,7 @@ The page model is `page-metadata` in [models/_page.json](../../../models/_page.j
 | Title | `jcr:title` | Browser, SEO and social title; Page Header heading; card title fallback |
 | Description | `jcr:description` | Meta description; Page Header description; card description fallback |
 | Keywords | `keywords` | Meta keywords |
-| Page Type | `page-type` | Default, Home, Article, Blog, Press Release: loads `templates/{name}/` ([templates/README.md](../../../templates/README.md)); overrides the sheet's `page-type` |
+| Page Type | `page-type` | Default, Home, Article, Blog, Press Release: loads `templates/{name}/` ([templates/README.md](../../../templates/README.md)); the metadata sheet's `template` column overrides it |
 | Navigation | `nav` | Inherited (see [References](#references-navigation-footer-and-404)) |
 | Footer | `footer` | Inherited |
 | 404 Page | `error-page` | Inherited |

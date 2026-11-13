@@ -108,7 +108,7 @@ There is no bundler, so a module's imports are only discovered after it loads (A
 
 ### Templates
 
-`loadTemplate(main)` reads the Page Type (`page-type` metadata, else `template`) and, when it is one of `TEMPLATES = ['home', 'article', 'blog', 'press-release']`, imports `templates/{name}/{name}.js` and loads its CSS, then calls the default export with `main` before decoration. Failures are logged (`failed to load template {name}`) and the page continues. What each template adds: [templates/README.md](../../../templates/README.md) and [content-architecture.md](./content-architecture.md).
+`loadTemplate(main)` reads the Page Type (the sheet's `template` metadata, else the page's `page-type`; `utils/page-type.js`) and, when it is one of `TEMPLATES = ['home', 'article', 'blog', 'press-release']`, imports `templates/{name}/{name}.js` and loads its CSS, then calls the default export with `main` before decoration. Failures are logged (`failed to load template {name}`) and the page continues. What each template adds: [templates/README.md](../../../templates/README.md) and [content-architecture.md](./content-architecture.md).
 
 ## Authoring architecture
 

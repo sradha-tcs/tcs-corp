@@ -3,6 +3,7 @@
  * loaded once per page and read the same way in every block. Rows of the current locale site.
  */
 import { indexRoot, REVIEW_ROOTS } from './site.js';
+import { pageTypeOf } from './page-type.js';
 
 const INDEX = '/query-index.json';
 // rows per request: the requests after the first run in parallel
@@ -82,7 +83,7 @@ function toPage(row) {
     description: row.description || '',
     image: row.image || '',
     tags,
-    pageType: row.pageType || '',
+    pageType: pageTypeOf(row.template, row.pageType),
     contentType: row.contentType || '',
     publishDate: row.publishDate || '',
     readingTime: row.readingTime || '',

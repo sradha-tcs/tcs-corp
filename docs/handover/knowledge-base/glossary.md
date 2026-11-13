@@ -42,7 +42,7 @@ This page defines the terms used across the TCS Corporate Website code, the hand
 | Curated design pages | Library pages that rebuild Figma page designs from blocks (e.g. Home, Insights), used for validation (handover 2.27, 2.31) |
 | Content package (1.0.x) | A numbered package of block library and curated page content migrated and published together (e.g. 1.0.10, 1.0.13; handover revision history) |
 | Site Global Templates | Author-only template pages (`/content/tcs-corp/site-global-templates/`) authors copy |
-| Page Type / template | The page property (or `page-type` metadata) that selects a template in `templates/` (home, article, blog, press-release) and becomes a body class |
+| Page Type / template | The metadata sheet's `template` column, else the page property Page Type (`page-type`), that selects a template in `templates/` (home, article, blog, press-release) and becomes a body class |
 | Lotto / Lottie | The "Lotto" image type plays a Lottie animation (`.json`) with the vendored player `scripts/lib/lottie/` |
 
 ## Site Structure and Site Data

@@ -27,7 +27,7 @@
           "valueType": "string",
           "name": "page-type",
           "label": "Page Type",
-          "description": "The Site Global Template of the page (layout and template code). Overrides the page-type column of the metadata sheet.",
+          "description": "The Site Global Template of the page (layout and template code). The metadata sheet's template column overrides it.",
           "value": "",
           "options": [
             {

@@ -217,7 +217,7 @@
           "valueType": "string",
           "name": "pageTypes",
           "label": "Page types",
-          "description": "Only pages of these page types (page-type metadata). None: every page type.",
+          "description": "Only pages of these page types (the metadata sheet's template, else the page's Page Type). None: every page type.",
           "options": [
             {
               "name": "Article",

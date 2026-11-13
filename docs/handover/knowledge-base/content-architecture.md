@@ -74,7 +74,7 @@ The Home URL ends with `/` (`/language-masters/en` without it is a 404, as `/en`
 | Title | `jcr:title` | `<title>`, `og:title` |
 | Description | `jcr:description` | `description` meta |
 | Keywords | `keywords` | `keywords` meta |
-| Page Type | `page-type` | Default (empty), Home `home`, Article `article`, Blog `blog`, Press Release `press-release`: body class and template |
+| Page Type | `page-type` | Default (empty), Home `home`, Article `article`, Blog `blog`, Press Release `press-release`: body class and template; the metadata sheet's `template` overrides it |
 | Navigation | `nav` | Header page, inherited by child pages |
 | Footer | `footer` | Footer page, inherited by child pages |
 | 404 Page | `error-page` | 404 page of the subtree, inherited |
@@ -104,7 +104,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 
 **Purpose.** A Page Type gives recurring page kinds their structure. Template pages that authors copy live in `/content/tcs-corp/site-global-templates/` (not published).
 
-**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`page-type`, else `template` metadata) is in `TEMPLATES`:
+**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`template` metadata from the sheet, else the page's `page-type`; `utils/page-type.js`) is in `TEMPLATES`:
 
 | Page Type | Adds | Data |
 | --- | --- | --- |
@@ -115,7 +115,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 
 Source: [templates/README.md](../../../templates/README.md) (including how to add a template).
 
-**Rules.** The Page Type page property wins over the metadata sheet's `page-type` column; Page Type also becomes a body class. Changing a template page doesn't change pages already copied from it (handover Part 4.8).
+**Rules.** The metadata sheet's `template` column overrides the page dialog's Page Type (`page-type`); a sheet still using a `page-type` column applies only where the dialog has none (Edge Delivery lets a page's own metadata win over a sheet column of the same name); Page Type also becomes a body class. Changing a template page doesn't change pages already copied from it (handover Part 4.8).
 
 **Common mistakes.** A `page-type` value that isn't in `TEMPLATES` (only the body class is added); expecting template content in the query index (templates build DOM in the browser).
 
@@ -133,14 +133,14 @@ Source: [templates/README.md](../../../templates/README.md) (including how to ad
 
 Page-level values win over bulk metadata; bulk rows apply top to bottom (handover Part 8.1.2). The bulk sheets apply only once all 13 are listed in the site configuration's `metadata.source`, and each sheet's URL patterns must start with its locale (`/de-de/**`) (AGENTS.md "Notes").
 
-**Bulk metadata columns** (AGENTS.md, 41 columns): `url`, `page-type`, `meta-title`, `meta-description`, `meta-keywords`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
+**Bulk metadata columns** (AGENTS.md, 41 columns): `url`, `template`, `meta-title`, `meta-description`, `meta-keywords`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
 
 **Consumers.**
 
 | Consumer | Reads | Source |
 | --- | --- | --- |
 | SEO decorator (eager) | `meta-title` → `<title>`; `meta-description`, `meta-keywords`; `og-*` (falling back to `meta-*`); `twitter-*` (falling back to `og-*`, `meta-*`); `canonical-url` → `<link rel="canonical">` and `og:url`; `language` → `<html lang>` | [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js) |
-| `getPageMetadata()` | title, description, image (`featured-image`, else `og:image`), `page-type` (else `template`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
+| `getPageMetadata()` | title, description, image (`featured-image`, else `og:image`), the Page Type (`template`, else `page-type`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
 | `getPageTags()` | `article:tag` metas and `cq-tags`, else a comma-separated `tags` meta | `utils/metadata.js` |
 | `getPageLanguage()` | `language` when it is a language code, else the locale's `lang` | `utils/metadata.js` |
 | Page Header, templates, data layer page entry | `getPageMetadata()` | [page-header](../../../blocks/page-header/README.md), `decorators/data-layer-decorator.js` |
@@ -151,7 +151,7 @@ Page-level values win over bulk metadata; bulk rows apply top to bottom (handove
 **Example.**
 
 ```text
-url                   | page-type      | hide-in-nav
+url                   | template       | hide-in-nav
 /de-de/newsroom/**    | press-release  |
 /de-de/insights/**    | article        |
 /de-de/legal/imprint  |                | yes
