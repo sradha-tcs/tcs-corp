@@ -31,6 +31,8 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Working-copy correction, 6 November 2026.** The circular hamburger and accordion drawer now serve mobile and tablet below 1200px; the drawer starts below `--nav-height`. The site header owns logo layout and overlay contrast after extracting these elements: Always is transparent over a dark Hero at the top, with white logos changing to black as the bar becomes white while scrolling. Light Heroes use black logos. This uses the authored theme rather than image-pixel sampling. The current PNG logos retain their transparency but are not converted into vectors; transparent SVG originals are recommended. Escape closes the drawer and restores focus, and entering desktop closes it automatically. Earlier menu descriptions below refer to the previous level-by-level implementation.
 
+**Three-level drawer, 11 November 2026 (Figma TCS Designs 2957-18746).** Below 1200px the drawer lists the L1 pages below **Menu root path** as accordions. Each L1 label is a link to its page (`l1Node.path`). The row or its chevron button (`aria-expanded`, `aria-controls`, one accordion open at a time) shows the L2 pages in `.tcs-accordion-submenu`. An open L1 has the `#f2f6fc` background (`--tcs-nav-open-bg`, no design token) and a brand-blue label. An L2 page with child pages is a drill-down button with a right chevron. It replaces the main view (accordions and AI search) with the L3 panel (`.tcs-header-l3-panel`): a **Back to {L1 title}** button (placeholder `backTo`, focused on open) above the L3 pages as links on `#f2f6fc`. Back returns to the main view with the accordion still open and focus on the L2 button. Closing the menu (button, Escape, desktop width) returns to the main view. An L2 page without children is a link. Rows are at least 3rem high, L1 labels 1.5rem / 120%, L2 and L3 1.125rem / 150%, in the body font. L2 pages with children are reached through their L3 pages only (Figma has no link to them). With Menu depth below 3 there are no L3 pages, so every L2 page is a link. L1 pages without children are links only (no chevron).
+
 **When to use.** In the first section of every Navigation page.
 
 **When not to use.** As a content element on ordinary pages (the header already shows the logos); inside a Columns Container (not offered there).
@@ -647,6 +649,10 @@ graph LR
 | TCS-HEADER-QA-15 | Tablet / mobile | Each mode, 390px and 1024px; open the menu | As on desktop (64px bar); the open menu's bar is solid |
 | TCS-HEADER-QA-16 | Menu root path of another site | TCS Header Menu root path in the language master, Canvas Menu root path `/en/home`, 390px | Menu button shown; the menu lists the Canvas's pages |
 | TCS-HEADER-QA-17 | Sticky bar | 390px, 1024px and 1440px, scroll down, each Header over the first block mode | The logo bar stays at the top, solid once scrolled by its height; the logos stay above the content |
+| TCS-HEADER-QA-18 | L1 link and accordion | 390px, open the menu; tap an L1 label, then another L1's chevron and row | The label opens its page; the chevron and the row open the accordion (`aria-expanded="true"`, `#f2f6fc` background, blue label) and close the other one |
+| TCS-HEADER-QA-19 | L2 drill-down | An L1 with an L2 page that has child pages; tap the L2 row | The main view (accordions, AI search) is replaced by Back to {L1 title} and the L3 pages; focus on Back |
+| TCS-HEADER-QA-20 | Back | From QA-19, tap Back | Main view with the same accordion open; focus on the L2 button |
+| TCS-HEADER-QA-21 | Close resets the view | From QA-19, close the menu (button or Escape) and open it again | The main view is shown, not the L3 panel |
 
 ## Troubleshooting
 
