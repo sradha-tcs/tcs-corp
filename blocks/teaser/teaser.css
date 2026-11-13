@@ -254,6 +254,10 @@
     color: var(--color-text-on-neutral);
   }
 
+  .teaser.eyebrow-rich-black .teaser-eyebrow {
+    color: var(--black-1000);
+  }
+
   .teaser .teaser-meta {
     display: flex;
     flex-wrap: wrap;
@@ -292,7 +296,7 @@
 
   /* Title Type: the heading level sets the size (H1 64px, H2 48px ... H6 20px on desktop) */
   .teaser .teaser-title {
-    --teaser-title-size: var(--heading-font-size-xxl);
+    --teaser-title-size: var(--heading-font-size-xl);
 
     flex: 1 1 auto;
     margin: 0;
@@ -319,6 +323,10 @@
 
   .teaser.title-light-blue .teaser-title {
     color: rgb(167 200 241);
+  }
+
+  .teaser.title-royal-blue .teaser-title {
+    color: var(--brand-400);
   }
 
   .teaser h1.teaser-title {
@@ -743,17 +751,18 @@
   }
 
   /*
-  * Text alignment
+  * Text alignment  
   *
   * Left, Center, Right and Justify use the same content width.
   * Only the container position and internal alignment change.
   */
-  .teaser:is(.text-left,
+
+   /* .teaser:is(.text-left,
     .text-center,
     .text-right,
     .text-justify):not(.no-image, .card) .teaser-content {
-    width: min(100%, var(--teaser-aligned-content-width));
-  }
+    width: 824px;
+  } */
 
   /* Left */
   .teaser.text-left:not(.no-image, .card) .teaser-content {
@@ -946,9 +955,23 @@
     line-height: 1.61;
   }
 
+  .teaser.text-normal :is(.teaser-description, .teaser-short-description) {
+    font-size: 1rem;
+    line-height: 1.60;
+  }
+
   .teaser.text-large :is(.teaser-description, .teaser-short-description) {
     font-size: var(--body-font-size-l);
     line-height: 1.417;
+  }
+
+  /* Description Text Color */
+  .teaser.description-black :is(.teaser-description, .teaser-short-description) {
+    color: var(--black-1000);
+  }
+
+  .teaser.description-white :is(.teaser-description, .teaser-short-description) {
+    color: var(--white);
   }
 
   /* Image collage: centered content surrounded by nine animated images */
@@ -1157,111 +1180,388 @@
     animation-delay: -4.5s;
   }
 
-  @media (width >=600px) {
-    /* Image & Text, Left / Right: image and text side by side */
-    .teaser.teaser-has-media:not(.image-top, .image-bottom) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  /* ==========================================================================
+   MOBILE (< 600px)
+   ========================================================================== */
 
-    .teaser.teaser-has-media:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
-      order: 0;
-    }
-
-    .teaser.teaser-has-media:is(.image-right, .image-bottom) .teaser-media {
-      order: 2;
-    }
+@media (width < 600px) {
+  .teaser {
+    --teaser-gap: var(--space-600);
+    --teaser-body-gap: var(--space-600);
   }
 
-  @media (width >=900px) {
-    .teaser {
-      --teaser-gap: var(--space-2000);
-      --teaser-body-gap: var(--space-1000);
-    }
+  .teaser-fixed-width .teaser-content {
+    width: 100%;
+    max-width: 100%;
+  }
 
-    .teaser.spacing-header {
-      padding-top: var(--space-5000);
-    }
+  .teaser.background {
+    min-height: 35rem;
+    padding: var(--space-1000) var(--space-400);
+  }
 
-    .teaser .teaser-eyebrow {
-      font-size: var(--body-font-size-s);
-    }
+  .teaser.card {
+    min-height: 25rem;
+    padding: var(--space-400);
+  }
 
-    .teaser .teaser-stat-value {
-      font-size: 6rem;
-    }
+  .teaser.no-image .teaser-content {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .teaser.no-image:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
-      order: 0;
-    }
+  .teaser.image-collage {
+    min-height: 64rem;
+    padding-inline: var(--space-400);
+  }
 
-    .teaser.no-image {
-      --teaser-body-gap: var(--space-1200);
-    }
+  .teaser.image-collage .teaser-content {
+    width: 100%;
+    max-width: 37.5rem;
+    gap: var(--space-600);
+  }
 
-    /* Text split: the eyebrow, date and tags above both columns */
-    .teaser.no-image .teaser-content {
-      display: grid;
-      grid-template-areas: 'kicker kicker' 'heading body';
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0 var(--space-600);
-      align-items: start;
-    }
+  .teaser.image-collage .teaser-intro {
+    width: 100%;
+    padding-block: 0.625rem;
+    gap: var(--space-500);
+  }
 
-    .teaser.no-image .teaser-header {
-      display: contents;
-    }
+  .teaser.image-collage .teaser-title {
+    --teaser-title-size: 1.75rem;
 
-    .teaser.no-image .teaser-kicker {
-      grid-area: kicker;
-      margin-bottom: var(--space-1000);
-    }
+    width: 100%;
+    font-size: var(--teaser-title-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * var(--teaser-title-size));
+    text-align: center;
+  }
 
-    .teaser.no-image .teaser-intro {
-      grid-area: heading;
-    }
+  .teaser.image-collage :is(.teaser-description, .teaser-short-description) {
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+    letter-spacing: calc(-0.005 * 1.125rem);
+    text-align: center;
+  }
 
-    .teaser.no-image .teaser-body {
-      grid-area: body;
-    }
+  .teaser.image-collage .teaser-collage {
+    top: 0;
+    bottom: auto;
+    left: 50%;
+    width: 64rem;
+    min-width: 64rem;
+    height: 64rem;
+    transform: translateX(-50%);
+  }
 
-    .teaser.no-image.valign-middle .teaser-content {
-      align-items: center;
-    }
+  .teaser.image-collage .teaser-collage-item {
+    display: block;
+    border-radius: 1.5rem;
+  }
 
-    .teaser.no-image.valign-bottom .teaser-content {
-      align-items: end;
-    }
+  .teaser.image-collage.buttons-inline .teaser-links {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: var(--space-400);
+  }
 
-    .teaser.no-image.text-left .teaser-content {
-      text-align: start;
-    }
+  .teaser.image-collage .teaser-links > :is(a, button).button {
+    flex: 1 0 100%;
+    width: 100%;
+    min-height: 3.125rem;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    gap: var(--space-200);
+    font-size: 0.75rem;
+    letter-spacing: calc(0.01 * 0.75rem);
+  }
 
-    .teaser.no-image.text-center .teaser-content {
-      text-align: center;
-    }
+  .teaser.image-collage .teaser-links > :is(a, button).button::after {
+    flex: 0 0 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 
-    .teaser.no-image.text-right .teaser-content {
-      text-align: end;
-    }
+  /* collage positioning */
 
-    .teaser.no-image.text-justify .teaser-content {
-      text-align: start;
-    }
+  .teaser.image-collage .teaser-collage-item-1 {
+    inset: -31.25% 17.43% 79.79% 52.15%;
+    opacity: 1;
+  }
 
-    .teaser.no-image.text-justify :is(.teaser-description, .teaser-short-description) {
-      text-align: justify;
-      text-align-last: start;
-    }
+  .teaser.image-collage .teaser-collage-item-2 {
+    inset: -5.57% -23.06% 54.1% 92.64%;
+    opacity: 0.7;
+  }
 
-    .teaser.background {
-      min-height: 48.75rem;
-      padding: var(--space-3000) var(--space-2000);
-    }
+  .teaser.image-collage .teaser-collage-item-3 {
+    inset: 60.94% 84.58% 16.11% -16.11%;
+    opacity: 0.6;
+  }
 
-    .teaser.card {
-      min-height: 35.625rem;
-      padding: var(--space-1000);
-    }
+  .teaser.image-collage .teaser-collage-item-4 {
+    inset: 73.05% 53.54% -27.05% 18.89%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-5 {
+    inset: -14.26% 53.4% 74.61% 22.01%;
+    opacity: 0.4;
+  }
+
+  .teaser.image-collage .teaser-collage-item-6 {
+    inset: 50% -23.06% 16.11% 88.06%;
+    opacity: 0.5;
+  }
+
+  .teaser.image-collage .teaser-collage-item-7 {
+    inset: 14.16% 82.15% 50% -11.88%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-8 {
+    inset: 80.08% 33.33% -5.66% 49.93%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-9 {
+    top: 69.71%;
+    right: 16.2479%;
+    bottom: 18.88%;
+    width: 13.7375%;
+    opacity: 1;
+  }
+}
+
+
+/* ==========================================================================
+   TABLET AND ABOVE (>= 600px)
+   ========================================================================== */
+
+@media (width >= 600px) {
+  .teaser.teaser-has-media:not(.image-top, .image-bottom) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teaser.teaser-has-media:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
+    order: 0;
+  }
+
+  .teaser.teaser-has-media:is(.image-right, .image-bottom) .teaser-media {
+    order: 2;
+  }
+
+  .teaser-fixed-width .teaser-content {
+    width: 824px;
+  }
+}
+
+
+/* ==========================================================================
+   TABLET ONLY (600px - 1199px)
+   ========================================================================== */
+
+@media (600px <= width < 1200px) {
+  .teaser.image-collage {
+    min-height: 64rem;
+    padding-inline: var(--space-800);
+  }
+
+  .teaser.image-collage .teaser-content {
+    width: 100%;
+    max-width: 37.5rem;
+    gap: var(--space-600);
+  }
+
+  .teaser.image-collage .teaser-intro {
+    width: 100%;
+    padding-block: 0.625rem;
+    gap: var(--space-500);
+  }
+
+  .teaser.image-collage .teaser-title {
+    --teaser-title-size: 2rem;
+
+    width: 100%;
+    font-size: var(--teaser-title-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.2;
+    letter-spacing: calc(-0.03 * var(--teaser-title-size));
+    text-align: center;
+  }
+
+  .teaser.image-collage :is(.teaser-description, .teaser-short-description) {
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+    letter-spacing: calc(-0.005 * 1.125rem);
+    text-align: center;
+  }
+
+  .teaser.image-collage .teaser-collage {
+    top: 0;
+    bottom: auto;
+    left: 50%;
+    width: 64rem;
+    min-width: 64rem;
+    height: 64rem;
+    transform: translateX(-50%);
+  }
+
+  .teaser.image-collage .teaser-collage-item {
+    display: block;
+    border-radius: 1.5rem;
+  }
+
+  .teaser.image-collage.buttons-inline .teaser-links {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: var(--space-400);
+  }
+
+  .teaser.image-collage .teaser-links > :is(a, button).button {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 3.125rem;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    gap: var(--space-200);
+    font-size: 0.75rem;
+    letter-spacing: calc(0.01 * 0.75rem);
+    white-space: nowrap;
+  }
+
+  .teaser.image-collage .teaser-links > :is(a, button).button::after {
+    flex: 0 0 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* keep collage item positions exactly same as existing <900px block */
+
+  .teaser.image-collage .teaser-collage-item-1 {
+    inset: -31.25% 17.43% 79.79% 52.15%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-2 {
+    inset: -5.57% -23.06% 54.1% 92.64%;
+    opacity: 0.7;
+  }
+
+  .teaser.image-collage .teaser-collage-item-3 {
+    inset: 60.94% 84.58% 16.11% -16.11%;
+    opacity: 0.6;
+  }
+
+  .teaser.image-collage .teaser-collage-item-4 {
+    inset: 73.05% 53.54% -27.05% 18.89%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-5 {
+    inset: -14.26% 53.4% 74.61% 22.01%;
+    opacity: 0.4;
+  }
+
+  .teaser.image-collage .teaser-collage-item-6 {
+    inset: 50% -23.06% 16.11% 88.06%;
+    opacity: 0.5;
+  }
+
+  .teaser.image-collage .teaser-collage-item-7 {
+    inset: 14.16% 82.15% 50% -11.88%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-8 {
+    inset: 80.08% 33.33% -5.66% 49.93%;
+    opacity: 1;
+  }
+
+  .teaser.image-collage .teaser-collage-item-9 {
+    top: 69.71%;
+    right: 16.2479%;
+    bottom: 18.88%;
+    width: 13.7375%;
+    opacity: 1;
+  }
+}
+
+
+/* ==========================================================================
+   LAPTOP / DESKTOP (>= 1200px)
+   ========================================================================== */
+
+@media (width >= 1200px) {
+  .teaser {
+    --teaser-gap: var(--space-2000);
+    --teaser-body-gap: var(--space-1000);
+  }
+
+  .teaser.spacing-header {
+    padding-top: var(--space-5000);
+  }
+
+  .teaser .teaser-eyebrow {
+    font-size: var(--body-font-size-s);
+  }
+
+  .teaser .teaser-stat-value {
+    font-size: 6rem;
+  }
+
+  .teaser.no-image {
+    --teaser-body-gap: var(--space-1200);
+  }
+
+  .teaser.no-image:is(.mobile-image-top, .mobile-image-bottom) .teaser-media {
+    order: 0;
+  }
+
+  .teaser.no-image .teaser-content {
+    display: grid;
+    grid-template-areas:
+      "kicker kicker"
+      "heading body";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-600);
+    align-items: start;
+  }
+
+  .teaser.no-image .teaser-header {
+    display: contents;
+  }
+
+  .teaser.no-image .teaser-kicker {
+    grid-area: kicker;
+    margin-bottom: var(--space-1000);
+  }
+
+  .teaser.no-image .teaser-intro {
+    grid-area: heading;
+  }
+
+  .teaser.no-image .teaser-body {
+    grid-area: body;
+  }
+
+  .teaser.background {
+    min-height: 48.75rem;
+    padding: var(--space-3000) var(--space-2000);
+  }
+
+  .teaser.card {
+    min-height: 35.625rem;
+    padding: var(--space-1000);
+  }
 
     /* Image collage: 1440 × 1024 Figma reference */
     .teaser.image-collage {
@@ -1331,145 +1631,8 @@
       width: 13.7375%;
       opacity: 1;
     }
-  }
+}
 
-  @media (width < 900px) {
-    .teaser.image-collage {
-      min-height: 64rem;
-      padding-inline: var(--space-800);
-    }
-
-    .teaser.image-collage .teaser-content {
-      width: 100%;
-      max-width: 37.5rem;
-      gap: var(--space-600);
-    }
-
-    .teaser.image-collage .teaser-intro {
-      width: 100%;
-      padding-block: 0.625rem;
-      gap: var(--space-500);
-    }
-
-    .teaser.image-collage .teaser-title {
-      --teaser-title-size: 2rem;
-
-      width: 100%;
-      font-size: var(--teaser-title-size);
-      font-weight: var(--font-weight-semibold);
-      line-height: 1.2;
-      letter-spacing: calc(-0.03 * var(--teaser-title-size));
-      text-align: center;
-    }
-
-    .teaser.image-collage :is(.teaser-description, .teaser-short-description) {
-      width: 100%;
-      font-size: 1.125rem;
-      font-weight: var(--font-weight-regular);
-      line-height: 1.6;
-      letter-spacing: calc(-0.005 * 1.125rem);
-      text-align: center;
-    }
-
-    /*
-     * Figma uses a fixed 1024 × 1024 photo composition.
-     * The mobile component crops this composition horizontally.
-     */
-    .teaser.image-collage .teaser-collage {
-      top: 0;
-      bottom: auto;
-      left: 50%;
-      width: 64rem;
-      min-width: 64rem;
-      height: 64rem;
-      transform: translateX(-50%);
-    }
-
-    .teaser.image-collage .teaser-collage-item {
-      display: block;
-      border-radius: 1.5rem;
-    }
-
-    .teaser.image-collage .teaser-collage-item-1 {
-      inset: -31.25% 17.43% 79.79% 52.15%;
-      opacity: 1;
-    }
-
-    .teaser.image-collage .teaser-collage-item-2 {
-      inset: -5.57% -23.06% 54.1% 92.64%;
-      opacity: 0.7;
-    }
-
-    .teaser.image-collage .teaser-collage-item-3 {
-      inset: 60.94% 84.58% 16.11% -16.11%;
-      opacity: 0.6;
-    }
-
-    .teaser.image-collage .teaser-collage-item-4 {
-      inset: 73.05% 53.54% -27.05% 18.89%;
-      opacity: 1;
-    }
-
-    .teaser.image-collage .teaser-collage-item-5 {
-      inset: -14.26% 53.4% 74.61% 22.01%;
-      opacity: 0.4;
-    }
-
-    .teaser.image-collage .teaser-collage-item-6 {
-      inset: 50% -23.06% 16.11% 88.06%;
-      opacity: 0.5;
-    }
-
-    .teaser.image-collage .teaser-collage-item-7 {
-      inset: 14.16% 82.15% 50% -11.88%;
-      opacity: 1;
-    }
-
-    .teaser.image-collage .teaser-collage-item-8 {
-      inset: 80.08% 33.33% -5.66% 49.93%;
-      opacity: 1;
-    }
-
-    .teaser.image-collage .teaser-collage-item-9 {
-      top: 69.71%;
-      right: 16.2479%;
-      bottom: 18.88%;
-      width: 13.7375%;
-      opacity: 1;
-    }
-
-    /* the body fills the text column, so buttons side by side share its width (never wider) */
-    .teaser.image-collage .teaser-body {
-      width: 100%;
-    }
-
-    /* side by side while the labels fit on one line; otherwise each button gets a full row */
-    .teaser.image-collage.buttons-inline .teaser-links {
-      flex-flow: row wrap;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      gap: var(--space-400);
-    }
-
-    .teaser.image-collage .teaser-links> :is(a, button).button {
-      flex: 1 1 auto;
-      width: auto;
-      min-width: 0;
-      min-height: 3.125rem;
-      padding: 0.75rem 0.75rem 0.75rem 1rem;
-      gap: var(--space-200);
-      font-size: 0.75rem;
-      letter-spacing: calc(0.01 * 0.75rem);
-      white-space: nowrap;
-    }
-
-    .teaser.image-collage .teaser-links> :is(a, button).button::after {
-      flex: 0 0 1.5rem;
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .teaser.image-collage .teaser-collage-item {
