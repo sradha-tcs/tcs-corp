@@ -93,11 +93,12 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Conversation Canvas](./conversation-canvas/README.md) (`conversation-canvas`) | `conversation-canvas` | Conversation Canvas Button (`conversation-canvas-button`) |
 | [Filter List](./filter-list/README.md) (`filter-list`) | `filter-list` | Filter Tag (`filter-list-tag`), Filter Category (`filter-list-category`), Filter Page (`filter-list-page`) |
 | [Footer](./footer/README.md) (`footer`) | `footer` | Footer Link (`footer-link`) |
-| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Combined Input Field (`field-combined`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
+| [Form Variations](./form-variations/README.md) (`form-variations`) | `form-variations` | Text Input Field (`field-text`), Dropdown / Select Field (`field-select`), Combined Input Field (`field-combined`), Textarea Field (`field-textarea`), Consent Checkbox Field (`field-checkbox`), Rich Text Field (`field-richtext`), Contact Card Output (`contact-card`), Submit Button (`field-submit`) |
 | [Gen Carousel](./gen-carousel/README.md) (`gen-carousel`) | `gen-carousel` | [Hero](./hero/README.md) (`hero`), [Teaser](./teaser/README.md) (`teaser`) |
 | [Hero](./hero/README.md) (`hero`) | `hero` | CTA (`hero-cta`) |
 | [Image Collage](./image-collage/README.md) (`image-collage`) | `image-collage` | Collage image item (`image-collage-item`) |
 | [List](./list/README.md) (`list`) | `list` | List Item (`list-item`) |
+| [Media Contacts](./media-contacts/README.md) (`media-contacts`) | `media-contacts` | Media Contact (`media-contact`) |
 | [Page Header](./page-header/README.md) (`page-header`) | `page-header` | CTA (`page-header-cta`) |
 | [Table](./table/README.md) (`table`) | `table` | Row (`table-row`) |
 | [Table List](./table-list/README.md) (`table-list`) | `table-list` | Table List Item (`table-list-card`) |

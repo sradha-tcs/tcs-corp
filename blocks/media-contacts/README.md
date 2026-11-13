@@ -62,6 +62,13 @@ The Content tab of the Media Contacts properties in Universal Editor, with the f
 Annotations:
 A = Title
 B = Title Type
+C = Title color
+D = Columns on desktop
+E = Territory title color
+F = Email color
+G = Phone color
+H = Email icon
+I = Phone icon
 ```
 
 ```text
@@ -84,6 +91,21 @@ G = Padding right
 H = Padding top
 I = Padding bottom
 J = Margin left
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+media-contact-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Media Contact properties in Universal Editor, with the fields of the table "Fields — Media Contact" in Authorable Fields below.
+
+Annotations:
+A = Country, territory, organization or group
+B = Email
+C = Phone
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -123,7 +145,7 @@ Minimum content: none (without a Title the heading is "Media contacts"). Recomme
 
 ### Media Contacts (`media-contacts`)
 
-Model `media-contacts`; template name "Media Contacts" (the block class AEM renders); key-value block (one row per property).
+Model `media-contacts`; template name "Media Contacts" (the block class AEM renders); key-value block (one row per property); children: `media-contact`.
 
 Stored on a new component (definition template): `titleType` = `"h2"`.
 
@@ -131,8 +153,15 @@ Stored on a new component (definition template): `titleType` = `"h2"`.
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Title | `title` | text | No | — | — | The heading above the contacts, e.g. "TCS media contacts". Empty: "Media contacts" (placeholder mediaContacts). The contacts come from the locale's Media Contacts sheet (data/media-contacts): those of the page's region, else all of them. | Media contacts |
-| Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Heading level of the Title; the contact groups are one level below. Delivered with `title` (field collapse). | h2 |
+| Title | `title` | text | No | — | — | The heading above the contacts, e.g. "TCS media contacts". Empty: "Media contacts" (placeholder mediaContacts). Add Media Contact items to author the contact details. | Media contacts |
+| Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Heading level of the Title; each Media Contact label is one level below. Delivered with `title` (field collapse). | h2 |
+| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the title color using the Teaser title-color variants. | — |
+| Columns on desktop | `columns` | select | No | `2` | 1 (`1`), 2 (`2`), 3 (`3`) | Choose the number of columns from desktop width. The entries stack into one column below 900px. | — |
+| Territory title color | `regionColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Email color | `emailColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Phone color | `phoneColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Email icon | `emailIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default mail icon. | — |
+| Phone icon | `phoneIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default phone icon. | — |
 
 #### Additional tab — Media Contacts
 
@@ -151,6 +180,18 @@ Stored on a new component (definition template): `titleType` = `"h2"`.
 | Margin right | `classes_marginright` | select | No | "" | Default (""), 0 (none) (`mr-0`), 0.25rem (space-100) (`mr-100`), 0.5rem (space-200) (`mr-200`), 0.75rem (space-300) (`mr-300`), 1rem (space-400) (`mr-400`), 1.25rem (space-500) (`mr-500`), 1.5rem (space-600) (`mr-600`), 2rem (space-800) (`mr-800`), 2.5rem (space-1000) (`mr-1000`), 3rem (space-1200) (`mr-1200`), 4rem (space-1600) (`mr-1600`), 5rem (space-2000) (`mr-2000`), 6rem (space-2400) (`mr-2400`), 7.5rem (space-3000) (`mr-3000`) | Delivered as a block class. | — |
 | Margin top | `classes_margintop` | select | No | "" | Default (""), 0 (none) (`mt-0`), 0.25rem (space-100) (`mt-100`), 0.5rem (space-200) (`mt-200`), 0.75rem (space-300) (`mt-300`), 1rem (space-400) (`mt-400`), 1.25rem (space-500) (`mt-500`), 1.5rem (space-600) (`mt-600`), 2rem (space-800) (`mt-800`), 2.5rem (space-1000) (`mt-1000`), 3rem (space-1200) (`mt-1200`), 4rem (space-1600) (`mt-1600`), 5rem (space-2000) (`mt-2000`), 6rem (space-2400) (`mt-2400`), 7.5rem (space-3000) (`mt-3000`) | Delivered as a block class. | — |
 | Margin bottom | `classes_marginbottom` | select | No | "" | Default (""), 0 (none) (`mb-0`), 0.25rem (space-100) (`mb-100`), 0.5rem (space-200) (`mb-200`), 0.75rem (space-300) (`mb-300`), 1rem (space-400) (`mb-400`), 1.25rem (space-500) (`mb-500`), 1.5rem (space-600) (`mb-600`), 2rem (space-800) (`mb-800`), 2.5rem (space-1000) (`mb-1000`), 3rem (space-1200) (`mb-1200`), 4rem (space-1600) (`mb-1600`), 5rem (space-2000) (`mb-2000`), 6rem (space-2400) (`mb-2400`), 7.5rem (space-3000) (`mb-3000`) | Delivered as a block class. | — |
+
+### Media Contact (`media-contact`)
+
+Model `media-contact`; template name "Media Contact" (the block class AEM renders).
+
+#### Fields — Media Contact
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Country, territory, organization or group | `region` | text | Yes | — | — | Enter the country, territory, organization or group this contact represents, for example Europe, India or SMG. Each Media Contact is displayed as its own entry. | — |
+| Email | `email` | text (multiple) | No | — | — | Add as many email addresses as needed, without mailto:. Enter one address per value. | — |
+| Phone | `phone` | text (multiple) | No | — | — | Add as many phone numbers as needed, including country code and spacing. Enter one number per value. | — |
 
 <!-- END GENERATED: fields -->
 
@@ -285,12 +326,11 @@ blocks/media-contacts/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`decorators/contact-list-decorator.js`](../../decorators/contact-list-decorator.js) | `buildContactGroups` (groups of contacts, each with its heading and its mail / phone links one below the other; the links carry `data-cmp-interaction` email / phone) | `media-contacts.js`: { buildContactGroups } |
+| [`decorators/contact-list-decorator.js`](../../decorators/contact-list-decorator.js) | `buildContactGroups` (groups of contacts, each with its heading and its mail / phone links one below the other; the links carry `data-cmp-interaction` email / phone) | `media-contacts.js`: { buildContactList } |
+| [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `media-contacts.js`: { buildEditorItems, editorItemHint } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `media-contacts.js`: { buildHeading, HEADINGS } |
-| [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `media-contacts.js`: { bone, renderWhenLoaded, skeletonElement } |
-| [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | `media-contacts.js`: { getMediaContacts, inRegion } |
+| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `media-contacts.js`: { itemRows, KEY_VALUE_ITEM } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `media-contacts.js`: { isAuthor, isEditing } |
-| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | `media-contacts.js`: { getPageMetadata } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `media-contacts.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `media-contacts.js`: { readProperties, textOf } |
 

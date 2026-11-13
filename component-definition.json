@@ -536,6 +536,22 @@
           }
         },
         {
+          "title": "Rich Text Field",
+          "id": "field-richtext",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Rich Text Field",
+                  "model": "field-richtext",
+                  "classes": "field-richtext"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Contact Card Output",
           "id": "contact-card",
           "plugins": {

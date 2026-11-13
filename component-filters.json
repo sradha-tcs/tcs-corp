@@ -132,6 +132,7 @@
       "field-combined",
       "field-textarea",
       "field-checkbox",
+      "field-richtext",
       "contact-card",
       "field-submit"
     ]
