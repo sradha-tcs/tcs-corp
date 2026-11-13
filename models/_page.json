@@ -20,7 +20,8 @@
           "valueType": "string",
           "name": "keywords",
           "multi": true,
-          "label": "Keywords"
+          "label": "Keywords",
+          "description": "Combined with the metadata sheet's meta-keywords as its keyword-action column says: default (or empty), these win; override, the sheet's win; merge, both, these first."
         },
         {
           "component": "select",

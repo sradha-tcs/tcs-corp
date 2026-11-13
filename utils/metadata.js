@@ -7,7 +7,7 @@
  * url (the pattern of the pages a row applies to), sheet-page-type (the Page Type, overriding the
  * page dialog's page-type), meta-title, meta-description (overriding the page's Title and
  * Description; utils/sheet-metadata.js),
- * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
+ * meta-keywords, keyword-action, author-id, publish-date, modified-date, reading-time, og-title,
  * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
  * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
  * featured-image, campaign-id, content-type, featured, priority, listen-link
