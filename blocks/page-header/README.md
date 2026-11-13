@@ -360,7 +360,7 @@ Stored on a new component (definition template): `linkStyle` = `"primary"`.
 Notes on the significant fields:
 
 - **Button background and Button shape** (CTA items, the Teaser link's field names and classes). For a Primary or Secondary Button: **Button background: Blue** (`button-bg-blue`) fills it with the brand blue `#216ac3` (`--color-bg-brand`, border `--color-border-brand-secondary`) and white text (5.4:1), hover and focus `#1b5ea3`; **Button shape: Round** (`button-round`) makes it a 6rem circle with the label (12px, wrapped between words) above the arrow. A label with a word over 12 characters or over 24 characters in all doesn't fit the circle and stays a pill. A Text link ignores both. **Style default** keeps the CTA Link Style. The legacy CTA List has neither (use CTA items); Blue and Round authored before as CTA Link Style `blue` / CTA Shape `round` are shown as Blue and Round.
-- **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (the sheet's `template` metadata, else the page's `page-type`).
+- **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (the sheet's `sheet-page-type` metadata, else the page's `page-type`).
 - **CTA (item) fields.** CTA Link Style Primary / Secondary render `a.button.primary` / `a.button.secondary`; Text link (`tertiary`, or empty in content authored before) renders `a.button.tertiary`. A new CTA stores Primary Button (definition template). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder `opensInNewTab`. A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder, `itemEditorHint`).
 - **Metadata (not dialog fields).** Title → `h1.page-header-title`; Description → `div.page-header-description`; content-type → eyebrow (Landing, Secondary) or `p.page-header-collection` (Article); tags → `ul.page-header-tags` (Article meta row; Display eyebrow; Landing / Secondary eyebrow when there is no content-type), labels from the taxonomy, else derived from the tag ID; publish-date (`publication-date` as a fallback) → "Published" + `<time>` (dd/mm/yy); reading-time → "{n} min read" for a number; author-id → Authors sheet name, designation and region, image, LinkedIn; author → name only; featured-image and image-alt → the Landing image; listen-link → the listen action.
 - **Accessibility impact.** One H1 per page; the featured image's alt comes from `image-alt` (empty: decorative); the author image is decorative (`alt=""`).
@@ -666,7 +666,7 @@ blocks/page-header/
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `page-header.js`: { KEY_VALUE_ITEM, itemRows } |
 | [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | `page-header.js`: { getAuthor } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `page-header.js`: { readLinkItems, readLinkRows } |
-| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: template / page-type, author-id, publish-date, reading-time, ...) | `page-header.js`: { getPageMetadata } |
+| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: sheet-page-type / page-type, author-id, publish-date, reading-tim | `page-header.js`: { getPageMetadata } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `page-header.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `page-header.js`: { optionOf, readProperties } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `page-header.js`: { resolveTags } |
@@ -726,7 +726,7 @@ div.page-header.<layout>[.page-header-has-image]
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
 | Page properties | Title, Description, Page Type, Tags | AEM page | No H1 / description; Default layout falls back to Article |
-| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, listen-link, template (overrides the page's page-type) | `/{locale}/metadata.json` | Those parts are left out |
+| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, listen-link, sheet-page-type (overrides the page's page-type) | `/{locale}/metadata.json` | Those parts are left out |
 | Authors sheet | Author lockup | `/{locale}/data/authors.json` | No lockup (only the `author` name if set) |
 | Taxonomy | Tag labels | `/{locale}/taxonomy.json` | Labels derived from tag IDs |
 | Placeholders | `published`, `minRead`, `listenToThisPage`, `downloadThisPage`, `shareThisPage`, `linkCopied`, `opensInNewTab`, `itemEditorHint` | `/{locale}/placeholders.json` | English fallbacks |
@@ -769,7 +769,7 @@ graph LR
 | Test ID | Scenario | Configuration | Expected result |
 | ------- | -------- | ------------- | --------------- |
 | PAGE-HEADER-QA-01 | Default on an article | Layout Default, page-type article | Article layout |
-| PAGE-HEADER-QA-02 | Default on a landing page | Layout Default, template landing (sheet) | Landing layout |
+| PAGE-HEADER-QA-02 | Default on a landing page | Layout Default, sheet-page-type landing (sheet) | Landing layout |
 | PAGE-HEADER-QA-03 | Landing with image | featured-image as site media, image-alt | Two columns from 900px; image eager, `fetchpriority="high"`, alt set |
 | PAGE-HEADER-QA-04 | Landing without image | No featured-image | Text stacked, no `page-header-has-image` |
 | PAGE-HEADER-QA-05 | Secondary | Layout Secondary | Eyebrow above the title column and the summary column |
@@ -792,7 +792,7 @@ graph LR
 | Symptom | Likely cause | Diagnostic steps | Resolution | Verification |
 | ------- | ------------ | ---------------- | ---------- | ------------ |
 | Title or description wrong / missing | Page properties not updated or not republished | Page source: `og:title`, `description` | Update the page properties; publish | H1 matches the Title |
-| Wrong layout | Default with an unexpected Page Type (e.g. a sheet row: the sheet's `template` overrides the page's `page-type`) | `<meta name="template">`, `<meta name="page-type">`; block classes | Choose the Layout explicitly or fix the sheet | Expected layout class |
+| Wrong layout | Default with an unexpected Page Type (e.g. a sheet row: the sheet's `sheet-page-type` overrides the page's `page-type`) | `<meta name="sheet-page-type">`, `<meta name="page-type">`; block classes | Choose the Layout explicitly or fix the sheet | Expected layout class |
 | No author lockup | author-id missing from the Authors sheet, sheet not published, or layout not Article | `<meta name="author-id">`; open `/{locale}/data/authors.json` | Fix the author row; publish | Lockup shows |
 | Tags show technical labels | Tag missing from the locale taxonomy / language sheet | Open `/{locale}/taxonomy.json` | Add / translate the tag; publish | Proper labels |
 | Date not formatted | publish-date not ISO | Check the metadata value | Use YYYY-MM-DD | dd/mm/yy with `datetime` |
@@ -821,7 +821,7 @@ Evidence to collect (no secrets): URL, viewport, the page's `<meta>` tags, the r
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
 | A featured image that isn't same-origin site media is lazy-loaded (F-14) | Slower LCP on landing pages | Use DAM images delivered as site media | Not recorded |
-| Page Type offers home, article, blog, press-release; landing / listing only via the metadata sheet (F-12) | Default can't resolve to Landing from page properties | Set template in the sheet or choose Landing | Not recorded (open: one list of page types, O-11) |
+| Page Type offers home, article, blog, press-release; landing / listing only via the metadata sheet (F-12) | Default can't resolve to Landing from page properties | Set sheet-page-type in the sheet or choose Landing | Not recorded (open: one list of page types, O-11) |
 | Only the English taxonomy is published (F-09) | ID-derived tag labels in other locales | Publish each locale's taxonomy | Not recorded |
 | Date format dd/mm/yy in every locale | Not localised | — | Not recorded |
 | Metadata changes are read when the page loads | Editor shows old values until reloaded | Reload the editor | Not planned |

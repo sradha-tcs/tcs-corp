@@ -4,8 +4,8 @@
  * in the site configuration's metadata.source). Every sheet column is published as a <meta>
  * named after it:
  *
- * url (the pattern of the pages a row applies to), template (the Page Type, overriding the page
- * dialog's page-type; utils/page-type.js), meta-title, meta-description,
+ * url (the pattern of the pages a row applies to), sheet-page-type (the Page Type, overriding the
+ * page dialog's page-type; utils/page-type.js), meta-title, meta-description,
  * meta-keywords, author-id, publish-date, modified-date, reading-time, og-title,
  * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
  * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
@@ -75,7 +75,7 @@ export function getPageMetadata() {
     description: AUTHORED.description,
     image: metaOf('featured-image', 'og:image'),
     // Page Type; the standard Template metadata as a fallback
-    pageType: pageTypeOf(getMetadata('template'), getMetadata('page-type')),
+    pageType: pageTypeOf(getMetadata('sheet-page-type'), getMetadata('page-type') || getMetadata('template')),
     contentType: getMetadata('content-type'),
     category: getMetadata('category'),
     tags: getPageTags(),

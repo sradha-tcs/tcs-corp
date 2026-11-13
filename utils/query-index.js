@@ -83,7 +83,7 @@ function toPage(row) {
     description: row.description || '',
     image: row.image || '',
     tags,
-    pageType: pageTypeOf(row.template, row.pageType),
+    pageType: pageTypeOf(row.sheetPageType, row.pageType),
     contentType: row.contentType || '',
     publishDate: row.publishDate || '',
     readingTime: row.readingTime || '',

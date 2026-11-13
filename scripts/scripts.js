@@ -421,11 +421,15 @@ async function addErrorBackButton(main) {
 }
 
 // Site Global Templates (/content/tcs-corp/site-global-templates) with template code in
-// templates/{name}/: the page's Page Type (the metadata sheet's template, else the page dialog's)
+// templates/{name}/: the page's Page Type (the metadata sheet's sheet-page-type, else the page
+// dialog's)
 const TEMPLATES = ['home', 'article', 'blog', 'press-release'];
 
-/** the Page Type: the metadata sheet's template overrides the page dialog's Page Type */
-const currentPageType = () => toClassName(pageTypeOf(getMetadata('template'), getMetadata('page-type')));
+/** the Page Type: the metadata sheet's sheet-page-type overrides the page dialog's Page Type */
+const currentPageType = () => toClassName(pageTypeOf(
+  getMetadata('sheet-page-type'),
+  getMetadata('page-type') || getMetadata('template'),
+));
 
 /**
  * Adds the Page Type as a body class, like Template and Theme.

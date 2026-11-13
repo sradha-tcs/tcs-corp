@@ -59,9 +59,9 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's template column: overrides pageType (utils/page-type.js)
-      template:
-        select: head > meta[name="template"]
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      sheetPageType:
+        select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
       contentType:
         select: head > meta[name="content-type"]
@@ -199,9 +199,9 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's template column: overrides pageType (utils/page-type.js)
-      template:
-        select: head > meta[name="template"]
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      sheetPageType:
+        select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
       contentType:
         select: head > meta[name="content-type"]
@@ -339,9 +339,9 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's template column: overrides pageType (utils/page-type.js)
-      template:
-        select: head > meta[name="template"]
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      sheetPageType:
+        select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
       contentType:
         select: head > meta[name="content-type"]
@@ -479,9 +479,9 @@ indices:
       pageType:
         select: head > meta[name="page-type"]
         value: attribute(el, "content")
-      # the metadata sheet's template column: overrides pageType (utils/page-type.js)
-      template:
-        select: head > meta[name="template"]
+      # the metadata sheet's sheet-page-type column: overrides pageType (utils/page-type.js)
+      sheetPageType:
+        select: head > meta[name="sheet-page-type"]
         value: attribute(el, "content")
       contentType:
         select: head > meta[name="content-type"]
