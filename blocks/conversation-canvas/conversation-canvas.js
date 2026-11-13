@@ -487,12 +487,14 @@ function buildSearchForm(config, id) {
   submit.disabled = true;
 
   const updateSearchState = () => {
-    const hasValue = input.value.trim().length > 0;
-    form.classList.toggle('has-value', hasValue);
-    submit.disabled = !hasValue;
+    const isActive = input.value.trim().length > 0 || document.activeElement === input;
+    form.classList.toggle('has-value', isActive);
+    submit.disabled = !isActive;
   };
 
   input.addEventListener('input', updateSearchState);
+  input.addEventListener('focus', updateSearchState);
+  input.addEventListener('blur', updateSearchState);
   updateSearchState();
 
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
