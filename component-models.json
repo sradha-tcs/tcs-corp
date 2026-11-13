@@ -16983,6 +16983,35 @@
     ]
   },
   {
+    "id": "media-contact",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "region",
+        "label": "Country, territory, organization or group",
+        "required": true,
+        "description": "Enter the country, territory, organization or group this contact represents, for example Europe, India or SMG. Each Media Contact is displayed as its own entry."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "email",
+        "label": "Email",
+        "multi": true,
+        "description": "Add as many email addresses as needed, without mailto:. Enter one address per value."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "phone",
+        "label": "Phone",
+        "multi": true,
+        "description": "Add as many phone numbers as needed, including country code and spacing. Enter one number per value."
+      }
+    ]
+  },
+  {
     "id": "media-contacts",
     "fields": [
       {
@@ -16995,7 +17024,7 @@
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts). The contacts come from the locale's Media Contacts sheet (data/media-contacts): those of the page's region, else all of them."
+        "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts). Add Media Contact items to author the contact details."
       },
       {
         "component": "select",
@@ -17029,7 +17058,146 @@
             "value": "h6"
           }
         ],
-        "description": "Heading level of the Title; the contact groups are one level below."
+        "description": "Heading level of the Title; each Media Contact label is one level below."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleColor",
+        "label": "Title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "title-dark"
+          },
+          {
+            "name": "White",
+            "value": "title-white"
+          },
+          {
+            "name": "Light blue",
+            "value": "title-light-blue"
+          }
+        ],
+        "description": "Overrides the title color using the Teaser title-color variants."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "columns",
+        "label": "Columns on desktop",
+        "value": "2",
+        "options": [
+          {
+            "name": "1",
+            "value": "1"
+          },
+          {
+            "name": "2",
+            "value": "2"
+          },
+          {
+            "name": "3",
+            "value": "3"
+          }
+        ],
+        "description": "Choose the number of columns from desktop width. The entries stack into one column below 900px."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "regionColor",
+        "label": "Territory title color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "emailColor",
+        "label": "Email color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "phoneColor",
+        "label": "Phone color",
+        "value": "",
+        "options": [
+          {
+            "name": "Style default",
+            "value": ""
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          },
+          {
+            "name": "Brand blue",
+            "value": "brand"
+          },
+          {
+            "name": "Light blue",
+            "value": "light-blue"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "emailIcon",
+        "label": "Email icon",
+        "multi": false,
+        "description": "Optional custom icon. Leave empty to use the default mail icon."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "phoneIcon",
+        "label": "Phone icon",
+        "multi": false,
+        "description": "Optional custom icon. Leave empty to use the default phone icon."
       },
       {
         "component": "tab",

@@ -44,6 +44,7 @@ module.exports = {
       'contact-card': 5,
       'teaser-link': 5,
       'page-header-cta': 5,
+      'media-contact': 10,
     }],
   },
   overrides: [

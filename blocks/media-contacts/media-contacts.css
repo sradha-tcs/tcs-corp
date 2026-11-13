@@ -1,5 +1,4 @@
-/* Media Contacts: the Media Contacts sheet's groups (designation & region), their e-mail
-   addresses and phone numbers one below the other, each with its icon (tcs.com press releases) */
+/* Media Contacts: independent territory or organization entries and their contact links. */
 .media-contacts .media-contacts-title {
   margin: 0 0 var(--space-800);
   color: var(--color-text-default);
@@ -8,20 +7,29 @@
   letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
 }
 
-.media-contacts .contact-list-groups,
+.media-contacts.title-dark .media-contacts-title {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.title-white .media-contacts-title {
+  color: var(--color-text-on-neutral);
+}
+
+.media-contacts.title-light-blue .media-contacts-title {
+  color: rgb(167 200 241);
+}
+
+.media-contacts .contact-list,
 .media-contacts .contact-list-entries {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* spacing below each group (not above: a column's first group starts at its top) */
-.media-contacts .contact-list-group {
-  padding-bottom: var(--space-1000);
-}
-
-.media-contacts .contact-list-group:last-child {
-  padding-bottom: 0;
+.media-contacts .contact-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1000) var(--space-1600);
 }
 
 .media-contacts .contact-list-heading {
@@ -33,14 +41,22 @@
   letter-spacing: calc(-0.02 * var(--heading-font-size-l));
 }
 
+.media-contacts.region-color-dark .contact-list-heading {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.region-color-brand .contact-list-heading {
+  color: var(--color-text-brand);
+}
+
+.media-contacts.region-color-light-blue .contact-list-heading {
+  color: rgb(167 200 241);
+}
+
 .media-contacts .contact-list-entries {
   display: flex;
   flex-direction: column;
   gap: var(--space-500);
-}
-
-.media-contacts .contact-list-name {
-  font-weight: var(--font-weight-semibold);
 }
 
 .media-contacts .contact-list-link {
@@ -53,6 +69,30 @@
   line-height: 1.5;
   text-decoration: none;
   overflow-wrap: anywhere;
+}
+
+.media-contacts .contact-list-link:hover {
+  color: var(--color-text-brand);
+}
+
+.media-contacts .contact-list-link:focus-visible {
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: 0.25rem;
+}
+
+.media-contacts.email-color-dark .contact-list-email .contact-list-link,
+.media-contacts.phone-color-dark .contact-list-phone .contact-list-link {
+  color: rgb(48 48 48);
+}
+
+.media-contacts.email-color-brand .contact-list-email .contact-list-link,
+.media-contacts.phone-color-brand .contact-list-phone .contact-list-link {
+  color: var(--color-text-brand);
+}
+
+.media-contacts.email-color-light-blue .contact-list-email .contact-list-link,
+.media-contacts.phone-color-light-blue .contact-list-phone .contact-list-link {
+  color: rgb(167 200 241);
 }
 
 /* the icon (decorative: the link's text says what it is) */
@@ -69,20 +109,23 @@
   mask-image: url('../../icons/phone.svg');
 }
 
+.media-contacts .contact-list-link-custom-icon::before {
+  display: none;
+}
+
+.media-contacts .contact-list-icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
 /* the address or number underlined (not the icon) */
 .media-contacts .contact-list-text {
+  min-width: 0;
   text-decoration: underline;
   text-decoration-thickness: 0.0625rem;
   text-underline-offset: 0.3125rem;
-}
-
-.media-contacts .contact-list-link:hover {
-  color: var(--color-text-brand);
-}
-
-.media-contacts .contact-list-link:focus-visible {
-  outline: 0.125rem solid var(--color-border-brand);
-  outline-offset: 0.25rem;
 }
 
 .media-contacts .media-contacts-empty {
@@ -90,21 +133,12 @@
   color: var(--color-text-secondary);
 }
 
-/* the skeleton while the sheet loads */
-.media-contacts .skeleton .contact-list-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-400);
-}
-
-/* two columns, filled top to bottom (the reading order), a group never split */
 @media (width >= 900px) {
-  .media-contacts .contact-list-groups {
-    columns: 2;
-    column-gap: var(--space-1600);
+  .media-contacts.contact-columns-2 .contact-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .media-contacts .contact-list-group {
-    break-inside: avoid;
+  .media-contacts.contact-columns-3 .contact-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
