@@ -213,6 +213,41 @@ main .section.form-variations-backdrop .form-variations {
   }
 }
 
+/*
+ * Heading level (H1 to H6): the title takes the site's heading size of its level (the tokens grow
+ * from 900px); without a level it keeps the form's own size above
+ */
+.form-variations .form-variations-title:is(
+  .form-variations-title-h1, .form-variations-title-h2, .form-variations-title-h3,
+  .form-variations-title-h4, .form-variations-title-h5, .form-variations-title-h6
+) {
+  --form-variations-title-size: var(--heading-font-size-xl);
+
+  font-size: var(--form-variations-title-size);
+  line-height: 1.2;
+  letter-spacing: calc(-0.025 * var(--form-variations-title-size));
+}
+
+.form-variations .form-variations-title.form-variations-title-h1 {
+  --form-variations-title-size: var(--heading-font-size-xxl);
+}
+
+.form-variations .form-variations-title.form-variations-title-h3 {
+  --form-variations-title-size: var(--heading-font-size-l);
+}
+
+.form-variations .form-variations-title.form-variations-title-h4 {
+  --form-variations-title-size: var(--heading-font-size-m);
+}
+
+.form-variations .form-variations-title.form-variations-title-h5 {
+  --form-variations-title-size: var(--heading-font-size-s);
+}
+
+.form-variations .form-variations-title.form-variations-title-h6 {
+  --form-variations-title-size: var(--heading-font-size-xs);
+}
+
 .form-variations .form-variations-description {
   margin: 0 auto;
   font-family: Inter, sans-serif;

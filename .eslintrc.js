@@ -37,7 +37,7 @@ module.exports = {
       'table-col-7': 7,
       'table-col-8': 8,
       'table-col-9': 9,
-      'form-variations': 7,
+      'form-variations': 8,
       'field-text': 7,
       'field-select': 7,
       'field-combined': 7,

@@ -137,10 +137,11 @@ Annotations:
 A = Eyebrow / Category Title
 B = Eyebrow Icon Asset (Optional)
 C = Form Title / Heading
-D = Form Description
-E = Background Image
-F = Submit action
-G = Theme
+D = Heading level
+E = Form Description
+F = Background Image
+G = Submit action
+H = Theme
 ```
 
 ```text
@@ -391,7 +392,7 @@ B = Inverted primary button
 
 1. **Add the block.** In Universal Editor select a Section (or a Columns Container column, or a Tabs Container) and choose Add > Form Variations.
 2. **Open its properties.** Select the block; the dialog has the tabs Content and Additional.
-3. **Enter the content.** Form Title / Heading (rendered as an H2), Form Description (rich text), Submit action (the endpoint the data is sent to; ask the development team for it) and Theme (Default or Dark).
+3. **Enter the content.** Form Title / Heading (rendered as an H2; **Heading level** H1 to H6 changes its level and size), Form Description (rich text), Submit action (the endpoint the data is sent to; ask the development team for it) and Theme (Default or Dark).
 4. **Add the items.** In the content tree, select the block and use Add to insert items in the order visitors should fill them: Text Input Field, Dropdown / Select Field, Textarea Field, Consent Checkbox Field, Contact Card Output, Submit Button. Reorder them by dragging in the content tree.
 5. **Fill each item.** Give every field a unique Field Name / ID (the submitted key, e.g. `firstName`), a label, and set Mandatory Field (*) where needed. For a conditional item, copy the exact dropdown option text into "Show only if dropdown value equals" (or "Show when dropdown value equals" for a contact card).
 6. **Preview.** In Universal Editor every conditional item stays visible with an italic condition note; switch to the preview (aem.page) to test the real behaviour.
@@ -414,6 +415,7 @@ Model `form-variations`; template name "Form Variations" (the block class AEM re
 | Eyebrow / Category Title | `formEyebrow` | text | No | — | — | e.g. CORPORATE SOCIAL RESPONSIBILITY - TCS EMPOWERS | — |
 | Eyebrow Icon Asset (Optional) | `formEyebrowIcon` | aem-content | No | — | — | — | — |
 | Form Title / Heading | `formHeading` | text | No | — | — | — | Contact us |
+| Heading level | `formHeadingLevel` | select | No | — | Default (H2) (""), H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | The title's heading level (H1 to H6) and its size. Default: H2 at the form's own size. | — |
 | Form Description | `formDescription` | richtext | No | "" | — | — | — |
 | Background Image | `bgImage` | aem-content | No | — | — | The image beside the form from 992px (the section's background). Empty: uses ambient gradient glow. | — |
 | Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON). | — |
@@ -581,7 +583,7 @@ Stored on a new component (definition template): `classes` = `"field-submit"`, `
 
 Notes the tables can't show:
 
-- **Form Title / Heading** renders as `h2.form-variations-title` and labels the form (`aria-labelledby`); it is also the `dc:title` of `cmp:submit` in the data layer. Without it the form has no accessible name and `cmp:submit` uses the block name.
+- **Form Title / Heading** renders as `h2.form-variations-title` (or the **Heading level** chosen, H1 to H6, with the site's heading size of that level: `form-variations-title-h1` … `-h6`; Default keeps H2 at the form's own size) and labels the form (`aria-labelledby`); it is also the `dc:title` of `cmp:submit` in the data layer. Without it the form has no accessible name and `cmp:submit` uses the block name.
 - **Submit action** is read from the cell's link (`href`), else its text. It receives a `POST` with `Content-Type: application/json` and the body `{ "data": { ... } }`. Without it (and without an integration) nothing is sent; in the editor a note says so.
 - **Theme** Dark adds the block class `dark`: the containing section uses a full-width `#01000e` background and matching image fade, with light labels. The background variables are defined on the section, not just on its child block, so both the solid color and image layers resolve there.
 - **Field Name / ID** (`fieldName`) is the submitted key, sent as written. The dialog marks it required but doesn't validate its characters. A Text Input Field whose name contains "name" (any case) is half width from 900px (`half-width`); every other item is full width. The name also sets `autocomplete` (e.g. `firstName` gives `given-name`, `company` gives `organization`); Input Type Email / Tel set `email` / `tel`.
@@ -899,6 +901,7 @@ The "* Required fields" note has no `full-width` class, so from 900px it takes o
 blocks/form-variations/
 ├── README.md
 ├── _form-variations.json
+├── form-variations-properties.js
 ├── form-variations.css
 └── form-variations.js
 ```
@@ -919,7 +922,7 @@ blocks/form-variations/
 
 **Responsibilities.** `form-variations.js` reads the rows, builds the form, validates, handles conditional visibility and the submission. `form-variations.css` styles both themes, the grid, errors, counter, contact cards and the editor notes.
 
-**Input DOM (what AEM delivers).** Not a key-value block: the first rows are the block properties, with an empty row for each dialog tab (Content first, Additional last) around Form Title / Heading, Form Description and Submit action; Theme and the Additional tab arrive as block classes. Then one row per item: the first cell is `<node name>, <classes>` (e.g. `email, field-text`), followed by one cell per field in model order. `readProperties` uses `data-aue-prop` in the editor, else skips the leading empty tab row; `readItem` takes the type from the first cell (or `data-aue-model` in the editor), uses the `fieldName` cell when the row has all cells of the current model (`FIELD_COUNT`) and otherwise the legacy key from the node name. Item cells are read by position (handover open question O-18).
+**Input DOM (what AEM delivers).** Not a key-value block: the first rows are the block properties, with an empty row for each dialog tab (Content first, Additional last) around Form Title / Heading, Form Description and Submit action; Theme and the Additional tab arrive as block classes. Then one row per item: the first cell is `<node name>, <classes>` (e.g. `email, field-text`), followed by one cell per field in model order. `readProperties` uses `data-aue-prop` in the editor. On published pages the property rows aren't at fixed positions: some pages have an empty row per dialog tab, others none; optional fields left empty leave empty rows; and pages saved with an earlier model keep its layout (e.g. `heading | ∅ | ∅ | description | ∅ | ∅`, `∅ | heading | description | ∅ | ∅`, `heading | description | ∅`). So `mapProperties` (`form-variations-properties.js`, unit tested) skips the empty rows and tells the values apart by kind and order: `h1`–`h6` is the Heading level (the text before it the heading), an image is the eyebrow icon when a text follows it (the text before it the eyebrow) else the background image, a link or path that isn't an image the Submit action, and the texts in order the eyebrow, heading and description (two texts: heading and description; one: heading). `propertyCell(row)` takes a row's cell with `data-aue-prop`, else its first cell with a value. Limitation: an eyebrow and a heading without a description, an icon or a heading level read as heading and description; `readItem` takes the type from the first cell (or `data-aue-model` in the editor), uses the `fieldName` cell when the row has all cells of the current model (`FIELD_COUNT`) and otherwise the legacy key from the node name. Item cells are read by position (handover open question O-18).
 
 **Rendered DOM contract.**
 
@@ -958,7 +961,7 @@ document.addEventListener('form-variations:submit', (e) => {
 });
 ```
 
-**Exported functions.** `default decorate(block)`, `readItem(row)` (`{ type, cells }`), `readProperties(cells)` (`{ titleCell, descriptionCell, actionCell }`).
+**Exported functions.** `default decorate(block)`, `readItem(row)` (`{ type, cells }`), `readProperties(cells)` (`{ eyebrowCell, eyebrowIconCell, titleCell, headingLevel, descriptionCell, actionCell, bgImageCell }`), `propertyCell(row)`; `form-variations-properties.js`: `mapProperties(values)`, `headingLevelOf(value)`, `PROPERTY_NAMES`, `HEADING_LEVELS`.
 
 **Parent / child contracts.** The filter `form-variations` allows the six item components; each item definition stores its type in the read-only `classes` field (template value), which is how the published row is recognised.
 
@@ -971,7 +974,7 @@ document.addEventListener('form-variations:submit', (e) => {
 3. **Delivery rules:** avoid field names ending in Text, Title, Type, Alt or MimeType (field collapse); don't rely on the item `name` for case-sensitive values (use `fieldName`); expect the empty tab rows; keep `classes_*` for the Additional tab.
 4. **Rendering, responsive and accessibility:** keep labels, `aria-describedby` errors and the status live region; UI texts through `t(key, fallback)` with a new placeholder key.
 5. **Data layer:** don't push events from the block; `cmp:submit` is captured centrally.
-6. **Tests:** there is no unit test of this block in `test/` yet; `readItem` and `readProperties` are exported and pure enough to test with fixtures of the delivered rows.
+6. **Tests:** `test/form-variations/properties.test.mjs` covers `mapProperties` with the row layouts delivered on aem.page / aem.live (tab rows, empty optional fields, earlier model layouts) and the Universal Editor field names; `readItem` has no unit test yet.
 7. **Block library and docs:** add an example to `block-library/form-variations`, update this README; `npm run build:docs` regenerates the generated sections; run `npm run build:modules` after changing imports.
 
 ## For Site Administrators

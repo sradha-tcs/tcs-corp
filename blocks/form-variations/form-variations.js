@@ -7,6 +7,7 @@ import { linkOf } from '../../utils/links.js';
 import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
+import { headingLevelOf, mapProperties } from './form-variations-properties.js';
 
 let t = (key, fallback, values) => fillPlaceholder(fallback, values);
 
@@ -31,12 +32,6 @@ export const PREVIOUS_FIELD_LAYOUT = {
   'field-submit': ['label', 'dependsOn'],
 };
 
-export const PROPERTY_LAYOUT = [
-  'formEyebrow', 'formEyebrowIcon', 'formHeading', 'formDescription', 'bgImage', 'formAction',
-];
-
-export const PREVIOUS_PROPERTY_LAYOUT = ['formHeading', 'formDescription', 'formAction'];
-
 export const ITEM_TYPES = Object.keys(FIELD_LAYOUT);
 export const KEYED_TYPES = ITEM_TYPES.filter((type) => FIELD_LAYOUT[type][0] === 'fieldName');
 export const keyedCells = (type) => (PREVIOUS_FIELD_LAYOUT[type] || FIELD_LAYOUT[type]).length;
@@ -46,12 +41,6 @@ export function fieldsOf(type, cells) {
   const layout = cells.length < current.length && PREVIOUS_FIELD_LAYOUT[type]
     ? PREVIOUS_FIELD_LAYOUT[type]
     : current;
-  return Object.fromEntries(layout.map((name, i) => [name, cells[i]]));
-}
-
-export function propertiesOf(cells) {
-  const current = cells.length >= PROPERTY_LAYOUT.length;
-  const layout = current ? PROPERTY_LAYOUT : PREVIOUS_PROPERTY_LAYOUT;
   return Object.fromEntries(layout.map((name, i) => [name, cells[i]]));
 }
 
@@ -107,32 +96,40 @@ export function readItem(row) {
   return { type: '', cells };
 }
 
+const aueProp = (cell) => cell.dataset.aueProp || cell.querySelector('[data-aue-prop]')?.dataset.aueProp || '';
+
+/**
+ * The cell of a property row: the one with its field name (Universal Editor), else the first
+ * with a value (a row may have more than one cell), else the first
+ */
+export function propertyCell(row) {
+  const cells = [...row.children];
+  return cells.find(aueProp)
+    || cells.find((cell) => textOf(cell) || cell.querySelector('picture, img, a[href]'))
+    || cells[0] || row;
+}
+
+/**
+ * The block properties from the property cells (one per row, before the field items): by field
+ * name in Universal Editor, else by the kind and order of their values
+ * (form-variations-properties.js mapProperties)
+ */
 export function readProperties(cells) {
-  const byProp = (name) => cells.find((cell) => cell?.dataset.aueProp === name
-    || cell?.querySelector(`[data-aue-prop="${name}"]`));
-
-  if (byProp('formHeading') || byProp('formDescription') || byProp('bgImage') || byProp('formEyebrow')) {
-    return {
-      eyebrowCell: byProp('formEyebrow'),
-      eyebrowIconCell: byProp('formEyebrowIcon'),
-      titleCell: byProp('formHeading'),
-      descriptionCell: byProp('formDescription'),
-      actionCell: byProp('formAction'),
-      bgImageCell: byProp('bgImage'),
-    };
-  }
-
-  const empty = (cell) => !cell || (!textOf(cell) && !cell.querySelector('img, a'));
-  const list = cells.length > 2 && empty(cells[0]) ? cells.slice(1) : cells;
-  const mapped = propertiesOf(list);
-
+  const map = mapProperties(cells.map((cell) => ({
+    prop: aueProp(cell),
+    text: textOf(cell),
+    image: !!cell.querySelector('picture, img'),
+    href: cell.querySelector('a[href]')?.getAttribute('href') || '',
+  })));
+  const at = (name) => (map[name] === undefined ? null : cells[map[name]]);
   return {
-    eyebrowCell: mapped.formEyebrow,
-    eyebrowIconCell: mapped.formEyebrowIcon,
-    titleCell: mapped.formHeading,
-    descriptionCell: mapped.formDescription,
-    actionCell: mapped.formAction,
-    bgImageCell: mapped.bgImage,
+    eyebrowCell: at('formEyebrow'),
+    eyebrowIconCell: at('formEyebrowIcon'),
+    titleCell: at('formHeading'),
+    headingLevel: headingLevelOf(textOf(at('formHeadingLevel'))),
+    descriptionCell: at('formDescription'),
+    actionCell: at('formAction'),
+    bgImageCell: at('bgImage'),
   };
 }
 
@@ -586,7 +583,7 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     const { type, cells } = readItem(row);
     if (!type) {
-      if (!itemsStarted) properties.push(row.firstElementChild);
+      if (!itemsStarted) properties.push(propertyCell(row));
       return;
     }
     itemsStarted = true;
@@ -597,7 +594,7 @@ export default async function decorate(block) {
   });
 
   const {
-    eyebrowCell, eyebrowIconCell, titleCell, descriptionCell, actionCell, bgImageCell,
+    eyebrowCell, eyebrowIconCell, titleCell, headingLevel, descriptionCell, actionCell, bgImageCell,
   } = readProperties(properties);
   const actionLink = linkOf(actionCell);
   const action = actionLink?.getAttribute('href') || textOf(actionCell);
@@ -675,7 +672,10 @@ export default async function decorate(block) {
     header.append(eyebrow);
   }
 
-  const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', 'h2') : null;
+  // Heading level (h1 to h6): the title's tag and the site's size of that level; not chosen: h2
+  // at the form's own size
+  const title = titleCell ? buildHeading(titleCell, null, 'form-variations-title', headingLevel || 'h2') : null;
+  if (title && headingLevel) title.classList.add(`form-variations-title-${headingLevel}`);
   if (title) header.append(title);
   if (descriptionCell && textOf(descriptionCell)) {
     header.append(fromCell(descriptionCell, 'div', 'form-variations-description'));
