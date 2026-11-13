@@ -440,6 +440,20 @@
   color: var(--list-card-muted);
 }
 
+/*
+ * panel cards' kicker (Figma): #cdcdcd on the coloured fills (default, Dark, Navy, Brand), apart
+ * from the description; the light Card colours and Image background set it back to their muted
+ * text (below). On Brand, #cdcdcd is 3.4:1 for the 12px kicker, below WCAG 1.4.3 AA: an approved
+ * exception to match Figma (decision log KB-D-070)
+ */
+.card-list .list-card-panel {
+  --list-card-kicker: var(--slate-300);
+}
+
+.card-list .list-card-panel .list-card-kicker {
+  color: var(--list-card-kicker, var(--list-card-muted));
+}
+
 .card-list :is(.list-card-panel, .list-card-report) .list-card-title {
   font-size: var(--list-panel-title-size);
   font-weight: var(--font-weight-regular);
@@ -616,24 +630,28 @@
   --list-card-bg: var(--brand-300);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-grey {
   --list-card-bg: var(--color-bg-tertiary);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-mid-grey {
   --list-card-bg: var(--grey-400);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-600);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-gradient {
   --list-card-bg: var(--list-gradient);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 /* the image behind the content in its own layer (isolation): the card link's overlay still
@@ -644,6 +662,7 @@
   --list-card-bg: var(--color-bg-secondary);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--color-text-secondary);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-image > .list-card-media {
