@@ -441,9 +441,10 @@
 }
 
 /*
- * panel cards' kicker (Figma): #cdcdcd on the dark fills (default, Dark, Navy), apart from the
- * description; the other Card colours set it back to their muted text (below): Brand keeps its
- * 95% white (#cdcdcd: 3.4:1 on the brand fill, WCAG 1.4.3), the light ones their dark text
+ * panel cards' kicker (Figma): #cdcdcd on the coloured fills (default, Dark, Navy, Brand), apart
+ * from the description; the light Card colours and Image background set it back to their muted
+ * text (below). On Brand, #cdcdcd is 3.4:1 for the 12px kicker, below WCAG 1.4.3 AA: an approved
+ * exception to match Figma (decision log KB-D-070)
  */
 .card-list .list-card-panel {
   --list-card-kicker: var(--slate-300);
@@ -617,7 +618,6 @@
   --list-card-bg: var(--color-bg-brand);
   --list-card-fg: var(--white-1000);
   --list-card-muted: var(--white-900); /* 80% white gave 4.0:1 on the brand fill */
-  --list-card-kicker: var(--list-card-muted);
   --list-card-strong: var(--slate-100);
 }
 

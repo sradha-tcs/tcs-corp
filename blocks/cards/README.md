@@ -981,7 +981,7 @@ D = Divider
 
 ### Card colours
 
-Dark, Navy, Brand blue, Light blue, Light grey, Mid grey, Grey gradient and Image background (`theme-{value}` on the card), for panel, report and statistic cards, set on the block or per Card. Buttons on Dark, Navy and Brand blue cards are inverted on hover and focus. The kicker of panel cards on the dark fills (default, Dark, Navy) is #cdcdcd (`--slate-300`, Figma; `--list-card-kicker` in `styles/card-list.css`), apart from the description (70% white); Brand blue keeps 95% white for both (#cdcdcd would be 3.4:1 on the brand fill, below WCAG AA), the light colours and Image background their dark text.
+Dark, Navy, Brand blue, Light blue, Light grey, Mid grey, Grey gradient and Image background (`theme-{value}` on the card), for panel, report and statistic cards, set on the block or per Card. Buttons on Dark, Navy and Brand blue cards are inverted on hover and focus. The kicker of panel cards on the coloured fills (default, Dark, Navy, Brand blue) is #cdcdcd (`--slate-300`, Figma; `--list-card-kicker` in `styles/card-list.css`), apart from the description (70% white; 95% on Brand blue); the light colours and Image background keep their dark text. On Brand blue the kicker is 3.4:1, below WCAG AA: an approved exception to match Figma (decision log KB-D-070).
 
 ```text
 [Screenshot Placeholder]
