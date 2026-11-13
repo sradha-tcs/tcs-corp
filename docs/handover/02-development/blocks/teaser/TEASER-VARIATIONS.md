@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/teaser/_teaser.json"]
 relatedComponents: ["teaser"]
 relatedPages: ["/design-block-master/en/block-library/teaser","/design-block-master/en/block-library/teaser/alignment","/design-block-master/en/block-library/teaser/article-meta","/design-block-master/en/block-library/teaser/cta-styles","/design-block-master/en/block-library/teaser/description-eyebrow-spacing","/design-block-master/en/block-library/teaser/image-options-and-colours","/design-block-master/en/block-library/teaser/image-positions","/design-block-master/en/block-library/teaser/layouts","/design-block-master/en/block-library/teaser/links-and-stats","/design-block-master/en/block-library/teaser/mobile-image-position","/design-block-master/en/block-library/teaser/title-sizes-and-weights"]
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/teaser/_teaser.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -79,6 +79,7 @@ primary: false
 | `teaser` | Description size (`descriptionSize`) | Style | No | Layout default = `""`; Regular (18px) = `text-regular`; Large (24px) = `text-large` | `` |
 | `teaser` | Eyebrow Style (`eyebrowStyle`) | Style | No | Brand = `""`; Label (uppercase, grey) = `eyebrow-label`; Grey = `eyebrow-grey`; White = `eyebrow-white` | `` |
 | `teaser` | Top spacing (`topSpacing`) | Style | No | Default = `""`; Page header (extra space above) = `spacing-header` | `` |
+| `teaser` | Link CTA Alignment (`linkCtaAlignment`) | Style | No | Default = `right`; Left = `left` | `right` |
 | `teaser-link` | CTA Link Type (`linkTarget`) | — | No | Default = `""`; Open in New Window = `new-window` | `` |
 | `teaser-link` | CTA Link Style (`linkStyle`) | — | No | Text link = `""`; List = `list`; Primary Button = `primary`; Primary Button (no arrow) = `primary-no-arrow`; Secondary Button = `secondary`; Secondary Button (no arrow) = `secondary-no-arrow` | `` |
 | `teaser-link` | Button background (`buttonBackground`) | — | No | Style default = `""`; White = `button-bg-white`; Blue = `button-bg-blue`; Translucent white = `button-bg-translucent` | `` |
@@ -196,6 +197,8 @@ Status: every option is supported by the model and the code that reads it. "In t
 | teaser | Eyebrow Style | White | `eyebrow-white` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser | Top spacing | Default | `""` | Supported (in the model) | n/a (default) |
 | teaser | Top spacing | Page header (extra space above) | `spacing-header` | Supported (in the model) | Not checkable (data attribute / field value) |
+| teaser | Link CTA Alignment | Default | `right` | Supported (in the model) | Not checkable (data attribute / field value) |
+| teaser | Link CTA Alignment | Left | `left` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser-link | CTA Link Type | Default | `""` | Supported (in the model) | n/a (default) |
 | teaser-link | CTA Link Type | Open in New Window | `new-window` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser-link | CTA Link Style | Text link | `""` | Supported (in the model) | n/a (default) |
@@ -450,4 +453,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

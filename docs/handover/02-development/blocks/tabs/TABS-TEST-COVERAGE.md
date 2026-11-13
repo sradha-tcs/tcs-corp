@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: ["tabs"]
 relatedPages: ["/design-block-master/en/block-library/tabs","/design-block-master/en/block-library/tabs/fragments","/design-block-master/en/block-library/tabs/fragments/cloud-overview","/design-block-master/en/block-library/tabs/fragments/consulting-overview","/design-block-master/en/block-library/tabs/fragments/security-overview","/design-block-master/en/block-library/tabs/fragments/tab-industries","/design-block-master/en/block-library/tabs/fragments/tab-overview","/design-block-master/en/block-library/tabs/tab","/design-block-master/en/block-library/tabs/tab-deep-link","/design-block-master/en/block-library/tabs/tabs-block","/design-block-master/en/block-library/tabs/tabs-block-styles","/design-block-master/en/block-library/tabs/tabs-block-with-fragments","/design-block-master/en/block-library/tabs/tabs-fixed-width","/design-block-master/en/block-library/tabs/tabs-section"]
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
@@ -39,7 +39,7 @@ primary: false
 ## Contents
 
 - [Unit tests](#unit-tests)
-- [Automated checks of the block library pages (executed 8 November 2026)](#automated-checks-of-the-block-library-pages-executed-8-november-2026)
+- [Automated checks of the block library pages (executed 13 November 2026)](#automated-checks-of-the-block-library-pages-executed-13-november-2026)
 - [Manual test guidance (block README)](#manual-test-guidance-block-readme)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
@@ -50,7 +50,7 @@ primary: false
 
 No unit test is specific to this block (shared tests: test/models, test/items, test/docs, test/motion).
 
-## Automated checks of the block library pages (executed 8 November 2026)
+## Automated checks of the block library pages (executed 13 November 2026)
 
 Per page: HTTP status and horizontal overflow at 375 / 768 / 1024 / 1440 px, console errors, failed requests and DOM accessibility checks at 1440 px (evidence: [screenshot register](../../../SCREENSHOT-REGISTER.md)).
 
@@ -336,4 +336,4 @@ Test cases: [05-quality-assurance/test-cases/blocks/tabs](../../../05-quality-as
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

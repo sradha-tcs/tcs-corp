@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["component-models.json"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | component-models.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -49,10 +49,10 @@ primary: false
 
 | Measure | Value |
 | --- | --- |
-| Options (excluding the common Additional tab) | 1202 |
+| Options (excluding the common Additional tab) | 1210 |
 | Class options shown in the block library | 43 |
-| Class options not shown in the block library | 6 |
-| Options not checkable from classes | 1035 |
+| Class options not shown in the block library | 10 |
+| Options not checkable from classes | 1037 |
 
 Categories of the master prompt: every option listed is **Supported** (in the model and read by the code). Duplicate, deprecated, legacy and invalid options: none identified from the models (legacy *properties* are listed in the Universal Editor model guide). "Represented in the block library but not supported by code": not determinable from classes alone (Not recorded).
 
@@ -570,6 +570,12 @@ Categories of the master prompt: every option listed is **Supported** (in the mo
 | hero | hero | Eyebrow color | Default (royal blue) | `""` | Supported (in the model) | n/a (default) |
 | hero | hero | Eyebrow color | Royal blue | `eyebrow-royal-blue` | Supported (in the model) | No |
 | hero | hero | Eyebrow color | Soft sky blue | `eyebrow-sky-blue` | Supported (in the model) | Yes |
+| hero | hero | Title color | Default | `""` | Supported (in the model) | n/a (default) |
+| hero | hero | Title color | Black | `title-black` | Supported (in the model) | No |
+| hero | hero | Title color | White | `title-white` | Supported (in the model) | No |
+| hero | hero | Description color | Default | `""` | Supported (in the model) | n/a (default) |
+| hero | hero | Description color | Black | `description-black` | Supported (in the model) | No |
+| hero | hero | Description color | White | `description-white` | Supported (in the model) | No |
 | hero | hero-cta | CTA Link Type | Default | `""` | Supported (in the model) | n/a (default) |
 | hero | hero-cta | CTA Link Type | Open in New Window | `new-window` | Supported (in the model) | Not checkable (data attribute / field value) |
 | hero | hero-cta | CTA view | Default | `""` | Supported (in the model) | n/a (default) |
@@ -1222,6 +1228,8 @@ Categories of the master prompt: every option listed is **Supported** (in the mo
 | teaser | teaser | Eyebrow Style | White | `eyebrow-white` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser | teaser | Top spacing | Default | `""` | Supported (in the model) | n/a (default) |
 | teaser | teaser | Top spacing | Page header (extra space above) | `spacing-header` | Supported (in the model) | Not checkable (data attribute / field value) |
+| teaser | teaser | Link CTA Alignment | Default | `right` | Supported (in the model) | Not checkable (data attribute / field value) |
+| teaser | teaser | Link CTA Alignment | Left | `left` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser | teaser-link | CTA Link Type | Default | `""` | Supported (in the model) | n/a (default) |
 | teaser | teaser-link | CTA Link Type | Open in New Window | `new-window` | Supported (in the model) | Not checkable (data attribute / field value) |
 | teaser | teaser-link | CTA Link Style | Text link | `""` | Supported (in the model) | n/a (default) |
@@ -1279,4 +1287,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

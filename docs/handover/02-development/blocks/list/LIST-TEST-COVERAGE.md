@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["test/list/display-precedence.test.mjs","test/list/list-data.test.mjs","test/list/query-index-tags.test.mjs"]
 relatedComponents: ["list"]
 relatedPages: ["/design-block-master/en/block-library/list","/design-block-master/en/block-library/list/card-colours-and-overrides","/design-block-master/en/block-library/list/card-style-from-pages","/design-block-master/en/block-library/list/card-style-from-pages/automatic","/design-block-master/en/block-library/list/card-style-from-pages/image-light-blue","/design-block-master/en/block-library/list/card-style-from-pages/panel-grey","/design-block-master/en/block-library/list/card-style-from-pages/report-navy","/design-block-master/en/block-library/list/card-style-from-pages/statistic","/design-block-master/en/block-library/list/cards","/design-block-master/en/block-library/list/empty-state","/design-block-master/en/block-library/list/figma-variations","/design-block-master/en/block-library/list/layout-and-scrolling","/design-block-master/en/block-library/list/list-item-display","/design-block-master/en/block-library/list/lists-made-before","/design-block-master/en/block-library/list/sources"]
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | test/list/display-precedence.test.mjs, test/list/list-data.test.mjs, test/list/query-index-tags.test.mjs |
 | Related documents | — |
 | Related AEM paths | — |
@@ -39,7 +39,7 @@ primary: false
 ## Contents
 
 - [Unit tests](#unit-tests)
-- [Automated checks of the block library pages (executed 8 November 2026)](#automated-checks-of-the-block-library-pages-executed-8-november-2026)
+- [Automated checks of the block library pages (executed 13 November 2026)](#automated-checks-of-the-block-library-pages-executed-13-november-2026)
 - [Manual test guidance (block README)](#manual-test-guidance-block-readme)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
@@ -54,7 +54,7 @@ primary: false
 | `test/list/list-data.test.mjs` | configuration; feature card author (Show author on feature card); content type on image cards (Show content type); parent / child pages; page metadata; fixed list; fixed list: Pages and List Items; tag-based pages; deduplicate, sort and limit; card kinds; list item cells; list item display; list call to action | 69 |
 | `test/list/query-index-tags.test.mjs` | index tags | 4 |
 
-## Automated checks of the block library pages (executed 8 November 2026)
+## Automated checks of the block library pages (executed 13 November 2026)
 
 Per page: HTTP status and horizontal overflow at 375 / 768 / 1024 / 1440 px, console errors, failed requests and DOM accessibility checks at 1440 px (evidence: [screenshot register](../../../SCREENSHOT-REGISTER.md)).
 
@@ -354,4 +354,4 @@ Test cases: [05-quality-assurance/test-cases/blocks/list](../../../05-quality-as
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

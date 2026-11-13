@@ -8,8 +8,8 @@ owner: "Documentation Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
@@ -48,7 +48,7 @@ primary: false
 
 ## Result
 
-**Passed** (20 passed, 0 failed, 1 not validated; run on 8 November 2026 with `node validate.mjs`).
+**Passed** (20 passed, 0 failed, 1 not validated; run on 13 November 2026 with `node validate.mjs`).
 
 ## Checks
 
@@ -102,4 +102,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

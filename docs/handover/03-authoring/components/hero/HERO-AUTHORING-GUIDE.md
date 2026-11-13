@@ -8,8 +8,8 @@ owner: "Content Lead / AEM Authoring Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero/README.md","blocks/hero/_hero.json"]
 relatedComponents: ["hero"]
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/hero/README.md, blocks/hero/_hero.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -118,6 +118,8 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | BG Color | `classes_background` | select | No | "" | Default (""), Light, no overlay (`bg-light`), Dark blue (`bg-dark`), Dark blue (subtle) (`bg-dark-subtle`), Black (`bg-black`), Charcoal Black 80 (cool charcoal) (`bg-charcoal-80`), Midnight Navy 60 (`bg-navy-60`), Charcoal Black 40 (deep charcoal) (`bg-charcoal-40`) | Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay. Delivered as a block class. | bg-dark |
 | Icon color | `classes_iconcolor` | select | No | "" | Default (as authored) (""), Black (`icon-black`), White (`icon-white`), Blue (`icon-blue`), Pale blue (`icon-pale-blue`) | Colour of the icon above the title, for a single-colour SVG icon. Default keeps the icon as authored. Delivered as a block class. | — |
 | Eyebrow color | `classes_eyebrowcolor` | select | No | "" | Default (royal blue) (""), Royal blue (`eyebrow-royal-blue`), Soft sky blue (`eyebrow-sky-blue`) | Colour of the eyebrow above the title. Delivered as a block class. | — |
+| Title color | `classes_titlecolor` | select | No | "" | Default (""), Black (`title-black`), White (`title-white`) | Colour of the title. Default: as the BG Color sets it (black on Default and Light, white on the dark options). Delivered as a block class. | — |
+| Description color | `classes_descriptioncolor` | select | No | "" | Default (""), Black (`description-black`), White (`description-white`) | Colour of the description. Default: as the BG Color sets it (black on Default and Light, white on the dark options). Delivered as a block class. | — |
 
 ##### Additional tab — Hero
 
@@ -519,4 +521,4 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -8,8 +8,8 @@ owner: "Business Analyst / Product Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
@@ -81,12 +81,12 @@ primary: true
 | US-F-E01-05-02 | No horizontal overflow; layout follows the responsive rules of the README | TC-MODAL-006 |
 | US-F-E01-05-02 | The block shows its English fallback or empty state and the page keeps working | TC-MODAL-007 |
 | US-F-E02-01-01 | The block appears with the authored content; no empty placeholder remains | TC-HERO-002 |
-| US-F-E02-01-01 | The block renders without empty wrappers or broken layout | TC-HERO-022 |
-| US-F-E02-01-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-HERO-023 |
+| US-F-E02-01-01 | The block renders without empty wrappers or broken layout | TC-HERO-024 |
+| US-F-E02-01-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-HERO-025 |
 | US-F-E02-01-02 | The page answers 200, every example renders, no console error, no failed request | TC-HERO-001 |
-| US-F-E02-01-02 | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | TC-HERO-024 |
-| US-F-E02-01-02 | No horizontal overflow; layout follows the responsive rules of the README | TC-HERO-025 |
-| US-F-E02-01-02 | The block shows its English fallback or empty state and the page keeps working | TC-HERO-026 |
+| US-F-E02-01-02 | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | TC-HERO-026 |
+| US-F-E02-01-02 | No horizontal overflow; layout follows the responsive rules of the README | TC-HERO-027 |
+| US-F-E02-01-02 | The block shows its English fallback or empty state and the page keeps working | TC-HERO-028 |
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute lottie) | TC-HERO-003 |
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute media-contained) | TC-HERO-004 |
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute h1, h2) | TC-HERO-005 |
@@ -103,9 +103,11 @@ primary: true
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute bg-light, bg-dark, bg-dark-subtle, bg-black, bg-charcoal-80, bg-navy-60, ...) | TC-HERO-016 |
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute icon-black, icon-white, icon-blue, icon-pale-blue) | TC-HERO-017 |
 | US-F-E02-01-03 | The rendering matches the variation (class or attribute eyebrow-royal-blue, eyebrow-sky-blue) | TC-HERO-018 |
-| US-F-E02-01-03 | The rendering matches the variation (class or attribute new-window) | TC-HERO-019 |
-| US-F-E02-01-03 | The rendering matches the variation (class or attribute primary, secondary) | TC-HERO-020 |
-| US-F-E02-01-03 | The rendering matches the variation (class or attribute right, down) | TC-HERO-021 |
+| US-F-E02-01-03 | The rendering matches the variation (class or attribute title-black, title-white) | TC-HERO-019 |
+| US-F-E02-01-03 | The rendering matches the variation (class or attribute description-black, description-white) | TC-HERO-020 |
+| US-F-E02-01-03 | The rendering matches the variation (class or attribute new-window) | TC-HERO-021 |
+| US-F-E02-01-03 | The rendering matches the variation (class or attribute primary, secondary) | TC-HERO-022 |
+| US-F-E02-01-03 | The rendering matches the variation (class or attribute right, down) | TC-HERO-023 |
 | US-F-E02-02-01 | The block appears with the authored content; no empty placeholder remains | TC-PAGE-HEADER-002 |
 | US-F-E02-02-01 | The block renders without empty wrappers or broken layout | TC-PAGE-HEADER-010 |
 | US-F-E02-02-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-PAGE-HEADER-011 |
@@ -121,12 +123,12 @@ primary: true
 | US-F-E02-02-03 | The rendering matches the variation (class or attribute button-bg-blue) | TC-PAGE-HEADER-008 |
 | US-F-E02-02-03 | The rendering matches the variation (class or attribute button-round) | TC-PAGE-HEADER-009 |
 | US-F-E03-01-01 | The block appears with the authored content; no empty placeholder remains | TC-TEASER-002 |
-| US-F-E03-01-01 | The block renders without empty wrappers or broken layout | TC-TEASER-037 |
-| US-F-E03-01-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-TEASER-038 |
+| US-F-E03-01-01 | The block renders without empty wrappers or broken layout | TC-TEASER-038 |
+| US-F-E03-01-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-TEASER-039 |
 | US-F-E03-01-02 | The page answers 200, every example renders, no console error, no failed request | TC-TEASER-001 |
-| US-F-E03-01-02 | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | TC-TEASER-039 |
-| US-F-E03-01-02 | No horizontal overflow; layout follows the responsive rules of the README | TC-TEASER-040 |
-| US-F-E03-01-02 | The block shows its English fallback or empty state and the page keeps working | TC-TEASER-041 |
+| US-F-E03-01-02 | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | TC-TEASER-040 |
+| US-F-E03-01-02 | No horizontal overflow; layout follows the responsive rules of the README | TC-TEASER-041 |
+| US-F-E03-01-02 | The block shows its English fallback or empty state and the page keeps working | TC-TEASER-042 |
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute h1, h2, h3, h4, h5, h6) | TC-TEASER-003 |
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute dd-mm-yyyy, mm-dd-yyyy, mmm-d-yyyy, dd/mm/yy) | TC-TEASER-004 |
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute lottie) | TC-TEASER-005 |
@@ -156,11 +158,12 @@ primary: true
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute text-regular, text-large) | TC-TEASER-029 |
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute eyebrow-label, eyebrow-grey, eyebrow-white) | TC-TEASER-030 |
 | US-F-E03-01-03 | The rendering matches the variation (class or attribute spacing-header) | TC-TEASER-031 |
-| US-F-E03-01-03 | The rendering matches the variation (class or attribute new-window) | TC-TEASER-032 |
-| US-F-E03-01-03 | The rendering matches the variation (class or attribute list, primary, primary-no-arrow, secondary, secondary-no-arrow) | TC-TEASER-033 |
-| US-F-E03-01-03 | The rendering matches the variation (class or attribute button-bg-white, button-bg-blue, button-bg-translucent) | TC-TEASER-034 |
-| US-F-E03-01-03 | The rendering matches the variation (class or attribute button-rectangle) | TC-TEASER-035 |
-| US-F-E03-01-03 | The rendering matches the variation (class or attribute black-white, normal) | TC-TEASER-036 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute right, left) | TC-TEASER-032 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute new-window) | TC-TEASER-033 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute list, primary, primary-no-arrow, secondary, secondary-no-arrow) | TC-TEASER-034 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute button-bg-white, button-bg-blue, button-bg-translucent) | TC-TEASER-035 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute button-rectangle) | TC-TEASER-036 |
+| US-F-E03-01-03 | The rendering matches the variation (class or attribute black-white, normal) | TC-TEASER-037 |
 | US-F-E03-02-01 | The block appears with the authored content; no empty placeholder remains | TC-CARDS-002 |
 | US-F-E03-02-01 | The block renders without empty wrappers or broken layout | TC-CARDS-022 |
 | US-F-E03-02-01 | Text wraps, no broken image icon, the link is flagged in the link check | TC-CARDS-023 |
@@ -532,4 +535,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -8,8 +8,8 @@ owner: "Content Lead / AEM Authoring Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["component-definition.json","component-models.json"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | component-definition.json, component-models.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -63,7 +63,7 @@ primary: true
 | Form Variations | Forms (contact, download, subscribe) built from field items | 39 | [FORM-VARIATIONS-AUTHORING-GUIDE](../components/form-variations/FORM-VARIATIONS-AUTHORING-GUIDE.md) |
 | Fragment | Includes the sections of another page | 1 | [FRAGMENT-AUTHORING-GUIDE](../components/fragment/FRAGMENT-AUTHORING-GUIDE.md) |
 | Gen Carousel | A section whose Heroes or Teasers rotate as slides | 17 | [GEN-CAROUSEL-AUTHORING-GUIDE](../components/gen-carousel/GEN-CAROUSEL-AUTHORING-GUIDE.md) |
-| Hero | Full-width banner with image or Lottie, title, description and CTAs | 31 | [HERO-AUTHORING-GUIDE](../components/hero/HERO-AUTHORING-GUIDE.md) |
+| Hero | Full-width banner with image or Lottie, title, description and CTAs | 33 | [HERO-AUTHORING-GUIDE](../components/hero/HERO-AUTHORING-GUIDE.md) |
 | Image Collage | Centred eyebrow, title, description and CTAs on a dark background framed by up to nine floating decorative images | 23 | [IMAGE-COLLAGE-AUTHORING-GUIDE](../components/image-collage/IMAGE-COLLAGE-AUTHORING-GUIDE.md) |
 | Interactive Dashboard | Reserved for a future dashboard; renders nothing on the site | 0 | [INTERACTIVE-DASHBOARD-AUTHORING-GUIDE](../components/interactive-dashboard/INTERACTIVE-DASHBOARD-AUTHORING-GUIDE.md) |
 | List | Child pages, a fixed list or tagged pages from the query index, as cards or links | 98 | [LIST-AUTHORING-GUIDE](../components/list/LIST-AUTHORING-GUIDE.md) |
@@ -77,7 +77,7 @@ primary: true
 | Table List | A numbered list of linked items (industries, services) | 21 | [TABLE-LIST-AUTHORING-GUIDE](../components/table-list/TABLE-LIST-AUTHORING-GUIDE.md) |
 | Tabs | Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments) | 29 | [TABS-AUTHORING-GUIDE](../components/tabs/TABS-AUTHORING-GUIDE.md) |
 | TCS Header | The TCS and TATA logos of the header, on the nav page | 7 | [TCS-HEADER-AUTHORING-GUIDE](../components/tcs-header/TCS-HEADER-AUTHORING-GUIDE.md) |
-| Teaser | Title, text, image and links in one of four layouts | 77 | [TEASER-AUTHORING-GUIDE](../components/teaser/TEASER-AUTHORING-GUIDE.md) |
+| Teaser | Title, text, image and links in one of four layouts | 78 | [TEASER-AUTHORING-GUIDE](../components/teaser/TEASER-AUTHORING-GUIDE.md) |
 | Testimonial | A client testimonial with author, image and stats | 18 | [TESTIMONIAL-AUTHORING-GUIDE](../components/testimonial/TESTIMONIAL-AUTHORING-GUIDE.md) |
 | Video | A DAM, YouTube or Vimeo video inline or in a pop-up, with poster and captions | 22 | [VIDEO-AUTHORING-GUIDE](../components/video/VIDEO-AUTHORING-GUIDE.md) |
 | Text | Default content | 0 | [TEXT-AUTHORING-GUIDE](../components/text/TEXT-AUTHORING-GUIDE.md) |
@@ -178,4 +178,4 @@ Container sections (Columns Container, Tabs Container, Gen Carousel) carry the s
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/teaser/README.md","blocks/teaser/_teaser.json","blocks/teaser/teaser.css","blocks/teaser/teaser.js"]
 relatedComponents: ["teaser","teaser-link","teaser-stat","teaser-collage-image"]
 relatedPages: ["/design-block-master/en/block-library/teaser","/design-block-master/en/block-library/teaser/alignment","/design-block-master/en/block-library/teaser/article-meta","/design-block-master/en/block-library/teaser/cta-styles","/design-block-master/en/block-library/teaser/description-eyebrow-spacing","/design-block-master/en/block-library/teaser/image-options-and-colours","/design-block-master/en/block-library/teaser/image-positions","/design-block-master/en/block-library/teaser/layouts","/design-block-master/en/block-library/teaser/links-and-stats","/design-block-master/en/block-library/teaser/mobile-image-position","/design-block-master/en/block-library/teaser/title-sizes-and-weights","/design-block-master/en/curated-design-pages/case-study","/design-block-master/en/curated-design-pages/collection","/design-block-master/en/curated-design-pages/home","/design-block-master/en/curated-design-pages/industry-landing-page","/design-block-master/en/curated-design-pages/insights","/design-block-master/en/curated-design-pages/media-and-investor","/design-block-master/en/curated-design-pages/news-and-events","/design-block-master/en/curated-design-pages/product","/design-block-master/en/curated-design-pages/services","/design-block-master/en/curated-design-pages/story","/design-block-master/en/curated-design-pages/what-we-do","/design-block-master/en/curated-design-pages/who-we-are"]
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 2026-11-08 (model, files, imports from the code; reference pages from the live site) |
+| Last updated | 13 November 2026 |
+| Last validated | 2026-11-13 (model, files, imports from the code; reference pages from the live site) |
 | Source files | blocks/teaser/README.md, blocks/teaser/_teaser.json, blocks/teaser/teaser.css, blocks/teaser/teaser.js |
 | Related documents | [Variations](./TEASER-VARIATIONS.md), [Test coverage](./TEASER-TEST-COVERAGE.md), [Authoring guide](../../../03-authoring/components/teaser/TEASER-AUTHORING-GUIDE.md) |
 | Related AEM paths | /content/tcs-corp/design-block-master/en/block-library/teaser, /content/tcs-corp/design-block-master/en/block-library/teaser/alignment, /content/tcs-corp/design-block-master/en/block-library/teaser/article-meta |
@@ -74,7 +74,7 @@ primary: true
 | Purpose | Title, text, image and links in one of four layouts |
 | Variations (summary) | Layouts (Image & Text, Text split, Background image, Card), image positions, BG Color, styles |
 | Children | teaser-link (Link), teaser-stat (Stat) |
-| Code size | 2062 lines of JS and CSS |
+| Code size | 2066 lines of JS and CSS |
 
 ## Overview
 
@@ -184,6 +184,7 @@ The Additional tab fields (anchor, hide, padding, margin, animation) are common 
 | Style | Description size | `descriptionSize` | select | No | `""` | 3 options | — |
 | Style | Eyebrow Style | `eyebrowStyle` | select | No | `""` | 4 options | — |
 | Style | Top spacing | `topSpacing` | select | No | `""` | 2 options | — |
+| Style | Link CTA Alignment | `linkCtaAlignment` | select | No | `right` | 2 options | — |
 
 ### Link (`teaser-link`)
 
@@ -473,6 +474,7 @@ Evidence to collect: the page URL, viewport width, browser, a screenshot, the bl
 | Handover 2.34 | List arrow None; a Grey Teaser inside dark Sections and Columns Containers resets the text tokens (F-105) | docs/handover revision history | 20 October 2026 |
 | Handover 2.35 | Packages 1.0.12 and 1.0.13 with the Teaser options verified on aem.live | docs/handover revision history | 20 October 2026 |
 | Handover 2.41 | Primary Button (no arrow) CTA style with navy fill and shared alignment content width | Repository change | 22 October 2026 |
+| Not recorded | Link CTA Alignment (`linkCtaAlignment`, Style tab): Default (`right`) keeps the links and CTAs in the body with the description; Left places them after the text in the content (in Text split, in the left column below the title, after the taller of the two columns) | fix/teaser-links-stat | 11 November 2026 |
 
 ## Reference pages
 
@@ -828,4 +830,4 @@ Evidence to collect: the page URL, viewport width, browser, a screenshot, the bl
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

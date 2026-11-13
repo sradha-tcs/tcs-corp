@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["test/conversation-canvas/canvas-journey.test.mjs"]
 relatedComponents: ["conversation-canvas"]
 relatedPages: ["/design-block-master/en/block-library/conversation-canvas","/design-block-master/en/block-library/conversation-canvas/conversation-canvas","/design-block-master/en/block-library/conversation-canvas/docked","/design-block-master/en/block-library/conversation-canvas/floating","/design-block-master/en/block-library/conversation-canvas/footer-canvas","/design-block-master/en/block-library/conversation-canvas/journey-and-actions"]
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | test/conversation-canvas/canvas-journey.test.mjs |
 | Related documents | — |
 | Related AEM paths | — |
@@ -39,7 +39,7 @@ primary: false
 ## Contents
 
 - [Unit tests](#unit-tests)
-- [Automated checks of the block library pages (executed 8 November 2026)](#automated-checks-of-the-block-library-pages-executed-8-november-2026)
+- [Automated checks of the block library pages (executed 13 November 2026)](#automated-checks-of-the-block-library-pages-executed-13-november-2026)
 - [Manual test guidance (block README)](#manual-test-guidance-block-readme)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
@@ -52,7 +52,7 @@ primary: false
 | --- | --- | --- |
 | `test/conversation-canvas/canvas-journey.test.mjs` | roles from placement; the journey down the page; transitions; HIDDEN; page variations; the header Canvas at the bottom of the window; a row in place that holds focus (focused) | 36 |
 
-## Automated checks of the block library pages (executed 8 November 2026)
+## Automated checks of the block library pages (executed 13 November 2026)
 
 Per page: HTTP status and horizontal overflow at 375 / 768 / 1024 / 1440 px, console errors, failed requests and DOM accessibility checks at 1440 px (evidence: [screenshot register](../../../SCREENSHOT-REGISTER.md)).
 
@@ -209,4 +209,4 @@ Test cases: [05-quality-assurance/test-cases/blocks/conversation-canvas](../../.
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

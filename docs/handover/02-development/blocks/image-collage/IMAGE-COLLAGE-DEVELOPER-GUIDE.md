@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/image-collage/README.md","blocks/image-collage/_image-collage.json","blocks/image-collage/image-collage.css","blocks/image-collage/image-collage.js"]
 relatedComponents: ["image-collage","image-collage-item"]
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 2026-11-08 (model, files, imports from the code; reference pages from the live site) |
+| Last updated | 13 November 2026 |
+| Last validated | 2026-11-13 (model, files, imports from the code; reference pages from the live site) |
 | Source files | blocks/image-collage/README.md, blocks/image-collage/_image-collage.json, blocks/image-collage/image-collage.css, blocks/image-collage/image-collage.js |
 | Related documents | [Variations](./IMAGE-COLLAGE-VARIATIONS.md), [Test coverage](./IMAGE-COLLAGE-TEST-COVERAGE.md), [Authoring guide](../../../03-authoring/components/image-collage/IMAGE-COLLAGE-AUTHORING-GUIDE.md) |
 | Related AEM paths | — |
@@ -279,6 +279,7 @@ Authored content only. No external HTML is injected, no personal data is read or
 | Version | Change | Source | Date |
 | ------- | ------ | ------ | ---- |
 | Not recorded | New block (model, code and README) | Repository | 29 October 2026 |
+| Not recorded | Description 1rem (16px) instead of 1.125rem on mobile, tablet and desktop (`.image-collage .image-collage-description`); Description size Regular (`text-regular`) and the Navy background on desktop (`bg-navy`) still set 1.125rem, Large 1.5rem | fix/imagecollage-font-fix | 12 November 2026 |
 
 ## Reference pages
 
@@ -332,4 +333,4 @@ Authored content only. No external HTML is injected, no personal data is read or
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -8,8 +8,8 @@ owner: "QA Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero/_hero.json"]
 relatedComponents: ["hero"]
 relatedPages: []
@@ -30,27 +30,27 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/hero/_hero.json |
 | Related documents | — |
 | Related AEM paths | — |
 
 ## Contents
 
-- [Test cases (26)](#test-cases-26)
+- [Test cases (28)](#test-cases-28)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
 - [Open items](#open-items)
 - [Change history](#change-history)
 
-## Test cases (26)
+## Test cases (28)
 
 Requirement / story: see the [traceability](../../../markdown/REQUIREMENT-TEST-TRACEABILITY.md). Status values: Passed and Failed only for checks that ran with evidence; otherwise Not Run, Blocked, Not Applicable or Requires Manual Validation.
 
 | ID | Kind | Variation | Objective | Steps | Expected | Status | Actual | Environment | Evidence | Defect | Tester | Date |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TC-HERO-001 | Functional (smoke) | — | Hero renders on its block library page | 1. Open the block library page of the block on the live site 2. Wait for the page to load | The page answers 200, every example renders, no console error, no failed request | Failed | 5 of 5 pages fail: shared failed request (DEF-002, DEF-001); own failures on /design-block-master/en/block-library/hero/hero-overview | Edge Delivery live, Chromium (Playwright) | execution-results evidence.json | DEF-002, DEF-001, DEF-006 | Automated (documentation program) | 8 November 2026 |
+| TC-HERO-001 | Functional (smoke) | — | Hero renders on its block library page | 1. Open the block library page of the block on the live site 2. Wait for the page to load | The page answers 200, every example renders, no console error, no failed request | Failed | 5 of 5 pages fail: shared failed request (DEF-002, DEF-001); own failures on /design-block-master/en/block-library/hero/hero-overview | Edge Delivery live, Chromium (Playwright) | execution-results evidence.json | DEF-002, DEF-001, DEF-006 | Automated (documentation program) | 13 November 2026 |
 | TC-HERO-002 | Authoring | — | An author adds the Hero and fills in its required fields | 1. Open a test page in Universal Editor 2. Add the Hero from the component palette 3. Fill in the fields of each tab 4. Preview | The block appears with the authored content; no empty placeholder remains | Not Run | — | — | — | — | — | — |
 | TC-HERO-003 | Component variation | Hero Image type | Hero: each choice of "Hero Image type" gives its presentation | 1. Select the Hero 2. Set "Hero Image type" to each of: Default, Lotto 3. Preview after each change | The rendering matches the variation (class or attribute lottie) | Not Run | — | — | — | — | — | — |
 | TC-HERO-004 | Component variation | Hero View | Hero: each choice of "Hero View" gives its presentation | 1. Select the Hero 2. Set "Hero View" to each of: Default, Contained image 3. Preview after each change | The rendering matches the variation (class or attribute media-contained) | Not Run | — | — | — | — | — | — |
@@ -68,14 +68,16 @@ Requirement / story: see the [traceability](../../../markdown/REQUIREMENT-TEST-T
 | TC-HERO-016 | Component variation | BG Color | Hero: each choice of "BG Color" gives its presentation | 1. Select the Hero 2. Set "BG Color" to each of: Default, Light, no overlay, Dark blue, Dark blue (subtle), Black, Charcoal Black 80 (cool charcoal), Midnight Navy 60, Charcoal Black 40 (deep charcoal) 3. Preview after each change | The rendering matches the variation (class or attribute bg-light, bg-dark, bg-dark-subtle, bg-black, bg-charcoal-80, bg-navy-60, ...) | Not Run | — | — | — | — | — | — |
 | TC-HERO-017 | Component variation | Icon color | Hero: each choice of "Icon color" gives its presentation | 1. Select the Hero 2. Set "Icon color" to each of: Default (as authored), Black, White, Blue, Pale blue 3. Preview after each change | The rendering matches the variation (class or attribute icon-black, icon-white, icon-blue, icon-pale-blue) | Not Run | — | — | — | — | — | — |
 | TC-HERO-018 | Component variation | Eyebrow color | Hero: each choice of "Eyebrow color" gives its presentation | 1. Select the Hero 2. Set "Eyebrow color" to each of: Default (royal blue), Royal blue, Soft sky blue 3. Preview after each change | The rendering matches the variation (class or attribute eyebrow-royal-blue, eyebrow-sky-blue) | Not Run | — | — | — | — | — | — |
-| TC-HERO-019 | Component variation | CTA Link Type | CTA: each choice of "CTA Link Type" gives its presentation | 1. Select the CTA 2. Set "CTA Link Type" to each of: Default, Open in New Window 3. Preview after each change | The rendering matches the variation (class or attribute new-window) | Not Run | — | — | — | — | — | — |
-| TC-HERO-020 | Component variation | CTA view | CTA: each choice of "CTA view" gives its presentation | 1. Select the CTA 2. Set "CTA view" to each of: Default, Primary, Secondary 3. Preview after each change | The rendering matches the variation (class or attribute primary, secondary) | Not Run | — | — | — | — | — | — |
-| TC-HERO-021 | Component variation | CTA Arrow | CTA: each choice of "CTA Arrow" gives its presentation | 1. Select the CTA 2. Set "CTA Arrow" to each of: Auto (down for links to sections of this page), Right, Down 3. Preview after each change | The rendering matches the variation (class or attribute right, down) | Not Run | — | — | — | — | — | — |
-| TC-HERO-022 | Boundary | — | Hero with optional fields left empty | 1. Add the block and fill in only the required fields 2. Preview | The block renders without empty wrappers or broken layout | Not Run | — | — | — | — | — | — |
-| TC-HERO-023 | Negative | — | Hero with invalid content (very long text, missing image, broken link) | 1. Enter a 300-character title 2. Remove the image 3. Link to a missing page 4. Preview | Text wraps, no broken image icon, the link is flagged in the link check | Not Run | — | — | — | — | — | — |
-| TC-HERO-024 | Accessibility | — | Hero meets WCAG 2.1 AA | 1. Navigate the block with the keyboard only 2. Check focus visibility, names of buttons and links, alt text, heading order 3. Run a screen reader on the block | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | Requires Manual Validation | Automated DOM checks flagged 1 page(s): /design-block-master/en/block-library/hero: 0 img without alt, 0 unnamed buttons, 1 heading skips, 0 duplicate ids | Edge Delivery live, Chromium (Playwright) | evidence.json | — | — | — |
-| TC-HERO-025 | Responsive | — | Hero at 375, 768, 1024 and 1440 px | 1. Open the block library page at each width | No horizontal overflow; layout follows the responsive rules of the README | Passed | No horizontal overflow at 375, 768, 1024, 1440 px on 5 pages | Edge Delivery live, Chromium (Playwright) | screenshots in the block folder | — | Automated (documentation program) | 8 November 2026 |
-| TC-HERO-026 | Error recovery | — | Hero when a dependency fails (sheet, index, media) | 1. Block the placeholders or query index request in the browser 2. Reload | The block shows its English fallback or empty state and the page keeps working | Not Run | — | — | — | — | — | — |
+| TC-HERO-019 | Component variation | Title color | Hero: each choice of "Title color" gives its presentation | 1. Select the Hero 2. Set "Title color" to each of: Default, Black, White 3. Preview after each change | The rendering matches the variation (class or attribute title-black, title-white) | Not Run | — | — | — | — | — | — |
+| TC-HERO-020 | Component variation | Description color | Hero: each choice of "Description color" gives its presentation | 1. Select the Hero 2. Set "Description color" to each of: Default, Black, White 3. Preview after each change | The rendering matches the variation (class or attribute description-black, description-white) | Not Run | — | — | — | — | — | — |
+| TC-HERO-021 | Component variation | CTA Link Type | CTA: each choice of "CTA Link Type" gives its presentation | 1. Select the CTA 2. Set "CTA Link Type" to each of: Default, Open in New Window 3. Preview after each change | The rendering matches the variation (class or attribute new-window) | Not Run | — | — | — | — | — | — |
+| TC-HERO-022 | Component variation | CTA view | CTA: each choice of "CTA view" gives its presentation | 1. Select the CTA 2. Set "CTA view" to each of: Default, Primary, Secondary 3. Preview after each change | The rendering matches the variation (class or attribute primary, secondary) | Not Run | — | — | — | — | — | — |
+| TC-HERO-023 | Component variation | CTA Arrow | CTA: each choice of "CTA Arrow" gives its presentation | 1. Select the CTA 2. Set "CTA Arrow" to each of: Auto (down for links to sections of this page), Right, Down 3. Preview after each change | The rendering matches the variation (class or attribute right, down) | Not Run | — | — | — | — | — | — |
+| TC-HERO-024 | Boundary | — | Hero with optional fields left empty | 1. Add the block and fill in only the required fields 2. Preview | The block renders without empty wrappers or broken layout | Not Run | — | — | — | — | — | — |
+| TC-HERO-025 | Negative | — | Hero with invalid content (very long text, missing image, broken link) | 1. Enter a 300-character title 2. Remove the image 3. Link to a missing page 4. Preview | Text wraps, no broken image icon, the link is flagged in the link check | Not Run | — | — | — | — | — | — |
+| TC-HERO-026 | Accessibility | — | Hero meets WCAG 2.1 AA | 1. Navigate the block with the keyboard only 2. Check focus visibility, names of buttons and links, alt text, heading order 3. Run a screen reader on the block | Every control is reachable and named; no heading level is skipped; images have alt text or are decorative | Requires Manual Validation | Automated DOM checks flagged 1 page(s): /design-block-master/en/block-library/hero: 0 img without alt, 0 unnamed buttons, 1 heading skips, 0 duplicate ids | Edge Delivery live, Chromium (Playwright) | evidence.json | — | — | — |
+| TC-HERO-027 | Responsive | — | Hero at 375, 768, 1024 and 1440 px | 1. Open the block library page at each width | No horizontal overflow; layout follows the responsive rules of the README | Passed | No horizontal overflow at 375, 768, 1024, 1440 px on 5 pages | Edge Delivery live, Chromium (Playwright) | screenshots in the block folder | — | Automated (documentation program) | 13 November 2026 |
+| TC-HERO-028 | Error recovery | — | Hero when a dependency fails (sheet, index, media) | 1. Block the placeholders or query index request in the browser 2. Reload | The block shows its English fallback or empty state and the page keeps working | Not Run | — | — | — | — | — | — |
 
 ## Screenshots
 
@@ -93,4 +95,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

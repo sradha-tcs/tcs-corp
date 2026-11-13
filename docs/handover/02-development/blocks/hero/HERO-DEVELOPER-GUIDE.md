@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero/README.md","blocks/hero/_hero.json","blocks/hero/hero.css","blocks/hero/hero.js"]
 relatedComponents: ["hero","hero-cta"]
 relatedPages: ["/design-block-master/en/block-library/hero","/design-block-master/en/block-library/hero/hero-ctas","/design-block-master/en/block-library/hero/hero-motion","/design-block-master/en/block-library/hero/hero-overview","/design-block-master/en/block-library/hero/hero-styles","/design-block-master/en/curated-design-pages/home","/design-block-master/en/curated-design-pages/insights","/design-block-master/en/curated-design-pages/media-and-investor","/design-block-master/en/curated-design-pages/news-and-events","/design-block-master/en/curated-design-pages/what-we-do","/design-block-master/en/curated-design-pages/who-we-are"]
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 2026-11-08 (model, files, imports from the code; reference pages from the live site) |
+| Last updated | 13 November 2026 |
+| Last validated | 2026-11-13 (model, files, imports from the code; reference pages from the live site) |
 | Source files | blocks/hero/README.md, blocks/hero/_hero.json, blocks/hero/hero.css, blocks/hero/hero.js |
 | Related documents | [Variations](./HERO-VARIATIONS.md), [Test coverage](./HERO-TEST-COVERAGE.md), [Authoring guide](../../../03-authoring/components/hero/HERO-AUTHORING-GUIDE.md) |
 | Related AEM paths | /content/tcs-corp/design-block-master/en/block-library/hero, /content/tcs-corp/design-block-master/en/block-library/hero/hero-ctas, /content/tcs-corp/design-block-master/en/block-library/hero/hero-motion |
@@ -74,7 +74,7 @@ primary: true
 | Purpose | Full-width banner with image or Lottie, title, description and CTAs |
 | Variations (summary) | Views, nine positions, BG Color, animation |
 | Children | hero-cta (CTA) |
-| Code size | 850 lines of JS and CSS |
+| Code size | 908 lines of JS and CSS |
 
 ## Overview
 
@@ -151,6 +151,8 @@ The Additional tab fields (anchor, hide, padding, margin, animation) are common 
 | Style | BG Color | `classes_background` | select | No | `""` | 8 options | — |
 | Style | Icon color | `classes_iconcolor` | select | No | `""` | 5 options | — |
 | Style | Eyebrow color | `classes_eyebrowcolor` | select | No | `""` | 3 options | — |
+| Style | Title color | `classes_titlecolor` | select | No | `""` | 3 options | — |
+| Style | Description color | `classes_descriptioncolor` | select | No | `""` | 3 options | — |
 
 ### CTA (`hero-cta`)
 
@@ -381,6 +383,8 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 | Handover 2.18 | Additional tab Content animation and Background animation | docs/handover revision history | 18 October 2026 |
 | Handover 2.27 | Motion Type removed from the dialog (block ecosystem audit) | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast | docs/handover revision history | 20 October 2026 |
+| Not recorded | Desktop min height 56.25rem (900px), tablet 46.875rem (750px) with 7.625rem block padding; the opening hero no longer grows by the header height. Desktop (from 1200px) to Figma "Hero" 57:16843 (What we do) and "Hero Header" 3670:14111 (Home): middle-aligned content with 12.5rem (200px) below it; icon to eyebrow 0.5rem; eyebrow 0.875rem / 22px; CTAs 50px high with 0.875rem text; the opening hero under the header (not on Home, which has its own template rule) has as much space below as above. Mobile unchanged | fix/hero-content | 11 November 2026 |
+| Not recorded | Title color (`classes_titlecolor`: Default, Black `title-black`, White `title-white`) and Description color (`classes_descriptioncolor`: Default, Black `description-black`, White `description-white`) in the Style tab; Default keeps the colour the BG Color sets (black and dark grey on Default and Light, white and 50 % / 85 % white on the dark options), Black and White apply whatever the BG Color | fix/hero-content | 11 November 2026 |
 
 ## Reference pages
 
@@ -580,4 +584,4 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

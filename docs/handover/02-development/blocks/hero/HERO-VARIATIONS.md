@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero/_hero.json"]
 relatedComponents: ["hero"]
 relatedPages: ["/design-block-master/en/block-library/hero","/design-block-master/en/block-library/hero/hero-ctas","/design-block-master/en/block-library/hero/hero-motion","/design-block-master/en/block-library/hero/hero-overview","/design-block-master/en/block-library/hero/hero-styles"]
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/hero/_hero.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -66,6 +66,8 @@ primary: false
 | `hero` | BG Color (`classes_background`) | Style | No | Default = `""`; Light, no overlay = `bg-light`; Dark blue = `bg-dark`; Dark blue (subtle) = `bg-dark-subtle`; Black = `bg-black`; Charcoal Black 80 (cool charcoal) = `bg-charcoal-80`; Midnight Navy 60 = `bg-navy-60`; Charcoal Black 40 (deep charcoal) = `bg-charcoal-40` | `` |
 | `hero` | Icon color (`classes_iconcolor`) | Style | No | Default (as authored) = `""`; Black = `icon-black`; White = `icon-white`; Blue = `icon-blue`; Pale blue = `icon-pale-blue` | `` |
 | `hero` | Eyebrow color (`classes_eyebrowcolor`) | Style | No | Default (royal blue) = `""`; Royal blue = `eyebrow-royal-blue`; Soft sky blue = `eyebrow-sky-blue` | `` |
+| `hero` | Title color (`classes_titlecolor`) | Style | No | Default = `""`; Black = `title-black`; White = `title-white` | `` |
+| `hero` | Description color (`classes_descriptioncolor`) | Style | No | Default = `""`; Black = `description-black`; White = `description-white` | `` |
 | `hero-cta` | CTA Link Type (`linkTarget`) | — | No | Default = `""`; Open in New Window = `new-window` | `` |
 | `hero-cta` | CTA view (`linkStyle`) | — | No | Default = `""`; Primary = `primary`; Secondary = `secondary` | `` |
 | `hero-cta` | CTA Arrow (`linkArrow`) | — | No | Auto (down for links to sections of this page) = `""`; Right = `right`; Down = `down` | `` |
@@ -124,6 +126,12 @@ Status: every option is supported by the model and the code that reads it. "In t
 | hero | Eyebrow color | Default (royal blue) | `""` | Supported (in the model) | n/a (default) |
 | hero | Eyebrow color | Royal blue | `eyebrow-royal-blue` | Supported (in the model) | No |
 | hero | Eyebrow color | Soft sky blue | `eyebrow-sky-blue` | Supported (in the model) | Yes |
+| hero | Title color | Default | `""` | Supported (in the model) | n/a (default) |
+| hero | Title color | Black | `title-black` | Supported (in the model) | No |
+| hero | Title color | White | `title-white` | Supported (in the model) | No |
+| hero | Description color | Default | `""` | Supported (in the model) | n/a (default) |
+| hero | Description color | Black | `description-black` | Supported (in the model) | No |
+| hero | Description color | White | `description-white` | Supported (in the model) | No |
 | hero-cta | CTA Link Type | Default | `""` | Supported (in the model) | n/a (default) |
 | hero-cta | CTA Link Type | Open in New Window | `new-window` | Supported (in the model) | Not checkable (data attribute / field value) |
 | hero-cta | CTA view | Default | `""` | Supported (in the model) | n/a (default) |
@@ -250,4 +258,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

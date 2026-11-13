@@ -8,8 +8,8 @@ owner: "Business Analyst / Product Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero"]
 relatedComponents: ["hero"]
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/hero |
 | Related documents | — |
 | Related AEM paths | — |
@@ -72,7 +72,7 @@ primary: true
 | Related code | blocks/hero/ |
 | Related block-library example | https://main--tcs-corp--sradha-tcs.aem.live/design-block-master/en/block-library/hero |
 | Related curated page | /design-block-master/en/curated-design-pages/home, /design-block-master/en/curated-design-pages/insights, /design-block-master/en/curated-design-pages/media-and-investor |
-| Related test cases | TC-HERO-002, TC-HERO-022, TC-HERO-023 |
+| Related test cases | TC-HERO-002, TC-HERO-024, TC-HERO-025 |
 | Definition of Ready / Done | See the BA package |
 
 ## Gherkin acceptance criteria
@@ -112,4 +112,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

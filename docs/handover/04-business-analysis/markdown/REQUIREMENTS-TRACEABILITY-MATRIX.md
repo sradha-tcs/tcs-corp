@@ -8,8 +8,8 @@ owner: "Business Analyst / Product Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
@@ -84,12 +84,12 @@ Results and defects: see the [test execution report](../../05-quality-assurance/
 | Visitors find their way through the site on every device | E01 | F-E01-05 | US-F-E01-05-02 | Modal at 375, 768, 1024 and 1440 px | modal | blocks/modal | TC-MODAL-006 | Passed | — |
 | Visitors find their way through the site on every device | E01 | F-E01-05 | US-F-E01-05-02 | Modal when a dependency fails (sheet, index, media) | modal | blocks/modal | TC-MODAL-007 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-01 | An author adds the Hero and fills in its required fields | hero | blocks/hero | TC-HERO-002 | Not Run | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-01 | Hero with optional fields left empty | hero | blocks/hero | TC-HERO-022 | Not Run | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-01 | Hero with invalid content (very long text, missing image, broken link) | hero | blocks/hero | TC-HERO-023 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-01 | Hero with optional fields left empty | hero | blocks/hero | TC-HERO-024 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-01 | Hero with invalid content (very long text, missing image, broken link) | hero | blocks/hero | TC-HERO-025 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero renders on its block library page | hero | blocks/hero | TC-HERO-001 | Failed | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero meets WCAG 2.1 AA | hero | blocks/hero | TC-HERO-024 | Requires Manual Validation | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero at 375, 768, 1024 and 1440 px | hero | blocks/hero | TC-HERO-025 | Passed | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero when a dependency fails (sheet, index, media) | hero | blocks/hero | TC-HERO-026 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero meets WCAG 2.1 AA | hero | blocks/hero | TC-HERO-026 | Requires Manual Validation | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero at 375, 768, 1024 and 1440 px | hero | blocks/hero | TC-HERO-027 | Passed | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-02 | Hero when a dependency fails (sheet, index, media) | hero | blocks/hero | TC-HERO-028 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Hero Image type" gives its presentation | hero | blocks/hero | TC-HERO-003 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Hero View" gives its presentation | hero | blocks/hero | TC-HERO-004 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Title heading level" gives its presentation | hero | blocks/hero | TC-HERO-005 | Not Run | — |
@@ -106,9 +106,11 @@ Results and defects: see the [test execution report](../../05-quality-assurance/
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "BG Color" gives its presentation | hero | blocks/hero | TC-HERO-016 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Icon color" gives its presentation | hero | blocks/hero | TC-HERO-017 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Eyebrow color" gives its presentation | hero | blocks/hero | TC-HERO-018 | Not Run | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA Link Type" gives its presentation | hero | blocks/hero | TC-HERO-019 | Not Run | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA view" gives its presentation | hero | blocks/hero | TC-HERO-020 | Not Run | — |
-| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA Arrow" gives its presentation | hero | blocks/hero | TC-HERO-021 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Title color" gives its presentation | hero | blocks/hero | TC-HERO-019 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | Hero: each choice of "Description color" gives its presentation | hero | blocks/hero | TC-HERO-020 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA Link Type" gives its presentation | hero | blocks/hero | TC-HERO-021 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA view" gives its presentation | hero | blocks/hero | TC-HERO-022 | Not Run | — |
+| Every page opens with a clear, on-brand introduction | E02 | F-E02-01 | US-F-E02-01-03 | CTA: each choice of "CTA Arrow" gives its presentation | hero | blocks/hero | TC-HERO-023 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-02 | US-F-E02-02-01 | An author adds the Page Header and fills in its required fields | page-header | blocks/page-header | TC-PAGE-HEADER-002 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-02 | US-F-E02-02-01 | Page Header with optional fields left empty | page-header | blocks/page-header | TC-PAGE-HEADER-010 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-02 | US-F-E02-02-01 | Page Header with invalid content (very long text, missing image, broken link) | page-header | blocks/page-header | TC-PAGE-HEADER-011 | Not Run | — |
@@ -124,12 +126,12 @@ Results and defects: see the [test execution report](../../05-quality-assurance/
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-02 | US-F-E02-02-03 | CTA: each choice of "Button background" gives its presentation | page-header | blocks/page-header | TC-PAGE-HEADER-008 | Not Run | — |
 | Every page opens with a clear, on-brand introduction | E02 | F-E02-02 | US-F-E02-02-03 | CTA: each choice of "Button shape" gives its presentation | page-header | blocks/page-header | TC-PAGE-HEADER-009 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-01 | An author adds the Teaser and fills in its required fields | teaser | blocks/teaser | TC-TEASER-002 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-01 | Teaser with optional fields left empty | teaser | blocks/teaser | TC-TEASER-037 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-01 | Teaser with invalid content (very long text, missing image, broken link) | teaser | blocks/teaser | TC-TEASER-038 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-01 | Teaser with optional fields left empty | teaser | blocks/teaser | TC-TEASER-038 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-01 | Teaser with invalid content (very long text, missing image, broken link) | teaser | blocks/teaser | TC-TEASER-039 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser renders on its block library page | teaser | blocks/teaser | TC-TEASER-001 | Failed | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser meets WCAG 2.1 AA | teaser | blocks/teaser | TC-TEASER-039 | Requires Manual Validation | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser at 375, 768, 1024 and 1440 px | teaser | blocks/teaser | TC-TEASER-040 | Passed | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser when a dependency fails (sheet, index, media) | teaser | blocks/teaser | TC-TEASER-041 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser meets WCAG 2.1 AA | teaser | blocks/teaser | TC-TEASER-040 | Requires Manual Validation | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser at 375, 768, 1024 and 1440 px | teaser | blocks/teaser | TC-TEASER-041 | Passed | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-02 | Teaser when a dependency fails (sheet, index, media) | teaser | blocks/teaser | TC-TEASER-042 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Title Type" gives its presentation | teaser | blocks/teaser | TC-TEASER-003 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Date Format" gives its presentation | teaser | blocks/teaser | TC-TEASER-004 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Image type" gives its presentation | teaser | blocks/teaser | TC-TEASER-005 | Not Run | — |
@@ -159,11 +161,12 @@ Results and defects: see the [test execution report](../../05-quality-assurance/
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Description size" gives its presentation | teaser | blocks/teaser | TC-TEASER-029 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Eyebrow Style" gives its presentation | teaser | blocks/teaser | TC-TEASER-030 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Top spacing" gives its presentation | teaser | blocks/teaser | TC-TEASER-031 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "CTA Link Type" gives its presentation | teaser | blocks/teaser | TC-TEASER-032 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "CTA Link Style" gives its presentation | teaser | blocks/teaser | TC-TEASER-033 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "Button background" gives its presentation | teaser | blocks/teaser | TC-TEASER-034 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "Button shape" gives its presentation | teaser | blocks/teaser | TC-TEASER-035 | Not Run | — |
-| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Collage image: each choice of "Image treatment" gives its presentation | teaser | blocks/teaser | TC-TEASER-036 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Teaser: each choice of "Link CTA Alignment" gives its presentation | teaser | blocks/teaser | TC-TEASER-032 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "CTA Link Type" gives its presentation | teaser | blocks/teaser | TC-TEASER-033 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "CTA Link Style" gives its presentation | teaser | blocks/teaser | TC-TEASER-034 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "Button background" gives its presentation | teaser | blocks/teaser | TC-TEASER-035 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Link: each choice of "Button shape" gives its presentation | teaser | blocks/teaser | TC-TEASER-036 | Not Run | — |
+| Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-01 | US-F-E03-01-03 | Collage image: each choice of "Image treatment" gives its presentation | teaser | blocks/teaser | TC-TEASER-037 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-02 | US-F-E03-02-01 | An author adds the Cards and fills in its required fields | cards | blocks/cards | TC-CARDS-002 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-02 | US-F-E03-02-01 | Cards with optional fields left empty | cards | blocks/cards | TC-CARDS-022 | Not Run | — |
 | Authors present stories, offerings and facts in the TCS design language | E03 | F-E03-02 | US-F-E03-02-01 | Cards with invalid content (very long text, missing image, broken link) | cards | blocks/cards | TC-CARDS-023 | Not Run | — |
@@ -547,4 +550,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -8,8 +8,8 @@ owner: "Business Analyst / Product Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["blocks/hero"]
 relatedComponents: ["hero"]
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | blocks/hero |
 | Related documents | — |
 | Related AEM paths | — |
@@ -67,7 +67,7 @@ primary: true
 | Acceptance criteria | See the user stories |
 | Related user stories | US-F-E02-01-01, US-F-E02-01-02, US-F-E02-01-03 |
 | Related components | hero |
-| Related test cases | TC-HERO-001, TC-HERO-002, TC-HERO-003, TC-HERO-004, TC-HERO-005, TC-HERO-006, TC-HERO-007, TC-HERO-008, TC-HERO-009, TC-HERO-010, TC-HERO-011, TC-HERO-012, TC-HERO-013, TC-HERO-014, TC-HERO-015, TC-HERO-016, TC-HERO-017, TC-HERO-018, TC-HERO-019, TC-HERO-020, TC-HERO-021, TC-HERO-022, TC-HERO-023, TC-HERO-024, TC-HERO-025, TC-HERO-026 |
+| Related test cases | TC-HERO-001, TC-HERO-002, TC-HERO-003, TC-HERO-004, TC-HERO-005, TC-HERO-006, TC-HERO-007, TC-HERO-008, TC-HERO-009, TC-HERO-010, TC-HERO-011, TC-HERO-012, TC-HERO-013, TC-HERO-014, TC-HERO-015, TC-HERO-016, TC-HERO-017, TC-HERO-018, TC-HERO-019, TC-HERO-020, TC-HERO-021, TC-HERO-022, TC-HERO-023, TC-HERO-024, TC-HERO-025, TC-HERO-026, TC-HERO-027, TC-HERO-028 |
 | Definition of Ready | [DEFINITION-OF-READY](../../../../markdown/DEFINITION-OF-READY.md) |
 | Definition of Done | [DEFINITION-OF-DONE](../../../../markdown/DEFINITION-OF-DONE.md) |
 
@@ -89,4 +89,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

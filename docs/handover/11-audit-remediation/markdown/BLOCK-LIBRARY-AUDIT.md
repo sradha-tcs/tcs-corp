@@ -8,8 +8,8 @@ owner: "Documentation Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: []
 relatedPages: []
@@ -30,24 +30,24 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
 
 ## Contents
 
-- [Pages reviewed (179, automated, 8 November 2026)](#pages-reviewed-179-automated-8-november-2026)
+- [Pages reviewed (179, automated, 13 November 2026)](#pages-reviewed-179-automated-13-november-2026)
 - [Blocks without a block library page](#blocks-without-a-block-library-page)
-- [Supported class options not shown in the block library (6)](#supported-class-options-not-shown-in-the-block-library-6)
+- [Supported class options not shown in the block library (10)](#supported-class-options-not-shown-in-the-block-library-10)
 - [Not reviewed](#not-reviewed)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
 - [Open items](#open-items)
 - [Change history](#change-history)
 
-## Pages reviewed (179, automated, 8 November 2026)
+## Pages reviewed (179, automated, 13 November 2026)
 
 | Page | Blocks | Block instances | Console errors | Failed requests | Overflow at |
 | --- | --- | --- | --- | --- | --- |
@@ -240,13 +240,17 @@ primary: true
 - `tab`
 - `tcs-header`
 
-## Supported class options not shown in the block library (6)
+## Supported class options not shown in the block library (10)
 
 | Block | Component | Field | Option | Value |
 | --- | --- | --- | --- | --- |
 | hero | hero | Icon color | Black | `icon-black` |
 | hero | hero | Icon color | White | `icon-white` |
 | hero | hero | Eyebrow color | Royal blue | `eyebrow-royal-blue` |
+| hero | hero | Title color | Black | `title-black` |
+| hero | hero | Title color | White | `title-white` |
+| hero | hero | Description color | Black | `description-black` |
+| hero | hero | Description color | White | `description-white` |
 | tab | tab | Columns per row | 1 | `per-row-1` |
 | tab | tab | Columns per row | 3 | `per-row-3` |
 | tab | tab | Columns per row | 4 | `per-row-4` |
@@ -479,4 +483,4 @@ The pages of the block folders are shown in each block's test coverage document;
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

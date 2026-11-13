@@ -8,8 +8,8 @@ owner: "UX/UI Lead plus Technical Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["styles/styles.css","styles/lazy-styles.css","styles/fonts.css","styles/motion.css","styles/card-list.css","docs/handover/knowledge-base/design-system.md"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | styles/styles.css, styles/lazy-styles.css, styles/fonts.css, styles/motion.css, styles/card-list.css, docs/handover/knowledge-base/design-system.md |
 | Related documents | — |
 | Related AEM paths | — |
@@ -676,81 +676,81 @@ Mapping checklist for a new Figma variation (practice from AGENTS.md "Blocks" an
 | `--list-hover-duration` | `300ms` | styles/card-list.css:41 | .card-list |
 | `--list-hover-easing` | `ease-out` | styles/card-list.css:42 | .card-list |
 | `--list-bleed` | `var(--section-padding-inline)` | styles/card-list.css:206 | .card-list.edge-bleed.mobile-scroll |
-| `--list-card-bg` | `var(--list-dark)` | styles/card-list.css:416 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
-| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:417 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
-| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:418 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
-| `--list-card-bg` | `var(--list-gradient)` | styles/card-list.css:455 | .card-list .list-card-report |
-| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:456 | .card-list .list-card-report |
-| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:457 | .card-list .list-card-report |
-| `--list-card-bg` | `var(--color-bg-tertiary)` | styles/card-list.css:461 | .card-list .list-card-stat |
-| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:462 | .card-list .list-card-stat |
-| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:463 | .card-list .list-card-stat |
-| `--list-stat-size` | `min(var(--list-stat-number-size), 26cqi)` | styles/card-list.css:490 | .card-list .list-card-stat .list-card-title |
-| `--list-stat-size` | `calc(var(--list-stat-number-size) * 0.42)` | styles/card-list.css:499 | .card-list.stat-compact .list-card-stat .list-card-title |
-| `--list-card-bg` | `var(--list-dark)` | styles/card-list.css:589 | .card-list .list-card.theme-dark |
-| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:590 | .card-list .list-card.theme-dark |
-| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:591 | .card-list .list-card.theme-dark |
-| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:592 | .card-list .list-card.theme-dark |
-| `--list-card-bg` | `var(--brand-600)` | styles/card-list.css:596 | .card-list .list-card.theme-navy |
-| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:597 | .card-list .list-card.theme-navy |
-| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:598 | .card-list .list-card.theme-navy |
-| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:599 | .card-list .list-card.theme-navy |
-| `--list-card-bg` | `var(--color-bg-brand)` | styles/card-list.css:603 | .card-list .list-card.theme-brand |
-| `--list-card-fg` | `var(--white-1000)` | styles/card-list.css:604 | .card-list .list-card.theme-brand |
-| `--list-card-muted` | `var(--white-900); /* 80% white gave 4.0:1 on the brand fill */` | styles/card-list.css:605 | .card-list .list-card.theme-brand |
-| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:606 | .card-list .list-card.theme-brand |
-| `--list-card-bg` | `var(--brand-300)` | styles/card-list.css:615 | .card-list .list-card.theme-brand-light |
-| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:616 | .card-list .list-card.theme-brand-light |
-| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:617 | .card-list .list-card.theme-brand-light |
-| `--list-card-bg` | `var(--color-bg-tertiary)` | styles/card-list.css:621 | .card-list .list-card.theme-grey |
-| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:622 | .card-list .list-card.theme-grey |
-| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:623 | .card-list .list-card.theme-grey |
-| `--list-card-bg` | `var(--grey-400)` | styles/card-list.css:627 | .card-list .list-card.theme-mid-grey |
-| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:628 | .card-list .list-card.theme-mid-grey |
-| `--list-card-muted` | `var(--black-600)` | styles/card-list.css:629 | .card-list .list-card.theme-mid-grey |
-| `--list-card-bg` | `var(--list-gradient)` | styles/card-list.css:633 | .card-list .list-card.theme-gradient |
-| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:634 | .card-list .list-card.theme-gradient |
-| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:635 | .card-list .list-card.theme-gradient |
-| `--list-card-bg` | `var(--color-bg-secondary)` | styles/card-list.css:643 | .card-list .list-card.theme-image |
-| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:644 | .card-list .list-card.theme-image |
-| `--list-card-muted` | `var(--color-text-secondary)` | styles/card-list.css:645 | .card-list .list-card.theme-image |
-| `--list-columns` | `var(--list-columns-tablet, 4)` | styles/card-list.css:800 | .card-list (@media (width >= 600px)) |
-| `--list-gap` | `var(--list-gap-tablet, 1.5rem)` | styles/card-list.css:801 | .card-list (@media (width >= 600px)) |
-| `--list-visible` | `var(--list-visible-tablet, 3.3)` | styles/card-list.css:802 | .card-list (@media (width >= 600px)) |
-| `--list-card-width` | `var(--list-card-width-tablet)` | styles/card-list.css:803 | .card-list (@media (width >= 600px)) |
-| `--list-card-title-size` | `1.25rem` | styles/card-list.css:804 | .card-list (@media (width >= 600px)) |
-| `--list-card-title-line` | `1.4` | styles/card-list.css:805 | .card-list (@media (width >= 600px)) |
-| `--list-panel-title-size` | `1.5rem` | styles/card-list.css:806 | .card-list (@media (width >= 600px)) |
-| `--list-panel-text-size` | `0.875rem` | styles/card-list.css:807 | .card-list (@media (width >= 600px)) |
-| `--list-stat-number-size` | `4rem` | styles/card-list.css:808 | .card-list (@media (width >= 600px)) |
-| `--list-kicker-size` | `0.875rem` | styles/card-list.css:809 | .card-list (@media (width >= 600px)) |
-| `--list-meta-size` | `0.875rem` | styles/card-list.css:810 | .card-list (@media (width >= 600px)) |
-| `--list-row-title-size` | `2rem` | styles/card-list.css:811 | .card-list (@media (width >= 600px)) |
-| `--list-feature-title-size` | `2.5rem` | styles/card-list.css:812 | .card-list (@media (width >= 600px)) |
-| `--list-bleed` | `var(--section-padding-inline)` | styles/card-list.css:869 | .card-list.edge-bleed.tablet-scroll (@media (width >= 600px)) |
-| `--list-bleed` | `0rem` | styles/card-list.css:881 | .card-list.edge-bleed.tablet-grid (@media (width >= 600px)) |
-| `--list-card-padding` | `var(--space-600)` | styles/card-list.css:913 | .card-list (@media (width >= 900px)) |
-| `--list-columns` | `var(--list-columns-desktop, 4)` | styles/card-list.css:920 | .card-list (@media (width >= 1200px)) |
-| `--list-gap` | `var(--list-gap-desktop, 1.5rem)` | styles/card-list.css:921 | .card-list (@media (width >= 1200px)) |
-| `--list-visible` | `var(--list-visible-desktop, 4.2)` | styles/card-list.css:922 | .card-list (@media (width >= 1200px)) |
-| `--list-card-width` | `var(--list-card-width-desktop)` | styles/card-list.css:923 | .card-list (@media (width >= 1200px)) |
-| `--list-card-title-size` | `1.5rem` | styles/card-list.css:924 | .card-list (@media (width >= 1200px)) |
-| `--list-card-title-line` | `1.42` | styles/card-list.css:925 | .card-list (@media (width >= 1200px)) |
-| `--list-panel-title-size` | `1.75rem` | styles/card-list.css:926 | .card-list (@media (width >= 1200px)) |
-| `--list-panel-text-size` | `1rem` | styles/card-list.css:927 | .card-list (@media (width >= 1200px)) |
-| `--list-stat-number-size` | `6rem` | styles/card-list.css:928 | .card-list (@media (width >= 1200px)) |
-| `--list-stat-text-size` | `1.125rem` | styles/card-list.css:929 | .card-list (@media (width >= 1200px)) |
-| `--list-meta-size` | `1rem` | styles/card-list.css:930 | .card-list (@media (width >= 1200px)) |
-| `--list-row-title-size` | `2.5rem` | styles/card-list.css:931 | .card-list (@media (width >= 1200px)) |
-| `--list-bleed` | `var(--section-padding-inline)` | styles/card-list.css:973 | .card-list.edge-bleed.desktop-scroll (@media (width >= 1200px)) |
-| `--list-bleed` | `0rem` | styles/card-list.css:985 | .card-list.edge-bleed.desktop-grid (@media (width >= 1200px)) |
+| `--list-card-bg` | `var(--list-dark)` | styles/card-list.css:417 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
+| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:418 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
+| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:419 | .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) |
+| `--list-card-bg` | `var(--list-gradient)` | styles/card-list.css:456 | .card-list .list-card-report |
+| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:457 | .card-list .list-card-report |
+| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:458 | .card-list .list-card-report |
+| `--list-card-bg` | `var(--color-bg-tertiary)` | styles/card-list.css:462 | .card-list .list-card-stat |
+| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:463 | .card-list .list-card-stat |
+| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:464 | .card-list .list-card-stat |
+| `--list-stat-size` | `min(var(--list-stat-number-size), 26cqi)` | styles/card-list.css:491 | .card-list .list-card-stat .list-card-title |
+| `--list-stat-size` | `calc(var(--list-stat-number-size) * 0.42)` | styles/card-list.css:500 | .card-list.stat-compact .list-card-stat .list-card-title |
+| `--list-card-bg` | `var(--list-dark)` | styles/card-list.css:590 | .card-list .list-card.theme-dark |
+| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:591 | .card-list .list-card.theme-dark |
+| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:592 | .card-list .list-card.theme-dark |
+| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:593 | .card-list .list-card.theme-dark |
+| `--list-card-bg` | `var(--brand-600)` | styles/card-list.css:597 | .card-list .list-card.theme-navy |
+| `--list-card-fg` | `var(--slate-100)` | styles/card-list.css:598 | .card-list .list-card.theme-navy |
+| `--list-card-muted` | `var(--white-500)` | styles/card-list.css:599 | .card-list .list-card.theme-navy |
+| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:600 | .card-list .list-card.theme-navy |
+| `--list-card-bg` | `var(--color-bg-brand)` | styles/card-list.css:604 | .card-list .list-card.theme-brand |
+| `--list-card-fg` | `var(--white-1000)` | styles/card-list.css:605 | .card-list .list-card.theme-brand |
+| `--list-card-muted` | `var(--white-900); /* 80% white gave 4.0:1 on the brand fill */` | styles/card-list.css:606 | .card-list .list-card.theme-brand |
+| `--list-card-strong` | `var(--slate-100)` | styles/card-list.css:607 | .card-list .list-card.theme-brand |
+| `--list-card-bg` | `var(--brand-300)` | styles/card-list.css:616 | .card-list .list-card.theme-brand-light |
+| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:617 | .card-list .list-card.theme-brand-light |
+| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:618 | .card-list .list-card.theme-brand-light |
+| `--list-card-bg` | `var(--color-bg-tertiary)` | styles/card-list.css:622 | .card-list .list-card.theme-grey |
+| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:623 | .card-list .list-card.theme-grey |
+| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:624 | .card-list .list-card.theme-grey |
+| `--list-card-bg` | `var(--grey-400)` | styles/card-list.css:628 | .card-list .list-card.theme-mid-grey |
+| `--list-card-fg` | `var(--black-1000)` | styles/card-list.css:629 | .card-list .list-card.theme-mid-grey |
+| `--list-card-muted` | `var(--black-600)` | styles/card-list.css:630 | .card-list .list-card.theme-mid-grey |
+| `--list-card-bg` | `var(--list-gradient)` | styles/card-list.css:634 | .card-list .list-card.theme-gradient |
+| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:635 | .card-list .list-card.theme-gradient |
+| `--list-card-muted` | `var(--black-500)` | styles/card-list.css:636 | .card-list .list-card.theme-gradient |
+| `--list-card-bg` | `var(--color-bg-secondary)` | styles/card-list.css:644 | .card-list .list-card.theme-image |
+| `--list-card-fg` | `var(--color-text-neutral)` | styles/card-list.css:645 | .card-list .list-card.theme-image |
+| `--list-card-muted` | `var(--color-text-secondary)` | styles/card-list.css:646 | .card-list .list-card.theme-image |
+| `--list-columns` | `var(--list-columns-tablet, 4)` | styles/card-list.css:801 | .card-list (@media (width >= 600px)) |
+| `--list-gap` | `var(--list-gap-tablet, 1.5rem)` | styles/card-list.css:802 | .card-list (@media (width >= 600px)) |
+| `--list-visible` | `var(--list-visible-tablet, 3.3)` | styles/card-list.css:803 | .card-list (@media (width >= 600px)) |
+| `--list-card-width` | `var(--list-card-width-tablet)` | styles/card-list.css:804 | .card-list (@media (width >= 600px)) |
+| `--list-card-title-size` | `1.25rem` | styles/card-list.css:805 | .card-list (@media (width >= 600px)) |
+| `--list-card-title-line` | `1.4` | styles/card-list.css:806 | .card-list (@media (width >= 600px)) |
+| `--list-panel-title-size` | `1.5rem` | styles/card-list.css:807 | .card-list (@media (width >= 600px)) |
+| `--list-panel-text-size` | `0.875rem` | styles/card-list.css:808 | .card-list (@media (width >= 600px)) |
+| `--list-stat-number-size` | `4rem` | styles/card-list.css:809 | .card-list (@media (width >= 600px)) |
+| `--list-kicker-size` | `0.875rem` | styles/card-list.css:810 | .card-list (@media (width >= 600px)) |
+| `--list-meta-size` | `0.875rem` | styles/card-list.css:811 | .card-list (@media (width >= 600px)) |
+| `--list-row-title-size` | `2rem` | styles/card-list.css:812 | .card-list (@media (width >= 600px)) |
+| `--list-feature-title-size` | `2.5rem` | styles/card-list.css:813 | .card-list (@media (width >= 600px)) |
+| `--list-bleed` | `var(--section-padding-inline)` | styles/card-list.css:870 | .card-list.edge-bleed.tablet-scroll (@media (width >= 600px)) |
+| `--list-bleed` | `0rem` | styles/card-list.css:882 | .card-list.edge-bleed.tablet-grid (@media (width >= 600px)) |
+| `--list-card-padding` | `var(--space-600)` | styles/card-list.css:914 | .card-list (@media (width >= 900px)) |
+| `--list-columns` | `var(--list-columns-desktop, 4)` | styles/card-list.css:921 | .card-list (@media (width >= 1200px)) |
+| `--list-gap` | `var(--list-gap-desktop, 1.5rem)` | styles/card-list.css:922 | .card-list (@media (width >= 1200px)) |
+| `--list-visible` | `var(--list-visible-desktop, 4.2)` | styles/card-list.css:923 | .card-list (@media (width >= 1200px)) |
+| `--list-card-width` | `var(--list-card-width-desktop)` | styles/card-list.css:924 | .card-list (@media (width >= 1200px)) |
+| `--list-card-title-size` | `1.5rem` | styles/card-list.css:925 | .card-list (@media (width >= 1200px)) |
+| `--list-card-title-line` | `1.42` | styles/card-list.css:926 | .card-list (@media (width >= 1200px)) |
+| `--list-panel-title-size` | `1.75rem` | styles/card-list.css:927 | .card-list (@media (width >= 1200px)) |
+| `--list-panel-text-size` | `1rem` | styles/card-list.css:928 | .card-list (@media (width >= 1200px)) |
+| `--list-stat-number-size` | `6rem` | styles/card-list.css:929 | .card-list (@media (width >= 1200px)) |
+| `--list-stat-text-size` | `1.125rem` | styles/card-list.css:930 | .card-list (@media (width >= 1200px)) |
+| `--list-meta-size` | `1rem` | styles/card-list.css:931 | .card-list (@media (width >= 1200px)) |
+| `--list-row-title-size` | `2.5rem` | styles/card-list.css:932 | .card-list (@media (width >= 1200px)) |
+| `--list-bleed` | `var(--section-padding-inline)` | styles/card-list.css:974 | .card-list.edge-bleed.desktop-scroll (@media (width >= 1200px)) |
+| `--list-bleed` | `0rem` | styles/card-list.css:986 | .card-list.edge-bleed.desktop-grid (@media (width >= 1200px)) |
 
 ## Media queries in use
 
 | Media query | Occurrences |
 | --- | --- |
 | `(width >= 900px)` | 16 |
-| `(width >= 1200px)` | 14 |
+| `(width >= 1200px)` | 16 |
 | `(prefers-reduced-motion: reduce)` | 12 |
 | `(width >= 600px)` | 12 |
 | `(width < 600px)` | 7 |
@@ -786,4 +786,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

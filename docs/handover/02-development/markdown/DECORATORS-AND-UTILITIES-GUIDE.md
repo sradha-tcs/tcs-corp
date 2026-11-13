@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["decorators/README.md","utils/README.md"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | decorators/README.md, utils/README.md |
 | Related documents | — |
 | Related AEM paths | — |
@@ -271,7 +271,7 @@ Pure logic goes into utils or block-local data modules with a Node test in `test
 | `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport; a pause / play button as `element.animationToggle`, WCAG 2.2.2; paused for reduced motion) | hero, teaser |
 | `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser, filter-list |
 | `stats-decorator.js` | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | testimonial, teaser |
-| `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
+| `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`; keywords: the dialog's and the sheet's by `keyword-action`, `utils/keywords.js`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article and blog templates (both), press-release template (`ensurePageHeader`) |
 | `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
@@ -290,6 +290,7 @@ Pure logic goes into utils or block-local data modules with a Node test in `test
 | `placeholders.js` | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | all blocks with UI text, header, footer, `scripts.js` (404 Go back) |
 | `taxonomy.js` | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | teaser, page-header, filter-list, conversation-canvas |
 | `data.js` | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | page-header, filter-list, footer, media-contacts, article template |
+| `keywords.js` | `resolveKeywords` (the page's keywords from the dialog's Keywords and the sheet's `meta-keywords`, by the sheet's `keyword-action`: `default` the dialog's win, `override` the sheet's win, `merge` both, the dialog's first, each once), `keywordActionOf`, `keywordsOf`, `KEYWORD_ACTIONS`; pure, unit tested | SEO decorator |
 | `privacy.js` | `redactSearchTerm` (data minimisation: e-mail addresses and phone numbers replaced, 100 characters), `contactLinkKind` (`mailto:` / `tel:` links as email / phone, so clicks are recorded without the address); unit tested | data layer decorator |
 | `properties.js` | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | teaser, image-collage, quote, testimonial, page-header, anchor-list, form-variations, conversation-canvas, tab, tabs, table-list, decorators |
 | `multifield.js` | `readMultifieldItems` (composite multifield items, authored before item children) | links util, stats decorator, anchor-list, filter-list |
@@ -327,4 +328,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

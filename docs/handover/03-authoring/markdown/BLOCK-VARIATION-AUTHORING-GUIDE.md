@@ -8,8 +8,8 @@ owner: "Content Lead / AEM Authoring Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["component-models.json"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | component-models.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -237,6 +237,8 @@ No variation option.
 | Hero | Style | BG Color | Default, Light, no overlay, Dark blue, Dark blue (subtle), Black, Charcoal Black 80 (cool charcoal), Midnight Navy 60, Charcoal Black 40 (deep charcoal) |
 | Hero | Style | Icon color | Default (as authored), Black, White, Blue, Pale blue |
 | Hero | Style | Eyebrow color | Default (royal blue), Royal blue, Soft sky blue |
+| Hero | Style | Title color | Default, Black, White |
+| Hero | Style | Description color | Default, Black, White |
 | CTA | — | CTA Link Type | Default, Open in New Window |
 | CTA | — | CTA view | Default, Primary, Secondary |
 | CTA | — | CTA Arrow | Auto (down for links to sections of this page), Right, Down |
@@ -448,6 +450,7 @@ No variation option.
 | Teaser | Style | Description size | Layout default, Regular (18px), Large (24px) |
 | Teaser | Style | Eyebrow Style | Brand, Label (uppercase, grey), Grey, White |
 | Teaser | Style | Top spacing | Default, Page header (extra space above) |
+| Teaser | Style | Link CTA Alignment | Default, Left |
 | Link | — | CTA Link Type | Default, Open in New Window |
 | Link | — | CTA Link Style | Text link, List, Primary Button, Primary Button (no arrow), Secondary Button, Secondary Button (no arrow) |
 | Link | — | Button background | Style default, White, Blue, Translucent white |
@@ -493,4 +496,4 @@ No variation option.
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

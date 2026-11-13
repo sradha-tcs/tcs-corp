@@ -8,8 +8,8 @@ owner: "QA Lead"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: []
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: false
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | — |
 | Related documents | — |
 | Related AEM paths | — |
@@ -82,12 +82,12 @@ primary: false
 | US-F-E01-05-02 | F-E01-05 | modal | TC-MODAL-006 | Passed |
 | US-F-E01-05-02 | F-E01-05 | modal | TC-MODAL-007 | Not Run |
 | US-F-E02-01-01 | F-E02-01 | hero | TC-HERO-002 | Not Run |
-| US-F-E02-01-01 | F-E02-01 | hero | TC-HERO-022 | Not Run |
-| US-F-E02-01-01 | F-E02-01 | hero | TC-HERO-023 | Not Run |
+| US-F-E02-01-01 | F-E02-01 | hero | TC-HERO-024 | Not Run |
+| US-F-E02-01-01 | F-E02-01 | hero | TC-HERO-025 | Not Run |
 | US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-001 | Failed |
-| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-024 | Requires Manual Validation |
-| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-025 | Passed |
-| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-026 | Not Run |
+| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-026 | Requires Manual Validation |
+| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-027 | Passed |
+| US-F-E02-01-02 | F-E02-01 | hero | TC-HERO-028 | Not Run |
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-003 | Not Run |
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-004 | Not Run |
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-005 | Not Run |
@@ -107,6 +107,8 @@ primary: false
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-019 | Not Run |
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-020 | Not Run |
 | US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-021 | Not Run |
+| US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-022 | Not Run |
+| US-F-E02-01-03 | F-E02-01 | hero | TC-HERO-023 | Not Run |
 | US-F-E02-02-01 | F-E02-02 | page-header | TC-PAGE-HEADER-002 | Not Run |
 | US-F-E02-02-01 | F-E02-02 | page-header | TC-PAGE-HEADER-010 | Not Run |
 | US-F-E02-02-01 | F-E02-02 | page-header | TC-PAGE-HEADER-011 | Not Run |
@@ -122,12 +124,12 @@ primary: false
 | US-F-E02-02-03 | F-E02-02 | page-header | TC-PAGE-HEADER-008 | Not Run |
 | US-F-E02-02-03 | F-E02-02 | page-header | TC-PAGE-HEADER-009 | Not Run |
 | US-F-E03-01-01 | F-E03-01 | teaser | TC-TEASER-002 | Not Run |
-| US-F-E03-01-01 | F-E03-01 | teaser | TC-TEASER-037 | Not Run |
 | US-F-E03-01-01 | F-E03-01 | teaser | TC-TEASER-038 | Not Run |
+| US-F-E03-01-01 | F-E03-01 | teaser | TC-TEASER-039 | Not Run |
 | US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-001 | Failed |
-| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-039 | Requires Manual Validation |
-| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-040 | Passed |
-| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-041 | Not Run |
+| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-040 | Requires Manual Validation |
+| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-041 | Passed |
+| US-F-E03-01-02 | F-E03-01 | teaser | TC-TEASER-042 | Not Run |
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-003 | Not Run |
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-004 | Not Run |
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-005 | Not Run |
@@ -162,6 +164,7 @@ primary: false
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-034 | Not Run |
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-035 | Not Run |
 | US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-036 | Not Run |
+| US-F-E03-01-03 | F-E03-01 | teaser | TC-TEASER-037 | Not Run |
 | US-F-E03-02-01 | F-E03-02 | cards | TC-CARDS-002 | Not Run |
 | US-F-E03-02-01 | F-E03-02 | cards | TC-CARDS-022 | Not Run |
 | US-F-E03-02-01 | F-E03-02 | cards | TC-CARDS-023 | Not Run |
@@ -545,4 +548,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

@@ -3,8 +3,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, posix, relative } from 'node:path';
 
-export const TODAY = '8 November 2026';
-export const TODAY_ISO = '2026-11-08';
+// the generation date (DOC_DATE to set another), e.g. 13 November 2026
+export const TODAY = process.env.DOC_DATE || new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+export const TODAY_ISO = process.env.DOC_DATE_ISO || new Date().toISOString().slice(0, 10);
 export const GH = 'https://github.com/sradha-tcs/tcs-corp';
 export const LIVE = 'https://main--tcs-corp--sradha-tcs.aem.live';
 export const PREVIEW = 'https://main--tcs-corp--sradha-tcs.aem.page';

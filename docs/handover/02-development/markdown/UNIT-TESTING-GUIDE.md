@@ -8,8 +8,8 @@ owner: "Technical Lead / Block Owner"
 approver: "Product Owner (to be confirmed)"
 version: "1.0"
 status: "Draft for review"
-lastUpdated: "2026-11-08"
-lastValidated: "2026-11-08"
+lastUpdated: "2026-11-13"
+lastValidated: "2026-11-13"
 sourceFiles: ["test/","package.json"]
 relatedComponents: []
 relatedPages: []
@@ -30,8 +30,8 @@ primary: true
 | Approver | Product Owner (to be confirmed) |
 | Version | 1.0 |
 | Status | Draft for review |
-| Last updated | 8 November 2026 |
-| Last validated | 8 November 2026 |
+| Last updated | 13 November 2026 |
+| Last validated | 13 November 2026 |
 | Source files | test/, package.json |
 | Related documents | — |
 | Related AEM paths | — |
@@ -40,7 +40,7 @@ primary: true
 
 - [Unit Tests](#unit-tests)
 - [Lint](#lint)
-- [Test inventory (19 files, 257 test cases)](#test-inventory-19-files-257-test-cases)
+- [Test inventory (20 files, 264 test cases)](#test-inventory-20-files-264-test-cases)
 - [Result in this program](#result-in-this-program)
 - [Screenshots](#screenshots)
 - [Known limitations](#known-limitations)
@@ -83,7 +83,7 @@ Not unit tested (no DOM test environment): block decoration, the data layer deco
 
 Ignored: `*.min.js`, `dompurify.min.js`, `docs/audit/tools` ([.eslintignore](https://github.com/sradha-tcs/tcs-corp/blob/main/.eslintignore)). Not linted: `templates/*/*.css`. `npm run lint:fix` fixes what it can.
 
-## Test inventory (19 files, 257 test cases)
+## Test inventory (20 files, 264 test cases)
 
 | File | Suites | Tests |
 | --- | --- | --- |
@@ -103,14 +103,15 @@ Ignored: `*.min.js`, `dompurify.min.js`, `docs/audit/tools` ([.eslintignore](htt
 | `test/privacy/privacy.test.mjs` | redactSearchTerm; contactLinkKind | 7 |
 | `test/separator/separator-config.test.mjs` | defaults; component id; accessibility mode; variants and line settings; width and alignment; responsive; decorations; animation, print and analytics | 21 |
 | `test/site/index-root.test.mjs` | indexRoot; localeSheetPath; localePagePath; on AEM author; pageLink; the language master root page; getParentPages (inherited Navigation, Footer, 404 Page) | 23 |
+| `test/site/keywords.test.mjs` | keywordActionOf; keywordsOf; resolveKeywords | 7 |
 | `test/site/page-tree.test.mjs` | pageTree | 5 |
 | `test/site/paths.test.mjs` | paths.json | 5 |
 | `test/site/query-index-url.test.mjs` | indexUrlOf; remainingOffsets | 3 |
 
 ## Result in this program
 
-- `npm run lint`: Passed (exit 0)
-- `npm test`: 387 of 389 passed, 2 failed: the 2 Form Variations motion tests (known before this program)
+- `npm run lint`: Passed (exit 0) on feature/keyword-action (PR #218)
+- `npm test`: 394 of 396 passed, 2 failed: the 2 Form Variations motion tests (failing on main since the model change of 27 October)
 
 ## Screenshots
 
@@ -128,4 +129,4 @@ No screenshot belongs to this document (it describes code, configuration or proc
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
-| 1.0 | 8 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |
+| 1.0 | 13 November 2026 | Delivery team (documentation program) | First version of the role-specific documentation (master documentation prompt), generated from the repository and the published reference pages |

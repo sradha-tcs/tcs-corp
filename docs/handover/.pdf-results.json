@@ -1,0 +1,2261 @@
+[
+ {
+  "pdf": "01-architecture/pdf/ARCHITECTURE-GUIDE.pdf",
+  "members": [
+   "01-architecture/markdown/ARCHITECTURE-GUIDE.md",
+   "01-architecture/markdown/ARCHITECTURE-DECISIONS.md",
+   "01-architecture/markdown/ARCHITECTURE-RISKS-AND-OPEN-ITEMS.md",
+   "01-architecture/markdown/CONTENT-ARCHITECTURE.md",
+   "01-architecture/markdown/DEPLOYMENT-ARCHITECTURE.md",
+   "01-architecture/markdown/INTEGRATION-ARCHITECTURE.md",
+   "01-architecture/markdown/LOCALIZATION-ARCHITECTURE.md",
+   "01-architecture/markdown/PERFORMANCE-ARCHITECTURE.md",
+   "01-architecture/markdown/SECURITY-ARCHITECTURE.md",
+   "01-architecture/markdown/SOLUTION-ARCHITECTURE.md",
+   "01-architecture/markdown/TECHNICAL-ARCHITECTURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/pdf/DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/markdown/DEVELOPER-GUIDE.md",
+   "02-development/markdown/ACCESSIBILITY-DEVELOPMENT-GUIDE.md",
+   "02-development/markdown/ANALYTICS-DATA-LAYER-GUIDE.md",
+   "02-development/markdown/CODING-STANDARDS.md",
+   "02-development/markdown/CONTENT-MODELING-GUIDE.md",
+   "02-development/markdown/DEBUGGING-TROUBLESHOOTING-GUIDE.md",
+   "02-development/markdown/DECORATORS-AND-UTILITIES-GUIDE.md",
+   "02-development/markdown/LOCAL-DEVELOPMENT-SETUP.md",
+   "02-development/markdown/PERFORMANCE-DEVELOPMENT-GUIDE.md",
+   "02-development/markdown/PULL-REQUEST-REVIEW-CHECKLIST.md",
+   "02-development/markdown/RELEASE-AND-DEPLOYMENT-GUIDE.md",
+   "02-development/markdown/REPOSITORY-STRUCTURE.md",
+   "02-development/markdown/SEO-DEVELOPMENT-GUIDE.md",
+   "02-development/markdown/UNIT-TESTING-GUIDE.md",
+   "02-development/markdown/UNIVERSAL-EDITOR-MODEL-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/pdf/DESIGN-STYLE-GUIDE.pdf",
+  "members": [
+   "02-development/markdown/DESIGN-STYLE-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/pdf/BLOCK-DEVELOPMENT-GUIDE.pdf",
+  "members": [
+   "02-development/markdown/BLOCK-DEVELOPMENT-GUIDE.md",
+   "02-development/blocks/BLOCK-INVENTORY.md",
+   "02-development/blocks/BLOCK-DEPENDENCY-MATRIX.md",
+   "02-development/blocks/BLOCK-KNOWN-LIMITATIONS.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/pdf/CURATED-DESIGN-PAGE-DEVELOPMENT-GUIDE.pdf",
+  "members": [
+   "02-development/markdown/CURATED-DESIGN-PAGE-DEVELOPMENT-GUIDE.md",
+   "02-development/curated-design-pages/CURATED-PAGE-INVENTORY.md",
+   "02-development/curated-design-pages/CURATED-PAGE-COMPOSITION-MATRIX.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/accordion/ACCORDION-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/accordion/ACCORDION-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/anchor-list/ANCHOR-LIST-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/anchor-list/ANCHOR-LIST-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/button-block/BUTTON-BLOCK-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/button-block/BUTTON-BLOCK-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/cards/CARDS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/cards/CARDS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/column-break/COLUMN-BREAK-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/column-break/COLUMN-BREAK-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/columns-container/COLUMNS-CONTAINER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/columns-container/COLUMNS-CONTAINER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/columns/COLUMNS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/columns/COLUMNS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/conversation-canvas/CONVERSATION-CANVAS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/conversation-canvas/CONVERSATION-CANVAS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/embed/EMBED-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/embed/EMBED-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/filter-list/FILTER-LIST-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/filter-list/FILTER-LIST-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/footer/FOOTER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/footer/FOOTER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/form-variations/FORM-VARIATIONS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/form-variations/FORM-VARIATIONS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/fragment/FRAGMENT-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/fragment/FRAGMENT-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/gen-carousel/GEN-CAROUSEL-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/gen-carousel/GEN-CAROUSEL-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/header/HEADER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/header/HEADER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/hero/HERO-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/hero/HERO-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/image-collage/IMAGE-COLLAGE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/image-collage/IMAGE-COLLAGE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/interactive-dashboard/INTERACTIVE-DASHBOARD-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/interactive-dashboard/INTERACTIVE-DASHBOARD-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/list/LIST-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/list/LIST-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/media-contacts/MEDIA-CONTACTS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/media-contacts/MEDIA-CONTACTS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/modal/MODAL-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/modal/MODAL-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/page-header/PAGE-HEADER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/page-header/PAGE-HEADER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/quote/QUOTE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/quote/QUOTE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/separator/SEPARATOR-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/separator/SEPARATOR-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/tab/TAB-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/tab/TAB-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/table-list/TABLE-LIST-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/table-list/TABLE-LIST-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/table/TABLE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/table/TABLE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/tabs/TABS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/tabs/TABS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/tcs-header/TCS-HEADER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/tcs-header/TCS-HEADER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/teaser/TEASER-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/teaser/TEASER-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/testimonial/TESTIMONIAL-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/testimonial/TESTIMONIAL-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/blocks/video/VIDEO-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/blocks/video/VIDEO-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/case-study/CASE-STUDY-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/case-study/CASE-STUDY-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/collection/COLLECTION-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/collection/COLLECTION-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-ar-landing/FORMS-AR-LANDING-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-ar-landing/FORMS-AR-LANDING-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-csr-form/FORMS-CSR-FORM-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-csr-form/FORMS-CSR-FORM-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-csr/FORMS-CSR-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-csr/FORMS-CSR-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-global-contact-us/FORMS-GLOBAL-CONTACT-US-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-global-contact-us/FORMS-GLOBAL-CONTACT-US-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-inquizitive/FORMS-INQUIZITIVE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-inquizitive/FORMS-INQUIZITIVE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-media-form/FORMS-MEDIA-FORM-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-media-form/FORMS-MEDIA-FORM-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-talk-to-an-expert-retail/FORMS-TALK-TO-AN-EXPERT-RETAIL-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-talk-to-an-expert-retail/FORMS-TALK-TO-AN-EXPERT-RETAIL-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/forms-website-feedback-form/FORMS-WEBSITE-FEEDBACK-FORM-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/forms-website-feedback-form/FORMS-WEBSITE-FEEDBACK-FORM-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/home/HOME-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/home/HOME-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/industry-landing-page/INDUSTRY-LANDING-PAGE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/industry-landing-page/INDUSTRY-LANDING-PAGE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/insights/INSIGHTS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/insights/INSIGHTS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/media-and-investor/MEDIA-AND-INVESTOR-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/media-and-investor/MEDIA-AND-INVESTOR-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/news-and-events/NEWS-AND-EVENTS-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/news-and-events/NEWS-AND-EVENTS-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/product/PRODUCT-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/product/PRODUCT-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/services/SERVICES-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/services/SERVICES-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/story/STORY-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/story/STORY-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/what-we-do/WHAT-WE-DO-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/what-we-do/WHAT-WE-DO-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "02-development/curated-design-pages/who-we-are/WHO-WE-ARE-DEVELOPER-GUIDE.pdf",
+  "members": [
+   "02-development/curated-design-pages/who-we-are/WHO-WE-ARE-DEVELOPER-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/pdf/AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/markdown/AUTHORING-GUIDE.md",
+   "03-authoring/markdown/ACCESSIBILITY-AUTHORING-GUIDE.md",
+   "03-authoring/markdown/ASSET-AUTHORING-GUIDE.md",
+   "03-authoring/markdown/AUTHORING-CHECKLIST.md",
+   "03-authoring/markdown/COMMON-AUTHORING-ERRORS.md",
+   "03-authoring/markdown/CURATED-DESIGN-PAGE-AUTHORING-GUIDE.md",
+   "03-authoring/markdown/DATASHEETS-GUIDE.md",
+   "03-authoring/markdown/GETTING-STARTED.md",
+   "03-authoring/markdown/LOCALIZATION-GUIDE.md",
+   "03-authoring/markdown/METADATA-GUIDE.md",
+   "03-authoring/markdown/PAGE-CREATION-GUIDE.md",
+   "03-authoring/markdown/PAGE-PROPERTIES-GUIDE.md",
+   "03-authoring/markdown/PLACEHOLDERS-GUIDE.md",
+   "03-authoring/markdown/PREVIEW-PUBLISH-UNPUBLISH-GUIDE.md",
+   "03-authoring/markdown/SEO-AUTHORING-GUIDE.md",
+   "03-authoring/markdown/TAXONOMY-AND-TAGGING-GUIDE.md",
+   "03-authoring/markdown/VERSIONING-ROLLBACK-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/pdf/COMPONENT-AUTHORING-REFERENCE.pdf",
+  "members": [
+   "03-authoring/markdown/BLOCK-VARIATION-AUTHORING-GUIDE.md",
+   "03-authoring/markdown/COMPONENT-AUTHORING-REFERENCE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/accordion/ACCORDION-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/accordion/ACCORDION-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/anchor-list/ANCHOR-LIST-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/anchor-list/ANCHOR-LIST-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/button-block/BUTTON-BLOCK-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/button-block/BUTTON-BLOCK-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/button/BUTTON-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/button/BUTTON-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/cards/CARDS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/cards/CARDS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/column-break/COLUMN-BREAK-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/column-break/COLUMN-BREAK-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/columns-container/COLUMNS-CONTAINER-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/columns-container/COLUMNS-CONTAINER-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/columns/COLUMNS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/columns/COLUMNS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/conversation-canvas/CONVERSATION-CANVAS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/conversation-canvas/CONVERSATION-CANVAS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/embed/EMBED-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/embed/EMBED-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/filter-list/FILTER-LIST-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/filter-list/FILTER-LIST-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/footer/FOOTER-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/footer/FOOTER-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/form-variations/FORM-VARIATIONS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/form-variations/FORM-VARIATIONS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/fragment/FRAGMENT-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/fragment/FRAGMENT-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/gen-carousel/GEN-CAROUSEL-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/gen-carousel/GEN-CAROUSEL-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/hero/HERO-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/hero/HERO-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/image-collage/IMAGE-COLLAGE-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/image-collage/IMAGE-COLLAGE-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/image/IMAGE-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/image/IMAGE-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/interactive-dashboard/INTERACTIVE-DASHBOARD-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/interactive-dashboard/INTERACTIVE-DASHBOARD-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/list/LIST-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/list/LIST-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/media-contacts/MEDIA-CONTACTS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/media-contacts/MEDIA-CONTACTS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/modal/MODAL-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/modal/MODAL-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/page-header/PAGE-HEADER-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/page-header/PAGE-HEADER-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/quote/QUOTE-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/quote/QUOTE-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/section/SECTION-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/section/SECTION-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/separator/SEPARATOR-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/separator/SEPARATOR-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/tab/TAB-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/tab/TAB-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/table-list/TABLE-LIST-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/table-list/TABLE-LIST-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/table/TABLE-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/table/TABLE-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/tabs/TABS-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/tabs/TABS-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/tcs-header/TCS-HEADER-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/tcs-header/TCS-HEADER-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/teaser/TEASER-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/teaser/TEASER-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/testimonial/TESTIMONIAL-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/testimonial/TESTIMONIAL-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/text/TEXT-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/text/TEXT-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/title/TITLE-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/title/TITLE-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "03-authoring/components/video/VIDEO-AUTHORING-GUIDE.pdf",
+  "members": [
+   "03-authoring/components/video/VIDEO-AUTHORING-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/pdf/BUSINESS-ANALYST-GUIDE.pdf",
+  "members": [
+   "04-business-analysis/markdown/BUSINESS-ANALYST-GUIDE.md",
+   "04-business-analysis/markdown/ASSUMPTIONS-CONSTRAINTS-RISKS.md",
+   "04-business-analysis/markdown/BUSINESS-CONTEXT.md",
+   "04-business-analysis/markdown/BUSINESS-RULES.md",
+   "04-business-analysis/markdown/DEFINITION-OF-DONE.md",
+   "04-business-analysis/markdown/DEFINITION-OF-READY.md",
+   "04-business-analysis/markdown/DEPENDENCY-MATRIX.md",
+   "04-business-analysis/markdown/FUNCTIONAL-REQUIREMENTS.md",
+   "04-business-analysis/markdown/NON-FUNCTIONAL-REQUIREMENTS.md",
+   "04-business-analysis/markdown/OPEN-DECISIONS.md",
+   "04-business-analysis/markdown/PERSONAS-AND-JOURNEYS.md",
+   "04-business-analysis/markdown/SCOPE-AND-BOUNDARIES.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/pdf/EPIC-FEATURE-USER-STORY-CATALOG.pdf",
+  "members": [
+   "04-business-analysis/markdown/ACCEPTANCE-CRITERIA-CATALOG.md",
+   "04-business-analysis/markdown/EPIC-FEATURE-USER-STORY-CATALOG.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/pdf/REQUIREMENTS-TRACEABILITY-MATRIX.pdf",
+  "members": [
+   "04-business-analysis/markdown/REQUIREMENTS-TRACEABILITY-MATRIX.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/user-stories/US-F-E01-01-01-to-add-and-configure-the-header-in-universal-edito.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/user-stories/US-F-E01-01-01-to-add-and-configure-the-header-in-universal-edito.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/user-stories/US-F-E01-01-02-to-see-and-use-the-header-site-header-from-the-nav.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-01-header/user-stories/US-F-E01-01-02-to-see-and-use-the-header-site-header-from-the-nav.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-01-to-add-and-configure-the-tcs-header-in-universal-e.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-01-to-add-and-configure-the-tcs-header-in-universal-e.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-02-to-see-and-use-the-tcs-header-the-tcs-and-tata-log.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-02-to-see-and-use-the-tcs-header-the-tcs-and-tata-log.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-03-to-choose-the-tcs-header-s-variations.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-02-tcs-header/user-stories/US-F-E01-02-03-to-choose-the-tcs-header-s-variations.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-01-to-add-and-configure-the-footer-in-universal-edito.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-01-to-add-and-configure-the-footer-in-universal-edito.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-02-to-see-and-use-the-footer-site-footer-bar-on-the-f.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-02-to-see-and-use-the-footer-site-footer-bar-on-the-f.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-03-to-choose-the-footer-s-variations-footer-link-item.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-03-footer/user-stories/US-F-E01-03-03-to-choose-the-footer-s-variations-footer-link-item.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/user-stories/US-F-E01-04-01-to-add-and-configure-the-fragment-in-universal-edi.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/user-stories/US-F-E01-04-01-to-add-and-configure-the-fragment-in-universal-edi.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/user-stories/US-F-E01-04-02-to-see-and-use-the-fragment-includes-the-sections-.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-04-fragment/user-stories/US-F-E01-04-02-to-see-and-use-the-fragment-includes-the-sections-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/user-stories/US-F-E01-05-01-to-add-and-configure-the-modal-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/user-stories/US-F-E01-05-01-to-add-and-configure-the-modal-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/user-stories/US-F-E01-05-02-to-see-and-use-the-modal-opens-a-page-s-content-in.pdf",
+  "members": [
+   "04-business-analysis/epics/E01-site-navigation-and-global-chrome/features/F-E01-05-modal/user-stories/US-F-E01-05-02-to-see-and-use-the-modal-opens-a-page-s-content-in.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-01-to-add-and-configure-the-hero-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-01-to-add-and-configure-the-hero-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-02-to-see-and-use-the-hero-full-width-banner-with-ima.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-02-to-see-and-use-the-hero-full-width-banner-with-ima.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-03-to-choose-the-hero-s-variations-views-nine-positio.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-01-hero/user-stories/US-F-E02-01-03-to-choose-the-hero-s-variations-views-nine-positio.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-01-to-add-and-configure-the-page-header-in-universal-.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-01-to-add-and-configure-the-page-header-in-universal-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-02-to-see-and-use-the-page-header-the-title-area-of-a.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-02-to-see-and-use-the-page-header-the-title-area-of-a.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-03-to-choose-the-page-header-s-variations-layouts-by-.pdf",
+  "members": [
+   "04-business-analysis/epics/E02-page-heroes-and-page-headers/features/F-E02-02-page-header/user-stories/US-F-E02-02-03-to-choose-the-page-header-s-variations-layouts-by-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-01-to-add-and-configure-the-teaser-in-universal-edito.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-01-to-add-and-configure-the-teaser-in-universal-edito.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-02-to-see-and-use-the-teaser-title-text-image-and-lin.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-02-to-see-and-use-the-teaser-title-text-image-and-lin.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-03-to-choose-the-teaser-s-variations-layouts-image-te.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-01-teaser/user-stories/US-F-E03-01-03-to-choose-the-teaser-s-variations-layouts-image-te.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-01-to-add-and-configure-the-cards-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-01-to-add-and-configure-the-cards-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-02-to-see-and-use-the-cards-manually-authored-cards-w.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-02-to-see-and-use-the-cards-manually-authored-cards-w.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-03-to-choose-the-cards-s-variations-card-style-image-.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-02-cards/user-stories/US-F-E03-02-03-to-choose-the-cards-s-variations-card-style-image-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-01-to-add-and-configure-the-columns-container-in-univ.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-01-to-add-and-configure-the-columns-container-in-univ.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-02-to-see-and-use-the-columns-container-a-section-lai.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-02-to-see-and-use-the-columns-container-a-section-lai.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-03-to-choose-the-columns-container-s-variations-colum.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-03-columns-container/user-stories/US-F-E03-03-03-to-choose-the-columns-container-s-variations-colum.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/user-stories/US-F-E03-04-01-to-add-and-configure-the-columns-in-universal-edit.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/user-stories/US-F-E03-04-01-to-add-and-configure-the-columns-in-universal-edit.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/user-stories/US-F-E03-04-02-to-see-and-use-the-columns-the-built-in-columns-bl.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-04-columns/user-stories/US-F-E03-04-02-to-see-and-use-the-columns-the-built-in-columns-bl.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/user-stories/US-F-E03-05-01-to-add-and-configure-the-column-break-in-universal.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/user-stories/US-F-E03-05-01-to-add-and-configure-the-column-break-in-universal.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/user-stories/US-F-E03-05-02-to-see-and-use-the-column-break-starts-a-column-in.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-05-column-break/user-stories/US-F-E03-05-02-to-see-and-use-the-column-break-starts-a-column-in.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-01-to-add-and-configure-the-quote-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-01-to-add-and-configure-the-quote-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-02-to-see-and-use-the-quote-a-quotation-with-author-o.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-02-to-see-and-use-the-quote-a-quotation-with-author-o.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-03-to-choose-the-quote-s-variations-image-position-bg.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-06-quote/user-stories/US-F-E03-06-03-to-choose-the-quote-s-variations-image-position-bg.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-01-to-add-and-configure-the-testimonial-in-universal-.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-01-to-add-and-configure-the-testimonial-in-universal-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-02-to-see-and-use-the-testimonial-a-client-testimonia.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-02-to-see-and-use-the-testimonial-a-client-testimonia.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-03-to-choose-the-testimonial-s-variations-bg-color-sh.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-07-testimonial/user-stories/US-F-E03-07-03-to-choose-the-testimonial-s-variations-bg-color-sh.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-01-to-add-and-configure-the-separator-in-universal-ed.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-01-to-add-and-configure-the-separator-in-universal-ed.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-02-to-see-and-use-the-separator-a-divider-line-betwee.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-02-to-see-and-use-the-separator-a-divider-line-betwee.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-03-to-choose-the-separator-s-variations-variants-widt.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-08-separator/user-stories/US-F-E03-08-03-to-choose-the-separator-s-variations-variants-widt.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-01-to-add-and-configure-the-image-collage-in-universa.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-01-to-add-and-configure-the-image-collage-in-universa.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-02-to-see-and-use-the-image-collage-centred-eyebrow-t.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-02-to-see-and-use-the-image-collage-centred-eyebrow-t.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-03-to-choose-the-image-collage-s-variations-title-wei.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-09-image-collage/user-stories/US-F-E03-09-03-to-choose-the-image-collage-s-variations-title-wei.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/user-stories/US-F-E03-10-01-to-add-and-configure-the-accordion-in-universal-ed.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/user-stories/US-F-E03-10-01-to-add-and-configure-the-accordion-in-universal-ed.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/user-stories/US-F-E03-10-02-to-see-and-use-the-accordion-expandable-question-a.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-10-accordion/user-stories/US-F-E03-10-02-to-see-and-use-the-accordion-expandable-question-a.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-01-to-add-and-configure-the-tabs-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-01-to-add-and-configure-the-tabs-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-02-to-see-and-use-the-tabs-tabs-container-section-tab.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-02-to-see-and-use-the-tabs-tabs-container-section-tab.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-03-to-choose-the-tabs-s-variations-styles-alignment-o.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-11-tabs/user-stories/US-F-E03-11-03-to-choose-the-tabs-s-variations-styles-alignment-o.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-01-to-add-and-configure-the-tab-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-01-to-add-and-configure-the-tab-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-02-to-see-and-use-the-tab-starts-a-tab-panel-in-a-tab.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-02-to-see-and-use-the-tab-starts-a-tab-panel-in-a-tab.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-03-to-choose-the-tab-s-variations-columns-per-row-of-.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-12-tab/user-stories/US-F-E03-12-03-to-choose-the-tab-s-variations-columns-per-row-of-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-01-to-add-and-configure-the-gen-carousel-in-universal.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-01-to-add-and-configure-the-gen-carousel-in-universal.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-02-to-see-and-use-the-gen-carousel-a-section-whose-he.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-02-to-see-and-use-the-gen-carousel-a-section-whose-he.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-03-to-choose-the-gen-carousel-s-variations-navigation.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-13-gen-carousel/user-stories/US-F-E03-13-03-to-choose-the-gen-carousel-s-variations-navigation.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-01-to-add-and-configure-the-table-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-01-to-add-and-configure-the-table-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-02-to-see-and-use-the-table-a-data-table-of-rows-with.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-02-to-see-and-use-the-table-a-data-table-of-rows-with.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-03-to-choose-the-table-s-variations-header-row-column.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-14-table/user-stories/US-F-E03-14-03-to-choose-the-table-s-variations-header-row-column.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/user-stories/US-F-E03-15-01-to-add-and-configure-the-anchor-list-in-universal-.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/user-stories/US-F-E03-15-01-to-add-and-configure-the-anchor-list-in-universal-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/user-stories/US-F-E03-15-02-to-see-and-use-the-anchor-list-in-page-navigation-.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-15-anchor-list/user-stories/US-F-E03-15-02-to-see-and-use-the-anchor-list-in-page-navigation-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-01-to-add-and-configure-the-button-in-universal-edito.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-01-to-add-and-configure-the-button-in-universal-edito.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-02-to-see-and-use-the-button-a-link-styled-as-a-butto.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-02-to-see-and-use-the-button-a-link-styled-as-a-butto.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-03-to-choose-the-button-s-variations-view-button-icon.pdf",
+  "members": [
+   "04-business-analysis/epics/E03-editorial-content-presentation/features/F-E03-16-button/user-stories/US-F-E03-16-03-to-choose-the-button-s-variations-view-button-icon.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-01-video/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-01-video/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-01-to-add-and-configure-the-video-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-01-to-add-and-configure-the-video-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-02-to-see-and-use-the-video-a-dam-youtube-or-vimeo-vi.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-02-to-see-and-use-the-video-a-dam-youtube-or-vimeo-vi.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-03-to-choose-the-video-s-variations-inline-or-pop-up-.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-01-video/user-stories/US-F-E04-01-03-to-choose-the-video-s-variations-inline-or-pop-up-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-02-embed/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-02-embed/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-02-embed/user-stories/US-F-E04-02-01-to-add-and-configure-the-embed-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-02-embed/user-stories/US-F-E04-02-01-to-add-and-configure-the-embed-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-02-embed/user-stories/US-F-E04-02-02-to-see-and-use-the-embed-third-party-embeds-youtub.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-02-embed/user-stories/US-F-E04-02-02-to-see-and-use-the-embed-third-party-embeds-youtub.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/user-stories/US-F-E04-03-01-to-add-and-configure-the-interactive-dashboard-in-.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/user-stories/US-F-E04-03-01-to-add-and-configure-the-interactive-dashboard-in-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/user-stories/US-F-E04-03-02-to-see-and-use-the-interactive-dashboard-reserved-.pdf",
+  "members": [
+   "04-business-analysis/epics/E04-media/features/F-E04-03-interactive-dashboard/user-stories/US-F-E04-03-02-to-see-and-use-the-interactive-dashboard-reserved-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-01-to-add-and-configure-the-list-in-universal-editor.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-01-to-add-and-configure-the-list-in-universal-editor.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-02-to-see-and-use-the-list-child-pages-a-fixed-list-o.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-02-to-see-and-use-the-list-child-pages-a-fixed-list-o.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-03-to-choose-the-list-s-variations-sources-card-style.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-01-list/user-stories/US-F-E05-01-03-to-choose-the-list-s-variations-sources-card-style.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-01-to-add-and-configure-the-filter-list-in-universal-.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-01-to-add-and-configure-the-filter-list-in-universal-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-02-to-see-and-use-the-filter-list-filterable-listing-.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-02-to-see-and-use-the-filter-list-filterable-listing-.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-03-to-choose-the-filter-list-s-variations-layouts-car.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-02-filter-list/user-stories/US-F-E05-02-03-to-choose-the-filter-list-s-variations-layouts-car.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-01-to-add-and-configure-the-table-list-in-universal-e.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-01-to-add-and-configure-the-table-list-in-universal-e.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-02-to-see-and-use-the-table-list-a-numbered-list-of-l.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-02-to-see-and-use-the-table-list-a-numbered-list-of-l.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-03-to-choose-the-table-list-s-variations-variations-i.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-03-table-list/user-stories/US-F-E05-03-03-to-choose-the-table-list-s-variations-variations-i.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-01-to-add-and-configure-the-media-contacts-in-univers.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-01-to-add-and-configure-the-media-contacts-in-univers.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-02-to-see-and-use-the-media-contacts-the-media-contac.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-02-to-see-and-use-the-media-contacts-the-media-contac.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-03-to-choose-the-media-contacts-s-variations-title-an.pdf",
+  "members": [
+   "04-business-analysis/epics/E05-listings-and-discovery/features/F-E05-04-media-contacts/user-stories/US-F-E05-04-03-to-choose-the-media-contacts-s-variations-title-an.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E06-forms-and-lead-capture/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E06-forms-and-lead-capture/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-01-to-add-and-configure-the-form-variations-in-univer.pdf",
+  "members": [
+   "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-01-to-add-and-configure-the-form-variations-in-univer.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-02-to-see-and-use-the-form-variations-forms-contact-d.pdf",
+  "members": [
+   "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-02-to-see-and-use-the-form-variations-forms-contact-d.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-03-to-choose-the-form-variations-s-variations-form-va.pdf",
+  "members": [
+   "04-business-analysis/epics/E06-forms-and-lead-capture/features/F-E06-01-form-variations/user-stories/US-F-E06-01-03-to-choose-the-form-variations-s-variations-form-va.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E07-conversational-experience/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E07-conversational-experience/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-01-to-add-and-configure-the-conversation-canvas-in-un.pdf",
+  "members": [
+   "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-01-to-add-and-configure-the-conversation-canvas-in-un.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-02-to-see-and-use-the-conversation-canvas-search-prom.pdf",
+  "members": [
+   "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-02-to-see-and-use-the-conversation-canvas-search-prom.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-03-to-choose-the-conversation-canvas-s-variations-pri.pdf",
+  "members": [
+   "04-business-analysis/epics/E07-conversational-experience/features/F-E07-01-conversation-canvas/user-stories/US-F-E07-01-03-to-choose-the-conversation-canvas-s-variations-pri.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-01-locale-sites-by-path/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-01-locale-sites-by-path/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-01-locale-sites-by-path/user-stories/US-F-E08-01-01-locale-sites-by-path.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-01-locale-sites-by-path/user-stories/US-F-E08-01-01-locale-sites-by-path.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-02-review-roots-with-their-own-references-and-sheets/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-02-review-roots-with-their-own-references-and-sheets/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-02-review-roots-with-their-own-references-and-sheets/user-stories/US-F-E08-02-01-review-roots-with-their-own-references-and-sheets.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-02-review-roots-with-their-own-references-and-sheets/user-stories/US-F-E08-02-01-review-roots-with-their-own-references-and-sheets.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-03-inherited-navigation-footer-and-404-page/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-03-inherited-navigation-footer-and-404-page/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-03-inherited-navigation-footer-and-404-page/user-stories/US-F-E08-03-01-inherited-navigation-footer-and-404-page.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-03-inherited-navigation-footer-and-404-page/user-stories/US-F-E08-03-01-inherited-navigation-footer-and-404-page.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-04-placeholders-taxonomy-and-data-sheets/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-04-placeholders-taxonomy-and-data-sheets/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-04-placeholders-taxonomy-and-data-sheets/user-stories/US-F-E08-04-01-placeholders-taxonomy-and-data-sheets.pdf",
+  "members": [
+   "04-business-analysis/epics/E08-site-structure-and-localization/features/F-E08-04-placeholders-taxonomy-and-data-sheets/user-stories/US-F-E08-04-01-placeholders-taxonomy-and-data-sheets.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-01-adobe-client-data-layer/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-01-adobe-client-data-layer/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-01-adobe-client-data-layer/user-stories/US-F-E09-01-01-adobe-client-data-layer.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-01-adobe-client-data-layer/user-stories/US-F-E09-01-01-adobe-client-data-layer.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-02-accessibility-baseline-wcag-2-1-aa/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-02-accessibility-baseline-wcag-2-1-aa/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-02-accessibility-baseline-wcag-2-1-aa/user-stories/US-F-E09-02-01-accessibility-baseline-wcag-2-1-aa.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-02-accessibility-baseline-wcag-2-1-aa/user-stories/US-F-E09-02-01-accessibility-baseline-wcag-2-1-aa.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-03-three-phase-loading-and-module-preloading/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-03-three-phase-loading-and-module-preloading/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-03-three-phase-loading-and-module-preloading/user-stories/US-F-E09-03-01-three-phase-loading-and-module-preloading.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-03-three-phase-loading-and-module-preloading/user-stories/US-F-E09-03-01-three-phase-loading-and-module-preloading.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-04-content-and-background-animation/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-04-content-and-background-animation/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-04-content-and-background-animation/user-stories/US-F-E09-04-01-content-and-background-animation.pdf",
+  "members": [
+   "04-business-analysis/epics/E09-measurement-accessibility-and-performance/features/F-E09-04-content-and-background-animation/user-stories/US-F-E09-04-01-content-and-background-animation.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/EPIC.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/EPIC.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-01-migration-packages-8-432-pages/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-01-migration-packages-8-432-pages/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-01-migration-packages-8-432-pages/user-stories/US-F-E10-01-01-migration-packages-8-432-pages.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-01-migration-packages-8-432-pages/user-stories/US-F-E10-01-01-migration-packages-8-432-pages.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-02-redirects-from-the-tcs-com-urls/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-02-redirects-from-the-tcs-com-urls/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-02-redirects-from-the-tcs-com-urls/user-stories/US-F-E10-02-01-redirects-from-the-tcs-com-urls.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-02-redirects-from-the-tcs-com-urls/user-stories/US-F-E10-02-01-redirects-from-the-tcs-com-urls.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-03-dynamic-media-delivery-of-the-assets/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-03-dynamic-media-delivery-of-the-assets/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-03-dynamic-media-delivery-of-the-assets/user-stories/US-F-E10-03-01-dynamic-media-delivery-of-the-assets.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-03-dynamic-media-delivery-of-the-assets/user-stories/US-F-E10-03-01-dynamic-media-delivery-of-the-assets.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-04-publishing-and-indexing/FEATURE.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-04-publishing-and-indexing/FEATURE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-04-publishing-and-indexing/user-stories/US-F-E10-04-01-publishing-and-indexing.pdf",
+  "members": [
+   "04-business-analysis/epics/E10-content-migration-and-publishing/features/F-E10-04-publishing-and-indexing/user-stories/US-F-E10-04-01-publishing-and-indexing.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/pdf/TEST-STRATEGY.pdf",
+  "members": [
+   "05-quality-assurance/markdown/TEST-STRATEGY.md",
+   "05-quality-assurance/markdown/TEST-DATA-STRATEGY.md",
+   "05-quality-assurance/markdown/TEST-ENTRY-CRITERIA.md",
+   "05-quality-assurance/markdown/TEST-ENVIRONMENT.md",
+   "05-quality-assurance/markdown/TEST-EXIT-CRITERIA.md",
+   "05-quality-assurance/markdown/TEST-SCOPE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/pdf/TEST-PLAN.pdf",
+  "members": [
+   "05-quality-assurance/markdown/MASTER-TEST-PLAN.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/pdf/TEST-CASE-CATALOG.pdf",
+  "members": [
+   "05-quality-assurance/markdown/ACCESSIBILITY-TEST-CASES.md",
+   "05-quality-assurance/markdown/ANALYTICS-DATA-LAYER-TEST-CASES.md",
+   "05-quality-assurance/markdown/AUTHORING-TEST-CASES.md",
+   "05-quality-assurance/markdown/COMPONENT-VARIATION-TEST-CASES.md",
+   "05-quality-assurance/markdown/CROSS-BROWSER-TEST-CASES.md",
+   "05-quality-assurance/markdown/CURATED-PAGE-TEST-CASES.md",
+   "05-quality-assurance/markdown/FUNCTIONAL-TEST-CASES.md",
+   "05-quality-assurance/markdown/LOCALIZATION-TEST-CASES.md",
+   "05-quality-assurance/markdown/PERFORMANCE-TEST-CASES.md",
+   "05-quality-assurance/markdown/PUBLISHING-TEST-CASES.md",
+   "05-quality-assurance/markdown/REGRESSION-TEST-CASES.md",
+   "05-quality-assurance/markdown/REQUIREMENT-TEST-TRACEABILITY.md",
+   "05-quality-assurance/markdown/RESPONSIVE-TEST-CASES.md",
+   "05-quality-assurance/markdown/SECURITY-AND-PRIVACY-TEST-CASES.md",
+   "05-quality-assurance/markdown/SEO-TEST-CASES.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/pdf/TEST-EXECUTION-REPORT.pdf",
+  "members": [
+   "05-quality-assurance/markdown/DEFECT-REGISTER.md",
+   "05-quality-assurance/markdown/TEST-EXECUTION-REPORT.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/pdf/QUALITY-EXIT-REPORT.pdf",
+  "members": [
+   "05-quality-assurance/markdown/QUALITY-EXIT-REPORT.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "05-quality-assurance/execution-results/2026-11-08-automated/TEST-SUMMARY.pdf",
+  "members": [
+   "05-quality-assurance/execution-results/2026-11-08-automated/TEST-SUMMARY.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "06-operations-support/pdf/OPERATIONS-AND-SUPPORT-GUIDE.pdf",
+  "members": [
+   "06-operations-support/markdown/OPERATIONS-AND-SUPPORT-GUIDE.md",
+   "06-operations-support/markdown/ESCALATION-MATRIX.md",
+   "06-operations-support/markdown/HEALTH-CHECKS.md",
+   "06-operations-support/markdown/INCIDENT-MANAGEMENT.md",
+   "06-operations-support/markdown/KNOWN-ERRORS.md",
+   "06-operations-support/markdown/MONITORING-GUIDE.md",
+   "06-operations-support/markdown/RELEASE-RUNBOOK.md",
+   "06-operations-support/markdown/ROLLBACK-AND-RECOVERY.md",
+   "06-operations-support/markdown/SERVICE-DEPENDENCIES.md",
+   "06-operations-support/markdown/SLA-AND-SUPPORT-MODEL.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "06-operations-support/pdf/TROUBLESHOOTING-RUNBOOK.pdf",
+  "members": [
+   "06-operations-support/markdown/TROUBLESHOOTING-RUNBOOK.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "07-administration-governance/pdf/ADMINISTRATION-AND-GOVERNANCE-GUIDE.pdf",
+  "members": [
+   "07-administration-governance/markdown/ADMINISTRATION-AND-GOVERNANCE-GUIDE.md",
+   "07-administration-governance/markdown/ACCESS-AND-PERMISSIONS.md",
+   "07-administration-governance/markdown/AUDIT-AND-REVIEW-CALENDAR.md",
+   "07-administration-governance/markdown/CONTENT-GOVERNANCE.md",
+   "07-administration-governance/markdown/DOCUMENTATION-GOVERNANCE.md",
+   "07-administration-governance/markdown/DYNAMIC-MEDIA-SETUP.md",
+   "07-administration-governance/markdown/ENVIRONMENT-GOVERNANCE.md",
+   "07-administration-governance/markdown/OWNERSHIP-RACI.md",
+   "07-administration-governance/markdown/SECURITY-PRIVACY-COMPLIANCE.md",
+   "07-administration-governance/markdown/TAXONOMY-GOVERNANCE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "08-release-devops/pdf/RELEASE-AND-DEVOPS-GUIDE.pdf",
+  "members": [
+   "08-release-devops/markdown/RELEASE-AND-DEVOPS-GUIDE.md",
+   "08-release-devops/markdown/BRANCHING-STRATEGY.md",
+   "08-release-devops/markdown/CI-VALIDATION.md",
+   "08-release-devops/markdown/CODE-SYNC-GUIDE.md",
+   "08-release-devops/markdown/CONFIGURATION-MANAGEMENT.md",
+   "08-release-devops/markdown/DEPLOYMENT-CHECKLIST.md",
+   "08-release-devops/markdown/ENVIRONMENT-MATRIX.md",
+   "08-release-devops/markdown/RELEASE-CHECKLIST.md",
+   "08-release-devops/markdown/ROLLBACK-GUIDE.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "09-knowledge-base/pdf/KNOWLEDGE-BASE.pdf",
+  "members": [
+   "09-knowledge-base/humans/DECISION-LOG.md",
+   "09-knowledge-base/humans/FAQ.md",
+   "09-knowledge-base/humans/GETTING-STARTED.md",
+   "09-knowledge-base/humans/GLOSSARY.md",
+   "09-knowledge-base/humans/LEARNING-PATHS.md",
+   "09-knowledge-base/humans/ROLE-BASED-READING-MAP.md",
+   "09-knowledge-base/humans/TROUBLESHOOTING-INDEX.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "09-knowledge-base/pdf/AI-AGENT-GUIDE.pdf",
+  "members": [
+   "09-knowledge-base/agents/AGENTS.md",
+   "09-knowledge-base/agents/ARCHITECT-AGENT.md",
+   "09-knowledge-base/agents/AUTHORING-AGENT.md",
+   "09-knowledge-base/agents/BA-AGENT.md",
+   "09-knowledge-base/agents/DEVELOPER-AGENT.md",
+   "09-knowledge-base/agents/DOCUMENTATION-AGENT.md",
+   "09-knowledge-base/agents/OPERATIONS-AGENT.md",
+   "09-knowledge-base/agents/QA-AGENT.md",
+   "09-knowledge-base/llms/LLM-CONTEXT.md",
+   "09-knowledge-base/llms/REPOSITORY-MAP.md",
+   "09-knowledge-base/llms/RETRIEVAL-INDEX.md",
+   "09-knowledge-base/llms/SAFE-CHANGE-RULES.md",
+   "09-knowledge-base/llms/SOURCE-OF-TRUTH.md",
+   "09-knowledge-base/llms/SYSTEM-CONTEXT.md",
+   "09-knowledge-base/llms/TASK-ROUTING.md",
+   "09-knowledge-base/llms/TERMINOLOGY.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "10-training-onboarding/pdf/TRAINING-AND-ONBOARDING-GUIDE.pdf",
+  "members": [
+   "10-training-onboarding/markdown/TRAINING-AND-ONBOARDING-GUIDE.md",
+   "10-training-onboarding/markdown/COMPLETION-AND-SIGNOFF.md",
+   "10-training-onboarding/markdown/HANDS-ON-EXERCISES.md",
+   "10-training-onboarding/markdown/KNOWLEDGE-ASSESSMENTS.md",
+   "10-training-onboarding/markdown/ONBOARDING-CHECKLISTS.md",
+   "10-training-onboarding/markdown/ROLE-BASED-LEARNING-PATHS.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ },
+ {
+  "pdf": "11-audit-remediation/pdf/AUDIT-AND-REMEDIATION-REPORT.pdf",
+  "members": [
+   "11-audit-remediation/markdown/ACCESSIBILITY-AUDIT.md",
+   "11-audit-remediation/markdown/BLOCK-LIBRARY-AUDIT.md",
+   "11-audit-remediation/markdown/CODE-DOCUMENTATION-AUDIT.md",
+   "11-audit-remediation/markdown/CONTENT-MODEL-AUDIT.md",
+   "11-audit-remediation/markdown/CURATED-DESIGN-PAGE-AUDIT.md",
+   "11-audit-remediation/markdown/LINK-VALIDATION-REPORT.md",
+   "11-audit-remediation/markdown/PERFORMANCE-AUDIT.md",
+   "11-audit-remediation/markdown/REMEDIATION-PLAN.md",
+   "11-audit-remediation/markdown/SCREENSHOT-AUDIT.md",
+   "11-audit-remediation/markdown/UNRESOLVED-ISSUES.md"
+  ],
+  "status": "generated",
+  "missingImages": []
+ }
+]
