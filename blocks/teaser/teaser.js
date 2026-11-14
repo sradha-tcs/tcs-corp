@@ -67,6 +67,12 @@ const BUTTON_BACKGROUNDS = [
 const BUTTON_SHAPES = [
   'button-rectangle',
 ];
+// CTA Shadow (Primary Only) / (Secondary Only) of the Primary and Secondary CTA: the button-shadow
+// class, on Primary and Secondary Buttons only (teaser.css)
+const BUTTON_SHADOWS = [
+  'primary-button-shadow',
+  'secondary-button-shadow',
+];
 
 const COLLAGE_IMAGE_LIMIT = 9;
 // the cells of a Collage image item: a dialog tab, the image (its alt text collapsed into it),
@@ -235,6 +241,7 @@ function renderLinks(container, entries) {
     style,
     background = '',
     shape = '',
+    shadow = '',
   }) => {
     if (style === 'list') {
       if (!list) {
@@ -288,6 +295,10 @@ function renderLinks(container, entries) {
       link.classList.add(shape);
     }
 
+    if (supportsAppearance && shadow) {
+      link.classList.add('button-shadow');
+    }
+
     container.append(link);
   });
 }
@@ -307,6 +318,7 @@ function buildLinks(props, rows, hint) {
       props.primaryctastyle,
       props.primaryctabackground,
       props.primaryctashape,
+      props.primaryctashadow,
       'primary',
     ],
     [
@@ -316,6 +328,7 @@ function buildLinks(props, rows, hint) {
       props.secondaryctastyle,
       props.secondaryctabackground,
       props.secondaryctashape,
+      props.secondaryctashadow,
       'secondary',
     ],
   ].map(([
@@ -325,6 +338,7 @@ function buildLinks(props, rows, hint) {
     style,
     background,
     shape,
+    shadow,
     fallback,
   ]) => {
     const link = linkOf(cell);
@@ -345,6 +359,7 @@ function buildLinks(props, rows, hint) {
       style: linkStyleOf(style, fallback),
       background: appearanceOf(background, BUTTON_BACKGROUNDS),
       shape: appearanceOf(shape, BUTTON_SHAPES),
+      shadow: appearanceOf(shadow, BUTTON_SHADOWS),
     };
   }).filter(Boolean);
   // Multiple links on: the Links multifield (authored before Link items), in its CTA Link Style

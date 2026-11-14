@@ -592,6 +592,34 @@
     background-color: currentcolor;
   }
 
+  /*
+   * CTA Shadow (Primary Only / Secondary Only), Primary and Secondary Buttons only (teaser.js):
+   * Figma "Ask Canvas" CTA, a 48px pill on Background Default Secondary with a top border, two
+   * #4E84FF drop shadows (20%, 30%) and a 44px background blur; the same on hover; 48px high
+   * with the 1px border inside the 12px padding, as in Figma
+   */
+  .teaser .teaser-links .button.button-shadow,
+  .teaser .teaser-links .button.button-shadow:is(:hover, :focus-visible) {
+    justify-content: space-between;
+    min-height: 3rem;
+    padding:
+      calc(var(--space-300) - var(--border-width-100))
+      var(--space-400);
+    border: var(--border-width-100) solid transparent;
+    border-top-color: var(--color-border-default);
+    border-radius: 3.625rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-default);
+    box-shadow:
+      -1rem 0.875rem 1.875rem 0 rgb(78 132 255 / 20%),
+      -0.125rem 0.0625rem 0.75rem 0 rgb(78 132 255 / 30%);
+    backdrop-filter: blur(2.75rem);
+  }
+
+  .teaser .teaser-links .button.button-shadow::after {
+    background-color: currentcolor;
+  }
+
   .teaser.no-image .teaser-title {
     font-weight: var(--font-weight-regular);
   }

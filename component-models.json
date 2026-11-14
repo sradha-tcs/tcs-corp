@@ -26773,6 +26773,24 @@
         "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaShadow",
+        "label": "CTA Shadow (Primary Only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Shadow",
+            "value": "primary-button-shadow"
+          }
+        ],
+        "description": "Sets the Primary CTA shadow. Default has no shadow."
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "secondaryCtaText",
@@ -26907,6 +26925,24 @@
           }
         ],
         "description": "Sets the Secondary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaShadow",
+        "label": "CTA Shadow (Secondary Only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Shadow",
+            "value": "secondary-button-shadow"
+          }
+        ],
+        "description": "Sets the Secondary CTA shadow. Default has no shadow."
       },
       {
         "component": "boolean",
