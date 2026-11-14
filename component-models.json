@@ -18573,6 +18573,10 @@
           {
             "name": "Display (large title)",
             "value": "display"
+          },
+          {
+            "name": "Default (Only CTA Alignment Left)",
+            "value": "cta-alignment-left"
           }
         ]
       },
@@ -18636,6 +18640,110 @@
                 "value": "secondary"
               }
             ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderPrimaryCtaTextColor",
+            "label": "Primary CTA Text Color (Primary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "primary-text-white"
+              },
+              {
+                "name": "Blue",
+                "value": "primary-text-blue"
+              },
+              {
+                "name": "Black",
+                "value": "primary-text-black"
+              }
+            ],
+            "description": "Sets the Primary CTA Text Color."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderPrimaryCtaBackground",
+            "label": "Primary CTA Background (Primary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "primary-bg-white"
+              },
+              {
+                "name": "Blue",
+                "value": "primary-bg-blue"
+              },
+              {
+                "name": "Translucent white",
+                "value": "primary-bg-translucent"
+              }
+            ],
+            "description": "Sets the Primary CTA button background."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderSecondaryCtaTextColor",
+            "label": "Secondary CTA Text Color (Secondary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "secondary-text-white"
+              },
+              {
+                "name": "Blue",
+                "value": "secondary-text-blue"
+              },
+              {
+                "name": "Black",
+                "value": "secondary-text-black"
+              }
+            ],
+            "description": "Sets the Secondary CTA Text Color."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderSecondaryCtaBackground",
+            "label": "Secondary CTA Background (Secondary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "secondary-bg-white"
+              },
+              {
+                "name": "Blue",
+                "value": "secondary-bg-blue"
+              },
+              {
+                "name": "Translucent white",
+                "value": "secondary-bg-translucent"
+              }
+            ],
+            "description": "Sets the Secondary CTA button background."
           }
         ],
         "description": "CTAs authored before CTA items. Add CTAs to the page header with Add (CTA) instead."

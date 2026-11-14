@@ -140,6 +140,45 @@
 }
 
 /*
+ * Primary / Secondary CTA Background White and Translucent white (CTA items, page-header.js):
+ * the Teaser's button-bg-white and button-bg-translucent colours
+ */
+.page-header .page-header-ctas a.button.button-bg-white,
+.page-header .page-header-ctas a.button.button-bg-white:is(:hover, :focus-visible) {
+  border-color: var(--grey-200);
+  background-color: var(--white-1000);
+  color: rgb(48 48 48);
+}
+
+.page-header .page-header-ctas a.button.button-bg-translucent {
+  border-color: rgb(255 255 255 / 30%);
+  background-color: rgb(255 255 255 / 15%);
+  color: var(--color-text-on-neutral);
+}
+
+.page-header .page-header-ctas a.button.button-bg-translucent:is(:hover, :focus-visible) {
+  border-color: rgb(255 255 255 / 45%);
+  background-color: rgb(255 255 255 / 25%);
+  color: var(--color-text-on-neutral);
+}
+
+/* Primary / Secondary CTA Text Color: after the backgrounds, so it wins on hover too */
+.page-header .page-header-ctas a.button.cta-text-white,
+.page-header .page-header-ctas a.button.cta-text-white:is(:hover, :focus-visible) {
+  color: var(--white-1000);
+}
+
+.page-header .page-header-ctas a.button.cta-text-blue,
+.page-header .page-header-ctas a.button.cta-text-blue:is(:hover, :focus-visible) {
+  color: var(--brand-400);
+}
+
+.page-header .page-header-ctas a.button.cta-text-black,
+.page-header .page-header-ctas a.button.cta-text-black:is(:hover, :focus-visible) {
+  color: var(--black-1000);
+}
+
+/*
  * Button shape Round: a 6rem circle, buttons only (page-header.js adds it to Primary and
  * Secondary Buttons whose label fits: words of up to 12 characters, up to 24 in all; a longer
  * label stays a pill), the label wrapped between words, never inside one

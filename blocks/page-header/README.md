@@ -139,6 +139,10 @@ B = CTA List › CTA Title
 C = CTA List › CTA Link
 D = CTA List › CTA Link Type
 E = CTA List › CTA Link Style
+F = CTA List › Primary CTA Text Color (Primary only)
+G = CTA List › Primary CTA Background (Primary only)
+H = CTA List › Secondary CTA Text Color (Secondary only)
+I = CTA List › Secondary CTA Background (Secondary only)
 ```
 
 ```text
@@ -308,7 +312,7 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Layout | `classes` | select | No | "" | Default (from the Page Type) (""), Landing (with the featured image) (`landing`), Secondary (title left, text right) (`secondary`), Article (meta row, author) (`article`), Display (large title) (`display`) | The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article. | article |
+| Layout | `classes` | select | No | "" | Default (from the Page Type) (""), Landing (with the featured image) (`landing`), Secondary (title left, text right) (`secondary`), Article (meta row, author) (`article`), Display (large title) (`display`), Default (Only CTA Alignment Left) (`cta-alignment-left`) | The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article. | article |
 
 #### CTAs tab — Page Header
 
@@ -319,6 +323,10 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA List › CTA Link Style | `ctaStyle` | select | No | `primary` | Text link (""), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| CTA List › Primary CTA Text Color (Primary only) | `pageHeaderPrimaryCtaTextColor` | select | No | "" | Style default (""), White (`primary-text-white`), Blue (`primary-text-blue`), Black (`primary-text-black`) | Sets the Primary CTA Text Color. | — |
+| CTA List › Primary CTA Background (Primary only) | `pageHeaderPrimaryCtaBackground` | select | No | "" | Style default (""), White (`primary-bg-white`), Blue (`primary-bg-blue`), Translucent white (`primary-bg-translucent`) | Sets the Primary CTA button background. | — |
+| CTA List › Secondary CTA Text Color (Secondary only) | `pageHeaderSecondaryCtaTextColor` | select | No | "" | Style default (""), White (`secondary-text-white`), Blue (`secondary-text-blue`), Black (`secondary-text-black`) | Sets the Secondary CTA Text Color. | — |
+| CTA List › Secondary CTA Background (Secondary only) | `pageHeaderSecondaryCtaBackground` | select | No | "" | Style default (""), White (`secondary-bg-white`), Blue (`secondary-bg-blue`), Translucent white (`secondary-bg-translucent`) | Sets the Secondary CTA button background. | — |
 
 #### Additional tab — Page Header
 
@@ -853,3 +861,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.10 | CTAs as CTA items (`page-header-cta`) instead of the CTA List multifield, which is still read (F-87: a Page Header with CTAs was left out on published pages) | docs/handover revision history | 17 October 2026 |
 | Handover 2.17 | Item children in the Page Header field specification | docs/handover revision history | 18 October 2026 |
 | Handover 2.18 | Additional tab Content animation | docs/handover revision history | 18 October 2026 |
+| Not recorded | Layout CTA Alignment Left (`cta-alignment-left`): the CTAs below the title on the left. CTA List: Primary CTA Text Color / Background (Primary only) and Secondary CTA Text Color / Background (Secondary only), always shown: Universal Editor doesn't evaluate conditions per entry inside the multi container (KB-D-062, confirmed); text White, Blue, Black (`cta-text-*`), background White, Blue, Translucent white (`button-bg-*`, the Teaser's colours); a CTA applies only its own style's values | fix/page-header-styles | 14 November 2026 |
