@@ -221,6 +221,16 @@
   .teaser .teaser-header {
     gap: var(--space-300);
   }
+
+  /* without a description, space above the buttons: side by side, above the row */
+  .teaser.buttons-inline .teaser-body:not(:has(.teaser-description)) .teaser-links a.button {
+    margin-top: var(--space-1600);
+  }
+
+  /* stacked: above the first button only */
+  .teaser:not(.buttons-inline) .teaser-body:not(:has(.teaser-description)) .teaser-links a.button:first-of-type {
+    margin-top: var(--space-1600);
+  }
   
   .teaser.teaser-fixed-width {
     min-width: 0;
