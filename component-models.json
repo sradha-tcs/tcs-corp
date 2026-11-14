@@ -18575,7 +18575,7 @@
             "value": "display"
           },
           {
-            "name": "CTA Alignment Left",
+            "name": "Default (Only CTA Alignment Left)",
             "value": "cta-alignment-left"
           }
         ]
