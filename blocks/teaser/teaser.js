@@ -8,7 +8,7 @@ import {
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
-import { buildHeading } from '../../decorators/heading-decorator.js';
+import { HEADINGS, buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
@@ -66,6 +66,12 @@ const BUTTON_BACKGROUNDS = [
 ];
 const BUTTON_SHAPES = [
   'button-rectangle',
+];
+// CTA Shadow (Primary Only) / (Secondary Only) of the Primary and Secondary CTA: the button-shadow
+// class, on Primary and Secondary Buttons only (teaser.css)
+const BUTTON_SHADOWS = [
+  'primary-button-shadow',
+  'secondary-button-shadow',
 ];
 
 const COLLAGE_IMAGE_LIMIT = 9;
@@ -235,6 +241,7 @@ function renderLinks(container, entries) {
     style,
     background = '',
     shape = '',
+    shadow = '',
   }) => {
     if (style === 'list') {
       if (!list) {
@@ -288,6 +295,10 @@ function renderLinks(container, entries) {
       link.classList.add(shape);
     }
 
+    if (supportsAppearance && shadow) {
+      link.classList.add('button-shadow');
+    }
+
     container.append(link);
   });
 }
@@ -307,6 +318,7 @@ function buildLinks(props, rows, hint) {
       props.primaryctastyle,
       props.primaryctabackground,
       props.primaryctashape,
+      props.primaryctashadow,
       'primary',
     ],
     [
@@ -316,6 +328,7 @@ function buildLinks(props, rows, hint) {
       props.secondaryctastyle,
       props.secondaryctabackground,
       props.secondaryctashape,
+      props.secondaryctashadow,
       'secondary',
     ],
   ].map(([
@@ -325,6 +338,7 @@ function buildLinks(props, rows, hint) {
     style,
     background,
     shape,
+    shadow,
     fallback,
   ]) => {
     const link = linkOf(cell);
@@ -345,6 +359,7 @@ function buildLinks(props, rows, hint) {
       style: linkStyleOf(style, fallback),
       background: appearanceOf(background, BUTTON_BACKGROUNDS),
       shape: appearanceOf(shape, BUTTON_SHAPES),
+      shadow: appearanceOf(shadow, BUTTON_SHADOWS),
     };
   }).filter(Boolean);
   // Multiple links on: the Links multifield (authored before Link items), in its CTA Link Style
@@ -582,6 +597,15 @@ export default async function decorate(block) {
   // Teaser Content Fixed Width: the content at 824px (teaser.css .teaser-fixed-width)
   const fixedWidth = textOf(props.teaserfixedwidth).toLowerCase() === 'teaser-fixed-width';
   block.classList.toggle('teaser-fixed-width', fixedWidth);
+  // Title Type (Tablet) and (Mobile): the title's size on those widths (teaser.css), else the
+  // Title Type (Desktop)'s (Teasers authored before); the heading level stays the Desktop one
+  const level = title?.tagName.toLowerCase() || 'h2';
+  const sizeOf = (cell) => {
+    const value = toClassName(textOf(cell));
+    return HEADINGS.includes(value) ? value : level;
+  };
+  block.classList.remove(...HEADINGS.flatMap((h) => [`title-tablet-${h}`, `title-mobile-${h}`]));
+  block.classList.add(`title-tablet-${sizeOf(props.titletypetablet)}`, `title-mobile-${sizeOf(props.titletypemobile)}`);
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media
     && layout !== 'no-image'
