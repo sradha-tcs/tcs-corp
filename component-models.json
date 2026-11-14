@@ -18645,7 +18645,7 @@
             "component": "select",
             "valueType": "string",
             "name": "pageHeaderPrimaryCtaTextColor",
-            "label": "Primary CTA Text Color",
+            "label": "Primary CTA Text Color (Primary only)",
             "value": "",
             "options": [
               {
@@ -18665,21 +18665,13 @@
                 "value": "primary-text-black"
               }
             ],
-            "condition": {
-              "===": [
-                {
-                  "var": "ctaStyle"
-                },
-                "primary"
-              ]
-            },
             "description": "Sets the Primary CTA Text Color."
           },
           {
             "component": "select",
             "valueType": "string",
             "name": "pageHeaderPrimaryCtaBackground",
-            "label": "Primary CTA Background",
+            "label": "Primary CTA Background (Primary only)",
             "value": "",
             "options": [
               {
@@ -18699,21 +18691,13 @@
                 "value": "primary-bg-translucent"
               }
             ],
-            "condition": {
-              "===": [
-                {
-                  "var": "ctaStyle"
-                },
-                "primary"
-              ]
-            },
             "description": "Sets the Primary CTA button background."
           },
           {
             "component": "select",
             "valueType": "string",
             "name": "pageHeaderSecondaryCtaTextColor",
-            "label": "Secondary CTA Text Color",
+            "label": "Secondary CTA Text Color (Secondary only)",
             "value": "",
             "options": [
               {
@@ -18733,21 +18717,13 @@
                 "value": "secondary-text-black"
               }
             ],
-            "condition": {
-              "===": [
-                {
-                  "var": "ctaStyle"
-                },
-                "secondary"
-              ]
-            },
             "description": "Sets the Secondary CTA Text Color."
           },
           {
             "component": "select",
             "valueType": "string",
             "name": "pageHeaderSecondaryCtaBackground",
-            "label": "Secondary CTA Background",
+            "label": "Secondary CTA Background (Secondary only)",
             "value": "",
             "options": [
               {
@@ -18767,14 +18743,6 @@
                 "value": "secondary-bg-translucent"
               }
             ],
-            "condition": {
-              "===": [
-                {
-                  "var": "ctaStyle"
-                },
-                "secondary"
-              ]
-            },
             "description": "Sets the Secondary CTA button background."
           }
         ],
