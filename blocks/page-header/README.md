@@ -179,6 +179,10 @@ C = CTA Link Type
 D = CTA Link Style
 E = Button background
 F = Button shape
+G = Primary CTA Text Color
+H = Primary CTA Background
+I = Secondary CTA Text Color
+J = Secondary CTA Background
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -354,6 +358,10 @@ Stored on a new component (definition template): `linkStyle` = `"primary"`.
 | CTA Link Style | `linkStyle` | select | No | `primary` | Text link (`tertiary`), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
 | Button background | `buttonBackground` | select | No | "" | Style default (""), Blue (`button-bg-blue`) | For Primary and Secondary Buttons. Blue: #216AC3 with white text. | — |
 | Button shape | `buttonShape` | select | No | "" | Style default (""), Round (`button-round`) | For Primary and Secondary Buttons. Round: a 6rem circle, for a short label (words of up to 12 characters, up to 24 in all); a longer label stays a pill. | — |
+| Primary CTA Text Color | `pageHeaderPrimaryCtaTextColor` | select | No | "" | Style default (""), White (`primary-text-white`), Blue (`primary-text-blue`), Black (`primary-text-black`) | Sets the Primary CTA Text Color. Shown when `linkStyle` is `primary`. | — |
+| Primary CTA Background | `pageHeaderPrimaryCtaBackground` | select | No | "" | Style default (""), White (`primary-bg-white`), Blue (`primary-bg-blue`), Translucent white (`primary-bg-translucent`) | Sets the Primary CTA button background. Shown when `linkStyle` is `primary`. | — |
+| Secondary CTA Text Color | `pageHeaderSecondaryCtaTextColor` | select | No | "" | Style default (""), White (`secondary-text-white`), Blue (`secondary-text-blue`), Black (`secondary-text-black`) | Sets the Secondary CTA Text Color. Shown when `linkStyle` is `secondary`. | — |
+| Secondary CTA Background | `pageHeaderSecondaryCtaBackground` | select | No | "" | Style default (""), White (`secondary-bg-white`), Blue (`secondary-bg-blue`), Translucent white (`secondary-bg-translucent`) | Sets the Secondary CTA button background. Shown when `linkStyle` is `secondary`. | — |
 
 <!-- END GENERATED: fields -->
 
@@ -853,3 +861,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.10 | CTAs as CTA items (`page-header-cta`) instead of the CTA List multifield, which is still read (F-87: a Page Header with CTAs was left out on published pages) | docs/handover revision history | 17 October 2026 |
 | Handover 2.17 | Item children in the Page Header field specification | docs/handover revision history | 18 October 2026 |
 | Handover 2.18 | Additional tab Content animation | docs/handover revision history | 18 October 2026 |
+| Not recorded | Layout CTA Alignment Left (`cta-alignment-left`): the CTAs below the title on the left. CTA items: Primary CTA Text Color / Background (shown for Primary Button) and Secondary CTA Text Color / Background (shown for Secondary Button): text White, Blue, Black (`cta-text-*`), background White, Blue, Translucent white (`button-bg-*`, the Teaser's colours); a CTA applies only its own style's values. Not in the CTA List (conditions don't work in a multi container, KB-D-062) | fix/page-header-styles | 14 November 2026 |

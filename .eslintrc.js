@@ -43,7 +43,7 @@ module.exports = {
       'field-checkbox': 5,
       'contact-card': 5,
       'teaser-link': 5,
-      'page-header-cta': 5,
+      'page-header-cta': 9,
       'media-contact': 10,
     }],
   },
