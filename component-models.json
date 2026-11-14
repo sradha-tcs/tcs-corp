@@ -18573,6 +18573,10 @@
           {
             "name": "Display (large title)",
             "value": "display"
+          },
+          {
+            "name": "CTA Alignment Left",
+            "value": "cta-alignment-left"
           }
         ]
       },

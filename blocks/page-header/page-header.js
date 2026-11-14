@@ -29,10 +29,11 @@ import { resolveTags } from '../../utils/taxonomy.js';
  * - article: meta row (tags, content type | date, reading time, listen / download / share);
  *   title and author | description and CTAs
  * - display: tags eyebrow and a display title | description and CTAs
+ * - cta-alignment-left: meta row; title and author | description, the CTAs below the title
  * Default: landing for the landing and listing page types, else article.
  */
 
-const LAYOUTS = ['landing', 'secondary', 'article', 'display'];
+const LAYOUTS = ['landing', 'secondary', 'article', 'display', 'cta-alignment-left'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
 // Text link is stored as tertiary (and as '' before): both render as a text link
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
@@ -226,6 +227,10 @@ export default async function decorate(block) {
     intro.append(...[eyebrow, title].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
     parts.push(columns);
+  } else if (layout === 'cta-alignment-left') {
+    intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
+    columns.append(...[intro, description, ctas].filter(Boolean));
+    parts.push(buildMetaRow(metadata, tags, t), columns);
   } else {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
