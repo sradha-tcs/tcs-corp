@@ -26053,7 +26053,7 @@
         "component": "select",
         "valueType": "string",
         "name": "titleType",
-        "label": "Title Type",
+        "label": "Title Type (Desktop)",
         "value": "h2",
         "options": [
           {
@@ -26082,6 +26082,74 @@
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleTypeTablet",
+        "label": "Title Type (Tablet)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleTypeMobile",
+        "label": "Title Type (Mobile)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
       },
       {
         "component": "boolean",

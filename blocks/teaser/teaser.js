@@ -8,7 +8,7 @@ import {
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { fromCell } from '../../decorators/content-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
-import { buildHeading } from '../../decorators/heading-decorator.js';
+import { HEADINGS, buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildStats } from '../../decorators/stats-decorator.js';
@@ -597,6 +597,15 @@ export default async function decorate(block) {
   // Teaser Content Fixed Width: the content at 824px (teaser.css .teaser-fixed-width)
   const fixedWidth = textOf(props.teaserfixedwidth).toLowerCase() === 'teaser-fixed-width';
   block.classList.toggle('teaser-fixed-width', fixedWidth);
+  // Title Type (Tablet) and (Mobile): the title's size on those widths (teaser.css), else the
+  // Title Type (Desktop)'s (Teasers authored before); the heading level stays the Desktop one
+  const level = title?.tagName.toLowerCase() || 'h2';
+  const sizeOf = (cell) => {
+    const value = toClassName(textOf(cell));
+    return HEADINGS.includes(value) ? value : level;
+  };
+  block.classList.remove(...HEADINGS.flatMap((h) => [`title-tablet-${h}`, `title-mobile-${h}`]));
+  block.classList.add(`title-tablet-${sizeOf(props.titletypetablet)}`, `title-mobile-${sizeOf(props.titletypemobile)}`);
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media
     && layout !== 'no-image'

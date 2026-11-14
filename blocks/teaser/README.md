@@ -328,13 +328,13 @@ Annotations:
 A = Eyebrow
 B = Show Eyebrow
 C = Title
-D = Title Type
-E = Hide Title
-F = Description
-G = Show Description
-H = Short Description
-I = View All Text
-J = View All Link
+D = Title Type (Desktop)
+E = Title Type (Tablet)
+F = Title Type (Mobile)
+G = Hide Title
+H = Description
+I = Show Description
+J = Short Description
 ```
 
 ```text
@@ -598,7 +598,7 @@ Minimum content: a Title, or any other content part. Recommended: Eyebrow, Title
 
 Model `teaser`; template name "Teaser" (the block class AEM renders); key-value block (one row per property); children: `teaser-link`, `teaser-stat`, `teaser-collage-image`.
 
-Stored on a new component (definition template): `titleType` = `"h2"`, `imagePosition` = `"left"`, `showEyebrow` = `true`, `showDescription` = `true`, `dateFormat` = `"dd-mm-yyyy"`, `primaryCtaStyle` = `"primary"`, `secondaryCtaStyle` = `"secondary"`.
+Stored on a new component (definition template): `titleType` = `"h2"`, `titleTypeTablet` = `"h2"`, `titleTypeMobile` = `"h2"`, `imagePosition` = `"left"`, `showEyebrow` = `true`, `showDescription` = `true`, `dateFormat` = `"dd-mm-yyyy"`, `primaryCtaStyle` = `"primary"`, `secondaryCtaStyle` = `"secondary"`.
 
 #### Content tab — Teaser
 
@@ -607,7 +607,9 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Eyebrow | `eyebrow` | text | No | — | — | — | Industry focus |
 | Show Eyebrow | `showEyebrow` | boolean | No | `true` | on / off | — | false |
 | Title | `title` | text | No | — | — | — | Banking in Europe |
-| Title Type | `titleType` | select | No | `h2` | H1 (64px) (`h1`), H2 (48px) (`h2`), H3 (40px) (`h3`), H4 (28px) (`h4`), H5 (24px) (`h5`), H6 (20px) (`h6`) | The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page. Delivered with `title` (field collapse). | h1 |
+| Title Type (Desktop) | `titleType` | select | No | `h2` | H1 (64px) (`h1`), H2 (48px) (`h2`), H3 (40px) (`h3`), H4 (28px) (`h4`), H5 (24px) (`h5`), H6 (20px) (`h6`) | The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page. Delivered with `title` (field collapse). | h1 |
+| Title Type (Tablet) | `titleTypeTablet` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s. | — |
+| Title Type (Mobile) | `titleTypeMobile` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s. | — |
 | Hide Title | `titleHidden` | boolean | No | `false` | on / off | The title stays available to screen readers. | true |
 | Description | `description` | richtext | No | "" | — | — | — |
 | Show Description | `showDescription` | boolean | No | `true` | on / off | — | false |
@@ -1275,7 +1277,7 @@ blocks/teaser/
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `teaser.js`: { decorateButton } |
 | [`decorators/content-decorator.js`](../../decorators/content-decorator.js) | `fromCell` (property content into an element, keeping editor instrumentation) | `teaser.js`: { fromCell } |
 | [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `teaser.js`: { buildEditorItems, editorItemHint } |
-| [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `teaser.js`: { buildHeading } |
+| [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `teaser.js`: { HEADINGS, buildHeading } |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `teaser.js`: { pictureOf } |
 | [`decorators/link-decorator.js`](../../decorators/link-decorator.js) | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | `teaser.js`: { announceNewTab, setLinkTarget } |
 | [`decorators/stats-decorator.js`](../../decorators/stats-decorator.js) | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | `teaser.js`: { buildStats } |
@@ -1513,3 +1515,5 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.41 | Primary Button (no arrow) CTA style with navy fill and shared alignment content width | Repository change | 22 October 2026 |
 | Not recorded | Link CTA Alignment (`linkCtaAlignment`, Style tab): Default (`right`) keeps the links and CTAs in the body with the description; Left places them after the text in the content (in Text split, in the left column below the title, after the taller of the two columns) | fix/teaser-links-stat | 11 November 2026 |
 | Not recorded | CTA Shadow (Primary Only) (`primaryCtaShadow`) and CTA Shadow (Secondary Only) (`secondaryCtaShadow`): Default or Shadow; on the Primary / Secondary CTA when it is a Primary or Secondary Button (not a text link or list), the `button-shadow` class: Figma "Ask Canvas" CTA, a 48px pill (radius 3.625rem) on `--color-bg-secondary` with a `--color-border-default` top border, drop shadows -16 14 30 #4E84FF 20 % and -2 1 12 #4E84FF 30 %, background blur 44px; wins over the CTA Background | feature/teaser-block-shadow | 14 November 2026 |
+| Not recorded | Title Type sets the title size on every layout: H2 (the default) gets `--heading-font-size-xxl` (48px from 900px, as the dialog says; before it fell back to the 40px of H3), and the Image collage layout no longer forces its own size (3rem / 2rem / 1.75rem), so its title follows Title Type too | feature/teaser-block-shadow | 14 November 2026 |
+| Not recorded | Title Type is now Title Type (Desktop) (from 1200px: H1 64, H2 48, H3 40, H4 28, H5 24, H6 20px; it still sets the heading level); new Title Type (Tablet) (`titleTypeTablet`, 600 to 1199px) and Title Type (Mobile) (`titleTypeMobile`, below 600px), H2 by default: the title's size there only (H1 40, H2 32, H3 28, H4 24, H5 18, H6 16px; classes `title-tablet-h*`, `title-mobile-h*`); without a value (Teasers authored before) the Desktop Title Type's level | feature/teaser-block-shadow | 14 November 2026 |

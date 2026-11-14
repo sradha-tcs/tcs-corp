@@ -347,6 +347,11 @@
     --teaser-title-size: var(--display-font-size-2);
   }
 
+  /* H2 (the default Title Type): 48px from 900px, as the dialog says (before: the base 40px of H3) */
+  .teaser h2.teaser-title {
+    --teaser-title-size: var(--heading-font-size-xxl);
+  }
+
   .teaser h3.teaser-title {
     --teaser-title-size: var(--heading-font-size-xl);
 
@@ -679,8 +684,6 @@
   }
 
   .teaser.image-collage .teaser-title {
-    --teaser-title-size: 3rem;
-
     width: 100%;
     font-size: var(--teaser-title-size);
     font-weight: var(--font-weight-semibold);
@@ -1261,8 +1264,6 @@
   }
 
   .teaser.image-collage .teaser-title {
-    --teaser-title-size: 1.75rem;
-
     width: 100%;
     font-size: var(--teaser-title-size);
     font-weight: var(--font-weight-semibold);
@@ -1417,8 +1418,6 @@
   }
 
   .teaser.image-collage .teaser-title {
-    --teaser-title-size: 2rem;
-
     width: 100%;
     font-size: var(--teaser-title-size);
     font-weight: var(--font-weight-semibold);
@@ -1685,4 +1684,61 @@
 
   .teaser.description-white :is(.teaser-description, .teaser-short-description) {
     color: var(--white-1000);
+  }
+
+  /*
+   * Title Type (Mobile) below 600px and Title Type (Tablet) from 600 to 1199px: the title's size
+   * there (teaser.js title-mobile-h1 ... title-tablet-h6; H1 40, H2 32, H3 28, H4 24, H5 18, H6 16px);
+   * from 1200px the Title Type (Desktop) sizes above (64, 48, 40, 28, 24, 20px)
+   */
+  @media (width < 600px) {
+    .teaser.title-mobile-h1 .teaser-content .teaser-title {
+      --teaser-title-size: 2.5rem;
+    }
+
+    .teaser.title-mobile-h2 .teaser-content .teaser-title {
+      --teaser-title-size: 2rem;
+    }
+
+    .teaser.title-mobile-h3 .teaser-content .teaser-title {
+      --teaser-title-size: 1.75rem;
+    }
+
+    .teaser.title-mobile-h4 .teaser-content .teaser-title {
+      --teaser-title-size: 1.5rem;
+    }
+
+    .teaser.title-mobile-h5 .teaser-content .teaser-title {
+      --teaser-title-size: 1.125rem;
+    }
+
+    .teaser.title-mobile-h6 .teaser-content .teaser-title {
+      --teaser-title-size: 1rem;
+    }
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.title-tablet-h1 .teaser-content .teaser-title {
+      --teaser-title-size: 2.5rem;
+    }
+
+    .teaser.title-tablet-h2 .teaser-content .teaser-title {
+      --teaser-title-size: 2rem;
+    }
+
+    .teaser.title-tablet-h3 .teaser-content .teaser-title {
+      --teaser-title-size: 1.75rem;
+    }
+
+    .teaser.title-tablet-h4 .teaser-content .teaser-title {
+      --teaser-title-size: 1.5rem;
+    }
+
+    .teaser.title-tablet-h5 .teaser-content .teaser-title {
+      --teaser-title-size: 1.125rem;
+    }
+
+    .teaser.title-tablet-h6 .teaser-content .teaser-title {
+      --teaser-title-size: 1rem;
+    }
   }
