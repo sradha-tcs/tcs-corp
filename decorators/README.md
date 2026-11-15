@@ -27,7 +27,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport; a pause / play button as `element.animationToggle`, WCAG 2.2.2; paused for reduced motion) | hero, teaser |
 | `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser, filter-list |
 | `stats-decorator.js` | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | testimonial, teaser |
-| `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`) | `scripts.js` |
+| `seo-decorator.js` | `decorateHead` (bulk metadata SEO / social columns to the standard head tags, `<html lang>`; keywords: the dialog's and the sheet's by `keyword-action`, `utils/keywords.js`) | `scripts.js` |
 | `social-links-decorator.js` | `buildSocialLinks` (Social Links data sheet as an icon list) | footer |
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article and blog templates (both), press-release template (`ensurePageHeader`) |
 | `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
