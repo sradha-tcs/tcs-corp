@@ -5,7 +5,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Attribute | Value |
 | --- | --- |
 | Audience | Business teams, product owner, new joiners, architects, developers, AMS / support, AI agents |
-| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
+| Source of truth | [utils/site.js](../../../utils/site.js), [paths.json](../../../paths.json), [fstab.yaml](../../../fstab.yaml), [package.json](../../../package.json), [AGENTS.md](../../../AGENTS.md), [blocks/README.md](../../../blocks/README.md), handover Part 1 — Project Overview ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation (business KPIs, stakeholder names, production domain and launch scope are not recorded) |
 
@@ -24,7 +24,7 @@ This page gives anyone joining the TCS Corporate Website project, human or AI ag
 | Sites | 13 locale sites, plus the language master published temporarily for review |
 | Hosts in use | `main--tcs-corp--sradha-tcs.aem.page` (preview) and `main--tcs-corp--sradha-tcs.aem.live` (live) |
 | Production domain and CDN | Not recorded (handover open item O-03, "To be confirmed") |
-| Handover | [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
+| Handover | [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md) version 2.37 (PDF: [TCS-CORP-HANDOVER.pdf](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.pdf)), status "Draft for review"; approvals pending |
 
 ## Business and Program Objectives
 
@@ -161,7 +161,7 @@ flowchart LR
 | Live (main) | `https://main--tcs-corp--sradha-tcs.aem.live/` | Published content | `main` |
 | Production | Not recorded (open item O-03) | Published content | `main` |
 
-Code is trunk-based: short-lived branches merged into `main` through pull requests; Code Sync deploys every push (handover 12.2, 12.3; [AGENTS.md](../../../AGENTS.md#publishing-process)). CI ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml)) runs `npm ci` and `npm run lint` on every push; unit tests and PageSpeed checks are not run by CI. Content is previewed and published from AEM. The only Git tags (`home-content-package_*`) mark earlier states of the `home-content-package` downloads branch (deliverables such as the handover PDF), not code releases. Branch protection, approval workflows and SLAs are not recorded (open items O-05, O-06, O-13).
+Code is trunk-based: short-lived branches merged into `main` through pull requests; Code Sync deploys every push (handover 12.2, 12.3; [AGENTS.md](../../../AGENTS.md#publishing-process)). CI ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml)) runs `npm ci` and `npm run lint` on every push; unit tests and PageSpeed checks are not run by CI. Content is previewed and published from AEM. The Git tags (`home-content-package_*`, `migrated-page-content-edam_*`) mark earlier states of the content branches, whose content moved to `sradha-tcs/tcs-corp-delivery` (KB-D-070), not code releases. Branch protection, approval workflows and SLAs are not recorded (open items O-05, O-06, O-13).
 
 ## Technology Stack
 
@@ -252,4 +252,4 @@ Full definitions: [glossary.md](./glossary.md).
 - [AGENTS.md](../../../AGENTS.md): verified project rules
 - [blocks/README.md](../../../blocks/README.md): block inventory
 - [utils/site.js](../../../utils/site.js): locales and the language master review
-- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover Part 1 — Project Overview, Part 3 — Site Structure, Part 16 — Handover Findings and Open Items Register: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
