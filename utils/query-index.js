@@ -3,6 +3,7 @@
  * loaded once per page and read the same way in every block. Rows of the current locale site.
  */
 import { indexRoot, REVIEW_ROOTS } from './site.js';
+import { sheetOverrides } from './sheet-metadata.js';
 
 const INDEX = '/query-index.json';
 // rows per request: the requests after the first run in parallel
@@ -76,13 +77,18 @@ export function tagsOf(row) {
 
 function toPage(row) {
   const tags = tagsOf(row);
+  // the metadata sheet's values override the page dialog's (utils/sheet-metadata.js), also in
+  // the row, which the blocks' column mappings read (columnOf)
+  const title = sheetOverrides(row.metaTitle, row.title);
+  const description = sheetOverrides(row.metaDescription, row.description);
+  const pageType = sheetOverrides(row.sheetPageType, row.pageType);
   return {
     path: row.path,
-    title: row.title || '',
-    description: row.description || '',
+    title,
+    description,
     image: row.image || '',
     tags,
-    pageType: row.pageType || '',
+    pageType,
     contentType: row.contentType || '',
     publishDate: row.publishDate || '',
     readingTime: row.readingTime || '',
@@ -93,7 +99,9 @@ function toPage(row) {
     featured: isYes(row.featured) || isYes(row.featureCard),
     priority: numberOf(row.priority) ?? numberOf(row.featuredPriority),
     lastModified: Number(row.lastModified) || 0,
-    row: { ...row, tags },
+    row: {
+      ...row, tags, title, description, pageType,
+    },
   };
 }
 

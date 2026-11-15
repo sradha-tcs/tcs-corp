@@ -209,7 +209,7 @@ Helpers that build no UI ([utils/README.md](../../../../utils/README.md) lists e
 
 ## Templates
 
-Loaded eagerly by `scripts.js` `loadTemplate` when the page's Page Type (page property, else the metadata sheet's `page-type`) is in `TEMPLATES`; Page Type options are in [models/_page.json](../../../../models/_page.json).
+Loaded eagerly by `scripts.js` `loadTemplate` when the page's Page Type (the metadata sheet's `sheet-page-type`, else the page property `page-type`) is in `TEMPLATES`; Page Type options are in [models/_page.json](../../../../models/_page.json).
 
 | Item | Path | Purpose | Consumers | Dependencies | Status | Documentation |
 | --- | --- | --- | --- | --- | --- | --- |

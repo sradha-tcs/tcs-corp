@@ -1034,7 +1034,7 @@ Pre-publish checklist:
 
 ## Content and Asset Guidelines
 
-- **Titles:** the page's `card-title` (else its title) or a List Item Title; short enough for the card width. The list Title names the region.
+- **Titles:** the page's `card-title` (else its `meta-title`, else its Title) or a List Item Title; short enough for the card width. The list Title names the region.
 - **Descriptions:** plain text (`card-description`, else the page description, or a List Item Description); rich text is not supported (use Cards).
 - **Eyebrows and labels:** `eyebrow`, else `category`; Label only on statistic cards.
 - **CTAs and links:** the header CTA, or a List Item's Call to action label (the card's one link). Links may be pages, paths or `https://` URLs; `javascript:` and `data:` links are skipped. Page links go to their redirect target.
@@ -1177,7 +1177,7 @@ decorate(block)
 }
 ```
 
-**Page metadata contract** (`PAGE_MAPPING`, in order of preference): Title `card-title`, else `og:title`; Description `card-description`, else `description`; Image `card-image`, else `og:image` (not the default social image), `thumbnail-image`, `featured-image`; Image alt `card-image-alt`, else `image-alt`, else decorative; Eyebrow `eyebrow`, else `category`; Tags `article:tag` (and `cq-tags`); Date `modified-date`, else `publish-date`, else when last published; `content-type`, `reading-time`, `author-id`; `hide-in-nav` = yes: not listed; `card-style`, `card-theme`. The query index (`helix-query.yaml`) indexes these columns (`cardTitle`, `cardDescription`, `cardImage`, `cardImageAlt`, `imageAlt`, `eyebrow`, `category`, `hideInNav`, `cardStyle`, `cardTheme`, `contentType`, `publishDate`, `modifiedDate`, `readingTime`, `thumbnailImage`, `featuredImage`, `authorId`, `cqTags`), so source lists request no page.
+**Page metadata contract** (`PAGE_MAPPING`, in order of preference): Title `card-title`, else `meta-title`, else `og:title`; Description `card-description`, else `meta-description`, else `description` (the sheet's `meta-*` override the page's, `utils/sheet-metadata.js`); Image `card-image`, else `og:image` (not the default social image), `thumbnail-image`, `featured-image`; Image alt `card-image-alt`, else `image-alt`, else decorative; Eyebrow `eyebrow`, else `category`; Tags `article:tag` (and `cq-tags`); Date `modified-date`, else `publish-date`, else when last published; `content-type`, `reading-time`, `author-id`; `hide-in-nav` = yes: not listed; `card-style`, `card-theme`. The query index (`helix-query.yaml`) indexes these columns (`cardTitle`, `cardDescription`, `cardImage`, `cardImageAlt`, `imageAlt`, `eyebrow`, `category`, `hideInNav`, `cardStyle`, `cardTheme`, `contentType`, `publishDate`, `modifiedDate`, `readingTime`, `thumbnailImage`, `featuredImage`, `authorId`, `cqTags`), so source lists request no page.
 
 **Sorting and deduplication.** Manual: authored order (Fixed) or path order (pages; the repository order isn't in the index); Title: `Intl.Collator`, locale-aware and numeric; Last modified: `modified-date`, else when last published (external links 0). Ties are broken by path. Deduplication key: the destination path (without `.html`, query, hash and trailing slash) or the full external URL, lower case; the first card wins. Maximum items applies after discovery, filtering, deduplication and sorting.
 

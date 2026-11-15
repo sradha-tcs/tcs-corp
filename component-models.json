@@ -26,7 +26,7 @@
         "valueType": "string",
         "name": "page-type",
         "label": "Page Type",
-        "description": "The Site Global Template of the page (layout and template code). Overrides the page-type column of the metadata sheet.",
+        "description": "The Site Global Template of the page (layout and template code). The metadata sheet's sheet-page-type column overrides it.",
         "value": "",
         "options": [
           {
@@ -8305,7 +8305,7 @@
         "valueType": "string",
         "name": "pageTypes",
         "label": "Page types",
-        "description": "Only pages of these page types (page-type metadata). None: every page type.",
+        "description": "Only pages of these page types (the metadata sheet's sheet-page-type, else the page's Page Type). None: every page type.",
         "options": [
           {
             "name": "Article",

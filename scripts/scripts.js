@@ -22,6 +22,7 @@ import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
 import { availableId } from '../utils/ids.js';
+import { sheetOverrides } from '../utils/sheet-metadata.js';
 import blockModules, { blockStylesheet } from './module-graph.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
@@ -420,17 +421,21 @@ async function addErrorBackButton(main) {
 }
 
 // Site Global Templates (/content/tcs-corp/site-global-templates) with template code in
-// templates/{name}/: the page's Page Type (page properties or the metadata sheet's page-type)
+// templates/{name}/: the page's Page Type (the metadata sheet's sheet-page-type, else the page
+// dialog's)
 const TEMPLATES = ['home', 'article', 'blog', 'press-release'];
 
-/** the Page Type (page properties or the metadata sheet), else the Template metadata */
-const pageTypeOf = () => toClassName(getMetadata('page-type') || getMetadata('template'));
+/** the Page Type: the metadata sheet's sheet-page-type overrides the page dialog's Page Type */
+const currentPageType = () => toClassName(sheetOverrides(
+  getMetadata('sheet-page-type'),
+  getMetadata('page-type') || getMetadata('template'),
+));
 
 /**
  * Adds the Page Type as a body class, like Template and Theme.
  */
 function decoratePageType() {
-  const pageType = toClassName(getMetadata('page-type'));
+  const pageType = currentPageType();
   if (pageType) document.body.classList.add(pageType);
 }
 
@@ -440,7 +445,7 @@ function decoratePageType() {
  * @param {Element} main The main element
  */
 async function loadTemplate(main) {
-  const name = pageTypeOf();
+  const name = currentPageType();
   if (!TEMPLATES.includes(name)) return;
   try {
     const base = `${window.hlx.codeBasePath}/templates/${name}/${name}`;

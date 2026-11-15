@@ -98,6 +98,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 | [Hero](./hero/README.md) (`hero`) | `hero` | CTA (`hero-cta`) |
 | [Image Collage](./image-collage/README.md) (`image-collage`) | `image-collage` | Collage image item (`image-collage-item`) |
 | [List](./list/README.md) (`list`) | `list` | List Item (`list-item`) |
+| [Media Contacts](./media-contacts/README.md) (`media-contacts`) | `media-contacts` | Media Contact (`media-contact`) |
 | [Page Header](./page-header/README.md) (`page-header`) | `page-header` | CTA (`page-header-cta`) |
 | [Table](./table/README.md) (`table`) | `table` | Row (`table-row`) |
 | [Table List](./table-list/README.md) (`table-list`) | `table-list` | Table List Item (`table-list-card`) |
