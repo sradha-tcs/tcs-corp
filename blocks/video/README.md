@@ -398,7 +398,7 @@ Stored on a new component (definition template): `playback` = `"click"`, `contro
 | Title | `label` | text | No | — | — | Names the video for screen readers (e.g. "TCS AI lab tour"); not shown on the page | Building on belief: the TCS brand film |
 | Caption | `caption` | richtext | No | — | — | Shown below the video | — |
 | Transcript | `transcript` | aem-content | No | — | — | A page or document with the transcript; shown as a link below the video | /design-block-master/en/dummy-pages/our-story |
-| Poster Image | `poster` | reference | No | — | — | Shown before the video plays, with a play button (Click playback). | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
+| Poster Image | `poster` | custom-asset-namespace:custom-asset | No | — | — | Shown before the video plays, with a play button (Click playback). Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/dummy-pages/images/banking.jpg |
 | Poster Image Alt Text | `posterAlt` | text | No | "" | — | Delivered with `poster` (field collapse). | Engineers collaborating in a modern office |
 | Captions File (WebVTT) | `captions` | aem-content | No | — | — | Subtitles for video files (.vtt); YouTube and Vimeo use the captions added there | — |
 | Captions Language | `captionsLanguage` | text | No | — | — | Language code, e.g. en, de, ja (default: the page language) | — |

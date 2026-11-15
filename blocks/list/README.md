@@ -692,7 +692,7 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Title | `headline` | text | No | — | — | Overrides the page title. | Cloud services for the enterprise |
 | Description | `summary` | text | No | — | — | Overrides the page description. | Co-developed platforms from our partner ecosystem. |
-| Image | `image` | reference | No | — | — | Overrides the page image. | /content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg |
+| Image | `image` | custom-asset-namespace:custom-asset | No | — | — | Overrides the page image. Picked with the Dynamic Media asset picker (stores the delivery URL). | /content/dam/tcs-corp/dummy-pages/images/ai-transformation.jpg |
 | Image alt text | `imageAlt` | text | No | — | — | Empty: the image is decorative. Delivered with `image` (field collapse). | Partner team in a workshop |
 | Eyebrow | `eyebrow` | text | No | — | — | — | Partner |
 | Tags | `tags` | aem-tag (multiple) | No | — | — | Overrides the page tags. | — |

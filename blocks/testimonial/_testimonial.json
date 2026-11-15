@@ -105,11 +105,11 @@
           "description": "The person’s name, e.g. Ranil Boteju."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "authorImage",
-          "label": "Author Image",
-          "multi": false
+          "label": "Author Image"
         },
         {
           "component": "text",

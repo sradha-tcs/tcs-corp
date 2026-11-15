@@ -26,11 +26,11 @@
           "label": "Content"
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "embed_placeholder",
-          "label": "Placeholder Image",
-          "multi": false
+          "label": "Placeholder Image"
         },
         {
           "component": "text",

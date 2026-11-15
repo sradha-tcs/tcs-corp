@@ -237,19 +237,19 @@
           ]
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "emailIcon",
           "label": "Email icon",
-          "multi": false,
           "description": "Optional custom icon. Leave empty to use the default mail icon."
         },
         {
-          "component": "reference",
+          "component": "custom-asset-namespace:custom-asset",
+          "configUrl": "/content/dam/tcs-corp-config/asset-selector/image.config.json",
           "valueType": "string",
           "name": "phoneIcon",
           "label": "Phone icon",
-          "multi": false,
           "description": "Optional custom icon. Leave empty to use the default phone icon."
         },
         {
