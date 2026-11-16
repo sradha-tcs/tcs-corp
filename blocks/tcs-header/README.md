@@ -233,6 +233,7 @@ B = Properties panel, Content tab
 6. **Preview** the nav page and a content page using it (desktop, tablet, mobile).
 7. **Publish** the Navigation page and the logo assets.
 8. **Validate** on the published site: both logos show, link to the right pages and are announced by their alt texts.
+9. **Leave the header out of one page (optional):** Page Properties › **Hide Header** on that page (this page only, not its child pages; or the metadata sheet's `hide-header` column). The Navigation page isn't loaded on it, so the logo bar, the menu and the header Canvas are left out and the page starts at the top (KB-D-071). The Additional tab's Hide block still has no effect in the site header.
 
 Minimum required: one logo image or one link. Recommended: both images (transparent SVG), both alt texts and both links. Optional: the Additional tab.
 
@@ -722,3 +723,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
 | PR #141 | Header over the first block (Auto / Always / Never; every width from the sticky bar fix) | KB-D-052 (Proposed) | 22 October 2026 |
+| KB-D-071 (Approved), PR #228 | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |

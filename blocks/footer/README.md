@@ -182,6 +182,7 @@ F = Social icons
 7. **Publish** the footer page, the Conversation Canvas page and, after changes, the Social Links sheet.
 8. **Choose the footer for an area (optional):** Page Properties › **Footer** on the area's top page (inherited by child pages; empty: the parent's, else `references/footer`), or the metadata sheet's `footer` column.
 9. **Validate** on the published site: the year is current, links reach their pages, new-tab links open a new tab.
+10. **Leave the footer out of one page (optional):** Page Properties › **Hide Footer** on that page (this page only, not its child pages; or the metadata sheet's `hide-footer` column). The footer page isn't loaded on it. **Hide Conversation Canvas** hides only the footer's Canvas (and the page's other Canvases) and keeps the bar (KB-D-071).
 
 Minimum required: Copyright Text or at least one Footer Link. Recommended: 3–6 links, the Canvas page on the locale footer, a `platform` value on every social row. Optional: the Canvas, area footers.
 
@@ -774,3 +775,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: new-tab footer and social links announced (D-D-24) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: Footer Link labels (Link text, Open in) and the social list named (R-D-13) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Footer blocks' modules and stylesheets preloaded (F-106) | docs/handover revision history | 20 October 2026 |
+| KB-D-071 (Approved), PR #228 | Page property Hide Footer: `scripts.js` doesn't load the footer on that page (`utils/page-visibility.js`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |

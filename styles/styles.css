@@ -379,6 +379,21 @@ header:not(:has(.nav-wrapper)) {
 }
 
 /*
+ * Hide Header / Hide Footer (page properties, utils/page-visibility.js): scripts.js marks <html>
+ * before the page is shown and doesn't load the part. A hidden header keeps no space: the logo
+ * bar's height (--nav-height, and with it --header-reserved and the overlay space) is 0, so the
+ * page starts at the top and the full-screen heroes fill the whole window.
+ */
+html[data-hide-header] {
+  --nav-height: 0rem;
+}
+
+html[data-hide-header] header,
+html[data-hide-footer] footer {
+  display: none;
+}
+
+/*
  * At every width: the logo bar lies over the page's first block (Figma Logos 667:52520 / Hero
  * 4082:120388), which starts at the top of the page. The TCS Header's Header over the first block
  * sets the mode (<html data-header-overlay>, utils/header-space.js): automatic (none) over an

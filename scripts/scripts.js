@@ -21,6 +21,7 @@ import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
+import { hiddenParts, markHiddenParts } from '../utils/page-visibility.js';
 import { availableId } from '../utils/ids.js';
 import { sheetOverrides } from '../utils/sheet-metadata.js';
 import blockModules, { blockStylesheet } from './module-graph.js';
@@ -460,6 +461,15 @@ async function loadTemplate(main) {
 const preloadedModules = new Set();
 // the header and footer and the blocks of their fragments, on every page
 const CHROME_BLOCKS = ['header', 'footer', 'fragment', 'tcs-header', 'conversation-canvas'];
+// the blocks the header and the footer bring: only those of the parts the page shows are preloaded
+const CHROME_PART_BLOCKS = {
+  header: ['header', 'fragment', 'tcs-header', 'conversation-canvas'],
+  footer: ['footer', 'fragment', 'conversation-canvas'],
+};
+
+// the parts of the page its Hide Header / Hide Footer / Hide Conversation Canvas page properties
+// hide (utils/page-visibility.js), read once
+const hidden = hiddenParts();
 
 /**
  * A preload link for a code file, once per page. Stylesheet preloads go in the body: loadCSS
@@ -497,13 +507,18 @@ export function preloadBlockModules(source) {
  * phase begins, so the blocks below the first section don't each wait for it in turn: the query
  * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. The query
  * index on every page: the header's tablet / mobile menu (blocks/tcs-header on the Navigation
- * page) lists pages from it, and loads in parallel with it instead of after it. (Not in the eager
- * phase: it would compete with the LCP image.)
+ * page) lists pages from it, and loads in parallel with it instead of after it; a page with Hide
+ * Header loads it only for these blocks of its own. (Not in the eager phase: it would compete
+ * with the LCP image.)
  * @param {Element} main
  */
 function prefetchData(main) {
-  import('../utils/query-index.js').then(({ getPages }) => getPages());
-  if (!main?.querySelector('.list, .filter-list, .conversation-canvas')) return;
+  const listsPages = !!main?.querySelector('.list, .filter-list, .conversation-canvas');
+  // without a header (Hide Header), only for the page's own blocks
+  if (!hidden.header || listsPages) {
+    import('../utils/query-index.js').then(({ getPages }) => getPages());
+  }
+  if (!listsPages) return;
   import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
   if (main.querySelector('.list')) {
     import('../utils/redirects.js').then(({ loadRedirects }) => loadRedirects());
@@ -533,13 +548,15 @@ async function loadEager(doc) {
   trackInteractions();
   decorateTemplateAndTheme();
   decoratePageType();
+  // the parts the page hides are marked before it is shown: a hidden header keeps no space
+  markHiddenParts(hidden);
   const main = doc.querySelector('main');
   if (main) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
     // the header's space is kept before it loads (no layout shift)
-    reserveHeaderSpace();
+    if (!hidden.header) reserveHeaderSpace();
     document.body.classList.add('appear');
     // the LCP section's blocks: all their modules at once
     const first = main.querySelector('.section');
@@ -585,14 +602,17 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   // the modules of the other blocks, the header and footer and the blocks of their fragments
   if (main) preloadBlockModules(main);
-  preloadBlockModules(CHROME_BLOCKS);
+  preloadBlockModules(CHROME_BLOCKS.filter((name) => Object.keys(CHROME_PART_BLOCKS)
+    .some((part) => !hidden[part] && CHROME_PART_BLOCKS[part].includes(name))));
   prefetchData(main);
-  loadHeader(doc.querySelector('header'));
+  // a header or footer the page hides isn't loaded (no fragment request, no data layer entry, no
+  // Canvas in the floating journey); styles/styles.css hides its empty element
+  if (!hidden.header) loadHeader(doc.querySelector('header'));
   // the footer loads alongside the sections, not after them; it shows once they have loaded, so
   // it never appears above content still loading and moves (no layout shift)
   const footer = doc.querySelector('footer');
   if (footer) footer.style.display = 'none';
-  loadFooter(footer);
+  if (!hidden.footer) loadFooter(footer);
 
   await loadMainSections(main);
   if (footer) footer.style.display = '';
