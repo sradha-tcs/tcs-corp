@@ -1165,6 +1165,8 @@
                   "model": "teaser",
                   "key-value": true,
                   "titleType": "h2",
+                  "titleTypeTablet": "h2",
+                  "titleTypeMobile": "h2",
                   "imagePosition": "left",
                   "showEyebrow": true,
                   "showDescription": true,
