@@ -78,6 +78,9 @@ The Home URL ends with `/` (`/language-masters/en` without it is a 404, as `/en`
 | Navigation | `nav` | Header page, inherited by child pages |
 | Footer | `footer` | Footer page, inherited by child pages |
 | 404 Page | `error-page` | 404 page of the subtree, inherited |
+| Hide Header | `hide-header` | Boolean, this page only (not inherited): the header isn't loaded and keeps no space; the page starts at the top (`<html data-hide-header>`, `--nav-height: 0rem`) |
+| Hide Footer | `hide-footer` | Boolean, this page only: the footer (its Canvas, bar and social links) isn't loaded (`<html data-hide-footer>`) |
+| Hide Conversation Canvas | `hide-canvas` | Boolean, this page only: every Conversation Canvas of the page (header, footer, content) gets Hide block: hidden, out of the floating journey, faded in edit mode (KB-D-071) |
 
 Page tags are not a field of this model; they come from the standard AEM page properties (`cq:tags`, published as `cq-tags`) or a `tags` column of the bulk metadata sheet (handover Part 7.1.1).
 
@@ -127,7 +130,7 @@ Source: [templates/README.md](../../../templates/README.md) (including how to ad
 
 | Source | Where authored | Published as |
 | --- | --- | --- |
-| Page properties (`models/_page.json`) | Universal Editor page properties | `<title>`, `description`, `keywords`, `page-type`, `nav`, `footer`, `error-page` metas |
+| Page properties (`models/_page.json`) | Universal Editor page properties | `<title>`, `description`, `keywords`, `page-type`, `nav`, `footer`, `error-page`, `hide-header`, `hide-footer`, `hide-canvas` metas |
 | Standard AEM page properties | Sites console (e.g. Tags `cq:tags`) | `cq-tags` (one comma-separated meta) |
 | Bulk metadata sheet | `/content/tcs-corp/{country}/{language}/metadata` | `/{locale}/metadata.json`; each column becomes `<meta name="{column}">` on pages matching the row's `url` pattern |
 

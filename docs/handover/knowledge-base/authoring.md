@@ -76,6 +76,9 @@ The page model is `page-metadata` in [models/_page.json](../../../models/_page.j
 | Navigation | `nav` | Inherited (see [References](#references-navigation-footer-and-404)) |
 | Footer | `footer` | Inherited |
 | 404 Page | `error-page` | Inherited |
+| Hide Header | `hide-header` | Toggle, this page only: shows the page without the header (logo bar, menu, header Canvas); the page starts at the top. Sheet column `hide-header` (`true`) |
+| Hide Footer | `hide-footer` | Toggle, this page only: shows the page without the footer. Sheet column `hide-footer` |
+| Hide Conversation Canvas | `hide-canvas` | Toggle, this page only: hides every Conversation Canvas of the page (header, footer, content), shown faded in edit mode. Sheet column `hide-canvas` |
 
 `TEMPLATES` in [scripts/scripts.js](../../../scripts/scripts.js) is `home`, `article`, `blog`, `press-release`; another value loads no template code but is still added as a body class.
 
@@ -217,7 +220,7 @@ For one page: fix the content (or restore a version), check it in Preview mode, 
 
 | Source | What it sets | Notes |
 | --- | --- | --- |
-| Page properties | Title, Description, Keywords, Page Type, Navigation, Footer, 404 Page | [models/_page.json](../../../models/_page.json) |
+| Page properties | Title, Description, Keywords, Page Type, Navigation, Footer, 404 Page, Hide Header, Hide Footer, Hide Conversation Canvas | [models/_page.json](../../../models/_page.json) |
 | Bulk metadata sheet `{locale}/metadata` | Every other page-level value: `author-id`, `publish-date`, `reading-time`, `region`, `content-type`, `featured-image`, card values (`card-title`, `card-style`, ...), SEO and social columns | Column list in [AGENTS.md](../../../AGENTS.md#site-structure-and-site-data); URL patterns must start with the locale (`/de-de/**`) |
 
 The bulk sheets apply only once the administrator lists all 13 in the site configuration's `metadata.source`; whether that is done is not recorded (handover open item O-04). The Page Header takes all its content from metadata (only its Layout and CTAs are authored). Republish a page after its card values changed so the query index row updates. Field reference: handover Part 8 — Metadata Documentation.
