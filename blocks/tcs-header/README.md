@@ -723,4 +723,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
 | PR #141 | Header over the first block (Auto / Always / Never; every width from the sticky bar fix) | KB-D-052 (Proposed) | 22 October 2026 |
-| KB-D-071 (Proposed) | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
+| KB-D-071 (Approved), PR #228 | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |

@@ -775,4 +775,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block ecosystem audit: new-tab footer and social links announced (D-D-24) | docs/handover revision history; docs/audit/BLOCK-ECOSYSTEM-AUDIT.md | 19 October 2026 |
 | Handover 2.29 | Re-audit: Footer Link labels (Link text, Open in) and the social list named (R-D-13) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Footer blocks' modules and stylesheets preloaded (F-106) | docs/handover revision history | 20 October 2026 |
-| KB-D-071 (Proposed) | Page property Hide Footer: `scripts.js` doesn't load the footer on that page (`utils/page-visibility.js`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
+| KB-D-071 (Approved), PR #228 | Page property Hide Footer: `scripts.js` doesn't load the footer on that page (`utils/page-visibility.js`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
