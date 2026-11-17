@@ -25,7 +25,7 @@
   --hero-title-max-width: 62.5rem;
   --hero-secondary-cta-grey-hover: #cedff4;
   --hero-title-color: var(--color-text-default);
-  --hero-eyebrow-color: var(--brand-400); /* #216AC3, the same on every BG Color */
+  --hero-eyebrow-color: var(--white-1000); /* #FFFFFF, the same on every BG Color */
   --hero-description-color: var(--color-text-secondary);
   --hero-title-max-width-tab: 60rem;
   --hero-description-max-width: 53.125rem;
@@ -246,17 +246,13 @@
   --hero-icon-color: var(--brand-200);
 }
 
-/* Eyebrow color: royal blue #216AC3 (the default), soft sky blue #A7C8F1 or white #FFFFFF */
+/* Eyebrow color: white #FFFFFF (the default), royal blue #216AC3 or soft sky blue #A7C8F1 */
 .hero.eyebrow-royal-blue {
   --hero-eyebrow-color: var(--brand-400);
 }
 
 .hero.eyebrow-sky-blue {
   --hero-eyebrow-color: var(--brand-300);
-}
-
-.hero.eyebrow-white {
-  --hero-eyebrow-color: var(--white-1000);
 }
 
 .hero .hero-icon-tinted picture {

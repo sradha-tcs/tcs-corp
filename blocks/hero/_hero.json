@@ -455,7 +455,7 @@
           "value": "",
           "options": [
             {
-              "name": "Default (royal blue)",
+              "name": "Default (white)",
               "value": ""
             },
             {
@@ -465,10 +465,6 @@
             {
               "name": "Soft sky blue",
               "value": "eyebrow-sky-blue"
-            },
-            {
-              "name": "White",
-              "value": "eyebrow-white"
             }
           ],
           "description": "Colour of the eyebrow above the title."
