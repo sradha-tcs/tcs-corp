@@ -43,71 +43,71 @@ Screenshots of the handover (6.4 Page Header Block), taken on the preview with s
 
 **Desktop rendering** — The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Anita Rao lockup (Head of Banking Research, Europe) on the left, the description, Talk to an expert (black) and Download the report (outlined) on the right.
 
-![Desktop rendering: The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Ani](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-desktop-view.jpg)
+![Desktop rendering: The article Page Header at 1440 px: the meta row with BANKING, ARTIFICIAL INTELLIGENCE and Insight on the left and Published 12/03/26, 6 min read and the headphones, download and share icons on the right; then the title and the Ani](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-desktop-view.jpg)
 
 **Tablet rendering** — The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto two lines and title, lockup, description and CTAs stack in one column.
 
-![Tablet rendering: The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-tablet-view.jpg)
+![Tablet rendering: The same article at 1024 px and 768 px side by side. At 1024 px the meta row is one line and the title with the Anita Rao lockup and the description with the two CTAs are in two columns; at 768 px the labels and the info wrap onto t](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-tablet-view.jpg)
 
 **Mobile rendering** — The article Page Header at 390 px: the meta row wraps onto three lines (BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons), then the title, the Anita Rao lockup, the description, and Talk to an expert and Download the report stacked.
 
-![Mobile rendering: The article Page Header at 390 px: the meta row wraps onto three lines BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons, then the title, the Anita Rao lockup, the description, and Talk to](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-mobile-view.jpg)
+![Mobile rendering: The article Page Header at 390 px: the meta row wraps onto three lines BANKING, ARTIFICIAL INTELLIGENCE, Insight; Published 12/03/26 and 6 min read; the three icons, then the title, the Anita Rao lockup, the description, and Talk to](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-mobile-view.jpg)
 
 **Layout chosen by Page Type** — Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: the meta row, the agentic AI title with the Anita Rao lockup, the description and one Talk to an expert button.
 
-![Layout chosen by Page Type: Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-default-layout.jpg)
+![Layout chosen by Page Type: Two pages with Layout Default at 1200 px. Left, page-type landing: the Landing layout with INDUSTRY, Banking and financial services, the description and two CTAs beside the blue featured image. Right, Page Type Article: th](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-default-layout.jpg)
 
 **Landing with image** — The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert (black) and Explore banking insights (outlined) on the left, the blue sample image on the right. Mobile: the text and CTAs stacked, the image below them.
 
-![Landing with image: The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert black and Explore banking insights outlined on the left, the blue sample image](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-landing-with-image.jpg)
+![Landing with image: The Landing layout at 1440 px and 390 px. Desktop: INDUSTRY, the semibold 6rem title Banking and financial services, the description, Talk to an expert black and Explore banking insights outlined on the left, the blue sample image](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-landing-with-image.jpg)
 
 **Landing without image** — The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a black Subscribe to updates button, stacked on the left.
 
-![Landing without image: The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-landing-text-only.jpg)
+![Landing without image: The Landing layout without a featured image at 1440 px: the INSIGHTS eyebrow, the very large semibold title All insights, the description Research, perspectives and case studies from our consultants and industry experts, and a ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-landing-text-only.jpg)
 
 **Secondary layout** — The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board (black) and Corporate governance (outlined).
 
-![Secondary layout: The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board black and Corporate governance outlined.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-secondary.jpg)
+![Secondary layout: The Secondary layout at 1440 px: the ABOUT US eyebrow above both columns, the semibold title Our leadership on the left; on the right, slightly lower, the description, Meet the board black and Corporate governance outlined.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-secondary.jpg)
 
 **Article layout** — The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and Head of Banking Research, Europe below it; the description, Talk to an expert and Download the report on the right.
 
-![Article layout: The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and He](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-article.jpg)
+![Article layout: The Article layout at 1440 px: BANKING, ARTIFICIAL INTELLIGENCE and Insight left in the meta row, Published 12/03/26, 6 min read and the headphones, download and share icons right; the title with the round Anita Rao photo, name and He](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-article.jpg)
 
 **Display layout** — The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our approach (black) and Read the report (outlined) vertically centred on the right.
 
-![Display layout: The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-display.jpg)
+![Display layout: The Display layout at 1440 px: the tags CLOUD, ARTIFICIAL INTELLIGENCE and SUSTAINABILITY separated by vertical bars above the 6rem medium-weight dark slate title Sustainable cloud, by design on the left; the description, Explore our ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-display.jpg)
 
 **Template-generated header** — The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS expands its AI innovation network in Europe left and the description right, with no author and no CTAs.
 
-![Template-generated header: The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-template-automatic.jpg)
+![Template-generated header: The header the Press Release template adds at 1440 px, cropped to the block: EUROPE, ARTIFICIAL INTELLIGENCE and Press Release left, Published 15/09/26, 3 min read and only the download and share icons right; the title TCS ](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-template-automatic.jpg)
 
 **Primary CTA** — The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an arrow.
 
-![Primary CTA: The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an ar](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-primary.jpg)
+![Primary CTA: The summary column of the Secondary header at 1440 px: the description Plan, migrate and run your applications on the cloud platforms that fit your business, and below it Talk to an expert as a black filled pill with white text and an ar](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-primary.jpg)
 
 **Secondary CTA** — The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.
 
-![Secondary CTA: The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-secondary.jpg)
+![Secondary CTA: The summary column at 1440 px: the description, then Talk to an expert as a black filled pill and, beside it, Explore services as an outlined pill with dark text, both with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-secondary.jpg)
 
 **Text link CTA** — The summary column at 1440 px: the description, Talk to an expert (black pill) and Explore services (outlined pill) on one line, and below them View all case studies as a plain text link with an arrow.
 
-![Text link CTA: The summary column at 1440 px: the description, Talk to an expert black pill and Explore services outlined pill on one line, and below them View all case studies as a plain text link with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-text-link.jpg)
+![Text link CTA: The summary column at 1440 px: the description, Talk to an expert black pill and Explore services outlined pill on one line, and below them View all case studies as a plain text link with an arrow.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-cta-text-link.jpg)
 
 **Name-only author** — The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.
 
-![Name-only author: The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-author-metadata.jpg)
+![Name-only author: The intro column of the Article header at 1440 px: the title Lessons from a mainframe-to-cloud migration over three lines and below it the name Jordan Example in light weight, with no photo, designation or link.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-author-metadata.jpg)
 
 **Listen icon** — The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones (listen), download and share icons.
 
-![Listen icon: The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones listen, download and share icons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-listen-action.jpg)
+![Listen icon: The info part of the article meta row at 1440 px: Published 12/03/26, 6 min read, then the headphones listen, download and share icons.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-listen-action.jpg)
 
 **Universal Editor canvas** — The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G the two CTAs. There is no H: the featured image appears only in the Landing layout. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/page-header-authoring-view.jpg)
 
-![Universal Editor canvas: The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-authoring-view.jpg)
+![Universal Editor canvas: The article Page Header at 1440 px in editor mode with markers A to G: A the block, B BANKING, ARTIFICIAL INTELLIGENCE and Insight, C the title, D the description, E the date, reading time and icons, F the Anita Rao lockup, G](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-authoring-view.jpg)
 
 **Properties panel** — The Page Header properties with the Style tab (Layout select open), the CTAs tab with two CTA List items, and the Additional tab. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/page-header-properties-panel.jpg)
 
-![Properties panel: The Page Header properties with the Style tab Layout select open, the CTAs tab with two CTA List items, and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots](https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-properties-panel.jpg)
+![Properties panel: The Page Header properties with the Style tab Layout select open, the CTAs tab with two CTA List items, and the Additional tab. Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/page-header/screenshots/handover/page-header-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -139,6 +139,10 @@ B = CTA List › CTA Title
 C = CTA List › CTA Link
 D = CTA List › CTA Link Type
 E = CTA List › CTA Link Style
+F = CTA List › Primary CTA Text Color (Primary only)
+G = CTA List › Primary CTA Background (Primary only)
+H = CTA List › Secondary CTA Text Color (Secondary only)
+I = CTA List › Secondary CTA Background (Secondary only)
 ```
 
 ```text
@@ -308,7 +312,7 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Layout | `classes` | select | No | "" | Default (from the Page Type) (""), Landing (with the featured image) (`landing`), Secondary (title left, text right) (`secondary`), Article (meta row, author) (`article`), Display (large title) (`display`) | The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article. | article |
+| Layout | `classes` | select | No | "" | Default (from the Page Type) (""), Landing (with the featured image) (`landing`), Secondary (title left, text right) (`secondary`), Article (meta row, author) (`article`), Display (large title) (`display`), Default (Only CTA Alignment Left) (`cta-alignment-left`) | The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article. | article |
 
 #### CTAs tab — Page Header
 
@@ -319,6 +323,10 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 | CTA List › CTA Link | `cta` | aem-content | No | — | — | — | — |
 | CTA List › CTA Link Type | `ctaTarget` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 | CTA List › CTA Link Style | `ctaStyle` | select | No | `primary` | Text link (""), Primary Button (`primary`), Secondary Button (`secondary`) | — | — |
+| CTA List › Primary CTA Text Color (Primary only) | `pageHeaderPrimaryCtaTextColor` | select | No | "" | Style default (""), White (`primary-text-white`), Blue (`primary-text-blue`), Black (`primary-text-black`) | Sets the Primary CTA Text Color. | — |
+| CTA List › Primary CTA Background (Primary only) | `pageHeaderPrimaryCtaBackground` | select | No | "" | Style default (""), White (`primary-bg-white`), Blue (`primary-bg-blue`), Translucent white (`primary-bg-translucent`) | Sets the Primary CTA button background. | — |
+| CTA List › Secondary CTA Text Color (Secondary only) | `pageHeaderSecondaryCtaTextColor` | select | No | "" | Style default (""), White (`secondary-text-white`), Blue (`secondary-text-blue`), Black (`secondary-text-black`) | Sets the Secondary CTA Text Color. | — |
+| CTA List › Secondary CTA Background (Secondary only) | `pageHeaderSecondaryCtaBackground` | select | No | "" | Style default (""), White (`secondary-bg-white`), Blue (`secondary-bg-blue`), Translucent white (`secondary-bg-translucent`) | Sets the Secondary CTA button background. | — |
 
 #### Additional tab — Page Header
 
@@ -360,9 +368,9 @@ Stored on a new component (definition template): `linkStyle` = `"primary"`.
 Notes on the significant fields:
 
 - **Button background and Button shape** (CTA items, the Teaser link's field names and classes). For a Primary or Secondary Button: **Button background: Blue** (`button-bg-blue`) fills it with the brand blue `#216ac3` (`--color-bg-brand`, border `--color-border-brand-secondary`) and white text (5.4:1), hover and focus `#1b5ea3`; **Button shape: Round** (`button-round`) makes it a 6rem circle with the label (12px, wrapped between words) above the arrow. A label with a word over 12 characters or over 24 characters in all doesn't fit the circle and stays a pill. A Text link ignores both. **Style default** keeps the CTA Link Style. The legacy CTA List has neither (use CTA items); Blue and Round authored before as CTA Link Style `blue` / CTA Shape `round` are shown as Blue and Round.
-- **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (`page-type`, else `template` metadata).
+- **Layout.** Becomes the block class (`landing`, `secondary`, `article`, `display`); any other layout class is removed and the resolved one added. Default resolves from the Page Type (the sheet's `sheet-page-type` metadata, else the page's `page-type`).
 - **CTA (item) fields.** CTA Link Style Primary / Secondary render `a.button.primary` / `a.button.secondary`; Text link (`tertiary`, or empty in content authored before) renders `a.button.tertiary`. A new CTA stores Primary Button (definition template). Open in New Window sets `target="_blank"`, `rel="noopener noreferrer"` and appends the visually hidden placeholder `opensInNewTab`. A CTA without a link isn't rendered (in Universal Editor it is a dashed placeholder, `itemEditorHint`).
-- **Metadata (not dialog fields).** Title → `h1.page-header-title`; Description → `div.page-header-description`; content-type → eyebrow (Landing, Secondary) or `p.page-header-collection` (Article); tags → `ul.page-header-tags` (Article meta row; Display eyebrow; Landing / Secondary eyebrow when there is no content-type), labels from the taxonomy, else derived from the tag ID; publish-date (`publication-date` as a fallback) → "Published" + `<time>` (dd/mm/yy); reading-time → "{n} min read" for a number; author-id → Authors sheet name, designation and region, image, LinkedIn; author → name only; featured-image and image-alt → the Landing image; listen-link → the listen action.
+- **Metadata (not dialog fields).** Title (the sheet's `meta-title`, else the page's Title) → `h1.page-header-title`; Description (the sheet's `meta-description`, else the page's Description) → `div.page-header-description`; content-type → eyebrow (Landing, Secondary) or `p.page-header-collection` (Article); tags → `ul.page-header-tags` (Article meta row; Display eyebrow; Landing / Secondary eyebrow when there is no content-type), labels from the taxonomy, else derived from the tag ID; publish-date (`publication-date` as a fallback) → "Published" + `<time>` (dd/mm/yy); reading-time → "{n} min read" for a number; author-id → Authors sheet name, designation and region, image, LinkedIn; author → name only; featured-image and image-alt → the Landing image; listen-link → the listen action.
 - **Accessibility impact.** One H1 per page; the featured image's alt comes from `image-alt` (empty: decorative); the author image is decorative (`alt=""`).
 - **Data-layer impact.** The H1 text is the component's `dc:title`; CTAs and the actions are tracked as clicks.
 - **Legacy mapping.** CTAs authored in the former **CTA List** composite multifield (`ctas`: CTA Title, CTA Link, CTA Link Type, CTA Link Style) are still read and shown before the CTA items; a style stored as empty renders as a Text link.
@@ -392,7 +400,7 @@ D = Metadata sheet row (content-type, publish-date, reading-time, author-id)
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | Title (page properties) | Cloud transformation for banks | The H1 | `h1.page-header-title` |
+| A | Title (the sheet's `meta-title`, else page properties) | Cloud transformation for banks | The H1 | `h1.page-header-title` |
 | B | Description (page properties) | How banks modernise their core on the cloud. | Supporting text | Description beside the title |
 | C | Page Type | article | Default layout | Article layout |
 | D | content-type / publish-date / reading-time / author-id | Insight / 2026-03-12 / 6 / an author-id of the Authors sheet | Meta row and author | "Insight", "Published 12/03/26", "6 min read", the author lockup |
@@ -666,7 +674,7 @@ blocks/page-header/
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `page-header.js`: { KEY_VALUE_ITEM, itemRows } |
 | [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion` (the locale's data sheets) | `page-header.js`: { getAuthor } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `page-header.js`: { readLinkItems, readLinkRows } |
-| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: page-type, author-id, publish-date, reading-time, ...) | `page-header.js`: { getPageMetadata } |
+| [`utils/metadata.js`](../../utils/metadata.js) | `getPageMetadata`, `getPageTags` (article:tag and the AEM page Tags published as `cq-tags`), `getPageLanguage` (page properties and bulk metadata columns: sheet-page-type / page-type, author-id, publish-date, reading-tim | `page-header.js`: { getPageMetadata } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `page-header.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `page-header.js`: { optionOf, readProperties } |
 | [`utils/taxonomy.js`](../../utils/taxonomy.js) | `loadTaxonomy`, `resolveTags` (tag labels from the locale's taxonomy) | `page-header.js`: { resolveTags } |
@@ -726,7 +734,7 @@ div.page-header.<layout>[.page-header-has-image]
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
 | Page properties | Title, Description, Page Type, Tags | AEM page | No H1 / description; Default layout falls back to Article |
-| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, listen-link, page-type | `/{locale}/metadata.json` | Those parts are left out |
+| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, listen-link, sheet-page-type (overrides the page's page-type) | `/{locale}/metadata.json` | Those parts are left out |
 | Authors sheet | Author lockup | `/{locale}/data/authors.json` | No lockup (only the `author` name if set) |
 | Taxonomy | Tag labels | `/{locale}/taxonomy.json` | Labels derived from tag IDs |
 | Placeholders | `published`, `minRead`, `listenToThisPage`, `downloadThisPage`, `shareThisPage`, `linkCopied`, `opensInNewTab`, `itemEditorHint` | `/{locale}/placeholders.json` | English fallbacks |
@@ -769,7 +777,7 @@ graph LR
 | Test ID | Scenario | Configuration | Expected result |
 | ------- | -------- | ------------- | --------------- |
 | PAGE-HEADER-QA-01 | Default on an article | Layout Default, page-type article | Article layout |
-| PAGE-HEADER-QA-02 | Default on a landing page | Layout Default, page-type landing (sheet) | Landing layout |
+| PAGE-HEADER-QA-02 | Default on a landing page | Layout Default, sheet-page-type landing (sheet) | Landing layout |
 | PAGE-HEADER-QA-03 | Landing with image | featured-image as site media, image-alt | Two columns from 900px; image eager, `fetchpriority="high"`, alt set |
 | PAGE-HEADER-QA-04 | Landing without image | No featured-image | Text stacked, no `page-header-has-image` |
 | PAGE-HEADER-QA-05 | Secondary | Layout Secondary | Eyebrow above the title column and the summary column |
@@ -791,8 +799,8 @@ graph LR
 
 | Symptom | Likely cause | Diagnostic steps | Resolution | Verification |
 | ------- | ------------ | ---------------- | ---------- | ------------ |
-| Title or description wrong / missing | Page properties not updated or not republished | Page source: `og:title`, `description` | Update the page properties; publish | H1 matches the Title |
-| Wrong layout | Default with an unexpected page-type (e.g. a sheet row) | `<meta name="page-type">`; block classes | Choose the Layout explicitly or fix the sheet | Expected layout class |
+| Title or description wrong / missing | The sheet's `meta-title` / `meta-description` override the page properties; page properties or sheet not updated or not republished | Page source: `meta-title`, `meta-description`, `og:title`, `description` | Update the sheet row (or clear it to use the page properties) or the page properties; publish | H1 matches the Title |
+| Wrong layout | Default with an unexpected Page Type (e.g. a sheet row: the sheet's `sheet-page-type` overrides the page's `page-type`) | `<meta name="sheet-page-type">`, `<meta name="page-type">`; block classes | Choose the Layout explicitly or fix the sheet | Expected layout class |
 | No author lockup | author-id missing from the Authors sheet, sheet not published, or layout not Article | `<meta name="author-id">`; open `/{locale}/data/authors.json` | Fix the author row; publish | Lockup shows |
 | Tags show technical labels | Tag missing from the locale taxonomy / language sheet | Open `/{locale}/taxonomy.json` | Add / translate the tag; publish | Proper labels |
 | Date not formatted | publish-date not ISO | Check the metadata value | Use YYYY-MM-DD | dd/mm/yy with `datetime` |
@@ -821,7 +829,7 @@ Evidence to collect (no secrets): URL, viewport, the page's `<meta>` tags, the r
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
 | A featured image that isn't same-origin site media is lazy-loaded (F-14) | Slower LCP on landing pages | Use DAM images delivered as site media | Not recorded |
-| Page Type offers home, article, blog, press-release; landing / listing only via the metadata sheet (F-12) | Default can't resolve to Landing from page properties | Set page-type in the sheet or choose Landing | Not recorded (open: one list of page types, O-11) |
+| Page Type offers home, article, blog, press-release; landing / listing only via the metadata sheet (F-12) | Default can't resolve to Landing from page properties | Set sheet-page-type in the sheet or choose Landing | Not recorded (open: one list of page types, O-11) |
 | Only the English taxonomy is published (F-09) | ID-derived tag labels in other locales | Publish each locale's taxonomy | Not recorded |
 | Date format dd/mm/yy in every locale | Not localised | — | Not recorded |
 | Metadata changes are read when the page loads | Editor shows old values until reloaded | Reload the editor | Not planned |
@@ -833,7 +841,7 @@ Evidence to collect (no secrets): URL, viewport, the page's `<meta>` tags, the r
 - Model: [`_page-header.json`](./_page-header.json)
 - Templates: [`templates/README.md`](../../templates/README.md)
 - Tests: [`test/items/item-rows.test.mjs`](../../test/items/item-rows.test.mjs)
-- [Handover 6.4 Page Header Block](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
+- [Handover 6.4 Page Header Block](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
@@ -853,3 +861,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.10 | CTAs as CTA items (`page-header-cta`) instead of the CTA List multifield, which is still read (F-87: a Page Header with CTAs was left out on published pages) | docs/handover revision history | 17 October 2026 |
 | Handover 2.17 | Item children in the Page Header field specification | docs/handover revision history | 18 October 2026 |
 | Handover 2.18 | Additional tab Content animation | docs/handover revision history | 18 October 2026 |
+| Not recorded | Layout CTA Alignment Left (`cta-alignment-left`): the CTAs below the title on the left. CTA List: Primary CTA Text Color / Background (Primary only) and Secondary CTA Text Color / Background (Secondary only), always shown: Universal Editor doesn't evaluate conditions per entry inside the multi container (KB-D-062, confirmed); text White, Blue, Black (`cta-text-*`), background White, Blue, Translucent white (`button-bg-*`, the Teaser's colours); a CTA applies only its own style's values | fix/page-header-styles | 14 November 2026 |

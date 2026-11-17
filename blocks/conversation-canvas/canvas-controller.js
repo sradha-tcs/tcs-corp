@@ -133,12 +133,15 @@ function measure() {
   // the floating offset (space below the floating row, safe area included) as resolved px
   const slot = live.find((e) => e.slot)?.slot;
   const offset = slot ? parseFloat(getComputedStyle(slot).scrollMarginBottom) || 0 : 0;
+  // a footer that isn't rendered (Hide Footer, or while the sections load) counts as none: its
+  // top would read 0 and lift the floating row off the screen
   const footer = document.querySelector('footer');
+  const footerShown = !!footer?.getClientRects().length;
   geometry = {
     live,
     canvases,
     offset,
-    footerTop: footer ? footer.getBoundingClientRect().top + scrollY : null,
+    footerTop: footerShown ? footer.getBoundingClientRect().top + scrollY : null,
     documentHeight: document.documentElement.scrollHeight,
     viewportHeight: window.innerHeight,
   };

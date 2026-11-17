@@ -5,7 +5,7 @@ How content authors create, edit, preview and publish pages of the TCS Corporate
 | Attribute | Value |
 | --- | --- |
 | Audience | Content authors, content leads, L1 author support, QA |
-| Source of truth | [component-filters.json](../../../component-filters.json), [models/](../../../models/), [blocks/README.md](../../../blocks/README.md) and the block READMEs, [AGENTS.md](../../../AGENTS.md), [utils/site.js](../../../utils/site.js), handover Part 5 — Authoring Fundamentals ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
+| Source of truth | [component-filters.json](../../../component-filters.json), [models/](../../../models/), [blocks/README.md](../../../blocks/README.md) and the block READMEs, [AGENTS.md](../../../AGENTS.md), [utils/site.js](../../../utils/site.js), handover Part 5 — Authoring Fundamentals ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Requires validation (author permissions, publish destinations of the Universal Editor and the production domain are not recorded) |
 
@@ -72,10 +72,13 @@ The page model is `page-metadata` in [models/_page.json](../../../models/_page.j
 | Title | `jcr:title` | Browser, SEO and social title; Page Header heading; card title fallback |
 | Description | `jcr:description` | Meta description; Page Header description; card description fallback |
 | Keywords | `keywords` | Meta keywords |
-| Page Type | `page-type` | Default, Home, Article, Blog, Press Release: loads `templates/{name}/` ([templates/README.md](../../../templates/README.md)); overrides the sheet's `page-type` |
+| Page Type | `page-type` | Default, Home, Article, Blog, Press Release: loads `templates/{name}/` ([templates/README.md](../../../templates/README.md)); the metadata sheet's `sheet-page-type` column overrides it |
 | Navigation | `nav` | Inherited (see [References](#references-navigation-footer-and-404)) |
 | Footer | `footer` | Inherited |
 | 404 Page | `error-page` | Inherited |
+| Hide Header | `hide-header` | Toggle, this page only: shows the page without the header (logo bar, menu, header Canvas); the page starts at the top. Sheet column `hide-header` (`true`) |
+| Hide Footer | `hide-footer` | Toggle, this page only: shows the page without the footer. Sheet column `hide-footer` |
+| Hide Conversation Canvas | `hide-canvas` | Toggle, this page only: hides every Conversation Canvas of the page (header, footer, content), shown faded in edit mode. Sheet column `hide-canvas` |
 
 `TEMPLATES` in [scripts/scripts.js](../../../scripts/scripts.js) is `home`, `article`, `blog`, `press-release`; another value loads no template code but is still added as a body class.
 
@@ -147,7 +150,7 @@ Every block model except the header and footer ends with an **Additional** tab (
 | Anchor ID | `classes_anchor` | Must match `anchor-…` (lower case, digits, hyphens); becomes the block's `id` ([decorators/block-options-decorator.js](../../../decorators/block-options-decorator.js)), de-duplicated as `-2`, `-3`; also the block's data layer id |
 | Hide block | `classes_hideblock` | Hidden on the site and in Preview; faded in edit mode; the content stays in the delivered HTML (not an embargo mechanism) |
 | Padding / Margin Left, Right, Top, Bottom | `classes_padding*`, `classes_margin*` | `--space-*` tokens, the same at every breakpoint |
-| Animation Type, Motion Speed, Animation Trigger | `classes_animation*` | Content animation on 19 blocks; never in edit mode or for reduced motion ([docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)) |
+| Animation Type, Motion Speed, Animation Trigger | `classes_animation*` | Content animation on 19 blocks; never in edit mode or for reduced motion ([docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)) |
 | Background animation | `classes_bganimation` | Hero, Teaser, Quote, Testimonial, Form Variations, Conversation Canvas |
 
 Container sections (Columns Container, Tabs Container, Gen Carousel) carry the same options as `container*` fields (`containerAnchor`, `containerHide`, ...), applied by `applySectionBlockOptions` in [scripts/scripts.js](../../../scripts/scripts.js).
@@ -190,7 +193,7 @@ Pages under `block-library/` and `site-global-templates/` can't be published (`e
 
 Re-publication after a correction is the verified recovery path, recorded in the handover revision history:
 
-- Package 1.0.9 was published; on `aem.live` the container sections' Additional tab had no effect (re-audit finding R-L-1). The code was corrected (PR #121), package 1.0.10 installed, and its 312 pages previewed, published and reindexed (312 / 312) (handover revisions 2.30, 2.31; [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)).
+- Package 1.0.9 was published; on `aem.live` the container sections' Additional tab had no effect (re-audit finding R-L-1). The code was corrected (PR #121), package 1.0.10 installed, and its 312 pages previewed, published and reindexed (312 / 312) (handover revisions 2.30, 2.31; [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)).
 - Package 1.0.12: one page timed out on its first preview and went through on retry (handover revision 2.35).
 
 For one page: fix the content (or restore a version), check it in Preview mode, publish to preview, verify, then publish to live. If a correction is not visible, check that the referenced item (fragment, sheet, asset) was published too, then escalate to L1 (Admin API status, re-preview and cache operations are for administrators; see [administration-and-operations.md](./administration-and-operations.md#publishing-and-the-admin-api)).
@@ -217,7 +220,7 @@ For one page: fix the content (or restore a version), check it in Preview mode, 
 
 | Source | What it sets | Notes |
 | --- | --- | --- |
-| Page properties | Title, Description, Keywords, Page Type, Navigation, Footer, 404 Page | [models/_page.json](../../../models/_page.json) |
+| Page properties | Title, Description, Keywords, Page Type, Navigation, Footer, 404 Page, Hide Header, Hide Footer, Hide Conversation Canvas | [models/_page.json](../../../models/_page.json) |
 | Bulk metadata sheet `{locale}/metadata` | Every other page-level value: `author-id`, `publish-date`, `reading-time`, `region`, `content-type`, `featured-image`, card values (`card-title`, `card-style`, ...), SEO and social columns | Column list in [AGENTS.md](../../../AGENTS.md#site-structure-and-site-data); URL patterns must start with the locale (`/de-de/**`) |
 
 The bulk sheets apply only once the administrator lists all 13 in the site configuration's `metadata.source`; whether that is done is not recorded (handover open item O-04). The Page Header takes all its content from metadata (only its Layout and CTAs are authored). Republish a page after its card values changed so the query index row updates. Field reference: handover Part 8 — Metadata Documentation.
@@ -316,7 +319,7 @@ This is the author definition of done V-01 of handover Part 17 — Operations Gu
 | Bulk metadata ignored | `metadata.source` not configured or pattern wrong | 13.17 |
 | Block missing on the site | Hide block on | 13.18 |
 | Anchor link doesn't jump | Missing `anchor-` prefix or duplicate id | 13.19 |
-| Lottie, video or captions 404 | Non-image asset not published | 13.30 and [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md) |
+| Lottie, video or captions 404 | Non-image asset not published | 13.30 and [REAUDIT-2026-10-20.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md) |
 | Fragment, modal or tab content missing | Fragment not published | 13.31 |
 
 Escalate to L1 with the AEM and published path, locale, steps, screenshot and time (handover Part 14, 14.5).
@@ -327,6 +330,6 @@ Escalate to L1 with the AEM and published path, locale, steps, screenshot and ti
 - [blocks.md](./blocks.md), [content-architecture.md](./content-architecture.md), [indexing-and-search.md](./indexing-and-search.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [personalization.md](./personalization.md), [design-system.md](./design-system.md)
 - [blocks/README.md](../../../blocks/README.md) and each block README
 - [AGENTS.md](../../../AGENTS.md): AEM delivery rules, Additional tab, item children, site structure and site data
-- [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md), [templates/README.md](../../../templates/README.md)
-- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 5 — Authoring Fundamentals, Part 6 — Component Library, Part 7 — Taxonomy, Part 8 — Metadata, Part 9 — Data Sheets, Part 15 — Appendix (15.5 Authoring Cheat Sheets), Part 18 — New Joiner Training Guide
-- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md): block audit and re-audit
+- [docs/animation/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md), [templates/README.md](../../../templates/README.md)
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 5 — Authoring Fundamentals, Part 6 — Component Library, Part 7 — Taxonomy, Part 8 — Metadata, Part 9 — Data Sheets, Part 15 — Appendix (15.5 Authoring Cheat Sheets), Part 18 — New Joiner Training Guide
+- [docs/audit/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md): block audit and re-audit

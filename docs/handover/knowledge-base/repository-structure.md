@@ -40,8 +40,8 @@ Only paths tracked by Git (file counts from `git ls-files`):
 ├── component-models.json          generated: dialog fields
 ├── decorators/                    28 decorator modules + README.md
 ├── docs/                          not served: handover/knowledge-base/ (this knowledge base); the handover, audit,
-│                                  blocks report, animation, proposals and EDAM set-up are on the branch
-│                                  migrated-page-content-edam under docs/ (KB-D-066)
+│                                  blocks report, animation, proposals and EDAM set-up are in the repository
+│                                  sradha-tcs/tcs-corp-delivery (KB-D-066, KB-D-070)
 ├── drafts/                        14 tracked local-preview drafts (header / Canvas journey pages, 2 logos)
 ├── favicon.ico
 ├── fonts/inter-variable.woff2     self-hosted Inter variable font
@@ -70,7 +70,7 @@ These exist in the delivery workspace but are not tracked. Except `node_modules/
 | Path | What it holds (observed) | Note |
 | --- | --- | --- |
 | `.home-work/` | Delivery workspace scripts: the local library preview renderer (`render-lib.mjs`, referenced by AGENTS.md), package builders, reports, Figma crops, fixtures | Local, not in git. `tools/docs/library-snapshot.json` keeps the block library data the docs generator needs from it |
-| `.handover-work/` | Handover build scripts (`build-volumes.mjs`, `build-index.mjs`, `compile-pdf.sh`, `typst-watch.sh`) and working notes | Local, not in git; described in [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) |
+| `.handover-work/` | Handover build scripts (`build-volumes.mjs`, `build-index.mjs`, `compile-pdf.sh`, `typst-watch.sh`) and working notes | Local, not in git; described in [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/docs/handover/README.md) |
 | `content/` | Local content and guide workspace: earlier guides (Markdown and PDF), the whitepaper template, local content (`content`, `en`, `language-master`, `home-implementation`) | Local, not in git |
 | `en/` | Local `/en` preview content (`data`, `media`, `references`, `shots`, `taxonomy.json`) | Local, not in git |
 | `migration-work/` | Content package workspace (`jcr-content`, `packages`, `profile.json`) | Local, not in git |
@@ -177,7 +177,7 @@ No ownership is recorded in the repository: there is no `CODEOWNERS` file, and t
 | [tools/modules/generate-module-graph.mjs](../../../tools/modules/generate-module-graph.mjs) | Generates the `head.html` modulepreload links and `scripts/module-graph.js` | `npm run build:modules` after an import change |
 | [tools/docs/generate-block-docs.mjs](../../../tools/docs/generate-block-docs.mjs) | Rewrites the generated sections of `blocks/README.md` and the block READMEs | `npm run build:docs` after a model change |
 | [tools/docs/validate-block-docs.mjs](../../../tools/docs/validate-block-docs.mjs) | Validates the block READMEs (structure, links, anchors, no environment ids) | Used by `test/docs` |
-| [tools/docs/report-block-docs.mjs](../../../tools/docs/report-block-docs.mjs) | Builds [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) | `node tools/docs/report-block-docs.mjs [base-ref]` |
+| [tools/docs/report-block-docs.mjs](../../../tools/docs/report-block-docs.mjs) | Builds [docs/blocks/BLOCK-DOCUMENTATION-REPORT.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) | `node tools/docs/report-block-docs.mjs [base-ref]` |
 | [tools/docs/blocks.json](../../../tools/docs/blocks.json), [tools/docs/library-snapshot.json](../../../tools/docs/library-snapshot.json) | Hand-maintained block metadata (status, type, purpose); block library snapshot (package 1.0.13) for examples and usage | Inputs of the docs generator |
 | [tools/sidekick/config.json](../../../tools/sidekick/config.json) | AEM Sidekick configuration ("AEM Editor" edit URL pattern) | Read by Sidekick |
 
@@ -187,11 +187,11 @@ Generated output must not be edited by hand; every generator is checked by `npm 
 
 | Aspect | Rule |
 | --- | --- |
-| Purpose | Project documentation, not served (`docs/*` in `.hlxignore`): [handover/](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) (handover Markdown and PDF, earlier guides, 629 screenshot files, this knowledge base), [audit/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md) (block ecosystem audit, re-audit, dialog options report, CSV data, evidence tools), [blocks/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) (documentation report and per-block review notes), [animation/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md), [proposals/](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md) |
+| Purpose | Project documentation, not served (`docs/*` in `.hlxignore`): [handover/](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/docs/handover/README.md) (handover Markdown and PDF, earlier guides, 629 screenshot files, this knowledge base), [audit/](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/README.md) (block ecosystem audit, re-audit, dialog options report, CSV data, evidence tools), [blocks/](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/blocks/BLOCK-DOCUMENTATION-REPORT.md) (documentation report and per-block review notes), [animation/](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md), [proposals/](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/proposals/README.md) |
 | Belongs | Reports, proposals, handover sources, evidence |
 | Must not | Code the site loads; secrets or environment identifiers |
 | Consumers | Project and support teams; `tools/docs/` (screenshots) |
-| Lifecycle | Update the handover's component chapter, Part 16 and revision history for significant changes, then regenerate the PDF ([docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md)) |
+| Lifecycle | Update the handover's component chapter, Part 16 and revision history for significant changes, then regenerate the PDF ([docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/docs/handover/README.md)) |
 | Testing and documentation | `docs/audit/tools` is excluded from ESLint ([.eslintignore](../../../.eslintignore)) |
 
 ### drafts/, fonts/, icons/
@@ -241,7 +241,7 @@ Generated output must not be edited by hand; every generator is checked by `npm 
 | `head.html` modulepreload block, `scripts/module-graph.js` | [tools/modules/generate-module-graph.mjs](../../../tools/modules/generate-module-graph.mjs) | `npm run build:modules` | [test/modules/module-graph.test.mjs](../../../test/modules/module-graph.test.mjs) |
 | Generated sections of `blocks/README.md` and the block READMEs | [tools/docs/generate-block-docs.mjs](../../../tools/docs/generate-block-docs.mjs) | `npm run build:docs` | [test/docs/block-docs.test.mjs](../../../test/docs/block-docs.test.mjs) |
 | `docs/blocks/BLOCK-DOCUMENTATION-REPORT.md` | [tools/docs/report-block-docs.mjs](../../../tools/docs/report-block-docs.mjs) | `node tools/docs/report-block-docs.mjs` | — |
-| Handover PDF | Local scripts in `.handover-work/` (pandoc, typst) | See [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp/blob/migrated-page-content-edam/docs/handover/README.md) | — |
+| Handover PDF | Local scripts in `.handover-work/` (pandoc, typst) | See [docs/handover/README.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/docs/handover/README.md) | — |
 
 ## What Is Served
 
@@ -255,4 +255,4 @@ Edge Delivery serves the code bus of each branch minus [.hlxignore](../../../.hl
 - [architecture.md](./architecture.md), [blocks.md](./blocks.md), [content-architecture.md](./content-architecture.md), [data-layer-and-analytics.md](./data-layer-and-analytics.md), [design-system.md](./design-system.md), [personalization.md](./personalization.md): the other knowledge base topics
 - [AGENTS.md](../../../AGENTS.md): project structure, setup commands, code style
 - [blocks/README.md](../../../blocks/README.md), [decorators/README.md](../../../decorators/README.md), [utils/README.md](../../../utils/README.md), [templates/README.md](../../../templates/README.md)
-- Handover Part 2 — Solution Architecture and Part 12 — Publishing, Deployment & Release: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
+- Handover Part 2 — Solution Architecture and Part 12 — Publishing, Deployment & Release: [TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)

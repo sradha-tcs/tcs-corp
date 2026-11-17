@@ -213,6 +213,14 @@ describe('page variations', () => {
     assert.deepEqual(walk(noFooter).bad, []);
   });
 
+  it('no footer at all (Hide Footer: footerTop null): the floating row is never lifted', () => {
+    // the controller passes null for a footer that isn't rendered, whose top would read 0
+    const hiddenFooter = page([slot(500)], ['header'], { footerTop: null });
+    for (let y = 0; y <= MAX; y += 100) assert.equal(hiddenFooter(y).lift, 0, `scrollY ${y}`);
+    assert.equal(hiddenFooter(MAX).state, STATES.FLOATING);
+    assert.deepEqual(walk(hiddenFooter).bad, []);
+  });
+
   it('a Canvas only in the footer: INITIAL until it docks', () => {
     const footerOnly = page([slot(6000)], ['footer']);
     assert.equal(footerOnly(1000).state, STATES.INITIAL);

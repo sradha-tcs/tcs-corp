@@ -19,14 +19,15 @@
         "valueType": "string",
         "name": "keywords",
         "multi": true,
-        "label": "Keywords"
+        "label": "Keywords",
+        "description": "Combined with the metadata sheet's meta-keywords as its keyword-action column says: default (or empty), these win; override, the sheet's win; merge, both, these first."
       },
       {
         "component": "select",
         "valueType": "string",
         "name": "page-type",
         "label": "Page Type",
-        "description": "The Site Global Template of the page (layout and template code). Overrides the page-type column of the metadata sheet.",
+        "description": "The Site Global Template of the page (layout and template code). The metadata sheet's sheet-page-type column overrides it.",
         "value": "",
         "options": [
           {
@@ -71,6 +72,30 @@
         "name": "error-page",
         "label": "404 Page",
         "description": "The page shown when a page below this one isn't found. Empty: the nearest parent page's 404 Page (or the metadata sheet's error-page column), else the locale's error-pages/404."
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hide-header",
+        "label": "Hide Header",
+        "description": "Shows this page without the header (logo bar, menu and header Conversation Canvas); the page starts at the top. This page only, not its child pages (metadata sheet column hide-header).",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hide-footer",
+        "label": "Hide Footer",
+        "description": "Shows this page without the footer (footer Conversation Canvas, copyright, links and social links). This page only, not its child pages (metadata sheet column hide-footer).",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hide-canvas",
+        "label": "Hide Conversation Canvas",
+        "description": "Hides every Conversation Canvas on this page: the header's, the footer's and the page's own (faded in the editor, as with Hide block). This page only, not its child pages (metadata sheet column hide-canvas).",
+        "value": false
       }
     ]
   },
@@ -8305,7 +8330,7 @@
         "valueType": "string",
         "name": "pageTypes",
         "label": "Page types",
-        "description": "Only pages of these page types (page-type metadata). None: every page type.",
+        "description": "Only pages of these page types (the metadata sheet's sheet-page-type, else the page's Page Type). None: every page type.",
         "options": [
           {
             "name": "Article",
@@ -18573,6 +18598,10 @@
           {
             "name": "Display (large title)",
             "value": "display"
+          },
+          {
+            "name": "Default (Only CTA Alignment Left)",
+            "value": "cta-alignment-left"
           }
         ]
       },
@@ -18636,6 +18665,110 @@
                 "value": "secondary"
               }
             ]
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderPrimaryCtaTextColor",
+            "label": "Primary CTA Text Color (Primary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "primary-text-white"
+              },
+              {
+                "name": "Blue",
+                "value": "primary-text-blue"
+              },
+              {
+                "name": "Black",
+                "value": "primary-text-black"
+              }
+            ],
+            "description": "Sets the Primary CTA Text Color."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderPrimaryCtaBackground",
+            "label": "Primary CTA Background (Primary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "primary-bg-white"
+              },
+              {
+                "name": "Blue",
+                "value": "primary-bg-blue"
+              },
+              {
+                "name": "Translucent white",
+                "value": "primary-bg-translucent"
+              }
+            ],
+            "description": "Sets the Primary CTA button background."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderSecondaryCtaTextColor",
+            "label": "Secondary CTA Text Color (Secondary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "secondary-text-white"
+              },
+              {
+                "name": "Blue",
+                "value": "secondary-text-blue"
+              },
+              {
+                "name": "Black",
+                "value": "secondary-text-black"
+              }
+            ],
+            "description": "Sets the Secondary CTA Text Color."
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "pageHeaderSecondaryCtaBackground",
+            "label": "Secondary CTA Background (Secondary only)",
+            "value": "",
+            "options": [
+              {
+                "name": "Style default",
+                "value": ""
+              },
+              {
+                "name": "White",
+                "value": "secondary-bg-white"
+              },
+              {
+                "name": "Blue",
+                "value": "secondary-bg-blue"
+              },
+              {
+                "name": "Translucent white",
+                "value": "secondary-bg-translucent"
+              }
+            ],
+            "description": "Sets the Secondary CTA button background."
           }
         ],
         "description": "CTAs authored before CTA items. Add CTAs to the page header with Add (CTA) instead."
@@ -26053,7 +26186,7 @@
         "component": "select",
         "valueType": "string",
         "name": "titleType",
-        "label": "Title Type",
+        "label": "Title Type (Desktop)",
         "value": "h2",
         "options": [
           {
@@ -26082,6 +26215,74 @@
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleTypeTablet",
+        "label": "Title Type (Tablet)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleTypeMobile",
+        "label": "Title Type (Mobile)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
       },
       {
         "component": "boolean",
@@ -26773,6 +26974,24 @@
         "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaShadow",
+        "label": "CTA Shadow (Primary Only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Shadow",
+            "value": "primary-button-shadow"
+          }
+        ],
+        "description": "Sets the Primary CTA shadow. Default has no shadow."
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "secondaryCtaText",
@@ -26907,6 +27126,24 @@
           }
         ],
         "description": "Sets the Secondary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaShadow",
+        "label": "CTA Shadow (Secondary Only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Shadow",
+            "value": "secondary-button-shadow"
+          }
+        ],
+        "description": "Sets the Secondary CTA shadow. Default has no shadow."
       },
       {
         "component": "boolean",
@@ -27104,6 +27341,10 @@
           {
             "name": "Light blue",
             "value": "title-light-blue"
+          },
+          {
+            "name": "Royal blue",
+            "value": "title-royal-blue"
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
@@ -27120,12 +27361,37 @@
             "value": ""
           },
           {
+            "name": "1rem (16px)",
+            "value": "text-normal"
+          },
+          {
             "name": "Regular (18px)",
             "value": "text-regular"
           },
           {
             "name": "Large (24px)",
             "value": "text-large"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionColor",
+        "label": "Description Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "description-black"
+          },
+          {
+            "name": "White",
+            "value": "description-white"
           }
         ]
       },
@@ -27151,6 +27417,10 @@
           {
             "name": "White",
             "value": "eyebrow-white"
+          },
+          {
+            "name": "Rich Black",
+            "value": "eyebrow-rich-black"
           }
         ],
         "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
@@ -27172,6 +27442,24 @@
           }
         ],
         "description": "Page header: the larger space above a teaser that opens a page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserFixedWidth",
+        "label": "Teaser Content Fixed Width",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed Width (824px)",
+            "value": "teaser-fixed-width"
+          }
+        ],
+        "description": "Fixed width for the teaser content. Applies to the Container that holds text, description, and button layout."
       },
       {
         "component": "select",
