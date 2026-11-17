@@ -125,6 +125,10 @@
               "value": ""
             },
             {
+              "name": "Black",
+              "value": "title-black"
+            },
+            {
               "name": "Dark",
               "value": "title-dark"
             },
@@ -173,6 +177,10 @@
               "value": ""
             },
             {
+              "name": "Black",
+              "value": "black"
+            },
+            {
               "name": "Dark",
               "value": "dark"
             },
@@ -196,6 +204,10 @@
             {
               "name": "Style default",
               "value": ""
+            },
+            {
+              "name": "Black",
+              "value": "black"
             },
             {
               "name": "Dark",
@@ -223,6 +235,10 @@
               "value": ""
             },
             {
+              "name": "Black",
+              "value": "black"
+            },
+            {
               "name": "Dark",
               "value": "dark"
             },
@@ -235,6 +251,14 @@
               "value": "light-blue"
             }
           ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "classes_hideicons",
+          "label": "Hide email and phone icons",
+          "description": "Turn on to remove the email and phone icons (also custom ones). Off: the icons show.",
+          "value": false
         },
         {
           "component": "reference",
