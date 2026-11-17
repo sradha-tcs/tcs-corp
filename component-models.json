@@ -11741,6 +11741,10 @@
           {
             "name": "Soft sky blue",
             "value": "eyebrow-sky-blue"
+          },
+          {
+            "name": "White",
+            "value": "eyebrow-white"
           }
         ],
         "description": "Colour of the eyebrow above the title."
