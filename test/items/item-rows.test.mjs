@@ -20,6 +20,8 @@ const ITEMS = [
   ['teaser', 'teaser-collage-image', KEY_VALUE_ITEM, [null, 'image', 'imageTreatment']],
   // the Image alt text collapses into the image (image-collage.js COLLAGE_LAYOUT)
   ['image-collage', 'image-collage-item', KEY_VALUE_ITEM, [null, 'image', 'imageTreatment']],
+  // the Image alt text and the CTA text collapse into the image and the link (history-timeline.js MILESTONE_LAYOUT)
+  ['history-timeline', 'history-timeline-item', KEY_VALUE_ITEM, [null, 'year', 'title', 'description', 'image', 'link']],
   ['testimonial', 'testimonial-stat', KEY_VALUE_ITEM, [null, 'statLabel', 'statValue']],
   ['anchor-list', 'anchor-list-item', KEY_VALUE_ITEM, [null, 'label', 'anchorName']],
   ['filter-list', 'filter-list-tag', KEY_VALUE_ITEM, ['tagId']],

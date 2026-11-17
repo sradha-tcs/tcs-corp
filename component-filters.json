@@ -19,6 +19,7 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
       "testimonial",
@@ -70,6 +71,7 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
       "testimonial",
@@ -147,6 +149,12 @@
     "id": "hero",
     "components": [
       "hero-cta"
+    ]
+  },
+  {
+    "id": "history-timeline",
+    "components": [
+      "history-timeline-item"
     ]
   },
   {
@@ -239,6 +247,7 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
       "testimonial",

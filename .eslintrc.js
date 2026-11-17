@@ -43,6 +43,7 @@ module.exports = {
       'field-checkbox': 5,
       'contact-card': 5,
       'teaser-link': 5,
+      'history-timeline-item': 5,
     }],
   },
   overrides: [
