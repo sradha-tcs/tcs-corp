@@ -11400,12 +11400,6 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "content_eyebrow",
-        "label": "Eyebrow (with a Title)"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "content_title",
         "label": "Title"
       },

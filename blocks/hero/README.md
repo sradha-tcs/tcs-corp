@@ -197,9 +197,9 @@ D = Hero Image Path
 E = Hero Image alt text
 F = Hero View
 G = Eyebrow
-H = Eyebrow (with a Title)
-I = Title
-J = Title heading level
+H = Title
+I = Title heading level
+J = Description
 ```
 
 ```text
@@ -368,7 +368,7 @@ B = Left-aligned text and CTAs
 
 1. **Add the block.** In Universal Editor select a Section, a Columns Container column, a Gen Carousel or a Tabs Container in the content tree, choose **Add (+)** and pick **Hero**. A new Hero stores Vertical Alignment Middle, Horizontal Alignment Center, Text Alignment Center align and Title heading level H1.
 2. **Open its properties.** Select the Hero in the content tree; the properties panel shows the **Content**, **Style** and **Additional** tabs.
-3. **Enter content (Content tab).** Choose a **Hero Image Path** and enter its **Hero Image alt text** (leave the alt empty only for a decorative image). Enter the **Eyebrow**, **Title** and **Description**; set **Title heading level** to H1 for the page's main Hero, H2 for any other. **Eyebrow** is shown with or without a Title and Description, in the **Eyebrow color**; **Eyebrow (with a Title)**, authored before, is shown as the eyebrow only with a Title (without one its text joins the description) and wins over **Eyebrow** when both are filled: move its text to **Eyebrow** and empty it. Add an **Icon** (with **Icon Image Alt Text**) only if the design needs it.
+3. **Enter content (Content tab).** Choose a **Hero Image Path** and enter its **Hero Image alt text** (leave the alt empty only for a decorative image). Enter the **Eyebrow**, **Title** and **Description**; set **Title heading level** to H1 for the page's main Hero, H2 for any other. **Eyebrow** is shown with or without a Title and Description, in the **Eyebrow color**. A Hero authored before may still show an eyebrow it holds from the former content-group Eyebrow (no longer in the dialog); it wins over **Eyebrow**, so re-enter it in **Eyebrow** if it doesn't show or must change. Add an **Icon** (with **Icon Image Alt Text**) only if the design needs it.
 4. **Select variations.** For an animation set **Hero Image type** to Lotto and choose a Lottie `.json` file as the Hero Image Path. For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
 5. **Add CTAs.** Select the Hero, choose **Add (+)** and pick **CTA**. Fill **CTA Link** (required) and **CTA Title**; choose **CTA view** (Default text link, Primary, Secondary), **CTA Arrow** (Auto, Right, Down) and **CTA Link Type** (Open in New Window only when needed). Reorder CTAs by dragging them in the content tree; the page shows them in that order.
 6. **Additional tab.** Set an Anchor ID, Hide block, animations or spacing only when needed (see [Authorable Fields](#authorable-fields)).
@@ -399,7 +399,6 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | Hero Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image or animation is decorative. Delivered with `image` (field collapse). | Consultants reviewing a transformation roadmap |
 | Hero View | `classes` | select | No | "" | Default (""), Contained image (`media-contained`) | Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content. | media-contained |
 | Eyebrow | `eyebrow` | text | No | — | — | The short text above the title. Shown with or without a Title and Description, in the Eyebrow color. | — |
-| Eyebrow (with a Title) | `content_eyebrow` | text | No | — | — | — | Enterprise AI |
 | Title | `content_title` | text | No | — | — | — | Building on belief |
 | Title heading level | `content_titleType` | select | No | `h1` | H1 (`h1`), H2 (`h2`) | Use H1 for the first hero of a page, H2 for the others. Delivered with `content_title` (field collapse). | h1 |
 | Description | `content_description` | richtext | No | "" | — | — | — |
@@ -862,7 +861,7 @@ blocks/hero/
 
 **Responsibilities.** `hero.js` sorts the authored rows into media, content and CTA cells, builds `div.hero-media`, `div.hero-content` and `div.hero-ctas`, decorates the CTAs and maps the legacy Motion Type. `hero.css` holds the layout, the nine positions, the overlays and the dark-variant colours through custom properties (`--hero-*`).
 
-**Input DOM.** One cell per row, in any order (`readCells`): the media cell (only one picture and no text, or only one animation link whose text is its link text), the CTA List cell (legacy multifield: only links and `new-window` / `right` / `down` values, no heading), and the content cell (the first other cell; further cells, including the empty rows AEM delivers for dialog tabs, are appended to it). The separate Eyebrow (field `eyebrow`) has a row of its own, found first (`eyebrowRow`): by `data-aue-prop="eyebrow"` in Universal Editor, else by its place in the model's rows (`HERO_LAYOUT`: tab, content, image, eyebrow, CTA List, tab, tab; `test/hero/hero-rows.test.mjs`), only if it holds text alone; `addEyebrow` puts it after the icon as `p.hero-eyebrow` when the content cell has no eyebrow of its own (the content group's Eyebrow (with a Title), the paragraph before the heading, wins). CTA items (`hero-cta`) arrive as rows after the block's own rows, one cell per field (link, link target, style, arrow); `itemRows(block, ['hero-cta'], FIELD_ROW_ITEM)` finds them by model in Universal Editor and by their 2+ cells on the page (`test/items/item-rows.test.mjs`).
+**Input DOM.** One cell per row, in any order (`readCells`): the media cell (only one picture and no text, or only one animation link whose text is its link text), the CTA List cell (legacy multifield: only links and `new-window` / `right` / `down` values, no heading), and the content cell (the first other cell; further cells, including the empty rows AEM delivers for dialog tabs, are appended to it). The separate Eyebrow (field `eyebrow`) has a row of its own, found first (`eyebrowRow`): by `data-aue-prop="eyebrow"` in Universal Editor, else by its place in the model's rows (`HERO_LAYOUT`: tab, content, image, eyebrow, CTA List, tab, tab; `test/hero/hero-rows.test.mjs`), only if it holds text alone; `addEyebrow` puts it after the icon as `p.hero-eyebrow` when the content cell has no eyebrow of its own (the former `content_eyebrow` of Heroes authored before, the paragraph before the heading, wins whenever it is delivered). CTA items (`hero-cta`) arrive as rows after the block's own rows, one cell per field (link, link target, style, arrow); `itemRows(block, ['hero-cta'], FIELD_ROW_ITEM)` finds them by model in Universal Editor and by their 2+ cells on the page (`test/items/item-rows.test.mjs`).
 
 **Rendered DOM.**
 
@@ -1016,7 +1015,7 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 | No background video | Video banners can't be built with the Hero | Use the Video or Embed block | Not recorded |
 | Lottie JSON served only once published (R-B-2) | Empty background on preview / live if not published | Publish the asset | Operations |
 | Motion Type authored before can't be changed in the dialog (R-B-6) | Legacy animation stays | Migrate to Animation Type | Content migration |
-| Eyebrow (with a Title), in the content group, is the eyebrow only with a Title: without one its text joins the description (Description color) | Eyebrow color doesn't apply to it | Use the separate Eyebrow field | Authors move the text to Eyebrow |
+| Heroes authored before keep their eyebrow in the former content-group field (`content_eyebrow`, no longer in the dialog): read as the eyebrow only with a Title, and AEM may stop delivering it now that it isn't in the model | That eyebrow can't be edited, may join the description without a Title, or may disappear at the next preview / publish | Re-enter it in Eyebrow | Authors re-enter the eyebrows |
 | Default overlay eyebrow contrast (R-B-4) | Brand eyebrow over the white overlay | — | Design sign-off pending |
 | Background animation delays LCP on the first Hero (F-94) | Slower LCP | Use it below the fold | Not planned |
 | Legacy CTA List items keep their stored CTA Arrow "right" (F-55) | No automatic down arrow for `#` links in those items | Choose Down, or re-create as CTA items (Auto) | Not planned |
@@ -1053,4 +1052,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast | docs/handover revision history | 20 October 2026 |
 | Not recorded | Desktop min height 56.25rem (900px), tablet 46.875rem (750px) with 7.625rem block padding; the opening hero no longer grows by the header height. Desktop (from 1200px) to Figma "Hero" 57:16843 (What we do) and "Hero Header" 3670:14111 (Home): middle-aligned content with 12.5rem (200px) below it; icon to eyebrow 0.5rem; eyebrow 0.875rem / 22px; CTAs 50px high with 0.875rem text; the opening hero under the header (not on Home, which has its own template rule) has as much space below as above. Mobile unchanged | fix/hero-content | 11 November 2026 |
 | Not recorded | Title color (`classes_titlecolor`: Default, Black `title-black`, White `title-white`) and Description color (`classes_descriptioncolor`: Default, Black `description-black`, White `description-white`) in the Style tab; Default keeps the colour the BG Color sets (black and dark grey on Default and Light, white and 50 % / 85 % white on the dark options), Black and White apply whatever the BG Color | fix/hero-content | 11 November 2026 |
-| Not recorded | Eyebrow as a field of its own (`eyebrow`, its own row, in the Content tab), shown with or without a Title and Description in the Eyebrow color; the content group's Eyebrow, authored before, stays as Eyebrow (with a Title) and wins when filled | fix/hero-block-eyebrow | 17 November 2026 |
+| Not recorded | Eyebrow as a field of its own (`eyebrow`, its own row, in the Content tab), shown with or without a Title and Description in the Eyebrow color; the content group's Eyebrow (`content_eyebrow`) is no longer in the dialog, still read first from Heroes authored before | fix/hero-block-eyebrow | 17 November 2026 |

@@ -25,11 +25,10 @@ describe('hero rows', () => {
     assert.deepEqual(heroRows(), HERO_LAYOUT);
   });
 
-  it('keeps the content group Eyebrow (authored before) next to the separate Eyebrow', () => {
+  it('offers one Eyebrow, outside the content group (content_eyebrow is only read from Heroes authored before)', () => {
     const { models } = JSON.parse(readFileSync(new URL('../../blocks/hero/_hero.json', import.meta.url)));
     const names = models.find((m) => m.id === 'hero').fields.map((f) => f.name);
     assert.ok(names.includes('eyebrow'));
-    assert.ok(names.includes('content_eyebrow'));
-    assert.equal(names.indexOf('content_eyebrow'), names.indexOf('eyebrow') + 1);
+    assert.ok(!names.includes('content_eyebrow'));
   });
 });

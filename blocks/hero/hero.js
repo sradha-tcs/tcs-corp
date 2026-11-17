@@ -14,10 +14,11 @@ let newTabHint = '';
 
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
- * - content: icon, eyebrow, title (heading) and description (element group "content_"); its
- *   eyebrow (Eyebrow (with a Title)) is told apart only by coming before the title
- * - eyebrow: the separate Eyebrow (field "eyebrow", its own row, HERO_LAYOUT), shown with or
- *   without a title when the content has no eyebrow of its own (that one, authored before, wins)
+ * - content: icon, title (heading) and description (element group "content_"); Heroes authored
+ *   before may still hold an eyebrow here (content_eyebrow, no longer in the dialog), told apart
+ *   by coming before the title
+ * - eyebrow: the Eyebrow (field "eyebrow", its own row, HERO_LAYOUT), shown with or without a
+ *   title when the content has no eyebrow of its own (the one authored before wins)
  * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
  * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
@@ -110,7 +111,7 @@ function isMediaCell(cell) {
 }
 
 /**
- * The separate Eyebrow's row: by its field in Universal Editor, else by its place in the model
+ * The Eyebrow's row: by its field in Universal Editor, else by its place in the model
  * (HERO_LAYOUT; rows authored before it, e.g. from content packages, have another layout and
  * none). A row holding anything but text (image, heading, links) is never the eyebrow.
  */
@@ -126,8 +127,8 @@ function eyebrowRow(rows) {
 }
 
 /**
- * The separate Eyebrow in the content, after the icon and before the title: only when the
- * content has no eyebrow of its own (the content group's, authored before, comes first)
+ * The Eyebrow in the content, after the icon and before the title: only when the content has
+ * no eyebrow of its own (the content group's content_eyebrow, authored before, comes first)
  */
 function addEyebrow(content, cell) {
   if (!cell?.textContent.trim() || content.querySelector('.hero-eyebrow')) return;
