@@ -18606,6 +18606,145 @@
         ]
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFont",
+        "label": "Title Font (Desktop)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (64px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (48px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (40px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (28px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (24px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (20px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets desktop sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFontTablet",
+        "label": "Title Font (Tablet)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets tablet sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFontMobile",
+        "label": "Title Font (Mobile)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets mobile sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderDescriptionFont",
+        "label": "Description Font",
+        "value": "",
+        "options": [
+          {
+            "name": "Default Font",
+            "value": ""
+          },
+          {
+            "name": "1rem (16px)",
+            "value": "text-16px"
+          },
+          {
+            "name": "1.125rem (18px)",
+            "value": "text-18px"
+          },
+          {
+            "name": "1.25rem (20px)",
+            "value": "text-20px"
+          },
+          {
+            "name": "1.5rem (24px)",
+            "value": "text-24px"
+          },
+          {
+            "name": "2rem (32px)",
+            "value": "text-32px"
+          },
+          {
+            "name": "2.5rem (40px)",
+            "value": "text-40px"
+          }
+        ]
+      },
+      {
         "component": "tab",
         "name": "ctaTab",
         "label": "CTAs"
