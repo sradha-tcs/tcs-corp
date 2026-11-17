@@ -1,0 +1,328 @@
+/* History Timeline (TCS Figma "Match · History timeline", 5585-8421) */
+.history-timeline {
+  --history-timeline-bg: #f9f9f9; /* Figma Color/F9F9F9: no site token */
+  --history-timeline-gutter: var(--space-400); /* Figma mobile/padding-horizontal: 16px */
+
+  /* the next card always peeks in (the strip's width: 100cqi) */
+  --history-timeline-item-size: min(17.5rem, calc(100cqi - 2 * var(--history-timeline-gutter) - var(--space-800)));
+  --history-timeline-closing-size: 12.5rem;
+  --history-timeline-track-top: var(--space-1000);
+
+  /* the gutter the section doesn't give already (full width sections have none) */
+  --history-timeline-inset: max(0rem, calc(var(--history-timeline-gutter) - var(--section-padding-inline)));
+
+  background-color: var(--history-timeline-bg);
+  color: var(--color-text-default);
+}
+
+/* on the dark backgrounds of the theme contract the block takes the section's colour */
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .history-timeline {
+  --history-timeline-bg: transparent;
+}
+
+/* year row: the first and last milestone's year, joined by the progress line */
+.history-timeline .history-timeline-header {
+  display: flex;
+  align-items: center;
+
+  /* Figma: 24px top, 80px sides and a 36px spacer after the last year */
+  padding: var(--space-600) calc(var(--history-timeline-inset) + 2.25rem) 0 var(--history-timeline-inset);
+}
+
+.history-timeline .history-timeline-label {
+  flex: 0 0 auto;
+  font-size: var(--heading-font-size-m); /* Figma Headings/Inter-24 */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4167;
+  white-space: nowrap;
+}
+
+.history-timeline .history-timeline-line {
+  flex: 1 1 auto;
+  overflow: hidden;
+  height: var(--border-width-100);
+  background-color: var(--color-border-default);
+}
+
+/* one milestone's share at the start, all of it at the end (scroll offset from the scroller) */
+.history-timeline .history-timeline-progress {
+  display: block;
+  width: calc((1 + var(--scroller-thumb-offset, 0) * (var(--history-timeline-count, 1) - 1)) / var(--history-timeline-count, 1) * 100%);
+  height: 100%;
+  background-color: var(--color-text-default);
+}
+
+.history-timeline:has(> .history-timeline-viewport:not([data-overflow='true'])) .history-timeline-progress {
+  width: 100%;
+}
+
+/* the strip: a horizontal scroller from edge to edge, its content inside the gutter */
+.history-timeline .history-timeline-viewport {
+  position: relative;
+  container-type: inline-size;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--history-timeline-inset);
+  scrollbar-width: none;
+}
+
+.history-timeline .history-timeline-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.history-timeline .history-timeline-viewport[data-overflow='true'] {
+  cursor: grab;
+}
+
+.history-timeline .history-timeline-viewport.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.history-timeline .history-timeline-viewport:focus-visible {
+  outline: var(--border-width-200) solid var(--color-border-brand);
+  outline-offset: calc(-1 * var(--border-width-200));
+}
+
+.history-timeline .history-timeline-track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-400);
+  width: max-content;
+  padding: var(--history-timeline-track-top) var(--history-timeline-inset) var(--space-600);
+}
+
+.history-timeline .history-timeline-list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-400);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* a milestone: the text, then the image filling the rest of the card */
+.history-timeline .history-timeline-list > li {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-400);
+  width: var(--history-timeline-item-size);
+
+  /* Figma: an inside stroke, drawn over the image */
+  outline: var(--border-width-100) solid var(--color-border-default);
+  outline-offset: calc(-1 * var(--border-width-100));
+  scroll-snap-align: start;
+}
+
+.history-timeline .history-timeline-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-400);
+  padding: var(--space-300) var(--space-300) var(--space-200);
+}
+
+.history-timeline .history-timeline-year {
+  margin: 0;
+  font-size: var(--heading-font-size-xl); /* Figma Headings/Inter-40 */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  letter-spacing: calc(-0.016 * var(--heading-font-size-xl));
+}
+
+.history-timeline .history-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+}
+
+.history-timeline .history-timeline-title {
+  margin: 0;
+  color: var(--color-text-default);
+  font-size: var(--heading-font-size-s); /* Figma Body/Inter-20 */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  letter-spacing: calc(-0.03 * var(--heading-font-size-s));
+}
+
+.history-timeline .history-timeline-description {
+  color: var(--color-text-secondary);
+  font-size: var(--label-font-size); /* Figma Body/Inter-14 */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+  letter-spacing: 0;
+}
+
+.history-timeline .history-timeline-description > * {
+  margin: 0;
+}
+
+.history-timeline .history-timeline-description > * + * {
+  margin-top: var(--space-200);
+}
+
+.history-timeline .history-timeline-cta {
+  margin: 0;
+}
+
+.history-timeline .history-timeline-media {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  min-height: 12.5rem; /* Figma: 200px */
+  background-color: var(--color-bg-secondary);
+}
+
+.history-timeline .history-timeline-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+.history-timeline .history-timeline-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* after the last milestone */
+.history-timeline .history-timeline-closing {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 var(--history-timeline-closing-size);
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  outline: var(--border-width-100) solid var(--color-border-default);
+  outline-offset: calc(-1 * var(--border-width-100));
+  padding: var(--space-400);
+  color: var(--color-text-secondary);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  text-align: center;
+  scroll-snap-align: end;
+}
+
+/* previous / next, shown while the strip scrolls */
+.history-timeline .history-timeline-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-200);
+  padding: 0 var(--history-timeline-inset) var(--space-600);
+}
+
+.history-timeline .history-timeline-viewport:not([data-overflow='true']) + .history-timeline-controls {
+  display: none;
+}
+
+/* Figma Icon Button: 40px, white with a brand 400 outline and a 16px chevron */
+.history-timeline .history-timeline-controls .button.icon-button {
+  width: var(--icon-size-l);
+  height: var(--icon-size-l);
+  border-color: var(--color-border-brand-secondary);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-brand);
+}
+
+.history-timeline .history-timeline-controls .button.icon-button::after {
+  width: var(--space-400);
+  height: var(--space-400);
+}
+
+.history-timeline .history-timeline-controls .button.icon-button:is(:hover, :focus-visible) {
+  border-color: var(--color-border-brand-secondary);
+  background-color: var(--color-bg-brand);
+  color: var(--color-icon-on-brand);
+}
+
+.history-timeline .history-timeline-controls .button.icon-button[aria-disabled='true'] {
+  border-color: transparent;
+  background-color: var(--color-bg-disabled);
+  color: var(--color-icon-on-disabled);
+}
+
+@media (width >= 600px) {
+  .history-timeline {
+    --history-timeline-gutter: var(--space-1000);
+    --history-timeline-item-size: 22.5rem;
+    --history-timeline-closing-size: 15rem;
+  }
+}
+
+/*
+ * desktop: the Figma cards, of staggered sizes, aligned at the bottom of the strip (each card is
+ * its --history-timeline-item-drop lower than the tallest one, 669px). The Figma frame is a
+ * screen high (1024px): on lower screens the space above the tallest card (Figma: 128px) shrinks
+ * first, so the block fits the screen where it can without changing the cards
+ */
+@media (width >= 900px) {
+  .history-timeline {
+    --history-timeline-track-top: var(--space-2000);
+    --history-timeline-closing-size: 16.875rem; /* Figma: 270px */
+    --history-timeline-tallest: 41.8125rem; /* Figma Article-1: 669px */
+
+    /* the strip's content: the screen without the year row, the strip padding and the buttons
+       (Figma: 1024 - 227 = 797px), between the tallest card and the Figma height */
+    --history-timeline-list-height: clamp(var(--history-timeline-tallest), calc(100svh - 14.175rem), 49.8125rem);
+  }
+
+  .history-timeline .history-timeline-list {
+    align-items: flex-end;
+    min-height: var(--history-timeline-list-height);
+  }
+
+  .history-timeline .history-timeline-list > li {
+    min-height: calc(var(--history-timeline-tallest) - var(--history-timeline-item-drop, 0rem));
+  }
+
+  /* Figma Article-1 … Article-8, repeated for more milestones */
+  .history-timeline .history-timeline-list > li:nth-child(8n + 1) {
+    --history-timeline-item-size: 26.25rem; /* Figma: 420 × 669px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 2) {
+    --history-timeline-item-size: 23.75rem; /* Figma: 380 × 549px */
+    --history-timeline-item-drop: 7.5rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 3) {
+    --history-timeline-item-size: 24.1875rem; /* Figma: 387 × 489px */
+    --history-timeline-item-drop: 11.25rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 4) {
+    --history-timeline-item-size: 25rem; /* Figma: 400 × 579px */
+    --history-timeline-item-drop: 5.625rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 5) {
+    --history-timeline-item-size: 28.125rem; /* Figma: 450 × 519px */
+    --history-timeline-item-drop: 9.375rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 6) {
+    --history-timeline-item-size: 25.625rem; /* Figma: 410 × 459px */
+    --history-timeline-item-drop: 13.125rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 7) {
+    --history-timeline-item-size: 27.5rem; /* Figma: 440 × 559px */
+    --history-timeline-item-drop: 6.875rem;
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n) {
+    --history-timeline-item-size: 26.25rem; /* Figma: 420 × 499px */
+    --history-timeline-item-drop: 10.625rem;
+  }
+}
+
+@media (width >= 1200px) {
+  .history-timeline {
+    --history-timeline-gutter: var(--space-2000); /* Figma LR Padding: 80px */
+  }
+}
