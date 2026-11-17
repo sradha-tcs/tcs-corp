@@ -40,7 +40,8 @@
 /* Gap */
 .block.columns-container.gap-none { --columns-container-gap: 0; }
 .block.columns-container.gap-small { --columns-container-gap: var(--space-400); }
-.block.columns-container.gap-large { --columns-container-gap: var(--space-1600); }
+.block.columns-container.gap-large { --columns-container-gap: var(--space-600); }
+.block.columns-container.gap-xlarge { --columns-container-gap: var(--space-1600); }
 
 /* Vertical alignment (side by side) */
 .block.columns-container.align-middle { align-items: center; }

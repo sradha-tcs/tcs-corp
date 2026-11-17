@@ -9,8 +9,8 @@ import {
   isCompleteContact, readContactRows, telHref,
 } from './media-contacts-data.js';
 
-const TITLE_COLORS = ['title-dark', 'title-white', 'title-light-blue'];
-const COLOR_VARIANTS = ['dark', 'brand', 'light-blue'];
+const TITLE_COLORS = ['title-black', 'title-dark', 'title-white', 'title-light-blue'];
+const COLOR_VARIANTS = ['black', 'dark', 'brand', 'light-blue'];
 const COLUMN_VARIANTS = ['1', '2', '3'];
 
 function iconUrl(cell) {
@@ -61,7 +61,7 @@ export default async function decorate(block) {
   const list = buildContactList(entries, {
     headingLevel: `h${Math.min(level + 1, 6)}`,
     labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
-    icons: {
+    icons: block.classList.contains('hideicons') ? {} : {
       email: iconUrl(props.emailicon),
       phone: iconUrl(props.phoneicon),
     },
