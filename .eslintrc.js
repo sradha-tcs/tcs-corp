@@ -44,6 +44,8 @@ module.exports = {
       'contact-card': 5,
       'teaser-link': 5,
       'page-header-cta': 5,
+      // the separate Eyebrow adds a cell to the Hero (blocks/hero/hero.js HERO_LAYOUT)
+      hero: 5,
       'media-contact': 10,
       'history-timeline-item': 5,
     }],

@@ -14,7 +14,10 @@ let newTabHint = '';
 
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
- * - content: icon, eyebrow, title (heading) and description (element group "content_")
+ * - content: icon, eyebrow, title (heading) and description (element group "content_"); its
+ *   eyebrow (Eyebrow (with a Title)) is told apart only by coming before the title
+ * - eyebrow: the separate Eyebrow (field "eyebrow", its own row, HERO_LAYOUT), shown with or
+ *   without a title when the content has no eyebrow of its own (that one, authored before, wins)
  * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
  * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
@@ -64,6 +67,10 @@ const CTA_VALUES = [
 const CTA_STYLES = ['primary', 'secondary'];
 
 const HEADINGS = 'h1, h2, h3, h4, h5, h6';
+// the hero's own rows as AEM delivers them, in model order (null: a dialog tab; content: the
+// content_ element group, at its first field); test/hero/hero-rows.test.mjs keeps it in step
+const HERO_LAYOUT = [null, 'content', 'image', 'eyebrow', 'ctas', null, null];
+const EYEBROW_FIELD = 'eyebrow';
 // Icon color values (the colours are in hero.css)
 const ICON_COLORS = ['icon-black', 'icon-white', 'icon-blue', 'icon-pale-blue'];
 
@@ -100,6 +107,40 @@ function isMediaCell(cell) {
   if (pictures.length === 1 && !cell.textContent.trim()) return true;
   return links.length === 1 && isAnimation(links[0].href)
     && cell.textContent.trim() === links[0].textContent.trim();
+}
+
+/**
+ * The separate Eyebrow's row: by its field in Universal Editor, else by its place in the model
+ * (HERO_LAYOUT; rows authored before it, e.g. from content packages, have another layout and
+ * none). A row holding anything but text (image, heading, links) is never the eyebrow.
+ */
+function eyebrowRow(rows) {
+  const byField = rows.find((row) => row.querySelector(`[data-aue-prop="${EYEBROW_FIELD}"]`));
+  if (byField) return byField;
+  if (rows.length !== HERO_LAYOUT.length) return null;
+  const row = rows[HERO_LAYOUT.indexOf(EYEBROW_FIELD)];
+  const cell = row.firstElementChild;
+  if (!cell || row.children.length > 1
+    || cell.querySelector(`${HEADINGS}, picture, a, hr, ul, ol, [data-aue-prop]`)) return null;
+  return row;
+}
+
+/**
+ * The separate Eyebrow in the content, after the icon and before the title: only when the
+ * content has no eyebrow of its own (the content group's, authored before, comes first)
+ */
+function addEyebrow(content, cell) {
+  if (!cell?.textContent.trim() || content.querySelector('.hero-eyebrow')) return;
+  // decorateBlock has wrapped the cell's text in a paragraph (with the instrumentation)
+  const source = cell.querySelector(':scope > p') || cell;
+  const eyebrow = document.createElement('p');
+  eyebrow.className = 'hero-eyebrow';
+  eyebrow.append(...source.childNodes);
+  moveInstrumentation(cell, eyebrow);
+  if (source !== cell) moveInstrumentation(source, eyebrow);
+  const icon = content.querySelector(':scope > .hero-icon');
+  if (icon) icon.after(eyebrow);
+  else content.prepend(eyebrow);
 }
 
 /** sorts the hero's own rows (one cell each) into content, media and CTA List cells */
@@ -239,7 +280,9 @@ function buildCtas(cell, rows, hint) {
 
 export default async function decorate(block) {
   const ctaRows = itemRows(block, ['hero-cta'], FIELD_ROW_ITEM);
-  const cells = readCells([...block.children].filter((row) => !ctaRows.includes(row)));
+  const ownRows = [...block.children].filter((row) => !ctaRows.includes(row));
+  const eyebrow = eyebrowRow(ownRows);
+  const cells = readCells(ownRows.filter((row) => row !== eyebrow));
   // the editor's placeholder text; on the page the hero doesn't wait for anything
   const hint = await editorItemHint(ctaRows);
   // placeholders only when a CTA opens a new tab (the hero is often the LCP); read from the
@@ -249,6 +292,7 @@ export default async function decorate(block) {
   newTabHint = opensNewTab ? (await getPlaceholders())('opensInNewTab', '(opens in a new tab)') : '';
   const media = buildMedia(block, cells.media);
   const content = buildContent(cells.content);
+  addEyebrow(content, eyebrow?.firstElementChild);
   const ctas = buildCtas(cells.ctas, ctaRows, hint);
   if (ctas) content.append(ctas);
   tintIcon(block, content);

@@ -113,8 +113,15 @@
         {
           "component": "text",
           "valueType": "string",
+          "name": "eyebrow",
+          "label": "Eyebrow",
+          "description": "The short text above the title. Shown with or without a Title and Description, in the Eyebrow color."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
           "name": "content_eyebrow",
-          "label": "Eyebrow"
+          "label": "Eyebrow (with a Title)"
         },
         {
           "component": "text",
