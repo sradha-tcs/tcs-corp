@@ -18,8 +18,9 @@ import { isOn, readProperties, textOf } from '../../utils/properties.js';
  * History Timeline (blocks/history-timeline/_history-timeline.json; TCS Figma "Match · History
  * timeline"): a key-value block whose Milestone items (history-timeline-item) are laid out as a
  * horizontal strip of cards (year, title, description, image, optional CTA), closed by a
- * "The story continues" panel. A line from the first to the last milestone's year shows how far
- * the strip has scrolled; previous / next buttons, the keyboard and mouse dragging move it
+ * "The story continues" panel (Closing panel). A line between the Start and End labels (by default
+ * the first and the last milestone's year) shows how far the strip has scrolled; previous / next
+ * buttons, the keyboard and mouse dragging move it
  * (decorators/scroller-decorator.js).
  */
 
@@ -109,24 +110,33 @@ function buildMilestone(row, levelCell) {
   return { item, year };
 }
 
-/** the year row: the first and the last milestone's year, joined by the progress line */
-function buildHeader(first, last) {
+/** a year row label: the authored Start / End label, else the milestone's year */
+function buildLabel(cell, fallback) {
+  if (textOf(cell)) return fromCell(cell, 'span', 'history-timeline-label');
+  const label = document.createElement('span');
+  label.className = 'history-timeline-label';
+  label.textContent = fallback;
+  return label;
+}
+
+/**
+ * The year row: the start and end labels (by default the first and the last milestone's year),
+ * joined by the progress line; none without both labels.
+ */
+function buildHeader(props, years) {
+  const first = years[0] || '';
+  const last = years.length > 1 ? years[years.length - 1] : '';
+  if (!(textOf(props.startlabel) || first) || !(textOf(props.endlabel) || last)) return {};
   const header = document.createElement('div');
   header.className = 'history-timeline-header';
   // visual only: the list and the buttons give the same information
   header.setAttribute('aria-hidden', 'true');
-  const label = (value) => {
-    const span = document.createElement('span');
-    span.className = 'history-timeline-label';
-    span.textContent = value;
-    return span;
-  };
   const line = document.createElement('span');
   line.className = 'history-timeline-line';
   const progress = document.createElement('span');
   progress.className = 'history-timeline-progress';
   line.append(progress);
-  header.append(label(first), line, label(last));
+  header.append(buildLabel(props.startlabel, first), line, buildLabel(props.endlabel, last));
   return { header, line };
 }
 
@@ -172,8 +182,7 @@ export default async function decorate(block) {
   viewport.append(track);
 
   const years = milestones.map(({ year }) => year).filter(Boolean);
-  const { header, line } = years.length > 1
-    ? buildHeader(years[0], years[years.length - 1]) : {};
+  const { header, line } = buildHeader(props, years);
 
   const controls = document.createElement('div');
   controls.className = 'history-timeline-controls';

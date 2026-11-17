@@ -2,7 +2,9 @@
 .history-timeline {
   --history-timeline-bg: #f9f9f9; /* Figma Color/F9F9F9: no site token */
   --history-timeline-gutter: var(--space-400); /* Figma mobile/padding-horizontal: 16px */
-  --history-timeline-item-size: 17.5rem;
+
+  /* the next card always peeks in (the strip's width: 100cqi) */
+  --history-timeline-item-size: min(17.5rem, calc(100cqi - 2 * var(--history-timeline-gutter) - var(--space-800)));
   --history-timeline-closing-size: 12.5rem;
   --history-timeline-track-top: var(--space-1000);
 
@@ -57,6 +59,7 @@
 /* the strip: a horizontal scroller from edge to edge, its content inside the gutter */
 .history-timeline .history-timeline-viewport {
   position: relative;
+  container-type: inline-size;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
@@ -251,61 +254,70 @@
   }
 }
 
-/* desktop: the Figma cards, of staggered sizes, aligned at the bottom of the strip */
+/*
+ * desktop: the Figma cards, of staggered sizes, aligned at the bottom of the strip (each card is
+ * its --history-timeline-item-drop lower than the tallest one, 669px). The Figma frame is a
+ * screen high (1024px): on lower screens the space above the tallest card (Figma: 128px) shrinks
+ * first, so the block fits the screen where it can without changing the cards
+ */
 @media (width >= 900px) {
   .history-timeline {
     --history-timeline-track-top: var(--space-2000);
     --history-timeline-closing-size: 16.875rem; /* Figma: 270px */
+    --history-timeline-tallest: 41.8125rem; /* Figma Article-1: 669px */
+
+    /* the strip's content: the screen without the year row, the strip padding and the buttons
+       (Figma: 1024 - 227 = 797px), between the tallest card and the Figma height */
+    --history-timeline-list-height: clamp(var(--history-timeline-tallest), calc(100svh - 14.175rem), 49.8125rem);
   }
 
   .history-timeline .history-timeline-list {
     align-items: flex-end;
-    min-height: 49.8125rem; /* Figma: the strip's 797px content height */
+    min-height: var(--history-timeline-list-height);
   }
 
   .history-timeline .history-timeline-list > li {
-    min-height: var(--history-timeline-item-height, auto);
+    min-height: calc(var(--history-timeline-tallest) - var(--history-timeline-item-drop, 0rem));
   }
 
-  /* Figma Article-1 … Article-8 width / height, repeated for more milestones */
+  /* Figma Article-1 … Article-8, repeated for more milestones */
   .history-timeline .history-timeline-list > li:nth-child(8n + 1) {
-    --history-timeline-item-size: 26.25rem;
-    --history-timeline-item-height: 41.8125rem;
+    --history-timeline-item-size: 26.25rem; /* Figma: 420 × 669px */
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 2) {
-    --history-timeline-item-size: 23.75rem;
-    --history-timeline-item-height: 34.3125rem;
+    --history-timeline-item-size: 23.75rem; /* Figma: 380 × 549px */
+    --history-timeline-item-drop: 7.5rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 3) {
-    --history-timeline-item-size: 24.1875rem;
-    --history-timeline-item-height: 30.5625rem;
+    --history-timeline-item-size: 24.1875rem; /* Figma: 387 × 489px */
+    --history-timeline-item-drop: 11.25rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 4) {
-    --history-timeline-item-size: 25rem;
-    --history-timeline-item-height: 36.1875rem;
+    --history-timeline-item-size: 25rem; /* Figma: 400 × 579px */
+    --history-timeline-item-drop: 5.625rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 5) {
-    --history-timeline-item-size: 28.125rem;
-    --history-timeline-item-height: 32.4375rem;
+    --history-timeline-item-size: 28.125rem; /* Figma: 450 × 519px */
+    --history-timeline-item-drop: 9.375rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 6) {
-    --history-timeline-item-size: 25.625rem;
-    --history-timeline-item-height: 28.6875rem;
+    --history-timeline-item-size: 25.625rem; /* Figma: 410 × 459px */
+    --history-timeline-item-drop: 13.125rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n + 7) {
-    --history-timeline-item-size: 27.5rem;
-    --history-timeline-item-height: 34.9375rem;
+    --history-timeline-item-size: 27.5rem; /* Figma: 440 × 559px */
+    --history-timeline-item-drop: 6.875rem;
   }
 
   .history-timeline .history-timeline-list > li:nth-child(8n) {
-    --history-timeline-item-size: 26.25rem;
-    --history-timeline-item-height: 31.1875rem;
+    --history-timeline-item-size: 26.25rem; /* Figma: 420 × 499px */
+    --history-timeline-item-drop: 10.625rem;
   }
 }
 

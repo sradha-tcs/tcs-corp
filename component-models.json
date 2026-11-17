@@ -12519,6 +12519,20 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "startLabel",
+        "label": "Start label",
+        "description": "The left end of the timeline line, e.g. 1968. Leave empty for the first milestone’s year."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "endLabel",
+        "label": "End label",
+        "description": "The right end of the timeline line, e.g. Today. Leave empty for the last milestone’s year."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "closingLabel",
         "label": "Closing panel",
         "description": "Shown after the last milestone. Leave empty for “The story continues”."

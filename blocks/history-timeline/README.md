@@ -40,7 +40,9 @@ Purpose:
 The Content tab of the History Timeline properties in Universal Editor, with the fields of the table "Content tab — History Timeline" in Authorable Fields below.
 
 Annotations:
-A = Closing panel
+A = Start label
+B = End label
+C = Closing panel
 ```
 
 ```text
@@ -104,7 +106,7 @@ Figma: "Match · History timeline" (5585-8421), a desktop frame of 1600 × 1024p
 
 ## For Content Authors
 
-Add a History Timeline to a section, then add one **Milestone** per step of the story with Add, in chronological order. The first and the last milestone's Year label the two ends of the line above the strip (for example 1968 and Today). A milestone needs at least a year, a title, a description or an image to be shown; a milestone just added shows as a placeholder in the editor until it has one.
+Add a History Timeline to a section, then add one **Milestone** per step of the story with Add, in chronological order. The block's **Start label** and **End label** (Content tab) label the two ends of the line above the strip (for example 1968 and Today); left empty, they show the first and the last milestone's Year. A milestone needs at least a year, a title, a description or an image to be shown; a milestone just added shows as a placeholder in the editor until it has one.
 
 ## Authorable Fields
 
@@ -120,6 +122,8 @@ Stored on a new component (definition template): `headingLevel` = `"h3"`.
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Start label | `startLabel` | text | No | — | — | The left end of the timeline line, e.g. 1968. Leave empty for the first milestone’s year. | — |
+| End label | `endLabel` | text | No | — | — | The right end of the timeline line, e.g. Today. Leave empty for the last milestone’s year. | — |
 | Closing panel | `closingLabel` | text | No | — | — | Shown after the last milestone. Leave empty for “The story continues”. | — |
 
 #### Style tab — History Timeline
@@ -169,6 +173,8 @@ Notes:
 
 - **Image Alt Text** collapses into the image and **CTA Text** into the CTA Link (AEM delivery rules): they are delivered as the image's alt and the link's text.
 - **Milestone heading level** applies to every milestone title of the block (H3 by default). Choose the level after the heading above the timeline so the page's heading hierarchy doesn't skip a level.
+- **Start label** / **End label** empty: the first / last milestone's Year. The year row is shown when both ends have a label.
+- Figma layer → field: Header "Year label" 1968 → Start label; "Year label" Today → End label; Article "Date column" → Year; "Content column" → Title and Description; "Figure" → Image and Image Alt Text; "Story continues" → Closing panel. The year row line and the previous / next buttons aren't authored.
 - **Closing panel** empty: the panel shows the placeholder `historyTimelineEnd` ("The story continues").
 
 ## Screenshot-Based Authoring Steps
@@ -182,6 +188,9 @@ Not recorded: no Universal Editor screenshots were taken (Blocked: author access
 | Field | Value |
 | --- | --- |
 | Component | History Timeline (in the section's Add menu) |
+| Start label | 1968 |
+| End label | Today |
+| Closing panel | The story continues |
 | Milestone heading level | H3 (a heading H2 above the block) |
 
 ### Authoring Step 2: Add the milestones
@@ -262,9 +271,9 @@ None. No personalization is implemented on the site (see the knowledge base page
 
 | Width | Layout |
 | --- | --- |
-| < 600px | Cards 17.5rem wide, of equal height (the tallest card's), image at least 12.5rem; gutter 1rem; closing panel 12.5rem |
+| < 600px | Cards 17.5rem wide (narrower on phones under 370px, so about 2rem of the next card shows), of equal height (the tallest card's), image at least 12.5rem; gutter 1rem; closing panel 12.5rem |
 | 600–899px | Cards 22.5rem; gutter 2.5rem; closing panel 15rem |
-| 900–1199px | The Figma cards: eight widths and heights (Article-1 … Article-8: 420 × 669, 380 × 549, 387 × 489, 400 × 579, 450 × 519, 410 × 459, 440 × 559, 420 × 499px), repeated for more milestones, aligned at the bottom of a 49.8125rem (797px) strip; closing panel 16.875rem (270px); gutter 2.5rem |
+| 900–1199px | The Figma cards: eight widths and heights (Article-1 … Article-8: 420 × 669, 380 × 549, 387 × 489, 400 × 579, 450 × 519, 410 × 459, 440 × 559, 420 × 499px), repeated for more milestones, aligned at the bottom of the strip. The strip is a screen high: 49.8125rem (797px, the Figma 1024px frame) on screens 1024px high or more; on lower screens the space above the tallest card shrinks (down to the tallest card, 669px), so the cards keep their Figma sizes; closing panel 16.875rem (270px); gutter 2.5rem |
 | ≥ 1200px | As above with the Figma gutter of 5rem (80px) |
 
 In a Fixed Width section the section's own gutter replaces the block's (the block adds only what the section doesn't give). Type follows the site tokens: the year `--heading-font-size-xl` (40px from 900px), the title `--heading-font-size-s` (20px), the year labels `--heading-font-size-m` (24px), the description `--label-font-size` (14px).
@@ -327,7 +336,8 @@ Check on `drafts/history-timeline.html` at 1600, 1440, 700 and 390px: the cards'
 | Symptom | Cause | Resolution |
 | --- | --- | --- |
 | A milestone isn't shown | It has no year, title, description or image | Fill in at least one of them |
-| The year row is missing | Fewer than two milestones have a year | Add years to the first and last milestones |
+| The year row is missing | No Start / End label and fewer than two milestones with a year | Fill in Start label and End label |
+| History Timeline isn't in the editor's Add menu, or its fields can't be edited | Universal Editor reads the component definitions (`component-definition.json`, `component-models.json`, `component-filters.json`) and the block code from the branch the site is configured with (`main`): a block only on a feature branch isn't offered | Merge the pull request into `main` (or point the site configuration at the feature branch for testing) |
 | The buttons are missing | The strip doesn't scroll (all cards fit) | Expected |
 | Button labels in English on a localized page | The placeholders aren't in the locale's sheet | Add the keys under For Site Administrators |
 
@@ -365,3 +375,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Date | Change |
 | --- | --- |
 | 17 November 2026 | New block from the Figma "Match · History timeline" frame |
+| 17 November 2026 | Start label and End label fields (Figma year row); desktop strip follows the screen height; mobile cards narrow so the next one peeks in |
