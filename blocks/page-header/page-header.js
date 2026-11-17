@@ -1,9 +1,11 @@
+import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
+import { HEADINGS } from '../../decorators/heading-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
@@ -12,7 +14,7 @@ import { getAuthor } from '../../utils/data.js';
 import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { optionOf, readProperties } from '../../utils/properties.js';
+import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
@@ -50,6 +52,30 @@ const LEGACY_ROUND = 'round';
 const ROUND_MAX_WORD = 12;
 const ROUND_MAX_LABEL = 24;
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
+// Title Font (Desktop / Tablet / Mobile): the title's size per width, as a heading of that
+// level (classes title-desktop-h1 ... title-mobile-h6); the title stays the page's H1
+const TITLE_FONT_WIDTHS = {
+  desktop: 'pageheadertitlefont',
+  tablet: 'pageheadertitlefonttablet',
+  mobile: 'pageheadertitlefontmobile',
+};
+// Description Font: the description's size at every width (Default Font: the layout's)
+const DESCRIPTION_FONTS = ['text-16px', 'text-18px', 'text-20px', 'text-24px', 'text-32px', 'text-40px'];
+
+/** Title Font and Description Font as block classes; nothing selected keeps the layout's sizes */
+function applyFonts(block, props) {
+  const widths = Object.keys(TITLE_FONT_WIDTHS);
+  block.classList.remove(
+    ...DESCRIPTION_FONTS,
+    ...widths.flatMap((width) => HEADINGS.map((font) => `title-${width}-${font}`)),
+  );
+  widths.forEach((width) => {
+    const font = toClassName(textOf(props[TITLE_FONT_WIDTHS[width]]));
+    if (HEADINGS.includes(font)) block.classList.add(`title-${width}-${font}`);
+  });
+  const descriptionFont = toClassName(textOf(props.pageheaderdescriptionfont));
+  if (DESCRIPTION_FONTS.includes(descriptionFont)) block.classList.add(descriptionFont);
+}
 
 /** the layout: the block's Layout, or from the Page Type */
 function layoutOf(block, props, pageType) {
@@ -250,6 +276,7 @@ export default async function decorate(block) {
   block.classList.remove(...LAYOUTS);
   block.classList.add(layout);
   block.classList.toggle('page-header-has-image', !!media);
+  applyFonts(block, props);
   block.replaceChildren(...parts.filter((part) => part && (part.children.length
     || part.textContent)));
 }

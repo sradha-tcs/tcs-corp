@@ -356,3 +356,59 @@
     letter-spacing: -0.12rem;
   }
 }
+
+/*
+ * Title Font (Desktop / Tablet / Mobile, page-header.js title-desktop-h1 ... title-mobile-h6):
+ * the title's size as a heading of that level, per width (the Teaser's Title Type widths);
+ * desktop H1 64, H2 48, H3 40, H4 28, H5 24, H6 20px; tablet and mobile H1 40, H2 32, H3 28,
+ * H4 24, H5 18, H6 16px. Nothing selected keeps the layout's size; the title stays the H1.
+ */
+@media (width < 600px) {
+  .page-header:is(.title-mobile-h1, .title-mobile-h2, .title-mobile-h3, .title-mobile-h4, .title-mobile-h5, .title-mobile-h6) .page-header-title {
+    font-size: var(--page-header-title-size);
+    letter-spacing: calc(-0.03 * var(--page-header-title-size));
+  }
+
+  .page-header.title-mobile-h1 .page-header-title { --page-header-title-size: 2.5rem; }
+  .page-header.title-mobile-h2 .page-header-title { --page-header-title-size: 2rem; }
+  .page-header.title-mobile-h3 .page-header-title { --page-header-title-size: 1.75rem; }
+  .page-header.title-mobile-h4 .page-header-title { --page-header-title-size: 1.5rem; }
+  .page-header.title-mobile-h5 .page-header-title { --page-header-title-size: 1.125rem; }
+  .page-header.title-mobile-h6 .page-header-title { --page-header-title-size: 1rem; }
+}
+
+@media (600px <= width < 1200px) {
+  .page-header:is(.title-tablet-h1, .title-tablet-h2, .title-tablet-h3, .title-tablet-h4, .title-tablet-h5, .title-tablet-h6) .page-header-title {
+    font-size: var(--page-header-title-size);
+    letter-spacing: calc(-0.03 * var(--page-header-title-size));
+  }
+
+  .page-header.title-tablet-h1 .page-header-title { --page-header-title-size: 2.5rem; }
+  .page-header.title-tablet-h2 .page-header-title { --page-header-title-size: 2rem; }
+  .page-header.title-tablet-h3 .page-header-title { --page-header-title-size: 1.75rem; }
+  .page-header.title-tablet-h4 .page-header-title { --page-header-title-size: 1.5rem; }
+  .page-header.title-tablet-h5 .page-header-title { --page-header-title-size: 1.125rem; }
+  .page-header.title-tablet-h6 .page-header-title { --page-header-title-size: 1rem; }
+}
+
+@media (width >= 1200px) {
+  .page-header:is(.title-desktop-h1, .title-desktop-h2, .title-desktop-h3, .title-desktop-h4, .title-desktop-h5, .title-desktop-h6) .page-header-title {
+    font-size: var(--page-header-title-size);
+    letter-spacing: calc(-0.03 * var(--page-header-title-size));
+  }
+
+  .page-header.title-desktop-h1 .page-header-title { --page-header-title-size: 4rem; }
+  .page-header.title-desktop-h2 .page-header-title { --page-header-title-size: 3rem; }
+  .page-header.title-desktop-h3 .page-header-title { --page-header-title-size: 2.5rem; }
+  .page-header.title-desktop-h4 .page-header-title { --page-header-title-size: 1.75rem; }
+  .page-header.title-desktop-h5 .page-header-title { --page-header-title-size: 1.5rem; }
+  .page-header.title-desktop-h6 .page-header-title { --page-header-title-size: 1.25rem; }
+}
+
+/* Description Font (page-header.js text-16px ... text-40px): the same size at every width */
+.page-header.text-16px .page-header-description { font-size: 1rem; }
+.page-header.text-18px .page-header-description { font-size: 1.125rem; }
+.page-header.text-20px .page-header-description { font-size: 1.25rem; }
+.page-header.text-24px .page-header-description { font-size: 1.5rem; }
+.page-header.text-32px .page-header-description { font-size: 2rem; }
+.page-header.text-40px .page-header-description { font-size: 2.5rem; }
