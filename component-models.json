@@ -12575,6 +12575,10 @@
               {
                 "name": "Slate",
                 "value": "primary-border-slate-100"
+              },
+              {
+                "name": "No border",
+                "value": "primary-border-none"
               }
             ],
             "description": "Border Color of Primary CTA"
@@ -12619,6 +12623,10 @@
               {
                 "name": "White",
                 "value": "secondary-border-white"
+              },
+              {
+                "name": "No border",
+                "value": "secondary-border-none"
               }
             ],
             "description": "Border Color of Secondary CTA"

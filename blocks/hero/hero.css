@@ -444,6 +444,16 @@
 }
 
 /*
+ * Secondary CTA Border color No border: transparent in every state, so the button keeps its size;
+ * after the dark BG Color rules and as specific as the dark section ones (styles/styles.css), so
+ * it wins; the focus ring is an outline and stays
+ */
+.hero .hero-ctas a.button.secondary.secondary-border-none,
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.secondary.secondary-border-none {
+  border-color: transparent;
+}
+
+/*
  * Primary CTA BG Color (CTA List): Blue-cyan (azure), #216AC3 with white text (5.4:1); in a dark
  * section too, where Primary buttons are otherwise inverted (styles/styles.css)
  */
@@ -456,7 +466,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 
 /*
  * Primary CTA Border color (CTA List): a Primary CTA's own class (hero.js); Default keeps the
- * border of its background colour; after Primary CTA BG Color and as specific as it (in a dark
+ * border of its background colour, No border makes it transparent; after Primary CTA BG Color and as specific as it (in a dark
  * section too), so it wins; hover and focus stay the Primary button's
  */
 .hero .hero-ctas a.button.primary.primary-border-black:not(:hover, :focus-visible),
@@ -472,6 +482,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 .hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible),
 main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible) {
   border-color: var(--slate-100);
+}
+
+/* Primary CTA Border color No border: transparent in every state (the button keeps its size) */
+.hero .hero-ctas a.button.primary.primary-border-none,
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-none {
+  border-color: transparent;
 }
 
 /*

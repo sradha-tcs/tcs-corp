@@ -52,9 +52,11 @@ const ARROWS = ['right', 'down'];
 const CTA_OPTIONS = {
   primary: [
     'primary-bg-azure', 'primary-border-black', 'primary-border-white', 'primary-border-slate-100',
+    'primary-border-none',
   ],
   secondary: [
     'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
+    'secondary-border-none',
   ],
 };
 // CTA Text color (CTA List), a class of the button whatever its CTA view
