@@ -106,7 +106,7 @@ export async function getSocialLinks() {
     .map(({ link }) => link);
 }
 
-/** @returns {Promise<Object[]>} { id, name, designation, email, phone, region } */
+/** @returns {Promise<Object[]>} { id, name, designation, email, phone, region, group, heading } */
 export async function getMediaContacts() {
   return (await loadDataSheet('media-contacts')).map((row) => ({
     id: cell(row, 'id'),
@@ -115,6 +115,10 @@ export async function getMediaContacts() {
     email: cell(row, 'email'),
     phone: cell(row, 'phone'),
     region: cell(row, 'region'),
+    // optional (KB-D-074): the group's tag ID (tcs-corp:media-contacts/...) and its heading;
+    // without them, rows are grouped by "designation & region", else region
+    group: cell(row, 'group'),
+    heading: cell(row, 'heading'),
   })).filter((contact) => contact.id || contact.name || contact.email || contact.phone);
 }
 

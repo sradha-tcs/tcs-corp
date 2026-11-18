@@ -44,7 +44,7 @@
           "name": "region",
           "label": "Country, territory, organization or group",
           "required": true,
-          "description": "Enter the country, territory, organization or group this contact represents, for example Europe, India or SMG. Each Media Contact is displayed as its own entry."
+          "description": "The heading of this contact, e.g. a partner's name or a group that isn't in the Media Contacts sheet. Each Media Contact is shown after the sheet's groups, as its own entry."
         },
         {
           "component": "text",
@@ -77,7 +77,7 @@
           "valueType": "string",
           "name": "title",
           "label": "Title",
-          "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts). Add Media Contact items to author the contact details."
+          "description": "The heading above the contacts, e.g. \"TCS media contacts\". Empty: \"Media contacts\" (placeholder mediaContacts)."
         },
         {
           "component": "select",
@@ -112,6 +112,51 @@
             }
           ],
           "description": "Heading level of the Title; each Media Contact label is one level below."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showDirectory",
+          "label": "Contacts from the Media Contacts sheet",
+          "value": true,
+          "description": "Shows the contacts of the locale's Media Contacts sheet (data/media-contacts), maintained in one place for every page. Off: only the Media Contact items added to this block."
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "contactGroups",
+          "label": "Contact groups",
+          "multi": true,
+          "description": "The groups of the sheet to show, as tags of tcs-corp:media-contacts (e.g. Europe, Japan). Empty: every group, in the order of the sheet. Media Contact items added to this block follow the sheet's groups.",
+          "condition": {
+            "!==": [
+              {
+                "var": "showDirectory"
+              },
+              false
+            ]
+          }
+        },
+        {
+          "component": "tab",
+          "name": "displayTab",
+          "label": "Display"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showEmails",
+          "label": "Show email addresses",
+          "value": true,
+          "description": "Off: phone numbers only (a group without one is left out)."
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "showPhones",
+          "label": "Show phone numbers",
+          "value": true,
+          "description": "Off: email addresses only (a group without one is left out)."
         },
         {
           "component": "select",
