@@ -15,11 +15,19 @@ Form Variations builds an accessible, client-side validated web form from child 
 
 **Business purpose.** Authors create contact, enquiry, call-back and feedback forms without developer work, with consistent TCS styling, accessible labels and errors, and conditional content (for example a Region dropdown that reveals the matching regional contact card).
 
-**User experience.** The visitor sees an optional H2 title and description, a "* Required fields" note when any field is mandatory, the fields in authored order (fields whose Field Name / ID contains "name" side by side on desktop), and a primary submit button. Errors are validated on submit and shown under each invalid field; a status message below the form reports the outcome.
+**User experience.** The visitor sees an optional H2 title and description, the fields in authored order (fields whose Field Name / ID contains "name" side by side on desktop), and a grey submit button. When any field is mandatory, the block generates "*Mandatory fields" immediately above the first submit action (or at the end if there is no submit item), using placeholder `formMandatoryFields`. Do not author this note as rich text; an existing rich-text item containing only the same note is replaced by the generated note. Consent text wraps beside its checkbox. Errors are validated on submit and shown under each invalid field; a status message below the form reports the outcome.
 
 **Templates and page types.** Any page: the block is in the Section, Columns Container and Tabs Container filters. No template adds it automatically. It can be reused through a Fragment, or shown in a pop-up through a Modal (the block library has a `block-library/modal/fragments/contact-form` page).
 
 **Data source.** Authored content only. The block reads no query index, metadata, tags or data sheets; UI texts come from the locale's placeholders sheet.
+
+**Background rendering.** The containing section owns the theme background and image fade variables, alongside the image URL set by the block. Dark uses `#01000e` with light labels; Default / Light uses white with dark labels. The authored Background Image appears from 992px; narrower viewports, including a narrow Universal Editor canvas, show the solid theme background. The model's 900px image hint predates this CSS breakpoint. The fade protects the form text while revealing the image on the right.
+
+Portrait backgrounds retain their aspect ratio, fit the viewport height and align right. Their theme fade is sized to the image's rendered width and becomes transparent at 40% of that width, blending only the left edge into the solid background. Landscape backgrounds keep `cover`; the dark theme fade becomes transparent at 85% of the section width, leaving the right edge untinted. Through 991px the form fills the available width; from 992px it narrows only when a background is available. The 992px image/form split is a reference-specific exception to the standard site breakpoints.
+
+**Reference form layout.** From 992px, when a background is available, the content column is five-twelfths of the block's available width (capped at 35rem), inset by one-twelfth. Otherwise it uses the available width without a width cap. From 900px it has 6.75rem top padding and a separate Back action. Descriptions use 1.5rem text with a 1.5 line height from 600px and 1rem paragraph margins. Text input and textarea labels remain associated but visually hidden; the authored label appears as a placeholder with the required marker. Placeholders use 1.125rem text, 1.5 line height and 0.0313rem tracking; inputs are 2.75rem high, with 0.0625rem top and 1rem bottom padding. Text-input labels reserve 1.5rem vertically, and the form uses a 2rem row gap, giving a 6.25rem input-row rhythm. The textarea is 2.8125rem high with 0.125rem top and 1rem bottom padding; it remains vertically resizable with a right-aligned counter. Consent follows the row gap without an additional top margin. The desktop background image is viewport-fixed rather than stretched to the full form height, with a darker fade in the Dark theme. The site keeps Inter and its fallback faces; the reference site's Basis font and Bootstrap are not imported.
+
+**Reference typography.** The character counter uses 0.875rem text with a 1.5 line height. Submit text is 0.875rem on mobile, 1rem from 600px and 1.125rem from 900px. Back uses a 1.5 line height; the mandatory note uses a 1.5rem line height. These values follow the live feedback form's rem sizes without adopting its viewport-scaled root font size.
 
 **Related blocks.** Conversation Canvas ([README](../conversation-canvas/README.md)) for search / question entry points (not data capture); Columns Container ([README](../columns-container/README.md)) to place a form next to other content; Modal and Fragment for reuse.
 
@@ -126,10 +134,36 @@ Purpose:
 The Content tab of the Form Variations properties in Universal Editor, with the fields of the table "Content tab — Form Variations" in Authorable Fields below.
 
 Annotations:
-A = Form Title / Heading
-B = Form Description
-C = Submit action
-D = Theme
+A = Eyebrow / Category Title
+B = Eyebrow Icon Asset (Optional)
+C = Form Title / Heading
+D = Heading level
+E = Form Description
+F = Background Image
+G = Submit action
+H = Theme
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+form-variations-dialog-additional-desktop.png
+
+Purpose:
+The Additional tab of the Form Variations properties in Universal Editor, with the fields of the table "Additional tab — Form Variations" in Authorable Fields below.
+
+Annotations:
+A = Anchor ID
+B = Hide block
+C = Animation Type
+D = Motion Speed
+E = Animation Trigger
+F = Background animation
+G = Padding left
+H = Padding right
+I = Padding top
+J = Padding bottom
 ```
 
 ```text
@@ -146,8 +180,9 @@ A = Field type
 B = Field Name / ID
 C = Field Label
 D = Input Type
-E = Mandatory Field (*)
-F = Show only if dropdown value equals
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -163,9 +198,10 @@ Annotations:
 A = Field type
 B = Dropdown Name / ID
 C = Dropdown Label
-D = Mandatory Field (*)
-E = Options
-F = Show only if dropdown value equals
+D = Field Width
+E = Mandatory Field (*)
+F = Options
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -180,8 +216,11 @@ The dialog of the Combined Input Field properties in Universal Editor, with the 
 Annotations:
 A = Field type
 B = Field Name / ID
-C = Mandatory Field (*)
-D = Show only if dropdown value equals
+C = Field Label
+D = Dropdown Options
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -198,8 +237,9 @@ A = Field type
 B = Field Name / ID
 C = Field Label
 D = Max Character Limit
-E = Mandatory Field (*)
-F = Show only if dropdown value equals
+E = Field Width
+F = Mandatory Field (*)
+G = Show only if dropdown value equals
 ```
 
 ```text
@@ -215,7 +255,25 @@ Annotations:
 A = Field type
 B = Checkbox Name / ID
 C = Consent Text / Disclaimer
-D = Mandatory Field (*)
+D = Field Width
+E = Mandatory Field (*)
+F = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-richtext-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Rich Text Field properties in Universal Editor, with the fields of the table "Fields — Rich Text Field" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Element ID / Name
+C = Rich Text Content
+D = Field Width
 E = Show only if dropdown value equals
 ```
 
@@ -234,6 +292,9 @@ B = Show when dropdown value equals
 C = Contact Name
 D = Emails
 E = Phones
+F = Email Icon Asset (Optional)
+G = Phone Icon Asset (Optional)
+H = Field Width
 ```
 
 ```text
@@ -248,7 +309,8 @@ The dialog of the Submit Button properties in Universal Editor, with the fields 
 Annotations:
 A = Field type
 B = Button Label
-C = Show only if dropdown value equals
+C = Field Width
+D = Show only if dropdown value equals
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -330,7 +392,7 @@ B = Inverted primary button
 
 1. **Add the block.** In Universal Editor select a Section (or a Columns Container column, or a Tabs Container) and choose Add > Form Variations.
 2. **Open its properties.** Select the block; the dialog has the tabs Content and Additional.
-3. **Enter the content.** Form Title / Heading (rendered as an H2), Form Description (rich text), Submit action (the endpoint the data is sent to; ask the development team for it) and Theme (Default or Dark).
+3. **Enter the content.** Form Title / Heading (rendered as an H2; **Heading level** H1 to H6 changes its level and size), Form Description (rich text), Submit action (the endpoint the data is sent to; ask the development team for it) and Theme (Default or Dark).
 4. **Add the items.** In the content tree, select the block and use Add to insert items in the order visitors should fill them: Text Input Field, Dropdown / Select Field, Textarea Field, Consent Checkbox Field, Contact Card Output, Submit Button. Reorder them by dragging in the content tree.
 5. **Fill each item.** Give every field a unique Field Name / ID (the submitted key, e.g. `firstName`), a label, and set Mandatory Field (*) where needed. For a conditional item, copy the exact dropdown option text into "Show only if dropdown value equals" (or "Show when dropdown value equals" for a contact card).
 6. **Preview.** In Universal Editor every conditional item stays visible with an italic condition note; switch to the preview (aem.page) to test the real behaviour.
@@ -344,16 +406,39 @@ B = Inverted primary button
 
 ### Form Variations (`form-variations`)
 
-Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-checkbox`, `contact-card`, `field-submit`.
+Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-checkbox`, `field-richtext`, `contact-card`, `field-submit`.
 
 #### Content tab — Form Variations
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Eyebrow / Category Title | `formEyebrow` | text | No | — | — | e.g. CORPORATE SOCIAL RESPONSIBILITY - TCS EMPOWERS | — |
+| Eyebrow Icon Asset (Optional) | `formEyebrowIcon` | aem-content | No | — | — | — | — |
 | Form Title / Heading | `formHeading` | text | No | — | — | — | Contact us |
+| Heading level | `formHeadingLevel` | select | No | — | Default (H2) (""), H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | The title's heading level (H1 to H6) and its size. Default: H2 at the form's own size. | — |
 | Form Description | `formDescription` | richtext | No | "" | — | — | — |
-| Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so. | — |
-| Theme | `classes` | select | No | "" | Default (""), Dark (`dark`) | — | dark |
+| Background Image | `bgImage` | aem-content | No | — | — | The image beside the form from 992px (the section's background). Empty: uses ambient gradient glow. | — |
+| Submit action | `formAction` | aem-content | No | — | — | Where the form data is sent (POST, JSON). | — |
+| Theme | `classes` | select | No | `default` | Default / Light (`default`), Dark (`dark`) | The form theme style. | dark |
+
+#### Additional tab — Form Variations
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
+| Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off (shown faded in the editor). Delivered as a block class. | — |
+| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items appear one after another. None: shown as is. Delivered as a block class. | motion-fade-up |
+| Motion Speed | `classes_animationspeed` | select | No | "" | Medium (""), Fast (`motion-fast`), Slow (`motion-slow`) | How fast the block's animations run. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
+| Animation Trigger | `classes_animationtrigger` | select | No | "" | On Scroll / Viewport Entry (""), On Page Load (`motion-on-load`) | When the block's animations run. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
+| Background animation | `classes_bganimation` | select | No | "" | None (""), Fade in (`bg-motion-fade-in`), Reveal from the centre (`bg-motion-reveal`), Wipe left to right (`bg-motion-wipe-right`), Wipe right to left (`bg-motion-wipe-left`), Wipe bottom to top (`bg-motion-wipe-up`), Scale reveal (`bg-motion-scale`) | How the block's background appears. Delivered as a block class. | bg-motion-wipe-right |
+| Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
+| Padding right | `classes_paddingright` | select | No | "" | Default (""), 0 (none) (`pr-0`), 0.25rem (space-100) (`pr-100`), 0.5rem (space-200) (`pr-200`), 0.75rem (space-300) (`pr-300`), 1rem (space-400) (`pr-400`), 1.25rem (space-500) (`pr-500`), 1.5rem (space-600) (`pr-600`), 2rem (space-800) (`pr-800`), 2.5rem (space-1000) (`pr-1000`), 3rem (space-1200) (`pr-1200`), 4rem (space-1600) (`pr-1600`), 5rem (space-2000) (`pr-2000`), 6rem (space-2400) (`pr-2400`), 7.5rem (space-3000) (`pr-3000`) | Delivered as a block class. | — |
+| Padding top | `classes_paddingtop` | select | No | "" | Default (""), 0 (none) (`pt-0`), 0.25rem (space-100) (`pt-100`), 0.5rem (space-200) (`pt-200`), 0.75rem (space-300) (`pt-300`), 1rem (space-400) (`pt-400`), 1.25rem (space-500) (`pt-500`), 1.5rem (space-600) (`pt-600`), 2rem (space-800) (`pt-800`), 2.5rem (space-1000) (`pt-1000`), 3rem (space-1200) (`pt-1200`), 4rem (space-1600) (`pt-1600`), 5rem (space-2000) (`pt-2000`), 6rem (space-2400) (`pt-2400`), 7.5rem (space-3000) (`pt-3000`) | Delivered as a block class. | — |
+| Padding bottom | `classes_paddingbottom` | select | No | "" | Default (""), 0 (none) (`pb-0`), 0.25rem (space-100) (`pb-100`), 0.5rem (space-200) (`pb-200`), 0.75rem (space-300) (`pb-300`), 1rem (space-400) (`pb-400`), 1.25rem (space-500) (`pb-500`), 1.5rem (space-600) (`pb-600`), 2rem (space-800) (`pb-800`), 2.5rem (space-1000) (`pb-1000`), 3rem (space-1200) (`pb-1200`), 4rem (space-1600) (`pb-1600`), 5rem (space-2000) (`pb-2000`), 6rem (space-2400) (`pb-2400`), 7.5rem (space-3000) (`pb-3000`) | Delivered as a block class. | — |
+| Margin left | `classes_marginleft` | select | No | "" | Default (""), 0 (none) (`ml-0`), 0.25rem (space-100) (`ml-100`), 0.5rem (space-200) (`ml-200`), 0.75rem (space-300) (`ml-300`), 1rem (space-400) (`ml-400`), 1.25rem (space-500) (`ml-500`), 1.5rem (space-600) (`ml-600`), 2rem (space-800) (`ml-800`), 2.5rem (space-1000) (`ml-1000`), 3rem (space-1200) (`ml-1200`), 4rem (space-1600) (`ml-1600`), 5rem (space-2000) (`ml-2000`), 6rem (space-2400) (`ml-2400`), 7.5rem (space-3000) (`ml-3000`) | Delivered as a block class. | — |
+| Margin right | `classes_marginright` | select | No | "" | Default (""), 0 (none) (`mr-0`), 0.25rem (space-100) (`mr-100`), 0.5rem (space-200) (`mr-200`), 0.75rem (space-300) (`mr-300`), 1rem (space-400) (`mr-400`), 1.25rem (space-500) (`mr-500`), 1.5rem (space-600) (`mr-600`), 2rem (space-800) (`mr-800`), 2.5rem (space-1000) (`mr-1000`), 3rem (space-1200) (`mr-1200`), 4rem (space-1600) (`mr-1600`), 5rem (space-2000) (`mr-2000`), 6rem (space-2400) (`mr-2400`), 7.5rem (space-3000) (`mr-3000`) | Delivered as a block class. | — |
+| Margin top | `classes_margintop` | select | No | "" | Default (""), 0 (none) (`mt-0`), 0.25rem (space-100) (`mt-100`), 0.5rem (space-200) (`mt-200`), 0.75rem (space-300) (`mt-300`), 1rem (space-400) (`mt-400`), 1.25rem (space-500) (`mt-500`), 1.5rem (space-600) (`mt-600`), 2rem (space-800) (`mt-800`), 2.5rem (space-1000) (`mt-1000`), 3rem (space-1200) (`mt-1200`), 4rem (space-1600) (`mt-1600`), 5rem (space-2000) (`mt-2000`), 6rem (space-2400) (`mt-2400`), 7.5rem (space-3000) (`mt-3000`) | Delivered as a block class. | — |
+| Margin bottom | `classes_marginbottom` | select | No | "" | Default (""), 0 (none) (`mb-0`), 0.25rem (space-100) (`mb-100`), 0.5rem (space-200) (`mb-200`), 0.75rem (space-300) (`mb-300`), 1rem (space-400) (`mb-400`), 1.25rem (space-500) (`mb-500`), 1.5rem (space-600) (`mb-600`), 2rem (space-800) (`mb-800`), 2.5rem (space-1000) (`mb-1000`), 3rem (space-1200) (`mb-1200`), 4rem (space-1600) (`mb-1600`), 5rem (space-2000) (`mb-2000`), 6rem (space-2400) (`mb-2400`), 7.5rem (space-3000) (`mb-3000`) | Delivered as a block class. | — |
 
 ### Text Input Field (`field-text`)
 
@@ -366,9 +451,10 @@ Stored on a new component (definition template): `classes` = `"field-text"`, `in
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-text` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. firstName. | firstName |
-| Field Label | `label` | text | Yes | — | — | e.g. First name | First name |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | firstName |
+| Field Label | `label` | text | Yes | — | — | — | First name |
 | Input Type | `inputKind` | select | No | `text` | Text (`text`), Email (`email`), Tel (`tel`) | — | text |
+| Field Width | `fieldWidth` | select | No | "" | Auto / Name-based (""), Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | Other |
 
@@ -385,6 +471,7 @@ Stored on a new component (definition template): `classes` = `"field-select"`.
 | Field type | `classes` | text | No | `field-select` | — | Read only. | — |
 | Dropdown Name / ID | `fieldName` | text | Yes | — | — | — | region |
 | Dropdown Label | `label` | text | Yes | — | — | — | Region |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | true |
 | Options | `options` | text | No | — | — | — | Asia Pacific, Europe, India, North America |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
@@ -400,7 +487,10 @@ Stored on a new component (definition template): `classes` = `"field-combined"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-combined` | — | Read only. | — |
-| Field Name / ID | `fieldName` | text | Yes | — | — | Submitted as the field key, e.g. score | — |
+| Field Name / ID | `fieldName` | text | Yes | — | — | — | — |
+| Field Label | `label` | text | Yes | — | — | — | — |
+| Dropdown Options | `options` | text | No | — | — | The units, separated by commas (e.g. CGPA, Percentage). Empty: CGPA and Percentage. | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | — |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
@@ -418,6 +508,7 @@ Stored on a new component (definition template): `classes` = `"field-textarea"`,
 | Field Name / ID | `fieldName` | text | Yes | — | — | — | message |
 | Field Label | `label` | text | Yes | — | — | — | How can we help you? |
 | Max Character Limit | `maxLength` | number | No | `1500` | — | — | 1500 |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | false |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
@@ -434,7 +525,24 @@ Stored on a new component (definition template): `classes` = `"field-checkbox"`,
 | Field type | `classes` | text | No | `field-checkbox` | — | Read only. | — |
 | Checkbox Name / ID | `fieldName` | text | Yes | — | — | — | consent |
 | Consent Text / Disclaimer | `label` | richtext | Yes | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Mandatory Field (*) | `required` | boolean | No | `true` | on / off | — | true |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Rich Text Field (`field-richtext`)
+
+Model `field-richtext`; template name "Rich Text Field" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-richtext"`.
+
+#### Fields — Rich Text Field
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-richtext` | — | Read only. | — |
+| Element ID / Name | `fieldName` | text | Yes | — | — | — | — |
+| Rich Text Content | `label` | richtext | Yes | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 ### Contact Card Output (`contact-card`)
@@ -448,10 +556,13 @@ Stored on a new component (definition template): `classes` = `"contact-card"`.
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `contact-card` | — | Read only. | — |
-| Show when dropdown value equals | `region` | text | Yes | — | — | — | India |
+| Show when dropdown value equals | `region` | text | No | — | — | — | India |
 | Contact Name | `contactName` | text | Yes | — | — | — | India media relations |
 | Emails | `emails` | text | No | — | — | — | media.india@example.com, press.india@example.com |
 | Phones | `phones` | text | No | — | — | — | +91 00 0000 0000 |
+| Email Icon Asset (Optional) | `emailIcon` | aem-content | No | — | — | — | — |
+| Phone Icon Asset (Optional) | `phoneIcon` | aem-content | No | — | — | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 
 ### Submit Button (`field-submit`)
 
@@ -465,15 +576,16 @@ Stored on a new component (definition template): `classes` = `"field-submit"`, `
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Field type | `classes` | text | No | `field-submit` | — | Read only. | — |
 | Button Label | `label` | text | No | `Send` | — | — | Send |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 <!-- END GENERATED: fields -->
 
 Notes the tables can't show:
 
-- **Form Title / Heading** renders as `h2.form-variations-title` and labels the form (`aria-labelledby`); it is also the `dc:title` of `cmp:submit` in the data layer. Without it the form has no accessible name and `cmp:submit` uses the block name.
+- **Form Title / Heading** renders as `h2.form-variations-title` (or the **Heading level** chosen, H1 to H6, with the site's heading size of that level: `form-variations-title-h1` … `-h6`; Default keeps H2 at the form's own size) and labels the form (`aria-labelledby`); it is also the `dc:title` of `cmp:submit` in the data layer. Without it the form has no accessible name and `cmp:submit` uses the block name.
 - **Submit action** is read from the cell's link (`href`), else its text. It receives a `POST` with `Content-Type: application/json` and the body `{ "data": { ... } }`. Without it (and without an integration) nothing is sent; in the editor a note says so.
-- **Theme** Dark adds the block class `dark`: a full-width dark panel (`--color-bg-neutral`) with rounded corners, light labels and an inverted primary button.
+- **Theme** Dark adds the block class `dark`: the containing section uses a full-width `#01000e` background and matching image fade, with light labels. The background variables are defined on the section, not just on its child block, so both the solid color and image layers resolve there.
 - **Field Name / ID** (`fieldName`) is the submitted key, sent as written. The dialog marks it required but doesn't validate its characters. A Text Input Field whose name contains "name" (any case) is half width from 900px (`half-width`); every other item is full width. The name also sets `autocomplete` (e.g. `firstName` gives `given-name`, `company` gives `organization`); Input Type Email / Tel set `email` / `tel`.
 - **Mandatory Field (*)**: only the value `true` makes a field required; the asterisk is hidden from screen readers and explained once by "* Required fields".
 - **Options**: comma separated; a disabled, pre-selected "Select an option" prompt comes first.
@@ -789,6 +901,7 @@ The "* Required fields" note has no `full-width` class, so from 900px it takes o
 blocks/form-variations/
 ├── README.md
 ├── _form-variations.json
+├── form-variations-properties.js
 ├── form-variations.css
 └── form-variations.js
 ```
@@ -798,6 +911,7 @@ blocks/form-variations/
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `form-variations.js`: { moveInstrumentation } |
 | [`decorators/content-decorator.js`](../../decorators/content-decorator.js) | `fromCell` (property content into an element, keeping editor instrumentation) | `form-variations.js`: { fromCell } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `form-variations.js`: { buildHeading } |
+| [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `form-variations.js`: { pictureOf } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `form-variations.js`: { isInEditor } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `form-variations.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `form-variations.js`: { textOf } |
@@ -808,7 +922,7 @@ blocks/form-variations/
 
 **Responsibilities.** `form-variations.js` reads the rows, builds the form, validates, handles conditional visibility and the submission. `form-variations.css` styles both themes, the grid, errors, counter, contact cards and the editor notes.
 
-**Input DOM (what AEM delivers).** Not a key-value block: the first rows are the block properties, with an empty row for each dialog tab (Content first, Additional last) around Form Title / Heading, Form Description and Submit action; Theme and the Additional tab arrive as block classes. Then one row per item: the first cell is `<node name>, <classes>` (e.g. `email, field-text`), followed by one cell per field in model order. `readProperties` uses `data-aue-prop` in the editor, else skips the leading empty tab row; `readItem` takes the type from the first cell (or `data-aue-model` in the editor), uses the `fieldName` cell when the row has all cells of the current model (`FIELD_COUNT`) and otherwise the legacy key from the node name. Item cells are read by position (handover open question O-18).
+**Input DOM (what AEM delivers).** Not a key-value block: the first rows are the block properties, with an empty row for each dialog tab (Content first, Additional last) around Form Title / Heading, Form Description and Submit action; Theme and the Additional tab arrive as block classes. Then one row per item: the first cell is `<node name>, <classes>` (e.g. `email, field-text`), followed by one cell per field in model order. `readProperties` uses `data-aue-prop` in the editor. On published pages the property rows aren't at fixed positions: some pages have an empty row per dialog tab, others none; optional fields left empty leave empty rows; and pages saved with an earlier model keep its layout (e.g. `heading | ∅ | ∅ | description | ∅ | ∅`, `∅ | heading | description | ∅ | ∅`, `heading | description | ∅`). So `mapProperties` (`form-variations-properties.js`, unit tested) skips the empty rows and tells the values apart by kind and order: `h1`–`h6` is the Heading level (the text before it the heading), an image is the eyebrow icon when a text follows it (the text before it the eyebrow) else the background image, a link or path that isn't an image the Submit action, and the texts in order the eyebrow, heading and description (two texts: heading and description; one: heading). `propertyCell(row)` takes a row's cell with `data-aue-prop`, else its first cell with a value. Limitation: an eyebrow and a heading without a description, an icon or a heading level read as heading and description; `readItem` takes the type from the first cell (or `data-aue-model` in the editor), uses the `fieldName` cell when the row has all cells of the current model (`FIELD_COUNT`) and otherwise the legacy key from the node name. Item cells are read by position (handover open question O-18).
 
 **Rendered DOM contract.**
 
@@ -847,7 +961,7 @@ document.addEventListener('form-variations:submit', (e) => {
 });
 ```
 
-**Exported functions.** `default decorate(block)`, `readItem(row)` (`{ type, cells }`), `readProperties(cells)` (`{ titleCell, descriptionCell, actionCell }`).
+**Exported functions.** `default decorate(block)`, `readItem(row)` (`{ type, cells }`), `readProperties(cells)` (`{ eyebrowCell, eyebrowIconCell, titleCell, headingLevel, descriptionCell, actionCell, bgImageCell }`), `propertyCell(row)`; `form-variations-properties.js`: `mapProperties(values)`, `headingLevelOf(value)`, `PROPERTY_NAMES`, `HEADING_LEVELS`.
 
 **Parent / child contracts.** The filter `form-variations` allows the six item components; each item definition stores its type in the read-only `classes` field (template value), which is how the published row is recognised.
 
@@ -860,7 +974,7 @@ document.addEventListener('form-variations:submit', (e) => {
 3. **Delivery rules:** avoid field names ending in Text, Title, Type, Alt or MimeType (field collapse); don't rely on the item `name` for case-sensitive values (use `fieldName`); expect the empty tab rows; keep `classes_*` for the Additional tab.
 4. **Rendering, responsive and accessibility:** keep labels, `aria-describedby` errors and the status live region; UI texts through `t(key, fallback)` with a new placeholder key.
 5. **Data layer:** don't push events from the block; `cmp:submit` is captured centrally.
-6. **Tests:** there is no unit test of this block in `test/` yet; `readItem` and `readProperties` are exported and pure enough to test with fixtures of the delivered rows.
+6. **Tests:** `test/form-variations/properties.test.mjs` covers `mapProperties` with the row layouts delivered on aem.page / aem.live (tab rows, empty optional fields, earlier model layouts) and the Universal Editor field names; `readItem` has no unit test yet.
 7. **Block library and docs:** add an example to `block-library/form-variations`, update this README; `npm run build:docs` regenerates the generated sections; run `npm run build:modules` after changing imports.
 
 ## For Site Administrators
