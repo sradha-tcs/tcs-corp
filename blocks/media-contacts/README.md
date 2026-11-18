@@ -67,8 +67,9 @@ D = Columns on desktop
 E = Territory title color
 F = Email color
 G = Phone color
-H = Email icon
-I = Phone icon
+H = Hide email and phone icons
+I = Email icon
+J = Phone icon
 ```
 
 ```text
@@ -155,11 +156,12 @@ Stored on a new component (definition template): `titleType` = `"h2"`.
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Title | `title` | text | No | — | — | The heading above the contacts, e.g. "TCS media contacts". Empty: "Media contacts" (placeholder mediaContacts). Add Media Contact items to author the contact details. | Media contacts |
 | Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Heading level of the Title; each Media Contact label is one level below. Delivered with `title` (field collapse). | h2 |
-| Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the title color using the Teaser title-color variants. | — |
+| Title color | `titleColor` | select | No | "" | Style default (""), Black (`title-black`), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the title color using the Teaser title-color variants. | — |
 | Columns on desktop | `columns` | select | No | `2` | 1 (`1`), 2 (`2`), 3 (`3`) | Choose the number of columns from desktop width. The entries stack into one column below 900px. | — |
-| Territory title color | `regionColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
-| Email color | `emailColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
-| Phone color | `phoneColor` | select | No | "" | Style default (""), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Territory title color | `regionColor` | select | No | "" | Style default (""), Black (`black`), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Email color | `emailColor` | select | No | "" | Style default (""), Black (`black`), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Phone color | `phoneColor` | select | No | "" | Style default (""), Black (`black`), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
+| Hide email and phone icons | `classes_hideicons` | boolean | No | `false` | on / off | Turn on to remove the email and phone icons (also custom ones). Off: the icons show. Delivered as a block class. | — |
 | Email icon | `emailIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default mail icon. | — |
 | Phone icon | `phoneIcon` | reference | No | — | — | Optional custom icon. Leave empty to use the default phone icon. | — |
 

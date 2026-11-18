@@ -12,3 +12,5 @@ jobs:
         node-version: 24
     - run: npm ci
     - run: npm run lint
+    # unit tests, and the generated files (module graph, block READMEs, models) kept current
+    - run: npm test

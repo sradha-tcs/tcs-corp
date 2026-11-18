@@ -86,7 +86,7 @@ Approval rules: the number of required reviews, required checks and branch prote
 | AEM Code Sync | GitHub app (not a repository file) | Every push | Syncs the branch to the code bus and reports a check | Not verified here (no GitHub access) |
 | PageSpeed (`aem-psi-check`) | AEM GitHub app (not a repository file) | Pull requests | PageSpeed Insights on the URLs in the PR description | Not verified here |
 
-The CI gate is lint only. Run `npm test` before every PR; adding it to `main.yaml` is a recommendation of the handover (14.9 #19, F-37), not a decision.
+The CI gate is `npm run lint` and `npm test` (KB-D-072, the handover's recommendation 14.9 #19 / F-37): a stale generated file (`scripts/module-graph.js`, the generated README sections, the component models) or a failing unit test fails the Build check. Run both before every PR.
 
 ## Content packages
 

@@ -37,7 +37,7 @@ Rules:
 - Analytics: reuse decorators/data-layer-decorator.js and data-cmp-* attributes. Adobe Tags and
   the Web SDK are not configured; no Target / AJO / consent exists. Adding any of them needs an
   approved entry in the decision log.
-- Tests: run npm run lint and npm test before every commit (CI runs lint only); report real
+- Tests: run npm run lint and npm test before every commit (CI runs both, KB-D-072); report real
   results. Never fabricate tests, results, measurements or claims; write "Not recorded" or
   "Blocked: <input needed>" instead.
 - Documentation: every block has a README in the structure of blocks/README.md (written

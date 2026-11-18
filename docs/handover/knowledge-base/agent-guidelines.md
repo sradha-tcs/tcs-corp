@@ -35,7 +35,7 @@ Work through this sequence before writing code or documentation. Record what you
 | `npm run build:modules` | After adding, removing or changing an `import` in scripts, blocks, decorators or utils | `head.html` modulepreload links and `scripts/module-graph.js` |
 | `npm run build:paths` | After adding or changing a locale in `LOCALES` (`utils/site.js`) or the temporary `REVIEW` block | `paths.json` (then the site configuration's `public.json` paths must be updated by an administrator) |
 
-> **Important:** The pre-commit hook ([.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs)) runs `npm run build:json` and stages the three `component-*.json` files when a `_*.json` model partial is staged. The GitHub Build workflow ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml)) runs `npm ci` and `npm run lint` only: `npm test` isn't run in CI (finding F-37), so it must be run locally.
+> **Important:** The pre-commit hook ([.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs)) runs `npm run build:json` and stages the three `component-*.json` files when a `_*.json` model partial is staged. The GitHub Build workflow ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml)) runs `npm ci`, `npm run lint` and `npm test` (since KB-D-072, closing finding F-37's CI part): a stale generated file (module graph, block READMEs) or a failing unit test fails the build. Run both locally before pushing.
 
 ### Generated and protected files
 
@@ -130,7 +130,7 @@ Check the result at desktop, tablet and mobile widths (for example 1440, 700 and
 3. **Never modify `scripts/aem.js`.** Change behaviour in `scripts/scripts.js`, decorators or utils.
 4. **Follow the AEM delivery rules** in every model and every reader of authored content (key-value vs rows, tab rows, collapse suffixes, `container*` on sections, item children, no sample content in templates).
 5. **Keep generated files generated.** Run `build:json`, `build:modules`, `build:docs` and `build:paths` when their inputs change and commit the output; never hand-edit generated sections.
-6. **Lint and test.** Run `npm run lint` and `npm test` before every commit and report the real results (Passed, Failed, Blocked); CI runs lint only.
+6. **Lint and test.** Run `npm run lint` and `npm test` before every commit and report the real results (Passed, Failed, Blocked); CI runs both (KB-D-072).
 7. **Never fabricate.** No invented tests, results, measurements, fields, events, integrations, owners, dates or URLs. Unknown facts are "Not recorded"; missing inputs are `Blocked: <what is needed>`.
 8. **Accessibility first.** WCAG 2.1 AA: `<button>` for actions with `aria-expanded` / `aria-controls`, Escape closes popups and returns focus, pause / play for moving content, `announceNewTab` for new-tab links, form errors next to their field with `aria-describedby`, heading hierarchy, alt text.
 9. **Performance by default.** Respect the three loading phases (eager, lazy, delayed), add no runtime dependency or framework, no layout reads while decorating, optimized images only, and keep the Lighthouse / PageSpeed target of 100.

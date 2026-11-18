@@ -13,7 +13,7 @@ This page summarises the performance requirements of the TCS Corporate Website, 
 
 | Requirement | Value | Source | Enforcement |
 | --- | --- | --- | --- |
-| PageSpeed Insights / Lighthouse score | 100, mobile and desktop, on the feature preview URL before merge | AGENTS.md "Publishing Process" step 3, handover 1.7.1 | Process: the aem-psi-check app on pull requests; CI (`.github/workflows/main.yaml`) runs lint only |
+| PageSpeed Insights / Lighthouse score | 100, mobile and desktop, on the feature preview URL before merge | AGENTS.md "Publishing Process" step 3, handover 1.7.1 | Process: the aem-psi-check app on pull requests; CI (`.github/workflows/main.yaml`) runs lint and `npm test` (KB-D-072), not Lighthouse |
 | Largest Contentful Paint | < 2.5 s (RUM, p75) | handover 13.16 (escalation thresholds), revision 2.36 ("the 2.5 s NFR") | Code: eager phase loads only the first section and its first image |
 | Cumulative Layout Shift | ≤ 0.1 (< 0.1 at p75 in RUM) | handover 13.16, revision 2.36 ("NFR ≤ 0.1") | Code: header space reservation, footer hidden until sections load, metric-matched fallback fonts |
 | Interaction to Next Paint | escalate above 200 ms at p75 | handover 13.16 | No specific code rule; long tasks avoided while decorating |
@@ -118,7 +118,7 @@ flowchart LR
 
 | Data | Loading |
 | --- | --- |
-| Query index (`/query-index.json`) | `utils/query-index.js` `getPages()`: fetched once per page view in pages of 500 rows (`offset` / `limit`), kept as an in-memory promise, filtered to the locale (or the review root) |
+| Query index (`/query-index.json`) | `utils/query-index.js` `getPages()`: fetched once per page view in requests of 1,000 rows (`offset` / `limit`, the ones after the first in parallel; this page said 500 before, the code's `PAGE_SIZE` is 1000), kept as an in-memory promise, filtered to the locale (or the review root); the rows are turned into pages once per root and shared by every caller (Lists, Filter List, Canvas menus, header menu), each caller getting its own array |
 | Taxonomy, redirects, placeholders, data sheets | Fetched once per page view, cached in memory |
 | Inherited metadata (Navigation, Footer, 404 Page) | Parent pages' heads loaded in parallel, cached per browser session (`sessionStorage`) |
 | Prefetch | `prefetchData` starts the query index and taxonomy (and, with a List, the redirects) when the lazy phase begins on pages with a List, Filter List or Conversation Canvas; not in the eager phase, so it doesn't compete with the LCP image |
