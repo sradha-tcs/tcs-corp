@@ -2,7 +2,12 @@
  * Media decorator: builds video players (YouTube, Vimeo, iframes, video files) with DOM APIs,
  * so authored URLs never end up in HTML strings. URLs come from utils/media.js.
  */
+import { decorateButton } from './button-decorator.js';
+import { createIconButton } from './icon-button-decorator.js';
+import { prefersReducedMotion } from '../utils/environment.js';
 import { videoType, vimeoEmbedUrl, youtubeEmbedUrl } from '../utils/media.js';
+import { getPlaceholders } from '../utils/placeholders.js';
+import { onVisible, watchVisibility } from '../utils/viewport.js';
 
 const YOUTUBE_ALLOW = 'autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope';
 const VIMEO_ALLOW = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
@@ -105,5 +110,79 @@ export function createVideoElement(source, options = {}) {
     video.append(track);
   });
   if (autoplay) video.addEventListener('canplay', () => video.play().catch(() => {}), { once: true });
+  return video;
+}
+
+/** the pause / play button of a background video (labels from the placeholders) */
+function createVideoToggle(video, state, className) {
+  let t = (key, fallback) => fallback;
+  const button = createIconButton({
+    label: 'Pause video', icon: 'pause', type: 'secondary', className,
+  });
+  button.dataset.cmpInteraction = 'playback';
+  const update = () => {
+    const label = state.paused ? t('playVideo', 'Play video') : t('pauseVideo', 'Pause video');
+    button.setAttribute('aria-label', label);
+    decorateButton(button, {
+      view: 'icon', type: 'secondary', icon: state.paused ? 'play' : 'pause', title: label,
+    });
+  };
+  button.addEventListener('click', () => {
+    state.paused = !state.paused;
+    if (state.paused) video.pause();
+    else video.play().catch(() => {});
+    update();
+  });
+  update();
+  getPlaceholders().then((placeholders) => {
+    t = placeholders;
+    update();
+  }).catch(() => {});
+  return button;
+}
+
+/**
+ * A background video (e.g. the Hero's Video image type): muted, looping, inline, without
+ * controls. It loads once it is near the viewport and the browser is idle (the page's LCP
+ * isn't held up), pauses off screen, and doesn't play for reduced motion (its first frame
+ * shows). Its pause / play button (WCAG 2.2.2; controls, on by default) is
+ * element.animationToggle, for the block to place where it can be reached; a file that fails
+ * to load (e.g. a DAM video not published) hides both and dispatches a bubbling video:failed
+ * event.
+ * @param {string} source the video file URL
+ * @param {{ label?: string, className?: string, toggleClassName?: string, controls?: boolean }}
+ *   [options] label: the video's text alternative ('' for a decorative video); controls: false
+ *   leaves the pause / play button out (KB-D-072: not WCAG 2.2.2 conform)
+ * @returns {HTMLVideoElement}
+ */
+export function createBackgroundVideo(source, {
+  label = '', className = '', toggleClassName = 'video-toggle', controls = true,
+} = {}) {
+  const video = createVideoElement(source, { background: true, title: label });
+  if (className) video.className = className;
+  if (!label) video.setAttribute('aria-hidden', 'true');
+  // nothing is fetched until the video is near the viewport
+  video.preload = 'none';
+  const state = { paused: prefersReducedMotion() };
+  if (controls) video.animationToggle = createVideoToggle(video, state, toggleClassName);
+  video.querySelector('source').addEventListener('error', () => {
+    video.hidden = true;
+    video.animationToggle?.remove();
+    video.dispatchEvent(new CustomEvent('video:failed', { bubbles: true }));
+  });
+  onVisible(video, () => {
+    const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 200));
+    idle(() => {
+      video.preload = state.paused ? 'metadata' : 'auto';
+      video.load();
+      watchVisibility(video, (visible) => {
+        const play = visible && !state.paused;
+        // (background videos aren't data-layer interactions: decorators/data-layer-decorator.js)
+        if (play === !video.paused) return;
+        if (play) video.play().catch(() => {});
+        else video.pause();
+      });
+    });
+  }, { rootMargin: '200px' });
   return video;
 }
