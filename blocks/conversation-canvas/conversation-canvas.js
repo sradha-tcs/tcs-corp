@@ -2,7 +2,7 @@ import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { getPageTags } from '../../utils/metadata.js';
-import { getPages } from '../../utils/query-index.js';
+import { getNavPages } from '../../utils/query-index.js';
 import { getLocale } from '../../utils/site.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import { hideVisually } from '../../decorators/a11y-decorator.js';
@@ -150,7 +150,8 @@ async function loadMenuTree(root, depth) {
   };
 
   try {
-    const data = await getPages();
+    // path and title of each page, from the small navigation index
+    const data = await getNavPages();
     const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
     const nodes = new Map([[tree.path, tree]]);
 

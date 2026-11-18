@@ -5,12 +5,13 @@ import { readProperties, textOf } from '../../utils/properties.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { toSitePath } from '../../utils/urls.js';
 import { getLocale } from '../../utils/site.js';
-import { getPages } from '../../utils/query-index.js';
+import { getNavPages } from '../../utils/query-index.js';
+import { bone, skeletonElement, skeletonWhile } from '../../decorators/skeleton-decorator.js';
 
 const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 
 /**
- * Builds the page tree using query-index.json
+ * Builds the page tree from the navigation index (getNavPages: path and title of each page)
  */
 async function loadMenuTree(root, depth = 3) {
   const base = root === '/' ? '' : root.replace(/\/$/, '');
@@ -23,7 +24,7 @@ async function loadMenuTree(root, depth = 3) {
   };
 
   try {
-    const data = await getPages();
+    const data = await getNavPages();
     const levelOf = (path) => path.slice(base.length).split('/').filter(Boolean).length;
     const nodes = new Map([[tree.path, tree]]);
 
@@ -128,20 +129,19 @@ function menuLink(node, currentPath, className) {
   return link;
 }
 
+/** the drawer's skeleton while its menu loads (a few lines shaped like the L1 rows) */
+function drawerSkeleton() {
+  const skeleton = skeletonElement('tcs-header-drawer-skeleton');
+  for (let i = 0; i < 5; i += 1) skeleton.append(bone('line', i % 2 ? 'short' : ''));
+  return skeleton;
+}
+
 /**
- * Builds the Mobile Drawer: the main view (L1 accordions with their L2 pages, the AI search)
+ * Fills the Mobile Drawer: the main view (L1 accordions with their L2 pages, the AI search)
  * and the L3 panel, which replaces the main view while an L2 page's children are shown
- * @returns {{ drawer: Element, showMain: Function }} showMain returns to the main view
+ * @returns {Promise<Function>} showMain, which returns to the main view
  */
-async function buildMobileDrawer(root, depth, t) {
-  const drawer = document.createElement('div');
-  drawer.className = 'tcs-header-menu-drawer';
-  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
-  drawer.hidden = true;
-
-  const content = document.createElement('div');
-  content.className = 'tcs-header-drawer-content';
-
+async function fillMobileDrawer(drawer, content, root, depth, t) {
   const tree = await loadMenuTree(root, depth);
   const currentPath = normalizePath(window.location.pathname);
 
@@ -269,9 +269,40 @@ async function buildMobileDrawer(root, depth, t) {
 
   main.append(accordionList, buildMobileSearch());
   content.append(main, l3Panel);
+
+  return showMain;
+}
+
+/**
+ * The Mobile Drawer, empty until its menu is needed: the logo bar doesn't wait for the pages of
+ * the menu, and on desktop (no menu button from 1200px) they aren't loaded at all. `load` fills
+ * it once (the first time the visitor heads for the menu button or opens it).
+ * @returns {{ drawer: Element, content: Element, showMain: Function, load: () => Promise }}
+ */
+function buildMobileDrawer(root, depth, t) {
+  const drawer = document.createElement('div');
+  drawer.className = 'tcs-header-menu-drawer';
+  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
+  drawer.hidden = true;
+
+  const content = document.createElement('div');
+  content.className = 'tcs-header-drawer-content';
   drawer.append(content);
 
-  return { drawer, showMain };
+  let showMain = () => {};
+  let loading = null;
+  const load = () => {
+    loading ??= fillMobileDrawer(drawer, content, root, depth, t)
+      .then((show) => { showMain = show; })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error('Failed to build the menu:', e);
+      });
+    return loading;
+  };
+  return {
+    drawer, content, showMain: (options) => showMain(options), load,
+  };
 }
 
 function buildLogo(imageCell, altCell, linkCell, className, fallback) {
@@ -332,9 +363,14 @@ export default async function decorate(block) {
   toggleBtn.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   toggleBtn.setAttribute('aria-expanded', 'false');
 
-  // Build the complete drawer
-  const { drawer, showMain } = await buildMobileDrawer(root, depth, t);
+  // the drawer, filled with the menu once the visitor heads for the menu button or opens it
+  const {
+    drawer, content, showMain, load,
+  } = buildMobileDrawer(root, depth, t);
   toggleBtn.setAttribute('aria-controls', drawer.id);
+  ['pointerenter', 'touchstart', 'focus'].forEach((type) => {
+    toggleBtn.addEventListener(type, load, { once: true, passive: true });
+  });
 
   const setMenuOpen = (nextState) => {
     toggleBtn.setAttribute('aria-expanded', String(nextState));
@@ -352,7 +388,10 @@ export default async function decorate(block) {
 
   toggleBtn.addEventListener('click', (event) => {
     event.stopPropagation();
-    setMenuOpen(toggleBtn.getAttribute('aria-expanded') !== 'true');
+    const open = toggleBtn.getAttribute('aria-expanded') !== 'true';
+    setMenuOpen(open);
+    // a skeleton while the menu loads (only if it takes longer than a moment)
+    if (open) skeletonWhile(content, load(), drawerSkeleton);
   });
 
   document.addEventListener('keydown', (event) => {

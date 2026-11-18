@@ -52,11 +52,14 @@ Rules:
 
 ## Query index use in code
 
-[`utils/query-index.js`](../../../utils/query-index.js) is the only reader of `/query-index.json`.
+[`utils/query-index.js`](../../../utils/query-index.js) is the only reader of `/query-index.json` and of the navigation indexes.
+
+**Navigation indexes (KB-D-073).** Each query index has a navigation index in `helix-query.yaml` (`pages_nav`, `language_masters_nav`, `language_master_nav`, `design_block_master_nav`): the same include / exclude patterns, only `title` and `metaTitle`, target `nav-index.json` next to the query index. `getNavPages()` reads it for the menus (TCS Header, Conversation Canvas) and falls back to `getPages()` while it can't be read: an index added to `helix-query.yaml` is built when pages are published or reindexed after the change is on `main` (an administrator's reindex fills it for pages published before). `test/site/sheet-metadata.test.mjs` checks that every query index has a navigation index with both titles.
 
 | Export | Behaviour |
 | --- | --- |
-| `getPages()` | Fetches `/query-index.json?offset={n}&limit=500` until `total` is reached (or a request fails or returns no rows); keeps one promise per page view (module variable); filters rows to `indexRoot()`; maps each row to a typed page (`path`, `title`, `description`, `image`, `tags`, `pageType`, `contentType`, `publishDate`, `readingTime`, `thumbnailImage`, `featuredImage`, `author`, `authorId`, `featured`, `priority`, `lastModified`, `row`). A failed load gives `[]` |
+| `getPages()` | Fetches the root's query index in requests of 1,000 rows (the first gives `total`, the others run in parallel; this page said `limit=500` before, the code's `PAGE_SIZE` is 1000); the rows are turned into pages once per root and shared by every caller, each caller getting its own array (PR #236); before, it requested pages until `total` was reached (or a request fails or returns no rows); keeps one promise per page view (module variable); filters rows to `indexRoot()`; maps each row to a typed page (`path`, `title`, `description`, `image`, `tags`, `pageType`, `contentType`, `publishDate`, `readingTime`, `thumbnailImage`, `featuredImage`, `author`, `authorId`, `featured`, `priority`, `lastModified`, `row`). A failed load gives `[]` |
+| `getNavPages()` | The menus' pages (`path`, `title` with the sheet's `metaTitle` winning) from the navigation index `navIndexUrlOf(root)`, once per page view; `getPages()` while the navigation index can't be read (`test/site/nav-pages.test.mjs`, KB-D-073) |
 | `tagsOf(row)` | Merges `tags` (JSON list or comma list) and `cqTags`, without duplicates (`test/list/query-index-tags.test.mjs`) |
 | `columnOf(page, name)` | A column by its metadata name (`featured-image` → `featuredImage`) |
 | `listOf(value)` | A multi-value column: JSON array or comma-separated |

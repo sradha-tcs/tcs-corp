@@ -568,3 +568,100 @@ indices:
       hideInNav:
         select: head > meta[name="hide-in-nav"]
         value: attribute(el, "content")
+
+  # Navigation indexes (KB-D-073): the same pages as each query index above, with only the columns
+  # the menus read (TCS Header tablet / mobile menu, Conversation Canvas menus; getNavPages in
+  # utils/query-index.js): about a fifth of a query index to parse, a third of its download. Until
+  # one is built (published or reindexed after this change), the menus read the query index.
+  pages_nav:
+    include:
+      - '/**'
+    exclude:
+      - '/**.json'
+      - '/*/references/**'
+      - '/*/error-pages/**'
+      - '/*/data/**'
+      - '/*/nav'
+      - '/*/footer'
+      - '/*/block-library'
+      - '/*/block-library/**'
+      - '/site-global-templates/**'
+      - '/language-master/**'
+      - '/language-masters/**'
+      - '/design-block-master/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /nav-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+  language_masters_nav:
+    include:
+      - '/language-masters/**'
+    exclude:
+      - '/**.json'
+      - '/language-masters/*/references/**'
+      - '/language-masters/*/error-pages/**'
+      - '/language-masters/*/data/**'
+      - '/language-masters/*/nav'
+      - '/language-masters/*/footer'
+      - '/language-masters/*/block-library'
+      - '/language-masters/*/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /language-masters/en/nav-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+  language_master_nav:
+    include:
+      - '/language-master/**'
+    exclude:
+      - '/**.json'
+      - '/language-master/*/references/**'
+      - '/language-master/*/error-pages/**'
+      - '/language-master/*/data/**'
+      - '/language-master/*/nav'
+      - '/language-master/*/footer'
+      - '/language-master/*/block-library'
+      - '/language-master/*/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /language-master/en/nav-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")
+  design_block_master_nav:
+    include:
+      - '/design-block-master/**'
+    exclude:
+      - '/**.json'
+      - '/design-block-master/*/references/**'
+      - '/design-block-master/*/error-pages/**'
+      - '/design-block-master/*/data/**'
+      - '/design-block-master/*/nav'
+      - '/design-block-master/*/footer'
+      - '/design-block-master/*/block-library'
+      - '/design-block-master/*/block-library/**'
+      - '/**/fragments/**'
+      - '/**/modal/**'
+    target: /design-block-master/en/nav-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      metaTitle:
+        select: head > meta[name="meta-title"]
+        value: attribute(el, "content")

@@ -121,7 +121,8 @@ flowchart LR
 | Query index (`/query-index.json`) | `utils/query-index.js` `getPages()`: fetched once per page view in requests of 1,000 rows (`offset` / `limit`, the ones after the first in parallel; this page said 500 before, the code's `PAGE_SIZE` is 1000), kept as an in-memory promise, filtered to the locale (or the review root); the rows are turned into pages once per root and shared by every caller (Lists, Filter List, Canvas menus, header menu), each caller getting its own array |
 | Taxonomy, redirects, placeholders, data sheets | Fetched once per page view, cached in memory |
 | Inherited metadata (Navigation, Footer, 404 Page) | Parent pages' heads loaded in parallel, cached per browser session (`sessionStorage`) |
-| Prefetch | `prefetchData` starts the query index and taxonomy (and, with a List, the redirects) when the lazy phase begins on pages with a List, Filter List or Conversation Canvas; not in the eager phase, so it doesn't compete with the LCP image |
+| Prefetch | `prefetchData` starts the query index only on pages with a List or Filter List, the taxonomy also with a Conversation Canvas, and with a List the redirects, when the lazy phase begins; not in the eager phase, so it doesn't compete with the LCP image. (Before KB-D-073 the code started the query index on every page, for the header menu, although this page said otherwise.) |
+| Menus (navigation index) | The TCS Header and Conversation Canvas menus read `getNavPages` (path and title from `{root}/nav-index.json`, about a fifth of the query index to parse; the query index until it is built), when they are opened (the header menu also when the visitor heads for its button); desktop loads none (KB-D-073) |
 | Late data | `renderWhenLoaded`: data within 150 ms renders directly; else a skeleton, so the section is shown and the sections below aren't held back (a 1.5 s index showed the sections below a List at 0.5 s instead of after the index) |
 
 ## Analytics dispatch
