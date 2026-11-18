@@ -586,11 +586,12 @@
   object-fit: cover;
 }
 
+/* the feature card's author name and role: 1rem / 1.375 (16px / 22px, Figma) at every width */
 .card-list .list-author-details {
   display: flex;
   flex-direction: column;
   color: var(--color-text-default);
-  font-size: var(--body-font-size-m);
+  font-size: 1rem;
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
 }
@@ -1117,5 +1118,22 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   .card-list.impact-cards {
     --list-card-title-size: 1.5rem;
     --list-card-title-line: 1.3;
+  }
+}
+
+/*
+ * Lists with a feature card (Feature first, Figma "Insights & Opinions" 1440 frame): from 1200px
+ * the image cards under the feature keep the tablet type, title 1.25rem / 1.4 (20px / 28px) and
+ * description 0.875rem / 1.4286 (14px / 20px); other lists keep the desktop sizes
+ */
+@media (width >= 1200px) {
+  .card-list.feature-first .list-card-image {
+    --list-card-title-size: 1.25rem;
+    --list-card-title-line: 1.4;
+  }
+
+  .card-list.feature-first .list-card-image .list-card-description {
+    font-size: 0.875rem;
+    line-height: 1.4286;
   }
 }

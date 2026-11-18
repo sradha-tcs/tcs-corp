@@ -944,6 +944,8 @@ The first card becomes a full-width spotlight above the others (`feature-first` 
 
 **Show author on feature card** (`featureShowAuthor`, on by default; shown in the dialog only while Display as teaser and First card as feature are on) decides whether the feature card shows that lockup. Off: the feature card has no author (a clean hero layout) and the Authors sheet isn't loaded; the page's `author-id` and the other cards don't change (they never show an author), nor does the author elsewhere (Page Header, other Lists). Lists authored before have no value and show the author, as before. The Cards block has no authors, so it has no such option.
 
+**Feature card kicker and type (18 November 2026, Figma "Insights & Opinions", node 5673-18712).** The line above the feature card's title is its **Eyebrow** (List Item or page `eyebrow`, with Show eyebrow and the item's own toggle) in place of its tags, as on image cards; without an eyebrow it shows the tags; the reading time follows (Show tags). The author lockup needs the linked page's `author-id` and a row in the Authors sheet; its photo comes from the sheet's `image` column (without one the lockup has no photo). The author name and role are 1rem / 22px at every width (40px avatar). From 1200px the image cards of a List with a feature card (`feature-first`) keep the tablet type, title 1.25rem / 28px and description 0.875rem / 20px, as in that Figma frame; other Lists keep 1.5rem and 1rem.
+
 ```text
 [Screenshot Placeholder]
 
