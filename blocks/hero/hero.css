@@ -167,7 +167,7 @@
   --hero-description-color: var(--white-1000);
 }
 
-/* media: the image or the Lottie animation behind the content, under the overlay */
+/* media: the image, the Lottie animation or the video behind the content, under the overlay */
 .hero .hero-media {
   position: absolute;
   z-index: -2;
@@ -188,6 +188,14 @@
 .hero .hero-animation {
   width: 100%;
   height: 100%;
+}
+
+/* Hero Image type Video: the video fills the hero like the image */
+.hero .hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* the Lottie animation's pause / play button (WCAG 2.2.2) */
@@ -293,6 +301,10 @@
 
 .hero.media-contained .hero-media picture {
   display: contents;
+}
+
+.hero.media-contained .hero-media .hero-video {
+  object-fit: contain;
 }
 
 .hero.media-contained .hero-media img {

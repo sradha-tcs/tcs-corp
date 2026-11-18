@@ -5,6 +5,8 @@
 export const isYoutube = (link) => /youtube\.com|youtu\.be/.test(link);
 export const isVimeo = (link) => /vimeo\.com/.test(link);
 export const isAnimation = (href) => /\.json([?#]|$)/i.test(href);
+// a video file (DAM path or delivery URL of the original file), not a YouTube / Vimeo page
+export const isVideoFile = (href) => /\.(mp4|webm|ogv|mov|m4v)([?#]|$)/i.test(href);
 
 /**
  * The video id of a YouTube watch / share / embed URL.

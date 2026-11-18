@@ -32,6 +32,7 @@ The Hero is the large, full-width opening banner of a page: an image or a Lottie
 - The opening banner of a locale home page (`/en`, `/de-de`, ...).
 - A service or industry landing page with a photograph, an H1 and two CTAs.
 - A campaign page with a Lottie animation as the background (Hero Image type Lotto).
+- A brand or campaign page with a short, silent video as the background (Hero Image type Video).
 - An annual report banner whose chart illustration must be shown whole (Hero View Contained image).
 - A brand statement on a navy or black overlay with white text.
 - A "Discover our story" banner whose CTA scrolls to a section of the same page (down arrow).
@@ -369,14 +370,14 @@ B = Left-aligned text and CTAs
 1. **Add the block.** In Universal Editor select a Section, a Columns Container column, a Gen Carousel or a Tabs Container in the content tree, choose **Add (+)** and pick **Hero**. A new Hero stores Vertical Alignment Middle, Horizontal Alignment Center, Text Alignment Center align and Title heading level H1.
 2. **Open its properties.** Select the Hero in the content tree; the properties panel shows the **Content**, **Style** and **Additional** tabs.
 3. **Enter content (Content tab).** Choose a **Hero Image Path** and enter its **Hero Image alt text** (leave the alt empty only for a decorative image). Enter the **Eyebrow**, **Title** and **Description**; set **Title heading level** to H1 for the page's main Hero, H2 for any other. Add an **Icon** (with **Icon Image Alt Text**) only if the design needs it.
-4. **Select variations.** For an animation set **Hero Image type** to Lotto and choose a Lottie `.json` file as the Hero Image Path. For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
+4. **Select variations.** For an animation set **Hero Image type** to Lotto and choose a Lottie `.json` file as the Hero Image Path. For a background video set **Hero Image type** to Video and choose an MP4 or WebM file from the DAM as the Hero Image Path (publish the video with the page). For an illustration that must be shown whole set **Hero View** to Contained image. On the **Style** tab choose **Vertical Alignment**, **Horizontal Alignment**, **Text Alignment** and **BG Color**.
 5. **Add CTAs.** Select the Hero, choose **Add (+)** and pick **CTA**. Fill **CTA Link** (required) and **CTA Title**; choose **CTA view** (Default text link, Primary, Secondary), **CTA Arrow** (Auto, Right, Down) and **CTA Link Type** (Open in New Window only when needed). Reorder CTAs by dragging them in the content tree; the page shows them in that order.
 6. **Additional tab.** Set an Anchor ID, Hide block, animations or spacing only when needed (see [Authorable Fields](#authorable-fields)).
 7. **Preview.** Switch Universal Editor to Preview (animations play only there) or open the page on aem.page; check desktop, tablet and mobile widths.
 8. **Publish.** Publish the page with its referenced assets. A Lottie `.json` file is served only once it is published itself (images travel with the page).
 9. **Validate the published output.** On aem.live check the image loads with its alt text, exactly one H1 is on the page, every CTA goes to the right target, and a Lottie animation plays and pauses.
 
-**Minimum required content:** a Title (a Hero without one renders, but has no heading). **Recommended:** a Hero Image with alt text, an Eyebrow, a Description and one or two CTAs. **Optional:** Icon, Lotto, Contained image, alignments, BG Color, Additional tab options.
+**Minimum required content:** a Title (a Hero without one renders, but has no heading). **Recommended:** a Hero Image with alt text, an Eyebrow, a Description and one or two CTAs. **Optional:** Icon, Lotto, Video, Contained image, alignments, BG Color, Additional tab options.
 
 ## Authorable Fields
 
@@ -394,9 +395,9 @@ Stored on a new component (definition template): `classes_alignment` = `"align-m
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Icon | `content_icon` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/square-sample-3.jpg |
 | Icon Image Alt Text | `content_iconAlt` | text | No | — | — | Leave empty if the icon is decorative. Delivered with `content_icon` (field collapse). | — |
-| Hero Image type | `classes_media` | select | No | "" | Default (""), Lotto (`lottie`) | Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Delivered as a block class. | lottie |
-| Hero Image Path | `image` | reference | No | — | — | Default: an image. Lotto: a Lottie animation file (.json). | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
-| Hero Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image or animation is decorative. Delivered with `image` (field collapse). | Consultants reviewing a transformation roadmap |
+| Hero Image type | `classes_media` | select | No | "" | Default (""), Lotto (`lottie`), Video (`media-video`) | Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Video: it is a video file (MP4 or WebM), played muted and looping as the hero background. Delivered as a block class. | lottie |
+| Hero Image Path | `image` | reference | No | — | — | Default: an image. Lotto: a Lottie animation file (.json). Video: a video file (MP4 or WebM, published with the page). | /content/dam/tcs-corp/block-library/images/wide-sample.jpg |
+| Hero Image alt text | `imageAlt` | text | No | — | — | Leave empty if the image, animation or video is decorative. Delivered with `image` (field collapse). | Consultants reviewing a transformation roadmap |
 | Hero View | `classes` | select | No | "" | Default (""), Contained image (`media-contained`) | Default: the image fills the hero behind the content. Contained image: the image (e.g. an illustration) is shown whole, centered behind the content. | media-contained |
 | Eyebrow | `content_eyebrow` | text | No | — | — | — | Enterprise AI |
 | Title | `content_title` | text | No | — | — | — | Building on belief |
@@ -463,7 +464,7 @@ Model `hero-cta`; template name "CTA" (the block class AEM renders).
 
 Notes on the significant fields (the tables above list every field, default and allowed value):
 
-- **Hero Image Path / Hero Image type.** With Default the reference renders as a `<picture>` covering the banner (`object-fit: cover`). With Lotto and a `.json` link the Lottie player renders an SVG animation instead (`createAnimation`, class `hero-animation`). With Lotto and an image, the image is shown; with Default and a `.json` link, no media is rendered.
+- **Hero Image Path / Hero Image type.** With Default the reference renders as a `<picture>` covering the banner (`object-fit: cover`). With Lotto and a `.json` link the Lottie player renders an SVG animation instead (`createAnimation`, class `hero-animation`). With Video and a video file link (`.mp4`, `.webm`, `.ogv`, `.mov`, `.m4v`; `isVideoFile`) a muted, looping background `<video class="hero-video">` renders instead (`createBackgroundVideo`). With Lotto or Video and an image, the image is shown; with Default and a `.json` or video link, no media is rendered.
 - **Hero Image alt text.** Becomes the image's `alt`. For a Lottie file AEM delivers the alt as the link text; `animationLabel` (`utils/media.js`) reads it and the animation gets `role="img"` and `aria-label`; without an alt it is `aria-hidden="true"`.
 - **Icon / Icon Image Alt Text.** The first stand-alone picture before the title becomes `div.hero-icon` (`--icon-size-l`, 3rem from 900px); further pictures go to the description.
 - **Eyebrow.** Rendered as `p.hero-eyebrow` only when there is a Title; without a Title every text element goes to the description.
@@ -663,6 +664,10 @@ A = Lottie animation
 B = Pause / play button
 ```
 
+### Video (`media-video`)
+
+Purpose: a short, silent, looping video as the background. Use for brand or campaign moods; not when the video carries information the text doesn't (it has no sound, controls or captions: use the Video block for that). Required: Hero Image type Video, Hero Image Path a video file (MP4 or WebM) from the DAM; optional alt text (Hero Image alt text; empty for a decorative video, which is then `aria-hidden`). Rendering: `div.hero-media > video.hero-video` (muted, looping, inline, without controls, `object-fit: cover`; `contain` with Contained image) under the BG Color overlay, without a pause / play button for now (KB-D-072, Proposed; `decorators/media-decorator.js` `createBackgroundVideo` with `controls: false`). Nothing is fetched until the hero is within 200px of the viewport and the browser is idle (the page's LCP is the title, not the video); the video pauses off screen and, for reduced motion, doesn't start (its first frame shows). If the file fails (e.g. the DAM video isn't published), the video is hidden; the overlay and the content remain. Accessibility: without the button the Hero doesn't meet WCAG 2.2.2 (Pause, Stop, Hide) for a video longer than 5 seconds; use a short video, or turn the button on (`controls: true`, labels `pauseVideo`, `playVideo`). Data layer: the background video's own play / pause aren't `cmp:media` events. Fallback: with Video and an image, the image is shown.
+
 ### Contained image (`media-contained`)
 
 Purpose: show an illustration or chart whole, centred behind the content. Use for artwork that must not be cropped; not for photographs meant to fill the banner. Rendering: the media becomes a centred flex box with `--space-600` padding and the image `object-fit: contain`. Usually paired with BG Color Light, no overlay. Accessibility and data layer as Default.
@@ -850,11 +855,12 @@ blocks/hero/
 | [`decorators/animation-decorator.js`](../../decorators/animation-decorator.js) | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport; a pause / play button as `element.animationToggle`, WCAG 2.2.2; paused for reduced motion) | `hero.js`: { createAnimation } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `hero.js`: { decorateButton } |
 | [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `hero.js`: { buildEditorItems, editorItemHint } |
+| [`decorators/media-decorator.js`](../../decorators/media-decorator.js) | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement`, `createBackgroundVideo` (a muted, looping background video loaded near the viewport in idle time, paused off screen and for reduced motion, i | `hero.js`: { createBackgroundVideo } |
 | [`utils/buttons.js`](../../utils/buttons.js) | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | `hero.js`: { readButtonOptions } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `hero.js`: { FIELD_ROW_ITEM, itemRows } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `hero.js`: { NEW_WINDOW, readLinkItems, readLinkRows } |
 | [`utils/motion.js`](../../utils/motion.js) | `CONTENT_MOTIONS`, `BACKGROUND_MOTIONS`, `contentMotionOf`, `backgroundMotionOf` (the Content animation / Background animation of the Additional tab, read from the block classes `motion-*` / `bg-motion-*`; unknown values | `hero.js`: { addLegacyMotion } |
-| [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType`, `deliveryAsset` (reads a Dynamic Media with OpenAPI delivery URL of a separate AEM Assets environment), `deliveryImageUrl` (its URL  | `hero.js`: { animationLabel, isAnimation } |
+| [`utils/media.js`](../../utils/media.js) | `isYoutube`, `isVimeo`, `isAnimation`, `isVideoFile` (a video file URL: .mp4, .webm, .ogv, .mov, .m4v), `youtubeEmbedUrl`, `vimeoEmbedUrl`, `videoType`, `deliveryAsset` (reads a Dynamic Media with OpenAPI delivery URL of | `hero.js`: { animationLabel, isAnimation, isVideoFile } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `hero.js`: { getPlaceholders } |
 
 <!-- END GENERATED: files -->
@@ -879,7 +885,7 @@ blocks/hero/
 </div>
 ```
 
-The toggle exists only for Lotto. `hero-has-media` is set only when media rendered.
+The toggle exists only for Lotto (Video has none for now, KB-D-072). `hero-has-media` is set only when media rendered.
 
 **Decoration flow.** `decorate(block)`: find CTA item rows → read the other rows → `editorItemHint` (placeholders only in Universal Editor) → load placeholders for `opensInNewTab` only when a CTA opens a new tab → `buildMedia` (eager / high priority image in the first section, or `createAnimation`) → `buildContent` → `buildCtas` (`readLinkItems` for the legacy multifield, `readLinkRows` for items, `decorateButton` with `view: 'button'`, `moveInstrumentation` from each item row) → move Universal Editor instrumentation to the new elements → `block.replaceChildren` → `mapLegacyMotion`.
 
@@ -915,6 +921,7 @@ The toggle exists only for Lotto. `hero-has-media` is set only when media render
 | ---------- | ------- | -------- | --------------------- |
 | DAM images | Hero image, icon | AEM Assets | Hero renders without media / icon |
 | DAM Lottie JSON | Lotto animation | AEM Assets (published) | Animation and toggle hidden |
+| DAM video file (MP4 / WebM) | Video background | AEM Assets (published) | Video and toggle hidden |
 | Placeholder `opensInNewTab` | New-tab hint | `/{locale}/placeholders.json` | English fallback "(opens in a new tab)" |
 | Placeholders `pauseAnimation`, `playAnimation` | Toggle labels | `/{locale}/placeholders.json` | English fallbacks |
 | Placeholder `itemEditorHint` | Empty CTA item in the editor | `/{locale}/placeholders.json` | English fallback |
@@ -1012,7 +1019,9 @@ Evidence to collect (no secrets): page URL, viewport, the block's classes and re
 
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
-| No background video | Video banners can't be built with the Hero | Use the Video or Embed block | Not recorded |
+| Hero Image type Video has no pause / play button (KB-D-072, Proposed) | Not WCAG 2.2.2 conform for a video over 5 seconds | Use a video of 5 seconds or less, or turn the button on | Decision pending |
+| Background video only from a DAM file (Hero Image type Video): no YouTube / Vimeo, sound, controls, captions or poster | A video that needs them can't be the Hero background | Use the Video or Embed block | Not recorded |
+| DAM video files served only once published | Empty background on preview / live if not published | Publish the video | Operations |
 | Lottie JSON served only once published (R-B-2) | Empty background on preview / live if not published | Publish the asset | Operations |
 | Motion Type authored before can't be changed in the dialog (R-B-6) | Legacy animation stays | Migrate to Animation Type | Content migration |
 | Default overlay eyebrow contrast (R-B-4) | Brand eyebrow over the white overlay | — | Design sign-off pending |
@@ -1051,3 +1060,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: new-tab hint, Lottie alt text and failed files, dark Hero eyebrow contrast | docs/handover revision history | 20 October 2026 |
 | Not recorded | Desktop min height 56.25rem (900px), tablet 46.875rem (750px) with 7.625rem block padding; the opening hero no longer grows by the header height. Desktop (from 1200px) to Figma "Hero" 57:16843 (What we do) and "Hero Header" 3670:14111 (Home): middle-aligned content with 12.5rem (200px) below it; icon to eyebrow 0.5rem; eyebrow 0.875rem / 22px; CTAs 50px high with 0.875rem text; the opening hero under the header (not on Home, which has its own template rule) has as much space below as above. Mobile unchanged | fix/hero-content | 11 November 2026 |
 | Not recorded | Title color (`classes_titlecolor`: Default, Black `title-black`, White `title-white`) and Description color (`classes_descriptioncolor`: Default, Black `description-black`, White `description-white`) in the Style tab; Default keeps the colour the BG Color sets (black and dark grey on Default and Light, white and 50 % / 85 % white on the dark options), Black and White apply whatever the BG Color | fix/hero-content | 11 November 2026 |
+| Not recorded | Hero Image type Video (`media-video`): a DAM video file (MP4 / WebM) as a muted, looping background without a pause / play button for now (KB-D-072), loaded near the viewport in idle time, paused off screen and for reduced motion (`createBackgroundVideo`, `isVideoFile`) | feature/hero-block-video | 18 November 2026 |

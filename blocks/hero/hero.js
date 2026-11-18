@@ -2,11 +2,12 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import { createAnimation } from '../../decorators/animation-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
+import { createBackgroundVideo } from '../../decorators/media-decorator.js';
 import { readButtonOptions } from '../../utils/buttons.js';
 import { FIELD_ROW_ITEM, itemRows } from '../../utils/cells.js';
 import { NEW_WINDOW, readLinkItems, readLinkRows } from '../../utils/links.js';
 import { addLegacyMotion } from '../../utils/motion.js';
-import { animationLabel, isAnimation } from '../../utils/media.js';
+import { animationLabel, isAnimation, isVideoFile } from '../../utils/media.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 
 // the new-tab hint of the links (placeholder opensInNewTab), set per decoration
@@ -15,7 +16,8 @@ let newTabHint = '';
 /*
  * Hero (blocks/hero/_hero.json). Authored rows, in any order:
  * - content: icon, eyebrow, title (heading) and description (element group "content_")
- * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type
+ * - media: the hero image, or a link to a Lottie animation (.json) for the Lotto image type or
+ *   to a video file (.mp4, .webm, ...) for the Video image type (its text is the Alt)
  * - CTAs: CTA items (hero-cta, added with Add, a row each after the hero's own rows): CTA Link
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
@@ -24,6 +26,8 @@ let newTabHint = '';
  *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS), and any one a CTA Text color
  *   (CTA_TEXT_COLORS): classes of its button
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
+ * media-video (Hero Image type Video: a muted, looping background video without a pause / play
+ * button, KB-D-072; decorators/media-decorator.js createBackgroundVideo),
  * media-contained (Hero View), motion-fade | motion-slide | motion-zoom (Motion Type authored
  * before the Additional tab's animations, mapped to them),
  * align-top | align-middle | align-bottom (Vertical Alignment),
@@ -92,13 +96,13 @@ function isCtaCell(cell) {
   return text.replace(/\s/g, '') === linkText.replace(/\s/g, '');
 }
 
-/** a cell holding only the hero image or an animation link */
+/** a cell holding only the hero image, or an animation or video file link */
 function isMediaCell(cell) {
   if (cell.querySelector(HEADINGS)) return false;
   const pictures = cell.querySelectorAll('picture');
   const links = [...cell.querySelectorAll('a[href]')];
   if (pictures.length === 1 && !cell.textContent.trim()) return true;
-  return links.length === 1 && isAnimation(links[0].href)
+  return links.length === 1 && (isAnimation(links[0].href) || isVideoFile(links[0].href))
     && cell.textContent.trim() === links[0].textContent.trim();
 }
 
@@ -130,6 +134,13 @@ function buildMedia(block, cell) {
     // the pause / play button above the overlay and the content, in the block's corner (appended
     // to the block after its content)
     media.animationToggle = animation.animationToggle;
+  } else if (block.classList.contains('media-video') && link && isVideoFile(link.href)) {
+    // the Alt text is the link text (animationLabel: none for a decorative video); no pause /
+    // play button for now (KB-D-072, Proposed: WCAG 2.2.2 needs one for a video over 5 seconds)
+    const video = createBackgroundVideo(link.href, {
+      label: animationLabel(link), className: 'hero-video', controls: false,
+    });
+    media.append(video);
   } else if (picture) {
     // the hero image is the LCP candidate when the hero opens the page
     const img = picture.querySelector('img');
