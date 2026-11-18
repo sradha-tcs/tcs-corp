@@ -136,7 +136,7 @@ Authoring rules that shape code (block rows, field collapse, item rows, sections
 | Site configuration | AEM uses the configuration's `public.json` → `paths`, not the repository file; `metadata.source` lists the bulk metadata sheets | AGENTS.md "Notes"; handover Part 2.10.13 |
 | Preview / live | Preview writes to the preview partition (`*.aem.page`), publish to the live partition (`*.aem.live`); images go to the media bus (`/media_<hash>`) | handover Part 2.5.2, 2.10.3 |
 | Code Sync | Every push of every branch updates the code bus for that branch | handover Part 2.5.1, 2.10.5 |
-| CI | `.github/workflows/main.yaml` (`Build`): `npm ci`, `npm run lint` on every push; unit tests are not run in CI (handover F-37) | [`.github/workflows/main.yaml`](../../../.github/workflows/main.yaml) |
+| CI | `.github/workflows/main.yaml` (`Build`): `npm ci`, `npm run lint`, `npm test` on every push (KB-D-072; unit tests and the generated-file checks) | [`.github/workflows/main.yaml`](../../../.github/workflows/main.yaml) |
 
 ```mermaid
 flowchart LR

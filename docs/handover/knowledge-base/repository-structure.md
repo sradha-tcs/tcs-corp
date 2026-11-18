@@ -164,7 +164,7 @@ No ownership is recorded in the repository: there is no `CODEOWNERS` file, and t
 | Purpose | Unit tests run by `npm test` (`node --test 'test/**/*.test.mjs'`): cards, conversation-canvas (journey), docs, items, list (data, display precedence, query-index tags), media, models, modules, motion, privacy, separator, site; helpers `test/model-layout.mjs` and `test/list/fixtures.mjs` |
 | Belongs | Tests of pure modules (no browser) and repository consistency checks |
 | Must not | Browser or network tests; tests that need AEM author access |
-| Consumers | Developers; not run by CI ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml) runs lint only) |
+| Consumers | Developers and CI ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml) runs lint and `npm test`, KB-D-072) |
 | Dependencies | The modules under test, the models, `tools/docs/` |
 | Lifecycle | Keep item layouts (`ITEM_LAYOUT`, `CARD_LAYOUT`) and their tests in step with model tabs |
 | Testing and documentation | ESLint override for `test/**/*.mjs` (Node globals); not served (`test/*` in `.hlxignore`) |

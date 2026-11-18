@@ -11,6 +11,8 @@ const PAGE_SIZE = 1000;
 const YES = ['yes', 'true', '1', 'on', 'y'];
 
 const pagesByIndex = new Map();
+// the pages of a root, built once from its index's rows (getPages)
+const pagesByRoot = new Map();
 
 /**
  * The query index a root's pages are listed in: each review root has its own
@@ -204,9 +206,16 @@ export async function getPages() {
   const root = indexRoot();
   const url = indexUrlOf(root);
   if (!pagesByIndex.has(url)) pagesByIndex.set(url, fetchAll(url).catch(() => []));
-  return (await pagesByIndex.get(url))
-    .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
-    .map(toPage);
+  // the rows are filtered and turned into pages once per index and root, not once per caller
+  // (Lists, Filter List, Canvas menus and the header menu all ask: thousands of rows each time);
+  // every caller gets its own array of the shared, read-only pages
+  const key = `${url}|${root || ''}`;
+  if (!pagesByRoot.has(key)) {
+    pagesByRoot.set(key, pagesByIndex.get(url).then((rows) => rows
+      .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
+      .map(toPage)));
+  }
+  return [...await pagesByRoot.get(key)];
 }
 
 /**
