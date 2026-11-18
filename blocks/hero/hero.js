@@ -51,7 +51,7 @@ const ARROWS = ['right', 'down'];
 // BG Color and Border color, classes of its button
 const CTA_OPTIONS = {
   primary: [
-    'primary-bg-azure', 'primary-bg-transparent', 'primary-border-black', 'primary-border-white', 'primary-border-slate-100',
+    'primary-bg-azure', 'primary-bg-transparent', 'primary-bg-black-40', 'primary-border-black', 'primary-border-white', 'primary-border-slate-100',
     'primary-border-none',
   ],
   secondary: [

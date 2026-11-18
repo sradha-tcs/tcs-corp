@@ -243,6 +243,10 @@
                 {
                   "name": "Transparent",
                   "value": "primary-bg-transparent"
+                },
+                {
+                  "name": "Black 40%",
+                  "value": "primary-bg-black-40"
                 }
               ],
               "description": "Background Color of Primary CTA"

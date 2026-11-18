@@ -473,6 +473,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
   background-color: transparent;
 }
 
+/* Primary CTA BG Color Black 40% (CTA List): the Secondary one's 40% black; hover as Transparent */
+.hero .hero-ctas a.button.primary.primary-bg-black-40:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-black-40:not(:hover, :focus-visible) {
+  background-color: var(--black-400);
+}
+
 /*
  * Primary CTA Border color (CTA List): a Primary CTA's own class (hero.js); Default keeps the
  * border of its background colour, No border makes it transparent; after Primary CTA BG Color and as specific as it (in a dark
