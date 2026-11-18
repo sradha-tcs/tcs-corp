@@ -48,6 +48,7 @@ module.exports = {
       'teaser-link': 5,
       'page-header-cta': 5,
       'media-contact': 10,
+      'history-timeline-item': 5,
     }],
   },
   overrides: [

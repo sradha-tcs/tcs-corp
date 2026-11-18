@@ -5,7 +5,7 @@ This file is the knowledge base summary of how content is organised on the TCS C
 | Attribute | Value |
 | --- | --- |
 | Audience | Content authors and leads, developers, site administrators, AMS / support, AI agents |
-| Source of truth | [`utils/site.js`](../../../utils/site.js), [`utils/metadata.js`](../../../utils/metadata.js), [`utils/inherited-metadata.js`](../../../utils/inherited-metadata.js), [`utils/placeholders.js`](../../../utils/placeholders.js), [`utils/taxonomy.js`](../../../utils/taxonomy.js), [`utils/data.js`](../../../utils/data.js), [`utils/redirects.js`](../../../utils/redirects.js), [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js), [`scripts/scripts.js`](../../../scripts/scripts.js), [`models/_page.json`](../../../models/_page.json), [`models/_section.json`](../../../models/_section.json), [`paths.json`](../../../paths.json), [AGENTS.md](../../../AGENTS.md) "Site structure and site data", handover Parts 3, 4, 7, 8, 9, 10 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
+| Source of truth | [`utils/site.js`](../../../utils/site.js), [`utils/metadata.js`](../../../utils/metadata.js), [`utils/inherited-metadata.js`](../../../utils/inherited-metadata.js), [`utils/placeholders.js`](../../../utils/placeholders.js), [`utils/taxonomy.js`](../../../utils/taxonomy.js), [`utils/data.js`](../../../utils/data.js), [`utils/redirects.js`](../../../utils/redirects.js), [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js), [`scripts/scripts.js`](../../../scripts/scripts.js), [`models/_page.json`](../../../models/_page.json), [`models/_section.json`](../../../models/_section.json), [`paths.json`](../../../paths.json), [AGENTS.md](../../../AGENTS.md) "Site structure and site data", handover Parts 3, 4, 7, 8, 9, 10 ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)) |
 | Last reviewed | Written from main at commit 2d06316 on 21 October 2026 |
 | Status | Current; published state of the non-English sheets, `metadata.source`, redirects mechanism and translation process: Requires validation |
 
@@ -74,10 +74,13 @@ The Home URL ends with `/` (`/language-masters/en` without it is a 404, as `/en`
 | Title | `jcr:title` | `<title>`, `og:title` |
 | Description | `jcr:description` | `description` meta |
 | Keywords | `keywords` | `keywords` meta |
-| Page Type | `page-type` | Default (empty), Home `home`, Article `article`, Blog `blog`, Press Release `press-release`: body class and template |
+| Page Type | `page-type` | Default (empty), Home `home`, Article `article`, Blog `blog`, Press Release `press-release`: body class and template; the metadata sheet's `sheet-page-type` overrides it |
 | Navigation | `nav` | Header page, inherited by child pages |
 | Footer | `footer` | Footer page, inherited by child pages |
 | 404 Page | `error-page` | 404 page of the subtree, inherited |
+| Hide Header | `hide-header` | Boolean, this page only (not inherited): the header isn't loaded and keeps no space; the page starts at the top (`<html data-hide-header>`, `--nav-height: 0rem`) |
+| Hide Footer | `hide-footer` | Boolean, this page only: the footer (its Canvas, bar and social links) isn't loaded (`<html data-hide-footer>`) |
+| Hide Conversation Canvas | `hide-canvas` | Boolean, this page only: every Conversation Canvas of the page (header, footer, content) gets Hide block: hidden, out of the floating journey, faded in edit mode (KB-D-071) |
 
 Page tags are not a field of this model; they come from the standard AEM page properties (`cq:tags`, published as `cq-tags`) or a `tags` column of the bulk metadata sheet (handover Part 7.1.1).
 
@@ -104,7 +107,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 
 **Purpose.** A Page Type gives recurring page kinds their structure. Template pages that authors copy live in `/content/tcs-corp/site-global-templates/` (not published).
 
-**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`page-type`, else `template` metadata) is in `TEMPLATES`:
+**Structure.** `loadTemplate` (`scripts/scripts.js`) loads `templates/{name}/{name}.js` and `.css` when the Page Type (`sheet-page-type` metadata from the sheet, else the page's `page-type`; `utils/sheet-metadata.js`) is in `TEMPLATES`:
 
 | Page Type | Adds | Data |
 | --- | --- | --- |
@@ -115,7 +118,7 @@ Documents that use a `section-metadata` block are read the same way (rows `Secti
 
 Source: [templates/README.md](../../../templates/README.md) (including how to add a template).
 
-**Rules.** The Page Type page property wins over the metadata sheet's `page-type` column; Page Type also becomes a body class. Changing a template page doesn't change pages already copied from it (handover Part 4.8).
+**Rules.** The metadata sheet's `sheet-page-type` column overrides the page dialog's Page Type (`page-type`); a sheet still using a `page-type` column applies only where the dialog has none (Edge Delivery lets a page's own metadata win over a sheet column of the same name); Page Type also becomes a body class. Changing a template page doesn't change pages already copied from it (handover Part 4.8).
 
 **Common mistakes.** A `page-type` value that isn't in `TEMPLATES` (only the body class is added); expecting template content in the query index (templates build DOM in the browser).
 
@@ -127,34 +130,36 @@ Source: [templates/README.md](../../../templates/README.md) (including how to ad
 
 | Source | Where authored | Published as |
 | --- | --- | --- |
-| Page properties (`models/_page.json`) | Universal Editor page properties | `<title>`, `description`, `keywords`, `page-type`, `nav`, `footer`, `error-page` metas |
+| Page properties (`models/_page.json`) | Universal Editor page properties | `<title>`, `description`, `keywords`, `page-type`, `nav`, `footer`, `error-page`, `hide-header`, `hide-footer`, `hide-canvas` metas |
 | Standard AEM page properties | Sites console (e.g. Tags `cq:tags`) | `cq-tags` (one comma-separated meta) |
 | Bulk metadata sheet | `/content/tcs-corp/{country}/{language}/metadata` | `/{locale}/metadata.json`; each column becomes `<meta name="{column}">` on pages matching the row's `url` pattern |
 
 Page-level values win over bulk metadata; bulk rows apply top to bottom (handover Part 8.1.2). The bulk sheets apply only once all 13 are listed in the site configuration's `metadata.source`, and each sheet's URL patterns must start with its locale (`/de-de/**`) (AGENTS.md "Notes").
 
-**Bulk metadata columns** (AGENTS.md, 41 columns): `url`, `page-type`, `meta-title`, `meta-description`, `meta-keywords`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
+**Bulk metadata columns** (AGENTS.md, 42 columns): `url`, `sheet-page-type`, `meta-title`, `meta-description`, `meta-keywords`, `keyword-action`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
 
 **Consumers.**
 
 | Consumer | Reads | Source |
 | --- | --- | --- |
-| SEO decorator (eager) | `meta-title` → `<title>`; `meta-description`, `meta-keywords`; `og-*` (falling back to `meta-*`); `twitter-*` (falling back to `og-*`, `meta-*`); `canonical-url` → `<link rel="canonical">` and `og:url`; `language` → `<html lang>` | [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js) |
-| `getPageMetadata()` | title, description, image (`featured-image`, else `og:image`), `page-type` (else `template`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
+| SEO decorator (eager) | `meta-title` → `<title>` (overriding the dialog's Title, as everywhere: `utils/sheet-metadata.js`); `meta-description`; `meta-keywords` combined with the page dialog's Keywords by `keyword-action` (`default` or empty: the dialog's; `override`: the sheet's; `merge`: both, the dialog's first; `utils/keywords.js`); `og-*` (falling back to `meta-*`); `twitter-*` (falling back to `og-*`, `meta-*`); `canonical-url` → `<link rel="canonical">` and `og:url`; `language` → `<html lang>` | [`decorators/seo-decorator.js`](../../../decorators/seo-decorator.js) |
+| `getPageMetadata()` | title (`meta-title`, else the dialog's Title), description (`meta-description`, else the dialog's Description), image (`featured-image`, else `og:image`), the Page Type (`sheet-page-type`, else `page-type`, else `template`), `content-type`, `category`, tags, `author-id`, `author`, `publish-date` (else `publication-date`), `modified-date`, `reading-time`, `listen-link`, `thumbnail-image`, `featured-image`, `image-alt`, `region`, `country` (else the locale's), language, `persona`, `campaign-id`, `featured` (yes / true / 1 / on / y), `priority` (number) | [`utils/metadata.js`](../../../utils/metadata.js) |
 | `getPageTags()` | `article:tag` metas and `cq-tags`, else a comma-separated `tags` meta | `utils/metadata.js` |
 | `getPageLanguage()` | `language` when it is a language code, else the locale's `lang` | `utils/metadata.js` |
 | Page Header, templates, data layer page entry | `getPageMetadata()` | [page-header](../../../blocks/page-header/README.md), `decorators/data-layer-decorator.js` |
 | Query index | the server head (see [indexing-and-search.md](./indexing-and-search.md)) | `helix-query.yaml` |
+
+**Rules.** The sheet's `meta-title`, `meta-description` and `sheet-page-type` override the page dialog's Title, Description and Page Type, as authored (`utils/sheet-metadata.js`): in the head, the Page Header, the data layer and the index rows that List, Filter List and Canvas cards are built from (the index keeps both: `title` / `metaTitle`, `description` / `metaDescription`, `pageType` / `sheetPageType`); only the delivered HTML (crawlers without JavaScript, link previews) keeps the dialog's.
 
 **Rules.** The query index reads the server-delivered head, so values set by JavaScript (the SEO decorator's) aren't indexed (handover Part 8.1.3). `robots` is a standard name and works server side. Use `card-*`, `eyebrow`, `hide-in-nav`, `card-style`, `card-theme` for List cards (List README "Page metadata contract").
 
 **Example.**
 
 ```text
-url                   | page-type      | hide-in-nav
-/de-de/newsroom/**    | press-release  |
-/de-de/insights/**    | article        |
-/de-de/legal/imprint  |                | yes
+url                   | sheet-page-type | hide-in-nav
+/de-de/newsroom/**    | press-release   |
+/de-de/insights/**    | article         |
+/de-de/legal/imprint  |                 | yes
 ```
 
 **Common mistakes.** A sheet row pattern without the locale prefix; adding columns to a sheet that isn't listed in `metadata.source` (no effect); expecting a metadata change to reach lists before the page is republished and indexed. Field reference per column: handover Part 8 — Metadata Documentation (8.2, 8.4).
@@ -332,4 +337,4 @@ Ownership, review cadences and approval flows: Not recorded in the repository (h
 - [blocks.md](./blocks.md), [project-overview.md](./project-overview.md), [repository-structure.md](./repository-structure.md) — related knowledge base files
 - [AGENTS.md](../../../AGENTS.md) — "Site structure and site data", "AEM delivery rules"
 - [utils/README.md](../../../utils/README.md), [templates/README.md](../../../templates/README.md), [blocks/README.md](../../../blocks/README.md)
-- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp/blob/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 3 — Site Structure, Part 4 — Content Architecture, Part 7 — Taxonomy Documentation, Part 8 — Metadata Documentation, Part 9 — Data Sheets Documentation, Part 10 — Error Pages
+- Handover ([TCS-CORP-HANDOVER.md](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)): Part 3 — Site Structure, Part 4 — Content Architecture, Part 7 — Taxonomy Documentation, Part 8 — Metadata Documentation, Part 9 — Data Sheets Documentation, Part 10 — Error Pages

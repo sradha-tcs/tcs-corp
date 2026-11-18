@@ -1,10 +1,15 @@
 /* Media Contacts: independent territory or organization entries and their contact links. */
 .media-contacts .media-contacts-title {
-  margin: 0 0 var(--space-800);
-  color: var(--color-text-default);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.2;
-  letter-spacing: calc(-0.03 * var(--heading-font-size-xxl));
+  margin: 0 0 2.5rem;
+  color: rgb(12 12 13);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.0625rem;
+}
+
+.media-contacts.title-black .media-contacts-title {
+  color: rgb(0 0 0);
 }
 
 .media-contacts.title-dark .media-contacts-title {
@@ -29,16 +34,20 @@
 .media-contacts .contact-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-1000) var(--space-1600);
+  gap: 2.5rem 1.5rem;
 }
 
 .media-contacts .contact-list-heading {
-  margin: 0 0 var(--space-500);
-  color: var(--color-text-brand);
-  font-size: var(--heading-font-size-l);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.25;
-  letter-spacing: calc(-0.02 * var(--heading-font-size-l));
+  margin: 0 0 1.5rem;
+  color: rgb(33 106 195);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.0125rem;
+}
+
+.media-contacts.region-color-black .contact-list-heading {
+  color: rgb(0 0 0);
 }
 
 .media-contacts.region-color-dark .contact-list-heading {
@@ -56,7 +65,7 @@
 .media-contacts .contact-list-entries {
   display: flex;
   flex-direction: column;
-  gap: var(--space-500);
+  gap: 0;
 }
 
 .media-contacts .contact-list-link {
@@ -64,9 +73,11 @@
   gap: var(--space-400);
   align-items: center;
   max-width: 100%;
-  color: var(--color-text-default);
-  font-size: var(--heading-font-size-m);
-  line-height: 1.5;
+  color: rgb(12 12 13);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.005rem;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -78,6 +89,11 @@
 .media-contacts .contact-list-link:focus-visible {
   outline: 0.125rem solid var(--color-border-brand);
   outline-offset: 0.25rem;
+}
+
+.media-contacts.email-color-black .contact-list-email .contact-list-link,
+.media-contacts.phone-color-black .contact-list-phone .contact-list-link {
+  color: rgb(0 0 0);
 }
 
 .media-contacts.email-color-dark .contact-list-email .contact-list-link,
@@ -120,6 +136,11 @@
   object-fit: contain;
 }
 
+.media-contacts.hideicons .contact-list-link::before,
+.media-contacts.hideicons .contact-list-icon {
+  display: none;
+}
+
 /* the address or number underlined (not the icon) */
 .media-contacts .contact-list-text {
   min-width: 0;
@@ -133,12 +154,31 @@
   color: var(--color-text-secondary);
 }
 
+@media (width >= 1200px) {
+  .media-contacts {
+    padding: 5rem;
+  }
+}
+
 @media (width >= 900px) {
+  /* CSS columns fill top to bottom, then the next column (column-wise order) */
+  .media-contacts.contact-columns-2 .contact-list,
+  .media-contacts.contact-columns-3 .contact-list {
+    display: block;
+    column-gap: 1.5rem;
+  }
+
   .media-contacts.contact-columns-2 .contact-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-count: 2;
   }
 
   .media-contacts.contact-columns-3 .contact-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-count: 3;
+  }
+
+  .media-contacts.contact-columns-2 .contact-list-contact,
+  .media-contacts.contact-columns-3 .contact-list-contact {
+    margin-bottom: 2.5rem;
+    break-inside: avoid;
   }
 }

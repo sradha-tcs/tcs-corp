@@ -1,9 +1,11 @@
+import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
+import { HEADINGS } from '../../decorators/heading-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
@@ -12,7 +14,7 @@ import { getAuthor } from '../../utils/data.js';
 import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { optionOf, readProperties } from '../../utils/properties.js';
+import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
@@ -29,22 +31,51 @@ import { resolveTags } from '../../utils/taxonomy.js';
  * - article: meta row (tags, content type | date, reading time, listen / download / share);
  *   title and author | description and CTAs
  * - display: tags eyebrow and a display title | description and CTAs
+ * - cta-alignment-left: meta row; title and author | description, the CTAs below the title
  * Default: landing for the landing and listing page types, else article.
  */
 
-const LAYOUTS = ['landing', 'secondary', 'article', 'display'];
+const LAYOUTS = ['landing', 'secondary', 'article', 'display', 'cta-alignment-left'];
 const LANDING_TEMPLATES = ['landing', 'listing'];
 // Text link is stored as tertiary (and as '' before): both render as a text link
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
 // Button background and Button shape (CTA items, the Teaser link's names), for Primary and
 // Secondary Buttons; Blue and Round authored before (CTA Link Style blue, CTA Shape round) too
 const BUTTON_BACKGROUNDS = ['button-bg-blue'];
+// Primary / Secondary CTA Text Color and Background (CTA items, shown by CTA Link Style): values
+// <style>-text-<colour> and <style>-bg-<colour>, classes cta-text-<colour> and button-bg-<colour>
+const CTA_TEXT_COLORS = ['white', 'blue', 'black'];
+const CTA_BACKGROUNDS = ['white', 'blue', 'translucent'];
 const LEGACY_BLUE = 'blue';
 const LEGACY_ROUND = 'round';
 // a Round CTA's label must fit the 6rem circle (no word broken): a longer one stays a pill
 const ROUND_MAX_WORD = 12;
 const ROUND_MAX_LABEL = 24;
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
+// Title Font (Desktop / Tablet / Mobile): the title's size per width, as a heading of that
+// level (classes title-desktop-h1 ... title-mobile-h6); the title stays the page's H1
+const TITLE_FONT_WIDTHS = {
+  desktop: 'pageheadertitlefont',
+  tablet: 'pageheadertitlefonttablet',
+  mobile: 'pageheadertitlefontmobile',
+};
+// Description Font: the description's size at every width (Default Font: the layout's)
+const DESCRIPTION_FONTS = ['text-16px', 'text-18px', 'text-20px', 'text-24px', 'text-32px', 'text-40px'];
+
+/** Title Font and Description Font as block classes; nothing selected keeps the layout's sizes */
+function applyFonts(block, props) {
+  const widths = Object.keys(TITLE_FONT_WIDTHS);
+  block.classList.remove(
+    ...DESCRIPTION_FONTS,
+    ...widths.flatMap((width) => HEADINGS.map((font) => `title-${width}-${font}`)),
+  );
+  widths.forEach((width) => {
+    const font = toClassName(textOf(props[TITLE_FONT_WIDTHS[width]]));
+    if (HEADINGS.includes(font)) block.classList.add(`title-${width}-${font}`);
+  });
+  const descriptionFont = toClassName(textOf(props.pageheaderdescriptionfont));
+  if (DESCRIPTION_FONTS.includes(descriptionFont)) block.classList.add(descriptionFont);
+}
 
 /** the layout: the block's Layout, or from the Page Type */
 function layoutOf(block, props, pageType) {
@@ -89,9 +120,15 @@ function buildCtas(cell, rows, hint, newTabHint) {
     });
     // Button background and Button shape apply to buttons only (not to a Text link)
     if (type !== 'tertiary') {
-      const background = values.find((value) => BUTTON_BACKGROUNDS.includes(value))
+      // the colours of the CTA's own style (a Secondary CTA ignores the Primary ones)
+      const colour = (kind, names) => names.find((name) => values.includes(`${type}-${kind}-${name}`));
+      const styleBackground = colour('bg', CTA_BACKGROUNDS);
+      const background = (styleBackground && `button-bg-${styleBackground}`)
+        || values.find((value) => BUTTON_BACKGROUNDS.includes(value))
         || (legacyBlue ? 'button-bg-blue' : '');
       if (background) link.classList.add(background);
+      const textColour = colour('text', CTA_TEXT_COLORS);
+      if (textColour) link.classList.add(`cta-text-${textColour}`);
       const round = values.includes('button-round') || values.includes(LEGACY_ROUND);
       const fits = label.length <= ROUND_MAX_LABEL
         && label.split(/\s+/).every((word) => word.length <= ROUND_MAX_WORD);
@@ -226,6 +263,10 @@ export default async function decorate(block) {
     intro.append(...[eyebrow, title].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
     parts.push(columns);
+  } else if (layout === 'cta-alignment-left') {
+    intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
+    columns.append(...[intro, description, ctas].filter(Boolean));
+    parts.push(buildMetaRow(metadata, tags, t), columns);
   } else {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
@@ -235,6 +276,7 @@ export default async function decorate(block) {
   block.classList.remove(...LAYOUTS);
   block.classList.add(layout);
   block.classList.toggle('page-header-has-image', !!media);
+  applyFonts(block, props);
   block.replaceChildren(...parts.filter((part) => part && (part.children.length
     || part.textContent)));
 }

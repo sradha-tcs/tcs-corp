@@ -13,12 +13,12 @@
  *   <!-- BEGIN GENERATED: inventory -->   (blocks/README.md) the block inventory
  * Inputs: component-models.json, component-definition.json, component-filters.json, the blocks'
  * own _<block>.json, their JavaScript, decorators/README.md, utils/README.md, the handover's
- * screenshots (tools/docs/handover-screenshots.json: the handover and its screenshots live on the
- * branch migrated-page-content-edam, KB-D-066; HANDOVER=<its TCS-CORP-HANDOVER.md> npm run
- * build:docs refreshes the list from a checkout of it) and tools/docs/blocks.json (status, type,
- * purpose,
- * relationships: written by hand); example values and page usage come from the block library
- * build (.home-work, not in git) and are kept in tools/docs/library-snapshot.json.
+ * screenshots (tools/docs/handover-screenshots.json: the handover and its screenshots live in the
+ * repository sradha-tcs/tcs-corp-delivery, KB-D-066, KB-D-070;
+ * HANDOVER=<its TCS-CORP-HANDOVER.md> npm run build:docs refreshes the list from a checkout of
+ * it) and tools/docs/blocks.json (status, type, purpose, relationships: written by hand);
+ * example values and page usage come from the block library build (.home-work, not in git) and
+ * are kept in tools/docs/library-snapshot.json.
  * Run `npm run build:docs`; test/docs checks that the generated sections are current.
  */
 import {
@@ -30,9 +30,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (path) => readFileSync(resolve(ROOT, path), 'utf8');
 // the handover screenshots, in each block's folder of the role-specific documentation on the
-// documents branch (KB-D-066, KB-D-069):
+// delivery repository sradha-tcs/tcs-corp-delivery (KB-D-066, KB-D-069, KB-D-070):
 // docs/handover/02-development/blocks/<block>/screenshots/handover/
-const SHOTS_URL = (block) => `https://raw.githubusercontent.com/sradha-tcs/tcs-corp/migrated-page-content-edam/docs/handover/02-development/blocks/${block}/screenshots/handover/`;
+const SHOTS_URL = (block) => `https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/${block}/screenshots/handover/`;
 const json = (path) => JSON.parse(read(path));
 
 /* ------------------------------------------------------------------ inputs */

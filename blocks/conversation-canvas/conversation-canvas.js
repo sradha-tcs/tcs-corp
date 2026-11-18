@@ -14,6 +14,7 @@ import {
 import { normalizeKey as normalize, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { uniqueId } from '../../utils/ids.js';
+import { pageHides } from '../../utils/page-visibility.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import registerCanvas from './canvas-controller.js';
 import { bone, skeletonElement, skeletonWhile } from '../../decorators/skeleton-decorator.js';
@@ -487,12 +488,14 @@ function buildSearchForm(config, id) {
   submit.disabled = true;
 
   const updateSearchState = () => {
-    const hasValue = input.value.trim().length > 0;
-    form.classList.toggle('has-value', hasValue);
-    submit.disabled = !hasValue;
+    const isActive = input.value.trim().length > 0 || document.activeElement === input;
+    form.classList.toggle('has-value', isActive);
+    submit.disabled = !isActive;
   };
 
   input.addEventListener('input', updateSearchState);
+  input.addEventListener('focus', updateSearchState);
+  input.addEventListener('blur', updateSearchState);
   updateSearchState();
 
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -921,6 +924,10 @@ export function setConversationCanvasFilters(block, tags = []) {
 }
 
 export default async function decorate(block) {
+  // the page's Hide Conversation Canvas (page property) hides it as its own Hide block does: on
+  // the page, in the header and footer and in the editor's preview, faded in edit mode, and out
+  // of the floating journey (canvas-controller.js isActive)
+  if (pageHides('canvas')) block.classList.add('hideblock');
   t = await getPlaceholders();
   const id = uniqueId('conversation-canvas');
   const { config, buttonRows } = readBlock(block);

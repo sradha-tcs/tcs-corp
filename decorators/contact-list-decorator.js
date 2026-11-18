@@ -61,20 +61,26 @@ export function buildContactList(contacts, { headingLevel, labels, icons = {} })
     const entries = document.createElement('ul');
     entries.className = 'contact-list-entries';
     const options = { value: contact.region };
-    contact.emails.forEach((email) => {
-      entries.append(contactLink('email', `mailto:${email}`, email, {
-        ...options,
-        icon: icons.email,
-        label: labels.email,
-      }));
-    });
-    contact.phones.forEach(({ phone, tel }) => {
-      entries.append(contactLink('phone', tel, phone, {
-        ...options,
-        icon: icons.phone,
-        label: labels.phone,
-      }));
-    });
+    // email, phone, email, phone, ...; the surplus of either kind follows
+    const total = Math.max(contact.emails.length, contact.phones.length);
+    for (let i = 0; i < total; i += 1) {
+      const email = contact.emails[i];
+      if (email) {
+        entries.append(contactLink('email', `mailto:${email}`, email, {
+          ...options,
+          icon: icons.email,
+          label: labels.email,
+        }));
+      }
+      const phone = contact.phones[i];
+      if (phone) {
+        entries.append(contactLink('phone', phone.tel, phone.phone, {
+          ...options,
+          icon: icons.phone,
+          label: labels.phone,
+        }));
+      }
+    }
     item.append(entries);
     list.append(item);
   });
