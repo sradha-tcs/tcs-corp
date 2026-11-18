@@ -95,7 +95,7 @@ const BLOCKS = {
   fragment: [16, 65],
   'gen-carousel': [17, 48, 65],
   header: [16, 18, 61, 65],
-  hero: [19, 40, 46, 48, 58, 62, 63, 64, 65],
+  hero: [19, 40, 46, 48, 51, 58, 62, 63, 64, 65],
   'history-timeline': [20, 44, 46, 47, 48, 49, 52, 58, 62, 64, 65, 66],
   'image-collage': [21, 44, 46, 47, 49, 58, 62, 64, 65, 66],
   'interactive-dashboard': [22],
