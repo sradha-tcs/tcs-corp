@@ -23,7 +23,7 @@ checks) live in [`../utils`](../utils/README.md).
 | `responsive-image-decorator.js` | `buildImage` (image from a URL; site media and EDAM delivery images optimized), `buildDeliveryPicture` (responsive picture of a Dynamic Media with OpenAPI delivery image), `decorateDeliveryImages` (standalone delivery image links become pictures before the blocks are decorated, KB-D-064) | `scripts.js` (`decorateMain`, section backgrounds), page-header, filter-list, conversation-canvas, cards |
 | `date-decorator.js` | `buildTime` (`<time>` for a date) | article meta decorator, filter-list |
 | `tag-decorator.js` | `buildTagList` | teaser, page-header |
-| `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement` | embed, video |
+| `media-decorator.js` | `createFrame`, `createYoutubeFrame`, `createVimeoFrame`, `createVideoElement`, `createBackgroundVideo` (a muted, looping background video loaded near the viewport in idle time, paused off screen and for reduced motion, its pause / play button as `element.animationToggle`, WCAG 2.2.2; `controls: false` leaves it out, KB-D-072) | embed, video, hero |
 | `animation-decorator.js` | `createAnimation`, `playAnimation` (Lottie animations of the Lotto image type, loaded when near the viewport; a pause / play button as `element.animationToggle`, WCAG 2.2.2; paused for reduced motion) | hero, teaser |
 | `article-meta-decorator.js` | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | page-header, teaser, filter-list |
 | `stats-decorator.js` | `buildStats` (Stat items, and the Stats composite multifield authored before them, as a description list) | testimonial, teaser |
