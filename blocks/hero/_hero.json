@@ -79,13 +79,13 @@
               "value": "media-video"
             }
           ],
-          "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Video: it is a video file (MP4 or WebM), played muted and looping as the hero background."
+          "description": "Default: the Hero Media Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Video: it is a video file (MP4 or WebM), played muted and looping as the hero background."
         },
         {
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "label": "Hero Image Path",
+          "label": "Hero Media Path",
           "description": "Default: an image. Lotto: a Lottie animation file (.json). Video: a video file (MP4 or WebM, published with the page).",
           "multi": false
         },
