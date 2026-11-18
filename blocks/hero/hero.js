@@ -22,8 +22,9 @@ let newTabHint = '';
  *   and Title, Link Type (new-window), CTA view (primary | secondary) and CTA Arrow (right |
  *   down; without one, links to the page's own sections point down). CTAs authored before, in
  *   the CTA List composite multifield, come first: their CTA view is the link's bold (primary)
- *   / italic (secondary) formatting; a Primary one can have a Primary CTA BG Color, a Secondary
- *   one a Secondary CTA BG Color and Border color (CTA_OPTIONS), and any one a CTA Text color
+ *   / italic (secondary) formatting; a Primary one can have a Primary CTA BG Color and Border
+ *   color, a Secondary one a Secondary CTA BG Color and Border color (CTA_OPTIONS), and any one
+ *   a CTA Text color
  *   (CTA_TEXT_COLORS): classes of its button
  * Block options (TCS DS Figma "L1 Header" variations): lottie (Hero Image type Lotto),
  * media-video (Hero Image type Video: a muted, looping background video without a pause / play
@@ -46,10 +47,12 @@ const LEGACY_MOTIONS = {
 };
 // CTA Arrow values, and every value a CTA List item holds besides its link
 const ARROWS = ['right', 'down'];
-// a CTA's colours by CTA view (CTA List): Primary CTA BG Color, Secondary CTA BG Color and
-// Border color, classes of its button
+// a CTA's colours by CTA view (CTA List): Primary CTA BG Color and Border color, Secondary CTA
+// BG Color and Border color, classes of its button
 const CTA_OPTIONS = {
-  primary: ['primary-bg-azure'],
+  primary: [
+    'primary-bg-azure', 'primary-border-black', 'primary-border-white', 'primary-border-slate-100',
+  ],
   secondary: [
     'secondary-bg-light-grey', 'secondary-bg-black-40', 'secondary-border-black', 'secondary-border-white',
   ],
@@ -60,7 +63,8 @@ const CTA_TEXT_COLORS = ['cta-text-black', 'cta-text-white'];
 // Default (an empty value shows "Select..."); they change nothing. CTA view's default isn't
 // delivered (a Type field collapses into the link as bold / italic for primary / secondary only)
 const CTA_DEFAULTS = [
-  'same-window', 'default', 'primary-bg-default', 'secondary-bg-default', 'secondary-border-default',
+  'same-window', 'default', 'primary-bg-default', 'primary-border-default', 'secondary-bg-default',
+  'secondary-border-default',
 ];
 const CTA_VALUES = [
   NEW_WINDOW, ...ARROWS, ...Object.values(CTA_OPTIONS).flat(), ...CTA_TEXT_COLORS, ...CTA_DEFAULTS,

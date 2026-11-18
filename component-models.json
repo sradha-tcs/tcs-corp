@@ -12556,6 +12556,32 @@
           {
             "component": "select",
             "valueType": "string",
+            "name": "ctaPrimaryBorder",
+            "label": "Primary CTA Border color (Primary only)",
+            "value": "primary-border-default",
+            "options": [
+              {
+                "name": "Default (as the BG Color)",
+                "value": "primary-border-default"
+              },
+              {
+                "name": "Black",
+                "value": "primary-border-black"
+              },
+              {
+                "name": "White",
+                "value": "primary-border-white"
+              },
+              {
+                "name": "Slate",
+                "value": "primary-border-slate-100"
+              }
+            ],
+            "description": "Border Color of Primary CTA"
+          },
+          {
+            "component": "select",
+            "valueType": "string",
             "name": "ctaBackground",
             "label": "Secondary CTA BG Color (Secondary only)",
             "value": "secondary-bg-default",

@@ -388,6 +388,15 @@
   letter-spacing: calc(0.01 * var(--button-font-size));
 }
 
+/* Primary and Secondary buttons: the full 0.75rem above and below; Secondary 0.5rem at the sides */
+.hero .hero-ctas a.button.primary {
+  padding-block: var(--space-300);
+}
+
+.hero .hero-ctas a.button.secondary {
+  padding: var(--space-300) var(--space-200);
+}
+
 /* in-page links (e.g. "Discover our story") point down */
 .hero .hero-ctas a.button.hero-cta-down::after {
   mask-image: url('../../icons/arrow-down.svg');
@@ -396,7 +405,7 @@
 /* CTAs on dark backgrounds */
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);
-  color: var(--color-text-on-neutral);
+  color: var(--slate-100);
 }
 
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:not(:hover, :focus-visible) {
@@ -446,6 +455,26 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 }
 
 /*
+ * Primary CTA Border color (CTA List): a Primary CTA's own class (hero.js); Default keeps the
+ * border of its background colour; after Primary CTA BG Color and as specific as it (in a dark
+ * section too), so it wins; hover and focus stay the Primary button's
+ */
+.hero .hero-ctas a.button.primary.primary-border-black:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-black:not(:hover, :focus-visible) {
+  border-color: var(--black-1000);
+}
+
+.hero .hero-ctas a.button.primary.primary-border-white:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-white:not(:hover, :focus-visible) {
+  border-color: var(--white-1000);
+}
+
+.hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible) {
+  border-color: var(--slate-100);
+}
+
+/*
  * CTA Text color (CTA List): the chosen colour of the text and arrow (currentcolor), whatever the
  * CTA view and background: Default (Black) or White; after the colour rules above and as
  * specific as them (in a dark section too), so it wins; hover and focus keep the button's style
@@ -486,6 +515,10 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
     font-size: var(--label-font-size);
     letter-spacing: calc(0.01 * var(--label-font-size));
+  }
+
+  .hero .hero-ctas a.button.secondary {
+    padding: var(--space-300) var(--space-200);
   }
 }
 
@@ -561,11 +594,19 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     text-align: center;
   }
 
+  /* Primary and Secondary buttons: the full 0.75rem above and below; Secondary 0.5rem at the sides */
+  .hero .hero-ctas a.button.primary {
+    padding-block: var(--space-300);
+  }
+
+  .hero .hero-ctas a.button.secondary {
+    padding: var(--space-300) var(--space-200);
+  }
 }
 
 @media (width < 600px) {
   .hero {
-    --hero-min-height: 35rem;
+    --hero-min-height: 46.875rem;
     --hero-padding-block: var(--space-1600);
     --hero-padding-inline: var(--space-600);
     --hero-gap-content: var(--space-600);
