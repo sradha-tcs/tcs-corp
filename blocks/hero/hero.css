@@ -382,10 +382,10 @@
     calc(var(--space-300) - var(--border-width-100))
     var(--space-600);
   font-family: var(--body-font-family);
-  font-size: var(--button-font-size);
+  font-size: var(--label-font-size);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  letter-spacing: calc(0.01 * var(--button-font-size));
+  letter-spacing: calc(0.01 * var(--label-font-size));
 }
 
 /* Primary and Secondary buttons: the full 0.75rem above and below; Secondary 0.5rem at the sides */
@@ -462,6 +462,15 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
   border-color: var(--color-bg-brand);
   background-color: var(--color-bg-brand);
   color: var(--color-text-on-neutral);
+}
+
+/*
+ * Primary CTA BG Color Transparent (CTA List): no fill, the text in its CTA Text color (Default
+ * Black) and the Primary border; hover and focus stay the Primary button's (filled)
+ */
+.hero .hero-ctas a.button.primary.primary-bg-transparent:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-transparent:not(:hover, :focus-visible) {
+  background-color: transparent;
 }
 
 /*
@@ -603,10 +612,10 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     gap: var(--space-200);
     border-radius: var(--radius-full);
     font-family: var(--body-font-family);
-    font-size: var(--button-font-size);
+    font-size: var(--label-font-size);
     font-weight: var(--font-weight-medium);
     line-height: 1;
-    letter-spacing: calc(0.01 * var(--button-font-size));
+    letter-spacing: calc(0.01 * var(--label-font-size));
     text-align: center;
   }
 

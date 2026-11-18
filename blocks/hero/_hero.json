@@ -239,6 +239,10 @@
                 {
                   "name": "Blue-cyan (azure)",
                   "value": "primary-bg-azure"
+                },
+                {
+                  "name": "Transparent",
+                  "value": "primary-bg-transparent"
                 }
               ],
               "description": "Background Color of Primary CTA"
