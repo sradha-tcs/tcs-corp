@@ -454,6 +454,14 @@
   color: var(--list-card-kicker, var(--list-card-muted));
 }
 
+/* panel cards on mobile: the kicker and meta at 0.875rem (14px), the size from 600px up */
+@media (width < 600px) {
+  .card-list .list-card-panel {
+    --list-kicker-size: 0.875rem;
+    --list-meta-size: 0.875rem;
+  }
+}
+
 .card-list :is(.list-card-panel, .list-card-report) .list-card-title {
   font-size: var(--list-panel-title-size);
   font-weight: var(--font-weight-regular);
