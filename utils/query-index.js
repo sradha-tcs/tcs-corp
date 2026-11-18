@@ -22,6 +22,20 @@ const pagesByRoot = new Map();
  */
 export const indexUrlOf = (root) => (REVIEW_ROOTS.includes(root) ? `${root}/query-index.json` : INDEX);
 
+/**
+ * The navigation index of a root (helix-query.yaml: the same pages as its query index, with only
+ * path, title and metaTitle): {root}/nav-index.json for a review root, /nav-index.json for the
+ * locales. For the menus (TCS Header, Conversation Canvas), which read only the pages' paths and
+ * titles: about a fifth of the query index's size to parse and a third of its download (3,354
+ * rows of /language-master/en, November 2026: 928 KB / 151 KB gzip instead of 4.6 MB / 478 KB).
+ * @param {string} root a published root (indexRoot)
+ * @returns {string}
+ */
+export const navIndexUrlOf = (root) => indexUrlOf(root).replace(/query-index\.json$/, 'nav-index.json');
+
+// the menu pages of a root (getNavPages)
+const navByRoot = new Map();
+
 /** a multi-value column: a JSON array, or a comma-separated list */
 export function listOf(value) {
   if (Array.isArray(value)) return value;
@@ -216,6 +230,47 @@ export async function getPages() {
       .map(toPage)));
   }
   return [...await pagesByRoot.get(key)];
+}
+
+/** the rows of an index, or null when it can't be read (missing, not built yet, failing) */
+async function fetchRows(url) {
+  try {
+    const resp = await fetch(`${url}?offset=0&limit=${PAGE_SIZE}`);
+    if (!resp.ok) return null;
+    const json = await resp.json();
+    const rows = json.data || [];
+    const rest = await Promise.all(remainingOffsets(rows.length, json.total || 0)
+      .map((offset) => fetch(`${url}?offset=${offset}&limit=${PAGE_SIZE}`)
+        .then((r) => (r.ok ? r.json() : {}))
+        .then((j) => j.data || [])));
+    return rows.concat(...rest);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The pages of the current locale site for a menu: their path and title (the metadata sheet's
+ * meta-title wins, as in getPages), from the small navigation index (navIndexUrlOf). Until that
+ * index exists (it is built when pages are published or reindexed after helix-query.yaml
+ * changes) or when it can't be read, the pages come from the query index (getPages), so the
+ * menus are the same either way. Loaded once and cached; each caller gets its own array.
+ * @returns {Promise<{ path: string, title: string }[]>}
+ */
+export async function getNavPages() {
+  const root = indexRoot();
+  const key = `${navIndexUrlOf(root)}|${root || ''}`;
+  if (!navByRoot.has(key)) {
+    navByRoot.set(key, fetchRows(navIndexUrlOf(root)).then(async (rows) => {
+      if (!rows?.length) {
+        return (await getPages()).map(({ path, title }) => ({ path, title }));
+      }
+      return rows
+        .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
+        .map((row) => ({ path: row.path, title: sheetOverrides(row.metaTitle, row.title) }));
+    }));
+  }
+  return [...await navByRoot.get(key)];
 }
 
 /**
