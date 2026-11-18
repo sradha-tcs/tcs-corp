@@ -20,10 +20,10 @@
   }
 }
 
-/* Panel card CTA: the mobile Figma scale is smaller than the global button size. */
+/* Panel card CTA (e.g. Explore) on mobile: 1rem (16px), Figma. */
 @media (width < 600px) {
   .list.card-list .list-card-panel .list-card-action .button {
-    --button-font-size: 0.75rem;
+    --button-font-size: 1rem;
   }
 }
 
