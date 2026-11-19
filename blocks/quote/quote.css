@@ -213,10 +213,15 @@
   }
 
 
+  /*
+   * 61rem (976px) where it fits, else the width of the Quote's body minus the card's 0.5rem
+   * offset: a fixed 61rem made pages 1024px to 1063px wide scroll sideways (and pushed the
+   * header's menu button out of view)
+   */
   .quote .quote-card {
     box-sizing: border-box;
-    width: 61rem;
-    min-width: 61rem;
+    width: min(61rem, 100% - 0.5rem);
+    min-width: 0;
     max-width: 61rem;
     padding: 0.875rem 1.5rem;
   }
