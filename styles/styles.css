@@ -1064,6 +1064,41 @@ main > .section > div {
   box-sizing: border-box;
 }
 
+/*
+ * Text width per device (Section: Text width Mobile / Tablet / Desktop, scripts.js
+ * decorateSectionsWithOptions): the section's default content (text, headings, buttons) takes
+ * that share of the row, left-aligned; a device without a value is full width. Blocks keep their
+ * own width.
+ */
+main > .section.text-width-mobile-75 { --section-text-width-mobile: 75%; }
+main > .section.text-width-mobile-66 { --section-text-width-mobile: 66.6667%; }
+main > .section.text-width-mobile-50 { --section-text-width-mobile: 50%; }
+main > .section.text-width-mobile-33 { --section-text-width-mobile: 33.3333%; }
+main > .section.text-width-tablet-75 { --section-text-width-tablet: 75%; }
+main > .section.text-width-tablet-66 { --section-text-width-tablet: 66.6667%; }
+main > .section.text-width-tablet-50 { --section-text-width-tablet: 50%; }
+main > .section.text-width-tablet-33 { --section-text-width-tablet: 33.3333%; }
+main > .section.text-width-desktop-75 { --section-text-width-desktop: 75%; }
+main > .section.text-width-desktop-66 { --section-text-width-desktop: 66.6667%; }
+main > .section.text-width-desktop-50 { --section-text-width-desktop: 50%; }
+main > .section.text-width-desktop-33 { --section-text-width-desktop: 33.3333%; }
+
+main > .section[class*='text-width-'] > .default-content-wrapper > * {
+  max-width: var(--section-text-width-mobile, none);
+}
+
+@media (width >= 600px) {
+  main > .section[class*='text-width-'] > .default-content-wrapper > * {
+    max-width: var(--section-text-width-tablet, none);
+  }
+}
+
+@media (width >= 1200px) {
+  main > .section[class*='text-width-'] > .default-content-wrapper > * {
+    max-width: var(--section-text-width-desktop, none);
+  }
+}
+
 main > .section:first-of-type {
   margin-top: 0;
 }

@@ -23,7 +23,8 @@ module.exports = {
     // cell per value
     'xwalk/max-cells': ['error', {
       '*': 4,
-      section: 6,
+      // section fields arrive as data attributes / section metadata, not as cells (Text width x3)
+      section: 9,
       // container sections: their Additional tab is container* section fields (data attributes)
       tabs: 21,
       'gen-carousel': 18,

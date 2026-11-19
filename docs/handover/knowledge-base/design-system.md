@@ -192,6 +192,7 @@ The Additional tab's Padding / Margin fields (`classes_padding*` / `classes_marg
 | `--section-padding-inline` (gutter of Fixed Width sections) | `--spacing-s` (1.5rem); `--spacing-m` (2.5rem) from 600px; `--spacing-l` (5rem) from 1200px; `0rem` in Full Width sections |
 | `--section-spacing` (between sections) | `--spacing-m` (2.5rem); `--spacing-l` (5rem) from 900px; `--space-3000` (7.5rem) from 1200px |
 | Section Width Type | Full Width (default, edge to edge, no gutter) or Fixed Width (`fixed-width`, centred at `--content-max-width`) |
+| Section Text width | Per device (mobile below 600px, tablet 600 to 1199px, desktop from 1200px): Full (default), 75%, 66.6667%, 50% or 33.3333% of the row for the section's default content, left-aligned (`text-width-{device}-{value}`, `--section-text-width-{device}` in `styles/styles.css`); blocks keep their own width |
 | Rounded edge | `rounded`: `--radius-l` corners |
 
 There is no global column grid token. Grids are per block:
