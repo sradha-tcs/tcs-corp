@@ -16,7 +16,8 @@
     "prepare": "husky",
     "test": "node --test 'test/**/*.test.mjs'",
     "build:modules": "node tools/modules/generate-module-graph.mjs",
-    "build:docs": "node tools/docs/generate-block-docs.mjs"
+    "build:docs": "node tools/docs/generate-block-docs.mjs",
+    "build:contacts": "node tools/media-contacts/generate-contact-groups.mjs && npm run build:json"
   },
   "repository": {
     "type": "git",

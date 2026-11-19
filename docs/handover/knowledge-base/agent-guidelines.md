@@ -33,6 +33,7 @@ Work through this sequence before writing code or documentation. Record what you
 | `npm run build:json` | After any change to `blocks/*/_*.json` or `models/_*.json` | `component-models.json`, `component-definition.json`, `component-filters.json` |
 | `npm run build:docs` | After changing a block model (after `build:json`) or adding a block | The generated sections of `blocks/README.md` and `blocks/<block>/README.md` (fields, screenshots, files, usage) |
 | `npm run build:modules` | After adding, removing or changing an `import` in scripts, blocks, decorators or utils | `head.html` modulepreload links and `scripts/module-graph.js` |
+| `npm run build:contacts` | After a group is added, renamed or removed in a published Media Contacts sheet (or let the Media contact groups workflow do it) | The Contact groups options in `blocks/media-contacts/_media-contacts.json` and the component models; then `npm run build:docs` |
 | `npm run build:paths` | After adding or changing a locale in `LOCALES` (`utils/site.js`) or the temporary `REVIEW` block | `paths.json` (then the site configuration's `public.json` paths must be updated by an administrator) |
 
 > **Important:** The pre-commit hook ([.husky/pre-commit.mjs](../../../.husky/pre-commit.mjs)) runs `npm run build:json` and stages the three `component-*.json` files when a `_*.json` model partial is staged. The GitHub Build workflow ([.github/workflows/main.yaml](../../../.github/workflows/main.yaml)) runs `npm ci` and `npm run lint` only: `npm test` isn't run in CI (finding F-37), so it must be run locally.

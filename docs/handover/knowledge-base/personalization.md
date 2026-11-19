@@ -65,7 +65,7 @@ These are integration points (code comments name a personalisation service as on
 | Data | Where it is available today | Current use |
 | --- | --- | --- |
 | `persona` | Bulk metadata column, `getPageMetadata().persona`, query index `persona` | None in blocks (handover 14.9, item 17) |
-| `region`, `country`, `language` | Metadata columns, query index; `xdm:language` in the data layer page entry | `region` selects the contacts of the Media Contacts block (`blocks/media-contacts/media-contacts.js`, `inRegion`): page metadata, not the visitor |
+| `region`, `country`, `language` | Metadata columns, query index; `xdm:language` in the data layer page entry | `region` no longer selects the Media Contacts block's contacts (the block's Contact groups do, KB-D-074; this page described the page `region` filter of KB-D-054, gone since PR #232); page metadata, not the visitor |
 | `campaign-id` | Metadata column, `getPageMetadata().campaignId`, query index `campaignId` | None |
 | `page-type`, `content-type`, `category`, tags | Metadata, query index, data layer (`xdm:template`, `xdm:tags`) | Templates, Page Header, List, Filter List |
 | `featured`, `priority` | Metadata, query index | Filter List spotlight and featured cards |

@@ -231,7 +231,7 @@ Values may be AEM paths, published paths or paths relative to the locale root (`
 | --- | --- | --- |
 | `authors` | `author-id`, `name`, `designation`, `bio`, `image`, `linkedin`, `region` | Page Header (`getAuthor`, case-insensitive id), article / blog templates, List feature card and Filter List spotlights (`getAuthors`) |
 | `social-links` | `platform`, `url`, `icon`, `sort-order` | Footer (in `sort-order`, rows without one last) |
-| `media-contacts` | `id`, `name`, `designation`, `email`, `phone`, `region` | Media Contacts block (`blocks/media-contacts`: `inRegion` by the page's `region`, else all; grouped by designation and region) |
+| `media-contacts` | `id`, `name`, `designation`, `email`, `phone`, `region`; optional `group` (a key, e.g. `emea`) and `heading`; `email` / `phone` may hold several values | Media Contacts block (`blocks/media-contacts`: rows grouped by `group`, else by heading: `heading`, else "designation & region", else region; the groups chosen in the block's Contact groups dropdown (options generated from the published sheets, `npm run build:contacts`), else all; another sheet with the block's Contacts sheet; KB-D-074. The page `region` filter described here before isn't in the code since PR #232) |
 | `locations` | `location-id`, `location-name`, `country`, `region`, `latitude`, `longitude` | `getLocations()` only; no component reads it (handover F-40) |
 | `partners` | `partner-id`, `partner-name`, `logo`, `website`, `tier`, `description` | `getPartners()` only; no component reads it (handover F-40) |
 

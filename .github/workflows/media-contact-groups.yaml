@@ -1,0 +1,56 @@
+# Keeps the Media Contacts dialog's Contact groups in step with the published Media Contacts sheets
+# (KB-D-074): Universal Editor dropdowns take only the options written into the model, so this
+# reads the sheets (tools/media-contacts/generate-contact-groups.mjs) and, when the groups changed,
+# opens (or updates) a pull request with the new options. A person merges it; Code Sync then
+# updates the dialog. Runs every six hours, on demand (Actions > Media contact groups > Run
+# workflow), or from an integration (repository_dispatch, type media-contacts-published).
+# The repository setting "Allow GitHub Actions to create and approve pull requests" must be on.
+# Pull requests opened with the workflow token don't start the Build workflow by themselves:
+# close and reopen the pull request, or push to its branch, to run it.
+name: Media contact groups
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [media-contacts-published]
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: media-contact-groups
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Read the sheets and update the model
+        run: npm run build:contacts
+      - name: Open or update the pull request when the groups changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "The Contact groups match the sheets."
+            exit 0
+          fi
+          npm run build:docs
+          branch=chore/media-contact-groups
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git commit -am "chore(media-contacts): Contact groups from the Media Contacts sheets"
+          git push --force origin "$branch"
+          if [ "$(gh pr list --head "$branch" --state open --json number --jq length)" = "0" ]; then
+            gh pr create --base main --head "$branch" \
+              --title "chore(media-contacts): Contact groups from the Media Contacts sheets" \
+              --body "The Media Contacts sheets' groups changed: the dialog's Contact groups options are updated (npm run build:contacts, build:json, build:docs). Review the options in blocks/media-contacts/_media-contacts.json and merge to update Universal Editor. Opened by the Media contact groups workflow."
+          fi

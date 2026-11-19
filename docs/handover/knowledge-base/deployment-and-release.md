@@ -84,6 +84,7 @@ Approval rules: the number of required reviews, required checks and branch prote
 | cleanup-on-create | [.github/workflows/cleanup-on-create.yaml](../../../.github/workflows/cleanup-on-create.yaml) | Repository creation or manual dispatch | Boilerplate clean-up; no role in releases | Not applicable |
 | Renovate | [.renovaterc.json](../../../.renovaterc.json) | Renovate schedule | Dependency PRs; devDependency PRs labelled `ignore-psi-check` and auto-merged when tests pass; ESLint pinned to `^8.0.0` | Not applicable |
 | AEM Code Sync | GitHub app (not a repository file) | Every push | Syncs the branch to the code bus and reports a check | Not verified here (no GitHub access) |
+| Media contact groups | [.github/workflows/media-contact-groups.yaml](../../../.github/workflows/media-contact-groups.yaml) | Every six hours, on demand, `repository_dispatch` `media-contacts-published` | `npm run build:contacts`; when the Media Contacts sheets' groups changed, opens or updates the pull request `chore/media-contact-groups` (KB-D-074); needs "Allow GitHub Actions to create and approve pull requests" | Not run yet (added on the branch feature/media-contacts-directory) |
 | PageSpeed (`aem-psi-check`) | AEM GitHub app (not a repository file) | Pull requests | PageSpeed Insights on the URLs in the PR description | Not verified here |
 
 The CI gate is lint only. Run `npm test` before every PR; adding it to `main.yaml` is a recommendation of the handover (14.9 #19, F-37), not a decision.

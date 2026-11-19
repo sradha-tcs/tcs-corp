@@ -2,11 +2,13 @@ import { buildContactList } from '../../decorators/contact-list-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { buildHeading, HEADINGS } from '../../decorators/heading-decorator.js';
 import { itemRows, KEY_VALUE_ITEM } from '../../utils/cells.js';
+import { getMediaContacts } from '../../utils/data.js';
 import { isAuthor, isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { readProperties, textOf } from '../../utils/properties.js';
+import { isOnByDefault, readProperties, textOf } from '../../utils/properties.js';
+import { readTagValues } from '../../utils/tags.js';
 import {
-  isCompleteContact, readContactRows, telHref,
+  directoryGroups, isCompleteContact, readContactRows, showContacts, telHref,
 } from './media-contacts-data.js';
 
 const TITLE_COLORS = ['title-black', 'title-dark', 'title-white', 'title-light-blue'];
@@ -29,6 +31,9 @@ function headingOf(props, t) {
   return heading;
 }
 
+/** the authored Contacts sheet (a page picker: a link, or its path as text), else '' */
+const sheetPathOf = (cell) => cell?.querySelector('a[href]')?.getAttribute('href') || textOf(cell);
+
 /**
  * loads and decorates the block
  * @param {Element} block The block element
@@ -37,13 +42,22 @@ export default async function decorate(block) {
   const props = readProperties(block);
   const rows = itemRows(block, ['media-contact'], KEY_VALUE_ITEM);
   const contacts = readContactRows(rows);
-  const [t, itemHint] = await Promise.all([getPlaceholders(), editorItemHint(rows)]);
+  // the sheet's contacts unless turned off (on for blocks authored before the option); both
+  // kinds shown unless turned off
+  const fromSheet = isOnByDefault(props.showdirectory);
+  const show = { emails: isOnByDefault(props.showemails), phones: isOnByDefault(props.showphones) };
+  const sheet = fromSheet ? getMediaContacts(sheetPathOf(props.contactssheet)) : [];
+  const [t, itemHint, sheetRows] = await Promise.all([
+    getPlaceholders(), editorItemHint(rows), sheet,
+  ]);
   const pending = buildEditorItems(contacts.filter((contact) => !isCompleteContact(contact))
     .map(({ row }) => row), itemHint, 'li');
-  const entries = contacts.filter(isCompleteContact).map((contact) => ({
-    ...contact,
-    phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
-  }));
+  const directory = directoryGroups(sheetRows, { groups: readTagValues(props.contactgroups) });
+  const entries = showContacts([...directory, ...contacts.filter(isCompleteContact)], show)
+    .map((contact) => ({
+      ...contact,
+      phones: contact.phones.map((phone) => ({ phone, tel: telHref(phone) })),
+    }));
   const titleColor = textOf(props.titlecolor);
   if (TITLE_COLORS.includes(titleColor)) block.classList.add(titleColor);
   const columns = textOf(props.columns);
@@ -83,6 +97,6 @@ export default async function decorate(block) {
   }
   const hint = document.createElement('p');
   hint.className = 'media-contacts-empty';
-  hint.textContent = t('mediaContactsAuthorHint', 'Add Media Contact entries with a country, territory, organization or group and at least one email or phone.');
+  hint.textContent = t('mediaContactsAuthorHint', 'No contacts to show: check Contact groups against the Media Contacts sheet, turn on Show email addresses or Show phone numbers, or add Media Contact entries with a heading and at least one email or phone.');
   block.replaceChildren(heading, hint);
 }

@@ -1,26 +1,26 @@
 # Media Contacts
 
-The Media Contacts block lists the media relations contacts of the locale's **Media Contacts** data sheet (`/{locale}/data/media-contacts.json`) under an authored title. Contacts with the same designation and region are one group: the group's heading ("Corporate Communications & India") and its e-mail addresses and phone numbers one below the other, each with a mail or phone icon. It follows the "TCS media contacts" section of the tcs.com press releases. It is a key-value block (Title, Title Type and the Additional tab); `blocks/media-contacts/media-contacts.js` loads the sheet and renders the groups.
+The Media Contacts block lists media relations contacts under an authored title: the groups of the locale's **Media Contacts** data sheet (`/{locale}/data/media-contacts.json`), or of another sheet picked as **Contacts sheet**, all of them or the ones chosen in the **Contact groups** dropdown (its options generated from the published sheets), followed by any **Media Contact** items added to the block for contacts that aren't in the sheet (a partner, an agency). Each group shows its heading ("Corporate Communications & India") and its e-mail addresses and phone numbers one below the other, each with a mail or phone icon; **Show email addresses** and **Show phone numbers** show both kinds, one only, or leave a kind out. It follows the "TCS media contacts" section of the tcs.com press releases. A key-value block with Media Contact item children (KB-D-074); `blocks/media-contacts/media-contacts.js` loads the sheet and renders the groups.
 
 | Attribute | Value |
 | --------- | ----- |
 | Technical name | `media-contacts` (model `media-contacts`, template name "Media Contacts") |
 | Display name | Media Contacts |
-| Block type | Key-value block (`key-value: true`), no item children; content from a data sheet |
+| Block type | Key-value block (`key-value: true`) with Media Contact item children; contacts from a data sheet and from the items |
 | Status | Active |
-| Parent / children | Parents: Section, Columns Container, Tabs Container (filters `section`, `columns-container`, `tabs`). Children: none |
-| Owner / version / date | Not recorded / 1.0 (handover 2.41, chapter 6.33) / 22 October 2026 |
+| Parent / children | Parents: Section, Columns Container, Tabs Container (filters `section`, `columns-container`, `tabs`). Children: Media Contact (`media-contact`, filter `media-contacts`) |
+| Owner / version / date | Not recorded / 2.0 (KB-D-074) / 18 November 2026 (1.0: handover 2.41, chapter 6.33, 22 October 2026) |
 
 ## Overview
 
-- **Business purpose:** journalists find the right press contact for their region at the end of every press release, from one list maintained in one place (the sheet).
+- **Business purpose:** journalists find the right press contact for their region at the end of every press release; the contacts are maintained once, in the sheet, for every page (about 2,200 migrated press releases), with one-off contacts on the page itself.
 - **User experience:** the title (e.g. "TCS media contacts"), then the groups: the brand-blue group heading and, below it, each e-mail address and phone number as an underlined link with its icon. Two columns from 900px (filled top to bottom), one column below.
 - **Templates / page types:** press releases (Page Type `press-release`). The Press Release template no longer adds the contacts by itself: authors add this block (KB-D-054 in the knowledge base decision log).
-- **Data source:** the Media Contacts sheet of the page's locale (`utils/data.js` `getMediaContacts`): the rows whose `region` is the page's `region` metadata, else all rows. Placeholders `mediaContacts`, `email`, `phone`, `mediaContactsEditorHint`.
+- **Data source:** the Media Contacts sheet of the page's locale (`utils/data.js` `getMediaContacts`), grouped by `media-contacts-data.js` `directoryGroups`; the Media Contact items of the block (`readContactRows`). Every press release shows the current contacts of the sheet (the user's choice, 18 November 2026: tcs.com showed the contacts of the time of publication). Placeholders `mediaContacts`, `email`, `phone`, `mediaContactsAuthorHint`.
 - **Related blocks:** Page Header (the press release's header), Teaser and List (the other press release sections).
 - **When to use:** on press releases and media pages that should show the press contacts.
-- **When not to use:** for one-off contacts of a single page (author a Text with links, or a Teaser); for contacts that aren't in the Media Contacts sheet.
-- **Realistic use cases:** the "TCS media contacts" section at the end of a press release; a newsroom contact page; a regional press page whose `region` metadata shows only that region's contacts.
+- **When not to use:** for contact details that aren't press contacts (use a Teaser or Text); for a person who appears on many pages, add a sheet row instead of Media Contact items.
+- **Realistic use cases:** the "TCS media contacts" section at the end of a press release (all groups); a regional press release with only its regions' groups (Contact groups); a release with a partner's press contact (a Media Contact item after the groups); a list of press phone lines (Show email addresses off).
 
 ## Visual Reference
 
@@ -62,6 +62,23 @@ The Content tab of the Media Contacts properties in Universal Editor, with the f
 Annotations:
 A = Title
 B = Title Type
+C = Contacts from the Media Contacts sheet
+D = Contacts sheet
+E = Contact groups
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+media-contacts-dialog-display-desktop.png
+
+Purpose:
+The Display tab of the Media Contacts properties in Universal Editor, with the fields of the table "Display tab — Media Contacts" in Authorable Fields below.
+
+Annotations:
+A = Show email addresses
+B = Show phone numbers
 C = Title color
 D = Columns on desktop
 E = Territory title color
@@ -120,7 +137,7 @@ File name:
 media-contacts-empty-editor.png
 
 Purpose:
-The block in Universal Editor when the sheet has no contacts: the title and the hint "The contacts come from the Media Contacts sheet …".
+The block in Universal Editor when there is nothing to show: the title and the hint "No contacts to show: check Contact groups against the Media Contacts sheet, …".
 
 Annotations:
 A = Title
@@ -130,15 +147,15 @@ B = Editor hint (not shown on the published page, where the block is hidden)
 ## For Content Authors
 
 1. **Add the block.** In Universal Editor, select a Section (or a Columns Container column or a Tabs Container), choose Add (+) and pick **Media Contacts**.
-2. **Open its properties.** Select the block in the canvas or the content tree. It has two tabs: Content and Additional.
+2. **Open its properties.** Select the block in the canvas or the content tree. It has three tabs: Content, Display and Additional.
 3. **Enter the title.** Title, e.g. "TCS media contacts", and Title Type (H2 by default; the group headings are one level below).
-4. **The contacts.** They aren't typed into the block: they come from the locale's Media Contacts sheet (`/content/tcs-corp/{country}/{language}/data/media-contacts`). Ask whoever maintains the sheet to add or change a contact; every page with the block updates.
-5. **Region.** The page's `region` metadata (metadata sheet) selects the contacts of that region; without matching rows (or without a region, e.g. Global) all contacts show.
-6. **Child items:** none.
+4. **The contacts from the sheet.** **Contacts from the Media Contacts sheet** is on by default: the block shows the groups of a sheet; a change in the sheet updates every page with the block. **Contacts sheet:** empty, the locale's `data/media-contacts` (`/content/tcs-corp/{country}/{language}/data/media-contacts`); or pick another contacts sheet of the site (a path relative to the site, e.g. `data/press-contacts`, is read from the page's own site). **Contact groups:** pick groups in the dropdown (it lists the groups of the published Media Contacts sheets) to show only those, in the sheet's order; leave it empty for all groups.
+5. **Display tab.** **Show email addresses** and **Show phone numbers** (both on): turn one off for phone numbers only or e-mail addresses only (a group without that kind is left out); then the colours, columns and icons.
+6. **Contacts only for this page:** select the block, Add (+) › **Media Contact**: a heading (e.g. a partner's name) and its e-mail addresses and phone numbers, one per value. They follow the sheet's groups; with Contacts from the Media Contacts sheet off, they are the only contacts.
 7. **Preview** at desktop and mobile widths, then **publish** the page. Publish the sheet too when it changed.
 8. **Validate** on the published page: the groups, the links (mailto: / tel:) and the heading levels.
 
-Minimum content: none (without a Title the heading is "Media contacts"). Recommended: Title. Required elsewhere: at least one row in the Media Contacts sheet.
+Minimum content: none (without a Title the heading is "Media contacts", and all the sheet's groups show). Recommended: Title. Required elsewhere: the locale's Media Contacts sheet, published, and for Contact groups the tags in AEM.
 
 ## Authorable Fields
 
@@ -154,8 +171,18 @@ Stored on a new component (definition template): `titleType` = `"h2"`.
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Title | `title` | text | No | — | — | The heading above the contacts, e.g. "TCS media contacts". Empty: "Media contacts" (placeholder mediaContacts). Add Media Contact items to author the contact details. | Media contacts |
+| Title | `title` | text | No | — | — | The heading above the contacts, e.g. "TCS media contacts". Empty: "Media contacts" (placeholder mediaContacts). | Media contacts |
 | Title Type | `titleType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | Heading level of the Title; each Media Contact label is one level below. Delivered with `title` (field collapse). | h2 |
+| Contacts from the Media Contacts sheet | `showDirectory` | boolean | No | `true` | on / off | Shows the contacts of the locale's Media Contacts sheet (data/media-contacts), maintained in one place for every page. Off: only the Media Contact items added to this block. | — |
+| Contacts sheet | `contactsSheet` | aem-content | No | — | — | The spreadsheet of the contacts, e.g. data/media-contacts or another contacts sheet of the site. Empty: the locale's data/media-contacts. Shown when `showDirectory` is not `false`. | — |
+| Contact groups | `contactGroups` | multiselect | No | — | Corporate Communications & India (`corporate-communications-india`), Asia Pacific (`asia-pacific`), Canada (`canada`), Latin America (`latin-america`), Australia and New Zealand (`australia-and-new-zealand`), Europe (`europe`), Japan (`japan`), Middle East & Africa (`middle-east-africa`), UK (`uk`), USA (`usa`) | The groups of the Media Contacts sheet to show, in the sheet's order. Empty: every group. The list comes from the published sheets (npm run build:contacts); a group added to a sheet appears here once its update is merged. Shown when `showDirectory` is not `false`. | — |
+
+#### Display tab — Media Contacts
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Show email addresses | `showEmails` | boolean | No | `true` | on / off | Off: phone numbers only (a group without one is left out). | — |
+| Show phone numbers | `showPhones` | boolean | No | `true` | on / off | Off: email addresses only (a group without one is left out). | — |
 | Title color | `titleColor` | select | No | "" | Style default (""), Black (`title-black`), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`) | Overrides the title color using the Teaser title-color variants. | — |
 | Columns on desktop | `columns` | select | No | `2` | 1 (`1`), 2 (`2`), 3 (`3`) | Choose the number of columns from desktop width. The entries stack into one column below 900px. | — |
 | Territory title color | `regionColor` | select | No | "" | Style default (""), Black (`black`), Dark (`dark`), Brand blue (`brand`), Light blue (`light-blue`) | — | — |
@@ -191,7 +218,7 @@ Model `media-contact`; template name "Media Contact" (the block class AEM render
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Country, territory, organization or group | `region` | text | Yes | — | — | Enter the country, territory, organization or group this contact represents, for example Europe, India or SMG. Each Media Contact is displayed as its own entry. | — |
+| Country, territory, organization or group | `region` | text | Yes | — | — | The heading of this contact, e.g. a partner's name or a group that isn't in the Media Contacts sheet. Each Media Contact is shown after the sheet's groups, as its own entry. | — |
 | Email | `email` | text (multiple) | No | — | — | Add as many email addresses as needed, without mailto:. Enter one address per value. | — |
 | Phone | `phone` | text (multiple) | No | — | — | Add as many phone numbers as needed, including country code and spacing. Enter one number per value. | — |
 
@@ -200,7 +227,7 @@ Model `media-contact`; template name "Media Contact" (the block class AEM render
 Notes on the significant fields:
 
 - **Title / Title Type:** the heading of the block at the Title Type level (`buildHeading`); empty, it is the placeholder `mediaContacts` ("Media contacts") at that level. The group headings are one level below (H3 under an H2, at most H6).
-- **The sheet's columns:** `id`, `name`, `designation`, `email`, `phone`, `region`. A row needs an id, a name, an e-mail address or a phone number. Rows with the same designation and region (case and spacing ignored) are one group, in the sheet's order; the group heading is "designation & region", or the one that is set. A name, when set, is shown above its contact's links.
+- **The sheet's columns:** `id`, `name`, `designation`, `email`, `phone`, `region`, and the optional `group` and `heading`. One row per person or mailbox; `email` and `phone` may hold several values separated by `,` `;` `|` or a line break. Rows with the same group form one entry, in the sheet's order: the `group` column (a key such as `emea`), else the heading. The heading is the `heading` column, else "designation & region" ("Corporate Communications & India"), else the region. A Contact groups value is the group in tag form: the `group` column, else the heading (`Middle East & Africa` = `middle-east-africa`); `npm run build:contacts` (`tools/media-contacts/generate-contact-groups.mjs`) writes them, with the headings as names, into the dialog from the published sheets of every locale and review root (`groupOptions`), and the Media contact groups workflow (`.github/workflows/media-contact-groups.yaml`) opens a pull request when they change.
 - **Additional tab:** Anchor ID, Hide block, the animations (the title and the groups animate one after another) and Padding / Margin, as described in AGENTS.md "Additional tab".
 
 ## Screenshot-Based Authoring Steps
@@ -228,23 +255,31 @@ Open the properties panel (Content tab).
 
 ### Authoring Step 3: Check the contacts
 
-Switch to Preview: the groups of the Media Contacts sheet appear. If the hint "The contacts come from the Media Contacts sheet …" shows, the sheet has no rows yet.
+Switch to Preview: the groups of the Media Contacts sheet appear (all of them, or those of Contact groups). If the hint "No contacts to show …" shows, the sheet has no rows for the chosen groups or both kinds are turned off.
 
 ### Values to Enter
 
 | Field | Value |
 | ----- | ----- |
-| Media Contacts sheet | One row per e-mail address or phone number: `designation` (e.g. Corporate Communications), `region` (e.g. India), `email`, `phone` |
+| Media Contacts sheet | One row per e-mail address or phone number: `designation` (e.g. Corporate Communications), `region` (e.g. India), `email`, `phone`; optional `group` (tag ID) and `heading` |
 
 ## Variations
 
 ### Default (all contacts)
 
-A page whose `region` is Global (or empty, or without matching rows) lists every contact of the sheet.
+Title only, Contacts from the Media Contacts sheet on, no Contact groups: every group of the sheet, in its order (as the migrated press releases show them).
 
-### Regional
+### Chosen groups
 
-A page whose `region` matches rows of the sheet (e.g. `Europe`) lists only those rows.
+Contact groups Corporate Communications & India, Europe and Japan: those three groups only.
+
+### E-mail addresses only / phone numbers only
+
+Show phone numbers off: every group with its e-mail addresses. Show email addresses off: the groups with a phone number, without the addresses (Corporate Communications & India, which has none, is left out).
+
+### With contacts of this page
+
+A Media Contact item (e.g. a partner's press office) after the sheet's groups; with Contacts from the Media Contacts sheet off, the items alone.
 
 ### Without a Title
 
@@ -258,20 +293,22 @@ Scenario: the migrated press release "TCS BaNCS for Treasury marks its entry int
 | ----- | ------------- | -------- |
 | Title | TCS media contacts | As on tcs.com |
 | Title Type | H2 | Under the page's H1 |
-| Page metadata `region` | Global | All contacts |
+| Contacts from the Media Contacts sheet | On (default) | The sheet's groups |
+| Contact groups | (empty) | All groups |
+| Show email addresses / Show phone numbers | On / On | Both kinds |
 | Sheet rows | 12 rows: Corporate Communications / India × 3 e-mail addresses; Asia Pacific, Canada, Latin America, Australia and New Zealand, Europe, Japan, Middle East & Africa, UK, USA with an e-mail address and a phone number each | One row per contact |
 
 - **Expected output:** "TCS media contacts", then 10 groups in two columns (5 + 5) from 900px.
 - **Accessibility:** an `<h2>`, ten `<h3>` group headings, lists of links named "Email: …" / "Phone: …".
 - **Analytics / data layer:** a `tcs-corp/components/media-contacts` entry; clicks as `cmp:click` with `interaction` email / phone and the group as `value`, without the address.
-- **Personalization fallback:** all contacts when the page's region has none.
+- **Fallback:** without Contact groups, all groups; without a sheet (a locale that has none), only the Media Contact items, else the block is hidden.
 
-Pre-publish checklist: the sheet is published; the designations and regions are spelled the same in every row of a group; the title fits the page outline.
+Pre-publish checklist: the sheet is published; the designations and regions (or groups) are spelled the same in every row of a group; the Contact groups tags exist in AEM; the title fits the page outline.
 
 ## Content and Asset Guidelines
 
 - **Title:** short ("TCS media contacts", "Press contacts").
-- **Sheet:** one row per e-mail address or phone number; write phone numbers as they should read (+65 9270 4560); the link keeps only the digits and a leading +.
+- **Sheet:** one row per person or mailbox (several values per cell allowed); write phone numbers as they should read (+65 9270 4560); the link keeps only the digits and a leading +. Keep groups in the order they should show.
 - **Personal data:** the sheet is published as JSON (`/{locale}/data/media-contacts.json`); list business contact details that may be public only.
 - **Icons:** `icons/mail.svg` and `icons/phone.svg`, coloured by CSS (brand blue).
 - **Limits:** no verified technical limit; long addresses wrap.
@@ -284,9 +321,9 @@ Pre-publish checklist: the sheet is published; the designations and regions are 
 - **Contrast:** text in `--color-text-default`, headings and icons in `--color-text-brand` (5.4:1 on white).
 - **Reflow:** one column below 900px; long addresses wrap (`overflow-wrap: anywhere`).
 - **Reduced motion:** the Additional tab's animations don't play for visitors who prefer reduced motion or in the editor.
-- **Loading:** while the sheet loads for longer than 150ms, a skeleton marked `aria-busy` (hidden from assistive technology) holds the place.
+- **Loading:** the block waits for the sheet (one small request) before it renders; it usually sits at the end of the page.
 
-Author responsibilities: choose the heading level. Sheet owners: consistent designations and regions.
+Author responsibilities: choose the heading level and the groups. Sheet owners: consistent designations and regions (or groups), and tags in `tcs-corp:media-contacts` named after the groups.
 
 ## Data Layer and Analytics
 
@@ -304,7 +341,7 @@ The data layer never records the address or number: `decorators/data-layer-decor
 
 ## Personalization
 
-The page's `region` metadata selects the contacts (`utils/data.js` `inRegion`); it is page metadata, not the visitor's location. No Adobe Target or AJO integration.
+No personalization: the groups are chosen by the author (Contact groups), not by page metadata or the visitor's location (the page `region` filter of the first design, KB-D-054, is gone since PR #232). No Adobe Target or AJO integration.
 
 ## Responsive Behavior
 
@@ -328,20 +365,22 @@ blocks/media-contacts/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`decorators/contact-list-decorator.js`](../../decorators/contact-list-decorator.js) | `buildContactGroups` (groups of contacts, each with its heading and its mail / phone links one below the other; the links carry `data-cmp-interaction` email / phone) | `media-contacts.js`: { buildContactList } |
+| [`decorators/contact-list-decorator.js`](../../decorators/contact-list-decorator.js) | `buildContactList` (this README named it `buildContactGroups` before; the code exports `buildContactList`: groups of contacts, each with its heading and its mail / phone links one below the other; the links carry `data-c | `media-contacts.js`: { buildContactList } |
 | [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `media-contacts.js`: { buildEditorItems, editorItemHint } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `media-contacts.js`: { buildHeading, HEADINGS } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `media-contacts.js`: { itemRows, KEY_VALUE_ITEM } |
+| [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `loadSheetAt` (a sheet at an authored path: AEM, published, or relative to the page's site root), `getMediaContacts` (the local | `media-contacts.js`: { getMediaContacts } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `media-contacts.js`: { isAuthor, isEditing } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `media-contacts.js`: { getPlaceholders } |
-| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `media-contacts.js`: { readProperties, textOf } |
+| [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `media-contacts.js`: { isOnByDefault, readProperties, textOf } |
+| [`utils/tags.js`](../../utils/tags.js) | `readTagValues`, `parseTag`, `readTags` (tag IDs; ID-derived labels as the taxonomy fallback) | `media-contacts.js`: { readTagValues } |
 
 <!-- END GENERATED: files -->
 
-- **JavaScript (`media-contacts.js`):** an async `decorate(block)`. It reads Title and Title Type (`readProperties`), requests the sheet and the placeholders, and renders through `renderWhenLoaded` (a skeleton when the sheet takes longer than 150ms). It selects the page region's rows (`inRegion`, else all), groups them (`media-contacts-data.js` `groupContacts`, `telHref`) and builds the list with `decorators/contact-list-decorator.js` `buildContactGroups`.
-- **Pure logic (`media-contacts-data.js`):** `groupHeading`, `groupContacts`, `telHref`; unit tested in `test/media-contacts/media-contacts-data.test.mjs`.
+- **JavaScript (`media-contacts.js`):** an async `decorate(block)`. It reads the properties (`readProperties`; Contacts from the Media Contacts sheet, Show email addresses and Show phone numbers are on unless set off, `isOnByDefault`, so blocks authored before keep showing the sheet), the Media Contact items (`itemRows`, `readContactRows`), the Contact groups values (`readTagValues`: a list or comma-separated), loads the Contacts sheet (`getMediaContacts`: the authored path through `loadSheetAt`, else the locale's `data/media-contacts`) and the placeholders, and renders the sheet's groups then the items (`directoryGroups`, `showContacts`) with `buildContactList`.
+- **Pure logic (`media-contacts-data.js`):** `readContactRows`, `isCompleteContact`, `telHref`, `groupHeading`, `groupSlug`, `directoryGroups`, `showContacts`; unit tested in `test/media-contacts/media-contacts-data.test.mjs` and `media-contacts-directory.test.mjs` (with the language master's sheet of 18 November 2026).
 - **CSS (`media-contacts.css`):** headings, links with `::before` icons (CSS masks of `icons/mail.svg` / `icons/phone.svg`), underlined text, two columns from 900px.
-- **Input DOM:** key-value rows for `title` (with Title Type collapsed into it as the heading level) and `titleType`; the `classes_*` fields arrive as block classes.
+- **Input DOM:** key-value rows for `title`, `titleType`, `showDirectory`, `contactGroups` (tag IDs as a list), `showEmails`, `showPhones` and the style fields; the Media Contact items as rows of three cells (heading, emails, phones); the `classes_*` fields arrive as block classes.
 - **Rendered DOM:**
 
 ```html
@@ -364,34 +403,35 @@ blocks/media-contacts/
 ```
 
 - **Empty state:** no contacts: the block and its wrapper are hidden on the page; in Universal Editor and on AEM author the title and the hint `mediaContactsEditorHint` show.
-- **Errors:** a failing sheet request counts as no contacts (`loadDataSheet`); a failing render is logged by `renderWhenLoaded`.
+- **Errors:** a failing sheet request counts as no sheet contacts (`loadDataSheet`); the items still show.
 - **Motion:** `CONTENT_TARGETS['media-contacts']` animates the title and the groups one after another.
 
 ## Extending the Block
 
 1. Add fields in `_media-contacts.json` (at most three short tabs, Additional last), run `npm run build:json`, `npm run lint`, `npm run build:docs`.
 2. Respect the delivery rules (no Text / Title / Type / Alt / MimeType suffixes for values that must be read; no sample content in the template).
-3. Keep the grouping in `media-contacts-data.js` pure and extend its tests.
+3. Keep the grouping and selection in `media-contacts-data.js` pure and extend its tests (`media-contacts-directory.test.mjs`).
 4. A new sheet column: read it in `utils/data.js` `getMediaContacts` and document it in the knowledge base (content architecture, data sheets).
 5. Keep link names and the data layer's address-free click events.
 
 ## For Site Administrators
 
 - **Availability:** the `section`, `columns-container` and `tabs` filters.
-- **Sheet:** `/content/tcs-corp/{country}/{language}/data/media-contacts` per locale (published at `/{locale}/data/media-contacts.json`, mapped in `paths.json`), excluded from the query index.
-- **Publishing dependencies:** publish the sheet after changing it; the pages update without republishing.
+- **Sheet:** `/content/tcs-corp/{country}/{language}/data/media-contacts` per locale and review root (published at `/{locale}/data/media-contacts.json`), excluded from the query index. On 18 November 2026 the three review roots have it (12 rows), the locales don't yet: their press releases show only Media Contact items until it is added.
+- **Publishing dependencies:** publish the sheet after changing it; the pages update without republishing. **Contact groups dropdown:** generated from the published sheets (`npm run build:contacts`); the Media contact groups workflow checks them every six hours (or on demand) and opens a pull request when a group was added, renamed or removed; merge it to update the dialog. The repository setting "Allow GitHub Actions to create and approve pull requests" must be on.
 
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
-| Media Contacts sheet | The contacts | `/{locale}/data/media-contacts.json` | The block is hidden (hint in the editor) |
+| Media Contacts sheet | The contacts maintained once | `/{locale}/data/media-contacts.json` | Only the Media Contact items show (hint in the editor) |
+| Contact groups options | The dropdown of the dialog | `blocks/media-contacts/_media-contacts.json`, generated by `npm run build:contacts` and the Media contact groups workflow | The dropdown lists the groups of its last update; all groups still show when it is left empty |
 | Placeholders | Default title, link names, editor hint | `/{locale}/placeholders.json` | English fallbacks |
 | Icons | Mail and phone icons | `icons/mail.svg`, `icons/phone.svg` | Links without icons |
 
 ## For Architects
 
-- **Role:** a data-driven listing block; the sheet is the single source of the contacts.
+- **Role:** a data-driven listing block; the sheet is the single source of the shared contacts, Media Contact items hold one-off contacts (KB-D-074, superseding KB-D-054).
 - **Rendering:** client side from the sheet JSON (cached per page view by `utils/data.js`); the title is in the delivered HTML, the contacts are not (not indexed by search engines from the HTML).
-- **Dependencies:** `decorators/contact-list-decorator.js`, `heading-decorator.js`, `skeleton-decorator.js`; `utils/data.js`, `environment.js`, `metadata.js`, `placeholders.js`, `properties.js`.
+- **Dependencies:** `decorators/contact-list-decorator.js`, `editor-item-decorator.js`, `heading-decorator.js`; `utils/data.js`, `cells.js`, `environment.js`, `placeholders.js`, `properties.js`, `tags.js`.
 - **Privacy:** the data layer records the kind of contact link and the group, never the address (`utils/privacy.js`).
 - **Replaces:** the Media contacts section the Press Release template appended at the end of the page (not in the content tree, not authorable).
 
@@ -414,9 +454,12 @@ graph LR
 | MC-QA-02 | Heading | Designation empty, region "Asia Pacific" | Heading "Asia Pacific" |
 | MC-QA-03 | Default title | Title empty | "Media contacts" at the Title Type level |
 | MC-QA-04 | Heading levels | Title Type H2 | Group headings H3 |
-| MC-QA-05 | Region | Page `region` Europe, rows for Europe | Only the Europe rows |
-| MC-QA-06 | Region fallback | Page `region` Global | All rows |
-| MC-QA-07 | Empty sheet | No rows | Block hidden on the page; hint in Universal Editor |
+| MC-QA-05 | Contact groups | Corporate Communications & India, Europe, Japan in the dropdown | Those three groups, in sheet order |
+| MC-QA-05b | Contacts sheet | Another sheet (e.g. `/design-block-master/en/data/media-contacts`), a relative path (`data/media-contacts`), a missing sheet | That sheet's groups; the page's own site sheet; the block hidden (only items shown) |
+| MC-QA-06 | Kinds | Show phone numbers off; then Show email addresses off | E-mail addresses only; then phone numbers only, Corporate Communications & India left out |
+| MC-QA-06b | Page contacts | A Media Contact item; then Contacts from the Media Contacts sheet off | The item after the sheet's groups; then the item alone |
+| MC-QA-06c | Migrated block | Title only (blocks authored before the options) | All the sheet's groups (10 on the language master) |
+| MC-QA-07 | Nothing to show | No rows for the chosen groups, or both kinds off | Block hidden on the page; hint in Universal Editor |
 | MC-QA-08 | Links | E-mail and phone | `mailto:` with the address; `tel:` with digits and a leading + |
 | MC-QA-09 | Layout | 375 / 768 / 1440px | One column below 900px; two columns filled top to bottom from 900px |
 | MC-QA-10 | Data layer | Click an e-mail address | `cmp:click` with `interaction` email, `xdm:linkURL` `mailto:`, no address |
@@ -426,17 +469,17 @@ graph LR
 
 | Symptom | Likely cause | Diagnostic steps | Resolution | Verification |
 | ------- | ------------ | ---------------- | ---------- | ------------ |
-| The block doesn't show on the page | The sheet has no rows (or isn't published) | Open `/{locale}/data/media-contacts.json` | Add rows and publish the sheet | The groups appear |
+| The block doesn't show on the page | The sheet has no rows for the chosen groups (or isn't published), or both kinds are off | Open `/{locale}/data/media-contacts.json`; check Contact groups and the Display tab | Add rows and publish the sheet; fix the groups or the toggles | The groups appear |
 | A group appears twice | Different spelling of the designation or region | Compare the rows | Spell them the same | One group |
-| Only some contacts show | The page's `region` matches some rows | Check the page's `region` metadata | Change the region, or the rows' regions | The expected rows |
+| A chosen group doesn't show | The tag's name isn't the group's heading in tag form, and no row has the tag in `group` | Compare the tag (e.g. `middle-east-africa`) with the heading (Middle East & Africa) | Rename the tag, or put the tag ID in the rows' `group` column | The group appears |
 | A phone link dials a wrong number | Letters or extra characters in `phone` | Check the cell | Write the number with digits, spaces and a leading + | `tel:` link correct |
 
 ## Performance Considerations
 
 - **Request:** one sheet request per page view (shared with other users of `utils/data.js`), plus the placeholders (already loaded by the page).
-- **Skeleton:** only when the sheet takes longer than 150ms, so the section isn't held back.
+- **Rendering:** the block waits for the sheet (a few kilobytes, cached per page view) before it renders.
 - **DOM size:** a few elements per contact; no listeners.
-- **Layout shift:** the block sits below the fold on press releases; above the fold, the skeleton reserves part of its height.
+- **Layout shift:** the block sits below the fold on press releases; above the fold it appears once the sheet has loaded.
 
 ## Security and Privacy
 
@@ -449,7 +492,9 @@ graph LR
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
 | Contacts aren't in the delivered HTML | Search engines see them only after rendering | None needed for press contacts | Not planned |
-| No per-block region | All blocks on a page use the page's `region` | Set the page's region | Not planned |
+| The Contact groups list follows the published sheets, not the authored Contacts sheet | A group of another sheet (Contacts sheet) that isn't in the default sheets has no option | Leave Contact groups empty (all the sheet's groups), or add the group to a default sheet | Not planned |
+| A group added to a sheet appears in the dropdown after a merge | The Media contact groups workflow opens a pull request (every six hours, or on demand); the dialog updates once it is merged and synced | Run the workflow (Actions > Media contact groups > Run workflow) and merge its pull request | Not planned (Universal Editor options are fixed in the model) |
+| Old press releases show today's contacts | tcs.com kept the contacts of the time of publication | Media Contact items on a page that must keep its original contacts | Not planned (the user's choice, 18 November 2026) |
 | Pages that relied on the template's Media contacts | They show no contacts until the block is added | Add the block (end of the page) | Not planned |
 
 ## Related Documentation
@@ -476,3 +521,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Version | Change | Source | Date |
 | ------- | ------ | ------ | ---- |
 | 1.0 | New block: the media contacts of the Media Contacts sheet as an authorable block, grouped by designation and region; the Press Release template no longer appends them | Feature branch feature/media-contacts-block | 22 October 2026 |
+| 2.0 | KB-D-074: the sheet's groups again (they had stopped showing since PR #232, which rendered only Media Contact items: about 2,200 migrated press releases showed none), Contact groups (AEM tags), Show email addresses / Show phone numbers, Media Contact items after the groups; `group` / `heading` sheet columns; the page `region` filter described before is gone (not in the code since PR #232) | Feature branch feature/media-contacts-directory | 18 November 2026 |
