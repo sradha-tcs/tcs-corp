@@ -407,19 +407,23 @@
   outline-offset: var(--space-100);
 }
 
-/* cards that clip their content (overflow: hidden): the ring inside their edge */
+/* panel, report and statistic cards: the focus ring inside their edge */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-link:focus-visible::before {
   outline-offset: calc(-2 * var(--border-width-200));
 }
 
-/* panel, report and statistic cards: a coloured panel, the action at the bottom */
+/*
+ * panel, report and statistic cards: a coloured panel, the action at the bottom. Not clipped
+ * (overflow visible): their Panel height (2:3, 9:10) is then a minimum, and a card whose content
+ * needs more (narrow tablet columns, long text) grows instead of cutting off its call to action;
+ * the Image background clips itself (below)
+ */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) {
   --list-card-bg: var(--list-dark);
   --list-card-fg: var(--slate-100);
   --list-card-muted: var(--white-500);
 
   box-sizing: border-box;
-  overflow: hidden;
   gap: var(--space-400);
   padding: var(--list-card-padding);
   border-radius: var(--radius-l);
@@ -678,8 +682,9 @@
   position: absolute;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   margin: 0;
-  border-radius: 0;
+  border-radius: inherit;
   aspect-ratio: auto;
 }
 
