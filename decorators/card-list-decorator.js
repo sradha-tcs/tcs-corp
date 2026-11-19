@@ -305,12 +305,14 @@ export function renderFeature(card, listConfig, { t, level, authors = new Map() 
   const content = element('div', 'list-feature-content');
   const author = listConfig.featureShowAuthor === false ? null : authors.get(card.authorId);
   const readingTime = readingTimeOf(card, t);
+  // as on image cards: an eyebrow (Show eyebrow, the card's own toggle) takes the place of the tags
+  const eyebrow = config.showEyebrow ? card.eyebrow : '';
+  const tags = !eyebrow && config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];
   const title = card.title ? element(level, 'list-feature-title') : null;
   if (title && config.linkItems && card.url) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
   content.append(...[
-    labelRow('list-card-kicker', [...(config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : []),
-      config.showTags ? readingTime : '']),
+    labelRow('list-card-kicker', [eyebrow, ...tags, config.showTags ? readingTime : '']),
     title,
     author ? buildAuthorLockup({
       picture: buildImage(author.image ? { src: author.image, alt: '' } : null),
