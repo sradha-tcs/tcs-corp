@@ -9,9 +9,14 @@
  * | locations      | location-id, location-name, country, region, latitude, longitude |
  * | partners       | partner-id, partner-name, logo, website, tier, description |
  * | social-links   | platform, url, icon, sort-order                           |
- * | media-contacts | id, name, designation, email, phone, region               |
+ * | media-contacts | id, name, designation, email, phone, region, group, heading |
+ *
+ * A sheet can also be read at an authored path (loadSheetAt), e.g. the Media Contacts block's
+ * Contacts sheet.
  */
-import { localeSheetPath, sheetRows } from './site.js';
+import {
+  indexRoot, localeSheetPath, resolvePagePath, sheetRows,
+} from './site.js';
 
 const sheets = new Map();
 
@@ -37,6 +42,28 @@ export function loadDataSheet(name) {
       .catch(() => []));
   }
   return sheets.get(name);
+}
+
+/**
+ * Loads the rows of a spreadsheet at an authored path, with or without .json, once per path: an
+ * AEM path or a published path (resolvePagePath: the AEM path when editing), or a path relative to
+ * the page's site root (its review root, else its locale, as the data sheets: indexRoot).
+ * @param {string} value e.g. /language-master/en/data/media-contacts or data/press-contacts
+ * @returns {Promise<Object[]>} empty when the sheet can't be read
+ */
+export function loadSheetAt(value) {
+  const authored = String(value || '').trim().replace(/\.json$/, '');
+  const relative = authored && !authored.startsWith('/') && !/^[a-z]+:/i.test(authored);
+  const path = relative ? `${indexRoot()}/${authored.replace(/^\.?\//, '')}` : resolvePagePath(authored, '');
+  const url = `${path.replace(/\/$/, '')}.json`;
+  const key = `@${url}`;
+  if (!sheets.has(key)) {
+    sheets.set(key, fetch(url)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((json) => sheetRows(json))
+      .catch(() => []));
+  }
+  return sheets.get(key);
 }
 
 const toAuthor = (row) => ({
@@ -106,17 +133,23 @@ export async function getSocialLinks() {
     .map(({ link }) => link);
 }
 
-/** @returns {Promise<Object[]>} { id, name, designation, email, phone, region, group, heading } */
-export async function getMediaContacts() {
-  return (await loadDataSheet('media-contacts')).map((row) => ({
+/**
+ * The rows of the Media Contacts sheet: the locale's data/media-contacts, or the sheet at an
+ * authored path (the block's Contacts sheet).
+ * @param {string} [sheetPath] empty: the locale's sheet
+ * @returns {Promise<Object[]>} { id, name, designation, email, phone, region, group, heading }
+ */
+export async function getMediaContacts(sheetPath = '') {
+  const rows = sheetPath ? await loadSheetAt(sheetPath) : await loadDataSheet('media-contacts');
+  return rows.map((row) => ({
     id: cell(row, 'id'),
     name: cell(row, 'name'),
     designation: cell(row, 'designation'),
     email: cell(row, 'email'),
     phone: cell(row, 'phone'),
     region: cell(row, 'region'),
-    // optional (KB-D-074): the group's tag ID (tcs-corp:media-contacts/...) and its heading;
-    // without them, rows are grouped by "designation & region", else region
+    // optional (KB-D-074): the group's key (e.g. emea) and its heading; without them, rows are
+    // grouped by heading: "designation & region", else region
     group: cell(row, 'group'),
     heading: cell(row, 'heading'),
   })).filter((contact) => contact.id || contact.name || contact.email || contact.phone);

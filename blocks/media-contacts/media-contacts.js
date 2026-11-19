@@ -31,6 +31,9 @@ function headingOf(props, t) {
   return heading;
 }
 
+/** the authored Contacts sheet (a page picker: a link, or its path as text), else '' */
+const sheetPathOf = (cell) => cell?.querySelector('a[href]')?.getAttribute('href') || textOf(cell);
+
 /**
  * loads and decorates the block
  * @param {Element} block The block element
@@ -43,8 +46,9 @@ export default async function decorate(block) {
   // kinds shown unless turned off
   const fromSheet = isOnByDefault(props.showdirectory);
   const show = { emails: isOnByDefault(props.showemails), phones: isOnByDefault(props.showphones) };
+  const sheet = fromSheet ? getMediaContacts(sheetPathOf(props.contactssheet)) : [];
   const [t, itemHint, sheetRows] = await Promise.all([
-    getPlaceholders(), editorItemHint(rows), fromSheet ? getMediaContacts() : [],
+    getPlaceholders(), editorItemHint(rows), sheet,
   ]);
   const pending = buildEditorItems(contacts.filter((contact) => !isCompleteContact(contact))
     .map(({ row }) => row), itemHint, 'li');

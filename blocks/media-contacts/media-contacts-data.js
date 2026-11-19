@@ -83,13 +83,16 @@ export function groupHeading(row) {
   return designation || region;
 }
 
-/** whether a group (its sheet group column and heading) is one of the selected tags */
+/**
+ * Whether a group is one of the selected Contact groups: a dropdown value (the group in tag form,
+ * groupOptions), the group column, or a tag whose name is the group in tag form.
+ */
 function isSelected(group, selected) {
   if (!selected.length) return true;
   return selected.some((tag) => {
     const id = normalize(tag).toLowerCase();
     if (group.tag && id === group.tag.toLowerCase()) return true;
-    // a tag whose name is the group's heading in tag form, e.g. tcs-corp:media-contacts/europe
+    // europe, or a tag such as tcs-corp:media-contacts/europe
     return groupSlug(id.split(/[/:]/).pop()) === group.slug;
   });
 }
@@ -135,6 +138,33 @@ export function directoryGroups(rows, { groups = [] } = {}) {
       region, tag, emails, phones,
     }) => ({ region: region || (tag ? tagLabel(tag) : ''), emails, phones }))
     .filter(isCompleteContact);
+}
+
+/** a row's group in the form of the Contact groups options (the group column, else the heading) */
+function groupValue(row) {
+  const group = normalize(row.group);
+  return groupSlug(group ? group.split(/[/:]/).pop() : groupHeading(row));
+}
+
+/**
+ * The options of the dialog's Contact groups (generated into the model by
+ * tools/media-contacts/generate-contact-groups.mjs): each group with contacts in one of the
+ * sheets, once, in the order of the first sheet that has it; the value is the group in tag form,
+ * the name its heading.
+ * @param {Object[][]} sheets the rows of each Media Contacts sheet (getMediaContacts rows)
+ * @returns {{ name: string, value: string }[]}
+ */
+export function groupOptions(sheets) {
+  const options = new Map();
+  (sheets || []).forEach((rows) => {
+    (rows || []).forEach((row) => {
+      const value = groupValue(row);
+      if (!value || options.has(value)) return;
+      const [group] = directoryGroups(rows, { groups: [value] });
+      if (group) options.set(value, { name: group.region, value });
+    });
+  });
+  return [...options.values()];
 }
 
 /**

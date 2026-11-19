@@ -6,7 +6,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  directoryGroups, groupHeading, groupSlug, showContacts,
+  directoryGroups, groupHeading, groupOptions, groupSlug, showContacts,
 } from '../../blocks/media-contacts/media-contacts-data.js';
 
 // the language master's data/media-contacts sheet (18 November 2026), as getMediaContacts reads it
@@ -132,5 +132,59 @@ describe('showContacts', () => {
       region: 'Partner', emails: ['a@example.com'], phones: [], row,
     }]);
     assert.equal(shown.row, row);
+  });
+});
+
+describe('groupOptions (the Contact groups dropdown, tools/media-contacts/generate-contact-groups.mjs)', () => {
+  it('lists each group with contacts once, in the order of the first sheet that has it', () => {
+    const other = [
+      { region: 'Europe', email: 'other.europe@example.com' },
+      { region: 'Nordics', phone: '+358 40 756 6655' },
+      { region: 'No contacts' },
+    ];
+    const options = groupOptions([SHEET, other]);
+    assert.deepEqual(options.slice(0, 2), [
+      { name: 'Corporate Communications & India', value: 'corporate-communications-india' },
+      { name: 'Asia Pacific', value: 'asia-pacific' },
+    ]);
+    assert.equal(options.length, 11, 'the 10 groups of the first sheet, then Nordics');
+    assert.deepEqual(options.at(-1), { name: 'Nordics', value: 'nordics' });
+    assert.ok(!options.some(({ name }) => name === 'No contacts'));
+  });
+  it('gives values that select their group', () => {
+    groupOptions([SHEET]).forEach(({ name, value }) => {
+      assert.deepEqual(directoryGroups(SHEET, { groups: [value] }).map((g) => g.region), [name]);
+    });
+  });
+  it('uses the group column when a sheet has one', () => {
+    assert.deepEqual(groupOptions([[{ group: 'emea', heading: 'Europe, Middle East and Africa', email: 'emea@example.com' }]]), [
+      { name: 'Europe, Middle East and Africa', value: 'emea' },
+    ]);
+  });
+  it('is empty without sheets', () => {
+    assert.deepEqual(groupOptions([]), []);
+    assert.deepEqual(groupOptions(undefined), []);
+  });
+});
+
+describe('the dialog model', () => {
+  it('offers Contacts sheet and Contact groups (a dropdown generated from the sheets)', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const model = JSON.parse(await readFile(new URL('../../blocks/media-contacts/_media-contacts.json', import.meta.url)));
+    const { fields } = model.models.find(({ id }) => id === 'media-contacts');
+    const byName = Object.fromEntries(fields.map((f) => [f.name, f]));
+    assert.equal(byName.contactsSheet.component, 'aem-content');
+    assert.equal(byName.contactGroups.component, 'multiselect');
+    const { options } = byName.contactGroups;
+    assert.ok(options.length > 0, 'generated options (npm run build:contacts)');
+    assert.equal(new Set(options.map((o) => o.value)).size, options.length, 'unique values');
+    options.forEach(({ name, value }) => {
+      assert.ok(name, 'a name');
+      assert.match(value, /^[a-z0-9]+(-[a-z0-9]+)*$/, `${value} in tag form`);
+    });
+    ['showDirectory', 'showEmails', 'showPhones'].forEach((name) => {
+      assert.equal(byName[name].component, 'boolean');
+      assert.equal(byName[name].value, true, `${name} on by default`);
+    });
   });
 });

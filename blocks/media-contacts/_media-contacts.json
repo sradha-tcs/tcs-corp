@@ -122,12 +122,68 @@
           "description": "Shows the contacts of the locale's Media Contacts sheet (data/media-contacts), maintained in one place for every page. Off: only the Media Contact items added to this block."
         },
         {
-          "component": "aem-tag",
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "contactsSheet",
+          "label": "Contacts sheet",
+          "description": "The spreadsheet of the contacts, e.g. data/media-contacts or another contacts sheet of the site. Empty: the locale's data/media-contacts.",
+          "condition": {
+            "!==": [
+              {
+                "var": "showDirectory"
+              },
+              false
+            ]
+          }
+        },
+        {
+          "component": "multiselect",
           "valueType": "string",
           "name": "contactGroups",
           "label": "Contact groups",
-          "multi": true,
-          "description": "The groups of the sheet to show, as tags of tcs-corp:media-contacts (e.g. Europe, Japan). Empty: every group, in the order of the sheet. Media Contact items added to this block follow the sheet's groups.",
+          "description": "The groups of the Media Contacts sheet to show, in the sheet's order. Empty: every group. The list comes from the published sheets (npm run build:contacts); a group added to a sheet appears here once its update is merged.",
+          "options": [
+            {
+              "name": "Corporate Communications & India",
+              "value": "corporate-communications-india"
+            },
+            {
+              "name": "Asia Pacific",
+              "value": "asia-pacific"
+            },
+            {
+              "name": "Canada",
+              "value": "canada"
+            },
+            {
+              "name": "Latin America",
+              "value": "latin-america"
+            },
+            {
+              "name": "Australia and New Zealand",
+              "value": "australia-and-new-zealand"
+            },
+            {
+              "name": "Europe",
+              "value": "europe"
+            },
+            {
+              "name": "Japan",
+              "value": "japan"
+            },
+            {
+              "name": "Middle East & Africa",
+              "value": "middle-east-africa"
+            },
+            {
+              "name": "UK",
+              "value": "uk"
+            },
+            {
+              "name": "USA",
+              "value": "usa"
+            }
+          ],
           "condition": {
             "!==": [
               {
