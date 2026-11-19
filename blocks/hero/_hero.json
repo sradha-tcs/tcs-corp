@@ -459,7 +459,8 @@
             {
               "name": "Charcoal Black 40 (deep charcoal)",
               "value": "bg-charcoal-40"
-            }
+            },
+            { "name": "Brand blue (#216AC3)", "value": "bg-brand" }
           ],
           "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay."
         },

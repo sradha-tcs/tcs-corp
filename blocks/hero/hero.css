@@ -150,6 +150,18 @@
   background-color: var(--black-1000);
 }
 
+/*
+ * Brand blue (#216AC3): the background (over an image, its overlay) with white text, as in
+ * Figma; the description at 95% white (5.0:1 on the blue)
+ */
+.hero.bg-brand {
+  --hero-overlay: rgb(33 106 195 / 80%);
+  --hero-title-color: var(--color-text-on-neutral);
+  --hero-description-color: rgb(255 255 255 / 95%);
+
+  background-color: var(--color-bg-brand);
+}
+
 /* Title color and Description color: Black or White whatever the BG Color (after its rules) */
 .hero.title-black {
   --hero-title-color: var(--black-1000);
