@@ -6,8 +6,66 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { toSitePath } from '../../utils/urls.js';
 import { getLocale } from '../../utils/site.js';
 import { getPages } from '../../utils/query-index.js';
+import { LIGHT_CLASSES, headerTheme } from './header-theme.js';
 
 const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+let logoThemeStarted = false;
+
+/**
+ * The logos' colour from the background behind the header bar: <html data-header-theme> (dark:
+ * white logos, light: black logos; header-theme.js decides). Measured in an animation frame,
+ * never while decorating: on load, scroll, resize, the menu (header:menu) and changes to the
+ * page's sections; written only when it changes.
+ * @param {Element} toggleBtn the menu button
+ */
+function setupDynamicLogoTheme(toggleBtn) {
+  if (logoThemeStarted) return;
+  logoThemeStarted = true;
+  const html = document.documentElement;
+  const lightHero = LIGHT_CLASSES.map((name) => `.${name}`).join(', ');
+  const describe = (el) => (el ? {
+    classes: [...el.classList], color: getComputedStyle(el).backgroundColor,
+  } : null);
+  let frame = 0;
+
+  const update = () => {
+    frame = 0;
+    const wrapper = document.querySelector('header .nav-wrapper');
+    const bar = wrapper?.getBoundingClientRect();
+    // the section behind the bar's vertical middle
+    const y = bar?.height ? bar.top + bar.height / 2 : 0;
+    const section = [...document.querySelectorAll('main > .section')].find((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top <= y && rect.bottom > y;
+    });
+    const hero = section?.querySelector('.hero');
+    const theme = headerTheme({
+      menuOpen: toggleBtn.getAttribute('aria-expanded') === 'true',
+      overlay: html.dataset.headerOverlay || '',
+      progress: parseFloat(wrapper?.style.getPropertyValue('--header-scroll-progress')) || 0,
+      barColor: wrapper ? getComputedStyle(wrapper).backgroundColor : '',
+      block: describe(section?.querySelector('.block')),
+      section: describe(section),
+      hasHero: !!hero && !hero.matches(lightHero),
+    });
+    if (html.dataset.headerTheme !== theme) html.dataset.headerTheme = theme;
+  };
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  document.addEventListener('header:menu', schedule);
+  const main = document.querySelector('main');
+  if (main) {
+    new MutationObserver(schedule).observe(main, {
+      childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'data-section-status'],
+    });
+  }
+  schedule();
+}
 
 /**
  * Builds the page tree using query-index.json
@@ -374,4 +432,6 @@ export default async function decorate(block) {
   if (navWrapper && !navWrapper.contains(drawer)) {
     navWrapper.append(drawer);
   }
+
+  if (inHeader) setupDynamicLogoTheme(toggleBtn);
 }

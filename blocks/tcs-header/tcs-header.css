@@ -50,6 +50,40 @@
   }
 }
 
+/*
+ * Logo colour from the background behind the header bar (<html data-header-theme>, set by
+ * tcs-header.js setupDynamicLogoTheme): dark, white logos; light, black logos; black while the
+ * menu is open. The site header moves the logos into its nav (blocks/header), hence `header`;
+ * ordered by specificity.
+ */
+:is(.tcs-header, header) :is(.tcs-header-brand, .tcs-header-group) img {
+  transition: filter 0.2s ease;
+}
+
+html[data-header-theme='dark'] :is(.tcs-header, header) :is(.tcs-header-brand, .tcs-header-group) img {
+  --header-logo-invert: 1;
+
+  filter: brightness(0) invert(1) !important;
+}
+
+html[data-header-theme='light'] :is(.tcs-header, header) :is(.tcs-header-brand, .tcs-header-group) img {
+  --header-logo-invert: 0;
+
+  filter: brightness(0) invert(0) !important;
+}
+
+:is(.tcs-header, header):has(.tcs-header-menu-toggle[aria-expanded='true']) :is(.tcs-header-brand, .tcs-header-group) img {
+  --header-logo-invert: 0;
+
+  filter: brightness(0) invert(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.tcs-header, header) :is(.tcs-header-brand, .tcs-header-group) img {
+    transition: none;
+  }
+}
+
 /* Hide Hamburger toggle & Drawer on Desktop */
 @media (width >= 1200px) {
   .tcs-header-menu-toggle,

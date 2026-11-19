@@ -105,9 +105,9 @@
           "name": "headerOverlay",
           "label": "Header over the first block",
           "value": "",
-          "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero.",
+          "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: detects dark/light background.",
           "options": [
-            { "name": "Auto (over a light Hero)", "value": "" },
+            { "name": "Auto (based on first block)", "value": "" },
             { "name": "Always (over the first block)", "value": "always" },
             { "name": "Never (the page starts below the header)", "value": "never" }
           ]
