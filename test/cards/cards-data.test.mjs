@@ -1,7 +1,9 @@
 // Cards data and the shared card list settings: node --test (npm test)
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { CARD_LAYOUT, buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
+import {
+  CARD_LAYOUT, CARD_LAYOUT_BEFORE_CTAS, buildManualCards, ctasOf, itemToCard,
+} from '../../blocks/cards/cards-data.js';
 import {
   contentTypeLabel, kindOf, normalizePresentation, showsCta, toSafeId,
 } from '../../utils/card-list-config.js';
@@ -173,5 +175,38 @@ describe('cards call to action', () => {
     assert.equal(showsCta(config()), true);
     assert.equal(showsCta(config({ showcta: 'false' })), false);
     assert.equal(showsCta(config({ showcta: 'true' }), {}), true);
+  });
+});
+
+describe('card CTA buttons and Title size', () => {
+  it('still reads the cards rendered before CTA 1 / CTA 2 and Title size (19 cells)', () => {
+    assert.deepEqual(CARD_LAYOUT_BEFORE_CTAS, [null, 'image', 'eyebrow', 'title', 'text', 'subtitle',
+      'tags', 'date', 'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', null, 'kind',
+      'theme', 'analyticsLabel', 'ariaLabel']);
+  });
+  it('maps CTA 1 and CTA 2: label, style (Secondary by default), new tab', () => {
+    const ctas = ctasOf([
+      { href: '/en/research', label: 'Our Research', style: '', target: '' },
+      { href: 'https://partners.example.com', label: '', style: 'Primary-no-arrow', target: 'new-window' },
+    ], 'https://www.tcs.com');
+    assert.deepEqual(ctas.map(({ ref, ...cta }) => cta), [
+      { url: '/en/research', label: 'Our Research', style: 'secondary', newWindow: false, external: false },
+      { url: 'https://partners.example.com', label: 'https://partners.example.com', style: 'primary-no-arrow', newWindow: true, external: true },
+    ]);
+  });
+  it('drops CTAs without a link or with an unsafe one, and unknown styles fall back', () => {
+    assert.deepEqual(ctasOf([{ href: '' }, { href: UNSAFE, label: 'x' }]), []);
+    assert.equal(ctasOf([{ href: '/en/a', label: 'A', style: 'list' }])[0].style, 'secondary');
+    assert.deepEqual(ctasOf(), []);
+  });
+  it('reads the Title size (96px, 48px, H1 to H6), else the card style\'s', () => {
+    const size = (titleSize) => itemToCard({ title: 'A', titleSize }, config(), context).titleSize;
+    assert.equal(size('96'), '96');
+    assert.equal(size('H2'), 'h2');
+    assert.equal(size('h7'), '');
+    assert.equal(size(''), '');
+  });
+  it('a card without CTA buttons has none (the existing cards are unchanged)', () => {
+    assert.deepEqual(itemToCard({ title: 'A' }, config(), context).ctas, []);
   });
 });

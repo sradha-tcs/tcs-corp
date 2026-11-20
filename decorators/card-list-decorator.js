@@ -178,6 +178,34 @@ function displayOf(card, config) {
   };
 }
 
+/**
+ * The card's CTA buttons (Cards: CTA 1, CTA 2), each its own link, above the card's link: in
+ * their CTA Style (Secondary by default, Primary, without the arrow, or a text link), in a new
+ * tab when chosen (announced)
+ */
+function ctaButtonsOf(card, t) {
+  if (!card.ctas?.length) return null;
+  const group = element('div', 'list-card-ctas');
+  card.ctas.forEach((cta) => {
+    const a = element('a', 'list-card-cta', cta.label);
+    a.href = cta.url;
+    // the CTA's link stays editable in place in Universal Editor
+    if (cta.ref) moveInstrumentation(cta.ref, a);
+    const noArrow = cta.style.endsWith('-no-arrow');
+    decorateButton(a, {
+      view: 'button',
+      type: cta.style.replace('-no-arrow', ''),
+      newWindow: cta.newWindow,
+      newTabHint: t('opensInNewTab', '(opens in a new tab)'),
+    });
+    if (noArrow) a.classList.add('list-card-cta-no-arrow');
+    if (cta.external) a.dataset.external = 'true';
+    a.dataset.cmpInteraction = 'cta';
+    group.append(a);
+  });
+  return group;
+}
+
 /** a title kept for screen readers and the heading outline, not shown (Hide Title) */
 function hiddenTitle(title, display) {
   if (title && display.titleHidden) hideVisually(title);
@@ -194,6 +222,9 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   // Card colour paints panel, report and statistic cards; an image card has its image
   const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
   if (theme) article.classList.add(`theme-${theme}`);
+  // Cards: the Title size (96px, 48px, H1 to H6)
+  if (card.titleSize) article.classList.add(`title-size-${card.titleSize}`);
+  const ctaButtons = ctaButtonsOf(card, t);
   const readingTime = readingTimeOf(card, t);
   // Show content type off (List): image cards show neither its tag nor its label
   const tags = config.showTags ? visibleTags(card, {
@@ -252,17 +283,27 @@ export function renderCard(card, listConfig, { t, level, kind }) {
       description].filter(Boolean));
     parts = [top, bottom.children.length ? bottom : null];
   } else {
+    // Cards: a panel with CTA buttons has the title at the top and its Label, description and
+    // buttons at the bottom; other panels are as before (no Label)
+    const bottom = ctaButtons ? element('div', 'list-card-bottom') : null;
+    const label = bottom && card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null;
+    if (bottom) bottom.append(...[label, description, ctaButtons].filter(Boolean));
     parts = [
       theme === 'image' ? mediaOf(card, config, FEATURE_BREAKPOINTS) : null,
       labelRow('list-card-kicker', [eyebrow || tags[0]]),
       title,
-      description,
+      bottom || description,
     ];
   }
+  // the CTA buttons of the other card styles: after the text
+  const panelBottom = ctaButtons?.parentElement;
+  if (ctaButtons && !panelBottom) parts.push(ctaButtons);
   if (cta) {
     const action = element('p', 'list-card-action');
     action.append(cta);
-    parts.push(action);
+    // a panel's call to action joins its bottom group, after the CTA buttons
+    if (panelBottom) panelBottom.append(action);
+    else parts.push(action);
   }
   article.append(...parts.filter(Boolean));
   if (card.analyticsLabel) article.dataset.analyticsLabel = card.analyticsLabel;

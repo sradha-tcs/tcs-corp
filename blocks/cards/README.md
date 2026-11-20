@@ -342,6 +342,12 @@ A = Link
 B = Link text
 C = Call to action label
 D = Open in a new tab
+E = CTA 1 Link
+F = CTA 1 Title
+G = CTA 1 Style
+H = CTA 1 Open in a new tab
+I = CTA 2 Link
+J = CTA 2 Title
 ```
 
 ```text
@@ -356,8 +362,9 @@ The Display tab of the Card properties in Universal Editor, with the fields of t
 Annotations:
 A = Card style
 B = Card colour
-C = Analytics label
-D = Accessibility label
+C = Title size
+D = Analytics label
+E = Accessibility label
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -460,8 +467,8 @@ C = Arrow
 3. **Enter the header (Content tab).** Title and Heading type (H2 under the page H1), an optional Description, and a CTA link with CTA text and CTA style for a "View all" link. Without a Title, fill **Accessible list label** so screen readers can name the cards.
 4. **Choose the presentation (Display tab).** Display as teaser (cards; off: rows of links), Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format and Image loading.
 5. **Choose the layout per breakpoint (Display tab).** For Desktop, Tablet and Mobile choose Grid (columns) or Horizontal scroll (items visible or a card width, previous / next buttons, scroll indicator), and the gap. The scroll options (snap, step, loop, initial item, edge) appear once a breakpoint scrolls.
-6. **Add the cards.** Select the Cards block and use **Add (+)** → **Card**. In each Card fill at least a Title, a Description or an Image (otherwise the card isn't shown). Add a Link (a page from the picker, or `https://…`) and, for a button, a Call to action label. Duplicate, delete and drag Cards in the content tree to reorder them; cards render in the content tree order.
-7. **Exceptions per card (Card › Display tab).** Card style and Card colour override the block's for one card; Analytics label and Accessibility label are optional.
+6. **Add the cards.** Select the Cards block and use **Add (+)** → **Card**. In each Card fill at least a Title, a Description or an Image (otherwise the card isn't shown). Add a Link (a page from the picker, or `https://…`) and, for a button, a Call to action label. For one or two buttons of their own at the bottom of the card (e.g. "Our Research" and "Our Partners"), fill **CTA 1** and **CTA 2** in the Card's Link tab: Link, Title, Style (Secondary Button by default, Primary, without the arrow, or a Text link) and Open in a new tab. Duplicate, delete and drag Cards in the content tree to reorder them; cards render in the content tree order.
+7. **Exceptions per card (Card › Display tab).** Card style and Card colour override the block's for one card; **Title size** sets the title's font size (96px, 48px or H1 to H6, the site's heading sizes; the heading level doesn't change); Analytics label and Accessibility label are optional.
 8. **Preview.** Switch Universal Editor to Preview, or open the page on aem.page; check every breakpoint (desktop from 1200px, tablet 600–1199px, mobile below 600px).
 9. **Publish** the page, and the images it uses, from AEM.
 10. **Validate the published output** on aem.live: every card is shown, links and calls to action open the right page, tag labels are taxonomy labels, panel texts aren't clipped.
@@ -580,7 +587,7 @@ Model `card`; template name "Card" (the block class AEM renders).
 | Eyebrow | `eyebrow` | text | No | — | — | A short label above the title, e.g. Perspective. | — |
 | Title | `title` | text | No | — | — | Statistic cards: the number, e.g. 4bn. | — |
 | Description | `text` | richtext | No | "" | — | — | — |
-| Label | `subtitle` | text | No | — | — | Statistic cards: the label above the description, e.g. Revenue. | — |
+| Label | `subtitle` | text | No | — | — | Statistic cards and panels: the label above the description, e.g. Revenue or Learning. | — |
 | Tags | `tags` | aem-tag (multiple) | No | — | — | — | — |
 | Date | `date` | date-time | No | — | — | Shown in the Date format of the block. | — |
 | Content type | `contentLabel` | text | No | — | — | e.g. Article or Report (report cards in the Mixed style). | — |
@@ -594,6 +601,14 @@ Model `card`; template name "Card" (the block class AEM renders).
 | Link text | `linkText` | text | No | — | — | The title when the card has none. Delivered with `link` (field collapse). | — |
 | Call to action label | `ctaLabel` | text | No | — | — | Shows a call to action (the card's one link); empty: the title is the link. | — |
 | Open in a new tab | `newTab` | select | No | "" | As the block (""), Yes (`true`), No (`false`) | — | — |
+| CTA 1 Link | `cta1` | aem-content | No | — | — | A button at the bottom of the card, e.g. Find out more; empty: no button. | — |
+| CTA 1 Title | `cta1Text` | text | No | — | — | Delivered with `cta1` (field collapse). | — |
+| CTA 1 Style | `cta1Style` | select | No | "" | Secondary Button (""), Secondary Button (no arrow) (`secondary-no-arrow`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Text link (`tertiary`) | — | — |
+| CTA 1 Open in a new tab | `cta1Target` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
+| CTA 2 Link | `cta2` | aem-content | No | — | — | A second button, below CTA 1, e.g. Our Partners; empty: no button. | — |
+| CTA 2 Title | `cta2Text` | text | No | — | — | Delivered with `cta2` (field collapse). | — |
+| CTA 2 Style | `cta2Style` | select | No | "" | Secondary Button (""), Secondary Button (no arrow) (`secondary-no-arrow`), Primary Button (`primary`), Primary Button (no arrow) (`primary-no-arrow`), Text link (`tertiary`) | — | — |
+| CTA 2 Open in a new tab | `cta2Target` | select | No | "" | Default (""), Open in New Window (`new-window`) | — | — |
 
 #### Display tab — Card
 
@@ -601,6 +616,7 @@ Model `card`; template name "Card" (the block class AEM renders).
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Card style | `kind` | select | No | "" | As the block (""), Image card (`image`), Panel (`panel`), Report (`report`), Statistic (`stat`) | — | — |
 | Card colour | `theme` | select | No | "" | As the block (""), Dark (`dark`), Navy (`navy`), Brand blue (`brand`), Light blue (`brand-light`), Light grey (`grey`), Mid grey (`mid-grey`), Grey gradient (`gradient`), Image background (`image`) | Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour. | — |
+| Title size | `titleSize` | select | No | "" | Default (the card style's) (""), 96px (`96`), 48px (`48`), H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | The title's font size; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is. | — |
 | Analytics label | `analyticsLabel` | text | No | — | maxLength: 120 | — | — |
 | Accessibility label | `ariaLabel` | text | No | — | — | The link's accessible name, when the title or call to action isn't enough. | — |
 
@@ -844,6 +860,7 @@ D = Meta row
 - **Fields:** Title, Description; Eyebrow (or the first tag); Link. Image only with Card colour Image background (the image covers the card).
 - **Dialog:** Card style Panel; Card colour (default dark `#20293c`); Panel height Portrait (2:3), Compact (9:10) or Content.
 - **Rendering:** `list-card-panel` with kicker, title, description and the call to action "Explore" (placeholder `explore`) unless a label is set or Show call to action is off.
+- **Panel with CTA buttons (Figma "Ready for what comes next"):** a panel with CTA 1 or CTA 2 has the title at the top and, at the bottom (`div.list-card-bottom`), its Label (`p.list-card-subtitle`, 0.875rem semibold), the description and the buttons (`div.list-card-ctas`, stacked, 0.875rem, Secondary in the card's text colour). E.g. Card colour Light grey, Title size H2 (2.5rem from 900px), Desktop columns 3. Panels without CTA buttons are unchanged (their Label isn't shown).
 - **Responsive:** fixed shapes with `overflow: hidden` clip long texts; Panel height Content fits the text.
 - **Accessibility:** the focus ring is drawn inside the card edge; check contrast on Brand blue and Image background.
 - **Data layer:** `xdm:variant: panel`.
@@ -1167,14 +1184,15 @@ blocks/cards/
 <!-- END GENERATED: files -->
 
 - **JavaScript (`cards.js`):** reads the block (`readBlock`), normalizes the settings (`normalizePresentation` with `idPrefix: 'cards'`, plus `emptyBehavior`), builds the header (`buildCardListHeader`), the cards (`buildManualCards`), resolves tag labels (`resolveTags`), applies the layout classes (`applyCardListLayout`, plus `source-manual`), renders (`renderCardList` or `renderCardListEmpty`), adds editor placeholders (`renderEditorItems`) and the data layer state (`trackCardList`).
-- **Data (`cards-data.js`, no DOM):** `CARD_LAYOUT` (the Card cells in model order with `null` for the three dialog tab cells), `itemToCard` (one card; `null` for no content or an unsafe link), `buildManualCards` (authored order, ids renumbered after dropped cards).
+- **Data (`cards-data.js`, no DOM):** `CARD_LAYOUT` (the Card cells in model order with `null` for the three dialog tab cells), `CARD_LAYOUT_BEFORE_CTAS` (the 19 cells of Cards rendered before CTA 1 / CTA 2 and Title size), `ctasOf` (CTA 1 / CTA 2: safe links, label, `CTA_STYLES` style, new tab), `TITLE_SIZES`, `itemToCard` (one card; `null` for no content or an unsafe link), `buildManualCards` (authored order, ids renumbered after dropped cards).
 - **CSS (`cards.css`):** only imports `styles/card-list.css` (the List's presentation).
-- **Input DOM:** key-value rows (`key | value`, keys compared by `normalizeKey` against `PRESENTATION_PROPERTIES`); Card rows (in the editor `data-aue-model="card"`; on the page any row that isn't a setting row). A Card row with more than two cells is matched to the 16 fields with `withoutTabCells` and `matchCells` (by order and content: an image, a `YYYY-MM-DD` date, a link, `true` / `false`, a known style or colour, single-line text), so fields AEM leaves out don't shift the others; a row with two cells or fewer is a legacy card (image + rich text, `readLegacyText`).
+- **Input DOM:** key-value rows (`key | value`, keys compared by `normalizeKey` against `PRESENTATION_PROPERTIES`); Card rows (in the editor `data-aue-model="card"`; on the page any row that isn't a setting row). A Card row with more than two cells is matched to the 23 fields (the 16 fields before CTA 1 / CTA 2 and Title size for a row of 19 cells) with `withoutTabCells` and `matchCells` (by order and content: an image, a `YYYY-MM-DD` date, a link, `true` / `false`, a known style or colour, single-line text), so fields AEM leaves out don't shift the others; a row with two cells or fewer is a legacy card (image + rich text, `readLegacyText`).
 - **Rendered DOM:** block classes `card-list`, `{bp}-{grid,scroll}`, `{bp}-controls`, `{bp}-indicator`, `snap`, `snap-{start,center}`, `hide-scrollbar`, `no-swipe`, `edge-bleed`, `equal-height`, `stretch`, `feature-first`, `display-teaser` or `links`, `style-{cardStyle}`, `ratio-{ratio}`, `panel-{height}`, style options, `source-manual`; custom properties `--list-{columns,gap,visible,card-width}-{bp}`; children `div.list-header`, optional `article.list-feature`, `div.list-scroller[role=region]` > `ul.list-items` > `li.list-item[data-card-id][data-cmp-id][data-cmp-position]` > `article.list-card.list-card-{kind}` (or `article.list-row`), `div.list-nav` (indicator, previous / next). Data attributes: `data-cards-decorated`, `data-analytics` (`custom` / `off`), `data-overflow` on the scroller.
 - **Decoration flow:** guarded by `data-cards-decorated` (a second call does nothing); awaits the placeholders and, when cards have tags, the taxonomy.
 - **Events and async:** the scroller (`createScroller`) listens to scroll, resize, keydown and pointer events; no custom events are dispatched.
 - **Error handling:** invalid settings fall back to defaults; cards without content or with unsafe links are dropped; no cards: hidden (empty and `hidden` on the block and its wrapper) or the empty message; in the editor always the hint.
-- **Exports:** `cards.js` default `decorate`; `cards-data.js` `CARD_LAYOUT`, `itemToCard`, `buildManualCards`.
+- **Exports:** `cards.js` default `decorate`; `cards-data.js` `CARD_LAYOUT`, `CARD_LAYOUT_BEFORE_CTAS`, `CTA_STYLES`, `TITLE_SIZES`, `ctasOf`, `itemToCard`, `buildManualCards`.
+- **CTA buttons and Title size (rendered DOM):** `article.list-card.title-size-{96,48,h1…h6}`; `div.list-card-ctas` > `a.list-card-cta.button.{secondary,primary,tertiary}` (`list-card-cta-no-arrow` without the arrow, `data-cmp-interaction="cta"`, `target="_blank"` with the new-tab hint), each its own link above the card's link (`z-index: 1`).
 - **Parent / child contracts:** Card rows keep their instrumentation on the rendered `li` (`moveInstrumentation`) and the rich text on its body; rows not rendered as cards become editor placeholders.
 - **Data-layer hooks:** `data-cmp-id`, `data-cmp-position`, `data-cmp-interaction`, `data-analytics-label` on card links and articles.
 
@@ -1345,3 +1363,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.18 | Additional tab Content animation (repeated items staggered) | docs/handover revision history | 18 October 2026 |
 | Handover 2.27 | Block ecosystem audit: header CTA style applied, focus ring inside panel / report / statistic cards, Card colour only on those cards, previous / next keep the focus, Component ID and Reduced motion support removed from the dialog | docs/handover revision history | 19 October 2026 |
 | Handover 2.34 | Theme contract: List / Cards image cards light on dark backgrounds | docs/handover revision history | 20 October 2026 |
+| Not recorded | Card CTA 1 and CTA 2 (Link, Title, Style, Open in a new tab, as the Teaser's Link) and Title size (96px, 48px, H1 to H6); panels with CTA buttons show the Label, description and buttons at the bottom (fixed CTA fields instead of a multifield, KB-D-015) | Branch feature/card-link-ctas | 20 November 2026 |

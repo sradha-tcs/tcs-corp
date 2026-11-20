@@ -785,6 +785,57 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   background-color: var(--color-text-default);
 }
 
+/*
+ * Cards: Title size, at every width: 96px (6rem), 48px (3rem) or a heading size (H1 to H6, the
+ * --heading-font-size-* tokens, larger from the tablet up); long words wrap in narrow cards
+ */
+.card-list .list-card.title-size-96 {
+  --list-title-size: 6rem;
+  --list-title-line: 1;
+}
+
+.card-list .list-card.title-size-48 {
+  --list-title-size: 3rem;
+  --list-title-line: 1.1;
+}
+
+.card-list .list-card.title-size-h1 {
+  --list-title-size: var(--heading-font-size-xxl);
+  --list-title-line: 1.2;
+}
+
+.card-list .list-card.title-size-h2 {
+  --list-title-size: var(--heading-font-size-xl);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h3 {
+  --list-title-size: var(--heading-font-size-l);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h4 {
+  --list-title-size: var(--heading-font-size-m);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h5 {
+  --list-title-size: var(--heading-font-size-s);
+  --list-title-line: 1.4;
+}
+
+.card-list .list-card.title-size-h6 {
+  --list-title-size: var(--heading-font-size-xs);
+  --list-title-line: 1.4;
+}
+
+.card-list .list-card:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
+  font-size: var(--list-title-size);
+  line-height: var(--list-title-line);
+  letter-spacing: calc(-0.02 * var(--list-title-size));
+  overflow-wrap: break-word;
+}
+
 /* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
 .card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
@@ -1108,6 +1159,55 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   .card-list.impact-cards {
     gap: var(--space-1200);
   }
+}
+
+/*
+ * Cards: the CTA buttons (CTA 1, CTA 2), stacked, each its own link above the card's link, at
+ * 0.875rem (14px); a Secondary Button takes the card's text colour on panel, report and statistic
+ * cards (until hover or focus)
+ */
+.card-list .list-card-ctas {
+  --button-font-size: 0.875rem;
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-300);
+}
+
+.card-list .list-card-ctas a.list-card-cta-no-arrow::after {
+  display: none;
+}
+
+.card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-ctas .button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--list-card-fg);
+  color: var(--list-card-fg);
+}
+
+/*
+ * Cards: a panel with CTA buttons (Figma): the title at the top; the Label (0.875rem semibold),
+ * the description and the buttons at the bottom
+ */
+.card-list .list-card-panel > .list-card-bottom {
+  gap: var(--space-600);
+  margin-top: auto;
+}
+
+.card-list .list-card-panel .list-card-bottom .list-card-subtitle {
+  color: var(--list-card-fg);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.card-list .list-card-panel .list-card-subtitle + .list-card-description {
+  margin-top: var(--space-200);
+}
+
+.card-list .list-card-panel .list-card-bottom > .list-card-action {
+  margin: 0;
+  padding-top: 0;
 }
 
 /*

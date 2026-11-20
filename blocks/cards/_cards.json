@@ -862,7 +862,7 @@
           "valueType": "string",
           "name": "subtitle",
           "label": "Label",
-          "description": "Statistic cards: the label above the description, e.g. Revenue."
+          "description": "Statistic cards and panels: the label above the description, e.g. Revenue or Learning."
         },
         {
           "component": "aem-tag",
@@ -935,6 +935,124 @@
             {
               "name": "No",
               "value": "false"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "cta1",
+          "label": "CTA 1 Link",
+          "description": "A button at the bottom of the card, e.g. Find out more; empty: no button."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cta1Text",
+          "label": "CTA 1 Title"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cta1Style",
+          "label": "CTA 1 Style",
+          "options": [
+            {
+              "name": "Secondary Button",
+              "value": ""
+            },
+            {
+              "name": "Secondary Button (no arrow)",
+              "value": "secondary-no-arrow"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Primary Button (no arrow)",
+              "value": "primary-no-arrow"
+            },
+            {
+              "name": "Text link",
+              "value": "tertiary"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cta1Target",
+          "label": "CTA 1 Open in a new tab",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "cta2",
+          "label": "CTA 2 Link",
+          "description": "A second button, below CTA 1, e.g. Our Partners; empty: no button."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cta2Text",
+          "label": "CTA 2 Title"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cta2Style",
+          "label": "CTA 2 Style",
+          "options": [
+            {
+              "name": "Secondary Button",
+              "value": ""
+            },
+            {
+              "name": "Secondary Button (no arrow)",
+              "value": "secondary-no-arrow"
+            },
+            {
+              "name": "Primary Button",
+              "value": "primary"
+            },
+            {
+              "name": "Primary Button (no arrow)",
+              "value": "primary-no-arrow"
+            },
+            {
+              "name": "Text link",
+              "value": "tertiary"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "cta2Target",
+          "label": "CTA 2 Open in a new tab",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Open in New Window",
+              "value": "new-window"
             }
           ],
           "value": ""
@@ -1018,6 +1136,52 @@
           ],
           "value": "",
           "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleSize",
+          "label": "Title size",
+          "options": [
+            {
+              "name": "Default (the card style's)",
+              "value": ""
+            },
+            {
+              "name": "96px",
+              "value": "96"
+            },
+            {
+              "name": "48px",
+              "value": "48"
+            },
+            {
+              "name": "H1",
+              "value": "h1"
+            },
+            {
+              "name": "H2",
+              "value": "h2"
+            },
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
+          ],
+          "value": "",
+          "description": "The title's font size; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is."
         },
         {
           "component": "text",
