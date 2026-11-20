@@ -111,13 +111,33 @@ describe('shared card list settings', () => {
 
   it('clamps and validates the values', () => {
     const c = config({
-      cardstyle: 'Stat', desktopcolumns: '9', mobilegap: '-4', tabletcardwidth: '80', desktopmode: 'carousel',
+      cardstyle: 'Stat', desktopcolumns: '9', mobilegap: '-4', tabletcardwidth: '80', desktopmode: 'masonry',
     });
     assert.equal(c.cardStyle, 'stat');
     assert.equal(c.responsive.desktop.columns, 6);
     assert.equal(c.responsive.mobile.gap, 0);
     assert.equal(c.responsive.tablet.cardWidth, 0);
     assert.equal(c.responsive.desktop.mode, 'grid');
+  });
+
+  it('reads a Carousel: Columns whole cards per view, previous / next, no indicator', () => {
+    const c = config({
+      mobilemode: 'carousel',
+      mobilecolumns: '1',
+      mobilevisible: '1.2',
+      mobileindicator: 'true',
+      mobilecontrols: 'false',
+      desktopmode: 'carousel',
+      desktopcolumns: '4',
+      desktopcardwidth: '300',
+    });
+    assert.deepEqual(
+      ['mode', 'visible', 'controls', 'indicator'].map((key) => c.responsive.mobile[key]),
+      ['carousel', 1, true, false],
+    );
+    assert.equal(c.responsive.desktop.visible, 4);
+    assert.equal(c.responsive.desktop.cardWidth, 0);
+    assert.equal(c.responsive.tablet.mode, 'grid');
   });
 
   it('keeps the known style options only', () => {

@@ -17,6 +17,11 @@
   --list-thumb: var(--slate-600);
   --list-bleed: 0rem;
 
+  /* Carousel: the image ratio (button position) and the grey of the first / last button */
+  --list-ratio: calc(16 / 9);
+  --list-carousel-top: 50%;
+  --list-carousel-disabled: rgb(153 153 153 / 80%);
+
   /* the active breakpoint's layout (mobile first) */
   --list-columns: var(--list-columns-mobile, 1);
   --list-gap: var(--list-gap-mobile, 1rem);
@@ -1131,6 +1136,201 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 
   .card-list.desktop-scroll.desktop-controls .list-controls {
     display: flex;
+  }
+}
+
+/*
+ * Carousel (Desktop / Tablet / Mobile display Carousel, Figma "Press releases"): Columns whole
+ * cards per view; previous / next on the cards, brand blue, grey at the first and last card,
+ * centred on the image of image cards (the image height from the card width and Image ratio),
+ * else on the cards; the cards and buttons share a frame (.list-stage, its width is 100cqi)
+ */
+.card-list.ratio-1-1 {
+  --list-ratio: 1;
+}
+
+.card-list.ratio-4-3 {
+  --list-ratio: calc(4 / 3);
+}
+
+.card-list.ratio-3-2 {
+  --list-ratio: calc(3 / 2);
+}
+
+.card-list.style-image:has(.list-stage .list-card-media) {
+  --list-carousel-top: calc(var(--list-item-size) / var(--list-ratio) / 2);
+}
+
+.card-list .list-stage {
+  position: relative;
+  container-type: inline-size;
+}
+
+@media (width < 600px) {
+  .card-list.mobile-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-300);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.mobile-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.mobile-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.mobile-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: transparent;
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.mobile-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.mobile-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    background-color: var(--list-carousel-disabled);
+    color: var(--white-1000);
+    cursor: not-allowed;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.mobile-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.mobile-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.mobile-carousel .list-items {
+    padding-inline-end: 0;
+  }
+}
+
+@media (600px <= width < 1200px) {
+  .card-list.tablet-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-300);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.tablet-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.tablet-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.tablet-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: transparent;
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.tablet-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.tablet-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    background-color: var(--list-carousel-disabled);
+    color: var(--white-1000);
+    cursor: not-allowed;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.tablet-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.tablet-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.tablet-carousel .list-items {
+    padding-inline-end: 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .card-list.desktop-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-300);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.desktop-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.desktop-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.desktop-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: transparent;
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.desktop-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.desktop-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    background-color: var(--list-carousel-disabled);
+    color: var(--white-1000);
+    cursor: not-allowed;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.desktop-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.desktop-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.desktop-carousel .list-items {
+    padding-inline-end: 0;
   }
 }
 

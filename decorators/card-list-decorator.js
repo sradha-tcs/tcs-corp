@@ -377,8 +377,10 @@ export function applyCardListLayout(block, config) {
   block.classList.add('card-list');
   BREAKPOINTS.forEach((bp) => {
     const r = config.responsive[bp];
-    const scroll = r.mode === 'horizontal-scroll';
+    // a carousel scrolls too (the scroll classes), with its own class for its buttons
+    const scroll = r.mode !== 'grid';
     block.classList.add(`${bp}-${scroll ? 'scroll' : 'grid'}`);
+    if (r.mode === 'carousel') block.classList.add(`${bp}-carousel`);
     if (scroll && r.controls) block.classList.add(`${bp}-controls`);
     if (scroll && r.indicator) block.classList.add(`${bp}-indicator`);
     block.style.setProperty(`--list-columns-${bp}`, r.columns);
@@ -459,8 +461,6 @@ export function renderCardList(block, {
     const first = parts.find((part) => part?.querySelector?.('img'))?.querySelector('img') || list.querySelector('img');
     if (first) first.fetchPriority = 'high';
   }
-  if (listed.length) parts.push(viewport);
-
   // previous / next and the scroll indicator, shown where the breakpoint scrolls
   const nav = element('div', 'list-nav');
   const indicator = element('div', 'list-indicator');
@@ -472,7 +472,15 @@ export function renderCardList(block, {
   [previous, next].forEach((button) => button.setAttribute('aria-controls', viewport.id));
   controls.append(previous, next);
   nav.append(indicator, controls);
-  if (listed.length) parts.push(nav);
+  // Carousel (a breakpoint's display): the cards and the buttons in one frame, the buttons on
+  // the images (styles/card-list.css)
+  if (listed.length && BREAKPOINTS.some((bp) => config.responsive[bp].mode === 'carousel')) {
+    const stage = element('div', 'list-stage');
+    stage.append(viewport, nav);
+    parts.push(stage);
+  } else if (listed.length) {
+    parts.push(viewport, nav);
+  }
 
   block.replaceChildren(...parts.filter(Boolean));
   createScroller(viewport, {
@@ -507,7 +515,7 @@ export function buildCardListSkeleton(config, { title, count = Infinity }) {
   }
   const r = config.responsive[currentBreakpoint()];
   const rows = r.columns === 1 ? 2 : 1;
-  const shown = r.mode === 'horizontal-scroll' ? Math.ceil(r.visible) : r.columns * rows;
+  const shown = r.mode !== 'grid' ? Math.ceil(r.visible) : r.columns * rows;
   const total = Math.max(1, Math.min(shown, count, config.maxItems ?? Infinity));
   const shape = () => {
     const stack = skeletonElement('skeleton-stack');
