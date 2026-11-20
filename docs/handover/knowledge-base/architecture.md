@@ -119,7 +119,7 @@ There is no bundler, so a module's imports are only discovered after it loads (A
 | Dialogs | `component-models.json` (fields per model) | generated from `models/_component-models.json` and partials |
 | Allowed children | `component-filters.json`: `main` allows `section`, `gen-carousel`, `tabs`, `columns-container`; `section` allows 26 components | generated from `models/_component-filters.json` and partials |
 | Page properties | `models/_page.json` (model `page-metadata`): Title, Description, Keywords, Page Type, Navigation, Footer, 404 Page | [content-architecture.md](./content-architecture.md) |
-| Section properties | `models/_section.json`: Section Name, Style, Width Type, Rounded edge, Background Image, Image alt text, Anchor name | `scripts.js` `decorateSectionsWithOptions` |
+| Section properties | `models/_section.json`: Section Name, Style, Width Type, Text width (mobile / tablet / desktop), Rounded edge, Background Image, Image alt text, Anchor name | `scripts.js` `decorateSectionsWithOptions` |
 | xwalk features | `xwalk.json`: `public.xwalk.multi-field.enabled: true` | AGENTS.md: repeating content uses item children, not composite multifields |
 | Live editing | `scripts/editor-support.js` | below |
 

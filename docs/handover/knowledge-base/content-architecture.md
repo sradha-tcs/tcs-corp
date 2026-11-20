@@ -91,6 +91,7 @@ Page tags are not a field of this model; they come from the standard AEM page pr
 | Section Name | `name` | — | Not one of the section options read by `scripts.js` |
 | Style | `style` | section classes | Default, Grey `bg-grey`, Dark `bg-dark`, Dark Green `bg-dark-green` (colour only; dark ones apply the theme contract in `styles/styles.css`) |
 | Width Type | `sectionWidth` | `data-sectionwidth` | `fixed-width` class (full width is the default) |
+| Text width (mobile / tablet / desktop) | `textWidthMobile`, `textWidthTablet`, `textWidthDesktop` | `data-textwidthmobile`, `data-textwidthtablet`, `data-textwidthdesktop` | `text-width-{device}-{75,66,50,33}` classes: the section's default content takes that share of the row, left-aligned (empty: full width) |
 | Rounded edge | `roundedEdge` | `data-roundededge` | `rounded` class |
 | Background Image / Image alt text | `backgroundImage`, `backgroundImageAlt` | data attributes | `.section-background` with a responsive picture, `has-background` |
 | Anchor name | `anchorName` | `data-anchorname` | section `id` (suffixed `-2`, `-3` when taken) |

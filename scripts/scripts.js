@@ -35,7 +35,11 @@ export { decorateButtons };
 // section options (models/_section.json), keyed by their normalized section-metadata row name
 const SECTION_OPTIONS = [
   'sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt', 'anchorname',
+  'textwidthmobile', 'textwidthtablet', 'textwidthdesktop',
 ];
+// Text width per device (% of the row; empty: full), as text-width-{device}-{value} classes
+const TEXT_WIDTH_DEVICES = ['mobile', 'tablet', 'desktop'];
+const TEXT_WIDTHS = ['75', '66', '50', '33'];
 const BACKGROUND_BREAKPOINTS = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }];
 
 /**
@@ -291,6 +295,11 @@ export function decorateSectionsWithOptions(container) {
     if (rows.roundededge?.text.toLowerCase() === 'true') {
       section.classList.add('rounded');
     }
+    // Text width per device: the section's default content takes that share of the row
+    TEXT_WIDTH_DEVICES.forEach((device) => {
+      const width = (rows[`textwidth${device}`]?.text || '').replace('%', '').trim();
+      if (TEXT_WIDTHS.includes(width)) section.classList.add(`text-width-${device}-${width}`);
+    });
     // Anchor name: the id Anchor List links jump to
     const anchor = toClassName(rows.anchorname?.text.replace(/^#/, '') || '');
     // a taken id gets a suffix (-2, -3, ...), as block Anchor IDs do
