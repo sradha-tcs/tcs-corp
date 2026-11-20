@@ -587,6 +587,24 @@
   line-height: 1.6;
 }
 
+/*
+ * statistic cards (Figma "Feature card/Card - Stat"): Label and description 1rem / 1.625
+ * (16px / 26px), -0.01em, 1.5rem apart; the description #5a5a5a on the default and light Card
+ * colours (Dark, Navy, Brand blue and Image background keep their muted text)
+ */
+.card-list .list-card-stat .list-card-bottom {
+  gap: var(--space-600);
+}
+
+.card-list .list-card-stat :is(.list-card-subtitle, .list-card-description) {
+  line-height: 1.625;
+  letter-spacing: calc(-0.01 * var(--list-stat-text-size));
+}
+
+.card-list .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image) .list-card-description {
+  color: var(--color-text-neutral-secondary);
+}
+
 /* the feature card (Figma variation 2): the image behind tags, title and author */
 .card-list .list-feature {
   position: relative;
@@ -884,6 +902,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   overflow-wrap: break-word;
 }
 
+/* a statistic card's number in a Title size: 1.1 and -0.05em as the number (Figma: 96 / 106px, -4.8px) */
+.card-list .list-card-stat:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
+  line-height: 1.1;
+  letter-spacing: calc(-0.05 * var(--list-title-size));
+}
+
 /* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
 .card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
@@ -1064,7 +1088,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     --list-panel-title-size: 1.75rem;
     --list-panel-text-size: 1rem;
     --list-stat-number-size: 6rem;
-    --list-stat-text-size: 1.125rem;
     --list-meta-size: 1rem;
     --list-row-title-size: 2.5rem;
   }
@@ -1479,16 +1502,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
  * 1.5rem below the description; statistic cards without buttons are unchanged
  */
 .card-list .list-card-stat .list-card-bottom:has(> .list-card-ctas) > .list-card-subtitle + .list-card-description {
-  margin-top: var(--space-400);
-}
-
-.card-list .list-card-stat .list-card-bottom > .list-card-ctas {
   margin-top: var(--space-200);
 }
 
 .card-list .list-card-stat .list-card-bottom > .list-card-action {
   margin: 0;
-  padding-top: var(--space-200);
+  padding-top: 0;
 }
 
 /*
