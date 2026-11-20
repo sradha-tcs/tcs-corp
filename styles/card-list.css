@@ -618,6 +618,23 @@
   }
 }
 
+/*
+ * the same rows of one to three statistic cards below 1200px (Figma tablet "Content Section",
+ * 1024 frame; its mobile frame is unfinished, so mobile follows tablet): 1.5rem padding (and the
+ * 1.5rem gaps), the description 1.125rem / 1.611 (18px / 29px); the title keeps its Title size
+ */
+@media (width < 1200px) {
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat {
+    --list-card-padding: var(--space-600);
+  }
+
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat .list-card-description {
+    --list-stat-text-size: 1.125rem;
+
+    line-height: 1.611;
+  }
+}
+
 /* the feature card (Figma variation 2): the image behind tags, title and author */
 .card-list .list-feature {
   position: relative;
