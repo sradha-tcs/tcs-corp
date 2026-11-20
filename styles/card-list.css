@@ -482,6 +482,25 @@
   --list-card-bg: var(--list-gradient);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--black-500);
+  --list-report-title-size: 2rem;
+}
+
+/*
+ * report cards' type (Figma), at every width: title 2rem / 600 / 1.1 (32px), description 1rem /
+ * 500 / 1.2 (16px); long words wrap in narrow cards
+ */
+.card-list .list-card-report .list-card-title {
+  font-size: var(--list-report-title-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+  letter-spacing: calc(-0.015 * var(--list-report-title-size));
+  overflow-wrap: break-word;
+}
+
+.card-list .list-card-report .list-card-description {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
 }
 
 .card-list .list-card-stat {
