@@ -273,6 +273,10 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   background-color: var(--color-bg-default);
 }
 
+.table-list.background-grey {
+  background-color: var(--color-bg-secondary);
+}
+
 .table-list.background-black {
   background-color: var(--color-bg-neutral);
 }
@@ -346,6 +350,8 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   --table-list-header-spacing: var(--space-1000);
   --table-list-item-gap: 0;
   --table-list-row-hover: var(--color-bg-secondary);
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .table-list.segments:is(.background-black, .background-dark-green, .background-navy) {
@@ -367,7 +373,10 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
   grid-template: 'main' 'description' 'action' / minmax(0, 1fr);
   align-items: start;
   gap: var(--space-400);
-  padding: var(--space-500) var(--space-500) calc(var(--space-500) + var(--space-500));
+  padding-top: var(--space-1000); /* 40px */
+  padding-right: var(--space-500); /* keep existing 20px */
+  padding-bottom: calc(var(--space-1000) + var(--space-100)); /* 44px */
+  padding-left: var(--space-500); /* keep existing 20px */
   transition: background-color 0.2s;
 }
 
@@ -381,7 +390,7 @@ html.adobe-ue-edit .table-list .table-list-item.table-list-item-hidden {
 /* --color-text-secondary: 6.9:1 on white (the Figma's 80% opacity would give 4.3:1) */
 .table-list.segments .table-list-description {
   color: var(--color-text-secondary);
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
   letter-spacing: calc(-0.01 * 1rem);

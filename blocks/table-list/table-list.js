@@ -43,7 +43,7 @@ const FIELDS = [
 const VARIATIONS = ['industries', 'solutions', 'products', 'segments', 'approach', 'platforms'];
 // a variation built on another one gets its classes too (and only overrides what differs)
 const VARIATION_BASE = { platforms: 'solutions' };
-const BACKGROUND_COLORS = ['white', 'black', 'dark-green', 'navy'];
+const BACKGROUND_COLORS = ['white', 'grey', 'black', 'dark-green', 'navy'];
 const CTA_STYLES = ['primary', 'secondary', 'tertiary'];
 const NUMBERS = ['show', 'mobile', 'hide'];
 const ITEM_ACTIONS = ['arrow', 'arrow-up-right', 'arrow-circle', 'button'];
@@ -51,7 +51,7 @@ const HEADER_POSITIONS = ['beside'];
 // variations whose items without a Link show nothing instead of a decorative arrow
 const LINK_OPTIONAL = ['approach'];
 const MOTIONS = ['none', 'fade', 'slide', 'reveal'];
-const HEADINGS = ['h2', 'h3', 'h4'];
+const HEADINGS = ['h1', 'h2', 'h3', 'h4'];
 const TRADEMARKS = { tm: '™', r: '®' };
 const ITEM_FIELDS = ['number', 'title', 'trademark', 'description', 'link'];
 const MAX_ITEMS = 20;
@@ -179,7 +179,7 @@ function readBlock(block) {
     variation,
     backgroundColor,
     heading: textOf(headingCell),
-    headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h2'),
+    headingType: pick(headingCell?.querySelector('h1, h2, h3, h4, h5, h6')?.tagName, HEADINGS, 'h1'),
     eyebrow: textOf(cells.listeyebrow),
     headerPosition: pick(textOf(cells.headerposition), HEADER_POSITIONS, ''),
     maxItems: Number.isNaN(maxItems) ? 4 : Math.min(Math.max(maxItems, 1), MAX_ITEMS),
