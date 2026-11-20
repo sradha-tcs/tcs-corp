@@ -453,11 +453,14 @@ footer .footer .footer-social img {
   }
 
   /* Footer links row container: 80rem × 1.25rem */
-  footer .footer-bar {
-    width: 80rem;     /* 80rem */
+    footer .footer-bar {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    width: 80rem;
     max-width: 100%;
     min-height: 1.25rem;
-    height: auto;
+    margin: 0 auto;
   }
 
   /* TATA Consultancy copyright textbox: 14.625rem × 1.25rem */
