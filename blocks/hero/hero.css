@@ -23,6 +23,7 @@
   --hero-gap-ctas: var(--space-1000);
   --hero-title-size: var(--display-font-size-2);
   --hero-title-max-width: 62.5rem;
+  --hero-title-max-width-mob: 21.125rem;
   --hero-secondary-cta-grey-hover: #cedff4;
   --hero-title-color: var(--color-text-default);
   --hero-eyebrow-color: var(--white-1000); /* #FFFFFF, the same on every BG Color */
@@ -349,6 +350,7 @@
 /* the title size: display 2 on mobile and from 900px, 3.125rem on tablet */
 .hero .hero-title {
   max-width: var(--hero-title-max-width);
+  width: 100%;
   margin: 0;
   color: var(--hero-title-color);
   font-size: var(--hero-title-size);
@@ -686,7 +688,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 
   .hero .hero-title {
     width: 100%;
-    max-width: var(--hero-title-max-width);
+    max-width: var(--hero-title-max-width-mob);
     height: auto;
     margin: 0;
     color: var(--hero-title-color);
