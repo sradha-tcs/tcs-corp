@@ -20,7 +20,7 @@
   /* Carousel: the image ratio (button position) and the grey of the first / last button */
   --list-ratio: calc(16 / 9);
   --list-carousel-top: 50%;
-  --list-carousel-disabled: rgb(153 153 153 / 80%);
+  --list-carousel-disabled: var(--grey-200);
 
   /* the active breakpoint's layout (mobile first) */
   --list-columns: var(--list-columns-mobile, 1);
@@ -1173,7 +1173,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     top: var(--list-carousel-top);
     z-index: 2;
     margin: 0;
-    padding-inline: var(--space-300);
+    padding-inline: var(--space-500);
     transform: translateY(-50%);
     pointer-events: none;
   }
@@ -1191,7 +1191,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   .card-list.mobile-carousel .list-controls .button.icon-button {
     --icon-button-size: 2.5rem;
 
-    border-color: transparent;
+    border-color: var(--color-bg-brand);
     background-color: var(--color-bg-brand);
     color: var(--color-icon-on-brand);
     pointer-events: auto;
@@ -1203,9 +1203,16 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 
   /* the first / last card: grey (the button stays focusable and does nothing) */
   .card-list.mobile-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
     background-color: var(--list-carousel-disabled);
-    color: var(--white-1000);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.mobile-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
   }
 
   /* whole cards from edge to edge: no bleed */
@@ -1229,7 +1236,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     top: var(--list-carousel-top);
     z-index: 2;
     margin: 0;
-    padding-inline: var(--space-300);
+    padding-inline: var(--space-500);
     transform: translateY(-50%);
     pointer-events: none;
   }
@@ -1247,7 +1254,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   .card-list.tablet-carousel .list-controls .button.icon-button {
     --icon-button-size: 2.5rem;
 
-    border-color: transparent;
+    border-color: var(--color-bg-brand);
     background-color: var(--color-bg-brand);
     color: var(--color-icon-on-brand);
     pointer-events: auto;
@@ -1259,9 +1266,16 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 
   /* the first / last card: grey (the button stays focusable and does nothing) */
   .card-list.tablet-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
     background-color: var(--list-carousel-disabled);
-    color: var(--white-1000);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.tablet-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
   }
 
   /* whole cards from edge to edge: no bleed */
@@ -1285,7 +1299,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     top: var(--list-carousel-top);
     z-index: 2;
     margin: 0;
-    padding-inline: var(--space-300);
+    padding-inline: var(--space-500);
     transform: translateY(-50%);
     pointer-events: none;
   }
@@ -1303,7 +1317,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   .card-list.desktop-carousel .list-controls .button.icon-button {
     --icon-button-size: 2.5rem;
 
-    border-color: transparent;
+    border-color: var(--color-bg-brand);
     background-color: var(--color-bg-brand);
     color: var(--color-icon-on-brand);
     pointer-events: auto;
@@ -1315,9 +1329,16 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 
   /* the first / last card: grey (the button stays focusable and does nothing) */
   .card-list.desktop-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
     background-color: var(--list-carousel-disabled);
-    color: var(--white-1000);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.desktop-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
   }
 
   /* whole cards from edge to edge: no bleed */
