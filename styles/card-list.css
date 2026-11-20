@@ -1464,6 +1464,23 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 }
 
 /*
+ * a statistic card with CTA buttons (Figma): the description 2rem below the Label, the buttons
+ * 1.5rem below the description; statistic cards without buttons are unchanged
+ */
+.card-list .list-card-stat .list-card-bottom:has(> .list-card-ctas) > .list-card-subtitle + .list-card-description {
+  margin-top: var(--space-400);
+}
+
+.card-list .list-card-stat .list-card-bottom > .list-card-ctas {
+  margin-top: var(--space-200);
+}
+
+.card-list .list-card-stat .list-card-bottom > .list-card-action {
+  margin: 0;
+  padding-top: var(--space-200);
+}
+
+/*
  * report cards' kicker (Figma): #5a5a5a on the gradient and the light Card colours, on any section
  * colour (the card keeps its light fill); Dark, Navy and Brand keep their light muted kicker
  */
