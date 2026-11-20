@@ -14,9 +14,42 @@ import { formatDate } from '../../utils/dates.js';
  * (image alt and link text fold into the image and link cells) and an empty cell per dialog tab
  * (null)
  */
-export const CARD_LAYOUT = [null, 'image', 'eyebrow', 'title', 'text', 'subtitle', 'tags', 'date',
-  'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', null, 'kind', 'theme',
+export const CARD_LAYOUT = [null, 'image', 'eyebrow', 'title', 'titleSize', 'text', 'subtitle',
+  'tags', 'date', 'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', 'cta1',
+  'cta1Style', 'cta1Target', 'cta2', 'cta2Style', 'cta2Target', null, 'kind', 'theme',
   'analyticsLabel', 'ariaLabel'];
+
+/** the cells of a Card rendered before it had CTA 1 / CTA 2 and Title size (pages not
+ * previewed again since) */
+export const CARD_LAYOUT_BEFORE_CTAS = CARD_LAYOUT.filter((field) => !/^cta\d|^titleSize$/.test(field || ''));
+
+/** CTA Style: Secondary Button by default (an empty value isn't delivered) */
+export const CTA_STYLES = ['secondary', 'secondary-no-arrow', 'primary', 'primary-no-arrow', 'tertiary'];
+
+/** Title size: 96px, 48px or a heading size (H1 to H6) */
+export const TITLE_SIZES = ['96', '48', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+/**
+ * The CTA buttons of a card (CTA 1, CTA 2): those with a safe link, with their label (CTA Title,
+ * else the link's text), style and target.
+ * @param {Object[]} ctas [{ href, label, style, target, ref }]
+ * @param {string} origin the page origin (external links)
+ */
+export function ctasOf(ctas = [], origin = '') {
+  return ctas.map((cta) => {
+    const url = text(cta.href);
+    if (!url || !isSafeUrl(url)) return null;
+    const style = text(cta.style).toLowerCase();
+    return {
+      url,
+      label: text(cta.label) || url,
+      style: CTA_STYLES.includes(style) ? style : 'secondary',
+      newWindow: text(cta.target).toLowerCase() === 'new-window',
+      external: isExternal(url, origin),
+      ref: cta.ref || null,
+    };
+  }).filter(Boolean);
+}
 
 /**
  * The card of an authored item.
@@ -64,6 +97,8 @@ export function itemToCard(item, config, { id, index, origin = '' }) {
     external: isExternal(href, origin),
     analyticsLabel: text(item.analyticsLabel),
     accessibilityLabel: text(item.accessibilityLabel),
+    ctas: ctasOf(item.ctas, origin),
+    titleSize: TITLE_SIZES.includes(text(item.titleSize).toLowerCase()) ? text(item.titleSize).toLowerCase() : '',
     ref: item.ref || null,
   };
 }

@@ -32,7 +32,8 @@ module.exports = {
       'table-list': 10,
       'table-list-card': 6,
       'list-item': 19,
-      card: 16,
+      // Card: CTA 1 / CTA 2 (link, style, new tab) and Title size
+      card: 23,
       'table-col-5': 5,
       'table-col-6': 6,
       'table-col-7': 7,
