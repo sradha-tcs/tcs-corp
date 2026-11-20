@@ -14,9 +14,9 @@ import { formatDate } from '../../utils/dates.js';
  * (image alt and link text fold into the image and link cells) and an empty cell per dialog tab
  * (null)
  */
-export const CARD_LAYOUT = [null, 'image', 'eyebrow', 'title', 'text', 'subtitle', 'tags', 'date',
-  'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', 'cta1', 'cta1Style',
-  'cta1Target', 'cta2', 'cta2Style', 'cta2Target', null, 'kind', 'theme', 'titleSize',
+export const CARD_LAYOUT = [null, 'image', 'eyebrow', 'title', 'titleSize', 'text', 'subtitle',
+  'tags', 'date', 'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', 'cta1',
+  'cta1Style', 'cta1Target', 'cta2', 'cta2Style', 'cta2Target', null, 'kind', 'theme',
   'analyticsLabel', 'ariaLabel'];
 
 /** the cells of a Card rendered before it had CTA 1 / CTA 2 and Title size (pages not

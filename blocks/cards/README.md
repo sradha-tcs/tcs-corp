@@ -320,12 +320,12 @@ A = Image
 B = Image alt text
 C = Eyebrow
 D = Title
-E = Description
-F = Label
-G = Tags
-H = Date
-I = Content type
-J = Reading time
+E = Title size
+F = Description
+G = Label
+H = Tags
+I = Date
+J = Content type
 ```
 
 ```text
@@ -362,9 +362,8 @@ The Display tab of the Card properties in Universal Editor, with the fields of t
 Annotations:
 A = Card style
 B = Card colour
-C = Title size
-D = Analytics label
-E = Accessibility label
+C = Analytics label
+D = Accessibility label
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -467,8 +466,8 @@ C = Arrow
 3. **Enter the header (Content tab).** Title and Heading type (H2 under the page H1), an optional Description, and a CTA link with CTA text and CTA style for a "View all" link. Without a Title, fill **Accessible list label** so screen readers can name the cards.
 4. **Choose the presentation (Display tab).** Display as teaser (cards; off: rows of links), Card style, Card colour, Image ratio, Panel height, First card as feature, the Show switches, Date format and Image loading.
 5. **Choose the layout per breakpoint (Display tab).** For Desktop, Tablet and Mobile choose Grid (columns) or Horizontal scroll (items visible or a card width, previous / next buttons, scroll indicator), and the gap. The scroll options (snap, step, loop, initial item, edge) appear once a breakpoint scrolls.
-6. **Add the cards.** Select the Cards block and use **Add (+)** → **Card**. In each Card fill at least a Title, a Description or an Image (otherwise the card isn't shown). Add a Link (a page from the picker, or `https://…`) and, for a button, a Call to action label. For one or two buttons of their own at the bottom of the card (e.g. "Our Research" and "Our Partners"), fill **CTA 1** and **CTA 2** in the Card's Link tab: Link, Title, Style (Secondary Button by default, Primary, without the arrow, or a Text link) and Open in a new tab. Duplicate, delete and drag Cards in the content tree to reorder them; cards render in the content tree order.
-7. **Exceptions per card (Card › Display tab).** Card style and Card colour override the block's for one card; **Title size** sets the title's font size (96px, 48px or H1 to H6, the site's heading sizes; the heading level doesn't change); Analytics label and Accessibility label are optional.
+6. **Add the cards.** Select the Cards block and use **Add (+)** → **Card**. In each Card fill at least a Title, a Description or an Image (otherwise the card isn't shown); **Title size**, right below the Title, sets that card's title font size (96px, 48px or H1 to H6, the site's heading sizes; the heading level doesn't change). Add a Link (a page from the picker, or `https://…`) and, for a button, a Call to action label. For one or two buttons of their own at the bottom of the card (e.g. "Our Research" and "Our Partners"), fill **CTA 1** and **CTA 2** in the Card's Link tab: Link, Title, Style (Secondary Button by default, Primary, without the arrow, or a Text link) and Open in a new tab. Duplicate, delete and drag Cards in the content tree to reorder them; cards render in the content tree order.
+7. **Exceptions per card (Card › Display tab).** Card style and Card colour override the block's for one card; Analytics label and Accessibility label are optional.
 8. **Preview.** Switch Universal Editor to Preview, or open the page on aem.page; check every breakpoint (desktop from 1200px, tablet 600–1199px, mobile below 600px).
 9. **Publish** the page, and the images it uses, from AEM.
 10. **Validate the published output** on aem.live: every card is shown, links and calls to action open the right page, tag labels are taxonomy labels, panel texts aren't clipped.
@@ -586,6 +585,7 @@ Model `card`; template name "Card" (the block class AEM renders).
 | Image alt text | `imageAlt` | text | No | — | — | Describes the image for screen readers; empty: decorative. Delivered with `image` (field collapse). | — |
 | Eyebrow | `eyebrow` | text | No | — | — | A short label above the title, e.g. Perspective. | — |
 | Title | `title` | text | No | — | — | Statistic cards: the number, e.g. 4bn. | — |
+| Title size | `titleSize` | select | No | "" | Default (the card style's) (""), 96px (`96`), 48px (`48`), H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | The title's font size on every card style; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is. | — |
 | Description | `text` | richtext | No | "" | — | — | — |
 | Label | `subtitle` | text | No | — | — | Statistic cards and panels: the label above the description, e.g. Revenue or Learning. | — |
 | Tags | `tags` | aem-tag (multiple) | No | — | — | — | — |
@@ -616,7 +616,6 @@ Model `card`; template name "Card" (the block class AEM renders).
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Card style | `kind` | select | No | "" | As the block (""), Image card (`image`), Panel (`panel`), Report (`report`), Statistic (`stat`) | — | — |
 | Card colour | `theme` | select | No | "" | As the block (""), Dark (`dark`), Navy (`navy`), Brand blue (`brand`), Light blue (`brand-light`), Light grey (`grey`), Mid grey (`mid-grey`), Grey gradient (`gradient`), Image background (`image`) | Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour. | — |
-| Title size | `titleSize` | select | No | "" | Default (the card style's) (""), 96px (`96`), 48px (`48`), H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`) | The title's font size; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is. | — |
 | Analytics label | `analyticsLabel` | text | No | — | maxLength: 120 | — | — |
 | Accessibility label | `ariaLabel` | text | No | — | — | The link's accessible name, when the title or call to action isn't enough. | — |
 

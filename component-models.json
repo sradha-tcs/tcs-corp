@@ -4671,6 +4671,52 @@
         "description": "Statistic cards: the number, e.g. 4bn."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleSize",
+        "label": "Title size",
+        "options": [
+          {
+            "name": "Default (the card style's)",
+            "value": ""
+          },
+          {
+            "name": "96px",
+            "value": "96"
+          },
+          {
+            "name": "48px",
+            "value": "48"
+          },
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ],
+        "value": "",
+        "description": "The title's font size on every card style; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is."
+      },
+      {
         "component": "richtext",
         "valueType": "string",
         "name": "text",
@@ -4956,52 +5002,6 @@
         ],
         "value": "",
         "description": "Panel, report and statistic cards (image cards keep their image); overrides the block's Card colour."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "titleSize",
-        "label": "Title size",
-        "options": [
-          {
-            "name": "Default (the card style's)",
-            "value": ""
-          },
-          {
-            "name": "96px",
-            "value": "96"
-          },
-          {
-            "name": "48px",
-            "value": "48"
-          },
-          {
-            "name": "H1",
-            "value": "h1"
-          },
-          {
-            "name": "H2",
-            "value": "h2"
-          },
-          {
-            "name": "H3",
-            "value": "h3"
-          },
-          {
-            "name": "H4",
-            "value": "h4"
-          },
-          {
-            "name": "H5",
-            "value": "h5"
-          },
-          {
-            "name": "H6",
-            "value": "h6"
-          }
-        ],
-        "value": "",
-        "description": "The title's font size; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is."
       },
       {
         "component": "text",
