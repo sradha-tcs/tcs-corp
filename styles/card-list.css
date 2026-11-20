@@ -573,6 +573,11 @@
   padding: var(--space-600);
 }
 
+/* the feature card's kicker (Figma Text/Default/Secondary): #5a5a5a on its light image fade */
+.card-list .list-feature .list-card-kicker {
+  color: var(--color-text-neutral-secondary);
+}
+
 .card-list .list-feature-title {
   max-width: 31.25rem;
   margin: 0;
@@ -1106,6 +1111,23 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 }
 
 /*
+ * report cards' kicker (Figma): #5a5a5a on the gradient and the light Card colours, on any section
+ * colour (the card keeps its light fill); Dark, Navy and Brand keep their light muted kicker
+ */
+.card-list .list-card-report:not(.theme-dark, .theme-navy, .theme-brand) .list-card-kicker {
+  color: var(--color-text-neutral-secondary);
+}
+
+/*
+ * image cards' kicker (Figma): #767676 (4.5:1 on white); the feature card's is #5a5a5a, impact
+ * cards keep the secondary text, and on the dark backgrounds of the theme contract image cards
+ * turn light (below)
+ */
+.card-list:not(.impact-cards) .list-card-image .list-card-kicker {
+  color: var(--color-text-neutral-tertiary);
+}
+
+/*
  * On the dark backgrounds of the theme contract (Section Style and Columns Container BG Color
  * Dark / Dark Green, styles/styles.css): image cards, which have no Card colour of their own,
  * turn light; panel, report and statistic cards keep their Card colour.
@@ -1114,7 +1136,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   color: var(--color-text-on-neutral);
 }
 
-:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-description, .list-card-meta) {
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-kicker, .list-card-description, .list-card-meta) {
   color: rgb(255 255 255 / 70%);
 }
 
@@ -1123,7 +1145,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   color: var(--color-text-neutral);
 }
 
-:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image :is(.list-card-description, .list-card-meta) {
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image :is(.list-card-kicker, .list-card-description, .list-card-meta) {
   color: var(--color-text-secondary);
 }
 
