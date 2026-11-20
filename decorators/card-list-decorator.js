@@ -279,8 +279,9 @@ export function renderCard(card, listConfig, { t, level, kind }) {
     const top = element('div', 'list-card-top');
     top.append(...[labelRow('list-card-kicker', [eyebrow]), title].filter(Boolean));
     const bottom = element('div', 'list-card-bottom');
+    // the CTA buttons (Cards) join the Label and description at the bottom
     bottom.append(...[card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null,
-      description].filter(Boolean));
+      description, ctaButtons].filter(Boolean));
     parts = [top, bottom.children.length ? bottom : null];
   } else {
     // Cards: a panel with CTA buttons has the title at the top and its Label, description and
@@ -295,14 +296,15 @@ export function renderCard(card, listConfig, { t, level, kind }) {
       bottom || description,
     ];
   }
-  // the CTA buttons of the other card styles: after the text
-  const panelBottom = ctaButtons?.parentElement;
-  if (ctaButtons && !panelBottom) parts.push(ctaButtons);
+  // the CTA buttons of the image and report cards: after the text (panel and statistic cards
+  // have them in their bottom group)
+  const bottomGroup = ctaButtons?.parentElement;
+  if (ctaButtons && !bottomGroup) parts.push(ctaButtons);
   if (cta) {
     const action = element('p', 'list-card-action');
     action.append(cta);
-    // a panel's call to action joins its bottom group, after the CTA buttons
-    if (panelBottom) panelBottom.append(action);
+    // with CTA buttons, the call to action joins their bottom group, after them
+    if (bottomGroup) bottomGroup.append(action);
     else parts.push(action);
   }
   article.append(...parts.filter(Boolean));
