@@ -671,14 +671,6 @@
     align-items: stretch;
   }
 
-  .teaser.title-semibold .teaser-title {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .teaser.title-regular .teaser-title {
-    font-weight: var(--font-weight-regular);
-  }
-
   .teaser.card .teaser-title {
     max-width: min(100%, 31.25rem);
   }
@@ -991,23 +983,6 @@
 
   .teaser.no-image.mobile-image-top .teaser-media {
     order: -1;
-  }
-
-  /* Title weight, Description size */
-
-  .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
-    font-size: var(--body-font-size-m);
-    line-height: 1.61;
-  }
-
-  .teaser.text-normal :is(.teaser-description, .teaser-short-description) {
-    font-size: 1rem;
-    line-height: 1.60;
-  }
-
-  .teaser.text-large :is(.teaser-description, .teaser-short-description) {
-    font-size: var(--body-font-size-l);
-    line-height: 1.417;
   }
 
   /* Image collage: centered content surrounded by nine animated images */
@@ -1740,5 +1715,225 @@
 
     .teaser.title-tablet-h6 .teaser-content .teaser-title {
       --teaser-title-size: 1rem;
+    }
+  }
+
+  /*
+   * Title weight, Description size and Description weight (teaser.js OPTIONS: title-light ...
+   * title-bold, text-normal / text-regular / text-large and description-4rem ...
+   * description-1-25rem, description-light ... description-bold): last in the file, so the
+   * chosen option wins over every layout's own (Image collage too); Layout default keeps it.
+   * The sizes are the same at every width.
+   */
+  .teaser.title-light .teaser-content .teaser-title {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.title-regular .teaser-content .teaser-title {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.title-medium .teaser-content .teaser-title {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.title-semibold .teaser-content .teaser-title {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.title-bold .teaser-content .teaser-title {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .teaser.description-4rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-3rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-2-5rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-2rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .teaser.description-1-75rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .teaser.text-large :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-l);
+    line-height: 1.417;
+  }
+
+  .teaser.description-1-25rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-m);
+    line-height: 1.61;
+  }
+
+  .teaser.text-normal :is(.teaser-description, .teaser-short-description) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .teaser.description-light :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.description-regular :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.description-medium :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.description-semibold :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.description-bold :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /*
+   * A description authored as headings (h1 to h6 in its rich text: styles/styles.css gives them
+   * their own size, weight and spacing) takes the chosen Description size and weight too
+   */
+  @media (width >= 1200px) {
+    .teaser:is(.text-normal, .text-regular, .text-large, .description-4rem, .description-3rem, .description-2-5rem, .description-2rem, .description-1-75rem, .description-1-25rem) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  .teaser:is(.description-light, .description-regular, .description-medium, .description-semibold, .description-bold) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: inherit;
+  }
+
+  /*
+   * Description size (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * description-tablet-* / description-mobile-*: the Description size (Desktop)'s unless set):
+   * after the Description size (Desktop) rules above, so they win on those widths; a description
+   * authored as headings takes the size too
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.description-tablet-4rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 4rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-3rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-2-5rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-2rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-tablet-1-75rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-tablet-text-large :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-l);
+      line-height: 1.417;
+    }
+
+    .teaser.description-tablet-1-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .teaser.description-tablet-text-regular :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-m);
+      line-height: 1.61;
+    }
+
+    .teaser.description-tablet-text-normal :is(.teaser-description, .teaser-short-description) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .teaser:is(.description-tablet-4rem, .description-tablet-3rem, .description-tablet-2-5rem, .description-tablet-2rem, .description-tablet-1-75rem, .description-tablet-text-large, .description-tablet-1-25rem, .description-tablet-text-regular, .description-tablet-text-normal) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.description-mobile-4rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 4rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-3rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-2-5rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-2rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-mobile-1-75rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-mobile-text-large :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-l);
+      line-height: 1.417;
+    }
+
+    .teaser.description-mobile-1-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .teaser.description-mobile-text-regular :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-m);
+      line-height: 1.61;
+    }
+
+    .teaser.description-mobile-text-normal :is(.teaser-description, .teaser-short-description) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .teaser:is(.description-mobile-4rem, .description-mobile-3rem, .description-mobile-2-5rem, .description-mobile-2rem, .description-mobile-1-75rem, .description-mobile-text-large, .description-mobile-1-25rem, .description-mobile-text-regular, .description-mobile-text-normal) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
     }
   }

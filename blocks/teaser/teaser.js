@@ -96,9 +96,14 @@ const OPTIONS = {
     'mobile-image-top',
     'mobile-image-bottom',
   ],
+  // Title weight, Description size and Description weight (styles at the end of teaser.css);
+  // the sizes with a decimal (description-2.5rem) arrive as class names without the dot
   titleweight: [
+    'title-light',
     'title-regular',
+    'title-medium',
     'title-semibold',
+    'title-bold',
   ],
   titlecolor: [
     'title-dark',
@@ -110,6 +115,19 @@ const OPTIONS = {
     'text-regular',
     'text-large',
     'text-normal',
+    'description-4rem',
+    'description-3rem',
+    'description-2-5rem',
+    'description-2rem',
+    'description-1-75rem',
+    'description-1-25rem',
+  ],
+  descriptionweight: [
+    'description-light',
+    'description-regular',
+    'description-medium',
+    'description-semibold',
+    'description-bold',
   ],
   descriptioncolor: [
     'description-black',
@@ -606,6 +624,23 @@ export default async function decorate(block) {
   };
   block.classList.remove(...HEADINGS.flatMap((h) => [`title-tablet-${h}`, `title-mobile-${h}`]));
   block.classList.add(`title-tablet-${sizeOf(props.titletypetablet)}`, `title-mobile-${sizeOf(props.titletypemobile)}`);
+  // Description size (Tablet) and (Mobile): the description's size on those widths (teaser.css
+  // description-tablet-* / description-mobile-*, e.g. description-tablet-text-large or
+  // description-mobile-2-5rem), else the Description size (Desktop)'s (Teasers authored before)
+  const descriptionSizes = OPTIONS.descriptionsize;
+  const desktopSize = descriptionSizes.find((size) => block.classList.contains(size));
+  const descriptionSizeOf = (cell) => {
+    const value = toClassName(textOf(cell));
+    return descriptionSizes.includes(value) ? value : desktopSize;
+  };
+  const sizeClass = (width, size) => `description-${width}-${size.replace(/^description-/, '')}`;
+  block.classList.remove(...['tablet', 'mobile'].flatMap((width) => descriptionSizes
+    .map((size) => sizeClass(width, size))));
+  [['tablet', props.descriptionsizetablet], ['mobile', props.descriptionsizemobile]]
+    .forEach(([width, cell]) => {
+      const size = descriptionSizeOf(cell);
+      if (size) block.classList.add(sizeClass(width, size));
+    });
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media
     && layout !== 'no-image'
