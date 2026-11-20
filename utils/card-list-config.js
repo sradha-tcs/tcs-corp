@@ -13,7 +13,8 @@ export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyy
   'do-mmmm-yyyy'];
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'];
-export const DISPLAY_MODES = ['grid', 'horizontal-scroll'];
+// carousel: a horizontal scroll of Columns cards per view, previous / next on the images
+export const DISPLAY_MODES = ['grid', 'horizontal-scroll', 'carousel'];
 export const STYLE_OPTIONS = ['stat-compact', 'dividers', 'header-center', 'impact-cards'];
 
 /**
@@ -206,14 +207,18 @@ export function normalizePresentation(raw = {}, { idPrefix = 'list' } = {}) {
     const d = impact && IMPACT_COLUMNS[bp]
       ? { ...RESPONSIVE_DEFAULTS[bp], columns: IMPACT_COLUMNS[bp] } : RESPONSIVE_DEFAULTS[bp];
     const cardWidth = number(get(`${bp}cardwidth`), 0, { min: 0, max: 1200 });
+    const mode = pickValue(get(`${bp}mode`), DISPLAY_MODES, d.mode);
+    const columns = integer(get(`${bp}columns`), d.columns, { min: 1, max: 6 });
+    // Carousel: Columns whole cards per view, previous / next always, no indicator
+    const carousel = mode === 'carousel';
     responsive[bp] = {
-      mode: pickValue(get(`${bp}mode`), DISPLAY_MODES, d.mode),
-      columns: integer(get(`${bp}columns`), d.columns, { min: 1, max: 6 }),
+      mode,
+      columns,
       gap: number(get(`${bp}gap`), d.gap, { min: 0, max: 120 }),
-      visible: number(get(`${bp}visible`), d.visible, { min: 1, max: 8 }),
-      cardWidth: cardWidth >= 120 ? cardWidth : 0,
-      controls: flag(get(`${bp}controls`), d.controls),
-      indicator: flag(get(`${bp}indicator`), d.indicator),
+      visible: carousel ? columns : number(get(`${bp}visible`), d.visible, { min: 1, max: 8 }),
+      cardWidth: !carousel && cardWidth >= 120 ? cardWidth : 0,
+      controls: carousel || flag(get(`${bp}controls`), d.controls),
+      indicator: !carousel && flag(get(`${bp}indicator`), d.indicator),
     };
   });
   return {

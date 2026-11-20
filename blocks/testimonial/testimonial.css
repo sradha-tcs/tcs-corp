@@ -212,7 +212,7 @@ main > .section > div:has(> .testimonial.bg-navy) {
   }
 
   .testimonial .testimonial-description {
-    font-size: var(--heading-font-size-xxl);
+  font-size: calc(var(--heading-font-size-xs) * 2);
   }
 }
 

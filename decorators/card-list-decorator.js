@@ -279,8 +279,9 @@ export function renderCard(card, listConfig, { t, level, kind }) {
     const top = element('div', 'list-card-top');
     top.append(...[labelRow('list-card-kicker', [eyebrow]), title].filter(Boolean));
     const bottom = element('div', 'list-card-bottom');
+    // the CTA buttons (Cards) join the Label and description at the bottom
     bottom.append(...[card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null,
-      description].filter(Boolean));
+      description, ctaButtons].filter(Boolean));
     parts = [top, bottom.children.length ? bottom : null];
   } else {
     // Cards: a panel with CTA buttons has the title at the top and its Label, description and
@@ -295,14 +296,15 @@ export function renderCard(card, listConfig, { t, level, kind }) {
       bottom || description,
     ];
   }
-  // the CTA buttons of the other card styles: after the text
-  const panelBottom = ctaButtons?.parentElement;
-  if (ctaButtons && !panelBottom) parts.push(ctaButtons);
+  // the CTA buttons of the image and report cards: after the text (panel and statistic cards
+  // have them in their bottom group)
+  const bottomGroup = ctaButtons?.parentElement;
+  if (ctaButtons && !bottomGroup) parts.push(ctaButtons);
   if (cta) {
     const action = element('p', 'list-card-action');
     action.append(cta);
-    // a panel's call to action joins its bottom group, after the CTA buttons
-    if (panelBottom) panelBottom.append(action);
+    // with CTA buttons, the call to action joins their bottom group, after them
+    if (bottomGroup) bottomGroup.append(action);
     else parts.push(action);
   }
   article.append(...parts.filter(Boolean));
@@ -377,8 +379,10 @@ export function applyCardListLayout(block, config) {
   block.classList.add('card-list');
   BREAKPOINTS.forEach((bp) => {
     const r = config.responsive[bp];
-    const scroll = r.mode === 'horizontal-scroll';
+    // a carousel scrolls too (the scroll classes), with its own class for its buttons
+    const scroll = r.mode !== 'grid';
     block.classList.add(`${bp}-${scroll ? 'scroll' : 'grid'}`);
+    if (r.mode === 'carousel') block.classList.add(`${bp}-carousel`);
     if (scroll && r.controls) block.classList.add(`${bp}-controls`);
     if (scroll && r.indicator) block.classList.add(`${bp}-indicator`);
     block.style.setProperty(`--list-columns-${bp}`, r.columns);
@@ -459,8 +463,6 @@ export function renderCardList(block, {
     const first = parts.find((part) => part?.querySelector?.('img'))?.querySelector('img') || list.querySelector('img');
     if (first) first.fetchPriority = 'high';
   }
-  if (listed.length) parts.push(viewport);
-
   // previous / next and the scroll indicator, shown where the breakpoint scrolls
   const nav = element('div', 'list-nav');
   const indicator = element('div', 'list-indicator');
@@ -472,7 +474,15 @@ export function renderCardList(block, {
   [previous, next].forEach((button) => button.setAttribute('aria-controls', viewport.id));
   controls.append(previous, next);
   nav.append(indicator, controls);
-  if (listed.length) parts.push(nav);
+  // Carousel (a breakpoint's display): the cards and the buttons in one frame, the buttons on
+  // the images (styles/card-list.css)
+  if (listed.length && BREAKPOINTS.some((bp) => config.responsive[bp].mode === 'carousel')) {
+    const stage = element('div', 'list-stage');
+    stage.append(viewport, nav);
+    parts.push(stage);
+  } else if (listed.length) {
+    parts.push(viewport, nav);
+  }
 
   block.replaceChildren(...parts.filter(Boolean));
   createScroller(viewport, {
@@ -507,7 +517,7 @@ export function buildCardListSkeleton(config, { title, count = Infinity }) {
   }
   const r = config.responsive[currentBreakpoint()];
   const rows = r.columns === 1 ? 2 : 1;
-  const shown = r.mode === 'horizontal-scroll' ? Math.ceil(r.visible) : r.columns * rows;
+  const shown = r.mode !== 'grid' ? Math.ceil(r.visible) : r.columns * rows;
   const total = Math.max(1, Math.min(shown, count, config.maxItems ?? Infinity));
   const shape = () => {
     const stack = skeletonElement('skeleton-stack');
