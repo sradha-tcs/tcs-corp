@@ -354,9 +354,9 @@ D = Vertical alignment
 E = Title weight
 F = Title color
 G = Description size
-H = Description Color
-I = Eyebrow Style
-J = Top spacing
+H = Description weight
+I = Description Color
+J = Eyebrow Style
 ```
 
 ```text
@@ -674,9 +674,10 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `titleTyp
 | BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`), Dark (`dark`), Dark green (`dark-green`), Navy (`navy`) | Only the background colour; set the space around the content with the Padding fields of the Additional tab. | grey |
 | Text alignment | `textAlignment` | select | No | "" | Layout default (""), Left (`text-left`), Center (`text-center`), Right (`text-right`), Justify (`text-justify`) | Controls content alignment. Left, Center, Right and Justify use the same content width. Justify applies to paragraph content while headings and buttons remain normally spaced. | text-left |
 | Vertical alignment | `verticalAlignment` | select | No | "" | Layout default (""), Top (`valign-top`), Center (`valign-middle`), Bottom (`valign-bottom`) | How the text and the image (or the two text columns) line up. Layout default: center, top for Text split. | valign-top |
-| Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | title-regular |
+| Title weight | `titleWeight` | select | No | "" | Layout default (""), Light (300) (`title-light`), Regular (400) (`title-regular`), Medium (500) (`title-medium`), Semibold (600) (`title-semibold`), Bold (700) (`title-bold`) | — | title-regular |
 | Title color | `titleColor` | select | No | "" | Style default (""), Dark (`title-dark`), White (`title-white`), Light blue (`title-light-blue`), Royal blue (`title-royal-blue`) | Overrides the layout's default title colour. Dark uses rgb(48 48 48). | — |
-| Description size | `descriptionSize` | select | No | "" | Layout default (""), 1rem (16px) (`text-normal`), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
+| Description size | `descriptionSize` | select | No | "" | Layout default (""), 4rem (64px) (`description-4rem`), 3rem (48px) (`description-3rem`), 2.5rem (40px) (`description-2.5rem`), 2rem (32px) (`description-2rem`), 1.75rem (28px) (`description-1.75rem`), 1.25rem (20px) (`description-1.25rem`), 1rem (16px) (`text-normal`), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | text-regular |
+| Description weight | `descriptionWeight` | select | No | "" | Layout default (""), Light (300) (`description-light`), Regular (400) (`description-regular`), Medium (500) (`description-medium`), Semibold (600) (`description-semibold`), Bold (700) (`description-bold`) | — | — |
 | Description Color | `descriptionColor` | select | No | "" | Default (""), Black (`description-black`), White (`description-white`) | — | — |
 | Eyebrow Style | `eyebrowStyle` | select | No | "" | Brand (""), Label (uppercase, grey) (`eyebrow-label`), Grey (`eyebrow-grey`), White (`eyebrow-white`), Rich Black (`eyebrow-rich-black`) | Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds. | eyebrow-label |
 | Top spacing | `topSpacing` | select | No | "" | Default (""), Page header (extra space above) (`spacing-header`) | Page header: the larger space above a teaser that opens a page. | spacing-header |
@@ -1517,3 +1518,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Not recorded | CTA Shadow (Primary Only) (`primaryCtaShadow`) and CTA Shadow (Secondary Only) (`secondaryCtaShadow`): Default or Shadow; on the Primary / Secondary CTA when it is a Primary or Secondary Button (not a text link or list), the `button-shadow` class: Figma "Ask Canvas" CTA, a 48px pill (radius 3.625rem) on `--color-bg-secondary` with a `--color-border-default` top border, drop shadows -16 14 30 #4E84FF 20 % and -2 1 12 #4E84FF 30 %, background blur 44px; wins over the CTA Background | feature/teaser-block-shadow | 14 November 2026 |
 | Not recorded | Title Type sets the title size on every layout: H2 (the default) gets `--heading-font-size-xxl` (48px from 900px, as the dialog says; before it fell back to the 40px of H3), and the Image collage layout no longer forces its own size (3rem / 2rem / 1.75rem), so its title follows Title Type too | feature/teaser-block-shadow | 14 November 2026 |
 | Not recorded | Title Type is now Title Type (Desktop) (from 1200px: H1 64, H2 48, H3 40, H4 28, H5 24, H6 20px; it still sets the heading level); new Title Type (Tablet) (`titleTypeTablet`, 600 to 1199px) and Title Type (Mobile) (`titleTypeMobile`, below 600px), H2 by default: the title's size there only (H1 40, H2 32, H3 28, H4 24, H5 18, H6 16px; classes `title-tablet-h*`, `title-mobile-h*`); without a value (Teasers authored before) the Desktop Title Type's level | feature/teaser-block-shadow | 14 November 2026 |
+| Not recorded | Title weight gets Light (300), Medium (500) and Bold (700) next to Regular (400) and Semibold (600); Description size gets 4rem (64px), 3rem (48px), 2.5rem (40px), 2rem (32px), 1.75rem (28px) and 1.25rem (20px), the same at every width (`description-2.5rem` and `description-1.75rem` arrive as the classes `description-2-5rem`, `description-1-75rem`); new Description weight (Light to Bold, `description-light` ... `description-bold`). The three are last in `teaser.css`, so a chosen option wins over every layout, Image collage included (before, Image collage kept its own title weight and description size); Layout default keeps the layout's | feature/teaser-description-font | 20 November 2026 |

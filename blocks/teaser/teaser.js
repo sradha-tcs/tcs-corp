@@ -96,9 +96,14 @@ const OPTIONS = {
     'mobile-image-top',
     'mobile-image-bottom',
   ],
+  // Title weight, Description size and Description weight (styles at the end of teaser.css);
+  // the sizes with a decimal (description-2.5rem) arrive as class names without the dot
   titleweight: [
+    'title-light',
     'title-regular',
+    'title-medium',
     'title-semibold',
+    'title-bold',
   ],
   titlecolor: [
     'title-dark',
@@ -110,6 +115,19 @@ const OPTIONS = {
     'text-regular',
     'text-large',
     'text-normal',
+    'description-4rem',
+    'description-3rem',
+    'description-2-5rem',
+    'description-2rem',
+    'description-1-75rem',
+    'description-1-25rem',
+  ],
+  descriptionweight: [
+    'description-light',
+    'description-regular',
+    'description-medium',
+    'description-semibold',
+    'description-bold',
   ],
   descriptioncolor: [
     'description-black',
