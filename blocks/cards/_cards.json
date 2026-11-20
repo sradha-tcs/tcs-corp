@@ -66,7 +66,44 @@
           "label": "Content"
         },
         {
-          "...": "../../models/_card-list.json#/fields/header"
+          "...": "../../models/_card-list.json#/fields/headerTitle"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleType",
+          "label": "Heading type",
+          "value": "h2",
+          "options": [
+            {
+              "name": "H1",
+              "value": "h1"
+            },
+            {
+              "name": "H2",
+              "value": "h2"
+            },
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
+          ],
+          "description": "H1 (48px on desktop, 40px on tablet, 28px on mobile) only for the page's main heading; H2 under the page title."
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/headerDetails"
         },
         {
           "component": "tab",

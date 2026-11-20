@@ -69,7 +69,13 @@
           "label": "Content"
         },
         {
-          "...": "../../models/_card-list.json#/fields/header"
+          "...": "../../models/_card-list.json#/fields/headerTitle"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/headerType"
+        },
+        {
+          "...": "../../models/_card-list.json#/fields/headerDetails"
         },
         {
           "component": "select",
