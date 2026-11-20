@@ -91,6 +91,17 @@
   align-items: center;
 }
 
+/*
+ * the header's text link (CTA style Text link, e.g. See all; Figma): 0.875rem (14px) medium, at
+ * every width; the letter-spacing follows the size (--button-font-size). Card links (Download,
+ * Explore) and the header's Primary / Secondary buttons keep the button type
+ */
+.card-list .list-cta-slot .button.tertiary {
+  --button-font-size: var(--label-font-size);
+
+  font-weight: var(--font-weight-medium);
+}
+
 .card-list.header-center .list-header {
   flex-direction: column;
   align-items: center;
