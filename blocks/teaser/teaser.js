@@ -142,6 +142,11 @@ const OPTIONS = {
     'eyebrow-rich-black',
     'eyebrow-medium-light-gray',
   ],
+  // Eyebrow Font size (Desktop): 12px or 14px (teaser.css), else the Eyebrow Style's
+  eyebrowfontsize: [
+    'eyebrow-size-12',
+    'eyebrow-size-14',
+  ],
   topspacing: [
     'spacing-header',
   ],
@@ -675,6 +680,19 @@ export default async function decorate(block) {
     .forEach(([width, cell]) => {
       const size = descriptionSizeOf(cell);
       if (size) block.classList.add(sizeClass(width, size));
+    });
+  // Eyebrow Font size (Tablet) and (Mobile): the eyebrow's size on those widths (teaser.css
+  // eyebrow-tablet-size-12 / eyebrow-mobile-size-14 ...), else the Eyebrow Font size (Desktop)'s
+  const eyebrowSizes = OPTIONS.eyebrowfontsize;
+  const desktopEyebrowSize = eyebrowSizes.find((size) => block.classList.contains(size));
+  const eyebrowClass = (width, size) => size.replace(/^eyebrow-/, `eyebrow-${width}-`);
+  block.classList.remove(...['tablet', 'mobile'].flatMap((width) => eyebrowSizes
+    .map((size) => eyebrowClass(width, size))));
+  [['tablet', props.eyebrowfontsizetablet], ['mobile', props.eyebrowfontsizemobile]]
+    .forEach(([width, cell]) => {
+      const value = toClassName(textOf(cell));
+      const size = eyebrowSizes.includes(value) ? value : desktopEyebrowSize;
+      if (size) block.classList.add(eyebrowClass(width, size));
     });
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media

@@ -2013,3 +2013,66 @@
   main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser .teaser-links a.button.teaser-cta-label-soft-gray:not(:hover, :focus-visible) {
     color: var(--slate-100);
   }
+
+  /*
+   * Eyebrow Font size (Desktop) 0.75rem (12px) and 0.875rem (14px) (eyebrowFontSize, from 1200px;
+   * also below unless Eyebrow Font size (Tablet) / (Mobile) say otherwise): last in the file, so
+   * it wins over the Eyebrow Style's size; Default keeps it. The Label style's letter-spacing
+   * follows the size
+   */
+  .teaser.eyebrow-size-12 .teaser-eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .teaser.eyebrow-size-14 .teaser-eyebrow {
+    font-size: var(--label-font-size);
+  }
+
+  .teaser.eyebrow-label.eyebrow-size-12 .teaser-eyebrow {
+    letter-spacing: calc(0.01 * 0.75rem);
+  }
+
+  .teaser.eyebrow-label.eyebrow-size-14 .teaser-eyebrow {
+    letter-spacing: calc(0.01 * var(--label-font-size));
+  }
+
+  /*
+   * Eyebrow Font size (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * eyebrow-tablet-size-* / eyebrow-mobile-size-*: the Desktop size unless set): after the Desktop
+   * rules, so they win on those widths
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.eyebrow-tablet-size-12 .teaser-eyebrow {
+      font-size: 0.75rem;
+    }
+
+    .teaser.eyebrow-tablet-size-14 .teaser-eyebrow {
+      font-size: var(--label-font-size);
+    }
+
+    .teaser.eyebrow-label.eyebrow-tablet-size-12 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * 0.75rem);
+    }
+
+    .teaser.eyebrow-label.eyebrow-tablet-size-14 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * var(--label-font-size));
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.eyebrow-mobile-size-12 .teaser-eyebrow {
+      font-size: 0.75rem;
+    }
+
+    .teaser.eyebrow-mobile-size-14 .teaser-eyebrow {
+      font-size: var(--label-font-size);
+    }
+
+    .teaser.eyebrow-label.eyebrow-mobile-size-12 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * 0.75rem);
+    }
+
+    .teaser.eyebrow-label.eyebrow-mobile-size-14 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * var(--label-font-size));
+    }
+  }

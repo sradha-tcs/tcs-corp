@@ -30562,6 +30562,72 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "eyebrowFontSize",
+        "label": "Eyebrow Font size (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 1200px, and on tablet and mobile unless Eyebrow Font size (Tablet) / (Mobile) say otherwise. Default: the size of the Eyebrow Style."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeTablet",
+        "label": "Eyebrow Font size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 600 to 1199px. Same as Desktop: the Eyebrow Font size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeMobile",
+        "label": "Eyebrow Font size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "Below 600px. Same as Desktop: the Eyebrow Font size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "topSpacing",
         "label": "Top spacing",
         "value": "",
