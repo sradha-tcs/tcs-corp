@@ -21290,6 +21290,24 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "classes_timingalignment",
+        "label": "Timing Alignment",
+        "description": "Place the published date and reading time next to the tags (Left) or next to the action buttons (Right) in layouts with an article metadata row.",
+        "value": "timing-right",
+        "options": [
+          {
+            "name": "Left",
+            "value": "timing-left"
+          },
+          {
+            "name": "Right",
+            "value": "timing-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "pageHeaderTitleFont",
         "label": "Title Font (Desktop)",
         "value": "h2",

@@ -122,10 +122,11 @@ The Style tab of the Page Header properties in Universal Editor, with the fields
 
 Annotations:
 A = Layout
-B = Title Font (Desktop)
-C = Title Font (Tablet)
-D = Title Font (Mobile)
-E = Description Font
+B = Timing Alignment
+C = Title Font (Desktop)
+D = Title Font (Tablet)
+E = Title Font (Mobile)
+F = Description Font
 ```
 
 ```text
@@ -317,6 +318,7 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Layout | `classes` | select | No | "" | Default (from the Page Type) (""), Landing (with the featured image) (`landing`), Secondary (title left, text right) (`secondary`), Article (meta row, author) (`article`), Display (large title) (`display`), Default (Only CTA Alignment Left) (`cta-alignment-left`) | The content comes from the page's metadata (title, description, tags, content type, publish date, reading time, author, featured image, listen link). Default: Landing for the landing and listing page types, else Article. | article |
+| Timing Alignment | `classes_timingalignment` | select | No | `timing-right` | Left (`timing-left`), Right (`timing-right`) | Place the published date and reading time next to the tags (Left) or next to the action buttons (Right) in layouts with an article metadata row. Delivered as a block class. | — |
 | Title Font (Desktop) | `pageHeaderTitleFont` | select | No | `h2` | H1 (64px) (`h1`), H2 (48px) (`h2`), H3 (40px) (`h3`), H4 (28px) (`h4`), H5 (24px) (`h5`), H6 (20px) (`h6`) | The heading level of the title, which will sets desktop sizes accordingly. Use one H1 per page. | — |
 | Title Font (Tablet) | `pageHeaderTitleFontTablet` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The heading level of the title, which will sets tablet sizes accordingly. Use one H1 per page. | — |
 | Title Font (Mobile) | `pageHeaderTitleFontMobile` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The heading level of the title, which will sets mobile sizes accordingly. Use one H1 per page. | — |
