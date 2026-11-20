@@ -42,7 +42,7 @@ describe('configuration', () => {
   });
   it('clamps invalid responsive values', () => {
     const c = config({
-      desktopcolumns: '99', mobilegap: '-4', tabletvisible: 'x', mobilecardwidth: '50', desktopmode: 'carousel',
+      desktopcolumns: '99', mobilegap: '-4', tabletvisible: 'x', mobilecardwidth: '50', desktopmode: 'masonry',
     });
     assert.equal(c.responsive.desktop.columns, 6);
     assert.equal(c.responsive.mobile.gap, 0);

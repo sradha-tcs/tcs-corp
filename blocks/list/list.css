@@ -5,17 +5,17 @@
 @import url('../../styles/card-list.css');
 
 /* Adjust only header-to-content spacing, not the feature-to-grid or navigation gaps. */
-.list.card-list > .list-header + :is(.list-feature, .list-scroller) {
+.list.card-list > .list-header + :is(.list-feature, .list-scroller, .list-stage) {
   margin-block-start: calc(var(--space-500) - var(--space-1000));
 }
 
 /* Only reduce the feature-to-cards gap; keep the shared header and navigation gaps. */
 @media (width >= 600px) {
-  .list.card-list > .list-header + :is(.list-feature, .list-scroller) {
+  .list.card-list > .list-header + :is(.list-feature, .list-scroller, .list-stage) {
     margin-block-start: calc(var(--space-1000) - var(--space-2000));
   }
 
-  .list.card-list.feature-first > .list-feature + .list-scroller {
+  .list.card-list.feature-first > .list-feature + :is(.list-scroller, .list-stage) {
     margin-block-start: calc(var(--space-600) - var(--space-2000));
   }
 }
