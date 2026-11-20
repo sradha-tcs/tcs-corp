@@ -210,7 +210,8 @@ main > .section > div:has(> .testimonial.bg-navy) {
     gap: var(--space-600);
     min-height: 12.5rem;
   }
-  .testimonial .testimonial-description{
+
+  .testimonial .testimonial-description {
     font-size: var(--heading-font-size-xxl);
   }
 }
@@ -257,8 +258,8 @@ main > .section > div:has(> .testimonial.bg-navy) {
   .testimonial > :is(.testimonial-title, .testimonial-stats) {
     max-width: 68rem;
   }
-  .testimonial .testimonial-description{
+
+  .testimonial .testimonial-description {
     font-size: var(--heading-font-size-xl);
   }
- 
 }
