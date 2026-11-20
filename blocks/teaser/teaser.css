@@ -1809,3 +1809,17 @@
   .teaser.description-bold :is(.teaser-description, .teaser-short-description) {
     font-weight: var(--font-weight-bold);
   }
+
+  /*
+   * A description authored as headings (h1 to h6 in its rich text: styles/styles.css gives them
+   * their own size, weight and spacing) takes the chosen Description size and weight too
+   */
+  .teaser:is(.text-normal, .text-regular, .text-large, .description-4rem, .description-3rem, .description-2-5rem, .description-2rem, .description-1-75rem, .description-1-25rem) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
+
+  .teaser:is(.description-light, .description-regular, .description-medium, .description-semibold, .description-bold) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: inherit;
+  }
