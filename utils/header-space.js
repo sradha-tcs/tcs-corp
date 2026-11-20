@@ -12,9 +12,10 @@
  */
 import { currentBreakpoint } from './viewport.js';
 
-// v2: heights remembered before the header Canvas left the header's flow included the Canvas
-const key = () => `header-height-v2-${currentBreakpoint()}`;
-const MIN_HEADER_HEIGHTS = { mobile: 5.625, tablet: 7.75, desktop: 7.75 };
+// v2: heights remembered before the header Canvas left the header's flow included the Canvas;
+// v3: tablet heights remembered before the tablet bar went from 124px to 90px
+const key = () => `header-height-v3-${currentBreakpoint()}`;
+const MIN_HEADER_HEIGHTS = { mobile: 5.625, tablet: 5.625, desktop: 7.75 };
 const OVERLAY_KEY = 'header-overlay-v1';
 const OVERLAYS = ['always', 'never'];
 const POSITION_KEY = 'header-position-v1';

@@ -256,7 +256,7 @@
   --shadow-inner-600: inset 0 1rem 2rem rgb(12 12 13 / 40%);
   --blur-100: 0.25rem;
 
-  /* nav height */
+  /* nav height: 90px on mobile and tablet (below 1200px), 124px on desktop (below) */
   --nav-height: 5.625rem;
 
   /*
@@ -329,13 +329,6 @@
 
     /* layout */
     --section-spacing: var(--spacing-l);
-  }
-}
-
-@media (width >= 600px) {
-  :root {
-    /* Figma tablet and desktop header height: 124px */
-    --nav-height: 7.75rem;
   }
 }
 
