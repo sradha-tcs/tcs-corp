@@ -1,13 +1,15 @@
 {
   "fields": {
-    "header": [
+    "headerTitle": [
       {
         "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title",
         "description": "The heading of the cards, e.g. Related to Agentic AI."
-      },
+      }
+    ],
+    "headerType": [
       {
         "component": "select",
         "valueType": "string",
@@ -36,7 +38,9 @@
             "value": "h6"
           }
         ]
-      },
+      }
+    ],
+    "headerDetails": [
       {
         "component": "richtext",
         "valueType": "string",
