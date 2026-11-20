@@ -483,11 +483,14 @@
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--black-500);
   --list-report-title-size: 2rem;
+  --list-report-text-size: 0.875rem;
+  --list-kicker-size: 0.875rem;
 }
 
 /*
- * report cards' type (Figma), at every width: title 2rem / 600 / 1.1 (32px), description 1rem /
- * 500 / 1.2 (16px); long words wrap in narrow cards
+ * report cards' type (Figma): title 2rem / 600 / 1.1 (32px) at every width; description 500 / 1.2,
+ * 0.875rem (14px) on mobile and 1rem (16px) from 600px up; kicker and call to action 0.875rem
+ * (14px) at every width; long words wrap in narrow cards
  */
 .card-list .list-card-report .list-card-title {
   font-size: var(--list-report-title-size);
@@ -498,9 +501,19 @@
 }
 
 .card-list .list-card-report .list-card-description {
-  font-size: 1rem;
+  font-size: var(--list-report-text-size);
   font-weight: var(--font-weight-medium);
   line-height: 1.2;
+}
+
+.card-list .list-card-report .list-card-action {
+  --button-font-size: 0.875rem;
+}
+
+@media (width >= 600px) {
+  .card-list .list-card-report {
+    --list-report-text-size: 1rem;
+  }
 }
 
 .card-list .list-card-stat {
