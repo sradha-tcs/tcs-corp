@@ -8,6 +8,9 @@
  * - desktop (1200px): two columns, 578 : 204 : 498 of 80rem, the 4:5 portrait on the right (or
  *   left) and the card overlapping it
  * Image Position (Mobile) Bottom puts the image below the card below 1200px.
+ * The block sets the Figma side gutters itself (--quote-gutter: 0 on mobile, 1.5rem on tablet,
+ * 5rem on desktop) and cancels the section's (--section-padding-inline, e.g. a Fixed width
+ * section's 1.5 / 2.5 / 5rem), so it measures the same in every section.
  */
 .quote {
   --quote-bg: var(--color-bg-default);
@@ -19,9 +22,11 @@
   --quote-overlap: 12.75rem;
   --quote-close-offset: 5rem;
   --quote-card-inset: var(--space-300);
+  --quote-gutter: 0rem;
 
+  margin-inline: calc(-1 * var(--section-padding-inline, 0rem));
   background-color: var(--quote-bg);
-  padding: 0 0 var(--space-300);
+  padding: 0 var(--quote-gutter) var(--space-300);
 }
 
 /* BG Color Grey: a light grey section; the card stays white */
@@ -165,8 +170,9 @@
     --quote-mark-height: 3.875rem;
     --quote-overlap: 11.25rem;
     --quote-card-inset: 0;
+    --quote-gutter: var(--space-600);
 
-    padding: var(--space-1000) var(--space-600) var(--space-600);
+    padding: var(--space-1000) var(--quote-gutter) var(--space-600);
   }
 
   .quote .quote-header {
@@ -194,8 +200,9 @@
     --quote-text-size: 2rem;
     --quote-author-size: 1.5rem;
     --quote-close-offset: 5.625rem;
+    --quote-gutter: var(--space-2000);
 
-    padding: var(--space-3000) var(--space-2000);
+    padding: var(--space-3000) var(--quote-gutter);
   }
 
   .quote .quote-header {
