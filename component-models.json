@@ -29041,6 +29041,10 @@
           {
             "name": "H6 (20px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
@@ -29075,6 +29079,10 @@
           {
             "name": "H6 (16px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
           }
         ],
         "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -29109,6 +29117,10 @@
           {
             "name": "H6 (16px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
           }
         ],
         "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -29667,6 +29679,24 @@
         "description": "Right: the default arrows. Down right: the arrow of every link (List links, buttons, Text links) points down and right. None: List links without an arrow (buttons and Text links keep theirs). Links opening a new tab keep their own arrow."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkArrowColor",
+        "label": "Link Arrow Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Light Gray",
+            "value": "label-light-gray"
+          }
+        ],
+        "description": "Sets the link arrow color."
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "primaryCtaText",
@@ -29747,6 +29777,51 @@
             "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaLabelFont",
+        "label": "Primary CTA Label Font",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.875 rem (14px)",
+            "value": "font-14"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaLabelColor",
+        "label": "Primary CTA Label Color",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Soft Gray",
+            "value": "label-soft-gray"
+          }
+        ],
+        "description": "Sets the Primary CTA button label color."
       },
       {
         "component": "select",
@@ -29867,6 +29942,28 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "secondaryCtaLabelFont",
+        "label": "Secondary CTA Label Font",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.875 rem (14px)",
+            "value": "font-14"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "secondaryCtaStyle",
         "label": "Secondary CTA Link Style",
         "value": "secondary",
@@ -29901,6 +29998,29 @@
             "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaLabelColor",
+        "label": "Secondary CTA Label Color",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Soft Gray",
+            "value": "label-soft-gray"
+          }
+        ],
+        "description": "Sets the Secondary CTA button label color."
       },
       {
         "component": "select",
@@ -30186,6 +30306,10 @@
           {
             "name": "Royal blue",
             "value": "title-royal-blue"
+          },
+          {
+            "name": "Soft Gray",
+            "value": "title-soft-gray"
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
@@ -30236,6 +30360,10 @@
           {
             "name": "Large (24px)",
             "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
           }
         ],
         "description": "The description's size from 1200px; also on tablet and mobile unless Description size (Tablet) / (Mobile) say otherwise."
@@ -30286,6 +30414,10 @@
           {
             "name": "Large (24px)",
             "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
           }
         ],
         "description": "The description's size from 600 to 1199px. Same as Desktop: the Description size (Desktop)."
@@ -30336,6 +30468,10 @@
           {
             "name": "Large (24px)",
             "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
           }
         ],
         "description": "The description's size below 600px. Same as Desktop: the Description size (Desktop)."
@@ -30420,9 +30556,79 @@
           {
             "name": "Rich Black",
             "value": "eyebrow-rich-black"
+          },
+          {
+            "name": "Medium Light Gray",
+            "value": "eyebrow-medium-light-gray"
           }
         ],
         "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSize",
+        "label": "Eyebrow Font size (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 1200px, and on tablet and mobile unless Eyebrow Font size (Tablet) / (Mobile) say otherwise. Default: the size of the Eyebrow Style."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeTablet",
+        "label": "Eyebrow Font size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 600 to 1199px. Same as Desktop: the Eyebrow Font size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeMobile",
+        "label": "Eyebrow Font size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "Below 600px. Same as Desktop: the Eyebrow Font size (Desktop)."
       },
       {
         "component": "select",
@@ -30726,6 +30932,23 @@
             }
           ]
         }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_columngap",
+        "label": "Column gap",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "1.5rem (24px)",
+            "value": "cg-24"
+          }
+        ]
       },
       {
         "component": "select",
