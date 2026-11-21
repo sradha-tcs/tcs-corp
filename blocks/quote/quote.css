@@ -207,12 +207,13 @@
     margin-inline: auto;
   }
 
+  /* Figma 1440: the portrait 702 x 869px */
   .quote .quote-media {
-    width: auto;
+    width: 43.875rem;
   }
 
   .quote .quote-media img {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 702 / 869;
   }
 
   .quote .quote-card {
