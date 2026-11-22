@@ -1,4 +1,5 @@
 /* Media Contacts data: one independently rendered entry per authored contact item. */
+import { telHref } from '../../utils/links.js';
 
 const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
 
@@ -14,10 +15,7 @@ function valuesOf(cell) {
 
 const isEmail = (value) => /^[^\s@,;<>?]+@[^\s@,;<>?]+$/.test(value);
 
-export function telHref(phone) {
-  const digits = normalize(phone).replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
-  return /\d/.test(digits) ? `tel:${digits}` : '';
-}
+export { telHref };
 
 const isPhone = (value) => /^[+\d\s().-]+$/.test(value) && !!telHref(value);
 
