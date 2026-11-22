@@ -110,7 +110,9 @@ export const REVIEW_ROOTS = ['/language-master/en', '/language-masters/en', '/de
  * there by their pages; any other sheet comes from the locale.
  */
 export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/authors',
-  'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts'];
+  'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts',
+  'data/conf-med-cont/contacts', 'data/conf-med-cont/regions',
+  'data/conf-med-cont/media-contacts-config'];
 
 /**
  * The page folders published below the review roots: their pages use the review root's
