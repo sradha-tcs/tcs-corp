@@ -66,7 +66,7 @@ No verified permission model was identified. AEM user groups, permissions per lo
 ## Metadata
 
 - Each locale has a bulk metadata sheet (`{locale}/metadata`, published as `/en/metadata.json`, `/de-de/metadata.json`, ...). The platform applies them only when all 13 are listed in the site configuration: `POST https://admin.hlx.page/config/{org}/sites/{site}/metadata.json` with `{"source": ["/en/metadata.json", "/de-de/metadata.json", ...]}`. Until then no bulk metadata applies; each sheet's URL patterns must start with its locale ([AGENTS.md](../../../AGENTS.md#site-structure-and-site-data)).
-- Whether `metadata.source` is configured is not recorded (open item O-04). Check: `GET https://admin.hlx.page/config/sradha-tcs/sites/tcs-corp/metadata.json` (authenticated; handover Part 17, M-07).
+- `metadata.source` (checked 22 November 2026, `GET https://admin.hlx.page/config/sradha-tcs/sites/tcs-corp/metadata.json`, authenticated) lists the 13 locale sheets, `/language-master/en/metadata.json` (the testing root) and `/language-masters/en/metadata.json` (the language master, 9,438 rows; added on 15 November 2026, with a reindex of its pages), so their bulk metadata (page types, SEO columns, `hide-in-nav`) applies. `/design-block-master/en/metadata.json` is published but not listed, so the block library root's sheet doesn't apply (adding it is a site configuration change, decided by the product owner).
 - The columns are listed in [AGENTS.md](../../../AGENTS.md#site-structure-and-site-data); the indexed ones are the properties of [helix-query.yaml](../../../helix-query.yaml). [decorators/seo-decorator.js](../../../decorators/seo-decorator.js) maps the SEO and social columns in the browser.
 - Governance of value lists (page types, content types, regions, persona, campaign codes): handover Part 17, G-04 (frequency not recorded).
 
@@ -184,7 +184,7 @@ The handover proposes an escalation path (Part 14, 14.5): Author → L1 → L2 �
 | Limitation | Impact | Status |
 | --- | --- | --- |
 | Per-locale `redirects` sheets aren't applied (the platform applies only a root `/redirects.json`); `/` has no redirect to `/en/` | Old URLs and `/` return 404 | Blocked: a redirect mechanism (for example CDN rules) and the production domain (open item O-03) |
-| Bulk metadata applies only once `metadata.source` lists the 13 sheets | Sheet columns ignored until configured | Requires validation (O-04) |
+| Bulk metadata applies only once `metadata.source` lists the 13 sheets | Sheet columns ignored until configured | Verified 22 November 2026 (O-04): the 13 locales, `/language-master/en` and `/language-masters/en` are listed; `/design-block-master/en` isn't |
 | Production domain, CDN, robots.txt | Site only on `*.aem.live`; sitemap origin is the `.aem.live` host | Not recorded (O-03) |
 | Adobe Tags / Web SDK, consent | Data layer populated, nothing collected | Blocked: measurement plan, consent model (O-07) |
 | Form back end, search service | Form Variations and Canvas search dispatch events only | Blocked (O-08, O-09) |
