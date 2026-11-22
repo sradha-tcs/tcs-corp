@@ -1,0 +1,4 @@
+environment,host,datastreamId,orgId,edgeDomain,tenantId,decisionScopes,consentStandard,configure,debug
+dev,,<datastream ID for development>,<IMS organization ID>,<first-party edge domain or empty>,<AEP tenant ID without underscore>,<decision scopes or empty>,adobe-2.0,yes,yes
+stage,,<datastream ID for stage>,<IMS organization ID>,<first-party edge domain or empty>,<AEP tenant ID without underscore>,<decision scopes or empty>,adobe-2.0,yes,yes
+prod,,<datastream ID for production>,<IMS organization ID>,<first-party edge domain or empty>,<AEP tenant ID without underscore>,<decision scopes or empty>,adobe-2.0,yes,no

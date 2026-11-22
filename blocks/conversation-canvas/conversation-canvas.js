@@ -14,6 +14,7 @@ import {
 import { normalizeKey as normalize, textOf } from '../../utils/properties.js';
 import { toSitePath } from '../../utils/urls.js';
 import { uniqueId } from '../../utils/ids.js';
+import { prefersReducedMotion } from '../../utils/environment.js';
 import { pageHides } from '../../utils/page-visibility.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
 import registerCanvas from './canvas-controller.js';
@@ -437,11 +438,11 @@ function buildSearchForm(config, id) {
   form.className = 'conversation-canvas-search-form';
   form.setAttribute('role', 'search');
   const placeholders = [
-    'Ask us about transformational AI',
-    'Ask us about our services',
-    'Ask for a session with our experts',
-    'Ask us how we can help your business',
-    'Ask us a question',
+    t('canvasPrompt1', 'Ask us about transformational AI'),
+    t('canvasPrompt2', 'Ask us about our services'),
+    t('canvasPrompt3', 'Ask for a session with our experts'),
+    t('canvasPrompt4', 'Ask us how we can help your business'),
+    t('canvasPrompt5', 'Ask us a question'),
   ];
 
   const [firstPlaceholder] = placeholders;
@@ -458,12 +459,16 @@ function buildSearchForm(config, id) {
   label.htmlFor = input.id;
   label.textContent = firstPlaceholder;
 
-  setInterval(() => {
-    if (input.value.trim()) return;
-    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
-    input.placeholder = placeholders[placeholderIndex];
-    label.textContent = placeholders[placeholderIndex];
-  }, 3000);
+  // the prompt rotates in the placeholder only (the label, the field's name, stays the same so
+  // screen readers don't announce a new name every 3s); none for reduced motion (WCAG 2.2.2),
+  // in a background tab or while the visitor uses the field
+  if (!prefersReducedMotion()) {
+    setInterval(() => {
+      if (document.hidden || input.value.trim() || document.activeElement === input) return;
+      placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+      input.placeholder = placeholders[placeholderIndex];
+    }, 3000);
+  }
 
   const audio = document.createElement('button');
   audio.type = 'button';
@@ -865,7 +870,8 @@ function buildDock(config, id, block) {
   });
 
   dock.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' || panel.hidden) return;
+    // Escape closes the open panel and returns focus to its opener (other keys work in the panel)
+    if (e.key !== 'Escape' || panel.hidden) return;
     const opener = nav.querySelector('[aria-expanded="true"]');
     closePanel();
     opener?.focus();

@@ -506,13 +506,19 @@
    "tataLogoAlt": "TATA Group",
    "tataLogoLink": "https://www.tata.com"
   },
+  "conf-med-cont": {
+   "media-contacts-title-type": "h2",
+   "media-contacts-title": "TCS media contacts",
+   "media-contacts-id": "media-contact-01",
+   "classes_animation": "motion-fade-up"
+  },
   "accordion": {
    "classes_animation": "motion-fade-left"
   }
  },
  "usage": {
   "list": {
-   "instances": 243,
+   "instances": 244,
    "library": [
     "block-library/accordion",
     "block-library/anchor-list",
@@ -524,6 +530,7 @@
     "block-library/columns",
     "block-library/columns-container",
     "block-library/columns-container/columns-of-blocks",
+    "block-library/conf-med-cont",
     "block-library/conversation-canvas",
     "block-library/embed",
     "block-library/filter-list",
@@ -1216,6 +1223,14 @@
    "library": [
     "block-library/header/nav-careers",
     "block-library/header/nav-default"
+   ],
+   "curated": [],
+   "other": []
+  },
+  "conf-med-cont": {
+   "instances": 5,
+   "library": [
+    "block-library/conf-med-cont/conf-med-cont-variations"
    ],
    "curated": [],
    "other": []

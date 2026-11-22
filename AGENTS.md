@@ -25,8 +25,9 @@ Rules:
   Additional, item children instead of composite multifields, container* fields on sections,
   no Text / Title / Type / Alt / MimeType suffixes for values that must be read, no sample
   content in templates.
-- Accessibility: WCAG 2.1 AA (buttons with aria-expanded / aria-controls, Escape closes popups,
-  pause for moving content, announceNewTab, errors linked with aria-describedby).
+- Accessibility: WCAG 2.2 AA (KB-D-075; buttons with aria-expanded / aria-controls, Escape closes
+  popups, pause for moving content, announceNewTab, errors linked with aria-describedby, skip link,
+  modal menus make the page behind them inert).
 - Performance: three-phase loading, no new runtime dependencies, no layout reads while
   decorating, keep the Inter fallback faces, PageSpeed target 100.
 - Privacy: no personal data in the data layer (redactSearchTerm), no secrets, tokens, AEM
@@ -34,9 +35,13 @@ Rules:
 - Adobe standards: vanilla ES6+ and CSS, Airbnb ESLint, rem units, mobile first (600 / 900 /
   1200px), block-scoped selectors, semantic tokens, UI text from placeholders with an English
   fallback.
-- Analytics: reuse decorators/data-layer-decorator.js and data-cmp-* attributes. Adobe Tags and
-  the Web SDK are not configured; no Target / AJO / consent exists. Adding any of them needs an
-  approved entry in the decision log.
+- Analytics: reuse decorators/data-layer-decorator.js and data-cmp-* attributes; push business
+  events with pushDataLayerEvent / pushComponentEvent (utils/analytics.js: event id, timestamp,
+  schema version, sanitizing, validation, no duplicates). The Web SDK readiness layer (KB-D-074:
+  utils/xdm.js mapper, utils/consent.js CMP interface, utils/web-sdk.js bridge, off until
+  configured) is the only path to the Web SDK; no XDM in blocks, no IDs in code. Adobe Tags, the
+  Web SDK, Target, AJO and a CMP are not configured; configuring any of them needs an approved
+  entry in the decision log.
 - Tests: run npm run lint and npm test before every commit (CI runs lint only); report real
   results. Never fabricate tests, results, measurements or claims; write "Not recorded" or
   "Blocked: <input needed>" instead.
@@ -215,7 +220,7 @@ The library preview (`.home-work/render-lib.mjs`) reproduces these rules; compar
 
 **Shared events and helpers (re-audit, archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md in the repository sradha-tcs/tcs-corp-delivery).** `tabs:reveal` (bubbling) opens the tab(s) holding its target (deep links, Anchor List); `loadFragment(path, from)` stops recursion by the chain of including fragments (pass the including element); `form-variations:submit` integrations call `detail.respondWith(promise)` to report their outcome.
 
-**Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown). `mailto:` / `tel:` links are recorded by their kind (email / phone), never with the address (`utils/privacy.js` `contactLinkKind`); the Media Contacts block (`blocks/media-contacts`) lists the Media Contacts sheet, which the Press Release template no longer appends (KB-D-054); the Configurable Media Contacts block (`blocks/conf-med-cont`, KB-D-073) shows the regions of a `data/conf-med-cont/media-contacts-config` row (dynamic region columns) with the contacts of the `contacts` sheet, as each region's action says.
+**Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown). Every event carries `eventId`, `eventName`, `eventTimestamp` and `schemaVersion` (`utils/analytics.js`); the page entry has the page context (`utils/page-context.js`) and is followed by `page:view`; forms announce their outcome with a bubbling `form:result` event (`detail.ok`, `detail.reason`), which becomes `cmp:formSuccess` / `cmp:formError`. `mailto:` / `tel:` links are recorded by their kind (email / phone), never with the address (`utils/privacy.js` `contactLinkKind`); the Media Contacts block (`blocks/media-contacts`) lists the Media Contacts sheet, which the Press Release template no longer appends (KB-D-054); the Configurable Media Contacts block (`blocks/conf-med-cont`, KB-D-073) shows the regions of a `data/conf-med-cont/media-contacts-config` row (dynamic region columns) with the contacts of the `contacts` sheet, as each region's action says.
 
 **Header.** `blocks/header` is the TCS Header (see its README): the nav page's brand (TCS logo), sections (the menu, any depth) and tools (TATA logo); desktop (>= 1200px) is the Figma logo bar without navigation, tablet and mobile open the menu full screen one level at a time. The TCS Header's **Header over the first block** (Auto / Always / Never, every width; the logo bar is fixed at the top and turns solid once scrolled) is `<html data-header-overlay>` (`utils/header-space.js`, remembered for the next pages); `styles/styles.css`, `blocks/hero` and `templates/home` lay the first block out for it, and blocks can use `--header-overlay-space`. Keep `header .nav-wrapper`, `#nav`, `nav[data-expanded]` and `--nav-height` (other blocks rely on them).
 
@@ -225,7 +230,7 @@ The library preview (`.home-work/render-lib.mjs`) reproduces these rules; compar
 
 **Assets from a separate AEM Assets environment (EDAM, KB-D-064, not adopted on 8 November 2026: the assets stay in the Sites author's DAM, referenced by DAM path; the rendering below stays).** Pages may reference assets by their Dynamic Media with OpenAPI delivery URL (`https://<delivery host>/adobe/assets/urn:aaid:aem:<id>/as/<name>`, the original file at `.../original/as/<name>`) instead of a `/content/dam` path. `decorateMain` (`scripts.js`) first runs `decorateDeliveryImages` (`decorators/responsive-image-decorator.js`): an image delivery link that stands alone in its cell or paragraph becomes a responsive `<picture>` (`buildDeliveryPicture`, the structure of `createOptimizedPicture`), so blocks keep reading pictures; links in running text and original files (videos, audio, documents) stay links; `buildImage` (section backgrounds) builds them too. Parse such URLs with `deliveryAsset` (`utils/media.js`); don't test asset references for `/content/dam`. The plan: `archive/docs-before-role-docs-2026-11-08/docs/proposals/remote-assets-edam.md` in the repository sradha-tcs/tcs-corp-delivery.
 
-**Accessibility.** Blocks meet WCAG 2.1 AA: buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
+**Accessibility.** Blocks meet WCAG 2.2 AA (KB-D-075): buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
 
 ### Shared code: decorators and utils
 
@@ -309,7 +314,7 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 - Ensure proper heading hierarchy
 - Include alt text for images
 - Test with screen readers
-- Follow WCAG 2.1 AA guidelines
+- Follow WCAG 2.2 AA guidelines (KB-D-075)
 
 ## Deployment
 

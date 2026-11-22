@@ -8,10 +8,16 @@ import { getPlaceholders } from '../../utils/placeholders.js';
  * Article template (Site Global Templates: article; the blog template uses it too).
  * - a Page Header from the page metadata, unless one is authored
  * - "About the author" at the end, from the Authors data sheet entry of author-id
+ * - schema.org Article JSON-LD (BlogPosting for the blog template)
  * @param {Element} main
+ * @param {string} [schemaType]
  */
-export default function decorate(main) {
+export default function decorate(main, schemaType = 'Article') {
   ensurePageHeader(main);
+  // loaded on its own (not in the template's import chain, which holds the page back)
+  import('../../decorators/structured-data-decorator.js')
+    .then(({ default: addArticleStructuredData }) => addArticleStructuredData(schemaType))
+    .catch(() => {});
   const { authorId } = getPageMetadata();
   if (!authorId) return;
   appendLoadedSection(main, 'template-author', async () => {

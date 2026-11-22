@@ -14,9 +14,9 @@ template's default export gets `main` before it's decorated, so it can add struc
 | Template | Page Type | Adds |
 |---|---|---|
 | `home/` | `home` | Layout styles only (the first section meets the header; the opening hero fills the first screen with its content clear of the header Conversation Canvas row (not in Universal Editor, whose frame can be as high as the page: there the hero keeps its own height); on screens under 640px high its title is one display size smaller and its gaps tighter) |
-| `article/` | `article` | A Page Header from the page metadata (unless authored); "About the author" from the Authors data sheet (`author-id`) |
-| `blog/` | `blog` | The article structure and styles |
-| `press-release/` | `press-release` | A Page Header (unless authored). The media contacts are the Media Contacts block (`blocks/media-contacts`), authored on the page (KB-D-054) |
+| `article/` | `article` | A Page Header from the page metadata (unless authored); "About the author" from the Authors data sheet (`author-id`); schema.org Article JSON-LD (`decorators/structured-data-decorator.js`, loaded on its own) |
+| `blog/` | `blog` | The article structure and styles; BlogPosting JSON-LD |
+| `press-release/` | `press-release` | A Page Header (unless authored). The media contacts are the Media Contacts block (`blocks/media-contacts`), authored on the page (KB-D-054); NewsArticle JSON-LD |
 
 ## Adding a template
 

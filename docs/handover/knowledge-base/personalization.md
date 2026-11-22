@@ -85,7 +85,7 @@ Requirements recorded for a future design; none is implemented, and the design i
 | Caching | Edge Delivery serves the same cached default content to every visitor; the design must define where variants are applied (browser or edge) and how they interact with the cache (cache keys) | Audit section 8 (cache-key tests blocked) |
 | Flicker and performance | Personalizing above-the-fold content conflicts with the eager LCP phase; any pre-hiding needs a performance review; keep the Core Web Vitals targets | Handover 2.9.8 and 11.7.7 |
 | Security | Offer content must respect the CSP (`strict-dynamic`) and be inserted with DOM APIs | Handover 2.9.8 |
-| Accessibility | Personalized content must meet the same WCAG 2.1 AA rules as the block it replaces (headings, names, focus, placeholders for UI text) | [`AGENTS.md`](../../../AGENTS.md) (Accessibility) |
+| Accessibility | Personalized content must meet the same WCAG 2.2 AA rules as the block it replaces (headings, names, focus, placeholders for UI text) | [`AGENTS.md`](../../../AGENTS.md) (Accessibility) |
 | Analytics | Personalized impressions and decisions must be measurable through the existing data layer (no parallel tracking) | [Data layer and analytics](./data-layer-and-analytics.md) |
 | Authoring and QA modes | Nothing personalized in Universal Editor edit mode; preview, live and a forced-variant QA mode need defining | Blocked (personalization design) |
 

@@ -16,13 +16,16 @@ This file describes the analytics foundation that is implemented in the reposito
 | Data layer array `window.adobeDataLayer` (created on the first push, `window.adobeDataLayer \|\| []`) | Active | `utils/analytics.js` `pushToDataLayer` |
 | Page entry (once per page) | Active | `trackPage` |
 | Component entry per block (once per block) | Active | `trackBlocks` |
-| Events `cmp:click`, `cmp:show`, `cmp:hide`, `cmp:media`, `cmp:search`, `cmp:submit`, `cmp:change` | Active | `trackInteractions` (document listeners) and Tabs, Gen Carousel, Modal |
+| Events `page:view`, `cmp:click`, `cmp:show`, `cmp:hide`, `cmp:media`, `cmp:mediaProgress`, `cmp:search`, `cmp:formStart`, `cmp:submit`, `cmp:formSuccess`, `cmp:formError`, `cmp:change`, `app:error` | Active | `trackInteractions` (document listeners) and Tabs, Gen Carousel, Modal, Form Variations (`form:result`) |
+| Event id, timestamp, schema version 1.0, sanitizing, validation, duplicate protection | Active (unit tested, KB-D-074) | `utils/analytics.js`, `test/analytics/data-layer.test.mjs` |
 | Richer state for List, Cards, Separator, Tabs panels | Active | `decorators/card-list-decorator.js` `trackCardList`, `blocks/separator/separator.js`, `blocks/tabs/tabs.js` |
 | Search term redaction | Active (unit tested) | `utils/privacy.js` `redactSearchTerm`, `test/privacy/privacy.test.mjs` |
 | Adobe Client Data Layer library (`getState()`, `addEventListener()`) | Not loaded: the array stays a plain JavaScript array | — |
-| Adobe Tags (Data Collection), AEP Web SDK, Edge Network, datastreams, XDM schema | Blocked: measurement plan (not configured) | `scripts/delayed.js` holds only a comment |
+| Event-to-XDM mapping, Web SDK bridge, environment configuration template | Ready, off until configured (KB-D-074) | `utils/xdm.js`, `utils/web-sdk.js` (started by `scripts/delayed.js` with metadata web-sdk = on), `tools/web-sdk/web-sdk.template.csv`, `test/analytics/xdm-web-sdk.test.mjs` |
+| Adobe Tags (Data Collection), AEP Web SDK, Edge Network, datastreams, XDM schema | Blocked: measurement plan (not configured) | — |
 | Adobe Analytics, Customer Journey Analytics | Blocked: measurement plan (not configured) | — |
-| Consent management, visitor identity | Not implemented | — |
+| Consent interface for a CMP | Ready, no CMP (every category unknown: nothing sent) | `utils/consent.js` |
+| Consent management platform, visitor identity | Not implemented | — |
 | Personalized impressions | None (no personalization runtime) | [Personalization](./personalization.md) |
 | Real User Monitoring (RUM, including the 404 checkpoint) | Active (platform) | `scripts/aem.js` `sampleRUM`, `404.html` |
 
@@ -233,24 +236,79 @@ The audit harness confirms it: in the re-audit, 758 of 758 test clicks pushed ex
 
 Known residual risks (not corrected in code): `mailto:` and `tel:` links are pushed in full as `xdm:linkURL` (handover finding F-05); query strings of link URLs are pushed as they are; the Conversation Canvas Search page URL carries the raw query (`?q=`), which a future Web SDK would collect as the page URL (re-audit R-D-12, blocked until Tags exists). See [Security, privacy and consent](./security-privacy-consent.md).
 
-## Adobe Data Collection, Web SDK, Analytics and CJA: not configured
+## Event structure (schema version 1.0, KB-D-074)
 
-Blocked: measurement plan. No Adobe Tags property, Web SDK (`alloy`), Edge Network datastream, XDM schema, Analytics report suite or CJA data view exists in the repository, and no ids are recorded here. The handover Part 11 (section 11.7, "Integrating Adobe Tags and the Web SDK") describes the planned flow as a recommendation only:
+Every event keeps the Core Components form (`{ event, eventInfo }`) and gets, from `utils/analytics.js`:
+
+| Field | Type | Example | Rule |
+| --- | --- | --- | --- |
+| `eventInfo.eventId` | string (UUID) | `d1a85cb2-…` | unique per event; the Web SDK bridge sends an id once |
+| `eventInfo.eventName` | string | `cmp:click` | the event name again (for Tags rules that read eventInfo only) |
+| `eventInfo.eventTimestamp` | string (ISO 8601, UTC) | `2026-11-22T09:25:06.331Z` | the time of the push |
+| `eventInfo.schemaVersion` | string | `1.0` | raised when a field changes meaning |
+| `eventInfo.path` | string | `component.teaser-2`, `page.page-c8tr38` | the state entry the event is about (required for `cmp:*`) |
+
+Rules: names are `namespace:name` with the namespaces `page`, `cmp`, `consent`, `app` (`validateDataLayerEvent`; an invalid event isn't pushed); empty values are dropped and e-mail addresses and international phone numbers in free text are replaced (`sanitizeDataLayerPayload`, `utils/privacy.js` `redactPersonalData`; URL fields are kept); the same event with the same fields within 50 ms is a duplicate dispatch and isn't pushed (`isDuplicateEvent`). `pushDataLayerEvent(event, info, path)` is the one entry point; `pushComponentEvent(event, id, info)` and `pushPersonalizationEvent(kind, id, decision)` call it. `?dldebug` in the URL (or `localStorage['dl-debug'] = '1'`) logs every entry and every rejected one.
+
+The page entry has, besides the Core Components fields, the page context of `utils/page-context.js` `getPageContext()`: `pageName` (`{root}:{section}:…`), `pageURL` (no query string or fragment), `siteSection`, `subSection`, `country`, `region`, `contentType`, `publishDate`, `authorId` (an id, never a name) and `schemaVersion`. `getComponentContext(el)` (`decorators/data-layer-decorator.js`) gives `componentId` (data-cmp-id, the Anchor ID or `{block}-{n}`, never visible text), `componentName`, `componentType`, `componentPosition`.
+
+### Events
+
+| Event | Trigger | Fields (besides the common ones) | Source | Consent category | XDM `eventType` | Consumers |
+| --- | --- | --- | --- | --- | --- | --- |
+| `page:view` | once, after the page entry (eager phase) | `pageName` | data-layer-decorator `trackPage` | analytics | `web.webpagedetails.pageViews` | Analytics, CJA, Target (page-load decisions) |
+| `cmp:click` | link or button click (also navigation, CTA, downloads, exits) | `interaction`, `dc:title`, `xdm:linkURL`, `xdm:linkType` (other / download / exit), `value`, `position`, `breakpoint` | data-layer-decorator | analytics | `web.webinteraction.linkClicks` | Analytics, CJA |
+| `cmp:show` / `cmp:hide` | accordion item, dialog, tab, slide | `dc:title`, `interaction`, `position` | decorator, tabs, modal, gen-carousel | analytics | `tcs.componentShow` / `tcs.componentHide` | CJA |
+| `cmp:formStart` | first input in a form (not search) | `dc:title` | decorator | analytics | `tcs.formStart` | CJA, AJO |
+| `cmp:submit` | valid form submit | `dc:title`, `fields` (names, never values) | decorator | analytics | `tcs.formSubmit` | Analytics, CJA, AJO |
+| `cmp:formSuccess` / `cmp:formError` | the form's `form:result` event | `value` (error reason: `validation`, `formError`, `formNotConnected`) | form-variations | analytics | `tcs.formSuccess` / `tcs.formError` | CJA, AJO |
+| `cmp:search` | search form submit | `xdm:searchTerm` (redacted) | decorator | analytics | `tcs.search` | Analytics, CJA |
+| `cmp:change` | filter change | `interaction`, `value`, `checked` | decorator | analytics | `tcs.filterChange` | CJA |
+| `cmp:media` / `cmp:mediaProgress` | play, pause, ended / 25, 50, 75% | `interaction`, `value`, `xdm:mediaURL`, `position` | decorator | analytics | `tcs.media` / `tcs.mediaProgress` | Analytics, CJA |
+| `cmp:personalizationDisplay` / `cmp:personalizationClick` | an offer shown / clicked (interface, no caller yet) | `decisionScope`, `activityId`, `experienceId` | `pushPersonalizationEvent` | personalization | `decisioning.propositionDisplay` / `…Interact` | Target, AJO |
+| `consent:update` | the CMP reports a change (also a withdrawal) | `analytics`, `personalization`, `marketing` | `utils/consent.js` `updateConsent` | essential | none (Web SDK `setConsent`) | Web SDK |
+| `app:error` | script error or unhandled rejection (at most 5 a page) | `interaction` (script / promise), `value` (error name), `dc:title` (message without query), `source` | decorator | analytics | `tcs.applicationError` | CJA, operations |
+
+Example (`cmp:click`):
+
+```json
+{
+  "event": "cmp:click",
+  "eventInfo": {
+    "path": "component.teaser-2",
+    "interaction": "link",
+    "dc:title": "Read the report",
+    "xdm:linkURL": "https://www.tcs.com/en/insights/report.pdf",
+    "xdm:linkType": "download",
+    "position": 2,
+    "breakpoint": "desktop",
+    "eventId": "1b0c…",
+    "eventName": "cmp:click",
+    "eventTimestamp": "2026-11-22T09:25:06.331Z",
+    "schemaVersion": "1.0"
+  }
+}
+```
+
+## XDM mapping and the Web SDK bridge (KB-D-074, not configured)
 
 ```mermaid
 flowchart LR
-  DL[("window.adobeDataLayer")] -.-> ACDL["Adobe Tags: ACDL extension (not configured)"]
-  ACDL -.-> RULES["Tags rules on cmp:* events (not configured)"]
-  RULES -.-> SDK["Web SDK sendEvent, XDM (not configured)"]
-  SDK -.-> EDGE["Edge Network datastream (not configured)"]
-  EDGE -.-> AN["Adobe Analytics / CJA (not configured)"]
+  EV["Business event (utils/analytics.js)"] --> CONS{"Consent granted? (utils/consent.js)"}
+  CONS -- no --> DROP["not sent (never queued)"]
+  CONS -- yes --> MAP["Event-to-XDM mapping (utils/xdm.js)"]
+  MAP --> SDK["alloy sendEvent (utils/web-sdk.js)"]
+  SDK --> EDGE["Edge Network datastream (not configured)"]
+  EDGE --> DEST["Analytics / Target / CJA / AJO (not configured)"]
 ```
 
-Planned points from the handover (not implemented): the Tags embed loads from `scripts/delayed.js` (delayed phase, so `strict-dynamic` in the CSP trusts it), never from `head.html` and never in Universal Editor or on AEM author; staging library on `.aem.page`, production on `.aem.live` and the production domain; the ACDL extension processes the entries already in the array; `xdm:linkType` values already match the XDM `web.webInteraction.type` enumeration; a page-view rule, link / exit / download rules and rules per `cmp:*` event. The measurement plan, the Tags property, the datastreams, the XDM mapping and the consent platform are open items (handover Part 16, O-07).
+- **Mapping (`utils/xdm.js` `toXdm`):** `web.webPageDetails` (`name`, `URL`, `siteSection`, `pageViews`), `web.webInteraction` (`name`, `URL`, `type`, `linkClicks`) for clicks, `_experience.decisioning` for personalization events; everything else only in the custom field group `_{tenantId}.tcs` (`page`, `component`, `interaction`, `schemaVersion`), written only when the tenant ID is configured. Empty values are never sent. Required AEP schema: XDM ExperienceEvent with the AEP Web SDK ExperienceEvent field group and a `tcs` object in the tenant namespace with the fields above (to be created and approved by the AEP schema owner).
+- **Bridge (`utils/web-sdk.js`):** started by `scripts/delayed.js` only on pages with the metadata `web-sdk` = `on` (bulk metadata column), so no module loads otherwise. It reads the site's `web-sdk` sheet (`/{root}/web-sdk.json`; template `tools/web-sdk/web-sdk.template.csv`, columns environment, host, datastreamId, orgId, edgeDomain, tenantId, decisionScopes, consentStandard, configure, debug); rows with template placeholders are ignored. Environments: `dev` (localhost), `stage` (`*.aem.page`), `prod` (`*.aem.live`, production domain; debug never on). It never loads the Web SDK: Tags (Web SDK extension) or the standard snippet does; without `window.alloy` it does nothing. It configures alloy only with `configure` = yes (`defaultConsent: 'pending'`), maps consent to `setConsent` (Adobe 2.0) with `consentStandard` = `adobe-2.0`, sends each event once (eventId) while analytics consent is granted, and asks for `decisionScopes` on the page view only with personalization consent. Use the bridge or Tags rules that send the same events, never both.
+- **Early personalization:** not enabled. A pre-render Target decision would need the SDK in the eager phase, a flicker-control style with a timeout (default content shown after it) and its cost on LCP measured; a decision log entry first.
 
 ## Consent and identity
 
-No consent banner, consent management platform or consent check exists, and no visitor identity (ECID, login, CRM id) is read or set. The data layer is filled without a consent check because it stays in the page; consent must govern any future sending (handover 11.7.6; [Security, privacy and consent](./security-privacy-consent.md)). The consent categories and the identity strategy are blocked dependencies (re-audit / audit section 9).
+No CMP and no consent banner exist. `utils/consent.js` is the interface a CMP adapter connects to (`registerConsentProvider`, `updateConsent` on every change, `onConsentChange`); without one every category (analytics, personalization, marketing) is `unknown`, `canCollect` is false and nothing is sent. The module neither asks for nor stores consent (the CMP preserves it across pages). The data layer itself stays in the page and is essential; sending it is not. No visitor identity (ECID, login, CRM id) is read or set; ECID comes with the Web SDK once configured.
 
 ## Debugging and validation
 

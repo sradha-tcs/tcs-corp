@@ -38,7 +38,7 @@ The handover states that its objectives are derived from the delivered implement
 | BO-4 | Consistent brand experience | TCS.com Design System (Figma) patterns implemented as blocks; design tokens in [styles/styles.css](../../../styles/styles.css) |
 | BO-5 | Content discovery | List, Filter List, Cards and Conversation Canvas over the query index and taxonomy |
 | BO-6 | Measurable digital experience | Adobe Client Data Layer for every page and block ([decorators/data-layer-decorator.js](../../../decorators/data-layer-decorator.js)) |
-| BO-7 | Inclusive experience | WCAG 2.1 AA target in blocks and shared decorators |
+| BO-7 | Inclusive experience | WCAG 2.2 AA target in blocks and shared decorators |
 | BO-8 | Low operational overhead | Serverless delivery, Git-based deployment through AEM Code Sync, no build pipeline |
 | BO-9 | Business KPIs | Not recorded |
 
@@ -51,7 +51,7 @@ Program goals (handover 1.3), with their state on `main` at commit 2d06316:
 | PG-3 | 13 locale sites with their own references, error pages, sheets and data | Implemented in code and `paths.json`; content status per locale not recorded |
 | PG-4 | Templates for recurring page types | Home, Article, Blog, Press Release ([templates/README.md](../../../templates/README.md)) |
 | PG-5 | Analytics readiness | Data layer implemented; Adobe Tags, Web SDK, Analytics, CJA, Target and AJO not configured |
-| PG-6 | Accessibility (WCAG 2.1 AA) | Implemented in blocks and decorators; a formal third-party audit is not recorded |
+| PG-6 | Accessibility (WCAG 2.2 AA) | Implemented in blocks and decorators; a formal third-party audit is not recorded |
 | PG-7 | Performance (Lighthouse / PageSpeed 100) | Handover revision 2.36 records Lighthouse 99–100 mobile and 100 desktop on the measured pages; no PageSpeed check runs in CI |
 | PG-8 | Handover to the run organisation (AMS) | The handover document; AMS acceptance not recorded |
 
@@ -180,7 +180,7 @@ No runtime npm dependencies exist; only dev dependencies ([package.json](../../.
 
 ## Scope
 
-**In scope (implemented on `main`).** 13 locale sites and the language master review; 30 block folders ([blocks/README.md](../../../blocks/README.md): 28 Active, Columns Compatibility-only, Interactive Dashboard Experimental); default content through AEM's built-in Text, Title and Image (the built-in Button is "Button (basic)", no longer offered); three section containers (Columns Container, Tabs Container, Gen Carousel); four templates; the Additional tab, animations and skeletons; the data layer; placeholders, metadata, taxonomy, redirects and data sheets per locale; SEO head mapping ([decorators/seo-decorator.js](../../../decorators/seo-decorator.js)); the 404 page with inherited error pages ([404.html](../../../404.html)); WCAG 2.1 AA practices.
+**In scope (implemented on `main`).** 13 locale sites and the language master review; 30 block folders ([blocks/README.md](../../../blocks/README.md): 28 Active, Columns Compatibility-only, Interactive Dashboard Experimental); default content through AEM's built-in Text, Title and Image (the built-in Button is "Button (basic)", no longer offered); three section containers (Columns Container, Tabs Container, Gen Carousel); four templates; the Additional tab, animations and skeletons; the data layer; placeholders, metadata, taxonomy, redirects and data sheets per locale; SEO head mapping ([decorators/seo-decorator.js](../../../decorators/seo-decorator.js)); the 404 page with inherited error pages ([404.html](../../../404.html)); WCAG 2.2 AA practices.
 
 **Out of scope or not implemented** (handover 1.6.2 and 16.4, checked against the code):
 

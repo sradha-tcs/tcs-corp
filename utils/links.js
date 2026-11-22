@@ -14,6 +14,20 @@ export function telHref(phone) {
   return /\d/.test(digits) ? `tel:${digits}` : '';
 }
 
+/**
+ * A link that can be rendered: http(s), mailto, tel, or a path; never javascript:, data: or
+ * another scheme (for URLs from sheets, metadata and the query index).
+ * @param {string} href
+ * @returns {boolean}
+ */
+export function isSafeUrl(href) {
+  const value = String(href ?? '').trim();
+  if (!value) return false;
+  if (/^(https?:|mailto:|tel:)/i.test(value)) return true;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false;
+  return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
+}
+
 /** value of the "Open in New Window" Link Type option in the block models */
 export const NEW_WINDOW = 'new-window';
 
