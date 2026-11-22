@@ -11,7 +11,7 @@ import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import { getAuthor } from '../../utils/data.js';
-import { readLinkItems, readLinkRows } from '../../utils/links.js';
+import { readLinkItems, readLinkRows, isSafeUrl } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { optionOf, readProperties, textOf } from '../../utils/properties.js';
@@ -148,7 +148,8 @@ function buildAuthorName(metadata, author, t) {
   if (!text) return null;
   const name = document.createElement('p');
   name.className = 'page-header-author-name';
-  if (author?.linkedin) {
+  // sheet values become links only when they're http(s) or a path (never javascript:)
+  if (author?.linkedin && isSafeUrl(author.linkedin)) {
     const a = document.createElement('a');
     a.href = author.linkedin;
     a.textContent = text;
@@ -185,7 +186,7 @@ function buildMetaRow(metadata, tags, t) {
   const prefix = 'page-header';
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  const listen = metadata.listenLink ? document.createElement('a') : null;
+  const listen = metadata.listenLink && isSafeUrl(metadata.listenLink) ? document.createElement('a') : null;
   if (listen) listen.href = metadata.listenLink;
   info.append(...[
     buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),

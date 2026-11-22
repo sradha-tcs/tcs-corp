@@ -5,16 +5,20 @@
  * - page: { page: { 'page-{hash}': { '@type', 'dc:title', 'xdm:language', 'xdm:template', ... } } }
  * - blocks: { component: { '{id}': { '@type': 'tcs-corp/components/{block}', parentId, ... } } }
  *   once they're decorated; the id is the block's id, else '{block}-{n}' (data-cmp-id)
- * - events: cmp:click (links and buttons; mailto: / tel: links as their kind, email / phone,
- *   without the address), cmp:show / cmp:hide (accordion items, dialogs),
- *   cmp:media (play, pause, ended), cmp:submit (forms: their id and field names, no values),
- *   cmp:search (search forms), cmp:change (filters)
+ * - events: page:view (once, after the page entry), cmp:click (links and buttons; mailto: /
+ *   tel: links as their kind, email / phone, without the address), cmp:show / cmp:hide (accordion
+ *   items, dialogs), cmp:media (play, pause, ended) and cmp:mediaProgress (25, 50, 75%),
+ *   cmp:formStart (the first input in a form), cmp:submit (forms: their id and field names, no
+ *   values), cmp:formSuccess / cmp:formError (the outcome a form announces with form:result),
+ *   cmp:search (search forms), cmp:change (filters), app:error (script errors, without data)
  * Blocks refine it with data attributes: data-cmp-id (a child component, e.g. a card),
  * data-cmp-interaction (e.g. next, filter), data-cmp-value, data-analytics="off" (no tracking,
  * e.g. a Separator with Analytics off) or "custom" (the block pushes its own state).
  */
-import { pushComponentEvent, pushComponents, pushToDataLayer } from '../utils/analytics.js';
-import { getPageLanguage, getPageMetadata, getPageTags } from '../utils/metadata.js';
+import {
+  SCHEMA_VERSION, pushComponentEvent, pushComponents, pushDataLayerEvent, pushToDataLayer,
+} from '../utils/analytics.js';
+import { getPageContext } from '../utils/page-context.js';
 import { currentBreakpoint } from '../utils/viewport.js';
 import { contactLinkKind, redactSearchTerm } from '../utils/privacy.js';
 
@@ -51,19 +55,32 @@ export function componentIdOf(block) {
 export function trackPage() {
   if (pageId) return pageId;
   pageId = `page-${hash(window.location.pathname)}`;
-  const metadata = getPageMetadata();
+  const context = getPageContext();
   pushToDataLayer({
     page: {
       [pageId]: {
         '@type': `${TYPE}/page`,
-        'dc:title': metadata.title || document.title,
-        'xdm:language': getPageLanguage(),
-        'xdm:template': metadata.pageType || undefined,
-        'xdm:tags': getPageTags(),
-        'repo:path': window.location.pathname,
+        'dc:title': context.pageTitle,
+        'xdm:language': context.language,
+        'xdm:template': context.template || undefined,
+        'xdm:tags': context.tags,
+        'repo:path': context.pagePath,
+        // the page context of the data layer specification (no personal data)
+        pageName: context.pageName,
+        pageURL: context.pageURL,
+        siteSection: context.siteSection,
+        subSection: context.subSection || undefined,
+        country: context.country || undefined,
+        region: context.region || undefined,
+        contentType: context.contentType || undefined,
+        publishDate: context.publishDate || undefined,
+        authorId: context.authorId || undefined,
+        schemaVersion: SCHEMA_VERSION,
       },
     },
   });
+  // the page view, once, after its state (Tags / the Web SDK bridge send it)
+  pushDataLayerEvent('page:view', { pageName: context.pageName }, `page.${pageId}`);
   return pageId;
 }
 
@@ -198,6 +215,80 @@ function onChange(e) {
   });
 }
 
+/**
+ * The component context of an element (the data layer specification's component object): its
+ * stable id (data-cmp-id, the block's Anchor ID or {block}-{n}, never its visible text), name,
+ * type and position.
+ * @param {Element} el
+ * @returns {{ componentId: string, componentName: string, componentType: string,
+ *   componentPosition?: number }}
+ */
+export function getComponentContext(el) {
+  const block = el && blockOf(el);
+  const name = block ? nameOf(block) : 'page';
+  return {
+    componentId: el ? componentOf(el) : trackPage(),
+    componentName: name,
+    componentType: `${TYPE}/${name}`,
+    componentPosition: el ? positionOf(el) : undefined,
+  };
+}
+
+// cmp:formStart: the first input of a form, once per form (not search forms)
+const startedForms = new WeakSet();
+function onInput(e) {
+  const form = e.target?.form;
+  if (!(form instanceof HTMLFormElement) || startedForms.has(form) || !blockOf(form)
+    || !tracked(form) || isSearchForm(form)) return;
+  startedForms.add(form);
+  pushComponentEvent('cmp:formStart', componentOf(form), { 'dc:title': form.getAttribute('aria-label') || form.id || nameOf(blockOf(form)) });
+}
+
+// cmp:formSuccess / cmp:formError: the outcome a form block announces (a form:result event with
+// detail { ok, reason }); never the values
+function onFormResult(e) {
+  const el = e.target;
+  if (!(el instanceof Element) || !blockOf(el) || !tracked(el)) return;
+  const { ok, reason } = e.detail || {};
+  pushComponentEvent(ok ? 'cmp:formSuccess' : 'cmp:formError', componentOf(el), {
+    value: ok ? undefined : String(reason || 'error').slice(0, 50),
+  });
+}
+
+// cmp:mediaProgress: 25, 50 and 75% of a played video or audio, once each per source
+const milestones = new WeakMap();
+function onTimeUpdate(e) {
+  const media = e.target;
+  if (!(media instanceof HTMLMediaElement) || !media.duration || !Number.isFinite(media.duration)
+    || media.paused || !blockOf(media) || !tracked(media)) return;
+  if (!media.controls && media.loop && media.muted) return;
+  const seen = milestones.get(media)?.src === media.currentSrc ? milestones.get(media)
+    : { src: media.currentSrc, done: new Set() };
+  milestones.set(media, seen);
+  const percent = (media.currentTime / media.duration) * 100;
+  [25, 50, 75].filter((mark) => percent >= mark && !seen.done.has(mark)).forEach((mark) => {
+    seen.done.add(mark);
+    pushComponentEvent('cmp:mediaProgress', componentOf(media), {
+      interaction: 'progress', value: String(mark), 'xdm:mediaURL': media.currentSrc || undefined,
+    });
+  });
+}
+
+// app:error: script errors, at most 5 a page, without data (no query strings, no personal data)
+let errors = 0;
+const sourceOf = (url) => String(url || '').split(/[?#]/)[0].replace(window.location.origin, '');
+function onError(e) {
+  if (errors >= 5) return;
+  errors += 1;
+  const error = e.reason || e.error;
+  pushDataLayerEvent('app:error', {
+    interaction: e.type === 'unhandledrejection' ? 'promise' : 'script',
+    value: String(error?.name || 'Error').slice(0, 50),
+    'dc:title': String(error?.message || e.message || '').split(/[?#]/)[0].slice(0, 150),
+    source: sourceOf(e.filename),
+  });
+}
+
 let listening = false;
 
 /** listens for the interactions of the whole document (once) */
@@ -211,4 +302,9 @@ export function trackInteractions() {
   ['play', 'pause', 'ended'].forEach((type) => document.addEventListener(type, onMedia, true));
   document.addEventListener('submit', onSubmit, true);
   document.addEventListener('change', onChange, true);
+  document.addEventListener('input', onInput, true);
+  document.addEventListener('form:result', onFormResult, true);
+  document.addEventListener('timeupdate', onTimeUpdate, true);
+  window.addEventListener('error', onError);
+  window.addEventListener('unhandledrejection', onError);
 }

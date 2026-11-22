@@ -551,9 +551,10 @@ blocks/tcs-header/
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
-| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`); `safeDecode` (decodeURIComponent that never throws) | `tcs-header.js`: { toSitePath } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `tcs-header.js`: { getLocale } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `tcs-header.js`: { getPages } |
+| [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `tcs-header.js`: { uniqueId } |
 
 <!-- END GENERATED: files -->
 
@@ -727,3 +728,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
 | PR #141 | Header over the first block (Auto / Always / Never; every width from the sticky bar fix) | KB-D-052 (Proposed) | 22 October 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
+| — | The open tablet / mobile menu makes the page behind it inert and closes when focus leaves the header (WCAG 2.4.3, 2.4.11); the search field has a label and a focus outline, its texts come from placeholders (headerSearchPlaceholder, headerSearchLabel, searchByVoice, submitSearch), the voice button is aria-disabled until voice search exists | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |

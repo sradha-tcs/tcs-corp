@@ -356,6 +356,12 @@ html[data-header-theme='light'] :is(.tcs-header, header) :is(.tcs-header-brand, 
     backdrop-filter: blur(40px);
   }
 
+  /* the field has no outline of its own: the form shows keyboard focus (WCAG 2.4.7) */
+  .tcs-header-search-form:has(input:focus-visible) {
+    outline: 0.125rem solid var(--color-border-brand);
+    outline-offset: 0.125rem;
+  }
+
   .tcs-header-search-form input {
     flex: 1 1 auto;
     border: none;

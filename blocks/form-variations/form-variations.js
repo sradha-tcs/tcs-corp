@@ -3,7 +3,7 @@ import { fromCell } from '../../decorators/content-decorator.js';
 import { buildHeading } from '../../decorators/heading-decorator.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
 import { isInEditor } from '../../utils/environment.js';
-import { linkOf } from '../../utils/links.js';
+import { linkOf, telHref } from '../../utils/links.js';
 import { textOf } from '../../utils/properties.js';
 import { createIdFactory, uniqueId } from '../../utils/ids.js';
 import { fillPlaceholder, getPlaceholders } from '../../utils/placeholders.js';
@@ -146,6 +146,20 @@ function createGroup(classNames, dependsOn) {
   return group;
 }
 
+// the autocomplete token of a field from its type or name (WCAG 1.3.5 Identify Input Purpose)
+const AUTOCOMPLETE = [
+  [/first|given/, 'given-name'], [/last|surname|family/, 'family-name'], [/^(full[-_ ]?)?name$/, 'name'],
+  [/e-?mail/, 'email'], [/phone|mobile|tel/, 'tel'], [/company|organi[sz]ation/, 'organization'],
+  [/job|designation|position/, 'organization-title'], [/country/, 'country-name'],
+  [/city|town/, 'address-level2'], [/zip|postal|post[-_ ]?code/, 'postal-code'],
+];
+function autocompleteOf(name, type) {
+  if (type === 'email') return 'email';
+  if (type === 'tel') return 'tel';
+  const match = AUTOCOMPLETE.find(([pattern]) => pattern.test(name.toLowerCase()));
+  return match ? match[1] : '';
+}
+
 function createLabel(id, cell, required, fallback) {
   const label = document.createElement('label');
   label.className = 'form-variations-label';
@@ -199,6 +213,8 @@ function buildTextField(fieldMap, nextId) {
   input.id = id;
   input.name = name;
   input.placeholder = placeholderOf(label, name, isReq);
+  const autocomplete = autocompleteOf(name, input.type);
+  if (autocomplete) input.autocomplete = autocomplete;
   setRequired(input, isReq);
   group.append(createLabel(id, label, isReq, name), input);
   return group;
@@ -264,6 +280,8 @@ function buildCombinedField(fieldMap, nextId) {
   const select = document.createElement('select');
   select.className = 'form-variations-control form-variations-combined-select';
   select.name = `${name}Unit`;
+  // the unit select's own name (WCAG 4.1.2): the field's label and "unit"
+  select.setAttribute('aria-label', `${textOf(label) || 'SCORE'} ${t('formUnit', 'unit')}`);
 
   const optionsList = splitList(textOf(options));
   const units = optionsList.length ? optionsList : ['CGPA', 'Percentage'];
@@ -400,10 +418,12 @@ function buildContactCard(fieldMap) {
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'form-variations-contact-icon';
+    iconSpan.setAttribute('aria-hidden', 'true');
     if (emailIconUrl) {
       const img = document.createElement('img');
       img.src = emailIconUrl;
-      img.alt = 'Email Icon';
+      // decorative: the address next to it says what it is
+      img.alt = '';
       iconSpan.append(img);
     } else {
       iconSpan.innerHTML = DEFAULT_MAIL_ICON;
@@ -423,17 +443,18 @@ function buildContactCard(fieldMap) {
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'form-variations-contact-icon';
+    iconSpan.setAttribute('aria-hidden', 'true');
     if (phoneIconUrl) {
       const img = document.createElement('img');
       img.src = phoneIconUrl;
-      img.alt = 'Phone Icon';
+      img.alt = '';
       iconSpan.append(img);
     } else {
       iconSpan.innerHTML = DEFAULT_PHONE_ICON;
     }
 
     const a = document.createElement('a');
-    a.href = `tel:${phone.replace(/[^\d+]/g, '')}`;
+    a.href = telHref(phone) || `tel:${phone.replace(/[^\d+]/g, '')}`;
     a.textContent = phone;
 
     li.append(iconSpan, a);
@@ -625,7 +646,7 @@ export default async function decorate(block) {
   const backBtn = document.createElement('button');
   backBtn.className = 'form-variations-back';
   backBtn.setAttribute('type', 'button');
-  backBtn.textContent = 'Back';
+  backBtn.textContent = t('back', 'Back');
   backBtn.addEventListener('click', () => {
     if (window.history.length > 1) {
       window.history.back();
@@ -695,7 +716,14 @@ export default async function decorate(block) {
     updateVisibility(form, editing);
   });
 
+  // the outcome for the data layer (decorators/data-layer-decorator.js): cmp:formSuccess /
+  // cmp:formError
+  const announce = (ok, reason = '') => form.dispatchEvent(new CustomEvent('form:result', {
+    bubbles: true, detail: { ok, reason },
+  }));
+
   const succeed = () => {
+    announce(true);
     form.reset();
     form.querySelectorAll('textarea').forEach((textarea) => {
       textarea.dispatchEvent(new Event('input'));
@@ -705,6 +733,7 @@ export default async function decorate(block) {
   };
 
   const fail = (key, fallback) => {
+    announce(false, key);
     status.textContent = t(key, fallback);
   };
 
@@ -719,7 +748,10 @@ export default async function decorate(block) {
     e.preventDefault();
     if (form.getAttribute('aria-busy') === 'true') return;
     status.textContent = '';
-    if (!validate(form)) return;
+    if (!validate(form)) {
+      announce(false, 'validation');
+      return;
+    }
     const data = collectData(form);
 
     let pending = null;

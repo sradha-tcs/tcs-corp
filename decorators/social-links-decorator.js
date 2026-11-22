@@ -8,6 +8,7 @@ import { decorateIcons, toClassName } from '../scripts/aem.js';
 import { hideVisually } from './a11y-decorator.js';
 import { setLinkTarget } from './link-decorator.js';
 import { buildImage } from './responsive-image-decorator.js';
+import { isSafeUrl } from '../utils/links.js';
 
 // platforms with an icon in /icons
 const PLATFORM_ICONS = ['linkedin', 'x', 'facebook', 'instagram', 'youtube'];
@@ -40,10 +41,17 @@ export function buildSocialLinks(links, className, labelOf = (platform) => platf
   const list = document.createElement('ul');
   list.className = className;
   links.forEach((link) => {
+    // a sheet URL that isn't http(s) or a path (javascript:, a malformed URL) is left out
+    if (!isSafeUrl(link.url)) return;
+    let external;
+    try {
+      external = new URL(link.url, window.location.href).origin !== window.location.origin;
+    } catch {
+      return;
+    }
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = link.url;
-    const external = new URL(link.url, window.location.href).origin !== window.location.origin;
     setLinkTarget(a, external);
     const label = document.createElement('span');
     label.textContent = labelOf(link.platform || link.url);

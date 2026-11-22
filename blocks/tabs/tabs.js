@@ -10,6 +10,7 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { isOn, normalizeKey, textOf } from '../../utils/properties.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { readTab } from '../tab/tab.js';
+import { safeDecode } from '../../utils/urls.js';
 
 /*
  * Tabs, like the Tabs core component of AEM, from two sources:
@@ -40,7 +41,7 @@ let listeningToHash = false;
  * inside one (a block's Anchor ID, a heading)
  */
 function targetOfHash() {
-  const raw = decodeURIComponent(window.location.hash.slice(1));
+  const raw = safeDecode(window.location.hash.slice(1));
   const id = toClassName(raw);
   if (!id) return null;
   const tagged = document.querySelector(`.tabs .tabs-panel[data-tab-id="${CSS.escape(id)}"]`);

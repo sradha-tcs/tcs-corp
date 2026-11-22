@@ -3,6 +3,7 @@
  * the TCS DS Figma List variations (List, Cards), without the DOM (unit tested). The fields are
  * the shared groups of models/_card-list.json; the rendering is decorators/card-list-decorator.js.
  */
+import { isSafeUrl } from './links.js';
 
 export const CARD_STYLES = ['image', 'panel', 'report', 'stat', 'mixed'];
 export const CARD_KINDS = ['image', 'panel', 'report', 'stat'];
@@ -119,14 +120,8 @@ export function hash(value) {
   return h.toString(36);
 }
 
-/** a link that can be rendered: http(s), mailto, tel, or a path; never javascript: or data: */
-export function isSafeUrl(href) {
-  const value = text(href);
-  if (!value) return false;
-  if (/^(https?:|mailto:|tel:)/i.test(value)) return true;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false;
-  return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
-}
+/** a link that can be rendered (utils/links.js, re-exported for the card data modules) */
+export { isSafeUrl };
 
 /** whether a link leaves the site */
 export const isExternal = (href, origin = '') => /^https?:\/\//i.test(href)

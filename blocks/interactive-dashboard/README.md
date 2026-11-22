@@ -302,7 +302,7 @@ technical limit was identified. Anything authored inside the block is discarded.
 **Author responsibilities:** don't reference the dashboard in page content ("see the dashboard
 below").
 
-**Developer responsibilities:** a future implementation must meet WCAG 2.1 AA (text alternatives
+**Developer responsibilities:** a future implementation must meet WCAG 2.2 AA (text alternatives
 for charts, keyboard operation, no colour-only encoding) and take its UI text from placeholders.
 
 The block handles no keys.

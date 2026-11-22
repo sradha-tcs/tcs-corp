@@ -40,11 +40,18 @@ export function layoutMasonry(grid) {
     // the next free row line of each column
     const next = Array(columns).fill(1);
     let index = 0;
-    items.forEach((item) => {
+    // all reads first, then all writes: one layout for the grid instead of one per card (the
+    // columns are of equal width, so a card's height doesn't depend on its placement)
+    const sizes = items.map((item) => {
       const itemStyle = getComputedStyle(item);
-      const span = Math.max(1, Math.ceil((item.getBoundingClientRect().height
-        + (parseFloat(itemStyle.marginBlockEnd) || 0)) / row));
-      const fullWidth = itemStyle.gridColumnEnd === '-1';
+      return {
+        span: Math.max(1, Math.ceil((item.getBoundingClientRect().height
+          + (parseFloat(itemStyle.marginBlockEnd) || 0)) / row)),
+        fullWidth: itemStyle.gridColumnEnd === '-1',
+      };
+    });
+    items.forEach((item, i) => {
+      const { span, fullWidth } = sizes[i];
       if (fullWidth || columns === 1) {
         const start = Math.max(...next);
         item.style.gridRow = `${start} / span ${span}`;

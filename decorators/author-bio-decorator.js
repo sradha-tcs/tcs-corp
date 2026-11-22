@@ -4,6 +4,7 @@
  */
 import { setLinkTarget } from './link-decorator.js';
 import { buildImage } from './responsive-image-decorator.js';
+import { isSafeUrl } from '../utils/links.js';
 
 const textElement = (tagName, className, text) => {
   const el = document.createElement(tagName);
@@ -40,7 +41,7 @@ export function buildAuthorBio(author, { heading, linkedinLabel }) {
   const designation = [author.designation, author.region].filter(Boolean).join(', ');
   if (designation) body.append(textElement('p', 'author-bio-designation', designation));
   if (author.bio) body.append(textElement('p', 'author-bio-text', author.bio));
-  if (author.linkedin) {
+  if (author.linkedin && isSafeUrl(author.linkedin)) {
     const p = document.createElement('p');
     const a = textElement('a', 'author-bio-linkedin', linkedinLabel);
     a.href = author.linkedin;

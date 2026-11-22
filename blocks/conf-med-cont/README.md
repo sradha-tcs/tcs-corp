@@ -91,9 +91,9 @@ Model `conf-med-cont`; template name "Conf Med Cont" (the block class AEM render
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Media contacts title | `media-contacts-title` | text | No | — | — | The block's title, e.g. TCS media contacts; without one the heading is Media contacts (placeholder mediaContacts). | — |
-| Media contacts title type | `media-contacts-title-type` | select | No | — | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`), Media contacts big title (`media-contacts-big-title`), Media contacts small title (`media-contacts-small-title`) | H1 to H6: the title's heading level. Big title / small title: an H2 in the big or small title style. The region names are one level below the title. | — |
-| Media contacts ID | `media-contacts-id` | text | No | — | — | The media-contacts-id of a row of the media-contacts-config sheet (data/conf-med-cont), e.g. media-contact-01: its region columns choose the regions, their contacts and what is shown of them. | — |
+| Media contacts title | `media-contacts-title` | text | No | — | — | The block's title, e.g. TCS media contacts; without one the heading is Media contacts (placeholder mediaContacts). | TCS media contacts |
+| Media contacts title type | `media-contacts-title-type` | select | No | — | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`), H5 (`h5`), H6 (`h6`), Media contacts big title (`media-contacts-big-title`), Media contacts small title (`media-contacts-small-title`) | H1 to H6: the title's heading level. Big title / small title: an H2 in the big or small title style. The region names are one level below the title. | h2 |
+| Media contacts ID | `media-contacts-id` | text | No | — | — | The media-contacts-id of a row of the media-contacts-config sheet (data/conf-med-cont), e.g. media-contact-01: its region columns choose the regions, their contacts and what is shown of them. | media-contact-01 |
 
 #### Additional tab — Configurable Media Contacts
 
@@ -101,7 +101,7 @@ Model `conf-med-cont`; template name "Conf Med Cont" (the block class AEM render
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Anchor ID | `classes_anchor` | text | No | — | regExp: ^anchor-[a-z0-9][a-z0-9-]*$; customErrorMsg: Start with anchor-, then lower-case letters, digits and hyphens. | A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services. Delivered as a block class. | — |
 | Hide block | `classes_hideblock` | boolean | No | `false` | on / off | Hides the whole block on the page until it is turned off (shown faded in the editor). Delivered as a block class. | — |
-| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | — |
+| Animation Type | `classes_animation` | select | No | "" | None (""), Fade in (`motion-fade-in`), Fade up (`motion-fade-up`), Fade down (`motion-fade-down`), Fade left (`motion-fade-left`), Fade right (`motion-fade-right`), Slide up (`motion-slide-up`), Slide down (`motion-slide-down`), Slide left (`motion-slide-left`), Slide right (`motion-slide-right`), Scale in (`motion-scale-in`) | How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion. Delivered as a block class. | motion-fade-up |
 | Motion Speed | `classes_animationspeed` | select | No | "" | Medium (""), Fast (`motion-fast`), Slow (`motion-slow`) | How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long). Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
 | Animation Trigger | `classes_animationtrigger` | select | No | "" | On Scroll / Viewport Entry (""), On Page Load (`motion-on-load`) | When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page. Shown when (`classes_animation` is set and `classes_animation` is not empty) or (`classes_bganimation` is set and `classes_bganimation` is not empty). Delivered as a block class. | — |
 | Padding left | `classes_paddingleft` | select | No | "" | Default (""), 0 (none) (`pl-0`), 0.25rem (space-100) (`pl-100`), 0.5rem (space-200) (`pl-200`), 0.75rem (space-300) (`pl-300`), 1rem (space-400) (`pl-400`), 1.25rem (space-500) (`pl-500`), 1.5rem (space-600) (`pl-600`), 2rem (space-800) (`pl-800`), 2.5rem (space-1000) (`pl-1000`), 3rem (space-1200) (`pl-1200`), 4rem (space-1600) (`pl-1600`), 5rem (space-2000) (`pl-2000`), 6rem (space-2400) (`pl-2400`), 7.5rem (space-3000) (`pl-3000`) | Delivered as a block class. | — |
@@ -192,7 +192,7 @@ Config row `media-contact-01`: `reg-001` = `C0013,C0002,C0003`, `reg-001-action`
 
 - The title is a heading at the authored level, the region names one level below (H3 under an H2), so the outline stays in order.
 - Each link has a visually hidden label (placeholders `email` "Email", `phone` "Phone") before the address or number.
-- Underlined links in the text colour with a brand-colour hover and a 2px focus outline (WCAG 2.1 AA contrast: `--color-text-default` and `--color-text-brand` on white).
+- Underlined links in the text colour with a brand-colour hover and a 2px focus outline (WCAG 2.2 AA contrast: `--color-text-default` and `--color-text-brand` on white).
 - Contacts are lists (`ul` / `li`), people with a name are list items of their own.
 
 ## Data Layer and Analytics
@@ -316,7 +316,8 @@ Contact details are public press contacts from the sheets; the text is set with 
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-No block library or curated design page using this block was recorded in the library snapshot.
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 5 instance(s) in total:
+- Block library: `block-library/conf-med-cont/conf-med-cont-variations`
 
 Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/README.md) ([block governance](../../docs/handover/knowledge-base/blocks.md)).
 

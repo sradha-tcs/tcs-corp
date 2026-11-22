@@ -6,5 +6,5 @@ import decorateArticle from '../article/article.js';
  * @param {Element} main
  */
 export default function decorate(main) {
-  decorateArticle(main);
+  decorateArticle(main, 'BlogPosting');
 }

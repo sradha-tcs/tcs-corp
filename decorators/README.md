@@ -32,9 +32,10 @@ checks) live in [`../utils`](../utils/README.md).
 | `template-decorator.js` | `ensurePageHeader`, `appendLoadedSection` (structure templates add before decoration) | article and blog templates (both), press-release template (`ensurePageHeader`) |
 | `author-bio-decorator.js` | `buildAuthorBio` (About the author from the Authors sheet) | article / blog template |
 | `contact-list-decorator.js` | `buildContactList` (contacts, each with its heading and its mail / phone links one below the other, or its `people`: name and description above each person's links; the links carry `data-cmp-interaction` email / phone) | media-contacts, conf-med-cont |
-| `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`) | teaser, image-collage, testimonial, conversation-canvas, link decorator |
+| `a11y-decorator.js` | `hideVisually`, `createHiddenText` (with `.visually-hidden` in `styles/styles.css`); `addSkipLink` (the "Skip to main content" link, WCAG 2.4.1) | teaser, image-collage, testimonial, conversation-canvas, link decorator |
 | `block-options-decorator.js` | `applyBlockOptions` (the Additional tab of every block dialog: an `anchor-…` class becomes the block's id, unique on the page; Hide block, padding and margin are classes styled in `styles/styles.css`) | `scripts.js` (`decorateMain`), `editor-support.js` |
-| `data-layer-decorator.js` | `trackPage`, `trackBlocks`, `trackInteractions`, `componentIdOf` (Adobe Client Data Layer for every block, Core Components schema, read by Adobe Tags / Web SDK; see "Data layer" below) | `scripts.js`, list, modal |
+| `data-layer-decorator.js` | `trackPage`, `trackBlocks`, `trackInteractions`, `componentIdOf` (Adobe Client Data Layer for every block, Core Components schema, read by Adobe Tags / Web SDK; see "Data layer" below); `getComponentContext`; events page:view, cmp:formStart / formSuccess / formError (form:result), cmp:mediaProgress, app:error (KB-D-074) | `scripts.js`, list, modal |
+| `structured-data-decorator.js` | default `addArticleStructuredData` (the page's schema.org JSON-LD in the head, from its metadata) | article, blog and press-release templates |
 
 ## Data layer
 

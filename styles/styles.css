@@ -830,6 +830,25 @@ main img {
   border: 0;
 }
 
+/* the skip link (decorators/a11y-decorator.js addSkipLink): off screen until it is focused */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: var(--space-300) var(--space-500);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-brand);
+  font-weight: var(--font-weight-medium);
+  transform: translateY(-120%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: -0.125rem;
+}
+
 .icon {
   display: inline-block;
   height: var(--icon-size-s);
