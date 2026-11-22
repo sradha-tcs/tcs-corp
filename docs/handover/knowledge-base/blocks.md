@@ -74,7 +74,7 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) (`interactive-dashboard`) | Independent | Experimental | Placeholder reserved for a future dashboard; renders nothing; in no filter |
 | [List](../../../blocks/list/README.md) (`list`) | Container | Active | Child pages, a fixed list or tagged pages from the query index, as cards or links |
 | [Media Contacts](../../../blocks/media-contacts/README.md) (`media-contacts`) | Independent | Active | The Media Contacts sheet's contacts, grouped by designation and region; replaces the press-release template's Media contacts (KB-D-054) |
-| [Configurable Media Contacts](../../../blocks/conf-med-cont/README.md) (`conf-med-cont`) | Independent | Active | The regions of a `data/conf-med-cont/media-contacts-config` row with their contacts, as each region's action shows them (KB-D-073, Proposed) |
+| [Configurable Media Contacts](../../../blocks/conf-med-cont/README.md) (`conf-med-cont`) | Independent | Active | The regions of a `data/conf-med-cont/media-contacts-config` row with their contacts, as each region's action shows them (KB-D-073) |
 | [Modal](../../../blocks/modal/README.md) (`modal`) | Independent | Active | Opens a page's content in a dialog (button or auto-linked `/modals/` links) |
 | [Page Header](../../../blocks/page-header/README.md) (`page-header`) | Container | Active | The title area of a page from its metadata |
 | [Quote](../../../blocks/quote/README.md) (`quote`) | Independent | Active | A quotation with author, optional image and title |

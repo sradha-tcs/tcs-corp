@@ -273,7 +273,7 @@ blocks/conf-med-cont/
 
 ## For Architects
 
-- A sheet-driven companion of the Media Contacts block (decision log KB-D-073, Proposed): the contacts are data, the page only references a configuration. It reuses the Media Contacts markup and decorator, and the data utils' sheet loading (one request per sheet, cached per page).
+- A sheet-driven companion of the Media Contacts block (decision log KB-D-073, Approved by the product owner on 22 November 2026): the contacts are data, the page only references a configuration. It reuses the Media Contacts markup and decorator, and the data utils' sheet loading (one request per sheet, cached per page).
 - The config sheet's region columns are read by name pattern, so the sheet can grow without code changes.
 
 ## For QA and Support Teams
@@ -326,4 +326,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 
 | Date | Change |
 |---|---|
-| 22 November 2026 | Created (KB-D-073, Proposed) |
+| 22 November 2026 | Created; KB-D-073 approved (product owner) |
