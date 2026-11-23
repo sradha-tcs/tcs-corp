@@ -387,6 +387,8 @@ export function applyCardListLayout(block, config) {
     const scroll = r.mode !== 'grid';
     block.classList.add(`${bp}-${scroll ? 'scroll' : 'grid'}`);
     if (r.mode === 'carousel') block.classList.add(`${bp}-carousel`);
+    // the cards per row on desktop (grid, carousel), for type that follows the card width
+    if (bp === 'desktop' && r.mode !== 'horizontal-scroll') block.classList.add(`desktop-columns-${r.columns}`);
     if (scroll && r.controls) block.classList.add(`${bp}-controls`);
     if (scroll && r.indicator) block.classList.add(`${bp}-indicator`);
     block.style.setProperty(`--list-columns-${bp}`, r.columns);
