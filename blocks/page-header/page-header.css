@@ -90,13 +90,29 @@
   gap: var(--space-200) var(--space-600);
 }
 
+.page-header .page-header-info {
+  justify-content: flex-end;
+  margin-inline-start: auto;
+}
+
+.page-header .page-header-timing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+}
+
 .page-header :is(.page-header-date, .page-header-reading-time) {
   margin: 0;
-  color: var(--color-text-default);
+  color: var(--color-text-secondary);
   font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-light);
-  line-height: 1.21;
-  letter-spacing: calc(0.005 * var(--body-font-size-xs));
+  font-weight: var(--font-weight-medium);
+  line-height: 1.57;
+  letter-spacing: calc(0.01 * var(--body-font-size-xs));
+  text-transform: uppercase;
+}
+
+.page-header .page-header-timing > .page-header-date + .page-header-reading-time::before {
+  content: '|\00a0' / '';
 }
 
 /* the content type next to the tags (Figma "Collection") */

@@ -173,7 +173,7 @@ function buildAuthor(metadata, author, t) {
 }
 
 /** article: tags and content type | date, reading time and listen / download / share */
-function buildMetaRow(metadata, tags, t) {
+function buildMetaRow(metadata, tags, t, timingLeft) {
   const row = document.createElement('div');
   row.className = 'page-header-meta-row';
   const labels = document.createElement('div');
@@ -186,11 +186,27 @@ function buildMetaRow(metadata, tags, t) {
   const prefix = 'page-header';
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  const listen = metadata.listenLink && isSafeUrl(metadata.listenLink) ? document.createElement('a') : null;
-  if (listen) listen.href = metadata.listenLink;
-  info.append(...[
+  // a listen link only when it's http(s) or a path (never javascript:), else a disabled button
+  const listenLink = (metadata.listenLink || '').trim();
+  const safeListen = listenLink && isSafeUrl(listenLink);
+  const listen = document.createElement(safeListen ? 'a' : 'button');
+  if (safeListen) {
+    listen.href = listenLink;
+  } else {
+    listen.type = 'button';
+    listen.disabled = true;
+  }
+  const timing = document.createElement('div');
+  timing.className = 'page-header-timing';
+  timing.append(...[
     buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),
     buildReadingTime(metadata.readingTime, t, prefix),
+  ].filter(Boolean));
+  if (timing.children.length) {
+    const timingGroup = timingLeft ? labels : info;
+    timingGroup.append(timing);
+  }
+  info.append(...[
     buildPageActions({
       listen, download: true, share: true, title: metadata.title, t, prefix,
     }),
@@ -231,7 +247,7 @@ export default async function decorate(block) {
     editorItemHint(ctaRows),
   ]);
   const layout = layoutOf(block, props, metadata.pageType);
-
+  const timingLeft = block.classList.contains('timing-left');
   const title = textElement('h1', 'page-header-title', metadata.title);
   const tags = buildTagList(pageTags, 'page-header-tags');
   // the eyebrow: the content type (e.g. Industry), else the tags; the tags on Display
@@ -267,11 +283,11 @@ export default async function decorate(block) {
   } else if (layout === 'cta-alignment-left') {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, description, ctas].filter(Boolean));
-    parts.push(buildMetaRow(metadata, tags, t), columns);
+    parts.push(buildMetaRow(metadata, tags, t, timingLeft), columns);
   } else {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
-    parts.push(buildMetaRow(metadata, tags, t), columns);
+    parts.push(buildMetaRow(metadata, tags, t, timingLeft), columns);
   }
 
   block.classList.remove(...LAYOUTS);
