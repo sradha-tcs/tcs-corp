@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, ITEM_LAYOUT_BEFORE_FONTS, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
   sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -431,14 +431,54 @@ describe('list item cells', () => {
     assert.deepEqual(ITEM_LAYOUT, modelLayout('blocks/list/_list.json', 'list-item'));
     assert.deepEqual(ITEM_FIELDS, ITEM_LAYOUT.filter(Boolean));
   });
-  it('reads a row with a cell per field', () => {
-    assertRead(matchCells(withoutTabCells(fields(), ITEM_LAYOUT), ITEM_FIELDS, {}));
+  // the current model: CTA style in the Link tab, the Font Style sizes in their own tab
+  const sizes = () => ['20', '', '12', '16', '', '', '24', '14', ''].map((px) => cell(px));
+  const fieldsNow = () => {
+    const [link, newTab, ...content] = fields();
+    return [link, newTab, cell('primary'), ...content, ...sizes()];
+  };
+  const assertFonts = (cells) => {
+    assert.equal(cells.ctaStyle.textContent, 'primary');
+    assert.equal(cells.descriptionSizeDesktop.textContent, '20');
+    assert.equal(cells.descriptionSizeMobile.textContent, '12');
+    assert.equal(cells.ctaSizeTablet.textContent, '14');
+  };
+  it('reads a row with a cell per field (29 cells)', () => {
+    const row = fieldsNow();
+    assert.equal(row.length, ITEM_FIELDS.length);
+    assert.deepEqual(itemLayoutFor(row.length), ITEM_FIELDS);
+    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assertFonts(cells);
   });
-  it('reads a row as AEM delivers it, with an empty cell per dialog tab', () => {
+  it('reads a row as AEM delivers it, with an empty cell per dialog tab (33 cells)', () => {
+    const [link, newTab, ctaStyle, ...rest] = fieldsNow();
+    const content = rest.slice(0, -9);
+    const row = [cell(), link, newTab, ctaStyle, cell(), ...content.slice(0, 7), cell(),
+      ...content.slice(7), cell(), ...rest.slice(-9)];
+    assert.equal(row.length, ITEM_LAYOUT.length);
+    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assertFonts(cells);
+  });
+  it('gives a card its item\'s CTA style and Font Style sizes', () => {
+    const fontSizes = { desktop: { description: '20', kicker: '', cta: '24' } };
+    const card = applyOverrides({ title: 'A' }, { ctaStyle: 'secondary', fontSizes });
+    assert.equal(card.ctaStyle, 'secondary');
+    assert.deepEqual(card.fontSizes, fontSizes);
+    assert.equal(applyOverrides({ title: 'A' }, { ctaStyle: '' }).ctaStyle, undefined);
+    assert.equal(applyOverrides({ title: 'A' }, { ctaStyle: 'list' }).ctaStyle, undefined);
+  });
+  it('reads a row rendered before CTA style and Font Style (22 cells)', () => {
     const [link, newTab, ...content] = fields();
     const row = [cell(), link, newTab, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
-    assert.equal(row.length, ITEM_LAYOUT.length);
-    assertRead(matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {}));
+    assert.equal(row.length, 22);
+    const layout = itemLayoutFor(row.length);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_FONTS);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assertRead(cells);
+    assert.equal(cells.ctaStyle, undefined);
+    assert.equal(cells.descriptionSizeDesktop, undefined);
   });
   it('reads a row rendered before the Display toggles (16 cells)', () => {
     const [link, newTab, ...content] = fields().slice(0, -ITEM_DISPLAY.length);
@@ -451,11 +491,11 @@ describe('list item cells', () => {
     assert.equal(cells.titleHidden, undefined);
     assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
   });
-  it('reads a row AEM delivers without its tab cells (a cell per field, 19 cells)', () => {
+  it('reads a row rendered before CTA style and Font Style without its tab cells (19 cells)', () => {
     const row = fields();
-    assert.equal(row.length, ITEM_FIELDS.length);
+    assert.equal(row.length, 19);
     const layout = itemLayoutFor(row.length);
-    assert.deepEqual(layout, ITEM_FIELDS);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_FONTS.filter(Boolean));
     const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
     assertRead(cells);
     assert.equal(cells.showEyebrow.textContent, 'true');
