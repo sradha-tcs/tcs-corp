@@ -810,9 +810,64 @@
         max-width: none;
     }
 
+    /*
+     * Photos at fixed sizes (they were a share of the block width, so wider than Figma's photos'
+     * shape on wide screens and zoomed by object-fit: cover): 1 and 2 401 x 527, 3 416 x 235,
+     * 4 363 x 553, 5 324 x 406, 6 461 x 347, 7 392 x 367, 8 221 x 262, 9 181 x 117px; each
+     * centred where Figma's 1440px frame centres it (% of the block width), at its top
+     */
+    .image-collage .image-collage-item-1 {
+        inset: -31.25% auto auto calc(67.36% - 12.5312rem);
+        width: 25.0625rem; /* 401px */
+        height: 32.9375rem; /* 527px */
+    }
+
+    .image-collage .image-collage-item-2 {
+        inset: -5.57% auto auto calc(107.85% - 12.5312rem);
+        width: 25.0625rem; /* 401px */
+        height: 32.9375rem; /* 527px */
+    }
+
+    .image-collage .image-collage-item-3 {
+        inset: 60.94% auto auto calc(-0.345% - 13rem);
+        width: 26rem; /* 416px */
+        height: 14.6875rem; /* 235px */
+    }
+
+    .image-collage .image-collage-item-4 {
+        inset: 73.05% auto auto calc(32.675% - 11.3438rem);
+        width: 22.6875rem; /* 363px */
+        height: 34.5625rem; /* 553px */
+    }
+
+    .image-collage .image-collage-item-5 {
+        inset: -14.26% auto auto calc(34.305% - 10.125rem);
+        width: 20.25rem; /* 324px */
+        height: 25.375rem; /* 406px */
+    }
+
+    .image-collage .image-collage-item-6 {
+        inset: 50% auto auto calc(105.56% - 14.4062rem);
+        width: 28.8125rem; /* 461px */
+        height: 21.6875rem; /* 347px */
+    }
+
+    .image-collage .image-collage-item-7 {
+        inset: 14.16% auto auto calc(2.985% - 12.25rem);
+        width: 24.5rem; /* 392px */
+        height: 22.9375rem; /* 367px */
+    }
+
+    .image-collage .image-collage-item-8 {
+        inset: 80.08% auto auto calc(58.3% - 6.9062rem);
+        width: 13.8125rem; /* 221px */
+        height: 16.375rem; /* 262px */
+    }
+
     .image-collage .image-collage-item-9 {
-        right: 16.2479%;
-        width: 13.7375%;
+        inset: 69.71% auto auto calc(76.8834% - 5.6562rem);
+        width: 11.3125rem; /* 181px */
+        height: 7.3125rem; /* 117px */
     }
 }
 
