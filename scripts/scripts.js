@@ -469,17 +469,33 @@ async function loadTemplate(main) {
 }
 
 const preloadedModules = new Set();
-// the header and footer and the blocks of their fragments, on every page
-const CHROME_BLOCKS = ['header', 'footer', 'fragment', 'tcs-header', 'conversation-canvas'];
+// the header (the TCS Header block, loaded into <header> by loadHeader) and the footer and the
+// blocks of their fragments, on every page
+const CHROME_BLOCKS = ['tcs-header', 'footer', 'fragment', 'conversation-canvas'];
 // the blocks the header and the footer bring: only those of the parts the page shows are preloaded
 const CHROME_PART_BLOCKS = {
-  header: ['header', 'fragment', 'tcs-header', 'conversation-canvas'],
+  header: ['tcs-header', 'fragment', 'conversation-canvas'],
   footer: ['footer', 'fragment', 'conversation-canvas'],
 };
+// the block each part's element holds: preloaded with its stylesheet (the blocks of its fragment
+// with their JavaScript only, see chromeBlocks)
+const CHROME_PART_BLOCK = { header: 'tcs-header', footer: 'footer' };
 
 // the parts of the page its Hide Header / Hide Footer / Hide Conversation Canvas page properties
 // hide (utils/page-visibility.js), read once
 const hidden = hiddenParts();
+
+/**
+ * The blocks a part of the page (header, footer) brings, none when the page hides it, without the
+ * Conversation Canvas when the page hides its Canvases.
+ * @param {'header'|'footer'} part
+ * @returns {string[]}
+ */
+function chromeBlocks(part) {
+  if (hidden[part]) return [];
+  return CHROME_PART_BLOCKS[part].filter((name) => CHROME_BLOCKS.includes(name))
+    .filter((name) => !(name === 'conversation-canvas' && hidden.canvas));
+}
 
 /**
  * A preload link for a code file, once per page. Stylesheet preloads go in the body: loadCSS
@@ -521,8 +537,9 @@ export function preloadBlockModules(source, { styles = true } = {}) {
  * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. The query
  * index on every page: the header's tablet / mobile menu (blocks/tcs-header on the Navigation
  * page) lists pages from it, and loads in parallel with it instead of after it; a page with Hide
- * Header loads it only for these blocks of its own. (Not in the eager phase: it would compete
- * with the LCP image.)
+ * Header loads it only for these blocks of its own. Called in the eager phase, alongside the
+ * header and the LCP section (KB-D-076, Proposed: it competes with the LCP image for bandwidth;
+ * measured in the decision log).
  * @param {Element} main
  */
 function prefetchData(main) {
@@ -573,7 +590,18 @@ async function loadEager(doc) {
     const skip = addSkipLink(main);
     getPlaceholders().then((t) => { if (skip) skip.textContent = t('skipToContent', skip.textContent); });
     // the header's space is kept before it loads (no layout shift)
-    if (!hidden.header) reserveHeaderSpace();
+    if (!hidden.header) {
+      reserveHeaderSpace();
+      // the header loads in the eager phase, in parallel with the LCP section (not awaited): the
+      // TCS Header block and the modules of its nav fragment (Fragment, Conversation Canvas:
+      // JavaScript only, their stylesheets only once the fragment shows they are used)
+      const header = chromeBlocks('header');
+      preloadBlockModules([CHROME_PART_BLOCK.header]);
+      preloadBlockModules(header, { styles: false });
+      loadHeader(doc.querySelector('header'));
+    }
+    // the shared data (query index for the header menu, Lists' taxonomy and redirects) starts now
+    prefetchData(main);
     document.body.classList.add('appear');
     // the LCP section's blocks: all their modules at once
     const first = main.querySelector('.section');
@@ -617,20 +645,18 @@ function autolinkModals(doc) {
 async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
-  // the modules of the other blocks, the header and footer and the blocks of their fragments
+  // the modules of the other blocks, the footer and the blocks of its fragment (the header's were
+  // preloaded in the eager phase)
   if (main) preloadBlockModules(main);
-  // the header and footer blocks with their stylesheets; the blocks of their fragments, JavaScript
-  // only: whether a fragment holds a Fragment, TCS Header or Canvas block (and needs its
-  // stylesheet) is known only once it loads; none for a hidden Canvas
-  const chrome = CHROME_BLOCKS.filter((name) => Object.keys(CHROME_PART_BLOCKS)
-    .some((part) => !hidden[part] && CHROME_PART_BLOCKS[part].includes(name)))
-    .filter((name) => !(name === 'conversation-canvas' && hidden.canvas));
-  preloadBlockModules(chrome.filter((name) => name === 'header' || name === 'footer'));
-  preloadBlockModules(chrome, { styles: false });
-  prefetchData(main);
+  // the footer block with its stylesheet; the blocks of its fragment, JavaScript only: whether a
+  // fragment holds a Fragment or Canvas block (and needs its stylesheet) is known only once it
+  // loads; none for a hidden Canvas
+  const footerBlocks = chromeBlocks('footer');
+  if (footerBlocks.length) preloadBlockModules([CHROME_PART_BLOCK.footer]);
+  preloadBlockModules(footerBlocks, { styles: false });
   // a header or footer the page hides isn't loaded (no fragment request, no data layer entry, no
-  // Canvas in the floating journey); styles/styles.css hides its empty element
-  if (!hidden.header) loadHeader(doc.querySelector('header'));
+  // Canvas in the floating journey); styles/styles.css hides its empty element. The header is
+  // loaded in the eager phase (loadEager).
   // the footer loads alongside the sections, not after them; it shows once they have loaded, so
   // it never appears above content still loading and moves (no layout shift)
   const footer = doc.querySelector('footer');

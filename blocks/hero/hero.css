@@ -720,7 +720,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
  
 /*
  * The opening hero is at most the first screen high (below the header bar): the header's
- * Conversation Canvas sits at the bottom of the first screen (blocks/header), so on a short
+ * Conversation Canvas sits at the bottom of the first screen (blocks/tcs-header), so on a short
  * screen the hero's content stays above it (Figma home-desktop 229:15426: the hero fills the
  * first screen). Taller content still grows the hero.
  */

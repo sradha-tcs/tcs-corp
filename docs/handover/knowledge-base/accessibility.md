@@ -92,7 +92,7 @@ Fixes of the review of 22 November 2026 (KB-D-075): the TCS Header's open tablet
 | Tabs Container / Tabs | ARIA tabs (tablist, tab, tabpanel, `aria-selected`), arrows, Home / End | [tabs](../../../blocks/tabs/README.md#accessibility) |
 | Gen Carousel | Named region, slide labels, `inert` inactive slides, `aria-live="polite"` track (off while playing), pause / play for Auto, arrows for Manual; autoplay starts paused for reduced motion | [gen-carousel](../../../blocks/gen-carousel/README.md#accessibility) |
 | Modal | Native `dialog`, named, focus return | [modal](../../../blocks/modal/README.md#accessibility) |
-| Header navigation | Disclosure buttons, `inert` page while the menu is open, Escape, focus loss closes; `header:menu` event | [header](../../../blocks/header/README.md#accessibility) |
+| Header navigation | Disclosure buttons, `inert` page while the menu is open, Escape, focus loss closes; `header:menu` event | [tcs-header](../../../blocks/tcs-header/README.md#accessibility) |
 | Anchor List | Links to section anchors; the current link is marked; Sticky pins the row | [anchor-list](../../../blocks/anchor-list/README.md#accessibility) |
 | Table | Header cells; a scrollable table is a focusable, labelled region | [table](../../../blocks/table/README.md#accessibility) |
 

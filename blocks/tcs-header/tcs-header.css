@@ -1,11 +1,29 @@
 /* ==========================================================================
    TCS Header: Bar & Logos
+   Below 1200px: the TCS and TATA logos on the left (1rem apart), the menu toggle on the right.
+   From 1200px (no toggle): TCS on the left, TATA on the right (Figma logo bar).
    ========================================================================== */
 
 .tcs-header .tcs-header-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: var(--space-400);
+}
+
+.tcs-header .tcs-header-bar .tcs-header-menu-toggle {
+  margin-left: auto;
+}
+
+@media (width >= 1200px) {
+  .tcs-header .tcs-header-bar {
+    justify-content: space-between;
+  }
+}
+
+/* in the site header the logos follow the bar's overlay fade (--header-logo-invert, below) */
+header nav :is(.tcs-header-brand, .tcs-header-group) img {
+  filter: brightness(0) invert(var(--header-logo-invert, 0));
 }
 
 .tcs-header :is(.tcs-header-brand, .tcs-header-group) {
@@ -50,10 +68,204 @@
   }
 }
 
+/* ==========================================================================
+   Site header: <header><div class="nav-wrapper"><nav id="nav"> (the Navigation page, with this
+   block) and <div class="nav-canvas"> (header Canvases), built by tcs-header.js
+   decorateSiteHeader. Other blocks rely on header .nav-wrapper, #nav and --nav-height.
+   ========================================================================== */
+
+/* Header position (TCS Header dialog: Sticky or Float per device, <html data-header-position-*>) */
+header .nav-wrapper {
+  --header-fade-progress: var(--header-scroll-progress, 0);
+
+  background-color: var(--background-color);
+  width: 100%;
+  z-index: 20;
+  position: fixed;
+  inset: 0 0 auto;
+}
+
+:where(html[data-header-position='float']) header .nav-wrapper {
+  --header-fade-progress: 0;
+
+  position: absolute;
+}
+
+@media (width < 600px) {
+  :where(html[data-header-position-mobile='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-mobile='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
+}
+
+@media (600px <= width < 1200px) {
+  :where(html[data-header-position-tablet='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-tablet='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
+}
+
+@media (width >= 1200px) {
+  :where(html[data-header-position-desktop='sticky']) header .nav-wrapper {
+    --header-fade-progress: var(--header-scroll-progress, 0);
+
+    position: fixed;
+  }
+
+  :where(html[data-header-position-desktop='float']) header .nav-wrapper {
+    --header-fade-progress: 0;
+
+    position: absolute;
+  }
+}
+
+header nav {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  max-width: var(--content-max-width);
+  height: var(--nav-height);
+  padding-inline: var(--space-400);
+  font-family: var(--body-font-family);
+}
+
+@media (width >= 1200px) {
+  header nav {
+    padding-inline: var(--space-2000);
+  }
+}
+
+/* the Navigation page's TCS Header section takes the bar's full width */
+header nav > .section:has(.tcs-header) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+header nav a:any-link {
+  color: currentcolor;
+}
+
+/* the logo bar below 1200px (Figma mobile and tablet: one logo size for both) */
+@media (width < 1200px) {
+  header nav .tcs-header .tcs-header-brand img {
+    width: 7.0512rem;
+    height: 1.6806rem;
+    object-fit: contain;
+  }
+
+  header nav .tcs-header .tcs-header-group img {
+    width: 1.8469rem;
+    height: 1.625rem;
+    object-fit: contain;
+  }
+}
+
+/* Header over the first block: the bar is transparent over a dark opening and fades to white */
+:where(html[data-header-overlay='always']) header .nav-wrapper,
+:where(html:not([data-header-overlay='never']) body:has(main > .section:first-child .hero:not(.bg-light, .bg-white, .light))) header .nav-wrapper {
+  --header-logo-invert: calc(1 - var(--header-fade-progress));
+
+  background-color: rgb(255 255 255 / var(--header-fade-progress));
+}
+
+:where(body:has(main > .section:first-child .hero:is(.bg-light, .bg-white, .light))) header .nav-wrapper {
+  --header-logo-invert: 0;
+}
+
+header .nav-wrapper:has(.tcs-header-menu-toggle[aria-expanded='true']) {
+  --header-logo-invert: 0;
+
+  background-color: var(--color-bg-default);
+}
+
+/* Header Canvas: the header's Conversation Canvases lie on the bottom of the first screen */
+header:has(.nav-canvas) {
+  height: var(--nav-height);
+}
+
+header .nav-canvas {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  height: min(var(--conversation-canvas-first-section-bottom, 100dvh), 100dvh);
+  padding-inline: var(--space-600);
+  pointer-events: none;
+}
+
+body.home header .nav-canvas {
+  height: var(--conversation-canvas-first-section-bottom, 100dvh);
+}
+
+html:not([data-canvas-journey-state]) header .nav-canvas {
+  visibility: hidden;
+}
+
+header:has(.tcs-header-menu-toggle[aria-expanded='true']) .nav-canvas {
+  visibility: hidden;
+}
+
+header .nav-canvas .conversation-canvas {
+  border-radius: 0;
+  padding: 0 0 var(--conversation-canvas-float-offset);
+  background-color: transparent;
+}
+
+header .nav-canvas .conversation-canvas-content {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  padding: 0;
+}
+
+header .nav-canvas .conversation-canvas-search {
+  pointer-events: auto;
+}
+
+header .nav-canvas .conversation-canvas:not(.conversation-canvas-owner) {
+  z-index: 2;
+}
+
+header .nav-canvas .conversation-canvas::before {
+  display: none;
+}
+
+@media (width >= 600px) {
+  header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 28.9375rem);
+  }
+}
+
+@media (width >= 1200px) {
+  header .nav-canvas .conversation-canvas-search {
+    width: min(100%, 37.9375rem);
+  }
+}
+
 /*
  * Logo colour from the background behind the header bar (<html data-header-theme>, set by
  * tcs-header.js setupDynamicLogoTheme): dark, white logos; light, black logos; black while the
- * menu is open. The site header moves the logos into its nav (blocks/header), hence `header`;
+ * menu is open. In the site header the block sits in the header's nav, hence `header`;
  * ordered by specificity.
  */
 :is(.tcs-header, header) :is(.tcs-header-brand, .tcs-header-group) img {
@@ -149,7 +361,7 @@ html[data-header-theme='light'] :is(.tcs-header, header) :is(.tcs-header-brand, 
 
   /*
    * Navigation body (Figma 2957-18746): the main view (L1 accordions, AI search) or the L3 panel.
-   * The drawer lives in the header's nav (blocks/header), outside the block, so its rules are
+   * The drawer may be moved into the header's nav wrapper, outside the block, so its rules are
    * scoped to the drawer.
    */
   .tcs-header-drawer-content {

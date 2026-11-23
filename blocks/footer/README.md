@@ -25,7 +25,7 @@ The site footer, with two roles under one block name (`blocks/footer/footer.js`)
 - The locale's Social Links data sheet (`/{locale}/data/social-links.json`: platform, url, icon, sort-order; `utils/data.js` `getSocialLinks`).
 - The Footer block's fields and Footer Link items; the Conversation Canvas page it names.
 
-**Related blocks.** [Header](../header/README.md) (same loading and inheritance), [Fragment](../fragment/README.md) (`loadFragment`), [Conversation Canvas](../conversation-canvas/README.md) (the footer Canvas, the final stop of the floating journey).
+**Related blocks.** [TCS Header](../tcs-header/README.md) (same loading and inheritance), [Fragment](../fragment/README.md) (`loadFragment`), [Conversation Canvas](../conversation-canvas/README.md) (the footer Canvas, the final stop of the floating journey).
 
 **When to use.** The page footer is always loaded. Add the Footer block only to footer pages in `references/` (`references/footer`, `references/footer-campaign`, …).
 
@@ -748,7 +748,7 @@ Evidence to collect: page URL, the `footer` meta values, network status of the f
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [Header](../header/README.md), [Fragment](../fragment/README.md), [Conversation Canvas](../conversation-canvas/README.md)
+- [TCS Header](../tcs-header/README.md), [Fragment](../fragment/README.md), [Conversation Canvas](../conversation-canvas/README.md)
 - Model: [`_footer.json`](./_footer.json); page properties [`models/_page.json`](../../models/_page.json)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/items/item-rows.test.mjs`](../../test/items/item-rows.test.mjs) (Footer Link cells), [`test/site/index-root.test.mjs`](../../test/site/index-root.test.mjs) (`references/footer` paths), [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)

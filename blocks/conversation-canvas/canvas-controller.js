@@ -105,12 +105,12 @@ function measure() {
   })));
   const { scrollY } = window;
   // the header Canvas over an opening hero lines up with the bottom of the first section
-  // (blocks/header/header.css); written before the rows are measured, as it moves that row
+  // (blocks/tcs-header/tcs-header.css); written before the rows are measured, as it moves that row
   const bottom = firstSection
     ? Math.round(firstSection.getBoundingClientRect().bottom + scrollY) : 0;
   if (bottom !== firstSectionBottom) {
     firstSectionBottom = bottom;
-    // used only by the header Canvas (blocks/header/header.css): set on the header
+    // used only by the header Canvas (blocks/tcs-header/tcs-header.css): set on the header
     setRoot('--conversation-canvas-first-section-bottom', `${bottom}px`, document.querySelector('header') || document.documentElement);
   }
   const canvases = live.map((e, i) => {
@@ -239,7 +239,7 @@ export default function registerCanvas(entry) {
     listening = true;
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', remeasure);
-    // the header menu covers the page (blocks/header): no floating Canvas while it's open
+    // the header menu covers the page (blocks/tcs-header): no floating Canvas while it's open
     suppressed = !!document.querySelector('header .nav-hamburger button[aria-expanded="true"]');
     document.addEventListener('header:menu', (e) => {
       suppressed = !!e.detail?.open;

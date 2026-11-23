@@ -69,7 +69,6 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Form Variations](../../../blocks/form-variations/README.md) (`form-variations`) | Container | Active | Forms (contact, download, subscribe) built from field items |
 | [Fragment](../../../blocks/fragment/README.md) (`fragment`) | Structural | Active | Includes the sections of another page |
 | [Gen Carousel](../../../blocks/gen-carousel/README.md) (`gen-carousel`) | Container (section) | Active | A section whose Heroes or Teasers rotate as slides |
-| [Header](../../../blocks/header/README.md) (`header`) | Structural | Active | Site header from the nav reference page (no model of its own: authored through the nav page) |
 | [Hero](../../../blocks/hero/README.md) (`hero`) | Container | Active | Full-width banner with image or Lottie, title, description and CTAs |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) (`interactive-dashboard`) | Independent | Experimental | Placeholder reserved for a future dashboard; renders nothing; in no filter |
 | [List](../../../blocks/list/README.md) (`list`) | Container | Active | Child pages, a fixed list or tagged pages from the query index, as cards or links |
@@ -83,7 +82,7 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Table](../../../blocks/table/README.md) (`table`) | Container | Active | A data table of rows with 1 to 5 columns |
 | [Table List](../../../blocks/table-list/README.md) (`table-list`) | Container | Active | A numbered list of linked items (industries, services) |
 | [Tabs](../../../blocks/tabs/README.md) (`tabs`) | Container (section) and block | Active | Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments, `tabs-block`) |
-| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | Independent | Active | The TCS and TATA logos of the header, on the nav page |
+| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | Structural | Active | The site header (loaded eagerly into `<header>`, loads the nav page) and, on the nav page, the TCS and TATA logos with the tablet / mobile menu; replaces the former Header block (KB-D-076) |
 | [Teaser](../../../blocks/teaser/README.md) (`teaser`) | Container | Active | Title, text, image and links in one of four layouts |
 | [Testimonial](../../../blocks/testimonial/README.md) (`testimonial`) | Container | Active | A client testimonial with author, image and stats |
 | [Video](../../../blocks/video/README.md) (`video`) | Independent | Active | A DAM, YouTube or Vimeo video inline or in a pop-up, with poster and captions |
@@ -258,7 +257,6 @@ Usage recorded in [tools/docs/library-snapshot.json](../../../tools/docs/library
 | [Form Variations](../../../blocks/form-variations/README.md) | 19 | 5 | 0 | 0 |
 | [Fragment](../../../blocks/fragment/README.md) | 1 | 1 | 0 | 0 |
 | [Gen Carousel](../../../blocks/gen-carousel/README.md) | 5 | 5 | 0 | 0 |
-| [Header](../../../blocks/header/README.md) | Not recorded (authored through the nav page) | 0 | 0 | 0 |
 | [Hero](../../../blocks/hero/README.md) | 182 | 13 | 5 | 123 |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) | 1 | 1 | 0 | 0 |
 | [List](../../../blocks/list/README.md) | 243 | 48 | 11 | 85 |
