@@ -255,7 +255,7 @@ Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../
 
 ## Accessibility responsibilities
 
-The code implements WCAG 2.1 AA behaviour ([AGENTS.md](../../../AGENTS.md#blocks), "Accessibility"); authors are responsible for the content:
+The code implements WCAG 2.2 AA behaviour ([AGENTS.md](../../../AGENTS.md#blocks), "Accessibility"); authors are responsible for the content:
 
 - One `h1` per page (Page Header, a Hero with H1 or a Title h1) and heading levels in order; don't choose a level for its size.
 - Alt text for every informative image and every Lottie / file reference; empty only for decorative images.

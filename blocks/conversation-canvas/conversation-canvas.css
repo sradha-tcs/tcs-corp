@@ -588,7 +588,8 @@ header:has(.nav-hamburger button[aria-expanded='true']) .nav-canvas {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .conversation-canvas .conversation-canvas-search.conversation-canvas-floating {
+  .conversation-canvas .conversation-canvas-search.conversation-canvas-floating,
+  .conversation-canvas .conversation-canvas-search-form input::placeholder {
     animation: none;
   }
 }

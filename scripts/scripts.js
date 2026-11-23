@@ -21,6 +21,8 @@ import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
 import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
+import { getPlaceholders } from '../utils/placeholders.js';
+import { addSkipLink } from '../decorators/a11y-decorator.js';
 import { hiddenParts, markHiddenParts } from '../utils/page-visibility.js';
 import { availableId } from '../utils/ids.js';
 import { sheetOverrides } from '../utils/sheet-metadata.js';
@@ -412,7 +414,6 @@ async function addErrorBackButton(main) {
   if (!window.isErrorPage || !document.referrer) return;
   const { origin, pathname } = new URL(document.referrer);
   if (origin !== window.location.origin) return;
-  const { getPlaceholders } = await import('../utils/placeholders.js');
   const t = await getPlaceholders();
   const back = document.createElement('a');
   back.href = pathname;
@@ -501,13 +502,16 @@ function preload(path, rel, as) {
  * a block in a fragment (the header's) only once the fragment is decorated; preloaded, they load
  * in parallel.
  * @param {Element|string[]} source an element (the blocks in it) or block names
+ * @param {{ styles?: boolean }} [options] styles: false preloads the JavaScript only (blocks that
+ *   may not be on the page: a preloaded stylesheet that isn't used wastes bandwidth at high
+ *   priority)
  */
-export function preloadBlockModules(source) {
+export function preloadBlockModules(source, { styles = true } = {}) {
   const names = Array.isArray(source) ? source
     : [...source.querySelectorAll('[data-block-name]')].map((block) => block.dataset.blockName);
   new Set(names).forEach((name) => {
     blockModules(name).forEach((path) => preload(path, 'modulepreload'));
-    preload(blockStylesheet(name), 'preload', 'style');
+    if (styles) preload(blockStylesheet(name), 'preload', 'style');
   });
 }
 
@@ -564,6 +568,10 @@ async function loadEager(doc) {
     if (window.isErrorPage) await loadErrorPage(main);
     else await loadTemplate(main);
     decorateMain(main);
+    // the UI text most blocks of the first section wait for: requested now, in parallel with
+    // their modules (one round trip less before LCP); the skip link gets its text from it
+    const skip = addSkipLink(main);
+    getPlaceholders().then((t) => { if (skip) skip.textContent = t('skipToContent', skip.textContent); });
     // the header's space is kept before it loads (no layout shift)
     if (!hidden.header) reserveHeaderSpace();
     document.body.classList.add('appear');
@@ -611,8 +619,14 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   // the modules of the other blocks, the header and footer and the blocks of their fragments
   if (main) preloadBlockModules(main);
-  preloadBlockModules(CHROME_BLOCKS.filter((name) => Object.keys(CHROME_PART_BLOCKS)
-    .some((part) => !hidden[part] && CHROME_PART_BLOCKS[part].includes(name))));
+  // the header and footer blocks with their stylesheets; the blocks of their fragments, JavaScript
+  // only: whether a fragment holds a Fragment, TCS Header or Canvas block (and needs its
+  // stylesheet) is known only once it loads; none for a hidden Canvas
+  const chrome = CHROME_BLOCKS.filter((name) => Object.keys(CHROME_PART_BLOCKS)
+    .some((part) => !hidden[part] && CHROME_PART_BLOCKS[part].includes(name)))
+    .filter((name) => !(name === 'conversation-canvas' && hidden.canvas));
+  preloadBlockModules(chrome.filter((name) => name === 'header' || name === 'footer'));
+  preloadBlockModules(chrome, { styles: false });
   prefetchData(main);
   // a header or footer the page hides isn't loaded (no fragment request, no data layer entry, no
   // Canvas in the floating journey); styles/styles.css hides its empty element

@@ -587,6 +587,54 @@
   line-height: 1.6;
 }
 
+/*
+ * statistic cards (Figma "Feature card/Card - Stat"): Label and description 1rem / 1.625
+ * (16px / 26px), -0.01em, 1.5rem apart; the description #5a5a5a on the default and light Card
+ * colours (Dark, Navy, Brand blue and Image background keep their muted text)
+ */
+.card-list .list-card-stat .list-card-bottom {
+  gap: var(--space-600);
+}
+
+.card-list .list-card-stat :is(.list-card-subtitle, .list-card-description) {
+  line-height: 1.625;
+  letter-spacing: calc(-0.01 * var(--list-stat-text-size));
+}
+
+.card-list .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image) .list-card-description {
+  color: var(--color-text-neutral-secondary);
+}
+
+/*
+ * wide statistic cards (Figma "Content Section", three per row): the description 1.25rem / 1.6
+ * (20px / 32px) on desktop in rows of one to three cards; four or more per row keep 1rem
+ * ("Collection Section")
+ */
+@media (width >= 1200px) {
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat .list-card-description {
+    --list-stat-text-size: 1.25rem;
+
+    line-height: 1.6;
+  }
+}
+
+/*
+ * the same rows of one to three statistic cards below 1200px (Figma tablet "Content Section",
+ * 1024 frame; its mobile frame is unfinished, so mobile follows tablet): 1.5rem padding (and the
+ * 1.5rem gaps), the description 1.125rem / 1.611 (18px / 29px); the title keeps its Title size
+ */
+@media (width < 1200px) {
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat {
+    --list-card-padding: var(--space-600);
+  }
+
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat .list-card-description {
+    --list-stat-text-size: 1.125rem;
+
+    line-height: 1.611;
+  }
+}
+
 /* the feature card (Figma variation 2): the image behind tags, title and author */
 .card-list .list-feature {
   position: relative;
@@ -884,6 +932,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   overflow-wrap: break-word;
 }
 
+/* a statistic card's number in a Title size: 1.1 and -0.05em as the number (Figma: 96 / 106px, -4.8px) */
+.card-list .list-card-stat:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
+  line-height: 1.1;
+  letter-spacing: calc(-0.05 * var(--list-title-size));
+}
+
 /* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
 .card-list :is(.list-card:not(.list-card-image) .list-card-title, .list-feature-title) .list-card-link:hover {
   text-decoration: underline;
@@ -1064,7 +1118,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     --list-panel-title-size: 1.75rem;
     --list-panel-text-size: 1rem;
     --list-stat-number-size: 6rem;
-    --list-stat-text-size: 1.125rem;
     --list-meta-size: 1rem;
     --list-row-title-size: 2.5rem;
   }
@@ -1450,6 +1503,28 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   color: var(--list-card-fg);
 }
 
+/* the buttons (Figma "Content Section"): 3rem (48px) high with the border inside, medium */
+.card-list .list-card-ctas .button {
+  --button-height: 3rem;
+
+  padding-block: calc(var(--space-300) - var(--border-width-100));
+  font-weight: var(--font-weight-medium);
+}
+
+/*
+ * a Secondary Button on a light card (statistic and report cards, panels in a light Card colour):
+ * #f5f5f5 with a #303030 border and text (Figma); dark cards keep theirs
+ */
+.card-list :is(
+  .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
+  .list-card-report:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
+  .list-card-panel:is(.theme-grey, .theme-mid-grey, .theme-brand-light, .theme-gradient)
+) .list-card-ctas .button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--color-text-neutral);
+  background-color: var(--grey-100);
+  color: var(--color-text-neutral);
+}
+
 /*
  * Cards: a panel with CTA buttons (Figma): the title at the top; the Label (0.875rem semibold),
  * the description and the buttons at the bottom
@@ -1478,17 +1553,9 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
  * a statistic card with CTA buttons (Figma): the description 2rem below the Label, the buttons
  * 1.5rem below the description; statistic cards without buttons are unchanged
  */
-.card-list .list-card-stat .list-card-bottom:has(> .list-card-ctas) > .list-card-subtitle + .list-card-description {
-  margin-top: var(--space-400);
-}
-
-.card-list .list-card-stat .list-card-bottom > .list-card-ctas {
-  margin-top: var(--space-200);
-}
-
 .card-list .list-card-stat .list-card-bottom > .list-card-action {
   margin: 0;
-  padding-top: var(--space-200);
+  padding-top: 0;
 }
 
 /*

@@ -1,7 +1,32 @@
 /**
- * Links utils: read authored links and their Link Type ("Open in New Window") values.
+ * Links utils: read authored links and their Link Type ("Open in New Window") values; tel: links.
  */
 import { readMultifieldItems } from './multifield.js';
+
+/**
+ * The tel: link of a phone number as written (spaces, brackets, dots and dashes left out; one
+ * leading +), e.g. "+1 (416) 456-7650" -> tel:+14164567650.
+ * @param {string} phone
+ * @returns {string} '' when the value has no digit
+ */
+export function telHref(phone) {
+  const digits = String(phone || '').replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+  return /\d/.test(digits) ? `tel:${digits}` : '';
+}
+
+/**
+ * A link that can be rendered: http(s), mailto, tel, or a path; never javascript:, data: or
+ * another scheme (for URLs from sheets, metadata and the query index).
+ * @param {string} href
+ * @returns {boolean}
+ */
+export function isSafeUrl(href) {
+  const value = String(href ?? '').trim();
+  if (!value) return false;
+  if (/^(https?:|mailto:|tel:)/i.test(value)) return true;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false;
+  return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
+}
 
 /** value of the "Open in New Window" Link Type option in the block models */
 export const NEW_WINDOW = 'new-window';

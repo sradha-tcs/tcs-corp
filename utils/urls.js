@@ -22,3 +22,17 @@ export function toSitePath(path) {
     return path;
   }
 }
+
+/**
+ * decodeURIComponent that never throws: a malformed escape (e.g. #%E0 in a shared link) keeps
+ * the raw value instead of breaking the page or the block that reads it
+ * @param {string} value
+ * @returns {string}
+ */
+export function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}

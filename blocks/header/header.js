@@ -55,11 +55,17 @@ function setupScrollFallback(navWrapper) {
       navWrapper.classList.remove('is-scrolled');
     }
   };
+  // one update per frame however many scroll events arrive (INP)
+  let frame = 0;
+  const onScrollFrame = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => { frame = 0; onScroll(); });
+  };
   new ResizeObserver(([entry]) => {
     height = entry.contentRect.height || height;
     onScroll();
   }).observe(navWrapper);
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScrollFrame, { passive: true });
   onScroll();
 }
 
@@ -72,14 +78,15 @@ export default async function decorate(block) {
     return (await loadFragment(navPath)) || defaultFragment;
   });
 
-  const [placeholders, fragment] = await Promise.all([getPlaceholders(), navFragment]);
+  const [t, fragment] = await Promise.all([getPlaceholders(), navFragment]);
 
   block.textContent = '';
   if (!fragment) return;
 
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.setAttribute('aria-label', placeholders.mainNavigation || 'Main navigation');
+  // getPlaceholders() returns the lookup function (placeholder mainNavigation, English fallback)
+  nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const canvasSections = [...nav.children].filter((section) => section.querySelector('.conversation-canvas'));

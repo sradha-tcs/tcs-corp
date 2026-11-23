@@ -25,8 +25,9 @@ Rules:
   Additional, item children instead of composite multifields, container* fields on sections,
   no Text / Title / Type / Alt / MimeType suffixes for values that must be read, no sample
   content in templates.
-- Accessibility: WCAG 2.1 AA (buttons with aria-expanded / aria-controls, Escape closes popups,
-  pause for moving content, announceNewTab, errors linked with aria-describedby).
+- Accessibility: WCAG 2.2 AA (KB-D-075; buttons with aria-expanded / aria-controls, Escape closes
+  popups, pause for moving content, announceNewTab, errors linked with aria-describedby, skip link,
+  modal menus make the page behind them inert).
 - Performance: three-phase loading, no new runtime dependencies, no layout reads while
   decorating, keep the Inter fallback faces, PageSpeed target 100.
 - Privacy: no personal data in the data layer (redactSearchTerm), no secrets, tokens, AEM
@@ -34,9 +35,13 @@ Rules:
 - Adobe standards: vanilla ES6+ and CSS, Airbnb ESLint, rem units, mobile first (600 / 900 /
   1200px), block-scoped selectors, semantic tokens, UI text from placeholders with an English
   fallback.
-- Analytics: reuse decorators/data-layer-decorator.js and data-cmp-* attributes. Adobe Tags and
-  the Web SDK are not configured; no Target / AJO / consent exists. Adding any of them needs an
-  approved entry in the decision log.
+- Analytics: reuse decorators/data-layer-decorator.js and data-cmp-* attributes; push business
+  events with pushDataLayerEvent / pushComponentEvent (utils/analytics.js: event id, timestamp,
+  schema version, sanitizing, validation, no duplicates). The Web SDK readiness layer (KB-D-074:
+  utils/xdm.js mapper, utils/consent.js CMP interface, utils/web-sdk.js bridge, off until
+  configured) is the only path to the Web SDK; no XDM in blocks, no IDs in code. Adobe Tags, the
+  Web SDK, Target, AJO and a CMP are not configured; configuring any of them needs an approved
+  entry in the decision log.
 - Tests: run npm run lint and npm test before every commit (CI runs lint only); report real
   results. Never fabricate tests, results, measurements or claims; write "Not recorded" or
   "Blocked: <input needed>" instead.
@@ -215,7 +220,7 @@ The library preview (`.home-work/render-lib.mjs`) reproduces these rules; compar
 
 **Shared events and helpers (re-audit, archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md in the repository sradha-tcs/tcs-corp-delivery).** `tabs:reveal` (bubbling) opens the tab(s) holding its target (deep links, Anchor List); `loadFragment(path, from)` stops recursion by the chain of including fragments (pass the including element); `form-variations:submit` integrations call `detail.respondWith(promise)` to report their outcome.
 
-**Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown). `mailto:` / `tel:` links are recorded by their kind (email / phone), never with the address (`utils/privacy.js` `contactLinkKind`); the Media Contacts block (`blocks/media-contacts`) lists the Media Contacts sheet, which the Press Release template no longer appends (KB-D-054).
+**Data layer.** Every block is in the Adobe Client Data Layer (`window.adobeDataLayer`, Core Components schema) for Adobe Tags and the Web SDK: `decorators/data-layer-decorator.js` adds the page and the blocks and captures clicks, show / hide, media, search, submit and change events centrally (see decorators/README.md). Blocks don't push clicks themselves; they describe them with `data-cmp-interaction`, `data-cmp-value`, `data-cmp-position` and `data-cmp-id`, and push only state the central code can't know (`pushComponentEvent` from `utils/analytics.js`, e.g. a tab or slide shown). Every event carries `eventId`, `eventName`, `eventTimestamp` and `schemaVersion` (`utils/analytics.js`); the page entry has the page context (`utils/page-context.js`) and is followed by `page:view`; forms announce their outcome with a bubbling `form:result` event (`detail.ok`, `detail.reason`), which becomes `cmp:formSuccess` / `cmp:formError`. `mailto:` / `tel:` links are recorded by their kind (email / phone), never with the address (`utils/privacy.js` `contactLinkKind`); the Media Contacts block (`blocks/media-contacts`) lists the Media Contacts sheet, which the Press Release template no longer appends (KB-D-054); the Configurable Media Contacts block (`blocks/conf-med-cont`, KB-D-073) shows the regions of a `data/conf-med-cont/media-contacts-config` row (dynamic region columns) with the contacts of the `contacts` sheet, as each region's action says.
 
 **Header.** `blocks/header` is the TCS Header (see its README): the nav page's brand (TCS logo), sections (the menu, any depth) and tools (TATA logo); desktop (>= 1200px) is the Figma logo bar without navigation, tablet and mobile open the menu full screen one level at a time. The TCS Header's **Header over the first block** (Auto / Always / Never, every width; the logo bar is fixed at the top and turns solid once scrolled) is `<html data-header-overlay>` (`utils/header-space.js`, remembered for the next pages); `styles/styles.css`, `blocks/hero` and `templates/home` lay the first block out for it, and blocks can use `--header-overlay-space`. Keep `header .nav-wrapper`, `#nav`, `nav[data-expanded]` and `--nav-height` (other blocks rely on them).
 
@@ -225,7 +230,7 @@ The library preview (`.home-work/render-lib.mjs`) reproduces these rules; compar
 
 **Assets from a separate AEM Assets environment (EDAM, KB-D-064, not adopted on 8 November 2026: the assets stay in the Sites author's DAM, referenced by DAM path; the rendering below stays).** Pages may reference assets by their Dynamic Media with OpenAPI delivery URL (`https://<delivery host>/adobe/assets/urn:aaid:aem:<id>/as/<name>`, the original file at `.../original/as/<name>`) instead of a `/content/dam` path. `decorateMain` (`scripts.js`) first runs `decorateDeliveryImages` (`decorators/responsive-image-decorator.js`): an image delivery link that stands alone in its cell or paragraph becomes a responsive `<picture>` (`buildDeliveryPicture`, the structure of `createOptimizedPicture`), so blocks keep reading pictures; links in running text and original files (videos, audio, documents) stay links; `buildImage` (section backgrounds) builds them too. Parse such URLs with `deliveryAsset` (`utils/media.js`); don't test asset references for `/content/dam`. The plan: `archive/docs-before-role-docs-2026-11-08/docs/proposals/remote-assets-edam.md` in the repository sradha-tcs/tcs-corp-delivery.
 
-**Accessibility.** Blocks meet WCAG 2.1 AA: buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
+**Accessibility.** Blocks meet WCAG 2.2 AA (KB-D-075): buttons are `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, moving content (Lottie, background video) has a pause / play button, links opening a new tab say so (`announceNewTab`), form errors are shown next to their field and linked with `aria-describedby`, and all UI text comes from placeholders.
 
 ### Shared code: decorators and utils
 
@@ -263,7 +268,7 @@ Code resolves the locale with `utils/site.js` (`LOCALES`, `getLocale`, `localePa
 │   ├── metadata            # sheet: bulk metadata (columns below)
 │   ├── taxonomy            # taxonomy page (tag, title; a sheet per language for translations)
 │   ├── redirects           # sheet: source, destination (published as /{lang}/redirects.json, not applied by the platform)
-│   └── data/               # sheets: authors, locations, partners, social-links, media-contacts
+│   └── data/               # sheets: authors, locations, partners, social-links, media-contacts; conf-med-cont/ (contacts, regions, media-contacts-config)
 └── site-global-templates/  # template pages authors copy (home, press release, blog, article, ...); not published
 ```
 
@@ -275,7 +280,7 @@ Code resolves the locale with `utils/site.js` (`LOCALES`, `getLocale`, `localePa
 | Page metadata | Page properties and the locale's bulk metadata sheet (`/en/metadata.json`, `/de-de/metadata.json`, ...; applied once listed in the site configuration's `metadata.source`) | `utils/metadata.js` (`getPageMetadata`, `getPageTags`, `getPageLanguage`); `decorators/seo-decorator.js` applies the SEO / social columns and `<html lang>`; Page Type becomes a body class |
 | UI text | `/{locale}/placeholders.json` (Key, Text; Description and Category are for authors) | `utils/placeholders.js`: `const t = await getPlaceholders(); t('nextSlide', 'Next slide')` — always pass an English fallback |
 | Tag labels | `/{locale}/taxonomy.json` (mapped per locale; the locale's language sheet when translated) | `utils/taxonomy.js` (`resolveTags`), falling back to labels derived from tag IDs |
-| Data sheets | `/{locale}/data/{authors,locations,partners,social-links,media-contacts}.json` | `utils/data.js` (`getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `inRegion`) |
+| Data sheets | `/{locale}/data/{authors,locations,partners,social-links,media-contacts}.json`, `/{locale}/data/conf-med-cont/{contacts,regions,media-contacts-config}.json` | `utils/data.js` (`getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `getConfMedCont`, `inRegion`) |
 | Redirects | `/{locale}/redirects.json` per locale | none; the platform only applies a root `/redirects.json`, so these sheets need another mechanism (e.g. CDN rules) |
 
 Bulk metadata columns: `url`, `hide-header`, `hide-footer`, `hide-canvas` (the page toggles, `true` / `yes`; `utils/page-visibility.js`), `sheet-page-type` (the Page Type: overrides the page dialog's Page Type; a `page-type` column applies only where the dialog has none), `meta-title`, `meta-description`, `meta-keywords`, `keyword-action`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`. Each column is published as `<meta name="{column}">`; the SEO decorator maps meta-title, meta-description, meta-keywords (with the page dialog's Keywords as `keyword-action` says: `default` or empty, the dialog's win; `override`, the sheet's win; `merge`, both, the dialog's first; `utils/keywords.js`), og-*, twitter-* and canonical-url to the standard tags in the browser (`robots` is standard and works server side); `meta-title` and `meta-description` override the page dialog's Title and Description everywhere, as authored: the head, the Page Header, the data layer and the index rows the List, Filter List and Canvas cards are built from (`utils/sheet-metadata.js`; the delivered HTML keeps the dialog's). The Page Header takes all its content from metadata: page-type (default layout), title, description, tags, content-type (eyebrow / label), publish-date, reading-time, author-id (Authors sheet: name, designation, region, image, LinkedIn), featured-image (Landing) and listen-link (listen action; share and download come from code); only its Layout and CTA List are authored. The List block (`blocks/list`, see its README) lists child pages, a fixed list (List Items) or tagged pages from the query index, as cards from card-title, card-description, card-image, card-image-alt, eyebrow / category, tags, content-type and the dates (a List Item's authored fields win, field by field, over its linked page's; Card style and Card colour: List Item, else the List's unless Mixed (by page) / Default for the style, else the page's card-style / card-theme, else automatic) (pages with hide-in-nav = yes are left out; links go to the redirect targets of `/{locale}/redirects.json`), with grid or horizontal scroll per breakpoint. The Cards block (`blocks/cards`, see its README) is its manual authoring alternative: each Card holds its own image, eyebrow, title, rich text description, label, tags, date, link and call to action, with the List's presentation and block settings (shared: `models/_card-list.json` fields, `utils/card-list-config.js`, `decorators/card-list-decorator.js`, `styles/card-list.css`). The Filter List lists the locale's pages from the query index (`utils/query-index.js`, loaded once) below its Root path, of its Page types (page-type) and Content types (content-type), or a manual list, in its Sort order; its filter pills are curated tags (labels from the taxonomy), its advanced filter the tags below taxonomy roots. Cards are built from the metadata columns of its Card mapping (featured-image, else thumbnail-image; content-type; title; description; tags with reading-time; path; author, else author-id from the Authors sheet) with publish-date; the hero and featured spotlight cards come from featured (yes / true) and priority (featured cards: featured, else priority <= 3); `feature-card` / `featured-priority` are read as fallbacks; the footer lists the Social Links sheet in sort-order.
@@ -309,7 +314,7 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 - Ensure proper heading hierarchy
 - Include alt text for images
 - Test with screen readers
-- Follow WCAG 2.1 AA guidelines
+- Follow WCAG 2.2 AA guidelines (KB-D-075)
 
 ## Deployment
 

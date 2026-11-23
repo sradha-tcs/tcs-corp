@@ -88,11 +88,15 @@ export const cardHeadingLevel = (heading) => HEADINGS[Math.min(
   HEADINGS.indexOf(heading?.tagName.toLowerCase() || 'h2') + 1,
 )];
 
-/** a card's link: the card's destination, secure in a new tab, named by its label */
-function cardLink(card, label, t) {
+/**
+ * a card's link: the card's destination, secure in a new tab, named by its label (an accessible
+ * name, when given, is set before the new-tab hint, which extends it)
+ */
+function cardLink(card, label, t, name = '') {
   const a = element('a', 'list-card-link', label);
   a.href = card.url;
-  if (card.accessibilityLabel) a.setAttribute('aria-label', card.accessibilityLabel);
+  const accessibleName = card.accessibilityLabel || name;
+  if (accessibleName) a.setAttribute('aria-label', accessibleName);
   if (card.openInNewTab) {
     setLinkTarget(a, true);
     announceNewTab(a, t('opensInNewTab', '(opens in a new tab)'));
@@ -239,10 +243,10 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
   // a hidden title can't be the card's link (an invisible focus): without a call to action,
   // the title stays visible
-  const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
+  const cta = linked && ctaLabel
+    ? cardLink(card, ctaLabel, t, card.title ? `${ctaLabel}: ${card.title}` : '') : null;
   if (linked && !cta) config.titleHidden = false;
   if (cta) {
-    if (!card.accessibilityLabel && card.title) cta.setAttribute('aria-label', `${ctaLabel}: ${card.title}`);
     decorateButton(cta, { view: 'button', type: ctaType });
   }
   // a card without a title (e.g. an image and a description) has no heading
@@ -383,6 +387,8 @@ export function applyCardListLayout(block, config) {
     const scroll = r.mode !== 'grid';
     block.classList.add(`${bp}-${scroll ? 'scroll' : 'grid'}`);
     if (r.mode === 'carousel') block.classList.add(`${bp}-carousel`);
+    // the cards per row on desktop (grid, carousel), for type that follows the card width
+    if (bp === 'desktop' && r.mode !== 'horizontal-scroll') block.classList.add(`desktop-columns-${r.columns}`);
     if (scroll && r.controls) block.classList.add(`${bp}-controls`);
     if (scroll && r.indicator) block.classList.add(`${bp}-indicator`);
     block.style.setProperty(`--list-columns-${bp}`, r.columns);

@@ -30,91 +30,91 @@ Screenshots of the handover (6.18 Table List Block), taken on the preview with s
 
 **Desktop rendering** — The Table List (Variation 1) at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle column and a grey arrow, thin dividers between rows, no numbers.
 
-![Desktop rendering: The Table List Variation 1 at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle colu](../../docs/handover/screenshots/table-list-desktop-view.jpg)
+![Desktop rendering: The Table List Variation 1 at 1440 px, inset 5rem: the 3rem heading Industries we serve with a filled View all button at the right, then four rows Banking, Retail, Manufacturing and Insurance with the description in the middle colu](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-desktop-view.jpg)
 
 **Tablet rendering** — The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns (title, description, arrow) and no numbers.
 
-![Tablet rendering: The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns title, description, arrow and no numbers.](../../docs/handover/screenshots/table-list-tablet-view.jpg)
+![Tablet rendering: The same Table List at 768 px: the 2.5rem heading with the View all button beside it, four rows in three columns title, description, arrow and no numbers.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-tablet-view.jpg)
 
 **Mobile rendering** — The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right.
 
-![Mobile rendering: The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right.](../../docs/handover/screenshots/table-list-mobile-view.jpg)
+![Mobile rendering: The Table List at 375 px: the 2rem heading with the View all button below it, then rows 01 Banking to 04 Insurance with the number and title on the first line, the description below and the arrow at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-mobile-view.jpg)
 
 **Variation 1 (industries)** — Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the last row.
 
-![Variation 1 industries: Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the la](../../docs/handover/screenshots/table-list-industries.jpg)
+![Variation 1 industries: Close-up of the Variation 1 items at 1440 px: four rows with the semibold titles Banking, Retail, Manufacturing and Insurance, the description in the middle column and a grey right arrow; no numbers and no divider under the la](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-industries.jpg)
 
 **Variation 2 (solutions)** — The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows (Cognitive operations, Enterprise cloud, Cybersecurity, AI and data) with the description at the left, the 4rem title right-aligned and an outline Explore button; no numbers.
 
-![Variation 2 solutions: The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows Cognitive operations, Enterprise cloud, Cybersecurity, AI and data with the description at the](../../docs/handover/screenshots/table-list-solutions.jpg)
+![Variation 2 solutions: The Variation 2 Table List at 1440 px: the heading Our transformation solutions with an outline All solutions button, then four rows Cognitive operations, Enterprise cloud, Cybersecurity, AI and data with the description at the](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-solutions.jpg)
 
 **Variation 3 (products)** — The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name (01 TwinX™, 02 ignio®, 03 TCS BaNCS®, 04 Quartz™) and a diagonal arrow, with 2px light grey dividers.
 
-![Variation 3 products: The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name 01 TwinX™, 02 igni](../../docs/handover/screenshots/table-list-products.jpg)
+![Variation 3 products: The Variation 3 Table List at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms, then rows with the description at the left, a grey number and a 5.625rem name 01 TwinX™, 02 igni](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-products.jpg)
 
 **Filled button call to action** — Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right.
 
-![Filled button call to action: Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right.](../../docs/handover/screenshots/table-list-cta-filled.jpg)
+![Filled button call to action: Close-up of the header at 1440 px: the heading Industries we serve with a filled brand button View all industries at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-cta-filled.jpg)
 
 **Outline button call to action** — Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right.
 
-![Outline button call to action: Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right.](../../docs/handover/screenshots/table-list-cta-outline.jpg)
+![Outline button call to action: Close-up of the header at 1440 px: the heading Our transformation solutions with an outline button All solutions at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-cta-outline.jpg)
 
 **Text link call to action** — Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right.
 
-![Text link call to action: Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right.](../../docs/handover/screenshots/table-list-cta-text-link.jpg)
+![Text link call to action: Close-up of the header at 1440 px: the regular-weight heading Products & Platforms with the text link All Products & Platforms at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-cta-text-link.jpg)
 
 **Numbers shown** — The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows.
 
-![Numbers shown: The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows.](../../docs/handover/screenshots/table-list-numbers-show.jpg)
+![Numbers shown: The Variation 1 Table List at 1440 px with Numbers Show: the heading and View all button, then three rows 01 Banking, 02 Retail and 03 Manufacturing with descriptions and arrows.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-numbers-show.jpg)
 
 **Numbers on mobile only** — Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers.
 
-![Numbers on mobile only: Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers.](../../docs/handover/screenshots/table-list-numbers-mobile.jpg)
+![Numbers on mobile only: Two frames side by side: at 375 px the rows read 01 Banking, 02 Retail and 03 Manufacturing with the View all button under the heading; at 1024 px the same rows show Banking, Retail and Manufacturing without numbers.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-numbers-mobile.jpg)
 
 **Numbers hidden** — The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers.
 
-![Numbers hidden: The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers.](../../docs/handover/screenshots/table-list-numbers-hide.jpg)
+![Numbers hidden: The Variation 3 Table List at 1440 px with Numbers Hide: the heading and text link, then three rows TwinX™, ignio® and TCS BaNCS® with descriptions and diagonal arrows and no numbers.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-numbers-hide.jpg)
 
 **Arrow item link** — The Variation 1 Table List at 1440 px with only the heading Industries we serve (no call to action) and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right.
 
-![Arrow item link: The Variation 1 Table List at 1440 px with only the heading Industries we serve no call to action and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right.](../../docs/handover/screenshots/table-list-item-arrow.jpg)
+![Arrow item link: The Variation 1 Table List at 1440 px with only the heading Industries we serve no call to action and three rows Banking, Retail and Manufacturing; the pointer is on Banking, whose arrow is brand blue and moved slightly right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-item-arrow.jpg)
 
 **Diagonal arrow item link** — Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right.
 
-![Diagonal arrow item link: Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right.](../../docs/handover/screenshots/table-list-item-diagonal-arrow.jpg)
+![Diagonal arrow item link: Close-up of the first product row at 1440 px: the description Risk free business experimentation and decision intelligence at the left, 01 and the large title TwinX™, and an up-right arrow at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-item-diagonal-arrow.jpg)
 
 **Button item link** — Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right.
 
-![Button item link: Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right.](../../docs/handover/screenshots/table-list-item-button.jpg)
+![Button item link: Close-up of the first solution row at 1440 px: the description Run operations that sense and respond to change. at the left, the 4rem title Cognitive operations and an outline Explore button at the right.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-item-button.jpg)
 
 **No motion** — The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible.
 
-![No motion: The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible.](../../docs/handover/screenshots/table-list-motion-none.jpg)
+![No motion: The Variation 1 Table List at 1440 px with Motion None: the heading with the filled View all button and the four rows Banking, Retail, Manufacturing and Insurance all fully visible.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-motion-none.jpg)
 
 **Fade motion** — The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button.
 
-![Fade motion: The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button.](../../docs/handover/screenshots/table-list-motion-fade.jpg)
+![Fade motion: The Variation 1 Table List at 1440 px during Fade, captured slowed and staggered: Banking fully visible, Retail and Manufacturing partly faded in and Insurance still nearly transparent below the heading and View all button.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-motion-fade.jpg)
 
 **Slide motion** — The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising.
 
-![Slide motion: The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising.](../../docs/handover/screenshots/table-list-motion-slide.jpg)
+![Slide motion: The Variation 1 Table List at 1440 px during Slide, captured slowed and staggered: the upper rows in place, the lower rows up to 1.25rem lower and partly transparent while rising.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-motion-slide.jpg)
 
 **Reveal motion** — The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped.
 
-![Reveal motion: The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped.](../../docs/handover/screenshots/table-list-motion-reveal.jpg)
+![Reveal motion: The Variation 1 Table List at 1440 px during Reveal, captured slowed and staggered: Banking fully revealed, the next rows partly uncovered from the top down and Insurance still clipped.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-motion-reveal.jpg)
 
 **Trademark sign** — Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows.
 
-![Trademark sign: Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows.](../../docs/handover/screenshots/table-list-trademark.jpg)
+![Trademark sign: Close-up of the product items at 1440 px: 01 TwinX™, 02 ignio®, 03 TCS BaNCS® and 04 Quartz™ with the signs raised at title size after each name, descriptions at the left and diagonal arrows.](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-trademark.jpg)
 
 **Universal Editor canvas** — The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagonal arrow, with three rows (TwinX, ignio, TCS BaNCS) and G the content tree with three Table List Item children. (Annotated preview in editor mode with sample content; letters as in the annotations list, not a Universal Editor screenshot; file screenshots/table-list-authoring-view.jpg)
 
-![Universal Editor canvas: The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagon](../../docs/handover/screenshots/table-list-authoring-view.jpg)
+![Universal Editor canvas: The Variation 3 Table List selected in Universal Editor at 1440 px, annotated: A the heading Products & Platforms, B the text link All Products & Platforms, C the number 01, D the title TwinX™, E its description, F the diagon](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-authoring-view.jpg)
 
 **Properties panel** — The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. (Dialog reference generated from the component model, not a Universal Editor screenshot; file screenshots/table-list-properties-panel.jpg)
 
-![Properties panel: The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. Dialog referen](../../docs/handover/screenshots/table-list-properties-panel.jpg)
+![Properties panel: The properties panel of the Table List with the tabs Content, Call to action, Items and Additional, and, for a selected item, the Table List Item panel with Number, Title, Trademark, Description, Link and Button text. Dialog referen](https://raw.githubusercontent.com/sradha-tcs/tcs-corp-delivery/main/docs/handover/02-development/blocks/table-list/screenshots/handover/table-list-properties-panel.jpg)
 
 Universal Editor dialogs (no screenshot exists yet; to be captured on AEM author):
 
@@ -132,11 +132,12 @@ A = Variation
 B = Background color
 C = Heading
 D = Heading Type
-E = Maximum items
-F = Text
-G = Link
-H = Style
-I = Hide button
+E = Eyebrow
+F = Heading position
+G = Maximum items
+H = Text
+I = Link
+J = Style
 ```
 
 ```text
@@ -305,22 +306,24 @@ Stored on a new component (definition template): `variations` = `"industries"`, 
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Variation | `variations` | select | No | `industries` | Variation 1 - Title, description, arrow (`industries`), Variation 2 - Description, large title, button (`solutions`), Variation 3 - Description, number, large title, arrow (`products`) | Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. | solutions |
-| Background color | `backgroundColor` | select | No | `white` | White (default) (`white`), Black (`black`), Dark Green (`dark-green`) | Choose the background color for the Table List. | — |
+| Variation | `variations` | select | No | `industries` | Variation 1 - Title, description, arrow (`industries`), Variation 2 - Description, large title, button (`solutions`), Variation 3 - Description, number, large title, arrow (`products`), Variation 4 - Wide title, grey description, arrow (row hover) (`segments`), Variation 5 - Label, large description (steps) (`approach`), Variation 6 - Description, right-aligned title, small arrow (`platforms`) | Variation 1: title, description and arrow. Variation 2: description, large title and button. Variation 3: description, number, large title and arrow. Variation 4: wide title, narrow grey description and arrow; the row is highlighted on hover. Variation 5: small label and large description (steps, without links). Variation 6: description, large right-aligned title and a small arrow. | solutions |
+| Background color | `backgroundColor` | select | No | `white` | White (default) (`white`), Grey (`grey`), Black (`black`), Dark Green (`dark-green`), Navy (`navy`) | Choose the background color for the Table List. | — |
 | Heading | `listHeading` | text | No | "" | — | — | Industries we serve |
-| Heading Type | `listHeadingType` | select | No | `h2` | H2 (`h2`), H3 (`h3`), H4 (`h4`) | Delivered with `listHeading` (field collapse). | h2 |
-| Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 10; customErrorMsg: Maximum items must be between 1 and 10. | Display between 1 and 10 items. | 3 |
+| Heading Type | `listHeadingType` | select | No | `h2` | H1 (`h1`), H2 (`h2`), H3 (`h3`), H4 (`h4`) | Delivered with `listHeading` (field collapse). | h2 |
+| Eyebrow | `listEyebrow` | text | No | "" | — | Optional. A short label above the heading, e.g. Models & Data. | — |
+| Heading position | `headerPosition` | select | No | "" | Above the list (""), Beside the list (`beside`) | Beside the list: the eyebrow, heading and call to action in a column on the left of the list from 900px wide (above it on smaller screens), with a larger statement-style heading. | — |
+| Maximum items | `maxCards` | number | No | `4` | numberMin: 1; numberMax: 20; customErrorMsg: Maximum items must be between 1 and 20. | Display between 1 and 20 items. | 3 |
 | Text | `viewAllLabel` | text | No | "" | — | Text of the link next to the heading, e.g. Industries or All Products & Platforms. | View all |
-| Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /language-master/en/dummy-pages/industries |
-| Style | `ctaStyle` | select | No | "" | Variation default (""), Filled button (`primary`), Outline button (`secondary`), Text link (`tertiary`) | Variation default: filled button (Variation 1), outline button (Variation 2), text link (Variation 3). | primary |
+| Link | `viewAllLink` | aem-content | No | — | — | Destination of the link next to the heading. The link is shown only when set. | /design-block-master/en/dummy-pages/industries |
+| Style | `ctaStyle` | select | No | "" | Variation default (""), Filled button (`primary`), Outline button (`secondary`), Text link (`tertiary`) | Variation default: filled button (Variation 1), outline button (Variations 2, 4, 5 and 6), text link (Variation 3). | primary |
 | Hide button | `hideButton` | boolean | No | `false` | on / off | Hides the heading call to action and all item buttons and arrows. The heading and item content remain visible. | — |
 
 #### Items tab — Table List
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Numbers | `numbers` | select | No | "" | Variation default (""), Show (`show`), Show on mobile only (`mobile`), Hide (`hide`) | Variation default: on mobile only (Variation 1), hidden (Variation 2), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number. | show |
-| Item link | `itemAction` | select | No | "" | Variation default (""), Arrow (`arrow`), Diagonal arrow (`arrow-up-right`), Button (`button`) | Variation default: arrow (Variation 1), button (Variation 2), diagonal arrow (Variation 3). | arrow |
+| Numbers | `numbers` | select | No | "" | Variation default (""), Show (`show`), Show on mobile only (`mobile`), Hide (`hide`) | Variation default: on mobile only (Variation 1), hidden (Variations 2, 4, 5 and 6), shown (Variation 3). Items are numbered 01, 02, ... unless an item has its own Number. | show |
+| Item link | `itemAction` | select | No | "" | Variation default (""), Arrow (`arrow`), Diagonal arrow (`arrow-up-right`), Circled arrow (`arrow-circle`), Button (`button`) | Variation default: arrow (Variations 1, 4, 5 and 6; Variation 5 shows it only on items with a Link), button (Variation 2), diagonal arrow (Variation 3). | arrow |
 | Button text | `itemButtonLabel` | text | No | — | — | Default: Explore (in the page language). Shown when `itemAction` is `button` or (`itemAction` is off or empty and `variations` is `solutions`). | Explore |
 | Gray descriptions | `grayDescriptions` | boolean | No | `false` | on / off | Use secondary gray text for item descriptions instead of the default text color. Shown when `backgroundColor` is `white`. | — |
 
@@ -731,7 +734,7 @@ blocks/table-list/
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `table-list.js`: { isEditing } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `table-list.js`: { matchCells } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `table-list.js`: { isOn, normalizeKey, textOf } |
-| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `table-list.js`: { toSitePath } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`); `safeDecode` (decodeURIComponent that never throws) | `table-list.js`: { toSitePath } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `table-list.js`: { fillPlaceholder, getPlaceholders } |
 | [`utils/motion.js`](../../utils/motion.js) | `CONTENT_MOTIONS`, `BACKGROUND_MOTIONS`, `contentMotionOf`, `backgroundMotionOf` (the Content animation / Background animation of the Additional tab, read from the block classes `motion-*` / `bg-motion-*`; unknown values | `table-list.js`: { addLegacyMotion } |
 
@@ -870,12 +873,12 @@ Evidence to collect: page URL (preview / live), viewport width, the block's `.pl
 - [Blocks documentation](../README.md)
 - [Cards](../cards/README.md), [List](../list/README.md), [Filter List](../filter-list/README.md), [Table](../table/README.md), [Accordion](../accordion/README.md), [Anchor List](../anchor-list/README.md)
 - Model: [`_table-list.json`](_table-list.json)
-- [Animation and skeletons](../../docs/animation/README.md)
-- [Handover 6.18 Table List Block](../../docs/handover/TCS-CORP-HANDOVER.md)
+- [Animation and skeletons](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/animation/README.md)
+- [Handover 6.18 Table List Block](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/handover/TCS-CORP-HANDOVER.md)
 
 <!-- BEGIN GENERATED: usage (npm run build:docs) -->
 
-Pages of the block library package 1.0.14 (language master, `/content/tcs-corp/language-master/en`) that contain the block, 23 instance(s) in total:
+Pages of the block library package 1.0.14 (design and block master, `/content/tcs-corp/design-block-master/en`, KB-D-068) that contain the block, 23 instance(s) in total:
 - Block library: `block-library/animation/repeated-items`, `block-library/table-list/item-actions`, `block-library/table-list/motion`, `block-library/table-list/numbers`, `block-library/table-list/numbers-on-mobile`, `block-library/table-list/table-list`
 - Curated design pages: `curated-design-pages/case-study`, `curated-design-pages/collection`, `curated-design-pages/home`, `curated-design-pages/industry-landing-page`, `curated-design-pages/product`, `curated-design-pages/what-we-do`
 

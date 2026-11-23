@@ -6,6 +6,7 @@ import { isEditing, scrollBehavior } from '../../utils/environment.js';
 import { readMultifieldItems } from '../../utils/multifield.js';
 import { isOn, readProperties } from '../../utils/properties.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
+import { safeDecode } from '../../utils/urls.js';
 
 /*
  * Anchor List (blocks/anchor-list/_anchor-list.json): chapter navigation. Each link jumps to
@@ -200,7 +201,7 @@ export default async function decorate(block) {
   // the page address names a chapter (a link to it, back / forward, or a page opened at
   // #anchor): its link is current, also when the chapter isn't on the page
   const fromHash = () => {
-    const anchor = toClassName(decodeURIComponent(window.location.hash.slice(1)));
+    const anchor = toClassName(safeDecode(window.location.hash.slice(1)));
     const index = anchor ? anchors.findIndex((item) => item.anchor === anchor) : -1;
     if (index < 0) return false;
     setCurrent(links[index]);

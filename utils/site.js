@@ -110,7 +110,9 @@ export const REVIEW_ROOTS = ['/language-master/en', '/language-masters/en', '/de
  * there by their pages; any other sheet comes from the locale.
  */
 export const REVIEW_SHEETS = ['placeholders', 'redirects', 'taxonomy', 'data/authors',
-  'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts'];
+  'data/locations', 'data/partners', 'data/social-links', 'data/media-contacts',
+  'data/conf-med-cont/contacts', 'data/conf-med-cont/regions',
+  'data/conf-med-cont/media-contacts-config', 'web-sdk'];
 
 /**
  * The page folders published below the review roots: their pages use the review root's
@@ -288,4 +290,25 @@ export function sheetRows(json, sheet) {
     return (json[sheet] || json.default || json[json[':names']?.[0]])?.data || [];
   }
   return json.data || [];
+}
+
+/**
+ * The site sections of a path below its root (pure): /en/what-we-do/industries/banking with the
+ * root /en is what-we-do / industries.
+ * @param {string} pathname
+ * @param {string} root e.g. /en, /language-masters/en
+ * @returns {{ siteSection: string, subSection: string, pageName: string }}
+ */
+export function sectionsOf(pathname, root = '') {
+  const path = String(pathname || '/').replace(/\/index$/, '/').replace(/\.html$/, '');
+  const inRoot = root && (path === root || path.startsWith(`${root}/`));
+  const below = inRoot ? path.slice(root.length) : path;
+  const parts = below.split('/').filter(Boolean);
+  const rootName = root.split('/').filter(Boolean).join(':');
+  return {
+    siteSection: parts[0] || 'home',
+    subSection: parts[1] || '',
+    // e.g. en:what-we-do:industries:banking (the Analytics page name convention: path segments)
+    pageName: [rootName, ...(parts.length ? parts : ['home'])].filter(Boolean).join(':'),
+  };
 }

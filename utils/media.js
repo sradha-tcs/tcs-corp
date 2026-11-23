@@ -1,6 +1,7 @@
 /**
  * Media utils: recognize video providers and build their player URLs.
  */
+import { safeDecode } from './urls.js';
 
 export const isYoutube = (link) => /youtube\.com|youtu\.be/.test(link);
 export const isVimeo = (link) => /vimeo\.com/.test(link);
@@ -96,7 +97,7 @@ export function deliveryAsset(href) {
   }
   const m = DELIVERY.exec(url.pathname);
   if (!m || !/^https?:$/.test(url.protocol)) return null;
-  const name = decodeURIComponent(m[3]);
+  const name = safeDecode(m[3]);
   const original = !!m[2];
   const image = !original && (RESIZABLE.test(name) || /\.svg$/i.test(name));
   return {

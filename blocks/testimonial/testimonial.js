@@ -70,15 +70,20 @@ export default async function decorate(block) {
     if (text.startsWith('“') || text.startsWith('"')) {
       description.classList.add('has-quote');
 
+      // the quote marks as decorative images around the authored text, which stays text (an
+      // authored < or & is never parsed as markup)
+      const quoteMark = (className, src) => {
+        const img = document.createElement('img');
+        img.className = className;
+        img.src = src;
+        img.alt = '';
+        return img;
+      };
       description.textContent = text
         .replace(/^[“"]\s*/, '')
         .replace(/\s*[”"]$/, '');
-
-      description.innerHTML = `
-   <img class="quote-open" src="/icons/quote-open.svg" alt="">
-    ${description.textContent}
-   <img class="quote-close" src="/icons/quote-close.svg" alt="">
-  `;
+      description.prepend(quoteMark('quote-open', '/icons/quote-open.svg'), ' ');
+      description.append(' ', quoteMark('quote-close', '/icons/quote-close.svg'));
     }
   }
 

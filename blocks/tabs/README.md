@@ -338,7 +338,7 @@ C = Inner panel
 
 ### Tabs Container (`tabs`)
 
-Model `tabs`; template name "Tabs" (the block class AEM renders); children: `tab`, `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `image-collage`, `history-timeline`, `quote`, `media-contacts`, `testimonial`, `anchor-list`, `accordion`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `cards`, `fragment`, `tabs-block`.
+Model `tabs`; template name "Tabs" (the block class AEM renders); children: `tab`, `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `image-collage`, `history-timeline`, `quote`, `media-contacts`, `conf-med-cont`, `testimonial`, `anchor-list`, `accordion`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `cards`, `fragment`, `tabs-block`.
 
 Stored on a new component (definition template): `style` = `"tabs-section"`, `tabsStyle` = `"underline"`, `tabsAlignment` = `"left"`, `tabsOrientation` = `"horizontal"`.
 
@@ -812,8 +812,8 @@ blocks/tabs/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`decorators/data-layer-decorator.js`](../../decorators/data-layer-decorator.js) | `trackPage`, `trackBlocks`, `trackInteractions`, `componentIdOf` (Adobe Client Data Layer for every block, Core Components schema, read by Adobe Tags / Web SDK; see "Data layer" below) | `tabs.js`: { componentIdOf } |
-| [`utils/analytics.js`](../../utils/analytics.js) | `pushToDataLayer`, `pushComponents`, `pushComponentEvent` (Adobe Client Data Layer, Core Components schema; never throws) | `tabs.js`: { pushComponentEvent, pushComponents } |
+| [`decorators/data-layer-decorator.js`](../../decorators/data-layer-decorator.js) | `trackPage`, `trackBlocks`, `trackInteractions`, `componentIdOf` (Adobe Client Data Layer for every block, Core Components schema, read by Adobe Tags / Web SDK; see "Data layer" below); `getComponentContext`; events page | `tabs.js`: { componentIdOf } |
+| [`utils/analytics.js`](../../utils/analytics.js) | `pushToDataLayer`, `pushComponents`, `pushComponentEvent` (Adobe Client Data Layer, Core Components schema; never throws); since KB-D-074 `pushDataLayerEvent`, `createDataLayerEvent`, `generateEventId`, `sanitizeDataLaye | `tabs.js`: { pushComponentEvent, pushComponents } |
 | [`scripts/aem.js`](../../scripts/aem.js) | Edge Delivery core library (block loading, CSS, metadata, optimized pictures) | `tabs.js`: { decorateBlock, loadBlock, toClassName } |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `tabs.js`: { moveInstrumentation } |
 | [`utils/buttons.js`](../../utils/buttons.js) | `BUTTON_VIEWS`, `BUTTON_TYPES`, `BUTTON_ALIGNMENTS`, `pick`, `readButtonOptions` | `tabs.js`: { pick } |
@@ -824,6 +824,7 @@ blocks/tabs/
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tabs.js`: { isOn, normalizeKey, textOf } |
 | [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `tabs.js`: { loadFragment } |
 | [`blocks/tab/tab.js`](../../blocks/tab/tab.js) | — | `tabs.js`: { readTab } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`); `safeDecode` (decodeURIComponent that never throws) | `tabs.js`: { safeDecode } |
 
 <!-- END GENERATED: files -->
 
@@ -1013,3 +1014,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.28 | Column Breaks in a tab lay out columns (Tab field Columns per row); the Tabs Container takes the components of a Columns Container column; built-in Columns no longer offered | docs/handover revision history | 20 October 2026 |
 | Handover 2.29 | Re-audit: nested Tabs styling, Canvas in tabs, deep links into hidden tabs, media paused in hidden tabs, panels in the data layer | docs/handover revision history | 20 October 2026 |
 | Handover 2.30 | The Tabs Container's Additional tab uses `container*` fields (AEM doesn't deliver a section's `classes_*`) | docs/handover revision history | 20 October 2026 |
+| — | A malformed URL fragment no longer breaks the block (safeDecode) | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
