@@ -14,7 +14,7 @@ The Quote block shows one attributed statement, for example from a client, partn
 ## Overview
 
 - **Business purpose:** gives one voice visual weight. The statement sits next to a portrait, so it reads as a credible endorsement that is clearly attributed to a person.
-- **User experience:** on desktop (900px and wider), a white card holds the quote and its author and overlaps the portrait, which sits on the right or the left. On mobile and tablet the image comes first (or last), and the card overlaps its bottom (or top) edge. With no image, the card stands on its own.
+- **User experience:** on desktop (1200px and wider), a white card holds the quote and its author and overlaps the portrait, which sits on the right or the left. On mobile and tablet the image comes first (or last), and the card overlaps its bottom (or top) edge. With no image, the card stands on its own.
 - **Templates / page types:** any page. No template adds the block.
 - **Data source:** authored fields only. The block reads no sheet, placeholder, taxonomy, metadata or query index.
 - **Related blocks:** Testimonial (`blocks/testimonial`) for a centred testimonial with a small round photo and stats. Teaser (`blocks/teaser`) for image and text with calls to action.
@@ -125,7 +125,7 @@ File name:
 quote-image-left-tablet.png
 
 Purpose:
-Image Position (Desktop) Left at 768px: below 900px the desktop side has no effect, and the image stays above the card.
+Image Position (Desktop) Left at 768px: below 1200px the desktop side has no effect, and the image stays above the card.
 
 Annotations:
 A = Eyebrow and title
@@ -186,7 +186,7 @@ B = The Quote node in the content tree
 4. **Add the image.** Select a portrait in Image, then write Image Alt Text, or leave it empty if the image is decorative.
 5. **Choose the variation.** Set Image Position (Desktop) to Right or Left, Image Position (Mobile) to Top or Bottom, and BG Color to Default or Grey.
 6. **Child items:** the Quote has none. Each Quote holds one statement.
-7. **Preview.** Switch Universal Editor to Preview, then check the page at desktop width (900px and wider) and at a mobile width.
+7. **Preview.** Switch Universal Editor to Preview, then check the page at desktop width (1200px and wider) and at a mobile width.
 8. **Publish.** Publish the page together with the image (referenced assets in the Publish dialog).
 9. **Validate.** On the published page, check the quote marks, the overlap, the alt text (browser inspector) and the heading level.
 
@@ -213,8 +213,8 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `imagePos
 | Quote Author | `author` | richtext | No | "" | — | Name on the first line, then designation and organisation. | — |
 | Image | `image` | reference | No | — | — | — | /content/dam/tcs-corp/block-library/images/tall-sample.jpg |
 | Image Alt Text | `imageAlt` | text | No | — | — | Leave empty if the image is decorative. Delivered with `image` (field collapse). | Portrait of Anita Rao |
-| Image Position (Desktop) | `imagePosition` | select | No | `right` | Right (`right`), Left (`left`) | Side of the image on desktop (900px and wider); the quote overlaps it. | left |
-| Image Position (Mobile) | `imagePositionMobile` | select | No | `top` | Top (`top`), Bottom (`bottom`) | Image above or below the quote on mobile and tablet (narrower than 900px). | bottom |
+| Image Position (Desktop) | `imagePosition` | select | No | `right` | Right (`right`), Left (`left`) | Side of the image on desktop (1200px and wider); the quote overlaps it. | left |
+| Image Position (Mobile) | `imagePositionMobile` | select | No | `top` | Top (`top`), Bottom (`bottom`) | Image above or below the quote on mobile and tablet (narrower than 1200px). | bottom |
 | BG Color | `bgColor` | select | No | "" | Default (""), Grey (`grey`) | — | grey |
 
 #### Additional tab — Quote
@@ -243,8 +243,8 @@ Notes on the significant fields (see the tables above for labels, values and def
 - **Title / Title Type:** the title renders as a heading at the Title Type level. Without a Title Type, it uses a heading level found in the authored title, else H2 (`buildHeading`). The heading becomes the block's `dc:title` in the data layer.
 - **Quote:** renders as a `<blockquote>`. **Quote Author** renders as the `<figcaption>`, and both sit in a `<figure>`. The quotation marks are CSS content with empty alternative text, so screen readers don't read them.
 - **Image / Image Alt Text:** the picture comes from the image cell. Image Alt Text replaces its alt, and an image without alt text gets `alt=""` (decorative). Without a picture, the block doesn't get `quote-has-media`, so there is no overlap.
-- **Image Position (Desktop):** Left adds `image-left` and only takes effect from 900px. **Image Position (Mobile):** Bottom adds `image-bottom` and only takes effect below 900px. A missing or unknown value means Right / Top.
-- **BG Color:** Grey adds `bg-grey`: a grey block and card. The padding (2.5rem / 1.5rem, 7.5rem / 5rem from 900px; see Responsive Behavior) is the same for every background, so the eyebrow and title line up on white and grey Quotes alike; BG Color sets only the colour.
+- **Image Position (Desktop):** Left adds `image-left` and only takes effect from 1200px. **Image Position (Mobile):** Bottom adds `image-bottom` and only takes effect below 1200px. A missing or unknown value means Right / Top.
+- **BG Color:** Grey adds `bg-grey`: a light grey block (`--color-bg-secondary`, #f5f5f5) with the white card over it. The padding (2.5rem / 1.5rem, 7.5rem / 5rem from 1200px; see Responsive Behavior) is the same for every background, so the eyebrow and title line up on white and grey Quotes alike; BG Color sets only the colour.
 - **Legacy mapping:** the select values are also read from block classes (`optionOf`), so a `grey`, `left` or `bottom` class has the same effect as the field. The Style field was removed in handover 2.27; the block doesn't read it.
 - **Additional tab:** Anchor ID, Hide block, the animations and Padding / Margin, as described in AGENTS.md "Additional tab". Background animation applies to the block's background colour (white by default, grey with BG Color Grey). The Additional tab's padding classes override the block's padding.
 
@@ -352,10 +352,10 @@ D = Image Position (Mobile)
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Image | /content/dam/tcs-corp/block-library/images/tall-sample.jpg | The portrait the card overlaps | The block gets `quote-has-media` |
 | B | Image Alt Text | Portrait of Anita Rao | Describes the image | The image's alt |
-| C | Image Position (Desktop) | Left | Mirror the layout | Image on the left from 900px |
-| D | Image Position (Mobile) | Bottom | Lead with the quote on small screens | Image below the card below 900px |
+| C | Image Position (Desktop) | Left | Mirror the layout | Image on the left from 1200px |
+| D | Image Position (Mobile) | Bottom | Lead with the quote on small screens | Image below the card below 1200px |
 
-Author action: select the portrait, write the alt text, and choose the positions. Expected preview: at 900px and wider, the image is on the chosen side and the card overlaps it; below 900px, the image is above or below the card. Expected published result: the same; the image must be published with the page. Business rule: use a portrait image with the face in the upper-middle area (4:5 on mobile, 622:869 on desktop, cropped). Validation: check at 375px, 768px and 1440px. Common mistake: expecting Left to apply on a tablet; it only applies from 900px.
+Author action: select the portrait, write the alt text, and choose the positions. Expected preview: at 1200px and wider, the image is on the chosen side and the card overlaps it; below 1200px, the image is above or below the card. Expected published result: the same; the image must be published with the page. Business rule: use a portrait image with the face in the upper-middle area (4:5 on mobile, 622:869 on desktop, cropped). Validation: check at 375px, 768px and 1440px. Common mistake: expecting Left to apply on a tablet; it only applies from 1200px.
 
 ### Authoring Step 5: BG Color and publishing
 
@@ -377,7 +377,7 @@ B = Publish dialog with the referenced image
 
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
-| A | BG Color | Grey | Set the quote apart from the page | Grey block and card |
+| A | BG Color | Grey | Set the quote apart from the page | Grey block, white card |
 | B | Publish | Page and referenced assets | The image must be live too | The published page shows the portrait |
 
 Author action: choose Grey, preview, then publish the page with its references. Expected preview: a grey panel. Expected published result: the grey Quote with the portrait. Business rule: Default or Grey only. Validation: open the published page and check the image loads. Common mistake: publishing the page without the image, so the card renders without the portrait.
@@ -388,8 +388,8 @@ Author action: choose Grey, preview, then publish the page with its references. 
 
 - **Purpose:** the standard overlap layout. **When to use:** most quotes with a portrait. **When not to use:** without a portrait (see Text only).
 - **Fields:** Quote or Quote Author (required for the card), Image (for the overlap); Eyebrow, Title, Image Alt Text are optional. **Dialog configuration:** none beyond the defaults (Right / Top).
-- **Rendering:** desktop (900px and wider): a 498 : 204 : 418 grid, up to 70rem wide; the card spans the first two columns and the image the last two, so they overlap. Tablet and mobile: the image first, at 4:5, and the card overlapping its bottom edge by 3rem, inset 1rem.
-- **Accessibility:** reading order header, card, image (the image is placed first visually below 900px by CSS order only). **Data layer:** the block entry only. **Personalization and fallback:** none; the authored content renders.
+- **Rendering:** desktop (1200px and wider): a 578 : 204 : 498 grid (Figma "Text & Image Overlap" 185-32296, of 1280), up to 80rem wide; the card spans the first two columns and the 4:5 portrait (`object-fit: cover`) the last two, so they overlap by 204/1280 of the width; the card is 2.1875rem lower than centred (Figma 218px from the top, 183px from the bottom). Tablet (600px, Figma 559-51861): stacked, the image at the left, up to 43.875rem (702px) wide at 702 : 440, the card across the width over the image's lower 11.25rem (180px), padding 1.5rem, 28px marks, block padding 2.5rem / 1.5rem / 1.5rem. Mobile (Figma 559-53276): the image edge to edge at 402 : 390, the card 0.75rem in from the edges over its lower 12.75rem (204px), padding 1rem, 25px marks, block padding 0 / 0 / 0.75rem (the eyebrow and title inside 1.5rem gutters). The block cancels the section's side gutter and sets the Figma one (`--quote-gutter`), so it measures the same in a Fixed width or full-width section. Quote 1.5rem / 1.417 and author 1.25rem / 1.4 semibold below 1200px (mobile uses the tablet type: the Figma mobile frame has the desktop type), 2rem / 1.406 and 1.5rem / 1.417 from 1200px. The closing mark in its column by the quote's end.
+- **Accessibility:** reading order header, card, image (the image is placed first visually below 1200px by CSS order only). **Data layer:** the block entry only. **Personalization and fallback:** none; the authored content renders.
 
 ```text
 [Screenshot Placeholder]
@@ -409,7 +409,7 @@ C = Card
 ### Image Left (desktop)
 
 - **Purpose:** a mirrored layout, for example to alternate with a neighbouring block. **Configuration:** Image Position (Desktop) Left (class `image-left`).
-- **Rendering:** from 900px the grid is 418 : 204 : 498, with the image on the left and the card overlapping its right edge. Below 900px it is the same as Default.
+- **Rendering:** from 1200px the grid is 418 : 204 : 498, with the image on the left and the card overlapping its right edge. Below 1200px it is the same as Default.
 - **Accessibility, data layer, personalization:** as Default.
 
 ```text
@@ -429,7 +429,7 @@ B = Card
 ### Image Bottom (mobile and tablet)
 
 - **Purpose:** lead with the quote on small screens. **Configuration:** Image Position (Mobile) Bottom (class `image-bottom`).
-- **Rendering:** below 900px the image moves below the card, and the card overlaps its top edge by 3rem. From 900px it has no effect.
+- **Rendering:** below 1200px the image moves below the card, and the card overlaps its top edge (by 12.75rem on mobile, 11.25rem on tablet). From 1200px it has no effect.
 - **Accessibility, data layer, personalization:** as Default.
 
 ```text
@@ -449,7 +449,7 @@ B = Image
 ### Grey background
 
 - **Purpose:** set the quote apart from white content. **Configuration:** BG Color Grey (class `bg-grey`).
-- **Rendering:** the block and the card are grey (`--color-bg-secondary`), with the block's padding (2.5rem / 1.5rem, 7.5rem / 5rem from 900px, as on white).
+- **Rendering:** the block and the card are grey (`--color-bg-secondary`), with the block's padding (2.5rem / 1.5rem, 7.5rem / 5rem from 1200px, as on white).
 - **Accessibility:** the text keeps the default text tokens. **Data layer, personalization:** as Default.
 
 ```text
@@ -469,7 +469,7 @@ B = Card
 ### Text only (no image)
 
 - **Purpose:** a pull quote without a portrait. **Configuration:** leave Image empty.
-- **Rendering:** no `quote-has-media`; the card stands alone, centred in the 70rem body from 900px, with the same quote marks.
+- **Rendering:** no `quote-has-media`; the card stands alone, centred in the 80rem body from 1200px, with the same quote marks.
 - **Accessibility, data layer, personalization:** as Default.
 
 ```text
@@ -505,7 +505,7 @@ Scenario: a client quote on an English case study page.
 Steps: add the Quote to the section, fill in the Content tab as above, preview at 1440px and 375px, then publish the page with the image.
 
 - **Expected output:** the eyebrow and H2 above a white card with blue quote marks, which overlaps the portrait on the right.
-- **Responsive:** from 900px, the overlap grid; below it, the image on top and the card overlapping its bottom edge.
+- **Responsive:** from 1200px, the overlap grid; below it, the image on top and the card overlapping its bottom edge.
 - **Accessibility:** an `<h2>`, then a `<figure>` with `<blockquote>` and `<figcaption>`, and an image with alt text.
 - **Analytics / data layer:** a `tcs-corp/components/quote` entry with `dc:title` "What our clients say".
 - **Personalization fallback:** none; this content is what every visitor sees.
@@ -517,7 +517,7 @@ Pre-publish checklist: no typed quotation marks; the author name is spelled as a
 - **Eyebrow:** a few words of context (for example "Client voice"). **Title:** a short, descriptive heading.
 - **Quote:** the approved statement only, without quotation marks. **Quote Author:** the name on the first line, then the designation and organisation.
 - **Links / CTAs:** the block has no CTA field. A link in the rich text is rendered by the page's content decorators: a standalone link in its own paragraph becomes a button (`decorators/content-buttons-decorator.js`).
-- **Images and alt text:** use portrait images. They are cropped with `object-fit: cover` to 4:5 below 900px and to 622:869 from 900px. Alt text identifies the person; leave it empty only if the image adds nothing.
+- **Images and alt text:** use portrait images. They are cropped with `object-fit: cover` to 402 : 390 on mobile, 702 : 440 on tablet and 4:5 from 1200px, so keep the face in the upper middle of the image. Alt text identifies the person; leave it empty only if the image adds nothing.
 - **Icons, tags and metadata:** none.
 - **Limits:** no verified technical limit was identified for text length; the block holds one quote.
 - **Asset source:** AEM Assets. **Loading:** the block keeps the delivered picture (lazy by default). In the first section, the page loader makes the first image eager (`waitForFirstImage`).
@@ -531,7 +531,7 @@ Pre-publish checklist: no typed quotation marks; the author name is spelled as a
 - **Alt text:** Image Alt Text, else `alt=""` (decorative).
 - **Reduced motion:** the Additional tab's animations don't play for visitors who prefer reduced motion or in the editor.
 - **Contrast:** text uses the default text and brand tokens on a white or grey card.
-- **Reflow:** the layout stacks below 900px.
+- **Reflow:** the layout stacks below 1200px.
 - **Empty states:** parts without content aren't rendered; an empty block renders nothing.
 
 Author responsibilities: choose the heading level, write meaningful alt text, don't type quotation marks, and keep link text descriptive.
@@ -562,8 +562,8 @@ This block does not currently expose verified personalization behavior. The repo
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 900px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; block padding 2.5rem / 1.5rem (every background); quote marks 1.9167rem x 3.8333rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
-| 900px and wider (desktop) | Body up to 70rem, centred; with an image, a 498 : 204 : 418 grid (418 : 204 : 498 with `image-left`) with the card overlapping the image; block padding 7.5rem / 5rem (every background); quote marks 2.875rem x 5.75rem | 622:869 crop; right or left | None |
+| Below 1200px (mobile, tablet) | Header, then image and card stacked; the card overlaps the image by 3rem and is inset 1rem; block padding 2.5rem / 1.5rem (every background); quote marks 1.9167rem x 3.8333rem | 4:5 crop, full width; first (Top) or last (Bottom, `image-bottom`) | None |
+| 1200px and wider (desktop) | Body up to 80rem, centred; with an image, a 578 : 204 : 498 grid (498 : 204 : 578 with `image-left`) with the card overlapping the image, scaling with the width; quote 1.5rem, author 1.25rem; from 1200px quote 2rem / 1.406 (32px / 45px), author 1.5rem semibold, quote marks 2.875rem x 5.75rem, block padding 7.5rem / 5rem | 4:5 crop (`object-fit: cover`); right or left | None |
 
 ## For Developers
 
@@ -587,7 +587,7 @@ blocks/quote/
 <!-- END GENERATED: files -->
 
 - **JavaScript (`quote.js`):** a synchronous `decorate(block)`. It reads the rows with `readProperties` and resolves BG Color, Image Position (Desktop) and Image Position (Mobile) with `optionOf` (row value, else a matching block class). It then builds the header, the card and the media, and replaces the block's children.
-- **CSS (`quote.css`):** the stacked layout, the 900px overlap grid, the quote marks as `::before` / `::after` of `.quote-card`, and the Grey colours and padding.
+- **CSS (`quote.css`):** the stacked layout, the 1200px overlap grid, the quote marks as `::before` / `::after` of `.quote-card`, and the Grey colours and padding.
 - **Input DOM:** key-value rows `<div><div>name</div><div>value</div></div>` for `eyebrow`, `title`, `titleType`, `quote`, `author`, `image` (with `imageAlt`; with field collapse the alt may arrive in the image cell), `imagePosition`, `imagePositionMobile` and `bgColor`. The `classes_*` fields arrive as block classes.
 - **Rendered DOM:**
 
@@ -675,17 +675,17 @@ graph LR
 
 | Test ID | Scenario | Configuration | Expected result |
 | ------- | -------- | ------------- | --------------- |
-| QUOTE-QA-01 | Default | Eyebrow, Title, Quote, Quote Author, Image, Image Alt Text | Overlap on the right from 900px; image above the card below 900px |
-| QUOTE-QA-02 | Image Left | Image Position (Desktop) Left | Image on the left from 900px; unchanged below 900px |
-| QUOTE-QA-03 | Image Bottom | Image Position (Mobile) Bottom | Image below the card below 900px; unchanged from 900px |
-| QUOTE-QA-04 | Grey background | BG Color Grey | Grey block and card, 2.5rem / 1.5rem padding, 7.5rem / 5rem from 900px |
-| QUOTE-QA-04b | White background | BG Color Default | Same padding as Grey: eyebrow and title 1.5rem (5rem from 900px) from the block's left edge |
+| QUOTE-QA-01 | Default | Eyebrow, Title, Quote, Quote Author, Image, Image Alt Text | Overlap on the right from 1200px; image above the card below 1200px |
+| QUOTE-QA-02 | Image Left | Image Position (Desktop) Left | Image on the left from 1200px; unchanged below 1200px |
+| QUOTE-QA-03 | Image Bottom | Image Position (Mobile) Bottom | Image below the card below 1200px; unchanged from 1200px |
+| QUOTE-QA-04 | Grey background | BG Color Grey | Grey block (#f5f5f5) with a white card, 2.5rem / 1.5rem padding, 7.5rem / 5rem from 1200px |
+| QUOTE-QA-04b | White background | BG Color Default | Same padding as Grey: eyebrow and title 1.5rem (5rem from 1200px) from the block's left edge |
 | QUOTE-QA-05 | Text only | No Image | No `quote-has-media`; the card alone |
 | QUOTE-QA-06 | Missing content | Only a Title | Header only, no body |
 | QUOTE-QA-07 | Decorative image | Image without alt text | `alt=""` |
 | QUOTE-QA-08 | Heading level | Title Type H3 | An `<h3 class="quote-title">` |
 | QUOTE-QA-09 | Multiple instances | Two Quotes on one page | Each decorates independently; data-layer ids `quote-1`, `quote-2` (or their Anchor IDs) |
-| QUOTE-QA-10 | Viewports | 375 / 768 / 1440px | Stacked below 900px, grid from 900px |
+| QUOTE-QA-10 | Viewports | 375 / 768 / 1440px | Stacked below 1200px, grid from 1200px |
 | QUOTE-QA-11 | Keyboard | Link in the Quote Author | Reachable with Tab, visible focus |
 | QUOTE-QA-12 | Data layer | Load the page | `component.{id}` with `@type` `tcs-corp/components/quote`; a click on a link pushes `cmp:click` |
 | QUOTE-QA-13 | Dark Section | Quote inside a Section with Style Dark | Check the contrast of the white card's text (the theme contract turns text tokens light) |
@@ -696,7 +696,7 @@ graph LR
 | Symptom | Likely cause | Diagnostic steps | Resolution | Verification |
 | ------- | ------------ | ---------------- | ---------- | ------------ |
 | The card doesn't overlap the image | No picture in Image (empty or broken reference) | Inspect the block: no `quote-has-media`, no `.quote-media` | Select the image again and publish it with the page | The block has `quote-has-media` |
-| Image Position has no effect | Checked at the wrong width (Left from 900px, Bottom below 900px), or no image | Check the classes `image-left` / `image-bottom` and the viewport width | Resize past / below 900px; set an image | The image moves at the right widths |
+| Image Position has no effect | Checked at the wrong width (Left from 1200px, Bottom below 1200px), or no image | Check the classes `image-left` / `image-bottom` and the viewport width | Resize past / below 1200px; set an image | The image moves at the right widths |
 | Double quotation marks | Marks typed in the Quote | Read the Quote rich text | Remove the typed marks | Only the blue marks remain |
 | The face is cut off | 4:5 / 622:869 cover crop | Compare the image's proportions | Use a portrait with the face in the upper-middle area | Check at 375 / 768 / 1440px |
 | The block is empty | No Quote, Quote Author, Title, Eyebrow or Image | Inspect the rows in the editor | Fill in the content | The card renders |
@@ -725,7 +725,7 @@ Evidence to collect: the page URL (preview or live), viewport width, browser, a 
 | Limitation | Impact | Workaround | Planned correction |
 | ---------- | ------ | ---------- | ------------------ |
 | No CTA field | A quote can't carry a styled call to action | Put a link in its own paragraph in the Quote or Quote Author (it becomes a button), or add a Teaser or Button below | Not planned |
-| Image Position (Desktop) applies only from 900px and Image Position (Mobile) only below 900px | Authors checking the wrong width see no change | Validate both widths in preview | Not planned |
+| Image Position (Desktop) applies only from 1200px and Image Position (Mobile) only below 1200px | Authors checking the wrong width see no change | Validate both widths in preview | Not planned |
 | Fixed cover crops (4:5, 622:869) | Landscape or tight images lose their edges | Use portrait images with space around the face | Not planned |
 
 ## Related Documentation
@@ -754,3 +754,6 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Not recorded | README generated from verified implementation and approved handover documentation | Repository review | Not recorded |
 | Handover 2.18 | Background animation and Content animation on the Additional tab (Quote among the background blocks) | docs/handover revision history | 18 October 2026 |
 | Handover 2.27 | Block ecosystem audit: the Quote / Testimonial Style field removed | docs/handover revision history | 19 October 2026 |
+| Not recorded | The block sets the Figma side gutters itself (0 on mobile, 1.5rem on tablet, 5rem on desktop, `--quote-gutter`) and cancels the section's (`margin-inline: calc(-1 * var(--section-padding-inline))`): in a Fixed width section the gutters were doubled (desktop content 1120px instead of 1280px, card 622px instead of 782px; tablet 64px instead of 24px; mobile image 354px instead of edge to edge); the desktop portrait is 702 x 869 | Branch feature/quote-figma-overlap | 21 November 2026 |
+| Not recorded | Figma tablet 559-51861 and mobile 559-53276: stacked below 1200px (two columns from 1200px, not 900px); tablet: the image at the left up to 702px (702 : 440), the full-width card over its lower 180px, padding 24px, 28px marks; mobile: the image edge to edge (402 : 390), the card 12px from the edges over its lower 204px, padding 16px, 25px marks; quote 24px / 34px and author 20px / 28px on tablet and mobile (the mobile frame's desktop type isn't used, by decision); the closing mark in its column on every width | Branch feature/quote-figma-overlap | 20 November 2026 |
+| Not recorded | Figma "Text & Image Overlap" 185-32296: 80rem body, 578 : 204 : 498 grid, 4:5 portrait (`object-fit: cover`), quote 2rem / 1.406 and author 1.5rem semibold from 1200px, scaling 1.375 / 1.5rem on mobile and tablet; two columns from 1200px (the code had switched at 1200px with fixed 768–1023px and 1024–1199px rules, unlike this README); the card white on BG Color Grey; headings in the quote's rich text take the quote's type; on mobile and tablet the closing mark at the card's bottom right | Branch feature/quote-figma-overlap | 20 November 2026 |

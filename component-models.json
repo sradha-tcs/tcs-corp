@@ -23278,7 +23278,7 @@
         "valueType": "string",
         "name": "imagePosition",
         "label": "Image Position (Desktop)",
-        "description": "Side of the image on desktop (900px and wider); the quote overlaps it.",
+        "description": "Side of the image on desktop (1200px and wider); the quote overlaps it.",
         "value": "right",
         "options": [
           {
@@ -23296,7 +23296,7 @@
         "valueType": "string",
         "name": "imagePositionMobile",
         "label": "Image Position (Mobile)",
-        "description": "Image above or below the quote on mobile and tablet (narrower than 900px).",
+        "description": "Image above or below the quote on mobile and tablet (narrower than 1200px).",
         "value": "top",
         "options": [
           {
