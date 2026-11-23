@@ -63,8 +63,10 @@ The Style tab of the Image Collage properties in Universal Editor, with the fiel
 
 Annotations:
 A = Title weight
-B = Description size
-C = Background color
+B = Description size (Desktop)
+C = Description size (Tablet)
+D = Description size (Mobile)
+E = Background color
 ```
 
 ```text
@@ -151,7 +153,9 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `showDesc
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Title weight | `titleWeight` | select | No | "" | Layout default (""), Regular (`title-regular`), Semibold (`title-semibold`) | — | — |
-| Description size | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | — | — |
+| Description size (Desktop) | `descriptionSize` | select | No | "" | Layout default (""), Regular (18px) (`text-regular`), Large (24px) (`text-large`) | The description's size from 1200px; also on tablet and mobile unless Description size (Tablet) / (Mobile) say otherwise. | — |
+| Description size (Tablet) | `descriptionSizeTablet` | select | No | "" | Same as Desktop (""), Regular (18px) (`text-regular`) | The description's size from 600 to 1199px. Same as Desktop: the Description size (Desktop). | — |
+| Description size (Mobile) | `descriptionSizeMobile` | select | No | "" | Same as Desktop (""), Regular (18px) (`text-regular`) | The description's size below 600px. Same as Desktop: the Description size (Desktop). | — |
 | Background color | `backgroundColor` | select | No | "" | Dark (""), Navy (`bg-navy`) | Sets the Image Collage background. Dark uses rgb(12 12 13). Navy uses rgb(1 22 39). | — |
 
 #### Additional tab — Image Collage

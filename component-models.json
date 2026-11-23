@@ -16158,7 +16158,7 @@
         "component": "select",
         "valueType": "string",
         "name": "descriptionSize",
-        "label": "Description size",
+        "label": "Description size (Desktop)",
         "value": "",
         "options": [
           {
@@ -16173,7 +16173,44 @@
             "name": "Large (24px)",
             "value": "text-large"
           }
-        ]
+        ],
+        "description": "The description's size from 1200px; also on tablet and mobile unless Description size (Tablet) / (Mobile) say otherwise."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeTablet",
+        "label": "Description size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          }
+        ],
+        "description": "The description's size from 600 to 1199px. Same as Desktop: the Description size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeMobile",
+        "label": "Description size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          }
+        ],
+        "description": "The description's size below 600px. Same as Desktop: the Description size (Desktop)."
       },
       {
         "component": "select",
