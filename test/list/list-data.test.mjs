@@ -40,6 +40,25 @@ describe('configuration', () => {
     assert.equal(toSafeId('2026 news'), 'list-2026-news');
     assert.equal(toSafeId(''), '');
   });
+  it('reads the Font Style sizes per breakpoint (empty: the card style\'s)', () => {
+    const c = config({
+      descriptionsizedesktop: '20',
+      descriptionsizemobile: '12',
+      kickersizetablet: '16',
+      ctasizedesktop: '40',
+      ctasizemobile: '15',
+    });
+    assert.deepEqual(c.fontSizes.desktop, { description: '20', kicker: '', cta: '40' });
+    assert.deepEqual(c.fontSizes.tablet, { description: '', kicker: '16', cta: '' });
+    assert.deepEqual(c.fontSizes.mobile, { description: '12', kicker: '', cta: '' });
+    assert.deepEqual(config().fontSizes.desktop, { description: '', kicker: '', cta: '' });
+  });
+  it('starts a new List at 14px in every Font Style field', () => {
+    const { definitions } = JSON.parse(readFileSync(new URL('../../blocks/list/_list.json', import.meta.url)));
+    const { template } = definitions.find((d) => d.id === 'list').plugins.xwalk.page;
+    const sizes = ['description', 'kicker', 'cta'].flatMap((part) => ['Desktop', 'Tablet', 'Mobile'].map((bp) => template[`${part}Size${bp}`]));
+    assert.deepEqual(sizes, Array(9).fill('14'));
+  });
   it('clamps invalid responsive values', () => {
     const c = config({
       desktopcolumns: '99', mobilegap: '-4', tabletvisible: 'x', mobilecardwidth: '50', desktopmode: 'masonry',

@@ -396,6 +396,11 @@ export function applyCardListLayout(block, config) {
     block.style.setProperty(`--list-visible-${bp}`, r.visible);
     // no card width: the CSS sizes the cards by Items visible
     if (r.cardWidth) block.style.setProperty(`--list-card-width-${bp}`, rem(r.cardWidth));
+    // List › Font Style: the image cards' sizes (Image card and Mixed lists), else the card style's
+    const fonts = ['image', 'mixed'].includes(config.cardStyle) ? config.fontSizes?.[bp] || {} : {};
+    Object.entries(fonts).forEach(([part, px]) => {
+      if (px) block.style.setProperty(`--list-image-${part}-size-${bp}`, rem(Number(px)));
+    });
   });
   const flags = {
     snap: config.snap,

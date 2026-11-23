@@ -381,6 +381,27 @@ J = Show image
 [Screenshot Placeholder]
 
 File name:
+list-dialog-font-style-desktop.png
+
+Purpose:
+The Font Style tab of the List properties in Universal Editor, with the fields of the table "Font Style tab — List" in Authorable Fields below.
+
+Annotations:
+A = Description size (Desktop)
+B = Description size (Tablet)
+C = Description size (Mobile)
+D = Kicker / tag / eyebrow size (Desktop)
+E = Kicker / tag / eyebrow size (Tablet)
+F = Kicker / tag / eyebrow size (Mobile)
+G = Call to action size (Desktop)
+H = Call to action size (Tablet)
+I = Call to action size (Mobile)
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
 list-dialog-additional-desktop.png
 
 Purpose:
@@ -550,6 +571,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
 5. **Order and limit (Content):** **Order by** (Manual, Title, Last modified), **Sort order**, **Maximum items** (0: all).
 6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature (then Show author on feature card), the Show options, Date format, Image loading (Eager only for a list on the first screen).
 7. **Set the layout per breakpoint (Display):** Desktop, Tablet and Mobile display (Grid, Horizontal scroll or Carousel: whole cards with previous / next on the cards), columns or items visible, gap, previous / next buttons and scroll indicator; then the scroll options and **When there are no items**.
+7a. **Set the text sizes (Font Style tab, Card style Image card or Mixed):** Description size, Kicker / tag / eyebrow size and Call to action size, each for Desktop, Tablet and Mobile: 12, 14, 16, 20, 24, 32 or 40px. A new List starts at 14px in every field; Default keeps the card style's size (Lists made before show Default). The sizes apply to the image cards only (report cards in a Mixed List keep their type).
 8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles.
 9. **Preview:** switch Universal Editor to Preview, or open the page preview. Child pages and Tagged pages lists show their pages only on the published page (AEM author has no query index).
 10. **Publish:** publish the page. Listed pages must be published (and indexed) themselves to appear.
@@ -567,7 +589,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
 
 Model `list`; template name "List" (the block class AEM renders); key-value block (one row per property); children: `list-item`.
 
-Stored on a new component (definition template): `titleType` = `"h2"`, `source` = `"fixed"`, `orderBy` = `"manual"`, `sortOrder` = `"ascending"`, `maxItems` = `0`, `displayAsTeaser` = `true`, `cardStyle` = `"image"`, `imageRatio` = `"16-9"`, `panelHeight` = `"portrait"`, `linkItems` = `true`, `showImage` = `true`, `showEyebrow` = `true`, `showTags` = `true`, `showDescription` = `true`, `showDate` = `true`, `dateFormat` = `"dd-mmm-yy"`, `imageLoading` = `"lazy"`, `desktopMode` = `"grid"`, `desktopColumns` = `4`, `tabletMode` = `"grid"`, `tabletColumns` = `4`, `mobileMode` = `"grid"`, `mobileColumns` = `1`, `scrollSnap` = `true`, `emptyBehavior` = `"message"`, `analyticsEnabled` = `true`.
+Stored on a new component (definition template): `titleType` = `"h2"`, `source` = `"fixed"`, `orderBy` = `"manual"`, `sortOrder` = `"ascending"`, `maxItems` = `0`, `displayAsTeaser` = `true`, `cardStyle` = `"image"`, `imageRatio` = `"16-9"`, `panelHeight` = `"portrait"`, `linkItems` = `true`, `showImage` = `true`, `showEyebrow` = `true`, `showTags` = `true`, `showDescription` = `true`, `showDate` = `true`, `dateFormat` = `"dd-mmm-yy"`, `imageLoading` = `"lazy"`, `desktopMode` = `"grid"`, `desktopColumns` = `4`, `tabletMode` = `"grid"`, `tabletColumns` = `4`, `mobileMode` = `"grid"`, `mobileColumns` = `1`, `scrollSnap` = `true`, `emptyBehavior` = `"message"`, `analyticsEnabled` = `true`, `descriptionSizeDesktop` = `"14"`, `descriptionSizeTablet` = `"14"`, `descriptionSizeMobile` = `"14"`, `kickerSizeDesktop` = `"14"`, `kickerSizeTablet` = `"14"`, `kickerSizeMobile` = `"14"`, `ctaSizeDesktop` = `"14"`, `ctaSizeTablet` = `"14"`, `ctaSizeMobile` = `"14"`.
 
 #### Content tab — List
 
@@ -655,6 +677,20 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Empty message | `emptyMessage` | text | No | — | — | Shown when `emptyBehavior` is `message`. | — |
 | Analytics | `analyticsEnabled` | boolean | No | `true` | on / off | Card clicks and scrolling in the Adobe Data Layer. | — |
 | Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`), Impact cards (proven impact and outcomes) (`impact-cards`) | — | — |
+
+#### Font Style tab — List
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Description size (Desktop) | `descriptionSizeDesktop` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Description size (Tablet) | `descriptionSizeTablet` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Description size (Mobile) | `descriptionSizeMobile` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Desktop) | `kickerSizeDesktop` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Tablet) | `kickerSizeTablet` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Mobile) | `kickerSizeMobile` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Desktop) | `ctaSizeDesktop` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Tablet) | `ctaSizeTablet` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Mobile) | `ctaSizeMobile` | select | No | "" | Default (as today) (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
 
 #### Additional tab — List
 
@@ -1351,6 +1387,7 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |
 | Handover 2.46 | Show content type (`showContentLabel`): the content type of image cards (its tag in the kicker and its label before the date) can be turned off; on by default; the shared Display fields split again (`cardsShow`, `cardsAction`) so the option sits between Date format and Show call to action in the List only | docs/handover revision history | 28 October 2026 |
 | Handover 2.47 | Image card hover (Figma): the whole linked card fades the title to brand blue with an underline (300ms ease-out), no layout change | docs/handover revision history | 28 October 2026 |
+| Not recorded | Font Style tab (List, Card style Image card or Mixed): the image cards' description, kicker and call to action size per breakpoint (`descriptionSize{Desktop,Tablet,Mobile}`, `kickerSize…`, `ctaSize…`: 12 to 40px, Default ''), 14px for new Lists (definition template); `--list-image-{description,kicker,cta}-size-{bp}` on the block (`applyCardListLayout`), unset when not chosen so Lists made before keep their sizes | Branch shraddha | 23 November 2026 |
 | Not recorded | Header CTA with CTA style Text link (e.g. See all, `.list-cta-slot .button.tertiary`): 0.875rem (`--label-font-size`, 14px) medium at every width (Figma "Carousel · 4 columns"); card links and the header's buttons unchanged | Branch fix/list-header-cta-type | 20 November 2026 |
 | Not recorded | Desktop / Tablet / Mobile display Carousel: Columns whole cards per view, previous / next on the image (brand blue, grey at the first and last card), shared with Cards | Branch feature/list-image-carousel | 20 November 2026 |
 | — | Call-to-action links keep the new-tab hint in their accessible name | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |

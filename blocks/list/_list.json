@@ -37,7 +37,16 @@
               "mobileColumns": 1,
               "scrollSnap": true,
               "emptyBehavior": "message",
-              "analyticsEnabled": true
+              "analyticsEnabled": true,
+              "descriptionSizeDesktop": "14",
+              "descriptionSizeTablet": "14",
+              "descriptionSizeMobile": "14",
+              "kickerSizeDesktop": "14",
+              "kickerSizeTablet": "14",
+              "kickerSizeMobile": "14",
+              "ctaSizeDesktop": "14",
+              "ctaSizeTablet": "14",
+              "ctaSizeMobile": "14"
             }
           }
         }
@@ -517,6 +526,569 @@
         },
         {
           "...": "../../models/_card-list.json#/fields/advanced"
+        },
+        {
+          "component": "tab",
+          "name": "fontStyleTab",
+          "label": "Font Style"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionSizeDesktop",
+          "label": "Description size (Desktop)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionSizeTablet",
+          "label": "Description size (Tablet)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionSizeMobile",
+          "label": "Description size (Mobile)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "kickerSizeDesktop",
+          "label": "Kicker / tag / eyebrow size (Desktop)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "kickerSizeTablet",
+          "label": "Kicker / tag / eyebrow size (Tablet)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "kickerSizeMobile",
+          "label": "Kicker / tag / eyebrow size (Mobile)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "ctaSizeDesktop",
+          "label": "Call to action size (Desktop)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "ctaSizeTablet",
+          "label": "Call to action size (Tablet)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "ctaSizeMobile",
+          "label": "Call to action size (Mobile)",
+          "options": [
+            {
+              "name": "Default (as today)",
+              "value": ""
+            },
+            {
+              "name": "12px",
+              "value": "12"
+            },
+            {
+              "name": "14px",
+              "value": "14"
+            },
+            {
+              "name": "16px",
+              "value": "16"
+            },
+            {
+              "name": "20px",
+              "value": "20"
+            },
+            {
+              "name": "24px",
+              "value": "24"
+            },
+            {
+              "name": "32px",
+              "value": "32"
+            },
+            {
+              "name": "40px",
+              "value": "40"
+            }
+          ],
+          "value": "",
+          "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
+          "condition": {
+            "or": [
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "image"
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "cardStyle"
+                  },
+                  "mixed"
+                ]
+              }
+            ]
+          }
         },
         {
           "component": "tab",
