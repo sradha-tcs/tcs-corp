@@ -539,7 +539,7 @@
           "label": "Description size (Desktop)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -601,7 +601,7 @@
           "label": "Description size (Tablet)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -663,7 +663,7 @@
           "label": "Description size (Mobile)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -725,7 +725,7 @@
           "label": "Kicker / tag / eyebrow size (Desktop)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -787,7 +787,7 @@
           "label": "Kicker / tag / eyebrow size (Tablet)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -849,7 +849,7 @@
           "label": "Kicker / tag / eyebrow size (Mobile)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -911,7 +911,7 @@
           "label": "Call to action size (Desktop)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -973,7 +973,7 @@
           "label": "Call to action size (Tablet)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
@@ -1035,7 +1035,7 @@
           "label": "Call to action size (Mobile)",
           "options": [
             {
-              "name": "Default (as today)",
+              "name": "Default",
               "value": ""
             },
             {
