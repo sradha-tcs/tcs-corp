@@ -19,22 +19,26 @@
 .block.columns-container.columns-container-4 { --columns-container-count: 4; }
 
 /* BG Color (as the Teaser's): only the background colour */
+.columns-container-section.fixed-width:has(> .columns-container-wrapper > .bg-grey),
 .block.columns-container.bg-grey {
   background-color: var(--color-bg-secondary);
 }
-
+ 
+.columns-container-section.fixed-width:has(> .columns-container-wrapper > .bg-dark),
 .block.columns-container.bg-dark {
   background-color: var(--color-bg-neutral);
 }
-
+ 
+.columns-container-section.fixed-width:has(> .columns-container-wrapper > .bg-dark-green),
 .block.columns-container.bg-dark-green {
   background-color: var(--color-bg-dark-green);
 }
-
+ 
+.columns-container-section.fixed-width:has(> .columns-container-wrapper > .bg-navy),
 .block.columns-container.bg-navy {
   background-color: var(--color-bg-brand-hover);
 }
-
+ 
 /* on Dark and Dark Green: the theme contract of styles/styles.css (light text, links, buttons) */
 
 /* Gap */
