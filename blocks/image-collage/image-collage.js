@@ -484,6 +484,19 @@ export default async function decorate(block) {
   block.classList.remove(...optionClasses);
   block.classList.add(...styles);
 
+  // Description size (Tablet) and (Mobile): Regular (18px) on that width, else the Description
+  // size (Desktop)'s (image-collage.css description-tablet-* / description-mobile-*)
+  const descriptionSizes = OPTIONS.descriptionsize;
+  const desktopSize = descriptionSizes.find((size) => block.classList.contains(size));
+  const widths = { tablet: props.descriptionsizetablet, mobile: props.descriptionsizemobile };
+  block.classList.remove(...Object.keys(widths)
+    .flatMap((width) => descriptionSizes.map((size) => `description-${width}-${size}`)));
+  Object.entries(widths).forEach(([width, cell]) => {
+    const value = toClassName(textOf(cell));
+    const size = value === 'text-regular' ? value : desktopSize;
+    if (size) block.classList.add(`description-${width}-${size}`);
+  });
+
   block.replaceChildren(
     ...[
       collage,
