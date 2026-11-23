@@ -285,10 +285,66 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(site(0).state, STATES.INITIAL);
   });
 
-  it('a hero shorter than the window: the row is above the dock line and floats from the start', () => {
-    const short = bottomOf([header(LINE - 26), slot(3000), slot(6000)]);
-    assert.equal(short(0).state, STATES.FLOATING);
-    assert.equal(short(0).owner, 0);
+  describe('over a hero shorter than the window (Figma tablet and mobile)', () => {
+    // the row rests on the bottom of the hero, 120px above the dock line; a 90px fixed header bar
+    const REST = LINE - 120;
+    const BAR = 90;
+    const short = bottomOf([header(REST), slot(3000), slot(6000)], { topInset: BAR });
+    // the scroll position at which the resting row reaches the header bar
+    const atBar = REST - BAR;
+
+    it('INITIAL at the top of the page: docked on the hero, nothing floats', () => {
+      const r = short(0);
+      assert.equal(r.state, STATES.INITIAL);
+      assert.equal(r.docked, 0);
+      assert.equal(r.owner, -1);
+    });
+
+    it('scrolls with the hero (stays docked) until it reaches the header bar', () => {
+      [1, 10, 200, atBar].forEach((y) => {
+        assert.equal(short(y).state, STATES.INITIAL, `docked at ${y}`);
+        assert.equal(short(y).docked, 0);
+      });
+    });
+
+    it('floats before it would slide under the header bar, and docks again scrolling back', () => {
+      const r = short(atBar + 1);
+      assert.equal(r.state, STATES.FLOATING);
+      assert.equal(r.owner, 0);
+      assert.equal(r.docked, -1);
+      assert.equal(short(atBar).state, STATES.INITIAL);
+      assert.equal(short(0).state, STATES.INITIAL);
+    });
+
+    it('without a fixed header bar (topInset 0): floats once the row has left the top', () => {
+      const noBar = bottomOf([header(REST), slot(3000), slot(6000)]);
+      assert.equal(noBar(REST).state, STATES.INITIAL);
+      assert.equal(noBar(REST + 1).state, STATES.FLOATING);
+    });
+
+    it('then the journey as before (section, after it, footer), only allowed transitions', () => {
+      const at = (top) => top - LINE;
+      assert.equal(short(at(3000)).state, STATES.SECTION_DOCKED);
+      assert.equal(short(3100).state, STATES.FLOATING_AFTER_SECTION);
+      assert.equal(short(at(6000)).state, STATES.FOOTER_DOCKED);
+      const { states, bad } = walk(short);
+      assert.deepEqual(bad, []);
+      assert.equal(states[0], STATES.INITIAL);
+      assert.equal(states.at(-1), STATES.INITIAL);
+    });
+
+    it('at most one Canvas floats, never while one is docked', () => {
+      for (let y = 0; y <= MAX; y += 25) {
+        const r = short(y);
+        assert.ok(r.owner === -1 || r.docked === -1, `owner and docked at ${y}`);
+      }
+    });
+
+    it('within the rounding tolerance of the dock line it is the full-screen case (unchanged)', () => {
+      const nearly = bottomOf([header(LINE - 1), slot(3000), slot(6000)], { topInset: BAR });
+      assert.equal(nearly(0).state, STATES.INITIAL);
+      assert.equal(nearly(10).state, STATES.FLOATING, 'floats as soon as it would move up');
+    });
   });
 
   it('then section docking, floating after it and the footer stop as before, both directions', () => {

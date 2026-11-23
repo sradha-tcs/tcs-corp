@@ -577,7 +577,7 @@ B = Nav page section with the Canvas
 | Callout | Field | Value | Reason | Expected result |
 | ------- | ----- | ----- | ------ | --------------- |
 | A | Conversation Canvas Page (Footer) | references/footer-conversation-canvas | Final stop of the journey | The footer Canvas; nothing floats below it |
-| B | A section of the Navigation page | A Conversation Canvas | Header Canvas | Row on the bottom of the first screen, fixed at the bottom of the window as soon as the page scrolls |
+| B | A section of the Navigation page | A Conversation Canvas | Header Canvas | Row on the bottom of the first screen, fixed at the bottom of the window as soon as the page scrolls; over a hero shorter than the window, on the bottom of the hero, scrolling with it until the header bar |
 
 **Author action:** set the footer reference; add a section with a Canvas to the Navigation page (a TCS Header block in the same section stays the logo bar); publish both pages. **Expected published result:** the journey starts at the header Canvas and ends at the footer Canvas. **Validation:** scroll to the bottom: state `footer-docked`. **Common mistake:** the footer canvas page not published: the floating row stops above the footer instead.
 
@@ -660,7 +660,7 @@ The Canvas options give three behaviours, each with its own use: **Primary (stic
 
 ### Placement: header, section and footer Canvas
 
-Roles come from placement (`data-canvas-role` on the block): a Canvas in `<header>` (a nav page section, hosted in `header .nav-canvas`), or the first Canvas when it is in the page's first section (the hero), is **header**; the last Canvas in `<footer>` is **footer** (the final stop; other Canvases in the footer are sections); the rest are **section**; Primary has no role (`dock`). The header Canvas sits on the bottom of the first screen and floats as soon as scrolling would carry it up; a hero shorter than the window makes it float from the start.
+Roles come from placement (`data-canvas-role` on the block): a Canvas in `<header>` (a nav page section, hosted in `header .nav-canvas`), or the first Canvas when it is in the page's first section (the hero), is **header**; the last Canvas in `<footer>` is **footer** (the final stop; other Canvases in the footer are sections); the rest are **section**; Primary has no role (`dock`). The header Canvas sits on the bottom of the first screen and floats as soon as scrolling would carry it up. Over a hero shorter than the window (the fixed 750px hero on tablet and mobile, the 900px desktop hero in a taller window; Figma L1 Header desktop, tablet and mobile) its row rests on the bottom of the hero: it is docked there (state `initial`), scrolls with the hero and floats just before it would slide under the fixed header bar (`topInset`, the bottom of `header .nav-wrapper`), so one row is always in sight and in use; scrolling back docks it on the hero again (KB-D-076, Proposed).
 
 ## Complete Authoring Example
 
@@ -817,7 +817,7 @@ INITIAL → FLOATING → SECTION_DOCKED → FLOATING_AFTER_SECTION → … → F
 
 - **Targets**: every Default / Secondary Canvas in the journey (it has a search row in place). Roles come from the semantic container, not DOM order (see Placement above).
 - **Dock line**: the top of the floating row (viewport height − floating offset − row height).
-- **Docked**: a target's search row is on screen at or above the dock line; nothing floats. With two rows in place, the one nearest to the dock line is the docked one; the state stays INITIAL while the header Canvas is still in place. The header Canvas is docked only while its row is at the dock line (2px tolerance); as soon as scrolling would carry it up it floats, at the same place.
+- **Docked**: a target's search row is on screen at or above the dock line; nothing floats. With two rows in place, the one nearest to the dock line is the docked one; the state stays INITIAL while the header Canvas is still in place. The header Canvas is docked only while its row is at the dock line (2px tolerance); as soon as scrolling would carry it up it floats, at the same place. When its place at the top of the page is above the dock line (a hero shorter than the window) it is docked while its row is below the fixed header bar (`topInset`, measured by `canvas-controller.js`; 0 without a fixed bar: then while it is on screen).
 - **Owner** (the one floating row): the Primary (sticky) Canvas if there is one that floats, else the last target (DOM order) that has crossed the dock line and may float. After each section Canvas the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it back.
 - **Approaching**: the next target coming up from below. Its own row is hidden (opacity, still focusable and read) until it reaches the dock line, where it replaces the floating row at the same position (no duplicate row, no jump).
 - **Final stop**: once the footer Canvas reaches the dock line (or the page bottom on a short page) nothing floats any more.
@@ -969,7 +969,7 @@ graph LR
 | CONVERSATION-CANVAS-QA-20 | Layout shift | Scroll past a Canvas | No page movement when the row floats or lands |
 | CONVERSATION-CANVAS-QA-21 | Existing content | Button items of the former shared `button` model | Rendered with their view and type |
 
-Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (roles from placement, the journey down and up, every transition of continuous scrolls against `TRANSITIONS`, single owner, HIDDEN, Stays in place (nofloat), Primary, a focused row in place, missing intermediate / footer Canvas, two Canvases on screen, header Canvas with a hero, short page).
+Unit tests: `npm test` runs `test/conversation-canvas/canvas-journey.test.mjs` (roles from placement, the journey down and up, every transition of continuous scrolls against `TRANSITIONS`, single owner, HIDDEN, Stays in place (nofloat), Primary, a focused row in place, missing intermediate / footer Canvas, two Canvases on screen, header Canvas with a hero, header Canvas over a hero shorter than the window (docked on the hero, floating at the header bar), short page).
 
 ## Troubleshooting
 
@@ -1062,3 +1062,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Not recorded | Site menu: an arrow on every panel row again (Figma 1124:26250); closing resets it to the first level (a pinned third-level panel stayed open after a click outside and hid the search row) | fix/block-issues | 22 October 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Conversation Canvas: every Canvas of the page gets Hide block; README corrected: Hide block hides header and footer Canvases too. `canvas-controller.js`: a footer that isn't rendered (Hide Footer, or while the sections load) counts as no footer, so the floating row isn't lifted off the screen | branch feature/header-footer-canvas-toggle | 16 November 2026 |
 | — | Escape closes the section panel (the check was inverted: every other key closed it); the rotating prompt changes the placeholder only, not the field's label, and not for reduced motion or in a background tab; prompts from placeholders canvasPrompt1 to canvasPrompt5 | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
+| — | Header Canvas over a hero shorter than the window (tablet and mobile 750px heroes, desktop in a tall window): docked on the bottom of the hero and scrolling with it until the fixed header bar, then floating (it used to float at the bottom of the window from the start, over the content below the hero); `resolveJourney` input `topInset`, measured in `canvas-controller.js` | KB-D-076 (Proposed), branch Praneeth | 23 November 2026 |

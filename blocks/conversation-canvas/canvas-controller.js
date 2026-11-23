@@ -137,10 +137,15 @@ function measure() {
   // top would read 0 and lift the floating row off the screen
   const footer = document.querySelector('footer');
   const footerShown = !!footer?.getClientRects().length;
+  // the fixed header bar (blocks/header .nav-wrapper): a header Canvas resting on a short hero
+  // floats before it slides under it; none with Hide Header or while the header isn't fixed
+  const bar = document.querySelector('header .nav-wrapper');
+  const barFixed = !!bar?.getClientRects().length && getComputedStyle(bar).position === 'fixed';
   geometry = {
     live,
     canvases,
     offset,
+    topInset: barFixed ? Math.max(0, bar.getBoundingClientRect().bottom) : 0,
     footerTop: footerShown ? footer.getBoundingClientRect().top + scrollY : null,
     documentHeight: document.documentElement.scrollHeight,
     viewportHeight: window.innerHeight,
