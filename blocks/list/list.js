@@ -43,6 +43,8 @@ const ITEM_MATCHERS = {
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
 // the Display toggles: true / false
 ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; });
+// CTA style
+ITEM_MATCHERS.ctaStyle = (cell) => /^(tertiary|primary|secondary)$/i.test(textOf(cell));
 
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
@@ -110,7 +112,7 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const listItems = legacy ? [] : itemRows.map((row) => {
-    // rows rendered before the Display toggles were added have fewer cells
+    // rows rendered before CTA style or the Display toggles were added have fewer cells
     const layout = itemLayoutFor(row.children.length);
     const fieldCells = withoutTabCells([...row.children], layout);
     const cells = matchCells(fieldCells, layout.filter(Boolean), ITEM_MATCHERS);
@@ -136,6 +138,7 @@ export function readBlockConfig(block) {
       kind: get('kind').toLowerCase(),
       theme: get('theme').toLowerCase(),
       ...Object.fromEntries(ITEM_DISPLAY.map((field) => [field, get(field)])),
+      ctaStyle: get('ctaStyle').toLowerCase(),
       ref: row,
     };
   }).filter((item) => item.href);

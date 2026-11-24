@@ -1265,6 +1265,32 @@
           ]
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "ctaStyle",
+          "label": "CTA style",
+          "options": [
+            {
+              "name": "As the card style",
+              "value": ""
+            },
+            {
+              "name": "Text link",
+              "value": "tertiary"
+            },
+            {
+              "name": "Primary button",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary button",
+              "value": "secondary"
+            }
+          ],
+          "value": "",
+          "description": "The style of this card's call to action (Call to action label); As the card style: a text link, a Secondary button on statistic cards."
+        },
+        {
           "component": "tab",
           "name": "contentTab",
           "label": "Content"

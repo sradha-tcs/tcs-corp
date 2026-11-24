@@ -412,6 +412,7 @@ Annotations:
 A = Page or link
 B = Link text
 C = Open in a new tab
+D = CTA style
 ```
 
 ```text
@@ -550,7 +551,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
 5. **Order and limit (Content):** **Order by** (Manual, Title, Last modified), **Sort order**, **Maximum items** (0: all).
 6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature (then Show author on feature card), the Show options, Date format, Image loading (Eager only for a list on the first screen).
 7. **Set the layout per breakpoint (Display):** Desktop, Tablet and Mobile display (Grid, Horizontal scroll or Carousel: whole cards with previous / next on the cards), columns or items visible, gap, previous / next buttons and scroll indicator; then the scroll options and **When there are no items**.
-8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles.
+8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles; in its Link tab **CTA style** (As the card style, Text link, Primary button, Secondary button).
 9. **Preview:** switch Universal Editor to Preview, or open the page preview. Child pages and Tagged pages lists show their pages only on the published page (AEM author has no query index).
 10. **Publish:** publish the page. Listed pages must be published (and indexed) themselves to appear.
 11. **Validate:** on the published page check the cards, their order, their links (redirect targets) and each breakpoint.
@@ -685,6 +686,7 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | Page or link | `link` | aem-content | Yes | — | — | A page of the site, a path or an external URL (https://...). | /design-block-master/en/dummy-pages/services/cloud |
 | Link text | `linkText` | text | No | — | — | The link text when the page has no title. Delivered with `link` (field collapse). | — |
 | Open in a new tab | `newTab` | select | No | "" | As the list (""), Yes (`true`), No (`false`) | — | true |
+| CTA style | `ctaStyle` | select | No | "" | As the card style (""), Text link (`tertiary`), Primary button (`primary`), Secondary button (`secondary`) | The style of this card's call to action (Call to action label); As the card style: a text link, a Secondary button on statistic cards. | — |
 
 #### Content tab — List Item
 
@@ -1351,6 +1353,7 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |
 | Handover 2.46 | Show content type (`showContentLabel`): the content type of image cards (its tag in the kicker and its label before the date) can be turned off; on by default; the shared Display fields split again (`cardsShow`, `cardsAction`) so the option sits between Date format and Show call to action in the List only | docs/handover revision history | 28 October 2026 |
 | Handover 2.47 | Image card hover (Figma): the whole linked card fades the title to brand blue with an underline (300ms ease-out), no layout change | docs/handover revision history | 28 October 2026 |
+| Not recorded | List Item CTA style in the Link tab (`ctaStyle`: '' as the card style, `tertiary`, `primary`, `secondary`; the List's CTA style options): the item's call to action in that style; the item layout is 23 cells (20 without tab cells), items rendered before (22 / 19, 16 / 13 cells) are still read (`ITEM_LAYOUT_BEFORE_CTA`, `itemLayoutFor`); max-cells list-item 20. (The Font Style tabs of #271 are not part of it, review of #271.) | Branch feature/list-item-cta-style | 24 November 2026 |
 | Not recorded | Header CTA with CTA style Text link (e.g. See all, `.list-cta-slot .button.tertiary`): 0.875rem (`--label-font-size`, 14px) medium at every width (Figma "Carousel · 4 columns"); card links and the header's buttons unchanged | Branch fix/list-header-cta-type | 20 November 2026 |
 | Not recorded | Desktop / Tablet / Mobile display Carousel: Columns whole cards per view, previous / next on the image (brand blue, grey at the first and last card), shared with Cards | Branch feature/list-image-carousel | 20 November 2026 |
 | — | Call-to-action links keep the new-tab hint in their accessible name | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
