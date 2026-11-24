@@ -994,7 +994,7 @@
               "value": "primary-border-light-gray"
             }
           ],
-          "description": "Border Color of Primary CTA"
+          "description": "Border colour of the Primary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
         },
         {
           "component": "select",
@@ -1211,7 +1211,7 @@
               "value": "secondary-border-light-gray"
             }
           ],
-          "description": "Border Color of Secondary CTA"
+          "description": "Border colour of the Secondary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
         },
         {
           "component": "select",

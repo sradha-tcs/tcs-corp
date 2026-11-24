@@ -2224,9 +2224,13 @@
 
   /*
    * Primary / Secondary CTA Border color Very Light Gray (#F3F3F3, teaser-cta-border-light-gray):
-   * the border of that CTA's button, in dark sections too; hover and focus keep the button's
+   * the border of that CTA's button on the dark backgrounds only: the Teaser's Dark, Dark green,
+   * Navy, Background image and Card layouts, and Teasers in a dark Section or Columns Container
+   * (not one with BG Color Grey, which is light again). On a light background the button keeps
+   * its own border: #F3F3F3 on white is 1.1:1, so a Secondary button (no fill) would lose its
+   * edge (WCAG 1.4.11). Hover and focus keep the button's.
    */
-  .teaser .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible),
-  main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible) {
-    border-color: var(--slate-100);
+  .teaser:is(.bg-dark, .bg-dark-green, .bg-navy, .background, .card) .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible),
+  main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser:not(.bg-grey) .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible) {
+    border-color: var(--color-border-on-neutral);
   }

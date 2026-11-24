@@ -138,6 +138,9 @@
   --color-border-neutral-secondary: var(--slate-600);
   --color-border-neutral-tertiary: var(--slate-400);
 
+  /* a light border on the dark (neutral) backgrounds, e.g. the Teaser's Very Light Gray CTA border */
+  --color-border-on-neutral: var(--slate-100);
+
   /* legacy aliases used by boilerplate blocks */
   --background-color: var(--color-bg-default);
   --light-color: var(--color-bg-secondary);
