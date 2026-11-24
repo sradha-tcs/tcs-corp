@@ -131,10 +131,10 @@ The field names are the ones requested (hyphenated, lowercase). AEM collapses fi
 |---|---|---|
 | contacts | `contact-id`, `contact-name`, `contact-desc`, `email-id`, `contact-number` | C0001, Roland, Roland is Media spokes person, roland.bagen@tcs.com, +46 70 3178024 |
 | regions | `region-id`, `region-name`, `region-desc` | reg-001, Corporate Communications & India, This region belongs to corporate communications and India |
-| media-contacts-config | `media-contacts-id`, then per region `<region-id>` and `<region-id>-action`, and `order_contacts` (optional, the last column) | media-contact-01, reg-001: C0013,C0001,C0002, reg-001-action: mail, reg-002: …, reg-002-action: …, order_contacts: 3, 1, 2 |
+| media-contacts-config | `media-contacts-id`, then per region `<region-id>` and `<region-id>-action`, and `order_contacts` (optional, the last column) | media-contact-01, reg-001: C0013,C0001,C0002, reg-001-action: mail, reg-002: …, reg-002-action: …, order_contacts: reg-003, reg-001, reg-002 |
 
-- **Region columns are dynamic:** every column of the config sheet other than `media-contacts-id`, `order_contacts` and the `-action` columns is a region; a new region is two new columns (and a row of the regions sheet). An empty region column leaves the region out of that row.
-- **Region order (`order_contacts`):** the order in which the row's regions are shown, as region numbers: `3, 1, 2` shows reg-003 (with its reg-003-action) first, then reg-001, then reg-002; the number is the one at the end of the region ID (`1` and `001` are reg-001), and full region IDs (`reg-003`) work too. Separate them with commas, semicolons or spaces. Regions not listed follow the listed ones in the sheet's column order, so none is lost; a number listed twice counts once. **Blank (or no column): the regions are shown in the order the author added them, the sheet's column order.** A listed region without contacts is skipped; a number that names no region column of the row is ignored and named in the author hint ("order_contacts names no region of this row: 12"). The column name is read without case, spaces, hyphens or underscores (`Order Contacts`, `order-contacts`).
+- **Region columns are dynamic and their names are free:** every column of the config sheet other than `media-contacts-id`, `order_contacts` and the action columns (any name ending in `action`: `reg-001-action`, `India Action`, `india_action`) is a region; a new region is two new columns (and a row of the regions sheet). A region's action is the action column named after it, else the action column right after it; without one, the default action. An empty region column leaves the region out of that row. The region column's name is its region ID in the regions sheet (that's where its name comes from).
+- **Region order (`order_contacts`):** the order in which the row's regions are shown, as the **names of the region columns**: `reg-003, reg-001, reg-002` shows reg-003 first, then reg-001, then reg-002, each with its own action column (`reg-003-action`, …): the author writes only the region column's name, its action comes with it. After a rename the new names are used (`India, Middle East, APAC`). The name of an action column (`reg-003-action`) counts as its region too. Names are compared without case, spaces, hyphens or underscores (`REG-003`, `reg_003`, `Reg 003`); separate them with commas, semicolons or new lines (not spaces: a name may hold spaces, `Middle East`). Regions not listed follow the listed ones in the sheet's column order, so none is lost; an entry listed twice counts once. **Blank (or no column): the regions are shown in the order the author added them, the sheet's column order.** A listed region without contacts in that row is skipped; an entry that names no region column of the row is ignored and named in the author hint ("order_contacts names no region of this row: reg-404"). Numbers, as the column was first filled (`2, 1, 5`), still work: a number that isn't a column name is the region column at that position (2: the second region column). The `order_contacts` column itself is read without case, spaces, hyphens or underscores (`Order Contacts`, `order-contacts`).
 - **Contact IDs** are comma separated, shown in that order; IDs are matched without case.
 - `email-id` and `contact-number` may hold more than one value, comma separated.
 - `region-desc` is for the sheet's maintainers; it isn't shown.
@@ -287,9 +287,11 @@ blocks/conf-med-cont/
 | 4 | An unknown Media contacts ID | Author: the hint; published page: the block is hidden |
 | 5 | Title type big / small title | An H2 at 48px / 28px (desktop) |
 | 6 | 375px and 1440px | One column / two columns, no horizontal scroll |
-| 7 | `order_contacts` `3, 1, 10, 2` on `media-contact-01` | Asia Pacific, Corporate Communications & India, USA, Europe, then the other regions in sheet order, each with its own action |
+| 7 | `order_contacts` `reg-003, reg-001, reg-010, reg-002` on `media-contact-01` | Asia Pacific, Corporate Communications & India, USA, Europe, then the other regions in sheet order, each with its own action |
 | 8 | `order_contacts` blank | The regions in the sheet's column order (as before the column existed) |
-| 9 | `order_contacts` with a number that isn't a region of the row (e.g. `12`) | Ignored; author hint "order_contacts names no region of this row: 12"; the other numbers still order the regions |
+| 9 | `order_contacts` with a name that isn't a region column of the row (e.g. `reg-404`) | Ignored; author hint "order_contacts names no region of this row: reg-404"; the other names still order the regions |
+| 10 | Region columns renamed (e.g. `India` / `India Action`, region IDs changed in the regions sheet too) and `order_contacts` `APAC, India` | APAC first, then India, each with its own action |
+| 11 | `order_contacts` with numbers (`2, 1, 5`, as first written) | Europe, Corporate Communications & India, Canada, then the rest (positions among the region columns) |
 
 ## Troubleshooting
 
@@ -298,7 +300,9 @@ blocks/conf-med-cont/
 | The block is missing on the published page | No config row with the ID, or none of its contacts has a detail to show; check on the author for the hint |
 | A region has no name | The region ID isn't in the regions sheet (listed in the author hint) |
 | Old contacts are shown | The sheets weren't republished after the change |
-| The regions don't follow `order_contacts` | The config sheet wasn't republished, or the numbers don't match the region IDs (`3` is reg-003; see the author hint) |
+| The regions don't follow `order_contacts` | The config sheet wasn't republished, or a name isn't a region column of the row (a typo; see the author hint), or names are separated by spaces only (use commas) |
+| A region shows the wrong action | Its action column is neither named after it (`<region>-action`) nor right after it |
+| A region has no name after renaming its column | The regions sheet's `region-id` must be the new column name |
 
 ## Performance Considerations
 
@@ -334,3 +338,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 |---|---|
 | 22 November 2026 | Created; KB-D-073 approved (product owner) |
 | 24 November 2026 | `order_contacts` column of the media-contacts-config sheet: the region order as region numbers (listed first, the others after in sheet order; blank: sheet order); never read as a region; author hint for numbers naming no region (placeholder `confMedContUnknownOrder`); branch Praneeth |
+| 24 November 2026 | Generic, independent of fixed column names: `order_contacts` takes the region column names (`reg-003, reg-001`), each bringing its action column; an action column's name counts as its region; numbers still work as positions among the region columns; separators commas, semicolons, new lines (names may hold spaces); action columns are any name ending in `action`, paired with their region by name, else the column right after it; branch Praneeth |

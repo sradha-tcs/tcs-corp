@@ -14,7 +14,7 @@
  * | conf-med-cont/regions  | region-id, region-name, region-desc                  |
  * | conf-med-cont/media-contacts-config | media-contacts-id; per region <region-id>       |
  * |                        | (contact IDs, comma separated) and <region-id>-action; |
- * |                        | order_contacts (region order as numbers: 3, 1, 2)     |
+ * |                        | order_contacts (region column names in order)         |
  */
 import { localeSheetPath, sheetRows } from './site.js';
 

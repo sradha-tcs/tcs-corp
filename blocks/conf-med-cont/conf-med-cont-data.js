@@ -4,16 +4,18 @@
  * test/conf-med-cont/conf-med-cont-data.test.mjs.
  *
  * A config row has the column media-contacts-id, then per region a column named by its region ID
- * (reg-001: contact IDs, comma separated) and one named <region ID>-action, and optionally
- * order_contacts: the order of the regions as their numbers (3, 1, 2: reg-003 first, then reg-001,
- * then reg-002; full region IDs work too). The region columns vary: every column other than
- * media-contacts-id, order_contacts and the -action columns is a region.
+ * (reg-001: contact IDs, comma separated) and its action column (<region ID>-action), and
+ * optionally order_contacts: the order of the regions as region column names (reg-003, reg-001,
+ * reg-002: each brings its action column). Nothing depends on fixed column names: every column
+ * other than media-contacts-id, order_contacts and the action columns is a region, and a
+ * region's action is the action column named after it, else the action column right after it.
  */
 import { telHref } from '../../utils/links.js';
 
 export const ID_COLUMN = 'media-contacts-id';
 export const ORDER_COLUMN = 'order_contacts';
-const ACTION_SUFFIX = '-action';
+// action columns end with "action" (reg-001-action, India Action, india_action)
+const ACTION_SUFFIX = 'action';
 
 /** what each region action shows of its contacts, in the order shown */
 export const ACTIONS = {
@@ -32,11 +34,24 @@ const key = (value) => text(value).toLowerCase();
 /** a column name without case, spaces, hyphens or underscores (Order Contacts, order-contacts) */
 const columnKey = (value) => key(value).replace(/[\s_-]+/g, '');
 const isOrderColumn = (column) => columnKey(column) === columnKey(ORDER_COLUMN);
-/** the number at the end of a region ID (reg-001: 1), null without one */
-const regionNumber = (id) => {
-  const digits = text(id).match(/(\d+)$/);
-  return digits ? Number(digits[1]) : null;
-};
+const isActionColumn = (column) => columnKey(column).endsWith(ACTION_SUFFIX);
+const isRegionColumn = (column) => columnKey(column) !== columnKey(ID_COLUMN)
+  && !isOrderColumn(column) && !isActionColumn(column);
+
+/**
+ * The action column of a region column: the one named after it (reg-001-action), else the action
+ * column right after it in the sheet, whatever its name.
+ * @param {string[]} columns the row's columns in sheet order
+ * @param {number} index the region column's index
+ * @returns {string | undefined}
+ */
+function actionColumnOf(columns, index) {
+  const named = columns.find((column) => isActionColumn(column)
+    && columnKey(column) === `${columnKey(columns[index])}${ACTION_SUFFIX}`);
+  if (named) return named;
+  const next = columns[index + 1];
+  return next && isActionColumn(next) ? next : undefined;
+}
 
 /**
  * The config row of a media contacts ID (case-insensitive).
@@ -72,24 +87,29 @@ export function orderOf(config) {
 
 /**
  * Orders regions by an order_contacts value: the regions it lists first, in its order, then the
- * others in the sheet's column order (nothing is left out). An entry is a region number (3 is
- * reg-003: the number at the end of the region ID) or a full region ID; separated by commas,
- * semicolons or spaces. Empty: the sheet's column order, as the author added the regions.
- * @template {{ id: string }} R
- * @param {R[]} regions in the sheet's column order
- * @param {string} order e.g. "3, 1, 2"
+ * others in the sheet's column order (nothing is left out). An entry is the name of a region
+ * column (reg-002, or India after a rename), which brings its action column with it; the name of
+ * its action column (reg-002-action) counts as the region too. Names are compared without case,
+ * spaces, hyphens or underscores; entries are separated by commas, semicolons or new lines (names
+ * may hold spaces: Middle East). A number that is no column name is the region column at that
+ * position (2: the second), as order_contacts was first written. Empty: the sheet's column order,
+ * as the author added the regions.
+ * @template {{ id: string, actionColumn?: string }} R
+ * @param {R[]} regions every region column of the row, in the sheet's column order
+ * @param {string} order e.g. "reg-003, reg-001, reg-002"
  * @returns {{ regions: R[], unknown: string[] }} unknown: entries that name no region column of
  *   the row (for the author)
  */
 export function orderRegions(regions, order) {
-  const entries = text(order).split(/[\s,;]+/).map(text).filter(Boolean);
+  const entries = text(order).split(/[,;\n]+/).map(text).filter(Boolean);
   if (!entries.length) return { regions: [...regions], unknown: [] };
   const listed = [];
   const unknown = [];
   entries.forEach((entry) => {
-    const number = /^\d+$/.test(entry) ? Number(entry) : null;
-    const region = regions.find((r) => (number !== null
-      ? regionNumber(r.id) === number : key(r.id) === key(entry)));
+    const name = columnKey(entry);
+    const region = regions.find((r) => columnKey(r.id) === name)
+      || regions.find((r) => r.actionColumn && columnKey(r.actionColumn) === name)
+      || (/^\d+$/.test(entry) ? regions[Number(entry) - 1] : undefined);
     if (!region) unknown.push(entry);
     else if (!listed.includes(region)) listed.push(region);
   });
@@ -107,15 +127,24 @@ export function orderRegions(regions, order) {
  */
 function orderedRegions(config) {
   if (!config) return { regions: [], unknown: [] };
-  const regions = Object.keys(config)
-    .filter((column) => key(column) !== ID_COLUMN && !isOrderColumn(column)
-      && !key(column).endsWith(ACTION_SUFFIX))
-    .map((column) => ({
-      id: text(column),
-      contactIds: text(config[column]).split(/[,;]/).map(text).filter(Boolean),
-      action: actionOf(config[`${column}${ACTION_SUFFIX}`]),
-    }));
-  return orderRegions(regions, orderOf(config));
+  // the sheet's columns in order (every row of a sheet has every column, empty ones too, so the
+  // positions are the same in every row)
+  const columns = Object.keys(config);
+  const regions = columns
+    .map((column, index) => ({ column, index }))
+    .filter(({ column }) => isRegionColumn(column))
+    .map(({ column, index }) => {
+      const actionColumn = actionColumnOf(columns, index);
+      return {
+        id: text(column),
+        contactIds: text(config[column]).split(/[,;]/).map(text).filter(Boolean),
+        action: actionOf(config[actionColumn]),
+        actionColumn,
+      };
+    });
+  const { regions: ordered, unknown } = orderRegions(regions, orderOf(config));
+  // the action column was only needed to read the order
+  return { regions: ordered.map(({ actionColumn, ...region }) => region), unknown };
 }
 
 /**
