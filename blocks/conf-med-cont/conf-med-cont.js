@@ -5,7 +5,7 @@ import { getConfMedCont } from '../../utils/data.js';
 import { isAuthor, isEditing } from '../../utils/environment.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties, textOf, textSource } from '../../utils/properties.js';
-import { findConfig, regionGroups } from './conf-med-cont-data.js';
+import { findConfig, regionGroups, unknownOrderEntries } from './conf-med-cont-data.js';
 
 /** the two title styles of Media contacts title type (an H2 in their style) */
 const TITLE_STYLES = ['media-contacts-big-title', 'media-contacts-small-title'];
@@ -56,6 +56,12 @@ export default async function decorate(block) {
     headingLevel: `h${level}`,
     labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
   });
+  // two columns from 900px filled column by column (the order reads down the first column, then
+  // the second): the rows of the first column, half the regions rounded up
+  if (list) {
+    list.classList.add('contact-list-by-column');
+    list.style.setProperty('--conf-med-cont-rows', String(Math.ceil(regions.length / 2)));
+  }
   const author = isEditing() || isAuthor();
   const hints = [];
   if (author && !config) {
@@ -65,6 +71,11 @@ export default async function decorate(block) {
   }
   if (author && config && missing.length) {
     hints.push(hint(`${t('confMedContMissing', 'Not in the contacts or regions sheet')}: ${missing.join(', ')}`));
+  }
+  // order_contacts entries that name no region column of the row (the others are still ordered)
+  const unknownOrder = author && config ? unknownOrderEntries(config) : [];
+  if (unknownOrder.length) {
+    hints.push(hint(`${t('confMedContUnknownOrder', 'order_contacts names no region of this row')}: ${unknownOrder.join(', ')}`));
   }
   if (list || hints.length) {
     block.replaceChildren(heading, ...(list ? [list] : []), ...hints);
