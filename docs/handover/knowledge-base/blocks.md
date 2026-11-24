@@ -82,7 +82,7 @@ One line per block folder; the field tables, variations and guidance are in each
 | [Table](../../../blocks/table/README.md) (`table`) | Container | Active | A data table of rows with 1 to 5 columns |
 | [Table List](../../../blocks/table-list/README.md) (`table-list`) | Container | Active | A numbered list of linked items (industries, services) |
 | [Tabs](../../../blocks/tabs/README.md) (`tabs`) | Container (section) and block | Active | Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments, `tabs-block`) |
-| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | Structural | Active | The site header (loaded eagerly into `<header>`, loads the nav page) and, on the nav page, the TCS and TATA logos with the tablet / mobile menu; replaces the former Header block (KB-D-076) |
+| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | Structural | Active | The site header (loaded into `<header>` in the lazy phase, loads the nav page) and, on the nav page, the TCS and TATA logos with the tablet / mobile menu; replaces the former Header block (KB-D-076) |
 | [Teaser](../../../blocks/teaser/README.md) (`teaser`) | Container | Active | Title, text, image and links in one of four layouts |
 | [Testimonial](../../../blocks/testimonial/README.md) (`testimonial`) | Container | Active | A client testimonial with author, image and stats |
 | [Video](../../../blocks/video/README.md) (`video`) | Independent | Active | A DAM, YouTube or Vimeo video inline or in a pop-up, with poster and captions |

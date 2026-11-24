@@ -20,7 +20,7 @@ of the block you change, decorators/README.md, utils/README.md,
 docs/handover/knowledge-base/decision-log.md. Code wins over documentation.
 
 - Reuse existing blocks, decorators (elements) and utils (no UI); utils never import decorators.
-- Never modify scripts/aem.js (one recorded exception: `loadHeader` builds `tcs-header`, KB-D-077). Blocks export default decorate(block).
+- Never modify scripts/aem.js. Blocks export default decorate(block).
 - Generated files: component-*.json (npm run build:json), head.html modulepreload links and
   scripts/module-graph.js (npm run build:modules), block README generated sections
   (npm run build:docs), paths.json (npm run build:paths). Regenerate, don't hand-edit.
