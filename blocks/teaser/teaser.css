@@ -2076,3 +2076,157 @@
       letter-spacing: calc(0.01 * var(--label-font-size));
     }
   }
+
+  /*
+   * Title Type 3.125rem (50px), a size without a heading level (teaser.js title-3-125rem: the
+   * title stays the authored heading, else an H2): from 1200px; Tablet / Mobile on those widths
+   */
+  @media (width >= 1200px) {
+    .teaser.title-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.title-tablet-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.title-mobile-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  /*
+   * Title weight (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * title-weight-tablet-* / title-weight-mobile-*: the Desktop weight unless set), after the
+   * Title weight (Desktop) rules above, so they win on those widths
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.title-weight-tablet-light .teaser-content .teaser-title {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.title-weight-tablet-regular .teaser-content .teaser-title {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.title-weight-tablet-medium .teaser-content .teaser-title {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.title-weight-tablet-semibold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.title-weight-tablet-bold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.title-weight-mobile-light .teaser-content .teaser-title {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.title-weight-mobile-regular .teaser-content .teaser-title {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.title-weight-mobile-medium .teaser-content .teaser-title {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.title-weight-mobile-semibold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.title-weight-mobile-bold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /*
+   * CTA Label Font weight (Desktop / Tablet / Mobile): the weight of the CTA labels (buttons and
+   * Text links in the links row), at every width from the Desktop one, Tablet / Mobile on their
+   * widths; last in the file, so it wins over the layouts' own (Image collage too).
+   * no-descending-specificity is off here: the earlier, more specific a.button rules (e.g. the
+   * spacing above the buttons without a description) set other properties, not font-weight
+   */
+  /* stylelint-disable no-descending-specificity */
+  .teaser.cta-weight-light .teaser-links a.button {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.cta-weight-regular .teaser-links a.button {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.cta-weight-medium .teaser-links a.button {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.cta-weight-semibold .teaser-links a.button {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.cta-weight-bold .teaser-links a.button {
+    font-weight: var(--font-weight-bold);
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.cta-weight-tablet-light .teaser-links a.button {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.cta-weight-tablet-regular .teaser-links a.button {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.cta-weight-tablet-medium .teaser-links a.button {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.cta-weight-tablet-semibold .teaser-links a.button {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.cta-weight-tablet-bold .teaser-links a.button {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.cta-weight-mobile-light .teaser-links a.button {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.cta-weight-mobile-regular .teaser-links a.button {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.cta-weight-mobile-medium .teaser-links a.button {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.cta-weight-mobile-semibold .teaser-links a.button {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.cta-weight-mobile-bold .teaser-links a.button {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /* stylelint-enable no-descending-specificity */
+
+  /*
+   * Primary / Secondary CTA Border color Very Light Gray (#F3F3F3, teaser-cta-border-light-gray):
+   * the border of that CTA's button, in dark sections too; hover and focus keep the button's
+   */
+  .teaser .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible),
+  main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible) {
+    border-color: var(--slate-100);
+  }

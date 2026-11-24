@@ -172,7 +172,18 @@ const CTA_LABEL_FONTS = { 'font-14': 'teaser-cta-font-14' };
 const CTA_LABEL_COLORS = { 'label-soft-gray': 'teaser-cta-label-soft-gray' };
 // Title Type's size without a heading level (2.25rem, 36px): the title stays the authored
 // heading, else an H2 (classes title-2-25rem, title-tablet-2-25rem, title-mobile-2-25rem)
-const TITLE_SIZES = ['title-2-25rem'];
+const TITLE_SIZES = ['title-2-25rem', 'title-3-125rem'];
+// Title weight and CTA Label Font weight values (title-light ... title-bold): the weight's name
+const WEIGHTS = ['light', 'regular', 'medium', 'semibold', 'bold'];
+const weightOf = (cell) => {
+  const value = toClassName(textOf(cell)).replace(/^title-/, '');
+  return WEIGHTS.includes(value) ? value : '';
+};
+// Primary / Secondary CTA Border color: a class of that CTA's button (teaser.css)
+const CTA_BORDERS = {
+  'primary-border-light-gray': 'teaser-cta-border-light-gray',
+  'secondary-border-light-gray': 'teaser-cta-border-light-gray',
+};
 
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
 
@@ -278,6 +289,7 @@ function renderLinks(container, entries) {
     background = '',
     shape = '',
     shadow = '',
+    border = '',
     labelClasses = [],
   }) => {
     if (style === 'list') {
@@ -336,6 +348,10 @@ function renderLinks(container, entries) {
       link.classList.add('button-shadow');
     }
 
+    if (supportsAppearance && border) {
+      link.classList.add(border);
+    }
+
     // Primary / Secondary CTA Label Font and Label Color, whatever the Link Style
     link.classList.add(...labelClasses);
 
@@ -361,6 +377,7 @@ function buildLinks(props, rows, hint) {
       props.primaryctashadow,
       props.primaryctalabelfont,
       props.primaryctalabelcolor,
+      props.teaserctaprimaryborder,
       'primary',
     ],
     [
@@ -373,6 +390,7 @@ function buildLinks(props, rows, hint) {
       props.secondaryctashadow,
       props.secondaryctalabelfont,
       props.secondaryctalabelcolor,
+      props.teaserctasecondaryborder,
       'secondary',
     ],
   ].map(([
@@ -385,6 +403,7 @@ function buildLinks(props, rows, hint) {
     shadow,
     labelFont,
     labelColor,
+    borderColor,
     fallback,
   ]) => {
     const link = linkOf(cell);
@@ -406,6 +425,7 @@ function buildLinks(props, rows, hint) {
       background: appearanceOf(background, BUTTON_BACKGROUNDS),
       shape: appearanceOf(shape, BUTTON_SHAPES),
       shadow: appearanceOf(shadow, BUTTON_SHADOWS),
+      border: CTA_BORDERS[toClassName(textOf(borderColor))] || '',
       labelClasses: [
         CTA_LABEL_FONTS[toClassName(textOf(labelFont))],
         CTA_LABEL_COLORS[toClassName(textOf(labelColor))],
@@ -664,6 +684,21 @@ export default async function decorate(block) {
   );
   if (desktopTitleSize) block.classList.add(`title-${desktopTitleSize}`);
   block.classList.add(`title-tablet-${sizeOf(props.titletypetablet)}`, `title-mobile-${sizeOf(props.titletypemobile)}`);
+  // Title weight (Tablet) / (Mobile) and CTA Label Font weight (Desktop / Tablet / Mobile): the
+  // weight on that width (teaser.css title-weight-tablet-bold, cta-weight-bold,
+  // cta-weight-mobile-light ...); Tablet and Mobile else the Desktop one
+  const desktopTitleWeight = weightOf(props.titleweight);
+  const desktopCtaWeight = weightOf(props.ctalabelfontweightdesktop);
+  block.classList.remove(...WEIGHTS.flatMap((w) => [
+    `title-weight-tablet-${w}`, `title-weight-mobile-${w}`,
+    `cta-weight-${w}`, `cta-weight-tablet-${w}`, `cta-weight-mobile-${w}`,
+  ]));
+  const addWeight = (prefix, weight) => { if (weight) block.classList.add(`${prefix}-${weight}`); };
+  addWeight('title-weight-tablet', weightOf(props.titleweighttablet) || desktopTitleWeight);
+  addWeight('title-weight-mobile', weightOf(props.titleweightmobile) || desktopTitleWeight);
+  addWeight('cta-weight', desktopCtaWeight);
+  addWeight('cta-weight-tablet', weightOf(props.ctalabelfontweighttablet) || desktopCtaWeight);
+  addWeight('cta-weight-mobile', weightOf(props.ctalabelfontweightmobile) || desktopCtaWeight);
   // Description size (Tablet) and (Mobile): the description's size on those widths (teaser.css
   // description-tablet-* / description-mobile-*, e.g. description-tablet-text-large or
   // description-mobile-2-5rem), else the Description size (Desktop)'s (Teasers authored before)
