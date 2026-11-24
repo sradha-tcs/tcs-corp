@@ -1,6 +1,6 @@
 # Configurable Media Contacts
 
-The Configurable Media Contacts block (`conf-med-cont`, "configurable media contacts") lists media contacts by region from three data sheets: the **contacts**, the **regions** and the **media-contacts-config** sheet of `data/conf-med-cont/`. The author enters a Media contacts ID; the config row with that ID chooses the regions (one column per region, any number of them, in the row's `order_contacts` order, else the sheet's column order), the contacts of each region and what is shown of them (the region's action). It follows the Figma "Media contacts" design (TCS Designs - Prototypes, node 5834:16648): the title, then the regions two per row, each with its brand-blue name and the underlined e-mail addresses and phone numbers one below the other.
+The Configurable Media Contacts block (`conf-med-cont`, "configurable media contacts") lists media contacts by region from three data sheets: the **contacts**, the **regions** and the **media-contacts-config** sheet of `data/conf-med-cont/`. The author enters a Media contacts ID; the config row with that ID chooses the regions (one column per region, any number of them, in the row's `order_contacts` order, else the sheet's column order), the contacts of each region and what is shown of them (the region's action). It follows the Figma "Media contacts" design (TCS Designs - Prototypes, node 5834:16648): the title, then the regions in two columns (filled column by column), each with its brand-blue name and the underlined e-mail addresses and phone numbers one below the other.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -14,7 +14,7 @@ The Configurable Media Contacts block (`conf-med-cont`, "configurable media cont
 ## Overview
 
 - **Business purpose:** one set of contacts and regions, maintained in sheets, shown in different combinations on different pages (press releases, newsroom, regional pages) without editing the pages.
-- **User experience:** the title (e.g. "TCS media contacts"); below it the regions, two per row from 900px, one column below; each region's name in brand blue, then its contacts as its action shows them: e-mail addresses and phone numbers as underlined links, with the contact's name (and description) above them for the name actions.
+- **User experience:** the title (e.g. "TCS media contacts"); below it the regions in two columns from 900px, filled column by column (top to bottom, then the next column), one column below; each region's name in brand blue, then its contacts as its action shows them: e-mail addresses and phone numbers as underlined links, with the contact's name (and description) above them for the name actions.
 - **Templates / page types:** any; typically press releases and newsroom pages.
 - **Data source:** `/{root}/data/conf-med-cont/contacts.json`, `regions.json` and `media-contacts-config.json` (the sheets below `/content/tcs-corp/<root>/data/conf-med-cont/` on the author), read by `utils/data.js` `getConfMedCont`; pages below a review root (`/language-master/en`, `/language-masters/en`, `/design-block-master/en`) read their root's sheets, the locales their own (`REVIEW_SHEETS` in `utils/site.js`).
 - **Related blocks:** Media Contacts (`blocks/media-contacts`: contacts authored as items in the block), whose look and markup it shares (`decorators/contact-list-decorator.js`).
@@ -207,7 +207,7 @@ None. Different pages show different contacts through different config rows.
 ## Responsive Behavior
 
 - Below 900px: one column; title 28px (`--heading-font-size-xl`), region names 16px (`--heading-font-size-s`).
-- From 900px: two columns filled row by row (as in the design); title 40px, region names 20px.
+- From 900px: two columns filled **column by column**: the regions read top to bottom down the first column, then the second (the first column holds half the regions, rounded up: 3 of 5, 5 of 10; `--conf-med-cont-rows`, set by `conf-med-cont.js`), so the `order_contacts` order runs down each column; the rows of the two columns stay aligned; title 40px, region names 20px.
 - Contact lines are 16px at every width; long addresses wrap anywhere.
 
 ## For Developers
@@ -292,6 +292,8 @@ blocks/conf-med-cont/
 | 9 | `order_contacts` with a name that isn't a region column of the row (e.g. `reg-404`) | Ignored; author hint "order_contacts names no region of this row: reg-404"; the other names still order the regions |
 | 10 | Region columns renamed (e.g. `India` / `India Action`, region IDs changed in the regions sheet too) and `order_contacts` `APAC, India` | APAC first, then India, each with its own action |
 | 11 | `order_contacts` with numbers (`2, 1, 5`, as first written) | Europe, Corporate Communications & India, Canada, then the rest (positions among the region columns) |
+| 12 | 1440px, ten regions (`reg-003, reg-005, reg-004`) | First column top to bottom: Asia Pacific, Canada, Japan, Corporate Communications & India, Europe; second column: Middle East & Africa, Latin America, UK, Australia and New Zealand, USA |
+| 13 | 1440px, five regions | Three in the first column, two in the second |
 
 ## Troubleshooting
 
@@ -339,3 +341,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | 22 November 2026 | Created; KB-D-073 approved (product owner) |
 | 24 November 2026 | `order_contacts` column of the media-contacts-config sheet: the region order as region numbers (listed first, the others after in sheet order; blank: sheet order); never read as a region; author hint for numbers naming no region (placeholder `confMedContUnknownOrder`); branch Praneeth |
 | 24 November 2026 | Generic, independent of fixed column names: `order_contacts` takes the region column names (`reg-003, reg-001`), each bringing its action column; an action column's name counts as its region; numbers still work as positions among the region columns; separators commas, semicolons, new lines (names may hold spaces); action columns are any name ending in `action`, paired with their region by name, else the column right after it; branch Praneeth |
+| 24 November 2026 | From 900px the two columns are filled column by column (top to bottom, then the next column) instead of row by row, so the region order reads down each column; branch Praneeth |

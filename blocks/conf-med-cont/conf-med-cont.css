@@ -28,7 +28,7 @@
   list-style: none;
 }
 
-/* the regions: one column, two from 900px, filled row by row */
+/* the regions: one column, two from 900px, filled column by column (conf-med-cont.js) */
 .conf-med-cont .contact-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -110,5 +110,12 @@
 @media (width >= 900px) {
   .conf-med-cont .contact-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* top to bottom in the first column, then the second: as many rows as the first column holds
+     (--conf-med-cont-rows, half the regions rounded up), so the order reads down each column */
+  .conf-med-cont .contact-list.contact-list-by-column {
+    grid-template-rows: repeat(var(--conf-med-cont-rows), auto);
+    grid-auto-flow: column;
   }
 }

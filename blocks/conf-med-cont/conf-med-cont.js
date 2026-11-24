@@ -56,6 +56,12 @@ export default async function decorate(block) {
     headingLevel: `h${level}`,
     labels: { email: t('email', 'Email'), phone: t('phone', 'Phone') },
   });
+  // two columns from 900px filled column by column (the order reads down the first column, then
+  // the second): the rows of the first column, half the regions rounded up
+  if (list) {
+    list.classList.add('contact-list-by-column');
+    list.style.setProperty('--conf-med-cont-rows', String(Math.ceil(regions.length / 2)));
+  }
   const author = isEditing() || isAuthor();
   const hints = [];
   if (author && !config) {
