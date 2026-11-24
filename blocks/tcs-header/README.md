@@ -1,14 +1,14 @@
 # TCS Header
 
-A key-value block with the TCS and TATA logos, their alt texts and their links (Figma *New Screens from New DS*, "Nav Bar-NEW"). On the Navigation page it is the site header's logo source: [`blocks/header`](../header/README.md) takes its brand (TCS logo) and tools (TATA logo) from it. Placed anywhere else it renders the logo bar.
+A key-value block with the TCS and TATA logos, their alt texts and their links (Figma *New Screens from New DS*, "Nav Bar-NEW"). It is also the **site header**: `loadHeader` (`scripts/aem.js`) loads an empty TCS Header into `<header>` in the eager phase, which loads the page's Navigation page and mounts it as `<header><div class="nav-wrapper"><nav id="nav">` (replacing the former `blocks/header`, KB-D-076). On the Navigation page the authored block supplies the logos and the tablet / mobile menu; placed anywhere else it renders the logo bar.
 
 | Attribute | Value |
 | --------- | ----- |
 | Technical name | `tcs-header` (`blocks/tcs-header`) |
 | Display name | TCS Header |
-| Block type | Independent key-value block (model `tcs-header`, template name "TCS Header") |
+| Block type | Structural key-value block (model `tcs-header`, template name "TCS Header"); also the site header block loaded into `<header>` |
 | Status | Active |
-| Parent / children | Parent: any section (`models/_section.json` filter `section`); used on the Navigation page, read by `blocks/header`. No children |
+| Parent / children | Parent: any section (`models/_section.json` filter `section`); used on the Navigation page; the site header instance is built by `loadHeader` in `<header>`. No children |
 | Owner / version / date | Owner: Not recorded; version: Not recorded; date: Not recorded |
 
 ## Overview
@@ -27,7 +27,9 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Floating overlay correction, 6 November 2026.** Float keeps an overlay bar fully transparent while scrolling away; logos retain their starting theme colour. The transparent-to-white background and logo fade apply only to Sticky. Never overlay remains solid. An open drawer still has a solid bar for contrast.
 
-**Related blocks.** [Header](../header/README.md) (consumes it), [Conversation Canvas](../conversation-canvas/README.md) (a header Canvas may share its section).
+**Related blocks.** [Fragment](../fragment/README.md) (`loadFragment` loads the Navigation page), [Conversation Canvas](../conversation-canvas/README.md) (a header Canvas may share its section; it moves to `header .nav-canvas`).
+
+**Site header, 23 November 2026 (KB-D-076, Proposed).** The TCS Header is the only header block: `blocks/header` was removed. `scripts/aem.js` `loadHeader` builds an empty `tcs-header` in `<header>` (an exception to the never-modify rule, KB-D-077, Proposed) and `scripts.js` calls it in the **eager phase**, right after `reserveHeaderSpace()`, with the block's modules preloaded and the shared data (`prefetchData`) started, so the Navigation page and the menu's query index load in parallel with the LCP section. The empty block (`decorateSiteHeader`) loads the Navigation page (the page's inherited Navigation, else the locale's `references/nav`) with the placeholders, moves its Conversation Canvas sections to `header .nav-canvas` (`prepareMotion`), replaces itself with `header > .nav-wrapper > nav#nav` (the nav page's sections, the authored TCS Header in its bar), and runs the scroll state (`--header-scroll-progress`, `.is-scrolled`), `--header-height` / `rememberHeaderSpace` and the logo theme. The header's layout rules (position, overlay, Canvas row) are in `tcs-header.css`. Below 1200px the logos sit on the left 1rem apart and the menu button on the right (`margin-left: auto`).
 
 **Working-copy correction, 6 November 2026.** The circular hamburger and accordion drawer now serve mobile and tablet below 1200px; the drawer starts below `--nav-height`. The site header owns logo layout and overlay contrast after extracting these elements: Always is transparent over a dark Hero at the top, with white logos changing to black as the bar becomes white while scrolling. Light Heroes use black logos. This uses the authored theme rather than image-pixel sampling. The current PNG logos retain their transparency but are not converted into vectors; transparent SVG originals are recommended. Escape closes the drawer and restores focus, and entering desktop closes it automatically. Earlier menu descriptions below refer to the previous level-by-level implementation.
 
@@ -403,14 +405,14 @@ Validation: check the logo heights per breakpoint and both links. Common mistake
 - **Purpose:** the site header's brand and tools.
 - **When to use / not:** always on nav pages; not needed on positional nav pages authored before (brand, sections, tools), which still work.
 - **Fields:** the six logo fields, and **Menu root path** / **Menu depth** for the tablet and mobile menu.
-- **Rendering:** `blocks/header` `applyLogoBar` replaces the block's section with `div.section.nav-brand > p > a.tcs-header-brand` and `div.section.nav-tools > p > a.tcs-header-group`; the first other section becomes the menu. A TCS Header in the same section as a Conversation Canvas is kept as the logo bar (only the Canvas goes to the header Canvas). Sizes and layout come from `header.css`.
-- **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page at the start of the lazy phase, so the header doesn't wait for it). `blocks/header` (unchanged) makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`). The open menu's title row ("Menu", or a level's Back arrow and title) starts at the gutter, left-aligned with the rows below, and a linked section's arrow (on its button) is at the right edge, in line with the other rows' arrows. While the menu is open the header Canvas is hidden (`blocks/conversation-canvas`); it shows again in its place when the menu closes. Below 1200px the Conversation Canvases don't show their own site menu button (`blocks/conversation-canvas`): the header's menu button is the site navigation there; on desktop the Canvas menu lists the same pages, one level at a time like this menu.
+- **Rendering:** the nav page's sections go into `header nav#nav` as they are: the block's section keeps `.tcs-header > .tcs-header-bar` (`a.tcs-header-brand`, `a.tcs-header-group`, the menu button) and its drawer, and takes the nav's full width. A TCS Header in the same section as a Conversation Canvas is moved into a section of its own (only the Canvas goes to the header Canvas). Sizes and layout come from `tcs-header.css` (site header rules: `header nav …`).
+- **Tablet and mobile menu (below 1200px):** a nav page without a menu list of its own gets one from this block: decorated in the nav fragment (before the header reads it), it adds `div.section.tcs-header-menu` after its section, the list of the pages below its **Menu root path** (else the Menu root path of the Conversation Canvas in its section) up to its **Menu depth** (else the Canvas's, else 1), from the query index (`utils/query-index.js` `getPageTree`; `scripts.js` `prefetchData` starts the index on every page in the eager phase, KB-D-076, so the header doesn't wait for it). The block makes it the menu: menu button, levels, Escape, focus, `header:menu`. No pages (or AEM author, which has no query index): no menu, no menu button. `tcs-header.css` styles the header below 1200px as Figma Mobile Nav 2325:55704 / 1124:25497 (24px gutters, TCS logo 30.7px, TATA logo 38px, the menu icon's 2px lines 26px wide and 8px apart in `--color-icon-default`). The open menu's title row ("Menu", or a level's Back arrow and title) starts at the gutter, left-aligned with the rows below, and a linked section's arrow (on its button) is at the right edge, in line with the other rows' arrows. While the menu is open the header Canvas is hidden (`blocks/conversation-canvas`); it shows again in its place when the menu closes. Below 1200px the Conversation Canvases don't show their own site menu button (`blocks/conversation-canvas`): the header's menu button is the site navigation there; on desktop the Canvas menu lists the same pages, one level at a time like this menu.
 - **Menu root path fallback:** the menu takes the first of the block's own Menu root path and the Conversation Canvas's (in the same section) with pages in the site's query index. A Menu root path of another site (e.g. the language master, `/content/tcs-corp/language-master/en/...`, on an `/en` page) has none there, so the Canvas's is used; without pages in either, there's no menu and no menu button.
 - **Header behavior** works at every width and with every Header over the first block mode. Sticky (default) keeps the logo bar at the top while scrolling (fixed, `z-index: 20`); Float scrolls away with the page (absolute). Over the first block it is transparent at the top and turns solid over the first bar-height of scrolling (a scroll-driven animation, with the existing `is-scrolled` fallback). In-page targets retain their header offset; the Anchor List keeps its own offset.
 - **Header over the first block (every width):** **Auto** (default) keeps the behaviour before: the logo bar lies transparent over an opening light Hero (Home), else it's a bar above the page. **Always**: the bar is transparent over the page's first block, whatever it is, which starts at the top of the page; a Hero keeps its content below the logos, other blocks need their own top space (their Padding top, Additional tab, or `var(--header-overlay-space, 0rem)` in a block's CSS); the logos should be transparent images (a JPG keeps its white box over a coloured block) and dark logos aren't visible over a dark block. **Never**: the bar is above the page also over a light Hero (the page starts below the 64px / 124px bar). The block sets `<html data-header-overlay>` (`utils/header-space.js` `setHeaderOverlay`) when decorated in the nav fragment, not on the nav page itself; the layout is in `styles/styles.css` (it applies before the header loads), the transparent bar in `tcs-header.css`. The mode is remembered per browser and applied before the header loads on the next pages, so only a visitor's first page with Always or Never can move once when the header arrives (decision log KB-D-052, Proposed).
-- **Desktop / tablet / mobile:** as the [Header](../header/README.md).
+- **Desktop / tablet / mobile:** see [Responsive Behavior](#responsive-behavior): below 1200px the logos on the left (1rem apart) and the menu button on the right; from 1200px TCS left, TATA right.
 - **Accessibility:** logo links named by their alt texts, inside the header's `nav`.
-- **Data layer:** clicks report the header component (`header-1`).
+- **Data layer:** clicks report the block's component (`tcs-header-1`, `@type` `tcs-corp/components/tcs-header`); before KB-D-076 they reported the removed Header block (`header-1`, `tcs-corp/components/header`).
 - **Personalization / fallback:** none; an area nav page can use other logos.
 
 ```text
@@ -497,7 +499,7 @@ Pre-publish checklist:
 
 Author responsibilities: alt texts naming the organisations, translated per locale; transparent logo assets.
 
-Developer responsibilities: keep the alt-text fallback and the scheme completion; keep the classes `tcs-header-brand` / `tcs-header-group` (read by `blocks/header`).
+Developer responsibilities: keep the alt-text fallback and the scheme completion; keep the classes `tcs-header-brand` / `tcs-header-group` (the site header rules and the logo theme in `tcs-header.css` use them).
 
 | Key | Expected behavior |
 | --- | ----------------- |
@@ -507,7 +509,7 @@ Developer responsibilities: keep the alt-text fallback and the scheme completion
 ## Data Layer and Analytics
 
 - **Standalone:** the block is a component (`tcs-header-{n}`, `@type` `tcs-corp/components/tcs-header`) added by `trackBlocks`; logo clicks push `cmp:click` (`interaction` "link", `xdm:linkURL`, `xdm:linkType` `other` or `exit`). `dc:title` is the link's `aria-label` or text content, so an image-only logo link has an empty `dc:title` (the image's alt isn't read); identify the logo by `xdm:linkURL`.
-- **On the Navigation page:** the block's section is replaced by the header's sections, so logo clicks report the header component.
+- **In the site header:** the authored block stays in `header nav`, so logo clicks report it (`component.tcs-header-1`); the empty site header block replaces itself and has no entry. Before KB-D-076 these clicks reported `component.header-1` (`tcs-corp/components/header`): Tags rules written for that id need the new one.
 - No `data-cmp-*` attributes and no own pushes.
 
 | Trigger | Data-layer event | Required properties | Analytics behavior |
@@ -529,7 +531,7 @@ This block does not currently expose verified personalization behavior. There is
 | Tablet (600–1199px) | As mobile; 1.5rem gutter | TCS 1.9165rem, TATA 2.375rem | Links |
 | Desktop (>= 1200px) | TCS left, TATA right; 5rem gutter | TCS 2.175rem, TATA 2.75rem | Links |
 
-In the site header the header's CSS applies (same heights). At every width, **Header over the first block** decides whether the bar lies transparent over the page's first block (Auto: an opening light Hero; Always: any first block, which starts at the top of the page; Never: the page starts below the bar).
+In the site header, below 1200px, the logos are TCS 7.0512rem × 1.6806rem and TATA 1.8469rem × 1.625rem (`object-fit: contain`), 1rem apart on the left, with the 3.6875rem menu button on the right; from 1200px as the table. At every width, **Header over the first block** decides whether the bar lies transparent over the page's first block (Auto: an opening light Hero; Always: any first block, which starts at the top of the page; Never: the page starts below the bar).
 
 ## For Developers
 
@@ -546,13 +548,16 @@ blocks/tcs-header/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
+| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `tcs-header.js`: { loadFragment } |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v3-*`; minimum reserved: 5.625rem below 1200px, 7.75rem from 1200px) and reserved on the ne | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
+| [`decorators/motion-decorator.js`](../../decorators/motion-decorator.js) | `prepareMotion` (the Content animation and Background animation of the blocks of a section, before it is shown, or of a fragment, footer page or header Canvas once in the page: first frame paused, run by one Intersection | `tcs-header.js`: { prepareMotion } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v3-*`; minimum reserved: 5.625rem below 1200px, 7.75rem from 1200px) and reserved on the ne | `tcs-header.js`: { rememberHeaderSpace, setHeaderOverlay, setHeaderPosition, } |
+| [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `tcs-header.js`: { getInheritedMetadata } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
 | [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`); `safeDecode` (decodeURIComponent that never throws) | `tcs-header.js`: { toSitePath } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `tcs-header.js`: { getLocale } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `tcs-header.js`: { getLocale, resolvePagePath } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `tcs-header.js`: { getPages } |
 | [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `tcs-header.js`: { uniqueId } |
 
@@ -560,7 +565,7 @@ blocks/tcs-header/
 
 **Input DOM.** A key-value block: one row per delivered property (`readProperties`: `tcslogo`, `tcslogolink`, `tatalogo`, `tatalogolink`, `menurootpath`, `menudepth`, `headeroverlay` (`always`, `never` or empty), plus the Additional tab classes). The alt fields aren't rows: they collapse into the images' `alt`.
 
-**Decoration flow.** `readProperties(block)`; in the nav fragment (`!block.isConnected`, not on the nav page itself) `setHeaderOverlay(headeroverlay)` (`utils/header-space.js`: `<html data-header-overlay>`, remembered as `localStorage` `header-overlay-v1` and applied by `reserveHeaderSpace` in the eager phase of the next pages) and, without an authored menu, the menu section from `getPageTree`; `getPlaceholders()`, then `buildLogo` per logo: `pictureOf(imageCell)` (moves the editor instrumentation to the picture), the alt fallback, the href (link `href` or cell text, `https://` added to a bare domain), an `a` or `span`; `block.replaceChildren(bar)`.
+**Decoration flow.** An empty block directly in `<header>` (the one `loadHeader` builds: one empty row and cell) is the site header: `decorateSiteHeader` (see Overview) and nothing else. Otherwise `readProperties(block)`; in the nav fragment (`!block.isConnected`, not on the nav page itself) `setHeaderOverlay(headeroverlay)` (`utils/header-space.js`: `<html data-header-overlay>`, remembered as `localStorage` `header-overlay-v1` and applied by `reserveHeaderSpace` in the eager phase of the next pages) and, without an authored menu, the menu section from `getPageTree`; `getPlaceholders()`, then `buildLogo` per logo: `pictureOf(imageCell)` (moves the editor instrumentation to the picture), the alt fallback, the href (link `href` or cell text, `https://` added to a bare domain), an `a` or `span`; `block.replaceChildren(bar)`.
 
 **Rendered DOM contract.**
 
@@ -573,13 +578,13 @@ blocks/tcs-header/
 </div>
 ```
 
-`blocks/header` relies on `.tcs-header`, `.tcs-header-brand` and `.tcs-header-group`.
+Site header contract: `<header><div class="nav-wrapper"><nav id="nav" aria-label="Main navigation">…</nav></div><div class="nav-canvas">…</div></header>`; other blocks rely on `header .nav-wrapper`, `#nav`, `--nav-height` and `--header-height` (Anchor List, Conversation Canvas, Hero, Home template).
 
 **Header over the first block: CSS contract.** `<html data-header-overlay>` is `always`, `never` or absent (Auto). `styles/styles.css` (loaded before the header) takes `<header>` out of the flow at every width for Auto over an opening light Hero and for Always, and sets `--header-overlay-space` on `body` (the header's height while it lies over the first block; unset otherwise, use `var(--header-overlay-space, 0rem)`); `blocks/hero` and `templates/home` keep a Hero's content below the logos; `tcs-header.css` makes `header .nav-wrapper` transparent (Always) or keeps its background over a light Hero (Never).
 
 `tcs-header.css` also takes the loaded header out of the flow in overlay modes at every width. Over an opening light Hero (the default or `bg-light`), both logo images are black, including over light blue artwork. Over dark Heroes (`bg-dark`, `bg-dark-subtle`, `bg-black`) and other opening blocks in Always mode, they start white and fade to black over the same scroll range (`--nav-height`) as the white bar background; scrolling back restores the initial color. Contrast follows the authored Hero theme, not sampled image pixels. The existing `is-scrolled` fallback switches both colors together without scroll-timeline support. Non-overlay and standalone logos retain their authored colors. Use transparent logo assets: filtering also recolors any opaque image background.
 
-**Events / async.** Awaits the placeholders; no listeners.
+**Events / async.** Awaits the placeholders and the menu tree (query index); the menu button, Escape, `focusin` and the 1200px media query listeners; dispatches `header:menu`. The site header awaits the Navigation page, then adds a scroll listener (one update per animation frame), two ResizeObservers (bar height, header height) and the logo theme listeners (scroll, resize, `header:menu`, a MutationObserver on `main`).
 
 **Error handling.** Missing fields degrade (no image: text; nothing: logo left out).
 
@@ -589,7 +594,7 @@ blocks/tcs-header/
 
 - **A field or value.** Add it to `_tcs-header.json` (keep the Additional tab last), run `npm run build:json` and `npm run lint`. Key-value rules: no grouped fields (`prefix_name`); a name ending in Alt, Text, Title, Type or MimeType collapses into its base field.
 - **Rendering.** Read it with `readProperties`; keep the two output classes for the header.
-- **Responsive / accessibility.** Logo sizes are in `tcs-header.css` and, for the site header, `blocks/header/header.css`: change both. Every link needs a name.
+- **Responsive / accessibility.** Logo sizes are in `tcs-header.css` (the block's, and the site header's `header nav …` rules below 1200px): change both. Every link needs a name.
 - **Data layer.** Captured centrally.
 - **Tests.** No unit test exists for the block; add one for new pure logic.
 - **Backward compatibility.** Existing nav pages keep their values; keep `tcs-header-brand` / `tcs-header-group`.
@@ -612,9 +617,9 @@ blocks/tcs-header/
 
 - **Role.** The authoring model of the header's logos (not a duplicate of the header, audit decision "Retain").
 - **Content model.** Key-value block, two image + link pairs.
-- **Rendering.** Client-side decoration; consumed by `blocks/header` after the nav fragment is decorated.
+- **Rendering.** Client-side decoration; the site header instance (eager phase) loads the nav fragment, in which the authored instance is decorated, and mounts it.
 - **Dependencies.** `decorators/image-decorator.js` (`pictureOf`), `utils/links.js` (`linkOf`), `utils/properties.js`, `utils/placeholders.js`, `utils/query-index.js` (`getPageTree`), `utils/urls.js`, `utils/header-space.js` (`setHeaderOverlay`).
-- **Header over the first block.** A site-wide (per nav page) desktop layout mode set by the block in the lazy phase; the layout must apply before the header loads (KB-D-039), so the mode is remembered per browser and applied in the eager phase of the next pages; a visitor's first page with Always or Never can shift once when the header arrives (decision log KB-D-052, Proposed).
+- **Header over the first block.** A site-wide (per nav page) desktop layout mode set by the block once the header has loaded (eager phase since KB-D-076); the layout must apply before the header loads (KB-D-039), so the mode is remembered per browser and applied in the eager phase of the next pages; a visitor's first page with Always or Never can shift once when the header arrives (decision log KB-D-052, Proposed).
 - **Data layer / Web SDK / Target.** Central click capture; no Target.
 - **Consent, identity, caching.** None in the block; the nav page is CDN cached.
 - **Performance.** No network request of its own beyond the placeholders (cached once per page).
@@ -629,7 +634,9 @@ graph LR
   TH --> PH[utils/placeholders.js]
   TH --> HS[utils/header-space.js setHeaderOverlay]
   HS -- html data-header-overlay --> CSS[styles/styles.css, blocks/hero, templates/home]
-  TH -- .tcs-header-brand / .tcs-header-group --> H[blocks/header applyLogoBar]
+  AEM[scripts/aem.js loadHeader] --> SH[tcs-header in header: decorateSiteHeader]
+  SH --> FR[blocks/fragment loadFragment]
+  FR --> NAV
   TH -. clicks .-> DL[data-layer-decorator.js]
 ```
 
@@ -658,6 +665,9 @@ graph LR
 | TCS-HEADER-QA-19 | L2 drill-down | An L1 with an L2 page that has child pages; tap the L2 row | The main view (accordions, AI search) is replaced by Back to {L1 title} and the L3 pages; focus on Back |
 | TCS-HEADER-QA-20 | Back | From QA-19, tap Back | Main view with the same accordion open; focus on the L2 button |
 | TCS-HEADER-QA-21 | Close resets the view | From QA-19, close the menu (button or Escape) and open it again | The main view is shown, not the L3 panel |
+| TCS-HEADER-QA-22 | Site header markup | Any page, 390 / 768 / 1440px | `header > .nav-wrapper > nav#nav` holding the nav page's TCS Header; `header > .nav-canvas` when the nav page has a Canvas; no `blocks/header` request |
+| TCS-HEADER-QA-23 | Bar layout below 1200px | 390px and 768px | TCS and TATA logos on the left 1rem apart, menu button at the right edge |
+| TCS-HEADER-QA-24 | Eager loading | Network panel, throttled | `tcs-header.js`, the nav page and the query index requested before the LCP image has loaded; no layout shift from the header |
 
 ## Troubleshooting
 
@@ -677,7 +687,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 ## Performance Considerations
 
-- Decorated with the nav page fragment in the lazy phase (or with its section on a page); module and stylesheet preloaded on every page (`CHROME_BLOCKS`).
+- Loaded in the eager phase (KB-D-076): `loadHeader` runs right after `reserveHeaderSpace()` without being awaited; its module, stylesheet and the Fragment / Canvas modules are preloaded first (`CHROME_BLOCKS`), and `prefetchData` starts the query index with them. Measured locally (design-block-master home, 4× CPU, 1.6 Mbps, 3 runs each): mobile LCP median 3.12 s before, 2.97 s after; desktop 2.91 s / 2.92 s; the header appears about 170 ms sooner on mobile.
 - Images as delivered; no extra requests, observers or listeners. Small DOM (two links).
 - Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052).
 
@@ -701,7 +711,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [Header](../header/README.md) (consumer), [Conversation Canvas](../conversation-canvas/README.md)
+- [Fragment](../fragment/README.md) (loads the Navigation page), [Conversation Canvas](../conversation-canvas/README.md)
 - Model: [`_tcs-header.json`](./_tcs-header.json)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs) (no animation fields expected on the TCS Header)
@@ -727,5 +737,6 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: logo links typed without `https://` completed (R-D-15) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
 | PR #141 | Header over the first block (Auto / Always / Never; every width from the sticky bar fix) | KB-D-052 (Proposed) | 22 October 2026 |
+| Branch `harsha` | The TCS Header is the site header: loaded eagerly into `<header>` by `loadHeader`, loads and mounts the Navigation page itself; `blocks/header` removed; header layout rules moved into `tcs-header.css`; logos left / menu button right below 1200px; data layer component `header-1` becomes `tcs-header-1` | KB-D-076, KB-D-077 (Proposed) | 23 November 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
 | — | The open tablet / mobile menu makes the page behind it inert and closes when focus leaves the header (WCAG 2.4.3, 2.4.11); the search field has a label and a focus outline, its texts come from placeholders (headerSearchPlaceholder, headerSearchLabel, searchByVoice, submitSearch), the voice button is aria-disabled until voice search exists | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |

@@ -45,7 +45,7 @@ Every block folder has a README with the same structure (overview, authoring, di
 | Footer | [blocks/footer/README.md](../../../blocks/footer/README.md) | Teaser | [blocks/teaser/README.md](../../../blocks/teaser/README.md) |
 | Form Variations | [blocks/form-variations/README.md](../../../blocks/form-variations/README.md) | Testimonial | [blocks/testimonial/README.md](../../../blocks/testimonial/README.md) |
 | Fragment | [blocks/fragment/README.md](../../../blocks/fragment/README.md) | Video | [blocks/video/README.md](../../../blocks/video/README.md) |
-| Gen Carousel | [blocks/gen-carousel/README.md](../../../blocks/gen-carousel/README.md) | Header | [blocks/header/README.md](../../../blocks/header/README.md) |
+| Gen Carousel | [blocks/gen-carousel/README.md](../../../blocks/gen-carousel/README.md) | | |
 | Hero | [blocks/hero/README.md](../../../blocks/hero/README.md) | Interactive Dashboard | [blocks/interactive-dashboard/README.md](../../../blocks/interactive-dashboard/README.md) |
 
 ## Shared Code Documentation

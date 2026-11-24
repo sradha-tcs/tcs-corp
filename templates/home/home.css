@@ -11,7 +11,7 @@ body.home main > .section:first-of-type > div {
  * The opening hero fills the first screen (Figma home-desktop 229:15426: the 1000px hero is the
  * screen; home-tablet 671:52732: 850px; home-page-mobile 1124:27368: beyond the screen), so the
  * header Conversation Canvas lies on the hero's bottom, which is the bottom of the window, at
- * every width (blocks/header). svh: the screen with the browser bars shown, so the hero doesn't
+ * every width (blocks/tcs-header). svh: the screen with the browser bars shown, so the hero doesn't
  * resize when they hide while scrolling. Taller content still grows the hero.
  */
 body.home main > .section:first-of-type .hero {
