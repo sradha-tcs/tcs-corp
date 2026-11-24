@@ -33,7 +33,7 @@ Fixes of the review of 22 November 2026 (KB-D-075): the TCS Header's open tablet
 
 ## Semantic HTML, headings and landmarks
 
-- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width become labelled `role="region"` elements. No skip link was identified (bypass relies on the landmarks): see [Recommendations](#gaps-and-recommendations).
+- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width become labelled `role="region"` elements. A "Skip to main content" link is the first focusable element of every page (`addSkipLink` in `decorators/a11y-decorator.js`, KB-D-075): off screen until focused (`.skip-link` in `styles/styles.css`, guarded by `test/a11y/skip-link.test.mjs`), it moves focus to `main`.
 - **Native elements**: Accordion is built on `details` / `summary`; Modal and the video pop-up use `dialog` with `showModal()`; the Separator renders `hr`; tables keep header cells.
 - **Headings**: blocks with a title have an authored level (Title Type / Title heading level, `decorators/heading-decorator.js` `HEADINGS` h1–h6); the level renders the element and its size follows it, so "the outline matches the look" (dialog options report, section 10). The Page Header renders the page H1 from metadata. A hidden List Item title stays in the DOM, visually hidden. Authors are responsible for a logical order.
 - **Language**: `decorators/seo-decorator.js` sets `<html lang>` from the locale (or `language` metadata); content loaded from another locale (the `/en` 404 fallback) is marked with its `lang` (`loadErrorPage` in `scripts/scripts.js`).
@@ -191,7 +191,7 @@ Tools: [`docs/audit/tools/harness.mjs`](https://github.com/sradha-tcs/tcs-corp-d
 | --- | --- | --- |
 | Project rule says WCAG 2.1 AA; this knowledge base targets 2.2 AA | Resolved | The project rule is WCAG 2.2 AA (KB-D-075, approved by the product owner on 22 November 2026); AGENTS.md updated |
 | Screen-reader testing | Blocked: NVDA / VoiceOver on the published pages | Run on the curated pages and each interactive block |
-| No skip link | Not recorded as a decision | Consider a "Skip to content" link before the header |
+| No skip link | Resolved | "Skip to main content" link added (KB-D-075); its CSS, removed by an unrelated change (commit fc5f8b5), restored with a guard test (`test/a11y/skip-link.test.mjs`) |
 | Anchor List Sticky and Focus Not Obscured (2.4.11) | Requires validation | Test tabbing under the pinned list |
 | Author bio LinkedIn link has no new-tab hint (F-52) | Open | Use `announceNewTab` |
 | Video pause outline contrast (F-56), Teaser Dark Primary buttons (F-49) | Open | Design and development fix |
