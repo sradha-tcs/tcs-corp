@@ -2,7 +2,8 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ACTIONS, DEFAULT_ACTION, actionOf, findConfig, regionColumns, regionGroups,
+  ACTIONS, DEFAULT_ACTION, actionOf, findConfig, orderOf, orderRegions, regionColumns,
+  regionGroups, unknownOrderEntries,
 } from '../../blocks/conf-med-cont/conf-med-cont-data.js';
 
 const contacts = [
@@ -67,6 +68,147 @@ describe('regionColumns', () => {
   });
   it('has no regions without a config row', () => {
     assert.deepEqual(regionColumns(null), []);
+  });
+  it('never reads order_contacts as a region', () => {
+    const ids = regionColumns({ ...config, order_contacts: 'reg-002, reg-001' }).map((r) => r.id);
+    assert.deepEqual(ids, ['reg-002', 'reg-001']);
+  });
+});
+
+describe('order_contacts', () => {
+  // a row with four regions with contacts, as on media-contact-01
+  const four = {
+    'media-contacts-id': 'media-contact-01',
+    'reg-001': 'C0013',
+    'reg-001-action': 'mail',
+    'reg-002': 'C0001',
+    'reg-002-action': 'mail-contact',
+    'reg-003': 'C0002',
+    'reg-003-action': 'contact',
+    'reg-004': 'C0001',
+    'reg-004-action': 'name-mail-contact',
+  };
+  const ids = (row) => regionColumns(row).map((region) => region.id);
+  const withActions = (row) => regionColumns(row).map((r) => [r.id, r.action]);
+
+  it('blank or missing: the regions in the order the author added them (sheet column order)', () => {
+    assert.deepEqual(ids(four), ['reg-001', 'reg-002', 'reg-003', 'reg-004']);
+    assert.deepEqual(ids({ ...four, order_contacts: '' }), ['reg-001', 'reg-002', 'reg-003', 'reg-004']);
+    assert.deepEqual(ids({ ...four, order_contacts: '  ' }), ['reg-001', 'reg-002', 'reg-003', 'reg-004']);
+  });
+
+  it('column names: each region in the given order with its own -action column', () => {
+    assert.deepEqual(withActions({ ...four, order_contacts: 'reg-003, reg-001, reg-004, reg-002' }), [
+      ['reg-003', 'contact'], ['reg-001', 'mail'], ['reg-004', 'name-mail-contact'], ['reg-002', 'mail-contact'],
+    ]);
+  });
+
+  it('a partial order: the listed regions first, then the others in sheet order', () => {
+    assert.deepEqual(ids({ ...four, order_contacts: 'reg-004, reg-002' }), ['reg-004', 'reg-002', 'reg-001', 'reg-003']);
+  });
+
+  it('names without case, spaces, hyphens or underscores; commas, semicolons or new lines between them', () => {
+    assert.deepEqual(ids({ ...four, order_contacts: 'REG-003; reg_001\n Reg 004 ' }), ['reg-003', 'reg-001', 'reg-004', 'reg-002']);
+  });
+
+  it('the name of an action column counts as its region', () => {
+    assert.deepEqual(ids({ ...four, order_contacts: 'reg-002-action, reg-001' }), ['reg-002', 'reg-001', 'reg-003', 'reg-004']);
+  });
+
+  it('a repeated entry counts once (also a region and its action column)', () => {
+    assert.deepEqual(ids({ ...four, order_contacts: 'reg-002, reg-002-action, reg-002, reg-001' }), ['reg-002', 'reg-001', 'reg-003', 'reg-004']);
+  });
+
+  it('renamed columns: the names in the order bring their action columns, whatever they are called', () => {
+    const renamed = {
+      'media-contacts-id': 'x',
+      India: 'C0013',
+      'India Action': 'mail',
+      'Middle East': 'C0001',
+      'middle-east-action': 'name-mail-contact',
+      APAC: 'C0002',
+      'APAC-action': 'contact',
+    };
+    assert.deepEqual(withActions({ ...renamed, order_contacts: 'APAC, Middle East, India' }), [
+      ['APAC', 'contact'], ['Middle East', 'name-mail-contact'], ['India', 'mail'],
+    ]);
+    // a name with spaces is one entry (spaces don't separate names)
+    assert.deepEqual(ids({ ...renamed, order_contacts: 'middle east' }), ['Middle East', 'India', 'APAC']);
+  });
+
+  it('an action column with another name is the one right after its region', () => {
+    const row = {
+      'media-contacts-id': 'x', 'reg-001': 'C0013', 'mode-action': 'mail', 'reg-002': 'C0001', 'reg-002-action': 'contact', order_contacts: 'reg-002, reg-001',
+    };
+    assert.deepEqual(withActions(row), [['reg-002', 'contact'], ['reg-001', 'mail']]);
+    // no action column for a region: the default action
+    assert.equal(regionColumns({ 'media-contacts-id': 'x', 'reg-001': 'C0013', 'reg-002': 'C0001' })[0].action, DEFAULT_ACTION);
+  });
+
+  it('an entry naming no region of the row is ignored and reported; an empty region is not', () => {
+    // reg-003 has no contacts here: listing it is not an error, it just shows nothing
+    const row = { ...four, 'reg-003': '', order_contacts: 'reg-404, reg-003, reg-002, Europe' };
+    assert.deepEqual(ids(row), ['reg-002', 'reg-001', 'reg-004']);
+    assert.deepEqual(unknownOrderEntries(row), ['reg-404', 'Europe']);
+    assert.deepEqual(unknownOrderEntries(four), []);
+    assert.deepEqual(unknownOrderEntries(null), []);
+  });
+
+  it('never returns the action column it read the order with', () => {
+    assert.deepEqual(Object.keys(regionColumns({ ...four, order_contacts: 'reg-002' })[0]), ['id', 'contactIds', 'action']);
+  });
+
+  describe('numbers (as order_contacts was first written: 2, 1, 5)', () => {
+    it('a number is the region column at that position, with its action', () => {
+      assert.deepEqual(withActions({ ...four, order_contacts: '3, 1, 4, 2' }), [
+        ['reg-003', 'contact'], ['reg-001', 'mail'], ['reg-004', 'name-mail-contact'], ['reg-002', 'mail-contact'],
+      ]);
+    });
+
+    it('positions, not the numbers in the names; names and numbers can be mixed', () => {
+      const shuffled = {
+        'media-contacts-id': 'x', 'reg-003': 'C0002', 'reg-003-action': 'contact', 'reg-001': 'C0013', 'reg-001-action': 'mail',
+      };
+      assert.deepEqual(withActions({ ...shuffled, order_contacts: '2, 1' }), [['reg-001', 'mail'], ['reg-003', 'contact']]);
+      assert.deepEqual(ids({ ...four, order_contacts: 'reg-004, 1' }), ['reg-004', 'reg-001', 'reg-002', 'reg-003']);
+    });
+
+    it('a column named by a number wins over the position', () => {
+      const numbered = {
+        'media-contacts-id': 'x', 'reg-001': 'C0013', 2: 'C0001', order_contacts: '2',
+      };
+      // Object keys: integer-like keys come first, so the sheet order can't be relied on here;
+      // the name match decides
+      assert.deepEqual(ids(numbered)[0], '2');
+    });
+
+    it('a number outside the region columns is ignored and reported', () => {
+      assert.deepEqual(ids({ ...four, order_contacts: '0, 5' }), ['reg-001', 'reg-002', 'reg-003', 'reg-004']);
+      assert.deepEqual(unknownOrderEntries({ ...four, order_contacts: '0, 5' }), ['0', '5']);
+    });
+  });
+
+  it('reads the column whatever its case or separator (Order Contacts, order-contacts)', () => {
+    assert.equal(orderOf({ 'Order Contacts': 'reg-002' }), 'reg-002');
+    assert.equal(orderOf({ 'order-contacts': 'reg-003' }), 'reg-003');
+    assert.equal(orderOf({ ORDER_CONTACTS: ' reg-001 ' }), 'reg-001');
+    assert.equal(orderOf({}), '');
+    assert.equal(orderOf(null), '');
+  });
+
+  it('orderRegions keeps every region and returns a new array', () => {
+    const list = [{ id: 'reg-001' }, { id: 'reg-002' }];
+    const { regions: result } = orderRegions(list, '');
+    assert.notEqual(result, list);
+    assert.deepEqual(result, list);
+  });
+
+  it('the groups follow the order, each with its own action', () => {
+    const { groups } = regionGroups({ ...config, order_contacts: 'reg-002, reg-001' }, { contacts, regions });
+    assert.deepEqual(groups.map((group) => [group.name, group.action]), [
+      ['Europe', 'name-des-mail-contact'],
+      ['Corporate Communications & India', 'mail'],
+    ]);
   });
 });
 

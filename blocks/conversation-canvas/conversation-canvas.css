@@ -173,8 +173,11 @@ header .nav-toggle {
   translate: 0 calc(-1 * (var(--conversation-canvas-lift, 0rem) + var(--conversation-canvas-menu-lift, 0rem)));
 }
 
+/* the row the floating row comes up to: hidden at once (a fade would show two rows), shown again
+   at once by the hand-over when the floating row lands on it (canvas-controller.js handOver) */
 .conversation-canvas .conversation-canvas-search-slot.conversation-canvas-approaching > .conversation-canvas-search:not(:focus-within) {
   opacity: 0;
+  transition: none;
 }
 
 .conversation-canvas .conversation-canvas-search.conversation-canvas-minimized {
@@ -556,7 +559,8 @@ header .nav-toggle {
   animation: conversation-canvas-float-in 0.3s ease-out;
 }
 
-.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff {
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff,
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-glide {
   animation: none;
 }
 
