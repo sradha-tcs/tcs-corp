@@ -679,7 +679,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 - Decorated with the nav page fragment in the lazy phase (or with its section on a page); module and stylesheet preloaded on every page (`CHROME_BLOCKS`).
 - Images as delivered; no extra requests, observers or listeners. Small DOM (two links).
-- Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052).
+- Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052). A page that declares the mode in its metadata (`header-overlay`: `always` / `never`, e.g. a `/<root>/**` row of the root's bulk metadata sheet, matching this option) is laid out for it from its first view: no shift (measured 24 November 2026 on Who We Are, desktop, first visit: CLS 0.092 without, 0 with `header-overlay` = `always`).
 
 ## Security and Privacy
 
@@ -694,7 +694,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 | Offered in every section (`section` filter) | Authors may add it to content pages | Add it only to nav pages | Not recorded (audit suggestion: nav-page-only filter) |
 | Logo assets not yet in DAM (F-77) | No logos until authored | Block library sample PNGs | Not recorded (content task) |
 | Additional tab has no effect in the site header | Spacing / hide only on the nav page itself | — | Not planned |
-| Header over the first block: first page shift | A visitor's first page with Always or Never moves once when the header loads | Keep Auto where the first block is a light Hero | To be discussed (KB-D-052, Proposed) |
+| Header over the first block: first page shift | A visitor's first page with Always or Never moves once when the header loads (also every PageSpeed run, which is always a first visit: CLS 0.09 to 0.11) | Declare the mode in the pages' metadata: a `header-overlay` column (`always` / `never`, the same as this option) with a `/<root>/**` row in the root's bulk metadata sheet, the sheet listed in the site configuration's metadata source; else keep Auto where the first block is a light Hero | Mitigated by metadata (KB-D-052, Proposed) |
 | Header over the first block: one mode per browser | A nav page without a TCS Header keeps the mode remembered from another nav page | Add the TCS Header to every nav page | Not recorded |
 | Header over the first block: dark first blocks | Dark logos aren't visible over a dark first block (Always) | Keep Auto / Never for dark first blocks | Not recorded (a light-logo option) |
 
