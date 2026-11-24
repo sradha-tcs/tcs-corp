@@ -285,10 +285,56 @@ describe('the header Canvas at the bottom of the window', () => {
     assert.equal(site(0).state, STATES.INITIAL);
   });
 
-  it('a hero shorter than the window: the row is above the dock line and floats from the start', () => {
-    const short = bottomOf([header(LINE - 26), slot(3000), slot(6000)]);
-    assert.equal(short(0).state, STATES.FLOATING);
-    assert.equal(short(0).owner, 0);
+  describe('over a hero shorter than the window (Figma tablet and mobile)', () => {
+    // the row rests on the bottom of the hero, 120px above the dock line
+    const REST = LINE - 120;
+    const short = bottomOf([header(REST), slot(3000), slot(6000)]);
+
+    it('INITIAL at the top of the page: docked on the hero, nothing floats', () => {
+      const r = short(0);
+      assert.equal(r.state, STATES.INITIAL);
+      assert.equal(r.docked, 0);
+      assert.equal(r.owner, -1);
+      assert.equal(short(1).state, STATES.INITIAL, 'within the rounding tolerance');
+    });
+
+    it('FLOATING as soon as the page scrolls (it glides down to the bottom of the window)', () => {
+      [5, 20, 200, REST + 200].forEach((y) => {
+        const r = short(y);
+        assert.equal(r.state, STATES.FLOATING, `floating at ${y}`);
+        assert.equal(r.owner, 0);
+        assert.equal(r.docked, -1);
+      });
+    });
+
+    it('docks on the hero again when scrolled back to the top', () => {
+      assert.equal(short(300).state, STATES.FLOATING);
+      assert.equal(short(0).state, STATES.INITIAL);
+    });
+
+    it('then the journey as before (section, after it, footer), only allowed transitions', () => {
+      const at = (top) => top - LINE;
+      assert.equal(short(at(3000)).state, STATES.SECTION_DOCKED);
+      assert.equal(short(3100).state, STATES.FLOATING_AFTER_SECTION);
+      assert.equal(short(at(6000)).state, STATES.FOOTER_DOCKED);
+      const { states, bad } = walk(short);
+      assert.deepEqual(bad, []);
+      assert.equal(states[0], STATES.INITIAL);
+      assert.equal(states.at(-1), STATES.INITIAL);
+    });
+
+    it('at most one Canvas floats, never while one is docked', () => {
+      for (let y = 0; y <= MAX; y += 25) {
+        const r = short(y);
+        assert.ok(r.owner === -1 || r.docked === -1, `owner and docked at ${y}`);
+      }
+    });
+
+    it('a hero that fills the window (row at the dock line) behaves as before', () => {
+      const nearly = bottomOf([header(LINE - 1), slot(3000), slot(6000)]);
+      assert.equal(nearly(0).state, STATES.INITIAL);
+      assert.equal(nearly(10).state, STATES.FLOATING, 'floats as soon as it would move up');
+    });
   });
 
   it('then section docking, floating after it and the footer stop as before, both directions', () => {
