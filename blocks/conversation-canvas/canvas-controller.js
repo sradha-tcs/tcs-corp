@@ -30,11 +30,11 @@ const OWNER = 'conversation-canvas-owner';
 const APPROACHING = 'conversation-canvas-approaching';
 const HANDOFF = 'conversation-canvas-handoff';
 const GLIDE = 'conversation-canvas-glide';
-// the header row's move between its place on a short hero and the floating position
-const GLIDE_OPTIONS = { duration: 350, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' };
-// px below which the header row floats at its own place (a hero that fills the window): no glide
-const GLIDE_MIN = 4;
+// a hand-over: the row now shown moves from where the previous one was (handOver)
+const GLIDE_OPTIONS = { duration: 380, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' };
 const glides = new WeakMap();
+// the row the user sees ({ entry, floating }): the floating row, else the docked one
+let shown = null;
 
 const entries = [];
 const registered = new WeakSet();
@@ -156,31 +156,39 @@ function measure() {
   dirty = false;
 }
 
+/** the box of a row when it is entirely in the window (null otherwise): a hand-over starts there */
+function inWindow(row) {
+  const box = row.getBoundingClientRect();
+  return box.width > 0 && box.top >= 0 && box.bottom <= window.innerHeight ? box : null;
+}
+
 /**
- * Glides the header Canvas row between its place and the floating position when it starts or
- * stops floating: over a hero shorter than the window its place (the bottom of the hero) is above
- * the floating position, so it moves down to the bottom of the window as the page starts to scroll
- * and back up at the top, instead of jumping. Positions come from the measured geometry (no layout
- * read); not for reduced motion or in the editor.
- * @param {Element} row the search row
- * @param {Object} canvas its measured geometry (top: document top of its place, rowHeight)
- * @param {boolean} floats whether it now floats
+ * Hands the Canvas row over to the row now shown: the floating row landing on a Canvas (the footer,
+ * a section), lifting off it, or the header row starting / stopping to float on a short hero. The
+ * row now shown starts where the previous one was, at its width, and glides to its own place and
+ * width (FLIP), fully visible all along: one row that moves, never one disappearing while another
+ * fades in. Reduced motion and the editor: the rows swap at once (no movement, no fade).
+ * @param {Element} row the row now shown
+ * @param {DOMRect} from where the previous row was (read before this frame's writes)
  */
-function glide(row, canvas, floats) {
+function handOver(row, from) {
   glides.get(row)?.cancel();
-  const { viewportHeight, offset } = geometry;
-  // from the floating position (the dock line) to the row's place, in the window
-  const distance = (canvas.top - window.scrollY) - (viewportHeight - offset - canvas.rowHeight);
-  if (Math.abs(distance) < GLIDE_MIN || prefersReducedMotion() || typeof row.animate !== 'function'
-    || document.documentElement.classList.contains('adobe-ue-edit')) return;
+  if (typeof row.animate !== 'function') return;
+  // the floating row's fade-in would start over it; kept while it floats (taking it off would
+  // start the fade-in then)
+  if (row.classList.contains(FLOATING)) row.classList.add(GLIDE);
+  // one layout read per hand-over (FLIP: the row's place after the class changes)
+  const to = row.getBoundingClientRect();
+  const still = prefersReducedMotion() || document.documentElement.classList.contains('adobe-ue-edit');
   // the floating row is centred with transform (conversation-canvas.css); the row in place isn't
-  const keyframes = floats
-    ? [{ transform: `translate(-50%, ${distance}px)` }, { transform: 'translate(-50%, 0)' }]
-    : [{ transform: `translateY(${-distance}px)` }, { transform: 'none' }];
-  // instead of the floating row's fade-in (it is already on screen); kept while the row floats,
-  // as taking it off would start the fade-in then
-  row.classList.add(GLIDE);
-  const animation = row.animate(keyframes, GLIDE_OPTIONS);
+  const at = (y) => (row.classList.contains(FLOATING) ? `translate(-50%, ${y}px)` : `translateY(${y}px)`);
+  const keyframes = still
+    ? [{ opacity: 1 }, { opacity: 1 }]
+    : [
+      { transform: at(Math.round(from.top - to.top)), width: `${from.width}px`, opacity: 1 },
+      { transform: at(0), width: `${to.width}px`, opacity: 1 },
+    ];
+  const animation = row.animate(keyframes, still ? { duration: 200 } : GLIDE_OPTIONS);
   glides.set(row, animation);
   const done = () => {
     if (glides.get(row) !== animation) return;
@@ -194,6 +202,10 @@ function glide(row, canvas, floats) {
 /** applies a journey result: classes, the reserved space of a floating row, the footer lift */
 function apply(result) {
   const { live, canvases, offset } = geometry;
+  // the row the user sees before this result (read before the writes below): the floating row,
+  // else the docked one; Primary docks hand over nothing (they float on their own)
+  const was = shown && !shown.entry.primary && shown.entry.block.isConnected ? shown : null;
+  const from = was ? inWindow(was.entry.row) : null;
   // while a row floats it is the only one in use: the other Canvas rows are placeholders (inert:
   // not clicked, focused or read out, e.g. a row hidden while the floating row comes up to it);
   // with none floating (a row docked) every row is in use. Not in the editor, where authors
@@ -222,12 +234,18 @@ function apply(result) {
       row.classList.toggle(HANDOFF, result.approaching >= 0);
     }
     row.classList.toggle(FLOATING, floats);
-    // the header row moves between the hero and the bottom of the window
-    if (!entry.primary && canvases[i].role === 'header' && floats !== wasFloating) {
-      glide(row, canvases[i], floats);
-    }
     row.style.setProperty('--conversation-canvas-lift', floats ? `${result.lift}px` : '0px');
   });
+  // the row now shown takes over from the previous one where it was on screen (a previous row
+  // that wasn't entirely in the window, e.g. a section row that has left the top: the floating
+  // row comes in with its own fade-in instead of moving across the page)
+  const index = result.owner >= 0 ? result.owner : result.docked;
+  const now = index >= 0 ? { entry: live[index], floating: result.owner >= 0 } : null;
+  if (from && now && !now.entry.primary
+    && (now.entry !== was.entry || now.floating !== was.floating)) {
+    handOver(now.entry.row, from);
+  }
+  shown = now;
   // focused elements scroll clear of the floating row (scroll-padding-bottom in the CSS)
   const owner = canvases[result.owner];
   const obscured = owner && !owner.primary ? owner.rowHeight + offset : 0;
