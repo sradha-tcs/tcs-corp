@@ -214,7 +214,7 @@ url                   | sheet-page-type | hide-in-nav
 
 Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`); `resolvePagePath` returns the AEM path in the editor and the published path on the site. Parent values are cached in `sessionStorage` (`tcs-inherited-metadata`) for the browser session.
 
-**Consumers.** [tcs-header](../../../blocks/tcs-header/README.md) (falls back to the locale's `references/nav` when a configured page can't load; with none published the header stays empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
+**Consumers.** [header](../../../blocks/header/README.md) (falls back to the locale's `references/nav` when a configured page can't load; with none published the header stays empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
 
 **Rules.** Keep reference pages in `references/` (excluded from the query index and the sitemap); `fragments/` and `modals/` folders anywhere are excluded too. A fragment change shows on every including page once the fragment is published. `loadFragment(path, from)` fetches only paths starting with `/` and stops recursion by the chain of including fragments.
 
@@ -259,7 +259,7 @@ All Conversation Canvases of a page (header, body, footer) share one floating jo
 
 | Area | Model | Source |
 | --- | --- | --- |
-| Header | The Navigation page (inherited) has the brand (TCS logo), the sections (the menu, any depth) and the tools (TATA logo). Desktop (1200px and wider) shows the logo bar without navigation; tablet and mobile open the menu full screen one level at a time | AGENTS.md "Header", [blocks/tcs-header/README.md](../../../blocks/tcs-header/README.md) |
+| Header | The Navigation page (inherited) has the brand (TCS logo), the sections (the menu, any depth) and the tools (TATA logo). Desktop (1200px and wider) shows the logo bar without navigation; tablet and mobile open the menu full screen one level at a time | AGENTS.md "Header", [blocks/header/README.md](../../../blocks/header/README.md) |
 | Site navigation on desktop | The Conversation Canvas: its pop-up menu and the Primary dock list pages from the query index below a Menu root path | [conversation-canvas README](../../../blocks/conversation-canvas/README.md), [indexing-and-search.md](./indexing-and-search.md) |
 | Footer | The footer page's Footer block: Conversation Canvas Page, Copyright Text (`{year}`), Footer Link items; social icons from the Social Links sheet | [blocks/footer/README.md](../../../blocks/footer/README.md) |
 | In page | Anchor List links to section Anchor names and block Anchor IDs (`anchor-…`); the URL hash scrolls after the sections load; `tabs:reveal` opens the tab holding a target | [anchor-list](../../../blocks/anchor-list/README.md), `scripts/scripts.js` |

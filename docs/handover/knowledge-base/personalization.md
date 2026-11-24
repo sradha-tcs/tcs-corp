@@ -29,7 +29,7 @@ This file records the verified state of personalization on the TCS Corporate Web
 | --- | --- |
 | The Teaser's Personalization option (a class `personalization` and `data-personalization="true"` that nothing read) was removed from the dialog and the code; library content was migrated; Teasers authored with it still render | Handover revision 2.27 (19 October 2026), audit defect D-B-3 ([`docs/audit/BLOCK-ECOSYSTEM-AUDIT.md`](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/BLOCK-ECOSYSTEM-AUDIT.md)), re-audit section 1 ([`docs/audit/REAUDIT-2026-10-20.md`](https://github.com/sradha-tcs/tcs-corp-delivery/blob/main/archive/docs-before-role-docs-2026-11-08/docs/audit/REAUDIT-2026-10-20.md)), [`blocks/teaser/README.md`](../../../blocks/teaser/README.md) |
 | Every block is classified "Not personalizable"; personalized rendering, fallback, flicker, cache-key and analytics tests are blocked until an approved personalization design exists | Audit section 8 |
-| Area-specific navigation and footers are content choices (inherited Navigation / Footer pages), not audience personalization | [`blocks/tcs-header/README.md`](../../../blocks/tcs-header/README.md), [`blocks/footer/README.md`](../../../blocks/footer/README.md) |
+| Area-specific navigation and footers are content choices (inherited Navigation / Footer pages), not audience personalization | [`blocks/header/README.md`](../../../blocks/header/README.md), [`blocks/footer/README.md`](../../../blocks/footer/README.md) |
 
 Several handover chapters written before 2.27 (for example 1.6.2, 2.9.8, the Teaser chapter 6.11 Variation 66 and 16.4) still describe the Teaser marker; the code and revision 2.27 are authoritative.
 

@@ -31,7 +31,7 @@ The design source is the TCS.com Design System in Figma. The code and the block 
 | "Testimonial Block" | [Testimonial](../../../blocks/testimonial/README.md) | `blocks/testimonial/testimonial.css`, `testimonial.js` |
 | "List" variations | [List](../../../blocks/list/README.md), [Cards](../../../blocks/cards/README.md), [Table List](../../../blocks/table-list/README.md) | `blocks/list/list.js`, `cards.js`, `table-list.js`; 14 Figma screenshots `list-figma-01` … `list-figma-14` in [`../screenshots/`](https://github.com/sradha-tcs/tcs-corp-delivery/tree/main/archive/docs-before-role-docs-2026-11-08/docs/handover/screenshots) |
 | "Chapter Nav" | [Anchor List](../../../blocks/anchor-list/README.md) | `blocks/anchor-list/anchor-list.css` |
-| "New Screens from New DS": Navigation, "Nav Bar-NEW", "Mobile Nav", home desktop / tablet | [TCS Header](../../../blocks/tcs-header/README.md) | `blocks/tcs-header/tcs-header.css` |
+| "New Screens from New DS": Navigation, "Nav Bar-NEW", "Mobile Nav", home desktop / tablet | [Header](../../../blocks/header/README.md), [TCS Header](../../../blocks/tcs-header/README.md) | `blocks/header/header.css`, `blocks/tcs-header/tcs-header.css` |
 | "New Screens from New DS": Hero, Intelligent Personalisation Block, Footer, Floating menu, Full menu, "Full menu - No Pill", "L1 Media & Investors", Mobile Ask TCS | [Conversation Canvas](../../../blocks/conversation-canvas/README.md) ("Variations" table) | `blocks/conversation-canvas/conversation-canvas.css` |
 | 402 / 1024 / 1440 frames (per breakpoint) | [Separator](../../../blocks/separator/README.md) | `blocks/separator/separator.css` |
 | "Dark green" (Section Style, Teaser and Columns Container BG Color) | `--color-bg-dark-green: #003b39` | `styles/styles.css` |
@@ -209,7 +209,7 @@ There is no global column grid token. Grids are per block:
 | Desktop | `@media (width >= 900px)` | Display / heading / body sizes, section spacing (18 queries) |
 | Large desktop | `@media (width >= 1200px)` | Section gutter and spacing, desktop header (logo bar, `--nav-height: 7.75rem`) (18 queries) |
 
-`utils/viewport.js` `currentBreakpoint()` reports mobile (< 600px), tablet (600–1199px) and desktop (>= 1200px); the header switches to its desktop logo bar at 1200px (`matchMedia('(min-width: 1200px)')` in `blocks/tcs-header/tcs-header.js`). A few block rules use ranges (`width < 600px`, `600px <= width < 1200px`).
+`utils/viewport.js` `currentBreakpoint()` reports mobile (< 600px), tablet (600–1199px) and desktop (>= 1200px); the header switches to its desktop logo bar at 1200px (`matchMedia('(min-width: 1200px)')` in `blocks/header/header.js`). A few block rules use ranges (`width < 600px`, `600px <= width < 1200px`).
 
 ## Responsive strategy
 

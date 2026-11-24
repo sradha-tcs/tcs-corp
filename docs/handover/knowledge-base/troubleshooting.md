@@ -134,7 +134,7 @@ Each of these has symptoms, root cause, diagnosis, resolution, validation and es
 | Template (Page Type) not applied | 13.26 (`TEMPLATES` in `scripts.js`: home, article, blog, press-release) |
 | Page Header author details missing | 13.27 (Authors sheet) |
 
-Block-specific runbooks: the "Troubleshooting" section of each block README, for example [List](../../../blocks/list/README.md#troubleshooting), [Filter List](../../../blocks/filter-list/README.md#troubleshooting), [TCS Header](../../../blocks/tcs-header/README.md#troubleshooting), [Fragment](../../../blocks/fragment/README.md#troubleshooting), [Video](../../../blocks/video/README.md#troubleshooting), [Hero](../../../blocks/hero/README.md#troubleshooting), [Teaser](../../../blocks/teaser/README.md#troubleshooting), [Form Variations](../../../blocks/form-variations/README.md#troubleshooting), [Conversation Canvas](../../../blocks/conversation-canvas/README.md#troubleshooting).
+Block-specific runbooks: the "Troubleshooting" section of each block README, for example [List](../../../blocks/list/README.md#troubleshooting), [Filter List](../../../blocks/filter-list/README.md#troubleshooting), [Header](../../../blocks/header/README.md#troubleshooting), [Fragment](../../../blocks/fragment/README.md#troubleshooting), [Video](../../../blocks/video/README.md#troubleshooting), [Hero](../../../blocks/hero/README.md#troubleshooting), [Teaser](../../../blocks/teaser/README.md#troubleshooting), [Form Variations](../../../blocks/form-variations/README.md#troubleshooting), [Conversation Canvas](../../../blocks/conversation-canvas/README.md#troubleshooting).
 
 ## Evidence to Collect
 

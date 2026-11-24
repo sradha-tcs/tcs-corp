@@ -660,7 +660,7 @@ Evidence to collect: host page URL, Modal Content value, network status of the m
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [Fragment](../fragment/README.md) (loader), [TCS Header](../tcs-header/README.md) and [Footer](../footer/README.md) (links to `/modal/` pages open as modals)
+- [Fragment](../fragment/README.md) (loader), [Header](../header/README.md) and [Footer](../footer/README.md) (links to `/modal/` pages open as modals)
 - Model: [`_modal.json`](./_modal.json); auto-link: [`scripts/scripts.js`](../../scripts/scripts.js)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)

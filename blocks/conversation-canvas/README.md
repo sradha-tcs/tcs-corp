@@ -23,7 +23,7 @@ The Canvas is the TCS "ask us a question" entry point: an optional icon, eyebrow
 
 **Data source.** Authored properties; the site menu and the Primary navigation come from the locale's query index (`path`, `title`); Primary suggestions from the page's tags labelled from the taxonomy; UI texts from placeholders.
 
-**Related blocks.** TCS Header ([README](../tcs-header/README.md), hosts the header Canvas and announces its menu), Footer (hosts the footer Canvas), Form Variations ([README](../form-variations/README.md), for data capture), Columns Container ([README](../columns-container/README.md)).
+**Related blocks.** TCS Header ([README](../header/README.md), hosts the header Canvas and announces its menu), Footer (hosts the footer Canvas), Form Variations ([README](../form-variations/README.md), for data capture), Columns Container ([README](../columns-container/README.md)).
 
 **When to use.** To invite free-text questions or searches; to give quick navigation through a section of the site; at most one Primary (sticky) Canvas per page.
 
@@ -795,7 +795,7 @@ blocks/conversation-canvas/
 | `conversation-canvas.css` | Styles, variations, floating / docked presentation |
 | `_conversation-canvas.json` | Universal Editor definition, models and filter |
 
-The header (`blocks/tcs-header`) and footer (`blocks/footer`) only *host* Canvases: a nav page section with a Canvas becomes `header .nav-canvas`; the footer loads its Conversation Canvas Page as a fragment. Neither contains Canvas logic. `conversation-canvas` is one of the `CHROME_BLOCKS` of `scripts.js`, so its modules are preloaded on every page.
+The header (`blocks/header`) and footer (`blocks/footer`) only *host* Canvases: a nav page section with a Canvas becomes `header .nav-canvas`; the footer loads its Conversation Canvas Page as a fragment. Neither contains Canvas logic. `conversation-canvas` is one of the `CHROME_BLOCKS` of `scripts.js`, so its modules are preloaded on every page.
 
 ### Input DOM
 
@@ -807,7 +807,7 @@ A key-value block: one `key | value` row per set property (`readBlock` normalise
 - Default / Secondary: `.conversation-canvas-background` (optional), `.conversation-canvas-content` > `.conversation-canvas-intro` (`.conversation-canvas-icon`, `p.conversation-canvas-eyebrow`, `h2.conversation-canvas-title`, `.conversation-canvas-text`), `.conversation-canvas-search-slot` > `.conversation-canvas-search` (menu toggle, `nav.conversation-canvas-menu`, `form.conversation-canvas-search-form`), `ul.conversation-canvas-filters` (Secondary), `ul.conversation-canvas-buttons`.
 - Primary: `.conversation-canvas-dock` > `.conversation-canvas-search`, `nav.conversation-canvas-nav` (`data-view`: `root`, `section`, `suggestions`), `.conversation-canvas-nav-panel`.
 - Ids per instance: `conversation-canvas-{n}-q`, `-menu`, `-nav`, `-panel`.
-- Floating: `.conversation-canvas-floating` on the row (or dock), `.conversation-canvas-handoff` (no entry animation), `.conversation-canvas-approaching` on the next slot; `--conversation-canvas-lift` on the row; `--conversation-canvas-obscured` and `data-canvas-journey-state` on `<html>`; `--conversation-canvas-first-section-bottom` on the header (used by `blocks/tcs-header/tcs-header.css`).
+- Floating: `.conversation-canvas-floating` on the row (or dock), `.conversation-canvas-handoff` (no entry animation), `.conversation-canvas-approaching` on the next slot; `--conversation-canvas-lift` on the row; `--conversation-canvas-obscured` and `data-canvas-journey-state` on `<html>`; `--conversation-canvas-first-section-bottom` on the header (used by `blocks/header/header.css`).
 
 ### Floating journey
 
@@ -838,7 +838,7 @@ The state is computed from the scroll position, never from the previous state, s
 
 | Part | Owns |
 | ---- | ---- |
-| `blocks/tcs-header` (TCS Header) | Logos, navigation, the header Canvas host (`.nav-canvas`: nav page sections with a Canvas, below the nav); announces its menu with the `document` event `header:menu` (`detail.open`) |
+| `blocks/header` (TCS Header) | Logos, navigation, the header Canvas host (`.nav-canvas`: nav page sections with a Canvas, below the nav); announces its menu with the `document` event `header:menu` (`detail.open`) |
 | `blocks/conversation-canvas` | Canvas content, variations, interaction and authoring; registers itself with the controller when decorated (in the header, page or footer) |
 | `canvas-journey.js` | The state model (pure) |
 | `canvas-controller.js` | One controller per page: geometry, observers, the state attribute, the classes; listens to `header:menu` (HIDDEN) |
@@ -932,7 +932,7 @@ graph LR
   PH[placeholders.json] --> CC
   CC -->|registerCanvas| CTRL[canvas-controller.js]
   CTRL --> J[canvas-journey.js]
-  HDR[blocks/tcs-header] -->|header:menu| CTRL
+  HDR[blocks/header] -->|header:menu| CTRL
   FTR[blocks/footer fragment] --> CC
   CC -->|conversation-canvas:search| INT[Page integration or Search page]
   CC -->|cmp:click, cmp:search| ACDL[Adobe Client Data Layer]
@@ -1024,7 +1024,7 @@ Evidence to collect (without secrets): the page URL on aem.page, `document.docum
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [TCS Header](../tcs-header/README.md) (host of the header Canvas, `header:menu`), [Form Variations](../form-variations/README.md), [Columns Container](../columns-container/README.md); footer host: [`footer.js`](../footer/footer.js)
+- [TCS Header](../header/README.md) (host of the header Canvas, `header:menu`), [Form Variations](../form-variations/README.md), [Columns Container](../columns-container/README.md); footer host: [`footer.js`](../footer/footer.js)
 - Model file: [`_conversation-canvas.json`](_conversation-canvas.json)
 - Tests: [canvas journey tests](../../test/conversation-canvas/canvas-journey.test.mjs), [motion tests](../../test/motion/motion.test.mjs)
 - Shared code: [decorators README](../../decorators/README.md), [utils README](../../utils/README.md), [data-layer decorator](../../decorators/data-layer-decorator.js), [privacy utils](../../utils/privacy.js)

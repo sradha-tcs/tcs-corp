@@ -116,7 +116,7 @@ blocks/{block}/
 ## CSS Conventions
 
 - Stylelint `stylelint-config-standard` ([.stylelintrc.json](../../../.stylelintrc.json)) on `blocks/**/*.css` and `styles/*.css`. `templates/*/*.css` is not covered by `npm run lint:css`.
-- Mobile first; `min-width` media queries at 600px, 900px and 1200px (written as `@media (width >= 600px)`); the desktop header starts at 1200px (`blocks/tcs-header/tcs-header.js` `matchMedia('(min-width: 1200px)')`).
+- Mobile first; `min-width` media queries at 600px, 900px and 1200px (written as `@media (width >= 600px)`); the desktop header starts at 1200px (`blocks/header/header.js` `matchMedia('(min-width: 1200px)')`).
 - All sizes in `rem` (1rem = 16px, at most 4 decimals); only breakpoints stay in px. Letter-spacing derived from the rule's font size and reset where a rule resizes a heading, button or tag.
 - Every selector scoped to its block; no `{block}-container` / `{block}-wrapper` classes.
 - Use the design tokens of [styles/styles.css](../../../styles/styles.css) (not primitives) for text, links and focus so blocks follow the dark-background theme contract (AGENTS.md "Backgrounds and theme").

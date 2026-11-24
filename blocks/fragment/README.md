@@ -21,7 +21,7 @@ Includes the content of another page (a fragment page, by convention in the loca
 
 **Data source.** The fragment page's `{path}.plain.html` (its sections), fetched in the browser; the fragment page's metadata and tags aren't used.
 
-**Related blocks.** [TCS Header](../tcs-header/README.md) (nav page), [Footer](../footer/README.md) (footer page and its Canvas page), [Modal](../modal/README.md) (fragment pages in a dialog), the Tabs block (`blocks/tabs`, a tab's Fragment), [Columns Container](../columns-container/README.md) (can hold a Fragment).
+**Related blocks.** [Header](../header/README.md) (nav page), [Footer](../footer/README.md) (footer page and its Canvas page), [Modal](../modal/README.md) (fragment pages in a dialog), the Tabs block (`blocks/tabs`, a tab's Fragment), [Columns Container](../columns-container/README.md) (can hold a Fragment).
 
 **When to use.** Content that must be identical on several pages of the same locale and maintained centrally.
 
@@ -340,7 +340,7 @@ B = Inner fragment
 
 ### Shared loader (header, footer, tabs, modal)
 
-- **Purpose:** the same `loadFragment` loads the Navigation page (`blocks/tcs-header`), the footer page and its Canvas page (`blocks/footer`), a tab's Fragment (`blocks/tabs`, passing the tab row as `from`) and modal content (`blocks/modal`).
+- **Purpose:** the same `loadFragment` loads the Navigation page (`blocks/header`), the footer page and its Canvas page (`blocks/footer`), a tab's Fragment (`blocks/tabs`, passing the tab row as `from`) and modal content (`blocks/modal`).
 - **Rendering:** the caller places the decorated sections; see each block's README.
 
 ```text
@@ -512,7 +512,7 @@ div.fragment.block[data-block-name=fragment][id?]
 ```mermaid
 graph LR
   FB[Fragment block] --> LF[loadFragment]
-  H[blocks/tcs-header] --> LF
+  H[blocks/header] --> LF
   F[blocks/footer] --> LF
   T[blocks/tabs] --> LF
   M[blocks/modal] --> LF
@@ -579,7 +579,7 @@ Evidence to collect: host page URL, Reference value, network status of the `.pla
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [TCS Header](../tcs-header/README.md), [Footer](../footer/README.md), [Modal](../modal/README.md), [Columns Container](../columns-container/README.md)
+- [Header](../header/README.md), [Footer](../footer/README.md), [Modal](../modal/README.md), [Columns Container](../columns-container/README.md)
 - Model: [`_fragment.json`](./_fragment.json)
 - [decorators README](../../decorators/README.md), [utils README](../../utils/README.md)
 - Tests: [`test/motion/motion.test.mjs`](../../test/motion/motion.test.mjs)

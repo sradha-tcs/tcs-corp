@@ -61,8 +61,8 @@ flowchart LR
 
 | Phase | What runs (`scripts/scripts.js`) |
 | --- | --- |
-| Eager (`loadEager`) | `decorateHead` (SEO tags, `<html lang>`), `trackInteractions` (data-layer listeners and page entry), template / theme / page-type classes, the 404 content or the Page Type template (`templates/{name}`), `decorateMain`, `reserveHeaderSpace`, then (KB-D-076) `preloadBlockModules` of `tcs-header` and its Fragment / Canvas modules and `loadHeader` (not awaited), `prefetchData`, `body.appear`, `preloadBlockModules(first section)`, then the first section with `prepareMotion` and `waitForFirstImage` (sets the first image `loading="eager"` and waits for it); `fonts.css` only on wide viewports or when cached |
-| Lazy (`loadLazy`) | Modal auto-links, `preloadBlockModules` for the rest of `main` and the footer's chrome blocks (`footer`, `fragment`, `conversation-canvas`), `loadFooter` (hidden), `loadMainSections` (each section in order, animations prepared before it shows), then footer shown, `trackBlocks(main)`, Go back on 404 pages, hash scroll, `lazy-styles.css`, `loadFonts` |
+| Eager (`loadEager`) | `decorateHead` (SEO tags, `<html lang>`), `trackInteractions` (data-layer listeners and page entry), template / theme / page-type classes, the 404 content or the Page Type template (`templates/{name}`), `decorateMain`, `reserveHeaderSpace`, `body.appear`, `preloadBlockModules(first section)`, then the first section with `prepareMotion` and `waitForFirstImage` (sets the first image `loading="eager"` and waits for it); `fonts.css` only on wide viewports or when cached |
+| Lazy (`loadLazy`) | Modal auto-links, `preloadBlockModules` for the rest of `main` and the chrome blocks (`header`, `footer`, `fragment`, `tcs-header`, `conversation-canvas`), `prefetchData`, `loadHeader`, `loadFooter` (hidden), `loadMainSections` (each section in order, animations prepared before it shows), then footer shown, `trackBlocks(main)`, Go back on 404 pages, hash scroll, `lazy-styles.css`, `loadFonts` |
 | Delayed (`loadDelayed`) | After 3 s: `trackBlocks(document)` (blocks added later, such as header, footer, modals) and `import('./delayed.js')`, which is empty ("add delayed functionality here") |
 
 - **Per-block code splitting**: `loadBlock` (`scripts/aem.js`) loads a block's CSS and JS in parallel only when the block is on the page; blocks of a section load one after another, and sections load in order.
@@ -98,7 +98,7 @@ flowchart LR
 
 | Source of shift | Prevention |
 | --- | --- |
-| Header (eager phase since KB-D-076) | `header:not(:has(.nav-wrapper))` keeps `--header-reserved` (the logo bar `--nav-height`: 4rem, 7.75rem from 1200px) or the height remembered for the breakpoint (`utils/header-space.js`, `localStorage` key `header-height-v2-<breakpoint>`); from 1200px the header lies over a light first hero out of the flow; the header Canvas lies on the hero and takes no header space |
+| Header (lazy phase) | `header:not(:has(.nav-wrapper))` keeps `--header-reserved` (the logo bar `--nav-height`: 4rem, 7.75rem from 1200px) or the height remembered for the breakpoint (`utils/header-space.js`, `localStorage` key `header-height-v2-<breakpoint>`); from 1200px the header lies over a light first hero out of the flow; the header Canvas lies on the hero and takes no header space |
 | Header / footer content | `header .header` and `footer .footer` stay `visibility: hidden` until `data-block-status="loaded"` |
 | Footer | `display: none` until all main sections have loaded |
 | Fonts | Metric-matched fallback faces |

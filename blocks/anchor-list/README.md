@@ -393,7 +393,7 @@ B = Current link
 | Required fields | As Default, plus Sticky on |
 | Dialog configuration | Content tab › Sticky = on |
 | Rendering | Class `sticky` (background `--color-bg-default`); once its place scrolls up to the top (or to the bottom of a fixed header), the block gets `anchor-list-pinned` (`position: fixed`, full width, `z-index: 10`, the section's inline padding) and an inline `top`; the wrapper keeps the block's height (`min-height`) so the page doesn't jump. Released when scrolling back above its place. Not pinned in Universal Editor edit mode or while its section is still hidden |
-| Desktop / tablet / mobile | From 1200px the site header scrolls away, so the row pins at the very top; below 1200px the header is fixed (`blocks/tcs-header/tcs-header.css`) and the row pins directly below it |
+| Desktop / tablet / mobile | From 1200px the site header scrolls away, so the row pins at the very top; below 1200px the header is fixed (`blocks/header/header.css`) and the row pins directly below it |
 | Accessibility | As Default; clicked targets get a scroll margin so they aren't hidden under the row |
 | Data layer | As Default |
 | Personalization and fallback | None |
@@ -495,7 +495,7 @@ This block does not currently expose verified personalization behavior. There is
 | -------- | ------ | -------------- | -------------------- |
 | Below 900px | Links with 0.75rem × 1.5rem padding (`--space-300` / `--space-600`); the row overflows sideways when needed (hidden scrollbar) | No images | The row scrolls to centre the current link; a sticky row pins below the fixed site header |
 | 900px to 1199px | Link padding 0.75rem × 2.5rem (`--space-1000`) | No images | A sticky row pins below the fixed site header |
-| 1200px and wider | As from 900px; centred row as wide as its links | No images | The site header isn't fixed (`blocks/tcs-header/tcs-header.css`), so a sticky row pins at the top of the screen |
+| 1200px and wider | As from 900px; centred row as wide as its links | No images | The site header isn't fixed (`blocks/header/header.css`), so a sticky row pins at the top of the screen |
 
 ## For Developers
 
@@ -579,7 +579,7 @@ While pinned the block also has `anchor-list-pinned` and an inline `top`, and it
 | ---------- | ------- | -------- | --------------------- |
 | Section Anchor name | Target ids | Section properties (`models/_section.json`), applied in `scripts/scripts.js` | Links don't scroll |
 | Placeholders sheet (`onThisPage`, `itemEditorHint`) | Navigation name; editor hint | `/{locale}/placeholders.json` | English fallbacks |
-| Site header | Offset below the fixed header | `blocks/tcs-header` (`header .nav-wrapper`) | Targets may be hidden under the header |
+| Site header | Offset below the fixed header | `blocks/header` (`header .nav-wrapper`) | Targets may be hidden under the header |
 | Tabs Container | Opens the tab holding a target | `blocks/tabs/tabs.js` (`tabs:reveal`) | Targets inside hidden tabs aren't reached |
 
 ## For Architects
@@ -677,7 +677,7 @@ Evidence to collect (no secrets): page URL with the hash, viewport, a screenshot
 ## Related Documentation
 
 - [Blocks documentation](../README.md)
-- [Columns Container README](../columns-container/README.md) (a parent); [TCS Header README](../tcs-header/README.md) (`header .nav-wrapper`)
+- [Columns Container README](../columns-container/README.md) (a parent); [Header README](../header/README.md) (`header .nav-wrapper`)
 - Model file: [`_anchor-list.json`](_anchor-list.json); section Anchor name: [`models/_section.json`](../../models/_section.json)
 - Tests: [test/items/item-rows.test.mjs](../../test/items/item-rows.test.mjs) (Anchor Link cells), [test/motion/motion.test.mjs](../../test/motion/motion.test.mjs)
 - Shared modules: [decorators/README.md](../../decorators/README.md), [utils/README.md](../../utils/README.md)

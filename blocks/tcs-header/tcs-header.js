@@ -1,35 +1,15 @@
-import { loadFragment } from '../fragment/fragment.js';
 import { pictureOf } from '../../decorators/image-decorator.js';
-import { prepareMotion } from '../../decorators/motion-decorator.js';
-import {
-  rememberHeaderSpace, setHeaderOverlay, setHeaderPosition,
-} from '../../utils/header-space.js';
-import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
+import { setHeaderOverlay, setHeaderPosition } from '../../utils/header-space.js';
 import { linkOf } from '../../utils/links.js';
 import { readProperties, textOf } from '../../utils/properties.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { toSitePath } from '../../utils/urls.js';
-import { getLocale, resolvePagePath } from '../../utils/site.js';
+import { getLocale } from '../../utils/site.js';
 import { getPages } from '../../utils/query-index.js';
 import { uniqueId } from '../../utils/ids.js';
 import { LIGHT_CLASSES, headerTheme } from './header-theme.js';
 
-/*
- * TCS Header (blocks/tcs-header/_tcs-header.json), in two roles:
- * - the site header: loadHeader (scripts/aem.js) builds an empty tcs-header block in <header> in
- *   the eager phase; it loads the page's Navigation page (inherited, else the locale's
- *   references/nav), mounts it as <header><div class="nav-wrapper"><nav id="nav"> (header
- *   Canvases in <div class="nav-canvas">) and runs the header's scroll, height and logo theme
- *   behaviour (decorateSiteHeader). It replaces the former blocks/header (KB-D-076).
- * - the authored block on the Navigation page (or any page): the TCS and TATA logos, the tablet /
- *   mobile menu toggle and its drawer (decorate). In the nav fragment it also applies the Header
- *   over the first block and the header positions.
- */
-
 const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
-
-/** the bar's height until the ResizeObserver reports it (Figma desktop logo bar: 124px) */
-const DEFAULT_BAR_HEIGHT = 124;
 
 let logoThemeStarted = false;
 
@@ -38,7 +18,7 @@ let logoThemeStarted = false;
  * white logos, light: black logos; header-theme.js decides). Measured in an animation frame,
  * never while decorating: on load, scroll, resize, the menu (header:menu) and changes to the
  * page's sections; written only when it changes.
- * @param {Element|null} toggleBtn the menu button (none: the menu is never open)
+ * @param {Element} toggleBtn the menu button
  */
 function setupDynamicLogoTheme(toggleBtn) {
   if (logoThemeStarted) return;
@@ -62,7 +42,7 @@ function setupDynamicLogoTheme(toggleBtn) {
     });
     const hero = section?.querySelector('.hero');
     const theme = headerTheme({
-      menuOpen: toggleBtn?.getAttribute('aria-expanded') === 'true',
+      menuOpen: toggleBtn.getAttribute('aria-expanded') === 'true',
       overlay: html.dataset.headerOverlay || '',
       progress: parseFloat(wrapper?.style.getPropertyValue('--header-scroll-progress')) || 0,
       barColor: wrapper ? getComputedStyle(wrapper).backgroundColor : '',
@@ -86,123 +66,6 @@ function setupDynamicLogoTheme(toggleBtn) {
     });
   }
   schedule();
-}
-
-/**
- * The header bar's scroll state: --header-scroll-progress (0 at the top, 1 once scrolled by the
- * bar's height; the overlay bar fades to white with it) and .is-scrolled, on the nav wrapper.
- * One update per frame however many scroll events arrive (INP); the bar's height from a
- * ResizeObserver, never read while scrolling.
- * @param {Element} navWrapper
- */
-function setupScrollProgress(navWrapper) {
-  let height = DEFAULT_BAR_HEIGHT;
-  const onScroll = () => {
-    const progress = Math.min(1, Math.max(0, window.scrollY / height));
-    navWrapper.style.setProperty('--header-scroll-progress', String(progress));
-    navWrapper.classList.toggle('is-scrolled', window.scrollY > 10);
-  };
-  let frame = 0;
-  const onScrollFrame = () => {
-    if (frame) return;
-    frame = requestAnimationFrame(() => { frame = 0; onScroll(); });
-  };
-  new ResizeObserver(([entry]) => {
-    height = entry.contentRect.height || height;
-    onScroll();
-  }).observe(navWrapper);
-  window.addEventListener('scroll', onScrollFrame, { passive: true });
-  onScroll();
-}
-
-/**
- * The header's height as --header-height on <html> (heroes and the overlay space use it) and
- * remembered per breakpoint (utils/header-space.js), so the next pages reserve it before the
- * header loads; kept current by a ResizeObserver.
- * @param {Element} header
- */
-function trackHeaderHeight(header) {
-  const setHeight = () => {
-    document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
-  };
-  setHeight();
-  rememberHeaderSpace(header);
-  new ResizeObserver(setHeight).observe(header);
-}
-
-/**
- * The page's Navigation page as a fragment: its own (page property or metadata sheet nav column,
- * inherited from the parent pages), else the locale's references/nav. Both requests start at once;
- * a configured page that can't be loaded falls back to the default.
- * @returns {Promise<Element|null>}
- */
-function loadNavFragment() {
-  const defaultPath = resolvePagePath('', 'references/nav');
-  const defaultFragment = loadFragment(defaultPath);
-  return getInheritedMetadata('nav').then(async (value) => {
-    const navPath = resolvePagePath(value, 'references/nav');
-    if (navPath === defaultPath) return defaultFragment;
-    return (await loadFragment(navPath)) || defaultFragment;
-  });
-}
-
-/**
- * Moves the nav's Conversation Canvas sections out of the nav (into the header Canvas row); a
- * TCS Header that shares a section with a Canvas stays in the nav, in a section of its own.
- * @param {Element} nav
- * @returns {Element[]} the Canvas sections, removed from the nav
- */
-function takeCanvasSections(nav) {
-  const sections = [...nav.children].filter((section) => section.querySelector('.conversation-canvas'));
-  sections.forEach((section) => {
-    const bar = section.querySelector('.tcs-header');
-    if (bar) {
-      const own = document.createElement('div');
-      own.className = 'section';
-      own.append(bar.closest('.tcs-header-wrapper') || bar);
-      section.before(own);
-    }
-    section.remove();
-  });
-  return sections;
-}
-
-/**
- * The site header: the empty tcs-header block loadHeader (scripts/aem.js) puts in <header>
- * becomes <header><div class="nav-wrapper"><nav id="nav">{Navigation page}</nav></div>
- * <div class="nav-canvas">{header Canvases}</div></header>. Without a Navigation page the block
- * stays empty and the header keeps its reserved space.
- * @param {Element} block
- */
-async function decorateSiteHeader(block) {
-  const header = block.closest('header');
-  const [t, fragment] = await Promise.all([getPlaceholders(), loadNavFragment()]);
-  if (!fragment) return;
-
-  const nav = document.createElement('nav');
-  nav.id = 'nav';
-  nav.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
-  const canvasSections = takeCanvasSections(nav);
-
-  const navWrapper = document.createElement('div');
-  navWrapper.className = 'nav-wrapper';
-  navWrapper.append(nav);
-  // decorateBlock (aem.js) marked <header> as the block's wrapper: it isn't one once mounted
-  header.classList.remove('tcs-header-wrapper');
-  block.replaceWith(navWrapper);
-  setupScrollProgress(navWrapper);
-
-  if (canvasSections.length) {
-    const navCanvas = document.createElement('div');
-    navCanvas.className = 'nav-canvas';
-    navCanvas.append(...canvasSections);
-    navWrapper.after(navCanvas);
-    await prepareMotion(navCanvas);
-  }
-
-  trackHeaderHeight(header);
-  setupDynamicLogoTheme(nav.querySelector('.tcs-header-menu-toggle'));
 }
 
 /**
@@ -242,7 +105,6 @@ async function loadMenuTree(root, depth = 3) {
         nodes.set(path, node);
       });
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.error('Failed to load menu tree:', e);
   }
 
@@ -498,14 +360,6 @@ function buildLogo(imageCell, altCell, linkCell, className, fallback) {
 }
 
 export default async function decorate(block) {
-  // the site header: the block loadHeader builds directly in <header> (buildBlock: one empty
-  // row and cell); an authored TCS Header always has content and sits in a section
-  const empty = !block.textContent.trim() && !block.querySelector('img, picture, a');
-  if (block.parentElement?.tagName === 'HEADER' && empty) {
-    await decorateSiteHeader(block);
-    return;
-  }
-
   const props = readProperties(block);
 
   const inHeader = !block.isConnected || !!block.closest('header') || !!block.closest('.nav-wrapper');
@@ -557,7 +411,7 @@ export default async function decorate(block) {
     if (!nextState) showMain();
     document.body.classList.toggle('nav-menu-open', nextState);
 
-    // a drawer moved into the header's nav wrapper (see below) stays in sync
+    // If the drawer was moved by header.js, ensure it syncs
     const targetDrawer = document.querySelector('.tcs-header-menu-drawer') || drawer;
     targetDrawer.hidden = !nextState;
 
@@ -600,7 +454,5 @@ export default async function decorate(block) {
     navWrapper.append(drawer);
   }
 
-  // in the nav fragment the site header (decorateSiteHeader) starts the logo theme once mounted;
-  // a TCS Header put straight into a header starts it itself
-  if (block.isConnected && block.closest('header')) setupDynamicLogoTheme(toggleBtn);
+  if (inHeader) setupDynamicLogoTheme(toggleBtn);
 }

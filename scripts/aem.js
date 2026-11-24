@@ -607,12 +607,12 @@ function decorateBlocks(main) {
 }
 
 /**
- * Loads a block named 'tcs-header' into header
+ * Loads a block named 'header' into header
  * @param {Element} header header element
  * @returns {Promise}
  */
 async function loadHeader(header) {
-  const headerBlock = buildBlock('tcs-header', '');
+  const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);

@@ -125,6 +125,7 @@ Status from [blocks/README.md](../../../blocks/README.md); each name links to it
 | [Form Variations](../../../blocks/form-variations/README.md) (`form-variations`) | Forms built from field items | Active |
 | [Fragment](../../../blocks/fragment/README.md) (`fragment`) | Includes another page's sections | Active |
 | [Gen Carousel](../../../blocks/gen-carousel/README.md) (`gen-carousel`) | A section whose Heroes or Teasers rotate as slides | Active |
+| [Header](../../../blocks/header/README.md) (`header`) | Site header built from the nav page | Active |
 | [Hero](../../../blocks/hero/README.md) (`hero`) | Full-width banner with image or Lottie, title, CTAs | Active |
 | [Interactive Dashboard](../../../blocks/interactive-dashboard/README.md) (`interactive-dashboard`) | Reserved; renders nothing on the site | Experimental |
 | [List](../../../blocks/list/README.md) (`list`) | Child pages, a fixed list or tagged pages as cards or links | Active |
@@ -136,7 +137,7 @@ Status from [blocks/README.md](../../../blocks/README.md); each name links to it
 | [Table](../../../blocks/table/README.md) (`table`) | A data table of 1–5 columns | Active |
 | [Table List](../../../blocks/table-list/README.md) (`table-list`) | A numbered list of linked items | Active |
 | [Tabs](../../../blocks/tabs/README.md) (`tabs`) | The Tabs Container section and the Tabs block (`tabs-block`) | Active |
-| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | The site header (loads the nav page) and the TCS and TATA logos with the menu, on the nav page | Active |
+| [TCS Header](../../../blocks/tcs-header/README.md) (`tcs-header`) | The TCS and TATA logos of the header, on the nav page | Active |
 | [Teaser](../../../blocks/teaser/README.md) (`teaser`) | Title, text, image and links in one of four layouts | Active |
 | [Testimonial](../../../blocks/testimonial/README.md) (`testimonial`) | A client testimonial with author, image and stats | Active |
 | [Video](../../../blocks/video/README.md) (`video`) | A DAM, YouTube or Vimeo video inline or in a pop-up | Active |
