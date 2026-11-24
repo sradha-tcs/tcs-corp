@@ -25,25 +25,35 @@ export {
  * per field (link text and image alt fold into the link and image cells) and an empty cell per
  * dialog tab (null); test/list checks the layout against _list.json
  */
-export const ITEM_LAYOUT = [null, 'link', 'newTab', null, 'headline', 'summary', 'image', 'eyebrow',
-  'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
+export const ITEM_LAYOUT = [null, 'link', 'newTab', 'ctaStyle', null, 'headline', 'summary', 'image',
+  'eyebrow', 'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
   'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel'];
 export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
 /** the Display toggles of a List Item (appended to the model: older rows have fewer cells) */
 export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel',
   'showActionLabel'];
+/** the List Item rendered before CTA style was added to its Link tab (22 cells, 19 without tabs) */
+export const ITEM_LAYOUT_BEFORE_CTA = ITEM_LAYOUT.filter((field) => field !== 'ctaStyle');
+const ITEM_FIELDS_BEFORE_CTA = ITEM_LAYOUT_BEFORE_CTA.filter(Boolean);
 
 /**
- * The layout of a List Item row of `count` cells: the model's; a row AEM delivers without its
- * tab cells (a cell per field); or for a row rendered before the Display toggles were added
- * (ariaLabel its last cell), the layout up to that cell, with or without its tab cells.
+ * The layout of a List Item row of `count` cells: the model's, with or without its tab cells
+ * (AEM delivers a cell per field); a row rendered before CTA style (22 or 19 cells); or before the
+ * Display toggles were added (ariaLabel its last cell: 16 or 13 cells), the layout up to that cell.
  * @param {number} count
  */
 export function itemLayoutFor(count) {
+  if (count === ITEM_LAYOUT.length) return ITEM_LAYOUT;
   if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
-  if (count === ITEM_FIELDS.length - ITEM_DISPLAY.length) return ITEM_FIELDS.slice(0, count);
-  const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
-  return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
+  if (count === ITEM_FIELDS_BEFORE_CTA.length) return ITEM_FIELDS_BEFORE_CTA;
+  if (count === ITEM_FIELDS_BEFORE_CTA.length - ITEM_DISPLAY.length) {
+    return ITEM_FIELDS_BEFORE_CTA.slice(0, count);
+  }
+  const before = ITEM_LAYOUT_BEFORE_CTA.length - ITEM_DISPLAY.length;
+  if (count >= before && count <= ITEM_LAYOUT_BEFORE_CTA.length) {
+    return ITEM_LAYOUT_BEFORE_CTA.slice(0, count);
+  }
+  return ITEM_LAYOUT;
 }
 
 /** the Display toggles that are off unless authored on (the others are on unless authored off) */
@@ -352,6 +362,9 @@ export function applyOverrides(card, item) {
   set('accessibilityLabel', item.accessibilityLabel);
   set('kind', item.kind);
   set('theme', item.theme);
+  // the item's CTA style, else the card style's (renderCard)
+  const ctaStyle = text(item.ctaStyle);
+  if (['tertiary', 'primary', 'secondary'].includes(ctaStyle)) out.ctaStyle = ctaStyle;
   if (item.tags?.length) out.tagIds = item.tags;
   if (text(item.newTab) !== '') out.openInNewTab = isYes(item.newTab);
   // the item's Display toggles: what the card leaves out (renderCard applies them)

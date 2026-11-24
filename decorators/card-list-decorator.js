@@ -240,7 +240,8 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   // the call to action, when shown, is the card's one link; else the title is
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
-  const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
+  // a List Item's CTA style, else the card style's (a text link; Secondary on statistic cards)
+  const ctaType = card.ctaStyle || { stat: 'secondary' }[kind] || 'tertiary';
   // a hidden title can't be the card's link (an invisible focus): without a call to action,
   // the title stays visible
   const cta = linked && ctaLabel

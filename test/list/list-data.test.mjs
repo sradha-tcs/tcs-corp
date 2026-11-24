@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, ITEM_LAYOUT_BEFORE_CTA, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
   sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -412,14 +412,41 @@ describe('list item cells', () => {
     assert.deepEqual(ITEM_LAYOUT, modelLayout('blocks/list/_list.json', 'list-item'));
     assert.deepEqual(ITEM_FIELDS, ITEM_LAYOUT.filter(Boolean));
   });
-  it('reads a row with a cell per field', () => {
-    assertRead(matchCells(withoutTabCells(fields(), ITEM_LAYOUT), ITEM_FIELDS, {}));
+  // the current model: CTA style after Open in a new tab (Link tab)
+  const fieldsNow = () => {
+    const [link, newTab, ...content] = fields();
+    return [link, newTab, cell('primary'), ...content];
+  };
+  it('reads a row with a cell per field (20 cells)', () => {
+    const row = fieldsNow();
+    assert.equal(row.length, ITEM_FIELDS.length);
+    assert.deepEqual(itemLayoutFor(row.length), ITEM_FIELDS);
+    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assert.equal(cells.ctaStyle.textContent, 'primary');
   });
-  it('reads a row as AEM delivers it, with an empty cell per dialog tab', () => {
+  it('reads a row as AEM delivers it, with an empty cell per dialog tab (23 cells)', () => {
+    const [link, newTab, ctaStyle, ...content] = fieldsNow();
+    const row = [cell(), link, newTab, ctaStyle, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
+    assert.equal(row.length, ITEM_LAYOUT.length);
+    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assert.equal(cells.ctaStyle.textContent, 'primary');
+  });
+  it('reads a row rendered before CTA style (22 cells)', () => {
     const [link, newTab, ...content] = fields();
     const row = [cell(), link, newTab, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
-    assert.equal(row.length, ITEM_LAYOUT.length);
-    assertRead(matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {}));
+    assert.equal(row.length, 22);
+    const layout = itemLayoutFor(row.length);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_CTA);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assertRead(cells);
+    assert.equal(cells.ctaStyle, undefined);
+  });
+  it('gives a card its item\'s CTA style (else the card style\'s)', () => {
+    assert.equal(applyOverrides({ title: 'A' }, { ctaStyle: 'secondary' }).ctaStyle, 'secondary');
+    assert.equal(applyOverrides({ title: 'A' }, { ctaStyle: '' }).ctaStyle, undefined);
+    assert.equal(applyOverrides({ title: 'A' }, { ctaStyle: 'list' }).ctaStyle, undefined);
   });
   it('reads a row rendered before the Display toggles (16 cells)', () => {
     const [link, newTab, ...content] = fields().slice(0, -ITEM_DISPLAY.length);
@@ -432,11 +459,11 @@ describe('list item cells', () => {
     assert.equal(cells.titleHidden, undefined);
     assert.equal(itemLayoutFor(ITEM_LAYOUT.length), ITEM_LAYOUT);
   });
-  it('reads a row AEM delivers without its tab cells (a cell per field, 19 cells)', () => {
+  it('reads a row rendered before CTA style without its tab cells (19 cells)', () => {
     const row = fields();
-    assert.equal(row.length, ITEM_FIELDS.length);
+    assert.equal(row.length, 19);
     const layout = itemLayoutFor(row.length);
-    assert.deepEqual(layout, ITEM_FIELDS);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_CTA.filter(Boolean));
     const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
     assertRead(cells);
     assert.equal(cells.showEyebrow.textContent, 'true');
