@@ -182,11 +182,16 @@ function handOver(row, from) {
   const still = prefersReducedMotion() || document.documentElement.classList.contains('adobe-ue-edit');
   // the floating row is centred with transform (conversation-canvas.css); the row in place isn't
   const at = (y) => (row.classList.contains(FLOATING) ? `translate(-50%, ${y}px)` : `translateY(${y}px)`);
+  // the width only when it changes (e.g. the docked row on a tablet hero is narrower than the
+  // floating row): a width animation lays the row out on every frame; a row of the same width
+  // (every hand-over on mobile) moves with transform alone, on the compositor. Not scale: it would
+  // stretch the row's text and icons (up to 46% on tablet)
+  const size = (width) => (Math.abs(from.width - to.width) < 1 ? {} : { width: `${width}px` });
   const keyframes = still
     ? [{ opacity: 1 }, { opacity: 1 }]
     : [
-      { transform: at(Math.round(from.top - to.top)), width: `${from.width}px`, opacity: 1 },
-      { transform: at(0), width: `${to.width}px`, opacity: 1 },
+      { transform: at(Math.round(from.top - to.top)), ...size(from.width), opacity: 1 },
+      { transform: at(0), ...size(to.width), opacity: 1 },
     ];
   const animation = row.animate(keyframes, still ? { duration: 200 } : GLIDE_OPTIONS);
   glides.set(row, animation);
