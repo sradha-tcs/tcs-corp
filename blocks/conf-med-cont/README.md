@@ -1,6 +1,6 @@
 # Configurable Media Contacts
 
-The Configurable Media Contacts block (`conf-med-cont`, "configurable media contacts") lists media contacts by region from three data sheets: the **contacts**, the **regions** and the **media-contacts-config** sheet of `data/conf-med-cont/`. The author enters a Media contacts ID; the config row with that ID chooses the regions (one column per region, any number of them, in the sheet's column order), the contacts of each region and what is shown of them (the region's action). It follows the Figma "Media contacts" design (TCS Designs - Prototypes, node 5834:16648): the title, then the regions two per row, each with its brand-blue name and the underlined e-mail addresses and phone numbers one below the other.
+The Configurable Media Contacts block (`conf-med-cont`, "configurable media contacts") lists media contacts by region from three data sheets: the **contacts**, the **regions** and the **media-contacts-config** sheet of `data/conf-med-cont/`. The author enters a Media contacts ID; the config row with that ID chooses the regions (one column per region, any number of them, in the row's `order_contacts` order, else the sheet's column order), the contacts of each region and what is shown of them (the region's action). It follows the Figma "Media contacts" design (TCS Designs - Prototypes, node 5834:16648): the title, then the regions two per row, each with its brand-blue name and the underlined e-mail addresses and phone numbers one below the other.
 
 | Attribute | Value |
 | --------- | ----- |
@@ -131,9 +131,10 @@ The field names are the ones requested (hyphenated, lowercase). AEM collapses fi
 |---|---|---|
 | contacts | `contact-id`, `contact-name`, `contact-desc`, `email-id`, `contact-number` | C0001, Roland, Roland is Media spokes person, roland.bagen@tcs.com, +46 70 3178024 |
 | regions | `region-id`, `region-name`, `region-desc` | reg-001, Corporate Communications & India, This region belongs to corporate communications and India |
-| media-contacts-config | `media-contacts-id`, then per region `<region-id>` and `<region-id>-action` | media-contact-01, reg-001: C0013,C0001,C0002, reg-001-action: mail, reg-002: …, reg-002-action: … |
+| media-contacts-config | `media-contacts-id`, then per region `<region-id>` and `<region-id>-action`, and `order_contacts` (optional, the last column) | media-contact-01, reg-001: C0013,C0001,C0002, reg-001-action: mail, reg-002: …, reg-002-action: …, order_contacts: 3, 1, 2 |
 
-- **Region columns are dynamic:** every column of the config sheet other than `media-contacts-id` and the `-action` columns is a region, in the sheet's column order; a new region is two new columns (and a row of the regions sheet). An empty region column leaves the region out of that row.
+- **Region columns are dynamic:** every column of the config sheet other than `media-contacts-id`, `order_contacts` and the `-action` columns is a region; a new region is two new columns (and a row of the regions sheet). An empty region column leaves the region out of that row.
+- **Region order (`order_contacts`):** the order in which the row's regions are shown, as region numbers: `3, 1, 2` shows reg-003 (with its reg-003-action) first, then reg-001, then reg-002; the number is the one at the end of the region ID (`1` and `001` are reg-001), and full region IDs (`reg-003`) work too. Separate them with commas, semicolons or spaces. Regions not listed follow the listed ones in the sheet's column order, so none is lost; a number listed twice counts once. **Blank (or no column): the regions are shown in the order the author added them, the sheet's column order.** A listed region without contacts is skipped; a number that names no region column of the row is ignored and named in the author hint ("order_contacts names no region of this row: 12"). The column name is read without case, spaces, hyphens or underscores (`Order Contacts`, `order-contacts`).
 - **Contact IDs** are comma separated, shown in that order; IDs are matched without case.
 - `email-id` and `contact-number` may hold more than one value, comma separated.
 - `region-desc` is for the sheet's maintainers; it isn't shown.
@@ -269,7 +270,7 @@ blocks/conf-med-cont/
 ## For Site Administrators
 
 - Publish the three sheets of each site root that uses the block (they are spreadsheets below `data/`, covered by the root's folder mapping in `paths.json`: `/language-master/en/data/conf-med-cont/contacts.json`, ...). No query index or site configuration change is needed.
-- Placeholders (optional, English fallbacks in the code): `mediaContacts`, `email`, `phone`, `confMedContEditorHint`, `confMedContUnknownId`, `confMedContMissing`.
+- Placeholders (optional, English fallbacks in the code): `mediaContacts`, `email`, `phone`, `confMedContEditorHint`, `confMedContUnknownId`, `confMedContMissing`, `confMedContUnknownOrder`.
 
 ## For Architects
 
@@ -286,6 +287,9 @@ blocks/conf-med-cont/
 | 4 | An unknown Media contacts ID | Author: the hint; published page: the block is hidden |
 | 5 | Title type big / small title | An H2 at 48px / 28px (desktop) |
 | 6 | 375px and 1440px | One column / two columns, no horizontal scroll |
+| 7 | `order_contacts` `3, 1, 10, 2` on `media-contact-01` | Asia Pacific, Corporate Communications & India, USA, Europe, then the other regions in sheet order, each with its own action |
+| 8 | `order_contacts` blank | The regions in the sheet's column order (as before the column existed) |
+| 9 | `order_contacts` with a number that isn't a region of the row (e.g. `12`) | Ignored; author hint "order_contacts names no region of this row: 12"; the other numbers still order the regions |
 
 ## Troubleshooting
 
@@ -294,6 +298,7 @@ blocks/conf-med-cont/
 | The block is missing on the published page | No config row with the ID, or none of its contacts has a detail to show; check on the author for the hint |
 | A region has no name | The region ID isn't in the regions sheet (listed in the author hint) |
 | Old contacts are shown | The sheets weren't republished after the change |
+| The regions don't follow `order_contacts` | The config sheet wasn't republished, or the numbers don't match the region IDs (`3` is reg-003; see the author hint) |
 
 ## Performance Considerations
 
@@ -328,3 +333,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Date | Change |
 |---|---|
 | 22 November 2026 | Created; KB-D-073 approved (product owner) |
+| 24 November 2026 | `order_contacts` column of the media-contacts-config sheet: the region order as region numbers (listed first, the others after in sheet order; blank: sheet order); never read as a region; author hint for numbers naming no region (placeholder `confMedContUnknownOrder`); branch Praneeth |
