@@ -228,6 +228,14 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   if (theme) article.classList.add(`theme-${theme}`);
   // Cards: the Title size (96px, 48px, H1 to H6)
   if (card.titleSize) article.classList.add(`title-size-${card.titleSize}`);
+  // a List Item's Font Style sizes (its image card), over the List's (styles/card-list.css)
+  if (kind === 'image' && card.fontSizes) {
+    Object.entries(card.fontSizes).forEach(([bp, parts]) => {
+      Object.entries(parts || {}).forEach(([part, px]) => {
+        if (px) article.style.setProperty(`--item-${part}-size-${bp}`, `${Number(px) / 16}rem`);
+      });
+    });
+  }
   const ctaButtons = ctaButtonsOf(card, t);
   const readingTime = readingTimeOf(card, t);
   // Show content type off (List): image cards show neither its tag nor its label
@@ -240,7 +248,8 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   // the call to action, when shown, is the card's one link; else the title is
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
-  const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
+  // a List Item's CTA style, else the card style's (a text link; Secondary on statistic cards)
+  const ctaType = card.ctaStyle || { stat: 'secondary' }[kind] || 'tertiary';
   // a hidden title can't be the card's link (an invisible focus): without a call to action,
   // the title stays visible
   const cta = linked && ctaLabel
@@ -396,6 +405,11 @@ export function applyCardListLayout(block, config) {
     block.style.setProperty(`--list-visible-${bp}`, r.visible);
     // no card width: the CSS sizes the cards by Items visible
     if (r.cardWidth) block.style.setProperty(`--list-card-width-${bp}`, rem(r.cardWidth));
+    // List › Font Style: the image cards' sizes (Image card and Mixed lists), else the card style's
+    const fonts = ['image', 'mixed'].includes(config.cardStyle) ? config.fontSizes?.[bp] || {} : {};
+    Object.entries(fonts).forEach(([part, px]) => {
+      if (px) block.style.setProperty(`--list-image-${part}-size-${bp}`, rem(Number(px)));
+    });
   });
   const flags = {
     snap: config.snap,

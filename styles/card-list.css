@@ -29,6 +29,11 @@
   --list-card-width: var(--list-card-width-mobile);
   --list-item-size: var(--list-card-width, calc((100cqi - var(--list-bleed) - (var(--list-visible) - 1) * var(--list-gap)) / var(--list-visible)));
 
+  /* List › Font Style: the image cards' sizes of the active breakpoint (unset: the card style's) */
+  --list-image-description-size: var(--list-image-description-size-mobile);
+  --list-image-kicker-size: var(--list-image-kicker-size-mobile);
+  --list-image-cta-size: var(--list-image-cta-size-mobile);
+
   /* type scale (Figma 402 frames) */
   --list-card-title-size: 1.125rem;
   --list-card-title-line: 1.39;
@@ -372,6 +377,47 @@
   color: var(--color-text-secondary);
   font-size: var(--list-meta-size);
   line-height: 1.5;
+}
+
+/*
+ * List › Font Style (Card style Image card or Mixed): the image cards' description, kicker (tags,
+ * eyebrow, reading time) and call to action in the size chosen for the breakpoint; letter
+ * spacing follows the size; without a choice the card style's sizes apply
+ */
+
+/*
+ * a List Item's own Font Style sizes (--item-{part}-size-{bp} on its card, from renderCard) over
+ * the List's: the active breakpoint's (unset when the item has none)
+ */
+.card-list .list-card-image {
+  --item-description-size: var(--item-description-size-mobile);
+  --item-kicker-size: var(--item-kicker-size-mobile);
+  --item-cta-size: var(--item-cta-size-mobile);
+}
+
+@media (width >= 600px) {
+  .card-list .list-card-image {
+    --item-description-size: var(--item-description-size-tablet);
+    --item-kicker-size: var(--item-kicker-size-tablet);
+    --item-cta-size: var(--item-cta-size-tablet);
+  }
+}
+
+@media (width >= 1200px) {
+  .card-list .list-card-image {
+    --item-description-size: var(--item-description-size-desktop);
+    --item-kicker-size: var(--item-kicker-size-desktop);
+    --item-cta-size: var(--item-cta-size-desktop);
+  }
+}
+
+.card-list .list-card-image .list-card-description {
+  font-size: var(--item-description-size, var(--list-image-description-size, var(--list-meta-size)));
+}
+
+.card-list .list-card-image .list-card-kicker {
+  font-size: var(--item-kicker-size, var(--list-image-kicker-size, var(--list-kicker-size)));
+  letter-spacing: calc(0.01 * var(--item-kicker-size, var(--list-image-kicker-size, var(--list-kicker-size))));
 }
 
 /* rich text descriptions (Cards): paragraphs and lists keep the description's type */
@@ -989,6 +1035,9 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 /* tablet (Figma 1024 frames) */
 @media (width >= 600px) {
   .card-list {
+  --list-image-description-size: var(--list-image-description-size-tablet);
+    --list-image-kicker-size: var(--list-image-kicker-size-tablet);
+    --list-image-cta-size: var(--list-image-cta-size-tablet);
     --list-columns: var(--list-columns-tablet, 4);
     --list-gap: var(--list-gap-tablet, 1.5rem);
     --list-visible: var(--list-visible-tablet, 3.3);
@@ -1109,6 +1158,9 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 /* desktop (Figma 1440 frames) */
 @media (width >= 1200px) {
   .card-list {
+  --list-image-description-size: var(--list-image-description-size-desktop);
+    --list-image-kicker-size: var(--list-image-kicker-size-desktop);
+    --list-image-cta-size: var(--list-image-cta-size-desktop);
     --list-columns: var(--list-columns-desktop, 4);
     --list-gap: var(--list-gap-desktop, 1.5rem);
     --list-visible: var(--list-visible-desktop, 4.2);
@@ -1468,7 +1520,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 }
 
 .card-list.impact-cards .list-card-image .list-card-description {
-  font-size: 0.875rem;
+  font-size: var(--item-description-size, var(--list-image-description-size, 0.875rem));
 }
 
 /* the heading closer to the cards than the lists' 5rem (Figma: 3rem) */
@@ -1616,7 +1668,13 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   }
 
   .card-list.feature-first .list-card-image .list-card-description {
-    font-size: 0.875rem;
+    font-size: var(--item-description-size, var(--list-image-description-size, 0.875rem));
     line-height: 1.4286;
   }
+}
+
+/* List › Font Style: the image cards' call to action in the size chosen for the breakpoint */
+.card-list .list-card-image .list-card-action .button {
+  font-size: var(--item-cta-size, var(--list-image-cta-size, var(--button-font-size)));
+  letter-spacing: calc(0.01 * var(--item-cta-size, var(--list-image-cta-size, var(--button-font-size))));
 }

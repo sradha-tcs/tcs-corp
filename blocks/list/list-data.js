@@ -25,25 +25,47 @@ export {
  * per field (link text and image alt fold into the link and image cells) and an empty cell per
  * dialog tab (null); test/list checks the layout against _list.json
  */
-export const ITEM_LAYOUT = [null, 'link', 'newTab', null, 'headline', 'summary', 'image', 'eyebrow',
-  'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
-  'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel'];
+/** the Font Style sizes of a List Item (its Font Style tab): a field per part and breakpoint */
+export const ITEM_FONT_FIELDS = ['description', 'kicker', 'cta']
+  .flatMap((part) => ['Desktop', 'Tablet', 'Mobile'].map((bp) => `${part}Size${bp}`));
+
+export const ITEM_LAYOUT = [null, 'link', 'newTab', 'ctaStyle', null, 'headline', 'summary', 'image',
+  'eyebrow', 'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
+  'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel',
+  null, ...ITEM_FONT_FIELDS];
 export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
 /** the Display toggles of a List Item (appended to the model: older rows have fewer cells) */
 export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel',
   'showActionLabel'];
 
 /**
- * The layout of a List Item row of `count` cells: the model's; a row AEM delivers without its
- * tab cells (a cell per field); or for a row rendered before the Display toggles were added
- * (ariaLabel its last cell), the layout up to that cell, with or without its tab cells.
+ * The List Item layouts rendered before: without CTA style and Font Style (22 cells), and before
+ * the Display toggles (16 cells, ariaLabel its last cell)
+ */
+const FONT_TAB = ITEM_LAYOUT.length - ITEM_FONT_FIELDS.length - 1;
+export const ITEM_LAYOUT_BEFORE_FONTS = ITEM_LAYOUT.filter((field, i) => i < FONT_TAB
+  && field !== 'ctaStyle');
+const ITEM_FIELDS_BEFORE_FONTS = ITEM_LAYOUT_BEFORE_FONTS.filter(Boolean);
+
+/**
+ * The layout of a List Item row of `count` cells: the model's, with or without its tab cells
+ * (AEM delivers a cell per field); a row rendered before CTA style and Font Style (22 or 19
+ * cells); or before the Display toggles (ariaLabel its last cell: 16 or 13 cells), the layout up
+ * to that cell.
  * @param {number} count
  */
 export function itemLayoutFor(count) {
+  if (count === ITEM_LAYOUT.length) return ITEM_LAYOUT;
   if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
-  if (count === ITEM_FIELDS.length - ITEM_DISPLAY.length) return ITEM_FIELDS.slice(0, count);
-  const before = ITEM_LAYOUT.length - ITEM_DISPLAY.length;
-  return count >= before && count < ITEM_LAYOUT.length ? ITEM_LAYOUT.slice(0, count) : ITEM_LAYOUT;
+  if (count === ITEM_FIELDS_BEFORE_FONTS.length) return ITEM_FIELDS_BEFORE_FONTS;
+  if (count === ITEM_FIELDS_BEFORE_FONTS.length - ITEM_DISPLAY.length) {
+    return ITEM_FIELDS_BEFORE_FONTS.slice(0, count);
+  }
+  const before = ITEM_LAYOUT_BEFORE_FONTS.length - ITEM_DISPLAY.length;
+  if (count >= before && count <= ITEM_LAYOUT_BEFORE_FONTS.length) {
+    return ITEM_LAYOUT_BEFORE_FONTS.slice(0, count);
+  }
+  return ITEM_LAYOUT;
 }
 
 /** the Display toggles that are off unless authored on (the others are on unless authored off) */
@@ -352,6 +374,10 @@ export function applyOverrides(card, item) {
   set('accessibilityLabel', item.accessibilityLabel);
   set('kind', item.kind);
   set('theme', item.theme);
+  // the item's CTA style and Font Style sizes (its image card), else the List's
+  const ctaStyle = text(item.ctaStyle);
+  if (['tertiary', 'primary', 'secondary'].includes(ctaStyle)) out.ctaStyle = ctaStyle;
+  if (item.fontSizes) out.fontSizes = item.fontSizes;
   if (item.tags?.length) out.tagIds = item.tags;
   if (text(item.newTab) !== '') out.openInNewTab = isYes(item.newTab);
   // the item's Display toggles: what the card leaves out (renderCard applies them)

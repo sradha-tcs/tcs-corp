@@ -790,7 +790,16 @@
                   "mobileColumns": 1,
                   "scrollSnap": true,
                   "emptyBehavior": "message",
-                  "analyticsEnabled": true
+                  "analyticsEnabled": true,
+                  "descriptionSizeDesktop": "14",
+                  "descriptionSizeTablet": "14",
+                  "descriptionSizeMobile": "14",
+                  "kickerSizeDesktop": "14",
+                  "kickerSizeTablet": "14",
+                  "kickerSizeMobile": "14",
+                  "ctaSizeDesktop": "14",
+                  "ctaSizeTablet": "14",
+                  "ctaSizeMobile": "14"
                 }
               }
             }

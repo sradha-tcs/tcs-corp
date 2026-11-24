@@ -381,6 +381,27 @@ J = Show image
 [Screenshot Placeholder]
 
 File name:
+list-dialog-font-style-desktop.png
+
+Purpose:
+The Font Style tab of the List properties in Universal Editor, with the fields of the table "Font Style tab — List" in Authorable Fields below.
+
+Annotations:
+A = Description size (Desktop)
+B = Description size (Tablet)
+C = Description size (Mobile)
+D = Kicker / tag / eyebrow size (Desktop)
+E = Kicker / tag / eyebrow size (Tablet)
+F = Kicker / tag / eyebrow size (Mobile)
+G = Call to action size (Desktop)
+H = Call to action size (Tablet)
+I = Call to action size (Mobile)
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
 list-dialog-additional-desktop.png
 
 Purpose:
@@ -412,6 +433,7 @@ Annotations:
 A = Page or link
 B = Link text
 C = Open in a new tab
+D = CTA style
 ```
 
 ```text
@@ -454,6 +476,27 @@ G = Show Image
 H = Show Eyebrow
 I = Show Label
 J = Show Action Label
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+list-item-dialog-font-style-desktop.png
+
+Purpose:
+The Font Style tab of the List Item properties in Universal Editor, with the fields of the table "Font Style tab — List Item" in Authorable Fields below.
+
+Annotations:
+A = Description size (Desktop)
+B = Description size (Tablet)
+C = Description size (Mobile)
+D = Kicker / tag / eyebrow size (Desktop)
+E = Kicker / tag / eyebrow size (Tablet)
+F = Kicker / tag / eyebrow size (Mobile)
+G = Call to action size (Desktop)
+H = Call to action size (Tablet)
+I = Call to action size (Mobile)
 ```
 
 <!-- END GENERATED: screenshots -->
@@ -550,7 +593,8 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
 5. **Order and limit (Content):** **Order by** (Manual, Title, Last modified), **Sort order**, **Maximum items** (0: all).
 6. **Choose the presentation (Display):** Display as teaser (cards) or rows of links, Card style, Card colour, Image ratio, Panel height, First card as feature (then Show author on feature card), the Show options, Date format, Image loading (Eager only for a list on the first screen).
 7. **Set the layout per breakpoint (Display):** Desktop, Tablet and Mobile display (Grid, Horizontal scroll or Carousel: whole cards with previous / next on the cards), columns or items visible, gap, previous / next buttons and scroll indicator; then the scroll options and **When there are no items**.
-8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles.
+7a. **Set the text sizes (Font Style tab, Card style Image card or Mixed):** Description size, Kicker / tag / eyebrow size and Call to action size, each for Desktop, Tablet and Mobile: 12, 14, 16, 20, 24, 32 or 40px. A new List starts at 14px in every field; Default keeps the card style's size (Lists made before show Default). The sizes apply to the image cards only (report cards in a Mixed List keep their type).
+8. **Change one card (List Item):** fill only the fields to override (Title, Description, Image, Eyebrow, Tags, Label, Call to action label) and, in its Display tab, Card style, Card colour and the Display toggles; in its Link tab **CTA style** (As the card style, Text link, Primary button, Secondary button) and in its **Font Style** tab the card's own description, kicker and call to action sizes per device (As the List by default; image cards only).
 9. **Preview:** switch Universal Editor to Preview, or open the page preview. Child pages and Tagged pages lists show their pages only on the published page (AEM author has no query index).
 10. **Publish:** publish the page. Listed pages must be published (and indexed) themselves to appear.
 11. **Validate:** on the published page check the cards, their order, their links (redirect targets) and each breakpoint.
@@ -567,7 +611,7 @@ B = Message naming the problem (tags-missing, items-missing, parent-missing, roo
 
 Model `list`; template name "List" (the block class AEM renders); key-value block (one row per property); children: `list-item`.
 
-Stored on a new component (definition template): `titleType` = `"h2"`, `source` = `"fixed"`, `orderBy` = `"manual"`, `sortOrder` = `"ascending"`, `maxItems` = `0`, `displayAsTeaser` = `true`, `cardStyle` = `"image"`, `imageRatio` = `"16-9"`, `panelHeight` = `"portrait"`, `linkItems` = `true`, `showImage` = `true`, `showEyebrow` = `true`, `showTags` = `true`, `showDescription` = `true`, `showDate` = `true`, `dateFormat` = `"dd-mmm-yy"`, `imageLoading` = `"lazy"`, `desktopMode` = `"grid"`, `desktopColumns` = `4`, `tabletMode` = `"grid"`, `tabletColumns` = `4`, `mobileMode` = `"grid"`, `mobileColumns` = `1`, `scrollSnap` = `true`, `emptyBehavior` = `"message"`, `analyticsEnabled` = `true`.
+Stored on a new component (definition template): `titleType` = `"h2"`, `source` = `"fixed"`, `orderBy` = `"manual"`, `sortOrder` = `"ascending"`, `maxItems` = `0`, `displayAsTeaser` = `true`, `cardStyle` = `"image"`, `imageRatio` = `"16-9"`, `panelHeight` = `"portrait"`, `linkItems` = `true`, `showImage` = `true`, `showEyebrow` = `true`, `showTags` = `true`, `showDescription` = `true`, `showDate` = `true`, `dateFormat` = `"dd-mmm-yy"`, `imageLoading` = `"lazy"`, `desktopMode` = `"grid"`, `desktopColumns` = `4`, `tabletMode` = `"grid"`, `tabletColumns` = `4`, `mobileMode` = `"grid"`, `mobileColumns` = `1`, `scrollSnap` = `true`, `emptyBehavior` = `"message"`, `analyticsEnabled` = `true`, `descriptionSizeDesktop` = `"14"`, `descriptionSizeTablet` = `"14"`, `descriptionSizeMobile` = `"14"`, `kickerSizeDesktop` = `"14"`, `kickerSizeTablet` = `"14"`, `kickerSizeMobile` = `"14"`, `ctaSizeDesktop` = `"14"`, `ctaSizeTablet` = `"14"`, `ctaSizeMobile` = `"14"`.
 
 #### Content tab — List
 
@@ -656,6 +700,20 @@ Stored on a new component (definition template): `titleType` = `"h2"`, `source` 
 | Analytics | `analyticsEnabled` | boolean | No | `true` | on / off | Card clicks and scrolling in the Adobe Data Layer. | — |
 | Style options | `classes` | multiselect | No | — | Compact statistic title (`stat-compact`), Dividers between rows (`dividers`), Header centred (`header-center`), Impact cards (proven impact and outcomes) (`impact-cards`) | — | — |
 
+#### Font Style tab — List
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Description size (Desktop) | `descriptionSizeDesktop` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Description size (Tablet) | `descriptionSizeTablet` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Description size (Mobile) | `descriptionSizeMobile` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Desktop) | `kickerSizeDesktop` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Tablet) | `kickerSizeTablet` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Kicker / tag / eyebrow size (Mobile) | `kickerSizeMobile` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Desktop) | `ctaSizeDesktop` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Tablet) | `ctaSizeTablet` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+| Call to action size (Mobile) | `ctaSizeMobile` | select | No | "" | Default (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size. Shown when `cardStyle` is `image` or `cardStyle` is `mixed`. | — |
+
 #### Additional tab — List
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
@@ -685,6 +743,7 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | Page or link | `link` | aem-content | Yes | — | — | A page of the site, a path or an external URL (https://...). | /design-block-master/en/dummy-pages/services/cloud |
 | Link text | `linkText` | text | No | — | — | The link text when the page has no title. Delivered with `link` (field collapse). | — |
 | Open in a new tab | `newTab` | select | No | "" | As the list (""), Yes (`true`), No (`false`) | — | true |
+| CTA style | `ctaStyle` | select | No | "" | As the card style (""), Text link (`tertiary`), Primary button (`primary`), Secondary button (`secondary`) | The style of this card's call to action (Call to action label); As the card style: a text link, a Secondary button on statistic cards. | — |
 
 #### Content tab — List Item
 
@@ -713,6 +772,20 @@ Model `list-item`; template name "List Item" (the block class AEM renders).
 | Show Eyebrow | `showEyebrow` | boolean | No | `true` | on / off | Off: no eyebrow on this card (the tags or content type take its place, as without an eyebrow). | false |
 | Show Label | `showLabel` | boolean | No | `true` | on / off | Off: no Label on this card (statistic cards show the Label above the description). | false |
 | Show Action Label | `showActionLabel` | boolean | No | `true` | on / off | On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it. | false |
+
+#### Font Style tab — List Item
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Description size (Desktop) | `descriptionSizeDesktop` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Description size (Tablet) | `descriptionSizeTablet` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Description size (Mobile) | `descriptionSizeMobile` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, mobile, up to 599px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Kicker / tag / eyebrow size (Desktop) | `kickerSizeDesktop` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Kicker / tag / eyebrow size (Tablet) | `kickerSizeTablet` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Kicker / tag / eyebrow size (Mobile) | `kickerSizeMobile` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, mobile, up to 599px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Call to action size (Desktop) | `ctaSizeDesktop` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Call to action size (Tablet) | `ctaSizeTablet` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
+| Call to action size (Mobile) | `ctaSizeMobile` | select | No | "" | As the List (""), 12px (`12`), 14px (`14`), 16px (`16`), 20px (`20`), 24px (`24`), 32px (`32`), 40px (`40`) | This card as an image card, mobile, up to 599px; As the List: the List's Font Style. Shown when `kind` is empty or `kind` is `image`. | — |
 
 <!-- END GENERATED: fields -->
 
@@ -1123,7 +1196,7 @@ blocks/list/
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `list-data.js`: { columnOf, listOf } |
 | [`decorators/card-list-decorator.js`](../../decorators/card-list-decorator.js) | `buildCardListHeader`, `renderCardList`, `renderCard`, `renderRow`, `renderFeature`, `applyCardListLayout`, `buildCardListSkeleton` (the List's skeleton in its own layout), `renderCardListEmpty`, `cardListId`, `cardHeadi | `list.js`: { applyCardListLayout, buildCardListHeader, buildCardListSkeleton, cardListId, renderCardList, renderCardListEmpty, renderEditorItems, trackCardList, } |
 | [`decorators/skeleton-decorator.js`](../../decorators/skeleton-decorator.js) | `renderWhenLoaded` (a block from data that may take time: directly within 150ms, else after a skeleton so its section is shown; removed on success and failure), `skeletonWhile` (a skeleton in a part that fills in by itse | `list.js`: { renderWhenLoaded } |
-| [`utils/card-list-config.js`](../../utils/card-list-config.js) | `normalizePresentation` (the card list settings of List and Cards, with defaults and validation), `PRESENTATION_PROPERTIES`, `kindOf` and `themeOf` (the card's Card style and Card colour: item, list, page metadata, autom | `list.js`: { PRESENTATION_PROPERTIES, contentTypeLabel } |
+| [`utils/card-list-config.js`](../../utils/card-list-config.js) | `normalizePresentation` (the card list settings of List and Cards, with defaults and validation), `PRESENTATION_PROPERTIES`, `kindOf` and `themeOf` (the card's Card style and Card colour: item, list, page metadata, autom | `list.js`: { FONT_SIZES, PRESENTATION_PROPERTIES, contentTypeLabel } |
 | [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `list.js`: { matchCells, withoutTabCells } |
 | [`utils/data.js`](../../utils/data.js) | `loadDataSheet`, `getAuthor`, `getAuthors`, `getLocations`, `getPartners`, `getSocialLinks`, `getMediaContacts`, `getConfMedCont` (the three `data/conf-med-cont/` sheets: contacts, regions, media-contacts-config), `inReg | `list.js`: { getAuthors } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `list.js`: { isAuthor, isEditing } |
@@ -1351,6 +1424,8 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.45 | Show author on feature card (`featureShowAuthor`): the feature card's author lockup can be turned off; on by default; the shared Display fields split (`cards`, `cardsShow`) so the option sits below First card as feature in the List only | docs/handover revision history | 27 October 2026 |
 | Handover 2.46 | Show content type (`showContentLabel`): the content type of image cards (its tag in the kicker and its label before the date) can be turned off; on by default; the shared Display fields split again (`cardsShow`, `cardsAction`) so the option sits between Date format and Show call to action in the List only | docs/handover revision history | 28 October 2026 |
 | Handover 2.47 | Image card hover (Figma): the whole linked card fades the title to brand blue with an underline (300ms ease-out), no layout change | docs/handover revision history | 28 October 2026 |
+| Not recorded | List Item: CTA style in the Link tab (`ctaStyle`: '' as the card style, `tertiary`, `primary`, `secondary`) and a Font Style tab (the nine sizes, '' as the List; its image card, `--item-{part}-size-{bp}` on the card); the item layout is 33 cells (29 without tab cells), items rendered before (22 / 19, 16 / 13 cells) are still read (`ITEM_LAYOUT_BEFORE_FONTS`, `itemLayoutFor`); max-cells list-item 29 | Branch shraddha | 23 November 2026 |
+| Not recorded | Font Style tab (List, Card style Image card or Mixed): the image cards' description, kicker and call to action size per breakpoint (`descriptionSize{Desktop,Tablet,Mobile}`, `kickerSize…`, `ctaSize…`: 12 to 40px, Default ''), 14px for new Lists (definition template); `--list-image-{description,kicker,cta}-size-{bp}` on the block (`applyCardListLayout`), unset when not chosen so Lists made before keep their sizes | Branch shraddha | 23 November 2026 |
 | Not recorded | Header CTA with CTA style Text link (e.g. See all, `.list-cta-slot .button.tertiary`): 0.875rem (`--label-font-size`, 14px) medium at every width (Figma "Carousel · 4 columns"); card links and the header's buttons unchanged | Branch fix/list-header-cta-type | 20 November 2026 |
 | Not recorded | Desktop / Tablet / Mobile display Carousel: Columns whole cards per view, previous / next on the image (brand blue, grey at the first and last card), shared with Cards | Branch feature/list-image-carousel | 20 November 2026 |
 | — | Call-to-action links keep the new-tab hint in their accessible name | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
