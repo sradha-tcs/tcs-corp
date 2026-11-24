@@ -556,7 +556,8 @@ header .nav-toggle {
   animation: conversation-canvas-float-in 0.3s ease-out;
 }
 
-.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff {
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-handoff,
+.conversation-canvas .conversation-canvas-search.conversation-canvas-floating.conversation-canvas-glide {
   animation: none;
 }
 

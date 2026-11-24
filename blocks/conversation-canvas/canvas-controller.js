@@ -1,3 +1,4 @@
+import { prefersReducedMotion } from '../../utils/environment.js';
 import { assignRoles, resolveJourney, STATES } from './canvas-journey.js';
 
 /*
@@ -28,6 +29,12 @@ const FLOATING = 'conversation-canvas-floating';
 const OWNER = 'conversation-canvas-owner';
 const APPROACHING = 'conversation-canvas-approaching';
 const HANDOFF = 'conversation-canvas-handoff';
+const GLIDE = 'conversation-canvas-glide';
+// the header row's move between its place on a short hero and the floating position
+const GLIDE_OPTIONS = { duration: 350, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' };
+// px below which the header row floats at its own place (a hero that fills the window): no glide
+const GLIDE_MIN = 4;
+const glides = new WeakMap();
 
 const entries = [];
 const registered = new WeakSet();
@@ -62,7 +69,8 @@ const byDomOrder = (a, b) => (
 
 /** a Canvas back in its place: not floating, not landing, a Primary dock hidden */
 function release(entry) {
-  entry.row.classList.remove(FLOATING, HANDOFF);
+  glides.get(entry.row)?.cancel();
+  entry.row.classList.remove(FLOATING, HANDOFF, GLIDE);
   entry.block.classList.remove(OWNER);
   // a Primary dock in place is hidden; a Canvas row in place is usable
   entry.row.inert = !!entry.primary;
@@ -137,20 +145,50 @@ function measure() {
   // top would read 0 and lift the floating row off the screen
   const footer = document.querySelector('footer');
   const footerShown = !!footer?.getClientRects().length;
-  // the fixed header bar (blocks/header .nav-wrapper): a header Canvas resting on a short hero
-  // floats before it slides under it; none with Hide Header or while the header isn't fixed
-  const bar = document.querySelector('header .nav-wrapper');
-  const barFixed = !!bar?.getClientRects().length && getComputedStyle(bar).position === 'fixed';
   geometry = {
     live,
     canvases,
     offset,
-    topInset: barFixed ? Math.max(0, bar.getBoundingClientRect().bottom) : 0,
     footerTop: footerShown ? footer.getBoundingClientRect().top + scrollY : null,
     documentHeight: document.documentElement.scrollHeight,
     viewportHeight: window.innerHeight,
   };
   dirty = false;
+}
+
+/**
+ * Glides the header Canvas row between its place and the floating position when it starts or
+ * stops floating: over a hero shorter than the window its place (the bottom of the hero) is above
+ * the floating position, so it moves down to the bottom of the window as the page starts to scroll
+ * and back up at the top, instead of jumping. Positions come from the measured geometry (no layout
+ * read); not for reduced motion or in the editor.
+ * @param {Element} row the search row
+ * @param {Object} canvas its measured geometry (top: document top of its place, rowHeight)
+ * @param {boolean} floats whether it now floats
+ */
+function glide(row, canvas, floats) {
+  glides.get(row)?.cancel();
+  const { viewportHeight, offset } = geometry;
+  // from the floating position (the dock line) to the row's place, in the window
+  const distance = (canvas.top - window.scrollY) - (viewportHeight - offset - canvas.rowHeight);
+  if (Math.abs(distance) < GLIDE_MIN || prefersReducedMotion() || typeof row.animate !== 'function'
+    || document.documentElement.classList.contains('adobe-ue-edit')) return;
+  // the floating row is centred with transform (conversation-canvas.css); the row in place isn't
+  const keyframes = floats
+    ? [{ transform: `translate(-50%, ${distance}px)` }, { transform: 'translate(-50%, 0)' }]
+    : [{ transform: `translateY(${-distance}px)` }, { transform: 'none' }];
+  // instead of the floating row's fade-in (it is already on screen); kept while the row floats,
+  // as taking it off would start the fade-in then
+  row.classList.add(GLIDE);
+  const animation = row.animate(keyframes, GLIDE_OPTIONS);
+  glides.set(row, animation);
+  const done = () => {
+    if (glides.get(row) !== animation) return;
+    glides.delete(row);
+    if (!row.classList.contains(FLOATING)) row.classList.remove(GLIDE);
+  };
+  animation.addEventListener('finish', done);
+  animation.addEventListener('cancel', done);
 }
 
 /** applies a journey result: classes, the reserved space of a floating row, the footer lift */
@@ -178,11 +216,16 @@ function apply(result) {
       slot.classList.toggle(APPROACHING, i === result.approaching && result.owner >= 0);
     }
     // lifting off the row of a canvas coming up from below: no entry animation (already there)
-    if (!floats) row.classList.remove(HANDOFF);
-    else if (!row.classList.contains(FLOATING)) {
+    const wasFloating = row.classList.contains(FLOATING);
+    if (!floats) row.classList.remove(HANDOFF, GLIDE);
+    else if (!wasFloating) {
       row.classList.toggle(HANDOFF, result.approaching >= 0);
     }
     row.classList.toggle(FLOATING, floats);
+    // the header row moves between the hero and the bottom of the window
+    if (!entry.primary && canvases[i].role === 'header' && floats !== wasFloating) {
+      glide(row, canvases[i], floats);
+    }
     row.style.setProperty('--conversation-canvas-lift', floats ? `${result.lift}px` : '0px');
   });
   // focused elements scroll clear of the floating row (scroll-padding-bottom in the CSS)
