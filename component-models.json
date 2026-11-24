@@ -29929,6 +29929,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
@@ -29967,6 +29971,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -30005,6 +30013,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -30574,7 +30586,7 @@
             "value": ""
           },
           {
-            "name": "Light Gray",
+            "name": "Light Gray (#E3E3E3)",
             "value": "label-light-gray"
           }
         ],
@@ -30760,6 +30772,24 @@
           }
         ],
         "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserCtaPrimaryBorder",
+        "label": "Primary CTA Border color (Primary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "primary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Primary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
       },
       {
         "component": "select",
@@ -30963,6 +30993,24 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "teaserCtaSecondaryBorder",
+        "label": "Secondary CTA Border color (Secondary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "secondary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Secondary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "secondaryCtaShadow",
         "label": "CTA Shadow (Secondary Only)",
         "value": "",
@@ -31135,7 +31183,73 @@
         "component": "select",
         "valueType": "string",
         "name": "titleWeight",
-        "label": "Title weight",
+        "label": "Title weight (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightTablet",
+        "label": "Title weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightMobile",
+        "label": "Title weight (Mobile)",
         "value": "",
         "options": [
           {
@@ -31197,6 +31311,108 @@
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightDesktop",
+        "label": "CTA Label Font weight (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Desktop"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightTablet",
+        "label": "CTA Label Font weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Tablet"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightMobile",
+        "label": "CTA Label Font weight (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Mobile"
       },
       {
         "component": "select",
