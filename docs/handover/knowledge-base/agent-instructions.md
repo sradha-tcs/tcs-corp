@@ -29,7 +29,7 @@ Code wins over documentation; record any difference you find.
 Rules:
 - Reuse before create: extend an existing block, option, decorator or util; utils never import
   decorators; one purpose per module.
-- Never modify scripts/aem.js. Never hand-edit generated files: run npm run build:json (models),
+- Never modify scripts/aem.js (one recorded exception: `loadHeader` builds `tcs-header`, KB-D-077, Proposed). Never hand-edit generated files: run npm run build:json (models),
   build:modules (imports), build:docs (block READMEs), build:paths (locales) and commit the output.
 - Follow the AEM delivery rules in every model and reader: at most three short dialog tabs plus
   Additional, item children instead of composite multifields, container* fields on sections,

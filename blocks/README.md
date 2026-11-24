@@ -35,7 +35,6 @@ The project-wide rules, architecture and standards are in the [project knowledge
 | [Form Variations](./form-variations/README.md) (`form-variations`) | Container | Forms (contact, download, subscribe) built from field items | Form variations and field items | Yes | Active | [README](./form-variations/README.md) |
 | [Fragment](./fragment/README.md) (`fragment`) | Structural | Includes the sections of another page | — | Yes | Active | [README](./fragment/README.md) |
 | [Gen Carousel](./gen-carousel/README.md) (`gen-carousel`) | Container (section) | A section whose Heroes or Teasers rotate as slides | Navigation (dots, arrows), automatic interval | Yes | Active | [README](./gen-carousel/README.md) |
-| [Header](./header/README.md) (`header`) | Structural | Site header from the nav reference page: brand, menu sections, tools | Desktop logo bar; tablet / mobile full-screen menu | Through the nav page | Active | [README](./header/README.md) |
 | [Hero](./hero/README.md) (`hero`) | Container | Full-width banner with image or Lottie, title, description and CTAs | Views, nine positions, BG Color, animation | Yes | Active | [README](./hero/README.md) |
 | [History Timeline](./history-timeline/README.md) (`history-timeline`) | Container | The company history as a horizontal strip of milestone cards (year, title, description, image, optional CTA) with a progress line and previous / next buttons | Milestone heading level, closing panel text or hidden | Yes | Active | [README](./history-timeline/README.md) |
 | [Image Collage](./image-collage/README.md) (`image-collage`) | Container | Centred eyebrow, title, description and CTAs on a dark background framed by up to nine floating decorative images | Title weight, description size, eyebrow style, CTA styles, backgrounds and shapes, image treatment | Yes | Active (Proposed, KB-D-063) | [README](./image-collage/README.md) |
@@ -50,7 +49,7 @@ The project-wide rules, architecture and standards are in the [project knowledge
 | [Table](./table/README.md) (`table`) | Container | A data table of rows with 1–9 columns | Header row, column counts | Yes | Active | [README](./table/README.md) |
 | [Table List](./table-list/README.md) (`table-list`) | Container | A numbered list of linked items (industries, services) | Variations, item actions, numbers | Yes | Active | [README](./table-list/README.md) |
 | [Tabs](./tabs/README.md) (`tabs`) | Container (section) and block | Tabs Container section (Tab items and content) and the Tabs block (tabs of fragments) | Styles, alignment, orientation | Yes | Active | [README](./tabs/README.md) |
-| [TCS Header](./tcs-header/README.md) (`tcs-header`) | Independent | The TCS and TATA logos of the header, on the nav page | — | Yes | Active | [README](./tcs-header/README.md) |
+| [TCS Header](./tcs-header/README.md) (`tcs-header`) | Structural | The site header: loads the Navigation page into the page header (eager phase); on the Navigation page, the TCS and TATA logos with the tablet / mobile menu | Desktop logo bar; tablet / mobile full-screen menu; header position and Header over the first block | Yes | Active | [README](./tcs-header/README.md) |
 | [Teaser](./teaser/README.md) (`teaser`) | Container | Title, text, image and links in one of four layouts | Layouts (Image & Text, Text split, Background image, Card), image positions, BG Color, styles | Yes | Active | [README](./teaser/README.md) |
 | [Testimonial](./testimonial/README.md) (`testimonial`) | Container | A client testimonial with author, image and stats | BG Color, show / hide options | Yes | Active | [README](./testimonial/README.md) |
 | [Video](./video/README.md) (`video`) | Independent | A DAM, YouTube or Vimeo video inline or in a pop-up, with poster and captions | Inline or pop-up, autoplay / loop options | Yes | Active | [README](./video/README.md) |
@@ -67,7 +66,7 @@ Type: Independent (a block on its own), Container (a block with child items), Co
 | -------- | ------ |
 | Content | [Button](./button-block/README.md), [Hero](./hero/README.md), [History Timeline](./history-timeline/README.md), [Image Collage](./image-collage/README.md), [Page Header](./page-header/README.md), [Quote](./quote/README.md), [Table](./table/README.md), [Teaser](./teaser/README.md), [Testimonial](./testimonial/README.md) |
 | Layout | None: layout is provided by the section containers (Columns Container, Tabs, Gen Carousel) and the Section Style |
-| Navigation | [Anchor List](./anchor-list/README.md), [Footer](./footer/README.md), [Header](./header/README.md), [TCS Header](./tcs-header/README.md) |
+| Navigation | [Anchor List](./anchor-list/README.md), [Footer](./footer/README.md), [TCS Header](./tcs-header/README.md) |
 | Listing | [Cards](./cards/README.md), [Configurable Media Contacts](./conf-med-cont/README.md), [Filter List](./filter-list/README.md), [List](./list/README.md), [Media Contacts](./media-contacts/README.md), [Table List](./table-list/README.md) |
 | Interactive | [Accordion](./accordion/README.md), [Conversation Canvas](./conversation-canvas/README.md), [Form Variations](./form-variations/README.md), [Modal](./modal/README.md) |
 | Media | [Embed](./embed/README.md), [Video](./video/README.md) |
@@ -114,7 +113,7 @@ Default content (Text, Title, Image) is authored with AEM's built-in components,
 
 - **Items** (Accordion Item, Anchor Link, Card, CTA, Link, Stat, List Item, Table List Item, Filter Tag / Category / Page, Footer Link, form fields, Table rows, Canvas buttons) are rows of their block: AEM renders each item as a row with a cell per field after the block's own rows, and `itemRows` (`utils/cells.js`) finds them. They have no folder of their own and are documented in their block's README.
 - **Section containers**: a [Columns Container](./columns-container/README.md) holds [Column Breaks](./column-break/README.md) and the components of each column; a [Tabs Container](./tabs/README.md) holds [Tabs](./tab/README.md) (and Column Breaks inside a tab); a [Gen Carousel](./gen-carousel/README.md) holds Heroes and Teasers as slides. A section can't hold a section, so columns inside a tab are Column Breaks, not a Columns Container.
-- **Site chrome**: the [Header](./header/README.md) loads the nav page (with its [TCS Header](./tcs-header/README.md) and an optional [Conversation Canvas](./conversation-canvas/README.md)); the [Footer](./footer/README.md) loads the footer page. Both use the [Fragment](./fragment/README.md) loader.
+- **Site chrome**: the [TCS Header](./tcs-header/README.md) is the site header: `loadHeader` puts an empty TCS Header in `<header>` in the eager phase, which loads the nav page (with its authored TCS Header and an optional [Conversation Canvas](./conversation-canvas/README.md)) into `header .nav-wrapper > nav#nav` (KB-D-076; the former Header block was removed); the [Footer](./footer/README.md) loads the footer page. Both use the [Fragment](./fragment/README.md) loader.
 
 ## Shared Conventions
 

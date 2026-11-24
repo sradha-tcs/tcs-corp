@@ -122,7 +122,6 @@ Each block README holds the dialog fields per tab (generated from the models), t
 | Form Variations | [form-variations](../../../blocks/form-variations/README.md) | Section, Columns Container, Tabs Container | Active |
 | Fragment | [fragment](../../../blocks/fragment/README.md) | Section, Columns Container, Tabs Container | Active |
 | Gen Carousel | [gen-carousel](../../../blocks/gen-carousel/README.md) | Main (page) | Active |
-| Header | [header](../../../blocks/header/README.md) | Not a component: built from the nav page | Active |
 | Hero | [hero](../../../blocks/hero/README.md) | Section, Columns Container, Tabs Container, Gen Carousel | Active |
 | Interactive Dashboard | [interactive-dashboard](../../../blocks/interactive-dashboard/README.md) | None | Experimental |
 | List | [list](../../../blocks/list/README.md) | Section, Columns Container, Tabs Container | Active |
@@ -243,7 +242,7 @@ All UI text of the blocks (button labels, ARIA labels, editor hints) comes from 
 | Footer (`footer`) | The same chain, else `{locale}/references/footer` |
 | 404 Page (`error-page`) | The same chain, else `/{locale}/error-pages/404`, else `/en/error-pages/404`, else the built-in content |
 
-Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../utils/inherited-metadata.js) and `resolvePagePath` / `getParentPages` in [utils/site.js](../../../utils/site.js). Leave the three fields empty on ordinary pages; set them on the top page of a sub-site. Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`). Inherited values are cached per browser session (`sessionStorage` key `tcs-inherited-metadata`): check a change in a new private window. Header and footer authoring: [blocks/header/README.md](../../../blocks/header/README.md), [blocks/tcs-header/README.md](../../../blocks/tcs-header/README.md), [blocks/footer/README.md](../../../blocks/footer/README.md).
+Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../utils/inherited-metadata.js) and `resolvePagePath` / `getParentPages` in [utils/site.js](../../../utils/site.js). Leave the three fields empty on ordinary pages; set them on the top page of a sub-site. Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`). Inherited values are cached per browser session (`sessionStorage` key `tcs-inherited-metadata`): check a change in a new private window. Header and footer authoring: [blocks/tcs-header/README.md](../../../blocks/tcs-header/README.md), [blocks/tcs-header/README.md](../../../blocks/tcs-header/README.md), [blocks/footer/README.md](../../../blocks/footer/README.md).
 
 ## Localization
 
