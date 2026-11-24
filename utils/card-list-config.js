@@ -14,9 +14,6 @@ export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyy
   'do-mmmm-yyyy'];
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'];
-/** List › Font Style: the image cards' description, kicker and call to action sizes (px) */
-export const FONT_SIZES = ['12', '14', '16', '20', '24', '32', '40'];
-export const FONT_PARTS = ['description', 'kicker', 'cta'];
 // carousel: a horizontal scroll of Columns cards per view, previous / next on the images
 export const DISPLAY_MODES = ['grid', 'horizontal-scroll', 'carousel'];
 export const STYLE_OPTIONS = ['stat-compact', 'dividers', 'header-center', 'impact-cards'];
@@ -57,8 +54,6 @@ export const PRESENTATION_PROPERTIES = [
   'reducedmotion',
   // advanced
   'emptybehavior', 'emptymessage', 'analyticsenabled', 'classes',
-  // font style (List): descriptionsizedesktop, kickersizetablet, ctasizemobile, ...
-  ...FONT_PARTS.flatMap((part) => BREAKPOINTS.map((bp) => `${part}size${bp}`)),
 ];
 
 export const text = (value) => String(value ?? '').trim();
@@ -221,13 +216,8 @@ export function normalizePresentation(raw = {}, { idPrefix = 'list' } = {}) {
       indicator: !carousel && flag(get(`${bp}indicator`), d.indicator),
     };
   });
-  // Font Style (List): a size per part and breakpoint, '' (the card style's) when not chosen
-  const fontSizes = Object.fromEntries(BREAKPOINTS.map((bp) => [bp, Object.fromEntries(
-    FONT_PARTS.map((part) => [part, pickValue(get(`${part}size${bp}`), ['', ...FONT_SIZES], '')]),
-  )]));
   return {
     componentId: toSafeId(get('componentid'), idPrefix),
-    fontSizes,
     emptyMessage: text(get('emptymessage')),
     linkItems: flag(get('linkitems'), true),
     showDescription: flag(get('showdescription'), true),
