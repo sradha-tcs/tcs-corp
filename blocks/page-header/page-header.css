@@ -101,14 +101,13 @@
   gap: var(--space-200);
 }
 
-.page-header :is(.page-header-date, .page-header-reading-time) {
+.page-header :is(.page-header-date, .page-header-reading-time, .page-header-meta-line) {
   margin: 0;
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: 1.57;
   letter-spacing: calc(0.01 * var(--body-font-size-xs));
-  text-transform: uppercase;
 }
 
 .page-header .page-header-timing > .page-header-date + .page-header-reading-time::before {

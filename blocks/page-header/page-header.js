@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
+import { buildTime } from '../../decorators/date-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
 import { HEADINGS } from '../../decorators/heading-decorator.js';
@@ -180,7 +181,8 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
   labels.className = 'page-header-labels';
   labels.append(...[
     tags,
-    textElement('p', 'page-header-collection', metadata.contentType),
+    // Only add contentType separately if timing is not on the left
+    !timingLeft ? textElement('p', 'page-header-collection', metadata.contentType) : null,
   ].filter(Boolean));
 
   const prefix = 'page-header';
@@ -196,16 +198,39 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
     listen.type = 'button';
     listen.disabled = true;
   }
-  const timing = document.createElement('div');
-  timing.className = 'page-header-timing';
-  timing.append(...[
-    buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),
-    buildReadingTime(metadata.readingTime, t, prefix),
-  ].filter(Boolean));
-  if (timing.children.length) {
-    const timingGroup = timingLeft ? labels : info;
-    timingGroup.append(timing);
+
+  // When timing-left: show contentType | Published Date | Reading Time with pipe separators
+  // (the date stays a <time> element, the labels come from the placeholders)
+  if (timingLeft) {
+    const published = buildTime(metadata.publishDate, 'dd/mm/yy');
+    const readingTime = buildReadingTime(metadata.readingTime, t, prefix)?.textContent;
+    const metaParts = [
+      metadata.contentType,
+      published && [`${t('published', 'Published')} `, published],
+      readingTime,
+    ].filter(Boolean);
+    if (metaParts.length > 0) {
+      const metaLine = document.createElement('p');
+      metaLine.className = 'page-header-meta-line';
+      metaParts.forEach((part, i) => {
+        if (i) metaLine.append(' | ');
+        metaLine.append(...[part].flat());
+      });
+      labels.append(metaLine);
+    }
+  } else {
+    // When timing-right: show timing components separately as before
+    const timing = document.createElement('div');
+    timing.className = 'page-header-timing';
+    timing.append(...[
+      buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),
+      buildReadingTime(metadata.readingTime, t, prefix),
+    ].filter(Boolean));
+    if (timing.children.length) {
+      info.append(timing);
+    }
   }
+
   info.append(...[
     buildPageActions({
       listen, download: true, share: true, title: metadata.title, t, prefix,
