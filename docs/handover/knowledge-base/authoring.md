@@ -239,8 +239,8 @@ All UI text of the blocks (button labels, ARIA labels, editor hints) comes from 
 
 | Value | Resolution (first match wins) |
 | --- | --- |
-| Navigation (`nav`) | The page's own value (page property or the sheet's `nav`), else the nearest parent page's up to the locale Home, else `{locale}/references/nav` |
-| Footer (`footer`) | The same chain, else `{locale}/references/footer` |
+| Navigation (`nav`) | The page's own value (page property or the sheet's `nav`), else the nearest parent page's up to the root (Home) page; no value: no header (set it on the Home page; choose the page, e.g. `references/header-references/tcs-header`, not the folder page) |
+| Footer (`footer`) | The same chain; no value: no footer (e.g. `references/footer-references/tcs-footer` on the Home page) |
 | 404 Page (`error-page`) | The same chain, else `/{locale}/error-pages/404`, else `/en/error-pages/404`, else the built-in content |
 
 Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../utils/inherited-metadata.js) and `resolvePagePath` / `getParentPages` in [utils/site.js](../../../utils/site.js). Leave the three fields empty on ordinary pages; set them on the top page of a sub-site. Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`). Inherited values are cached per browser session (`sessionStorage` key `tcs-inherited-metadata`): check a change in a new private window. Header and footer authoring: [blocks/header/README.md](../../../blocks/header/README.md), [blocks/tcs-header/README.md](../../../blocks/tcs-header/README.md), [blocks/footer/README.md](../../../blocks/footer/README.md).
