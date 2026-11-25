@@ -106,8 +106,8 @@
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-xs);
   font-weight: var(--font-weight-medium);
-  line-height: 1.57;
-  letter-spacing: calc(0.01 * var(--body-font-size-xs));
+  line-height: 1.4;
+  letter-spacing: calc(0 * var(--body-font-size-xs));
 }
 
 .page-header .page-header-timing > .page-header-date + .page-header-reading-time::before {
