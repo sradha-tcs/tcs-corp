@@ -210,11 +210,11 @@ url                   | sheet-page-type | hide-in-nav
 
 1. The page's own value (page property or bulk sheet column).
 2. Else the nearest parent page's value up to the locale's Home page (`getParentPages`; for the language master up to `/language-masters/en`): the parents' published HTML heads are fetched in parallel.
-3. Else the default: `references/nav`, `references/footer`, or for 404 `error-pages/404`.
+3. Else the default: the default reference pages in order (`REFERENCE_PAGES`, KB-D-077): `references/header-references/tcs-header`, then `references/nav` (header); `references/footer-references/tcs-footer`, then `references/footer` (footer); the first page that exists and has content is used, so a missing or empty page (a references folder page) falls back; for 404 `error-pages/404`.
 
 Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`); `resolvePagePath` returns the AEM path in the editor and the published path on the site. Parent values are cached in `sessionStorage` (`tcs-inherited-metadata`) for the browser session.
 
-**Consumers.** [header](../../../blocks/header/README.md) (falls back to the locale's `references/nav` when a configured page can't load; with none published the header stays empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
+**Consumers.** [header](../../../blocks/header/README.md) (falls back to the default header pages when a configured page is missing or empty; with none published the header stays empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
 
 **Rules.** Keep reference pages in `references/` (excluded from the query index and the sitemap); `fragments/` and `modals/` folders anywhere are excluded too. A fragment change shows on every including page once the fragment is published. `loadFragment(path, from)` fetches only paths starting with `/` and stops recursion by the chain of including fragments.
 
@@ -244,7 +244,7 @@ Values may be AEM paths, published paths or paths relative to the locale root (`
 
 | Mechanism | What is shared | Included by |
 | --- | --- | --- |
-| Header / Footer | `references/nav`, `references/footer` or inherited alternatives | Every page, automatically |
+| Header / Footer | `references/header-references/tcs-header` / `references/footer-references/tcs-footer` (else `references/nav` / `references/footer`) or inherited alternatives | Every page, automatically |
 | Fragment block | A reference page | Fragment block Reference field |
 | Footer Canvas | A page with a Conversation Canvas block | Footer block field |
 | Tabs | A fragment per tab | Tab Fragment field |

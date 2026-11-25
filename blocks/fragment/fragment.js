@@ -62,6 +62,33 @@ export async function loadFragment(path, from = null) {
   return null;
 }
 
+/**
+ * Whether a loaded fragment has content: an empty page (e.g. a references folder page, delivered
+ * as an empty section) has no text, media or block.
+ * @param {HTMLElement|null} fragment
+ * @returns {boolean}
+ */
+export const hasContent = (fragment) => !!fragment && (!!fragment.textContent.trim()
+  || !!fragment.querySelector('img, picture, svg, video, iframe, .block'));
+
+/**
+ * Loads the first of several pages that exists and has content, in their order (e.g. the
+ * configured header page, then the site's default header pages): the next is requested only when
+ * the one before is missing or empty.
+ * @param {string[]} paths
+ * @param {Element} [from] the including element (see loadFragment)
+ * @returns {Promise<HTMLElement|null>} the fragment, or null when none has content
+ */
+export async function loadFirstFragment(paths, from = null) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const path of paths) {
+    // eslint-disable-next-line no-await-in-loop
+    const fragment = await loadFragment(path, from);
+    if (hasContent(fragment)) return fragment;
+  }
+  return null;
+}
+
 export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();

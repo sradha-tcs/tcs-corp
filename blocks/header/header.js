@@ -1,10 +1,11 @@
-import { loadFragment } from '../fragment/fragment.js';
+import { loadFirstFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { rememberHeaderSpace } from '../../utils/header-space.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
-import { resolvePagePath } from '../../utils/site.js';
+import { isEditing } from '../../utils/environment.js';
+import { referencePagePaths } from '../../utils/site.js';
 
 /**
  * Extracts TCS logo (brand), TATA logo + hamburger toggle (tools)
@@ -70,18 +71,25 @@ function setupScrollFallback(navWrapper) {
 }
 
 export default async function decorate(block) {
-  const defaultPath = resolvePagePath('', 'references/nav');
-  const defaultFragment = loadFragment(defaultPath);
-  const navFragment = getInheritedMetadata('nav').then(async (value) => {
-    const navPath = resolvePagePath(value, 'references/nav');
-    if (navPath === defaultPath) return defaultFragment;
-    return (await loadFragment(navPath)) || defaultFragment;
-  });
+  // the Navigation page: the page's own Navigation value (page property or metadata), else the
+  // nearest parent page's, else the site's default header pages (utils/site.js REFERENCE_PAGES);
+  // the first that exists and has content (KB-D-077)
+  const navFragment = getInheritedMetadata('nav')
+    .then((value) => loadFirstFragment(referencePagePaths('nav', value)));
 
   const [t, fragment] = await Promise.all([getPlaceholders(), navFragment]);
 
   block.textContent = '';
-  if (!fragment) return;
+  if (!fragment) {
+    // in Universal Editor, say why the header is empty
+    if (isEditing()) {
+      const hint = document.createElement('p');
+      hint.className = 'header-empty';
+      hint.textContent = t('headerNotFound', 'Header: no Navigation page with content found. Set the Navigation page property (or a parent page\'s) to a header page.');
+      block.append(hint);
+    }
+    return;
+  }
 
   const nav = document.createElement('nav');
   nav.id = 'nav';

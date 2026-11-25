@@ -248,21 +248,56 @@ export function localePagePath(path, pathname = window.location.pathname) {
  * the published path on the site.
  * @param {string} value the configured path, may be empty
  * @param {string} fallback the default page, relative to the locale root (e.g. references/nav)
+ * @param {string} [pathname] the current page, defaults to the window's
  * @returns {string}
  */
-export function resolvePagePath(value, fallback) {
+export function resolvePagePath(value, fallback, pathname = window.location.pathname) {
   const configured = (value || '').trim();
-  if (!configured) return localePagePath(fallback);
-  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) return localePagePath(configured);
-  let pathname;
-  try {
-    pathname = new URL(configured, window.location.href).pathname;
-  } catch {
-    return localePagePath(fallback);
+  if (!configured) return localePagePath(fallback, pathname);
+  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) {
+    return localePagePath(configured, pathname);
   }
-  pathname = pathname.replace(/(\.plain)?\.html$/, '');
-  const { contentRoot } = getLocale();
-  return contentRoot ? toAemPath(pathname, contentRoot) : toPublishedPath(pathname);
+  let path;
+  try {
+    // only the path of the value is used: any base resolves an absolute path or URL the same way
+    path = new URL(configured, 'https://localhost/').pathname;
+  } catch {
+    return localePagePath(fallback, pathname);
+  }
+  path = path.replace(/(\.plain)?\.html$/, '');
+  const { contentRoot } = getLocale(pathname);
+  return contentRoot ? toAemPath(path, contentRoot) : toPublishedPath(path);
+}
+
+/**
+ * The default reference pages of the header (nav) and the footer, relative to the site root (the
+ * locale or review root), in the order they are tried when a page has no Navigation / Footer
+ * value of its own or inherited: the page in the references folder (references/header-references,
+ * references/footer-references), then the earlier single pages, so sites with either structure
+ * keep their header and footer (KB-D-077).
+ */
+export const REFERENCE_PAGES = {
+  nav: ['references/header-references/tcs-header', 'references/nav'],
+  footer: ['references/footer-references/tcs-footer', 'references/footer'],
+};
+
+/**
+ * The pages to load for the header (nav) or the footer, in priority order: the configured value
+ * (the page's own Navigation / Footer page property or metadata, else the nearest parent page's,
+ * see utils/inherited-metadata.js), then the site's default reference pages (REFERENCE_PAGES). The
+ * caller loads the first that exists and has content, so a missing or empty configured page falls
+ * back to the defaults.
+ * @param {'nav'|'footer'} name
+ * @param {string} [value] the configured (own or inherited) value, may be empty
+ * @param {string} [pathname] the current page, defaults to the window's
+ * @returns {string[]} the paths to fetch, without duplicates
+ */
+export function referencePagePaths(name, value, pathname = window.location.pathname) {
+  const defaults = (REFERENCE_PAGES[name] || []).map((path) => localePagePath(path, pathname));
+  // an unparsable value resolves to the first default (listed once)
+  const configured = (value || '').trim()
+    ? resolvePagePath(value, REFERENCE_PAGES[name]?.[0] || '', pathname) : '';
+  return [configured, ...defaults].filter((path, i, all) => path && all.indexOf(path) === i);
 }
 
 /**

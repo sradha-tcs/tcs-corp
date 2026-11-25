@@ -21,7 +21,7 @@ The site footer, with two roles under one block name (`blocks/footer/footer.js`)
 
 **Data source.**
 
-- The footer page: the page's own **Footer** page property (or the metadata sheet's `footer` column), else the nearest parent page's up to the locale Home (`utils/inherited-metadata.js`), else the locale's `references/footer` (`utils/site.js` `resolvePagePath`).
+- The footer page: the page's own **Footer** page property (or the metadata sheet's `footer` column), else the nearest parent page's up to the locale Home (`utils/inherited-metadata.js`), else the site's default footer pages, in order: `references/footer-references/tcs-footer`, then `references/footer` (`utils/site.js` `REFERENCE_PAGES`, `referencePagePaths`; KB-D-077); the first that exists and has content is used, so a missing or empty configured page (e.g. the `references/footer-references` folder page) falls back to the defaults.
 - The locale's Social Links data sheet (`/{locale}/data/social-links.json`: platform, url, icon, sort-order; `utils/data.js` `getSocialLinks`).
 - The Footer block's fields and Footer Link items; the Conversation Canvas page it names.
 
@@ -583,7 +583,7 @@ blocks/footer/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `footer.js`: { loadFragment } |
+| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `footer.js`: { loadFirstFragment, loadFragment } |
 | [`decorators/motion-decorator.js`](../../decorators/motion-decorator.js) | `prepareMotion` (the Content animation and Background animation of the blocks of a section, before it is shown, or of a fragment, footer page or header Canvas once in the page: first frame paused, run by one Intersection | `footer.js`: { prepareMotion } |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `footer.js`: { moveInstrumentation } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `footer.js`: { removeButtonDecoration } |
@@ -596,7 +596,8 @@ blocks/footer/
 | [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `footer.js`: { getInheritedMetadata } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `footer.js`: { readLinkItems, readLinkRows } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `footer.js`: { getPlaceholders } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `footer.js`: { resolvePagePath } |
+| [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `footer.js`: { isEditing } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `footer.js`: { referencePagePaths, resolvePagePath } |
 
 <!-- END GENERATED: files -->
 
@@ -606,7 +607,7 @@ blocks/footer/
 
 **Decoration flow.**
 
-- `decoratePageFooter`: `resolvePagePath(await getInheritedMetadata('footer'), 'references/footer')`; `loadFragment`, `getSocialLinks`, `getPlaceholders` in parallel; moves the fragment's sections into a `div`; appends `buildSocialLinks(…, 'footer-social', …)` with `aria-label`; `prepareMotion(block)` for the footer page's block animations.
+- `decoratePageFooter`: `loadFirstFragment(referencePagePaths('footer', await getInheritedMetadata('footer')))` (the configured page, else the default footer pages, the first with content), `getSocialLinks`, `getPlaceholders` in parallel; moves the fragment's sections into a `div`; appends `buildSocialLinks(…, 'footer-social', …)` with `aria-label`; `prepareMotion(block)` for the footer page's block animations.
 - `decorateFooterBar`: placeholders, `buildCanvas` (link `href` or text → `loadFragment(resolvePagePath(value, ''))`) and `editorItemHint` in parallel; `fromCell` + `fillYear` for the copyright; `buildLinkList` (legacy `readLinkItems`, then `readLinkRows`; `removeButtonDecoration`, `setLinkTarget`, `announceNewTab`, `moveInstrumentation(row, li)`; editor placeholders for items without a link); `block.replaceChildren(canvas, bar)`.
 
 **Rendered DOM contract.**
@@ -626,7 +627,7 @@ footer
 
 **Async and loading.** `scripts.js` `loadLazy` hides `<footer>` (`display: none`) while the main sections load and shows it after them, so it never moves; `footer .footer` stays `visibility: hidden` until `data-block-status="loaded"`.
 
-**Error handling.** A footer page that can't load leaves only the social row (no fallback to `references/footer`); a Canvas page that can't load is skipped; a missing Social Links sheet gives no list.
+**Error handling.** A footer page that can't load or is empty falls back to the default footer pages; if none has content only the social row is shown (in Universal Editor with the placeholder `footerNotFound`); a Canvas page that can't load is skipped; a missing Social Links sheet gives no list.
 
 **Exported functions.** Only the default `decorate(block)`.
 
@@ -650,8 +651,8 @@ footer
 
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
-| Default footer page | Footer content | `/{locale}/references/footer` | Only the social row |
-| Area footer page | Area footer | e.g. `references/footer-campaign` | Only the social row (no fallback) |
+| Default footer page | Footer content | `/{root}/references/footer-references/tcs-footer`, else `/{root}/references/footer` (KB-D-077) | Only the social row; editor hint `footerNotFound` |
+| Area footer page | Area footer | e.g. `references/footer-campaign` | The default footer pages |
 | Footer page property / `footer` metadata column | Choose the footer page | Page properties; `/{locale}/metadata.json` | Default footer page |
 | Conversation Canvas page | Footer Canvas | e.g. `references/footer-conversation-canvas` | Bar without Canvas |
 | Social Links sheet | Social row | `/{locale}/data/social-links.json` | No social row |
@@ -691,7 +692,7 @@ graph LR
 
 | Test ID | Scenario | Configuration | Expected result |
 | ------- | -------- | ------------- | --------------- |
-| FOOTER-QA-01 | Default footer | Page without Footer value | `references/footer` content and the social row |
+| FOOTER-QA-01 | Default footer | Page without Footer value | `references/footer-references/tcs-footer` (else `references/footer`) content and the social row |
 | FOOTER-QA-02 | Area footer | Area top page with Footer `references/footer-campaign` | Child pages show the campaign footer (new session) |
 | FOOTER-QA-03 | Missing footer page | Footer pointing to an unpublished page | Only the social row; no error |
 | FOOTER-QA-04 | Year | Copyright `© Tata Consultancy Services {year}` | Current year |
@@ -739,7 +740,7 @@ Evidence to collect: page URL, the `footer` meta values, network status of the f
 | ---------- | ------ | ---------- | ------------------ |
 | The bar is rendered even when copyright and links are empty (F-16) | An empty strip on a footer page | Fill in the copyright or links | Not recorded (F-16 open, P3) |
 | An icon name without a file in `/icons` gives a broken icon (F-16) | Broken social icon | Use a supported name or an image URL | Not recorded (F-16 open, P3) |
-| No fallback to `references/footer` when the configured footer page can't load (the header has one) | Only the social row | Publish the footer page / correct the path | Not recorded |
+| A site with only `references/footer` requests `references/footer-references/tcs-footer` first (one 404) | One extra request | Move the default footer into `references/footer-references/tcs-footer` | Accepted (KB-D-077) |
 | Inherited Footer values cached per browser session (F-35) | Changes show in a new session | Private window | Not recorded |
 | Offered in every section; styles only inside `<footer>` | Unstyled on content pages | Use it only on footer pages | Not recorded |
 | A link title equal to its text is kept (audit, docs/audit/blocks/group-d-forms-media-chrome.md) | Redundant tooltip | — | Not recorded |
@@ -776,3 +777,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: Footer Link labels (Link text, Open in) and the social list named (R-D-13) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Footer blocks' modules and stylesheets preloaded (F-106) | docs/handover revision history | 20 October 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Footer: `scripts.js` doesn't load the footer on that page (`utils/page-visibility.js`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
+| KB-D-077 (Approved), branch fix/header-footer-reference-pages | Footer priority: own value, else inherited, else the default footer pages `references/footer-references/tcs-footer`, then `references/footer` (the first with content; empty pages skipped); the footer now falls back like the header; editor hint `footerNotFound` | Debug of the ultimatix site (header-references / footer-references folders) | 25 November 2026 |

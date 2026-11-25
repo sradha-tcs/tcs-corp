@@ -1,4 +1,4 @@
-import { loadFragment } from '../fragment/fragment.js';
+import { loadFirstFragment, loadFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
@@ -11,7 +11,8 @@ import { getSocialLinks } from '../../utils/data.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { resolvePagePath } from '../../utils/site.js';
+import { isEditing } from '../../utils/environment.js';
+import { referencePagePaths, resolvePagePath } from '../../utils/site.js';
 
 /*
  * Footer: two roles with one block name.
@@ -106,16 +107,25 @@ async function decorateFooterBar(block) {
  * @param {Element} block
  */
 async function decoratePageFooter(block) {
-  // the Footer page property of the page or, inherited, of its nearest parent page up to Home
-  // (or the metadata sheet's footer column), else the locale's references/footer
-  const footerPath = resolvePagePath(await getInheritedMetadata('footer'), 'references/footer');
+  // the footer page: the page's own Footer value (page property or metadata), else the nearest
+  // parent page's up to Home, else the site's default footer pages (utils/site.js
+  // REFERENCE_PAGES); the first that exists and has content (KB-D-077)
+  const footerFragment = getInheritedMetadata('footer')
+    .then((value) => loadFirstFragment(referencePagePaths('footer', value)));
   const [fragment, socialLinks, t] = await Promise.all([
-    loadFragment(footerPath), getSocialLinks(), getPlaceholders(),
+    footerFragment, getSocialLinks(), getPlaceholders(),
   ]);
 
   block.textContent = '';
   const footer = document.createElement('div');
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
+  // in Universal Editor, say why the footer has no content
+  if (!fragment && isEditing()) {
+    const hint = document.createElement('p');
+    hint.className = 'footer-empty';
+    hint.textContent = t('footerNotFound', 'Footer: no Footer page with content found. Set the Footer page property (or a parent page\'s) to a footer page.');
+    footer.append(hint);
+  }
 
   // the locale's Social Links data sheet, in Sort Order
   const social = buildSocialLinks(
