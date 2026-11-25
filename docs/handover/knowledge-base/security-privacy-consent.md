@@ -98,7 +98,7 @@ A future tag manager must be loaded by project code (`scripts/delayed.js`) so `s
 | `header-height-v2-{mobile\|tablet\|desktop}` | `localStorage` | [`utils/header-space.js`](../../../utils/header-space.js) | The loaded header height in rem, so the next page reserves it (no layout shift) |
 | `header-overlay-v1` | `localStorage` | [`utils/header-space.js`](../../../utils/header-space.js) `setHeaderOverlay` (from the TCS Header) | The nav page's Header over the first block mode (`always` / `never`), so the next page lays out for it; no personal data |
 | `fonts-loaded` | `sessionStorage` | [`scripts/scripts.js`](../../../scripts/scripts.js) `loadFonts` (not on `localhost`) | `true` once `fonts.css` has loaded |
-| `tcs-inherited-metadata` | `sessionStorage` | [`utils/inherited-metadata.js`](../../../utils/inherited-metadata.js) | The Navigation, Footer and 404 Page values of parent pages, by URL |
+| `tcs-inherited-metadata-v2` | `sessionStorage` | [`utils/inherited-metadata.js`](../../../utils/inherited-metadata.js) | The Navigation, Footer and 404 Page values of parent pages, by URL |
 
 All storage access is wrapped in `try / catch` (private mode works). None of these values identify a visitor. Project code sets no cookies (`document.cookie` is not used), and `scripts/aem.js` (RUM) sets none. Third-party players (X widget, generic iframes, YouTube and Vimeo once played) may set their own cookies. The data layer code writes no storage.
 

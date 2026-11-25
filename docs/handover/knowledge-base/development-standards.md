@@ -150,7 +150,7 @@ Verified patterns to follow:
 | Motion, skeletons, Lottie | `decorators/motion-decorator.js` and `skeleton-decorator.js` catch and log (`motion`, `skeleton`); a failed Lottie logs `failed to play the Lottie animation` and dispatches `animation:failed` |
 | Fragments | `loadFragment(path, from)` returns `null` for paths not starting with `/` (or starting with `//`), for the page itself and for recursion along the including chain; in the editor the Fragment shows a hint |
 | Authoring gaps | Missing or invalid fields fall back to defaults; in Universal Editor blocks show placeholder hints (List setup message, empty item placeholder `itemEditorHint`) instead of failing |
-| Fallback chains | Header / footer: own value, else inherited, no default page in code (KB-D-077: no header / footer without a value); the 404 page falls back locale → `/en` → built-in content |
+| Fallback chains | Header / footer fall back to the locale's `references/nav` / `references/footer`; the 404 page falls back locale → `/en` → built-in content |
 
 Rules: validate authored values against allow-lists (unknown values never become classes), keep decoration idempotent, and never let a block's failure hide the rest of the page.
 

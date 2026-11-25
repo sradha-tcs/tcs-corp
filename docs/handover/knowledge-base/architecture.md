@@ -310,7 +310,7 @@ sequenceDiagram
 | Missing page | Edge Delivery serves `404.html` (`window.isErrorPage`, `window.errorCode = '404'`); `loadErrorPage` tries the inherited 404 Page, then `/{locale}/error-pages/404`, then `/en/error-pages/404`; a page without content is skipped; else the built-in "404 / Page Not Found / Go home" stays; content from another locale gets its `lang` on `<main>`; "Go back" is added for same-origin referrers | `scripts/scripts.js` `loadErrorPage`, `loadPageContent`, `addErrorBackButton` |
 | 403 / 500 | Not served by Edge Delivery; authored `error-pages/403` and `500` exist for a CDN | Requires validation (CDN not configured) |
 | Sheet or index request fails | Each util resolves to empty data: placeholders → English fallbacks, taxonomy → ID-derived labels, data sheets → empty lists, redirects → none, query index → no pages | `utils/*.js` (`.catch(() => …)`) |
-| Navigation / Footer value missing, or its page missing or empty | No header / footer (no default page, KB-D-077); editor hint | `blocks/header/header.js`, `blocks/footer/footer.js`, `utils/site.js` `configuredPagePath` |
+| Navigation page fails | Falls back to the locale's `references/nav`; none published: header left empty | `blocks/header/header.js` |
 | Fragment can't load (unpublished, path not starting with `/`, self-inclusion) | The Fragment block keeps its authored content (the reference link); in Universal Editor edit mode it shows the hint `fragmentEmpty` | `blocks/fragment/fragment.js` |
 | Slow data | `renderWhenLoaded` shows a skeleton after 150ms (at least 250ms) and removes it on success or failure | `decorators/skeleton-decorator.js` |
 | Universal Editor update can't be applied in place | Page reloads | `scripts/editor-support.js` |
@@ -329,7 +329,7 @@ Troubleshooting by symptom: handover Part 13 — Global Troubleshooting Guide.
 | Pages read from HTML | Rows for pages missing from the index (AEM author) | `Map` per page view | `utils/query-index.js` `getPagesAt` |
 | Placeholders, taxonomy, redirects | Locale sheets | One promise per page view | `utils/placeholders.js`, `utils/taxonomy.js`, `utils/redirects.js` |
 | Data sheets | Authors, locations, partners, social links, media contacts | `Map` per sheet per page view | `utils/data.js` |
-| Inherited metadata | `nav`, `footer`, `error-page` of parent pages | In memory per page view and `sessionStorage` key `tcs-inherited-metadata` for the browser session (a changed parent value shows in a new session) | `utils/inherited-metadata.js` |
+| Inherited metadata | `nav`, `footer`, `error-page` of parent pages | In memory per page view and `sessionStorage` key `tcs-inherited-metadata-v2` for the browser session (v2: root pages read in both URL forms, KB-D-078) (a changed parent value shows in a new session) | `utils/inherited-metadata.js` |
 | Font flag | `fonts-loaded` | `sessionStorage`, browser session; not set on `localhost` | `scripts/scripts.js` |
 | Header height | `header-height-v2-{breakpoint}` (rem) | `localStorage`, no expiry; refreshed when the header loads | `utils/header-space.js` |
 | Header overlay mode | `header-overlay-v1` (`always` / `never`; removed for Auto) | `localStorage`, no expiry; set when the header's TCS Header loads, applied in the eager phase (`<html data-header-overlay>`) | `utils/header-space.js` |

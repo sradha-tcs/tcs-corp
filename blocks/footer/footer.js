@@ -11,8 +11,7 @@ import { getSocialLinks } from '../../utils/data.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { isEditing } from '../../utils/environment.js';
-import { configuredPagePath, resolvePagePath } from '../../utils/site.js';
+import { resolvePagePath } from '../../utils/site.js';
 
 /*
  * Footer: two roles with one block name.
@@ -107,28 +106,23 @@ async function decorateFooterBar(block) {
  * @param {Element} block
  */
 async function decoratePageFooter(block) {
-  // the footer page comes only from page properties (no default page in code, KB-D-077): the
-  // page's own Footer value (page property or metadata), else the nearest parent page's up to the
-  // root page; a page that can't load or is empty gives no footer
-  const path = configuredPagePath(await getInheritedMetadata('footer'));
-  const [loaded, socialLinks, t] = await Promise.all([
-    path ? loadFragment(path) : null, getSocialLinks(), getPlaceholders(),
+  // the Footer page property of the page or, inherited, of its nearest parent page up to the root
+  // page (or the metadata sheet's footer column), at any path and depth (e.g.
+  // references/footer-collection/tcsfooter); the locale's references/footer only when there is no
+  // value or the configured page can't load or has no content (e.g. a folder page), as the header
+  const withContent = (loaded) => (hasContent(loaded) ? loaded : null);
+  const footerFragment = getInheritedMetadata('footer').then(async (value) => {
+    const defaultPath = resolvePagePath('', 'references/footer');
+    const footerPath = resolvePagePath(value, 'references/footer');
+    const fragment = withContent(await loadFragment(footerPath));
+    if (fragment || footerPath === defaultPath) return fragment;
+    return withContent(await loadFragment(defaultPath));
+  });
+  const [fragment, socialLinks, t] = await Promise.all([
+    footerFragment, getSocialLinks(), getPlaceholders(),
   ]);
-  const fragment = hasContent(loaded) ? loaded : null;
 
   block.textContent = '';
-  if (!fragment) {
-    // no footer page: no footer (in Universal Editor, a hint says what to set)
-    if (isEditing()) {
-      const hint = document.createElement('p');
-      hint.className = 'footer-empty';
-      hint.textContent = path
-        ? t('footerNotFound', 'Footer: the Footer page {path} can’t be loaded or has no content.', { path })
-        : t('footerNotSet', 'Footer: set the Footer page property on this page or a parent page.');
-      block.append(hint);
-    }
-    return;
-  }
   const footer = document.createElement('div');
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 

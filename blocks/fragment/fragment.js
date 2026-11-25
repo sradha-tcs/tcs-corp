@@ -63,8 +63,8 @@ export async function loadFragment(path, from = null) {
 }
 
 /**
- * Whether a loaded fragment has content: an empty page (e.g. a references folder page, delivered
- * as an empty section) has no text, media or block.
+ * Whether a loaded fragment has content: an empty page (e.g. a folder page such as
+ * references/header-collection, delivered as an empty section) has no text, media or block.
  * @param {HTMLElement|null} fragment
  * @returns {boolean}
  */

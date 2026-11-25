@@ -210,11 +210,11 @@ url                   | sheet-page-type | hide-in-nav
 
 1. The page's own value (page property or bulk sheet column).
 2. Else the nearest parent page's value up to the locale's Home page (`getParentPages`; for the language master up to `/language-masters/en`): the parents' published HTML heads are fetched in parallel.
-3. Else: for the header and the footer nothing (no default page in code, KB-D-077: set Navigation / Footer on the root page); for 404 `error-pages/404`.
+3. Else the default: `references/nav`, `references/footer`, or for 404 `error-pages/404`.
 
-Values may be AEM paths, published paths or paths relative to the locale root (`references/nav-careers`); `resolvePagePath` returns the AEM path in the editor and the published path on the site. Parent values are cached in `sessionStorage` (`tcs-inherited-metadata`) for the browser session.
+Values may name a page at any path and depth (e.g. `references/header-collection/tcsheader`, `references/footer-collection/tcsfooter`): AEM paths, published paths, URLs or paths relative to the page's site root (its review root or locale root, KB-D-078; `references/nav-careers`). Keep header and footer pages below `references/` (or a `fragments` folder): the query index and the sitemap leave those out, so they don't appear in lists or search; choose the page, not its folder page (an empty page counts as missing and gives the default); `resolvePagePath` returns the AEM path in the editor and the published path on the site. Parent values are read from the parent pages' heads (the rest of each page isn't downloaded) and cached in `sessionStorage` (`tcs-inherited-metadata-v2`) for the browser session. The root (Home) page is published as its folder index (`/language-masters/en/`) where the site's paths.json maps the root page, else at its own path (`/language-masters/en`, the ultimatix site): both are read, the second only when the first is 404 (KB-D-078).
 
-**Consumers.** [header](../../../blocks/header/README.md) (no header without a value or when its page is missing or empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
+**Consumers.** [header](../../../blocks/header/README.md) (falls back to the locale's `references/nav` when a configured page can't load; with none published the header stays empty), [footer](../../../blocks/footer/README.md) (adds the Social Links sheet), `loadErrorPage` (404), [fragment](../../../blocks/fragment/README.md), [modal](../../../blocks/modal/README.md), [tabs](../../../blocks/tabs/README.md).
 
 **Rules.** Keep reference pages in `references/` (excluded from the query index and the sitemap); `fragments/` and `modals/` folders anywhere are excluded too. A fragment change shows on every including page once the fragment is published. `loadFragment(path, from)` fetches only paths starting with `/` and stops recursion by the chain of including fragments.
 
@@ -244,7 +244,7 @@ Values may be AEM paths, published paths or paths relative to the locale root (`
 
 | Mechanism | What is shared | Included by |
 | --- | --- | --- |
-| Header / Footer | The Navigation / Footer page set on the root (Home) page (e.g. `references/header-references/tcs-header`, `references/footer-references/tcs-footer`) or on an area page | Every page below it, inherited |
+| Header / Footer | `references/nav`, `references/footer` or inherited alternatives | Every page, automatically |
 | Fragment block | A reference page | Fragment block Reference field |
 | Footer Canvas | A page with a Conversation Canvas block | Footer block field |
 | Tabs | A fragment per tab | Tab Fragment field |

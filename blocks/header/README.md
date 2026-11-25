@@ -33,7 +33,9 @@ Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25
 
 **Templates / page types.** All pages and templates, including the 404 page (`404.html` uses `--nav-height`).
 
-**Data source.** The Navigation page: the page's own **Navigation** page property (or the metadata sheet's `nav` column), else the nearest parent page's up to the locale's Home page (`utils/inherited-metadata.js`), with no default page in code (KB-D-077; `utils/site.js` `configuredPagePath`). Without a value, or when the Navigation page can't be loaded (not published, moved) or has no content (`blocks/fragment` `hasContent`, e.g. the empty `references/header-references` folder page), no header is rendered; in Universal Editor a hint says what to set (`headerNotSet`, `headerNotFound`). Set Navigation on the root (Home) page so all its pages inherit it, e.g. `/language-masters/en/references/header-references/tcs-header`. UI text comes from the locale's placeholders.
+**Data source.** The Navigation page: the page's own **Navigation** page property (or the metadata sheet's `nav` column), else the nearest parent page's up to the locale's Home page (`utils/inherited-metadata.js`), else the locale's `references/nav` (`utils/site.js` `resolvePagePath`). A configured Navigation page that can't be loaded (not published, moved) falls back to `references/nav`, so the page keeps a header. UI text comes from the locale's placeholders.
+
+**Navigation page at any path.** The Navigation value may name a page at any path and depth, e.g. `/content/tcs-corporate/language-masters/en/references/header-collection/tcsheader` (picked in the page properties), `references/header-collection/tcsheader` or a URL; keep it below `references/` (left out of the query index and the sitemap), choose the page and not its folder page (an empty page counts as missing: the default `references/nav` is used), and publish it to the site that serves the pages (KB-D-078).
 
 **Related blocks.** [TCS Header](../tcs-header/README.md) (the logos on the nav page), [Conversation Canvas](../conversation-canvas/README.md) (the header Canvas and the floating journey), [Fragment](../fragment/README.md) (`loadFragment`), [Footer](../footer/README.md) (same loading and inheritance).
 
@@ -541,7 +543,7 @@ A = Logos over the hero
 
 - **Purpose:** a different header for an area (Careers) or campaign.
 - **Fields:** Page Properties › Navigation, or the metadata sheet's `nav` column.
-- **Rendering:** identical; only the nav page differs. A configured page that can't load or has no content gives no header (no default page, KB-D-077).
+- **Rendering:** identical; only the nav page differs. A configured page that can't load falls back to the locale's `references/nav`.
 
 ```text
 [Screenshot Placeholder]
@@ -665,9 +667,8 @@ blocks/header/
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `header.js`: { removeButtonDecoration } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { getPlaceholders } |
 | [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v3-*`; minimum reserved: 5.625rem below 1200px, 7.75rem from 1200px) and reserved on the ne | `header.js`: { rememberHeaderSpace } |
-| [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `header.js`: { getInheritedMetadata } |
-| [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `header.js`: { isEditing } |
-| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `header.js`: { configuredPagePath } |
+| [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel, read only up to `</head>`, and cached per session (`sessi | `header.js`: { getInheritedMetadata } |
+| [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `header.js`: { resolvePagePath } |
 
 <!-- END GENERATED: files -->
 
@@ -677,7 +678,7 @@ blocks/header/
 
 **Decoration flow (`decorate`).**
 
-1. `getInheritedMetadata('nav')` (the page's own value, else the nearest parent page's) → `configuredPagePath(value)` ('' without a value) → `loadFragment(path)`, kept only if `hasContent`; `getPlaceholders()` in parallel. No default page is requested (KB-D-077).
+1. `getInheritedMetadata('nav')` (the page's own value, else the nearest parent page's up to the root page, read in either URL form of the root, KB-D-078) and `getPlaceholders()` in parallel; loads the configured nav page; the locale's `references/nav` only without a value or when the configured page returns nothing (no request for it otherwise).
 2. No fragment: the block stays empty (`--header-reserved` keeps the space).
 3. Moves the sections into `nav#nav[aria-label]`; sections with a `.conversation-canvas` are taken out (a TCS Header in the same section is kept in its own section).
 4. `applyLogoBar`: a `.tcs-header` block supplies `nav-brand` / `nav-tools`; else sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
@@ -724,7 +725,7 @@ On desktop `nav[data-expanded]` is `"true"` (the boilerplate's desktop state) wh
 
 Don't add Canvas logic to `header.js` (AGENTS.md "Floating Canvas"): header and Canvas don't import each other.
 
-**Error handling.** Without a Navigation value, or when its page can't load or has no content, the header stays empty (its space kept), without an error message; in Universal Editor the placeholder `headerNotSet` or `headerNotFound` (with the path) is shown. `localStorage` failures are ignored.
+**Error handling.** A nav page that can't load falls back to `references/nav`; if that fails too the header stays empty, without an error message. `localStorage` failures are ignored.
 
 **Exported functions.** Only the default `decorate(block)`.
 
@@ -760,7 +761,7 @@ Don't add Canvas logic to `header.js` (AGENTS.md "Floating Canvas"): header and 
 
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
-| Navigation page of the root (Home) page | Header content of every page below it | e.g. `/language-masters/en/references/header-references/tcs-header` | Empty header (space kept); editor hint |
+| Default Navigation page | Header content | `/{locale}/references/nav` (`/content/tcs-corp/{country}/{lang}/references/nav`) | Empty header (space kept) |
 | Area Navigation page | Area header | e.g. `references/nav-careers` | Falls back to `references/nav` |
 | Navigation page property / `nav` metadata column | Choose the nav page | Page properties; `/{locale}/metadata.json` | Default nav page |
 | Parent pages' published HTML | Inherited Navigation | Parent pages up to Home | Default nav page |
@@ -806,8 +807,8 @@ graph LR
 | ------- | -------- | ------------- | --------------- |
 | HEADER-QA-01 | Default header | Page without Navigation, locale `/en` | `/en/references/nav` loaded; logos visible |
 | HEADER-QA-02 | Area header | Area top page with Navigation `references/nav-careers` | Child pages show the careers menu (new session) |
-| HEADER-QA-03 | Missing or empty nav page | Navigation pointing to an unpublished page or to the empty `references/header-references` folder page | No header; in Universal Editor the `headerNotFound` hint with the path; no error |
-| HEADER-QA-04 | No Navigation value | Neither the page nor a parent up to Home sets Navigation | No header (no reference page requested), its space kept, page usable; editor hint `headerNotSet` |
+| HEADER-QA-03 | Missing nav page | Navigation pointing to an unpublished page | Falls back to `references/nav`; no error |
+| HEADER-QA-04 | No nav page at all | New locale without `references/nav` | Empty header, its space kept, page usable |
 | HEADER-QA-05 | Desktop logo bar | 1440px | TCS left, TATA right, 124px, no menu button |
 | HEADER-QA-06 | Tablet menu | 1024px, open the menu | Full screen at "Menu", page doesn't scroll, `main` / `footer` inert |
 | HEADER-QA-07 | Levels | Open a section, then Back | Sub-list with the label as title, focus on Back; Back focuses the section button |
@@ -897,4 +898,5 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: no menu button without a menu (R-D-14) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Header blocks' modules and stylesheets preloaded (load time, F-106) | docs/handover revision history | 20 October 2026 |
 | — | The nav's label comes from the placeholder mainNavigation (getPlaceholders returns a function); the scroll state is updated once per frame | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
-| — | Navigation from page properties only: own value, else inherited up to the root (Home) page; no default page in code (`references/nav` removed); a missing or empty page gives no header; editor hints `headerNotSet` / `headerNotFound` | KB-D-077 (Approved), branch fix/header-footer-page-properties | 25 November 2026 |
+| — | Inherited Navigation read from the root page in both URL forms (`/<root>/`, else `/<root>`; the live ultimatix header was empty), parent heads only; `references/nav` requested only without a value or when the configured page can't load | KB-D-078 (Approved), branch fix/header-footer-root-page | 25 November 2026 |
+| — | Navigation pages at any path and depth (e.g. `references/header-collection/tcsheader`); relative values in the page's own site root; an empty page (folder page) counts as missing | KB-D-078 (Approved), branch fix/header-footer-root-page | 25 November 2026 |

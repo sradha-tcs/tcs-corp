@@ -176,6 +176,20 @@ export function getParentPages(pathname = window.location.pathname) {
 }
 
 /**
+ * The URLs a published page may be served at, the expected one first. A root (Home) page is
+ * published as its folder's index (/language-masters/en/) where the site's paths.json maps the root
+ * page (/content/<site>/language-masters/en:/language-masters/en/), else at its own path
+ * (/language-masters/en): both are tried, the second only when the first is missing. Other pages
+ * and AEM page URLs (Universal Editor) have one form.
+ * @param {string} url a URL of getParentPages
+ * @returns {string[]}
+ */
+export function pageUrlForms(url) {
+  if (url.length > 1 && url.endsWith('/') && !CONTENT_ROOT.test(url)) return [url, url.slice(0, -1)];
+  return [url];
+}
+
+/**
  * Converts an AEM page path (/content/tcs-corp/de/de-de/about) to its published path
  * (/de-de/about), following paths.json; other paths are returned unchanged.
  * @param {string} pathname
@@ -241,13 +255,30 @@ export function localePagePath(path, pathname = window.location.pathname) {
 }
 
 /**
+ * A path relative to the site root of a page, at any depth: the review root for a page below one
+ * (/language-masters/en/references/header-collection/tcsheader), else the locale root (unlike
+ * localePagePath, which keeps only references/ and error-pages/ in the review root).
+ * @param {string} path e.g. header-collection/tcsheader or references/footer-collection/tcsfooter
+ * @param {string} pathname the current page
+ * @returns {string}
+ */
+const siteRootPagePath = (path, pathname) => {
+  const { root, aemRoot, contentRoot } = getLocale(pathname);
+  const review = reviewRootOf(pathname);
+  const relative = path.replace(/^\//, '');
+  if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
+  return `${review || root}/${relative}`;
+};
+
+/**
  * The path of a configured page (e.g. the nav or footer metadata), else of the locale's default
- * page. A configured value may be an AEM path (/content/tcs-corp/de/de-de/references/nav-jobs),
- * a published path (/de-de/references/nav-jobs) or a path relative to the locale root
- * (references/nav-jobs); it's returned as the path to fetch here: the AEM path when editing,
- * the published path on the site.
+ * page. A configured value may name a page at any path and depth: an AEM path
+ * (/content/tcs-corp/de/de-de/references/nav-jobs), a published path (/de-de/references/nav-jobs),
+ * a URL, or a path relative to the page's site root, its review root or locale root
+ * (references/header-collection/tcsheader, header-collection/tcsheader); it's returned as the path
+ * to fetch here: the AEM path when editing, the published path on the site.
  * @param {string} value the configured path, may be empty
- * @param {string} fallback the default page, relative to the locale root (e.g. error-pages/404)
+ * @param {string} fallback the default page, relative to the locale root (e.g. references/nav)
  * @param {string} [pathname] the current page, defaults to the window's
  * @returns {string}
  */
@@ -255,7 +286,7 @@ export function resolvePagePath(value, fallback, pathname = window.location.path
   const configured = (value || '').trim();
   if (!configured) return localePagePath(fallback, pathname);
   if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) {
-    return localePagePath(configured, pathname);
+    return siteRootPagePath(configured, pathname);
   }
   let path;
   try {
@@ -267,28 +298,6 @@ export function resolvePagePath(value, fallback, pathname = window.location.path
   path = path.replace(/(\.plain)?\.html$/, '');
   const { contentRoot } = getLocale(pathname);
   return contentRoot ? toAemPath(path, contentRoot) : toPublishedPath(path);
-}
-
-/**
- * The path to fetch for a page-property value such as Navigation or Footer (an AEM path, a
- * published path or a path relative to the site root, see resolvePagePath), with no default page:
- * '' when the value is empty or unparsable, so the caller renders nothing instead of guessing.
- * @param {string} [value] the configured (own or inherited) value
- * @param {string} [pathname] the current page, defaults to the window's
- * @returns {string}
- */
-export function configuredPagePath(value, pathname = window.location.pathname) {
-  const configured = (value || '').trim();
-  if (!configured) return '';
-  if (configured.startsWith('/') || /^[a-z]+:/i.test(configured)) {
-    try {
-      // eslint-disable-next-line no-new
-      new URL(configured, 'https://localhost/');
-    } catch {
-      return '';
-    }
-  }
-  return resolvePagePath(configured, '', pathname);
 }
 
 /**
