@@ -26,6 +26,9 @@
   /* a saved entry of a repeatable section */
   --form-variations-entry-bg: var(--grey-100);
 
+  /* an input field under the pointer or with focus: the site's Grey background */
+  --form-variations-field-hover: var(--color-bg-secondary);
+
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -98,6 +101,9 @@ main .section.form-variations-backdrop .form-variations {
   /* brand 400 is too dark for text on the dark background (WCAG 1.4.3): brand 300 */
   --form-variations-brand: var(--brand-300);
   --form-variations-entry-bg: rgb(255 255 255 / 8%);
+
+  /* a light veil on the dark background, so the white text keeps its contrast */
+  --form-variations-field-hover: rgb(255 255 255 / 8%);
 
   background-color: transparent;
 }
@@ -318,6 +324,22 @@ main .section.form-variations-backdrop .form-variations {
 .form-variations :is(.field-text, .field-select, .field-combined, .field-calendar, .field-textarea) {
   min-height: 5.5rem;
   padding: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+/*
+ * Hover (Figma prototype Form 7809-30614): a grey field box instead of the prototype's zoom, in
+ * the 12px padding (nothing moves); the same while the field has focus, for keyboard users; only
+ * on devices that hover, so a tap doesn't leave it grey
+ */
+.form-variations :is(.field-text, .field-select, .field-combined, .field-calendar, .field-textarea):focus-within {
+  background-color: var(--form-variations-field-hover);
+}
+
+@media (hover: hover) {
+  .form-variations :is(.field-text, .field-select, .field-combined, .field-calendar, .field-textarea):hover {
+    background-color: var(--form-variations-field-hover);
+  }
 }
 
 .form-variations .form-variations-group[hidden] {
@@ -1130,7 +1152,7 @@ main .section.form-variations-backdrop .form-variations .form-variations-status 
 @media (prefers-reduced-motion: reduce) {
   .form-variations :is(
     .form-variations-combined-chevron, .form-variations-calendar-label, .form-variations-control,
-    .form-variations-calendar-row
+    .form-variations-calendar-row, .form-variations-group
   ) {
     transition: none;
   }

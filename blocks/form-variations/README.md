@@ -914,6 +914,10 @@ A = Controlling dropdown
 B = Revealed conditional field
 ```
 
+### Field hover (Figma prototype Form 7809-30614)
+
+An input field (text, dropdown, combined, calendar, textarea, also in a repeatable section) shows a grey box under the pointer and while it has focus, instead of the prototype's zoom: `--form-variations-field-hover`, the site's Grey (`--color-bg-secondary`, #F5F5F5) on the light theme, 8% white on the dark theme. It fills the field's 12px padding, so nothing moves; the hover applies only on devices that hover (a tap on a phone leaves no grey), with a 0.2s fade (none for reduced motion). Buttons, the consent checkbox and saved entries keep their own looks.
+
 ### Calendar / Date Field (`field-calendar`)
 
 Purpose: a date (start date, date of birth). The label is the placeholder (`Start Date*`); focused or filled, it moves above three segments `mm` / `dd` / `yyyy`. Digits move on to the next segment (a month 2–9 or a day 4–9 completes it), Left / Right move between segments, Up / Down step a value, Backspace / Delete clear one. The calendar button opens a popup: the month and year, Previous / Next month (up / down arrows), Su–Sa, six weeks of days (today outlined, the chosen date blue; past days and days of other months muted but selectable), **Clear** (back to the placeholder) and **Today**. The date is submitted as `yyyy-mm-dd` under its Field Name. Fields: Field Name / ID, Field Label, Field Width, Mandatory Field, Show only if dropdown value equals. Errors: "This Field Is Mandatory" (empty, mandatory) or "Enter a valid date." (incomplete or impossible, e.g. 02/31), with the empty segments red.
@@ -1259,3 +1263,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: field keys in their own `fieldName` field, double-submit guard, integration outcomes (`detail.respondWith`) | docs/handover revision history | 20 October 2026 |
 | — | Labels visually hidden instead of display: none; autocomplete restored (1.3.5); the score unit select is named (formUnit); decorative contact icons; Back from the placeholder back; tel: links from telHref; outcome announced with form:result (cmp:formSuccess / cmp:formError) | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
 | Branch `harsha` | Calendar / Date Field, CTA Button and Repeatable Section items; Combined Input Field with a text half and a unit selector half; Figma grid (846px form, 88px fields, 12px / 20px gaps), Submit with hug width, Figma tokens and states (inactive with `aria-disabled`, still operable); sizes in rem | Figma Form 7301-25295; user request 25 November 2026 | 25 November 2026 |
+| Branch `harsha` | Field hover: grey field box on hover and focus (site Grey token; 8% white on dark), instead of the prototype's zoom | Figma prototype Form 7809-30614; user confirmation 25 November 2026 | 25 November 2026 |
