@@ -313,6 +313,60 @@ C = Field Width
 D = Show only if dropdown value equals
 ```
 
+```text
+[Screenshot Placeholder]
+
+File name:
+field-calendar-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Calendar / Date Field properties in Universal Editor, with the fields of the table "Fields — Calendar / Date Field" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Field Name / ID
+C = Field Label
+D = Field Width
+E = Mandatory Field (*)
+F = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-cta-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the CTA Button properties in Universal Editor, with the fields of the table "Fields — CTA Button" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Button Label
+C = Button Link / URL
+D = Button Style
+E = Field Width
+F = Show only if dropdown value equals
+```
+
+```text
+[Screenshot Placeholder]
+
+File name:
+field-repeater-dialog-fields-desktop.png
+
+Purpose:
+The dialog of the Repeatable Section properties in Universal Editor, with the fields of the table "Fields — Repeatable Section" in Authorable Fields below.
+
+Annotations:
+A = Field type
+B = Group Name / ID
+C = Section Heading
+D = Save Button Label
+E = Minimum entries
+F = Show only if dropdown value equals
+```
+
 <!-- END GENERATED: screenshots -->
 
 States that exist in the code without a screenshot in the handover:
@@ -406,7 +460,7 @@ B = Inverted primary button
 
 ### Form Variations (`form-variations`)
 
-Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-checkbox`, `field-richtext`, `contact-card`, `field-submit`.
+Model `form-variations`; template name "Form Variations" (the block class AEM renders); children: `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-calendar`, `field-checkbox`, `field-richtext`, `field-repeater`, `contact-card`, `field-cta`, `field-submit`.
 
 #### Content tab — Form Variations
 
@@ -577,6 +631,57 @@ Stored on a new component (definition template): `classes` = `"field-submit"`, `
 | Field type | `classes` | text | No | `field-submit` | — | Read only. | — |
 | Button Label | `label` | text | No | `Send` | — | — | Send |
 | Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Calendar / Date Field (`field-calendar`)
+
+Model `field-calendar`; template name "Calendar / Date Field" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-calendar"`, `fieldWidth` = `"full-width"`, `required` = `false`.
+
+#### Fields — Calendar / Date Field
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-calendar` | — | Read only. | — |
+| Field Name / ID | `fieldName` | text | Yes | — | — | The name the date is submitted under (as yyyy-mm-dd), e.g. startDate. | — |
+| Field Label | `label` | text | Yes | — | — | Shown as the placeholder, then above the mm / dd / yyyy input, e.g. Start Date. | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Mandatory Field (*) | `required` | boolean | No | `false` | on / off | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### CTA Button (`field-cta`)
+
+Model `field-cta`; template name "CTA Button" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-cta"`, `variant` = `"primary"`, `fieldWidth` = `"full-width"`.
+
+#### Fields — CTA Button
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-cta` | — | Read only. | — |
+| Button Label | `label` | text | Yes | — | — | — | — |
+| Button Link / URL | `link` | aem-content | No | — | — | A page or URL the button opens. Empty: a button that doesn't submit the form. | — |
+| Button Style | `variant` | select | No | `primary` | Primary (`primary`), Secondary (`secondary`), Tertiary (`tertiary`) | — | — |
+| Field Width | `fieldWidth` | select | No | `full-width` | Full width (100%) (`full-width`), Half width (50%) (`half-width`) | — | — |
+| Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
+
+### Repeatable Section (`field-repeater`)
+
+Model `field-repeater`; template name "Repeatable Section" (the block class AEM renders).
+
+Stored on a new component (definition template): `classes` = `"field-repeater"`, `minEntries` = `1`.
+
+#### Fields — Repeatable Section
+
+| Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
+| ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
+| Field type | `classes` | text | No | `field-repeater` | — | Read only. | — |
+| Group Name / ID | `fieldName` | text | Yes | — | — | The name the saved entries are submitted under (a list), e.g. academicBackground. | — |
+| Section Heading | `label` | text | Yes | — | — | e.g. ACADEMIC BACKGROUND (ADD ATLEAST THREE). The fields after this item, up to the next Repeatable Section, Consent Checkbox, CTA Button or Submit Button, belong to the section. | — |
+| Save Button Label | `buttonLabel` | text | No | — | — | Empty: Save Details (placeholder saveDetails). | — |
+| Minimum entries | `minEntries` | number | No | `1` | — | The entries a visitor must save before the form can be sent (0: optional). | — |
 | Show only if dropdown value equals | `dependsOn` | text | No | — | — | — | — |
 
 <!-- END GENERATED: fields -->
@@ -809,6 +914,22 @@ A = Controlling dropdown
 B = Revealed conditional field
 ```
 
+### Calendar / Date Field (`field-calendar`)
+
+Purpose: a date (start date, date of birth). The label is the placeholder (`Start Date*`); focused or filled, it moves above three segments `mm` / `dd` / `yyyy`. Digits move on to the next segment (a month 2–9 or a day 4–9 completes it), Left / Right move between segments, Up / Down step a value, Backspace / Delete clear one. The calendar button opens a popup: the month and year, Previous / Next month (up / down arrows), Su–Sa, six weeks of days (today outlined, the chosen date blue; past days and days of other months muted but selectable), **Clear** (back to the placeholder) and **Today**. The date is submitted as `yyyy-mm-dd` under its Field Name. Fields: Field Name / ID, Field Label, Field Width, Mandatory Field, Show only if dropdown value equals. Errors: "This Field Is Mandatory" (empty, mandatory) or "Enter a valid date." (incomplete or impossible, e.g. 02/31), with the empty segments red.
+
+### CTA Button (`field-cta`)
+
+Purpose: a link styled as a button inside the form (e.g. "Download the brochure"); it never submits the form. With a Button Link it is a link, without one a `button type="button"`. Button Style: **Primary** (`#216AC3`, white text), **Secondary** (`#F4F4F4`, `#8E8E8E` border, `#0C0C0D` text), **Tertiary** (text and arrow, the form's text colour). Hug width, 50px, pill, trailing arrow (Figma Buttons). Fields: Button Label, Button Link / URL, Button Style, Field Width, Show only if dropdown value equals.
+
+### Repeatable Section (`field-repeater`)
+
+Purpose: entries a visitor adds one by one, e.g. ACADEMIC BACKGROUND (ADD ATLEAST THREE). The items after it, up to the next Repeatable Section, Consent Checkbox, CTA Button or Submit Button, are the section's fields. **Save Details** looks inactive until the section's mandatory fields are complete (pressing it shows "This Field Is Mandatory" on them); then it turns the brand colour (blue on hover) and saves an entry: a card above the fields with each value (a score as `100%` or `9.2 CGPA`, a date as mm/dd/yyyy) and a delete button, and the fields return to their placeholders. The entries are submitted as a list of objects (field name: value) under the Group Name; the section's own fields aren't submitted or validated on their own. With **Minimum entries** above 0 the form can't be sent until that many are saved ("Save at least {count} entries."). Fields: Group Name / ID, Section Heading, Save Button Label (empty: Save Details), Minimum entries (default 1), Show only if dropdown value equals.
+
+### Combined Input Field (`field-combined`)
+
+The score input takes the left half of the line and the unit selector the right half: a button showing the unit in capitals with a chevron on the right (they never overlap), opening a list of the units with a check mark on the chosen one. The unit is submitted as `{fieldName}Unit` (the first unit until another is chosen, again after a reset) and can drive "Show only if dropdown value equals".
+
 ## Complete Authoring Example
 
 Scenario: the "Contact us" form of the block library (`block-library/form-variations/form-variations`, section Main).
@@ -852,6 +973,10 @@ Steps: add the block, fill the Content tab, add the seven items in that order, p
 - **Focus:** a 2px brand outline on controls (`:focus-visible`).
 - **Reflow:** single column below 900px.
 - **Reduced motion:** the Additional tab animations don't play for reduced motion (AGENTS.md).
+- **Submit and Save Details:** `aria-disabled="true"` until their fields are complete, but still operable, so pressing them lists what is missing; the global `pointer-events: none` of `aria-disabled` buttons is undone in the block.
+- **Calendar:** the segments are numeric text inputs (mobile number keyboard) named Month, Day, Year in a `role="group"` labelled by the field label, `aria-required` when mandatory, `aria-invalid` and the error linked with `aria-describedby`; the calendar button has `aria-haspopup="dialog"`, `aria-expanded`, `aria-controls`; the popup is a non-modal `role="dialog"` with a table of day buttons (full date as name, `aria-current="date"` on today, `aria-pressed` on the chosen date), arrow keys / Home / End / Page Up / Page Down move between days, Escape closes it and returns focus to the button, a click or focus outside closes it. Day cells, the month buttons, Clear and Today are 44 × 44px.
+- **Unit selector:** a button (`aria-haspopup="listbox"`, `aria-expanded`, named by the field label, "unit" and the chosen unit) opening a `role="listbox"` (`aria-activedescendant`, `aria-selected`); Arrow keys, Home / End, Enter / Space choose, Escape closes and returns focus.
+- **Repeatable section:** a `role="group"` named by its heading; saved entries in a list named "Saved entries", each with a 44 × 44px delete button ("Delete entry 2"); "Entry saved." / "Entry deleted." announced in a status; after a delete, focus moves to the next delete button (or the first field).
 
 **Author responsibilities:** a label on every field, only genuinely required fields marked, Input Type Email / Tel where relevant, descriptive link text in the consent text, conditional items placed right after their dropdown.
 
@@ -887,11 +1012,11 @@ This block does not currently expose verified personalization behavior. There is
 
 | Viewport | Layout | Image behavior | Interaction behavior |
 | -------- | ------ | -------------- | -------------------- |
-| Below 600px | One column, every item full width; Dark panel padding `--space-1000` / `--space-600` | No images | Native mobile keyboards per Input Type |
-| 600px and above | One column; Dark panel padding `--space-1200` / `--space-1000` | No images | As below 600px |
-| 900px and above | Two columns: `half-width` text fields side by side, the other items span both columns; Dark panel padding `--space-1600` | No images | As below 600px |
+| Below 768px | One column, every item full width; input fields 88px (12px padding), 12px apart | No images | Native mobile keyboards per Input Type; the date segments open the number keyboard; the calendar popup fits a 390px screen (324px) |
+| 768px and above | Two columns on the 846px form: `half-width` items side by side (413px, 20px apart), the others span both columns; the repeatable section's fields use the same grid | No images | As below 768px |
+| 992px and above | With a background image, the form moves to the left (80px) of the section | Background image on the right | As below 768px |
 
-The "* Required fields" note has no `full-width` class, so from 900px it takes one grid column (handover finding F-32).
+The breakpoints (768px, 992px) are the block's own and differ from the site's 600 / 900 / 1200px (Known Limitations). The buttons hug their label (min 50px high) at every width.
 
 ## For Developers
 
@@ -909,11 +1034,13 @@ blocks/form-variations/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `form-variations.js`: { moveInstrumentation } |
+| [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `form-variations.js`: { decorateButton } |
 | [`decorators/content-decorator.js`](../../decorators/content-decorator.js) | `fromCell` (property content into an element, keeping editor instrumentation) | `form-variations.js`: { fromCell } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `form-variations.js`: { buildHeading } |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `form-variations.js`: { pictureOf } |
+| [`utils/cells.js`](../../utils/cells.js) | `itemRows`, `KEY_VALUE_ITEM`, `FIELD_ROW_ITEM` (the item rows of a block: by model in the editor, by their cells on the page), `withoutTabCells` (drops the empty cell AEM renders for each dialog tab of an item model), `m | `form-variations.js`: { matchCells } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `form-variations.js`: { isInEditor } |
-| [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `form-variations.js`: { linkOf, telHref } |
+| [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `form-variations.js`: { isSafeUrl, linkOf, telHref } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `form-variations.js`: { textOf } |
 | [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `form-variations.js`: { createIdFactory, uniqueId } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `form-variations.js`: { fillPlaceholder, getPlaceholders } |
@@ -960,6 +1087,10 @@ document.addEventListener('form-variations:submit', (e) => {
   e.detail.respondWith(sendToBackEnd(e.detail.data)); // rejected: "couldn’t be sent"
 });
 ```
+
+**Items added in November 2026.** `FIELD_LAYOUT` has `field-calendar` (`fieldName, label, fieldWidth, required, dependsOn`), `field-cta` (`label, link, variant, fieldWidth, dependsOn`) and `field-repeater` (`fieldName, label, buttonLabel, minEntries, dependsOn`). Their rows are read by field name in Universal Editor (`data-aue-prop`), else positionally when there is a cell per field, else by value (`ITEM_MATCHERS` with `matchCells`, `utils/cells.js`): AEM leaves out fields never stored, so a CTA without a link doesn't shift its style. `readItem` never takes their node name as a field. The fields that aren't one native control (calendar, unit selector, repeatable section) keep their behaviour in a `WeakMap` (`CONTROLLERS`: `check`, `show`, `focus`, `reset`, `summary`, `refresh`), used by validation (`checksOf` / `passes`: native controls by their constraints, the others by `check()`, in page order; the repeatable sections' own fields left out), by `refresh()` (Submit and Save Details states) and by the form reset after a success. `groupSections(form)` moves a section's fields into it and renames their controls' `name` to `data-field-name`; `collectData` parses the section's hidden `data-json` input into a list. `.eslintrc.js` allows 6 cells for the three new models.
+
+Placeholders used by the new items (English fallback in code): `dateMonth`, `dateDay`, `dateYear`, `chooseDate`, `previousMonth`, `nextMonth`, `clear`, `today`, `fieldDate`, `learnMore`, `saveDetails`, `savedEntries`, `repeaterMinimum` (`{count}`), `deleteEntry` (`{number}`), `entrySaved`, `entryDeleted`, `yes`.
 
 **Exported functions.** `default decorate(block)`, `readItem(row)` (`{ type, cells }`), `readProperties(cells)` (`{ eyebrowCell, eyebrowIconCell, titleCell, headingLevel, descriptionCell, actionCell, bgImageCell }`), `propertyCell(row)`; `form-variations-properties.js`: `mapProperties(values)`, `headingLevelOf(value)`, `PROPERTY_NAMES`, `HEADING_LEVELS`.
 
@@ -1026,6 +1157,15 @@ graph LR
 | FORM-VARIATIONS-QA-04 | Required errors | Empty Send | "This field is required." under each mandatory field, focus on the first |
 | FORM-VARIATIONS-QA-05 | Email format | Input Type Email, value without @ | "Enter a valid email address." |
 | FORM-VARIATIONS-QA-06 | Textarea limit | Max Character Limit 1000 | Counter 0/1000, input stops at 1000 |
+| FORM-VARIATIONS-QA-20 | Grid (Figma) | 1440px, `drafts/form-variations-fields.html` | Form 846px; half fields 413 × 88px, 20px apart; rows 12px apart |
+| FORM-VARIATIONS-QA-21 | Submit states | Empty form, then complete | `#e6e6e6` / `#949494` at 0.7 with `aria-disabled`, pressing it shows the errors; complete: `#216AC3`, white, darker on hover; width hugs the label |
+| FORM-VARIATIONS-QA-22 | Calendar typing | Click Start Date, type 5, 23, 2026 | 05 / 23 / 2026, the label above; hidden value 2026-05-23 |
+| FORM-VARIATIONS-QA-23 | Calendar popup | Calendar button, arrows, Enter, Escape, Today, Clear | Popup on the chosen month; arrows move across months; Enter picks; Escape closes to the button; Today fills today; Clear back to the placeholder |
+| FORM-VARIATIONS-QA-24 | Mandatory date | Mandatory, empty, Send | "This Field Is Mandatory", red line and segments |
+| FORM-VARIATIONS-QA-25 | Unit selector | Type 8.5, choose Percentage | Text typed on the left half; list with ✓; `scoreUnit` Percentage; reset back to the first unit |
+| FORM-VARIATIONS-QA-26 | Repeatable section | Minimum entries 3; Save Details empty, then filled, three times; delete one | Errors when empty; entry card above the fields ("10th / SSC / 2019 / 100%"); fields reset; Send blocked until 3 entries; data `academicBackground` = list of 3 |
+| FORM-VARIATIONS-QA-27 | CTA Button | Primary with link, Secondary without link, Tertiary | `a` / `button type="button"`; the Figma colours; never submits |
+| FORM-VARIATIONS-QA-28 | Reset | Submit through an integration (`respondWith(Promise.resolve())`) | Every field, the calendar, the unit and the saved entries back to their initial state |
 | FORM-VARIATIONS-QA-07 | Conditional field | Sector = Other | "Please specify your sector" appears and becomes required; status announces it |
 | FORM-VARIATIONS-QA-08 | Contact card | Region = India / Europe | Only the matching card shows; links are `mailto:` / `tel:` |
 | FORM-VARIATIONS-QA-09 | Not connected | No Submit action, no integration | Values kept, "This form isn’t connected yet: your details weren’t sent.", no request |
@@ -1084,7 +1224,11 @@ Evidence to collect (without secrets): page URL on aem.page, the item rows of `{
 | Width derived from the field name; the required note takes one grid column from 900px; the checkbox error sits beside the consent text (F-32) | Layout surprises | Start with a full-width item, pair half-width fields | Not recorded |
 | Item cells read by position (O-18) | A missing cell shifts later values | Set every item field once | Not recorded |
 | Error colours hard-coded (`#c8102e`, `#ff6b6b`) | Not themable by tokens | — | Not recorded |
-| No radio groups, multi-select, file upload, date, number or multi-step forms | Unsupported form types | Other solutions | Not recorded |
+| No radio groups, multi-select, file upload, number or multi-step forms | Unsupported form types | Other solutions | Not recorded |
+| Breakpoints 768px / 992px are the block's own, not the site's 600 / 900 / 1200px | Two columns start at 768px | — | Not recorded (aligning them would move existing forms) |
+| The calendar has no minimum or maximum date; past days are muted but selectable | A start date in the past can be chosen | Validate in the back end | Not recorded (a min / max date field) |
+| Date segments size to their text with `field-sizing: content` (Chromium); other browsers use fixed widths | Slightly wider gaps in mm / dd / yyyy outside Chromium | — | Not planned |
+| The Repeatable Section takes the items up to the next section, consent checkbox, CTA or submit button | A field meant for the whole form must come before the section or after one of them | Order the items | Not planned |
 
 ## Related Documentation
 
@@ -1114,3 +1258,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.27 | Block audit: forms were empty on the published site (item node name and classes in the first cell, empty row per dialog tab); corrected | docs/handover revision history | 19 October 2026 |
 | Handover 2.29 | Re-audit: field keys in their own `fieldName` field, double-submit guard, integration outcomes (`detail.respondWith`) | docs/handover revision history | 20 October 2026 |
 | — | Labels visually hidden instead of display: none; autocomplete restored (1.3.5); the score unit select is named (formUnit); decorative contact icons; Back from the placeholder back; tel: links from telHref; outcome announced with form:result (cmp:formSuccess / cmp:formError) | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
+| Branch `harsha` | Calendar / Date Field, CTA Button and Repeatable Section items; Combined Input Field with a text half and a unit selector half; Figma grid (846px form, 88px fields, 12px / 20px gaps), Submit with hug width, Figma tokens and states (inactive with `aria-disabled`, still operable); sizes in rem | Figma Form 7301-25295; user request 25 November 2026 | 25 November 2026 |

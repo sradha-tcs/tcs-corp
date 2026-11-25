@@ -47,6 +47,12 @@ module.exports = {
       'field-textarea': 7,
       'field-checkbox': 6,
       'field-richtext': 5,
+      // Form Variations items: Field type, the item's fields (calendar: name, label, width,
+      // mandatory, depends on; CTA: label, link, style, width, depends on; repeatable section:
+      // name, heading, save label, minimum entries, depends on)
+      'field-calendar': 6,
+      'field-cta': 6,
+      'field-repeater': 6,
       'contact-card': 8,
       'teaser-link': 5,
       'page-header-cta': 5,

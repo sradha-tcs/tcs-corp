@@ -601,6 +601,59 @@
           }
         },
         {
+          "title": "Calendar / Date Field",
+          "id": "field-calendar",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Calendar / Date Field",
+                  "model": "field-calendar",
+                  "classes": "field-calendar",
+                  "fieldWidth": "full-width",
+                  "required": false
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "CTA Button",
+          "id": "field-cta",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "CTA Button",
+                  "model": "field-cta",
+                  "classes": "field-cta",
+                  "variant": "primary",
+                  "fieldWidth": "full-width"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Repeatable Section",
+          "id": "field-repeater",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Repeatable Section",
+                  "model": "field-repeater",
+                  "classes": "field-repeater",
+                  "minEntries": 1
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Fragment",
           "id": "fragment",
           "plugins": {

@@ -107,7 +107,7 @@ The allowed children come from the filters in [component-filters.json](../../../
 | Conversation Canvas | Conversation Canvas Button (`conversation-canvas-button`) |
 | Filter List | Filter Tag, Filter Category, Filter Page (`filter-list-tag`, `filter-list-category`, `filter-list-page`) |
 | Footer | Footer Link (`footer-link`) |
-| Form Variations | `field-text`, `field-select`, `field-textarea`, `field-checkbox`, `contact-card`, `field-submit` |
+| Form Variations | `field-text`, `field-select`, `field-combined`, `field-textarea`, `field-calendar`, `field-checkbox`, `field-richtext`, `field-repeater` (its fields follow it), `contact-card`, `field-cta`, `field-submit` |
 | Hero | CTA (`hero-cta`) |
 | List | List Item (`list-item`) |
 | Page Header | CTA (`page-header-cta`) |

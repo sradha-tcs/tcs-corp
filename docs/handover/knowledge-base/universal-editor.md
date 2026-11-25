@@ -222,7 +222,7 @@ Sources: [BLOCK-ECOSYSTEM-AUDIT.md](https://github.com/sradha-tcs/tcs-corp-deliv
 
 | Rule | Checks |
 | --- | --- |
-| `xwalk/max-cells` | Cells a model renders (collapse suffixes fold into their base field, `prefix_*` groups count once, tabs don't count, a multi container counts once); key-value models and `*-metadata` models are exempt. Limits: `*` 4, `section` 6, `tabs` 21, `gen-carousel` 18, `columns-container` 22, `table-list` 10, `table-list-card` 6, `list-item` 19, `card` 16, `table-col-5` 5, `field-text` / `field-select` / `field-textarea` 6, `field-checkbox` / `contact-card` 5 |
+| `xwalk/max-cells` | Cells a model renders (collapse suffixes fold into their base field, `prefix_*` groups count once, tabs don't count, a multi container counts once); key-value models and `*-metadata` models are exempt. Limits: `*` 4, `section` 6, `tabs` 21, `gen-carousel` 18, `columns-container` 22, `table-list` 10, `table-list-card` 6, `list-item` 19, `card` 16, `table-col-5` 5, `field-text` / `field-select` / `field-combined` / `field-textarea` 7, `field-checkbox`, `field-calendar`, `field-cta`, `field-repeater` 6, `field-richtext` 5, `contact-card` 8 (as in `.eslintrc.js` on 25 November 2026) |
 | `xwalk/invalid-field-name` | Name syntax (see Naming) |
 | `xwalk/no-duplicate-fields` | No duplicate names in a model |
 | `xwalk/no-orphan-collapsible-fields` | A suffixed field needs its base field |

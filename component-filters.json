@@ -135,9 +135,12 @@
       "field-select",
       "field-combined",
       "field-textarea",
+      "field-calendar",
       "field-checkbox",
       "field-richtext",
+      "field-repeater",
       "contact-card",
+      "field-cta",
       "field-submit"
     ]
   },

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="nav" content="/drafts/no-nav">
+    <meta name="footer" content="/drafts/no-footer">
+    <title>Form Variations fields preview: calendar, CTA, combined, repeatable section</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <script type="module" src="/scripts/scripts.js"></script>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <!--
+        Rows as AEM delivers them (item rows start with "<node name>, <classes>"); the Secondary
+        CTA has no Button Link, so AEM leaves its cell out (read by value, not by position).
+      -->
+      <div>
+        <div class="form-variations">
+          <div><div>Apply for the programme</div></div>
+          <div><div>Tell us about you and your academic background.</div></div>
+          <div><div></div></div>
+          <div>
+            <div>text-input-field, field-text</div>
+            <div>firstName</div>
+            <div>First name</div>
+            <div>text</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>text-input-field, field-text</div>
+            <div>lastName</div>
+            <div>Last name</div>
+            <div>text</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>calendar---date-field, field-calendar</div>
+            <div>startDate</div>
+            <div>Start Date</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>combined-input-field, field-combined</div>
+            <div>overallScore</div>
+            <div>Score</div>
+            <div>CGPA, Percentage</div>
+            <div>half-width</div>
+            <div>false</div>
+            <div></div>
+          </div>
+          <div>
+            <div>repeatable-section, field-repeater</div>
+            <div>academicBackground</div>
+            <div>ACADEMIC BACKGROUND (ADD ATLEAST THREE)</div>
+            <div></div>
+            <div>3</div>
+            <div></div>
+          </div>
+          <div>
+            <div>dropdown---select-field, field-select</div>
+            <div>qualification</div>
+            <div>Qualification</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div>10th, 12th, Graduation, Post Graduation</div>
+            <div></div>
+          </div>
+          <div>
+            <div>text-input-field, field-text</div>
+            <div>board</div>
+            <div>Board / University</div>
+            <div>text</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>text-input-field, field-text</div>
+            <div>passingYear</div>
+            <div>Year of passing</div>
+            <div>text</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>combined-input-field, field-combined</div>
+            <div>score</div>
+            <div>Score</div>
+            <div>CGPA, Percentage</div>
+            <div>half-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>consent-checkbox-field, field-checkbox</div>
+            <div>consent</div>
+            <div><p>I consent to the processing of my personal data entered above for this application.</p></div>
+            <div>full-width</div>
+            <div>true</div>
+            <div></div>
+          </div>
+          <div>
+            <div>cta-button, field-cta</div>
+            <div>Primary</div>
+            <div><a href="/drafts/form-variations-fields">/drafts/form-variations-fields</a></div>
+            <div>primary</div>
+            <div>half-width</div>
+            <div></div>
+          </div>
+          <div>
+            <div>cta-button, field-cta</div>
+            <div>Secondary</div>
+            <div>secondary</div>
+            <div>half-width</div>
+          </div>
+          <div>
+            <div>cta-button, field-cta</div>
+            <div>Tertiary</div>
+            <div></div>
+            <div>tertiary</div>
+            <div>half-width</div>
+            <div></div>
+          </div>
+          <div>
+            <div>submit-button, field-submit</div>
+            <div>Submit Application</div>
+            <div>full-width</div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

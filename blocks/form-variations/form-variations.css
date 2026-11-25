@@ -1,5 +1,7 @@
 /*
- * Form Variations (TCS Designs - Partnerships & Enquiry Form)
+ * Form Variations (TCS Designs - Partnerships & Enquiry Form, Figma Form 7301-25295): fields of
+ * 88px (12px padding) on an 846px form, 12px between rows and 20px between half-width columns.
+ * Sizes in rem (1rem = 16px; the Figma px value in the comments where it helps).
  */
 
 .form-variations {
@@ -12,20 +14,28 @@
   --form-variations-error: #e91d1d;
   --form-variations-btn-bg: #e6e6e6;
   --form-variations-btn-color: #949494;
-  --form-variations-btn-active-bg: #216ac3;
-  --form-variations-btn-active-color: #fff;
+  --form-variations-btn-active-bg: var(--color-bg-brand);
+  --form-variations-btn-active-color: var(--color-text-on-brand);
   --form-variations-select-bg: #fff;
   --form-variations-select-color: #0c0c0d;
   --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23949494' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
 
+  /* the brand colour of text and borders on the form's background (Save Details, calendar icon) */
+  --form-variations-brand: var(--brand-400);
+
+  /* a saved entry of a repeatable section */
+  --form-variations-entry-bg: var(--grey-100);
+
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  min-height: 850px;
+  min-height: 53.125rem;
   padding: 6.5rem 1.5rem 5rem;
   background-color: #fff;
   color: var(--form-variations-text);
-  overflow-x: hidden;
+
+  /* clip, not hidden: hidden would make the block scroll vertically and cut off the popups */
+  overflow-x: clip;
 }
 
 /* Ambient glow gradient when no background image is present */
@@ -35,24 +45,24 @@ main .section:not(.form-variations-backdrop) .form-variations::after {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-  filter: blur(140px);
+  filter: blur(8.75rem);
   z-index: 0;
   opacity: 0.3;
 }
 
 main .section:not(.form-variations-backdrop) .form-variations::before {
-  width: 520px;
-  height: 480px;
-  left: -80px;
-  bottom: -150px;
+  width: 32.5rem;
+  height: 30rem;
+  left: -5rem;
+  bottom: -9.375rem;
   background: #4673db;
 }
 
 main .section:not(.form-variations-backdrop) .form-variations::after {
-  width: 500px;
-  height: 450px;
-  right: -100px;
-  bottom: -120px;
+  width: 31.25rem;
+  height: 28.125rem;
+  right: -6.25rem;
+  bottom: -7.5rem;
   background: #e8b931;
 }
 
@@ -85,22 +95,26 @@ main .section.form-variations-backdrop .form-variations {
   --form-variations-select-color: #fff;
   --form-variations-select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
 
+  /* brand 400 is too dark for text on the dark background (WCAG 1.4.3): brand 300 */
+  --form-variations-brand: var(--brand-300);
+  --form-variations-entry-bg: rgb(255 255 255 / 8%);
+
   background-color: transparent;
 }
 
-/* Form Inner Container */
+/* Form Inner Container: 846px */
 .form-variations .form-variations-inner {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 846px;
+  max-width: 52.875rem;
   margin: 0 auto;
 }
 
 /* When image is authored, align form content towards the left */
 @media (width >= 992px) {
   main .section.form-variations-backdrop .form-variations .form-variations-inner {
-    margin-left: 80px;
+    margin-left: 5rem;
     margin-right: auto;
     text-align: left;
   }
@@ -122,18 +136,18 @@ main .section.form-variations-backdrop .form-variations {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 48px;
-  padding: 0 24px;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.5rem;
   background: #216ac3;
-  border: 1px solid #216ac3;
-  border-radius: 9999px;
+  border: 0.0625rem solid #216ac3;
+  border-radius: var(--radius-full);
   color: #fff;
   font-family: Inter, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.01em;
+  letter-spacing: calc(0.01 * 0.875rem);
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -141,7 +155,7 @@ main .section.form-variations-backdrop .form-variations {
 
 @media (width >= 900px) {
   .form-variations .form-variations-back {
-    left: 80px;
+    left: 5rem;
     top: 2rem;
   }
 }
@@ -153,28 +167,28 @@ main .section.form-variations-backdrop .form-variations {
 .form-variations .form-variations-back::before {
   content: '';
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-left: 0.125rem solid #fff;
+  border-bottom: 0.125rem solid #fff;
   transform: rotate(45deg);
-  margin-right: 4px;
+  margin-right: 0.25rem;
 }
 
 /* Header Area */
 .form-variations .form-variations-header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 3rem;
 }
 
 .form-variations .form-variations-eyebrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 0 auto 16px;
+  gap: 0.5rem;
+  margin: 0 auto 1rem;
   font-family: Inter, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
@@ -196,20 +210,21 @@ main .section.form-variations-backdrop .form-variations {
 }
 
 .form-variations .form-variations-title {
-  margin: 0 0 16px;
+  margin: 0 0 1rem;
   font-family: Inter, sans-serif;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 1.3;
-  letter-spacing: -0.025em;
+  letter-spacing: calc(-0.025 * 2rem);
   color: var(--form-variations-title-color);
   text-transform: uppercase;
 }
 
 @media (width >= 768px) {
   .form-variations .form-variations-title {
-    font-size: 40px;
-    line-height: 56px;
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+    letter-spacing: calc(-0.025 * 2.5rem);
   }
 }
 
@@ -252,29 +267,34 @@ main .section.form-variations-backdrop .form-variations {
   margin: 0 auto;
   font-family: Inter, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--form-variations-desc-color);
 }
 
 @media (width >= 768px) {
   .form-variations .form-variations-description {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     font-weight: 500;
   }
 }
 
-/* Form Fields Grid */
-.form-variations .form-variations-form {
+/*
+ * Form Fields Grid (Figma): 12px between rows, 20px between two half-width columns, so a
+ * half-width field is 413px and a full-width one 846px on the 846px form
+ */
+.form-variations :is(.form-variations-form, .form-variations-repeater-fields) {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px 40px;
+  grid-template-columns: minmax(0, 1fr);
+
+  /* rows 12px apart, half-width columns 20px apart */
+  gap: 0.75rem 1.25rem;
 }
 
 @media (width >= 768px) {
-  .form-variations .form-variations-form {
-    grid-template-columns: repeat(2, 1fr);
+  .form-variations :is(.form-variations-form, .form-variations-repeater-fields) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .form-variations .form-variations-group.half-width {
@@ -290,6 +310,14 @@ main .section.form-variations-backdrop .form-variations {
   position: relative;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* the input fields: 88px with 12px padding (Figma Form Fill) */
+.form-variations :is(.field-text, .field-select, .field-combined, .field-calendar, .field-textarea) {
+  min-height: 5.5rem;
+  padding: 0.75rem;
 }
 
 .form-variations .form-variations-group[hidden] {
@@ -309,20 +337,21 @@ main .section.form-variations-backdrop .form-variations {
   border: 0;
 }
 
-/* Underline Inputs */
+/* Underline Inputs (Figma: 14px / 22px text, a #b2b2b2 line 12px below it) */
 .form-variations .form-variations-control {
   box-sizing: border-box;
   width: 100%;
-  height: 48px;
-  padding: 12px 0 8px;
+  height: 3rem;
+  padding: 0.75rem 0 0.5rem;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--form-variations-input-border);
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
+  border-radius: 0;
   color: var(--form-variations-text);
   font-family: Inter, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: calc(0.01 * 0.875rem);
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -342,7 +371,7 @@ main .section.form-variations-backdrop .form-variations {
   background-image: var(--form-variations-select-arrow);
   background-repeat: no-repeat;
   background-position: right 0 center;
-  background-size: 16px;
+  background-size: 1rem;
 }
 
 .form-variations select option {
@@ -351,37 +380,410 @@ main .section.form-variations-backdrop .form-variations {
 }
 
 .form-variations textarea.form-variations-control {
-  min-height: 48px;
+  min-height: 3rem;
   resize: vertical;
-  padding-bottom: 4px;
+  padding-bottom: 0.25rem;
 }
 
 .form-variations .form-variations-counter {
   align-self: flex-end;
   font-family: Inter, sans-serif;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--form-variations-muted);
-  margin-top: 4px;
+  margin-top: 0.25rem;
 }
 
-/* Combined Score Row */
+/*
+ * Combined Score Row: the text input on the left half, the unit selector (a button opening a
+ * listbox) on the right half; the unit and its chevron never overlap
+ */
 .form-variations .form-variations-combined-row {
+  position: relative;
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--form-variations-input-border);
+  align-items: stretch;
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
 }
 
 .form-variations .form-variations-combined-row .form-variations-combined-input {
+  flex: 1 1 50%;
+  min-width: 0;
   border-bottom: 0;
-  flex: 1;
 }
 
-.form-variations .form-variations-combined-row .form-variations-combined-select {
+.form-variations .form-variations-combined-unit {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.form-variations .form-variations-combined-toggle {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  margin: 0;
+  padding: 0.75rem 0 0.5rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--form-variations-text);
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: calc(0.04 * 0.875rem);
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-variations .form-variations-combined-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-variations .form-variations-combined-chevron {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  background-image: var(--form-variations-select-arrow);
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: transform 0.2s ease;
+}
+
+.form-variations .form-variations-combined-toggle[aria-expanded='true'] .form-variations-combined-chevron {
+  transform: rotate(180deg);
+}
+
+.form-variations .form-variations-combined-options {
+  position: absolute;
+  inset: calc(100% + 0.0625rem) 0 auto;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 0.0625rem solid var(--form-variations-input-border);
+  background-color: var(--form-variations-select-bg);
+  box-shadow: var(--shadow-300);
+}
+
+.form-variations .form-variations-combined-options[hidden] {
+  display: none;
+}
+
+.form-variations .form-variations-combined-option {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
+  color: var(--form-variations-select-color);
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: calc(0.04 * 0.875rem);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-variations .form-variations-combined-option:last-child {
   border-bottom: 0;
-  flex: 0 0 auto;
-  min-width: 6.5rem;
-  text-align: right;
+}
+
+.form-variations .form-variations-combined-option:is(:hover, .is-active) {
+  background-color: rgb(33 106 195 / 12%);
+}
+
+.form-variations .form-variations-combined-option[aria-selected='true']::after {
+  content: '✓' / '';
+  color: var(--form-variations-brand);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/*
+ * Calendar / Date Field: the label as placeholder; focused or filled, the label above mm / dd /
+ * yyyy and a calendar popup
+ */
+.form-variations .field-calendar .form-variations-calendar-label {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.75rem;
+  color: var(--form-variations-desc-color);
+  font-family: Inter, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: calc(0.08 * 0.75rem);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.form-variations .form-variations-calendar-row {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0.75rem 2.5rem 0.5rem 0;
+  border-bottom: 0.0625rem solid var(--form-variations-input-border);
+  color: var(--form-variations-text);
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: calc(0.01 * 0.875rem);
+  cursor: text;
+  transition: border-color 0.2s ease;
+}
+
+.form-variations .field-calendar:focus-within .form-variations-calendar-row {
+  border-bottom-color: var(--form-variations-input-focus);
+}
+
+.form-variations .form-variations-calendar-placeholder {
+  position: absolute;
+  inset: 0.75rem 2.5rem 0.5rem 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.form-variations .form-variations-calendar-segments {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+}
+
+.form-variations .field-calendar:is(.is-active, .has-value, .is-invalid) .form-variations-calendar-label,
+.form-variations .field-calendar:is(.is-active, .has-value, .is-invalid) .form-variations-calendar-segments {
+  opacity: 1;
+}
+
+.form-variations .field-calendar:is(.is-active, .has-value, .is-invalid) .form-variations-calendar-placeholder {
+  opacity: 0;
+}
+
+.form-variations .form-variations-calendar-segment {
+  box-sizing: border-box;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.125rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+  outline: none;
+  caret-color: transparent;
+}
+
+.form-variations .form-variations-calendar-segment[data-part='year'] {
+  width: 2.25rem;
+}
+
+/* each segment as wide as its text, so the date reads mm/dd/yyyy without gaps (Figma) */
+@supports (field-sizing: content) {
+  .form-variations .form-variations-calendar-segment,
+  .form-variations .form-variations-calendar-segment[data-part='year'] {
+    field-sizing: content;
+    width: auto;
+    min-width: 0.5rem;
+    padding-inline: 0.0625rem;
+  }
+}
+
+.form-variations .form-variations-calendar-segment::placeholder {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* the segment being typed: blue, white text */
+.form-variations .form-variations-calendar-segment:focus {
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+.form-variations .form-variations-calendar-segment:focus::placeholder {
+  color: var(--color-text-on-brand);
+  opacity: 1;
+}
+
+.form-variations .form-variations-calendar-separator {
+  padding-inline: 0.0625rem;
+  opacity: 0.85;
+}
+
+.form-variations .form-variations-calendar-toggle {
+  position: absolute;
+  top: calc(50% - 1.375rem + 0.125rem);
+  right: -0.625rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--form-variations-brand);
+  cursor: pointer;
+}
+
+.form-variations .form-variations-calendar-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* the popup: white in both themes (Figma), above the fields below */
+.form-variations .form-variations-calendar-popup {
+  --form-variations-calendar-day: 2.75rem;
+
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  width: min(calc(7 * var(--form-variations-calendar-day) + 1rem), calc(100vw - 2rem));
+  padding: 0.5rem;
+  border: 0.0625rem solid var(--slate-400);
+  background-color: var(--white-1000);
+  color: var(--black-1000);
+  box-shadow: var(--shadow-300);
+  cursor: default;
+}
+
+.form-variations .form-variations-calendar-popup[hidden] {
+  display: none;
+}
+
+.form-variations .form-variations-calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline-start: 0.5rem;
+}
+
+.form-variations .form-variations-calendar-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+  letter-spacing: calc(-0.005 * 1rem);
+}
+
+.form-variations .form-variations-calendar-navs {
+  display: flex;
+}
+
+.form-variations .form-variations-calendar-nav {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--black-1000);
+  cursor: pointer;
+}
+
+.form-variations .form-variations-calendar-nav::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentcolor;
+  mask: url('../../icons/arrow-down.svg') center / contain no-repeat;
+}
+
+.form-variations .form-variations-calendar-previous::before {
+  transform: rotate(180deg);
+}
+
+.form-variations .form-variations-calendar-grid {
+  width: 100%;
+  margin: 0.25rem 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.form-variations .form-variations-calendar-grid th {
+  height: 2.25rem;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  text-align: center;
+}
+
+.form-variations .form-variations-calendar-grid td {
+  padding: 0;
+  text-align: center;
+}
+
+.form-variations .form-variations-calendar-day {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--form-variations-calendar-day);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.125rem;
+  background: transparent;
+  color: var(--black-1000);
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.form-variations .form-variations-calendar-day:hover {
+  background-color: var(--grey-100);
+}
+
+/* days before today and of the other months: muted, still selectable (4.5:1 on white) */
+.form-variations .form-variations-calendar-day:is(.is-past, .is-outside) {
+  color: var(--slate-600);
+}
+
+.form-variations .form-variations-calendar-day.is-today {
+  outline: 0.125rem solid var(--black-1000);
+  outline-offset: -0.125rem;
+}
+
+.form-variations .form-variations-calendar-day.is-selected {
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+.form-variations .form-variations-calendar-foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-variations .form-variations-calendar-action {
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-bg-brand);
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-variations .form-variations-calendar-action:hover {
+  text-decoration: underline;
 }
 
 /* Error States */
@@ -389,34 +791,44 @@ main .section.form-variations-backdrop .form-variations {
   border-bottom-color: var(--form-variations-error) !important;
 }
 
-.form-variations .form-variations-combined-row:has([aria-invalid='true']) {
+.form-variations :is(
+  .form-variations-combined-row:has([aria-invalid='true']),
+  .field-calendar.is-invalid .form-variations-calendar-row
+) {
   border-bottom-color: var(--form-variations-error) !important;
 }
 
-.form-variations .form-variations-error {
-  margin: 6px 0 0;
-  font-family: Inter, sans-serif;
-  font-size: 12px;
-  line-height: 14px;
+.form-variations .form-variations-calendar-segment[aria-invalid='true'],
+.form-variations .form-variations-calendar-segment[aria-invalid='true']::placeholder {
   color: var(--form-variations-error);
 }
 
-/* Checkbox (Consent) */
+/* in the 16px below the field (Figma), so a field doesn't grow when its error shows */
+.form-variations .form-variations-error {
+  margin: 0.25rem 0 0;
+  font-family: Inter, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--form-variations-error);
+}
+
+/* Checkbox (Consent): a 13px box, 12px before the 14px / 20px text */
 .form-variations .field-checkbox {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  padding-inline: 0.75rem;
 }
 
 .form-variations .form-variations-checkbox {
-  width: 14px;
-  height: 14px;
-  margin: 3px 0 0;
-  border: 1px solid var(--form-variations-text);
-  border-radius: 3px;
-  accent-color: #216ac3;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  margin: 0.1875rem 0 0;
+  border: 0.0625rem solid var(--form-variations-text);
+  border-radius: 0.1875rem;
+  accent-color: var(--color-bg-brand);
   cursor: pointer;
   flex: none;
 }
@@ -425,8 +837,9 @@ main .section.form-variations-backdrop .form-variations {
   flex: 1;
   min-width: 0;
   font-family: Inter, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: calc(0.04 * 0.875rem);
   color: var(--form-variations-text);
   cursor: pointer;
 }
@@ -440,15 +853,16 @@ main .section.form-variations-backdrop .form-variations {
 .form-variations .field-checkbox .form-variations-error {
   flex-basis: 100%;
   width: 100%;
-  margin: 4px 0 0 26px;
+  margin: 0.25rem 0 0 1.5625rem;
 }
 
 /* Rich Text Item */
 .form-variations .field-richtext {
-  margin-top: -12px;
+  margin-top: 1.75rem;
+  padding-inline: 0.75rem;
   font-family: Inter, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--form-variations-text);
 }
 
@@ -460,13 +874,13 @@ main .section.form-variations-backdrop .form-variations {
 
 /* Contact Card */
 .form-variations .form-variations-contact-card {
-  margin-top: 16px;
+  margin-top: 1rem;
 }
 
 .form-variations .form-variations-contact-name {
-  margin: 0 0 16px;
+  margin: 0 0 1rem;
   color: #216ac3;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -476,13 +890,13 @@ main .section.form-variations-backdrop .form-variations {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .form-variations .form-variations-contact-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .form-variations .form-variations-contact-item a {
@@ -490,54 +904,211 @@ main .section.form-variations-backdrop .form-variations {
   text-decoration: none;
 }
 
-/* Submit Button Container & Pill */
-.form-variations .field-submit {
+/*
+ * Repeatable section: the heading, the saved entries, the section's fields and Save Details
+ */
+.form-variations .field-repeater {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.form-variations .form-variations-repeater-heading {
+  margin: 0;
+  padding-inline: 0.75rem;
+  color: var(--form-variations-text);
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  letter-spacing: calc(0.1 * 1rem);
+  text-transform: uppercase;
+}
+
+.form-variations .form-variations-repeater-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.form-variations .form-variations-repeater-entries[hidden] {
+  display: none;
+}
+
+.form-variations .form-variations-repeater-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  min-height: 3.5rem;
+  padding: 0.375rem 0.375rem 0.375rem 1rem;
+  border-radius: var(--radius-m);
+  background-color: var(--form-variations-entry-bg);
+  color: var(--form-variations-text);
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: calc(0.01 * 0.875rem);
+}
+
+.form-variations .form-variations-repeater-value {
+  flex: 1 1 0;
+  min-width: 4rem;
+  overflow-wrap: anywhere;
+}
+
+.form-variations .form-variations-repeater-delete {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.form-variations .form-variations-repeater-delete:hover {
+  background-color: rgb(127 127 127 / 20%);
+}
+
+.form-variations .form-variations-repeater-actions {
+  display: flex;
+}
+
+/*
+ * Buttons (Figma Button): hug width, 50px, pill, 12px 16px 12px 24px, 8px to the trailing arrow
+ * (styles/styles.css .button); 14px medium label. Submit and Save Details stay operable while they
+ * look inactive (aria-disabled), so pressing them shows what is missing.
+ */
+.form-variations .field-submit,
+.form-variations .field-cta {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 16px;
+}
+
+.form-variations .field-submit {
+  margin-top: 1.75rem;
   grid-column: 1 / -1;
 }
 
-.form-variations .field-submit button.button,
-.form-variations button.button.primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.form-variations :is(.field-submit, .field-cta, .form-variations-repeater-actions) .button {
   box-sizing: border-box;
-  width: 115px !important;
-  max-width: 115px !important;
-  height: 50px !important;
-  min-height: 50px !important;
-  padding: 12px 24px;
-  gap: 8px;
-  border: none;
-  border-radius: 9999px;
-  background-color: var(--form-variations-btn-bg);
-  color: var(--form-variations-btn-color) !important;
+  width: auto;
+  max-width: none;
+  min-height: 3.125rem;
+  padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
+  gap: var(--space-200);
+  border-radius: var(--radius-full);
   font-family: Inter, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
   line-height: 1;
-  letter-spacing: 0.01em;
-  text-align: center;
+  letter-spacing: calc(0.01 * 0.875rem);
+  white-space: nowrap;
+}
+
+.form-variations :is(.field-submit, .form-variations-repeater-actions) button.button[aria-disabled='true'] {
+  pointer-events: auto;
   cursor: pointer;
-  flex: none;
-  transition: all 0.2s ease;
 }
 
-.form-variations .field-submit button.button::after {
-  content: '→';
-  display: inline-block;
-  font-size: 16px;
-  line-height: 1;
-  margin-left: 2px;
+/* Submit: inactive until the form is complete, then Primary */
+.form-variations .field-submit button.button {
+  border-color: transparent;
+  background-color: var(--form-variations-btn-bg);
+  color: var(--form-variations-btn-color);
+  opacity: 0.7;
 }
 
-.form-variations .field-submit button.button:hover,
-.form-variations form:valid .field-submit button.button {
+.form-variations .field-submit button.button.is-ready {
   background-color: var(--form-variations-btn-active-bg);
-  color: var(--form-variations-btn-active-color) !important;
+  color: var(--form-variations-btn-active-color);
+  opacity: 1;
+}
+
+.form-variations .field-submit button.button.is-ready:hover {
+  background-color: color-mix(in srgb, var(--color-bg-brand) 85%, var(--black-1000));
+}
+
+.form-variations .field-submit button.button.is-ready:active {
+  background-color: color-mix(in srgb, var(--color-bg-brand) 70%, var(--black-1000));
+}
+
+/* CTA Button: Primary, Secondary, Tertiary (Figma Buttons) */
+.form-variations .field-cta .button.primary,
+.form-variations .field-cta .button.primary:is(:hover, :focus-visible, :active) {
+  border-color: var(--color-bg-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
+}
+
+.form-variations .field-cta .button.primary:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--color-bg-brand) 85%, var(--black-1000));
+  background-color: color-mix(in srgb, var(--color-bg-brand) 85%, var(--black-1000));
+}
+
+.form-variations .field-cta .button.primary:active {
+  background-color: color-mix(in srgb, var(--color-bg-brand) 70%, var(--black-1000));
+}
+
+.form-variations .field-cta .button.secondary {
+  /* Figma Secondary: values with no site token */
+  --form-variations-cta-secondary-bg: #f4f4f4;
+  --form-variations-cta-secondary-border: #8e8e8e;
+
+  border-color: var(--form-variations-cta-secondary-border);
+  background-color: var(--form-variations-cta-secondary-bg);
+  color: var(--black-1000);
+}
+
+.form-variations .field-cta .button.secondary:is(:hover, :focus-visible) {
+  border-color: var(--color-bg-brand);
+  background-color: var(--white-1000);
+  color: var(--color-bg-brand);
+}
+
+.form-variations .field-cta .button.tertiary,
+.form-variations .field-cta .button.tertiary:is(:hover, :focus-visible) {
+  min-height: 3.125rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--form-variations-text);
+}
+
+.form-variations .field-cta .button.tertiary:hover {
+  text-decoration: underline;
+}
+
+/* Save Details: muted until the section's fields are complete, then the brand colour */
+.form-variations .form-variations-repeater-actions button.button.form-variations-repeater-save {
+  border: 0.0625rem solid var(--form-variations-input-border);
+  background-color: transparent;
+  color: var(--form-variations-btn-color);
+  opacity: 0.7;
+}
+
+.form-variations .form-variations-repeater-actions button.button.form-variations-repeater-save.is-ready {
+  border-color: var(--form-variations-brand);
+  color: var(--form-variations-brand);
+  opacity: 1;
+}
+
+.form-variations .form-variations-repeater-actions button.button.form-variations-repeater-save.is-ready:is(:hover, :focus-visible) {
+  border-color: var(--color-bg-brand);
+  background-color: var(--color-bg-brand);
+  color: var(--color-text-on-brand);
 }
 
 .form-variations .form-variations-required-note {
@@ -545,7 +1116,22 @@ main .section.form-variations-backdrop .form-variations {
 }
 
 .form-variations .form-variations-status {
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: 1rem;
+  font-size: 0.875rem;
   color: #216ac3;
+}
+
+/* the status on the dark background: brand 300 (WCAG 1.4.3) */
+.form-variations.dark .form-variations-status,
+main .section.form-variations-backdrop .form-variations .form-variations-status {
+  color: var(--form-variations-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-variations :is(
+    .form-variations-combined-chevron, .form-variations-calendar-label, .form-variations-control,
+    .form-variations-calendar-row
+  ) {
+    transition: none;
+  }
 }

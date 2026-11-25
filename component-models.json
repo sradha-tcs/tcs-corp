@@ -12289,6 +12289,187 @@
     ]
   },
   {
+    "id": "field-calendar",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-calendar",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fieldName",
+        "label": "Field Name / ID",
+        "required": true,
+        "description": "The name the date is submitted under (as yyyy-mm-dd), e.g. startDate."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Field Label",
+        "required": true,
+        "description": "Shown as the placeholder, then above the mm / dd / yyyy input, e.g. Start Date."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "required",
+        "label": "Mandatory Field (*)",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals"
+      }
+    ]
+  },
+  {
+    "id": "field-cta",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-cta",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Button Label",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Button Link / URL",
+        "description": "A page or URL the button opens. Empty: a button that doesn't submit the form."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "variant",
+        "label": "Button Style",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "name": "Tertiary",
+            "value": "tertiary"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals"
+      }
+    ]
+  },
+  {
+    "id": "field-repeater",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-repeater",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fieldName",
+        "label": "Group Name / ID",
+        "required": true,
+        "description": "The name the saved entries are submitted under (a list), e.g. academicBackground."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Section Heading",
+        "required": true,
+        "description": "e.g. ACADEMIC BACKGROUND (ADD ATLEAST THREE). The fields after this item, up to the next Repeatable Section, Consent Checkbox, CTA Button or Submit Button, belong to the section."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buttonLabel",
+        "label": "Save Button Label",
+        "description": "Empty: Save Details (placeholder saveDetails)."
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "minEntries",
+        "label": "Minimum entries",
+        "value": 1,
+        "min": 0,
+        "max": 20,
+        "description": "The entries a visitor must save before the form can be sent (0: optional)."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
