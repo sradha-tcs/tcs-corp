@@ -176,6 +176,20 @@ export function getParentPages(pathname = window.location.pathname) {
 }
 
 /**
+ * The URLs a published page may be served at, the expected one first. A root (Home) page is
+ * published as its folder's index (/language-masters/en/) where the site's paths.json maps the root
+ * page (/content/<site>/language-masters/en:/language-masters/en/), else at its own path
+ * (/language-masters/en): both are tried, the second only when the first is missing. Other pages
+ * and AEM page URLs (Universal Editor) have one form.
+ * @param {string} url a URL of getParentPages
+ * @returns {string[]}
+ */
+export function pageUrlForms(url) {
+  if (url.length > 1 && url.endsWith('/') && !CONTENT_ROOT.test(url)) return [url, url.slice(0, -1)];
+  return [url];
+}
+
+/**
  * Converts an AEM page path (/content/tcs-corp/de/de-de/about) to its published path
  * (/de-de/about), following paths.json; other paths are returned unchanged.
  * @param {string} pathname

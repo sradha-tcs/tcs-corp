@@ -665,7 +665,7 @@ blocks/header/
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `header.js`: { removeButtonDecoration } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { getPlaceholders } |
 | [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v3-*`; minimum reserved: 5.625rem below 1200px, 7.75rem from 1200px) and reserved on the ne | `header.js`: { rememberHeaderSpace } |
-| [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel and cached per session) | `header.js`: { getInheritedMetadata } |
+| [`utils/inherited-metadata.js`](../../utils/inherited-metadata.js) | `getInheritedMetadata`, `INHERITED_METADATA` (nav, footer and error-page of the page, else of the nearest parent page up to Home; parent heads loaded in parallel, read only up to `</head>`, and cached per session (`sessi | `header.js`: { getInheritedMetadata } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `header.js`: { resolvePagePath } |
 
 <!-- END GENERATED: files -->
@@ -676,7 +676,7 @@ blocks/header/
 
 **Decoration flow (`decorate`).**
 
-1. Starts `loadFragment(resolvePagePath('', 'references/nav'))` at once, in parallel with `getInheritedMetadata('nav')` and `getPlaceholders()`; a configured nav page that returns nothing falls back to the default.
+1. `getInheritedMetadata('nav')` (the page's own value, else the nearest parent page's up to the root page, read in either URL form of the root, KB-D-078) and `getPlaceholders()` in parallel; loads the configured nav page; the locale's `references/nav` only without a value or when the configured page returns nothing (no request for it otherwise).
 2. No fragment: the block stays empty (`--header-reserved` keeps the space).
 3. Moves the sections into `nav#nav[aria-label]`; sections with a `.conversation-canvas` are taken out (a TCS Header in the same section is kept in its own section).
 4. `applyLogoBar`: a `.tcs-header` block supplies `nav-brand` / `nav-tools`; else sections 1–3 get `nav-brand`, `nav-sections`, `nav-tools`.
@@ -896,3 +896,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.29 | Re-audit: no menu button without a menu (R-D-14) | docs/handover revision history; docs/audit/REAUDIT-2026-10-20.md | 20 October 2026 |
 | Handover 2.36 | Header blocks' modules and stylesheets preloaded (load time, F-106) | docs/handover revision history | 20 October 2026 |
 | — | The nav's label comes from the placeholder mainNavigation (getPlaceholders returns a function); the scroll state is updated once per frame | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
+| — | Inherited Navigation read from the root page in both URL forms (`/<root>/`, else `/<root>`; the live ultimatix header was empty), parent heads only; `references/nav` requested only without a value or when the configured page can't load | KB-D-078 (Approved), branch fix/header-footer-root-page | 25 November 2026 |

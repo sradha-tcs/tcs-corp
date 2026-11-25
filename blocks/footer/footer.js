@@ -106,11 +106,18 @@ async function decorateFooterBar(block) {
  * @param {Element} block
  */
 async function decoratePageFooter(block) {
-  // the Footer page property of the page or, inherited, of its nearest parent page up to Home
-  // (or the metadata sheet's footer column), else the locale's references/footer
-  const footerPath = resolvePagePath(await getInheritedMetadata('footer'), 'references/footer');
+  // the Footer page property of the page or, inherited, of its nearest parent page up to the root
+  // page (or the metadata sheet's footer column), at any path; the locale's references/footer only
+  // when there is no value or the configured page can't load (as the header)
+  const footerFragment = getInheritedMetadata('footer').then(async (value) => {
+    const defaultPath = resolvePagePath('', 'references/footer');
+    const footerPath = resolvePagePath(value, 'references/footer');
+    const fragment = await loadFragment(footerPath);
+    if (fragment || footerPath === defaultPath) return fragment;
+    return loadFragment(defaultPath);
+  });
   const [fragment, socialLinks, t] = await Promise.all([
-    loadFragment(footerPath), getSocialLinks(), getPlaceholders(),
+    footerFragment, getSocialLinks(), getPlaceholders(),
   ]);
 
   block.textContent = '';

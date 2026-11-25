@@ -329,7 +329,7 @@ Troubleshooting by symptom: handover Part 13 — Global Troubleshooting Guide.
 | Pages read from HTML | Rows for pages missing from the index (AEM author) | `Map` per page view | `utils/query-index.js` `getPagesAt` |
 | Placeholders, taxonomy, redirects | Locale sheets | One promise per page view | `utils/placeholders.js`, `utils/taxonomy.js`, `utils/redirects.js` |
 | Data sheets | Authors, locations, partners, social links, media contacts | `Map` per sheet per page view | `utils/data.js` |
-| Inherited metadata | `nav`, `footer`, `error-page` of parent pages | In memory per page view and `sessionStorage` key `tcs-inherited-metadata` for the browser session (a changed parent value shows in a new session) | `utils/inherited-metadata.js` |
+| Inherited metadata | `nav`, `footer`, `error-page` of parent pages | In memory per page view and `sessionStorage` key `tcs-inherited-metadata-v2` for the browser session (v2: root pages read in both URL forms, KB-D-078) (a changed parent value shows in a new session) | `utils/inherited-metadata.js` |
 | Font flag | `fonts-loaded` | `sessionStorage`, browser session; not set on `localhost` | `scripts/scripts.js` |
 | Header height | `header-height-v2-{breakpoint}` (rem) | `localStorage`, no expiry; refreshed when the header loads | `utils/header-space.js` |
 | Header overlay mode | `header-overlay-v1` (`always` / `never`; removed for Auto) | `localStorage`, no expiry; set when the header's TCS Header loads, applied in the eager phase (`<html data-header-overlay>`) | `utils/header-space.js` |

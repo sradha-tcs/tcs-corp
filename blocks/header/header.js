@@ -70,12 +70,16 @@ function setupScrollFallback(navWrapper) {
 }
 
 export default async function decorate(block) {
-  const defaultPath = resolvePagePath('', 'references/nav');
-  const defaultFragment = loadFragment(defaultPath);
+  // the Navigation page: the page's own Navigation value (page property or metadata), else the
+  // nearest parent page's up to the root page, at any path; the locale's references/nav only when
+  // there is no value or the configured page can't load (requested only then: no 404 for a site
+  // without it)
   const navFragment = getInheritedMetadata('nav').then(async (value) => {
+    const defaultPath = resolvePagePath('', 'references/nav');
     const navPath = resolvePagePath(value, 'references/nav');
-    if (navPath === defaultPath) return defaultFragment;
-    return (await loadFragment(navPath)) || defaultFragment;
+    const fragment = await loadFragment(navPath);
+    if (fragment || navPath === defaultPath) return fragment;
+    return loadFragment(defaultPath);
   });
 
   const [t, fragment] = await Promise.all([getPlaceholders(), navFragment]);
