@@ -677,6 +677,7 @@ blocks/page-header/
 | [`scripts/aem.js`](../../scripts/aem.js) | Edge Delivery core library (block loading, CSS, metadata, optimized pictures) | `page-header.js`: { toClassName } |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `page-header.js`: { moveInstrumentation } |
 | [`decorators/article-meta-decorator.js`](../../decorators/article-meta-decorator.js) | `buildPublished`, `buildReadingTime`, `buildPageActions` (listen / download / share), `buildAuthorLockup` | `page-header.js`: { buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime, } |
+| [`decorators/date-decorator.js`](../../decorators/date-decorator.js) | `buildTime` (`<time>` for a date) | `page-header.js`: { buildTime } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `page-header.js`: { decorateButton } |
 | [`decorators/editor-item-decorator.js`](../../decorators/editor-item-decorator.js) | `buildEditorItems`, `editorItemHint` (in Universal Editor, an item the block doesn't render yet, e.g. a CTA just added, as a dashed placeholder the author can select; styles in `styles/lazy-styles.css`; the hint loaded o | `page-header.js`: { buildEditorItems, editorItemHint } |
 | [`decorators/heading-decorator.js`](../../decorators/heading-decorator.js) | `buildHeading` (Title + Title Type), `HEADINGS` | `page-header.js`: { HEADINGS } |
@@ -746,7 +747,7 @@ div.page-header.<layout>[.page-header-has-image]
 | Dependency | Purpose | Location | Impact if unavailable |
 | ---------- | ------- | -------- | --------------------- |
 | Page properties | Title, Description, Page Type, Tags | AEM page | No H1 / description; Default layout falls back to Article |
-| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, listen-link, sheet-page-type (overrides the page's page-type) | `/{locale}/metadata.json` | Those parts are left out |
+| Bulk metadata sheet | content-type, publish-date, reading-time, author-id, author, featured-image, image-alt, audio-file-path (else listen-link), sheet-page-type (overrides the page's page-type) | `/{locale}/metadata.json` | Those parts are left out |
 | Authors sheet | Author lockup | `/{locale}/data/authors.json` | No lockup (only the `author` name if set) |
 | Taxonomy | Tag labels | `/{locale}/taxonomy.json` | Labels derived from tag IDs |
 | Placeholders | `published`, `minRead`, `listenToThisPage`, `downloadThisPage`, `shareThisPage`, `linkCopied`, `opensInNewTab`, `itemEditorHint` | `/{locale}/placeholders.json` | English fallbacks |
@@ -875,3 +876,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.18 | Additional tab Content animation | docs/handover revision history | 18 October 2026 |
 | Not recorded | Layout CTA Alignment Left (`cta-alignment-left`): the CTAs below the title on the left. CTA List: Primary CTA Text Color / Background (Primary only) and Secondary CTA Text Color / Background (Secondary only), always shown: Universal Editor doesn't evaluate conditions per entry inside the multi container (KB-D-062, confirmed); text White, Blue, Black (`cta-text-*`), background White, Blue, Translucent white (`button-bg-*`, the Teaser's colours); a CTA applies only its own style's values | fix/page-header-styles | 14 November 2026 |
 | — | Author LinkedIn and listen links only for http(s) or path values (isSafeUrl) | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
+| Not recorded | The listen action reads the metadata column `audio-file-path` (the migrated sheets' column), else `listen-link` (`utils/metadata.js`); Timing Alignment Left shows content type, published date and reading time as one line after the tags ("Insights \| Published 20/11/26 \| 5 min read", the date a `<time>`); date and reading time no longer uppercase | fix/pageheader-pub-time | 25 November 2026 |

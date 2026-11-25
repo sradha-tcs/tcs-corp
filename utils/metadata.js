@@ -10,7 +10,7 @@
  * meta-keywords, keyword-action, author-id, publish-date, modified-date, reading-time, og-title,
  * og-description, og-image, og-type, twitter-card, twitter-title, twitter-description,
  * twitter-image, canonical-url, robots, region, country, language, persona, thumbnail-image,
- * featured-image, campaign-id, content-type, featured, priority, listen-link
+ * featured-image, campaign-id, content-type, featured, priority, audio-file-path / listen-link
  *
  * The SEO and social columns are applied to the document head by decorators/seo-decorator.js.
  */
@@ -88,7 +88,8 @@ export function getPageMetadata() {
     modifiedDate: getMetadata('modified-date'),
     readingTime: getMetadata('reading-time'),
     // an audio version of the page (the page header's listen action)
-    listenLink: getMetadata('listen-link'),
+    // the migrated sheets' audio-file-path, else listen-link (pages authored before)
+    listenLink: getMetadata('audio-file-path') || getMetadata('listen-link'),
     thumbnailImage: getMetadata('thumbnail-image'),
     featuredImage: getMetadata('featured-image'),
     imageAlt: getMetadata('image-alt'),
