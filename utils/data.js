@@ -10,6 +10,11 @@
  * | partners       | partner-id, partner-name, logo, website, tier, description |
  * | social-links   | platform, url, icon, sort-order                           |
  * | media-contacts | id, name, designation, email, phone, region               |
+ * | conf-med-cont/contacts | contact-id, contact-name, contact-desc, email-id, contact-number |
+ * | conf-med-cont/regions  | region-id, region-name, region-desc                  |
+ * | conf-med-cont/media-contacts-config | media-contacts-id; per region <region-id>       |
+ * |                        | (contact IDs, comma separated) and <region-id>-action; |
+ * |                        | order_contacts (region column names in order)         |
  */
 import { localeSheetPath, sheetRows } from './site.js';
 
@@ -116,6 +121,35 @@ export async function getMediaContacts() {
     phone: cell(row, 'phone'),
     region: cell(row, 'region'),
   })).filter((contact) => contact.id || contact.name || contact.email || contact.phone);
+}
+
+/** the comma separated values of a column */
+const listOf = (value) => value.split(/[,;]/).map((item) => item.trim()).filter(Boolean);
+
+/**
+ * The sheets of the Configurable Media Contacts block (data/conf-med-cont/): the contacts and
+ * regions by ID, and the configurations as rows, whose region columns vary
+ * (blocks/conf-med-cont/conf-med-cont-data.js reads them).
+ * @returns {Promise<{ contacts: Object[], regions: Object[], configs: Object[] }>}
+ */
+export async function getConfMedCont() {
+  const [contacts, regions, configs] = await Promise.all(['contacts', 'regions', 'media-contacts-config']
+    .map((sheet) => loadDataSheet(`conf-med-cont/${sheet}`)));
+  return {
+    contacts: contacts.map((row) => ({
+      id: cell(row, 'contact-id'),
+      name: cell(row, 'contact-name'),
+      description: cell(row, 'contact-desc'),
+      emails: listOf(cell(row, 'email-id')),
+      phones: listOf(cell(row, 'contact-number')),
+    })).filter((contact) => contact.id),
+    regions: regions.map((row) => ({
+      id: cell(row, 'region-id'),
+      name: cell(row, 'region-name'),
+      description: cell(row, 'region-desc'),
+    })).filter((region) => region.id),
+    configs: configs.filter((row) => cell(row, 'media-contacts-id')),
+  };
 }
 
 /**

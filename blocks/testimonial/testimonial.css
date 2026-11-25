@@ -54,7 +54,7 @@ main > .section > div:has(> .testimonial.bg-navy) {
 .testimonial .testimonial-eyebrow {
   margin: 0;
   color: var(--color-text-default);
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--label-font-size);
   font-weight: var(--font-weight-regular);
   line-height: 1.625;
   letter-spacing: calc(0.01 * var(--heading-font-size-xs));
@@ -64,7 +64,7 @@ main > .section > div:has(> .testimonial.bg-navy) {
   max-width: 56.25rem;
   margin: 0;
   color: var(--color-text-brand);
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-xxl);
   font-weight: var(--font-weight-regular);
   line-height: 1.4;
   letter-spacing: calc(-0.02 * var(--heading-font-size-xl));
@@ -109,7 +109,7 @@ main > .section > div:has(> .testimonial.bg-navy) {
 .testimonial .testimonial-author-details {
   margin: 0;
   color: var(--color-text-default);
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--label-font-size);
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
   letter-spacing: calc(-0.01 * var(--heading-font-size-xs));
@@ -210,6 +210,10 @@ main > .section > div:has(> .testimonial.bg-navy) {
     gap: var(--space-600);
     min-height: 12.5rem;
   }
+
+  .testimonial .testimonial-description {
+  font-size: calc(var(--heading-font-size-xs) * 2);
+  }
 }
 
 @media (width >= 600px) {
@@ -254,5 +258,8 @@ main > .section > div:has(> .testimonial.bg-navy) {
   .testimonial > :is(.testimonial-title, .testimonial-stats) {
     max-width: 68rem;
   }
- 
+
+  .testimonial .testimonial-description {
+    font-size: var(--heading-font-size-xl);
+  }
 }

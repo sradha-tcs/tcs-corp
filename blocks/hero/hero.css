@@ -8,12 +8,12 @@
   max-width: unset;
   padding: 0;
 }
-
+ 
 .hero {
   /* Figma: Color/01121F and the overlay fills of the L1 Header frames */
   --hero-navy: #01121f;
   --hero-overlay: rgb(255 255 255 / 80%);
-
+ 
   /* Desktop defaults (tablet and mobile below) */
   --hero-padding-block: var(--space-3000);
   --hero-padding-inline: 2.75rem;
@@ -23,9 +23,10 @@
   --hero-gap-ctas: var(--space-1000);
   --hero-title-size: var(--display-font-size-2);
   --hero-title-max-width: 62.5rem;
+  --hero-title-max-width-mob: 21.125rem;
   --hero-secondary-cta-grey-hover: #cedff4;
   --hero-title-color: var(--color-text-default);
-  --hero-eyebrow-color: var(--brand-400); /* #216AC3, the same on every BG Color */
+  --hero-eyebrow-color: var(--white-1000); /* #FFFFFF, the same on every BG Color */
   --hero-description-color: var(--color-text-secondary);
   --hero-title-max-width-tab: 60rem;
   --hero-description-max-width: 53.125rem;
@@ -36,7 +37,7 @@
   --hero-content-max-width-tab: 60rem;
   --hero-eyebrow-max-width: 62.5rem;
   --hero-eyebrow-max-width-tab: 60rem;
-
+ 
   position: relative;
   display: flex;
   flex-direction: column;
@@ -50,16 +51,16 @@
   background-color: var(--color-bg-default);
   text-align: var(--hero-text-align);
 }
-
+ 
 /* Vertical Alignment: position of the content block */
 .hero.align-top {
   justify-content: flex-start;
 }
-
+ 
 .hero.align-bottom {
   justify-content: flex-end;
 }
-
+ 
 /*
  * Horizontal Alignment: position of the content block. Its text follows unless a Text
  * Alignment is set (heroes authored before the option).
@@ -69,38 +70,38 @@
   --hero-text-align: start;
   --hero-align: flex-start;
 }
-
+ 
 .hero.align-right {
   --hero-position: flex-end;
   --hero-text-align: end;
   --hero-align: flex-end;
 }
-
+ 
 /* Text Alignment: the icon, text and CTAs inside the content block */
 .hero.text-left {
   --hero-text-align: start;
   --hero-align: flex-start;
 }
-
+ 
 .hero.text-center {
   --hero-text-align: center;
   --hero-align: center;
 }
-
+ 
 .hero.text-right {
   --hero-text-align: end;
   --hero-align: flex-end;
 }
-
+ 
 .hero:is(.align-left, .align-right) {
   --hero-content-max-width: 47.5rem;
 }
-
+ 
 /* BG Color: Light, no overlay shows the image as is (e.g. a light gradient) */
 .hero.bg-light {
   --hero-overlay: transparent;
 }
-
+ 
 .hero.bg-dark,
 .hero.bg-dark-subtle,
 .hero.bg-black,
@@ -111,85 +112,105 @@
   --hero-description-color: rgb(255 255 255 / 50%);
   --hero-description-weight: var(--font-weight-medium);
 }
-
+ 
 .hero.bg-dark {
   --hero-overlay: rgb(1 18 31 / 80%);
-
+ 
   background-color: var(--hero-navy);
 }
-
+ 
 .hero.bg-dark-subtle {
   --hero-overlay: rgb(1 18 31 / 60%);
   --hero-description-color: rgb(255 255 255 / 85%);
-
+ 
   background-color: var(--hero-navy);
 }
-
+ 
 .hero.bg-black {
   --hero-overlay: rgb(0 0 0 / 80%);
-
+ 
   background-color: var(--black-1000);
 }
-
+ 
 /* Charcoal Black 80 (cool charcoal), Midnight Navy 60, Charcoal Black 40 (deep charcoal) */
 .hero.bg-charcoal-80 {
   --hero-overlay: rgb(34 35 41 / 80%);
-
+ 
   background-color: rgb(34 35 41);
 }
-
+ 
 .hero.bg-navy-60 {
   --hero-overlay: rgb(1 18 31 / 60%);
-
+ 
   background-color: var(--hero-navy);
 }
-
+ 
 .hero.bg-charcoal-40 {
   --hero-overlay: rgb(12 12 13 / 40%);
-
+ 
   background-color: var(--black-1000);
 }
-
+ 
+/*
+ * Brand blue (#216AC3): the background (over an image, its overlay) with white text, as in
+ * Figma; the description at 95% white (5.0:1 on the blue)
+ */
+.hero.bg-brand {
+  --hero-overlay: rgb(33 106 195 / 80%);
+  --hero-title-color: var(--color-text-on-neutral);
+  --hero-description-color: rgb(255 255 255 / 95%);
+ 
+  background-color: var(--color-bg-brand);
+}
+ 
 /* Title color and Description color: Black or White whatever the BG Color (after its rules) */
 .hero.title-black {
   --hero-title-color: var(--black-1000);
 }
-
+ 
 .hero.title-white {
   --hero-title-color: var(--white-1000);
 }
-
+ 
 .hero.description-black {
   --hero-description-color: var(--black-1000);
 }
-
+ 
 .hero.description-white {
   --hero-description-color: var(--white-1000);
 }
-
-/* media: the image or the Lottie animation behind the content, under the overlay */
+ 
+/* media: the image, the Lottie animation or the video behind the content, under the overlay */
 .hero .hero-media {
   position: absolute;
   z-index: -2;
   inset: 0;
 }
-
+ 
 .hero .hero-media picture,
 .hero .hero-media img {
   display: block;
   width: 100%;
   height: 100%;
 }
-
+ 
 .hero .hero-media img {
   object-fit: cover;
 }
-
+ 
 .hero .hero-animation {
   width: 100%;
   height: 100%;
 }
-
+ 
+/* Hero Image type Video: the video fills the hero like the image */
+.hero .hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
 /* the Lottie animation's pause / play button (WCAG 2.2.2) */
 .hero .animation-toggle {
   position: absolute;
@@ -197,7 +218,7 @@
   inset-block-end: var(--space-400);
   inset-inline-end: var(--space-400);
 }
-
+ 
 .hero.hero-has-media::before {
   content: '';
   position: absolute;
@@ -205,7 +226,7 @@
   inset: 0;
   background-color: var(--hero-overlay);
 }
-
+ 
 /* content */
 .hero .hero-content {
   display: flex;
@@ -214,56 +235,56 @@
   width: 100%;
   max-width: var(--hero-content-max-width);
 }
-
+ 
 .hero .hero-icon {
   display: flex;
   justify-content: var(--hero-align);
   margin-bottom: var(--hero-gap-icon);
 }
-
+ 
 .hero .hero-icon img {
   display: block;
   width: 3rem !important;
   height: 3rem !important;
   object-fit: contain;
 }
-
+ 
 /* Icon color: the SVG icon as a mask over a coloured box (set by hero.js, only with an Icon color) */
 .hero.icon-black {
   --hero-icon-color: var(--black-1000);
 }
-
+ 
 .hero.icon-white {
   --hero-icon-color: var(--white-1000);
 }
-
+ 
 .hero.icon-blue {
   --hero-icon-color: var(--brand-500);
 }
-
+ 
 /* Pale blue, #CEDFF4 */
 .hero.icon-pale-blue {
   --hero-icon-color: var(--brand-200);
 }
-
-/* Eyebrow color: royal blue #216AC3 (the default) or soft sky blue #A7C8F1 */
+ 
+/* Eyebrow color: white #FFFFFF (the default), royal blue #216AC3 or soft sky blue #A7C8F1 */
 .hero.eyebrow-royal-blue {
   --hero-eyebrow-color: var(--brand-400);
 }
-
+ 
 .hero.eyebrow-sky-blue {
   --hero-eyebrow-color: var(--brand-300);
 }
-
+ 
 .hero .hero-icon-tinted picture {
   position: relative;
   display: block;
 }
-
+ 
 .hero .hero-icon-tinted img {
   opacity: 0;
 }
-
+ 
 .hero .hero-icon-tinted picture::after {
   content: '';
   position: absolute;
@@ -271,18 +292,18 @@
   background-color: var(--hero-icon-color);
   mask: var(--hero-icon-src) center / contain no-repeat;
 }
-
+ 
 /* forced colours override background colours: show the icon as authored */
 @media (forced-colors: active) {
   .hero .hero-icon-tinted img {
     opacity: 1;
   }
-
+ 
   .hero .hero-icon-tinted picture::after {
     display: none;
   }
 }
-
+ 
 /* Hero View: Contained image, the whole image (e.g. an illustration) centered behind the content */
 .hero.media-contained .hero-media {
   display: flex;
@@ -290,11 +311,15 @@
   justify-content: center;
   padding: var(--space-600);
 }
-
+ 
 .hero.media-contained .hero-media picture {
   display: contents;
 }
-
+ 
+.hero.media-contained .hero-media .hero-video {
+  object-fit: contain;
+}
+ 
 .hero.media-contained .hero-media img {
   width: auto;
   max-width: 100%;
@@ -302,11 +327,11 @@
   max-height: 100%;
   object-fit: contain;
 }
-
+ 
 /* the eyebrow follows the Text Alignment (centred by default) */
 .hero .hero-eyebrow {
   --hero-eyebrow-size: var(--body-font-size-s);
-
+ 
   display: flex;
   align-items: center;
   justify-content: var(--hero-align);
@@ -321,10 +346,11 @@
   letter-spacing: calc(0.0125 * var(--hero-eyebrow-size));
   text-align: var(--hero-text-align);
 }
-
+ 
 /* the title size: display 2 on mobile and from 900px, 3.125rem on tablet */
 .hero .hero-title {
   max-width: var(--hero-title-max-width);
+  width: 100%;
   margin: 0;
   color: var(--hero-title-color);
   font-size: var(--hero-title-size);
@@ -333,7 +359,7 @@
   letter-spacing: calc(-0.025 * var(--hero-title-size));
   text-wrap: balance;
 }
-
+ 
 .hero .hero-description {
   max-width: var(--hero-description-max-width);
   margin-top: var(--hero-gap-content);
@@ -343,15 +369,15 @@
   line-height: 1.2;
   letter-spacing: calc(-0.025 * var(--body-font-size-l));
 }
-
+ 
 .hero .hero-description > * {
   margin: 0;
 }
-
+ 
 .hero .hero-description > * + * {
   margin-top: var(--space-400);
 }
-
+ 
 .hero .hero-ctas {
   display: flex;
   flex-wrap: wrap;
@@ -362,7 +388,7 @@
   gap: var(--space-200) var(--hero-gap-ctas);
   margin-top: var(--hero-gap-ctas);
 }
-
+ 
 .hero .hero-ctas a.button:any-link {
   padding:
     calc(var(--space-300) - var(--border-width-100))
@@ -370,31 +396,40 @@
     calc(var(--space-300) - var(--border-width-100))
     var(--space-600);
   font-family: var(--body-font-family);
-  font-size: var(--button-font-size);
+  font-size: var(--label-font-size);
   font-weight: var(--font-weight-medium);
   line-height: 1;
-  letter-spacing: calc(0.01 * var(--button-font-size));
+  letter-spacing: calc(0.01 * var(--label-font-size));
 }
-
+ 
+/* Primary and Secondary: 0.75rem 1rem 0.75rem 1.5rem; Tertiary (default): 0.75rem 0.5rem; all devices */
+.hero .hero-ctas a.button:is(.primary, .secondary) {
+  padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
+}
+ 
+.hero .hero-ctas a.button.tertiary {
+  padding: var(--space-300) var(--space-200);
+}
+ 
 /* in-page links (e.g. "Discover our story") point down */
 .hero .hero-ctas a.button.hero-cta-down::after {
   mask-image: url('../../icons/arrow-down.svg');
 }
-
+ 
 /* CTAs on dark backgrounds */
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-on-neutral);
-  color: var(--color-text-on-neutral);
+  color: var(--slate-100);
 }
-
+ 
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:not(:hover, :focus-visible) {
   color: var(--color-text-on-neutral);
 }
-
+ 
 .hero:is(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) a.button.tertiary:is(:hover, :focus-visible) {
   color: var(--brand-300);
 }
-
+ 
 /*
  * Secondary CTA BG Color and Border color (CTA List): a Secondary CTA's own classes (hero.js);
  * without them it keeps the transparent background and the border of the BG Color, as before;
@@ -404,24 +439,34 @@
   border-width: var(--border-width-100);
   border-style: solid;
 }
-
+ 
 .hero .hero-ctas a.button.secondary.secondary-bg-light-grey:not(:hover, :focus-visible) {
   background-color: var(--grey-100);
   color: var(--color-text-neutral);
 }
-
+ 
 .hero .hero-ctas a.button.secondary.secondary-bg-black-40:not(:hover, :focus-visible) {
   background-color: var(--black-400);
 }
-
+ 
 .hero .hero-ctas a.button.secondary.secondary-border-black:not(:hover, :focus-visible) {
   border-color: var(--black-1000);
 }
-
+ 
 .hero .hero-ctas a.button.secondary.secondary-border-white:not(:hover, :focus-visible) {
   border-color: var(--white-1000);
 }
-
+ 
+/*
+ * Secondary CTA Border color No border: transparent in every state, so the button keeps its size;
+ * after the dark BG Color rules and as specific as the dark section ones (styles/styles.css), so
+ * it wins; the focus ring is an outline and stays
+ */
+.hero .hero-ctas a.button.secondary.secondary-border-none,
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.secondary.secondary-border-none {
+  border-color: transparent;
+}
+ 
 /*
  * Primary CTA BG Color (CTA List): Blue-cyan (azure), #216AC3 with white text (5.4:1); in a dark
  * section too, where Primary buttons are otherwise inverted (styles/styles.css)
@@ -432,7 +477,48 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
   background-color: var(--color-bg-brand);
   color: var(--color-text-on-neutral);
 }
-
+ 
+/*
+ * Primary CTA BG Color Transparent (CTA List): no fill, the text in its CTA Text color (Default
+ * Black) and the Primary border; hover and focus stay the Primary button's (filled)
+ */
+.hero .hero-ctas a.button.primary.primary-bg-transparent:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-transparent:not(:hover, :focus-visible) {
+  background-color: transparent;
+}
+ 
+/* Primary CTA BG Color Black 40% (CTA List): the Secondary one's 40% black; hover as Transparent */
+.hero .hero-ctas a.button.primary.primary-bg-black-40:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-bg-black-40:not(:hover, :focus-visible) {
+  background-color: var(--black-400);
+}
+ 
+/*
+ * Primary CTA Border color (CTA List): a Primary CTA's own class (hero.js); Default keeps the
+ * border of its background colour, No border makes it transparent; after Primary CTA BG Color and as specific as it (in a dark
+ * section too), so it wins; hover and focus stay the Primary button's
+ */
+.hero .hero-ctas a.button.primary.primary-border-black:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-black:not(:hover, :focus-visible) {
+  border-color: var(--black-1000);
+}
+ 
+.hero .hero-ctas a.button.primary.primary-border-white:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-white:not(:hover, :focus-visible) {
+  border-color: var(--white-1000);
+}
+ 
+.hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible),
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-slate-100:not(:hover, :focus-visible) {
+  border-color: var(--slate-100);
+}
+ 
+/* Primary CTA Border color No border: transparent in every state (the button keeps its size) */
+.hero .hero-ctas a.button.primary.primary-border-none,
+main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button.primary.primary-border-none {
+  border-color: transparent;
+}
+ 
 /*
  * CTA Text color (CTA List): the chosen colour of the text and arrow (currentcolor), whatever the
  * CTA view and background: Default (Black) or White; after the colour rules above and as
@@ -442,50 +528,63 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
 main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-black:not(:hover, :focus-visible) {
   color: var(--black-1000);
 }
-
+ 
 .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible),
 main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero .hero-ctas a.button:is(.primary, .secondary, .tertiary).cta-text-white:not(:hover, :focus-visible) {
   color: var(--white-1000);
 }
-
+ 
 /*
- * desktop: at least 900px high (56.25rem), across the full width. Figma "Hero" 57:16843 (What we
+ * desktop: a fixed 900px (56.25rem) high, across the full width. Figma "Hero" 57:16843 (What we
  * do) and "Hero Header" 3670:14111 (Home): the text column has 200px of space below it, so
  * middle-aligned content sits above the centre; 8px from the icon to the eyebrow; the eyebrow
- * 14 / 22px; the CTAs 50px high with 14px text
+ * 14 / 22px; the CTAs 50px high with 14px text. --hero-fixed-height is read by the first-section
+ * minimum heights at the end of this file; every page, the Home template included
  */
 @media (width >= 1200px) {
   .hero {
     --hero-min-height: 56.25rem;
     --hero-gap-icon: var(--space-200);
+    --hero-fixed-height: 56.25rem;
+ 
+    height: var(--hero-fixed-height);
+    min-height: var(--hero-fixed-height);
   }
-
+ 
   .hero:not(.align-top, .align-bottom) .hero-content {
     padding-bottom: 12.5rem;
   }
-
+ 
   .hero .hero-eyebrow {
     --hero-eyebrow-size: var(--body-font-size-xs);
-
+ 
     line-height: 1.5714;
   }
-
+ 
   .hero .hero-ctas a.button:any-link {
     padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
     font-size: var(--label-font-size);
     letter-spacing: calc(0.01 * var(--label-font-size));
   }
+ 
+  .hero .hero-ctas a.button.tertiary {
+    padding: var(--space-300) var(--space-200);
+  }
 }
-
-/* tablet: at least 750px high (46.875rem), across the full width */
+ 
+/* tablet: a fixed 750px (46.875rem) high, across the full width */
 @media (600px <= width < 1200px) {
   .hero {
     --hero-min-height: 46.875rem;
     --hero-padding-block: 7.625rem;
     --hero-padding-inline: var(--space-800);
     --hero-gap-content: var(--space-600);
+    --hero-fixed-height: 46.875rem;
+ 
+    height: var(--hero-fixed-height);
+    min-height: var(--hero-fixed-height);
   }
-
+ 
   .hero .hero-content {
     display: flex;
     flex-direction: column;
@@ -493,7 +592,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     width: 100%;
     max-width: var(--hero-content-max-width-tab);
   }
-
+ 
   .hero .hero-eyebrow {
     width: 100%;
     max-width: var(--hero-eyebrow-max-width-tab);
@@ -505,10 +604,10 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     text-align: var(--hero-text-align);
     justify-content: var(--hero-align);
   }
-
+ 
   .hero .hero-title {
     --hero-title-size: 3.125rem;
-
+ 
     box-sizing: border-box;
     width: 100%;
     max-width: var(--hero-title-max-width-tab);
@@ -522,17 +621,17 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     text-align: var(--hero-text-align);
     text-wrap: balance;
   }
-
+ 
   .hero .hero-ctas {
     width: 100%;
     max-width: var(--hero-content-max-width-tab);
     justify-content: var(--hero-align);
   }
-
+ 
   .hero .hero-ctas a.button:any-link {
     box-sizing: border-box;
     min-height: 3.125rem;
-
+ 
     /* 48px with the 24px arrow: the 1px border comes off the top and bottom padding */
     padding:
       calc(var(--space-300) - var(--border-width-100))
@@ -542,18 +641,26 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     gap: var(--space-200);
     border-radius: var(--radius-full);
     font-family: var(--body-font-family);
-    font-size: var(--button-font-size);
+    font-size: var(--label-font-size);
     font-weight: var(--font-weight-medium);
     line-height: 1;
-    letter-spacing: calc(0.01 * var(--button-font-size));
+    letter-spacing: calc(0.01 * var(--label-font-size));
     text-align: center;
   }
-
+ 
+  /* Primary and Secondary: 0.75rem 1rem 0.75rem 1.5rem; Tertiary (default): 0.75rem 0.5rem */
+  .hero .hero-ctas a.button:is(.primary, .secondary) {
+    padding: var(--space-300) var(--space-400) var(--space-300) var(--space-600);
+  }
+ 
+  .hero .hero-ctas a.button.tertiary {
+    padding: var(--space-300) var(--space-200);
+  }
 }
-
+ 
 @media (width < 600px) {
   .hero {
-    --hero-min-height: 35rem;
+    --hero-min-height: 46.875rem;
     --hero-padding-block: var(--space-1600);
     --hero-padding-inline: var(--space-600);
     --hero-gap-content: var(--space-600);
@@ -565,8 +672,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     --hero-gap-icon: var(--space-200);
     --hero-gap-eyebrow: var(--space-400);
     --hero-gap-ctas: var(--space-600);
-  }
+    --hero-fixed-height: 46.875rem;
 
+    height: var(--hero-fixed-height);
+    min-height: var(--hero-fixed-height);
+  }
+ 
   .hero .hero-content {
     width: 100%;
     max-width: var(--hero-content-max-width);
@@ -574,7 +685,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     align-items: var(--hero-align);
     gap: var(--space-100);
   }
-
+ 
   .hero .hero-eyebrow {
     width: 100%;
     max-width: var(--hero-eyebrow-max-width);
@@ -587,10 +698,10 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     text-align: var(--hero-text-align);
     justify-content: var(--hero-align);
   }
-
+ 
   .hero .hero-title {
     width: 100%;
-    max-width: var(--hero-title-max-width);
+    max-width: var(--hero-title-max-width-mob);
     height: auto;
     margin: 0;
     color: var(--hero-title-color);
@@ -601,12 +712,12 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
     text-align: var(--hero-text-align);
     text-wrap: balance;
   }
-
+ 
   .hero .hero-ctas a.button:any-link {
     min-height: 3.125rem;
   }
 }
-
+ 
 /*
  * The opening hero is at most the first screen high (below the header bar): the header's
  * Conversation Canvas sits at the bottom of the first screen (blocks/header), so on a short
@@ -614,24 +725,24 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .hero 
  * first screen). Taller content still grows the hero.
  */
 main > .section:first-child .hero {
-  min-height: min(var(--hero-min-height), calc(100dvh - var(--nav-height)));
+  min-height: var(--hero-fixed-height, min(var(--hero-min-height), calc(100dvh - var(--nav-height))));
 }
-
+ 
 /*
  * The opening hero lies under the header at every width (styles/styles.css: a light one unless the
  * TCS Header says never, any one when it says always): it grows by the header height (at most to
  * the first screen) and keeps its content below the logos.
  */
 html[data-header-overlay='always'] main > .section:first-child .hero {
-  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), var(--hero-min-height));
+  min-height: var(--hero-fixed-height, min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), var(--hero-min-height)));
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
-
+ 
 html:not([data-header-overlay='never']) main > .section:first-child .hero:not(.bg-dark, .bg-dark-subtle, .bg-black, .bg-charcoal-80, .bg-navy-60, .bg-charcoal-40) {
-  min-height: min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh);
+  min-height: var(--hero-fixed-height, min(calc(var(--hero-min-height) + var(--header-height, var(--header-reserved))), 100dvh));
   padding-top: calc(var(--hero-padding-block) + var(--header-height, var(--header-reserved)));
 }
-
+ 
 /*
  * desktop, middle-aligned: as much space below as above, so the content is centred in the whole
  * hero, as in Figma (What we do 57:16843); the Home template sets its own (templates/home)

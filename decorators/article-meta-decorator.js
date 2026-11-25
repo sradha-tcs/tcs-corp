@@ -43,7 +43,7 @@ export function buildReadingTime(value, t, prefix) {
 /**
  * Listen (an authored audio link), download (prints / saves as PDF) and share (the share
  * dialog, else the link copied to the clipboard) actions, as icon buttons.
- * @param {{ listen?: HTMLAnchorElement|null, download?: boolean, share?: boolean,
+ * @param {{ listen?: HTMLAnchorElement|HTMLButtonElement|null, download?: boolean, share?: boolean,
  *   title?: string, t: Function, prefix: string }} options
  * @returns {HTMLDivElement|null}
  */

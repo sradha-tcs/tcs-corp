@@ -1,18 +1,20 @@
+import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import {
   buildAuthorLockup, buildPageActions, buildPublished, buildReadingTime,
 } from '../../decorators/article-meta-decorator.js';
 import { decorateButton } from '../../decorators/button-decorator.js';
 import { buildEditorItems, editorItemHint } from '../../decorators/editor-item-decorator.js';
+import { HEADINGS } from '../../decorators/heading-decorator.js';
 import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { buildImage } from '../../decorators/responsive-image-decorator.js';
 import { buildTagList } from '../../decorators/tag-decorator.js';
 import { KEY_VALUE_ITEM, itemRows } from '../../utils/cells.js';
 import { getAuthor } from '../../utils/data.js';
-import { readLinkItems, readLinkRows } from '../../utils/links.js';
+import { readLinkItems, readLinkRows, isSafeUrl } from '../../utils/links.js';
 import { getPageMetadata } from '../../utils/metadata.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { optionOf, readProperties } from '../../utils/properties.js';
+import { optionOf, readProperties, textOf } from '../../utils/properties.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 
 /*
@@ -50,6 +52,30 @@ const LEGACY_ROUND = 'round';
 const ROUND_MAX_WORD = 12;
 const ROUND_MAX_LABEL = 24;
 const IMAGE_BREAKPOINTS = [{ media: '(min-width: 900px)', width: '1200' }, { width: '750' }];
+// Title Font (Desktop / Tablet / Mobile): the title's size per width, as a heading of that
+// level (classes title-desktop-h1 ... title-mobile-h6); the title stays the page's H1
+const TITLE_FONT_WIDTHS = {
+  desktop: 'pageheadertitlefont',
+  tablet: 'pageheadertitlefonttablet',
+  mobile: 'pageheadertitlefontmobile',
+};
+// Description Font: the description's size at every width (Default Font: the layout's)
+const DESCRIPTION_FONTS = ['text-16px', 'text-18px', 'text-20px', 'text-24px', 'text-32px', 'text-40px'];
+
+/** Title Font and Description Font as block classes; nothing selected keeps the layout's sizes */
+function applyFonts(block, props) {
+  const widths = Object.keys(TITLE_FONT_WIDTHS);
+  block.classList.remove(
+    ...DESCRIPTION_FONTS,
+    ...widths.flatMap((width) => HEADINGS.map((font) => `title-${width}-${font}`)),
+  );
+  widths.forEach((width) => {
+    const font = toClassName(textOf(props[TITLE_FONT_WIDTHS[width]]));
+    if (HEADINGS.includes(font)) block.classList.add(`title-${width}-${font}`);
+  });
+  const descriptionFont = toClassName(textOf(props.pageheaderdescriptionfont));
+  if (DESCRIPTION_FONTS.includes(descriptionFont)) block.classList.add(descriptionFont);
+}
 
 /** the layout: the block's Layout, or from the Page Type */
 function layoutOf(block, props, pageType) {
@@ -122,7 +148,8 @@ function buildAuthorName(metadata, author, t) {
   if (!text) return null;
   const name = document.createElement('p');
   name.className = 'page-header-author-name';
-  if (author?.linkedin) {
+  // sheet values become links only when they're http(s) or a path (never javascript:)
+  if (author?.linkedin && isSafeUrl(author.linkedin)) {
     const a = document.createElement('a');
     a.href = author.linkedin;
     a.textContent = text;
@@ -146,7 +173,7 @@ function buildAuthor(metadata, author, t) {
 }
 
 /** article: tags and content type | date, reading time and listen / download / share */
-function buildMetaRow(metadata, tags, t) {
+function buildMetaRow(metadata, tags, t, timingLeft) {
   const row = document.createElement('div');
   row.className = 'page-header-meta-row';
   const labels = document.createElement('div');
@@ -159,11 +186,27 @@ function buildMetaRow(metadata, tags, t) {
   const prefix = 'page-header';
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  const listen = metadata.listenLink ? document.createElement('a') : null;
-  if (listen) listen.href = metadata.listenLink;
-  info.append(...[
+  // a listen link only when it's http(s) or a path (never javascript:), else a disabled button
+  const listenLink = (metadata.listenLink || '').trim();
+  const safeListen = listenLink && isSafeUrl(listenLink);
+  const listen = document.createElement(safeListen ? 'a' : 'button');
+  if (safeListen) {
+    listen.href = listenLink;
+  } else {
+    listen.type = 'button';
+    listen.disabled = true;
+  }
+  const timing = document.createElement('div');
+  timing.className = 'page-header-timing';
+  timing.append(...[
     buildPublished(metadata.publishDate, { label: t('published', 'Published'), prefix }),
     buildReadingTime(metadata.readingTime, t, prefix),
+  ].filter(Boolean));
+  if (timing.children.length) {
+    const timingGroup = timingLeft ? labels : info;
+    timingGroup.append(timing);
+  }
+  info.append(...[
     buildPageActions({
       listen, download: true, share: true, title: metadata.title, t, prefix,
     }),
@@ -204,7 +247,7 @@ export default async function decorate(block) {
     editorItemHint(ctaRows),
   ]);
   const layout = layoutOf(block, props, metadata.pageType);
-
+  const timingLeft = block.classList.contains('timing-left');
   const title = textElement('h1', 'page-header-title', metadata.title);
   const tags = buildTagList(pageTags, 'page-header-tags');
   // the eyebrow: the content type (e.g. Industry), else the tags; the tags on Display
@@ -240,16 +283,17 @@ export default async function decorate(block) {
   } else if (layout === 'cta-alignment-left') {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, description, ctas].filter(Boolean));
-    parts.push(buildMetaRow(metadata, tags, t), columns);
+    parts.push(buildMetaRow(metadata, tags, t, timingLeft), columns);
   } else {
     intro.append(...[title, buildAuthor(metadata, author, t)].filter(Boolean));
     columns.append(...[intro, summary].filter((part) => part.children.length));
-    parts.push(buildMetaRow(metadata, tags, t), columns);
+    parts.push(buildMetaRow(metadata, tags, t, timingLeft), columns);
   }
 
   block.classList.remove(...LAYOUTS);
   block.classList.add(layout);
   block.classList.toggle('page-header-has-image', !!media);
+  applyFonts(block, props);
   block.replaceChildren(...parts.filter((part) => part && (part.children.length
     || part.textContent)));
 }

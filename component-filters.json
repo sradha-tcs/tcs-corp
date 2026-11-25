@@ -19,8 +19,10 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
+      "conf-med-cont",
       "testimonial",
       "anchor-list",
       "accordion",
@@ -70,8 +72,10 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
+      "conf-med-cont",
       "testimonial",
       "anchor-list",
       "accordion",
@@ -132,6 +136,7 @@
       "field-combined",
       "field-textarea",
       "field-checkbox",
+      "field-richtext",
       "contact-card",
       "field-submit"
     ]
@@ -147,6 +152,12 @@
     "id": "hero",
     "components": [
       "hero-cta"
+    ]
+  },
+  {
+    "id": "history-timeline",
+    "components": [
+      "history-timeline-item"
     ]
   },
   {
@@ -245,8 +256,10 @@
       "hero",
       "teaser",
       "image-collage",
+      "history-timeline",
       "quote",
       "media-contacts",
+      "conf-med-cont",
       "testimonial",
       "anchor-list",
       "accordion",

@@ -14,8 +14,8 @@ This page states the accessibility target of the TCS Corporate Website, what the
 | Item | Value |
 | --- | --- |
 | Knowledge-base target | **WCAG 2.2 Level AA** |
-| Project rule (verified) | WCAG **2.1** AA: AGENTS.md "Accessibility" ("Blocks meet WCAG 2.1 AA") and "Testing & Quality Assurance" ("Follow WCAG 2.1 AA guidelines"); handover 1.7.2 "WCAG 2.1 AA conformance (target)"; `blocks/README.md` "Shared Conventions" |
-| Difference | WCAG 2.2 adds, at A / AA, 2.4.11 Focus Not Obscured (Minimum), 2.5.7 Dragging Movements, 2.5.8 Target Size (Minimum), 3.2.6 Consistent Help, 3.3.7 Redundant Entry and 3.3.8 Accessible Authentication (Minimum), and removes 4.1.1 Parsing. The automated audits already ran axe with the WCAG 2.2 AA rules (`wcag22aa` tag in `docs/audit/tools/harness.mjs`); the project rule text still says 2.1. Raising the rule to 2.2 AA is a decision for the product owner: **Not recorded** |
+| Project rule (verified) | WCAG **2.2** AA since KB-D-075 (22 November 2026; before: 2.1 AA): AGENTS.md "Accessibility" ("Blocks meet WCAG 2.1 AA") and "Testing & Quality Assurance" ("Follow WCAG 2.1 AA guidelines"); handover 1.7.2 "WCAG 2.1 AA conformance (target)"; `blocks/README.md` "Shared Conventions" |
+| Difference | WCAG 2.2 adds, at A / AA, 2.4.11 Focus Not Obscured (Minimum), 2.5.7 Dragging Movements, 2.5.8 Target Size (Minimum), 3.2.6 Consistent Help, 3.3.7 Redundant Entry and 3.3.8 Accessible Authentication (Minimum), and removes 4.1.1 Parsing. The automated audits already ran axe with the WCAG 2.2 AA rules (`wcag22aa` tag in `docs/audit/tools/harness.mjs`); the project rule text still says 2.1. The rule was raised to 2.2 AA on 22 November 2026 (KB-D-075, approved by the product owner) |
 | Compliance claim | None. Evidence is automated axe runs and code review; see [Evidence](#definition-of-done-and-evidence) |
 
 How the WCAG 2.2 additions stand in the code:
@@ -29,9 +29,11 @@ How the WCAG 2.2 additions stand in the code:
 | 3.3.7 Redundant Entry | Forms are single-step (Form Variations) | Not applicable as far as identified |
 | 3.3.8 Accessible Authentication | No visitor login exists | Not applicable |
 
+Fixes of the review of 22 November 2026 (KB-D-075): the TCS Header's open tablet / mobile menu makes `main` and the footer `inert` and closes when focus leaves the header (2.4.3, 2.4.11); the Conversation Canvas section panel closes on Escape only, so its links are reachable (2.1.1; the check was inverted); a "Skip to main content" link (2.4.1); the TCS Header search field has a label and a focus outline, its voice button says it is unavailable (`aria-disabled`; 1.3.1, 2.4.7, 4.1.2); Form Variations labels are visually hidden instead of `display: none`, the score unit select is named, `autocomplete` is restored and the contact icons are decorative (1.3.1, 1.3.5, 4.1.2, 1.1.1); the Canvas prompt rotates only in the placeholder (the field's name stays) and not at all for reduced motion or in a background tab (2.2.2, 2.3.3); card call-to-action links keep the new-tab hint. Open (need design or product decisions): `scroll-padding-top` for the fixed header (2.4.11: the Anchor List's own offset would double), a pause control for the Hero background video and the collage float animation (2.2.2), persistent form labels (3.3.2), Form Variations contrast (1.4.3 / 1.4.11), the List panel kicker on Brand (KB-D-070 exception).
+
 ## Semantic HTML, headings and landmarks
 
-- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width become labelled `role="region"` elements. No skip link was identified (bypass relies on the landmarks): see [Recommendations](#gaps-and-recommendations).
+- **Landmarks**: `header` (with `nav#nav`), `main` and `footer` come from the boilerplate page; the Conversation Canvas search form has `role="search"`; tables with a scrollable width become labelled `role="region"` elements. A "Skip to main content" link is the first focusable element of every page (`addSkipLink` in `decorators/a11y-decorator.js`, KB-D-075): off screen until focused (`.skip-link` in `styles/styles.css`, guarded by `test/a11y/skip-link.test.mjs`), it moves focus to `main`.
 - **Native elements**: Accordion is built on `details` / `summary`; Modal and the video pop-up use `dialog` with `showModal()`; the Separator renders `hr`; tables keep header cells.
 - **Headings**: blocks with a title have an authored level (Title Type / Title heading level, `decorators/heading-decorator.js` `HEADINGS` h1–h6); the level renders the element and its size follows it, so "the outline matches the look" (dialog options report, section 10). The Page Header renders the page H1 from metadata. A hidden List Item title stays in the DOM, visually hidden. Authors are responsible for a logical order.
 - **Language**: `decorators/seo-decorator.js` sets `<html lang>` from the locale (or `language` metadata); content loaded from another locale (the `/en` 404 fallback) is marked with its `lang` (`loadErrorPage` in `scripts/scripts.js`).
@@ -187,9 +189,9 @@ Tools: [`docs/audit/tools/harness.mjs`](https://github.com/sradha-tcs/tcs-corp-d
 
 | Gap | Status | Proposed next step (not an approved decision) |
 | --- | --- | --- |
-| Project rule says WCAG 2.1 AA; this knowledge base targets 2.2 AA | Requires validation | Product owner decides; update AGENTS.md and handover 1.7.2 together |
+| Project rule says WCAG 2.1 AA; this knowledge base targets 2.2 AA | Resolved | The project rule is WCAG 2.2 AA (KB-D-075, approved by the product owner on 22 November 2026); AGENTS.md updated |
 | Screen-reader testing | Blocked: NVDA / VoiceOver on the published pages | Run on the curated pages and each interactive block |
-| No skip link | Not recorded as a decision | Consider a "Skip to content" link before the header |
+| No skip link | Resolved | "Skip to main content" link added (KB-D-075); its CSS, removed by an unrelated change (commit fc5f8b5), restored with a guard test (`test/a11y/skip-link.test.mjs`) |
 | Anchor List Sticky and Focus Not Obscured (2.4.11) | Requires validation | Test tabbing under the pinned list |
 | Author bio LinkedIn link has no new-tab hint (F-52) | Open | Use `announceNewTab` |
 | Video pause outline contrast (F-56), Teaser Dark Primary buttons (F-49) | Open | Design and development fix |

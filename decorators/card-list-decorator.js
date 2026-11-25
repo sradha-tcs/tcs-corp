@@ -88,11 +88,15 @@ export const cardHeadingLevel = (heading) => HEADINGS[Math.min(
   HEADINGS.indexOf(heading?.tagName.toLowerCase() || 'h2') + 1,
 )];
 
-/** a card's link: the card's destination, secure in a new tab, named by its label */
-function cardLink(card, label, t) {
+/**
+ * a card's link: the card's destination, secure in a new tab, named by its label (an accessible
+ * name, when given, is set before the new-tab hint, which extends it)
+ */
+function cardLink(card, label, t, name = '') {
   const a = element('a', 'list-card-link', label);
   a.href = card.url;
-  if (card.accessibilityLabel) a.setAttribute('aria-label', card.accessibilityLabel);
+  const accessibleName = card.accessibilityLabel || name;
+  if (accessibleName) a.setAttribute('aria-label', accessibleName);
   if (card.openInNewTab) {
     setLinkTarget(a, true);
     announceNewTab(a, t('opensInNewTab', '(opens in a new tab)'));
@@ -178,6 +182,34 @@ function displayOf(card, config) {
   };
 }
 
+/**
+ * The card's CTA buttons (Cards: CTA 1, CTA 2), each its own link, above the card's link: in
+ * their CTA Style (Secondary by default, Primary, without the arrow, or a text link), in a new
+ * tab when chosen (announced)
+ */
+function ctaButtonsOf(card, t) {
+  if (!card.ctas?.length) return null;
+  const group = element('div', 'list-card-ctas');
+  card.ctas.forEach((cta) => {
+    const a = element('a', 'list-card-cta', cta.label);
+    a.href = cta.url;
+    // the CTA's link stays editable in place in Universal Editor
+    if (cta.ref) moveInstrumentation(cta.ref, a);
+    const noArrow = cta.style.endsWith('-no-arrow');
+    decorateButton(a, {
+      view: 'button',
+      type: cta.style.replace('-no-arrow', ''),
+      newWindow: cta.newWindow,
+      newTabHint: t('opensInNewTab', '(opens in a new tab)'),
+    });
+    if (noArrow) a.classList.add('list-card-cta-no-arrow');
+    if (cta.external) a.dataset.external = 'true';
+    a.dataset.cmpInteraction = 'cta';
+    group.append(a);
+  });
+  return group;
+}
+
 /** a title kept for screen readers and the heading outline, not shown (Hide Title) */
 function hiddenTitle(title, display) {
   if (title && display.titleHidden) hideVisually(title);
@@ -194,6 +226,9 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   // Card colour paints panel, report and statistic cards; an image card has its image
   const theme = kind === 'image' ? '' : themeOf(card, config.cardTheme);
   if (theme) article.classList.add(`theme-${theme}`);
+  // Cards: the Title size (96px, 48px, H1 to H6)
+  if (card.titleSize) article.classList.add(`title-size-${card.titleSize}`);
+  const ctaButtons = ctaButtonsOf(card, t);
   const readingTime = readingTimeOf(card, t);
   // Show content type off (List): image cards show neither its tag nor its label
   const tags = config.showTags ? visibleTags(card, {
@@ -205,13 +240,14 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   // the call to action, when shown, is the card's one link; else the title is
   const defaultCta = { report: t('download', 'Download'), panel: t('explore', 'Explore') }[kind] || '';
   const ctaLabel = config.showCta ? card.ctaLabel || defaultCta : '';
-  const ctaType = { stat: 'secondary' }[kind] || 'tertiary';
+  // a List Item's CTA style, else the card style's (a text link; Secondary on statistic cards)
+  const ctaType = card.ctaStyle || { stat: 'secondary' }[kind] || 'tertiary';
   // a hidden title can't be the card's link (an invisible focus): without a call to action,
   // the title stays visible
-  const cta = linked && ctaLabel ? cardLink(card, ctaLabel, t) : null;
+  const cta = linked && ctaLabel
+    ? cardLink(card, ctaLabel, t, card.title ? `${ctaLabel}: ${card.title}` : '') : null;
   if (linked && !cta) config.titleHidden = false;
   if (cta) {
-    if (!card.accessibilityLabel && card.title) cta.setAttribute('aria-label', `${ctaLabel}: ${card.title}`);
     decorateButton(cta, { view: 'button', type: ctaType });
   }
   // a card without a title (e.g. an image and a description) has no heading
@@ -248,21 +284,33 @@ export function renderCard(card, listConfig, { t, level, kind }) {
     const top = element('div', 'list-card-top');
     top.append(...[labelRow('list-card-kicker', [eyebrow]), title].filter(Boolean));
     const bottom = element('div', 'list-card-bottom');
+    // the CTA buttons (Cards) join the Label and description at the bottom
     bottom.append(...[card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null,
-      description].filter(Boolean));
+      description, ctaButtons].filter(Boolean));
     parts = [top, bottom.children.length ? bottom : null];
   } else {
+    // Cards: a panel with CTA buttons has the title at the top and its Label, description and
+    // buttons at the bottom; other panels are as before (no Label)
+    const bottom = ctaButtons ? element('div', 'list-card-bottom') : null;
+    const label = bottom && card.subtitle && config.showLabel ? element('p', 'list-card-subtitle', card.subtitle) : null;
+    if (bottom) bottom.append(...[label, description, ctaButtons].filter(Boolean));
     parts = [
       theme === 'image' ? mediaOf(card, config, FEATURE_BREAKPOINTS) : null,
       labelRow('list-card-kicker', [eyebrow || tags[0]]),
       title,
-      description,
+      bottom || description,
     ];
   }
+  // the CTA buttons of the image and report cards: after the text (panel and statistic cards
+  // have them in their bottom group)
+  const bottomGroup = ctaButtons?.parentElement;
+  if (ctaButtons && !bottomGroup) parts.push(ctaButtons);
   if (cta) {
     const action = element('p', 'list-card-action');
     action.append(cta);
-    parts.push(action);
+    // with CTA buttons, the call to action joins their bottom group, after them
+    if (bottomGroup) bottomGroup.append(action);
+    else parts.push(action);
   }
   article.append(...parts.filter(Boolean));
   if (card.analyticsLabel) article.dataset.analyticsLabel = card.analyticsLabel;
@@ -305,12 +353,14 @@ export function renderFeature(card, listConfig, { t, level, authors = new Map() 
   const content = element('div', 'list-feature-content');
   const author = listConfig.featureShowAuthor === false ? null : authors.get(card.authorId);
   const readingTime = readingTimeOf(card, t);
+  // as on image cards: an eyebrow (Show eyebrow, the card's own toggle) takes the place of the tags
+  const eyebrow = config.showEyebrow ? card.eyebrow : '';
+  const tags = !eyebrow && config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : [];
   const title = card.title ? element(level, 'list-feature-title') : null;
   if (title && config.linkItems && card.url) title.append(cardLink(card, card.title, t));
   else if (title) title.textContent = card.title;
   content.append(...[
-    labelRow('list-card-kicker', [...(config.showTags ? card.tags.slice(0, MAX_CARD_TAGS) : []),
-      config.showTags ? readingTime : '']),
+    labelRow('list-card-kicker', [eyebrow, ...tags, config.showTags ? readingTime : '']),
     title,
     author ? buildAuthorLockup({
       picture: buildImage(author.image ? { src: author.image, alt: '' } : null),
@@ -334,8 +384,12 @@ export function applyCardListLayout(block, config) {
   block.classList.add('card-list');
   BREAKPOINTS.forEach((bp) => {
     const r = config.responsive[bp];
-    const scroll = r.mode === 'horizontal-scroll';
+    // a carousel scrolls too (the scroll classes), with its own class for its buttons
+    const scroll = r.mode !== 'grid';
     block.classList.add(`${bp}-${scroll ? 'scroll' : 'grid'}`);
+    if (r.mode === 'carousel') block.classList.add(`${bp}-carousel`);
+    // the cards per row on desktop (grid, carousel), for type that follows the card width
+    if (bp === 'desktop' && r.mode !== 'horizontal-scroll') block.classList.add(`desktop-columns-${r.columns}`);
     if (scroll && r.controls) block.classList.add(`${bp}-controls`);
     if (scroll && r.indicator) block.classList.add(`${bp}-indicator`);
     block.style.setProperty(`--list-columns-${bp}`, r.columns);
@@ -416,8 +470,6 @@ export function renderCardList(block, {
     const first = parts.find((part) => part?.querySelector?.('img'))?.querySelector('img') || list.querySelector('img');
     if (first) first.fetchPriority = 'high';
   }
-  if (listed.length) parts.push(viewport);
-
   // previous / next and the scroll indicator, shown where the breakpoint scrolls
   const nav = element('div', 'list-nav');
   const indicator = element('div', 'list-indicator');
@@ -429,7 +481,15 @@ export function renderCardList(block, {
   [previous, next].forEach((button) => button.setAttribute('aria-controls', viewport.id));
   controls.append(previous, next);
   nav.append(indicator, controls);
-  if (listed.length) parts.push(nav);
+  // Carousel (a breakpoint's display): the cards and the buttons in one frame, the buttons on
+  // the images (styles/card-list.css)
+  if (listed.length && BREAKPOINTS.some((bp) => config.responsive[bp].mode === 'carousel')) {
+    const stage = element('div', 'list-stage');
+    stage.append(viewport, nav);
+    parts.push(stage);
+  } else if (listed.length) {
+    parts.push(viewport, nav);
+  }
 
   block.replaceChildren(...parts.filter(Boolean));
   createScroller(viewport, {
@@ -464,7 +524,7 @@ export function buildCardListSkeleton(config, { title, count = Infinity }) {
   }
   const r = config.responsive[currentBreakpoint()];
   const rows = r.columns === 1 ? 2 : 1;
-  const shown = r.mode === 'horizontal-scroll' ? Math.ceil(r.visible) : r.columns * rows;
+  const shown = r.mode !== 'grid' ? Math.ceil(r.visible) : r.columns * rows;
   const total = Math.max(1, Math.min(shown, count, config.maxItems ?? Infinity));
   const shape = () => {
     const stack = skeletonElement('skeleton-stack');

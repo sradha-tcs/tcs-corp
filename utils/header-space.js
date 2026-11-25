@@ -8,13 +8,14 @@
  * mode is <html data-header-overlay> ('always', 'never'; none: automatic, over an opening light
  * Hero), which styles/styles.css needs before the header loads. It is remembered too, so the next
  * pages lay the page out for it from the start; a visitor's first page has the automatic layout
- * until the header loads.
+ * until the header loads, unless the page declares the mode (metadata header-overlay).
  */
 import { currentBreakpoint } from './viewport.js';
 
-// v2: heights remembered before the header Canvas left the header's flow included the Canvas
-const key = () => `header-height-v2-${currentBreakpoint()}`;
-const MIN_HEADER_HEIGHTS = { mobile: 5.625, tablet: 7.75, desktop: 7.75 };
+// v2: heights remembered before the header Canvas left the header's flow included the Canvas;
+// v3: tablet heights remembered before the tablet bar went from 124px to 90px
+const key = () => `header-height-v3-${currentBreakpoint()}`;
+const MIN_HEADER_HEIGHTS = { mobile: 5.625, tablet: 5.625, desktop: 7.75 };
 const OVERLAY_KEY = 'header-overlay-v1';
 const OVERLAYS = ['always', 'never'];
 const POSITION_KEY = 'header-position-v1';
@@ -40,6 +41,16 @@ function applyOverlay(mode) {
 }
 
 /**
+ * the overlay mode a page declares (metadata header-overlay: always / never, e.g. a bulk metadata
+ * column matching the TCS Header's option): known on a visitor's first page too, so the first
+ * block doesn't move when the header arrives (no layout shift)
+ */
+const authoredOverlay = () => {
+  const value = document.head?.querySelector('meta[name="header-overlay"]')?.content?.trim().toLowerCase();
+  return OVERLAYS.includes(value) ? value : '';
+};
+
+/**
  * reserves the remembered header height (on <html>, --header-reserved), if there is one, and
  * applies the remembered header overlay mode
  */
@@ -51,7 +62,7 @@ export function reserveHeaderSpace() {
       const height = Math.max(rem, MIN_HEADER_HEIGHTS[breakpoint]);
       document.documentElement.style.setProperty('--header-reserved', `${height}rem`);
     }
-    applyOverlay(localStorage.getItem(OVERLAY_KEY));
+    applyOverlay(authoredOverlay() || localStorage.getItem(OVERLAY_KEY));
     const position = localStorage.getItem(POSITION_KEY);
     applyPosition(position);
     try {

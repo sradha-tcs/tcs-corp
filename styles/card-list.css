@@ -17,6 +17,11 @@
   --list-thumb: var(--slate-600);
   --list-bleed: 0rem;
 
+  /* Carousel: the image ratio (button position) and the grey of the first / last button */
+  --list-ratio: calc(16 / 9);
+  --list-carousel-top: 50%;
+  --list-carousel-disabled: var(--grey-200);
+
   /* the active breakpoint's layout (mobile first) */
   --list-columns: var(--list-columns-mobile, 1);
   --list-gap: var(--list-gap-mobile, 1rem);
@@ -84,6 +89,17 @@
 .card-list .list-cta-slot {
   display: flex;
   align-items: center;
+}
+
+/*
+ * the header's text link (CTA style Text link, e.g. See all; Figma): 0.875rem (14px) medium, at
+ * every width; the letter-spacing follows the size (--button-font-size). Card links (Download,
+ * Explore) and the header's Primary / Secondary buttons keep the button type
+ */
+.card-list .list-cta-slot .button.tertiary {
+  --button-font-size: var(--label-font-size);
+
+  font-weight: var(--font-weight-medium);
 }
 
 .card-list.header-center .list-header {
@@ -407,19 +423,23 @@
   outline-offset: var(--space-100);
 }
 
-/* cards that clip their content (overflow: hidden): the ring inside their edge */
+/* panel, report and statistic cards: the focus ring inside their edge */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-link:focus-visible::before {
   outline-offset: calc(-2 * var(--border-width-200));
 }
 
-/* panel, report and statistic cards: a coloured panel, the action at the bottom */
+/*
+ * panel, report and statistic cards: a coloured panel, the action at the bottom. Not clipped
+ * (overflow visible): their Panel height (2:3, 9:10) is then a minimum, and a card whose content
+ * needs more (narrow tablet columns, long text) grows instead of cutting off its call to action;
+ * the Image background clips itself (below)
+ */
 .card-list :is(.list-card-panel, .list-card-report, .list-card-stat) {
   --list-card-bg: var(--list-dark);
   --list-card-fg: var(--slate-100);
   --list-card-muted: var(--white-500);
 
   box-sizing: border-box;
-  overflow: hidden;
   gap: var(--space-400);
   padding: var(--list-card-padding);
   border-radius: var(--radius-l);
@@ -440,6 +460,28 @@
   color: var(--list-card-muted);
 }
 
+/*
+ * panel cards' kicker (Figma): #cdcdcd on the coloured fills (default, Dark, Navy, Brand), apart
+ * from the description; the light Card colours and Image background set it back to their muted
+ * text (below). On Brand, #cdcdcd is 3.4:1 for the 12px kicker, below WCAG 1.4.3 AA: an approved
+ * exception to match Figma (decision log KB-D-070)
+ */
+.card-list .list-card-panel {
+  --list-card-kicker: var(--slate-300);
+}
+
+.card-list .list-card-panel .list-card-kicker {
+  color: var(--list-card-kicker, var(--list-card-muted));
+}
+
+/* panel cards on mobile: the kicker and meta at 0.875rem (14px), the size from 600px up */
+@media (width < 600px) {
+  .card-list .list-card-panel {
+    --list-kicker-size: 0.875rem;
+    --list-meta-size: 0.875rem;
+  }
+}
+
 .card-list :is(.list-card-panel, .list-card-report) .list-card-title {
   font-size: var(--list-panel-title-size);
   font-weight: var(--font-weight-regular);
@@ -456,6 +498,38 @@
   --list-card-bg: var(--list-gradient);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--black-500);
+  --list-report-title-size: 2rem;
+  --list-report-text-size: 0.875rem;
+  --list-kicker-size: 0.875rem;
+}
+
+/*
+ * report cards' type (Figma): title 2rem / 600 / 1.1 (32px) at every width; description 500 / 1.2,
+ * 0.875rem (14px) on mobile and 1rem (16px) from 600px up; kicker and call to action 0.875rem
+ * (14px) at every width; long words wrap in narrow cards
+ */
+.card-list .list-card-report .list-card-title {
+  font-size: var(--list-report-title-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+  letter-spacing: calc(-0.015 * var(--list-report-title-size));
+  overflow-wrap: break-word;
+}
+
+.card-list .list-card-report .list-card-description {
+  font-size: var(--list-report-text-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.card-list .list-card-report .list-card-action {
+  --button-font-size: 0.875rem;
+}
+
+@media (width >= 600px) {
+  .card-list .list-card-report {
+    --list-report-text-size: 1rem;
+  }
 }
 
 .card-list .list-card-stat {
@@ -513,6 +587,54 @@
   line-height: 1.6;
 }
 
+/*
+ * statistic cards (Figma "Feature card/Card - Stat"): Label and description 1rem / 1.625
+ * (16px / 26px), -0.01em, 1.5rem apart; the description #5a5a5a on the default and light Card
+ * colours (Dark, Navy, Brand blue and Image background keep their muted text)
+ */
+.card-list .list-card-stat .list-card-bottom {
+  gap: var(--space-600);
+}
+
+.card-list .list-card-stat :is(.list-card-subtitle, .list-card-description) {
+  line-height: 1.625;
+  letter-spacing: calc(-0.01 * var(--list-stat-text-size));
+}
+
+.card-list .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image) .list-card-description {
+  color: var(--color-text-neutral-secondary);
+}
+
+/*
+ * wide statistic cards (Figma "Content Section", three per row): the description 1.25rem / 1.6
+ * (20px / 32px) on desktop in rows of one to three cards; four or more per row keep 1rem
+ * ("Collection Section")
+ */
+@media (width >= 1200px) {
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat .list-card-description {
+    --list-stat-text-size: 1.25rem;
+
+    line-height: 1.6;
+  }
+}
+
+/*
+ * the same rows of one to three statistic cards below 1200px (Figma tablet "Content Section",
+ * 1024 frame; its mobile frame is unfinished, so mobile follows tablet): 1.5rem padding (and the
+ * 1.5rem gaps), the description 1.125rem / 1.611 (18px / 29px); the title keeps its Title size
+ */
+@media (width < 1200px) {
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat {
+    --list-card-padding: var(--space-600);
+  }
+
+  .card-list:is(.desktop-columns-1, .desktop-columns-2, .desktop-columns-3) .list-card-stat .list-card-description {
+    --list-stat-text-size: 1.125rem;
+
+    line-height: 1.611;
+  }
+}
+
 /* the feature card (Figma variation 2): the image behind tags, title and author */
 .card-list .list-feature {
   position: relative;
@@ -547,6 +669,11 @@
   padding: var(--space-600);
 }
 
+/* the feature card's kicker (Figma Text/Default/Secondary): #5a5a5a on its light image fade */
+.card-list .list-feature .list-card-kicker {
+  color: var(--color-text-neutral-secondary);
+}
+
 .card-list .list-feature-title {
   max-width: 31.25rem;
   margin: 0;
@@ -572,11 +699,12 @@
   object-fit: cover;
 }
 
+/* the feature card's author name and role: 1rem / 1.375 (16px / 22px, Figma) at every width */
 .card-list .list-author-details {
   display: flex;
   flex-direction: column;
   color: var(--color-text-default);
-  font-size: var(--body-font-size-m);
+  font-size: 1rem;
   font-weight: var(--font-weight-medium);
   line-height: 1.375;
 }
@@ -616,24 +744,28 @@
   --list-card-bg: var(--brand-300);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-grey {
   --list-card-bg: var(--color-bg-tertiary);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-mid-grey {
   --list-card-bg: var(--grey-400);
   --list-card-fg: var(--black-1000);
   --list-card-muted: var(--black-600);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-gradient {
   --list-card-bg: var(--list-gradient);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--black-500);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 /* the image behind the content in its own layer (isolation): the card link's overlay still
@@ -644,14 +776,16 @@
   --list-card-bg: var(--color-bg-secondary);
   --list-card-fg: var(--color-text-neutral);
   --list-card-muted: var(--color-text-secondary);
+  --list-card-kicker: var(--list-card-muted);
 }
 
 .card-list .list-card.theme-image > .list-card-media {
   position: absolute;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   margin: 0;
-  border-radius: 0;
+  border-radius: inherit;
   aspect-ratio: auto;
 }
 
@@ -745,6 +879,63 @@
 /* on the dark backgrounds of the theme contract: the light text colour (styles/styles.css) */
 main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-row:is(:hover, :focus-within) .list-row-arrow {
   background-color: var(--color-text-default);
+}
+
+/*
+ * Cards: Title size, at every width: 96px (6rem), 48px (3rem) or a heading size (H1 to H6, the
+ * --heading-font-size-* tokens, larger from the tablet up); long words wrap in narrow cards
+ */
+.card-list .list-card.title-size-96 {
+  --list-title-size: 6rem;
+  --list-title-line: 1;
+}
+
+.card-list .list-card.title-size-48 {
+  --list-title-size: 3rem;
+  --list-title-line: 1.1;
+}
+
+.card-list .list-card.title-size-h1 {
+  --list-title-size: var(--heading-font-size-xxl);
+  --list-title-line: 1.2;
+}
+
+.card-list .list-card.title-size-h2 {
+  --list-title-size: var(--heading-font-size-xl);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h3 {
+  --list-title-size: var(--heading-font-size-l);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h4 {
+  --list-title-size: var(--heading-font-size-m);
+  --list-title-line: 1.3;
+}
+
+.card-list .list-card.title-size-h5 {
+  --list-title-size: var(--heading-font-size-s);
+  --list-title-line: 1.4;
+}
+
+.card-list .list-card.title-size-h6 {
+  --list-title-size: var(--heading-font-size-xs);
+  --list-title-line: 1.4;
+}
+
+.card-list .list-card:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
+  font-size: var(--list-title-size);
+  line-height: var(--list-title-line);
+  letter-spacing: calc(-0.02 * var(--list-title-size));
+  overflow-wrap: break-word;
+}
+
+/* a statistic card's number in a Title size: 1.1 and -0.05em as the number (Figma: 96 / 106px, -4.8px) */
+.card-list .list-card-stat:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
+  line-height: 1.1;
+  letter-spacing: calc(-0.05 * var(--list-title-size));
 }
 
 /* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
@@ -927,7 +1118,6 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     --list-panel-title-size: 1.75rem;
     --list-panel-text-size: 1rem;
     --list-stat-number-size: 6rem;
-    --list-stat-text-size: 1.125rem;
     --list-meta-size: 1rem;
     --list-row-title-size: 2.5rem;
   }
@@ -1013,9 +1203,376 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   }
 }
 
+/*
+ * Carousel (Desktop / Tablet / Mobile display Carousel, Figma "Press releases"): Columns whole
+ * cards per view; previous / next on the cards, brand blue, grey at the first and last card,
+ * centred on the image of image cards (the image height from the card width and Image ratio),
+ * else on the cards; the cards and buttons share a frame (.list-stage, its width is 100cqi)
+ */
+.card-list.ratio-1-1 {
+  --list-ratio: 1;
+}
+
+.card-list.ratio-4-3 {
+  --list-ratio: calc(4 / 3);
+}
+
+.card-list.ratio-3-2 {
+  --list-ratio: calc(3 / 2);
+}
+
+.card-list.style-image:has(.list-stage .list-card-media) {
+  --list-carousel-top: calc(var(--list-item-size) / var(--list-ratio) / 2);
+}
+
+.card-list .list-stage {
+  position: relative;
+  container-type: inline-size;
+}
+
+@media (width < 600px) {
+  .card-list.mobile-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-500);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.mobile-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.mobile-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.mobile-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: var(--color-bg-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.mobile-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.mobile-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
+    background-color: var(--list-carousel-disabled);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.mobile-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.mobile-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.mobile-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.mobile-carousel .list-items {
+    padding-inline-end: 0;
+  }
+}
+
+@media (600px <= width < 1200px) {
+  .card-list.tablet-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-500);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.tablet-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.tablet-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.tablet-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: var(--color-bg-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.tablet-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.tablet-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
+    background-color: var(--list-carousel-disabled);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.tablet-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.tablet-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.tablet-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.tablet-carousel .list-items {
+    padding-inline-end: 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .card-list.desktop-carousel .list-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: var(--list-carousel-top);
+    z-index: 2;
+    margin: 0;
+    padding-inline: var(--space-500);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .card-list.desktop-carousel .list-indicator {
+    display: none;
+  }
+
+  .card-list.desktop-carousel .list-controls {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-list.desktop-carousel .list-controls .button.icon-button {
+    --icon-button-size: 2.5rem;
+
+    border-color: var(--color-bg-brand);
+    background-color: var(--color-bg-brand);
+    color: var(--color-icon-on-brand);
+    pointer-events: auto;
+  }
+
+  .card-list.desktop-carousel .list-controls .button.icon-button:is(:hover, :focus-visible) {
+    background-color: var(--color-bg-brand-hover);
+  }
+
+  /* the first / last card: grey (the button stays focusable and does nothing) */
+  .card-list.desktop-carousel .list-controls .button.icon-button[aria-disabled='true'] {
+    border-color: transparent;
+    background-color: var(--list-carousel-disabled);
+    color: var(--color-text-neutral-tertiary);
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* the buttons stay shown when all the cards fit (both grey) */
+  .card-list.desktop-carousel .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
+    display: flex;
+  }
+
+  /* whole cards from edge to edge: no bleed */
+  .card-list.edge-bleed.desktop-carousel {
+    --list-bleed: 0rem;
+  }
+
+  .card-list.edge-bleed.desktop-carousel .list-scroller {
+    margin-inline-end: 0;
+  }
+
+  .card-list.edge-bleed.desktop-carousel .list-items {
+    padding-inline-end: 0;
+  }
+}
+
 /* nothing to scroll (the cards fit): no buttons or indicator */
 .card-list .list-scroller:not([data-overflow='true']) + .list-nav.list-nav {
   display: none;
+}
+
+/*
+ * Impact cards (Style option impact-cards, "Proven impact and outcomes"): image cards on a white
+ * card with rounded corners: the image at the top, then the title and the description, centred;
+ * three per row from the tablet up (utils/card-list-config.js IMPACT_COLUMNS), cards of a row of
+ * equal height. Image cards only: panel, report and statistic cards keep their own look.
+ */
+.card-list.impact-cards {
+  --list-card-title-size: 1.25rem;
+  --list-card-title-line: 1.4;
+}
+
+.card-list.impact-cards .list-card-image {
+  /* a white card on any section colour: its text keeps the light-background tokens */
+  --color-text-default: var(--black-1000);
+  --color-text-secondary: var(--slate-700);
+  --color-text-brand: var(--brand-400);
+  --color-border-brand: var(--brand-500);
+  --link-color: var(--brand-400);
+  --link-hover-color: var(--brand-600);
+
+  gap: var(--space-300);
+  height: 100%;
+  padding-bottom: var(--space-600);
+  border-radius: var(--radius-l);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-neutral);
+  text-align: center;
+}
+
+/* the image fills the card's top, under its rounded corners (no overflow clip: focus rings stay) */
+.card-list.impact-cards .list-card-image > .list-card-media {
+  margin-bottom: var(--space-300);
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.card-list.impact-cards .list-card-image > :not(.list-card-media) {
+  padding-inline: var(--space-600);
+}
+
+.card-list.impact-cards .list-card-image :is(.list-card-kicker, .list-card-meta) {
+  justify-content: center;
+}
+
+.card-list.impact-cards .list-card-image .list-card-description {
+  font-size: 0.875rem;
+}
+
+/* the heading closer to the cards than the lists' 5rem (Figma: 3rem) */
+@media (width >= 600px) {
+  .card-list.impact-cards {
+    gap: var(--space-1200);
+  }
+}
+
+/*
+ * Cards: the CTA buttons (CTA 1, CTA 2), stacked, each its own link above the card's link, at
+ * 0.875rem (14px); a Secondary Button takes the card's text colour on panel, report and statistic
+ * cards (until hover or focus)
+ */
+.card-list .list-card-ctas {
+  --button-font-size: 0.875rem;
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-300);
+}
+
+.card-list .list-card-ctas a.list-card-cta-no-arrow::after {
+  display: none;
+}
+
+.card-list :is(.list-card-panel, .list-card-report, .list-card-stat) .list-card-ctas .button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--list-card-fg);
+  color: var(--list-card-fg);
+}
+
+/* the buttons (Figma "Content Section"): 3rem (48px) high with the border inside, medium */
+.card-list .list-card-ctas .button {
+  --button-height: 3rem;
+
+  padding-block: calc(var(--space-300) - var(--border-width-100));
+  font-weight: var(--font-weight-medium);
+}
+
+/*
+ * a Secondary Button on a light card (statistic and report cards, panels in a light Card colour):
+ * #f5f5f5 with a #303030 border and text (Figma); dark cards keep theirs
+ */
+.card-list :is(
+  .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
+  .list-card-report:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
+  .list-card-panel:is(.theme-grey, .theme-mid-grey, .theme-brand-light, .theme-gradient)
+) .list-card-ctas .button.secondary:not(:hover, :focus-visible) {
+  border-color: var(--color-text-neutral);
+  background-color: var(--grey-100);
+  color: var(--color-text-neutral);
+}
+
+/*
+ * Cards: a panel with CTA buttons (Figma): the title at the top; the Label (0.875rem semibold),
+ * the description and the buttons at the bottom
+ */
+.card-list .list-card-panel > .list-card-bottom {
+  gap: var(--space-600);
+  margin-top: auto;
+}
+
+.card-list .list-card-panel .list-card-bottom .list-card-subtitle {
+  color: var(--list-card-fg);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.card-list .list-card-panel .list-card-subtitle + .list-card-description {
+  margin-top: var(--space-200);
+}
+
+.card-list .list-card-panel .list-card-bottom > .list-card-action {
+  margin: 0;
+  padding-top: 0;
+}
+
+/*
+ * a statistic card with CTA buttons (Figma): the description 2rem below the Label, the buttons
+ * 1.5rem below the description; statistic cards without buttons are unchanged
+ */
+.card-list .list-card-stat .list-card-bottom > .list-card-action {
+  margin: 0;
+  padding-top: 0;
+}
+
+/*
+ * report cards' kicker (Figma): #5a5a5a on the gradient and the light Card colours, on any section
+ * colour (the card keeps its light fill); Dark, Navy and Brand keep their light muted kicker
+ */
+.card-list .list-card-report:not(.theme-dark, .theme-navy, .theme-brand) .list-card-kicker {
+  color: var(--color-text-neutral-secondary);
+}
+
+/*
+ * image cards' kicker (Figma): #767676 (4.5:1 on white); the feature card's is #5a5a5a, impact
+ * cards keep the secondary text, and on the dark backgrounds of the theme contract image cards
+ * turn light (below)
+ */
+.card-list:not(.impact-cards) .list-card-image .list-card-kicker {
+  color: var(--color-text-neutral-tertiary);
 }
 
 /*
@@ -1027,6 +1584,39 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
   color: var(--color-text-on-neutral);
 }
 
-:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-description, .list-card-meta) {
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card-image :is(.list-card-kicker, .list-card-description, .list-card-meta) {
   color: rgb(255 255 255 / 70%);
+}
+
+/* on the dark backgrounds of the theme contract: the white card keeps its dark text */
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image {
+  color: var(--color-text-neutral);
+}
+
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list.impact-cards .list-card-image :is(.list-card-kicker, .list-card-description, .list-card-meta) {
+  color: var(--color-text-secondary);
+}
+
+@media (width >= 1200px) {
+  .card-list.impact-cards {
+    --list-card-title-size: 1.5rem;
+    --list-card-title-line: 1.3;
+  }
+}
+
+/*
+ * Lists with a feature card (Feature first, Figma "Insights & Opinions" 1440 frame): from 1200px
+ * the image cards under the feature keep the tablet type, title 1.25rem / 1.4 (20px / 28px) and
+ * description 0.875rem / 1.4286 (14px / 20px); other lists keep the desktop sizes
+ */
+@media (width >= 1200px) {
+  .card-list.feature-first .list-card-image {
+    --list-card-title-size: 1.25rem;
+    --list-card-title-line: 1.4;
+  }
+
+  .card-list.feature-first .list-card-image .list-card-description {
+    font-size: 0.875rem;
+    line-height: 1.4286;
+  }
 }

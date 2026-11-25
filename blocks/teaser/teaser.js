@@ -96,20 +96,40 @@ const OPTIONS = {
     'mobile-image-top',
     'mobile-image-bottom',
   ],
+  // Title weight, Description size and Description weight (styles at the end of teaser.css);
+  // the sizes with a decimal (description-2.5rem) arrive as class names without the dot
   titleweight: [
+    'title-light',
     'title-regular',
+    'title-medium',
     'title-semibold',
+    'title-bold',
   ],
   titlecolor: [
     'title-dark',
     'title-white',
     'title-light-blue',
     'title-royal-blue',
+    'title-soft-gray',
   ],
   descriptionsize: [
     'text-regular',
     'text-large',
     'text-normal',
+    'description-4rem',
+    'description-3rem',
+    'description-2-5rem',
+    'description-2-25rem',
+    'description-2rem',
+    'description-1-75rem',
+    'description-1-25rem',
+  ],
+  descriptionweight: [
+    'description-light',
+    'description-regular',
+    'description-medium',
+    'description-semibold',
+    'description-bold',
   ],
   descriptioncolor: [
     'description-black',
@@ -120,6 +140,12 @@ const OPTIONS = {
     'eyebrow-grey',
     'eyebrow-white',
     'eyebrow-rich-black',
+    'eyebrow-medium-light-gray',
+  ],
+  // Eyebrow Font size (Desktop): 12px or 14px (teaser.css), else the Eyebrow Style's
+  eyebrowfontsize: [
+    'eyebrow-size-12',
+    'eyebrow-size-14',
   ],
   topspacing: [
     'spacing-header',
@@ -136,6 +162,27 @@ const OPTIONS = {
     'arrow-down-right',
     'arrow-none',
   ],
+  // Link Arrow Color: the arrows of List links, Text links and buttons (teaser.css)
+  linkarrowcolor: [
+    'label-light-gray',
+  ],
+};
+// Primary / Secondary CTA Label Font and Label Color: classes of that CTA's link (teaser.css)
+const CTA_LABEL_FONTS = { 'font-14': 'teaser-cta-font-14' };
+const CTA_LABEL_COLORS = { 'label-soft-gray': 'teaser-cta-label-soft-gray' };
+// Title Type's size without a heading level (2.25rem, 36px): the title stays the authored
+// heading, else an H2 (classes title-2-25rem, title-tablet-2-25rem, title-mobile-2-25rem)
+const TITLE_SIZES = ['title-2-25rem', 'title-3-125rem'];
+// Title weight and CTA Label Font weight values (title-light ... title-bold): the weight's name
+const WEIGHTS = ['light', 'regular', 'medium', 'semibold', 'bold'];
+const weightOf = (cell) => {
+  const value = toClassName(textOf(cell)).replace(/^title-/, '');
+  return WEIGHTS.includes(value) ? value : '';
+};
+// Primary / Secondary CTA Border color: a class of that CTA's button (teaser.css)
+const CTA_BORDERS = {
+  'primary-border-light-gray': 'teaser-cta-border-light-gray',
+  'secondary-border-light-gray': 'teaser-cta-border-light-gray',
 };
 
 const buildTitle = (props) => buildHeading(props.title, props.titletype, 'teaser-title');
@@ -242,6 +289,8 @@ function renderLinks(container, entries) {
     background = '',
     shape = '',
     shadow = '',
+    border = '',
+    labelClasses = [],
   }) => {
     if (style === 'list') {
       if (!list) {
@@ -299,6 +348,13 @@ function renderLinks(container, entries) {
       link.classList.add('button-shadow');
     }
 
+    if (supportsAppearance && border) {
+      link.classList.add(border);
+    }
+
+    // Primary / Secondary CTA Label Font and Label Color, whatever the Link Style
+    link.classList.add(...labelClasses);
+
     container.append(link);
   });
 }
@@ -319,6 +375,9 @@ function buildLinks(props, rows, hint) {
       props.primaryctabackground,
       props.primaryctashape,
       props.primaryctashadow,
+      props.primaryctalabelfont,
+      props.primaryctalabelcolor,
+      props.teaserctaprimaryborder,
       'primary',
     ],
     [
@@ -329,6 +388,9 @@ function buildLinks(props, rows, hint) {
       props.secondaryctabackground,
       props.secondaryctashape,
       props.secondaryctashadow,
+      props.secondaryctalabelfont,
+      props.secondaryctalabelcolor,
+      props.teaserctasecondaryborder,
       'secondary',
     ],
   ].map(([
@@ -339,6 +401,9 @@ function buildLinks(props, rows, hint) {
     background,
     shape,
     shadow,
+    labelFont,
+    labelColor,
+    borderColor,
     fallback,
   ]) => {
     const link = linkOf(cell);
@@ -360,6 +425,11 @@ function buildLinks(props, rows, hint) {
       background: appearanceOf(background, BUTTON_BACKGROUNDS),
       shape: appearanceOf(shape, BUTTON_SHAPES),
       shadow: appearanceOf(shadow, BUTTON_SHADOWS),
+      border: CTA_BORDERS[toClassName(textOf(borderColor))] || '',
+      labelClasses: [
+        CTA_LABEL_FONTS[toClassName(textOf(labelFont))],
+        CTA_LABEL_COLORS[toClassName(textOf(labelColor))],
+      ].filter(Boolean),
     };
   }).filter(Boolean);
   // Multiple links on: the Links multifield (authored before Link items), in its CTA Link Style
@@ -600,12 +670,65 @@ export default async function decorate(block) {
   // Title Type (Tablet) and (Mobile): the title's size on those widths (teaser.css), else the
   // Title Type (Desktop)'s (Teasers authored before); the heading level stays the Desktop one
   const level = title?.tagName.toLowerCase() || 'h2';
+  const titleSize = (value) => (TITLE_SIZES.includes(value) ? value.replace(/^title-/, '') : '');
+  const desktopTitleSize = titleSize(toClassName(textOf(props.titletype)));
   const sizeOf = (cell) => {
     const value = toClassName(textOf(cell));
-    return HEADINGS.includes(value) ? value : level;
+    if (HEADINGS.includes(value)) return value;
+    return titleSize(value) || level;
   };
-  block.classList.remove(...HEADINGS.flatMap((h) => [`title-tablet-${h}`, `title-mobile-${h}`]));
+  const titleClasses = [...HEADINGS, ...TITLE_SIZES.map(titleSize)];
+  block.classList.remove(
+    ...TITLE_SIZES,
+    ...titleClasses.flatMap((h) => [`title-tablet-${h}`, `title-mobile-${h}`]),
+  );
+  if (desktopTitleSize) block.classList.add(`title-${desktopTitleSize}`);
   block.classList.add(`title-tablet-${sizeOf(props.titletypetablet)}`, `title-mobile-${sizeOf(props.titletypemobile)}`);
+  // Title weight (Tablet) / (Mobile) and CTA Label Font weight (Desktop / Tablet / Mobile): the
+  // weight on that width (teaser.css title-weight-tablet-bold, cta-weight-bold,
+  // cta-weight-mobile-light ...); Tablet and Mobile else the Desktop one
+  const desktopTitleWeight = weightOf(props.titleweight);
+  const desktopCtaWeight = weightOf(props.ctalabelfontweightdesktop);
+  block.classList.remove(...WEIGHTS.flatMap((w) => [
+    `title-weight-tablet-${w}`, `title-weight-mobile-${w}`,
+    `cta-weight-${w}`, `cta-weight-tablet-${w}`, `cta-weight-mobile-${w}`,
+  ]));
+  const addWeight = (prefix, weight) => { if (weight) block.classList.add(`${prefix}-${weight}`); };
+  addWeight('title-weight-tablet', weightOf(props.titleweighttablet) || desktopTitleWeight);
+  addWeight('title-weight-mobile', weightOf(props.titleweightmobile) || desktopTitleWeight);
+  addWeight('cta-weight', desktopCtaWeight);
+  addWeight('cta-weight-tablet', weightOf(props.ctalabelfontweighttablet) || desktopCtaWeight);
+  addWeight('cta-weight-mobile', weightOf(props.ctalabelfontweightmobile) || desktopCtaWeight);
+  // Description size (Tablet) and (Mobile): the description's size on those widths (teaser.css
+  // description-tablet-* / description-mobile-*, e.g. description-tablet-text-large or
+  // description-mobile-2-5rem), else the Description size (Desktop)'s (Teasers authored before)
+  const descriptionSizes = OPTIONS.descriptionsize;
+  const desktopSize = descriptionSizes.find((size) => block.classList.contains(size));
+  const descriptionSizeOf = (cell) => {
+    const value = toClassName(textOf(cell));
+    return descriptionSizes.includes(value) ? value : desktopSize;
+  };
+  const sizeClass = (width, size) => `description-${width}-${size.replace(/^description-/, '')}`;
+  block.classList.remove(...['tablet', 'mobile'].flatMap((width) => descriptionSizes
+    .map((size) => sizeClass(width, size))));
+  [['tablet', props.descriptionsizetablet], ['mobile', props.descriptionsizemobile]]
+    .forEach(([width, cell]) => {
+      const size = descriptionSizeOf(cell);
+      if (size) block.classList.add(sizeClass(width, size));
+    });
+  // Eyebrow Font size (Tablet) and (Mobile): the eyebrow's size on those widths (teaser.css
+  // eyebrow-tablet-size-12 / eyebrow-mobile-size-14 ...), else the Eyebrow Font size (Desktop)'s
+  const eyebrowSizes = OPTIONS.eyebrowfontsize;
+  const desktopEyebrowSize = eyebrowSizes.find((size) => block.classList.contains(size));
+  const eyebrowClass = (width, size) => size.replace(/^eyebrow-/, `eyebrow-${width}-`);
+  block.classList.remove(...['tablet', 'mobile'].flatMap((width) => eyebrowSizes
+    .map((size) => eyebrowClass(width, size))));
+  [['tablet', props.eyebrowfontsizetablet], ['mobile', props.eyebrowfontsizemobile]]
+    .forEach(([width, cell]) => {
+      const value = toClassName(textOf(cell));
+      const size = eyebrowSizes.includes(value) ? value : desktopEyebrowSize;
+      if (size) block.classList.add(eyebrowClass(width, size));
+    });
   // the image beside, above or below the text (Image & Text) or behind it (Background image, Card)
   const beside = media
     && layout !== 'no-image'

@@ -73,16 +73,20 @@
             {
               "name": "Lotto",
               "value": "lottie"
+            },
+            {
+              "name": "Video",
+              "value": "media-video"
             }
           ],
-          "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background."
+          "description": "Default: the Hero Media Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Video: it is a video file (MP4 or WebM), played muted and looping as the hero background."
         },
         {
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "label": "Hero Image Path",
-          "description": "Default: an image. Lotto: a Lottie animation file (.json).",
+          "label": "Hero Media Path",
+          "description": "Default: an image. Lotto: a Lottie animation file (.json). Video: a video file (MP4 or WebM, published with the page).",
           "multi": false
         },
         {
@@ -90,7 +94,7 @@
           "valueType": "string",
           "name": "imageAlt",
           "label": "Hero Image alt text",
-          "description": "Leave empty if the image or animation is decorative."
+          "description": "Leave empty if the image, animation or video is decorative."
         },
         {
           "component": "select",
@@ -235,9 +239,47 @@
                 {
                   "name": "Blue-cyan (azure)",
                   "value": "primary-bg-azure"
+                },
+                {
+                  "name": "Transparent",
+                  "value": "primary-bg-transparent"
+                },
+                {
+                  "name": "Black 40%",
+                  "value": "primary-bg-black-40"
                 }
               ],
               "description": "Background Color of Primary CTA"
+            },
+            {
+              "component": "select",
+              "valueType": "string",
+              "name": "ctaPrimaryBorder",
+              "label": "Primary CTA Border color (Primary only)",
+              "value": "primary-border-default",
+              "options": [
+                {
+                  "name": "Default (as the BG Color)",
+                  "value": "primary-border-default"
+                },
+                {
+                  "name": "Black",
+                  "value": "primary-border-black"
+                },
+                {
+                  "name": "White",
+                  "value": "primary-border-white"
+                },
+                {
+                  "name": "Slate",
+                  "value": "primary-border-slate-100"
+                },
+                {
+                  "name": "No border",
+                  "value": "primary-border-none"
+                }
+              ],
+              "description": "Border Color of Primary CTA"
             },
             {
               "component": "select",
@@ -279,6 +321,10 @@
                 {
                   "name": "White",
                   "value": "secondary-border-white"
+                },
+                {
+                  "name": "No border",
+                  "value": "secondary-border-none"
                 }
               ],
               "description": "Border Color of Secondary CTA"
@@ -413,7 +459,8 @@
             {
               "name": "Charcoal Black 40 (deep charcoal)",
               "value": "bg-charcoal-40"
-            }
+            },
+            { "name": "Brand blue (#216AC3)", "value": "bg-brand" }
           ],
           "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay."
         },
@@ -455,7 +502,7 @@
           "value": "",
           "options": [
             {
-              "name": "Default (royal blue)",
+              "name": "Default (white)",
               "value": ""
             },
             {

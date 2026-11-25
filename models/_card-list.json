@@ -1,13 +1,15 @@
 {
   "fields": {
-    "header": [
+    "headerTitle": [
       {
         "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title",
         "description": "The heading of the cards, e.g. Related to Agentic AI."
-      },
+      }
+    ],
+    "headerType": [
       {
         "component": "select",
         "valueType": "string",
@@ -36,7 +38,9 @@
             "value": "h6"
           }
         ]
-      },
+      }
+    ],
+    "headerDetails": [
       {
         "component": "richtext",
         "valueType": "string",
@@ -402,9 +406,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on desktop (1200px and wider), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -415,11 +423,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "desktopMode"
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -513,9 +533,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on tablet (600 to 1199px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on tablet (600 to 1199px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -526,11 +550,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "tabletMode"
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -624,9 +660,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on mobile (up to 599px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on mobile (up to 599px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -637,11 +677,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "mobileMode"
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -769,6 +821,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -824,6 +900,30 @@
                     },
                     "horizontal-scroll"
                   ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "desktopMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "tabletMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "mobileMode"
+                    },
+                    "carousel"
+                  ]
                 }
               ]
             }
@@ -861,6 +961,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -895,6 +1019,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -931,6 +1079,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -977,6 +1149,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -1012,6 +1208,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -1050,6 +1270,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -1142,6 +1386,10 @@
           {
             "name": "Header centred",
             "value": "header-center"
+          },
+          {
+            "name": "Impact cards (proven impact and outcomes)",
+            "value": "impact-cards"
           }
         ]
       }

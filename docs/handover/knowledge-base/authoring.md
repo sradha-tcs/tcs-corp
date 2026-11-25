@@ -84,7 +84,7 @@ The page model is `page-metadata` in [models/_page.json](../../../models/_page.j
 
 ### Sections
 
-A section is a band of the page with default content and blocks. Its fields (Section Name, Style Default / Grey / Dark / Dark Green, Width Type, Rounded edge, Background Image and its alt text, Anchor name) are in [models/_section.json](../../../models/_section.json); the backgrounds and the dark theme contract are described in [AGENTS.md](../../../AGENTS.md#blocks) ("Backgrounds and theme"). Sections don't get `classes_*` fields delivered, so a section has no Additional tab; the container sections use `container*` fields instead.
+A section is a band of the page with default content and blocks. Its fields (Section Name, Style Default / Grey / Dark / Dark Green, Width Type, Text width per device (Mobile below 600px, Tablet 600 to 1199px, Desktop from 1200px: Full, 75%, 66%, 50% or 33% of the row for the section's text, headings and buttons, left-aligned; blocks keep their width), Rounded edge, Background Image and its alt text, Anchor name) are in [models/_section.json](../../../models/_section.json); the backgrounds and the dark theme contract are described in [AGENTS.md](../../../AGENTS.md#blocks) ("Backgrounds and theme"). Sections don't get `classes_*` fields delivered, so a section has no Additional tab; the container sections use `container*` fields instead.
 
 ## Adding and configuring blocks
 
@@ -255,7 +255,7 @@ Implemented by `getInheritedMetadata` in [utils/inherited-metadata.js](../../../
 
 ## Accessibility responsibilities
 
-The code implements WCAG 2.1 AA behaviour ([AGENTS.md](../../../AGENTS.md#blocks), "Accessibility"); authors are responsible for the content:
+The code implements WCAG 2.2 AA behaviour ([AGENTS.md](../../../AGENTS.md#blocks), "Accessibility"); authors are responsible for the content:
 
 - One `h1` per page (Page Header, a Hero with H1 or a Title h1) and heading levels in order; don't choose a level for its size.
 - Alt text for every informative image and every Lottie / file reference; empty only for decorative images.

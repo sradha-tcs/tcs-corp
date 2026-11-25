@@ -214,7 +214,7 @@ In Universal Editor edit mode each column is outlined and labelled with its name
 
 ### Columns Container (`columns-container`)
 
-Model `columns-container`; template name "Columns Container" (the block class AEM renders); children: `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `image-collage`, `quote`, `media-contacts`, `testimonial`, `anchor-list`, `accordion`, `tabs-block`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `conversation-canvas`, `cards`, `fragment`.
+Model `columns-container`; template name "Columns Container" (the block class AEM renders); children: `column-break`, `text`, `image`, `button-block`, `title`, `hero`, `teaser`, `image-collage`, `history-timeline`, `quote`, `media-contacts`, `conf-med-cont`, `testimonial`, `anchor-list`, `accordion`, `tabs-block`, `table`, `table-list`, `list`, `separator`, `embed`, `video`, `modal`, `form-variations`, `filter-list`, `conversation-canvas`, `cards`, `fragment`.
 
 Stored on a new component (definition template): `style` = `"columns-container-section"`, `columnsGap` = `"medium"`, `columnsAlign` = `"top"`, `columnsFrom` = `"desktop"`, `columnsPerRow` = `"auto"`.
 
@@ -234,7 +234,7 @@ Stored on a new component (definition template): `style` = `"columns-container-s
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
 | Columns per row | `columnsPerRow` | select | No | `auto` | Automatic (`auto`), 1 (`1`), 2 (`2`), 3 (`3`), 4 (`4`) | How many columns sit side by side in a row, all of equal width; more Column Breaks start a new row (e.g. 6 Column Breaks at 3 per row: 2 rows of 3). Automatic: as many as there are Column Breaks, at most 4. Add a Column Break, then the components of the column after it. | 2 |
-| Gap | `columnsGap` | select | No | `medium` | None (`none`), Small (`small`), Medium (`medium`), Large (`large`) | The space between the columns (and between them when stacked). | large |
+| Gap | `columnsGap` | select | No | `medium` | None (`none`), Small (`small`), Medium (`medium`), Large (`large`), Extra Large (`xlarge`) | The space between the columns (and between them when stacked). | large |
 | Vertical alignment | `columnsAlign` | select | No | `top` | Top (`top`), Middle (`middle`), Bottom (`bottom`), Stretch (equal heights) (`stretch`) | How columns of different heights line up side by side. | middle |
 | Side by side from | `columnsFrom` | select | No | `desktop` | Tablet (600px) (`tablet`), Desktop (900px) (`desktop`), Large desktop (1200px) (`large`) | Below this width the columns are stacked, one under the other. | tablet |
 

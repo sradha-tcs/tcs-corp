@@ -98,6 +98,10 @@
               "value": "white"
             },
             {
+              "name": "Grey",
+              "value": "grey"
+            },
+            {
               "name": "Black",
               "value": "black"
             },
@@ -125,6 +129,10 @@
           "label": "Heading Type",
           "value": "h2",
           "options": [
+            {
+              "name": "H1",
+              "value": "h1"
+            },
             {
               "name": "H2",
               "value": "h2"

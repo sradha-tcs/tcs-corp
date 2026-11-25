@@ -10,6 +10,9 @@
  * - The header Canvas (hosted by the site header, inHeader) belongs to the bottom of the first
  *   screen: its row sits at the dock line at the top of the page and is docked only there; as soon
  *   as scrolling carries it above the line it floats, so it stays at the bottom of the window.
+ *   Over a hero shorter than the window its row rests on the bottom of the hero, above the line:
+ *   it is docked there at the top of the page and floats as soon as the page scrolls (the
+ *   controller glides it down to the bottom of the window).
  * - Otherwise one Canvas floats (the owner): the Primary (sticky) Canvas if there is one, else the
  *   last target (DOM order) scrolled past the dock line that may float. After each section Canvas
  *   the floating row is that Canvas's, so it shows the section's variation; scrolling up hands it
@@ -117,7 +120,9 @@ export function resolveJourney({
   const targets = canvases
     .map((c, index) => ({ ...c, index }))
     .filter((c) => !c.primary && Number.isFinite(c.top) && Number.isFinite(c.bottom))
-    .map((c) => ({ ...c, top: c.top - scrollY, bottom: c.bottom - scrollY }));
+    .map((c) => ({
+      ...c, place: c.top, top: c.top - scrollY, bottom: c.bottom - scrollY,
+    }));
   const dockLine = (c) => vh - offset - c.rowHeight;
   // the search row has reached the floating position (a short page may not scroll that far:
   // at the very bottom the footer Canvas counts as arrived once it's on screen)
@@ -125,9 +130,19 @@ export function resolveJourney({
     || (atBottom && c.role === ROLES.FOOTER && c.top < vh)
     || (c.index === focused && c.top < vh && c.bottom > 0);
 
-  // a row that has arrived stays in place while it's on screen; the header Canvas's only while it
-  // is at the dock line (it floats as soon as it would move up)
-  const inPlace = (c) => (c.inHeader ? c.top >= dockLine(c) - AT_LINE : c.bottom > 0);
+  // the header Canvas row over a hero shorter than the window: at the top of the page its place
+  // (the bottom of the hero) is above the dock line, so it rests on the hero (Figma tablet and
+  // mobile, and any window taller than the hero)
+  const onShortHero = (c) => c.inHeader && c.place < dockLine(c) - AT_LINE;
+  // a row that has arrived stays in place while it's on screen; the header Canvas's only at the top
+  // of the page, where it rests: at the dock line over a hero that fills the first screen, on the
+  // bottom of a shorter hero. It floats as soon as the page scrolls (at the same place, or gliding
+  // down to the bottom of the window from the hero: canvas-controller.js)
+  const inPlace = (c) => {
+    if (!c.inHeader) return c.bottom > 0;
+    if (onShortHero(c)) return c.top >= c.place - AT_LINE;
+    return c.top >= dockLine(c) - AT_LINE;
+  };
 
   // the journey ends at the footer Canvas: nothing floats below it
   const footer = targets.find((c) => c.role === ROLES.FOOTER);

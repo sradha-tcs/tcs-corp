@@ -69,6 +69,51 @@
           ]
         },
         {
+          "component": "select",
+          "valueType": "string",
+          "name": "textWidthMobile",
+          "label": "Text width (mobile)",
+          "value": "",
+          "description": "Below 600px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+          "options": [
+            { "name": "Full (100%)", "value": "" },
+            { "name": "75%", "value": "75" },
+            { "name": "66%", "value": "66" },
+            { "name": "50%", "value": "50" },
+            { "name": "33%", "value": "33" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "textWidthTablet",
+          "label": "Text width (tablet)",
+          "value": "",
+          "description": "From 600px to 1199px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+          "options": [
+            { "name": "Full (100%)", "value": "" },
+            { "name": "75%", "value": "75" },
+            { "name": "66%", "value": "66" },
+            { "name": "50%", "value": "50" },
+            { "name": "33%", "value": "33" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "textWidthDesktop",
+          "label": "Text width (desktop)",
+          "value": "",
+          "description": "From 1200px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+          "options": [
+            { "name": "Full (100%)", "value": "" },
+            { "name": "75%", "value": "75" },
+            { "name": "66%", "value": "66" },
+            { "name": "50%", "value": "50" },
+            { "name": "33%", "value": "33" }
+          ]
+        },
+        {
           "component": "boolean",
           "valueType": "boolean",
           "name": "roundedEdge",
@@ -114,8 +159,10 @@
         "hero",
         "teaser",
         "image-collage",
+        "history-timeline",
         "quote",
         "media-contacts",
+        "conf-med-cont",
         "testimonial",
         "anchor-list",
         "accordion",

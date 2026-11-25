@@ -31,6 +31,8 @@ A key-value block with the TCS and TATA logos, their alt texts and their links (
 
 **Working-copy correction, 6 November 2026.** The circular hamburger and accordion drawer now serve mobile and tablet below 1200px; the drawer starts below `--nav-height`. The site header owns logo layout and overlay contrast after extracting these elements: Always is transparent over a dark Hero at the top, with white logos changing to black as the bar becomes white while scrolling. Light Heroes use black logos. This uses the authored theme rather than image-pixel sampling. The current PNG logos retain their transparency but are not converted into vectors; transparent SVG originals are recommended. Escape closes the drawer and restores focus, and entering desktop closes it automatically. Earlier menu descriptions below refer to the previous level-by-level implementation.
 
+**Logo colour from the background, 19 November 2026.** The TCS and TATA logos follow the background behind the header bar instead of the scroll distance: white over a dark background, black over a light one. `setupDynamicLogoTheme` (`tcs-header.js`, started once when the block is in the header) finds the `main > .section` behind the bar's vertical middle on load, scroll, resize, `header:menu` and section changes (`MutationObserver`), measured in an animation frame, and sets `<html data-header-theme>` (`dark` / `light`, written only when it changes); `header-theme.js` decides (unit tested, `test/tcs-header/header-theme.test.mjs`). Light while the menu is open, with Header over the first block Never, or once the bar has turned white (`--header-scroll-progress` or its background alpha 0.6 and up); else the section's opening block, then the section: dark classes (`bg-dark`, `bg-dark-subtle`, `bg-dark-green`, `bg-black`, `dark`, `bg-charcoal-80`, `bg-navy-60`, `bg-charcoal-40`), light classes (`bg-light`, `bg-grey`, `bg-white`, `light`, `highlight`), else the background colour's luminance (alpha above 0.1, below 0.5 is dark); else dark for a section with a Hero without a light class, light otherwise. `tcs-header.css` applies it to the logos in the block and in the site header's nav (where `blocks/header` moves them), with a 0.2s filter transition (none for reduced motion). Before the script runs, the logos keep the colour `header.css` gives them.
+
 **Three-level drawer, 11 November 2026 (Figma TCS Designs 2957-18746).** Below 1200px the drawer lists the L1 pages below **Menu root path** as accordions. Each L1 label is a link to its page (`l1Node.path`). The row or its chevron button (`aria-expanded`, `aria-controls`, one accordion open at a time) shows the L2 pages in `.tcs-accordion-submenu`. An open L1 has the `#f2f6fc` background (`--tcs-nav-open-bg`, no design token) and a brand-blue label. An L2 page with child pages is a drill-down button with a right chevron. It replaces the main view (accordions and AI search) with the L3 panel (`.tcs-header-l3-panel`): a **Back to {L1 title}** button (placeholder `backTo`, focused on open) above the L3 pages as links on `#f2f6fc`. Back returns to the main view with the accordion still open and focus on the L2 button. Closing the menu (button, Escape, desktop width) returns to the main view. An L2 page without children is a link. Rows are at least 3rem high, L1 labels 1.5rem / 120%, L2 and L3 1.125rem / 150%, in the body font. L2 pages with children are reached through their L3 pages only (Figma has no link to them). With Menu depth below 3 there are no L3 pages, so every L2 page is a link. L1 pages without children are links only (no chevron).
 
 **When to use.** In the first section of every Navigation page.
@@ -263,7 +265,7 @@ Model `tcs-header`; template name "TCS Header" (the block class AEM renders); ke
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Header over the first block | `headerOverlay` | select | No | "" | Auto (over a light Hero) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero. | — |
+| Header over the first block | `headerOverlay` | select | No | "" | Auto (based on first block) (""), Always (over the first block) (`always`), Never (the page starts below the header) (`never`) | At every width: whether the logo bar lies transparent over the page's first block. Auto: detects dark/light background. | — |
 | Desktop behavior | `headerDesktopPosition` | select | No | `float` | Float (scrolls with the page) (`float`), Sticky (stays at the top) (`sticky`) | From 1200px. Float scrolls away with the page; Sticky stays at the top. | — |
 | Tablet behavior | `headerTabletPosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | From 600px to 1199px. Sticky stays at the top; Float scrolls away with the page. | — |
 | Mobile behavior | `headerMobilePosition` | select | No | `sticky` | Sticky (stays at the top) (`sticky`), Float (scrolls with the page) (`float`) | Below 600px. Sticky stays at the top; Float scrolls away with the page. | — |
@@ -537,6 +539,7 @@ In the site header the header's CSS applies (same heights). At every width, **He
 blocks/tcs-header/
 ├── README.md
 ├── _tcs-header.json
+├── header-theme.js
 ├── tcs-header.css
 └── tcs-header.js
 ```
@@ -544,13 +547,14 @@ blocks/tcs-header/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`decorators/image-decorator.js`](../../decorators/image-decorator.js) | `pictureOf` (image with its alt text field) | `tcs-header.js`: { pictureOf } |
-| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v2-*`) and reserved on the next pages before the header loads: no layout shift); `setHeader | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
+| [`utils/header-space.js`](../../utils/header-space.js) | `reserveHeaderSpace`, `rememberHeaderSpace` (the loaded header's height, the logo bar, remembered per breakpoint (`header-height-v3-*`; minimum reserved: 5.625rem below 1200px, 7.75rem from 1200px) and reserved on the ne | `tcs-header.js`: { setHeaderOverlay, setHeaderPosition } |
 | [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `tcs-header.js`: { linkOf } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `tcs-header.js`: { readProperties, textOf } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `tcs-header.js`: { getPlaceholders } |
-| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`) | `tcs-header.js`: { toSitePath } |
+| [`utils/urls.js`](../../utils/urls.js) | `toSitePath` (AEM content paths to published paths, e.g. `/content/tcs-corp/de/de-de/x.html` → `/de-de/x`); `safeDecode` (decodeURIComponent that never throws) | `tcs-header.js`: { toSitePath } |
 | [`utils/site.js`](../../utils/site.js) | `LOCALES`, `DEFAULT_LOCALE`, `getLocale`, `indexRoot`, `REVIEW_ROOTS` and `REVIEW_SHEETS` (the three review roots, KB-D-068: /language-master/en for testing, /language-masters/en the language master, /design-block-master | `tcs-header.js`: { getLocale } |
 | [`utils/query-index.js`](../../utils/query-index.js) | `getPages` (the current locale's pages from `/query-index.json`, or a review root's own pages from its own index, `{root}/query-index.json`, `indexUrlOf`; requests of 1,000 rows, in parallel after the first, `remainingOf | `tcs-header.js`: { getPages } |
+| [`utils/ids.js`](../../utils/ids.js) | `nextInstance`, `uniqueId`, `createIdFactory` (unique ids per block instance), `availableId` (an authored id kept, suffixed -2, -3, ... only when taken) | `tcs-header.js`: { uniqueId } |
 
 <!-- END GENERATED: files -->
 
@@ -675,7 +679,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 
 - Decorated with the nav page fragment in the lazy phase (or with its section on a page); module and stylesheet preloaded on every page (`CHROME_BLOCKS`).
 - Images as delivered; no extra requests, observers or listeners. Small DOM (two links).
-- Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052).
+- Header over the first block: the layout applies in the eager phase from the remembered mode (no shift); a visitor's first page with Always or Never can shift once when the header loads (measured locally: CLS 0.086 for Never over a light Hero, 0 on the next page; KB-D-052). A page that declares the mode in its metadata (`header-overlay`: `always` / `never`, e.g. a `/<root>/**` row of the root's bulk metadata sheet, matching this option) is laid out for it from its first view: no shift (measured 24 November 2026 on Who We Are, desktop, first visit: CLS 0.092 without, 0 with `header-overlay` = `always`).
 
 ## Security and Privacy
 
@@ -690,7 +694,7 @@ Evidence to collect: the nav page path, the rendered `a.tcs-header-*` markup, th
 | Offered in every section (`section` filter) | Authors may add it to content pages | Add it only to nav pages | Not recorded (audit suggestion: nav-page-only filter) |
 | Logo assets not yet in DAM (F-77) | No logos until authored | Block library sample PNGs | Not recorded (content task) |
 | Additional tab has no effect in the site header | Spacing / hide only on the nav page itself | — | Not planned |
-| Header over the first block: first page shift | A visitor's first page with Always or Never moves once when the header loads | Keep Auto where the first block is a light Hero | To be discussed (KB-D-052, Proposed) |
+| Header over the first block: first page shift | A visitor's first page with Always or Never moves once when the header loads (also every PageSpeed run, which is always a first visit: CLS 0.09 to 0.11) | Declare the mode in the pages' metadata: a `header-overlay` column (`always` / `never`, the same as this option) with a `/<root>/**` row in the root's bulk metadata sheet, the sheet listed in the site configuration's metadata source; else keep Auto where the first block is a light Hero | Mitigated by metadata (KB-D-052, Proposed) |
 | Header over the first block: one mode per browser | A nav page without a TCS Header keeps the mode remembered from another nav page | Add the TCS Header to every nav page | Not recorded |
 | Header over the first block: dark first blocks | Dark logos aren't visible over a dark first block (Always) | Keep Auto / Never for dark first blocks | Not recorded (a light-logo option) |
 
@@ -724,3 +728,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.31 | TATA logo link checked on the live pages (`https://www.tata.com`, "TATA Group") | docs/handover revision history | 20 October 2026 |
 | PR #141 | Header over the first block (Auto / Always / Never; every width from the sticky bar fix) | KB-D-052 (Proposed) | 22 October 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Header: `scripts.js` doesn't load the header on that page and keeps no header space (`utils/page-visibility.js`, `styles/styles.css`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
+| — | The open tablet / mobile menu makes the page behind it inert and closes when focus leaves the header (WCAG 2.4.3, 2.4.11); the search field has a label and a focus outline, its texts come from placeholders (headerSearchPlaceholder, headerSearchLabel, searchByVoice, submitSearch), the voice button is aria-disabled until voice search exists | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |

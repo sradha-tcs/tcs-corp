@@ -138,6 +138,9 @@
   --color-border-neutral-secondary: var(--slate-600);
   --color-border-neutral-tertiary: var(--slate-400);
 
+  /* a light border on the dark (neutral) backgrounds, e.g. the Teaser's Very Light Gray CTA border */
+  --color-border-on-neutral: var(--slate-100);
+
   /* legacy aliases used by boilerplate blocks */
   --background-color: var(--color-bg-default);
   --light-color: var(--color-bg-secondary);
@@ -218,7 +221,7 @@
      the section gutter (--section-padding-inline); the footer caps at the page max width */
   --page-max-width: 120rem;
   --content-max-width: 90rem;
-  --section-padding-inline: var(--spacing-s);
+  --section-padding-inline: var(--space-400);
   --section-spacing: var(--spacing-m);
 
   /* ---------- size ---------- */
@@ -256,7 +259,7 @@
   --shadow-inner-600: inset 0 1rem 2rem rgb(12 12 13 / 40%);
   --blur-100: 0.25rem;
 
-  /* nav height */
+  /* nav height: 90px on mobile and tablet (below 1200px), 124px on desktop (below) */
   --nav-height: 5.625rem;
 
   /*
@@ -302,7 +305,7 @@
 
 @media (width >= 600px) {
   :root {
-    --section-padding-inline: var(--spacing-m);
+    --section-padding-inline: var(--spacing-s);
   }
 }
 
@@ -329,13 +332,6 @@
 
     /* layout */
     --section-spacing: var(--spacing-l);
-  }
-}
-
-@media (width >= 600px) {
-  :root {
-    /* Figma tablet and desktop header height: 124px */
-    --nav-height: 7.75rem;
   }
 }
 
@@ -837,6 +833,34 @@ main img {
   border: 0;
 }
 
+/* the skip link (decorators/a11y-decorator.js addSkipLink): off screen until it is focused; in
+   the eager styles, as it is added before LCP (in lazy-styles.css it would show until they load) */
+.skip-link {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  /* above the fixed header (z-index 20-50) */
+  z-index: 100;
+  padding: var(--space-300) var(--space-500);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-brand);
+  font-weight: var(--font-weight-medium);
+  transform: translateY(-120%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: -0.125rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skip-link {
+    transition: transform 0.2s ease-out;
+  }
+}
+
 .icon {
   display: inline-block;
   height: var(--icon-size-s);
@@ -1062,6 +1086,41 @@ main > .section > div {
   margin: auto;
   padding: 0 var(--section-padding-inline);
   box-sizing: border-box;
+}
+
+/*
+ * Text width per device (Section: Text width Mobile / Tablet / Desktop, scripts.js
+ * decorateSectionsWithOptions): the section's default content (text, headings, buttons) takes
+ * that share of the row, left-aligned; a device without a value is full width. Blocks keep their
+ * own width.
+ */
+main > .section.text-width-mobile-75 { --section-text-width-mobile: 75%; }
+main > .section.text-width-mobile-66 { --section-text-width-mobile: 66.6667%; }
+main > .section.text-width-mobile-50 { --section-text-width-mobile: 50%; }
+main > .section.text-width-mobile-33 { --section-text-width-mobile: 33.3333%; }
+main > .section.text-width-tablet-75 { --section-text-width-tablet: 75%; }
+main > .section.text-width-tablet-66 { --section-text-width-tablet: 66.6667%; }
+main > .section.text-width-tablet-50 { --section-text-width-tablet: 50%; }
+main > .section.text-width-tablet-33 { --section-text-width-tablet: 33.3333%; }
+main > .section.text-width-desktop-75 { --section-text-width-desktop: 75%; }
+main > .section.text-width-desktop-66 { --section-text-width-desktop: 66.6667%; }
+main > .section.text-width-desktop-50 { --section-text-width-desktop: 50%; }
+main > .section.text-width-desktop-33 { --section-text-width-desktop: 33.3333%; }
+
+main > .section[class*='text-width-'] > .default-content-wrapper > * {
+  max-width: var(--section-text-width-mobile, none);
+}
+
+@media (width >= 600px) {
+  main > .section[class*='text-width-'] > .default-content-wrapper > * {
+    max-width: var(--section-text-width-tablet, none);
+  }
+}
+
+@media (width >= 1200px) {
+  main > .section[class*='text-width-'] > .default-content-wrapper > * {
+    max-width: var(--section-text-width-desktop, none);
+  }
 }
 
 main > .section:first-of-type {

@@ -1,7 +1,9 @@
 // Cards data and the shared card list settings: node --test (npm test)
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { CARD_LAYOUT, buildManualCards, itemToCard } from '../../blocks/cards/cards-data.js';
+import {
+  CARD_LAYOUT, CARD_LAYOUT_BEFORE_CTAS, buildManualCards, ctasOf, itemToCard,
+} from '../../blocks/cards/cards-data.js';
 import {
   contentTypeLabel, kindOf, normalizePresentation, showsCta, toSafeId,
 } from '../../utils/card-list-config.js';
@@ -109,7 +111,7 @@ describe('shared card list settings', () => {
 
   it('clamps and validates the values', () => {
     const c = config({
-      cardstyle: 'Stat', desktopcolumns: '9', mobilegap: '-4', tabletcardwidth: '80', desktopmode: 'carousel',
+      cardstyle: 'Stat', desktopcolumns: '9', mobilegap: '-4', tabletcardwidth: '80', desktopmode: 'masonry',
     });
     assert.equal(c.cardStyle, 'stat');
     assert.equal(c.responsive.desktop.columns, 6);
@@ -118,8 +120,42 @@ describe('shared card list settings', () => {
     assert.equal(c.responsive.desktop.mode, 'grid');
   });
 
+  it('reads a Carousel: Columns whole cards per view, previous / next, no indicator', () => {
+    const c = config({
+      mobilemode: 'carousel',
+      mobilecolumns: '1',
+      mobilevisible: '1.2',
+      mobileindicator: 'true',
+      mobilecontrols: 'false',
+      desktopmode: 'carousel',
+      desktopcolumns: '4',
+      desktopcardwidth: '300',
+    });
+    assert.deepEqual(
+      ['mode', 'visible', 'controls', 'indicator'].map((key) => c.responsive.mobile[key]),
+      ['carousel', 1, true, false],
+    );
+    assert.equal(c.responsive.desktop.visible, 4);
+    assert.equal(c.responsive.desktop.cardWidth, 0);
+    assert.equal(c.responsive.tablet.mode, 'grid');
+  });
+
   it('keeps the known style options only', () => {
     assert.deepEqual(config({ classes: 'dividers, stat-compact, rainbow' }).styleOptions, ['dividers', 'stat-compact']);
+    assert.deepEqual(config({ classes: 'impact-cards' }).styleOptions, ['impact-cards']);
+  });
+
+  it('shows impact cards three per row from the tablet up, unless Layout sets the columns', () => {
+    const impact = config({ classes: 'impact-cards' }).responsive;
+    assert.equal(impact.desktop.columns, 3);
+    assert.equal(impact.tablet.columns, 3);
+    assert.equal(impact.mobile.columns, 1);
+    assert.equal(impact.desktop.gap, 24);
+    const authored = config({ classes: 'impact-cards', desktopcolumns: '2', tabletcolumns: '1' }).responsive;
+    assert.equal(authored.desktop.columns, 2);
+    assert.equal(authored.tablet.columns, 1);
+    // the other style options keep the defaults
+    assert.equal(config({ classes: 'dividers' }).responsive.desktop.columns, 4);
   });
 
   it('prefixes ids that do not start with a letter', () => {
@@ -159,5 +195,38 @@ describe('cards call to action', () => {
     assert.equal(showsCta(config()), true);
     assert.equal(showsCta(config({ showcta: 'false' })), false);
     assert.equal(showsCta(config({ showcta: 'true' }), {}), true);
+  });
+});
+
+describe('card CTA buttons and Title size', () => {
+  it('still reads the cards rendered before CTA 1 / CTA 2 and Title size (19 cells)', () => {
+    assert.deepEqual(CARD_LAYOUT_BEFORE_CTAS, [null, 'image', 'eyebrow', 'title', 'text', 'subtitle',
+      'tags', 'date', 'contentLabel', 'readingTime', null, 'link', 'ctaLabel', 'newTab', null, 'kind',
+      'theme', 'analyticsLabel', 'ariaLabel']);
+  });
+  it('maps CTA 1 and CTA 2: label, style (Secondary by default), new tab', () => {
+    const ctas = ctasOf([
+      { href: '/en/research', label: 'Our Research', style: '', target: '' },
+      { href: 'https://partners.example.com', label: '', style: 'Primary-no-arrow', target: 'new-window' },
+    ], 'https://www.tcs.com');
+    assert.deepEqual(ctas.map(({ ref, ...cta }) => cta), [
+      { url: '/en/research', label: 'Our Research', style: 'secondary', newWindow: false, external: false },
+      { url: 'https://partners.example.com', label: 'https://partners.example.com', style: 'primary-no-arrow', newWindow: true, external: true },
+    ]);
+  });
+  it('drops CTAs without a link or with an unsafe one, and unknown styles fall back', () => {
+    assert.deepEqual(ctasOf([{ href: '' }, { href: UNSAFE, label: 'x' }]), []);
+    assert.equal(ctasOf([{ href: '/en/a', label: 'A', style: 'list' }])[0].style, 'secondary');
+    assert.deepEqual(ctasOf(), []);
+  });
+  it('reads the Title size (96px, 48px, H1 to H6), else the card style\'s', () => {
+    const size = (titleSize) => itemToCard({ title: 'A', titleSize }, config(), context).titleSize;
+    assert.equal(size('96'), '96');
+    assert.equal(size('H2'), 'h2');
+    assert.equal(size('h7'), '');
+    assert.equal(size(''), '');
+  });
+  it('a card without CTA buttons has none (the existing cards are unchanged)', () => {
+    assert.deepEqual(itemToCard({ title: 'A' }, config(), context).ctas, []);
   });
 });

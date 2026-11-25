@@ -272,6 +272,11 @@
     color: var(--black-1000);
   }
 
+  /* Medium Light Gray, #CDCDCD */
+  .teaser.eyebrow-medium-light-gray .teaser-eyebrow {
+    color: var(--slate-300);
+  }
+
   .teaser .teaser-meta {
     display: flex;
     flex-wrap: wrap;
@@ -341,6 +346,11 @@
 
   .teaser.title-royal-blue .teaser-title {
     color: var(--brand-400);
+  }
+
+  /* Soft Gray, #F3F3F3 */
+  .teaser.title-soft-gray .teaser-title {
+    color: var(--slate-100);
   }
 
   .teaser h1.teaser-title {
@@ -671,14 +681,6 @@
     align-items: stretch;
   }
 
-  .teaser.title-semibold .teaser-title {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .teaser.title-regular .teaser-title {
-    font-weight: var(--font-weight-regular);
-  }
-
   .teaser.card .teaser-title {
     max-width: min(100%, 31.25rem);
   }
@@ -991,23 +993,6 @@
 
   .teaser.no-image.mobile-image-top .teaser-media {
     order: -1;
-  }
-
-  /* Title weight, Description size */
-
-  .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
-    font-size: var(--body-font-size-m);
-    line-height: 1.61;
-  }
-
-  .teaser.text-normal :is(.teaser-description, .teaser-short-description) {
-    font-size: 1rem;
-    line-height: 1.60;
-  }
-
-  .teaser.text-large :is(.teaser-description, .teaser-short-description) {
-    font-size: var(--body-font-size-l);
-    line-height: 1.417;
   }
 
   /* Image collage: centered content surrounded by nine animated images */
@@ -1741,4 +1726,511 @@
     .teaser.title-tablet-h6 .teaser-content .teaser-title {
       --teaser-title-size: 1rem;
     }
+  }
+
+  /*
+   * Title weight, Description size and Description weight (teaser.js OPTIONS: title-light ...
+   * title-bold, text-normal / text-regular / text-large and description-4rem ...
+   * description-1-25rem, description-light ... description-bold): last in the file, so the
+   * chosen option wins over every layout's own (Image collage too); Layout default keeps it.
+   * The sizes are the same at every width.
+   */
+  .teaser.title-light .teaser-content .teaser-title {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.title-regular .teaser-content .teaser-title {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.title-medium .teaser-content .teaser-title {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.title-semibold .teaser-content .teaser-title {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.title-bold .teaser-content .teaser-title {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .teaser.description-4rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-3rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-2-5rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-2-25rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  .teaser.description-2rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .teaser.description-1-75rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .teaser.text-large :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-l);
+    line-height: 1.417;
+  }
+
+  .teaser.description-1-25rem :is(.teaser-description, .teaser-short-description) {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .teaser.text-regular :is(.teaser-description, .teaser-short-description) {
+    font-size: var(--body-font-size-m);
+    line-height: 1.61;
+  }
+
+  .teaser.text-normal :is(.teaser-description, .teaser-short-description) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .teaser.description-light :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.description-regular :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.description-medium :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.description-semibold :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.description-bold :is(.teaser-description, .teaser-short-description) {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /*
+   * A description authored as headings (h1 to h6 in its rich text: styles/styles.css gives them
+   * their own size, weight and spacing) takes the chosen Description size and weight too
+   */
+  @media (width >= 1200px) {
+    .teaser:is(.text-normal, .text-regular, .text-large, .description-4rem, .description-3rem, .description-2-5rem, .description-2-25rem, .description-2rem, .description-1-75rem, .description-1-25rem) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  .teaser:is(.description-light, .description-regular, .description-medium, .description-semibold, .description-bold) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: inherit;
+  }
+
+  /*
+   * Description size (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * description-tablet-* / description-mobile-*: the Description size (Desktop)'s unless set):
+   * after the Description size (Desktop) rules above, so they win on those widths; a description
+   * authored as headings takes the size too
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.description-tablet-4rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 4rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-3rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-2-5rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-2-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.25rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-tablet-2rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-tablet-1-75rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-tablet-text-large :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-l);
+      line-height: 1.417;
+    }
+
+    .teaser.description-tablet-1-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .teaser.description-tablet-text-regular :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-m);
+      line-height: 1.61;
+    }
+
+    .teaser.description-tablet-text-normal :is(.teaser-description, .teaser-short-description) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .teaser:is(.description-tablet-4rem, .description-tablet-3rem, .description-tablet-2-5rem, .description-tablet-2-25rem, .description-tablet-2rem, .description-tablet-1-75rem, .description-tablet-text-large, .description-tablet-1-25rem, .description-tablet-text-regular, .description-tablet-text-normal) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.description-mobile-4rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 4rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-3rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-2-5rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-2-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2.25rem;
+      line-height: 1.2;
+    }
+
+    .teaser.description-mobile-2rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-mobile-1-75rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .teaser.description-mobile-text-large :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-l);
+      line-height: 1.417;
+    }
+
+    .teaser.description-mobile-1-25rem :is(.teaser-description, .teaser-short-description) {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .teaser.description-mobile-text-regular :is(.teaser-description, .teaser-short-description) {
+      font-size: var(--body-font-size-m);
+      line-height: 1.61;
+    }
+
+    .teaser.description-mobile-text-normal :is(.teaser-description, .teaser-short-description) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .teaser:is(.description-mobile-4rem, .description-mobile-3rem, .description-mobile-2-5rem, .description-mobile-2-25rem, .description-mobile-2rem, .description-mobile-1-75rem, .description-mobile-text-large, .description-mobile-1-25rem, .description-mobile-text-regular, .description-mobile-text-normal) :is(.teaser-description, .teaser-short-description) :is(h1, h2, h3, h4, h5, h6) {
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  /*
+   * Title Type 2.25rem (36px), a size without a heading level (teaser.js title-2-25rem: the title
+   * stays the authored heading, else an H2): from 1200px; Title Type (Tablet) / (Mobile)
+   * 2.25rem (title-tablet-2-25rem, title-mobile-2-25rem) on those widths
+   */
+  @media (width >= 1200px) {
+    .teaser.title-2-25rem .teaser-content .teaser-title {
+      --teaser-title-size: 2.25rem;
+    }
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.title-tablet-2-25rem .teaser-content .teaser-title {
+      --teaser-title-size: 2.25rem;
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.title-mobile-2-25rem .teaser-content .teaser-title {
+      --teaser-title-size: 2.25rem;
+    }
+  }
+
+  /* Column gap 1.5rem (24px, Additional tab cg-24): between the image and the text, every width */
+  .teaser.cg-24 {
+    --teaser-gap: 1.5rem;
+  }
+
+  /*
+   * Link Arrow Color Light Gray (#E3E3E3, linkArrowColor label-light-gray): the arrows of List
+   * links, Text links and buttons; hover and focus keep theirs
+   */
+  .teaser.label-light-gray :is(.teaser-link-list-item, .teaser-links a.button):not(:hover, :focus-visible)::after {
+    background-color: var(--slate-200);
+  }
+
+  /*
+   * Primary / Secondary CTA Label Font 0.875rem (14px) and Label Color Soft Gray (#F3F3F3), on
+   * that CTA whatever its Link Style: last in the file, so they win over the layouts' own (Image
+   * collage too) and, for the colour, over dark sections; hover and focus keep the button's
+   */
+  .teaser .teaser-links a.button.teaser-cta-font-14 {
+    font-size: var(--label-font-size);
+    letter-spacing: calc(0.01 * var(--label-font-size));
+  }
+
+  .teaser .teaser-links a.button.teaser-cta-label-soft-gray:not(:hover, :focus-visible),
+  main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser .teaser-links a.button.teaser-cta-label-soft-gray:not(:hover, :focus-visible) {
+    color: var(--slate-100);
+  }
+
+  /*
+   * Eyebrow Font size (Desktop) 0.75rem (12px) and 0.875rem (14px) (eyebrowFontSize, from 1200px;
+   * also below unless Eyebrow Font size (Tablet) / (Mobile) say otherwise): last in the file, so
+   * it wins over the Eyebrow Style's size; Default keeps it. The Label style's letter-spacing
+   * follows the size
+   */
+  .teaser.eyebrow-size-12 .teaser-eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .teaser.eyebrow-size-14 .teaser-eyebrow {
+    font-size: var(--label-font-size);
+  }
+
+  .teaser.eyebrow-label.eyebrow-size-12 .teaser-eyebrow {
+    letter-spacing: calc(0.01 * 0.75rem);
+  }
+
+  .teaser.eyebrow-label.eyebrow-size-14 .teaser-eyebrow {
+    letter-spacing: calc(0.01 * var(--label-font-size));
+  }
+
+  /*
+   * Eyebrow Font size (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * eyebrow-tablet-size-* / eyebrow-mobile-size-*: the Desktop size unless set): after the Desktop
+   * rules, so they win on those widths
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.eyebrow-tablet-size-12 .teaser-eyebrow {
+      font-size: 0.75rem;
+    }
+
+    .teaser.eyebrow-tablet-size-14 .teaser-eyebrow {
+      font-size: var(--label-font-size);
+    }
+
+    .teaser.eyebrow-label.eyebrow-tablet-size-12 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * 0.75rem);
+    }
+
+    .teaser.eyebrow-label.eyebrow-tablet-size-14 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * var(--label-font-size));
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.eyebrow-mobile-size-12 .teaser-eyebrow {
+      font-size: 0.75rem;
+    }
+
+    .teaser.eyebrow-mobile-size-14 .teaser-eyebrow {
+      font-size: var(--label-font-size);
+    }
+
+    .teaser.eyebrow-label.eyebrow-mobile-size-12 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * 0.75rem);
+    }
+
+    .teaser.eyebrow-label.eyebrow-mobile-size-14 .teaser-eyebrow {
+      letter-spacing: calc(0.01 * var(--label-font-size));
+    }
+  }
+
+  /*
+   * Title Type 3.125rem (50px), a size without a heading level (teaser.js title-3-125rem: the
+   * title stays the authored heading, else an H2): from 1200px; Tablet / Mobile on those widths
+   */
+  @media (width >= 1200px) {
+    .teaser.title-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.title-tablet-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.title-mobile-3-125rem .teaser-content .teaser-title {
+      --teaser-title-size: 3.125rem;
+    }
+  }
+
+  /*
+   * Title weight (Tablet) from 600 to 1199px and (Mobile) below 600px (teaser.js
+   * title-weight-tablet-* / title-weight-mobile-*: the Desktop weight unless set), after the
+   * Title weight (Desktop) rules above, so they win on those widths
+   */
+  @media (600px <= width < 1200px) {
+    .teaser.title-weight-tablet-light .teaser-content .teaser-title {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.title-weight-tablet-regular .teaser-content .teaser-title {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.title-weight-tablet-medium .teaser-content .teaser-title {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.title-weight-tablet-semibold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.title-weight-tablet-bold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.title-weight-mobile-light .teaser-content .teaser-title {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.title-weight-mobile-regular .teaser-content .teaser-title {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.title-weight-mobile-medium .teaser-content .teaser-title {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.title-weight-mobile-semibold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.title-weight-mobile-bold .teaser-content .teaser-title {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /*
+   * CTA Label Font weight (Desktop / Tablet / Mobile): the weight of the CTA labels (buttons and
+   * Text links in the links row), at every width from the Desktop one, Tablet / Mobile on their
+   * widths; last in the file, so it wins over the layouts' own (Image collage too).
+   * no-descending-specificity is off here: the earlier, more specific a.button rules (e.g. the
+   * spacing above the buttons without a description) set other properties, not font-weight
+   */
+  /* stylelint-disable no-descending-specificity */
+  .teaser.cta-weight-light .teaser-links a.button {
+    font-weight: var(--font-weight-light);
+  }
+
+  .teaser.cta-weight-regular .teaser-links a.button {
+    font-weight: var(--font-weight-regular);
+  }
+
+  .teaser.cta-weight-medium .teaser-links a.button {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .teaser.cta-weight-semibold .teaser-links a.button {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .teaser.cta-weight-bold .teaser-links a.button {
+    font-weight: var(--font-weight-bold);
+  }
+
+  @media (600px <= width < 1200px) {
+    .teaser.cta-weight-tablet-light .teaser-links a.button {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.cta-weight-tablet-regular .teaser-links a.button {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.cta-weight-tablet-medium .teaser-links a.button {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.cta-weight-tablet-semibold .teaser-links a.button {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.cta-weight-tablet-bold .teaser-links a.button {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  @media (width < 600px) {
+    .teaser.cta-weight-mobile-light .teaser-links a.button {
+      font-weight: var(--font-weight-light);
+    }
+
+    .teaser.cta-weight-mobile-regular .teaser-links a.button {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .teaser.cta-weight-mobile-medium .teaser-links a.button {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .teaser.cta-weight-mobile-semibold .teaser-links a.button {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .teaser.cta-weight-mobile-bold .teaser-links a.button {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /* stylelint-enable no-descending-specificity */
+
+  /*
+   * Primary / Secondary CTA Border color Very Light Gray (#F3F3F3, teaser-cta-border-light-gray):
+   * the border of that CTA's button on the dark backgrounds only: the Teaser's Dark, Dark green,
+   * Navy, Background image and Card layouts, and Teasers in a dark Section or Columns Container
+   * (not one with BG Color Grey, which is light again). On a light background the button keeps
+   * its own border: #F3F3F3 on white is 1.1:1, so a Secondary button (no fill) would lose its
+   * edge (WCAG 1.4.11). Hover and focus keep the button's.
+   */
+  .teaser:is(.bg-dark, .bg-dark-green, .bg-navy, .background, .card) .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible),
+  main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .teaser:not(.bg-grey) .teaser-links a.button.teaser-cta-border-light-gray:not(:hover, :focus-visible) {
+    border-color: var(--color-border-on-neutral);
   }

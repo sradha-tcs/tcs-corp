@@ -36,7 +36,9 @@ const CONTENT_TARGETS = {
   accordion: { targets: ':scope > .accordion-item', stagger: true },
   columns: { targets: ':scope > div > div', stagger: true },
   'columns-container': { targets: ':scope > .columns-container-column', stagger: true },
-  'media-contacts': { targets: ':scope > .media-contacts-title, .contact-list-group', stagger: true },
+  'media-contacts': { targets: ':scope > .media-contacts-title, .contact-list-contact', stagger: true },
+  'conf-med-cont': { targets: ':scope > .conf-med-cont-title, .contact-list-contact', stagger: true },
+  'history-timeline': { targets: ':scope > .history-timeline-header, .history-timeline-item', stagger: true },
   // blocks with a background animation: their children, the background layers left out
   teaser: { targets: ':scope > *' },
   quote: { targets: ':scope > *' },

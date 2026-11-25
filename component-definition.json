@@ -273,6 +273,22 @@
           }
         },
         {
+          "title": "Configurable Media Contacts",
+          "id": "conf-med-cont",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Conf Med Cont",
+                  "model": "conf-med-cont",
+                  "key-value": true
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Conversation Canvas",
           "id": "conversation-canvas",
           "plugins": {
@@ -536,6 +552,22 @@
           }
         },
         {
+          "title": "Rich Text Field",
+          "id": "field-richtext",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Rich Text Field",
+                  "model": "field-richtext",
+                  "classes": "field-richtext"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Contact Card Output",
           "id": "contact-card",
           "plugins": {
@@ -632,6 +664,39 @@
                 "template": {
                   "name": "CTA",
                   "model": "hero-cta"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "History Timeline",
+          "id": "history-timeline",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "History Timeline",
+                  "model": "history-timeline",
+                  "key-value": true,
+                  "headingLevel": "h3",
+                  "filter": "history-timeline"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Milestone",
+          "id": "history-timeline-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Milestone",
+                  "model": "history-timeline-item"
                 }
               }
             }

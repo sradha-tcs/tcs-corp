@@ -35,7 +35,7 @@ Rules:
   Additional, item children instead of composite multifields, container* fields on sections,
   no Text / Title / Type / Alt / MimeType suffixes for values that must be read, no sample
   content in templates.
-- Accessibility: WCAG 2.1 AA (buttons with aria-expanded / aria-controls, Escape closes popups,
+- Accessibility: WCAG 2.2 AA (buttons with aria-expanded / aria-controls, Escape closes popups,
   pause for moving content, announceNewTab, errors linked with aria-describedby).
 - Performance: three-phase loading, no new runtime dependencies, no layout reads while
   decorating, keep the Inter fallback faces, PageSpeed target 100.

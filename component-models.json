@@ -389,6 +389,96 @@
         ]
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "textWidthMobile",
+        "label": "Text width (mobile)",
+        "value": "",
+        "description": "Below 600px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+        "options": [
+          {
+            "name": "Full (100%)",
+            "value": ""
+          },
+          {
+            "name": "75%",
+            "value": "75"
+          },
+          {
+            "name": "66%",
+            "value": "66"
+          },
+          {
+            "name": "50%",
+            "value": "50"
+          },
+          {
+            "name": "33%",
+            "value": "33"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textWidthTablet",
+        "label": "Text width (tablet)",
+        "value": "",
+        "description": "From 600px to 1199px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+        "options": [
+          {
+            "name": "Full (100%)",
+            "value": ""
+          },
+          {
+            "name": "75%",
+            "value": "75"
+          },
+          {
+            "name": "66%",
+            "value": "66"
+          },
+          {
+            "name": "50%",
+            "value": "50"
+          },
+          {
+            "name": "33%",
+            "value": "33"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textWidthDesktop",
+        "label": "Text width (desktop)",
+        "value": "",
+        "description": "From 1200px: the share of the row the section's text (text, headings, buttons) takes, left-aligned. Blocks keep their own width.",
+        "options": [
+          {
+            "name": "Full (100%)",
+            "value": ""
+          },
+          {
+            "name": "75%",
+            "value": "75"
+          },
+          {
+            "name": "66%",
+            "value": "66"
+          },
+          {
+            "name": "50%",
+            "value": "50"
+          },
+          {
+            "name": "33%",
+            "value": "33"
+          }
+        ]
+      },
+      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "roundedEdge",
@@ -2700,6 +2790,10 @@
         "value": "h2",
         "options": [
           {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
             "name": "H2",
             "value": "h2"
           },
@@ -2719,7 +2813,8 @@
             "name": "H6",
             "value": "h6"
           }
-        ]
+        ],
+        "description": "H1 (48px on desktop, 40px on tablet, 28px on mobile) only for the page's main heading; H2 under the page title."
       },
       {
         "component": "richtext",
@@ -3081,9 +3176,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on desktop (1200px and wider), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -3094,11 +3193,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "desktopMode"
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -3192,9 +3303,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on tablet (600 to 1199px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on tablet (600 to 1199px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -3205,11 +3320,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "tabletMode"
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -3303,9 +3430,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on mobile (up to 599px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on mobile (up to 599px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -3316,11 +3447,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "mobileMode"
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -3446,6 +3589,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -3501,6 +3668,30 @@
                     },
                     "horizontal-scroll"
                   ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "desktopMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "tabletMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "mobileMode"
+                    },
+                    "carousel"
+                  ]
                 }
               ]
             }
@@ -3538,6 +3729,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -3572,6 +3787,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -3608,6 +3847,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -3654,6 +3917,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -3689,6 +3976,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -3727,6 +4038,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -3835,6 +4170,10 @@
           {
             "name": "Header centred",
             "value": "header-center"
+          },
+          {
+            "name": "Impact cards (proven impact and outcomes)",
+            "value": "impact-cards"
           }
         ]
       },
@@ -4577,6 +4916,52 @@
         "description": "Statistic cards: the number, e.g. 4bn."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleSize",
+        "label": "Title size",
+        "options": [
+          {
+            "name": "Default (the card style's)",
+            "value": ""
+          },
+          {
+            "name": "96px",
+            "value": "96"
+          },
+          {
+            "name": "48px",
+            "value": "48"
+          },
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ],
+        "value": "",
+        "description": "The title's font size on every card style; H1 to H6 are the site's heading sizes (larger from the tablet up). The heading level stays as it is."
+      },
+      {
         "component": "richtext",
         "valueType": "string",
         "name": "text",
@@ -4588,7 +4973,7 @@
         "valueType": "string",
         "name": "subtitle",
         "label": "Label",
-        "description": "Statistic cards: the label above the description, e.g. Revenue."
+        "description": "Statistic cards and panels: the label above the description, e.g. Revenue or Learning."
       },
       {
         "component": "aem-tag",
@@ -4661,6 +5046,124 @@
           {
             "name": "No",
             "value": "false"
+          }
+        ],
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "cta1",
+        "label": "CTA 1 Link",
+        "description": "A button at the bottom of the card, e.g. Find out more; empty: no button."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta1Text",
+        "label": "CTA 1 Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cta1Style",
+        "label": "CTA 1 Style",
+        "options": [
+          {
+            "name": "Secondary Button",
+            "value": ""
+          },
+          {
+            "name": "Secondary Button (no arrow)",
+            "value": "secondary-no-arrow"
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Primary Button (no arrow)",
+            "value": "primary-no-arrow"
+          },
+          {
+            "name": "Text link",
+            "value": "tertiary"
+          }
+        ],
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cta1Target",
+        "label": "CTA 1 Open in a new tab",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
+          }
+        ],
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "cta2",
+        "label": "CTA 2 Link",
+        "description": "A second button, below CTA 1, e.g. Our Partners; empty: no button."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta2Text",
+        "label": "CTA 2 Title"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cta2Style",
+        "label": "CTA 2 Style",
+        "options": [
+          {
+            "name": "Secondary Button",
+            "value": ""
+          },
+          {
+            "name": "Secondary Button (no arrow)",
+            "value": "secondary-no-arrow"
+          },
+          {
+            "name": "Primary Button",
+            "value": "primary"
+          },
+          {
+            "name": "Primary Button (no arrow)",
+            "value": "primary-no-arrow"
+          },
+          {
+            "name": "Text link",
+            "value": "tertiary"
+          }
+        ],
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "cta2Target",
+        "label": "CTA 2 Open in a new tab",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open in New Window",
+            "value": "new-window"
           }
         ],
         "value": ""
@@ -5512,6 +6015,10 @@
           {
             "name": "Large",
             "value": "large"
+          },
+          {
+            "name": "Extra Large",
+            "value": "xlarge"
           }
         ],
         "description": "The space between the columns (and between them when stacked)."
@@ -6287,6 +6794,809 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "conf-med-cont",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "contentTab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "media-contacts-title",
+        "label": "Media contacts title",
+        "description": "The block's title, e.g. TCS media contacts; without one the heading is Media contacts (placeholder mediaContacts)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "media-contacts-title-type",
+        "label": "Media contacts title type",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          },
+          {
+            "name": "Media contacts big title",
+            "value": "media-contacts-big-title"
+          },
+          {
+            "name": "Media contacts small title",
+            "value": "media-contacts-small-title"
+          }
+        ],
+        "description": "H1 to H6: the title's heading level. Big title / small title: an H2 in the big or small title style. The region names are one level below the title."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "media-contacts-id",
+        "label": "Media contacts ID",
+        "description": "The media-contacts-id of a row of the media-contacts-config sheet (data/conf-med-cont), e.g. media-contact-01: its region columns choose the regions, their contacts and what is shown of them."
+      },
+      {
+        "component": "tab",
+        "name": "additionalTab",
+        "label": "Additional"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes_anchor",
+        "label": "Anchor ID",
+        "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
+        "validation": {
+          "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
+          "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "classes_hideblock",
+        "label": "Hide block",
+        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
+        "value": false
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animation",
+        "label": "Animation Type",
+        "value": "",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Fade in",
+            "value": "motion-fade-in"
+          },
+          {
+            "name": "Fade up",
+            "value": "motion-fade-up"
+          },
+          {
+            "name": "Fade down",
+            "value": "motion-fade-down"
+          },
+          {
+            "name": "Fade left",
+            "value": "motion-fade-left"
+          },
+          {
+            "name": "Fade right",
+            "value": "motion-fade-right"
+          },
+          {
+            "name": "Slide up",
+            "value": "motion-slide-up"
+          },
+          {
+            "name": "Slide down",
+            "value": "motion-slide-down"
+          },
+          {
+            "name": "Slide left",
+            "value": "motion-slide-left"
+          },
+          {
+            "name": "Slide right",
+            "value": "motion-slide-right"
+          },
+          {
+            "name": "Scale in",
+            "value": "motion-scale-in"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run (Animation Type 0.3 / 0.6 / 0.9 s; the Background animation takes 1.5 times as long).",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingleft",
+        "label": "Padding left",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pl-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pl-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pl-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pl-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pl-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pl-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pl-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pl-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pl-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pl-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pl-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pl-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pl-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pl-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingright",
+        "label": "Padding right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingtop",
+        "label": "Padding top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingbottom",
+        "label": "Padding bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pb-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginleft",
+        "label": "Margin left",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "ml-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "ml-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "ml-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "ml-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "ml-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "ml-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "ml-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "ml-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "ml-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "ml-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "ml-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "ml-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "ml-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "ml-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginright",
+        "label": "Margin right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_margintop",
+        "label": "Margin top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginbottom",
+        "label": "Margin bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mb-3000"
+          }
+        ]
       }
     ]
   },
@@ -9622,8 +10932,57 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "formEyebrow",
+        "label": "Eyebrow / Category Title",
+        "description": "e.g. CORPORATE SOCIAL RESPONSIBILITY - TCS EMPOWERS"
+      },
+      {
+        "component": "aem-content",
+        "name": "formEyebrowIcon",
+        "label": "Eyebrow Icon Asset (Optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "formHeading",
         "label": "Form Title / Heading"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "formHeadingLevel",
+        "label": "Heading level",
+        "description": "The title's heading level (H1 to H6) and its size. Default: H2 at the form's own size.",
+        "options": [
+          {
+            "name": "Default (H2)",
+            "value": ""
+          },
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
       },
       {
         "component": "richtext",
@@ -9634,15 +10993,263 @@
       },
       {
         "component": "aem-content",
+        "name": "bgImage",
+        "label": "Background Image",
+        "description": "The image beside the form from 992px (the section's background). Empty: uses ambient gradient glow."
+      },
+      {
+        "component": "aem-content",
         "name": "formAction",
         "label": "Submit action",
-        "description": "Where the form data is sent (POST, JSON): e.g. an AEM Forms or spreadsheet submission endpoint. Without it, nothing is sent and visitors are told so."
+        "description": "Where the form data is sent (POST, JSON)."
       },
       {
         "component": "select",
         "valueType": "string",
         "name": "classes",
         "label": "Theme",
+        "description": "The form theme style.",
+        "value": "default",
+        "options": [
+          {
+            "name": "Default / Light",
+            "value": "default"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "additionalTab",
+        "label": "Additional"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes_anchor",
+        "label": "Anchor ID",
+        "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
+        "validation": {
+          "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
+          "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "classes_hideblock",
+        "label": "Hide block",
+        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
+        "value": false
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animation",
+        "label": "Animation Type",
+        "value": "",
+        "description": "How the block's content appears; repeated items appear one after another. None: shown as is.",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Fade in",
+            "value": "motion-fade-in"
+          },
+          {
+            "name": "Fade up",
+            "value": "motion-fade-up"
+          },
+          {
+            "name": "Fade down",
+            "value": "motion-fade-down"
+          },
+          {
+            "name": "Fade left",
+            "value": "motion-fade-left"
+          },
+          {
+            "name": "Fade right",
+            "value": "motion-fade-right"
+          },
+          {
+            "name": "Slide up",
+            "value": "motion-slide-up"
+          },
+          {
+            "name": "Slide down",
+            "value": "motion-slide-down"
+          },
+          {
+            "name": "Slide left",
+            "value": "motion-slide-left"
+          },
+          {
+            "name": "Slide right",
+            "value": "motion-slide-right"
+          },
+          {
+            "name": "Scale in",
+            "value": "motion-scale-in"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the block's animations run.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "or": [
+            {
+              "and": [
+                {
+                  "var": "classes_animation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_animation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "and": [
+                {
+                  "var": "classes_bganimation"
+                },
+                {
+                  "!==": [
+                    {
+                      "var": "classes_bganimation"
+                    },
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_bganimation",
+        "label": "Background animation",
+        "value": "",
+        "description": "How the block's background appears.",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Fade in",
+            "value": "bg-motion-fade-in"
+          },
+          {
+            "name": "Reveal from the centre",
+            "value": "bg-motion-reveal"
+          },
+          {
+            "name": "Wipe left to right",
+            "value": "bg-motion-wipe-right"
+          },
+          {
+            "name": "Wipe right to left",
+            "value": "bg-motion-wipe-left"
+          },
+          {
+            "name": "Wipe bottom to top",
+            "value": "bg-motion-wipe-up"
+          },
+          {
+            "name": "Scale reveal",
+            "value": "bg-motion-scale"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingleft",
+        "label": "Padding left",
         "value": "",
         "options": [
           {
@@ -9650,8 +11257,543 @@
             "value": ""
           },
           {
-            "name": "Dark",
-            "value": "dark"
+            "name": "0 (none)",
+            "value": "pl-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pl-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pl-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pl-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pl-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pl-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pl-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pl-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pl-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pl-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pl-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pl-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pl-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pl-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingright",
+        "label": "Padding right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingtop",
+        "label": "Padding top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingbottom",
+        "label": "Padding bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pb-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginleft",
+        "label": "Margin left",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "ml-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "ml-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "ml-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "ml-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "ml-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "ml-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "ml-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "ml-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "ml-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "ml-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "ml-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "ml-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "ml-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "ml-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginright",
+        "label": "Margin right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_margintop",
+        "label": "Margin top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginbottom",
+        "label": "Margin bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mb-3000"
           }
         ]
       }
@@ -9673,7 +11815,6 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. firstName.",
         "required": true
       },
       {
@@ -9681,7 +11822,6 @@
         "valueType": "string",
         "name": "label",
         "label": "Field Label",
-        "description": "e.g. First name",
         "required": true
       },
       {
@@ -9702,6 +11842,27 @@
           {
             "name": "Tel",
             "value": "tel"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "",
+        "options": [
+          {
+            "name": "Auto / Name-based",
+            "value": ""
+          },
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
           }
         ]
       },
@@ -9746,6 +11907,23 @@
         "required": true
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
+      },
+      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "required",
@@ -9782,8 +11960,38 @@
         "valueType": "string",
         "name": "fieldName",
         "label": "Field Name / ID",
-        "description": "Submitted as the field key, e.g. score",
         "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Field Label",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "options",
+        "label": "Dropdown Options",
+        "description": "The units, separated by commas (e.g. CGPA, Percentage). Empty: CGPA and Percentage."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
       },
       {
         "component": "boolean",
@@ -9833,6 +12041,23 @@
         "value": 1500
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
+      },
+      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "required",
@@ -9873,11 +12098,78 @@
         "required": true
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
+      },
+      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "required",
         "label": "Mandatory Field (*)",
         "value": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dependsOn",
+        "label": "Show only if dropdown value equals"
+      }
+    ]
+  },
+  {
+    "id": "field-richtext",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Field type",
+        "value": "field-richtext",
+        "readOnly": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fieldName",
+        "label": "Element ID / Name",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "label": "Rich Text Content",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
       },
       {
         "component": "text",
@@ -9903,7 +12195,7 @@
         "valueType": "string",
         "name": "region",
         "label": "Show when dropdown value equals",
-        "required": true
+        "required": false
       },
       {
         "component": "text",
@@ -9923,6 +12215,33 @@
         "valueType": "string",
         "name": "phones",
         "label": "Phones"
+      },
+      {
+        "component": "aem-content",
+        "name": "emailIcon",
+        "label": "Email Icon Asset (Optional)"
+      },
+      {
+        "component": "aem-content",
+        "name": "phoneIcon",
+        "label": "Phone Icon Asset (Optional)"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
       }
     ]
   },
@@ -9943,6 +12262,23 @@
         "name": "label",
         "label": "Button Label",
         "value": "Send"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "fieldWidth",
+        "label": "Field Width",
+        "value": "full-width",
+        "options": [
+          {
+            "name": "Full width (100%)",
+            "value": "full-width"
+          },
+          {
+            "name": "Half width (50%)",
+            "value": "half-width"
+          }
+        ]
       },
       {
         "component": "text",
@@ -11349,16 +13685,20 @@
           {
             "name": "Lotto",
             "value": "lottie"
+          },
+          {
+            "name": "Video",
+            "value": "media-video"
           }
         ],
-        "description": "Default: the Hero Image Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background."
+        "description": "Default: the Hero Media Path is an image. Lotto: it is a Lottie animation file (.json), played as the hero background. Video: it is a video file (MP4 or WebM), played muted and looping as the hero background."
       },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "label": "Hero Image Path",
-        "description": "Default: an image. Lotto: a Lottie animation file (.json).",
+        "label": "Hero Media Path",
+        "description": "Default: an image. Lotto: a Lottie animation file (.json). Video: a video file (MP4 or WebM, published with the page).",
         "multi": false
       },
       {
@@ -11366,7 +13706,7 @@
         "valueType": "string",
         "name": "imageAlt",
         "label": "Hero Image alt text",
-        "description": "Leave empty if the image or animation is decorative."
+        "description": "Leave empty if the image, animation or video is decorative."
       },
       {
         "component": "select",
@@ -11511,9 +13851,47 @@
               {
                 "name": "Blue-cyan (azure)",
                 "value": "primary-bg-azure"
+              },
+              {
+                "name": "Transparent",
+                "value": "primary-bg-transparent"
+              },
+              {
+                "name": "Black 40%",
+                "value": "primary-bg-black-40"
               }
             ],
             "description": "Background Color of Primary CTA"
+          },
+          {
+            "component": "select",
+            "valueType": "string",
+            "name": "ctaPrimaryBorder",
+            "label": "Primary CTA Border color (Primary only)",
+            "value": "primary-border-default",
+            "options": [
+              {
+                "name": "Default (as the BG Color)",
+                "value": "primary-border-default"
+              },
+              {
+                "name": "Black",
+                "value": "primary-border-black"
+              },
+              {
+                "name": "White",
+                "value": "primary-border-white"
+              },
+              {
+                "name": "Slate",
+                "value": "primary-border-slate-100"
+              },
+              {
+                "name": "No border",
+                "value": "primary-border-none"
+              }
+            ],
+            "description": "Border Color of Primary CTA"
           },
           {
             "component": "select",
@@ -11555,6 +13933,10 @@
               {
                 "name": "White",
                 "value": "secondary-border-white"
+              },
+              {
+                "name": "No border",
+                "value": "secondary-border-none"
               }
             ],
             "description": "Border Color of Secondary CTA"
@@ -11689,6 +14071,10 @@
           {
             "name": "Charcoal Black 40 (deep charcoal)",
             "value": "bg-charcoal-40"
+          },
+          {
+            "name": "Brand blue (#216AC3)",
+            "value": "bg-brand"
           }
         ],
         "description": "Default: light, the image under a white overlay. Light, no overlay: the image as is (e.g. a light gradient) with dark text. The dark options put white text over a navy, black or charcoal overlay."
@@ -11731,7 +14117,7 @@
         "value": "",
         "options": [
           {
-            "name": "Default (royal blue)",
+            "name": "Default (white)",
             "value": ""
           },
           {
@@ -12646,6 +15032,837 @@
     ]
   },
   {
+    "id": "history-timeline",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "contentTab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "startLabel",
+        "label": "Start label",
+        "description": "The left end of the timeline line, e.g. 1968. Leave empty for the first milestone’s year."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "endLabel",
+        "label": "End label",
+        "description": "The right end of the timeline line, e.g. Today. Leave empty for the last milestone’s year."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "closingLabel",
+        "label": "Closing panel",
+        "description": "Shown after the last milestone. Leave empty for “The story continues”."
+      },
+      {
+        "component": "tab",
+        "name": "styleTab",
+        "label": "Style"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "headingLevel",
+        "label": "Milestone heading level",
+        "description": "The heading level of each milestone title; choose the level after the heading above the timeline.",
+        "value": "h3",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "hideClosing",
+        "label": "Hide closing panel",
+        "value": false
+      },
+      {
+        "component": "tab",
+        "name": "additionalTab",
+        "label": "Additional"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes_anchor",
+        "label": "Anchor ID",
+        "description": "A unique ID of the block on the page, starting with anchor-, e.g. anchor-our-services; link to it with #anchor-our-services.",
+        "validation": {
+          "regExp": "^anchor-[a-z0-9][a-z0-9-]*$",
+          "customErrorMsg": "Start with anchor-, then lower-case letters, digits and hyphens."
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "classes_hideblock",
+        "label": "Hide block",
+        "description": "Hides the whole block on the page until it is turned off (shown faded in the editor).",
+        "value": false
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animation",
+        "label": "Animation Type",
+        "value": "",
+        "description": "How the block's content appears; repeated items (cards, list items, accordion items, columns) appear one after another. None: shown as is. Not played in the editor or when the visitor prefers reduced motion.",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Fade in",
+            "value": "motion-fade-in"
+          },
+          {
+            "name": "Fade up",
+            "value": "motion-fade-up"
+          },
+          {
+            "name": "Fade down",
+            "value": "motion-fade-down"
+          },
+          {
+            "name": "Fade left",
+            "value": "motion-fade-left"
+          },
+          {
+            "name": "Fade right",
+            "value": "motion-fade-right"
+          },
+          {
+            "name": "Slide up",
+            "value": "motion-slide-up"
+          },
+          {
+            "name": "Slide down",
+            "value": "motion-slide-down"
+          },
+          {
+            "name": "Slide left",
+            "value": "motion-slide-left"
+          },
+          {
+            "name": "Slide right",
+            "value": "motion-slide-right"
+          },
+          {
+            "name": "Scale in",
+            "value": "motion-scale-in"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationspeed",
+        "label": "Motion Speed",
+        "value": "",
+        "description": "How fast the animation runs: 0.3, 0.6 or 0.9 seconds.",
+        "options": [
+          {
+            "name": "Medium",
+            "value": ""
+          },
+          {
+            "name": "Fast",
+            "value": "motion-fast"
+          },
+          {
+            "name": "Slow",
+            "value": "motion-slow"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_animationtrigger",
+        "label": "Animation Trigger",
+        "value": "",
+        "description": "When the block's animations run. On Scroll: when the block comes into view (at once if it is in view when the page opens). On Page Load: as soon as the block is ready, wherever it is on the page.",
+        "options": [
+          {
+            "name": "On Scroll / Viewport Entry",
+            "value": ""
+          },
+          {
+            "name": "On Page Load",
+            "value": "motion-on-load"
+          }
+        ],
+        "condition": {
+          "and": [
+            {
+              "var": "classes_animation"
+            },
+            {
+              "!==": [
+                {
+                  "var": "classes_animation"
+                },
+                ""
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingleft",
+        "label": "Padding left",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pl-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pl-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pl-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pl-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pl-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pl-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pl-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pl-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pl-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pl-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pl-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pl-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pl-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pl-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingright",
+        "label": "Padding right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingtop",
+        "label": "Padding top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_paddingbottom",
+        "label": "Padding bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "pb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "pb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "pb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "pb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "pb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "pb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "pb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "pb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "pb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "pb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "pb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "pb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "pb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "pb-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginleft",
+        "label": "Margin left",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "ml-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "ml-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "ml-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "ml-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "ml-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "ml-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "ml-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "ml-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "ml-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "ml-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "ml-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "ml-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "ml-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "ml-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginright",
+        "label": "Margin right",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mr-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mr-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mr-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mr-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mr-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mr-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mr-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mr-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mr-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mr-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mr-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mr-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mr-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mr-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_margintop",
+        "label": "Margin top",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mt-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mt-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mt-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mt-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mt-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mt-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mt-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mt-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mt-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mt-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mt-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mt-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mt-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mt-3000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_marginbottom",
+        "label": "Margin bottom",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0 (none)",
+            "value": "mb-0"
+          },
+          {
+            "name": "0.25rem (space-100)",
+            "value": "mb-100"
+          },
+          {
+            "name": "0.5rem (space-200)",
+            "value": "mb-200"
+          },
+          {
+            "name": "0.75rem (space-300)",
+            "value": "mb-300"
+          },
+          {
+            "name": "1rem (space-400)",
+            "value": "mb-400"
+          },
+          {
+            "name": "1.25rem (space-500)",
+            "value": "mb-500"
+          },
+          {
+            "name": "1.5rem (space-600)",
+            "value": "mb-600"
+          },
+          {
+            "name": "2rem (space-800)",
+            "value": "mb-800"
+          },
+          {
+            "name": "2.5rem (space-1000)",
+            "value": "mb-1000"
+          },
+          {
+            "name": "3rem (space-1200)",
+            "value": "mb-1200"
+          },
+          {
+            "name": "4rem (space-1600)",
+            "value": "mb-1600"
+          },
+          {
+            "name": "5rem (space-2000)",
+            "value": "mb-2000"
+          },
+          {
+            "name": "6rem (space-2400)",
+            "value": "mb-2400"
+          },
+          {
+            "name": "7.5rem (space-3000)",
+            "value": "mb-3000"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "history-timeline-item",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "milestoneTab",
+        "label": "Milestone"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "year",
+        "label": "Year",
+        "description": "e.g. 1968 or Today. The first and last milestones’ years label the timeline line."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "description": "Describe the image; leave empty when it is decorative."
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "CTA Link",
+        "description": "Optional: a page or URL the milestone links to."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "CTA Text",
+        "description": "e.g. Learn more."
+      }
+    ]
+  },
+  {
     "id": "image-collage",
     "fields": [
       {
@@ -12941,7 +16158,7 @@
         "component": "select",
         "valueType": "string",
         "name": "descriptionSize",
-        "label": "Description size",
+        "label": "Description size (Desktop)",
         "value": "",
         "options": [
           {
@@ -12956,7 +16173,44 @@
             "name": "Large (24px)",
             "value": "text-large"
           }
-        ]
+        ],
+        "description": "The description's size from 1200px; also on tablet and mobile unless Description size (Tablet) / (Mobile) say otherwise."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeTablet",
+        "label": "Description size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          }
+        ],
+        "description": "The description's size from 600 to 1199px. Same as Desktop: the Description size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeMobile",
+        "label": "Description size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          }
+        ],
+        "description": "The description's size below 600px. Same as Desktop: the Description size (Desktop)."
       },
       {
         "component": "select",
@@ -15295,9 +18549,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on desktop (1200px and wider), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on desktop (1200px and wider), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -15308,11 +18566,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "desktopMode"
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -15406,9 +18676,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on tablet (600 to 1199px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on tablet (600 to 1199px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -15419,11 +18693,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "tabletMode"
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -15517,9 +18803,13 @@
           {
             "name": "Horizontal scroll",
             "value": "horizontal-scroll"
+          },
+          {
+            "name": "Carousel (buttons on the cards)",
+            "value": "carousel"
           }
         ],
-        "description": "Grid or horizontal scroll on mobile (up to 599px), independently of the other breakpoints."
+        "description": "Grid, horizontal scroll or carousel on mobile (up to 599px), independently of the other breakpoints. Carousel: Columns whole cards per view, with previous / next on the cards (on the image of image cards), grey at the first and last card."
       },
       {
         "component": "number",
@@ -15530,11 +18820,23 @@
         "min": 1,
         "max": 6,
         "condition": {
-          "===": [
+          "or": [
             {
-              "var": "mobileMode"
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "grid"
+              ]
             },
-            "grid"
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
+            }
           ]
         }
       },
@@ -15660,6 +18962,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -15715,6 +19041,30 @@
                     },
                     "horizontal-scroll"
                   ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "desktopMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "tabletMode"
+                    },
+                    "carousel"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "mobileMode"
+                    },
+                    "carousel"
+                  ]
                 }
               ]
             }
@@ -15752,6 +19102,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -15786,6 +19160,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -15822,6 +19220,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -15868,6 +19290,30 @@
                 },
                 "horizontal-scroll"
               ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
+              ]
             }
           ]
         }
@@ -15903,6 +19349,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -15941,6 +19411,30 @@
                   "var": "mobileMode"
                 },
                 "horizontal-scroll"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "desktopMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "tabletMode"
+                },
+                "carousel"
+              ]
+            },
+            {
+              "===": [
+                {
+                  "var": "mobileMode"
+                },
+                "carousel"
               ]
             }
           ]
@@ -16053,6 +19547,10 @@
           {
             "name": "Header centred",
             "value": "header-center"
+          },
+          {
+            "name": "Impact cards (proven impact and outcomes)",
+            "value": "impact-cards"
           }
         ]
       },
@@ -16803,6 +20301,32 @@
         ]
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "ctaStyle",
+        "label": "CTA style",
+        "options": [
+          {
+            "name": "As the card style",
+            "value": ""
+          },
+          {
+            "name": "Text link",
+            "value": "tertiary"
+          },
+          {
+            "name": "Primary button",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary button",
+            "value": "secondary"
+          }
+        ],
+        "value": "",
+        "description": "The style of this card's call to action (Call to action label); As the card style: a text link, a Secondary button on statistic cards."
+      },
+      {
         "component": "tab",
         "name": "contentTab",
         "label": "Content"
@@ -17097,6 +20621,10 @@
             "value": ""
           },
           {
+            "name": "Black",
+            "value": "title-black"
+          },
+          {
             "name": "Dark",
             "value": "title-dark"
           },
@@ -17145,6 +20673,10 @@
             "value": ""
           },
           {
+            "name": "Black",
+            "value": "black"
+          },
+          {
             "name": "Dark",
             "value": "dark"
           },
@@ -17168,6 +20700,10 @@
           {
             "name": "Style default",
             "value": ""
+          },
+          {
+            "name": "Black",
+            "value": "black"
           },
           {
             "name": "Dark",
@@ -17195,6 +20731,10 @@
             "value": ""
           },
           {
+            "name": "Black",
+            "value": "black"
+          },
+          {
             "name": "Dark",
             "value": "dark"
           },
@@ -17207,6 +20747,14 @@
             "value": "light-blue"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "classes_hideicons",
+        "label": "Hide email and phone icons",
+        "description": "Turn on to remove the email and phone icons (also custom ones). Off: the icons show.",
+        "value": false
       },
       {
         "component": "reference",
@@ -18606,6 +22154,163 @@
         ]
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_timingalignment",
+        "label": "Timing Alignment",
+        "description": "Place the published date and reading time next to the tags (Left) or next to the action buttons (Right) in layouts with an article metadata row.",
+        "value": "timing-right",
+        "options": [
+          {
+            "name": "Left",
+            "value": "timing-left"
+          },
+          {
+            "name": "Right",
+            "value": "timing-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFont",
+        "label": "Title Font (Desktop)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (64px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (48px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (40px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (28px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (24px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (20px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets desktop sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFontTablet",
+        "label": "Title Font (Tablet)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets tablet sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderTitleFontMobile",
+        "label": "Title Font (Mobile)",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1 (40px)",
+            "value": "h1"
+          },
+          {
+            "name": "H2 (32px)",
+            "value": "h2"
+          },
+          {
+            "name": "H3 (28px)",
+            "value": "h3"
+          },
+          {
+            "name": "H4 (24px)",
+            "value": "h4"
+          },
+          {
+            "name": "H5 (18px)",
+            "value": "h5"
+          },
+          {
+            "name": "H6 (16px)",
+            "value": "h6"
+          }
+        ],
+        "description": "The heading level of the title, which will sets mobile sizes accordingly. Use one H1 per page."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageHeaderDescriptionFont",
+        "label": "Description Font",
+        "value": "",
+        "options": [
+          {
+            "name": "Default Font",
+            "value": ""
+          },
+          {
+            "name": "1rem (16px)",
+            "value": "text-16px"
+          },
+          {
+            "name": "1.125rem (18px)",
+            "value": "text-18px"
+          },
+          {
+            "name": "1.25rem (20px)",
+            "value": "text-20px"
+          },
+          {
+            "name": "1.5rem (24px)",
+            "value": "text-24px"
+          },
+          {
+            "name": "2rem (32px)",
+            "value": "text-32px"
+          },
+          {
+            "name": "2.5rem (40px)",
+            "value": "text-40px"
+          }
+        ]
+      },
+      {
         "component": "tab",
         "name": "ctaTab",
         "label": "CTAs"
@@ -19654,7 +23359,7 @@
         "valueType": "string",
         "name": "imagePosition",
         "label": "Image Position (Desktop)",
-        "description": "Side of the image on desktop (900px and wider); the quote overlaps it.",
+        "description": "Side of the image on desktop (1200px and wider); the quote overlaps it.",
         "value": "right",
         "options": [
           {
@@ -19672,7 +23377,7 @@
         "valueType": "string",
         "name": "imagePositionMobile",
         "label": "Image Position (Mobile)",
-        "description": "Image above or below the quote on mobile and tablet (narrower than 900px).",
+        "description": "Image above or below the quote on mobile and tablet (narrower than 1200px).",
         "value": "top",
         "options": [
           {
@@ -22325,6 +26030,10 @@
             "value": "white"
           },
           {
+            "name": "Grey",
+            "value": "grey"
+          },
+          {
             "name": "Black",
             "value": "black"
           },
@@ -22352,6 +26061,10 @@
         "label": "Heading Type",
         "value": "h2",
         "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
           {
             "name": "H2",
             "value": "h2"
@@ -26060,10 +29773,10 @@
         "name": "headerOverlay",
         "label": "Header over the first block",
         "value": "",
-        "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: over an opening light Hero.",
+        "description": "At every width: whether the logo bar lies transparent over the page's first block. Auto: detects dark/light background.",
         "options": [
           {
-            "name": "Auto (over a light Hero)",
+            "name": "Auto (based on first block)",
             "value": ""
           },
           {
@@ -26212,6 +29925,14 @@
           {
             "name": "H6 (20px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
@@ -26246,6 +29967,14 @@
           {
             "name": "H6 (16px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -26280,6 +30009,14 @@
           {
             "name": "H6 (16px)",
             "value": "h6"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -26838,6 +30575,24 @@
         "description": "Right: the default arrows. Down right: the arrow of every link (List links, buttons, Text links) points down and right. None: List links without an arrow (buttons and Text links keep theirs). Links opening a new tab keep their own arrow."
       },
       {
+        "component": "select",
+        "valueType": "string",
+        "name": "linkArrowColor",
+        "label": "Link Arrow Color",
+        "value": "",
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Light Gray (#E3E3E3)",
+            "value": "label-light-gray"
+          }
+        ],
+        "description": "Sets the link arrow color."
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "primaryCtaText",
@@ -26922,6 +30677,51 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "primaryCtaLabelFont",
+        "label": "Primary CTA Label Font",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.875 rem (14px)",
+            "value": "font-14"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primaryCtaLabelColor",
+        "label": "Primary CTA Label Color",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Soft Gray",
+            "value": "label-soft-gray"
+          }
+        ],
+        "description": "Sets the Primary CTA button label color."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "primaryCtaBackground",
         "label": "Primary CTA Background",
         "value": "",
@@ -26972,6 +30772,24 @@
           }
         ],
         "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserCtaPrimaryBorder",
+        "label": "Primary CTA Border color (Primary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "primary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Primary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
       },
       {
         "component": "select",
@@ -27038,6 +30856,28 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "secondaryCtaLabelFont",
+        "label": "Secondary CTA Label Font",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.875 rem (14px)",
+            "value": "font-14"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "secondaryCtaStyle",
         "label": "Secondary CTA Link Style",
         "value": "secondary",
@@ -27072,6 +30912,29 @@
             "value": "secondary-no-arrow"
           }
         ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondaryCtaLabelColor",
+        "label": "Secondary CTA Label Color",
+        "value": "",
+        "condition": {
+          "!": {
+            "var": "multiLinks"
+          }
+        },
+        "options": [
+          {
+            "name": "Default Color",
+            "value": ""
+          },
+          {
+            "name": "Soft Gray",
+            "value": "label-soft-gray"
+          }
+        ],
+        "description": "Sets the Secondary CTA button label color."
       },
       {
         "component": "select",
@@ -27126,6 +30989,24 @@
           }
         ],
         "description": "Sets the Secondary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserCtaSecondaryBorder",
+        "label": "Secondary CTA Border color (Secondary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "secondary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Secondary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
       },
       {
         "component": "select",
@@ -27302,7 +31183,7 @@
         "component": "select",
         "valueType": "string",
         "name": "titleWeight",
-        "label": "Title weight",
+        "label": "Title weight (Desktop)",
         "value": "",
         "options": [
           {
@@ -27310,12 +31191,90 @@
             "value": ""
           },
           {
-            "name": "Regular",
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
             "value": "title-regular"
           },
           {
-            "name": "Semibold",
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
             "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightTablet",
+        "label": "Title weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightMobile",
+        "label": "Title weight (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
           }
         ]
       },
@@ -27345,6 +31304,10 @@
           {
             "name": "Royal blue",
             "value": "title-royal-blue"
+          },
+          {
+            "name": "Soft Gray",
+            "value": "title-soft-gray"
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
@@ -27352,13 +31315,139 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "CtaLabelFontWeightDesktop",
+        "label": "CTA Label Font weight (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Desktop"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightTablet",
+        "label": "CTA Label Font weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Tablet"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightMobile",
+        "label": "CTA Label Font weight (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Mobile"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "descriptionSize",
-        "label": "Description size",
+        "label": "Description size (Desktop)",
         "value": "",
         "options": [
           {
             "name": "Layout default",
             "value": ""
+          },
+          {
+            "name": "4rem (64px)",
+            "value": "description-4rem"
+          },
+          {
+            "name": "3rem (48px)",
+            "value": "description-3rem"
+          },
+          {
+            "name": "2.5rem (40px)",
+            "value": "description-2.5rem"
+          },
+          {
+            "name": "2rem (32px)",
+            "value": "description-2rem"
+          },
+          {
+            "name": "1.75rem (28px)",
+            "value": "description-1.75rem"
+          },
+          {
+            "name": "1.25rem (20px)",
+            "value": "description-1.25rem"
           },
           {
             "name": "1rem (16px)",
@@ -27371,6 +31460,152 @@
           {
             "name": "Large (24px)",
             "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
+          }
+        ],
+        "description": "The description's size from 1200px; also on tablet and mobile unless Description size (Tablet) / (Mobile) say otherwise."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeTablet",
+        "label": "Description size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "4rem (64px)",
+            "value": "description-4rem"
+          },
+          {
+            "name": "3rem (48px)",
+            "value": "description-3rem"
+          },
+          {
+            "name": "2.5rem (40px)",
+            "value": "description-2.5rem"
+          },
+          {
+            "name": "2rem (32px)",
+            "value": "description-2rem"
+          },
+          {
+            "name": "1.75rem (28px)",
+            "value": "description-1.75rem"
+          },
+          {
+            "name": "1.25rem (20px)",
+            "value": "description-1.25rem"
+          },
+          {
+            "name": "1rem (16px)",
+            "value": "text-normal"
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          },
+          {
+            "name": "Large (24px)",
+            "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
+          }
+        ],
+        "description": "The description's size from 600 to 1199px. Same as Desktop: the Description size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionSizeMobile",
+        "label": "Description size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "4rem (64px)",
+            "value": "description-4rem"
+          },
+          {
+            "name": "3rem (48px)",
+            "value": "description-3rem"
+          },
+          {
+            "name": "2.5rem (40px)",
+            "value": "description-2.5rem"
+          },
+          {
+            "name": "2rem (32px)",
+            "value": "description-2rem"
+          },
+          {
+            "name": "1.75rem (28px)",
+            "value": "description-1.75rem"
+          },
+          {
+            "name": "1.25rem (20px)",
+            "value": "description-1.25rem"
+          },
+          {
+            "name": "1rem (16px)",
+            "value": "text-normal"
+          },
+          {
+            "name": "Regular (18px)",
+            "value": "text-regular"
+          },
+          {
+            "name": "Large (24px)",
+            "value": "text-large"
+          },
+          {
+            "name": "2.25rem (36px)",
+            "value": "description-2.25rem"
+          }
+        ],
+        "description": "The description's size below 600px. Same as Desktop: the Description size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionWeight",
+        "label": "Description weight",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "description-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "description-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "description-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "description-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "description-bold"
           }
         ]
       },
@@ -27421,9 +31656,79 @@
           {
             "name": "Rich Black",
             "value": "eyebrow-rich-black"
+          },
+          {
+            "name": "Medium Light Gray",
+            "value": "eyebrow-medium-light-gray"
           }
         ],
         "description": "Controls the eyebrow appearance and colour. Grey uses rgb(90 90 90). White is intended for dark or image backgrounds."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSize",
+        "label": "Eyebrow Font size (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 1200px, and on tablet and mobile unless Eyebrow Font size (Tablet) / (Mobile) say otherwise. Default: the size of the Eyebrow Style."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeTablet",
+        "label": "Eyebrow Font size (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "From 600 to 1199px. Same as Desktop: the Eyebrow Font size (Desktop)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "eyebrowFontSizeMobile",
+        "label": "Eyebrow Font size (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Same as Desktop",
+            "value": ""
+          },
+          {
+            "name": "0.75rem (12px)",
+            "value": "eyebrow-size-12"
+          },
+          {
+            "name": "0.875rem (14px)",
+            "value": "eyebrow-size-14"
+          }
+        ],
+        "description": "Below 600px. Same as Desktop: the Eyebrow Font size (Desktop)."
       },
       {
         "component": "select",
@@ -27727,6 +32032,23 @@
             }
           ]
         }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_columngap",
+        "label": "Column gap",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "1.5rem (24px)",
+            "value": "cg-24"
+          }
+        ]
       },
       {
         "component": "select",

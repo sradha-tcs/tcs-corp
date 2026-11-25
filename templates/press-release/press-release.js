@@ -8,4 +8,9 @@ import { ensurePageHeader } from '../../decorators/template-decorator.js';
  */
 export default function decorate(main) {
   ensurePageHeader(main);
+  // schema.org NewsArticle JSON-LD (SEO), not awaited: it doesn't hold the page back
+  // loaded on its own (not in the template's import chain, which holds the page back)
+  import('../../decorators/structured-data-decorator.js')
+    .then(({ default: addArticleStructuredData }) => addArticleStructuredData('NewsArticle'))
+    .catch(() => {});
 }

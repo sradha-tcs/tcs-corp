@@ -3,3 +3,29 @@
  * variations 1-14), in styles/card-list.css.
  */
 @import url('../../styles/card-list.css');
+
+/*
+ * Heading type H1 (Cards only): 1.75rem (28px) on mobile, 2.5rem (40px) on tablet, 3rem (48px)
+ * on desktop, medium (Figma "Collection Section"); the other heading types keep the site's
+ * heading sizes
+ */
+.cards.card-list h1.list-title {
+  --cards-h1-size: 1.75rem;
+
+  font-size: var(--cards-h1-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: calc(-0.03 * var(--cards-h1-size));
+}
+
+@media (width >= 600px) {
+  .cards.card-list h1.list-title {
+    --cards-h1-size: 2.5rem;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards.card-list h1.list-title {
+    --cards-h1-size: 3rem;
+  }
+}

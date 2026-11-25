@@ -12,7 +12,7 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { normalizeKey, textOf } from '../../utils/properties.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
-import { CARD_LAYOUT, buildManualCards } from './cards-data.js';
+import { CARD_LAYOUT, CARD_LAYOUT_BEFORE_CTAS, buildManualCards } from './cards-data.js';
 
 /*
  * Cards (blocks/cards/_cards.json): manually authored cards, the authoring alternative to the
@@ -27,6 +27,7 @@ import { CARD_LAYOUT, buildManualCards } from './cards-data.js';
 
 // the Card fields in model order (the card layout without its dialog tabs)
 const CARD_FIELDS = CARD_LAYOUT.filter(Boolean);
+const FIELDS_BEFORE_CTAS = CARD_LAYOUT_BEFORE_CTAS.filter(Boolean);
 const LINE = (cell) => !cell.querySelector('a[href], picture, img, h1, h2, h3, h4, h5, h6, ul, ol')
   && cell.querySelectorAll('p').length <= 1;
 const CARD_MATCHERS = {
@@ -37,7 +38,13 @@ const CARD_MATCHERS = {
   newTab: (cell) => /^(true|false)$/i.test(textOf(cell)),
   kind: (cell) => /^(image|panel|report|stat)$/i.test(textOf(cell)),
   theme: (cell) => /^(dark|navy|brand|brand-light|grey|mid-grey|gradient|image)$/i.test(textOf(cell)),
+  titleSize: (cell) => /^(96|48|h[1-6])$/i.test(textOf(cell)),
 };
+['cta1', 'cta2'].forEach((cta) => {
+  CARD_MATCHERS[cta] = CARD_MATCHERS.link;
+  CARD_MATCHERS[`${cta}Style`] = (cell) => /^((secondary|primary)(-no-arrow)?|tertiary)$/i.test(textOf(cell));
+  CARD_MATCHERS[`${cta}Target`] = (cell) => /^new-window$/i.test(textOf(cell));
+});
 ['eyebrow', 'title', 'subtitle', 'tags', 'contentLabel', 'readingTime', 'ctaLabel', 'analyticsLabel',
   'ariaLabel'].forEach((field) => { CARD_MATCHERS[field] = LINE; });
 
@@ -77,6 +84,13 @@ function readCard(row) {
       image: cells.find((cell) => cell.querySelector('picture, img')),
       text: cells.find((cell) => !cell.querySelector('picture, img')),
     };
+  } else if (cells.length === CARD_LAYOUT_BEFORE_CTAS.length) {
+    // rendered before CTA 1 / CTA 2 and Title size
+    matched = matchCells(
+      withoutTabCells(cells, CARD_LAYOUT_BEFORE_CTAS),
+      FIELDS_BEFORE_CTAS,
+      CARD_MATCHERS,
+    );
   } else {
     matched = matchCells(withoutTabCells(cells, CARD_LAYOUT), CARD_FIELDS, CARD_MATCHERS);
   }
@@ -102,6 +116,18 @@ function readCard(row) {
     theme: get('theme'),
     analyticsLabel: get('analyticsLabel'),
     accessibilityLabel: get('ariaLabel'),
+    // CTA 1 and CTA 2 (the CTA Title folds into the link's text)
+    ctas: ['cta1', 'cta2'].map((name) => {
+      const cta = matched[name]?.querySelector('a[href]');
+      return cta && {
+        href: cta.getAttribute('href'),
+        label: cta.textContent.trim(),
+        style: get(`${name}Style`),
+        target: get(`${name}Target`),
+        ref: cta,
+      };
+    }).filter(Boolean),
+    titleSize: get('titleSize'),
     ref: row,
   };
   if (values.body) readLegacyText(values.body, values);

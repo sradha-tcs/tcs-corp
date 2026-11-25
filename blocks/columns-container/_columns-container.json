@@ -179,6 +179,10 @@
             {
               "name": "Large",
               "value": "large"
+            },
+            {
+              "name": "Extra Large",
+              "value": "xlarge"
             }
           ],
           "description": "The space between the columns (and between them when stacked)."
@@ -946,8 +950,10 @@
         "hero",
         "teaser",
         "image-collage",
+        "history-timeline",
         "quote",
         "media-contacts",
+        "conf-med-cont",
         "testimonial",
         "anchor-list",
         "accordion",

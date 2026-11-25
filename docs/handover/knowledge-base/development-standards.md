@@ -166,7 +166,7 @@ Mobile-first CSS with the three breakpoints above; `utils/viewport.js` names the
 
 ## Accessibility First
 
-WCAG 2.1 AA is the target (AGENTS.md "Accessibility"): real `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, pause / play for moving content, `prefers-reduced-motion` honoured (nothing animates for reduced motion or in edit mode), new-tab links announced (`announceNewTab`), form errors next to the field and linked with `aria-describedby`, one `h1` per page, alt text fields on images, and **all UI text from placeholders**. Use the tokens so contrast holds on dark backgrounds.
+WCAG 2.2 AA is the target (AGENTS.md "Accessibility"): real `<button>`s with `aria-expanded` / `aria-controls` for disclosures, Escape closes popups and returns focus, pause / play for moving content, `prefers-reduced-motion` honoured (nothing animates for reduced motion or in edit mode), new-tab links announced (`announceNewTab`), form errors next to the field and linked with `aria-describedby`, one `h1` per page, alt text fields on images, and **all UI text from placeholders**. Use the tokens so contrast holds on dark backgrounds.
 
 ## Performance First
 

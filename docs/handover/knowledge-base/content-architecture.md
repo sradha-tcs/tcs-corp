@@ -91,6 +91,7 @@ Page tags are not a field of this model; they come from the standard AEM page pr
 | Section Name | `name` | — | Not one of the section options read by `scripts.js` |
 | Style | `style` | section classes | Default, Grey `bg-grey`, Dark `bg-dark`, Dark Green `bg-dark-green` (colour only; dark ones apply the theme contract in `styles/styles.css`) |
 | Width Type | `sectionWidth` | `data-sectionwidth` | `fixed-width` class (full width is the default) |
+| Text width (mobile / tablet / desktop) | `textWidthMobile`, `textWidthTablet`, `textWidthDesktop` | `data-textwidthmobile`, `data-textwidthtablet`, `data-textwidthdesktop` | `text-width-{device}-{75,66,50,33}` classes: the section's default content takes that share of the row, left-aligned (empty: full width) |
 | Rounded edge | `roundedEdge` | `data-roundededge` | `rounded` class |
 | Background Image / Image alt text | `backgroundImage`, `backgroundImageAlt` | data attributes | `.section-background` with a responsive picture, `has-background` |
 | Anchor name | `anchorName` | `data-anchorname` | section `id` (suffixed `-2`, `-3` when taken) |
@@ -136,7 +137,7 @@ Source: [templates/README.md](../../../templates/README.md) (including how to ad
 
 Page-level values win over bulk metadata; bulk rows apply top to bottom (handover Part 8.1.2). The bulk sheets apply only once all 13 are listed in the site configuration's `metadata.source`, and each sheet's URL patterns must start with its locale (`/de-de/**`) (AGENTS.md "Notes").
 
-**Bulk metadata columns** (AGENTS.md, 42 columns): `url`, `sheet-page-type`, `meta-title`, `meta-description`, `meta-keywords`, `keyword-action`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
+**Bulk metadata columns** (AGENTS.md, 43 columns): `url`, `header-overlay` (`always` / `never`, matching the TCS Header's Header over the first block: no layout shift on a visitor's first page), `sheet-page-type`, `meta-title`, `meta-description`, `meta-keywords`, `keyword-action`, `author-id`, `publish-date`, `modified-date`, `reading-time`, `og-title`, `og-description`, `og-image`, `og-type`, `twitter-card`, `twitter-title`, `twitter-description`, `twitter-image`, `canonical-url`, `robots`, `region`, `country`, `language`, `persona`, `thumbnail-image`, `featured-image`, `campaign-id`, `content-type`, `featured`, `priority`, `listen-link`, `author`, `card-title`, `card-description`, `card-image`, `card-image-alt`, `image-alt`, `eyebrow`, `category`, `hide-in-nav`, `card-style`, `card-theme`.
 
 **Consumers.**
 
@@ -298,7 +299,7 @@ Not implemented: a breadcrumb, a language selector and `hreflang` alternates (ha
 | `<html lang>` | `language` metadata when valid, else the locale's tag | Active |
 | UI text | Placeholders sheet per locale; English fallback in code | Active |
 | Tag labels | Taxonomy page per locale, language sheet when translated | Active (only `/en` taxonomy published when checked, F-09) |
-| Bulk metadata | One sheet per locale; all 13 in `metadata.source` | Requires validation (F-11, open item O-04) |
+| Bulk metadata | One sheet per locale; all 13 in `metadata.source` | Verified 24 November 2026 (admin API `config/…/metadata.json`): the 13 locale sheets plus `/language-master/en` and `/language-masters/en` are listed; `/design-block-master/en/metadata.json` isn't, and its sheet holds a copy of the language-master rows (3,507 rows, all `/language-master/en/…` URLs). The review-root sheets exceed the 6 MB JSON limit (HTTP 413 on the full `.json`; `?limit=` / `?offset=` pages load) but are still applied (F-11, open item O-04) |
 | Data sheets | One set per locale | Active |
 | Lists | Each locale lists only its own pages (`indexRoot`) | Active |
 | Dates | `utils/dates.js` `formatDate`; English month abbreviations in every locale (handover Part 4.9.7) | Active |

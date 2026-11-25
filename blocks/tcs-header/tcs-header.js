@@ -6,8 +6,67 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { toSitePath } from '../../utils/urls.js';
 import { getLocale } from '../../utils/site.js';
 import { getPages } from '../../utils/query-index.js';
+import { uniqueId } from '../../utils/ids.js';
+import { LIGHT_CLASSES, headerTheme } from './header-theme.js';
 
 const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+
+let logoThemeStarted = false;
+
+/**
+ * The logos' colour from the background behind the header bar: <html data-header-theme> (dark:
+ * white logos, light: black logos; header-theme.js decides). Measured in an animation frame,
+ * never while decorating: on load, scroll, resize, the menu (header:menu) and changes to the
+ * page's sections; written only when it changes.
+ * @param {Element} toggleBtn the menu button
+ */
+function setupDynamicLogoTheme(toggleBtn) {
+  if (logoThemeStarted) return;
+  logoThemeStarted = true;
+  const html = document.documentElement;
+  const lightHero = LIGHT_CLASSES.map((name) => `.${name}`).join(', ');
+  const describe = (el) => (el ? {
+    classes: [...el.classList], color: getComputedStyle(el).backgroundColor,
+  } : null);
+  let frame = 0;
+
+  const update = () => {
+    frame = 0;
+    const wrapper = document.querySelector('header .nav-wrapper');
+    const bar = wrapper?.getBoundingClientRect();
+    // the section behind the bar's vertical middle
+    const y = bar?.height ? bar.top + bar.height / 2 : 0;
+    const section = [...document.querySelectorAll('main > .section')].find((el) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top <= y && rect.bottom > y;
+    });
+    const hero = section?.querySelector('.hero');
+    const theme = headerTheme({
+      menuOpen: toggleBtn.getAttribute('aria-expanded') === 'true',
+      overlay: html.dataset.headerOverlay || '',
+      progress: parseFloat(wrapper?.style.getPropertyValue('--header-scroll-progress')) || 0,
+      barColor: wrapper ? getComputedStyle(wrapper).backgroundColor : '',
+      block: describe(section?.querySelector('.block')),
+      section: describe(section),
+      hasHero: !!hero && !hero.matches(lightHero),
+    });
+    if (html.dataset.headerTheme !== theme) html.dataset.headerTheme = theme;
+  };
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  document.addEventListener('header:menu', schedule);
+  const main = document.querySelector('main');
+  if (main) {
+    new MutationObserver(schedule).observe(main, {
+      childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'data-section-status'],
+    });
+  }
+  schedule();
+}
 
 /**
  * Builds the page tree using query-index.json
@@ -75,7 +134,7 @@ function menuSettings(props) {
 /**
  * Creates the Mobile Bottom AI Search / Input Bar
  */
-function buildMobileSearch() {
+function buildMobileSearch(t) {
   const container = document.createElement('div');
   container.className = 'tcs-header-mobile-search';
 
@@ -86,18 +145,27 @@ function buildMobileSearch() {
   const input = document.createElement('input');
   input.type = 'search';
   input.name = 'q';
-  input.placeholder = 'Ask us about transformation...';
+  input.id = uniqueId('tcs-header-search');
+  input.placeholder = t('headerSearchPlaceholder', 'Ask us about transformation...');
   input.autocomplete = 'off';
 
+  // the field's name (a placeholder alone isn't a label: WCAG 1.3.1, 3.3.2, 4.1.2)
+  const label = document.createElement('label');
+  label.className = 'visually-hidden';
+  label.htmlFor = input.id;
+  label.textContent = t('headerSearchLabel', 'Search');
+
+  // voice search isn't implemented yet: the button says it is unavailable
   const mic = document.createElement('button');
   mic.type = 'button';
   mic.className = 'tcs-header-mic-btn';
-  mic.setAttribute('aria-label', 'Search by voice');
+  mic.setAttribute('aria-label', t('searchByVoice', 'Search by voice'));
+  mic.setAttribute('aria-disabled', 'true');
 
   const submit = document.createElement('button');
   submit.type = 'submit';
   submit.className = 'tcs-header-submit-btn';
-  submit.setAttribute('aria-label', 'Submit search');
+  submit.setAttribute('aria-label', t('submitSearch', 'Submit search'));
   submit.disabled = true;
 
   input.addEventListener('input', () => {
@@ -111,7 +179,7 @@ function buildMobileSearch() {
     }
   });
 
-  form.append(input, mic, submit);
+  form.append(label, input, mic, submit);
   container.append(form);
   return container;
 }
@@ -267,7 +335,7 @@ async function buildMobileDrawer(root, depth, t) {
     accordionList.append(item);
   });
 
-  main.append(accordionList, buildMobileSearch());
+  main.append(accordionList, buildMobileSearch(t));
   content.append(main, l3Panel);
   drawer.append(content);
 
@@ -347,12 +415,23 @@ export default async function decorate(block) {
     const targetDrawer = document.querySelector('.tcs-header-menu-drawer') || drawer;
     targetDrawer.hidden = !nextState;
 
+    // the full-screen menu is modal: the page behind it can't be reached or read
+    // (WCAG 2.4.3, 2.4.11)
+    document.querySelectorAll('body > main, body > footer').forEach((el) => { el.inert = nextState; });
+
     document.dispatchEvent(new CustomEvent('header:menu', { detail: { open: nextState } }));
   };
 
   toggleBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     setMenuOpen(toggleBtn.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // focus moved out of the header (e.g. to the Conversation Canvas of the page) closes the menu
+  document.addEventListener('focusin', (event) => {
+    if (toggleBtn.getAttribute('aria-expanded') !== 'true') return;
+    const header = toggleBtn.closest('header') || block;
+    if (!header.contains(event.target)) setMenuOpen(false);
   });
 
   document.addEventListener('keydown', (event) => {
@@ -374,4 +453,6 @@ export default async function decorate(block) {
   if (navWrapper && !navWrapper.contains(drawer)) {
     navWrapper.append(drawer);
   }
+
+  if (inHeader) setupDynamicLogoTheme(toggleBtn);
 }

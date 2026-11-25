@@ -23,28 +23,35 @@ module.exports = {
     // cell per value
     'xwalk/max-cells': ['error', {
       '*': 4,
-      section: 6,
+      // section fields arrive as data attributes / section metadata, not as cells (Text width x3)
+      section: 9,
       // container sections: their Additional tab is container* section fields (data attributes)
       tabs: 21,
       'gen-carousel': 18,
       'columns-container': 22,
       'table-list': 10,
       'table-list-card': 6,
-      'list-item': 19,
-      card: 16,
+      // List Item: CTA style
+      'list-item': 20,
+      // Card: CTA 1 / CTA 2 (link, style, new tab) and Title size
+      card: 23,
       'table-col-5': 5,
       'table-col-6': 6,
       'table-col-7': 7,
       'table-col-8': 8,
       'table-col-9': 9,
-      'field-text': 6,
-      'field-select': 6,
-      'field-textarea': 6,
-      'field-checkbox': 5,
-      'contact-card': 5,
+      'form-variations': 8,
+      'field-text': 7,
+      'field-select': 7,
+      'field-combined': 7,
+      'field-textarea': 7,
+      'field-checkbox': 6,
+      'field-richtext': 5,
+      'contact-card': 8,
       'teaser-link': 5,
       'page-header-cta': 5,
       'media-contact': 10,
+      'history-timeline-item': 5,
     }],
   },
   overrides: [

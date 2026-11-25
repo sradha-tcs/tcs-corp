@@ -3,6 +3,7 @@
  * the TCS DS Figma List variations (List, Cards), without the DOM (unit tested). The fields are
  * the shared groups of models/_card-list.json; the rendering is decorators/card-list-decorator.js.
  */
+import { isSafeUrl } from './links.js';
 
 export const CARD_STYLES = ['image', 'panel', 'report', 'stat', 'mixed'];
 export const CARD_KINDS = ['image', 'panel', 'report', 'stat'];
@@ -13,8 +14,15 @@ export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyy
   'do-mmmm-yyyy'];
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 export const BREAKPOINTS = ['desktop', 'tablet', 'mobile'];
-export const DISPLAY_MODES = ['grid', 'horizontal-scroll'];
-export const STYLE_OPTIONS = ['stat-compact', 'dividers', 'header-center'];
+// carousel: a horizontal scroll of Columns cards per view, previous / next on the images
+export const DISPLAY_MODES = ['grid', 'horizontal-scroll', 'carousel'];
+export const STYLE_OPTIONS = ['stat-compact', 'dividers', 'header-center', 'impact-cards'];
+
+/**
+ * Impact cards (Style option impact-cards, "Proven impact and outcomes"): three image cards per
+ * row from the tablet up, unless the block's Layout sets its own columns
+ */
+const IMPACT_COLUMNS = { desktop: 3, tablet: 3 };
 export const YES = ['yes', 'true', '1', 'on', 'y'];
 
 /** responsive defaults (TCS DS Figma List variations: 1440 / 1024 / 402 frames) */
@@ -112,14 +120,8 @@ export function hash(value) {
   return h.toString(36);
 }
 
-/** a link that can be rendered: http(s), mailto, tel, or a path; never javascript: or data: */
-export function isSafeUrl(href) {
-  const value = text(href);
-  if (!value) return false;
-  if (/^(https?:|mailto:|tel:)/i.test(value)) return true;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false;
-  return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
-}
+/** a link that can be rendered (utils/links.js, re-exported for the card data modules) */
+export { isSafeUrl };
 
 /** whether a link leaves the site */
 export const isExternal = (href, origin = '') => /^https?:\/\//i.test(href)
@@ -192,18 +194,26 @@ export function showsCta(config, display = {}) {
  */
 export function normalizePresentation(raw = {}, { idPrefix = 'list' } = {}) {
   const get = (key) => raw[key];
+  const styleOptions = text(get('classes')).split(',').map(text)
+    .filter((name) => STYLE_OPTIONS.includes(name));
+  const impact = styleOptions.includes('impact-cards');
   const responsive = {};
   BREAKPOINTS.forEach((bp) => {
-    const d = RESPONSIVE_DEFAULTS[bp];
+    const d = impact && IMPACT_COLUMNS[bp]
+      ? { ...RESPONSIVE_DEFAULTS[bp], columns: IMPACT_COLUMNS[bp] } : RESPONSIVE_DEFAULTS[bp];
     const cardWidth = number(get(`${bp}cardwidth`), 0, { min: 0, max: 1200 });
+    const mode = pickValue(get(`${bp}mode`), DISPLAY_MODES, d.mode);
+    const columns = integer(get(`${bp}columns`), d.columns, { min: 1, max: 6 });
+    // Carousel: Columns whole cards per view, previous / next always, no indicator
+    const carousel = mode === 'carousel';
     responsive[bp] = {
-      mode: pickValue(get(`${bp}mode`), DISPLAY_MODES, d.mode),
-      columns: integer(get(`${bp}columns`), d.columns, { min: 1, max: 6 }),
+      mode,
+      columns,
       gap: number(get(`${bp}gap`), d.gap, { min: 0, max: 120 }),
-      visible: number(get(`${bp}visible`), d.visible, { min: 1, max: 8 }),
-      cardWidth: cardWidth >= 120 ? cardWidth : 0,
-      controls: flag(get(`${bp}controls`), d.controls),
-      indicator: flag(get(`${bp}indicator`), d.indicator),
+      visible: carousel ? columns : number(get(`${bp}visible`), d.visible, { min: 1, max: 8 }),
+      cardWidth: !carousel && cardWidth >= 120 ? cardWidth : 0,
+      controls: carousel || flag(get(`${bp}controls`), d.controls),
+      indicator: !carousel && flag(get(`${bp}indicator`), d.indicator),
     };
   });
   return {
@@ -227,7 +237,7 @@ export function normalizePresentation(raw = {}, { idPrefix = 'list' } = {}) {
     imageRatio: pickValue(get('imageratio'), IMAGE_RATIOS, '16-9'),
     panelHeight: pickValue(get('panelheight'), PANEL_HEIGHTS, 'portrait'),
     featureFirst: flag(get('featurefirst'), false),
-    styleOptions: text(get('classes')).split(',').map(text).filter((name) => STYLE_OPTIONS.includes(name)),
+    styleOptions,
     // responsive
     responsive,
     snap: flag(get('scrollsnap'), true),

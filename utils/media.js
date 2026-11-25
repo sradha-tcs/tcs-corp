@@ -1,10 +1,13 @@
 /**
  * Media utils: recognize video providers and build their player URLs.
  */
+import { safeDecode } from './urls.js';
 
 export const isYoutube = (link) => /youtube\.com|youtu\.be/.test(link);
 export const isVimeo = (link) => /vimeo\.com/.test(link);
 export const isAnimation = (href) => /\.json([?#]|$)/i.test(href);
+// a video file (DAM path or delivery URL of the original file), not a YouTube / Vimeo page
+export const isVideoFile = (href) => /\.(mp4|webm|ogv|mov|m4v)([?#]|$)/i.test(href);
 
 /**
  * The video id of a YouTube watch / share / embed URL.
@@ -94,7 +97,7 @@ export function deliveryAsset(href) {
   }
   const m = DELIVERY.exec(url.pathname);
   if (!m || !/^https?:$/.test(url.protocol)) return null;
-  const name = decodeURIComponent(m[3]);
+  const name = safeDecode(m[3]);
   const original = !!m[2];
   const image = !original && (RESIZABLE.test(name) || /\.svg$/i.test(name));
   return {
