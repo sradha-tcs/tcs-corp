@@ -62,6 +62,15 @@ export async function loadFragment(path, from = null) {
   return null;
 }
 
+/**
+ * Whether a loaded fragment has content: an empty page (e.g. a folder page such as
+ * references/header-collection, delivered as an empty section) has no text, media or block.
+ * @param {HTMLElement|null} fragment
+ * @returns {boolean}
+ */
+export const hasContent = (fragment) => !!fragment && (!!fragment.textContent.trim()
+  || !!fragment.querySelector('img, picture, svg, video, iframe, .block'));
+
 export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();

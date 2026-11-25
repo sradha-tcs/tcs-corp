@@ -1,4 +1,4 @@
-import { loadFragment } from '../fragment/fragment.js';
+import { hasContent, loadFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
@@ -71,15 +71,17 @@ function setupScrollFallback(navWrapper) {
 
 export default async function decorate(block) {
   // the Navigation page: the page's own Navigation value (page property or metadata), else the
-  // nearest parent page's up to the root page, at any path; the locale's references/nav only when
-  // there is no value or the configured page can't load (requested only then: no 404 for a site
-  // without it)
+  // nearest parent page's up to the root page, at any path and depth (e.g.
+  // references/header-collection/tcsheader); the locale's references/nav only when there is no
+  // value or the configured page can't load or has no content (e.g. a folder page): requested only
+  // then, so no 404 for a site without it
+  const withContent = (fragment) => (hasContent(fragment) ? fragment : null);
   const navFragment = getInheritedMetadata('nav').then(async (value) => {
     const defaultPath = resolvePagePath('', 'references/nav');
     const navPath = resolvePagePath(value, 'references/nav');
-    const fragment = await loadFragment(navPath);
+    const fragment = withContent(await loadFragment(navPath));
     if (fragment || navPath === defaultPath) return fragment;
-    return loadFragment(defaultPath);
+    return withContent(await loadFragment(defaultPath));
   });
 
   const [t, fragment] = await Promise.all([getPlaceholders(), navFragment]);

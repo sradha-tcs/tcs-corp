@@ -1,4 +1,4 @@
-import { loadFragment } from '../fragment/fragment.js';
+import { hasContent, loadFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
@@ -107,14 +107,16 @@ async function decorateFooterBar(block) {
  */
 async function decoratePageFooter(block) {
   // the Footer page property of the page or, inherited, of its nearest parent page up to the root
-  // page (or the metadata sheet's footer column), at any path; the locale's references/footer only
-  // when there is no value or the configured page can't load (as the header)
+  // page (or the metadata sheet's footer column), at any path and depth (e.g.
+  // references/footer-collection/tcsfooter); the locale's references/footer only when there is no
+  // value or the configured page can't load or has no content (e.g. a folder page), as the header
+  const withContent = (loaded) => (hasContent(loaded) ? loaded : null);
   const footerFragment = getInheritedMetadata('footer').then(async (value) => {
     const defaultPath = resolvePagePath('', 'references/footer');
     const footerPath = resolvePagePath(value, 'references/footer');
-    const fragment = await loadFragment(footerPath);
+    const fragment = withContent(await loadFragment(footerPath));
     if (fragment || footerPath === defaultPath) return fragment;
-    return loadFragment(defaultPath);
+    return withContent(await loadFragment(defaultPath));
   });
   const [fragment, socialLinks, t] = await Promise.all([
     footerFragment, getSocialLinks(), getPlaceholders(),

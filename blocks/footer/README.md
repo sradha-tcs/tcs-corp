@@ -21,6 +21,8 @@ The site footer, with two roles under one block name (`blocks/footer/footer.js`)
 
 **Data source.**
 
+**Footer page at any path.** The Footer value may name a page at any path and depth, e.g. `/content/tcs-corporate/language-masters/en/references/footer-collection/tcsfooter`, `references/footer-collection/tcsfooter` or a URL; keep it below `references/`, choose the page and not its folder page (an empty page counts as missing: the default `references/footer` is used), and publish it to the site that serves the pages (KB-D-078).
+
 - The footer page: the page's own **Footer** page property (or the metadata sheet's `footer` column), else the nearest parent page's up to the locale Home (`utils/inherited-metadata.js`), else the locale's `references/footer` (`utils/site.js` `resolvePagePath`).
 - The locale's Social Links data sheet (`/{locale}/data/social-links.json`: platform, url, icon, sort-order; `utils/data.js` `getSocialLinks`).
 - The Footer block's fields and Footer Link items; the Conversation Canvas page it names.
@@ -583,7 +585,7 @@ blocks/footer/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `footer.js`: { loadFragment } |
+| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `footer.js`: { hasContent, loadFragment } |
 | [`decorators/motion-decorator.js`](../../decorators/motion-decorator.js) | `prepareMotion` (the Content animation and Background animation of the blocks of a section, before it is shown, or of a fragment, footer page or header Canvas once in the page: first frame paused, run by one Intersection | `footer.js`: { prepareMotion } |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `footer.js`: { moveInstrumentation } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `footer.js`: { removeButtonDecoration } |
@@ -777,3 +779,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.36 | Footer blocks' modules and stylesheets preloaded (F-106) | docs/handover revision history | 20 October 2026 |
 | KB-D-071 (Approved), PR #228 | Page property Hide Footer: `scripts.js` doesn't load the footer on that page (`utils/page-visibility.js`) | branch feature/header-footer-canvas-toggle | 16 November 2026 |
 | KB-D-078 (Approved), branch fix/header-footer-root-page | Inherited Footer read from the root page in both URL forms; a configured footer page that can't load falls back to `references/footer` (as the header) | Debug of the live ultimatix site | 25 November 2026 |
+| KB-D-078 (Approved), branch fix/header-footer-root-page | Footer pages at any path and depth (e.g. `references/footer-collection/tcsfooter`); relative values in the page's own site root; an empty page (folder page) counts as missing | Review of the header / footer page locations | 25 November 2026 |

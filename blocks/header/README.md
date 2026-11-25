@@ -35,6 +35,8 @@ Figma: *New Screens from New DS* (`yElx5Tf9wr8G2vCXopi49W`): Navigation (1124:25
 
 **Data source.** The Navigation page: the page's own **Navigation** page property (or the metadata sheet's `nav` column), else the nearest parent page's up to the locale's Home page (`utils/inherited-metadata.js`), else the locale's `references/nav` (`utils/site.js` `resolvePagePath`). A configured Navigation page that can't be loaded (not published, moved) falls back to `references/nav`, so the page keeps a header. UI text comes from the locale's placeholders.
 
+**Navigation page at any path.** The Navigation value may name a page at any path and depth, e.g. `/content/tcs-corporate/language-masters/en/references/header-collection/tcsheader` (picked in the page properties), `references/header-collection/tcsheader` or a URL; keep it below `references/` (left out of the query index and the sitemap), choose the page and not its folder page (an empty page counts as missing: the default `references/nav` is used), and publish it to the site that serves the pages (KB-D-078).
+
 **Related blocks.** [TCS Header](../tcs-header/README.md) (the logos on the nav page), [Conversation Canvas](../conversation-canvas/README.md) (the header Canvas and the floating journey), [Fragment](../fragment/README.md) (`loadFragment`), [Footer](../footer/README.md) (same loading and inheritance).
 
 **When to use.** Always: it is loaded automatically. Authors decide which Navigation page a page (or an area) uses and what that page contains.
@@ -660,7 +662,7 @@ blocks/header/
 
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
-| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `header.js`: { loadFragment } |
+| [`blocks/fragment/fragment.js`](../../blocks/fragment/fragment.js) | — | `header.js`: { hasContent, loadFragment } |
 | [`decorators/motion-decorator.js`](../../decorators/motion-decorator.js) | `prepareMotion` (the Content animation and Background animation of the blocks of a section, before it is shown, or of a fragment, footer page or header Canvas once in the page: first frame paused, run by one Intersection | `header.js`: { prepareMotion } |
 | [`decorators/button-decorator.js`](../../decorators/button-decorator.js) | `decorateButton` (option `newTabHint`: a link opening a new tab says so), `createButton`, `setButtonDisabled`, `setButtonAlignment`, `removeButtonDecoration` | `header.js`: { removeButtonDecoration } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `header.js`: { getPlaceholders } |
@@ -897,3 +899,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | Handover 2.36 | Header blocks' modules and stylesheets preloaded (load time, F-106) | docs/handover revision history | 20 October 2026 |
 | — | The nav's label comes from the placeholder mainNavigation (getPlaceholders returns a function); the scroll state is updated once per frame | Quality review (KB-D-074, KB-D-075) | 22 November 2026 |
 | — | Inherited Navigation read from the root page in both URL forms (`/<root>/`, else `/<root>`; the live ultimatix header was empty), parent heads only; `references/nav` requested only without a value or when the configured page can't load | KB-D-078 (Approved), branch fix/header-footer-root-page | 25 November 2026 |
+| — | Navigation pages at any path and depth (e.g. `references/header-collection/tcsheader`); relative values in the page's own site root; an empty page (folder page) counts as missing | KB-D-078 (Approved), branch fix/header-footer-root-page | 25 November 2026 |

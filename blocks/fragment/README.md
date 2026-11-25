@@ -458,6 +458,8 @@ blocks/fragment/
 
 Callers pass the including element as `from` (the Fragment block, a tab row) so nested fragments know their chain; the header, the footer and the Modal call it without `from`.
 
+**`hasContent(fragment)`** (exported): whether a loaded fragment has text, media or a block; an empty page (e.g. a folder page such as `references/header-collection`, delivered as an empty section) has none. The header and the footer treat a page without content as missing and use their default page (KB-D-078).
+
 **`decorate(block)`.** Path from the first `a` or the text; `loadFragment(path, block)`; on success `block.replaceChildren(...fragment.childNodes)` and `await prepareMotion(block)`; else in edit mode (`isEditing()`, `html.adobe-ue-edit`) `p.fragment-empty` with the `fragmentEmpty` placeholder; otherwise the block is left as delivered.
 
 **Rendered DOM contract.**

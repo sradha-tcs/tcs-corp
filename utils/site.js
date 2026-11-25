@@ -255,28 +255,49 @@ export function localePagePath(path, pathname = window.location.pathname) {
 }
 
 /**
- * The path of a configured page (e.g. the nav or footer metadata), else of the locale's default
- * page. A configured value may be an AEM path (/content/tcs-corp/de/de-de/references/nav-jobs),
- * a published path (/de-de/references/nav-jobs) or a path relative to the locale root
- * (references/nav-jobs); it's returned as the path to fetch here: the AEM path when editing,
- * the published path on the site.
- * @param {string} value the configured path, may be empty
- * @param {string} fallback the default page, relative to the locale root (e.g. references/nav)
+ * A path relative to the site root of a page, at any depth: the review root for a page below one
+ * (/language-masters/en/references/header-collection/tcsheader), else the locale root (unlike
+ * localePagePath, which keeps only references/ and error-pages/ in the review root).
+ * @param {string} path e.g. header-collection/tcsheader or references/footer-collection/tcsfooter
+ * @param {string} pathname the current page
  * @returns {string}
  */
-export function resolvePagePath(value, fallback) {
+const siteRootPagePath = (path, pathname) => {
+  const { root, aemRoot, contentRoot } = getLocale(pathname);
+  const review = reviewRootOf(pathname);
+  const relative = path.replace(/^\//, '');
+  if (contentRoot) return `${contentRoot}${review || aemRoot}/${relative}`;
+  return `${review || root}/${relative}`;
+};
+
+/**
+ * The path of a configured page (e.g. the nav or footer metadata), else of the locale's default
+ * page. A configured value may name a page at any path and depth: an AEM path
+ * (/content/tcs-corp/de/de-de/references/nav-jobs), a published path (/de-de/references/nav-jobs),
+ * a URL, or a path relative to the page's site root, its review root or locale root
+ * (references/header-collection/tcsheader, header-collection/tcsheader); it's returned as the path
+ * to fetch here: the AEM path when editing, the published path on the site.
+ * @param {string} value the configured path, may be empty
+ * @param {string} fallback the default page, relative to the locale root (e.g. references/nav)
+ * @param {string} [pathname] the current page, defaults to the window's
+ * @returns {string}
+ */
+export function resolvePagePath(value, fallback, pathname = window.location.pathname) {
   const configured = (value || '').trim();
-  if (!configured) return localePagePath(fallback);
-  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) return localePagePath(configured);
-  let pathname;
-  try {
-    pathname = new URL(configured, window.location.href).pathname;
-  } catch {
-    return localePagePath(fallback);
+  if (!configured) return localePagePath(fallback, pathname);
+  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) {
+    return siteRootPagePath(configured, pathname);
   }
-  pathname = pathname.replace(/(\.plain)?\.html$/, '');
-  const { contentRoot } = getLocale();
-  return contentRoot ? toAemPath(pathname, contentRoot) : toPublishedPath(pathname);
+  let path;
+  try {
+    // only the path of the value is used: any base resolves an absolute path or URL the same way
+    path = new URL(configured, 'https://localhost/').pathname;
+  } catch {
+    return localePagePath(fallback, pathname);
+  }
+  path = path.replace(/(\.plain)?\.html$/, '');
+  const { contentRoot } = getLocale(pathname);
+  return contentRoot ? toAemPath(path, contentRoot) : toPublishedPath(path);
 }
 
 /**
