@@ -1,4 +1,4 @@
-import { loadFragment } from '../fragment/fragment.js';
+import { hasContent, loadFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
@@ -11,7 +11,8 @@ import { getSocialLinks } from '../../utils/data.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
 import { readLinkItems, readLinkRows } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
-import { resolvePagePath } from '../../utils/site.js';
+import { isEditing } from '../../utils/environment.js';
+import { configuredPagePath, resolvePagePath } from '../../utils/site.js';
 
 /*
  * Footer: two roles with one block name.
@@ -106,14 +107,28 @@ async function decorateFooterBar(block) {
  * @param {Element} block
  */
 async function decoratePageFooter(block) {
-  // the Footer page property of the page or, inherited, of its nearest parent page up to Home
-  // (or the metadata sheet's footer column), else the locale's references/footer
-  const footerPath = resolvePagePath(await getInheritedMetadata('footer'), 'references/footer');
-  const [fragment, socialLinks, t] = await Promise.all([
-    loadFragment(footerPath), getSocialLinks(), getPlaceholders(),
+  // the footer page comes only from page properties (no default page in code, KB-D-077): the
+  // page's own Footer value (page property or metadata), else the nearest parent page's up to the
+  // root page; a page that can't load or is empty gives no footer
+  const path = configuredPagePath(await getInheritedMetadata('footer'));
+  const [loaded, socialLinks, t] = await Promise.all([
+    path ? loadFragment(path) : null, getSocialLinks(), getPlaceholders(),
   ]);
+  const fragment = hasContent(loaded) ? loaded : null;
 
   block.textContent = '';
+  if (!fragment) {
+    // no footer page: no footer (in Universal Editor, a hint says what to set)
+    if (isEditing()) {
+      const hint = document.createElement('p');
+      hint.className = 'footer-empty';
+      hint.textContent = path
+        ? t('footerNotFound', 'Footer: the Footer page {path} can’t be loaded or has no content.', { path })
+        : t('footerNotSet', 'Footer: set the Footer page property on this page or a parent page.');
+      block.append(hint);
+    }
+    return;
+  }
   const footer = document.createElement('div');
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
