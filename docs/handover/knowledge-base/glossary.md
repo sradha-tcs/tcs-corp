@@ -54,7 +54,7 @@ This page defines the terms used across the TCS Corporate Website code, the hand
 | Language master | `/content/tcs-corp/language-masters/en`, the rollout source of `/en`; temporarily published at `/language-masters/en` for review |
 | Review root | A published root whose pages behave like a locale site during the review (`REVIEW_ROOTS`, with `REVIEW_SHEETS`, `REVIEW_PAGES`); temporary |
 | References | The locale folder `references/` with the nav page, footer page and other fragments |
-| Nav page | The page the Header loads (the Navigation page property, own or inherited; no default, KB-D-077): brand, sections (the menu) and tools, with a TCS Header block and optionally a header Canvas |
+| Nav page | The page the Header loads (`references/nav` by default): brand, sections (the menu) and tools, with a TCS Header block and optionally a header Canvas |
 | Inherited metadata | Navigation, Footer and 404 Page taken from the page, else the nearest parent page up to the locale Home, else the locale default ([utils/inherited-metadata.js](../../../utils/inherited-metadata.js)) |
 | Path mapping | [paths.json](../../../paths.json): AEM paths to published paths, includes and excludes; applied through the site configuration's `public.json` |
 | Sheet | An AEM spreadsheet published as JSON: placeholders, metadata, redirects and the data sheets |

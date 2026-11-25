@@ -1,11 +1,10 @@
-import { hasContent, loadFragment } from '../fragment/fragment.js';
+import { loadFragment } from '../fragment/fragment.js';
 import { prepareMotion } from '../../decorators/motion-decorator.js';
 import { removeButtonDecoration } from '../../decorators/button-decorator.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { rememberHeaderSpace } from '../../utils/header-space.js';
 import { getInheritedMetadata } from '../../utils/inherited-metadata.js';
-import { isEditing } from '../../utils/environment.js';
-import { configuredPagePath } from '../../utils/site.js';
+import { resolvePagePath } from '../../utils/site.js';
 
 /**
  * Extracts TCS logo (brand), TATA logo + hamburger toggle (tools)
@@ -71,30 +70,18 @@ function setupScrollFallback(navWrapper) {
 }
 
 export default async function decorate(block) {
-  // the Navigation page comes only from page properties (no default page in code, KB-D-077): the
-  // page's own Navigation value (page property or metadata), else the nearest parent page's up to
-  // the root page; a page that can't load or is empty gives no header
-  const navPath = getInheritedMetadata('nav').then((value) => configuredPagePath(value));
-  const navFragment = navPath.then(async (path) => {
-    const loaded = path ? await loadFragment(path) : null;
-    return hasContent(loaded) ? loaded : null;
+  const defaultPath = resolvePagePath('', 'references/nav');
+  const defaultFragment = loadFragment(defaultPath);
+  const navFragment = getInheritedMetadata('nav').then(async (value) => {
+    const navPath = resolvePagePath(value, 'references/nav');
+    if (navPath === defaultPath) return defaultFragment;
+    return (await loadFragment(navPath)) || defaultFragment;
   });
 
-  const [t, path, fragment] = await Promise.all([getPlaceholders(), navPath, navFragment]);
+  const [t, fragment] = await Promise.all([getPlaceholders(), navFragment]);
 
   block.textContent = '';
-  if (!fragment) {
-    // in Universal Editor, say what to set
-    if (isEditing()) {
-      const hint = document.createElement('p');
-      hint.className = 'header-empty';
-      hint.textContent = path
-        ? t('headerNotFound', 'Header: the Navigation page {path} can’t be loaded or has no content.', { path })
-        : t('headerNotSet', 'Header: set the Navigation page property on this page or a parent page.');
-      block.append(hint);
-    }
-    return;
-  }
+  if (!fragment) return;
 
   const nav = document.createElement('nav');
   nav.id = 'nav';

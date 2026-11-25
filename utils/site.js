@@ -247,48 +247,22 @@ export function localePagePath(path, pathname = window.location.pathname) {
  * (references/nav-jobs); it's returned as the path to fetch here: the AEM path when editing,
  * the published path on the site.
  * @param {string} value the configured path, may be empty
- * @param {string} fallback the default page, relative to the locale root (e.g. error-pages/404)
- * @param {string} [pathname] the current page, defaults to the window's
+ * @param {string} fallback the default page, relative to the locale root (e.g. references/nav)
  * @returns {string}
  */
-export function resolvePagePath(value, fallback, pathname = window.location.pathname) {
+export function resolvePagePath(value, fallback) {
   const configured = (value || '').trim();
-  if (!configured) return localePagePath(fallback, pathname);
-  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) {
-    return localePagePath(configured, pathname);
-  }
-  let path;
+  if (!configured) return localePagePath(fallback);
+  if (!configured.startsWith('/') && !/^[a-z]+:/i.test(configured)) return localePagePath(configured);
+  let pathname;
   try {
-    // only the path of the value is used: any base resolves an absolute path or URL the same way
-    path = new URL(configured, 'https://localhost/').pathname;
+    pathname = new URL(configured, window.location.href).pathname;
   } catch {
-    return localePagePath(fallback, pathname);
+    return localePagePath(fallback);
   }
-  path = path.replace(/(\.plain)?\.html$/, '');
-  const { contentRoot } = getLocale(pathname);
-  return contentRoot ? toAemPath(path, contentRoot) : toPublishedPath(path);
-}
-
-/**
- * The path to fetch for a page-property value such as Navigation or Footer (an AEM path, a
- * published path or a path relative to the site root, see resolvePagePath), with no default page:
- * '' when the value is empty or unparsable, so the caller renders nothing instead of guessing.
- * @param {string} [value] the configured (own or inherited) value
- * @param {string} [pathname] the current page, defaults to the window's
- * @returns {string}
- */
-export function configuredPagePath(value, pathname = window.location.pathname) {
-  const configured = (value || '').trim();
-  if (!configured) return '';
-  if (configured.startsWith('/') || /^[a-z]+:/i.test(configured)) {
-    try {
-      // eslint-disable-next-line no-new
-      new URL(configured, 'https://localhost/');
-    } catch {
-      return '';
-    }
-  }
-  return resolvePagePath(configured, '', pathname);
+  pathname = pathname.replace(/(\.plain)?\.html$/, '');
+  const { contentRoot } = getLocale();
+  return contentRoot ? toAemPath(pathname, contentRoot) : toPublishedPath(pathname);
 }
 
 /**
