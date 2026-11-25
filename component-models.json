@@ -19556,569 +19556,6 @@
       },
       {
         "component": "tab",
-        "name": "fontStyleTab",
-        "label": "Font Style"
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeDesktop",
-        "label": "Description size (Desktop)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeTablet",
-        "label": "Description size (Tablet)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeMobile",
-        "label": "Description size (Mobile)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeDesktop",
-        "label": "Kicker / tag / eyebrow size (Desktop)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeTablet",
-        "label": "Kicker / tag / eyebrow size (Tablet)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeMobile",
-        "label": "Kicker / tag / eyebrow size (Mobile)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeDesktop",
-        "label": "Call to action size (Desktop)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), desktop, 1200px and wider. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeTablet",
-        "label": "Call to action size (Tablet)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), tablet, 600 to 1199px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeMobile",
-        "label": "Call to action size (Mobile)",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "Image cards (Card style Image card or Mixed), mobile, up to 599px. New Lists start at 14px; Default keeps the card style's size.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "image"
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "cardStyle"
-                },
-                "mixed"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "tab",
         "name": "additionalTab",
         "label": "Additional"
       },
@@ -21091,569 +20528,6 @@
         "label": "Show Action Label",
         "value": true,
         "description": "On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it."
-      },
-      {
-        "component": "tab",
-        "name": "fontStyleTab",
-        "label": "Font Style"
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeDesktop",
-        "label": "Description size (Desktop)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeTablet",
-        "label": "Description size (Tablet)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "descriptionSizeMobile",
-        "label": "Description size (Mobile)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, mobile, up to 599px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeDesktop",
-        "label": "Kicker / tag / eyebrow size (Desktop)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeTablet",
-        "label": "Kicker / tag / eyebrow size (Tablet)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "kickerSizeMobile",
-        "label": "Kicker / tag / eyebrow size (Mobile)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, mobile, up to 599px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeDesktop",
-        "label": "Call to action size (Desktop)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, desktop, 1200px and wider; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeTablet",
-        "label": "Call to action size (Tablet)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, tablet, 600 to 1199px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "ctaSizeMobile",
-        "label": "Call to action size (Mobile)",
-        "options": [
-          {
-            "name": "As the List",
-            "value": ""
-          },
-          {
-            "name": "12px",
-            "value": "12"
-          },
-          {
-            "name": "14px",
-            "value": "14"
-          },
-          {
-            "name": "16px",
-            "value": "16"
-          },
-          {
-            "name": "20px",
-            "value": "20"
-          },
-          {
-            "name": "24px",
-            "value": "24"
-          },
-          {
-            "name": "32px",
-            "value": "32"
-          },
-          {
-            "name": "40px",
-            "value": "40"
-          }
-        ],
-        "value": "",
-        "description": "This card as an image card, mobile, up to 599px; As the List: the List's Font Style.",
-        "condition": {
-          "or": [
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                ""
-              ]
-            },
-            {
-              "===": [
-                {
-                  "var": "kind"
-                },
-                "image"
-              ]
-            }
-          ]
-        }
       }
     ]
   },
@@ -31055,6 +29929,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The heading level of the title, which also sets its size (desktop sizes; smaller on mobile). Use one H1 per page."
@@ -31093,6 +29971,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size from 600 to 1199px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -31131,6 +30013,10 @@
           {
             "name": "2.25rem (36px)",
             "value": "title-2.25rem"
+          },
+          {
+            "name": "3.125rem (50px)",
+            "value": "title-3.125rem"
           }
         ],
         "description": "The title's size below 600px; the heading level (H1 to H6) stays the Title Type (Desktop)'s."
@@ -31700,7 +30586,7 @@
             "value": ""
           },
           {
-            "name": "Light Gray",
+            "name": "Light Gray (#E3E3E3)",
             "value": "label-light-gray"
           }
         ],
@@ -31886,6 +30772,24 @@
           }
         ],
         "description": "Sets the Primary CTA shape. Rectangle uses the grey-200 border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "teaserCtaPrimaryBorder",
+        "label": "Primary CTA Border color (Primary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "primary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Primary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
       },
       {
         "component": "select",
@@ -32089,6 +30993,24 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "teaserCtaSecondaryBorder",
+        "label": "Secondary CTA Border color (Secondary only)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Very Light Gray (#F3F3F3)",
+            "value": "secondary-border-light-gray"
+          }
+        ],
+        "description": "Border colour of the Secondary CTA on dark backgrounds (BG Color Dark, Dark green or Navy, the Background image and Card layouts, or a dark Section); on light backgrounds the button keeps its own border."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "secondaryCtaShadow",
         "label": "CTA Shadow (Secondary Only)",
         "value": "",
@@ -32261,7 +31183,73 @@
         "component": "select",
         "valueType": "string",
         "name": "titleWeight",
-        "label": "Title weight",
+        "label": "Title weight (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightTablet",
+        "label": "Title weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleWeightMobile",
+        "label": "Title weight (Mobile)",
         "value": "",
         "options": [
           {
@@ -32323,6 +31311,108 @@
           }
         ],
         "description": "Overrides the layout's default title colour. Dark uses rgb(48 48 48)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightDesktop",
+        "label": "CTA Label Font weight (Desktop)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Desktop"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightTablet",
+        "label": "CTA Label Font weight (Tablet)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Tablet"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "CtaLabelFontWeightMobile",
+        "label": "CTA Label Font weight (Mobile)",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "title-bold"
+          }
+        ],
+        "description": "CTA Label Font weight for Mobile"
       },
       {
         "component": "select",

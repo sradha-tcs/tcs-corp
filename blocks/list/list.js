@@ -3,7 +3,7 @@ import {
   renderCardListEmpty, renderEditorItems, trackCardList,
 } from '../../decorators/card-list-decorator.js';
 import { renderWhenLoaded } from '../../decorators/skeleton-decorator.js';
-import { FONT_SIZES, PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
+import { PRESENTATION_PROPERTIES, contentTypeLabel } from '../../utils/card-list-config.js';
 import { matchCells, withoutTabCells } from '../../utils/cells.js';
 import { getAuthors } from '../../utils/data.js';
 import { isAuthor, isEditing } from '../../utils/environment.js';
@@ -16,8 +16,8 @@ import { getLocale, pageLink, toPublishedPath } from '../../utils/site.js';
 import { readTagValues } from '../../utils/tags.js';
 import { resolveTags } from '../../utils/taxonomy.js';
 import {
-  HEADINGS, ITEM_DISPLAY, ITEM_FONT_FIELDS, buildCards, itemLayoutFor, mergeFixedItems,
-  normalizeConfig, normalizePath, showsFeatureAuthor, validateConfig,
+  HEADINGS, ITEM_DISPLAY, buildCards, itemLayoutFor, mergeFixedItems, normalizeConfig,
+  normalizePath, showsFeatureAuthor, validateConfig,
 } from './list-data.js';
 
 /*
@@ -43,9 +43,8 @@ const ITEM_MATCHERS = {
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
 // the Display toggles: true / false
 ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; });
-// CTA style and the Font Style sizes (px)
+// CTA style
 ITEM_MATCHERS.ctaStyle = (cell) => /^(tertiary|primary|secondary)$/i.test(textOf(cell));
-ITEM_FONT_FIELDS.forEach((field) => { ITEM_MATCHERS[field] = (cell) => /^\d+$/.test(textOf(cell)); });
 
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
@@ -113,7 +112,7 @@ export function readBlockConfig(block) {
     else raw[key] = textOf(cell);
   });
   const listItems = legacy ? [] : itemRows.map((row) => {
-    // rows rendered before the Display toggles were added have fewer cells
+    // rows rendered before CTA style or the Display toggles were added have fewer cells
     const layout = itemLayoutFor(row.children.length);
     const fieldCells = withoutTabCells([...row.children], layout);
     const cells = matchCells(fieldCells, layout.filter(Boolean), ITEM_MATCHERS);
@@ -140,13 +139,6 @@ export function readBlockConfig(block) {
       theme: get('theme').toLowerCase(),
       ...Object.fromEntries(ITEM_DISPLAY.map((field) => [field, get(field)])),
       ctaStyle: get('ctaStyle').toLowerCase(),
-      // Font Style: { desktop: { description, kicker, cta }, tablet: ..., mobile: ... } ('' unset)
-      fontSizes: Object.fromEntries(['desktop', 'tablet', 'mobile'].map((bp) => [bp, Object.fromEntries(
-        ['description', 'kicker', 'cta'].map((part) => {
-          const px = get(`${part}Size${bp[0].toUpperCase()}${bp.slice(1)}`);
-          return [part, FONT_SIZES.includes(px) ? px : ''];
-        }),
-      )])),
       ref: row,
     };
   }).filter((item) => item.href);

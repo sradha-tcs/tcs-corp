@@ -20,7 +20,7 @@ import { LIGHT_CLASSES, headerTheme } from './header-theme.js';
  *   the eager phase; it loads the page's Navigation page (inherited, else the locale's
  *   references/nav), mounts it as <header><div class="nav-wrapper"><nav id="nav"> (header
  *   Canvases in <div class="nav-canvas">) and runs the header's scroll, height and logo theme
- *   behaviour (decorateSiteHeader). It replaces the former blocks/header (KB-D-076).
+ *   behaviour (decorateSiteHeader). It replaces the former blocks/header (KB-D-078).
  * - the authored block on the Navigation page (or any page): the TCS and TATA logos, the tablet /
  *   mobile menu toggle and its drawer (decorate). In the nav fragment it also applies the Header
  *   over the first block and the header positions.
