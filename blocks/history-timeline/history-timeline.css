@@ -369,7 +369,7 @@
   }
 
   .history-timeline .history-timeline-year {
-    font-size: var(--heading-font-size-xxl);
+    font-size: 2rem;
   }
 
   .history-timeline .history-timeline-description {
