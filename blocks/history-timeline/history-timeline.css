@@ -363,6 +363,172 @@
   }
 }
 
+/*
+ * tablet (600–1199px): the Figma tablet cards (559-51717), staggered and aligned at the bottom like
+ * desktop but smaller; overrides the desktop sizes, which apply from 900px (desktop unchanged)
+ */
+@media (600px <= width < 1200px) {
+  .history-timeline {
+    --history-timeline-track-top: var(--space-2000);
+    --history-timeline-closing-size: 16.875rem;
+
+    /* Figma: 270px */
+    --history-timeline-tallest: 36.25rem;
+
+    /* Figma Article-1: 580px */
+
+    /* between the tallest card and the Figma strip (697px), on lower screens the tallest card */
+    --history-timeline-list-height: clamp(var(--history-timeline-tallest), calc(100svh - 14.175rem), 43.575rem);
+  }
+
+  .history-timeline .history-timeline-list {
+    align-items: flex-end;
+    min-height: var(--history-timeline-list-height);
+  }
+
+  .history-timeline .history-timeline-list > li {
+    min-height: calc(var(--history-timeline-tallest) - var(--history-timeline-item-drop, 0rem));
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 1) {
+    --history-timeline-item-size: 20rem;
+    --history-timeline-item-drop: 0rem;
+
+    /* Figma: 320 × 580px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 2) {
+    --history-timeline-item-size: 18.75rem;
+    --history-timeline-item-drop: 6.25rem;
+
+    /* Figma: 300 × 480px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 3) {
+    --history-timeline-item-size: 19.375rem;
+    --history-timeline-item-drop: 5rem;
+
+    /* Figma: 310 × 500px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 4) {
+    --history-timeline-item-size: 18.125rem;
+    --history-timeline-item-drop: 4.375rem;
+
+    /* Figma: 290 × 510px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 5) {
+    --history-timeline-item-size: 19.375rem;
+    --history-timeline-item-drop: 8.125rem;
+
+    /* Figma: 310 × 450px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 6) {
+    --history-timeline-item-size: 18.125rem;
+    --history-timeline-item-drop: 11.25rem;
+
+    /* Figma: 290 × 400px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 7) {
+    --history-timeline-item-size: 19.375rem;
+    --history-timeline-item-drop: 5.625rem;
+
+    /* Figma: 310 × 490px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n) {
+    --history-timeline-item-size: 18.75rem;
+    --history-timeline-item-drop: 9.375rem;
+
+    /* Figma: 300 × 430px */
+  }
+}
+
+/*
+ * mobile (below 600px): the Figma mobile cards (559-52780), staggered and aligned at the bottom;
+ * each never wider than the strip minus the peek of the next card
+ */
+@media (width < 600px) {
+  .history-timeline {
+    --history-timeline-item-max: calc(100cqi - 2 * var(--history-timeline-gutter) - var(--space-800));
+    --history-timeline-closing-size: 16.875rem;
+
+    /* Figma: 270px */
+    --history-timeline-tallest: 35rem;
+
+    /* Figma Article-1: 560px */
+
+    /* between the tallest card and the Figma strip (617px), on lower screens the tallest card */
+    --history-timeline-list-height: clamp(var(--history-timeline-tallest), calc(100svh - 14.175rem), 38.575rem);
+  }
+
+  .history-timeline .history-timeline-list {
+    align-items: flex-end;
+    min-height: var(--history-timeline-list-height);
+  }
+
+  .history-timeline .history-timeline-list > li {
+    min-height: calc(var(--history-timeline-tallest) - var(--history-timeline-item-drop, 0rem));
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 1) {
+    --history-timeline-item-size: min(15rem, var(--history-timeline-item-max));
+
+    /* Figma: 240 × 560px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 2) {
+    --history-timeline-item-size: min(13.75rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 3.75rem;
+
+    /* Figma: 220 × 500px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 3) {
+    --history-timeline-item-size: min(14.375rem, var(--history-timeline-item-max));
+
+    /* Figma: 230 × 560px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 4) {
+    --history-timeline-item-size: min(13.125rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 6.25rem;
+
+    /* Figma: 210 × 460px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 5) {
+    --history-timeline-item-size: min(13.75rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 8.125rem;
+
+    /* Figma: 220 × 430px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 6) {
+    --history-timeline-item-size: min(13.125rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 7.5rem;
+
+    /* Figma: 210 × 440px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n + 7) {
+    --history-timeline-item-size: min(13.75rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 6.25rem;
+
+    /* Figma: 220 × 460px */
+  }
+
+  .history-timeline .history-timeline-list > li:nth-child(8n) {
+    --history-timeline-item-size: min(13.125rem, var(--history-timeline-item-max));
+    --history-timeline-item-drop: 7.5rem;
+
+    /* Figma: 210 × 440px */
+  }
+}
+
 @media (600px <=width < 1200px) {
   .history-timeline .history-timeline-label {
     font-size: var(--heading-font-size-s);
