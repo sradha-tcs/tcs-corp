@@ -25,26 +25,39 @@ export {
  * per field (link text and image alt fold into the link and image cells) and an empty cell per
  * dialog tab (null); test/list checks the layout against _list.json
  */
+/** the List Item's title and description style (appended to its Display tab) */
+export const ITEM_STYLE = ['titleSize', 'titleColor', 'descriptionColor'];
 export const ITEM_LAYOUT = [null, 'link', 'newTab', 'ctaStyle', null, 'headline', 'summary', 'image',
   'eyebrow', 'tags', 'subtitle', 'ctaLabel', null, 'kind', 'theme', 'analyticsLabel', 'ariaLabel',
-  'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel'];
+  'titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel', 'showActionLabel',
+  ...ITEM_STYLE];
 export const ITEM_FIELDS = ITEM_LAYOUT.filter(Boolean);
 /** the Display toggles of a List Item (appended to the model: older rows have fewer cells) */
 export const ITEM_DISPLAY = ['titleHidden', 'showDescription', 'showImage', 'showEyebrow', 'showLabel',
   'showActionLabel'];
+/** the List Item rendered before its title and description style (23 cells, 20 without tabs) */
+export const ITEM_LAYOUT_BEFORE_STYLE = ITEM_LAYOUT.filter((field) => !ITEM_STYLE.includes(field));
+const ITEM_FIELDS_BEFORE_STYLE = ITEM_LAYOUT_BEFORE_STYLE.filter(Boolean);
 /** the List Item rendered before CTA style was added to its Link tab (22 cells, 19 without tabs) */
-export const ITEM_LAYOUT_BEFORE_CTA = ITEM_LAYOUT.filter((field) => field !== 'ctaStyle');
+export const ITEM_LAYOUT_BEFORE_CTA = ITEM_LAYOUT_BEFORE_STYLE.filter((field) => field !== 'ctaStyle');
 const ITEM_FIELDS_BEFORE_CTA = ITEM_LAYOUT_BEFORE_CTA.filter(Boolean);
 
 /**
  * The layout of a List Item row of `count` cells: the model's, with or without its tab cells
- * (AEM delivers a cell per field); a row rendered before CTA style (22 or 19 cells); or before the
- * Display toggles were added (ariaLabel its last cell: 16 or 13 cells), the layout up to that cell.
+ * (AEM delivers a cell per field); a row rendered before the title and description style (23 or 20
+ * cells; startsWithTab tells a 23-cell row's two layouts apart), before CTA style (22 or 19
+ * cells); or before the Display toggles were added (ariaLabel its last cell: 16 or 13 cells), the
+ * layout up to that cell.
  * @param {number} count
+ * @param {boolean} [startsWithTab] whether the row's first cell is empty (a tab cell)
  */
-export function itemLayoutFor(count) {
+export function itemLayoutFor(count, startsWithTab = true) {
   if (count === ITEM_LAYOUT.length) return ITEM_LAYOUT;
-  if (count === ITEM_FIELDS.length) return ITEM_FIELDS;
+  // 23 cells: the current fields without tab cells, or a row rendered before the title style with
+  // its tab cells (it starts with the empty Link tab cell)
+  if (count === ITEM_FIELDS.length && !startsWithTab) return ITEM_FIELDS;
+  if (count === ITEM_LAYOUT_BEFORE_STYLE.length) return ITEM_LAYOUT_BEFORE_STYLE;
+  if (count === ITEM_FIELDS_BEFORE_STYLE.length) return ITEM_FIELDS_BEFORE_STYLE;
   if (count === ITEM_FIELDS_BEFORE_CTA.length) return ITEM_FIELDS_BEFORE_CTA;
   if (count === ITEM_FIELDS_BEFORE_CTA.length - ITEM_DISPLAY.length) {
     return ITEM_FIELDS_BEFORE_CTA.slice(0, count);
@@ -362,6 +375,13 @@ export function applyOverrides(card, item) {
   set('accessibilityLabel', item.accessibilityLabel);
   set('kind', item.kind);
   set('theme', item.theme);
+  // the item's title size, title colour and description colour (renderCard)
+  const titleSize = text(item.titleSize).toLowerCase();
+  if (/^h[1-6]$/.test(titleSize)) out.titleSize = titleSize;
+  const titleColor = text(item.titleColor).toLowerCase();
+  if (['black', 'white'].includes(titleColor)) out.titleColor = titleColor;
+  const descriptionColor = text(item.descriptionColor).toLowerCase();
+  if (['white', 'cdcdcd'].includes(descriptionColor)) out.descriptionColor = descriptionColor;
   // the item's CTA style, else the card style's (renderCard)
   const ctaStyle = text(item.ctaStyle);
   if (['tertiary', 'primary', 'secondary'].includes(ctaStyle)) out.ctaStyle = ctaStyle;

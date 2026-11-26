@@ -228,6 +228,9 @@ export function renderCard(card, listConfig, { t, level, kind }) {
   if (theme) article.classList.add(`theme-${theme}`);
   // Cards: the Title size (96px, 48px, H1 to H6)
   if (card.titleSize) article.classList.add(`title-size-${card.titleSize}`);
+  // List Item: the title and description colours
+  if (card.titleColor) article.classList.add(`title-color-${card.titleColor}`);
+  if (card.descriptionColor) article.classList.add(`description-color-${card.descriptionColor}`);
   const ctaButtons = ctaButtonsOf(card, t);
   const readingTime = readingTimeOf(card, t);
   // Show content type off (List): image cards show neither its tag nor its label

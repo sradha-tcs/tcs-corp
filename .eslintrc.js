@@ -31,8 +31,8 @@ module.exports = {
       'columns-container': 22,
       'table-list': 10,
       'table-list-card': 6,
-      // List Item: CTA style
-      'list-item': 20,
+      // List Item: CTA style, Title size, Title colour, Description colour
+      'list-item': 23,
       // Card: CTA 1 / CTA 2 (link, style, new tab) and Title size
       card: 23,
       'table-col-5': 5,
