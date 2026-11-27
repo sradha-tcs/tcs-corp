@@ -50,7 +50,36 @@ Definitions are grouped in `component-definition.json`: Default Content (Text, T
 
 ## Filters
 
-`component-filters.json` holds 26 filters. `main` (page level) allows Section, Gen Carousel, Tabs Container and Columns Container; `section` allows the blocks authors add to a section; `columns-container`, `tabs` and `gen-carousel` restrict the section containers; each container block has a filter of its items (e.g. `hero: hero-cta`). The compatibility-only Columns and Button (basic) and the experimental Interactive Dashboard are in no filter; the built-in Columns keeps its implicit `columns > column > text, image, title` filters so Columns authored before stay editable. The full table is in [blocks.md](./blocks.md#container-and-child-relationships).
+`component-filters.json` holds 34 filters (33 on main before the RTE configuration below; this page said 26, written from an earlier commit). `main` (page level) allows Section, Gen Carousel, Tabs Container and Columns Container; `section` allows the blocks authors add to a section; `columns-container`, `tabs` and `gen-carousel` restrict the section containers; each container block has a filter of its items (e.g. `hero: hero-cta`). The compatibility-only Columns and Button (basic) and the experimental Interactive Dashboard are in no filter; the built-in Columns keeps its implicit `columns > column > text, image, title` filters so Columns authored before stay editable. The full table is in [blocks.md](./blocks.md#container-and-child-relationships).
+
+### Rich text editor (RTE) configuration
+
+The Text component's toolbar is configured by the filter `richtext` (`models/_component-filters.json`, property `rte`), which the Text definition names in its template (`models/_text.json`, `"filter": "richtext"`); `scripts/editor-support-rte.js` carries the filter (`data-richtext-filter`) onto the grouped editable as `data-aue-filter`, so it applies when a Text renders as several paragraphs. The filter has no `components`: it only configures the editor ([Configure the RTE](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/universal-editor/configure-rte); [component model definitions](https://www.aem.live/developer/component-model-definitions): a filter can set "which RTE features are enabled").
+
+| Toolbar group | Offered | Left out, and why |
+| --- | --- | --- |
+| blocks | Paragraph, H1–H6, code block | Blockquote (not in the delivered markup). H1: the page has one H1 (Page Header, Hero or Title): use H1 in a Text only on a page without one (author responsibility, WCAG 1.3.1 / 2.4.6) |
+| format | Bold (`<strong>`), italic (`<em>`), underline, strikethrough, inline code | Text colour (an inline style, not delivered; would bypass the theme tokens and contrast of dark sections) |
+| sr_script | Superscript, subscript | — |
+| list | Bulleted, numbered | — |
+| insert | Link, unlink, image (from AEM Assets), special characters (one curated list of 45, each with a title: currency incl. ₹, legal ©®™℠, maths, typographic quotes and dashes, arrows, ✓) | Table (not delivered as a table in default content: the Table block). Image: Universal Editor documents no alt text or title field for images in a Text; for a meaningful image with alt text use the Image component |
+| editor | Remove format, clean unsupported tags, paste as text, find and replace, full screen | — |
+| (groups) | — | Alignment, direction, indentation (inline styles and `dir`, not delivered) |
+
+Actions: bold writes `<strong>`, italic `<em>` (the delivered tags); the link dialog hides its target option, because a link target isn't delivered (new tabs are set by block fields, which add the new-tab hint, see [accessibility](./accessibility.md)). The delivered markup is [Edge Delivery's markup reference](https://www.aem.live/developer/markup-reference). `test/models/rte-config.test.mjs` checks the filter, the Text definition, the documented values, that none of the left-out options returns and that the special characters list has each character and title once.
+
+- **Text components added before the configuration** don't have the filter (definition template values are stored only on new components, see [Defaults and the Template-Value Rule](#defaults-and-the-template-value-rule)): they keep Universal Editor's full default toolbar until their `filter` property is set to `richtext` on AEM author.
+- **Rich text fields of blocks** (Hero description, Card description, Table cells, ...) aren't affected: they use their block's filter, which has no `rte` configuration.
+
+Requested features and where they stand (27 November 2026, checked against the Universal Editor RTE documentation and the Edge Delivery markup reference):
+
+| Status | Features |
+| --- | --- |
+| Configured | Bold, italic, underline, strikethrough, superscript, subscript, inline code, clear formatting; paragraph, H1–H6, code block; bulleted and numbered lists; link insert / edit / remove; image from AEM Assets; special characters and symbols; find and replace; paste as plain text, clean unsupported tags; full screen |
+| Available in Universal Editor, not delivered (left out) | Text colour, alignment, LTR / RTL, indent / outdent (inline styles and `dir`), blockquote, table in a Text (use the Table block), link target / open in a new tab |
+| Not offered by Universal Editor | Background colour, font size, font family, horizontal rule, HTML source view / editing, word and character count, auto link detection, merge / split cells and row / column editing, image alt text and title fields, custom sanitization rules, project plugins (the editor is hosted by Universal Editor; projects configure it only) |
+| Built in, not configurable | Undo (Mod+Z) and redo (Mod+Shift+Z, Mod+Y); keyboard navigation and toolbar tooltips; the browser's spell check; unknown HTML tags stripped by the editor; Edge Delivery delivers only its semantic markup (strong, em, u, del, sup, sub, code, links, headings, paragraphs, lists, pre, pictures) |
+| Not verified here | The toolbar in Universal Editor on AEM author (desktop, tablet, mobile), console errors: no author access from the delivery workspace (Requires validation) |
 
 ## Field Types in Use
 
