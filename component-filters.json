@@ -14,6 +14,7 @@
       "toolbar": {
         "blocks": [
           "paragraph",
+          "h1",
           "h2",
           "h3",
           "h4",
@@ -39,6 +40,7 @@
         "insert": [
           "link",
           "unlink",
+          "image",
           "special_characters"
         ],
         "editor": [
@@ -66,6 +68,191 @@
         },
         "link": {
           "hideTarget": true
+        },
+        "special_characters": {
+          "label": "Special characters",
+          "characters": [
+            {
+              "character": "©",
+              "title": "Copyright"
+            },
+            {
+              "character": "®",
+              "title": "Registered trademark"
+            },
+            {
+              "character": "™",
+              "title": "Trademark"
+            },
+            {
+              "character": "℠",
+              "title": "Service mark"
+            },
+            {
+              "character": "€",
+              "title": "Euro"
+            },
+            {
+              "character": "£",
+              "title": "Pound"
+            },
+            {
+              "character": "¥",
+              "title": "Yen"
+            },
+            {
+              "character": "₹",
+              "title": "Indian rupee"
+            },
+            {
+              "character": "$",
+              "title": "Dollar"
+            },
+            {
+              "character": "¢",
+              "title": "Cent"
+            },
+            {
+              "character": "%",
+              "title": "Percent"
+            },
+            {
+              "character": "‰",
+              "title": "Per mille"
+            },
+            {
+              "character": "°",
+              "title": "Degree"
+            },
+            {
+              "character": "±",
+              "title": "Plus or minus"
+            },
+            {
+              "character": "×",
+              "title": "Multiplication"
+            },
+            {
+              "character": "÷",
+              "title": "Division"
+            },
+            {
+              "character": "≈",
+              "title": "Approximately equal"
+            },
+            {
+              "character": "≠",
+              "title": "Not equal"
+            },
+            {
+              "character": "≤",
+              "title": "Less than or equal"
+            },
+            {
+              "character": "≥",
+              "title": "Greater than or equal"
+            },
+            {
+              "character": "∞",
+              "title": "Infinity"
+            },
+            {
+              "character": "µ",
+              "title": "Micro"
+            },
+            {
+              "character": "½",
+              "title": "One half"
+            },
+            {
+              "character": "¼",
+              "title": "One quarter"
+            },
+            {
+              "character": "¾",
+              "title": "Three quarters"
+            },
+            {
+              "character": "–",
+              "title": "En dash"
+            },
+            {
+              "character": "—",
+              "title": "Em dash"
+            },
+            {
+              "character": "…",
+              "title": "Ellipsis"
+            },
+            {
+              "character": "•",
+              "title": "Bullet"
+            },
+            {
+              "character": "·",
+              "title": "Middle dot"
+            },
+            {
+              "character": "‘",
+              "title": "Left single quotation mark"
+            },
+            {
+              "character": "’",
+              "title": "Right single quotation mark"
+            },
+            {
+              "character": "“",
+              "title": "Left double quotation mark"
+            },
+            {
+              "character": "”",
+              "title": "Right double quotation mark"
+            },
+            {
+              "character": "«",
+              "title": "Left angle quotation mark"
+            },
+            {
+              "character": "»",
+              "title": "Right angle quotation mark"
+            },
+            {
+              "character": "§",
+              "title": "Section"
+            },
+            {
+              "character": "¶",
+              "title": "Paragraph sign"
+            },
+            {
+              "character": "†",
+              "title": "Dagger"
+            },
+            {
+              "character": "‡",
+              "title": "Double dagger"
+            },
+            {
+              "character": "→",
+              "title": "Right arrow"
+            },
+            {
+              "character": "←",
+              "title": "Left arrow"
+            },
+            {
+              "character": "↑",
+              "title": "Up arrow"
+            },
+            {
+              "character": "↓",
+              "title": "Down arrow"
+            },
+            {
+              "character": "✓",
+              "title": "Check mark"
+            }
+          ]
         }
       }
     }

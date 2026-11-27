@@ -24,13 +24,12 @@ const UE_TOOLBAR = {
   editor: ['removeformat', 'clean_unsupported_tags', 'paste_text', 'fullscreen', 'find_and_replace'],
   advanced: ['classes'],
 };
-// options whose output Edge Delivery doesn't deliver in a Text, or that the project keeps in
-// other components: inline styles (colour, alignment, indentation) and dir aren't delivered;
-// blockquote isn't in the delivered markup; a table in default content isn't delivered as a table
-// (the Table block); the H1 is the Page Header's / Hero's / Title's (one per page); images go in
-// the Image component (alt text); custom classes aren't delivered
+// options whose output Edge Delivery doesn't deliver in a Text: inline styles (colour,
+// alignment, indentation) and dir aren't delivered; blockquote isn't in the delivered markup; a
+// table in default content isn't delivered as a table (the Table block); custom classes aren't
+// delivered (KB-D-080)
 const NOT_IN_TEXT = ['text_color', 'left', 'center', 'right', 'justify', 'rtl', 'ltr', 'indent',
-  'outdent', 'blockquote', 'table', 'h1', 'image', 'classes'];
+  'outdent', 'blockquote', 'table', 'classes'];
 
 function textDefinition() {
   const all = [];
@@ -75,6 +74,27 @@ describe('RTE configuration (filter "richtext")', () => {
     assert.equal(richtext.rte.actions?.italic?.tag, 'em');
     // a link target isn't delivered: new tabs come from block fields with the new-tab hint
     assert.equal(richtext.rte.actions?.link?.hideTarget, true);
+  });
+
+  it('offers H1 and images (delivered), with the special characters picker', () => {
+    const { blocks, insert } = richtext.rte.toolbar;
+    assert.ok(blocks.includes('h1'));
+    assert.ok(insert.includes('image'));
+    assert.ok(insert.includes('special_characters'));
+  });
+
+  it('defines one special characters list: each character once, each with a title', () => {
+    const sc = richtext.rte.actions?.special_characters;
+    assert.ok(Array.isArray(sc?.characters) && sc.characters.length > 0, 'a characters list');
+    assert.ok(!sc.appendCharacters, 'one complete list, not appended to the defaults (no duplicates)');
+    const chars = sc.characters.map((c) => c.character);
+    assert.equal(new Set(chars).size, chars.length, 'no character twice');
+    sc.characters.forEach((c) => {
+      assert.equal([...c.character].length, 1, `"${c.character}" is one character`);
+      assert.ok(c.title?.trim(), `"${c.character}" has a title (its tooltip and accessible name)`);
+    });
+    const titles = sc.characters.map((c) => c.title.toLowerCase());
+    assert.equal(new Set(titles).size, titles.length, 'no title twice');
   });
 
   it('adds no child components (a configuration-only filter)', () => {
