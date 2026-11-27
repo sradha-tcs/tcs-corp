@@ -28,7 +28,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Stat",
-              "model": "testimonial-stat"
+              "model": "testimonial-stat",
+              "filter": "testimonial-stat"
             }
           }
         }
@@ -1023,7 +1024,17 @@
       "id": "testimonial",
       "components": [
         "testimonial-stat"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "testimonial-stat",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

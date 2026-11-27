@@ -1501,7 +1501,10 @@
       "id": "list",
       "components": [
         "list-item"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

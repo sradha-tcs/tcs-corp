@@ -1221,7 +1221,10 @@
       "id": "conversation-canvas",
       "components": [
         "conversation-canvas-button"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

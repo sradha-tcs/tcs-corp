@@ -1,0 +1,180 @@
+/*
+ * Rich Text (blocks/rich-text/rich-text.js): authored rich text with the Style tab's variations as
+ * block classes (KB-D-079). Mobile first; the semantic tokens of styles/styles.css, so the text
+ * follows the dark Section theme contract.
+ */
+.rich-text .rich-text-content {
+  color: var(--color-text-default);
+  overflow-wrap: break-word;
+}
+
+.rich-text .rich-text-content > :first-child {
+  margin-top: 0;
+}
+
+.rich-text .rich-text-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Alignment */
+.rich-text.align-center .rich-text-content {
+  text-align: center;
+}
+
+.rich-text.align-right .rich-text-content {
+  text-align: right;
+}
+
+.rich-text.align-justify .rich-text-content {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Text size: paragraphs and lists (headings keep their level's size) */
+.rich-text.size-small .rich-text-content :is(p, li, td, th) {
+  font-size: var(--body-font-size-s);
+}
+
+/* Large and the lead paragraph: a step above the body size on mobile (--body-font-size-l is the
+   body size there), the large body size from 900px */
+.rich-text.size-large .rich-text-content :is(p, li, td, th) {
+  font-size: 1.125rem;
+}
+
+/* First paragraph: lead (introduction) */
+.rich-text.lede-first .rich-text-content > p:first-of-type {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+/* Text colour */
+.rich-text.color-secondary .rich-text-content {
+  color: var(--color-text-secondary);
+}
+
+.rich-text.color-brand .rich-text-content {
+  color: var(--color-text-brand);
+}
+
+/* Width: the maximum line length, centred with Alignment Center */
+.rich-text.width-medium .rich-text-content {
+  max-width: 60rem;
+}
+
+.rich-text.width-narrow .rich-text-content {
+  max-width: 45rem;
+}
+
+.rich-text.align-center:is(.width-medium, .width-narrow) .rich-text-content {
+  margin-inline: auto;
+}
+
+.rich-text.align-right:is(.width-medium, .width-narrow) .rich-text-content {
+  margin-inline-start: auto;
+}
+
+/* Editor toolbar output: quotes, code, superscript / subscript, tables, text style classes */
+.rich-text .rich-text-content blockquote {
+  margin: var(--space-600) 0;
+  padding-inline-start: var(--space-500);
+  border-inline-start: 0.25rem solid var(--color-border-brand);
+  font-size: var(--body-font-size-l);
+}
+
+.rich-text .rich-text-content :is(code, pre) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.rich-text .rich-text-content :not(pre) > code {
+  padding: 0 var(--space-100);
+  border-radius: var(--radius-s);
+  background-color: var(--color-bg-secondary);
+}
+
+.rich-text .rich-text-content pre {
+  overflow-x: auto;
+  font-size: var(--body-font-size-s);
+  padding: var(--space-400);
+  border-radius: var(--radius-m);
+  background-color: var(--color-bg-secondary);
+}
+
+.rich-text .rich-text-content :is(sup, sub) {
+  font-size: var(--body-font-size-xs);
+  line-height: 0;
+}
+
+.rich-text .rich-text-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rich-text .rich-text-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: var(--space-500) 0;
+}
+
+.rich-text .rich-text-table:focus-visible {
+  outline: 0.125rem solid var(--color-border-brand);
+  outline-offset: 0.125rem;
+}
+
+.rich-text .rich-text-table table {
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.rich-text .rich-text-table :is(th, td) {
+  padding: var(--space-200) var(--space-300);
+  border: 0.0625rem solid var(--color-border-default);
+  text-align: start;
+  vertical-align: top;
+}
+
+.rich-text .rich-text-table th {
+  background-color: var(--color-bg-secondary);
+}
+
+.rich-text .rich-text-content .rte-lede {
+  font-size: var(--body-font-size-l);
+}
+
+.rich-text .rich-text-content .rte-small {
+  font-size: var(--body-font-size-xs);
+}
+
+.rich-text .rich-text-content .rte-highlight {
+  padding: var(--space-400);
+  border-inline-start: 0.25rem solid var(--color-border-brand);
+  background-color: var(--color-bg-secondary);
+}
+
+/* in Universal Editor: an empty block says what to fill in */
+.rich-text .rich-text-empty {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Columns: one on mobile */
+@media (width >= 600px) {
+  .rich-text:is(.columns-2, .columns-3) .rich-text-content {
+    column-count: 2;
+    column-gap: var(--space-800);
+  }
+
+  .rich-text:is(.columns-2, .columns-3) .rich-text-content :is(h1, h2, h3, h4, h5, h6, table, pre, blockquote, .rich-text-table) {
+    break-inside: avoid;
+  }
+}
+
+@media (width >= 900px) {
+  .rich-text.columns-3 .rich-text-content {
+    column-count: 3;
+  }
+
+  .rich-text.size-large .rich-text-content :is(p, li, td, th),
+  .rich-text.lede-first .rich-text-content > p:first-of-type {
+    font-size: var(--body-font-size-l);
+  }
+}

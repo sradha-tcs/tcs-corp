@@ -93,7 +93,8 @@
               "name": "Consent Checkbox Field",
               "model": "field-checkbox",
               "classes": "field-checkbox",
-              "required": true
+              "required": true,
+              "filter": "field-checkbox"
             }
           }
         }
@@ -109,7 +110,8 @@
             "template": {
               "name": "Rich Text Field",
               "model": "field-richtext",
-              "classes": "field-richtext"
+              "classes": "field-richtext",
+              "filter": "field-richtext"
             }
           }
         }
@@ -732,7 +734,24 @@
         "field-richtext",
         "contact-card",
         "field-submit"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "field-checkbox",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "field-richtext",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

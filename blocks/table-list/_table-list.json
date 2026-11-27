@@ -35,7 +35,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Table List Item",
-              "model": "table-list-card"
+              "model": "table-list-card",
+              "filter": "table-list-card"
             }
           }
         }
@@ -1120,6 +1121,13 @@
       "components": [
         "table-list-card"
       ]
+    },
+    {
+      "id": "table-list-card",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

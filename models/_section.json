@@ -152,6 +152,7 @@
       "id": "section",
       "components": [
         "text",
+        "rich-text",
         "image",
         "button-block",
         "title",

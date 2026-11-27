@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rich Text variations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="hide-header" content="true">
+  <meta name="hide-footer" content="true">
+  <meta name="hide-canvas" content="true">
+  <meta name="robots" content="noindex, nofollow">
+  <script src="/scripts/aem.js" type="module"></script>
+  <script src="/scripts/scripts.js" type="module"></script>
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+  <header></header>
+  <main>
+    <!-- Rich Text block library page (KB-D-079): the key-value markup AEM delivers, Style tab values as block classes -->
+    <div>
+      <h1>Rich Text variations</h1>
+      <div class="rich-text">
+        <div><div>text</div><div>
+          <h2>Default</h2>
+          <p>A paragraph with <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <del>strikethrough</del>, <code>inline code</code>, E = mc<sup>2</sup> and H<sub>2</sub>O, and a <a href="/drafts/rich-text">link</a>.</p>
+          <ul><li>Bullet one<ul><li>Nested</li></ul></li><li>Bullet two</li></ul>
+          <ol><li>Step one</li><li>Step two</li></ol>
+          <p><strong><a href="/drafts/rich-text">Primary button</a></strong></p>
+        </div></div>
+      </div>
+    </div>
+    <div>
+      <div class="rich-text align-center lede-first width-narrow color-secondary">
+        <div><div>text</div><div>
+          <h2>Centred, lead paragraph, narrow, secondary colour</h2>
+          <p>This first paragraph is the lead: larger than the rest, as an introduction to the section.</p>
+          <p>A following paragraph in the default body size, centred within a 45rem reading width.</p>
+        </div></div>
+      </div>
+    </div>
+    <div>
+      <div class="rich-text columns-3 size-small">
+        <div><div>text</div><div>
+          <h2>Three columns, small text</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper.</p>
+          <p>Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.</p>
+          <p>Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        </div></div>
+      </div>
+    </div>
+    <div>
+      <div class="rich-text align-right size-large color-brand width-medium">
+        <div><div>text</div><div>
+          <h3>Right aligned, large, brand colour, medium width</h3>
+          <p>Large paragraph text aligned to the right edge of a 60rem column.</p>
+          <blockquote><p>A quotation made with the toolbar's Quote format.</p></blockquote>
+        </div></div>
+      </div>
+    </div>
+    <div>
+      <div class="rich-text">
+        <div><div>text</div><div>
+          <h2>Table and code block</h2>
+          <table><tbody><tr><th>Region</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Year</th><th>Change</th><th>Notes</th></tr>
+          <tr><td>North America</td><td>1,200</td><td>1,340</td><td>1,410</td><td>1,560</td><td>5,510</td><td>+8%</td><td>Strong services demand</td></tr>
+          <tr><td>Europe</td><td>980</td><td>1,020</td><td>1,050</td><td>1,120</td><td>4,170</td><td>+5%</td><td>Steady growth</td></tr></tbody></table>
+          <pre><code>const greeting = 'Hello, world';
+console.log(greeting);</code></pre>
+        </div></div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>

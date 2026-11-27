@@ -25,7 +25,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-row"
+              "model": "table-row",
+              "filter": "table-row"
             }
           }
         }
@@ -40,7 +41,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-2"
+              "model": "table-col-2",
+              "filter": "table-col-2"
             }
           }
         }
@@ -55,7 +57,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-3"
+              "model": "table-col-3",
+              "filter": "table-col-3"
             }
           }
         }
@@ -70,7 +73,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-4"
+              "model": "table-col-4",
+              "filter": "table-col-4"
             }
           }
         }
@@ -85,7 +89,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-5"
+              "model": "table-col-5",
+              "filter": "table-col-5"
             }
           }
         }
@@ -100,7 +105,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-6"
+              "model": "table-col-6",
+              "filter": "table-col-6"
             }
           }
         }
@@ -115,7 +121,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-7"
+              "model": "table-col-7",
+              "filter": "table-col-7"
             }
           }
         }
@@ -130,7 +137,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-8"
+              "model": "table-col-8",
+              "filter": "table-col-8"
             }
           }
         }
@@ -145,7 +153,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Row",
-              "model": "table-col-9"
+              "model": "table-col-9",
+              "filter": "table-col-9"
             }
           }
         }
@@ -1313,6 +1322,69 @@
       "components": [
         "table-col-9"
       ]
+    },
+    {
+      "id": "table-row",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-2",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-3",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-4",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-5",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-6",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-7",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-8",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "table-col-9",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

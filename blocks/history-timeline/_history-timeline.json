@@ -27,7 +27,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Milestone",
-              "model": "history-timeline-item"
+              "model": "history-timeline-item",
+              "filter": "history-timeline-item"
             }
           }
         }
@@ -873,6 +874,13 @@
       "components": [
         "history-timeline-item"
       ]
+    },
+    {
+      "id": "history-timeline-item",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

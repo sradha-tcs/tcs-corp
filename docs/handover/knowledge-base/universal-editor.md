@@ -52,6 +52,12 @@ Definitions are grouped in `component-definition.json`: Default Content (Text, T
 
 `component-filters.json` holds 26 filters. `main` (page level) allows Section, Gen Carousel, Tabs Container and Columns Container; `section` allows the blocks authors add to a section; `columns-container`, `tabs` and `gen-carousel` restrict the section containers; each container block has a filter of its items (e.g. `hero: hero-cta`). The compatibility-only Columns and Button (basic) and the experimental Interactive Dashboard are in no filter; the built-in Columns keeps its implicit `columns > column > text, image, title` filters so Columns authored before stay editable. The full table is in [blocks.md](./blocks.md#container-and-child-relationships).
 
+### Rich text editor configuration
+
+The Universal Editor rich text toolbar is configured once in `models/_rte.json` (KB-D-079) and referenced from the component filters (`"rte": {"...": "<path>/models/_rte.json#/rte"}`): the built-in Text component has the filter `text` (the toolbar without tables: a table in default content becomes a block on Edge Delivery), every block and item with a rich text field has its filter with the full toolbar (format, alignment, direction, indentation, paragraph / H1–H6 / code block / quote, lists, link, image, table, special characters, superscript / subscript, remove format, clean unsupported tags, paste as text, find and replace, fullscreen, Text style classes); `test/models/rte-config.test.mjs` fails when a component with a rich text field has none. Edge Delivery delivers no `style`, `class` or `dir` attributes, so text colour, alignment, direction, paragraph indentation, the Text style classes and the link target aren't kept on publish (blockquote: Requires validation); block-level styles are the **Rich Text** block (`blocks/rich-text`: Alignment, Text size, First paragraph, Text colour, Columns, Width as block classes). A filter is stored on a component when it is created: components created before keep the default toolbar until re-created (or their `filter` property is set).
+
+Sources: [Universal Editor RTE configuration](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/universal-editor/configure-rte), [Edge Delivery markup reference](https://www.aem.live/developer/markup-reference).
+
 ## Field Types in Use
 
 Counted in `component-models.json` at commit 2d06316: 63 models, 991 top-level field entries (82 of them tabs), 1027 including the sub-fields of the 14 `container` fields.

@@ -7,11 +7,22 @@
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/text/v1/text",
-            "template": {}
+            "template": {
+              "filter": "text"
+            }
           }
         }
       }
     }
   ],
-  "models": []
+  "models": [],
+  "filters": [
+    {
+      "id": "text",
+      "components": [],
+      "rte": {
+        "...": "./_rte.json#/text"
+      }
+    }
+  ]
 }

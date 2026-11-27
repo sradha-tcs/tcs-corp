@@ -1233,7 +1233,10 @@
             "id": "image-collage",
             "components": [
                 "image-collage-item"
-            ]
+            ],
+            "rte": {
+                "...": "../../models/_rte.json#/rte"
+            }
         }
     ]
 }

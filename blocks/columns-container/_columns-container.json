@@ -944,6 +944,7 @@
       "components": [
         "column-break",
         "text",
+        "rich-text",
         "image",
         "button-block",
         "title",

@@ -18,7 +18,8 @@
               "size": "large",
               "alignment": "center",
               "rounded": true,
-              "privacyMode": true
+              "privacyMode": true,
+              "filter": "video"
             }
           }
         }
@@ -980,5 +981,13 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "video",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    }
+  ]
 }

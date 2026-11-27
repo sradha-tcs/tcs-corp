@@ -25,7 +25,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Accordion Item",
-              "model": "accordion-item"
+              "model": "accordion-item",
+              "filter": "accordion-item"
             }
           }
         }
@@ -764,6 +765,13 @@
       "components": [
         "accordion-item"
       ]
+    },
+    {
+      "id": "accordion-item",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

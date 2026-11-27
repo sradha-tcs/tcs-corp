@@ -13,7 +13,8 @@
               "key-value": true,
               "titleType": "h2",
               "imagePosition": "right",
-              "imagePositionMobile": "top"
+              "imagePositionMobile": "top",
+              "filter": "quote"
             }
           }
         }
@@ -935,5 +936,13 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "quote",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    }
+  ]
 }

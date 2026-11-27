@@ -43,6 +43,7 @@ const CONTENT_TARGETS = {
   teaser: { targets: ':scope > *' },
   quote: { targets: ':scope > *' },
   testimonial: { targets: ':scope > *' },
+  'rich-text': { targets: ':scope > .rich-text-content' },
   'form-variations': { targets: ':scope > *' },
   // the text and CTAs; the floating images are its background layer
   'image-collage': { targets: ':scope > .image-collage-content' },

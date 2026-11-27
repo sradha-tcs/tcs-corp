@@ -13,5 +13,8 @@
   },
   {
     "...": "../blocks/*/_*.json#/filters"
+  },
+  {
+    "...": "./_text.json#/filters"
   }
 ]

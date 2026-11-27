@@ -1,0 +1,244 @@
+{
+  "description": "Universal Editor rich text editor (RTE) configuration, referenced by the component filters (\"rte\": {\"...\": \"<path>/models/_rte.json#/rte\"}); KB-D-079. rte: blocks and items (rich text fields, the Rich Text block); text: the built-in Text component, without tables (a table in default content becomes a block on Edge Delivery).",
+  "rte": {
+    "toolbar": {
+      "format": [
+        "bold",
+        "italic",
+        "underline",
+        "strike",
+        "code_inline",
+        "text_color"
+      ],
+      "alignment": [
+        "left",
+        "center",
+        "right",
+        "justify"
+      ],
+      "direction": [
+        "ltr",
+        "rtl"
+      ],
+      "indentation": [
+        "indent",
+        "outdent"
+      ],
+      "blocks": [
+        "paragraph",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "code_block",
+        "blockquote"
+      ],
+      "list": [
+        "bullet_list",
+        "ordered_list"
+      ],
+      "insert": [
+        "link",
+        "unlink",
+        "image",
+        "table",
+        "special_characters"
+      ],
+      "sr_script": [
+        "superscript",
+        "subscript"
+      ],
+      "editor": [
+        "removeformat",
+        "clean_unsupported_tags",
+        "paste_text",
+        "find_and_replace",
+        "fullscreen"
+      ],
+      "advanced": [
+        "classes"
+      ]
+    },
+    "actions": {
+      "bold": {
+        "tag": "strong"
+      },
+      "italic": {
+        "tag": "em"
+      },
+      "strike": {
+        "tag": "del"
+      },
+      "underline": {},
+      "code_inline": {},
+      "text_color": {},
+      "bullet_list": {
+        "wrapInParagraphs": false
+      },
+      "ordered_list": {
+        "wrapInParagraphs": false
+      },
+      "indentation": {
+        "scope": "all"
+      },
+      "image": {
+        "wrapInPicture": false
+      },
+      "link": {
+        "hideTarget": false
+      },
+      "unlink": {},
+      "table": {
+        "wrapInParagraphs": false,
+        "showTableProperties": true,
+        "showRowProperties": true,
+        "showCellProperties": true
+      },
+      "blockquote": {
+        "label": "Quote"
+      },
+      "special_characters": {},
+      "classes": {
+        "label": "Text style",
+        "showMarkers": true,
+        "options": [
+          {
+            "value": "rte-lede",
+            "label": "Lead paragraph"
+          },
+          {
+            "value": "rte-small",
+            "label": "Small print"
+          },
+          {
+            "value": "rte-highlight",
+            "label": "Highlight"
+          }
+        ]
+      },
+      "paste_text": {},
+      "find_and_replace": {},
+      "fullscreen": {}
+    },
+    "unsupportedHtml": true
+  },
+  "text": {
+    "toolbar": {
+      "format": [
+        "bold",
+        "italic",
+        "underline",
+        "strike",
+        "code_inline",
+        "text_color"
+      ],
+      "alignment": [
+        "left",
+        "center",
+        "right",
+        "justify"
+      ],
+      "direction": [
+        "ltr",
+        "rtl"
+      ],
+      "indentation": [
+        "indent",
+        "outdent"
+      ],
+      "blocks": [
+        "paragraph",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "code_block",
+        "blockquote"
+      ],
+      "list": [
+        "bullet_list",
+        "ordered_list"
+      ],
+      "insert": [
+        "link",
+        "unlink",
+        "image",
+        "special_characters"
+      ],
+      "sr_script": [
+        "superscript",
+        "subscript"
+      ],
+      "editor": [
+        "removeformat",
+        "clean_unsupported_tags",
+        "paste_text",
+        "find_and_replace",
+        "fullscreen"
+      ],
+      "advanced": [
+        "classes"
+      ]
+    },
+    "actions": {
+      "bold": {
+        "tag": "strong"
+      },
+      "italic": {
+        "tag": "em"
+      },
+      "strike": {
+        "tag": "del"
+      },
+      "underline": {},
+      "code_inline": {},
+      "text_color": {},
+      "bullet_list": {
+        "wrapInParagraphs": false
+      },
+      "ordered_list": {
+        "wrapInParagraphs": false
+      },
+      "indentation": {
+        "scope": "all"
+      },
+      "image": {
+        "wrapInPicture": false
+      },
+      "link": {
+        "hideTarget": false
+      },
+      "unlink": {},
+      "blockquote": {
+        "label": "Quote"
+      },
+      "special_characters": {},
+      "classes": {
+        "label": "Text style",
+        "showMarkers": true,
+        "options": [
+          {
+            "value": "rte-lede",
+            "label": "Lead paragraph"
+          },
+          {
+            "value": "rte-small",
+            "label": "Small print"
+          },
+          {
+            "value": "rte-highlight",
+            "label": "Highlight"
+          }
+        ]
+      },
+      "paste_text": {},
+      "find_and_replace": {},
+      "fullscreen": {}
+    },
+    "unsupportedHtml": true
+  }
+}

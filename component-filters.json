@@ -12,6 +12,7 @@
     "id": "section",
     "components": [
       "text",
+      "rich-text",
       "image",
       "button-block",
       "title",
@@ -50,6 +51,134 @@
     ]
   },
   {
+    "id": "accordion-item",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
     "id": "anchor-list",
     "components": [
       "anchor-list-item"
@@ -59,13 +188,266 @@
     "id": "cards",
     "components": [
       "card"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "card",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "columns-container",
     "components": [
       "column-break",
       "text",
+      "rich-text",
       "image",
       "button-block",
       "title",
@@ -112,7 +494,131 @@
     "id": "conversation-canvas",
     "components": [
       "conversation-canvas-button"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "filter-list",
@@ -120,13 +626,261 @@
       "filter-list-tag",
       "filter-list-category",
       "filter-list-page"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "footer",
     "components": [
       "footer-link"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "form-variations",
@@ -139,7 +893,387 @@
       "field-richtext",
       "contact-card",
       "field-submit"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "field-checkbox",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "field-richtext",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "gen-carousel",
@@ -152,7 +1286,131 @@
     "id": "hero",
     "components": [
       "hero-cta"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "history-timeline",
@@ -161,16 +1419,392 @@
     ]
   },
   {
+    "id": "history-timeline-item",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
     "id": "image-collage",
     "components": [
       "image-collage-item"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "list",
     "components": [
       "list-item"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "media-contacts",
@@ -185,10 +1819,394 @@
     ]
   },
   {
+    "id": "quote",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "rich-text",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
     "id": "table-list",
     "components": [
       "table-list-card"
     ]
+  },
+  {
+    "id": "table-list-card",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "table",
@@ -245,11 +2263,1164 @@
     ]
   },
   {
+    "id": "table-row",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-2",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-3",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-4",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-5",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-6",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-7",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-8",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "table-col-9",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
     "id": "tabs",
     "components": [
       "tab",
       "column-break",
       "text",
+      "rich-text",
       "image",
       "button-block",
       "title",
@@ -289,12 +3460,765 @@
       "teaser-link",
       "teaser-stat",
       "teaser-collage-image"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "teaser-stat",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   },
   {
     "id": "testimonial",
     "components": [
       "testimonial-stat"
-    ]
+    ],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "testimonial-stat",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "video",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "table": {
+          "wrapInParagraphs": false,
+          "showTableProperties": true,
+          "showRowProperties": true,
+          "showCellProperties": true
+        },
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
+  },
+  {
+    "id": "text",
+    "components": [],
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text",
+          "find_and_replace",
+          "fullscreen"
+        ],
+        "advanced": [
+          "classes"
+        ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong"
+        },
+        "italic": {
+          "tag": "em"
+        },
+        "strike": {
+          "tag": "del"
+        },
+        "underline": {},
+        "code_inline": {},
+        "text_color": {},
+        "bullet_list": {
+          "wrapInParagraphs": false
+        },
+        "ordered_list": {
+          "wrapInParagraphs": false
+        },
+        "indentation": {
+          "scope": "all"
+        },
+        "image": {
+          "wrapInPicture": false
+        },
+        "link": {
+          "hideTarget": false
+        },
+        "unlink": {},
+        "blockquote": {
+          "label": "Quote"
+        },
+        "special_characters": {},
+        "classes": {
+          "label": "Text style",
+          "showMarkers": true,
+          "options": [
+            {
+              "value": "rte-lede",
+              "label": "Lead paragraph"
+            },
+            {
+              "value": "rte-small",
+              "label": "Small print"
+            },
+            {
+              "value": "rte-highlight",
+              "label": "Highlight"
+            }
+          ]
+        },
+        "paste_text": {},
+        "find_and_replace": {},
+        "fullscreen": {}
+      },
+      "unsupportedHtml": true
+    }
   }
 ]

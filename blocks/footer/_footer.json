@@ -131,7 +131,10 @@
       "id": "footer",
       "components": [
         "footer-link"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }

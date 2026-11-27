@@ -50,7 +50,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Stat",
-              "model": "teaser-stat"
+              "model": "teaser-stat",
+              "filter": "teaser-stat"
             }
           }
         }
@@ -2996,7 +2997,17 @@
         "teaser-link",
         "teaser-stat",
         "teaser-collage-image"
-      ]
+      ],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
+    },
+    {
+      "id": "teaser-stat",
+      "components": [],
+      "rte": {
+        "...": "../../models/_rte.json#/rte"
+      }
     }
   ]
 }
