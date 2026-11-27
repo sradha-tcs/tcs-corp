@@ -9,6 +9,80 @@
     ]
   },
   {
+    "id": "richtext",
+    "rte": {
+      "toolbar": {
+        "format": [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "code_inline",
+          "text_color"
+        ],
+        "alignment": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "indentation": [
+          "indent",
+          "outdent"
+        ],
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "code_block",
+          "blockquote"
+        ],
+        "list": [
+          "bullet_list",
+          "ordered_list"
+        ],
+        "insert": [
+          "link",
+          "unlink",
+          "image",
+          "table",
+          "special_characters"
+        ],
+        "sr_script": [
+          "superscript",
+          "subscript"
+        ],
+        "editor": [
+          "removeformat",
+          "clean_unsupported_tags",
+          "paste_text"
+        ],
+        "sections": [
+          "blocks",
+          "format",
+          "sr_script",
+          "alignment",
+          "direction",
+          "indentation",
+          "list",
+          "insert",
+          "editor"
+        ]
+      }
+    },
+    "components": [
+      "richtext"
+    ]
+  },
+  {
     "id": "section",
     "components": [
       "text",
