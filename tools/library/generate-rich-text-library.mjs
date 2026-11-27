@@ -110,7 +110,10 @@ const BUTTONS = `<p><strong><a href="${LIBRARY}">Primary button (bold link)</a><
   + `<p><a href="${LIBRARY}">Link button (a link alone in its paragraph)</a></p>`;
 const IMAGE = `<p>An image from the DAM, inserted with the toolbar's Image button (it is delivered as an optimized picture):</p><p><img src="${DAM}/wide-sample.jpg" alt="A team working together in a bright office"></p><p>Text continues after the image.</p>`;
 const SPECIAL = '<p>Special characters: © ® ™ € £ ¥ § ¶ ° ± × ÷ ½ ¼ ¾ – — … “quotes” ‘single’ « guillemets » → ←.</p>'
-  + '<blockquote><p>A quotation made with the toolbar\'s Quote format (blockquote: Requires validation on Edge Delivery).</p></blockquote>';
+  + '<blockquote><p>A quotation made with the toolbar\'s Quote format (a blockquote, delivered by Edge Delivery).</p></blockquote>';
+
+const UNDERLINED = '<p>Tata Consultancy Services helps enterprises <u>reimagine how they work</u>, with technology, consulting and business solutions delivered across <u>more than fifty countries</u>.</p>';
+const RTL = '<p>تساعد تاتا للخدمات الاستشارية المؤسسات على إعادة تصور طريقة عملها، من خلال التكنولوجيا والاستشارات وحلول الأعمال.</p><p>A sentence in English inside right-to-left text keeps its own order.</p>';
 
 const intro = (heading, text) => `<h3>${heading}</h3><p>${text}</p>`;
 
@@ -180,6 +183,26 @@ const RICH_TEXT_PAGES = [
       { label: 'Code block', classes: {}, html: `<p>A code block keeps its line breaks and spacing:</p>${CODE}` },
       { label: 'Image', classes: {}, html: IMAGE },
       { label: 'Special characters and quote', classes: {}, html: SPECIAL },
+    ],
+  },
+  {
+    slug: 'rich-text-inline',
+    title: 'Rich Text: coloured words, direction and links',
+    description: 'The Style tab options that replace the toolbar tools Edge Delivery does not publish (KB-D-082): Underlined text colours the words underlined with the toolbar, Text direction and Links to other sites.',
+    variations: [
+      { label: 'Underlined text Underline (default)', classes: {}, html: UNDERLINED },
+      { label: 'Underlined text Brand colour', classes: { classes_underline: 'underline-brand' }, html: UNDERLINED },
+      { label: 'Underlined text Secondary colour', classes: { classes_underline: 'underline-secondary' }, html: UNDERLINED },
+      { label: 'Underlined text Highlight', classes: { classes_underline: 'underline-highlight' }, html: UNDERLINED },
+      { label: 'Underlined text Brand colour with bold and a heading', classes: { classes_underline: 'underline-brand' }, html: '<h3>Building on <u>belief</u></h3><p>Bold and underlined: <strong><u>a bold brand accent</u></strong> in a sentence.</p>' },
+      {
+        label: 'Underlined text Brand colour on a Dark Section', style: 'bg-dark', classes: { classes_underline: 'underline-brand' }, html: UNDERLINED,
+      },
+      {
+        label: 'Underlined text Highlight on a Dark green Section', style: 'bg-dark-green', classes: { classes_underline: 'underline-highlight' }, html: UNDERLINED,
+      },
+      { label: 'Text direction Right to left', classes: { classes_direction: 'dir-rtl' }, html: RTL },
+      { label: 'Links to other sites Open in a new tab', classes: { classes_links: 'links-new-tab' }, html: LINKS },
     ],
   },
   {
@@ -483,7 +506,7 @@ const variationCount = ALL_PAGES.reduce((n, p) => n + p.variations.length, 0);
 
 const folder = {
   title: 'Rich Text',
-  description: 'Rich Text block (KB-D-080): rich text with block styles (alignment, text size, lead paragraph, colour, columns, width) and the full editor toolbar; and the built-in Text component\'s toolbar.',
+  description: 'Rich Text block (KB-D-080, KB-D-082): rich text with block styles (alignment, text size, lead paragraph, colour, columns, width, coloured underlined words, direction, new-tab links) and the editor toolbar; and the built-in Text component\'s toolbar.',
 };
 const folderSections = [sectionNode([
   titleNode(folder.title, 'h1'),

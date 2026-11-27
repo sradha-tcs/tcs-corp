@@ -60,18 +60,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -109,9 +98,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -126,7 +112,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -134,13 +119,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -153,24 +138,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -196,18 +163,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -245,9 +201,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -262,7 +215,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -270,13 +222,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -289,24 +241,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -324,18 +258,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -373,9 +296,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -390,7 +310,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -398,13 +317,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -417,24 +336,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -502,18 +403,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -551,9 +441,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -568,7 +455,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -576,13 +462,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -595,24 +481,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -634,18 +502,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -683,9 +540,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -700,7 +554,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -708,13 +561,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -727,24 +580,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -764,18 +599,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -813,9 +637,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -830,7 +651,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -838,13 +658,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -857,24 +677,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -901,18 +703,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -950,9 +741,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -967,7 +755,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -975,13 +762,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -994,24 +781,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1029,18 +798,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1078,9 +836,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1095,7 +850,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1103,13 +857,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1122,24 +876,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1157,18 +893,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1206,9 +931,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1223,7 +945,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1231,13 +952,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1250,24 +971,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1294,18 +997,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1343,9 +1035,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1360,7 +1049,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1368,13 +1056,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1387,24 +1075,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1428,18 +1098,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1477,9 +1136,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1494,7 +1150,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1502,13 +1157,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1521,24 +1176,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1558,18 +1195,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1607,9 +1233,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1624,7 +1247,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1632,13 +1254,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1651,24 +1273,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1688,18 +1292,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1737,9 +1330,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1754,7 +1344,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1762,13 +1351,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1781,24 +1370,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1828,18 +1399,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -1877,9 +1437,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -1894,7 +1451,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -1902,13 +1458,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -1921,24 +1477,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -1956,18 +1494,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2005,9 +1532,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2022,7 +1546,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2030,13 +1553,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2049,24 +1572,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2090,18 +1595,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2139,9 +1633,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2156,7 +1647,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2164,13 +1654,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2183,24 +1673,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2272,18 +1744,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2321,9 +1782,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2338,7 +1796,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2346,13 +1803,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2365,24 +1822,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2400,18 +1839,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2449,9 +1877,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2466,7 +1891,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2474,13 +1898,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2493,24 +1917,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2528,18 +1934,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2577,9 +1972,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2594,7 +1986,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2602,13 +1993,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2621,24 +2012,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2656,18 +2029,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2705,9 +2067,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2722,7 +2081,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2730,13 +2088,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2749,24 +2107,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2784,18 +2124,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2833,9 +2162,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2850,7 +2176,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2858,13 +2183,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -2877,24 +2202,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -2912,18 +2219,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -2961,9 +2257,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -2978,7 +2271,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -2986,13 +2278,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3005,24 +2297,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3040,18 +2314,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3089,9 +2352,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3106,7 +2366,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3114,13 +2373,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3133,24 +2392,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3168,18 +2409,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3217,9 +2447,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3234,7 +2461,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3242,13 +2468,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3261,24 +2487,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3296,18 +2504,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3345,9 +2542,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3362,7 +2556,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3370,13 +2563,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3389,24 +2582,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3468,18 +2643,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3517,9 +2681,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3534,7 +2695,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3542,13 +2702,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3561,24 +2721,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3596,18 +2738,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3645,9 +2776,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3662,7 +2790,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3670,13 +2797,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3689,24 +2816,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3726,18 +2835,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3775,9 +2873,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3792,7 +2887,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3800,13 +2894,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3819,24 +2913,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3854,18 +2930,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -3903,9 +2968,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -3920,7 +2982,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -3928,13 +2989,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -3947,24 +3008,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -3982,18 +3025,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -4031,9 +3063,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -4048,7 +3077,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -4056,13 +3084,13 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "table": {
@@ -4075,24 +3103,6 @@
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}
@@ -4110,18 +3120,7 @@
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
-        ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
+          "code_inline"
         ],
         "indentation": [
           "indent",
@@ -4158,9 +3157,6 @@
           "paste_text",
           "find_and_replace",
           "fullscreen"
-        ],
-        "advanced": [
-          "classes"
         ]
       },
       "actions": {
@@ -4175,7 +3171,6 @@
         },
         "underline": {},
         "code_inline": {},
-        "text_color": {},
         "bullet_list": {
           "wrapInParagraphs": false
         },
@@ -4183,37 +3178,19 @@
           "wrapInParagraphs": false
         },
         "indentation": {
-          "scope": "all"
+          "scope": "lists"
         },
         "image": {
           "wrapInPicture": false
         },
         "link": {
-          "hideTarget": false
+          "hideTarget": true
         },
         "unlink": {},
         "blockquote": {
           "label": "Quote"
         },
         "special_characters": {},
-        "classes": {
-          "label": "Text style",
-          "showMarkers": true,
-          "options": [
-            {
-              "value": "rte-lede",
-              "label": "Lead paragraph"
-            },
-            {
-              "value": "rte-small",
-              "label": "Small print"
-            },
-            {
-              "value": "rte-highlight",
-              "label": "Highlight"
-            }
-          ]
-        },
         "paste_text": {},
         "find_and_replace": {},
         "fullscreen": {}

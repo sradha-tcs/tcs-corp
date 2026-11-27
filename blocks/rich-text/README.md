@@ -17,8 +17,10 @@ use Rich Text when the text needs one of these styles or a table.
 
 ## Overview
 
-**Purpose.** Text with the editor's whole toolbar (headings, lists, links, images, tables,
-superscript / subscript, code, quotes, special characters) and block-level styles.
+**Purpose.** Text with the editor toolbar (headings, lists, links, images, tables,
+superscript / subscript, code, quotes, special characters) and block-level styles, including
+coloured or highlighted words (Underlined text), text direction and new-tab links: the published
+alternatives of the toolbar tools Edge Delivery drops (KB-D-082).
 
 **Business value.** Authors get the familiar AEM rich text toolbar and can style a text without a
 developer, in a way that survives publishing (block classes are delivered; inline styles aren't).
@@ -68,6 +70,9 @@ C = First paragraph
 D = Text colour
 E = Columns
 F = Width
+G = Underlined text
+H = Text direction
+I = Links to other sites
 ```
 
 ```text
@@ -103,23 +108,34 @@ Screenshots: Not recorded (new block; add them to the block library and the hand
 2. Write the text in the **Text** field (or in place on the page) with the toolbar.
 3. Choose the styles in the **Style** tab and the spacing in the **Additional** tab.
 
-**Toolbar features that are kept on publish:** bold, italic, underline, strikethrough, inline code,
-paragraph and H1–H6, code block, bullet and numbered lists (nested), links, images, tables,
-superscript / subscript, special characters; remove format, clean unsupported tags, paste as text,
-find and replace, fullscreen.
+**The toolbar has only tools whose result is published** (KB-D-082): bold, italic, underline,
+strikethrough, inline code, paragraph and H1–H6, code block, quote (blockquote), bullet and
+numbered lists (Indent / Outdent nest list items), links, images, tables, superscript / subscript,
+special characters; remove format, clean unsupported tags, paste as text, find and replace,
+fullscreen.
 
-**Toolbar features that look right in the editor but aren't kept on publish** (Edge Delivery
-doesn't deliver `style`, `class` or `dir` attributes): text colour, alignment, text direction,
-indentation of paragraphs, the Text style classes (Lead paragraph, Small print, Highlight) and the
-link target. Use the Style tab for alignment, size and colour. Quotes (blockquote) aren't in Edge
-Delivery's list of delivered elements: Requires validation.
+**Colour, alignment, direction and new tabs come from the Style tab.** Edge Delivery publishes
+only semantic formatting: it drops `<span>` elements and every `style`, `class` and `dir`
+attribute, so the toolbar's text colour, alignment, direction, paragraph indentation, text style
+classes and link target never reached the page (they looked right in the editor only). They are no
+longer in the toolbar; instead:
+
+| You want | Do this |
+| -------- | ------- |
+| Some words in brand or grey colour, or highlighted | Underline the words (toolbar **U**), then Style > **Underlined text**: Brand colour, Secondary colour or Highlight. Combine with bold for a bold accent |
+| The whole text in a colour | Style > **Text colour** (Secondary, Brand; light on dark Sections) |
+| Centred, right aligned or justified text | Style > **Alignment** (the whole block; use another Rich Text block for a differently aligned part) |
+| Right-to-left text (Arabic, Hebrew) | Style > **Text direction**: Right to left |
+| Links to other websites in a new tab | Style > **Links to other sites**: Open in a new tab (screen readers are told) |
+| An indented paragraph | Additional > Padding left; for lists, Indent nests the list item |
+| Lead paragraph, small print | Style > **First paragraph** Lead paragraph, **Text size** Small |
 
 **Block library.** Every variation is on the block library pages below
 `/design-block-master/en/block-library/rich-text/` (at most ten variations a page): Rich Text
 alignment, width and columns (`rich-text-layout`, 10), text size, lead paragraph and colour on the
 Section backgrounds (`rich-text-typography`, 10), toolbar content (`rich-text-toolbar`, 10), the
-Additional tab (`rich-text-additional`, 7) and the built-in Text component's toolbar
-(`text-component`, 9). They come in the content package `tcs-corp-rich-text-library-content`
+Additional tab (`rich-text-additional`, 7), coloured words, direction and links
+(`rich-text-inline`, 9) and the built-in Text component's toolbar (`text-component`, 9). They come in the content package `tcs-corp-rich-text-library-content`
 ([content-packages/rich-text/](../../content-packages/rich-text/README.md): its install steps; for
 sradha-tcs/tcs-corp-delivery `archive/home-content-package/rich-text/` once it can be pushed there,
 KB-D-070, KB-D-081), generated with
@@ -141,7 +157,7 @@ Model `rich-text`; template name "Rich Text" (the block class AEM renders); key-
 
 | Field label | Property | Type | Required | Default | Allowed values | Author guidance | Example |
 | ----------- | -------- | ---- | -------- | ------- | -------------- | --------------- | ------- |
-| Text | `text` | richtext | No | — | — | Rich text with the full editor toolbar: headings, lists, links, images, tables, superscript / subscript, code and special characters. Text colour, alignment, direction and text style classes aren't kept on publish: use the Style tab for alignment, size and colour. | — |
+| Text | `text` | richtext | No | — | — | Rich text with the editor toolbar: headings, bold, italic, underline, strikethrough, code, lists, links, images, tables, quotes, superscript / subscript and special characters. For colour, underline the words and choose Underlined text in the Style tab; alignment, direction and new-tab links are Style tab options too. | — |
 
 #### Style tab — Rich Text
 
@@ -153,6 +169,9 @@ Model `rich-text`; template name "Rich Text" (the block class AEM renders); key-
 | Text colour | `classes_color` | select | No | "" | Default (""), Secondary (grey) (`color-secondary`), Brand (blue) (`color-brand`) | On dark Section backgrounds the text turns light whatever the colour. Delivered as a block class. | — |
 | Columns | `classes_columns` | select | No | "" | One (default) (""), Two from tablet (`columns-2`), Three from desktop (two on tablet) (`columns-3`) | Flows the text into columns on wider screens; one column on mobile. Delivered as a block class. | — |
 | Width | `classes_width` | select | No | "" | Full (default) (""), Medium (60rem) (`width-medium`), Narrow, easy to read (45rem) (`width-narrow`) | The maximum line length of the text. Delivered as a block class. | — |
+| Underlined text | `classes_underline` | select | No | "" | Underline (default) (""), Brand colour (`underline-brand`), Secondary colour (grey) (`underline-secondary`), Highlight (marker) (`underline-highlight`) | How the words underlined with the toolbar are shown: the way to colour words, since Edge Delivery doesn't publish text colour (bold and italic combine with it). Delivered as a block class. | — |
+| Text direction | `classes_direction` | select | No | "" | Page direction (default) (""), Right to left (`dir-rtl`) | Right to left for text in Arabic, Hebrew and other right-to-left languages. Delivered as a block class. | — |
+| Links to other sites | `classes_links` | select | No | "" | Same tab (default) (""), Open in a new tab (`links-new-tab`) | Opens the links to other websites in a new tab (announced to screen readers). Delivered as a block class. | — |
 
 #### Additional tab — Rich Text
 
@@ -194,6 +213,9 @@ Not recorded (screenshots to be taken once the block is in the block library).
 | Text colour | Default, Secondary (`color-secondary`), Brand (`color-brand`) | The text colour (light on dark Sections) |
 | Columns | One (default), Two from tablet (`columns-2`), Three from desktop (`columns-3`) | The text flows into columns; one on mobile |
 | Width | Full (default), Medium (`width-medium`, 60rem), Narrow (`width-narrow`, 45rem) | The maximum line length (centred with Alignment Center) |
+| Underlined text | Underline (default), Brand colour (`underline-brand`), Secondary colour (`underline-secondary`), Highlight (`underline-highlight`) | The words underlined with the toolbar: coloured (no underline, so they don't read as links) or on a light blue marker (dark text on any Section) |
+| Text direction | Page direction (default), Right to left (`dir-rtl`) | `dir="rtl"` on the text |
+| Links to other sites | Same tab (default), Open in a new tab (`links-new-tab`) | http(s) links to another host get `target="_blank"`, `rel="noopener noreferrer"` and the hidden "(opens in a new tab)" (placeholder `opensInNewTab`) |
 
 The Additional tab adds Anchor ID, Hide block, animation and padding / margin, as on every block.
 
@@ -212,14 +234,20 @@ Expected result: a centred column of at most 45rem, the first paragraph in the l
 - One H1 per page; use the heading levels in order.
 - Images: from the DAM, with alt text; they are delivered as optimized pictures.
 - Tables: a header row; keep them narrow enough for mobile (wider ones scroll).
-- Don't rely on text colour, alignment or classes in the toolbar: they aren't published.
+- For colour use Underlined text or Text colour in the Style tab; the toolbar has no colour picker (Edge Delivery doesn't publish it).
 
 ## Accessibility
 
 - The text is semantic HTML (headings, lists, `strong`, `em`, `del`, tables), as authored.
 - A table wider than its container is a focusable region labelled "Table" (placeholder `table`)
   that keyboard users can scroll; it has a focus outline.
-- Colours use the semantic tokens, so contrast holds on dark Sections.
+- Colours use the semantic tokens, so contrast holds on dark Sections; Underlined text measured
+  5.36:1 (Brand), 6.9:1 (Secondary), 10.63:1 (Highlight) on white and 11.34:1 (Brand) on Dark
+  (WCAG 1.4.3 AA). Colour adds emphasis only: don't make it the only way information is given
+  (WCAG 1.4.1). Coloured underlined words lose the underline, so they aren't mistaken for links.
+- Right to left uses the `dir` attribute; the language itself can't be marked (`lang` isn't
+  delivered).
+- New-tab links are announced (WCAG 3.2.5, `announceNewTab`).
 - Columns keep the reading order (CSS columns, not reordering).
 
 ## Data Layer and Analytics
@@ -241,9 +269,12 @@ and 899px). Wide tables scroll horizontally; images never exceed the text width.
 - `rich-text.js`: `readProperties` reads the Text cell; its content moves into
   `.rich-text-content` with the Universal Editor instrumentation (`moveInstrumentation`); tables are
   wrapped in `.rich-text-table` (a region when they scroll, ResizeObserver); an empty block shows
-  the placeholder `richTextEmpty` in the editor and nothing on the page.
-- `rich-text.css`: the Style tab classes, quotes, code, superscript / subscript, tables, the Text
-  style classes (`rte-lede`, `rte-small`, `rte-highlight`, if ever delivered).
+  the placeholder `richTextEmpty` in the editor and nothing on the page; Text direction sets
+  `dir="rtl"` on `.rich-text-content`; Links to other sites gives the links `isExternalLink`
+  (`utils/links.js`) finds `setLinkTarget` and `announceNewTab` (`decorators/link-decorator.js`,
+  placeholder `opensInNewTab`).
+- `rich-text.css`: the Style tab classes (Underlined text styles `u`), quotes, code, superscript /
+  subscript, tables.
 - `_rich-text.json`: Content / Style / Additional; filter `rich-text` with the shared RTE
   configuration (`models/_rte.json#/rte`).
 - Animation: `decorators/motion-decorator.js` `CONTENT_TARGETS` (`.rich-text-content`).
@@ -261,7 +292,9 @@ blocks/rich-text/
 | Decorator/Utility | Purpose | Execution or dependency point |
 | ----------------- | ------- | ----------------------------- |
 | [`scripts/scripts.js`](../../scripts/scripts.js) | Page decoration (moveInstrumentation and shared page helpers) | `rich-text.js`: { moveInstrumentation } |
+| [`decorators/link-decorator.js`](../../decorators/link-decorator.js) | `setLinkTarget` (open in a new window), `announceNewTab` (tells screen reader users a link opens in a new tab: hidden text, or added to its aria-label) | `rich-text.js`: { announceNewTab, setLinkTarget } |
 | [`utils/environment.js`](../../utils/environment.js) | `prefersReducedMotion`, `scrollBehavior`, `isEditing`, `isInEditor`, `isAuthor` (the page is rendered by AEM author, which has no query index) | `rich-text.js`: { isEditing } |
+| [`utils/links.js`](../../utils/links.js) | `NEW_WINDOW`, `linkOf`, `linkPathsOf` (the paths of a page property, one or many), `readLinkItems` (CTA lists with Link Type and the items' other select values), `readLinkRows` (the same from link item rows, e.g. Hero CT | `rich-text.js`: { isExternalLink } |
 | [`utils/placeholders.js`](../../utils/placeholders.js) | `getPlaceholders`, `loadPlaceholders`, `fillPlaceholder` (UI text from the locale's placeholders, with English fallbacks) | `rich-text.js`: { getPlaceholders } |
 | [`utils/properties.js`](../../utils/properties.js) | `readProperties`, `textOf`, `isOn`, `isOnByDefault` (a toggle that defaults to on), `optionOf`, `normalizeKey`, `textSource` (key-value block properties) | `rich-text.js`: { readProperties } |
 
@@ -295,11 +328,13 @@ blocks/rich-text/
 | RICH-TEXT-QA-02 | Styles | Alignment Center, Text size Large, First paragraph Lead | Centred, larger paragraphs, first one lead size |
 | RICH-TEXT-QA-03 | Columns | Columns Three from desktop; 390 / 768 / 1440px | One / two / three columns |
 | RICH-TEXT-QA-04 | Wide table | A table with many columns at 390px | The table scrolls; Tab focuses it, it has an outline and the name "Table" |
-| RICH-TEXT-QA-05 | Not delivered | Text colour and alignment from the toolbar; publish | The preview keeps neither (Style tab instead) |
+| RICH-TEXT-QA-05 | Published toolbar only | Open the toolbar in Universal Editor | No text colour, alignment, direction or Text style; Indent only nests list items; the link dialog has no target |
+| RICH-TEXT-QA-07 | Coloured words | Underline two words; Underlined text Brand colour, then Highlight; publish; also on a Dark Section | Brand-coloured (light blue on Dark) words without underline, then dark text on a light blue marker, in the editor and on the published page |
+| RICH-TEXT-QA-08 | Direction and links | Text direction Right to left; Links to other sites Open in a new tab | The text runs right to left; https links to another site open in a new tab and say so to screen readers, own-site and mailto links don't |
 | RICH-TEXT-QA-06 | Empty | A new block without text | Editor: the hint; page: nothing |
 
 Universal Editor checks: Blocked (no author access for the agent); the local preview was checked
-with delivered markup (drafts/rich-text.html and the 46 variations of drafts/rich-text-library/ at
+with delivered markup (drafts/rich-text.html and the 55 variations of drafts/rich-text-library/ at
 1280 and 375px: every block loaded, Style classes applied, no horizontal overflow). The installed
 package on AEM: Not recorded.
 
@@ -323,9 +358,15 @@ external requests.
 
 ## Known Limitations
 
-- Toolbar features not kept on publish: text colour, alignment, direction, paragraph indentation,
-  Text style classes, link target (Edge Delivery delivers no `style` / `class` / `dir` attributes).
-- Quotes (blockquote): not in Edge Delivery's delivered elements: Requires validation.
+- Only semantic formatting is published (`strong`, `em`, `u`, `del`, `code`, `sub`, `sup`,
+  headings, lists, links with href and title, images, tables in blocks, blockquote): checked by
+  converting authored HTML with Edge Delivery's own converters (`@adobe/helix-html2md`, the
+  html pipeline's markdown to HTML) on 27 November 2026, KB-D-082; on aem.page: Not recorded.
+- Colour applies to underlined words or the whole block, not to any selection; one alignment and
+  direction per block.
+- Underlined text changes `u` in this block only: Text and other blocks keep the underline.
+- Content coloured with the former toolbar picker (`<span style="color">`) was never published;
+  its words show uncoloured: underline them and choose Underlined text.
 - The filter (and so the toolbar) is stored on a component when it is created: components created
   before KB-D-080 keep the default toolbar until re-created (or their `filter` property is set).
 
@@ -350,3 +391,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 | ------- | ------ | ------ | ---- |
 | — | New block: rich text with the full editor toolbar and the Style tab (alignment, size, lead paragraph, colour, columns, width) | KB-D-080 (Approved), branch feat/rte-rich-text | 27 November 2026 |
 | — | Block library pages (5 pages, 46 variations) and their content package, generated by tools/library/generate-rich-text-library.mjs | KB-D-070, KB-D-080, branch feat/rte-rich-text | 27 November 2026 |
+| — | Toolbar without the tools Edge Delivery doesn't publish (text colour, alignment, direction, text style classes, link target; indent for lists only); Style options Underlined text, Text direction, Links to other sites; library page rich-text-inline, package 1.0.1 | KB-D-082 (Proposed), branch feat/rte-rich-text | 27 November 2026 |

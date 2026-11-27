@@ -136,18 +136,27 @@
   background-color: var(--color-bg-secondary);
 }
 
-.rich-text .rich-text-content .rte-lede {
-  font-size: var(--body-font-size-l);
+/* Underlined text (KB-D-082): underline is delivered, text colour isn't, so the block's option turns
+   underlined words into coloured or highlighted words (no underline: it would read as a link) */
+.rich-text:is(.underline-brand, .underline-secondary, .underline-highlight) .rich-text-content u {
+  text-decoration: none;
 }
 
-.rich-text .rich-text-content .rte-small {
-  font-size: var(--body-font-size-xs);
+.rich-text.underline-brand .rich-text-content u {
+  color: var(--color-text-brand);
 }
 
-.rich-text .rich-text-content .rte-highlight {
-  padding: var(--space-400);
-  border-inline-start: 0.25rem solid var(--color-border-brand);
-  background-color: var(--color-bg-secondary);
+.rich-text.underline-secondary .rich-text-content u {
+  color: var(--color-text-secondary);
+}
+
+/* the marker keeps its own text colour, so it reads the same on light and dark Sections */
+.rich-text.underline-highlight .rich-text-content u {
+  padding-inline: 0.125rem;
+  border-radius: 0.125rem;
+  background-color: var(--color-bg-brand-secondary);
+  color: var(--color-text-brand-secondary);
+  box-decoration-break: clone;
 }
 
 /* in Universal Editor: an empty block says what to fill in */

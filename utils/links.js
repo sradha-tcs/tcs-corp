@@ -28,6 +28,22 @@ export function isSafeUrl(href) {
   return /^(\/|\.\.?\/|#|\?|[\w-])/.test(value);
 }
 
+/**
+ * A link to another website: http(s) on another host than the page's (paths, anchors, mailto: and
+ * tel: links aren't).
+ * @param {string} href
+ * @param {string} origin the page's origin, e.g. window.location.origin
+ * @returns {boolean}
+ */
+export function isExternalLink(href, origin) {
+  try {
+    const url = new URL(String(href ?? ''), origin);
+    return /^https?:$/.test(url.protocol) && url.host !== new URL(origin).host;
+  } catch {
+    return false;
+  }
+}
+
 /** value of the "Open in New Window" Link Type option in the block models */
 export const NEW_WINDOW = 'new-window';
 

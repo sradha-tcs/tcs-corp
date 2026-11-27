@@ -1,5 +1,5 @@
 {
-  "description": "Universal Editor rich text editor (RTE) configuration, referenced by the component filters (\"rte\": {\"...\": \"<path>/models/_rte.json#/rte\"}); KB-D-080. rte: blocks and items (rich text fields, the Rich Text block); text: the built-in Text component, without tables (a table in default content becomes a block on Edge Delivery).",
+  "description": "Universal Editor rich text editor (RTE) configuration, referenced by the component filters (\"rte\": {\"...\": \"<path>/models/_rte.json#/rte\"}); KB-D-080, KB-D-082. Only tools whose output Edge Delivery publishes: text colour, alignment, direction, paragraph indentation, text style classes and the link target are left out (Edge Delivery drops style, class and dir attributes and spans); the Rich Text block's Style tab has them as block options. rte: blocks and items (rich text fields, the Rich Text block); text: the built-in Text component, without tables (a table in default content becomes a block on Edge Delivery).",
   "rte": {
     "toolbar": {
       "format": [
@@ -7,18 +7,7 @@
         "italic",
         "underline",
         "strike",
-        "code_inline",
-        "text_color"
-      ],
-      "alignment": [
-        "left",
-        "center",
-        "right",
-        "justify"
-      ],
-      "direction": [
-        "ltr",
-        "rtl"
+        "code_inline"
       ],
       "indentation": [
         "indent",
@@ -56,9 +45,6 @@
         "paste_text",
         "find_and_replace",
         "fullscreen"
-      ],
-      "advanced": [
-        "classes"
       ]
     },
     "actions": {
@@ -73,7 +59,6 @@
       },
       "underline": {},
       "code_inline": {},
-      "text_color": {},
       "bullet_list": {
         "wrapInParagraphs": false
       },
@@ -81,13 +66,13 @@
         "wrapInParagraphs": false
       },
       "indentation": {
-        "scope": "all"
+        "scope": "lists"
       },
       "image": {
         "wrapInPicture": false
       },
       "link": {
-        "hideTarget": false
+        "hideTarget": true
       },
       "unlink": {},
       "table": {
@@ -100,24 +85,6 @@
         "label": "Quote"
       },
       "special_characters": {},
-      "classes": {
-        "label": "Text style",
-        "showMarkers": true,
-        "options": [
-          {
-            "value": "rte-lede",
-            "label": "Lead paragraph"
-          },
-          {
-            "value": "rte-small",
-            "label": "Small print"
-          },
-          {
-            "value": "rte-highlight",
-            "label": "Highlight"
-          }
-        ]
-      },
       "paste_text": {},
       "find_and_replace": {},
       "fullscreen": {}
@@ -131,18 +98,7 @@
         "italic",
         "underline",
         "strike",
-        "code_inline",
-        "text_color"
-      ],
-      "alignment": [
-        "left",
-        "center",
-        "right",
-        "justify"
-      ],
-      "direction": [
-        "ltr",
-        "rtl"
+        "code_inline"
       ],
       "indentation": [
         "indent",
@@ -179,9 +135,6 @@
         "paste_text",
         "find_and_replace",
         "fullscreen"
-      ],
-      "advanced": [
-        "classes"
       ]
     },
     "actions": {
@@ -196,7 +149,6 @@
       },
       "underline": {},
       "code_inline": {},
-      "text_color": {},
       "bullet_list": {
         "wrapInParagraphs": false
       },
@@ -204,37 +156,19 @@
         "wrapInParagraphs": false
       },
       "indentation": {
-        "scope": "all"
+        "scope": "lists"
       },
       "image": {
         "wrapInPicture": false
       },
       "link": {
-        "hideTarget": false
+        "hideTarget": true
       },
       "unlink": {},
       "blockquote": {
         "label": "Quote"
       },
       "special_characters": {},
-      "classes": {
-        "label": "Text style",
-        "showMarkers": true,
-        "options": [
-          {
-            "value": "rte-lede",
-            "label": "Lead paragraph"
-          },
-          {
-            "value": "rte-small",
-            "label": "Small print"
-          },
-          {
-            "value": "rte-highlight",
-            "label": "Highlight"
-          }
-        ]
-      },
       "paste_text": {},
       "find_and_replace": {},
       "fullscreen": {}

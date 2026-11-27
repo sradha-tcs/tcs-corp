@@ -1,13 +1,17 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { announceNewTab, setLinkTarget } from '../../decorators/link-decorator.js';
 import { isEditing } from '../../utils/environment.js';
+import { isExternalLink } from '../../utils/links.js';
 import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties } from '../../utils/properties.js';
 
 /*
- * Rich Text (blocks/rich-text/_rich-text.json, KB-D-080): a key-value block with one rich text
- * field (Text, the full editor toolbar of models/_rte.json) and the Style tab's variations as block
- * classes (Alignment, Text size, First paragraph, Text colour, Columns, Width; rich-text.css), so
- * text gets the styles the built-in Text component can't carry (it delivers no classes).
+ * Rich Text (blocks/rich-text/_rich-text.json, KB-D-080, KB-D-082): a key-value block with one
+ * rich text field (Text, the editor toolbar of models/_rte.json) and the Style tab's variations as
+ * block classes (Alignment, Text size, First paragraph, Text colour, Columns, Width, Underlined
+ * text, Text direction, Links to other sites; rich-text.css), so text gets the styles the built-in
+ * Text component can't carry (it delivers no classes) and Edge Delivery doesn't publish from the
+ * toolbar (style, class and dir attributes): underlined words are coloured by Underlined text.
  * The text is kept as authored: standalone bold / italic links are already buttons
  * (decorators/content-buttons-decorator.js), :icon: spans icons (aem.js).
  */
@@ -65,10 +69,21 @@ export default async function decorate(block) {
     return;
   }
 
+  // Text direction: the dir attribute (not CSS direction), so the browser's bidi handling applies
+  if (block.classList.contains('dir-rtl')) content.dir = 'rtl';
+
   const tables = [...content.querySelectorAll('table')];
-  if (tables.length) {
+  const external = block.classList.contains('links-new-tab')
+    ? [...content.querySelectorAll('a[href]')].filter((a) => isExternalLink(a.getAttribute('href'), window.location.origin))
+    : [];
+  if (tables.length || external.length) {
     const t = await getPlaceholders();
     tables.forEach((table) => scrollableTable(table, t('table', 'Table')));
+    const hint = t('opensInNewTab', '(opens in a new tab)');
+    external.forEach((a) => {
+      setLinkTarget(a);
+      announceNewTab(a, hint);
+    });
   }
   block.replaceChildren(content);
 }

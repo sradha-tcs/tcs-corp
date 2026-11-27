@@ -32,7 +32,7 @@
           "valueType": "string",
           "name": "text",
           "label": "Text",
-          "description": "Rich text with the full editor toolbar: headings, lists, links, images, tables, superscript / subscript, code and special characters. Text colour, alignment, direction and text style classes aren't kept on publish: use the Style tab for alignment, size and colour."
+          "description": "Rich text with the editor toolbar: headings, bold, italic, underline, strikethrough, code, lists, links, images, tables, quotes, superscript / subscript and special characters. For colour, underline the words and choose Underlined text in the Style tab; alignment, direction and new-tab links are Style tab options too."
         },
         {
           "component": "tab",
@@ -170,6 +170,68 @@
             }
           ],
           "description": "The maximum line length of the text."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_underline",
+          "label": "Underlined text",
+          "value": "",
+          "options": [
+            {
+              "name": "Underline (default)",
+              "value": ""
+            },
+            {
+              "name": "Brand colour",
+              "value": "underline-brand"
+            },
+            {
+              "name": "Secondary colour (grey)",
+              "value": "underline-secondary"
+            },
+            {
+              "name": "Highlight (marker)",
+              "value": "underline-highlight"
+            }
+          ],
+          "description": "How the words underlined with the toolbar are shown: the way to colour words, since Edge Delivery doesn't publish text colour (bold and italic combine with it)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_direction",
+          "label": "Text direction",
+          "value": "",
+          "options": [
+            {
+              "name": "Page direction (default)",
+              "value": ""
+            },
+            {
+              "name": "Right to left",
+              "value": "dir-rtl"
+            }
+          ],
+          "description": "Right to left for text in Arabic, Hebrew and other right-to-left languages."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_links",
+          "label": "Links to other sites",
+          "value": "",
+          "options": [
+            {
+              "name": "Same tab (default)",
+              "value": ""
+            },
+            {
+              "name": "Open in a new tab",
+              "value": "links-new-tab"
+            }
+          ],
+          "description": "Opens the links to other websites in a new tab (announced to screen readers)."
         },
         {
           "component": "tab",
