@@ -188,15 +188,29 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
   const prefix = 'page-header';
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  // a listen link only when it's http(s) or a path (never javascript:), else a disabled button
+  // Listen: plays the page's audio in place, for an http(s) or path link (never javascript:);
+  // the audio is created on the first click (nothing is downloaded before), aria-pressed and
+  // .is-playing tell whether it plays
   const listenLink = (metadata.listenLink || '').trim();
-  const safeListen = listenLink && isSafeUrl(listenLink);
-  const listen = document.createElement(safeListen ? 'a' : 'button');
-  if (safeListen) {
-    listen.href = listenLink;
-  } else {
+  const listen = listenLink && isSafeUrl(listenLink) ? document.createElement('button') : null;
+  if (listen) {
     listen.type = 'button';
-    listen.disabled = true;
+    listen.setAttribute('aria-pressed', 'false');
+    let audio = null;
+    const setPlaying = (playing) => {
+      listen.classList.toggle('is-playing', playing);
+      listen.setAttribute('aria-pressed', String(playing));
+    };
+    listen.addEventListener('click', () => {
+      if (!audio) {
+        audio = new Audio(listenLink);
+        audio.addEventListener('play', () => setPlaying(true));
+        audio.addEventListener('pause', () => setPlaying(false));
+        audio.addEventListener('ended', () => setPlaying(false));
+      }
+      if (audio.paused) audio.play().catch(() => setPlaying(false));
+      else audio.pause();
+    });
   }
 
   // When timing-left: show contentType | Published Date | Reading Time with pipe separators
@@ -213,7 +227,14 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
       const metaLine = document.createElement('p');
       metaLine.className = 'page-header-meta-line';
       metaParts.forEach((part, i) => {
-        if (i) metaLine.append(' | ');
+        if (i) {
+          // the separator with 8px on each side (Figma); screen readers skip it
+          const separator = document.createElement('span');
+          separator.className = 'page-header-meta-separator';
+          separator.setAttribute('aria-hidden', 'true');
+          separator.textContent = '|';
+          metaLine.append(' ', separator, ' ');
+        }
         metaLine.append(...[part].flat());
       });
       labels.append(metaLine);
