@@ -73,6 +73,18 @@ Counted in `component-models.json` at commit 2d06316: 63 models, 991 top-level f
 
 Other properties: `description` on 418 fields, `condition` on 155, `options` on 471 (4292 options), `validation` on 35, `required` on 23, `min` / `max` on 34, `readOnly` on 6 (the form items' Field type), `placeholder` on 4. The audit counts (926 dialog fields after the first audit, 924 after the re-audit) used another method (`docs/audit/data/dialog-fields.csv`).
 
+
+## Rich text editor (RTE) toolbar of the Text component
+
+| Item | Where | Notes |
+| --- | --- | --- |
+| Toolbar | filter `richtext` in `models/_component-filters.json` (`rte.toolbar`, `rte.actions`) | PR #297; generated into `component-filters.json` by `npm run build:json` |
+| Link from the Text | `"filter": "richtext"` in the Text definition's template (`models/_text.json`) | Stored on a Text when it's created |
+| Text components created before | `scripts/editor-support-rte.js` `applyTextRteFilter` | In the editor only: a Text without a `filter` property gets `data-aue-filter="richtext"`; a filter AEM wrote is kept; block rich text fields aren't touched |
+| Check | `test/models/text-rte-filter.test.mjs` | The filter exists with a toolbar, the Text definition names it, the fallback's selector |
+
+Edge Delivery publishes only semantic formatting (strong, em, u, del, sub, sup, code, headings, lists, links, images, blockquote; aem.live markup reference): alignment, direction and paragraph indentation (inline styles / `dir`) change the editor view but not the published page; a table in default content becomes a block. A site whose code comes from another repository (ultimatix, code last synced 24 November 2026) shows the default toolbar until that repository has this code.
+
 ## Dialog Tabs
 
 - **At most three short tabs per model, the last one Additional.** Universal Editor collapses the tabs into a dropdown when they don't fit on one line. No model has more than three tabs; 28 models end with Additional (e.g. Content / Display / Additional for List and Cards, Content / Style / Additional for Hero and Teaser, Video / Playback / Additional for Video). Header and Footer have no Additional tab.
