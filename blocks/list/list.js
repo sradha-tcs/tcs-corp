@@ -43,8 +43,11 @@ const ITEM_MATCHERS = {
   .forEach((field) => { ITEM_MATCHERS[field] = TEXT_CELL; });
 // the Display toggles: true / false
 ITEM_DISPLAY.forEach((field) => { ITEM_MATCHERS[field] = ITEM_MATCHERS.newTab; });
-// CTA style
+// CTA style; the title and description style
 ITEM_MATCHERS.ctaStyle = (cell) => /^(tertiary|primary|secondary)$/i.test(textOf(cell));
+ITEM_MATCHERS.titleSize = (cell) => /^h[1-6]$/i.test(textOf(cell));
+ITEM_MATCHERS.titleColor = (cell) => /^(black|white)$/i.test(textOf(cell));
+ITEM_MATCHERS.descriptionColor = (cell) => /^(white|cdcdcd)$/i.test(textOf(cell));
 
 /** the block's property names (normalized), to tell property rows from item rows */
 const PROPERTIES = new Set([...PRESENTATION_PROPERTIES, 'source', 'pageitems', 'pages', 'parentpath',
@@ -113,7 +116,10 @@ export function readBlockConfig(block) {
   });
   const listItems = legacy ? [] : itemRows.map((row) => {
     // rows rendered before CTA style or the Display toggles were added have fewer cells
-    const layout = itemLayoutFor(row.children.length);
+    // (a 23-cell row: the current fields start with the link, the earlier layout with a tab cell)
+    const first = row.firstElementChild;
+    const startsWithTab = !first?.querySelector('a[href]') && !first?.textContent.trim();
+    const layout = itemLayoutFor(row.children.length, startsWithTab);
     const fieldCells = withoutTabCells([...row.children], layout);
     const cells = matchCells(fieldCells, layout.filter(Boolean), ITEM_MATCHERS);
     const a = cells.link?.querySelector('a[href]');
@@ -139,6 +145,9 @@ export function readBlockConfig(block) {
       theme: get('theme').toLowerCase(),
       ...Object.fromEntries(ITEM_DISPLAY.map((field) => [field, get(field)])),
       ctaStyle: get('ctaStyle').toLowerCase(),
+      titleSize: get('titleSize').toLowerCase(),
+      titleColor: get('titleColor').toLowerCase(),
+      descriptionColor: get('descriptionColor').toLowerCase(),
       ref: row,
     };
   }).filter((item) => item.href);
