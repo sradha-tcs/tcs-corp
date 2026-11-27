@@ -1,7 +1,7 @@
 # Rich Text
 
 The Rich Text block holds authored rich text, edited with the full Universal Editor rich text
-toolbar (KB-D-079), and adds the style variations the built-in Text component can't carry: the
+toolbar (KB-D-080), and adds the style variations the built-in Text component can't carry: the
 built-in Text delivers no classes, so alignment, text size, a lead paragraph, a text colour,
 columns and a reading width are block options here. Use the built-in Text for plain running text;
 use Rich Text when the text needs one of these styles or a table.
@@ -11,7 +11,7 @@ use Rich Text when the text needs one of these styles or a table.
 | Technical name | `rich-text` (template name "Rich Text", block class `rich-text`) |
 | Display name | Rich Text |
 | Block type | Independent block (key-value: one rich text field; Style and Additional tabs as block classes) |
-| Status | Active (KB-D-079, Approved 27 November 2026) |
+| Status | Active (KB-D-080, Approved 27 November 2026) |
 | Parent / children | Offered in Sections, Columns Container columns and Tabs Container tabs (after Text); no child items |
 | Owner / version / date | Not recorded |
 
@@ -267,7 +267,7 @@ blocks/rich-text/
 
 ## For Architects
 
-- KB-D-079: one shared RTE configuration for the Text component, the Rich Text block and every
+- KB-D-080: one shared RTE configuration for the Text component, the Rich Text block and every
   component with rich text fields; the full AEM-like toolbar was chosen, with the features Edge
   Delivery doesn't deliver documented.
 - Styles are block classes (delivered), not inline styles (not delivered).
@@ -310,7 +310,7 @@ external requests.
   Text style classes, link target (Edge Delivery delivers no `style` / `class` / `dir` attributes).
 - Quotes (blockquote): not in Edge Delivery's delivered elements: Requires validation.
 - The filter (and so the toolbar) is stored on a component when it is created: components created
-  before KB-D-079 keep the default toolbar until re-created (or their `filter` property is set).
+  before KB-D-080 keep the default toolbar until re-created (or their `filter` property is set).
 
 ## Related Documentation
 
@@ -331,4 +331,4 @@ Project-wide standards: [knowledge base](../../docs/handover/knowledge-base/READ
 
 | Version | Change | Source | Date |
 | ------- | ------ | ------ | ---- |
-| — | New block: rich text with the full editor toolbar and the Style tab (alignment, size, lead paragraph, colour, columns, width) | KB-D-079 (Approved), branch feat/rte-rich-text | 27 November 2026 |
+| — | New block: rich text with the full editor toolbar and the Style tab (alignment, size, lead paragraph, colour, columns, width) | KB-D-080 (Approved), branch feat/rte-rich-text | 27 November 2026 |

@@ -4,7 +4,7 @@ import { getPlaceholders } from '../../utils/placeholders.js';
 import { readProperties } from '../../utils/properties.js';
 
 /*
- * Rich Text (blocks/rich-text/_rich-text.json, KB-D-079): a key-value block with one rich text
+ * Rich Text (blocks/rich-text/_rich-text.json, KB-D-080): a key-value block with one rich text
  * field (Text, the full editor toolbar of models/_rte.json) and the Style tab's variations as block
  * classes (Alignment, Text size, First paragraph, Text colour, Columns, Width; rich-text.css), so
  * text gets the styles the built-in Text component can't carry (it delivers no classes).

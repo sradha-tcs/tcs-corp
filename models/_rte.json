@@ -1,5 +1,5 @@
 {
-  "description": "Universal Editor rich text editor (RTE) configuration, referenced by the component filters (\"rte\": {\"...\": \"<path>/models/_rte.json#/rte\"}); KB-D-079. rte: blocks and items (rich text fields, the Rich Text block); text: the built-in Text component, without tables (a table in default content becomes a block on Edge Delivery).",
+  "description": "Universal Editor rich text editor (RTE) configuration, referenced by the component filters (\"rte\": {\"...\": \"<path>/models/_rte.json#/rte\"}); KB-D-080. rte: blocks and items (rich text fields, the Rich Text block); text: the built-in Text component, without tables (a table in default content becomes a block on Edge Delivery).",
   "rte": {
     "toolbar": {
       "format": [

@@ -1410,6 +1410,10 @@
               "value": "brand"
             },
             {
+              "name": "Blue (#4673DB)",
+              "value": "blue"
+            },
+            {
               "name": "Light blue",
               "value": "brand-light"
             },
@@ -1492,6 +1496,88 @@
           "label": "Show Action Label",
           "value": true,
           "description": "On (default): the card shows its call to action (the Call to action label, else the card style's default, e.g. Explore on panels). Off: no call to action, no action element and no default label; the title is the card's link. Only this card follows it."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleSize",
+          "label": "Title size",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "H1",
+              "value": "h1"
+            },
+            {
+              "name": "H2",
+              "value": "h2"
+            },
+            {
+              "name": "H3",
+              "value": "h3"
+            },
+            {
+              "name": "H4",
+              "value": "h4"
+            },
+            {
+              "name": "H5",
+              "value": "h5"
+            },
+            {
+              "name": "H6",
+              "value": "h6"
+            }
+          ],
+          "value": "",
+          "description": "The card title's font size: the site's heading sizes (larger from the tablet up); the heading level stays as it is. Default: the card style's size."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "titleColor",
+          "label": "Title colour",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Black",
+              "value": "black"
+            },
+            {
+              "name": "White",
+              "value": "white"
+            }
+          ],
+          "value": "",
+          "description": "Default: the card style's colour. Choose one with enough contrast on the card colour."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "descriptionColor",
+          "label": "Description colour",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "White",
+              "value": "white"
+            },
+            {
+              "name": "#CDCDCD",
+              "value": "cdcdcd"
+            }
+          ],
+          "value": "",
+          "description": "For dark card colours. Default: the card style's colour."
         }
       ]
     }

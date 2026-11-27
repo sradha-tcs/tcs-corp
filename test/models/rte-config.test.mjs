@@ -1,4 +1,4 @@
-// The Universal Editor rich text editor configuration (models/_rte.json, KB-D-079): every
+// The Universal Editor rich text editor configuration (models/_rte.json, KB-D-080): every
 // component with a rich text field has a filter with the toolbar; the built-in Text has no table
 // (a table in default content becomes a block); the Rich Text block's model. node --test
 import { describe, it } from 'node:test';

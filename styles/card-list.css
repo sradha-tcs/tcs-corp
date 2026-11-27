@@ -601,7 +601,7 @@
   letter-spacing: calc(-0.01 * var(--list-stat-text-size));
 }
 
-.card-list .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image) .list-card-description {
+.card-list .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-blue, .theme-image) .list-card-description {
   color: var(--color-text-neutral-secondary);
 }
 
@@ -740,6 +740,18 @@
   color: rgb(243 243 243);
 }
 
+/*
+ * Card colour Blue (#4673DB, --brand-500): white text is 4.43:1 on it, below WCAG 1.4.3 AA (4.5:1)
+ * for text under 24px (18.66px bold); an exception recorded in the decision log (KB-D-079,
+ * Proposed)
+ */
+.card-list .list-card.theme-blue {
+  --list-card-bg: var(--brand-500);
+  --list-card-fg: var(--white-1000);
+  --list-card-muted: var(--white-1000);
+  --list-card-strong: var(--white-1000);
+}
+
 .card-list .list-card.theme-brand-light {
   --list-card-bg: var(--brand-300);
   --list-card-fg: var(--black-1000);
@@ -790,17 +802,17 @@
 }
 
 /* buttons on dark cards */
-.card-list .list-card:is(.list-card-panel, .theme-dark, .theme-navy, .theme-brand) .button.tertiary {
+.card-list .list-card:is(.list-card-panel, .theme-dark, .theme-navy, .theme-brand, .theme-blue) .button.tertiary {
   color: var(--list-card-fg);
 }
 
-.card-list .list-card:is(.theme-dark, .theme-navy, .theme-brand) .button.secondary {
+.card-list .list-card:is(.theme-dark, .theme-navy, .theme-brand, .theme-blue) .button.secondary {
   border-color: var(--list-card-fg);
   color: var(--list-card-fg);
 }
 
 /* inverse on hover and focus: the card's text colour as the fill, the card colour as the text */
-.card-list .list-card:is(.theme-dark, .theme-navy, .theme-brand) .button.secondary:is(:hover, :focus-visible) {
+.card-list .list-card:is(.theme-dark, .theme-navy, .theme-brand, .theme-blue) .button.secondary:is(:hover, :focus-visible) {
   border-color: var(--list-card-fg);
   background-color: var(--list-card-fg);
   color: var(--list-card-bg);
@@ -936,6 +948,11 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
 .card-list .list-card-stat:is(.title-size-96, .title-size-48, .title-size-h1, .title-size-h2, .title-size-h3, .title-size-h4, .title-size-h5, .title-size-h6) .list-card-title {
   line-height: 1.1;
   letter-spacing: calc(-0.05 * var(--list-title-size));
+}
+
+/* List Item Title colour (the variables at the end of the file); image cards keep their hover colour */
+.card-list .list-card:is(.title-color-black, .title-color-white) :is(.list-card-title, .list-card-title a) {
+  color: var(--list-card-title-color);
 }
 
 /* hover: the title underlines (image cards: below; rows of links: never, the action shows it) */
@@ -1516,8 +1533,8 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
  * #f5f5f5 with a #303030 border and text (Figma); dark cards keep theirs
  */
 .card-list :is(
-  .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
-  .list-card-report:not(.theme-dark, .theme-navy, .theme-brand, .theme-image),
+  .list-card-stat:not(.theme-dark, .theme-navy, .theme-brand, .theme-blue, .theme-image),
+  .list-card-report:not(.theme-dark, .theme-navy, .theme-brand, .theme-blue, .theme-image),
   .list-card-panel:is(.theme-grey, .theme-mid-grey, .theme-brand-light, .theme-gradient)
 ) .list-card-ctas .button.secondary:not(:hover, :focus-visible) {
   border-color: var(--color-text-neutral);
@@ -1562,7 +1579,7 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
  * report cards' kicker (Figma): #5a5a5a on the gradient and the light Card colours, on any section
  * colour (the card keeps its light fill); Dark, Navy and Brand keep their light muted kicker
  */
-.card-list .list-card-report:not(.theme-dark, .theme-navy, .theme-brand) .list-card-kicker {
+.card-list .list-card-report:not(.theme-dark, .theme-navy, .theme-brand, .theme-blue) .list-card-kicker {
   color: var(--color-text-neutral-secondary);
 }
 
@@ -1619,4 +1636,33 @@ main :is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-
     font-size: 0.875rem;
     line-height: 1.4286;
   }
+}
+
+/*
+ * List Item Title colour (Black / White, the rule above the hover rules) and Description colour
+ * (White / #CDCDCD): the author's choice wins over the card style's and the dark backgrounds'
+ * colours (the hover colour of image cards stays)
+ */
+.card-list .list-card.title-color-black {
+  --list-card-title-color: var(--black-1000);
+}
+
+.card-list .list-card.title-color-white {
+  --list-card-title-color: var(--white-1000);
+}
+
+.card-list .list-card.description-color-white {
+  --list-card-description-color: var(--white-1000);
+}
+
+.card-list .list-card.description-color-cdcdcd {
+  --list-card-description-color: var(--slate-300);
+}
+
+.card-list .list-card:is(.description-color-white, .description-color-cdcdcd) .list-card-description {
+  color: var(--list-card-description-color);
+}
+
+:is(.section, .block.columns-container):is(.bg-dark, .bg-dark-green) .card-list .list-card:is(.description-color-white, .description-color-cdcdcd) .list-card-description {
+  color: var(--list-card-description-color);
 }

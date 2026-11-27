@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import {
-  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, ITEM_LAYOUT_BEFORE_CTA, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
+  ITEM_DISPLAY, ITEM_FIELDS, ITEM_LAYOUT, ITEM_LAYOUT_BEFORE_CTA, ITEM_LAYOUT_BEFORE_STYLE, applyOverrides, itemDisplay, itemLayoutFor, mergeFixedItems, applyTagMatching, buildCards, ctaToggleApplies, deduplicateCards, isSafeUrl, kindOf, limitCards,
   normalizeConfig, normalizePageToCard, resolveFixedItems, resolveParentPages, showsFeatureAuthor,
   sortCards, toSafeId, validateConfig, withIds,
 } from '../../blocks/list/list-data.js';
@@ -412,26 +412,65 @@ describe('list item cells', () => {
     assert.deepEqual(ITEM_LAYOUT, modelLayout('blocks/list/_list.json', 'list-item'));
     assert.deepEqual(ITEM_FIELDS, ITEM_LAYOUT.filter(Boolean));
   });
-  // the current model: CTA style after Open in a new tab (Link tab)
-  const fieldsNow = () => {
+  // the model before the title style: CTA style after Open in a new tab (Link tab)
+  const fieldsWithCta = () => {
     const [link, newTab, ...content] = fields();
     return [link, newTab, cell('primary'), ...content];
   };
-  it('reads a row with a cell per field (20 cells)', () => {
+  // the current model: Title size, Title colour and Description colour at the end (Display tab)
+  const fieldsNow = () => [...fieldsWithCta(), cell('h2'), cell('white'), cell('cdcdcd')];
+  const withTabs = ([link, newTab, ctaStyle, ...content]) => [cell(), link, newTab, ctaStyle, cell(),
+    ...content.slice(0, 7), cell(), ...content.slice(7)];
+  const assertStyle = (cells) => {
+    assert.equal(cells.ctaStyle.textContent, 'primary');
+    assert.equal(cells.titleSize.textContent, 'h2');
+    assert.equal(cells.titleColor.textContent, 'white');
+    assert.equal(cells.descriptionColor.textContent, 'cdcdcd');
+  };
+  it('reads a row with a cell per field (23 cells, starting with the link)', () => {
     const row = fieldsNow();
     assert.equal(row.length, ITEM_FIELDS.length);
-    assert.deepEqual(itemLayoutFor(row.length), ITEM_FIELDS);
+    assert.deepEqual(itemLayoutFor(row.length, false), ITEM_FIELDS);
     const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assertStyle(cells);
+  });
+  it('reads a row as AEM delivers it, with an empty cell per dialog tab (26 cells)', () => {
+    const row = withTabs(fieldsNow());
+    assert.equal(row.length, ITEM_LAYOUT.length);
+    assert.deepEqual(itemLayoutFor(row.length), ITEM_LAYOUT);
+    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
+    assertRead(cells);
+    assertStyle(cells);
+  });
+  it('reads a row rendered before the title style (23 cells, starting with a tab cell)', () => {
+    const row = withTabs(fieldsWithCta());
+    assert.equal(row.length, 23);
+    const layout = itemLayoutFor(row.length, true);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_STYLE);
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
+    assertRead(cells);
+    assert.equal(cells.ctaStyle.textContent, 'primary');
+    assert.equal(cells.titleSize, undefined);
+  });
+  it('reads a row rendered before the title style without its tab cells (20 cells)', () => {
+    const row = fieldsWithCta();
+    assert.equal(row.length, 20);
+    const layout = itemLayoutFor(row.length);
+    assert.deepEqual(layout, ITEM_LAYOUT_BEFORE_STYLE.filter(Boolean));
+    const cells = matchCells(withoutTabCells(row, layout), layout.filter(Boolean), {});
     assertRead(cells);
     assert.equal(cells.ctaStyle.textContent, 'primary');
   });
-  it('reads a row as AEM delivers it, with an empty cell per dialog tab (23 cells)', () => {
-    const [link, newTab, ctaStyle, ...content] = fieldsNow();
-    const row = [cell(), link, newTab, ctaStyle, cell(), ...content.slice(0, 7), cell(), ...content.slice(7)];
-    assert.equal(row.length, ITEM_LAYOUT.length);
-    const cells = matchCells(withoutTabCells(row, ITEM_LAYOUT), ITEM_FIELDS, {});
-    assertRead(cells);
-    assert.equal(cells.ctaStyle.textContent, 'primary');
+  it('gives a card its item\'s Title size, Title colour and Description colour', () => {
+    const card = applyOverrides({ title: 'A' }, { titleSize: 'H3', titleColor: 'black', descriptionColor: 'cdcdcd' });
+    assert.equal(card.titleSize, 'h3');
+    assert.equal(card.titleColor, 'black');
+    assert.equal(card.descriptionColor, 'cdcdcd');
+    const none = applyOverrides({ title: 'A' }, { titleSize: '96', titleColor: 'red', descriptionColor: '' });
+    assert.equal(none.titleSize, undefined);
+    assert.equal(none.titleColor, undefined);
+    assert.equal(none.descriptionColor, undefined);
   });
   it('reads a row rendered before CTA style (22 cells)', () => {
     const [link, newTab, ...content] = fields();

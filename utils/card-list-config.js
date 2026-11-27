@@ -7,7 +7,7 @@ import { isSafeUrl } from './links.js';
 
 export const CARD_STYLES = ['image', 'panel', 'report', 'stat', 'mixed'];
 export const CARD_KINDS = ['image', 'panel', 'report', 'stat'];
-export const CARD_THEMES = ['dark', 'navy', 'brand', 'brand-light', 'grey', 'mid-grey', 'gradient', 'image'];
+export const CARD_THEMES = ['dark', 'navy', 'brand', 'blue', 'brand-light', 'grey', 'mid-grey', 'gradient', 'image'];
 export const IMAGE_RATIOS = ['16-9', '1-1', '4-3', '3-2'];
 export const PANEL_HEIGHTS = ['auto', 'portrait', 'compact'];
 export const DATE_FORMATS = ['dd-mmm-yy', 'dd-mm-yyyy', 'mm-dd-yyyy', 'mmm-d-yyyy', 'dd/mm/yy',
