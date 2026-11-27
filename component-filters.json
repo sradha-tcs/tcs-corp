@@ -10,15 +10,28 @@
   },
   {
     "id": "richtext",
+    "components": [
+      "richtext"
+    ],
     "rte": {
       "toolbar": {
+        "blocks": [
+          "paragraph",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "blockquote",
+          "code_block"
+        ],
         "format": [
           "bold",
           "italic",
           "underline",
           "strike",
-          "code_inline",
-          "text_color"
+          "code_inline"
         ],
         "alignment": [
           "left",
@@ -34,16 +47,9 @@
           "indent",
           "outdent"
         ],
-        "blocks": [
-          "paragraph",
-          "h1",
-          "h2",
-          "h3",
-          "h4",
-          "h5",
-          "h6",
-          "code_block",
-          "blockquote"
+        "sr_script": [
+          "superscript",
+          "subscript"
         ],
         "list": [
           "bullet_list",
@@ -56,31 +62,149 @@
           "table",
           "special_characters"
         ],
-        "sr_script": [
-          "superscript",
-          "subscript"
-        ],
         "editor": [
           "removeformat",
           "clean_unsupported_tags",
-          "paste_text"
+          "paste_text",
+          "find_and_replace"
         ],
         "sections": [
           "blocks",
           "format",
-          "sr_script",
           "alignment",
           "direction",
           "indentation",
+          "sr_script",
           "list",
           "insert",
           "editor"
         ]
+      },
+      "actions": {
+        "bold": {
+          "tag": "strong",
+          "shortcut": "Mod-B",
+          "label": "Bold"
+        },
+        "italic": {
+          "tag": "em",
+          "shortcut": "Mod-I",
+          "label": "Italic"
+        },
+        "strike": {
+          "tag": "del",
+          "label": "Strikethrough"
+        },
+        "link": {
+          "hideTarget": true,
+          "shortcut": "Mod-K",
+          "label": "Insert Link"
+        },
+        "unlink": {
+          "label": "Remove Link"
+        },
+        "bullet_list": {
+          "wrapInParagraphs": true,
+          "label": "Bullet List"
+        },
+        "ordered_list": {
+          "wrapInParagraphs": true,
+          "label": "Numbered List"
+        },
+        "image": {
+          "wrapInPicture": false,
+          "label": "Insert Image"
+        },
+        "table": {
+          "wrapInParagraphs": false,
+          "label": "Insert Table"
+        },
+        "special_characters": {
+          "label": "Special Characters",
+          "appendCharacters": [
+            {
+              "character": "₹",
+              "title": "Indian Rupee"
+            },
+            {
+              "character": "©",
+              "title": "Copyright"
+            },
+            {
+              "character": "®",
+              "title": "Registered Trademark"
+            },
+            {
+              "character": "™",
+              "title": "Trademark"
+            },
+            {
+              "character": "€",
+              "title": "Euro"
+            },
+            {
+              "character": "£",
+              "title": "Pound"
+            },
+            {
+              "character": "¥",
+              "title": "Yen"
+            },
+            {
+              "character": "±",
+              "title": "Plus or Minus"
+            },
+            {
+              "character": "×",
+              "title": "Multiplication"
+            },
+            {
+              "character": "÷",
+              "title": "Division"
+            },
+            {
+              "character": "∞",
+              "title": "Infinity"
+            },
+            {
+              "character": "→",
+              "title": "Right Arrow"
+            },
+            {
+              "character": "←",
+              "title": "Left Arrow"
+            },
+            {
+              "character": "✓",
+              "title": "Check Mark"
+            }
+          ]
+        },
+        "paste_text": {
+          "shortcut": "Mod-Shift-v",
+          "label": "Paste as Text"
+        },
+        "h1": {
+          "shortcut": "Mod-Alt-1",
+          "label": "Heading 1"
+        },
+        "h2": {
+          "shortcut": "Mod-Alt-2",
+          "label": "Heading 2"
+        },
+        "h3": {
+          "shortcut": "Mod-Alt-3",
+          "label": "Heading 3"
+        },
+        "paragraph": {
+          "shortcut": "Mod-Alt-0",
+          "label": "Paragraph"
+        },
+        "find_and_replace": {
+          "label": "Find and Replace"
+        }
       }
-    },
-    "components": [
-      "richtext"
-    ]
+    }
   },
   {
     "id": "section",
