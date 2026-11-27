@@ -81,9 +81,10 @@ Other properties: `description` on 418 fields, `condition` on 155, `options` on 
 | Toolbar | filter `richtext` in `models/_component-filters.json` (`rte.toolbar`, `rte.actions`) | PR #297; generated into `component-filters.json` by `npm run build:json` |
 | Link from the Text | `"filter": "richtext"` in the Text definition's template (`models/_text.json`) | Stored on a Text when it's created |
 | Text components created before | `scripts/editor-support-rte.js` `applyTextRteFilter` | In the editor only: a Text without a `filter` property gets `data-aue-filter="richtext"`; a filter AEM wrote is kept; block rich text fields aren't touched |
-| Check | `test/models/text-rte-filter.test.mjs` | The filter exists with a toolbar, the Text definition names it, the fallback's selector |
+| Tools | format (bold, italic, underline, strikethrough, inline code), paragraph / H1–H6 / code block / blockquote, bulleted and numbered lists, Indent / Outdent (list items only), link (no target), unlink, image, special characters, superscript / subscript, remove format, clean unsupported tags, paste as text | Alignment, direction, the empty `classes` tool and table are not offered (not published) |
+| Check | `test/models/text-rte-filter.test.mjs` | The filter exists with a toolbar, the Text definition names it, only published tools, the fallback's selector |
 
-Edge Delivery publishes only semantic formatting (strong, em, u, del, sub, sup, code, headings, lists, links, images, blockquote; aem.live markup reference): alignment, direction and paragraph indentation (inline styles / `dir`) change the editor view but not the published page; a table in default content becomes a block. A site whose code comes from another repository (ultimatix, code last synced 24 November 2026) shows the default toolbar until that repository has this code.
+Edge Delivery publishes only semantic formatting (strong, em, u, del, sub, sup, code, headings, lists, links, images, blockquote; aem.live markup reference): alignment, direction and paragraph indentation (inline styles / `dir`) would change the editor view but not the published page, and a table in default content becomes a block, so the toolbar doesn't offer them. A site whose code comes from another repository (ultimatix, code last synced 24 November 2026) shows the default toolbar until that repository has this code.
 
 ## Dialog Tabs
 

@@ -21,6 +21,19 @@ describe('Text RTE filter', () => {
     assert.ok(filter.rte?.toolbar && filter.rte?.actions);
   });
 
+  // Edge Delivery publishes only semantic formatting: no style, class or dir attributes, and a
+  // table in default content becomes a block (aem.live markup reference, AGENTS.md)
+  it('offers only tools whose result Edge Delivery publishes', () => {
+    const { toolbar, actions } = filters.find((f) => f.id === TEXT_RTE_FILTER).rte;
+    ['alignment', 'direction', 'advanced'].forEach((group) => assert.ok(!(group in toolbar), `no ${group} tools`));
+    assert.ok(!toolbar.format.includes('text_color'), 'no text colour');
+    assert.ok(!toolbar.insert.includes('table') && !('table' in actions), 'no table in a Text');
+    assert.equal(actions.indentation?.scope, 'lists', 'indent only nests list items');
+    assert.equal(actions.link?.hideTarget, true, 'no link target (not delivered)');
+    const { sections, ...groups } = toolbar;
+    assert.deepEqual([...sections].sort(), Object.keys(groups).sort(), 'every group in sections, once');
+  });
+
   it('is given to Text components without a filter, and only to those', () => {
     let selector;
     const old = { dataset: {} };
