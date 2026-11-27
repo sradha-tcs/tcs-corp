@@ -120,7 +120,9 @@ alignment, width and columns (`rich-text-layout`, 10), text size, lead paragraph
 Section backgrounds (`rich-text-typography`, 10), toolbar content (`rich-text-toolbar`, 10), the
 Additional tab (`rich-text-additional`, 7) and the built-in Text component's toolbar
 (`text-component`, 9). They come in the content package `tcs-corp-rich-text-library-content`
-(sradha-tcs/tcs-corp-delivery, `archive/home-content-package/rich-text/`, KB-D-070), generated with
+([content-packages/rich-text/](../../content-packages/rich-text/README.md): its install steps; for
+sradha-tcs/tcs-corp-delivery `archive/home-content-package/rich-text/` once it can be pushed there,
+KB-D-070, KB-D-081), generated with
 `node tools/library/generate-rich-text-library.mjs` from the current models (run it after
 `npm run build:json`; `--root language-master` targets the other review root, `--version` sets the
 package version). The same run writes the delivered markup to `drafts/rich-text-library/` for the

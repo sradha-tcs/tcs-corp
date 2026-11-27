@@ -8,3 +8,4 @@ test/*
 _*
 docs/*
 tools/web-sdk/*
+content-packages/*
