@@ -204,6 +204,12 @@ header .nav-canvas {
   pointer-events: none;
 }
 
+header[data-canvas-opener-pending] .nav-canvas {
+  /* not shown until its place is known: the page's opening section (the first one that shows
+     something, canvas-controller.js) has loaded */
+  visibility: hidden;
+}
+
 body.home header .nav-canvas {
   height: var(--conversation-canvas-first-section-bottom, 100dvh);
 }

@@ -35,6 +35,8 @@ const GLIDE_OPTIONS = { duration: 380, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' 
 const glides = new WeakMap();
 // the row the user sees ({ entry, floating }): the floating row, else the docked one
 let shown = null;
+// px the header Canvas row keeps below the fixed header bar when it rests on the opening section
+const REST_GAP = 16;
 
 const entries = [];
 const registered = new WeakSet();
@@ -84,6 +86,49 @@ function release(entry) {
 const isActive = (entry) => !entry.block.classList.contains('hideblock')
   && (entry.primary ? entry.block : entry.slot).getClientRects().length > 0;
 
+/**
+ * Whether a section shows nothing: every item in it is a hidden block (Hide block, e.g. a hidden
+ * Page Header opening the page) or empty. Read from the markup, so a section still loading
+ * (display: none) counts by its content. In edit mode hidden blocks show (faded), so they count.
+ */
+function showsNothing(section, editing) {
+  return ![...section.children].some((wrapper) => wrapper.matches('.section-background')
+    || [...wrapper.children].some((item) => {
+      if (item.matches('.section-metadata')) return false;
+      if (item.classList.contains('block')) return editing || !item.classList.contains('hideblock');
+      return !!(item.textContent.trim() || item.querySelector('img, picture, video, iframe'));
+    }));
+}
+
+/**
+ * The section that opens the page: the first one that shows something, whatever its blocks are
+ * (Hero, Teaser, Image Collage, text ...); hidden or empty sections before it are skipped.
+ * @returns {Element | null}
+ */
+function openingSection() {
+  const editing = document.documentElement.classList.contains('adobe-ue-edit');
+  return [...document.querySelectorAll('main > .section')]
+    .find((section) => !section.hidden && !showsNothing(section, editing)) || null;
+}
+
+/**
+ * Where the header Canvas row rests at the top of the page: the bottom of the opening section
+ * (document px), or '' for the bottom of the window (blocks/header/header.css falls back to it)
+ * when the opening section is too short for the row to sit below the fixed header bar.
+ * @param {Element | null} opener the opening section (loaded)
+ * @param {Object | undefined} row the header Canvas entry
+ * @returns {string}
+ */
+function restOf(opener, row) {
+  if (!opener || !row) return '';
+  const bottom = Math.round(opener.getBoundingClientRect().bottom + window.scrollY);
+  // the row and the space below it, then the fixed header bar (its bottom at the top of the page)
+  const below = parseFloat(getComputedStyle(row.slot).scrollMarginBottom) || 0;
+  const room = row.row.offsetHeight + below;
+  const bar = document.querySelector('header .nav-wrapper')?.getBoundingClientRect().bottom || 0;
+  return bottom - room >= bar + REST_GAP ? `${bottom}px` : '';
+}
+
 /** reads the page geometry (layout reads only, the writes follow in apply) */
 function measure() {
   // drop Canvases taken off the page (re-decorated in Universal Editor); keep ones not attached
@@ -104,22 +149,27 @@ function measure() {
     release(e);
     delete e.block.dataset.canvasRole;
   });
-  const firstSection = document.querySelector('main > .section');
+  // the page's opening section, whatever its blocks (a hidden Page Header before it is skipped)
+  const opener = openingSection();
   const roles = assignRoles(live.map((e) => ({
     primary: e.primary,
     inHeader: !!e.block.closest('header'),
-    inFirstSection: !!firstSection?.contains(e.block),
+    inFirstSection: !!opener?.contains(e.block),
     inFooter: !!e.block.closest('footer'),
   })));
   const { scrollY } = window;
-  // the header Canvas over an opening hero lines up with the bottom of the first section
-  // (blocks/header/header.css); written before the rows are measured, as it moves that row
-  const bottom = firstSection
-    ? Math.round(firstSection.getBoundingClientRect().bottom + scrollY) : 0;
-  if (bottom !== firstSectionBottom) {
-    firstSectionBottom = bottom;
+  // the header Canvas row rests on the bottom of the opening section (blocks/header/header.css);
+  // written before the rows are measured, as it moves that row. Until the opening section has
+  // loaded its place isn't known: the header Canvas stays hidden, so it doesn't jump into place
+  const header = document.querySelector('header');
+  const pending = !!opener && opener.dataset.sectionStatus !== 'loaded';
+  header?.toggleAttribute('data-canvas-opener-pending', pending);
+  const rest = pending ? firstSectionBottom
+    : restOf(opener, live.find((e) => !e.primary && e.block.closest('header')));
+  if (rest !== firstSectionBottom) {
+    firstSectionBottom = rest;
     // used only by the header Canvas (blocks/header/header.css): set on the header
-    setRoot('--conversation-canvas-first-section-bottom', `${bottom}px`, document.querySelector('header') || document.documentElement);
+    setRoot('--conversation-canvas-first-section-bottom', rest, header || document.documentElement);
   }
   const canvases = live.map((e, i) => {
     if (e.primary) {
