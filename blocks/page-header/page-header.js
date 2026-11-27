@@ -62,12 +62,19 @@ const TITLE_FONT_WIDTHS = {
 };
 // Description Font: the description's size at every width (Default Font: the layout's)
 const DESCRIPTION_FONTS = ['text-16px', 'text-18px', 'text-20px', 'text-24px', 'text-32px', 'text-40px'];
+// Title weight and Description Font weight: pageheader-title-light ... pageheader-title-bold,
+// pageheader-description-light ... pageheader-description-bold (Layout default: the layout's)
+const WEIGHTS = ['light', 'regular', 'medium', 'semibold', 'bold'];
+const TITLE_WEIGHTS = WEIGHTS.map((weight) => `pageheader-title-${weight}`);
+const DESCRIPTION_WEIGHTS = WEIGHTS.map((weight) => `pageheader-description-${weight}`);
 
 /** Title Font and Description Font as block classes; nothing selected keeps the layout's sizes */
 function applyFonts(block, props) {
   const widths = Object.keys(TITLE_FONT_WIDTHS);
   block.classList.remove(
     ...DESCRIPTION_FONTS,
+    ...TITLE_WEIGHTS,
+    ...DESCRIPTION_WEIGHTS,
     ...widths.flatMap((width) => HEADINGS.map((font) => `title-${width}-${font}`)),
   );
   widths.forEach((width) => {
@@ -76,6 +83,10 @@ function applyFonts(block, props) {
   });
   const descriptionFont = toClassName(textOf(props.pageheaderdescriptionfont));
   if (DESCRIPTION_FONTS.includes(descriptionFont)) block.classList.add(descriptionFont);
+  const titleWeight = toClassName(textOf(props.titleweight));
+  if (TITLE_WEIGHTS.includes(titleWeight)) block.classList.add(titleWeight);
+  const descriptionWeight = toClassName(textOf(props.descriptionfontweight));
+  if (DESCRIPTION_WEIGHTS.includes(descriptionWeight)) block.classList.add(descriptionWeight);
 }
 
 /** the layout: the block's Layout, or from the Page Type */
@@ -188,15 +199,29 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
   const prefix = 'page-header';
   const info = document.createElement('div');
   info.className = 'page-header-info';
-  // a listen link only when it's http(s) or a path (never javascript:), else a disabled button
+  // Listen: plays the page's audio in place, for an http(s) or path link (never javascript:);
+  // the audio is created on the first click (nothing is downloaded before), aria-pressed and
+  // .is-playing tell whether it plays
   const listenLink = (metadata.listenLink || '').trim();
-  const safeListen = listenLink && isSafeUrl(listenLink);
-  const listen = document.createElement(safeListen ? 'a' : 'button');
-  if (safeListen) {
-    listen.href = listenLink;
-  } else {
+  const listen = listenLink && isSafeUrl(listenLink) ? document.createElement('button') : null;
+  if (listen) {
     listen.type = 'button';
-    listen.disabled = true;
+    listen.setAttribute('aria-pressed', 'false');
+    let audio = null;
+    const setPlaying = (playing) => {
+      listen.classList.toggle('is-playing', playing);
+      listen.setAttribute('aria-pressed', String(playing));
+    };
+    listen.addEventListener('click', () => {
+      if (!audio) {
+        audio = new Audio(listenLink);
+        audio.addEventListener('play', () => setPlaying(true));
+        audio.addEventListener('pause', () => setPlaying(false));
+        audio.addEventListener('ended', () => setPlaying(false));
+      }
+      if (audio.paused) audio.play().catch(() => setPlaying(false));
+      else audio.pause();
+    });
   }
 
   // When timing-left: show contentType | Published Date | Reading Time with pipe separators
@@ -213,7 +238,14 @@ function buildMetaRow(metadata, tags, t, timingLeft) {
       const metaLine = document.createElement('p');
       metaLine.className = 'page-header-meta-line';
       metaParts.forEach((part, i) => {
-        if (i) metaLine.append(' | ');
+        if (i) {
+          // the separator with 8px on each side (Figma); screen readers skip it
+          const separator = document.createElement('span');
+          separator.className = 'page-header-meta-separator';
+          separator.setAttribute('aria-hidden', 'true');
+          separator.textContent = '|';
+          metaLine.append(' ', separator, ' ');
+        }
         metaLine.append(...[part].flat());
       });
       labels.append(metaLine);

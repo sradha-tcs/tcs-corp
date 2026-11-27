@@ -10,18 +10,6 @@
   padding-top: var(--space-1000);
 }
 
-/* eyebrow: the content type, or the tags (Figma Eyebrow / Tag) */
-.page-header .page-header-eyebrow,
-.page-header .page-header-tags {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.57;
-  letter-spacing: calc(0.01 * var(--body-font-size-xs));
-  text-transform: uppercase;
-}
-
 .page-header .page-header-tags {
   display: flex;
   flex-wrap: wrap;
@@ -69,21 +57,11 @@
   gap: var(--space-400) var(--space-1000);
 }
 
-/* article: meta row (tags, content type | date, reading time, actions) */
-.page-header .page-header-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-400) var(--space-1000);
-}
-
 .page-header .page-header-labels,
 .page-header .page-header-info {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-200) var(--space-1000);
 }
 
 .page-header .page-header-labels {
@@ -95,21 +73,6 @@
   margin-inline-start: auto;
 }
 
-.page-header .page-header-timing {
-  display: flex;
-  align-items: center;
-  gap: var(--space-200);
-}
-
-.page-header :is(.page-header-date, .page-header-reading-time, .page-header-meta-line) {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-xs);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.4;
-  letter-spacing: calc(0 * var(--body-font-size-xs));
-}
-
 .page-header .page-header-timing > .page-header-date + .page-header-reading-time::before {
   content: '|\00a0' / '';
 }
@@ -118,16 +81,33 @@
 .page-header .page-header-collection {
   margin: 0;
   color: var(--color-text-default);
-  font-size: var(--body-font-size-s);
+  font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
-  line-height: 1.375;
+  line-height: 1.4;
+  letter-spacing: calc(0 * 0.875rem);
 }
 
 .page-header .page-header-actions {
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-100);
+  gap: 1.1875rem; /* 19px */
+  margin-inline-start: 1.1875rem;
+}
+
+/* listen / download / share: 24px buttons with an 18px icon (Figma) */
+.page-header .page-header-actions :is(a, button).button.icon-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  min-height: 0;
+  border-radius: var(--radius-full);
+  padding: 0;
+}
+
+.page-header .page-header-actions :is(a, button).button.icon-button::after {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 /* listen / download / share: dark icons (Figma), brand on hover */
@@ -190,7 +170,7 @@
 
 .page-header .page-header-ctas a.button.cta-text-black,
 .page-header .page-header-ctas a.button.cta-text-black:is(:hover, :focus-visible) {
-  color: var(--black-1000);
+  color: var(--color-text-default);
 }
 
 /*
@@ -312,10 +292,22 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* article: large regular title */
+/*
+ * article (Figma "L3 Header" 4326:77737 desktop, 4326:63654 tablet): semibold title, 8px
+ * between the tags, the date line's "|" 8px from its neighbours (a space and 0.25rem)
+ */
 .page-header.article .page-header-title {
   font-size: var(--display-font-size-2);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: calc(-0.03 * var(--display-font-size-2));
+}
+
+.page-header.article .page-header-tags {
+  column-gap: var(--space-200);
+}
+
+.page-header .page-header-meta-separator {
+  margin-inline: 0.25rem;
 }
 
 /* display: the tags as a pipe-separated eyebrow, a display title */
@@ -335,9 +327,76 @@
   letter-spacing: calc(-0.02 * var(--display-font-size-1));
 }
 
-@media (width >= 900px) {
-  .page-header {
-    padding-top: var(--space-3000);
+/*
+ * Title Font (Desktop / Tablet / Mobile, page-header.js title-desktop-h1 ... title-mobile-h6):
+ * the title's size as a heading of that level, per width (the Teaser's Title Type widths);
+ * desktop H1 64, H2 48, H3 40, H4 28, H5 24, H6 20px; tablet and mobile H1 40, H2 32, H3 28,
+ * H4 24, H5 18, H6 16px. Nothing selected keeps the layout's size; the title stays the H1.
+ */
+@media (width < 600px) {
+  .page-header .page-header-timing {
+    display: flex;
+    align-items: center;
+    gap: var(--space-200);
+  }
+
+  /* article: meta row (tags, content type | date, reading time, actions) */
+  .page-header .page-header-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-400) var(--space-1000);
+  }
+
+  /* eyebrow: the content type, or the tags (Figma Eyebrow / Tag) */
+    .page-header .page-header-eyebrow,
+    .page-header .page-header-tags {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.60;
+      letter-spacing: calc(0.01 * 0.875rem);
+      text-transform: uppercase;
+    }
+
+    .page-header :is(.page-header-date, .page-header-reading-time, .page-header-meta-line) {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      letter-spacing: calc(0 * 0.875rem);
+    }
+
+  .page-header:is(.title-mobile-h1, .title-mobile-h2, .title-mobile-h3, .title-mobile-h4, .title-mobile-h5, .title-mobile-h6) .page-header-title {
+    font-size: var(--page-header-title-size);
+    letter-spacing: calc(-0.03 * var(--page-header-title-size));
+  }
+
+  .page-header.title-mobile-h1 .page-header-title { --page-header-title-size: 2.5rem; }
+  .page-header.title-mobile-h2 .page-header-title { --page-header-title-size: 2rem; }
+  .page-header.title-mobile-h3 .page-header-title { --page-header-title-size: 1.75rem; }
+  .page-header.title-mobile-h4 .page-header-title { --page-header-title-size: 1.5rem; }
+  .page-header.title-mobile-h5 .page-header-title { --page-header-title-size: 1.125rem; }
+  .page-header.title-mobile-h6 .page-header-title { --page-header-title-size: 1rem; }
+}
+
+@media (600px <= width < 1200px) {
+  /* article: meta row (tags, content type | date, reading time, actions) */
+  .page-header .page-header-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-400);
+  }
+
+  .page-header .page-header-timing {
+    display: flex;
+    align-items: center;
+    gap: var(--space-200);
   }
 
   .page-header .page-header-columns {
@@ -370,29 +429,50 @@
   .page-header.display .page-header-title {
     letter-spacing: -0.12rem;
   }
-}
 
-/*
- * Title Font (Desktop / Tablet / Mobile, page-header.js title-desktop-h1 ... title-mobile-h6):
- * the title's size as a heading of that level, per width (the Teaser's Title Type widths);
- * desktop H1 64, H2 48, H3 40, H4 28, H5 24, H6 20px; tablet and mobile H1 40, H2 32, H3 28,
- * H4 24, H5 18, H6 16px. Nothing selected keeps the layout's size; the title stays the H1.
- */
-@media (width < 600px) {
-  .page-header:is(.title-mobile-h1, .title-mobile-h2, .title-mobile-h3, .title-mobile-h4, .title-mobile-h5, .title-mobile-h6) .page-header-title {
-    font-size: var(--page-header-title-size);
-    letter-spacing: calc(-0.03 * var(--page-header-title-size));
+  /* eyebrow: the content type, or the tags (Figma Eyebrow / Tag) */
+    .page-header .page-header-eyebrow,
+    .page-header .page-header-tags {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.57;
+      letter-spacing: calc(0.01 * 0.875rem);
+      text-transform: uppercase;
+    }
+
+    .page-header :is(.page-header-date, .page-header-reading-time, .page-header-meta-line) {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      letter-spacing: 0;
+    }
+
+  /*
+   * article on tablet (Figma 4326:63654): 80px above, a 40px title, the 18px description; the
+   * title and the text stack, side by side only when each has 480px (30rem)
+   */
+  .page-header.article {
+    padding-top: var(--space-2000);
   }
 
-  .page-header.title-mobile-h1 .page-header-title { --page-header-title-size: 2.5rem; }
-  .page-header.title-mobile-h2 .page-header-title { --page-header-title-size: 2rem; }
-  .page-header.title-mobile-h3 .page-header-title { --page-header-title-size: 1.75rem; }
-  .page-header.title-mobile-h4 .page-header-title { --page-header-title-size: 1.5rem; }
-  .page-header.title-mobile-h5 .page-header-title { --page-header-title-size: 1.125rem; }
-  .page-header.title-mobile-h6 .page-header-title { --page-header-title-size: 1rem; }
-}
+  .page-header.article .page-header-columns {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  }
 
-@media (600px <= width < 1200px) {
+  .page-header.article .page-header-title {
+    font-size: 2.5rem;
+    letter-spacing: calc(-0.03 * 2.5rem);
+  }
+
+  .page-header.article .page-header-description {
+    font-size: 1.125rem;
+    line-height: 1.3889;
+  }
+
   .page-header:is(.title-tablet-h1, .title-tablet-h2, .title-tablet-h3, .title-tablet-h4, .title-tablet-h5, .title-tablet-h6) .page-header-title {
     font-size: var(--page-header-title-size);
     letter-spacing: calc(-0.03 * var(--page-header-title-size));
@@ -407,6 +487,100 @@
 }
 
 @media (width >= 1200px) {
+  .page-header {
+    padding-top: var(--space-3000);
+  }
+
+
+  .page-header .page-header-timing {
+    display: flex;
+    align-items: center;
+    gap: var(--space-200);
+  }
+
+  .page-header .page-header-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-header:is(.secondary, .article) .page-header-summary {
+    padding-top: var(--space-300);
+  }
+
+  .page-header.landing.page-header-has-image {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2000);
+    align-items: center;
+  }
+
+  .page-header.display .page-header-columns {
+    align-items: center;
+  }
+
+  .page-header:is(.landing, .display) .page-header-title {
+    font-size: 6rem;
+  }
+
+  .page-header.landing .page-header-title {
+    letter-spacing: -0.18rem;
+  }
+
+  .page-header.display .page-header-title {
+    letter-spacing: -0.12rem;
+  }
+
+  /* article: meta row (tags, content type | date, reading time, actions) */
+  .page-header .page-header-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-600);
+  }
+
+  /*
+   * article on desktop (Figma 4326:77737): 200px above, a 48px title, the 18px description; the
+   * title and the text side by side when each has 480px (30rem)
+   */
+  .page-header.article {
+    padding-top: var(--space-5000);
+  }
+
+  .page-header.article .page-header-columns {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  }
+
+  .page-header.article .page-header-title {
+    font-size: 3rem;
+    letter-spacing: calc(-0.03 * 3rem);
+  }
+
+  .page-header.article .page-header-description {
+    font-size: 1.125rem;
+    line-height: 1.3889;
+  }
+
+    /* eyebrow: the content type, or the tags (Figma Eyebrow / Tag) */
+    .page-header .page-header-eyebrow,
+    .page-header .page-header-tags {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.57;
+      letter-spacing: calc(0.01 * 0.875rem);
+      text-transform: uppercase;
+    }
+
+    .page-header :is(.page-header-date, .page-header-reading-time, .page-header-meta-line) {
+      margin: 0;
+      color: var(--color-text-default);
+      font-size: var(--body-font-size-xs);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      letter-spacing: calc(0 * var(--body-font-size-xs));
+    }
+
   .page-header:is(.title-desktop-h1, .title-desktop-h2, .title-desktop-h3, .title-desktop-h4, .title-desktop-h5, .title-desktop-h6) .page-header-title {
     font-size: var(--page-header-title-size);
     letter-spacing: calc(-0.03 * var(--page-header-title-size));
@@ -427,3 +601,20 @@
 .page-header.text-24px .page-header-description { font-size: 1.5rem; }
 .page-header.text-32px .page-header-description { font-size: 2rem; }
 .page-header.text-40px .page-header-description { font-size: 2.5rem; }
+
+/*
+ * Title weight and Description Font weight (page-header.js pageheader-title-* /
+ * pageheader-description-*): at every width, last in the file so they win over the layouts'
+ * own weights; Layout default keeps them
+ */
+.page-header.pageheader-title-light .page-header-title { font-weight: var(--font-weight-light); }
+.page-header.pageheader-title-regular .page-header-title { font-weight: var(--font-weight-regular); }
+.page-header.pageheader-title-medium .page-header-title { font-weight: var(--font-weight-medium); }
+.page-header.pageheader-title-semibold .page-header-title { font-weight: var(--font-weight-semibold); }
+.page-header.pageheader-title-bold .page-header-title { font-weight: var(--font-weight-bold); }
+
+.page-header.pageheader-description-light .page-header-description { font-weight: var(--font-weight-light); }
+.page-header.pageheader-description-regular .page-header-description { font-weight: var(--font-weight-regular); }
+.page-header.pageheader-description-medium .page-header-description { font-weight: var(--font-weight-medium); }
+.page-header.pageheader-description-semibold .page-header-description { font-weight: var(--font-weight-semibold); }
+.page-header.pageheader-description-bold .page-header-description { font-weight: var(--font-weight-bold); }

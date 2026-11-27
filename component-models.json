@@ -22362,6 +22362,39 @@
       {
         "component": "select",
         "valueType": "string",
+        "name": "titleWeight",
+        "label": "Title weight",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "pageheader-title-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "pageheader-title-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "pageheader-title-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "pageheader-title-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "pageheader-title-bold"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
         "name": "pageHeaderDescriptionFont",
         "label": "Description Font",
         "value": "",
@@ -22393,6 +22426,39 @@
           {
             "name": "2.5rem (40px)",
             "value": "text-40px"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "descriptionFontWeight",
+        "label": "Description Font weight",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout default",
+            "value": ""
+          },
+          {
+            "name": "Light (300)",
+            "value": "pageheader-description-light"
+          },
+          {
+            "name": "Regular (400)",
+            "value": "pageheader-description-regular"
+          },
+          {
+            "name": "Medium (500)",
+            "value": "pageheader-description-medium"
+          },
+          {
+            "name": "Semibold (600)",
+            "value": "pageheader-description-semibold"
+          },
+          {
+            "name": "Bold (700)",
+            "value": "pageheader-description-bold"
           }
         ]
       },

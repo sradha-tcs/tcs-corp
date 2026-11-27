@@ -126,7 +126,9 @@ B = Timing Alignment
 C = Title Font (Desktop)
 D = Title Font (Tablet)
 E = Title Font (Mobile)
-F = Description Font
+F = Title weight
+G = Description Font
+H = Description Font weight
 ```
 
 ```text
@@ -322,7 +324,9 @@ Model `page-header`; template name "Page Header" (the block class AEM renders); 
 | Title Font (Desktop) | `pageHeaderTitleFont` | select | No | `h2` | H1 (64px) (`h1`), H2 (48px) (`h2`), H3 (40px) (`h3`), H4 (28px) (`h4`), H5 (24px) (`h5`), H6 (20px) (`h6`) | The heading level of the title, which will sets desktop sizes accordingly. Use one H1 per page. | — |
 | Title Font (Tablet) | `pageHeaderTitleFontTablet` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The heading level of the title, which will sets tablet sizes accordingly. Use one H1 per page. | — |
 | Title Font (Mobile) | `pageHeaderTitleFontMobile` | select | No | `h2` | H1 (40px) (`h1`), H2 (32px) (`h2`), H3 (28px) (`h3`), H4 (24px) (`h4`), H5 (18px) (`h5`), H6 (16px) (`h6`) | The heading level of the title, which will sets mobile sizes accordingly. Use one H1 per page. | — |
+| Title weight | `titleWeight` | select | No | "" | Layout default (""), Light (300) (`pageheader-title-light`), Regular (400) (`pageheader-title-regular`), Medium (500) (`pageheader-title-medium`), Semibold (600) (`pageheader-title-semibold`), Bold (700) (`pageheader-title-bold`) | — | — |
 | Description Font | `pageHeaderDescriptionFont` | select | No | "" | Default Font (""), 1rem (16px) (`text-16px`), 1.125rem (18px) (`text-18px`), 1.25rem (20px) (`text-20px`), 1.5rem (24px) (`text-24px`), 2rem (32px) (`text-32px`), 2.5rem (40px) (`text-40px`) | — | — |
+| Description Font weight | `descriptionFontWeight` | select | No | "" | Layout default (""), Light (300) (`pageheader-description-light`), Regular (400) (`pageheader-description-regular`), Medium (500) (`pageheader-description-medium`), Semibold (600) (`pageheader-description-semibold`), Bold (700) (`pageheader-description-bold`) | — | — |
 
 #### CTAs tab — Page Header
 
