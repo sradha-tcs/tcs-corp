@@ -340,6 +340,11 @@
     "id": "section",
     "fields": [
       {
+        "component": "tab",
+        "name": "sectionTab",
+        "label": "Section"
+      },
+      {
         "component": "text",
         "name": "name",
         "label": "Section Name",
@@ -508,6 +513,183 @@
           "regExp": "^#?[a-z0-9][a-z0-9-]*$",
           "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
         }
+      },
+      {
+        "component": "tab",
+        "name": "textTab",
+        "label": "Text"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textAlign",
+        "label": "Text alignment",
+        "value": "",
+        "options": [
+          {
+            "name": "Left (default)",
+            "value": ""
+          },
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          },
+          {
+            "name": "Justify",
+            "value": "justify"
+          }
+        ],
+        "description": "The alignment of the section's text (Text, Title and buttons; blocks keep their own)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textSize",
+        "label": "Text size",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Small",
+            "value": "small"
+          },
+          {
+            "name": "Large",
+            "value": "large"
+          }
+        ],
+        "description": "The size of the paragraphs and lists of the section's text (headings keep their level's size)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textLead",
+        "label": "First paragraph",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Lead paragraph (larger)",
+            "value": "lead"
+          }
+        ],
+        "description": "Shows the section's first paragraph larger, as an introduction."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textColor",
+        "label": "Text colour",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Secondary (grey)",
+            "value": "secondary"
+          },
+          {
+            "name": "Brand",
+            "value": "brand"
+          }
+        ],
+        "description": "The colour of the section's text (light on Dark and Dark Green sections)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textColumns",
+        "label": "Text columns",
+        "value": "",
+        "options": [
+          {
+            "name": "One (default)",
+            "value": ""
+          },
+          {
+            "name": "Two (from tablet)",
+            "value": "2"
+          },
+          {
+            "name": "Three (from desktop)",
+            "value": "3"
+          }
+        ],
+        "description": "Flows the section's text into columns; one on mobile."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "underlineStyle",
+        "label": "Underlined text",
+        "value": "",
+        "options": [
+          {
+            "name": "Underline (default)",
+            "value": ""
+          },
+          {
+            "name": "Brand colour",
+            "value": "brand"
+          },
+          {
+            "name": "Secondary colour (grey)",
+            "value": "secondary"
+          },
+          {
+            "name": "Highlight (marker)",
+            "value": "highlight"
+          }
+        ],
+        "description": "How the words underlined with the toolbar are shown in the section's text: the way to colour words, since Edge Delivery doesn't publish text colour."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "textDirection",
+        "label": "Text direction",
+        "value": "",
+        "options": [
+          {
+            "name": "Page direction (default)",
+            "value": ""
+          },
+          {
+            "name": "Right to left",
+            "value": "rtl"
+          }
+        ],
+        "description": "Right to left for the section's text in Arabic, Hebrew and other right-to-left languages."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "externalLinks",
+        "label": "Links to other sites",
+        "value": "",
+        "options": [
+          {
+            "name": "Same tab (default)",
+            "value": ""
+          },
+          {
+            "name": "Open in a new tab",
+            "value": "new-tab"
+          }
+        ],
+        "description": "Opens the links to other websites in the section's text in a new tab (announced to screen readers)."
       }
     ]
   },

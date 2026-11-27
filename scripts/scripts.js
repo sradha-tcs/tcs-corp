@@ -25,6 +25,7 @@ import { getPlaceholders } from '../utils/placeholders.js';
 import { addSkipLink } from '../decorators/a11y-decorator.js';
 import { hiddenParts, markHiddenParts } from '../utils/page-visibility.js';
 import { availableId } from '../utils/ids.js';
+import { TEXT_STYLE_ROWS, textStyleClasses } from '../utils/text-styles.js';
 import { sheetOverrides } from '../utils/sheet-metadata.js';
 import blockModules, { blockStylesheet } from './module-graph.js';
 import {
@@ -38,6 +39,7 @@ export { decorateButtons };
 const SECTION_OPTIONS = [
   'sectionwidth', 'roundededge', 'backgroundimage', 'backgroundimagealt', 'anchorname',
   'textwidthmobile', 'textwidthtablet', 'textwidthdesktop',
+  ...TEXT_STYLE_ROWS,
 ];
 // Text width per device (% of the row; empty: full), as text-width-{device}-{value} classes
 const TEXT_WIDTH_DEVICES = ['mobile', 'tablet', 'desktop'];
@@ -277,8 +279,34 @@ function readSectionOptions(section) {
 }
 
 /**
+ * The text styles that need the DOM: right to left (the dir attribute, for the browser's bidi
+ * handling) and links to other sites in a new tab (announced to screen readers, WCAG 3.2.5).
+ * @param {Element} section a decorated section with text style classes
+ */
+function decorateTextStyles(section) {
+  const wrappers = section.querySelectorAll(':scope > .default-content-wrapper');
+  if (section.classList.contains('text-dir-rtl')) wrappers.forEach((wrapper) => { wrapper.dir = 'rtl'; });
+  if (!section.classList.contains('text-links-new-tab')) return;
+  const links = [...wrappers].flatMap((wrapper) => [...wrapper.querySelectorAll('a[href]')]);
+  if (!links.length) return;
+  // loaded only for sections with the option, so other pages don't preload them
+  Promise.all([
+    import('../utils/links.js'),
+    import('../decorators/link-decorator.js'),
+    getPlaceholders(),
+  ]).then(([{ isExternalLink }, { announceNewTab, setLinkTarget }, t]) => {
+    const hint = t('opensInNewTab', '(opens in a new tab)');
+    links.filter((a) => isExternalLink(a.getAttribute('href'), window.location.origin))
+      .forEach((a) => {
+        setLinkTarget(a);
+        announceNewTab(a, hint);
+      });
+  }).catch(() => { /* the links stay as authored (same tab) */ });
+}
+
+/**
  * Decorates sections, including the section options: Style, Width Type, Rounded edge,
- * Background Image, Image alt text and Anchor name.
+ * Background Image, Image alt text, Anchor name, Text width and the Text tab's text styles.
  * @param {Element} container The main element, or the parent of re-rendered sections
  */
 export function decorateSectionsWithOptions(container) {
@@ -302,6 +330,10 @@ export function decorateSectionsWithOptions(container) {
       const width = (rows[`textwidth${device}`]?.text || '').replace('%', '').trim();
       if (TEXT_WIDTHS.includes(width)) section.classList.add(`text-width-${device}-${width}`);
     });
+    // Text styles of the section's default content (Section > Text tab, KB-D-083)
+    const textStyles = textStyleClasses(rows);
+    section.classList.add(...textStyles);
+    if (textStyles.length) decorateTextStyles(section);
     // Anchor name: the id Anchor List links jump to
     const anchor = toClassName(rows.anchorname?.text.replace(/^#/, '') || '');
     // a taken id gets a suffix (-2, -3, ...), as block Anchor IDs do

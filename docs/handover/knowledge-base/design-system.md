@@ -192,6 +192,7 @@ The Additional tab's Padding / Margin fields (`classes_padding*` / `classes_marg
 | `--section-padding-inline` (gutter of Fixed Width sections) | `--spacing-s` (1.5rem); `--spacing-m` (2.5rem) from 600px; `--spacing-l` (5rem) from 1200px; `0rem` in Full Width sections |
 | `--section-spacing` (between sections) | `--spacing-m` (2.5rem); `--spacing-l` (5rem) from 900px; `--space-3000` (7.5rem) from 1200px |
 | Section Width Type | Full Width (default, edge to edge, no gutter) or Fixed Width (`fixed-width`, centred at `--content-max-width`) |
+| Section Text tab (KB-D-083) | The built-in Text's styles on the section's default content, as the Rich Text block's Style options: alignment, size (Small `--body-font-size-s`, Large 1.125rem then `--body-font-size-l` from 900px), lead paragraph, colour (`--color-text-secondary`, `--color-text-brand`), columns (2 from 600px, 3 from 900px), underlined words (`--color-text-brand`, `--color-text-secondary`, highlight `--color-bg-brand-secondary` / `--color-text-brand-secondary`), direction; dark Sections keep the theme contract |
 | Section Text width | Per device (mobile below 600px, tablet 600 to 1199px, desktop from 1200px): Full (default), 75%, 66.6667%, 50% or 33.3333% of the row for the section's default content, left-aligned (`text-width-{device}-{value}`, `--section-text-width-{device}` in `styles/styles.css`); blocks keep their own width |
 | Rounded edge | `rounded`: `--radius-l` corners |
 

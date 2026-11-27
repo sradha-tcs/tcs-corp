@@ -1123,6 +1123,93 @@ main > .section[class*='text-width-'] > .default-content-wrapper > * {
   }
 }
 
+/*
+ * Text styles of default content (Section > Text tab, KB-D-083; utils/text-styles.js): the Rich
+ * Text block's Style options for the built-in Text, which delivers only its text. They apply to
+ * the section's default content (Text, Title, buttons); blocks keep their own styles.
+ */
+main > .section.text-align-center > .default-content-wrapper {
+  text-align: center;
+}
+
+main > .section.text-align-center[class*='text-width-'] > .default-content-wrapper > * {
+  margin-inline: auto;
+}
+
+main > .section.text-align-right > .default-content-wrapper {
+  text-align: right;
+}
+
+main > .section.text-align-justify > .default-content-wrapper {
+  text-align: justify;
+  hyphens: auto;
+}
+
+main > .section.text-size-small > .default-content-wrapper :is(p, li) {
+  font-size: var(--body-font-size-s);
+}
+
+/* Large and the lead paragraph: a step above the body size on mobile, the large size from 900px */
+main > .section.text-size-large > .default-content-wrapper :is(p, li),
+main > .section.text-lead > .default-content-wrapper > p:first-of-type {
+  font-size: 1.125rem;
+}
+
+main > .section.text-lead > .default-content-wrapper > p:first-of-type {
+  line-height: 1.4;
+}
+
+main > .section.text-color-secondary > .default-content-wrapper {
+  color: var(--color-text-secondary);
+}
+
+main > .section.text-color-brand > .default-content-wrapper {
+  color: var(--color-text-brand);
+}
+
+/* Underlined text: underline is delivered, text colour isn't (KB-D-082) */
+main > .section:is(.text-underline-brand, .text-underline-secondary, .text-underline-highlight) > .default-content-wrapper u {
+  text-decoration: none;
+}
+
+main > .section.text-underline-brand > .default-content-wrapper u {
+  color: var(--color-text-brand);
+}
+
+main > .section.text-underline-secondary > .default-content-wrapper u {
+  color: var(--color-text-secondary);
+}
+
+main > .section.text-underline-highlight > .default-content-wrapper u {
+  padding-inline: 0.125rem;
+  border-radius: 0.125rem;
+  background-color: var(--color-bg-brand-secondary);
+  color: var(--color-text-brand-secondary);
+  box-decoration-break: clone;
+}
+
+@media (width >= 600px) {
+  main > .section:is(.text-columns-2, .text-columns-3) > .default-content-wrapper {
+    column-count: 2;
+    column-gap: var(--space-800);
+  }
+
+  main > .section:is(.text-columns-2, .text-columns-3) > .default-content-wrapper > :is(h1, h2, h3, h4, h5, h6, pre, ul, ol, picture, .button-container) {
+    break-inside: avoid;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section.text-columns-3 > .default-content-wrapper {
+    column-count: 3;
+  }
+
+  main > .section.text-size-large > .default-content-wrapper :is(p, li),
+  main > .section.text-lead > .default-content-wrapper > p:first-of-type {
+    font-size: var(--body-font-size-l);
+  }
+}
+
 main > .section:first-of-type {
   margin-top: 0;
 }

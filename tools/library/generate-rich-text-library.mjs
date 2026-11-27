@@ -243,7 +243,56 @@ const TEXT_PAGE = {
   ],
 };
 
-const ALL_PAGES = [...RICH_TEXT_PAGES, TEXT_PAGE];
+/*
+ * The built-in Text's text styles (KB-D-083): Section fields (the Section's Text tab), so each
+ * variation is a section with `text` values; they style the section's Text and Title.
+ */
+const TEXT_STYLE_PAGES = [
+  {
+    slug: 'text-component-styles',
+    title: 'Text component: alignment, size, lead, colour and columns',
+    description: 'The Section\'s Text tab (KB-D-083): the Rich Text block\'s Style options for the built-in Text component, applied to the Text and Title of the section (the built-in Text delivers only its text).',
+    variations: [
+      { label: 'Text alignment Center', text: { textAlign: 'center' }, html: PARAS },
+      { label: 'Text alignment Right', text: { textAlign: 'right' }, html: `<p>${P1}</p>` },
+      { label: 'Text alignment Justify', text: { textAlign: 'justify' }, html: `<p>${P1} ${P2} ${P3}</p>` },
+      { label: 'Text size Small', text: { textSize: 'small' }, html: PARAS },
+      { label: 'Text size Large', text: { textSize: 'large' }, html: PARAS },
+      { label: 'First paragraph Lead paragraph', text: { textLead: 'lead' }, html: PARAS },
+      { label: 'Text colour Secondary', text: { textColor: 'secondary' }, html: PARAS },
+      { label: 'Text colour Brand', text: { textColor: 'brand' }, html: PARAS },
+      { label: 'Text columns Two', text: { textColumns: '2' }, html: LONG },
+      { label: 'Text columns Three', text: { textColumns: '3' }, html: LONG },
+    ],
+  },
+  {
+    slug: 'text-component-inline',
+    title: 'Text component: coloured words, direction and links',
+    description: 'The Section\'s Text tab (KB-D-083) for the built-in Text component: Underlined text colours the words underlined with the toolbar, Text direction and Links to other sites.',
+    variations: [
+      { label: 'Underlined text Brand colour', text: { underlineStyle: 'brand' }, html: UNDERLINED },
+      { label: 'Underlined text Secondary colour', text: { underlineStyle: 'secondary' }, html: UNDERLINED },
+      { label: 'Underlined text Highlight', text: { underlineStyle: 'highlight' }, html: UNDERLINED },
+      {
+        label: 'Underlined text Brand colour on a Dark Section', style: 'bg-dark', text: { underlineStyle: 'brand' }, html: UNDERLINED,
+      },
+      {
+        label: 'Underlined text Highlight on a Dark green Section', style: 'bg-dark-green', text: { underlineStyle: 'highlight' }, html: UNDERLINED,
+      },
+      { label: 'Text direction Right to left', text: { textDirection: 'rtl' }, html: RTL },
+      { label: 'Links to other sites Open in a new tab', text: { externalLinks: 'new-tab' }, html: LINKS },
+      {
+        label: 'Introduction: Center, Lead paragraph, Large, Brand underlined words',
+        text: {
+          textAlign: 'center', textLead: 'lead', textSize: 'large', underlineStyle: 'brand',
+        },
+        html: `<p>${P1.replace('reimagine how they work', '<u>reimagine how they work</u>')}</p><p>${P2}</p>`,
+      },
+    ],
+  },
+];
+
+const ALL_PAGES = [...RICH_TEXT_PAGES, TEXT_PAGE, ...TEXT_STYLE_PAGES];
 ALL_PAGES.forEach((p) => {
   if (p.variations.length > MAX_VARIATIONS) throw new Error(`${p.slug}: more than ${MAX_VARIATIONS} variations, split the page`);
 });
@@ -297,11 +346,20 @@ function named(children) {
 }
 
 const SECTION_FIELDS = `[${modelFields('section').join(',')}]`;
-const sectionNode = (children, style) => ({
+/** fails when a variation uses a Section field or value the Section model doesn't offer */
+function checkSectionFields(values) {
+  Object.entries(values).forEach(([name, value]) => {
+    const field = fieldsOf('section').find((f) => f.name === name);
+    if (!field) throw new Error(`Section has no field ${name}`);
+    if (field.options && !field.options.some((o) => o.value === value)) throw new Error(`Section ${name} has no option ${value}`);
+  });
+}
+const sectionNode = (children, style, text = {}) => ({
   name: 'section',
   props: [
     ['sling:resourceType', RT.section], ['jcr:primaryType', 'nt:unstructured'], ['model', 'section'],
     ...(style ? [['style', multi([style]), true]] : []),
+    ...Object.entries(text),
     ['modelFields', SECTION_FIELDS, true],
   ],
   children: named(children),
@@ -387,8 +445,9 @@ function buildPage(p, isText) {
   const drafts = [{ html: `<h1>${p.title}</h1><p>${p.description} ${LABEL_HINT}</p>` }];
   p.variations.forEach((v) => {
     if (isText) {
-      sections.push(sectionNode([titleNode(v.label, 'h2'), textNode(v.html, 'text')], v.style));
-      drafts.push({ html: `<h2>${v.label}</h2>${v.html}`, style: v.style });
+      checkSectionFields(v.text || {});
+      sections.push(sectionNode([titleNode(v.label, 'h2'), textNode(v.html, 'text')], v.style, v.text));
+      drafts.push({ html: `<h2>${v.label}</h2>${v.html}`, style: v.style, text: v.text });
       return;
     }
     checkClasses(v.classes);
@@ -416,8 +475,9 @@ const draftHtml = (html) => html
   .replaceAll(`${DAM}/`, '/drafts/media/');
 
 function draftDocument(title, sections) {
-  const body = sections.map(({ html, style }) => {
-    const meta = style ? `<div class="section-metadata"><div><div>style</div><div>${style}</div></div></div>` : '';
+  const body = sections.map(({ html, style, text = {} }) => {
+    const rows = [...(style ? [['style', style]] : []), ...Object.entries(text)];
+    const meta = rows.length ? `<div class="section-metadata">${rows.map(([k, v]) => `<div><div>${k}</div><div>${v}</div></div>`).join('')}</div>` : '';
     return `    <div>${draftHtml(html)}${meta}</div>`;
   }).join('\n');
   return `<!DOCTYPE html>
@@ -501,16 +561,17 @@ function zip(entries) {
 
 /* ---------- build ---------- */
 
-const pages = ALL_PAGES.map((p) => ({ ...p, ...buildPage(p, p === TEXT_PAGE) }));
+const isTextPage = (p) => p === TEXT_PAGE || TEXT_STYLE_PAGES.includes(p);
+const pages = ALL_PAGES.map((p) => ({ ...p, ...buildPage(p, isTextPage(p)) }));
 const variationCount = ALL_PAGES.reduce((n, p) => n + p.variations.length, 0);
 
 const folder = {
   title: 'Rich Text',
-  description: 'Rich Text block (KB-D-080, KB-D-082): rich text with block styles (alignment, text size, lead paragraph, colour, columns, width, coloured underlined words, direction, new-tab links) and the editor toolbar; and the built-in Text component\'s toolbar.',
+  description: 'Rich Text block (KB-D-080, KB-D-082): rich text with block styles (alignment, text size, lead paragraph, colour, columns, width, coloured underlined words, direction, new-tab links) and the editor toolbar; the built-in Text component\'s toolbar and its text styles (the Section\'s Text tab, KB-D-083).',
 };
 const folderSections = [sectionNode([
   titleNode(folder.title, 'h1'),
-  textNode(introText(folder.description, 'rich-text, text'), 'text'),
+  textNode(introText(folder.description, 'rich-text, text, section'), 'text'),
   listNode(pages.map((p) => page(p.slug))),
 ])];
 

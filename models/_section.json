@@ -20,6 +20,11 @@
       "id": "section",
       "fields": [
         {
+          "component": "tab",
+          "name": "sectionTab",
+          "label": "Section"
+        },
+        {
           "component": "text",
           "name": "name",
           "label": "Section Name",
@@ -143,6 +148,9 @@
             "regExp": "^#?[a-z0-9][a-z0-9-]*$",
             "customErrorMsg": "Lower-case letters, digits and hyphens, e.g. our-offices."
           }
+        },
+        {
+          "...": "./_text.json#/sectionFields"
         }
       ]
     }
