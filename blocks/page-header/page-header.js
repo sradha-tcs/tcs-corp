@@ -62,12 +62,19 @@ const TITLE_FONT_WIDTHS = {
 };
 // Description Font: the description's size at every width (Default Font: the layout's)
 const DESCRIPTION_FONTS = ['text-16px', 'text-18px', 'text-20px', 'text-24px', 'text-32px', 'text-40px'];
+// Title weight and Description Font weight: pageheader-title-light ... pageheader-title-bold,
+// pageheader-description-light ... pageheader-description-bold (Layout default: the layout's)
+const WEIGHTS = ['light', 'regular', 'medium', 'semibold', 'bold'];
+const TITLE_WEIGHTS = WEIGHTS.map((weight) => `pageheader-title-${weight}`);
+const DESCRIPTION_WEIGHTS = WEIGHTS.map((weight) => `pageheader-description-${weight}`);
 
 /** Title Font and Description Font as block classes; nothing selected keeps the layout's sizes */
 function applyFonts(block, props) {
   const widths = Object.keys(TITLE_FONT_WIDTHS);
   block.classList.remove(
     ...DESCRIPTION_FONTS,
+    ...TITLE_WEIGHTS,
+    ...DESCRIPTION_WEIGHTS,
     ...widths.flatMap((width) => HEADINGS.map((font) => `title-${width}-${font}`)),
   );
   widths.forEach((width) => {
@@ -76,6 +83,10 @@ function applyFonts(block, props) {
   });
   const descriptionFont = toClassName(textOf(props.pageheaderdescriptionfont));
   if (DESCRIPTION_FONTS.includes(descriptionFont)) block.classList.add(descriptionFont);
+  const titleWeight = toClassName(textOf(props.titleweight));
+  if (TITLE_WEIGHTS.includes(titleWeight)) block.classList.add(titleWeight);
+  const descriptionWeight = toClassName(textOf(props.descriptionfontweight));
+  if (DESCRIPTION_WEIGHTS.includes(descriptionWeight)) block.classList.add(descriptionWeight);
 }
 
 /** the layout: the block's Layout, or from the Page Type */

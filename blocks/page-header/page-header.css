@@ -601,3 +601,20 @@
 .page-header.text-24px .page-header-description { font-size: 1.5rem; }
 .page-header.text-32px .page-header-description { font-size: 2rem; }
 .page-header.text-40px .page-header-description { font-size: 2.5rem; }
+
+/*
+ * Title weight and Description Font weight (page-header.js pageheader-title-* /
+ * pageheader-description-*): at every width, last in the file so they win over the layouts'
+ * own weights; Layout default keeps them
+ */
+.page-header.pageheader-title-light .page-header-title { font-weight: var(--font-weight-light); }
+.page-header.pageheader-title-regular .page-header-title { font-weight: var(--font-weight-regular); }
+.page-header.pageheader-title-medium .page-header-title { font-weight: var(--font-weight-medium); }
+.page-header.pageheader-title-semibold .page-header-title { font-weight: var(--font-weight-semibold); }
+.page-header.pageheader-title-bold .page-header-title { font-weight: var(--font-weight-bold); }
+
+.page-header.pageheader-description-light .page-header-description { font-weight: var(--font-weight-light); }
+.page-header.pageheader-description-regular .page-header-description { font-weight: var(--font-weight-regular); }
+.page-header.pageheader-description-medium .page-header-description { font-weight: var(--font-weight-medium); }
+.page-header.pageheader-description-semibold .page-header-description { font-weight: var(--font-weight-semibold); }
+.page-header.pageheader-description-bold .page-header-description { font-weight: var(--font-weight-bold); }
