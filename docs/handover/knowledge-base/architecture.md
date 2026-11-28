@@ -81,8 +81,8 @@ Layering rules (AGENTS.md "Shared code: decorators and utils"): blocks and templ
 
 | Phase | Steps (in code order) |
 | --- | --- |
-| Eager (`loadEager`) | `decorateHead()` (SEO head tags and `<html lang>`, `decorators/seo-decorator.js`); `trackInteractions()` (page entry and capture listeners, `decorators/data-layer-decorator.js`); `decorateTemplateAndTheme()`; `decoratePageType()` (Page Type body class); on the 404 page `loadErrorPage(main)`, else `loadTemplate(main)`; `decorateMain(main)`; `reserveHeaderSpace()`; `body.appear`; `preloadBlockModules(first section)`; `loadSection(first)` with `prepareMotion` and `waitForFirstImage` (LCP); `fonts.css` only at 900px and wider or when the session flag `fonts-loaded` is set |
-| Lazy (`loadLazy`) | `autolinkModals` (links containing `/modals/` open the Modal block); `preloadBlockModules(main)` and of the chrome blocks (`header`, `footer`, `fragment`, `tcs-header`, `conversation-canvas`); `prefetchData(main)`; `loadHeader`; `loadFooter` (hidden until the sections have loaded); `loadMainSections` (each section with `prepareMotion`, RUM enhancement after the first); footer shown; `trackBlocks(main)`; `addErrorBackButton` on 404 pages; scroll to the URL hash; `lazy-styles.css`; `loadFonts()` |
+| Eager (`loadEager`) | `<html lang>` (`getPageLanguage`); `decorateTemplateAndTheme()`; `decoratePageType()` (Page Type body class); on the 404 page `loadErrorPage(main)`, else `loadTemplate(main)`; `decorateMain(main)`; `reserveHeaderSpace()`; `body.appear`; `preloadBlockModules(first section)`; `loadSection(first)` with `prepareSectionMotion` (imports `decorators/motion-decorator.js` only when a block of the section has a `motion-*` / `bg-motion-*` class) and `waitForFirstImage` (LCP); the data layer and the SEO decorator are no longer imported here (lazy phase, 28 November 2026: head.html preloads 18 modules instead of 28); `fonts.css` only at 900px and wider or when the session flag `fonts-loaded` is set |
+| Lazy (`loadLazy`) | first `decorateHead()` (SEO / social head tags, `decorators/seo-decorator.js`, imported on demand) and `trackInteractions()` (page entry and capture listeners, `decorators/data-layer-decorator.js`, imported on demand); `autolinkModals` (links containing `/modals/` open the Modal block); `preloadBlockModules(main)` and of the chrome blocks (`header`, `footer`, `fragment`, `tcs-header`, `conversation-canvas`); `prefetchData(main)`; `loadHeader`; `loadFooter` (hidden until the sections have loaded); `loadMainSections` (each section with `prepareMotion`, RUM enhancement after the first); footer shown; `trackBlocks(main)`; `addErrorBackButton` on 404 pages; scroll to the URL hash; `lazy-styles.css`; `loadFonts()` |
 | Delayed (`loadDelayed`) | After 3 seconds: `trackBlocks(document)` (header, footer, late blocks such as modals) and `import('./delayed.js')`. `scripts/delayed.js` contains only a comment (`// add delayed functionality here`) |
 
 `decorateMain(main)` runs `decorateIcons` → `buildAutoBlocks` (an empty placeholder) → `decorateSectionsWithOptions` (section options, then the container sections Gen Carousel, Tabs Container and Columns Container wrapped in synthetic blocks) → `decorateBlocks` → `applyBlockOptions` (Additional tab) → `decorateButtons`.
@@ -95,7 +95,7 @@ From [`scripts/aem.js`](../../../scripts/aem.js):
 
 - `decorateBlock(block)` adds `.block`, `data-block-name` (the first class), `data-block-status="initialized"`, wraps text nodes and adds `{name}-wrapper` to the parent.
 - `loadBlock(block)` sets `loading`, loads `/blocks/{name}/{name}.css` and imports `/blocks/{name}/{name}.js` in parallel, awaits the default export, catches and logs errors (`failed to load module for {name}`, `failed to load block {name}`) and always ends with `data-block-status="loaded"`.
-- `loadSection(section, callback)` loads the section's blocks one after another, runs the callback (here `prepareMotion`), then shows the section.
+- `loadSection(section, callback)` loads the section's blocks one after another, runs the callback (here `prepareSectionMotion`), then shows the section; `loadMainSections` yields to the main thread between sections (`scheduler.yield`, else a timeout), so each section's decoration, style and layout is a task of its own.
 
 ### Module preloading
 
@@ -288,7 +288,7 @@ sequenceDiagram
   B->>E: GET /de-de/page
   E-->>B: HTML (head.html injected, meta tags, sections)
   B->>E: aem.js, scripts.js, styles.css, modulepreload links
-  S->>S: decorateHead, trackInteractions, decoratePageType
+  S->>S: html lang, decoratePageType
   S->>E: templates/{type}/{type}.js and .css (Page Type in TEMPLATES)
   S->>S: decorateMain (sections, container sections, blocks, options, buttons)
   S->>A: loadSection(first) with prepareMotion and waitForFirstImage

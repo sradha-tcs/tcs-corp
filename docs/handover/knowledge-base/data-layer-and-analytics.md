@@ -73,7 +73,7 @@ flowchart LR
 
 | Phase (`scripts/scripts.js`) | Call | What is pushed |
 | --- | --- | --- |
-| Eager, start of `loadEager` | `trackInteractions()` | The page entry (first entry); the document listeners start |
+| Lazy, start of `loadLazy` (right after the first section is shown) | `trackInteractions()` (the decorator imported on demand) | The page entry; the document listeners start (since 28 November 2026; before, at the start of `loadEager`). A Tabs or Carousel block of the first section may push its first `cmp:show` just before it |
 | Eager and lazy, while blocks decorate | `trackCardList`, Separator, Tabs | List / Cards (and their cards), Separator (when its Analytics is on), tab panels |
 | Lazy, after `loadMainSections(main)` | `trackBlocks(main)` | One entry for every block in `main` not yet tracked |
 | Skeleton removed (List, Filter List) | `trackBlocks(block.parentElement)` | The block once it has rendered, not its skeleton |

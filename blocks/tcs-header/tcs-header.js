@@ -55,13 +55,21 @@ function setupDynamicLogoTheme(toggleBtn) {
   const schedule = () => {
     if (!frame) frame = requestAnimationFrame(update);
   };
+  // changes to the page's sections (blocks decorating, sections shown) come in bursts while the
+  // page loads: measure once they settle, not in every frame of the burst (each measure is a
+  // layout of the whole page; Lighthouse: 127ms of main-thread work on a Home page)
+  let settle = 0;
+  const scheduleSettled = () => {
+    clearTimeout(settle);
+    settle = setTimeout(schedule, 150);
+  };
 
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule, { passive: true });
   document.addEventListener('header:menu', schedule);
   const main = document.querySelector('main');
   if (main) {
-    new MutationObserver(schedule).observe(main, {
+    new MutationObserver(scheduleSettled).observe(main, {
       childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'data-section-status'],
     });
   }
@@ -197,16 +205,15 @@ function menuLink(node, currentPath, className) {
 }
 
 /**
- * Builds the Mobile Drawer: the main view (L1 accordions with their L2 pages, the AI search)
- * and the L3 panel, which replaces the main view while an L2 page's children are shown
- * @returns {{ drawer: Element, showMain: Function }} showMain returns to the main view
+ * Fills the Mobile Drawer: the main view (L1 accordions with their L2 pages, the AI search)
+ * and the L3 panel, which replaces the main view while an L2 page's children are shown.
+ * Built on first use (the menu button's first hover, focus, touch or click), not while the page
+ * loads: the drawer is closed until then and never shown from 1200px, and building it means
+ * loading the query index and creating a node per page (a long task on large sites).
+ * @param {Element} drawer the empty drawer element (in the DOM, hidden)
+ * @returns {Promise<{ showMain: Function }>} showMain returns to the main view
  */
-async function buildMobileDrawer(root, depth, t) {
-  const drawer = document.createElement('div');
-  drawer.className = 'tcs-header-menu-drawer';
-  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
-  drawer.hidden = true;
-
+async function buildMobileDrawer(drawer, root, depth, t) {
   const content = document.createElement('div');
   content.className = 'tcs-header-drawer-content';
 
@@ -339,7 +346,7 @@ async function buildMobileDrawer(root, depth, t) {
   content.append(main, l3Panel);
   drawer.append(content);
 
-  return { drawer, showMain };
+  return { showMain };
 }
 
 function buildLogo(imageCell, altCell, linkCell, className, fallback) {
@@ -400,15 +407,27 @@ export default async function decorate(block) {
   toggleBtn.setAttribute('aria-label', t('mainNavigation', 'Main navigation'));
   toggleBtn.setAttribute('aria-expanded', 'false');
 
-  // Build the complete drawer
-  const { drawer, showMain } = await buildMobileDrawer(root, depth, t);
+  // the drawer is in the DOM from the start (aria-controls), its menu is built on first use
+  const drawer = document.createElement('div');
+  drawer.className = 'tcs-header-menu-drawer';
+  drawer.id = `tcs-header-menu-${crypto.randomUUID()}`;
+  drawer.hidden = true;
   toggleBtn.setAttribute('aria-controls', drawer.id);
+  let menu = null;
+  const buildMenu = () => {
+    menu ||= buildMobileDrawer(drawer, root, depth, t);
+    return menu;
+  };
+  // start on the first sign of intent, so the menu is usually ready by the click
+  ['pointerenter', 'pointerdown', 'focus'].forEach((type) => {
+    toggleBtn.addEventListener(type, buildMenu, { once: true, passive: true });
+  });
 
   const setMenuOpen = (nextState) => {
     toggleBtn.setAttribute('aria-expanded', String(nextState));
     drawer.hidden = !nextState;
     // closing the menu returns it to the main (L1) view; open accordions stay open
-    if (!nextState) showMain();
+    if (!nextState) menu?.then(({ showMain }) => showMain());
     document.body.classList.toggle('nav-menu-open', nextState);
 
     // If the drawer was moved by header.js, ensure it syncs
@@ -422,9 +441,11 @@ export default async function decorate(block) {
     document.dispatchEvent(new CustomEvent('header:menu', { detail: { open: nextState } }));
   };
 
-  toggleBtn.addEventListener('click', (event) => {
+  toggleBtn.addEventListener('click', async (event) => {
     event.stopPropagation();
-    setMenuOpen(toggleBtn.getAttribute('aria-expanded') !== 'true');
+    const open = toggleBtn.getAttribute('aria-expanded') !== 'true';
+    if (open) await buildMenu();
+    setMenuOpen(open);
   });
 
   // focus moved out of the header (e.g. to the Conversation Canvas of the page) closes the menu
