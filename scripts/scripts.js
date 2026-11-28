@@ -14,18 +14,16 @@ import {
   getMetadata,
 } from './aem.js';
 import { applyBlockOptions } from '../decorators/block-options-decorator.js';
-import { prepareMotion } from '../decorators/motion-decorator.js';
-import { trackBlocks, trackInteractions } from '../decorators/data-layer-decorator.js';
 import { buildImage, decorateDeliveryImages } from '../decorators/responsive-image-decorator.js';
 import { decorateButton } from '../decorators/button-decorator.js';
 import { decorateButtons } from '../decorators/content-buttons-decorator.js';
-import { decorateHead } from '../decorators/seo-decorator.js';
 import { reserveHeaderSpace } from '../utils/header-space.js';
 import { getPlaceholders } from '../utils/placeholders.js';
 import { addSkipLink } from '../decorators/a11y-decorator.js';
 import { hiddenParts, markHiddenParts } from '../utils/page-visibility.js';
 import { availableId } from '../utils/ids.js';
 import { sheetOverrides } from '../utils/sheet-metadata.js';
+import { getPageLanguage } from '../utils/metadata.js';
 import blockModules, { blockStylesheet } from './module-graph.js';
 import {
   DEFAULT_LOCALE, getLocale, localePagePath, resolvePagePath,
@@ -534,16 +532,51 @@ function prefetchData(main) {
   }
 }
 
+/*
+ * Modules that aren't needed to show the first section load on demand (no modulepreload, not
+ * parsed or run before LCP): the data layer and the SEO / social head tags at the start of the
+ * lazy phase, the block animations only for a section with an animated block.
+ */
+let dataLayer = null;
+const loadDataLayer = () => {
+  dataLayer ||= import('../decorators/data-layer-decorator.js');
+  return dataLayer;
+};
+
+/**
+ * Prepares the block animations of a section before it is shown (decorators/motion-decorator.js,
+ * loaded only when a block of the section has an Animation Type or Background animation class:
+ * motion-* / bg-motion-*).
+ * @param {Element} section
+ */
+async function prepareSectionMotion(section) {
+  if (!section?.querySelector('.block[class*="motion-"]')) return;
+  const { prepareMotion } = await import('../decorators/motion-decorator.js');
+  await prepareMotion(section);
+}
+
+/**
+ * Lets the browser handle input and paint between sections (scheduler.yield where supported):
+ * each section's decoration, style and layout is a task of its own instead of one long task.
+ * @returns {Promise<void>}
+ */
+const yieldToMain = () => (window.scheduler?.yield
+  ? window.scheduler.yield()
+  : new Promise((resolve) => { setTimeout(resolve, 0); }));
+
 /**
  * Loads the sections in order, as loadSections (aem.js) does; each section's block animations
- * are prepared once its blocks are decorated, before it is shown (decorators/motion-decorator.js).
+ * are prepared once its blocks are decorated, before it is shown; the main thread is yielded
+ * between sections.
  * @param {Element} main
  */
 async function loadMainSections(main) {
   const sections = [...main.querySelectorAll('div.section')];
   for (let i = 0; i < sections.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
-    await loadSection(sections[i], prepareMotion);
+    if (i > 0) await yieldToMain();
+    // eslint-disable-next-line no-await-in-loop
+    await loadSection(sections[i], prepareSectionMotion);
     if (i === 0 && sampleRUM.enhance) sampleRUM.enhance();
   }
 }
@@ -553,8 +586,9 @@ async function loadMainSections(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  decorateHead();
-  trackInteractions();
+  // the page's language at once (screen readers, hyphenation); the other head tags come with the
+  // SEO decorator in the lazy phase
+  document.documentElement.lang = getPageLanguage();
   decorateTemplateAndTheme();
   decoratePageType();
   // the parts the page hides are marked before it is shown: a hidden header keeps no space
@@ -575,7 +609,7 @@ async function loadEager(doc) {
     const first = main.querySelector('.section');
     if (first) preloadBlockModules(first);
     await loadSection(first, async (section) => {
-      await prepareMotion(section);
+      await prepareSectionMotion(section);
       await waitForFirstImage(section);
     });
   }
@@ -611,6 +645,10 @@ function autolinkModals(doc) {
 }
 
 async function loadLazy(doc) {
+  // the SEO / social head tags and the data layer (page entry, interactions): right after the
+  // first section is shown, not before it
+  import('../decorators/seo-decorator.js').then(({ decorateHead }) => decorateHead());
+  loadDataLayer().then(({ trackInteractions }) => trackInteractions());
   autolinkModals(doc);
   const main = doc.querySelector('main');
   // the modules of the other blocks, the header and footer and the blocks of their fragments
@@ -635,7 +673,7 @@ async function loadLazy(doc) {
 
   await loadMainSections(main);
   if (footer) footer.style.display = '';
-  trackBlocks(main);
+  loadDataLayer().then(({ trackBlocks }) => trackBlocks(main));
   addErrorBackButton(main);
 
   const { hash } = window.location;
@@ -654,7 +692,7 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => {
     // header, footer and blocks loaded later (e.g. modals)
-    trackBlocks(document);
+    loadDataLayer().then(({ trackBlocks }) => trackBlocks(document));
     import('./delayed.js');
   }, 3000);
   // load anything that can be postponed to the latest here
