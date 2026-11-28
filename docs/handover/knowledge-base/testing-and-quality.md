@@ -40,6 +40,7 @@ Never report a test as Passed that was not executed; a review or reasoning subst
 
 | File | Module(s) under test | What it covers | Tests |
 | --- | --- | --- | --- |
+| [test/models/text-rte-filter.test.mjs](../../../test/models/text-rte-filter.test.mjs) | `component-filters.json`, `component-definition.json`, `scripts/editor-support-rte.js` | The Text RTE filter exists with a toolbar, the Text definition names it, only published tools, Text components without a filter get it in the editor | 4 |
 | [test/list/list-data.test.mjs](../../../test/list/list-data.test.mjs) | `blocks/list/list-data.js`, `utils/cells.js`, `utils/redirects.js` | List configuration defaults and clamping, author hints, child pages and depth, page metadata precedence, redirects (chains, loops), fixed lists, unsafe links, ordering, List Item rows (including rows rendered before the Display toggles) | 57 |
 | [test/list/display-precedence.test.mjs](../../../test/list/display-precedence.test.mjs) | `blocks/list/list-data.js` | Card style and colour precedence (List Item > List > page > automatic), field-by-field overrides from the linked page | 16 |
 | [test/list/query-index-tags.test.mjs](../../../test/list/query-index-tags.test.mjs) | `utils/query-index.js` | Tags from `article:tag` and `cq-tags`, merged without duplicates | 4 |

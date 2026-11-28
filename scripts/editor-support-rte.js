@@ -6,6 +6,26 @@
 // this script should execute after script.js but before the the universal editor cors script
 // and any block being loaded
 
+/**
+ * The filter with the Text component's rich text toolbar (models/_component-filters.json, named by
+ * the Text definition's template in models/_text.json; test/models/text-rte-filter.test.mjs).
+ * AEM writes a component's filter from its own `filter` property, which the template sets only
+ * when the component is created: Text components authored before the toolbar was configured
+ * have none, so Universal Editor would show its default toolbar for them.
+ */
+export const TEXT_RTE_FILTER = 'richtext';
+
+/**
+ * Gives the Text components without a filter the Text toolbar's filter. A Text component is a
+ * rich text editable that is a component of its own (`data-aue-behavior="component"`, set when
+ * its paragraphs are grouped below); block rich text fields aren't (their filter is the block's).
+ * @param {Element|Document} container
+ */
+export function applyTextRteFilter(container = document) {
+  container.querySelectorAll('[data-aue-type="richtext"][data-aue-behavior="component"]:not([data-aue-filter])')
+    .forEach((text) => { text.dataset.aueFilter = TEXT_RTE_FILTER; });
+}
+
 export function decorateRichtext(container = document) {
   function deleteInstrumentation(element) {
     delete element.dataset.richtextResource;
@@ -59,9 +79,11 @@ export function decorateRichtext(container = document) {
       if (richtextProp) group.dataset.aueProp = richtextProp;
       if (richtextLabel) group.dataset.aueLabel = richtextLabel;
       if (richtextFilter) group.dataset.aueFilter = richtextFilter;
+      else if (richtextResource) group.dataset.aueFilter = TEXT_RTE_FILTER;
       group.dataset.aueType = 'richtext';
       element.replaceWith(group);
       group.append(element, ...siblings);
     }
   }
+  applyTextRteFilter(container);
 }

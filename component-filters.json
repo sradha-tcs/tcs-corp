@@ -311,16 +311,6 @@
           "strike",
           "code_inline"
         ],
-        "alignment": [
-          "left",
-          "center",
-          "right",
-          "justify"
-        ],
-        "direction": [
-          "ltr",
-          "rtl"
-        ],
         "indentation": [
           "indent",
           "outdent"
@@ -344,7 +334,6 @@
           "link",
           "unlink",
           "image",
-          "table",
           "special_characters"
         ],
         "sr_script": [
@@ -356,20 +345,14 @@
           "clean_unsupported_tags",
           "paste_text"
         ],
-        "advanced": [
-          "classes"
-        ],
         "sections": [
           "format",
           "blocks",
-          "alignment",
-          "direction",
           "list",
           "indentation",
           "insert",
           "sr_script",
-          "editor",
-          "advanced"
+          "editor"
         ]
       },
       "actions": {
@@ -385,10 +368,11 @@
         "image": {
           "wrapInPicture": true
         },
-        "table": {
-          "showTableProperties": true,
-          "showRowProperties": true,
-          "showCellProperties": true
+        "indentation": {
+          "scope": "lists"
+        },
+        "link": {
+          "hideTarget": true
         }
       }
     }
