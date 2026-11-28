@@ -61,7 +61,7 @@ flowchart LR
 
 | Phase | What runs (`scripts/scripts.js`) |
 | --- | --- |
-| Eager (`loadEager`) | `decorateHead` (SEO tags, `<html lang>`), `trackInteractions` (data-layer listeners and page entry), template / theme / page-type classes, the 404 content or the Page Type template (`templates/{name}`), `decorateMain`, `reserveHeaderSpace`, `body.appear`, `preloadBlockModules(first section)`, then the first section with `prepareMotion` and `waitForFirstImage` (sets the first image `loading="eager"` and waits for it); `fonts.css` only on wide viewports or when cached |
+| Eager (`loadEager`) | `<html lang>`, template / theme / page-type classes, the 404 content or the Page Type template (`templates/{name}`), `decorateMain`, `reserveHeaderSpace`, `body.appear`, `preloadBlockModules(first section)`, then the first section with `prepareSectionMotion` (the motion decorator only for a section with an animated block) and `waitForFirstImage` (sets the first image `loading="eager"` and waits for it); `fonts.css` only on wide viewports or when cached |
 | Lazy (`loadLazy`) | Modal auto-links, `preloadBlockModules` for the rest of `main` and the chrome blocks (`header`, `footer`, `fragment`, `tcs-header`, `conversation-canvas`), `prefetchData`, `loadHeader`, `loadFooter` (hidden), `loadMainSections` (each section in order, animations prepared before it shows), then footer shown, `trackBlocks(main)`, Go back on 404 pages, hash scroll, `lazy-styles.css`, `loadFonts` |
 | Delayed (`loadDelayed`) | After 3 s: `trackBlocks(document)` (blocks added later, such as header, footer, modals) and `import('./delayed.js')`, which is empty ("add delayed functionality here") |
 
@@ -78,6 +78,8 @@ flowchart LR
 | `styles/card-list.css` | `@import` from `blocks/list/list.css` and `blocks/cards/cards.css` (a chained request after the block stylesheet; not in the preload list) |
 | `templates/<name>/<name>.css` | With the Page Type template in the eager phase (`templates/blog/blog.css` imports `article.css`) |
 | `styles/motion.css` | Only on pages with an animated block (`prepareMotion`) |
+| Non-visual modules on demand (28 November 2026) | The data layer, the SEO decorator and the motion decorator (with analytics, page-context, privacy, objects, keywords, motion, environment) are imported when needed instead of by `scripts.js`: head.html preloads 18 modules instead of 28. Measured on `/language-master/en/` (mobile, 4x CPU, median of 6): blocking time 162 → 134 ms, longest task 109 → 99 ms, scripts 101 → 91; article pages 93 → 83 scripts |
+| Sections one task each (28 November 2026) | `loadMainSections` yields between sections (`scheduler.yield`), so long tasks are split; every section still loads, in order |
 | `styles/fonts.css` | Eager on viewports ≥ 900px or when the session flag is set, else end of the lazy phase |
 | `styles/lazy-styles.css` | End of the lazy phase (currently only the Universal Editor item placeholder styles) |
 
@@ -126,7 +128,7 @@ flowchart LR
 
 ## Analytics dispatch
 
-The Adobe Client Data Layer (`window.adobeDataLayer`) is filled by `decorators/data-layer-decorator.js`: the page entry and interaction listeners in the eager phase (`trackInteractions`), the blocks of `main` once its sections have loaded (`trackBlocks(main)`), and the rest (header, footer, later blocks) in the delayed phase after 3 s (`trackBlocks(document)`). No analytics library consumes it: Adobe Tags and the Web SDK are **not configured** (blocked: measurement plan), and `scripts/delayed.js` is empty, so there is no tag-manager cost today. When Tags is added, load it from the delayed phase (`scripts/delayed.js`) and re-measure.
+The Adobe Client Data Layer (`window.adobeDataLayer`) is filled by `decorators/data-layer-decorator.js`: the page entry and interaction listeners at the start of the lazy phase (`trackInteractions`, the decorator imported on demand since 28 November 2026; a Tabs or Carousel block of the first section may push its first `cmp:show` just before the page entry), the blocks of `main` once its sections have loaded (`trackBlocks(main)`), and the rest (header, footer, later blocks) in the delayed phase after 3 s (`trackBlocks(document)`). No analytics library consumes it: Adobe Tags and the Web SDK are **not configured** (blocked: measurement plan), and `scripts/delayed.js` is empty, so there is no tag-manager cost today. When Tags is added, load it from the delayed phase (`scripts/delayed.js`) and re-measure.
 
 ## Personalization
 
