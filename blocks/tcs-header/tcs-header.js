@@ -55,13 +55,21 @@ function setupDynamicLogoTheme(toggleBtn) {
   const schedule = () => {
     if (!frame) frame = requestAnimationFrame(update);
   };
+  // changes to the page's sections (blocks decorating, sections shown) come in bursts while the
+  // page loads: measure once they settle, not in every frame of the burst (each measure is a
+  // layout of the whole page; Lighthouse: 127ms of main-thread work on a Home page)
+  let settle = 0;
+  const scheduleSettled = () => {
+    clearTimeout(settle);
+    settle = setTimeout(schedule, 150);
+  };
 
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule, { passive: true });
   document.addEventListener('header:menu', schedule);
   const main = document.querySelector('main');
   if (main) {
-    new MutationObserver(schedule).observe(main, {
+    new MutationObserver(scheduleSettled).observe(main, {
       childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'data-section-status'],
     });
   }

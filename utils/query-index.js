@@ -10,6 +10,7 @@ const INDEX = '/query-index.json';
 const PAGE_SIZE = 1000;
 const YES = ['yes', 'true', '1', 'on', 'y'];
 
+// the pages of each index, built from its rows once per page view (callers don't change them)
 const pagesByIndex = new Map();
 
 /**
@@ -203,10 +204,13 @@ export async function getPagesAt(paths) {
 export async function getPages() {
   const root = indexRoot();
   const url = indexUrlOf(root);
-  if (!pagesByIndex.has(url)) pagesByIndex.set(url, fetchAll(url).catch(() => []));
+  if (!pagesByIndex.has(url)) {
+    pagesByIndex.set(url, fetchAll(url).catch(() => [])
+      .then((rows) => rows.filter((row) => row.path).map(toPage)));
+  }
+  // a new array on every call (callers sort and filter it), the same page objects
   return (await pagesByIndex.get(url))
-    .filter((row) => row.path && (!root || row.path === root || row.path.startsWith(`${root}/`)))
-    .map(toPage);
+    .filter(({ path }) => !root || path === root || path.startsWith(`${root}/`));
 }
 
 /**
