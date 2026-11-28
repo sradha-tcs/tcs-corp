@@ -518,20 +518,16 @@ export function preloadBlockModules(source, { styles = true } = {}) {
 /**
  * Starts loading the data the page's blocks share (each loads once and is cached) when the lazy
  * phase begins, so the blocks below the first section don't each wait for it in turn: the query
- * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. The query
- * index on every page: the header's tablet / mobile menu (blocks/tcs-header on the Navigation
- * page) lists pages from it, and loads in parallel with it instead of after it; a page with Hide
- * Header loads it only for these blocks of its own. (Not in the eager phase: it would compete
- * with the LCP image.)
+ * index, taxonomy and redirects for Lists, Filter Lists and Conversation Canvas menus. Only for
+ * these blocks: the header's tablet / mobile menu (blocks/tcs-header) loads the index itself
+ * when it's first used, so pages without them don't load and parse it. (Not in the eager phase:
+ * it would compete with the LCP image.)
  * @param {Element} main
  */
 function prefetchData(main) {
   const listsPages = !!main?.querySelector('.list, .filter-list, .conversation-canvas');
-  // without a header (Hide Header), only for the page's own blocks
-  if (!hidden.header || listsPages) {
-    import('../utils/query-index.js').then(({ getPages }) => getPages());
-  }
   if (!listsPages) return;
+  import('../utils/query-index.js').then(({ getPages }) => getPages());
   import('../utils/taxonomy.js').then(({ loadTaxonomy }) => loadTaxonomy());
   if (main.querySelector('.list')) {
     import('../utils/redirects.js').then(({ loadRedirects }) => loadRedirects());
